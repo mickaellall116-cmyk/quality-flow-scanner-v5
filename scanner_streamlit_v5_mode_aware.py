@@ -1,5 +1,5 @@
 # ============================================================
-# QUALITY FLOW SCANNER V5 - MODE-AWARE DISCOVERY STREAMLIT APP
+# QUALITY FLOW SCANNER V5.1 - MODE-AWARE DISCOVERY STREAMLIT APP
 # ============================================================
 # Upgrades from V3:
 # 1) Discovery Mode: scans curated AI / Space / Quantum / Semis / Crypto / Nuclear / Cyber / Growth baskets
@@ -10,6 +10,7 @@
 # 6) Buy Zone, Stop, TP1 columns
 # 7) Opportunity ranking across all scanned tickers
 # 8) Cleaner Top Opportunities table
+# 9) V5.1 Morning Action List: BUY NOW / WATCH TODAY / NO NEW ENTRY
 #
 # Install:
 #   pip install streamlit yfinance pandas numpy plotly
@@ -33,7 +34,7 @@ import yfinance as yf
 warnings.filterwarnings("ignore")
 
 st.set_page_config(
-    page_title="Quality Flow Scanner V5 Mode-Aware Discovery",
+    page_title="Quality Flow Scanner V5.1 Mode-Aware Discovery",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -794,7 +795,7 @@ def plot_symbol(symbol: str, interval: str, period: str):
 # SIDEBAR
 # ============================================================
 
-st.title("Quality Flow Scanner V5 Mode-Aware Discovery")
+st.title("Quality Flow Scanner V5.1 Mode-Aware Discovery")
 st.caption("Mode-aware discovery scanner for AI, space, quantum, semis, crypto, nuclear, cyber, and high-beta growth setups.")
 
 with st.sidebar:
@@ -920,14 +921,82 @@ st.subheader("Full Scanner Results")
 display_df = make_display_df(filtered, compact=False)
 st.dataframe(style_table(display_df), use_container_width=True, height=520)
 
-with st.expander("Alerts / Action List", expanded=True):
-    alerts = filtered[filtered["entry"].isin(["YES", "WATCH"])]
-    if alerts.empty:
-        st.info("No Entry YES / WATCH setups right now.")
+with st.expander("Morning Action List", expanded=True):
+    # ============================================================
+    # V5.1 MORNING ACTION ENGINE
+    # ============================================================
+    # Purpose:
+    # - Make the scanner easier to read in the morning.
+    # - Convert Entry / State / Protection into simple actions.
+    #
+    # 🟢 BUY NOW
+    #   Entry = YES
+    #   Protection = SAFE
+    #   State = BUY or PULLBACK BUY
+    #
+    # 🟡 WATCH TODAY
+    #   Entry = YES
+    #   Protection = SAFE
+    #   State = EARLY BUY or READY
+    #
+    # 🔴 NO NEW ENTRY
+    #   State = HOLD / HOT / EXIT
+    #   OR Protection = WARNING / EXIT / LOCK GAINS
+    #   OR Entry = NO
+    # ============================================================
+
+    buy_now = filtered[
+        (filtered["entry"] == "YES")
+        & (filtered["protection"] == "SAFE")
+        & (filtered["state"].isin(["BUY", "PULLBACK BUY"]))
+    ].sort_values("rank_score", ascending=False)
+
+    watch_today = filtered[
+        (filtered["entry"] == "YES")
+        & (filtered["protection"] == "SAFE")
+        & (filtered["state"].isin(["EARLY BUY", "READY"]))
+    ].sort_values("rank_score", ascending=False)
+
+    no_new_entry = filtered[
+        (filtered["state"].isin(["HOLD", "HOT", "EXIT"]))
+        | (filtered["protection"].isin(["WARNING", "EXIT", "LOCK GAINS"]))
+        | (filtered["entry"] == "NO")
+    ].sort_values("rank_score", ascending=False)
+
+    def action_line(row):
+        return (
+            f"**{row['symbol']}** — {row['theme']} — "
+            f"{row.get('suggested_mode', 'N/A')} — "
+            f"{row['state']} — Rank {int(row['rank_score'])} — "
+            f"Price {row['price']:.2f} — Buy Zone {row['buy_zone']} — "
+            f"{row['note']}"
+        )
+
+    st.markdown("## 🟢 BUY NOW")
+    st.caption("Entry YES + BUY/PULLBACK BUY + SAFE protection. These are the first charts to inspect.")
+    if buy_now.empty:
+        st.info("No BUY NOW setups.")
     else:
-        for _, row in alerts.head(30).iterrows():
-            icon = "🟢" if row["entry"] == "YES" else "🟡"
-            st.write(f"{icon} **{row['symbol']}** — {row['theme']} — {row.get('suggested_mode', 'N/A')} — {row['entry']} — {row['state']} — Rank {int(row['rank_score'])} — {row['note']}")
+        for _, row in buy_now.head(20).iterrows():
+            st.write(action_line(row))
+
+    st.markdown("---")
+    st.markdown("## 🟡 WATCH TODAY")
+    st.caption("Setup is building, but it needs confirmation before new money.")
+    if watch_today.empty:
+        st.info("No WATCH TODAY setups.")
+    else:
+        for _, row in watch_today.head(20).iterrows():
+            st.write(action_line(row))
+
+    st.markdown("---")
+    st.markdown("## 🔴 NO NEW ENTRY")
+    st.caption("Do not add new money here. Hold existing positions only if your separate plan still says to hold.")
+    if no_new_entry.empty:
+        st.info("No NO NEW ENTRY setups.")
+    else:
+        for _, row in no_new_entry.head(30).iterrows():
+            st.write(action_line(row))
 
 st.download_button("Download Results CSV", data=display_df.to_csv(index=False).encode("utf-8"), file_name="quality_flow_v5_mode_aware_scan.csv", mime="text/csv")
 
@@ -937,7 +1006,7 @@ selected_symbol = st.selectbox("Select ticker to chart", symbol_options)
 if selected_symbol:
     plot_symbol(selected_symbol, interval, period)
 
-with st.expander("How to Use V4"):
+with st.expander("How to Use V5.1"):
     st.markdown(
         """
         - **Entry YES** = acceptable new entry/add area.
@@ -949,6 +1018,6 @@ with st.expander("How to Use V4"):
         - **Protection EXIT** = trend broke.
         - **Suggested Mode** = scanner's best estimate of which QFS engine fits the ticker now: Aggressive / Hybrid / Conservative.
         - **Mode Setup** = suggested TradingView configuration, including whether Pullback should be ON/OFF.
-        - For your workflow: use **Discovery Mode** to find names, sort by **Rank Score**, check **Suggested Mode**, then only open charts where **Entry = YES/WATCH**.
+        - For your workflow: use **Discovery Mode** to find names, then start with the **Morning Action List**. Open charts for **BUY NOW** first, keep **WATCH TODAY** on radar, and avoid new entries in **NO NEW ENTRY**.
         """
     )
