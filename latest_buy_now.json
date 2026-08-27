@@ -1,53 +1,15 @@
 {
   "scanner": "Quality Flow Scanner V5.1",
-  "generated_at": "2026-08-27T13:27:44.427692+00:00",
+  "generated_at": "2026-08-27T19:28:39.798040+00:00",
   "interval": "4h",
   "period": "180d",
   "market_regime": {
     "regime": "CAUTIOUS",
     "risk_on": true,
-    "score": 70
+    "score": 65
   },
-  "count": 1,
-  "results": [
-    {
-      "rank_score": 116,
-      "symbol": "NTAP",
-      "theme": "AI Infrastructure",
-      "timeframe": "4h",
-      "state": "PULLBACK BUY",
-      "entry": "YES",
-      "protection": "SAFE",
-      "suggested_mode": "Conservative",
-      "personality": "Slow / Confirmed Trend",
-      "mode_setup": "Conservative | PB ON | FVG OFF | SWEEP OFF",
-      "aggressive_score": 38,
-      "hybrid_score": 77,
-      "conservative_score": 81,
-      "ema_respect_pct": 43.75,
-      "score": 90,
-      "buy_zone": "191.34-195.50",
-      "price": 193.8,
-      "stop": 186.8786,
-      "tp1": 203.0286,
-      "trend_score": 70,
-      "momentum_score": 20,
-      "volume_score": 0,
-      "rs_score": 0,
-      "risk_score": 0,
-      "ema9": 191.76,
-      "ema21": 193.4213,
-      "ema55": 187.1424,
-      "ema200": 158.6327,
-      "vwap": 189.6331,
-      "above_vwap": true,
-      "adx": 22.5009,
-      "atr_pct": 2.381,
-      "rel_vol": 0.7367,
-      "rs_qqq": -2.4897,
-      "extension_pct": 0.1958,
-      "note": "Bull trend pulling into EMA21 area"
-    }
-  ],
-  "snapshot_note": "Filtered by repository Buy Now rules; upstream generated_at retained."
+  "count": 0,
+  "results": [],
+  "source": "github-actions",
+  "uses_closed_4h_candles": true
 }
