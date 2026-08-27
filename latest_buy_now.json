@@ -1,1 +1,53 @@
-{"scanner":"Quality Flow Scanner V5.1","generated_at":"2026-08-27T13:27:44.427692+00:00","interval":"4h","period":"180d","market_regime":{"regime":"CAUTIOUS","risk_on":true,"score":70},"count":7,"results":[{"rank_score":134,"symbol":"CEG","theme":"AI Infrastructure +1","timeframe":"4h","state":"PULLBACK BUY","entry":"YES","protection":"SAFE","suggested_mode":"Hybrid","personality":"Trend Builder / EMA Respect","mode_setup":"Hybrid | PB ON | FVG OFF | SWEEP OFF","aggressive_score":64,"hybrid_score":82,"conservative_score":75,"ema_respect_pct":43.75,"score":100,"buy_zone":"272.84-278.08","price":279.52,"stop":270.7806,"tp1":291.1725,"trend_score":70,"momentum_score":30,"volume_score":0,"rs_score":10,"risk_score":0,"ema9":277.1153,"ema21":275.4608,"ema55":271.3704,"ema200":277.0276,"vwap":271.801,"above_vwap":true,"adx":22.6485,"atr_pct":2.0844,"rel_vol":0.628,"rs_qqq":3.4088,"extension_pct":1.4736,"note":"Bull trend pulling into EMA21 area"},{"rank_score":134,"symbol":"MSFT","theme":"Quantum","timeframe":"4h","state":"PULLBACK BUY","entry":"YES","protection":"SAFE","suggested_mode":"Hybrid","personality":"Trend Builder / EMA Respect","mode_setup":"Hybrid | PB ON | FVG OFF | SWEEP OFF","aggressive_score":64,"hybrid_score":87,"conservative_score":75,"ema_respect_pct":47.5,"score":100,"buy_zone":"484.09-489.95","price":496.17,"stop":486.4071,"tp1":509.1873,"trend_score":70,"momentum_score":30,"volume_score":0,"rs_score":10,"risk_score":0,"ema9":490.3583,"ema21":487.0185,"ema55":466.1671,"ema200":432.0805,"vwap":462.7841,"above_vwap":true,"adx":27.699,"atr_pct":1.3118,"rel_vol":0.2909,"rs_qqq":3.3046,"extension_pct":1.8791,"note":"Bull trend pulling into EMA21 area"},{"rank_score":134,"symbol":"BTC-USD","theme":"Crypto / Mining","timeframe":"4h","state":"PULLBACK BUY","entry":"YES","protection":"SAFE","suggested_mode":"Hybrid","personality":"Trend Builder / EMA Respect","mode_setup":"Hybrid | PB ON | FVG OFF | SWEEP OFF","aggressive_score":64,"hybrid_score":80,"conservative_score":69,"ema_respect_pct":45.0,"score":100,"buy_zone":"78072.86-78978.58","price":79460.3828,"stop":77950.8629,"tp1":81473.076,"trend_score":60,"momentum_score":30,"volume_score":0,"rs_score":10,"risk_score":0,"ema9":79039.3558,"ema21":78525.7209,"ema55":75432.267,"ema200":69020.5138,"vwap":null,"above_vwap":false,"adx":38.7455,"atr_pct":1.2665,"rel_vol":0.2401,"rs_qqq":4.2754,"extension_pct":1.1903,"note":"Bull trend pulling into EMA21 area | Below VWAP caution"},{"rank_score":134,"symbol":"ETH-USD","theme":"Crypto / Mining","timeframe":"4h","state":"PULLBACK BUY","entry":"YES","protection":"SAFE","suggested_mode":"Hybrid","personality":"Trend Builder / EMA Respect","mode_setup":"Hybrid | PB ON | FVG OFF | SWEEP OFF","aggressive_score":64,"hybrid_score":87,"conservative_score":69,"ema_respect_pct":43.75,"score":100,"buy_zone":"2449.41-2487.27","price":2506.0601,"stop":2442.9683,"tp1":2590.1824,"trend_score":60,"momentum_score":30,"volume_score":0,"rs_score":10,"risk_score":0,"ema9":2488.9535,"ema21":2468.3395,"ema55":2354.2208,"ema200":2088.4302,"vwap":null,"above_vwap":false,"adx":36.6139,"atr_pct":1.6784,"rel_vol":0.5019,"rs_qqq":3.4452,"extension_pct":1.5282,"note":"Bull trend pulling into EMA21 area | Below VWAP caution"},{"rank_score":134,"symbol":"LEU","theme":"Nuclear / Power","timeframe":"4h","state":"PULLBACK BUY","entry":"YES","protection":"SAFE","suggested_mode":"Hybrid","personality":"Trend Builder / EMA Respect","mode_setup":"Hybrid | PB OFF | FVG OFF | SWEEP OFF","aggressive_score":64,"hybrid_score":72,"conservative_score":65,"ema_respect_pct":23.75,"score":100,"buy_zone":"179.89-187.26","price":187.38,"stop":175.1026,"tp1":203.7499,"trend_score":70,"momentum_score":30,"volume_score":0,"rs_score":10,"risk_score":0,"ema9":184.8817,"ema21":183.5738,"ema55":180.1431,"ema200":186.255,"vwap":180.4453,"above_vwap":true,"adx":28.8394,"atr_pct":4.3681,"rel_vol":0.6522,"rs_qqq":3.2827,"extension_pct":2.0734,"note":"Bull trend pulling into EMA21 area"},{"rank_score":134,"symbol":"SOFI","theme":"High-Beta Growth","timeframe":"4h","state":"PULLBACK BUY","entry":"YES","protection":"SAFE","suggested_mode":"Hybrid","personality":"Trend Builder / EMA Respect","mode_setup":"Hybrid | PB ON | FVG OFF | SWEEP OFF","aggressive_score":71,"hybrid_score":82,"conservative_score":75,"ema_respect_pct":42.5,"score":100,"buy_zone":"18.19-18.66","price":18.835,"stop":18.0444,"tp1":19.8891,"trend_score":70,"momentum_score":30,"volume_score":0,"rs_score":10,"risk_score":0,"ema9":18.6648,"ema21":18.4234,"ema55":18.0316,"ema200":18.1345,"vwap":17.3685,"above_vwap":true,"adx":23.7714,"atr_pct":2.7983,"rel_vol":0.3838,"rs_qqq":6.0876,"extension_pct":2.2343,"note":"Bull trend pulling into EMA21 area"},{"rank_score":116,"symbol":"NTAP","theme":"AI Infrastructure","timeframe":"4h","state":"PULLBACK BUY","entry":"YES","protection":"SAFE","suggested_mode":"Conservative","personality":"Slow / Confirmed Trend","mode_setup":"Conservative | PB ON | FVG OFF | SWEEP OFF","aggressive_score":38,"hybrid_score":77,"conservative_score":81,"ema_respect_pct":43.75,"score":90,"buy_zone":"191.34-195.50","price":193.8,"stop":186.8786,"tp1":203.0286,"trend_score":70,"momentum_score":20,"volume_score":0,"rs_score":0,"risk_score":0,"ema9":191.76,"ema21":193.4213,"ema55":187.1424,"ema200":158.6327,"vwap":189.6331,"above_vwap":true,"adx":22.5009,"atr_pct":2.381,"rel_vol":0.7367,"rs_qqq":-2.4897,"extension_pct":0.1958,"note":"Bull trend pulling into EMA21 area"}]}
+{
+  "scanner": "Quality Flow Scanner V5.1",
+  "generated_at": "2026-08-27T13:27:44.427692+00:00",
+  "interval": "4h",
+  "period": "180d",
+  "market_regime": {
+    "regime": "CAUTIOUS",
+    "risk_on": true,
+    "score": 70
+  },
+  "count": 1,
+  "results": [
+    {
+      "rank_score": 116,
+      "symbol": "NTAP",
+      "theme": "AI Infrastructure",
+      "timeframe": "4h",
+      "state": "PULLBACK BUY",
+      "entry": "YES",
+      "protection": "SAFE",
+      "suggested_mode": "Conservative",
+      "personality": "Slow / Confirmed Trend",
+      "mode_setup": "Conservative | PB ON | FVG OFF | SWEEP OFF",
+      "aggressive_score": 38,
+      "hybrid_score": 77,
+      "conservative_score": 81,
+      "ema_respect_pct": 43.75,
+      "score": 90,
+      "buy_zone": "191.34-195.50",
+      "price": 193.8,
+      "stop": 186.8786,
+      "tp1": 203.0286,
+      "trend_score": 70,
+      "momentum_score": 20,
+      "volume_score": 0,
+      "rs_score": 0,
+      "risk_score": 0,
+      "ema9": 191.76,
+      "ema21": 193.4213,
+      "ema55": 187.1424,
+      "ema200": 158.6327,
+      "vwap": 189.6331,
+      "above_vwap": true,
+      "adx": 22.5009,
+      "atr_pct": 2.381,
+      "rel_vol": 0.7367,
+      "rs_qqq": -2.4897,
+      "extension_pct": 0.1958,
+      "note": "Bull trend pulling into EMA21 area"
+    }
+  ],
+  "snapshot_note": "Filtered by repository Buy Now rules; upstream generated_at retained."
+}
