@@ -20,7 +20,6 @@
 # ============================================================
 
 import os
-import time
 import warnings
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
@@ -30,6 +29,9 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 import yfinance as yf
+from streamlit_autorefresh import st_autorefresh
+
+from scanner_rules import is_buy_now_result, resample_closed_4h
 
 warnings.filterwarnings("ignore")
 
@@ -207,13 +209,7 @@ def download_data(symbol: str, interval: str, period: str) -> pd.DataFrame:
     df = df.dropna()
 
     if interval.lower() == "4h":
-        df = df.resample("4h").agg({
-            "Open": "first",
-            "High": "max",
-            "Low": "min",
-            "Close": "last",
-            "Volume": "sum",
-        }).dropna()
+        df = resample_closed_4h(df, symbol)
 
     return df
 
@@ -469,8 +465,11 @@ def classify_symbol(symbol: str, theme: str, df: pd.DataFrame, market_df: Option
     elif hot_state and not in_buy_zone:
         entry = "NO"
         note += " | Entry NO: too extended"
-    elif state in ["BUY", "PULLBACK BUY", "EARLY BUY"] and near_buy_zone:
+    elif state in ["BUY", "PULLBACK BUY", "EARLY BUY"] and in_buy_zone:
         entry = "YES"
+    elif state in ["BUY", "PULLBACK BUY", "EARLY BUY"] and near_buy_zone:
+        entry = "WATCH"
+        note += " | Near entry zone; wait for price"
     elif state in ["HOLD", "READY"] and in_buy_zone and score >= 60:
         entry = "YES"
         note += " | Entry zone active"
@@ -485,7 +484,7 @@ def classify_symbol(symbol: str, theme: str, df: pd.DataFrame, market_df: Option
         protection = "EXIT"
     elif hot_state or extension_pct >= HOT_EXTENSION_PCT:
         protection = "LOCK GAINS"
-    elif trend_bull and ema_bull and price >= ema21_val:
+    elif trend_bull and ema_bull and price >= ema21_val and above_vwap:
         protection = "SAFE"
     elif trend_bull and price < ema21_val and price > ema55_val:
         protection = "WARNING"
@@ -845,16 +844,20 @@ with st.sidebar:
 
     st.divider()
     st.subheader("Refresh")
-    auto_refresh = st.checkbox("Auto-refresh", value=False)
-    refresh_minutes = st.selectbox("Refresh Every", [1, 5, 15, 30, 60], index=1)
+    auto_refresh = st.checkbox("Auto-refresh", value=True)
+    refresh_minutes = st.selectbox("Refresh Every", [5, 15, 30, 60], index=1)
 
     st.divider()
     run_scan = st.button("Run Scanner", type="primary")
     run_mtf = st.button("Run W/D/4H Alignment")
 
+refresh_count = 0
 if auto_refresh:
-    time.sleep(refresh_minutes * 60)
-    st.rerun()
+    refresh_count = st_autorefresh(
+        interval=refresh_minutes * 60 * 1000,
+        limit=None,
+        key="quality_flow_auto_refresh",
+    )
 
 # ============================================================
 # UNIVERSE BUILD
@@ -891,10 +894,16 @@ if run_mtf:
     st.dataframe(align_df, use_container_width=True, height=520)
     st.download_button("Download Alignment CSV", data=align_df.to_csv(index=False).encode("utf-8"), file_name="quality_flow_v5_alignment.csv", mime="text/csv")
 
-if run_scan or "last_scan_v4" not in st.session_state:
+scan_signature = (tuple(tickers), interval, period)
+settings_changed = st.session_state.get("last_scan_signature") != scan_signature
+refresh_due = auto_refresh and refresh_count != st.session_state.get("last_auto_refresh_count", refresh_count)
+
+if run_scan or refresh_due or settings_changed or "last_scan_v4" not in st.session_state:
     with st.spinner("Running scanner..."):
         st.session_state["last_scan_v4"] = scan_symbols(tickers, final_theme_map, interval, period)
         st.session_state["last_scan_v4_time"] = pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")
+        st.session_state["last_scan_signature"] = scan_signature
+        st.session_state["last_auto_refresh_count"] = refresh_count
 
 scan_df = st.session_state.get("last_scan_v4", pd.DataFrame())
 if scan_df.empty:
@@ -945,11 +954,12 @@ with st.expander("Morning Action List", expanded=True):
     #   OR Entry = NO
     # ============================================================
 
-    buy_now = filtered[
-        (filtered["entry"] == "YES")
-        & (filtered["protection"] == "SAFE")
-        & (filtered["state"].isin(["BUY", "PULLBACK BUY"]))
-    ].sort_values("rank_score", ascending=False)
+    buy_now_mask = pd.Series(
+        [is_buy_now_result(row) for row in filtered.to_dict("records")],
+        index=filtered.index,
+        dtype=bool,
+    )
+    buy_now = filtered.loc[buy_now_mask].sort_values("rank_score", ascending=False)
 
     watch_today = filtered[
         (filtered["entry"] == "YES")
@@ -973,7 +983,7 @@ with st.expander("Morning Action List", expanded=True):
         )
 
     st.markdown("## 🟢 BUY NOW")
-    st.caption("Entry YES + BUY/PULLBACK BUY + SAFE protection. These are the first charts to inspect.")
+    st.caption("Entry YES + BUY/PULLBACK BUY + SAFE + above VWAP + price inside the buy zone.")
     if buy_now.empty:
         st.info("No BUY NOW setups.")
     else:

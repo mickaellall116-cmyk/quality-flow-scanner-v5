@@ -5,6 +5,11 @@ on:
   push:
     paths:
       - "masterscanner_api.py"
+      - "scanner_rules.py"
+      - "scanner_streamlit_v5_mode_aware.py"
+      - "scanner_streamlit_v5_1_morning_action.py"
+      - "tests/**"
+      - "requirements.txt"
       - "requirements_api.txt"
       - ".github/workflows/refresh_master_scanner.yml"
   schedule:
@@ -38,6 +43,11 @@ jobs:
       - name: Install scanner dependencies
         run: pip install -r requirements_api.txt
 
+      - name: Test shared scanner rules
+        run: |
+          python -m compileall -q masterscanner_api.py scanner_rules.py scanner_streamlit_v5_mode_aware.py scanner_streamlit_v5_1_morning_action.py
+          python -m unittest discover -s tests -p "test_*.py"
+
       - name: Generate and validate MasterScanner results
         run: |
           python - <<'PY'
@@ -45,6 +55,7 @@ jobs:
           from datetime import datetime, timezone
 
           from masterscanner_api import buy_now
+          from scanner_rules import filter_buy_now
 
           payload = buy_now(interval="4h", period="180d", limit=20)
 
@@ -57,24 +68,8 @@ jobs:
           if payload["count"] != len(payload["results"]):
               raise SystemExit("Result count does not match results array")
 
-          valid_results = []
-          for row in payload["results"]:
-              try:
-                  low, high = map(float, row["buy_zone"].split("-", 1))
-                  price = float(row["price"])
-              except (KeyError, TypeError, ValueError):
-                  continue
-              if (
-                  row.get("entry") == "YES"
-                  and row.get("protection") == "SAFE"
-                  and row.get("state") in {"BUY", "PULLBACK BUY"}
-                  and low <= price <= high
-                  and row.get("above_vwap") is True
-              ):
-                  valid_results.append(row)
-
-          payload["results"] = valid_results
-          payload["count"] = len(valid_results)
+          payload["results"] = filter_buy_now(payload["results"], limit=20)
+          payload["count"] = len(payload["results"])
           payload["generated_at"] = datetime.now(timezone.utc).isoformat()
           payload["source"] = "github-actions"
           payload["uses_closed_4h_candles"] = True

@@ -27,6 +27,8 @@ import pandas as pd
 import yfinance as yf
 from fastapi import FastAPI, HTTPException, Query
 
+from scanner_rules import filter_buy_now, resample_closed_4h
+
 app = FastAPI(title="MasterScanner V5.1 API", version="5.1-api")
 
 MARKET_SYMBOL = "QQQ"
@@ -79,28 +81,7 @@ def download_data(symbol: str, interval: str, period: str) -> pd.DataFrame:
     if isinstance(df.columns, pd.MultiIndex): df.columns=[c[0] for c in df.columns]
     df=df.dropna()
     if interval.lower()=="4h":
-        is_crypto = symbol.upper().endswith("-USD")
-        # Align stock bars to the 09:30 ET session. Crypto remains aligned to midnight.
-        offset = None if is_crypto else "9h30min"
-        resample_kwargs = {"origin": "start_day", "label": "left", "closed": "left"}
-        if offset:
-            resample_kwargs["offset"] = offset
-        df=df.resample("4h", **resample_kwargs).agg(
-            {"Open":"first","High":"max","Low":"min","Close":"last","Volume":"sum"}
-        ).dropna()
-
-        # Never classify an actively forming 4-hour candle. For US stocks the
-        # second session bar is considered closed at the 16:00 ET market close.
-        if not df.empty:
-            last_start=df.index[-1]
-            now=pd.Timestamp.now(tz=last_start.tz) if last_start.tz is not None else pd.Timestamp.now()
-            if is_crypto:
-                last_close=last_start+pd.Timedelta(hours=4)
-            else:
-                session_close=last_start.normalize()+pd.Timedelta(hours=16)
-                last_close=min(last_start+pd.Timedelta(hours=4), session_close)
-            if now < last_close:
-                df=df.iloc[:-1]
+        df=resample_closed_4h(df, symbol)
     return df
 
 
@@ -247,8 +228,7 @@ def health(): return {"ok":True,"scanner":"MasterScanner V5.1 API"}
 @app.get("/buy-now")
 def buy_now(interval:str="4h", period:str="180d", limit:int=Query(20,ge=1,le=100)):
     tickers,theme_map=default_universe(); regime=get_market_regime(interval,period); rows=scan_symbols(tickers,theme_map,interval,period)
-    rows=[r for r in rows if r.get("entry")=="YES" and r.get("protection")=="SAFE" and r.get("state") in ["BUY","PULLBACK BUY"]]
-    rows=sorted(rows,key=lambda r:r.get("rank_score",0), reverse=True)[:limit]
+    rows=filter_buy_now(rows, limit=limit)
     return envelope(rows,regime,interval,period)
 
 @app.get("/watch-today")
