@@ -79,7 +79,28 @@ def download_data(symbol: str, interval: str, period: str) -> pd.DataFrame:
     if isinstance(df.columns, pd.MultiIndex): df.columns=[c[0] for c in df.columns]
     df=df.dropna()
     if interval.lower()=="4h":
-        df=df.resample("4h").agg({"Open":"first","High":"max","Low":"min","Close":"last","Volume":"sum"}).dropna()
+        is_crypto = symbol.upper().endswith("-USD")
+        # Align stock bars to the 09:30 ET session. Crypto remains aligned to midnight.
+        offset = None if is_crypto else "9h30min"
+        resample_kwargs = {"origin": "start_day", "label": "left", "closed": "left"}
+        if offset:
+            resample_kwargs["offset"] = offset
+        df=df.resample("4h", **resample_kwargs).agg(
+            {"Open":"first","High":"max","Low":"min","Close":"last","Volume":"sum"}
+        ).dropna()
+
+        # Never classify an actively forming 4-hour candle. For US stocks the
+        # second session bar is considered closed at the 16:00 ET market close.
+        if not df.empty:
+            last_start=df.index[-1]
+            now=pd.Timestamp.now(tz=last_start.tz) if last_start.tz is not None else pd.Timestamp.now()
+            if is_crypto:
+                last_close=last_start+pd.Timedelta(hours=4)
+            else:
+                session_close=last_start.normalize()+pd.Timedelta(hours=16)
+                last_close=min(last_start+pd.Timedelta(hours=4), session_close)
+            if now < last_close:
+                df=df.iloc[:-1]
     return df
 
 
@@ -172,7 +193,7 @@ def classify_symbol(symbol, theme, df, market_df, market_regime, timeframe):
     else: entry="NO"
     if exit_signal: protection="EXIT"
     elif hot or extension>=HOT_EXTENSION_PCT: protection="LOCK GAINS"
-    elif trend_bull and ema_bull and price>=e21: protection="SAFE"
+    elif trend_bull and ema_bull and price>=e21 and above_vwap: protection="SAFE"
     elif trend_bull and price<e21 and price>e55: protection="WARNING"
     else: protection="WARNING"
     if market_regime.get("regime")=="RISK-OFF" and entry=="YES": entry="WATCH"; note+=" | Market risk-off: smaller size"
