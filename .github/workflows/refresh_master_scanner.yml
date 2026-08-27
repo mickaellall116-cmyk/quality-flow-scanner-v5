@@ -44,6 +44,26 @@ jobs:
           if payload["count"] != len(payload["results"]):
               raise SystemExit("Result count does not match results array")
 
+          # Enforce repository Buy Now semantics even if the upstream Worker is
+          # temporarily running older scanner code.
+          valid_results = []
+          for row in payload["results"]:
+              try:
+                  low, high = map(float, row["buy_zone"].split("-", 1))
+                  price = float(row["price"])
+              except (KeyError, TypeError, ValueError):
+                  continue
+              if (
+                  row.get("entry") == "YES"
+                  and row.get("protection") == "SAFE"
+                  and row.get("state") in {"BUY", "PULLBACK BUY"}
+                  and low <= price <= high
+                  and row.get("above_vwap") is True
+              ):
+                  valid_results.append(row)
+          payload["results"] = valid_results
+          payload["count"] = len(valid_results)
+
           generated = datetime.fromisoformat(payload["generated_at"].replace("Z", "+00:00"))
           age = (datetime.now(timezone.utc) - generated.astimezone(timezone.utc)).total_seconds()
           if age < -300 or age > 900:
