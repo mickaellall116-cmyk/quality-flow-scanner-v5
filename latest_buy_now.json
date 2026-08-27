@@ -1,12 +1,12 @@
 {
   "scanner": "Quality Flow Scanner V5.1",
-  "generated_at": "2026-08-27T19:42:51.475296+00:00",
+  "generated_at": "2026-08-27T23:02:42.385656+00:00",
   "interval": "4h",
   "period": "180d",
   "market_regime": {
-    "regime": "CAUTIOUS",
+    "regime": "RISK-ON",
     "risk_on": true,
-    "score": 65
+    "score": 100
   },
   "count": 0,
   "results": [],
