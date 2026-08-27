@@ -2,6 +2,11 @@ name: Refresh MasterScanner Results
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "masterscanner_api.py"
+      - "requirements_api.txt"
+      - ".github/workflows/refresh_master_scanner.yml"
   schedule:
     - cron: "*/15 * * * *"
 
@@ -15,7 +20,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
@@ -23,29 +28,35 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Pull and validate latest MasterScanner results
-        run: |
-          curl --location --fail --show-error --silent             --retry 3 --retry-all-errors --connect-timeout 15 --max-time 300             "https://masterscanner.mickaellall116.workers.dev/buy-now"             -o latest_buy_now.json
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: requirements_api.txt
 
+      - name: Install scanner dependencies
+        run: pip install -r requirements_api.txt
+
+      - name: Generate and validate MasterScanner results
+        run: |
           python - <<'PY'
           import json
           from datetime import datetime, timezone
 
-          path = "latest_buy_now.json"
-          with open(path, encoding="utf-8") as handle:
-              payload = json.load(handle)
+          from masterscanner_api import buy_now
+
+          payload = buy_now(interval="4h", period="180d", limit=20)
 
           required = {"scanner", "generated_at", "interval", "count", "results"}
           missing = required - payload.keys()
           if missing:
-              raise SystemExit(f"Invalid MasterScanner response; missing: {sorted(missing)}")
+              raise SystemExit(f"Invalid MasterScanner output; missing: {sorted(missing)}")
           if payload["interval"] != "4h":
               raise SystemExit(f"Unexpected interval: {payload['interval']}")
           if payload["count"] != len(payload["results"]):
               raise SystemExit("Result count does not match results array")
 
-          # Enforce repository Buy Now semantics even if the upstream Worker is
-          # temporarily running older scanner code.
           valid_results = []
           for row in payload["results"]:
               try:
@@ -61,15 +72,14 @@ jobs:
                   and row.get("above_vwap") is True
               ):
                   valid_results.append(row)
+
           payload["results"] = valid_results
           payload["count"] = len(valid_results)
+          payload["generated_at"] = datetime.now(timezone.utc).isoformat()
+          payload["source"] = "github-actions"
+          payload["uses_closed_4h_candles"] = True
 
-          generated = datetime.fromisoformat(payload["generated_at"].replace("Z", "+00:00"))
-          age = (datetime.now(timezone.utc) - generated.astimezone(timezone.utc)).total_seconds()
-          if age < -300 or age > 900:
-              raise SystemExit(f"MasterScanner response is stale or future-dated: age={age:.0f}s")
-
-          with open(path, "w", encoding="utf-8") as handle:
+          with open("latest_buy_now.json", "w", encoding="utf-8") as handle:
               json.dump(payload, handle, indent=2)
               handle.write("\n")
           PY
