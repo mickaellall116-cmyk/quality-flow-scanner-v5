@@ -5,27 +5,61 @@ on:
   schedule:
     - cron: "*/15 * * * *"
 
+concurrency:
+  group: refresh-master-scanner
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Pull latest MasterScanner results
+      - name: Pull and validate latest MasterScanner results
         run: |
-          curl -L --fail \
-            "https://masterscanner.mickaellall116.workers.dev/buy-now" \
-            -o latest_buy_now.json
+          curl --location --fail --show-error --silent             --retry 3 --retry-all-errors --connect-timeout 15 --max-time 300             "https://masterscanner.mickaellall116.workers.dev/buy-now"             -o latest_buy_now.json
+
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+
+          path = "latest_buy_now.json"
+          with open(path, encoding="utf-8") as handle:
+              payload = json.load(handle)
+
+          required = {"scanner", "generated_at", "interval", "count", "results"}
+          missing = required - payload.keys()
+          if missing:
+              raise SystemExit(f"Invalid MasterScanner response; missing: {sorted(missing)}")
+          if payload["interval"] != "4h":
+              raise SystemExit(f"Unexpected interval: {payload['interval']}")
+          if payload["count"] != len(payload["results"]):
+              raise SystemExit("Result count does not match results array")
+
+          generated = datetime.fromisoformat(payload["generated_at"].replace("Z", "+00:00"))
+          age = (datetime.now(timezone.utc) - generated.astimezone(timezone.utc)).total_seconds()
+          if age < -300 or age > 900:
+              raise SystemExit(f"MasterScanner response is stale or future-dated: age={age:.0f}s")
+
+          with open(path, "w", encoding="utf-8") as handle:
+              json.dump(payload, handle, indent=2)
+              handle.write("\n")
+          PY
 
       - name: Commit latest results
         run: |
           git config user.name "MasterScanner Bot"
           git config user.email "actions@github.com"
           git add latest_buy_now.json
-          git diff --cached --quiet || git commit -m "Update MasterScanner results"
-          git push
+          git diff --cached --quiet && exit 0
+          git commit -m "Update MasterScanner results"
+          git pull --rebase origin main
+          git push origin HEAD:main
