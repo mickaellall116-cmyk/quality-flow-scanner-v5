@@ -13,13 +13,14 @@ on:
       - "requirements_api.txt"
       - ".github/workflows/refresh_master_scanner.yml"
   schedule:
-    # Refresh every 15 minutes during U.S. market hours on weekdays.
-    # 13:30-20:15 UTC covers 9:30 AM-4:15 PM ET during daylight time.
+    # GitHub Actions cron is UTC. Run every 15 minutes across the full
+    # U.S. market window in both EDT and EST so DST cannot shift the scanner.
+    # 13:30-21:15 UTC covers 9:30 AM-4:15 PM ET in EDT/EST.
     - cron: "30,45 13 * * 1-5"
-    - cron: "*/15 14-19 * * 1-5"
-    - cron: "0,15 20 * * 1-5"
-    # Extra post-close refresh to capture the final session-aligned 4H bar.
-    - cron: "30 20 * * 1-5"
+    - cron: "*/15 14-20 * * 1-5"
+    - cron: "0,15 21 * * 1-5"
+    # Extra post-close refresh for the final session-aligned 4H bar.
+    - cron: "30 21 * * 1-5"
 
 concurrency:
   group: refresh-master-scanner
