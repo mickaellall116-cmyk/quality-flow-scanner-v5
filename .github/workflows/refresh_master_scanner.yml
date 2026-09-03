@@ -90,8 +90,16 @@ jobs:
         run: |
           git config user.name "MasterScanner Bot"
           git config user.email "actions@github.com"
+
+          # Preserve the freshly generated payload, then sync to the current
+          # main branch before publishing. This avoids rebase conflicts when
+          # main changes while the scan is running.
+          cp latest_buy_now.json /tmp/latest_buy_now.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/latest_buy_now.json latest_buy_now.json
+
           git add latest_buy_now.json
           git diff --cached --quiet && exit 0
           git commit -m "Update MasterScanner results"
-          git pull --rebase origin main
           git push origin HEAD:main
