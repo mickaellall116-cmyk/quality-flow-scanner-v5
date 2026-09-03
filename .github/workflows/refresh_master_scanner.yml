@@ -13,14 +13,14 @@ on:
       - "requirements_api.txt"
       - ".github/workflows/refresh_master_scanner.yml"
   schedule:
-    # GitHub Actions cron is UTC. Run every 15 minutes across the full
-    # U.S. market window in both EDT and EST so DST cannot shift the scanner.
-    # 13:30-21:15 UTC covers 9:30 AM-4:15 PM ET in EDT/EST.
-    - cron: "30,45 13 * * 1-5"
-    - cron: "*/15 14-20 * * 1-5"
-    - cron: "0,15 21 * * 1-5"
-    # Extra post-close refresh for the final session-aligned 4H bar.
-    - cron: "30 21 * * 1-5"
+    # GitHub Actions scheduled jobs can be delayed or dropped around common
+    # quarter-hour boundaries. Offset the scanner by 7 minutes to reduce
+    # scheduler congestion while still refreshing about every 15 minutes.
+    # 13:37-21:22 UTC covers the U.S. market window across EDT/EST, with
+    # a little pre-open/post-close buffer for session-aligned 4H candles.
+    - cron: "37,52 13 * * 1-5"
+    - cron: "7,22,37,52 14-20 * * 1-5"
+    - cron: "7,22 21 * * 1-5"
 
 concurrency:
   group: refresh-master-scanner
