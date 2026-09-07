@@ -1,6 +1,6 @@
 {
   "scanner": "Quality Flow Scanner V5.1",
-  "generated_at": "2026-09-04T23:01:52.221891+00:00",
+  "generated_at": "2026-09-07T18:22:12.777832+00:00",
   "interval": "4h",
   "period": "180d",
   "market_regime": {
@@ -39,7 +39,7 @@
       "ema21": 182.8447,
       "ema55": 175.2467,
       "ema200": 169.81,
-      "vwap": 175.7714,
+      "vwap": 175.7711,
       "above_vwap": true,
       "adx": 23.1055,
       "atr_pct": 3.2103,
