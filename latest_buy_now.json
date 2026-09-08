@@ -1,6 +1,6 @@
 {
   "scanner": "Quality Flow Scanner V5.1",
-  "generated_at": "2026-09-08T17:54:12.359991+00:00",
+  "generated_at": "2026-09-08T21:05:32.521658+00:00",
   "interval": "4h",
   "period": "180d",
   "market_regime": {
@@ -8,8 +8,47 @@
     "risk_on": true,
     "score": 100
   },
-  "count": 0,
-  "results": [],
+  "count": 1,
+  "results": [
+    {
+      "rank_score": 134,
+      "symbol": "NVDA",
+      "theme": "AI Infrastructure +2",
+      "timeframe": "4h",
+      "state": "PULLBACK BUY",
+      "entry": "YES",
+      "protection": "SAFE",
+      "suggested_mode": "Hybrid",
+      "personality": "Trend Builder / EMA Respect",
+      "mode_setup": "Hybrid | PB ON | FVG OFF | SWEEP OFF",
+      "aggressive_score": 46,
+      "hybrid_score": 87,
+      "conservative_score": 69,
+      "ema_respect_pct": 53.75,
+      "score": 100,
+      "buy_zone": "223.12-226.61",
+      "price": 225.77,
+      "stop": 219.9557,
+      "tp1": 233.5223,
+      "trend_score": 70,
+      "momentum_score": 20,
+      "volume_score": 0,
+      "rs_score": 10,
+      "risk_score": 0,
+      "ema9": 227.2829,
+      "ema21": 224.8641,
+      "ema55": 220.6984,
+      "ema200": 212.2246,
+      "vwap": 221.4248,
+      "above_vwap": true,
+      "adx": 31.3429,
+      "atr_pct": 1.7169,
+      "rel_vol": 0.5797,
+      "rs_qqq": 3.0731,
+      "extension_pct": 0.4029,
+      "note": "Bull trend pulling into EMA21 area"
+    }
+  ],
   "source": "github-actions",
   "uses_closed_4h_candles": true
 }
