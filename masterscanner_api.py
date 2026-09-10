@@ -1,6 +1,6 @@
-"""MasterScanner V5.1 API
+"""MasterScanner V5.2 API
 
-Standalone FastAPI wrapper that mirrors the Quality Flow Scanner V5.1
+Standalone FastAPI wrapper that mirrors the Quality Flow Scanner V5.2
 classification and Morning Action logic from the public Streamlit app.
 
 Run locally:
@@ -27,9 +27,20 @@ import pandas as pd
 import yfinance as yf
 from fastapi import FastAPI, HTTPException, Query
 
-from scanner_rules import filter_buy_now, resample_closed_4h
+from scanner_rules import (
+    RULE_VERSION,
+    SCANNER_VERSION,
+    annotate_validation,
+    bar_close_at,
+    completed_15m_confirmation,
+    filter_buy_now,
+    is_structural_candidate,
+    resample_closed_4h,
+    trade_levels,
+    timeframe_trend_confirmed,
+)
 
-app = FastAPI(title="MasterScanner V5.1 API", version="5.1-api")
+app = FastAPI(title="MasterScanner V5.2 API", version="5.2-api")
 
 MARKET_SYMBOL = "QQQ"
 DEFAULT_WATCHLIST = [
@@ -53,7 +64,7 @@ DEFAULT_THEMES = ["AI Infrastructure","Space","Quantum","Semiconductors","Crypto
 FAST_EMA=21; SLOW_EMA=55; TREND_EMA=200; ACCEL_EMA=9
 ADX_LEN=14; ATR_LEN=14; ATR_BASE_LEN=50; VOL_BASE_LEN=50; RS_LOOKBACK=20; VWAP_LEN=50
 ADX_MIN=18; HOT_ADX=30; ATR_EXPANSION_THRESHOLD=1.03; PULLBACK_NEAR_EMA_PCT=2.5; HOT_EXTENSION_PCT=6.0
-STOP_ATR=1.5; TP1_ATR=2.0; BUY_ZONE_ATR_WIDTH=0.45
+BUY_ZONE_ATR_WIDTH=0.45
 
 
 def unique_keep_order(items: List[str]) -> List[str]:
@@ -85,6 +96,14 @@ def download_data(symbol: str, interval: str, period: str) -> pd.DataFrame:
     return df
 
 
+def download_confirmation_data(symbol: str, interval: str, period: str) -> pd.DataFrame:
+    """Download validation data without converting it into scanner 4h bars."""
+    df = yf.download(symbol, interval=interval, period=period, progress=False, auto_adjust=True, threads=False)
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = [column[0] for column in df.columns]
+    return df.dropna()
+
+
 def ema(s,l): return s.ewm(span=l, adjust=False).mean()
 
 def atr(df,l=14):
@@ -114,23 +133,57 @@ def add_indicators(df):
     out=df.copy(); close=out["Close"]; volume=out["Volume"]
     out["EMA9"]=ema(close,ACCEL_EMA); out["EMA21"]=ema(close,FAST_EMA); out["EMA55"]=ema(close,SLOW_EMA); out["EMA200"]=ema(close,TREND_EMA)
     out["ATR"]=atr(out,ATR_LEN); out["ATR_BASE"]=out["ATR"].rolling(ATR_BASE_LEN).mean(); out["ADX"]=adx(out,ADX_LEN)
-    out["VOL_BASE"]=volume.rolling(VOL_BASE_LEN).mean(); out["VWAP"]=rolling_vwap(out,VWAP_LEN)
+    out["VOL_BASE"]=volume.rolling(VOL_BASE_LEN).mean()
+    out["VWAP"]=out["SessionVWAP"] if "SessionVWAP" in out else rolling_vwap(out,VWAP_LEN)
     return out
 
 
-def get_market_regime(interval:str, period:str)->Dict:
+def _session_return(df: pd.DataFrame) -> float:
+    if df.empty or len(df) < 2:
+        return 0.0
+    dates = pd.Index(df.index.date)
+    prior_dates = dates[dates != dates[-1]]
+    if len(prior_dates) == 0:
+        return 0.0
+    prior_close = float(df.loc[dates == prior_dates[-1], "Close"].iloc[-1])
+    return safe_pct(float(df["Close"].iloc[-1]), prior_close)
+
+
+def get_market_regime(interval: str, period: str) -> Dict:
+    """Combine QQQ trend with same-session SPY/QQQ direction."""
     try:
-        df=download_data(MARKET_SYMBOL,interval,period)
-        if df.empty or len(df)<TREND_EMA+5: return {"regime":"UNKNOWN","risk_on":True,"score":50}
-        df=add_indicators(df); last=df.iloc[-1]; prev=df.iloc[-2]; score=0
-        if last["Close"]>last["EMA200"]: score+=35
-        if last["EMA21"]>last["EMA55"]: score+=35
-        if last["EMA21"]>prev["EMA21"]: score+=15
-        if last["Close"]>last["EMA21"]: score+=15
-        regime="RISK-ON" if score>=75 else "CAUTIOUS" if score>=50 else "RISK-OFF"
-        return {"regime":regime,"risk_on":score>=50,"score":int(score)}
-    except Exception:
-        return {"regime":"UNKNOWN","risk_on":True,"score":50}
+        qqq_raw = download_data("QQQ", interval, period)
+        spy_raw = download_data("SPY", interval, period)
+        if qqq_raw.empty or len(qqq_raw) < TREND_EMA + 5:
+            return {"regime": "UNKNOWN", "risk_on": False, "score": 0, "gate": "BLOCK"}
+        qqq = add_indicators(qqq_raw)
+        last, prev = qqq.iloc[-1], qqq.iloc[-2]
+        score = 0
+        if last["Close"] > last["EMA200"]: score += 35
+        if last["EMA21"] > last["EMA55"]: score += 35
+        if last["EMA21"] > prev["EMA21"]: score += 15
+        if last["Close"] > last["EMA21"]: score += 15
+        qqq_return = _session_return(qqq_raw)
+        spy_return = _session_return(spy_raw)
+        if qqq_return <= -0.75 or (qqq_return <= -0.40 and spy_return <= -0.40):
+            gate = "BLOCK"
+        elif qqq_return < 0 or spy_return < 0 or score < 75:
+            gate = "CAUTION"
+        else:
+            gate = "CONFIRM"
+        regime = "RISK-ON" if score >= 75 else "CAUTIOUS" if score >= 50 else "RISK-OFF"
+        signal_close = qqq_raw.attrs.get("last_bar_close_at")
+        return {
+            "regime": regime,
+            "risk_on": score >= 50 and gate != "BLOCK",
+            "score": int(score),
+            "gate": gate,
+            "qqq_session_return_pct": round(qqq_return, 3),
+            "spy_session_return_pct": round(spy_return, 3),
+            "signal_bar_close_at": signal_close,
+        }
+    except Exception as exc:
+        return {"regime": "UNKNOWN", "risk_on": False, "score": 0, "gate": "BLOCK", "error": str(exc)}
 
 
 def classify_symbol(symbol, theme, df, market_df, market_regime, timeframe):
@@ -157,7 +210,9 @@ def classify_symbol(symbol, theme, df, market_df, market_regime, timeframe):
     hot=trend_bull and ema_bull and adxv>=HOT_ADX and extension>=HOT_EXTENSION_PCT
     zone_low=max(0.0,e21-atrv*BUY_ZONE_ATR_WIDTH); zone_high=e21+atrv*BUY_ZONE_ATR_WIDTH
     in_zone=zone_low<=price<=zone_high; near_zone=zone_low*0.995<=price<=zone_high*1.015
-    stop=price-atrv*STOP_ATR; tp1=price+atrv*TP1_ATR
+    # Anchor risk levels to the setup zone, not the current quote. The old
+    # price +/- ATR formula forced every setup to the same 1.33:1 R/R.
+    stop,tp1=trade_levels(zone_low,zone_high,atrv)
     state="NEUTRAL"; note="No clean setup"
     if exit_signal: state="EXIT"; note="Trend broke / below EMA55"
     elif fresh_buy and score>=60: state="BUY"; note="Fresh EMA21/55 bullish trigger"
@@ -194,7 +249,38 @@ def classify_symbol(symbol, theme, df, market_df, market_regime, timeframe):
     pb="PB ON" if ema_respect>=30 and mode in ["Hybrid","Conservative"] else "PB OFF"; mode_setup=f"{mode} | {pb} | FVG OFF | SWEEP OFF"
     rank=score+(18 if entry=="YES" else 6 if entry=="WATCH" else -8)+(8 if protection=="SAFE" else 3 if protection=="LOCK GAINS" else -10 if protection=="EXIT" else -3)+(8 if rs_qqq>0 else 0)+(6 if volume_good else 0)-(8 if hot and entry!="YES" else 0)
     rank=int(max(0,min(150,rank)))
-    return {"rank_score":rank,"symbol":symbol,"theme":theme,"timeframe":timeframe,"state":state,"entry":entry,"protection":protection,"suggested_mode":mode,"personality":personality,"mode_setup":mode_setup,"aggressive_score":ag,"hybrid_score":hy,"conservative_score":co,"ema_respect_pct":ema_respect,"score":score,"buy_zone":f"{zone_low:.2f}-{zone_high:.2f}","price":price,"stop":stop,"tp1":tp1,"trend_score":int(trend_score),"momentum_score":int(momentum),"volume_score":int(volume_score),"rs_score":int(rs_score),"risk_score":int(risk_score),"ema9":e9,"ema21":e21,"ema55":e55,"ema200":e200,"vwap":vwap,"above_vwap":above_vwap,"adx":adxv,"atr_pct":atr_pct,"rel_vol":rvol,"rs_qqq":rs_qqq,"extension_pct":extension,"note":note}
+    bar_start = df.index[-1]
+    bar_close = bar_close_at(bar_start, symbol) if timeframe.lower() == "4h" else bar_start
+    signal_id=f"{symbol}:{timeframe}:{bar_close.isoformat()}:{RULE_VERSION}"
+    return {"rank_score":rank,"symbol":symbol,"theme":theme,"timeframe":timeframe,"state":state,"entry":entry,"protection":protection,"suggested_mode":mode,"personality":personality,"mode_setup":mode_setup,"aggressive_score":ag,"hybrid_score":hy,"conservative_score":co,"ema_respect_pct":ema_respect,"score":score,"buy_zone":f"{zone_low:.2f}-{zone_high:.2f}","price":price,"stop":stop,"tp1":tp1,"trend_score":int(trend_score),"momentum_score":int(momentum),"volume_score":int(volume_score),"rs_score":int(rs_score),"risk_score":int(risk_score),"ema9":e9,"ema21":e21,"ema55":e55,"ema200":e200,"vwap":vwap,"vwap_type":"regular_session" if "SessionVWAP" in df else "rolling_50_bar","above_vwap":above_vwap,"adx":adxv,"atr_pct":atr_pct,"rel_vol":rvol,"rs_qqq":rs_qqq,"extension_pct":extension,"signal_id":signal_id,"signal_bar_start_at":bar_start.isoformat(),"signal_bar_close_at":bar_close.isoformat(),"market_gate":market_regime.get("gate","BLOCK"),"note":note}
+
+
+def validate_candidate_rows(rows, market_regime):
+    """Add MTF and completed-15m evidence before allowing BUY NOW VALID."""
+    validated = []
+    for original in rows:
+        row = dict(original)
+        symbol = row["symbol"]
+        confirmation = {"confirmed": False, "bar_close_at": None, "session_vwap": None, "relative_volume": 0.0}
+        daily_ok = weekly_ok = False
+        try:
+            confirmation = completed_15m_confirmation(download_confirmation_data(symbol, "15m", "5d"))
+            daily_ok = timeframe_trend_confirmed(download_confirmation_data(symbol, "1d", "2y"), "1d")
+            weekly_ok = timeframe_trend_confirmed(download_confirmation_data(symbol, "1wk", "5y"), "1wk")
+        except Exception as exc:
+            row["confirmation_error"] = str(exc)
+        row.update(
+            market_gate=market_regime.get("gate", "BLOCK"),
+            mtf_confirmed=bool(daily_ok and weekly_ok),
+            daily_trend_confirmed=bool(daily_ok),
+            weekly_trend_confirmed=bool(weekly_ok),
+            confirmation_15m=confirmation["confirmed"],
+            confirmation_15m_at=confirmation["bar_close_at"],
+            session_vwap_15m=confirmation["session_vwap"],
+            confirmation_15m_rel_vol=confirmation["relative_volume"],
+        )
+        validated.append(annotate_validation(row))
+    return validated
 
 
 def scan_symbols(tickers, theme_map, interval="4h", period="180d"):
@@ -219,17 +305,35 @@ def clean_rows(rows): return [{k:clean_value(v) for k,v in r.items()} for r in r
 
 def default_universe(): return build_discovery_universe(DEFAULT_THEMES)
 
-def envelope(rows, regime, interval, period):
-    return {"scanner":"Quality Flow Scanner V5.1","generated_at":datetime.now(timezone.utc).isoformat(),"interval":interval,"period":period,"market_regime":regime,"count":len(rows),"results":clean_rows(rows)}
+def envelope(rows, regime, interval, period, candidates=None):
+    signal_close = regime.get("signal_bar_close_at")
+    payload = {
+        "scanner": f"Quality Flow Scanner V{SCANNER_VERSION}",
+        "scanner_version": SCANNER_VERSION,
+        "rule_version": RULE_VERSION,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "interval": interval,
+        "period": period,
+        "signal_bar_close_at": signal_close,
+        "signal_id": f"{interval}:{signal_close}:{RULE_VERSION}" if signal_close else None,
+        "market_regime": regime,
+        "count": len(rows),
+        "results": clean_rows(rows),
+    }
+    if candidates is not None:
+        payload["candidate_count"] = len(candidates)
+        payload["candidates"] = clean_rows(candidates)
+    return payload
 
 @app.get("/health")
-def health(): return {"ok":True,"scanner":"MasterScanner V5.1 API"}
+def health(): return {"ok":True,"scanner":f"MasterScanner V{SCANNER_VERSION} API","rule_version":RULE_VERSION}
 
 @app.get("/buy-now")
 def buy_now(interval:str="4h", period:str="180d", limit:int=Query(20,ge=1,le=100)):
     tickers,theme_map=default_universe(); regime=get_market_regime(interval,period); rows=scan_symbols(tickers,theme_map,interval,period)
-    rows=filter_buy_now(rows, limit=limit)
-    return envelope(rows,regime,interval,period)
+    candidates=validate_candidate_rows([row for row in rows if is_structural_candidate(row)],regime)
+    valid=filter_buy_now(candidates,limit=limit)
+    return envelope(valid,regime,interval,period,candidates=candidates)
 
 @app.get("/watch-today")
 def watch_today(interval:str="4h", period:str="180d", limit:int=Query(20,ge=1,le=100)):

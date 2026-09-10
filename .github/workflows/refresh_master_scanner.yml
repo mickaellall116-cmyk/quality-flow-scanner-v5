@@ -13,14 +13,11 @@ on:
       - "requirements_api.txt"
       - ".github/workflows/refresh_master_scanner.yml"
   schedule:
-    # Frequent market-hours refresh. GitHub scheduled jobs can be delayed,
-    # so a 5-minute cadence gives the alert feed several chances to refresh.
-    # 13:00-21:59 UTC covers the U.S. trading session across EDT/EST with buffer.
-    - cron: "*/5 13-21 * * 1-5"
+    - cron: "*/15 * * * *"
 
 concurrency:
   group: refresh-master-scanner
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -55,24 +52,12 @@ jobs:
         run: |
           python - <<'PY'
           import json
-          import time
           from datetime import datetime, timezone
 
-          from masterscanner_api import buy_now
+          from masterscanner_api import buy_now, validate_candidate_rows
           from scanner_rules import filter_buy_now
 
-          # yfinance can intermittently return incomplete data. Run several
-          # attempts and keep the freshest attempt with the largest valid set.
-          attempts = []
-          for attempt in range(3):
-              payload = buy_now(interval="4h", period="180d", limit=20)
-              payload["results"] = filter_buy_now(payload.get("results", []), limit=20)
-              payload["count"] = len(payload["results"])
-              attempts.append(payload)
-              if attempt < 2:
-                  time.sleep(8)
-
-          payload = max(attempts, key=lambda p: p.get("count", 0))
+          payload = buy_now(interval="4h", period="180d", limit=20)
 
           required = {"scanner", "generated_at", "interval", "count", "results"}
           missing = required - payload.keys()
@@ -83,10 +68,32 @@ jobs:
           if payload["count"] != len(payload["results"]):
               raise SystemExit("Result count does not match results array")
 
+          previous = {}
+          try:
+              with open("latest_buy_now.json", "r", encoding="utf-8") as handle:
+                  previous = json.load(handle)
+          except (FileNotFoundError, json.JSONDecodeError):
+              pass
+
+          # Freeze the primary 4h candidate set until the market anchor advances.
+          # Only the separate 15m/market validation may change between 4h closes.
+          same_primary_bar = (
+              payload.get("signal_id")
+              and payload.get("signal_id") == previous.get("signal_id")
+              and isinstance(previous.get("candidates"), list)
+          )
+          if same_primary_bar:
+              payload["candidates"] = validate_candidate_rows(
+                  previous["candidates"], payload["market_regime"]
+              )
+
+          payload["candidate_count"] = len(payload.get("candidates", []))
+          payload["results"] = filter_buy_now(payload.get("candidates", []), limit=20)
+          payload["count"] = len(payload["results"])
           payload["generated_at"] = datetime.now(timezone.utc).isoformat()
           payload["source"] = "github-actions"
           payload["uses_closed_4h_candles"] = True
-          payload["scan_attempts"] = len(attempts)
+          payload["primary_candidates_frozen"] = bool(same_primary_bar)
 
           with open("latest_buy_now.json", "w", encoding="utf-8") as handle:
               json.dump(payload, handle, indent=2)
@@ -97,13 +104,8 @@ jobs:
         run: |
           git config user.name "MasterScanner Bot"
           git config user.email "actions@github.com"
-
-          cp latest_buy_now.json /tmp/latest_buy_now.json
-          git fetch origin main
-          git reset --hard origin/main
-          cp /tmp/latest_buy_now.json latest_buy_now.json
-
           git add latest_buy_now.json
           git diff --cached --quiet && exit 0
           git commit -m "Update MasterScanner results"
+          git pull --rebase origin main
           git push origin HEAD:main

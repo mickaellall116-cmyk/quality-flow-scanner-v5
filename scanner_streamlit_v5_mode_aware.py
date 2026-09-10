@@ -1,5 +1,5 @@
 # ============================================================
-# QUALITY FLOW SCANNER V5.1 - MODE-AWARE DISCOVERY STREAMLIT APP
+# QUALITY FLOW SCANNER V5.2 - CONFIRMED SIGNALS STREAMLIT APP
 # ============================================================
 # Upgrades from V3:
 # 1) Discovery Mode: scans curated AI / Space / Quantum / Semis / Crypto / Nuclear / Cyber / Growth baskets
@@ -10,7 +10,7 @@
 # 6) Buy Zone, Stop, TP1 columns
 # 7) Opportunity ranking across all scanned tickers
 # 8) Cleaner Top Opportunities table
-# 9) V5.1 Morning Action List: BUY NOW / WATCH TODAY / NO NEW ENTRY
+# 9) V5.2 action list separates candidates from validated BUY NOW signals
 #
 # Install:
 #   pip install streamlit yfinance pandas numpy plotly
@@ -31,12 +31,16 @@ import streamlit as st
 import yfinance as yf
 from streamlit_autorefresh import st_autorefresh
 
-from scanner_rules import is_buy_now_result, resample_closed_4h
+from scanner_rules import (
+    RULE_VERSION, SCANNER_VERSION, annotate_validation, bar_close_at,
+    completed_15m_confirmation, is_buy_now_result, is_structural_candidate,
+    resample_closed_4h, timeframe_trend_confirmed, trade_levels,
+)
 
 warnings.filterwarnings("ignore")
 
 st.set_page_config(
-    page_title="Quality Flow Scanner V5.1 Mode-Aware Discovery",
+    page_title="Quality Flow Scanner V5.2 Confirmed Signals",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -122,8 +126,6 @@ HOT_ADX = 30
 ATR_EXPANSION_THRESHOLD = 1.03
 PULLBACK_NEAR_EMA_PCT = 2.5
 HOT_EXTENSION_PCT = 6.0
-STOP_ATR = 1.5
-TP1_ATR = 2.0
 BUY_ZONE_ATR_WIDTH = 0.45
 
 # ============================================================
@@ -214,6 +216,13 @@ def download_data(symbol: str, interval: str, period: str) -> pd.DataFrame:
     return df
 
 
+def download_confirmation_data(symbol: str, interval: str, period: str) -> pd.DataFrame:
+    df = yf.download(symbol, interval=interval, period=period, progress=False, auto_adjust=True, threads=False)
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = [column[0] for column in df.columns]
+    return df.dropna()
+
+
 def ema(series: pd.Series, length: int) -> pd.Series:
     return series.ewm(span=length, adjust=False).mean()
 
@@ -282,7 +291,7 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
     out["ATR_BASE"] = out["ATR"].rolling(ATR_BASE_LEN).mean()
     out["ADX"] = adx(out, ADX_LEN)
     out["VOL_BASE"] = volume.rolling(VOL_BASE_LEN).mean()
-    out["VWAP"] = rolling_vwap(out, VWAP_LEN)
+    out["VWAP"] = out["SessionVWAP"] if "SessionVWAP" in out else rolling_vwap(out, VWAP_LEN)
     return out
 
 # ============================================================
@@ -346,10 +355,26 @@ def get_market_regime(scan_interval: str, period: str) -> Dict:
             score += 15
         if last["Close"] > last["EMA21"]:
             score += 15
+        spy = download_data("SPY", scan_interval, period)
+        def session_return(frame):
+            dates = pd.Index(frame.index.date)
+            prior = dates[dates != dates[-1]]
+            if len(prior) == 0:
+                return 0.0
+            return safe_pct(float(frame["Close"].iloc[-1]), float(frame.loc[dates == prior[-1], "Close"].iloc[-1]))
+        qqq_return, spy_return = session_return(df), session_return(spy)
+        if qqq_return <= -0.75 or (qqq_return <= -0.40 and spy_return <= -0.40):
+            gate = "BLOCK"
+        elif qqq_return < 0 or spy_return < 0 or score < 75:
+            gate = "CAUTION"
+        else:
+            gate = "CONFIRM"
         regime = "RISK-ON" if score >= 75 else "CAUTIOUS" if score >= 50 else "RISK-OFF"
-        return {"regime": regime, "risk_on": score >= 50, "score": int(score)}
+        return {"regime": regime, "risk_on": score >= 50 and gate != "BLOCK", "score": int(score), "gate": gate,
+                "qqq_session_return_pct": round(qqq_return, 3), "spy_session_return_pct": round(spy_return, 3),
+                "signal_bar_close_at": df.attrs.get("last_bar_close_at")}
     except Exception:
-        return {"regime": "UNKNOWN", "risk_on": True, "score": 50}
+        return {"regime": "UNKNOWN", "risk_on": False, "score": 0, "gate": "BLOCK"}
 
 
 def classify_symbol(symbol: str, theme: str, df: pd.DataFrame, market_df: Optional[pd.DataFrame], market_regime: Dict, timeframe: str) -> Optional[ScanResult]:
@@ -431,8 +456,7 @@ def classify_symbol(symbol: str, theme: str, df: pd.DataFrame, market_df: Option
     in_buy_zone = zone_low <= price <= zone_high
     near_buy_zone = zone_low * 0.995 <= price <= zone_high * 1.015
 
-    stop = price - atr_value * STOP_ATR
-    tp1 = price + atr_value * TP1_ATR
+    stop, tp1 = trade_levels(zone_low, zone_high, atr_value)
 
     state = "NEUTRAL"
     note = "No clean setup"
@@ -626,7 +650,22 @@ def scan_symbols(tickers: List[str], theme_map: Dict[str, str], interval: str, p
             df = download_data(symbol, interval, period)
             result = classify_symbol(symbol, theme_map.get(symbol, "Watchlist"), df, market_df, market_regime, interval)
             if result:
-                rows.append(result.__dict__)
+                row = result.__dict__
+                row["market_gate"] = market_regime.get("gate", "BLOCK")
+                if interval.lower() == "4h" and not df.empty:
+                    row["signal_bar_start_at"] = df.index[-1].isoformat()
+                    row["signal_bar_close_at"] = bar_close_at(df.index[-1], symbol).isoformat()
+                    row["signal_id"] = f"{symbol}:{interval}:{row['signal_bar_close_at']}:{RULE_VERSION}"
+                    row["vwap_type"] = "regular_session" if "SessionVWAP" in df else "rolling_50_bar"
+                if is_structural_candidate(row):
+                    confirmation = completed_15m_confirmation(download_confirmation_data(symbol, "15m", "5d"))
+                    daily_ok = timeframe_trend_confirmed(download_confirmation_data(symbol, "1d", "2y"), "1d")
+                    weekly_ok = timeframe_trend_confirmed(download_confirmation_data(symbol, "1wk", "5y"), "1wk")
+                    row.update(mtf_confirmed=daily_ok and weekly_ok, daily_trend_confirmed=daily_ok,
+                               weekly_trend_confirmed=weekly_ok, confirmation_15m=confirmation["confirmed"],
+                               confirmation_15m_at=confirmation["bar_close_at"], session_vwap_15m=confirmation["session_vwap"],
+                               confirmation_15m_rel_vol=confirmation["relative_volume"])
+                rows.append(annotate_validation(row))
             else:
                 rows.append({
                     "rank_score": 0, "symbol": symbol, "theme": theme_map.get(symbol, "Watchlist"), "timeframe": interval,
@@ -794,7 +833,8 @@ def plot_symbol(symbol: str, interval: str, period: str):
 # SIDEBAR
 # ============================================================
 
-st.title("Quality Flow Scanner V5.1 Mode-Aware Discovery")
+st.title("Quality Flow Scanner V5.2 — Confirmed Signals")
+st.caption(f"Scanner V{SCANNER_VERSION} • Rules {RULE_VERSION} • Closed session-aligned 4h bars")
 st.caption("Mode-aware discovery scanner for AI, space, quantum, semis, crypto, nuclear, cyber, and high-beta growth setups.")
 
 with st.sidebar:
@@ -932,7 +972,7 @@ st.dataframe(style_table(display_df), use_container_width=True, height=520)
 
 with st.expander("Morning Action List", expanded=True):
     # ============================================================
-    # V5.1 MORNING ACTION ENGINE
+    # V5.2 CONFIRMED ACTION ENGINE
     # ============================================================
     # Purpose:
     # - Make the scanner easier to read in the morning.
@@ -961,10 +1001,14 @@ with st.expander("Morning Action List", expanded=True):
     )
     buy_now = filtered.loc[buy_now_mask].sort_values("rank_score", ascending=False)
 
-    watch_today = filtered[
-        (filtered["entry"] == "YES")
-        & (filtered["protection"] == "SAFE")
-        & (filtered["state"].isin(["EARLY BUY", "READY"]))
+    candidate_mask = pd.Series(
+        [is_structural_candidate(row) for row in filtered.to_dict("records")],
+        index=filtered.index,
+        dtype=bool,
+    )
+    watch_today = filtered.loc[
+        (candidate_mask & ~buy_now_mask)
+        | ((filtered["entry"].isin(["YES", "WATCH"])) & filtered["state"].isin(["EARLY BUY", "READY"]))
     ].sort_values("rank_score", ascending=False)
 
     no_new_entry = filtered[
@@ -974,25 +1018,27 @@ with st.expander("Morning Action List", expanded=True):
     ].sort_values("rank_score", ascending=False)
 
     def action_line(row):
+        reasons = row.get("validation_reasons", [])
+        reason_text = f" — Waiting: {', '.join(reasons)}" if isinstance(reasons, list) and reasons else ""
         return (
             f"**{row['symbol']}** — {row['theme']} — "
             f"{row.get('suggested_mode', 'N/A')} — "
             f"{row['state']} — Rank {int(row['rank_score'])} — "
             f"Price {row['price']:.2f} — Buy Zone {row['buy_zone']} — "
-            f"{row['note']}"
+            f"{row['note']}{reason_text}"
         )
 
-    st.markdown("## 🟢 BUY NOW")
-    st.caption("Entry YES + BUY/PULLBACK BUY + SAFE + above VWAP + price inside the buy zone.")
+    st.markdown("## 🟢 BUY NOW VALID")
+    st.caption("Closed 4h setup + session VWAP + MTF + completed 15m + volume + ≥2:1 R/R + market confirmation.")
     if buy_now.empty:
-        st.info("No BUY NOW setups.")
+        st.info("No fully validated BUY NOW signals. Structural setups remain WATCH/WAIT until every gate passes.")
     else:
         for _, row in buy_now.head(20).iterrows():
             st.write(action_line(row))
 
     st.markdown("---")
     st.markdown("## 🟡 WATCH TODAY")
-    st.caption("Setup is building, but it needs confirmation before new money.")
+    st.caption("Stable 4h candidates that have not passed every V5.2 confirmation gate.")
     if watch_today.empty:
         st.info("No WATCH TODAY setups.")
     else:
@@ -1016,7 +1062,7 @@ selected_symbol = st.selectbox("Select ticker to chart", symbol_options)
 if selected_symbol:
     plot_symbol(selected_symbol, interval, period)
 
-with st.expander("How to Use V5.1"):
+with st.expander("How to Use V5.2"):
     st.markdown(
         """
         - **Entry YES** = acceptable new entry/add area.
