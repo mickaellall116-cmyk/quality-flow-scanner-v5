@@ -1,6 +1,6 @@
 {
   "scanner": "Quality Flow Scanner V5.1",
-  "generated_at": "2026-09-10T14:53:30.322598+00:00",
+  "generated_at": "2026-09-10T18:00:11.139125+00:00",
   "interval": "4h",
   "period": "180d",
   "market_regime": {
@@ -8,7 +8,7 @@
     "risk_on": true,
     "score": 70
   },
-  "count": 8,
+  "count": 9,
   "results": [
     {
       "rank_score": 140,
@@ -84,6 +84,44 @@
       "rel_vol": 0.7036,
       "rs_qqq": 4.749,
       "extension_pct": 0.0565,
+      "note": "Bull trend pulling into EMA21 area"
+    },
+    {
+      "rank_score": 134,
+      "symbol": "STX",
+      "theme": "AI Infrastructure",
+      "timeframe": "4h",
+      "state": "PULLBACK BUY",
+      "entry": "YES",
+      "protection": "SAFE",
+      "suggested_mode": "Conservative",
+      "personality": "Slow / Confirmed Trend",
+      "mode_setup": "Conservative | PB OFF | FVG OFF | SWEEP OFF",
+      "aggressive_score": 54,
+      "hybrid_score": 62,
+      "conservative_score": 75,
+      "ema_respect_pct": 12.5,
+      "score": 100,
+      "buy_zone": "845.95-870.55",
+      "price": 860.72,
+      "stop": 819.7349,
+      "tp1": 915.3668,
+      "trend_score": 70,
+      "momentum_score": 20,
+      "volume_score": 0,
+      "rs_score": 10,
+      "risk_score": 0,
+      "ema9": 876.7568,
+      "ema21": 858.2497,
+      "ema55": 850.8796,
+      "ema200": 833.0548,
+      "vwap": 851.1237,
+      "above_vwap": true,
+      "adx": 22.5529,
+      "atr_pct": 3.1745,
+      "rel_vol": 0.3774,
+      "rs_qqq": 4.7361,
+      "extension_pct": 0.2878,
       "note": "Bull trend pulling into EMA21 area"
     },
     {
