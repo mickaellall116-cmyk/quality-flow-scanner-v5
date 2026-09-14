@@ -1,5 +1,5 @@
 # ============================================================
-# QUALITY FLOW SCANNER V5.2 - CONFIRMED SIGNALS STREAMLIT APP
+# QUALITY FLOW SCANNER V5.3 - CONFIRMED SIGNALS STREAMLIT APP
 # ============================================================
 # Upgrades from V3:
 # 1) Discovery Mode: scans curated AI / Space / Quantum / Semis / Crypto / Nuclear / Cyber / Growth baskets
@@ -10,7 +10,7 @@
 # 6) Buy Zone, Stop, TP1 columns
 # 7) Opportunity ranking across all scanned tickers
 # 8) Cleaner Top Opportunities table
-# 9) V5.2 action list separates candidates from validated BUY NOW signals
+# 9) V5.3 action list separates candidates from validated BUY NOW signals
 #
 # Install:
 #   pip install streamlit yfinance pandas numpy plotly
@@ -32,15 +32,15 @@ import yfinance as yf
 from streamlit_autorefresh import st_autorefresh
 
 from scanner_rules import (
-    RULE_VERSION, SCANNER_VERSION, annotate_validation, bar_close_at,
+    RULE_VERSION, SCANNER_VERSION, PREMARKET_CHASE_GAP_PCT, annotate_validation, bar_close_at,
     completed_15m_confirmation, is_buy_now_result, is_structural_candidate,
-    resample_closed_4h, timeframe_trend_confirmed, trade_levels,
+    premarket_snapshot, previous_regular_close, resample_closed_4h, timeframe_trend_confirmed, trade_levels,
 )
 
 warnings.filterwarnings("ignore")
 
 st.set_page_config(
-    page_title="Quality Flow Scanner V5.2 Confirmed Signals",
+    page_title="Quality Flow Scanner V5.3 Confirmed Signals",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -221,6 +221,38 @@ def download_confirmation_data(symbol: str, interval: str, period: str) -> pd.Da
     if isinstance(df.columns, pd.MultiIndex):
         df.columns = [column[0] for column in df.columns]
     return df.dropna()
+
+
+@st.cache_data(ttl=120, show_spinner=False)
+def download_premarket_data(symbol: str) -> pd.DataFrame:
+    """5m bars including extended hours for today's premarket snapshot."""
+    df = yf.download(symbol, interval="5m", period="2d", prepost=True, progress=False, auto_adjust=True, threads=False)
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = [column[0] for column in df.columns]
+    return df.dropna()
+
+
+@st.cache_data(ttl=300, show_spinner=False)
+def download_daily_close_data(symbol: str) -> pd.DataFrame:
+    """Daily bars used to resolve the previous completed regular-session close."""
+    df = yf.download(symbol, interval="1d", period="10d", prepost=False, progress=False, auto_adjust=True, threads=False)
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = [column[0] for column in df.columns]
+    return df.dropna()
+
+
+def premarket_fields(symbol: str) -> Dict:
+    """Best-effort premarket snapshot; a feed hiccup cannot kill the scan."""
+    try:
+        prev_close = previous_regular_close(download_daily_close_data(symbol))
+        return premarket_snapshot(download_premarket_data(symbol), symbol, prev_close=prev_close)
+    except Exception:
+        return {"pm_high": None, "pm_low": None, "pm_volume": None, "pm_vwap": None,
+                "pm_last": None, "pm_gap_pct": None, "pm_range_pct": None, "pm_read": "N/A"}
+
+
+PM_EMPTY = {"pm_high": np.nan, "pm_low": np.nan, "pm_volume": np.nan, "pm_vwap": np.nan,
+            "pm_last": np.nan, "pm_gap_pct": np.nan, "pm_range_pct": np.nan, "pm_read": "N/A"}
 
 
 def ema(series: pd.Series, length: int) -> pd.Series:
@@ -652,6 +684,11 @@ def scan_symbols(tickers: List[str], theme_map: Dict[str, str], interval: str, p
             if result:
                 row = result.__dict__
                 row["market_gate"] = market_regime.get("gate", "BLOCK")
+                pm = premarket_fields(symbol)
+                row.update(pm)
+                gap = pm.get("pm_gap_pct")
+                if gap is not None and not pd.isna(gap) and abs(gap) >= PREMARKET_CHASE_GAP_PCT:
+                    row["note"] = row.get("note", "") + f" | Premarket gap {gap:+.1f}%: avoid chasing at open"
                 if interval.lower() == "4h" and not df.empty:
                     row["signal_bar_start_at"] = df.index[-1].isoformat()
                     row["signal_bar_close_at"] = bar_close_at(df.index[-1], symbol).isoformat()
@@ -675,6 +712,7 @@ def scan_symbols(tickers: List[str], theme_map: Dict[str, str], interval: str, p
                     "ema55": np.nan, "ema200": np.nan, "vwap": np.nan, "above_vwap": False, "adx": np.nan,
                     "atr_pct": np.nan, "rel_vol": np.nan, "rs_qqq": np.nan, "extension_pct": np.nan,
                     "note": "Not enough data or no Yahoo data returned",
+                    **PM_EMPTY,
                 })
         except Exception as exc:
             rows.append({
@@ -685,6 +723,7 @@ def scan_symbols(tickers: List[str], theme_map: Dict[str, str], interval: str, p
                 "ema55": np.nan, "ema200": np.nan, "vwap": np.nan, "above_vwap": False, "adx": np.nan,
                 "atr_pct": np.nan, "rel_vol": np.nan, "rs_qqq": np.nan, "extension_pct": np.nan,
                 "note": str(exc),
+                **PM_EMPTY,
             })
         progress.progress((idx + 1) / max(1, len(tickers)), text=f"Scanned {idx + 1}/{len(tickers)}")
 
@@ -795,18 +834,19 @@ def make_display_df(df: pd.DataFrame, compact: bool = False) -> pd.DataFrame:
         "risk_score": "Risk", "ema9": "EMA9", "ema21": "EMA21", "ema55": "EMA55",
         "ema200": "EMA200", "vwap": "VWAP", "above_vwap": "Above VWAP", "adx": "ADX",
         "atr_pct": "ATR%", "rel_vol": "RVOL", "rs_qqq": "RS vs QQQ%", "extension_pct": "Ext%",
+        "pm_gap_pct": "PM Gap%", "pm_high": "PM High", "pm_low": "PM Low", "pm_read": "PM Read",
         "note": "Note",
     }
     out = out.rename(columns=rename)
     if compact:
-        cols = ["Symbol", "Theme", "Suggested Mode", "Personality", "Mode Setup", "Entry", "State", "Protection", "Rank Score", "Score", "Price", "Buy Zone", "Stop", "TP1", "RVOL", "RS vs QQQ%", "Ext%", "Note"]
+        cols = ["Symbol", "Theme", "Suggested Mode", "Personality", "Mode Setup", "Entry", "State", "Protection", "Rank Score", "Score", "Price", "PM Gap%", "PM Read", "Buy Zone", "Stop", "TP1", "RVOL", "RS vs QQQ%", "Ext%", "Note"]
     else:
-        cols = ["Symbol", "Theme", "TF", "Suggested Mode", "Personality", "Mode Setup", "Entry", "State", "Protection", "Rank Score", "Agg Score", "Hybrid Score", "Cons Score", "EMA Respect%", "Score", "Price", "Buy Zone", "Stop", "TP1", "Trend", "Momentum", "Volume", "RS", "Risk", "EMA9", "EMA21", "EMA55", "EMA200", "VWAP", "Above VWAP", "ADX", "ATR%", "RVOL", "RS vs QQQ%", "Ext%", "Note"]
+        cols = ["Symbol", "Theme", "TF", "Suggested Mode", "Personality", "Mode Setup", "Entry", "State", "Protection", "Rank Score", "Agg Score", "Hybrid Score", "Cons Score", "EMA Respect%", "Score", "Price", "PM Gap%", "PM High", "PM Low", "PM Read", "Buy Zone", "Stop", "TP1", "Trend", "Momentum", "Volume", "RS", "Risk", "EMA9", "EMA21", "EMA55", "EMA200", "VWAP", "Above VWAP", "ADX", "ATR%", "RVOL", "RS vs QQQ%", "Ext%", "Note"]
     out = out[[c for c in cols if c in out.columns]]
-    for c in ["Price", "Stop", "TP1", "EMA9", "EMA21", "EMA55", "EMA200", "VWAP"]:
+    for c in ["Price", "Stop", "TP1", "EMA9", "EMA21", "EMA55", "EMA200", "VWAP", "PM High", "PM Low"]:
         if c in out.columns:
             out[c] = pd.to_numeric(out[c], errors="coerce").round(2)
-    for c in ["ADX", "ATR%", "RVOL", "RS vs QQQ%", "Ext%", "EMA Respect%"]:
+    for c in ["ADX", "ATR%", "RVOL", "RS vs QQQ%", "Ext%", "EMA Respect%", "PM Gap%"]:
         if c in out.columns:
             out[c] = pd.to_numeric(out[c], errors="coerce").round(2)
     return out
@@ -833,7 +873,7 @@ def plot_symbol(symbol: str, interval: str, period: str):
 # SIDEBAR
 # ============================================================
 
-st.title("Quality Flow Scanner V5.2 — Confirmed Signals")
+st.title("Quality Flow Scanner V5.3 — Confirmed Signals")
 st.caption(f"Scanner V{SCANNER_VERSION} • Rules {RULE_VERSION} • Closed session-aligned 4h bars")
 st.caption("Mode-aware discovery scanner for AI, space, quantum, semis, crypto, nuclear, cyber, and high-beta growth setups.")
 
@@ -972,7 +1012,7 @@ st.dataframe(style_table(display_df), use_container_width=True, height=520)
 
 with st.expander("Morning Action List", expanded=True):
     # ============================================================
-    # V5.2 CONFIRMED ACTION ENGINE
+    # V5.3 CONFIRMED ACTION ENGINE
     # ============================================================
     # Purpose:
     # - Make the scanner easier to read in the morning.
@@ -1038,7 +1078,7 @@ with st.expander("Morning Action List", expanded=True):
 
     st.markdown("---")
     st.markdown("## 🟡 WATCH TODAY")
-    st.caption("Stable 4h candidates that have not passed every V5.2 confirmation gate.")
+    st.caption("Stable 4h candidates that have not passed every V5.3 confirmation gate.")
     if watch_today.empty:
         st.info("No WATCH TODAY setups.")
     else:
@@ -1062,7 +1102,7 @@ selected_symbol = st.selectbox("Select ticker to chart", symbol_options)
 if selected_symbol:
     plot_symbol(selected_symbol, interval, period)
 
-with st.expander("How to Use V5.2"):
+with st.expander("How to Use V5.3"):
     st.markdown(
         """
         - **Entry YES** = acceptable new entry/add area.

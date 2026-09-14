@@ -1,4 +1,4 @@
-"""MasterScanner V5.2 API
+"""MasterScanner V5.3 API
 
 Standalone FastAPI wrapper that mirrors the Quality Flow Scanner V5.2
 classification and Morning Action logic from the public Streamlit app.
@@ -30,17 +30,20 @@ from fastapi import FastAPI, HTTPException, Query
 from scanner_rules import (
     RULE_VERSION,
     SCANNER_VERSION,
+    PREMARKET_CHASE_GAP_PCT,
     annotate_validation,
     bar_close_at,
     completed_15m_confirmation,
     filter_buy_now,
     is_structural_candidate,
+    premarket_snapshot,
+    previous_regular_close,
     resample_closed_4h,
     trade_levels,
     timeframe_trend_confirmed,
 )
 
-app = FastAPI(title="MasterScanner V5.2 API", version="5.2-api")
+app = FastAPI(title="MasterScanner V5.3 API", version="5.3-api")
 
 MARKET_SYMBOL = "QQQ"
 DEFAULT_WATCHLIST = [
@@ -102,6 +105,36 @@ def download_confirmation_data(symbol: str, interval: str, period: str) -> pd.Da
     if isinstance(df.columns, pd.MultiIndex):
         df.columns = [column[0] for column in df.columns]
     return df.dropna()
+
+
+def download_premarket_data(symbol: str) -> pd.DataFrame:
+    """Download 5m bars including extended hours for today's premarket snapshot."""
+    df = yf.download(symbol, interval="5m", period="2d", prepost=True, progress=False, auto_adjust=True, threads=False)
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = [column[0] for column in df.columns]
+    return df.dropna()
+
+
+def download_daily_close_data(symbol: str) -> pd.DataFrame:
+    """Daily bars used only to resolve the previous completed regular-session close."""
+    df = yf.download(symbol, interval="1d", period="10d", prepost=False, progress=False, auto_adjust=True, threads=False)
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = [column[0] for column in df.columns]
+    return df.dropna()
+
+
+def premarket_fields(symbol: str) -> dict:
+    """Best-effort premarket snapshot; feed problems never kill the scan."""
+    try:
+        prev_close = previous_regular_close(download_daily_close_data(symbol))
+        return premarket_snapshot(download_premarket_data(symbol), symbol, prev_close=prev_close)
+    except Exception:
+        return {"pm_high": None, "pm_low": None, "pm_volume": None, "pm_vwap": None,
+                "pm_last": None, "pm_gap_pct": None, "pm_range_pct": None, "pm_read": "N/A"}
+
+
+PM_EMPTY = {"pm_high": None, "pm_low": None, "pm_volume": None, "pm_vwap": None,
+            "pm_last": None, "pm_gap_pct": None, "pm_range_pct": None, "pm_read": "N/A"}
 
 
 def ema(s,l): return s.ewm(span=l, adjust=False).mean()
@@ -287,10 +320,17 @@ def scan_symbols(tickers, theme_map, interval="4h", period="180d"):
     regime=get_market_regime(interval,period); market_df=download_data(MARKET_SYMBOL,interval,period); rows=[]
     for symbol in tickers:
         try:
-            result=classify_symbol(symbol,theme_map.get(symbol,"Watchlist"),download_data(symbol,interval,period),market_df,regime,interval)
-            if result: rows.append(result)
+            df_sym=download_data(symbol,interval,period)
+            result=classify_symbol(symbol,theme_map.get(symbol,"Watchlist"),df_sym,market_df,regime,interval)
+            if result:
+                pm=premarket_fields(symbol)
+                result.update(pm)
+                gap=pm.get("pm_gap_pct")
+                if gap is not None and abs(gap)>=PREMARKET_CHASE_GAP_PCT:
+                    result["note"]=result.get("note","")+f" | Premarket gap {gap:+.1f}%: avoid chasing at open"
+                rows.append(result)
         except Exception as exc:
-            rows.append({"rank_score":0,"symbol":symbol,"theme":theme_map.get(symbol,"Watchlist"),"timeframe":interval,"state":"ERROR","entry":"NO","protection":"N/A","score":0,"note":str(exc)})
+            rows.append({"rank_score":0,"symbol":symbol,"theme":theme_map.get(symbol,"Watchlist"),"timeframe":interval,"state":"ERROR","entry":"NO","protection":"N/A","score":0,"note":str(exc), **PM_EMPTY})
     return sorted(rows,key=lambda r:({"YES":1,"WATCH":2,"NO":3}.get(r.get("entry"),9),-int(r.get("rank_score",0)),{"BUY":1,"PULLBACK BUY":2,"EARLY BUY":3,"READY":4,"HOLD":5,"HOT":6,"NEUTRAL":7,"EXIT":8}.get(r.get("state"),99)))
 
 

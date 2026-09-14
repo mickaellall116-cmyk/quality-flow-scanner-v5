@@ -5,8 +5,8 @@ from scanner_rules import RULE_VERSION, SCANNER_VERSION, risk_reward, trade_leve
 
 class ApiContractTests(unittest.TestCase):
     def test_version_contract(self):
-        self.assertEqual(SCANNER_VERSION, "5.2")
-        self.assertEqual(RULE_VERSION, "2026-09-10-v2")
+        self.assertEqual(SCANNER_VERSION, "5.3")
+        self.assertEqual(RULE_VERSION, "2026-09-14-v3")
 
     def test_stop_and_target_are_zone_anchored_not_fixed_1_33_ratio(self):
         stop, target = trade_levels(99.0, 101.0, 2.0)

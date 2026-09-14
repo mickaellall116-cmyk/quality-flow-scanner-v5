@@ -7,6 +7,8 @@ from scanner_rules import (
     closed_higher_timeframe,
     filter_buy_now,
     is_buy_now_result,
+    premarket_snapshot,
+    previous_regular_close,
     resample_closed_4h,
     validation_reasons,
 )
@@ -130,13 +132,86 @@ class BuyNowRulesTests(unittest.TestCase):
         self.assertIn("completed 15-minute confirmation missing", reasons)
 
     def test_rule_version_is_exposed(self):
-        self.assertEqual(RULE_VERSION, "2026-09-10-v2")
+        self.assertEqual(RULE_VERSION, "2026-09-14-v3")
 
     def test_filter_ranks_and_limits(self):
         lower = {**self.row, "symbol": "LOW", "rank_score": 90}
         higher = {**self.row, "symbol": "HIGH", "rank_score": 130}
         result = filter_buy_now([lower, higher], limit=1)
         self.assertEqual([row["symbol"] for row in result], ["HIGH"])
+
+
+
+def premarket_frame() -> pd.DataFrame:
+    index = pd.DatetimeIndex(
+        [
+            pd.Timestamp("2026-09-14 04:05", tz="America/New_York"),
+            pd.Timestamp("2026-09-14 06:30", tz="America/New_York"),
+            pd.Timestamp("2026-09-14 09:00", tz="America/New_York"),
+            pd.Timestamp("2026-09-14 10:00", tz="America/New_York"),
+        ]
+    )
+    return pd.DataFrame(
+        {
+            "Open": [100.0, 101.0, 102.0, 103.0],
+            "High": [100.5, 102.5, 103.0, 104.0],
+            "Low": [99.5, 100.8, 101.5, 102.5],
+            "Close": [100.2, 102.0, 102.8, 103.5],
+            "Volume": [1000, 2000, 1500, 5000],
+        },
+        index=index,
+    )
+
+
+class PremarketSnapshotTests(unittest.TestCase):
+    def test_crypto_has_no_premarket(self):
+        snap = premarket_snapshot(premarket_frame(), "BTC-USD", prev_close=100.0)
+        self.assertEqual(snap["pm_read"], "N/A")
+        self.assertIsNone(snap["pm_high"])
+
+    def test_empty_frame_is_na(self):
+        snap = premarket_snapshot(pd.DataFrame(), "AAPL", prev_close=100.0)
+        self.assertEqual(snap["pm_read"], "N/A")
+
+    def test_snapshot_uses_only_premarket_bars(self):
+        now = pd.Timestamp("2026-09-14 09:15", tz="America/New_York")
+        snap = premarket_snapshot(premarket_frame(), "AAPL", prev_close=100.0, now=now)
+        self.assertEqual(snap["pm_high"], 103.0)
+        self.assertEqual(snap["pm_low"], 99.5)
+        self.assertEqual(snap["pm_volume"], 4500)
+        self.assertEqual(snap["pm_last"], 102.8)
+        self.assertEqual(snap["pm_gap_pct"], 2.8)
+        self.assertEqual(snap["pm_read"], "BULLISH")
+
+    def test_bearish_read_on_gap_down_near_premarket_low(self):
+        frame = premarket_frame()
+        frame.loc[frame.index[:3], ["Open", "High", "Low", "Close"]] = [
+            [99.5, 100.0, 98.5, 99.0],
+            [98.8, 99.0, 97.5, 98.0],
+            [98.0, 98.2, 97.0, 97.5],
+        ]
+        now = pd.Timestamp("2026-09-14 09:15", tz="America/New_York")
+        snap = premarket_snapshot(frame, "AAPL", prev_close=100.0, now=now)
+        self.assertEqual(snap["pm_gap_pct"], -2.5)
+        self.assertEqual(snap["pm_read"], "BEARISH")
+
+    def test_neutral_on_small_gap(self):
+        now = pd.Timestamp("2026-09-14 09:15", tz="America/New_York")
+        snap = premarket_snapshot(premarket_frame(), "AAPL", prev_close=102.5, now=now)
+        self.assertAlmostEqual(snap["pm_gap_pct"], 0.29, places=1)
+        self.assertEqual(snap["pm_read"], "NEUTRAL")
+
+    def test_previous_regular_close_excludes_todays_in_progress_bar(self):
+        daily = pd.DataFrame(
+            {"Close": [98.0, 100.0, 105.0]},
+            index=pd.DatetimeIndex([
+                pd.Timestamp("2026-09-10"),
+                pd.Timestamp("2026-09-11"),
+                pd.Timestamp("2026-09-14"),
+            ]),
+        )
+        now = pd.Timestamp("2026-09-14 13:30", tz="America/New_York")
+        self.assertEqual(previous_regular_close(daily, now=now), 100.0)
 
 
 if __name__ == "__main__":

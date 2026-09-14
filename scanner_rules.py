@@ -8,8 +8,8 @@ from typing import Any, Optional
 import pandas as pd
 
 
-SCANNER_VERSION = "5.2"
-RULE_VERSION = "2026-09-10-v2"
+SCANNER_VERSION = "5.3"
+RULE_VERSION = "2026-09-14-v3"
 BUY_NOW_STATES = frozenset({"BUY", "PULLBACK BUY"})
 MIN_ADX = 20.0
 MIN_RELATIVE_VOLUME = 0.80
@@ -258,3 +258,129 @@ def timeframe_trend_confirmed(
     ema55 = close.ewm(span=55, adjust=False).mean()
     ema200 = close.ewm(span=200, adjust=False).mean()
     return bool(close.iloc[-1] > ema200.iloc[-1] and ema21.iloc[-1] > ema55.iloc[-1] and ema21.iloc[-1] >= ema21.iloc[-2])
+
+# ============================================================
+# PREMARKET SESSION SNAPSHOT
+# ============================================================
+# US premarket runs 04:00-09:30 ET. yfinance only returns those
+# bars when the download uses prepost=True. Crypto ("-USD")
+# trades 24/7 so it has no premarket session.
+
+PREMARKET_START_MIN = 4 * 60
+PREMARKET_END_MIN = 9 * 60 + 30
+PREMARKET_STRONG_GAP_PCT = 2.0
+PREMARKET_CHASE_GAP_PCT = 5.0
+
+
+def _premarket_na() -> dict[str, Any]:
+    return {
+        "pm_high": None,
+        "pm_low": None,
+        "pm_volume": None,
+        "pm_vwap": None,
+        "pm_last": None,
+        "pm_gap_pct": None,
+        "pm_range_pct": None,
+        "pm_read": "N/A",
+    }
+
+
+def previous_regular_close(
+    daily_df: pd.DataFrame,
+    now: Optional[pd.Timestamp] = None,
+) -> Optional[float]:
+    """Return the last completed regular-session daily close before today ET.
+
+    Yahoo can expose an in-progress daily bar for the current session. Excluding
+    today's date prevents premarket gap math from accidentally using today's
+    4-hour/daily price as the baseline.
+    """
+    try:
+        if daily_df is None or daily_df.empty or "Close" not in daily_df:
+            return None
+        data = daily_df.copy().sort_index().dropna(subset=["Close"])
+        if data.empty or not isinstance(data.index, pd.DatetimeIndex):
+            return None
+
+        current = pd.Timestamp.now(tz="America/New_York") if now is None else pd.Timestamp(now)
+        if current.tzinfo is None:
+            current = current.tz_localize("America/New_York")
+        else:
+            current = current.tz_convert("America/New_York")
+
+        if data.index.tz is None:
+            dates = data.index.date
+        else:
+            dates = data.index.tz_convert("America/New_York").date
+        completed = data[dates < current.date()]
+        if completed.empty:
+            return None
+        return float(completed["Close"].iloc[-1])
+    except Exception:
+        return None
+
+
+def premarket_snapshot(
+    df: pd.DataFrame,
+    symbol: str,
+    prev_close: Optional[float] = None,
+    now: Optional[pd.Timestamp] = None,
+) -> dict[str, Any]:
+    """Summarize today's 04:00-09:30 ET premarket session.
+
+    ``df`` should be 1m/5m/15m bars fetched with ``prepost=True``. ``prev_close``
+    must be the previous completed regular-session close. Yahoo premarket volume
+    can be absent or incomplete, so BULLISH/BEARISH reads use gap size plus where
+    the latest premarket price sits inside the premarket range.
+    """
+    try:
+        if df is None or df.empty or not isinstance(df.index, pd.DatetimeIndex):
+            return _premarket_na()
+        if str(symbol).upper().endswith("-USD"):
+            return _premarket_na()
+
+        data = df.copy().sort_index()
+        local = data.index.tz_convert("America/New_York") if data.index.tz is not None else data.index
+        current = _now_for_index(data.index, now)
+        today = current.tz_convert("America/New_York").date() if current.tzinfo is not None else current.date()
+
+        minutes = local.hour * 60 + local.minute
+        session = data[(local.date == today) & (minutes >= PREMARKET_START_MIN) & (minutes < PREMARKET_END_MIN)]
+        if session.empty:
+            return _premarket_na()
+
+        high = float(session["High"].max())
+        low = float(session["Low"].min())
+        volume = float(session["Volume"].sum()) if "Volume" in session else 0.0
+        typical = (session["High"] + session["Low"] + session["Close"]) / 3.0
+        vwap = float((typical * session["Volume"]).sum() / volume) if "Volume" in session and volume > 0 else None
+        last = float(session["Close"].iloc[-1])
+
+        gap_pct = None
+        range_pct = None
+        if prev_close is not None and float(prev_close) > 0:
+            baseline = float(prev_close)
+            gap_pct = round((last / baseline - 1.0) * 100.0, 2)
+            range_pct = round((high - low) / baseline * 100.0, 2)
+
+        read = "NEUTRAL"
+        if gap_pct is not None and high > low:
+            position = (last - low) / (high - low)
+            if gap_pct >= PREMARKET_STRONG_GAP_PCT and position >= 0.75:
+                read = "BULLISH"
+            elif gap_pct <= -PREMARKET_STRONG_GAP_PCT and position <= 0.25:
+                read = "BEARISH"
+
+        return {
+            "pm_high": round(high, 2),
+            "pm_low": round(low, 2),
+            "pm_volume": int(volume),
+            "pm_vwap": round(vwap, 2) if vwap is not None else None,
+            "pm_last": round(last, 2),
+            "pm_gap_pct": gap_pct,
+            "pm_range_pct": range_pct,
+            "pm_read": read,
+        }
+    except Exception:
+        return _premarket_na()
+
