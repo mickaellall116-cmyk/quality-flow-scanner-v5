@@ -2,7 +2,7 @@
   "scanner": "Quality Flow Scanner V5.2",
   "scanner_version": "5.2",
   "rule_version": "2026-09-10-v2",
-  "generated_at": "2026-09-14T07:04:11.167490+00:00",
+  "generated_at": "2026-09-14T13:59:12.588287+00:00",
   "interval": "4h",
   "period": "180d",
   "signal_bar_close_at": "2026-09-11T16:00:00-04:00",
@@ -65,16 +65,17 @@
       "mtf_confirmed": false,
       "daily_trend_confirmed": false,
       "weekly_trend_confirmed": false,
-      "confirmation_15m": true,
-      "confirmation_15m_at": "2026-09-11T16:00:00-04:00",
-      "session_vwap_15m": 11.9191,
-      "confirmation_15m_rel_vol": 3.813,
+      "confirmation_15m": false,
+      "confirmation_15m_at": null,
+      "session_vwap_15m": null,
+      "confirmation_15m_rel_vol": 0.0,
       "risk_reward": 1.818,
       "validation_status": "WATCH/WAIT",
       "validation_reasons": [
         "relative volume below 0.80x",
         "reward/risk below 2.0:1",
-        "weekly/daily/4h alignment not confirmed"
+        "weekly/daily/4h alignment not confirmed",
+        "completed 15-minute confirmation missing"
       ]
     }
   ],
