@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - tools/apply_premarket_fix.py
+      - tools/fix_premarket_test_versions.py
       - .github/workflows/apply-premarket-fix.yml
 
 permissions:
@@ -26,11 +27,13 @@ jobs:
         run: pip install pandas numpy
 
       - name: Apply premarket patch
-        run: python tools/apply_premarket_fix.py
+        run: |
+          python tools/apply_premarket_fix.py
+          python tools/fix_premarket_test_versions.py
 
       - name: Compile changed Python files
         run: |
-          python -m py_compile scanner_rules.py masterscanner_api.py scanner_streamlit_v5_1_morning_action.py scanner_streamlit_v5_mode_aware.py tests/test_scanner_rules.py
+          python -m py_compile scanner_rules.py masterscanner_api.py scanner_streamlit_v5_1_morning_action.py scanner_streamlit_v5_mode_aware.py tests/test_scanner_rules.py tests/test_api_contract.py
 
       - name: Run scanner rule tests
         run: python -m unittest discover -s tests -v
@@ -39,7 +42,7 @@ jobs:
         run: |
           git config user.name 'Mektech'
           git config user.email 'mektech@local'
-          git rm tools/apply_premarket_fix.py .github/workflows/apply-premarket-fix.yml
-          git add scanner_rules.py masterscanner_api.py scanner_streamlit_v5_1_morning_action.py scanner_streamlit_v5_mode_aware.py tests/test_scanner_rules.py
+          git rm tools/apply_premarket_fix.py tools/fix_premarket_test_versions.py .github/workflows/apply-premarket-fix.yml
+          git add scanner_rules.py masterscanner_api.py scanner_streamlit_v5_1_morning_action.py scanner_streamlit_v5_mode_aware.py tests/test_scanner_rules.py tests/test_api_contract.py
           git commit -m 'Fix premarket gap baseline and add session context'
           git push origin main
