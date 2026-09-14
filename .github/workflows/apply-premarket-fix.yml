@@ -1,0 +1,45 @@
+name: Apply MasterScanner premarket fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/apply_premarket_fix.py
+      - .github/workflows/apply-premarket-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependencies
+        run: pip install pandas numpy
+
+      - name: Apply premarket patch
+        run: python tools/apply_premarket_fix.py
+
+      - name: Compile changed Python files
+        run: |
+          python -m py_compile scanner_rules.py masterscanner_api.py scanner_streamlit_v5_1_morning_action.py scanner_streamlit_v5_mode_aware.py tests/test_scanner_rules.py
+
+      - name: Run scanner rule tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Commit patched scanner and remove one-time patcher
+        run: |
+          git config user.name 'Mektech'
+          git config user.email 'mektech@local'
+          git rm tools/apply_premarket_fix.py .github/workflows/apply-premarket-fix.yml
+          git add scanner_rules.py masterscanner_api.py scanner_streamlit_v5_1_morning_action.py scanner_streamlit_v5_mode_aware.py tests/test_scanner_rules.py
+          git commit -m 'Fix premarket gap baseline and add session context'
+          git push origin main
