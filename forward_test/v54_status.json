@@ -1,24 +1,44 @@
 {
-  "as_of": "2026-09-15T16:59:51.895808+00:00",
+  "as_of": "2026-09-15T18:54:40.341097+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
-  "universe": "UX51 (51 symbols)",
+  "universe": "UX51+X2 (51+199 symbols)",
+  "cohort_sizes": {
+    "UX51": 51,
+    "X2": 199
+  },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-15T16:59:51.892491+00:00",
+  "last_successful_cycle": "2026-09-15T18:54:40.339645+00:00",
   "signals_logged": 1,
   "grade_counts": {
     "A": 1,
     "B": 0,
     "C": 0
   },
-  "pending_entries": [
+  "grade_counts_by_cohort": {
+    "Forward-UX51": {
+      "A": 1,
+      "B": 0,
+      "C": 0
+    }
+  },
+  "pending_entries": [],
+  "open_positions": [
     {
       "signal_id": "v54:INTC:4h:2026-09-15T10:30:00-04:00:2026-09-15-v54",
       "symbol": "INTC",
       "grade": "A",
-      "signal_bar": "2026-09-15T06:30:00-04:00"
+      "entry": 99.23999786376953,
+      "entry_bar": "2026-09-15T10:30:00-04:00",
+      "stop": 95.79588097698213,
+      "tp1": 107.79639865727073,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.0900100659119754,
+      "mae_r": -0.6265748818300391
     }
   ],
-  "open_positions": [],
   "closed_trades": 0,
   "cumulative_r": 0,
   "cumulative_r_note": "Sum of per-trade blended R at 1R risk each; not compounded.",
