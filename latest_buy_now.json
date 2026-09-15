@@ -1,12 +1,12 @@
 {
-  "scanner": "Quality Flow Scanner V5.2",
-  "scanner_version": "5.2",
-  "rule_version": "2026-09-10-v2",
-  "generated_at": "2026-09-14T22:17:59.092677+00:00",
+  "scanner": "Quality Flow Scanner V5.3",
+  "scanner_version": "5.3",
+  "rule_version": "2026-09-14-v3",
+  "generated_at": "2026-09-15T00:44:04.144198+00:00",
   "interval": "4h",
   "period": "180d",
   "signal_bar_close_at": "2026-09-14T16:00:00-04:00",
-  "signal_id": "4h:2026-09-14T16:00:00-04:00:2026-09-10-v2",
+  "signal_id": "4h:2026-09-14T16:00:00-04:00:2026-09-14-v3",
   "market_regime": {
     "regime": "RISK-OFF",
     "risk_on": false,
