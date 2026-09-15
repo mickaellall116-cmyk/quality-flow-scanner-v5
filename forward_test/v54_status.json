@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-15T18:54:40.341097+00:00",
+  "as_of": "2026-09-15T20:54:24.255532+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,7 +7,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-15T18:54:40.339645+00:00",
+  "last_successful_cycle": "2026-09-15T20:54:24.254258+00:00",
   "signals_logged": 1,
   "grade_counts": {
     "A": 1,
@@ -32,11 +32,11 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_full",
-      "bars_held": 1,
+      "bars_held": 2,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.0900100659119754,
-      "mae_r": -0.6265748818300391
+      "mae_r": -0.7896066742382701
     }
   ],
   "closed_trades": 0,
