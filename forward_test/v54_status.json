@@ -1,0 +1,29 @@
+{
+  "as_of": "2026-09-15T16:59:51.895808+00:00",
+  "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
+  "universe": "UX51 (51 symbols)",
+  "live_control": "V5.3 (unchanged)",
+  "last_successful_cycle": "2026-09-15T16:59:51.892491+00:00",
+  "signals_logged": 1,
+  "grade_counts": {
+    "A": 1,
+    "B": 0,
+    "C": 0
+  },
+  "pending_entries": [
+    {
+      "signal_id": "v54:INTC:4h:2026-09-15T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "INTC",
+      "grade": "A",
+      "signal_bar": "2026-09-15T06:30:00-04:00"
+    }
+  ],
+  "open_positions": [],
+  "closed_trades": 0,
+  "cumulative_r": 0,
+  "cumulative_r_note": "Sum of per-trade blended R at 1R risk each; not compounded.",
+  "avg_r_per_trade": 0.0,
+  "win_rate": 0.0,
+  "closed_v53_would_have_vetoed": 0,
+  "closed_vetoed_winners": 0
+}
