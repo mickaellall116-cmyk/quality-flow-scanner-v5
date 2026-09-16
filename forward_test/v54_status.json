@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-16T18:55:43.597471+00:00",
+  "as_of": "2026-09-16T20:54:34.156456+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,7 +7,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-16T18:55:43.595080+00:00",
+  "last_successful_cycle": "2026-09-16T20:54:34.146772+00:00",
   "signals_logged": 3,
   "grade_counts": {
     "A": 2,
@@ -26,20 +26,7 @@
       "C": 0
     }
   },
-  "pending_entries": [
-    {
-      "signal_id": "v54:CRM:4h:2026-09-16T14:30:00-04:00:2026-09-15-v54",
-      "symbol": "CRM",
-      "grade": "A",
-      "signal_bar": "2026-09-16T10:30:00-04:00"
-    },
-    {
-      "signal_id": "v54:VEEV:4h:2026-09-16T14:30:00-04:00:2026-09-15-v54",
-      "symbol": "VEEV",
-      "grade": "B",
-      "signal_bar": "2026-09-16T10:30:00-04:00"
-    }
-  ],
+  "pending_entries": [],
   "open_positions": [
     {
       "signal_id": "v54:INTC:4h:2026-09-15T10:30:00-04:00:2026-09-15-v54",
@@ -50,11 +37,41 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_full",
-      "bars_held": 4,
+      "bars_held": 5,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.504014084146714,
       "mae_r": -0.7896066742382701
+    },
+    {
+      "signal_id": "v54:CRM:4h:2026-09-16T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "CRM",
+      "grade": "A",
+      "entry": 252.94500732421875,
+      "entry_bar": "2026-09-16T14:30:00-04:00",
+      "stop": 246.81785350583846,
+      "tp1": 267.10121257138303,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.07097761211179703,
+      "mae_r": -0.5459306751315365
+    },
+    {
+      "signal_id": "v54:VEEV:4h:2026-09-16T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "VEEV",
+      "grade": "B",
+      "entry": 267.4100036621094,
+      "entry_bar": "2026-09-16T14:30:00-04:00",
+      "stop": 261.1236449298683,
+      "tp1": 280.63141351474377,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.01034023735757708,
+      "mae_r": -0.7906009555600613
     }
   ],
   "closed_trades": 0,
