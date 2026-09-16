@@ -2,19 +2,19 @@
   "scanner": "Quality Flow Scanner V5.3",
   "scanner_version": "5.3",
   "rule_version": "2026-09-14-v3",
-  "generated_at": "2026-09-16T12:04:37.881669+00:00",
+  "generated_at": "2026-09-16T16:49:29.980079+00:00",
   "interval": "4h",
   "period": "180d",
-  "signal_bar_close_at": "2026-09-15T16:00:00-04:00",
-  "signal_id": "4h:2026-09-15T16:00:00-04:00:2026-09-14-v3",
+  "signal_bar_close_at": "2026-09-16T10:30:00-04:00",
+  "signal_id": "4h:2026-09-16T10:30:00-04:00:2026-09-14-v3",
   "market_regime": {
     "regime": "RISK-OFF",
     "risk_on": false,
-    "score": 0,
-    "gate": "BLOCK",
-    "qqq_session_return_pct": -0.644,
-    "spy_session_return_pct": -0.44,
-    "signal_bar_close_at": "2026-09-15T16:00:00-04:00"
+    "score": 35,
+    "gate": "CAUTION",
+    "qqq_session_return_pct": 0.708,
+    "spy_session_return_pct": 0.203,
+    "signal_bar_close_at": "2026-09-16T10:30:00-04:00"
   },
   "count": 0,
   "results": [],
@@ -22,5 +22,5 @@
   "candidates": [],
   "source": "github-actions",
   "uses_closed_4h_candles": true,
-  "primary_candidates_frozen": true
+  "primary_candidates_frozen": false
 }
