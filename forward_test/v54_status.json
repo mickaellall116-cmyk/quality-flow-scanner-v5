@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-16T14:57:38.477365+00:00",
+  "as_of": "2026-09-16T18:55:43.597471+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,21 +7,39 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-16T14:57:38.475886+00:00",
-  "signals_logged": 1,
+  "last_successful_cycle": "2026-09-16T18:55:43.595080+00:00",
+  "signals_logged": 3,
   "grade_counts": {
-    "A": 1,
-    "B": 0,
+    "A": 2,
+    "B": 1,
     "C": 0
   },
   "grade_counts_by_cohort": {
     "Forward-UX51": {
-      "A": 1,
+      "A": 2,
       "B": 0,
+      "C": 0
+    },
+    "Forward-X2": {
+      "A": 0,
+      "B": 1,
       "C": 0
     }
   },
-  "pending_entries": [],
+  "pending_entries": [
+    {
+      "signal_id": "v54:CRM:4h:2026-09-16T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "CRM",
+      "grade": "A",
+      "signal_bar": "2026-09-16T10:30:00-04:00"
+    },
+    {
+      "signal_id": "v54:VEEV:4h:2026-09-16T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "VEEV",
+      "grade": "B",
+      "signal_bar": "2026-09-16T10:30:00-04:00"
+    }
+  ],
   "open_positions": [
     {
       "signal_id": "v54:INTC:4h:2026-09-15T10:30:00-04:00:2026-09-15-v54",
@@ -32,7 +50,7 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_full",
-      "bars_held": 3,
+      "bars_held": 4,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.504014084146714,
