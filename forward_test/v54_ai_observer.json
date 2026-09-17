@@ -2,7 +2,7 @@
   "observer": "AI-OBS-v1",
   "prompt_version": "v1",
   "prompt_sha256_12": "aa2be78ff445",
-  "assessment_count": 3,
+  "assessment_count": 4,
   "assessments": [
     {
       "observer": "AI-OBS-v1",
@@ -191,7 +191,70 @@
         "plus1r_ref_price": 691.4877
       },
       "assessed_at": "2026-09-17T14:54:46Z"
+    },
+    {
+      "signal_id": "v54:BP:4h:2026-09-17T14:30:00-04:00:2026-09-15-v54",
+      "observer": "AI-OBS-v1",
+      "prompt_version": "v1",
+      "classification": "NEUTRAL",
+      "confidence": 55,
+      "reasons": [
+        "Bullish EMA stack (9>21>55>200) with daily and weekly trends confirmed, price above VWAP.",
+        "Market gate CAUTION and regime CAUTIOUS temper the structural positives.",
+        "15m confirmation false (checked 14:45 ET); relative volume only 1.22x, not decisive.",
+        "R:R 2.505 is adequate but ADX 21.3 barely clears the trend requirement."
+      ],
+      "primary_risk": "The CAUTION market gate means the broader market may stall or reverse the pullback attempt before TP1.",
+      "invalidation": "A clean advance to TP1 with 15m-level follow-through would show the CAUTION gate was noise rather than signal.",
+      "timing": "MATURE",
+      "features": {
+        "symbol": "BP",
+        "theme": "Forward-X2",
+        "timeframe": "4h",
+        "signal_bar_start_at": "2026-09-17T10:30:00-04:00",
+        "signal_bar_close_at": "2026-09-17T14:30:00-04:00",
+        "state": "PULLBACK BUY",
+        "entry": "YES",
+        "protection": "SAFE",
+        "price": 45.685001373291016,
+        "stop": 45.00313266367337,
+        "tp1": 47.39304893824838,
+        "risk_reward": 2.505,
+        "buy_zone": "45.39-45.92",
+        "above_vwap": true,
+        "ema9": 45.82681546243148,
+        "ema21": 45.65224572590362,
+        "ema55": 44.7628387505048,
+        "ema200": 43.23987201761706,
+        "adx": 21.3416935705807,
+        "rel_vol": 1.216461534570638,
+        "market_gate": "CAUTION",
+        "market_regime": "CAUTIOUS",
+        "daily_trend": "confirmed",
+        "weekly_trend": "confirmed",
+        "confirmation_15m": false,
+        "confirmation_15m_at": "2026-09-17T14:45:00-04:00",
+        "confirmation_15m_rel_vol": 0.461,
+        "pm_high": 45.88,
+        "pm_low": 44.91,
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "pm_last": 44.98,
+        "pm_gap_pct": -0.89,
+        "pm_range_pct": 2.14,
+        "pm_read": "NEUTRAL",
+        "v53_state": "PULLBACK BUY",
+        "v53_entry": "YES",
+        "v53_would_veto": false,
+        "v54_rule_version": "2026-09-15-v54",
+        "v54_scanner_version": "5.4",
+        "signal_id": "v54:BP:4h:2026-09-17T14:30:00-04:00:2026-09-15-v54",
+        "entry_plan": "next 4H bar open (entry price unknown at signal time)",
+        "ref_price": 45.685001373291016,
+        "plus1r_ref_price": 46.3669
+      },
+      "assessed_at": "2026-09-17T18:54:35.557625+00:00"
     }
   ],
-  "exported_at": "2026-09-17T14:54:59.690208+00:00"
+  "exported_at": "2026-09-17T18:54:39.024308+00:00"
 }
