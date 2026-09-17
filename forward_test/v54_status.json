@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-17T14:54:17.821576+00:00",
+  "as_of": "2026-09-17T18:53:59.546597+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,11 +7,11 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-17T14:54:17.813409+00:00",
-  "signals_logged": 4,
+  "last_successful_cycle": "2026-09-17T18:53:59.533982+00:00",
+  "signals_logged": 5,
   "grade_counts": {
     "A": 2,
-    "B": 2,
+    "B": 3,
     "C": 0
   },
   "grade_counts_by_cohort": {
@@ -22,16 +22,16 @@
     },
     "Forward-X2": {
       "A": 0,
-      "B": 2,
+      "B": 3,
       "C": 0
     }
   },
   "pending_entries": [
     {
-      "signal_id": "v54:DE:4h:2026-09-17T10:30:00-04:00:2026-09-15-v54",
-      "symbol": "DE",
+      "signal_id": "v54:BP:4h:2026-09-17T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "BP",
       "grade": "B",
-      "signal_bar": "2026-09-17T06:30:00-04:00"
+      "signal_bar": "2026-09-17T10:30:00-04:00"
     }
   ],
   "open_positions": [
@@ -44,11 +44,26 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_runner",
-      "bars_held": 6,
+      "bars_held": 7,
       "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 3.077711594163854,
+      "mfe_r": 3.52194924897776,
       "mae_r": -0.7896066742382701
+    },
+    {
+      "signal_id": "v54:DE:4h:2026-09-17T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "DE",
+      "grade": "B",
+      "entry": 679.9739990234375,
+      "entry_bar": "2026-09-17T10:30:00-04:00",
+      "stop": 668.3522394952015,
+      "tp1": 705.2307387827768,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.5030226521705172,
+      "mae_r": -0.3699105303309673
     }
   ],
   "closed_trades": 2,
