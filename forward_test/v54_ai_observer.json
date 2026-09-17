@@ -2,7 +2,7 @@
   "observer": "AI-OBS-v1",
   "prompt_version": "v1",
   "prompt_sha256_12": "aa2be78ff445",
-  "assessment_count": 2,
+  "assessment_count": 3,
   "assessments": [
     {
       "observer": "AI-OBS-v1",
@@ -129,7 +129,69 @@
         "plus1r_ref_price": 273.6964
       },
       "assessed_at": "2026-09-16T18:56:50.928116+00:00"
+    },
+    {
+      "signal_id": "v54:DE:4h:2026-09-17T10:30:00-04:00:2026-09-15-v54",
+      "observer": "AI-OBS-v1",
+      "prompt_version": "v1",
+      "classification": "FAVORABLE",
+      "confidence": 62,
+      "reasons": [
+        "Daily and weekly trends both confirmed; ADX 25.4 shows a defined trend, not chop.",
+        "Price 679.92 sits above VWAP and above the EMA 9/21/55/200 stack with the buy zone 674.27-682.47 holding; SAFE protection with structural stop 668.35 and TP1 705.23 gives R:R 2.19.",
+        "V5.3 agrees with PULLBACK BUY and would not veto the setup."
+      ],
+      "primary_risk": "Light relative volume (0.645, and 0.344 on the 15m) with no 15m confirmation while the market gate is CAUTION in a CAUTIOUS regime \u2014 the trend has weak participation.",
+      "invalidation": "A 4H close below the buy zone / structural stop at 668.35 would break the support the pullback rests on.",
+      "timing": "MATURE",
+      "features": {
+        "symbol": "DE",
+        "theme": "Forward-X2",
+        "timeframe": "4h",
+        "signal_bar_start_at": "2026-09-17T06:30:00-04:00",
+        "signal_bar_close_at": "2026-09-17T10:30:00-04:00",
+        "state": "PULLBACK BUY",
+        "entry": "YES",
+        "protection": "SAFE",
+        "price": 679.9199829101562,
+        "stop": 668.3522394952015,
+        "tp1": 705.2307387827768,
+        "risk_reward": 2.188,
+        "buy_zone": "674.27-682.47",
+        "above_vwap": true,
+        "ema9": 678.3827195097775,
+        "ema21": 678.3686220177528,
+        "ema55": 664.6010893923366,
+        "ema200": 626.9582399549491,
+        "adx": 25.401859548468313,
+        "rel_vol": 0.6450525312970553,
+        "market_gate": "CAUTION",
+        "market_regime": "CAUTIOUS",
+        "daily_trend": "confirmed",
+        "weekly_trend": "confirmed",
+        "confirmation_15m": false,
+        "confirmation_15m_at": "2026-09-17T10:45:00-04:00",
+        "confirmation_15m_rel_vol": 0.344,
+        "pm_high": 680.38,
+        "pm_low": 667.35,
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "pm_last": 675.01,
+        "pm_gap_pct": 0.83,
+        "pm_range_pct": 1.95,
+        "pm_read": "NEUTRAL",
+        "v53_state": "PULLBACK BUY",
+        "v53_entry": "YES",
+        "v53_would_veto": false,
+        "v54_rule_version": "2026-09-15-v54",
+        "v54_scanner_version": "5.4",
+        "signal_id": "v54:DE:4h:2026-09-17T10:30:00-04:00:2026-09-15-v54",
+        "entry_plan": "next 4H bar open (entry price unknown at signal time)",
+        "ref_price": 679.9199829101562,
+        "plus1r_ref_price": 691.4877
+      },
+      "assessed_at": "2026-09-17T14:54:46Z"
     }
   ],
-  "exported_at": "2026-09-16T18:56:54.882423+00:00"
+  "exported_at": "2026-09-17T14:54:59.690208+00:00"
 }
