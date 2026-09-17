@@ -2,7 +2,7 @@
   "observer": "AI-OBS-v1",
   "prompt_version": "v1",
   "prompt_sha256_12": "aa2be78ff445",
-  "assessment_count": 4,
+  "assessment_count": 5,
   "assessments": [
     {
       "observer": "AI-OBS-v1",
@@ -254,7 +254,70 @@
         "plus1r_ref_price": 46.3669
       },
       "assessed_at": "2026-09-17T18:54:35.557625+00:00"
+    },
+    {
+      "signal_id": "v54:USO:4h:2026-09-17T16:00:00-04:00:2026-09-15-v54",
+      "observer": "AI-OBS-v1",
+      "prompt_version": "v1",
+      "assessed_at": "2026-09-17T20:57:39Z",
+      "classification": "NEUTRAL",
+      "confidence": 55,
+      "reasons": [
+        "Daily and weekly trend both 'confirmed' with bullish EMA stack (ema55 145.98 < ema21 154.27) and ADX 27.3; price above VWAP \u2014 trend context supports the long.",
+        "Signal rel_vol 0.249 is very light and 15m confirmation is false (15m rel_vol 1.12) \u2014 the bar lacked conviction.",
+        "Market gate is CAUTION and reference R:R is only 1.736, below the 2.0 bar.",
+        "Premarket read NEUTRAL (-1.65% gap, 3.14% range); V5.3 agrees with the setup (would_veto=false)."
+      ],
+      "primary_risk": "Light-volume pullback stalling at the buy-zone top: price sits just above EMA21 (154.27) with no volume support, risking a deeper flush toward the 151.21 stop.",
+      "invalidation": "A decisive push back above EMA9 (156.43) on rising relative volume with 15m confirmation would prove the light-volume caution misplaced.",
+      "timing": "MATURE",
+      "features": {
+        "symbol": "USO",
+        "theme": "Forward-X2",
+        "timeframe": "4h",
+        "signal_bar_start_at": "2026-09-17T14:30:00-04:00",
+        "signal_bar_close_at": "2026-09-17T16:00:00-04:00",
+        "state": "PULLBACK BUY",
+        "entry": "YES",
+        "protection": "SAFE",
+        "price": 155.3300018310547,
+        "stop": 151.20646785359838,
+        "tp1": 162.49005382837646,
+        "risk_reward": 1.736,
+        "buy_zone": "153.02-155.52",
+        "above_vwap": true,
+        "ema9": 156.43288343025347,
+        "ema21": 154.27114552576032,
+        "ema55": 145.97807306305273,
+        "ema200": 132.42863178625333,
+        "adx": 27.262304504589103,
+        "rel_vol": 0.24904164065667214,
+        "market_gate": "CAUTION",
+        "market_regime": "CAUTIOUS",
+        "daily_trend": "confirmed",
+        "weekly_trend": "confirmed",
+        "confirmation_15m": false,
+        "confirmation_15m_at": "2026-09-17T16:00:00-04:00",
+        "confirmation_15m_rel_vol": 1.12,
+        "pm_high": 157.03,
+        "pm_low": 152.12,
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "pm_last": 153.6,
+        "pm_gap_pct": -1.65,
+        "pm_range_pct": 3.14,
+        "pm_read": "NEUTRAL",
+        "v53_state": "PULLBACK BUY",
+        "v53_entry": "YES",
+        "v53_would_veto": false,
+        "v54_rule_version": "2026-09-15-v54",
+        "v54_scanner_version": "5.4",
+        "signal_id": "v54:USO:4h:2026-09-17T16:00:00-04:00:2026-09-15-v54",
+        "entry_plan": "next 4H bar open (entry price unknown at signal time)",
+        "ref_price": 155.3300018310547,
+        "plus1r_ref_price": 159.4535
+      }
     }
   ],
-  "exported_at": "2026-09-17T18:54:39.024308+00:00"
+  "exported_at": "2026-09-17T20:57:53.505310+00:00"
 }
