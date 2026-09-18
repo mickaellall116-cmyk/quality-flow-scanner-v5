@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-18T14:52:58.924100+00:00",
+  "as_of": "2026-09-18T19:06:30.484596+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,26 +7,39 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-18T14:52:58.921299+00:00",
-  "signals_logged": 6,
+  "last_successful_cycle": "2026-09-18T19:06:30.474316+00:00",
+  "signals_logged": 8,
   "grade_counts": {
-    "A": 2,
-    "B": 4,
+    "A": 3,
+    "B": 5,
     "C": 0
   },
   "grade_counts_by_cohort": {
     "Forward-UX51": {
       "A": 2,
-      "B": 0,
+      "B": 1,
       "C": 0
     },
     "Forward-X2": {
-      "A": 0,
+      "A": 1,
       "B": 4,
       "C": 0
     }
   },
-  "pending_entries": [],
+  "pending_entries": [
+    {
+      "signal_id": "v54:NET:4h:2026-09-18T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "NET",
+      "grade": "B",
+      "signal_bar": "2026-09-18T10:30:00-04:00"
+    },
+    {
+      "signal_id": "v54:RBLX:4h:2026-09-18T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "RBLX",
+      "grade": "A",
+      "signal_bar": "2026-09-18T10:30:00-04:00"
+    }
+  ],
   "open_positions": [
     {
       "signal_id": "v54:INTC:4h:2026-09-15T10:30:00-04:00:2026-09-15-v54",
@@ -37,7 +50,7 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_runner",
-      "bars_held": 9,
+      "bars_held": 10,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 3.52194924897776,
@@ -52,7 +65,7 @@
       "stop": 668.3522394952015,
       "tp1": 705.2307387827768,
       "status": "open_full",
-      "bars_held": 3,
+      "bars_held": 4,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.690601191417073,
@@ -67,11 +80,11 @@
       "stop": 151.20646785359838,
       "tp1": 162.49005382837646,
       "status": "open_full",
-      "bars_held": 1,
+      "bars_held": 2,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.12403512074228475,
-      "mae_r": -0.05315868139322203
+      "mae_r": -0.53500166641173
     }
   ],
   "closed_trades": 3,
