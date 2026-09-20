@@ -1,12 +1,20 @@
 {
-  "updated_at": "2026-09-20T19:01:40+00:00",
+  "updated_at": "2026-09-20T19:30:21+00:00",
   "timeframe": "4H",
   "source": "v37-watchlist-watcher",
   "watchlist": [
     "QQQ",
     "SMCI",
     "PLTR",
-    "ANET"
+    "ANET",
+    "SOFI",
+    "RKLB",
+    "ONDS",
+    "DRAM",
+    "SPCX",
+    "ASTX",
+    "BBAI",
+    "NIO"
   ],
   "event_count": 18,
   "events": [
@@ -20,7 +28,9 @@
       "tp1_px": 732.98,
       "score": 4,
       "adx": 14.0,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": false,
+      "entry_why": "No \u2014 the trend looks fine but price isn't at a good spot to enter. Better to wait for a pullback to support."
     },
     {
       "detected_at": "2026-09-20T19:01:38+00:00",
@@ -32,7 +42,9 @@
       "tp1_px": 42.29,
       "score": 4,
       "adx": 14.7,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": false,
+      "entry_why": "No \u2014 choppy market: trend strength (ADX 14.7) is below the 20 needed for a clean entry. Signals in chop tend to whipsaw."
     },
     {
       "detected_at": "2026-09-20T19:01:40+00:00",
@@ -44,7 +56,9 @@
       "tp1_px": 209.33,
       "score": 4,
       "adx": 17.5,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": false,
+      "entry_why": "No \u2014 the trend looks fine but price isn't at a good spot to enter. Better to wait for a pullback to support."
     },
     {
       "detected_at": "2026-09-20T19:01:40+00:00",
@@ -56,7 +70,9 @@
       "tp1_px": 210.9,
       "score": 4,
       "adx": 15.7,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": false,
+      "entry_why": "No \u2014 choppy market: trend strength (ADX 15.7) is below the 20 needed for a clean entry. Signals in chop tend to whipsaw."
     },
     {
       "detected_at": "2026-09-20T19:01:38+00:00",
@@ -68,7 +84,9 @@
       "tp1_px": 42.34,
       "score": 3,
       "adx": 16.7,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": false,
+      "entry_why": "No \u2014 choppy market: trend strength (ADX 16.7) is below the 20 needed for a clean entry. Signals in chop tend to whipsaw."
     },
     {
       "detected_at": "2026-09-20T19:01:38+00:00",
@@ -80,7 +98,9 @@
       "tp1_px": 44.09,
       "score": 4,
       "adx": 18.0,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": false,
+      "entry_why": "No \u2014 the trend looks fine but price isn't at a good spot to enter. Better to wait for a pullback to support."
     },
     {
       "detected_at": "2026-09-20T19:01:39+00:00",
@@ -92,7 +112,9 @@
       "tp1_px": 194.29,
       "score": 4,
       "adx": 19.7,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at bullish support \u2014 an old price gap is acting as a floor underneath."
     },
     {
       "detected_at": "2026-09-20T19:01:38+00:00",
@@ -104,7 +126,9 @@
       "tp1_px": 42.27,
       "score": 4,
       "adx": 23.3,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at bullish support \u2014 an old price gap is acting as a floor underneath."
     },
     {
       "detected_at": "2026-09-20T19:01:39+00:00",
@@ -116,7 +140,9 @@
       "tp1_px": 185.98,
       "score": 4,
       "adx": 23.9,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at bullish support \u2014 an old price gap is acting as a floor underneath."
     },
     {
       "detected_at": "2026-09-20T19:01:39+00:00",
@@ -128,7 +154,9 @@
       "tp1_px": 182.91,
       "score": 5,
       "adx": 26.9,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at the buy zone, right near its short-term average price."
     },
     {
       "detected_at": "2026-09-20T19:01:39+00:00",
@@ -140,7 +168,9 @@
       "tp1_px": 187.97,
       "score": 5,
       "adx": 30.0,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at bullish support \u2014 an old price gap is acting as a floor underneath."
     },
     {
       "detected_at": "2026-09-20T19:01:39+00:00",
@@ -152,7 +182,9 @@
       "tp1_px": 189.91,
       "score": 5,
       "adx": 31.1,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at bullish support \u2014 an old price gap is acting as a floor underneath."
     },
     {
       "detected_at": "2026-09-20T19:01:38+00:00",
@@ -164,7 +196,9 @@
       "tp1_px": 39.61,
       "score": 5,
       "adx": 30.9,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at the buy zone, right near its short-term average price."
     },
     {
       "detected_at": "2026-09-20T19:01:39+00:00",
@@ -176,7 +210,9 @@
       "tp1_px": 183.47,
       "score": 5,
       "adx": 32.3,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at bullish support \u2014 an old price gap is acting as a floor underneath."
     },
     {
       "detected_at": "2026-09-20T19:01:38+00:00",
@@ -188,7 +224,9 @@
       "tp1_px": 41.2,
       "score": 5,
       "adx": 33.7,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at the buy zone, right near its short-term average price."
     },
     {
       "detected_at": "2026-09-20T19:01:38+00:00",
@@ -200,7 +238,9 @@
       "tp1_px": 743.3,
       "score": 4,
       "adx": 25.2,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": false,
+      "entry_why": "No \u2014 volatility is too compressed right now (recent price ranges are tiny compared to normal). Moves that start from this kind of squeeze often fail."
     },
     {
       "detected_at": "2026-09-20T19:01:38+00:00",
@@ -212,7 +252,9 @@
       "tp1_px": 41.48,
       "score": 5,
       "adx": 33.0,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at the buy zone, right near its short-term average price."
     },
     {
       "detected_at": "2026-09-20T19:01:38+00:00",
@@ -224,7 +266,9 @@
       "tp1_px": 34.71,
       "score": 4,
       "adx": 14.8,
-      "source": "watchlist"
+      "source": "watchlist",
+      "entry_yes": false,
+      "entry_why": "No \u2014 choppy market: trend strength (ADX 14.8) is below the 20 needed for a clean entry. Signals in chop tend to whipsaw."
     }
   ]
 }
