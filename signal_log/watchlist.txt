@@ -1,0 +1,8 @@
+# V3.7 watchlist signal watcher — one symbol per line.
+# Lines starting with # are ignored. Edit freely; the hourly watcher picks
+# up changes on its next run. (Keep this list small: these are Mike's
+# actively-watched tickers, NOT the paper engine's validation universe.)
+QQQ
+SMCI
+PLTR
+ANET
