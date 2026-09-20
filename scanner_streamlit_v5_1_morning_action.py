@@ -20,6 +20,7 @@
 # ============================================================
 
 import os
+import json
 import warnings
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
@@ -876,6 +877,60 @@ def plot_symbol(symbol: str, interval: str, period: str):
 st.title("Quality Flow Scanner V5.3 — Confirmed Signals")
 st.caption(f"Scanner V{SCANNER_VERSION} • Rules {RULE_VERSION} • Closed session-aligned 4h bars")
 st.caption("Mode-aware discovery scanner for AI, space, quantum, semis, crypto, nuclear, cyber, and high-beta growth setups.")
+
+# ============================================================
+# V3.7 SIGNAL LOG — BUY signals fired on Mike's TradingView watchlist.
+# Published hourly by signal_log/watcher.py to
+# signal_log/v37_signals.json on GitHub main. Read-only here.
+# ============================================================
+V37_SIGNAL_LOG_URL = (
+    "https://raw.githubusercontent.com/mickaellall116-cmyk/"
+    "quality-flow-scanner-v5/main/signal_log/v37_signals.json"
+)
+
+
+@st.cache_data(ttl=600, show_spinner=False)
+def load_v37_signal_log():
+    import urllib.request
+
+    try:
+        req = urllib.request.Request(
+            V37_SIGNAL_LOG_URL, headers={"User-Agent": "masterscanner"})
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            return json.load(resp)
+    except Exception as exc:  # noqa: BLE001 — log is best-effort
+        return {"_error": str(exc)}
+
+
+_sig_log = load_v37_signal_log()
+if _sig_log.get("_error"):
+    st.caption(f"V3.7 signal log unavailable: {_sig_log['_error']}")
+else:
+    _sig_events = _sig_log.get("events", []) or []
+    _sig_updated = _sig_log.get("updated_at", "?")
+    with st.expander(
+        f"V3.7 Signal Log — {len(_sig_events)} BUY signals "
+        f"(watchlist: {', '.join(_sig_log.get('watchlist', []))})",
+        expanded=False,
+    ):
+        st.caption(f"Updated {_sig_updated} • 4H bars • newest first • "
+                   "times shown in ET")
+        if _sig_events:
+            _sig_df = pd.DataFrame(_sig_events)
+            _sig_df["Time (ET)"] = pd.to_datetime(
+                _sig_df["signal_bar_close"]).dt.tz_convert("America/New_York") \
+                .dt.strftime("%Y-%m-%d %H:%M")
+            _sig_df = _sig_df.rename(columns={
+                "symbol": "Ticker", "entry_px": "Entry", "stop_px": "Stop",
+                "tp1_px": "TP1", "score": "Score", "adx": "ADX",
+            })
+            st.dataframe(
+                _sig_df[["Time (ET)", "Ticker", "Entry", "Stop", "TP1",
+                         "Score", "ADX"]],
+                use_container_width=True, hide_index=True,
+            )
+        else:
+            st.caption("No BUY signals logged yet.")
 
 with st.sidebar:
     st.header("Scanner Settings")
