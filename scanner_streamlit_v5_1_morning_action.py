@@ -920,15 +920,25 @@ else:
             _sig_df["Time (ET)"] = pd.to_datetime(
                 _sig_df["signal_bar_close"]).dt.tz_convert("America/New_York") \
                 .dt.strftime("%Y-%m-%d %H:%M")
+            _sig_df["Signal"] = _sig_df.get(
+                "entry_yes", pd.Series([None] * len(_sig_df))).map(
+                lambda v: "✅ YES" if v is True
+                else ("⚪ NO" if v is False else "—"))
+            _sig_df["Why"] = _sig_df.get("entry_why", "")
             _sig_df = _sig_df.rename(columns={
                 "symbol": "Ticker", "entry_px": "Entry", "stop_px": "Stop",
                 "tp1_px": "TP1", "score": "Score", "adx": "ADX",
             })
-            st.dataframe(
-                _sig_df[["Time (ET)", "Ticker", "Entry", "Stop", "TP1",
-                         "Score", "ADX"]],
-                use_container_width=True, hide_index=True,
-            )
+            _sig_cols = ["Time (ET)", "Ticker", "Signal", "Entry", "Stop",
+                         "TP1", "Score", "ADX", "Why"]
+            # NO rows dimmed but visible; YES rows normal.
+            _sig_style = _sig_df[_sig_cols].style.apply(
+                lambda row: ["color: #8a8a8a" if row["Signal"] == "⚪ NO" else ""
+                             for _ in row], axis=1)
+            st.dataframe(_sig_style, use_container_width=True, hide_index=True)
+            st.caption("✅ YES = the dashboard's full entry gate passed — these "
+                       "trigger a phone ping. ⚪ NO = the signal fired but the "
+                       "dashboard would not enter; logged for the record.")
         else:
             st.caption("No BUY signals logged yet.")
 
