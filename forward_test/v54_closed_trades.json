@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-09-18T14:52:58.926572+00:00",
-  "count": 3,
+  "as_of": "2026-09-21T14:55:15.773709+00:00",
+  "count": 4,
   "trades": [
     {
       "type": "close",
@@ -127,6 +127,48 @@
       "v53_entry": "YES",
       "v53_score": 100,
       "logged_at": "2026-09-18T14:52:58.921115+00:00"
+    },
+    {
+      "type": "close",
+      "signal_id": "v54:USO:4h:2026-09-17T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "USO",
+      "signal_time": "2026-09-17T16:00:00-04:00",
+      "grade": "B",
+      "market_gate": "CAUTION",
+      "market_regime": "CAUTIOUS",
+      "rvol_exact": 0.24904164065667214,
+      "daily_state": "confirmed",
+      "weekly_state": "confirmed",
+      "risk_reward": 1.736,
+      "confirmation_15m": false,
+      "premarket": {
+        "pm_last": 153.6,
+        "pm_gap_pct": -1.65,
+        "pm_range_pct": 3.14,
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "pm_read": "NEUTRAL"
+      },
+      "entry": 156.85000610351562,
+      "entry_bar": "2026-09-18T06:30:00-04:00",
+      "tp1": 162.49005382837646,
+      "stop": 151.20646785359838,
+      "reached_plus_1r": false,
+      "tp1_taken": false,
+      "partial_r": null,
+      "runner_r": null,
+      "blended_r": -1.0,
+      "mfe_r": 0.124,
+      "mae_r": -1.6692,
+      "bars_held": 4,
+      "exit_reason": "stop",
+      "exit_px": 151.20646785359838,
+      "exit_bar": "2026-09-21T06:30:00-04:00",
+      "v53_vetoed": false,
+      "v53_state": "PULLBACK BUY",
+      "v53_entry": "YES",
+      "v53_score": 100,
+      "logged_at": "2026-09-21T14:55:15.766557+00:00"
     }
   ]
 }
