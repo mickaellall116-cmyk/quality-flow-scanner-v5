@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-18T20:55:41.724547+00:00",
+  "as_of": "2026-09-21T14:55:15.769483+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,7 +7,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-18T20:55:41.709795+00:00",
+  "last_successful_cycle": "2026-09-21T14:55:15.766635+00:00",
   "signals_logged": 10,
   "grade_counts": {
     "A": 3,
@@ -37,10 +37,10 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_runner",
-      "bars_held": 11,
+      "bars_held": 12,
       "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 3.52194924897776,
+      "mfe_r": 6.394963426001309,
       "mae_r": -0.7896066742382701
     },
     {
@@ -52,26 +52,11 @@
       "stop": 668.3522394952015,
       "tp1": 705.2307387827768,
       "status": "open_full",
-      "bars_held": 5,
+      "bars_held": 6,
       "tp1_taken": false,
       "profit_protect_armed": null,
-      "mfe_r": 0.690601191417073,
+      "mfe_r": 0.969818388202424,
       "mae_r": -0.3699105303309673
-    },
-    {
-      "signal_id": "v54:USO:4h:2026-09-17T16:00:00-04:00:2026-09-15-v54",
-      "symbol": "USO",
-      "grade": "B",
-      "entry": 156.85000610351562,
-      "entry_bar": "2026-09-18T06:30:00-04:00",
-      "stop": 151.20646785359838,
-      "tp1": 162.49005382837646,
-      "status": "open_full",
-      "bars_held": 3,
-      "tp1_taken": false,
-      "profit_protect_armed": null,
-      "mfe_r": 0.12403512074228475,
-      "mae_r": -0.6166363781408156
     },
     {
       "signal_id": "v54:NET:4h:2026-09-18T14:30:00-04:00:2026-09-15-v54",
@@ -82,10 +67,10 @@
       "stop": 309.2632915755711,
       "tp1": 348.5091821379598,
       "status": "open_full",
-      "bars_held": 1,
+      "bars_held": 2,
       "tp1_taken": false,
       "profit_protect_armed": null,
-      "mfe_r": 0.270742809811195,
+      "mfe_r": 1.8171231985950336,
       "mae_r": -0.03148166249004006
     },
     {
@@ -96,16 +81,16 @@
       "entry_bar": "2026-09-18T14:30:00-04:00",
       "stop": 45.81544024797135,
       "tp1": 50.73407637306976,
-      "status": "open_full",
-      "bars_held": 1,
-      "tp1_taken": false,
+      "status": "open_runner",
+      "bars_held": 2,
+      "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 0.4953177166816817,
+      "mfe_r": 2.457288833386355,
       "mae_r": -0.022514330127442667
     }
   ],
-  "closed_trades": 3,
-  "cumulative_r": -3.0,
+  "closed_trades": 4,
+  "cumulative_r": -4.0,
   "cumulative_r_note": "Sum of per-trade blended R at 1R risk each; not compounded.",
   "avg_r_per_trade": -1.0,
   "win_rate": 0.0,
