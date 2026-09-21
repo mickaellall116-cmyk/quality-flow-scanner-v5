@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-21T18:52:39.756107+00:00",
+  "as_of": "2026-09-21T20:52:55.146782+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,7 +7,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-21T18:52:39.740738+00:00",
+  "last_successful_cycle": "2026-09-21T20:52:55.143218+00:00",
   "signals_logged": 10,
   "grade_counts": {
     "A": 3,
@@ -37,7 +37,7 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_runner",
-      "bars_held": 13,
+      "bars_held": 14,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 7.400155206547736,
@@ -52,7 +52,7 @@
       "stop": 668.3522394952015,
       "tp1": 705.2307387827768,
       "status": "open_full",
-      "bars_held": 7,
+      "bars_held": 8,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.2970475402413524,
@@ -66,11 +66,11 @@
       "entry_bar": "2026-09-18T14:30:00-04:00",
       "stop": 309.2632915755711,
       "tp1": 348.5091821379598,
-      "status": "open_full",
-      "bars_held": 3,
-      "tp1_taken": false,
+      "status": "open_runner",
+      "bars_held": 4,
+      "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 2.275075321677079,
+      "mfe_r": 2.625572701256743,
       "mae_r": -0.03148166249004006
     },
     {
@@ -82,10 +82,10 @@
       "stop": 45.81544024797135,
       "tp1": 50.73407637306976,
       "status": "open_runner",
-      "bars_held": 3,
+      "bars_held": 4,
       "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 2.5795115859735667,
+      "mfe_r": 2.685649168644115,
       "mae_r": -0.022514330127442667
     }
   ],
