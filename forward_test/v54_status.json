@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-22T14:54:59.374658+00:00",
+  "as_of": "2026-09-22T18:55:40.564561+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,11 +7,11 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-22T14:54:59.371079+00:00",
-  "signals_logged": 10,
+  "last_successful_cycle": "2026-09-22T18:55:40.538468+00:00",
+  "signals_logged": 11,
   "grade_counts": {
     "A": 3,
-    "B": 7,
+    "B": 8,
     "C": 0
   },
   "grade_counts_by_cohort": {
@@ -22,11 +22,18 @@
     },
     "Forward-X2": {
       "A": 1,
-      "B": 5,
+      "B": 6,
       "C": 0
     }
   },
-  "pending_entries": [],
+  "pending_entries": [
+    {
+      "signal_id": "v54:VEEV:4h:2026-09-22T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "VEEV",
+      "grade": "B",
+      "signal_bar": "2026-09-22T10:30:00-04:00"
+    }
+  ],
   "open_positions": [
     {
       "signal_id": "v54:INTC:4h:2026-09-15T10:30:00-04:00:2026-09-15-v54",
@@ -37,7 +44,7 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_runner",
-      "bars_held": 15,
+      "bars_held": 16,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 7.400155206547736,
@@ -52,10 +59,10 @@
       "stop": 668.3522394952015,
       "tp1": 705.2307387827768,
       "status": "open_full",
-      "bars_held": 9,
+      "bars_held": 10,
       "tp1_taken": false,
       "profit_protect_armed": null,
-      "mfe_r": 1.2970475402413524,
+      "mfe_r": 1.8272640126156567,
       "mae_r": -0.3699105303309673
     },
     {
@@ -67,7 +74,7 @@
       "stop": 309.2632915755711,
       "tp1": 348.5091821379598,
       "status": "open_runner",
-      "bars_held": 5,
+      "bars_held": 6,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 3.015944803736389,
