@@ -2,7 +2,7 @@
   "observer": "AI-OBS-v1",
   "prompt_version": "v1",
   "prompt_sha256_12": "aa2be78ff445",
-  "assessment_count": 9,
+  "assessment_count": 10,
   "assessments": [
     {
       "observer": "AI-OBS-v1",
@@ -567,7 +567,69 @@
         "ref_price": 683.989990234375,
         "plus1r_ref_price": 696.4226
       }
+    },
+    {
+      "observer": "AI-OBS-v1",
+      "prompt_version": "v1",
+      "signal_id": "v54:VEEV:4h:2026-09-22T14:30:00-04:00:2026-09-15-v54",
+      "classification": "FAVORABLE",
+      "confidence": 68,
+      "reasons": [
+        "Market gate CONFIRM with RISK-ON regime and daily+weekly trends both confirmed - higher-timeframe alignment for the setup.",
+        "PULLBACK BUY into the buy zone (261.62-265.64) at ref price 263.94 with R:R 2.465 and price above VWAP.",
+        "V5.3 control also prints PULLBACK BUY with entry YES and no veto; protection is SAFE."
+      ],
+      "primary_risk": "No 15m confirmation and only mild relative volume (1.15) mean the bounce lacks intraday conviction and could keep drifting into the structural stop at 258.72.",
+      "invalidation": "A 4H bar close below the structural stop (258.72) without reaching TP1 (276.80) would show the pullback failed.",
+      "timing": "MATURE",
+      "features": {
+        "symbol": "VEEV",
+        "theme": "Forward-X2",
+        "timeframe": "4h",
+        "signal_bar_start_at": "2026-09-22T10:30:00-04:00",
+        "signal_bar_close_at": "2026-09-22T14:30:00-04:00",
+        "state": "PULLBACK BUY",
+        "entry": "YES",
+        "protection": "SAFE",
+        "price": 263.94000244140625,
+        "stop": 258.7238705785707,
+        "tp1": 276.79667034476364,
+        "risk_reward": 2.465,
+        "buy_zone": "261.62-265.64",
+        "above_vwap": true,
+        "ema9": 262.37543233939243,
+        "ema21": 263.6325322434626,
+        "ema55": 262.23639466755026,
+        "ema200": 231.662747813531,
+        "adx": 24.906870517843178,
+        "rel_vol": 1.1471255398245064,
+        "market_gate": "CONFIRM",
+        "market_regime": "RISK-ON",
+        "daily_trend": "confirmed",
+        "weekly_trend": "confirmed",
+        "confirmation_15m": false,
+        "confirmation_15m_at": "2026-09-22T14:45:00-04:00",
+        "confirmation_15m_rel_vol": 1.092,
+        "pm_high": 265.93,
+        "pm_low": 261.99,
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "pm_last": 265.0,
+        "pm_gap_pct": 1.41,
+        "pm_range_pct": 1.51,
+        "pm_read": "NEUTRAL",
+        "v53_state": "PULLBACK BUY",
+        "v53_entry": "YES",
+        "v53_would_veto": false,
+        "v54_rule_version": "2026-09-15-v54",
+        "v54_scanner_version": "5.4",
+        "signal_id": "v54:VEEV:4h:2026-09-22T14:30:00-04:00:2026-09-15-v54",
+        "entry_plan": "next 4H bar open (entry price unknown at signal time)",
+        "ref_price": 263.94000244140625,
+        "plus1r_ref_price": 269.1561
+      },
+      "assessed_at": "2026-09-22T18:57:23.893624+00:00"
     }
   ],
-  "exported_at": "2026-09-18T20:56:52.720828+00:00"
+  "exported_at": "2026-09-22T18:57:29.284333+00:00"
 }
