@@ -2,7 +2,7 @@
   "observer": "AI-OBS-v1",
   "prompt_version": "v1",
   "prompt_sha256_12": "aa2be78ff445",
-  "assessment_count": 12,
+  "assessment_count": 13,
   "assessments": [
     {
       "observer": "AI-OBS-v1",
@@ -755,7 +755,70 @@
         "plus1r_ref_price": 96.1734
       },
       "assessed_at": "2026-09-23T14:54:05.219314+00:00"
+    },
+    {
+      "assessed_at": "2026-09-23T18:55:46Z",
+      "observer": "AI-OBS-v1",
+      "prompt_version": "v1",
+      "signal_id": "v54:SHEL:4h:2026-09-23T14:30:00-04:00:2026-09-15-v54",
+      "classification": "CAUTION",
+      "confidence": 60,
+      "features": {
+        "above_vwap": true,
+        "adx": 20.06719856737792,
+        "buy_zone": "94.52-95.34",
+        "confirmation_15m": true,
+        "confirmation_15m_at": "2026-09-23T14:45:00-04:00",
+        "confirmation_15m_rel_vol": 0.807,
+        "daily_trend": "not_confirmed",
+        "ema200": 90.5219780508096,
+        "ema21": 94.92573601286831,
+        "ema55": 94.4148217656372,
+        "ema9": 94.5409132021366,
+        "entry": "YES",
+        "entry_plan": "next 4H bar open (entry price unknown at signal time)",
+        "market_gate": "BLOCK",
+        "market_regime": "RISK-ON",
+        "plus1r_ref_price": 96.177,
+        "pm_gap_pct": 0.5,
+        "pm_high": 94.59,
+        "pm_last": 94.4,
+        "pm_low": 93.82,
+        "pm_range_pct": 0.82,
+        "pm_read": "NEUTRAL",
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "price": 95.0500030517578,
+        "protection": "SAFE",
+        "ref_price": 95.0500030517578,
+        "rel_vol": 1.383524758378354,
+        "risk_reward": 2.276,
+        "signal_bar_close_at": "2026-09-23T14:30:00-04:00",
+        "signal_bar_start_at": "2026-09-23T10:30:00-04:00",
+        "signal_id": "v54:SHEL:4h:2026-09-23T14:30:00-04:00:2026-09-15-v54",
+        "state": "PULLBACK BUY",
+        "stop": 93.92304181779812,
+        "symbol": "SHEL",
+        "theme": "Forward-X2",
+        "timeframe": "4h",
+        "tp1": 97.61477953601108,
+        "v53_entry": "YES",
+        "v53_state": "PULLBACK BUY",
+        "v53_would_veto": false,
+        "v54_rule_version": "2026-09-15-v54",
+        "v54_scanner_version": "5.4",
+        "weekly_trend": "confirmed"
+      },
+      "invalidation": "Price holds above the 94.52-95.34 buy zone, clears TP1 97.61, and ADX expands well above 20, confirming the trend leg is intact.",
+      "primary_risk": "A barely-qualified trend under a BLOCK gate is prone to rolling over into the structural stop (93.92) before the setup can reach TP1 (97.61).",
+      "reasons": [
+        "market_gate is BLOCK (despite market_regime RISK-ON) \u2014 the macro gate itself argues against this setup",
+        "adx 20.07 clears the 20 gate by only 0.07 \u2014 the weakest possible trend qualification, trend may already be stalling",
+        "daily_trend not_confirmed and the 4h stack is soft: ema9 94.54 below ema21 94.93 with price 95.05 barely above ema21, so short-term momentum tilts down into the entry",
+        "15m confirmation rel_vol is only 0.807 \u2014 the confirmation itself printed on light volume"
+      ],
+      "timing": "MATURE"
     }
   ],
-  "exported_at": "2026-09-23T14:54:11.006771+00:00"
+  "exported_at": "2026-09-23T18:56:42.271368+00:00"
 }
