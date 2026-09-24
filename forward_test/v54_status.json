@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-24T18:52:22.278877+00:00",
+  "as_of": "2026-09-24T20:56:23.613180+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,10 +7,10 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-24T18:52:22.259643+00:00",
-  "signals_logged": 18,
+  "last_successful_cycle": "2026-09-24T20:56:23.604042+00:00",
+  "signals_logged": 19,
   "grade_counts": {
-    "A": 6,
+    "A": 7,
     "B": 11,
     "C": 1
   },
@@ -21,25 +21,12 @@
       "C": 0
     },
     "Forward-X2": {
-      "A": 4,
+      "A": 5,
       "B": 9,
       "C": 1
     }
   },
-  "pending_entries": [
-    {
-      "signal_id": "v54:AMC:4h:2026-09-24T14:30:00-04:00:2026-09-15-v54",
-      "symbol": "AMC",
-      "grade": "A",
-      "signal_bar": "2026-09-24T10:30:00-04:00"
-    },
-    {
-      "signal_id": "v54:ABBV:4h:2026-09-24T14:30:00-04:00:2026-09-15-v54",
-      "symbol": "ABBV",
-      "grade": "B",
-      "signal_bar": "2026-09-24T10:30:00-04:00"
-    }
-  ],
+  "pending_entries": [],
   "open_positions": [
     {
       "signal_id": "v54:INTC:4h:2026-09-15T10:30:00-04:00:2026-09-15-v54",
@@ -50,10 +37,10 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_runner",
-      "bars_held": 22,
+      "bars_held": 23,
       "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 7.864280892561842,
+      "mfe_r": 8.186423580160177,
       "mae_r": -0.7896066742382701
     },
     {
@@ -65,7 +52,7 @@
       "stop": 668.3522394952015,
       "tp1": 705.2307387827768,
       "status": "open_runner",
-      "bars_held": 16,
+      "bars_held": 17,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 3.549029867592519,
@@ -80,7 +67,7 @@
       "stop": 309.2632915755711,
       "tp1": 348.5091821379598,
       "status": "open_runner",
-      "bars_held": 12,
+      "bars_held": 13,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 3.8831585391889547,
@@ -95,11 +82,11 @@
       "stop": 45.81544024797135,
       "tp1": 50.73407637306976,
       "status": "open_runner",
-      "bars_held": 12,
+      "bars_held": 13,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 2.952606550068037,
-      "mae_r": -0.18654625510826364
+      "mae_r": -0.2573062794739243
     },
     {
       "signal_id": "v54:VEEV:4h:2026-09-22T14:30:00-04:00:2026-09-15-v54",
@@ -110,10 +97,10 @@
       "stop": 258.7238705785707,
       "tp1": 276.79667034476364,
       "status": "open_full",
-      "bars_held": 6,
+      "bars_held": 7,
       "tp1_taken": false,
       "profit_protect_armed": null,
-      "mfe_r": 2.2562826910153984,
+      "mfe_r": 2.3938475636813012,
       "mae_r": -0.5744848628240331
     },
     {
@@ -125,7 +112,7 @@
       "stop": 892.3073247924756,
       "tp1": 1026.6926576118653,
       "status": "open_full",
-      "bars_held": 4,
+      "bars_held": 5,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.3502704898701597,
@@ -140,7 +127,7 @@
       "stop": 93.93662832944473,
       "tp1": 97.53259011773136,
       "status": "open_full",
-      "bars_held": 4,
+      "bars_held": 5,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.4911285859426875,
@@ -155,7 +142,7 @@
       "stop": 196.61191875026725,
       "tp1": 212.94381089649804,
       "status": "open_full",
-      "bars_held": 1,
+      "bars_held": 2,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.5688911557486995,
@@ -170,11 +157,41 @@
       "stop": 24.316615137740577,
       "tp1": 28.01529288863265,
       "status": "open_full",
-      "bars_held": 1,
+      "bars_held": 2,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.040489508971222006,
       "mae_r": -0.6147002787287269
+    },
+    {
+      "signal_id": "v54:ABBV:4h:2026-09-24T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "ABBV",
+      "grade": "B",
+      "entry": 265.30999755859375,
+      "entry_bar": "2026-09-24T14:30:00-04:00",
+      "stop": 260.63922066363205,
+      "tp1": 272.959579823595,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.13060265623019582,
+      "mae_r": -0.09420326667301833
+    },
+    {
+      "signal_id": "v54:AMC:4h:2026-09-24T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "AMC",
+      "grade": "A",
+      "entry": 2.7750000953674316,
+      "entry_bar": "2026-09-24T14:30:00-04:00",
+      "stop": 2.6675197647537634,
+      "tp1": 3.0745304485265468,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 1.3490838751483527,
+      "mae_r": -0.13956139526674705
     }
   ],
   "closed_trades": 4,
