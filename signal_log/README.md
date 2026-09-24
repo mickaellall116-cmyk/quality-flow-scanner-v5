@@ -18,7 +18,14 @@ on TradingView with the Quality Flow System V3.7 indicator.
    TP1 = signal close + ATR×2.0. `entry_px` is the signal bar's close (the
    price when the signal fired — what the TradingView dashboard shows at
    signal time).
-5. A newest-first snapshot `v37_signals.json` is published to GitHub
+5. Each event also carries the dashboard's ENTRY verdict (`entry_yes`,
+   `entry_why`), computed by `dashboard_entry.py` — an observability-only
+   mirror of the TradingView dashboard's `entryYes` definition
+   (`entryContextOK and entryLocationOK and entryRiskOK`: trend context +
+   entry location + risk gate). Reasons are plain English, no jargon.
+   `entry_yes=true` events are the only ones that trigger a phone ping;
+   `false` events are logged for the record and shown dimmed in the app.
+6. A newest-first snapshot `v37_signals.json` is published to GitHub
    (`signal_log/v37_signals.json` on main) via the Contents API, only when the
    events meaningfully changed (fingerprint comparison, same pattern as
    `v54_forward_harness.publish_snapshot`). The Master Scanner Streamlit app
@@ -29,6 +36,13 @@ on TradingView with the Quality Flow System V3.7 indicator.
 - `watchlist.txt` — one symbol per line; edit freely (hourly job picks it up).
 - `watcher.py` — the hourly watcher + publisher. Run manually:
   `cd ~/workspace/quality-flow-scanner-v5 && python3 signal_log/watcher.py`
+- `dashboard_entry.py` — observability-only mirror of the dashboard's
+  `entryYes` verdict + plain-English reasons + the exact ping alert template
+  (`format_alert`). Never changes what counts as a signal.
+- `positions.yaml` — Mike's positions for the "You own:" alert line. FROM
+  MEMORY — needs his verification. Display only, never used for decisions.
+- `backfill_entry_yes.py` — one-off backfill of entry_yes/entry_why for old
+  events (rerunnable).
 - `v37_signals.jsonl` — append-only source of truth (gitignored, local only).
 - `v37_signals.json` — published snapshot (gitignored locally; lives on GitHub).
 - `watermark.json` — last-run bookkeeping (gitignored).
