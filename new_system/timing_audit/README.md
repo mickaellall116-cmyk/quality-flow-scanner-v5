@@ -91,10 +91,19 @@ coverage. This harness generates zero performance data.
   
   Conflicts between 1–2 resolve to the earliest published timestamp; vendor
   code vs timestamp-derived bucket disagreement → ambiguous → EXCLUDE.
+- **C5 — scorer version freeze.** `SCORER_VERSION` (currently `1.0.0`) is
+  embedded in `audit_sample.json`, the sheet header, and the score report.
+  `sheet` and `score` refuse artifacts from any other scorer version.
+  Frozen before real data; bump only with a new preregistration amendment.
+- **C6 — duplicates and vendor revisions.** Duplicate vendor rows (same
+  ticker+date) are dropped before stratification and reported — one event
+  never occupies two sample slots. `detect_vendor_revisions()` diffs two
+  vendor pulls on event key and flags any restated timing field
+  (backfill), feeding the gate's systematic-revision screen.
 
 ## Files
 
-- `audit_harness.py` — fetch / verify / sample / sheet / score + controls C1–C4.
+- `audit_harness.py` — fetch / verify / sample / sheet / score + controls C1–C6.
 - `event_clock.py` — the frozen §1 event clock, implemented exactly as
   specified (actual NYSE open/close per day as inputs; before open → S=D;
   during [open, actual close] → EXCLUDE; exactly-at-close → EXCLUDE; after
@@ -106,8 +115,11 @@ coverage. This harness generates zero performance data.
   Saturday, plus the 13:00 ET early-close case), DST spring-forward/fall-back
   weekends, exact-close timestamps, code/timestamp conflicts, missing timing,
   ticker-change/delisting identity, tampered raw files, sample-hash mismatch
-  refusals, and the no-replacement scoring rule.
-  Run: `python3 -m unittest test_edge_cases -v` (32 tests, all passing
+  refusals, the no-replacement scoring rule, the C5 scorer-version freeze
+  (cross-version artifacts refused), C6 duplicate/vendor-revision red-team
+  cases, and a gate-scope guard asserting no return/price/P&L fields exist
+  in any audit artifact.
+  Run: `python3 -m unittest test_edge_cases -v` (46 tests, all passing
   2026-09-25).
 
 ## What this is not
