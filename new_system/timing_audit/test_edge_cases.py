@@ -531,17 +531,34 @@ class TestScorerVersionFreeze(unittest.TestCase):
 # ---------------------------------------------------------------- C6: duplicates and vendor revisions
 
 class TestDuplicatesAndRevisions(unittest.TestCase):
-    def test_dedupe_keeps_first_and_counts(self):
+    def test_exact_duplicates_collapse_and_count(self):
         a = rec("AAA", "2020-03-15", "08:00", "BTO")
         b = rec("AAA", "2020-03-15", "08:00", "BTO")  # exact duplicate
-        c = rec("AAA", "2020-03-15", "17:30", "AMC")  # same event, revised time
         d = rec("BBB", "2020-03-15", "08:00", "BTO")
-        unique, n_dupes = dedupe_records([a, b, c, d])
-        self.assertEqual(n_dupes, 2)
+        unique, n_exact, conflicts = dedupe_records([a, b, d])
+        self.assertEqual(n_exact, 1)
+        self.assertEqual(conflicts, [])
         self.assertEqual(len(unique), 2)
-        self.assertEqual(unique[0]["actual_reported_time"], "08:00")  # first kept
+        self.assertEqual(unique[0]["actual_reported_time"], "08:00")
 
-    def test_draw_sample_never_double_counts_an_event(self):
+    def test_conflicting_duplicates_flagged_not_collapsed(self):
+        a = rec("AAA", "2020-03-15", "08:00", "BTO")
+        c = rec("AAA", "2020-03-15", "17:30", "AMC")  # same event, disagrees
+        unique, n_exact, conflicts = dedupe_records([a, c])
+        self.assertEqual(n_exact, 0)
+        self.assertEqual(len(conflicts), 1)
+        self.assertEqual(conflicts[0]["ticker"], "AAA")
+        self.assertEqual(len(conflicts[0]["rows"]), 2)
+        self.assertEqual(unique, [])  # conflicted event takes no slot
+
+    def test_draw_sample_refuses_conflicting_duplicates(self):
+        pool = fake_pool(120)
+        bad = rec(pool[0]["ticker"], pool[0]["actual_reported_date"],
+                  "23:59", "AMC")  # same event, conflicting timing
+        with self.assertRaises(SampleIntegrityError):
+            draw_sample(pool + [bad], 20260925)
+
+    def test_draw_sample_tolerates_exact_duplicates(self):
         pool = fake_pool(120)
         pool = pool + [dict(r) for r in pool[:10]]  # inject exact duplicates
         sample, _ = draw_sample(pool, 20260925)
@@ -584,6 +601,35 @@ class TestDuplicatesAndRevisions(unittest.TestCase):
         diff = detect_vendor_revisions(old, new)
         self.assertEqual(len(diff["changed"]), 1)
         self.assertIn("actual_reported_code", diff["changed"][0]["changes"])
+
+    def test_revision_match_uses_stable_security_id_across_ticker_change(self):
+        # Same company, ticker changed between pulls: must read as a revision,
+        # not as a removed+added event.
+        old = [{"security": {"id": "SEC123", "ticker": "AAA"},
+                "ticker": "AAA",
+                "actual_reported_date": "2020-03-15",
+                "actual_reported_time": "08:00",
+                "actual_reported_code": "BTO"}]
+        new = [{"security": {"id": "SEC123", "ticker": "AAANEW"},
+                "ticker": "AAANEW",
+                "actual_reported_date": "2020-03-15",
+                "actual_reported_time": "08:05",
+                "actual_reported_code": "BTO"}]
+        diff = detect_vendor_revisions(old, new)
+        self.assertEqual(len(diff["changed"]), 1)
+        self.assertEqual(diff["changed"][0]["key_type"], "security_id")
+        self.assertEqual(diff["changed"][0]["changes"]["actual_reported_time"],
+                         ("08:00", "08:05"))
+        self.assertEqual(diff["added"], [])
+        self.assertEqual(diff["removed"], [])
+
+    def test_revision_falls_back_to_ticker_date_without_stable_id(self):
+        # No security id on either side: documented ticker+date fallback.
+        old = [rec("AAA", "2020-03-15", "08:00", "BTO")]
+        new = [rec("AAA", "2020-03-15", "08:05", "BTO")]
+        diff = detect_vendor_revisions(old, new)
+        self.assertEqual(len(diff["changed"]), 1)
+        self.assertEqual(diff["changed"][0]["key_type"], "ticker_fallback")
 
 
 # ---------------------------------------------------------------- gate scope: no returns enter this audit
