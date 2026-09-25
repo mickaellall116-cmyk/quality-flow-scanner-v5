@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-25T18:52:49.730146+00:00",
+  "as_of": "2026-09-25T20:54:13.265551+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,26 +7,39 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-25T18:52:49.724216+00:00",
-  "signals_logged": 23,
+  "last_successful_cycle": "2026-09-25T20:54:13.245139+00:00",
+  "signals_logged": 26,
   "grade_counts": {
     "A": 7,
-    "B": 15,
+    "B": 18,
     "C": 1
   },
   "grade_counts_by_cohort": {
     "Forward-UX51": {
       "A": 2,
-      "B": 3,
+      "B": 4,
       "C": 0
     },
     "Forward-X2": {
       "A": 5,
-      "B": 12,
+      "B": 14,
       "C": 1
     }
   },
-  "pending_entries": [],
+  "pending_entries": [
+    {
+      "signal_id": "v54:COIN:4h:2026-09-25T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "COIN",
+      "grade": "B",
+      "signal_bar": "2026-09-25T14:30:00-04:00"
+    },
+    {
+      "signal_id": "v54:VLO:4h:2026-09-25T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "VLO",
+      "grade": "B",
+      "signal_bar": "2026-09-25T14:30:00-04:00"
+    }
+  ],
   "open_positions": [
     {
       "signal_id": "v54:INTC:4h:2026-09-15T10:30:00-04:00:2026-09-15-v54",
@@ -37,7 +50,7 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_runner",
-      "bars_held": 25,
+      "bars_held": 26,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 8.186423580160177,
@@ -52,7 +65,7 @@
       "stop": 668.3522394952015,
       "tp1": 705.2307387827768,
       "status": "open_runner",
-      "bars_held": 19,
+      "bars_held": 20,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 3.549029867592519,
@@ -67,7 +80,7 @@
       "stop": 309.2632915755711,
       "tp1": 348.5091821379598,
       "status": "open_runner",
-      "bars_held": 15,
+      "bars_held": 16,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 3.8831585391889547,
@@ -82,7 +95,7 @@
       "stop": 45.81544024797135,
       "tp1": 50.73407637306976,
       "status": "open_runner",
-      "bars_held": 15,
+      "bars_held": 16,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 2.952606550068037,
@@ -97,10 +110,10 @@
       "stop": 258.7238705785707,
       "tp1": 276.79667034476364,
       "status": "open_runner",
-      "bars_held": 9,
+      "bars_held": 10,
       "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 3.3893465706513743,
+      "mfe_r": 3.6668237586845924,
       "mae_r": -0.5744848628240331
     },
     {
@@ -112,7 +125,7 @@
       "stop": 892.3073247924756,
       "tp1": 1026.6926576118653,
       "status": "open_full",
-      "bars_held": 7,
+      "bars_held": 8,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.4077120597619023,
@@ -127,7 +140,7 @@
       "stop": 93.93662832944473,
       "tp1": 97.53259011773136,
       "status": "open_full",
-      "bars_held": 7,
+      "bars_held": 8,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.4911285859426875,
@@ -142,7 +155,7 @@
       "stop": 196.61191875026725,
       "tp1": 212.94381089649804,
       "status": "open_full",
-      "bars_held": 4,
+      "bars_held": 5,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.4317126638638102,
@@ -157,7 +170,7 @@
       "stop": 260.63922066363205,
       "tp1": 272.959579823595,
       "status": "open_full",
-      "bars_held": 3,
+      "bars_held": 4,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.1477275530223987,
@@ -172,7 +185,7 @@
       "stop": 2.6675197647537634,
       "tp1": 3.0745304485265468,
       "status": "open_full",
-      "bars_held": 3,
+      "bars_held": 4,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.6747234336822234,
@@ -187,10 +200,10 @@
       "stop": 332.09953436078825,
       "tp1": 346.0228010702023,
       "status": "open_full",
-      "bars_held": 1,
+      "bars_held": 2,
       "tp1_taken": false,
       "profit_protect_armed": null,
-      "mfe_r": 0.9646347119176626,
+      "mfe_r": 1.2489793527492268,
       "mae_r": -0.03583531324679256
     },
     {
@@ -202,7 +215,7 @@
       "stop": 536.141244859984,
       "tp1": 598.8872734273286,
       "status": "open_full",
-      "bars_held": 1,
+      "bars_held": 2,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.8273176946948534,
