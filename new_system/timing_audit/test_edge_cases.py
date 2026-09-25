@@ -8,6 +8,12 @@ Covers the reviewer-mandated controls (ChatGPT PASS decision, 2026-09-25):
   - DST weekends, exact-close timestamps, code/timestamp conflicts,
     missing timing, ticker identity, raw-data tampering, sample-hash
     tampering, and the no-replacement scoring rule.
+  - C5 scorer-version freeze: version embedded in sample/sheet/score;
+    cross-version artifacts refused.
+  - C6 duplicates and vendor revisions: one event = one sample slot;
+    restated timing fields between pulls are flagged for the gate's
+    systematic-revision screen.
+  - gate scope: no return/price/P&L fields may enter the audit artifacts.
 
 Run:  python3 -m unittest test_edge_cases -v   (from new_system/timing_audit/)
 """
@@ -26,11 +32,15 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import audit_harness as H
 from audit_harness import (
     SampleIntegrityError,
+    SCORER_VERSION,
     EVIDENCE_PRECEDENCE,
     EVIDENCE_CONFLICT_RULES,
     check_raw_integrity,
+    check_scorer_version,
     compute_raw_hash,
     compute_sample_hash,
+    dedupe_records,
+    detect_vendor_revisions,
     draw_sample,
     to_audit_row,
     verify_file,
@@ -332,8 +342,9 @@ class TestSheetScoreGates(unittest.TestCase):
         h = compute_sample_hash(rows)
         path = _write_tmp_sheet(rows, h)
         try:
-            stored, back = _read_sheet(path)
+            stored, version, back = _read_sheet(path)
             self.assertEqual(stored, h)
+            self.assertEqual(version, SCORER_VERSION)
             self.assertTrue(verify_sample_hash(back, stored))
             for orig, rt in zip(rows, back):
                 for k in ("event_id", "ticker", "intrinio_reported_date",
@@ -439,6 +450,159 @@ class TestEvidencePrecedence(unittest.TestCase):
                 self.assertIn(level.split(". ", 1)[1][:20], head)
         finally:
             os.unlink(path)
+
+
+# ---------------------------------------------------------------- C5: scorer version freeze
+
+class TestScorerVersionFreeze(unittest.TestCase):
+    def test_version_constant_present(self):
+        self.assertEqual(H.SCORER_VERSION, "1.0.0")
+
+    def test_sheet_carries_version(self):
+        payload = fake_fetch_payload()
+        rows, _ = sample_rows(payload)
+        h = compute_sample_hash(rows)
+        path = _write_tmp_sheet(rows[:2], h)
+        try:
+            _, version, _ = _read_sheet(path)
+            self.assertEqual(version, SCORER_VERSION)
+        finally:
+            os.unlink(path)
+
+    def test_check_scorer_version_ok_and_refusal(self):
+        self.assertTrue(check_scorer_version(SCORER_VERSION))
+        with self.assertRaises(SampleIntegrityError):
+            check_scorer_version("2.0.0")
+        with self.assertRaises(SampleIntegrityError):
+            check_scorer_version(None)
+
+    def test_score_refuses_version_mismatch(self):
+        # A sheet built by a different scorer version must not score.
+        payload = fake_fetch_payload()
+        rows, _ = sample_rows(payload)
+        h = compute_sample_hash(rows)
+        fd, path = tempfile.mkstemp(suffix=".csv")
+        os.close(fd)
+        try:
+            write_sheet(rows, path, h, scorer_version="0.9.0")
+            with self.assertRaises(SampleIntegrityError):
+                score_sheet(path)
+        finally:
+            os.unlink(path)
+
+    def test_score_refuses_missing_version(self):
+        # Sheets predating version control (no header line) are refused.
+        payload = fake_fetch_payload()
+        rows, _ = sample_rows(payload)
+        h = compute_sample_hash(rows)
+        path = _write_tmp_sheet(rows[:2], h)
+        try:
+            with open(path, encoding="utf-8") as f:
+                content = f.read()
+            content = "\n".join(
+                ln for ln in content.splitlines()
+                if not ln.startswith("# scorer_version:"))
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(content + "\n")
+            with self.assertRaises(SampleIntegrityError):
+                score_sheet(path)
+        finally:
+            os.unlink(path)
+
+    def test_version_in_score_report(self):
+        # End-to-end: a fully filled sheet scores and reports the version.
+        payload = fake_fetch_payload()
+        rows, _ = sample_rows(payload)
+        h = compute_sample_hash(rows)
+        for r in rows:
+            r["verified_date"] = r["intrinio_reported_date"]
+            r["verified_time"] = r["intrinio_reported_time"]
+            r["verified_bucket"] = r["derived_bucket"]
+            r["date_bucket_match_YN"] = "Y"
+        path = _write_tmp_sheet(rows, h)
+        try:
+            report = score_sheet(path)
+            self.assertEqual(report["scorer_version"], SCORER_VERSION)
+            self.assertEqual(report["verdict"], "PASS")
+        finally:
+            os.unlink(path)
+
+
+# ---------------------------------------------------------------- C6: duplicates and vendor revisions
+
+class TestDuplicatesAndRevisions(unittest.TestCase):
+    def test_dedupe_keeps_first_and_counts(self):
+        a = rec("AAA", "2020-03-15", "08:00", "BTO")
+        b = rec("AAA", "2020-03-15", "08:00", "BTO")  # exact duplicate
+        c = rec("AAA", "2020-03-15", "17:30", "AMC")  # same event, revised time
+        d = rec("BBB", "2020-03-15", "08:00", "BTO")
+        unique, n_dupes = dedupe_records([a, b, c, d])
+        self.assertEqual(n_dupes, 2)
+        self.assertEqual(len(unique), 2)
+        self.assertEqual(unique[0]["actual_reported_time"], "08:00")  # first kept
+
+    def test_draw_sample_never_double_counts_an_event(self):
+        pool = fake_pool(120)
+        pool = pool + [dict(r) for r in pool[:10]]  # inject exact duplicates
+        sample, _ = draw_sample(pool, 20260925)
+        keys = [((r.get("ticker") or "").upper(),
+                 r.get("actual_reported_date")) for r in sample]
+        self.assertEqual(len(sample), 50)
+        self.assertEqual(len(keys), len(set(keys)))
+
+    def test_vendor_revision_detected(self):
+        old = [rec("AAA", "2020-03-15", "08:00", "BTO"),
+               rec("BBB", "2020-03-15", "17:30", "AMC")]
+        new = [rec("AAA", "2020-03-15", "08:05", "BTO"),   # restated time
+               rec("BBB", "2020-03-15", "17:30", "AMC"),
+               rec("CCC", "2020-03-15", "08:00", "BTO")]   # added
+        diff = detect_vendor_revisions(old, new)
+        self.assertEqual(len(diff["changed"]), 1)
+        ch = diff["changed"][0]
+        self.assertEqual(ch["ticker"], "AAA")
+        self.assertEqual(ch["changes"]["actual_reported_time"],
+                         ("08:00", "08:05"))
+        self.assertEqual(len(diff["added"]), 1)
+        self.assertEqual(diff["added"][0]["ticker"], "CCC")
+        self.assertEqual(diff["removed"], [])
+
+    def test_vendor_revision_removed_reported(self):
+        old = [rec("AAA", "2020-03-15", "08:00", "BTO")]
+        diff = detect_vendor_revisions(old, [])
+        self.assertEqual(len(diff["removed"]), 1)
+        self.assertEqual(diff["removed"][0]["ticker"], "AAA")
+        self.assertEqual(diff["changed"], [])
+
+    def test_vendor_revision_none_when_identical(self):
+        pool = fake_pool(40)
+        diff = detect_vendor_revisions(pool, [dict(r) for r in pool])
+        self.assertEqual(diff, {"changed": [], "added": [], "removed": []})
+
+    def test_revision_code_change_flagged(self):
+        old = [rec("AAA", "2020-03-15", "08:00", "BTO")]
+        new = [rec("AAA", "2020-03-15", "08:00", "AMC")]
+        diff = detect_vendor_revisions(old, new)
+        self.assertEqual(len(diff["changed"]), 1)
+        self.assertIn("actual_reported_code", diff["changed"][0]["changes"])
+
+
+# ---------------------------------------------------------------- gate scope: no returns enter this audit
+
+class TestNoReturnsInAudit(unittest.TestCase):
+    RETURN_LIKE = ("return", "price", "pnl", "p&l", "profit")
+
+    def _assert_no_return_like(self, names):
+        lowered = [n.lower() for n in names]
+        bad = [n for n in lowered
+               if any(tok in n for tok in self.RETURN_LIKE)]
+        self.assertEqual(bad, [], f"return-like fields leaked into the audit: {bad}")
+
+    def test_sheet_fields_have_no_return_like_columns(self):
+        self._assert_no_return_like(H.SHEET_FIELDS)
+
+    def test_audit_row_has_no_return_like_fields(self):
+        row = to_audit_row(rec("AAA", "2020-03-15", "08:00", "BTO"), 0)
+        self._assert_no_return_like(row.keys())
 
 
 if __name__ == "__main__":
