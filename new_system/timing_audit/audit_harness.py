@@ -37,11 +37,14 @@ Reviewer-mandated integrity controls (ChatGPT PASS decision, 2026-09-25):
   C5. Scorer version freeze (SCORER_VERSION): embedded in the sample file,
       the sheet header, and the score report. `sheet` and `score` REFUSE
       artifacts from any other scorer version. Frozen before real data.
-  C6. Duplicate/revision handling: duplicate vendor rows (same ticker+date)
-      are dropped before stratification and reported (one event = one slot);
-      detect_vendor_revisions() diffs two pulls on event key and flags any
-      timing-field restatement (backfill) for the gate's systematic-revision
-      screen.
+  C6. Duplicate/revision handling: exact-duplicate vendor rows (same
+      ticker+date AND identical timing fields) collapse to one and are
+      reported; conflicting duplicates (same ticker+date, differing timing
+      fields) are a vendor disagreement and REFUSE the sample draw.
+      detect_vendor_revisions() diffs two pulls on event key -- stable
+      security id where the feed provides one (ticker+date documented
+      fallback) -- and flags any timing-field restatement (backfill) for
+      the gate's systematic-revision screen.
 
 Generates ZERO performance data. This is a data-integrity gate, not a study.
 
@@ -107,42 +110,90 @@ TIMING_FIELDS = ("actual_reported_date", "actual_reported_time",
 
 
 def _event_key(rec):
-    """Canonical event identity: ticker + reported date. Two vendor rows with
-    the same key are the same earnings event (duplicates or revisions)."""
+    """Canonical event identity within a single vendor pull: ticker + date."""
     ticker = ((rec.get("security") or {}).get("ticker")
               or rec.get("ticker") or "").strip().upper()
     return (ticker, (rec.get("actual_reported_date") or "").strip())
 
 
+def _stable_security_id(rec):
+    """Best stable company identifier the feed provides. Intrinio nests it
+    under the security object; may be absent on synthetic/sparse records."""
+    sec = rec.get("security") or {}
+    return (sec.get("id") or "").strip()
+
+
+def _revision_key(rec):
+    """Event identity for cross-pull revision matching. Prefers the stable
+    security id so a ticker change between pulls does not disguise a
+    restatement as a removed+added event. Falls back to ticker+date (the
+    documented fallback) when the feed provides no stable id."""
+    d = (rec.get("actual_reported_date") or "").strip()
+    sid = _stable_security_id(rec)
+    if sid:
+        return ("id:" + sid, d)
+    ticker = ((rec.get("security") or {}).get("ticker")
+              or rec.get("ticker") or "").strip().upper()
+    return ("ticker:" + ticker, d)
+
+
 def dedupe_records(records):
-    """Drop duplicate vendor rows (same ticker+date), keeping the first
-    occurrence. Returns (unique_records, n_duplicates_removed). Duplicates are
-    reported, never silently collapsed: one event must never occupy two
-    sample slots."""
-    seen = set()
-    unique = []
+    """Split vendor rows into unique events, exact duplicates, and conflicts.
+
+    Rows sharing an event key (ticker+date) with IDENTICAL timing fields are
+    exact duplicates: collapsed to one, counted, reported.
+    Rows sharing an event key with DIFFERING timing fields are conflicting
+    duplicates: a vendor disagreement that must never be silently resolved
+    by keeping the first row. They are returned in `conflicts` and
+    `draw_sample` REFUSES to sample while any exist.
+
+    Returns (unique_records, n_exact_duplicates, conflicts) where each
+    conflict is {"event_key", "ticker", "rows": [...]}.
+    """
+    groups = {}
+    order = []
     for r in records:
         k = _event_key(r)
-        if k in seen:
-            continue
-        seen.add(k)
-        unique.append(r)
-    return unique, len(records) - len(unique)
+        if k not in groups:
+            groups[k] = []
+            order.append(k)
+        groups[k].append(r)
+    unique, conflicts = [], []
+    n_exact = 0
+    for k in order:
+        rows = groups[k]
+        first_timing = tuple((rows[0].get(f) or "") for f in TIMING_FIELDS)
+        if all(tuple((r.get(f) or "") for f in TIMING_FIELDS) == first_timing
+               for r in rows[1:]):
+            unique.append(rows[0])
+            n_exact += len(rows) - 1
+        else:
+            conflicts.append({"event_key": k,
+                              "ticker": (rows[0].get("ticker") or ""),
+                              "rows": rows})
+    return unique, n_exact, conflicts
 
 
 def detect_vendor_revisions(old_records, new_records):
     """Diff two vendor pulls on event key. A timing-field change between pulls
     is a vendor revision (restatement/backfill) -- the exact pattern the
     frozen gate's 'no systematic revision' criterion screens for.
+
+    Matching uses the stable security id where the feed provides one, so a
+    ticker change between pulls cannot disguise a restatement as a
+    removed+added event; ticker+date is the documented fallback when no
+    stable id exists.
+
     Returns {"changed": [...], "added": [...], "removed": [...]} where each
-    changed entry is {"event_key", "ticker", "changes": {field: (old, new)}}.
+    changed entry is {"event_key", "ticker", "key_type", "changes"} with
+    key_type "security_id" or "ticker_fallback".
     Pure function: no network, no mutation."""
     old_by_key = {}
     for r in old_records:
-        old_by_key.setdefault(_event_key(r), r)
+        old_by_key.setdefault(_revision_key(r), r)
     new_by_key = {}
     for r in new_records:
-        new_by_key.setdefault(_event_key(r), r)
+        new_by_key.setdefault(_revision_key(r), r)
     changed, added, removed = [], [], []
     for k, new_r in new_by_key.items():
         old_r = old_by_key.get(k)
@@ -158,6 +209,8 @@ def detect_vendor_revisions(old_records, new_records):
         if diffs:
             changed.append({"event_key": k,
                             "ticker": new_r.get("ticker") or "",
+                            "key_type": ("security_id" if k[0].startswith("id:")
+                                         else "ticker_fallback"),
                             "changes": diffs})
     for k, old_r in old_by_key.items():
         if k not in new_by_key:
@@ -311,12 +364,20 @@ def draw_sample(records, seed):
     Returns (sample_records, seed_used).
     """
     qualifying = [r for r in records if _is_qualifying(r)]
-    # C6: one event = one slot. Drop duplicate vendor rows (same ticker+date)
-    # before stratification; duplicates are reported, never silently kept.
-    qualifying, n_dupes = dedupe_records(qualifying)
-    if n_dupes:
-        print(f"removed {n_dupes} duplicate vendor rows (same ticker+date)",
+    # C6: one event = one slot. Exact duplicates collapse (reported);
+    # conflicting duplicates are a vendor disagreement and REFUSE the draw.
+    qualifying, n_exact, conflicts = dedupe_records(qualifying)
+    if n_exact:
+        print(f"collapsed {n_exact} exact-duplicate vendor rows",
               file=sys.stderr)
+    if conflicts:
+        keys = ", ".join(f"{c['ticker']}@{c['event_key'][1]}"
+                         for c in conflicts[:10])
+        raise SampleIntegrityError(
+            f"REFUSING to sample: {len(conflicts)} conflicting duplicate "
+            f"vendor row(s) (same ticker+date, differing timing fields) -- "
+            f"vendor disagreement must be resolved before the draw, not "
+            f"hidden by keeping the first row. e.g. {keys}")
     bto = [r for r in qualifying if (r.get("actual_reported_code") or "").upper() == "BTO"]
     amc = [r for r in qualifying if (r.get("actual_reported_code") or "").upper() == "AMC"]
     if len(bto) < MIN_BMO or len(amc) < MIN_AMC:
