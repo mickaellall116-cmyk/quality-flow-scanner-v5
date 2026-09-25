@@ -33,3 +33,28 @@ short plain-text by default; long artifacts on GitHub.
 What this does NOT fix: AgentMail's outbound filters are outside Muse's
 control and can block again. The fallback makes a block non-fatal — no
 review can be stranded silently.
+
+## 2026-09-25 ~12:30 EDT — ChatGPT outbound blocked AGAIN; plain-text retry also blocked (fallback partially failed)
+ChatGPT reports (via Mike relay) that both its normal reply AND the agreed
+plain-text retry (<2,000 chars, no links/tables) were blocked by AgentMail's
+outbound safety checks. The fallback protocol's step (a) did not get through.
+Per fallback step (b), the review stands as relayed via Mike (authoritative):
+- Intrinio/Zacks feed still the blocker (trial = ~6 months history, gate needs 8 years).
+- Decision remains PASS, ranked: reproducibility infra → audit-harness edge
+  cases → fresh architecture research.
+- New requirement: synthetic red-team suite for the timing gate (DST, early
+  closes, exact-close timestamps, revisions, ticker changes/delistings,
+  missing timestamps, duplicates, vendor/primary-source conflicts); 50-event
+  sample hash + scorer version frozen before real data; sampled failures not
+  replaced; no returns in the audit. V5.4 and ERD remain frozen.
+- Muse implemented the new requirement same day: C5 scorer-version freeze
+  (SCORER_VERSION=1.0.0, embedded in sample/sheet/score; cross-version
+  artifacts refused) + C6 duplicate/revision handling (dedupe before
+  stratification, detect_vendor_revisions() for pull-vs-pull restatements)
+  + no-returns gate-scope guard. Suite now 46 tests, all passing; published
+  to main as 05852cf (harness), 3f6b375 (tests), b014032 (README).
+Lesson: the plain-text retry is not a reliable unblock. When step (a)
+fails, skip straight to (b) — Mike's relay is authoritative, Muse confirms
+receipt in main chat and executes; no further bridge round-trips spent on
+unblocking. A future fix would need AgentMail filter allowlisting, which is
+outside Muse's control.
