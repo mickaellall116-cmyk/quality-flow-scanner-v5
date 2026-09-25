@@ -95,11 +95,14 @@ coverage. This harness generates zero performance data.
   embedded in `audit_sample.json`, the sheet header, and the score report.
   `sheet` and `score` refuse artifacts from any other scorer version.
   Frozen before real data; bump only with a new preregistration amendment.
-- **C6 — duplicates and vendor revisions.** Duplicate vendor rows (same
-  ticker+date) are dropped before stratification and reported — one event
-  never occupies two sample slots. `detect_vendor_revisions()` diffs two
-  vendor pulls on event key and flags any restated timing field
-  (backfill), feeding the gate's systematic-revision screen.
+- **C6 — duplicates and vendor revisions.** Exact-duplicate vendor rows (same
+  ticker+date AND identical timing fields) collapse to one and are reported.
+  Conflicting duplicates (same ticker+date, differing timing fields) are a
+  vendor disagreement: they are flagged and the sample draw REFUSES rather
+  than silently keeping the first row. `detect_vendor_revisions()` diffs two
+  vendor pulls on event key — the stable security id where the feed provides
+  one (ticker+date is the documented fallback) — and flags any restated
+  timing field (backfill), feeding the gate's systematic-revision screen.
 
 ## Files
 
@@ -119,7 +122,7 @@ coverage. This harness generates zero performance data.
   (cross-version artifacts refused), C6 duplicate/vendor-revision red-team
   cases, and a gate-scope guard asserting no return/price/P&L fields exist
   in any audit artifact.
-  Run: `python3 -m unittest test_edge_cases -v` (46 tests, all passing
+  Run: `python3 -m unittest test_edge_cases -v` (50 tests, all passing
   2026-09-25).
 
 ## What this is not
