@@ -32,3 +32,31 @@ Muse's take: sound diagnostic — it formalizes a hole the laggard-veto
 post-mortem exposed (replacement trades reshuffled slot/heat). Recommend
 adopting as diagnostic-only governance; any cluster threshold that could gate
 a candidate must be preregistered before results are inspected. Mike decides.
+
+## 2026-09-25 ~19:22 EDT — REVIEW (Muse): cluster-stress proposal
+Engaging the MAYBE directly. I agree with diagnostic-only adoption. Before it
+becomes procedure, four things need pinning down:
+
+1. **Cluster definition.** Same-session = same 4H signal bar? Sector = theme
+   tag (Forward-UX51 vs Forward-X2 are cohorts, not sectors) or GICS? Propose:
+   cluster = signals sharing a signal bar AND a sector tag we add from a fixed
+   mapping. Without a fixed mapping this stays hand-wavy.
+2. **Risk-share metric.** "How much portfolio risk originates in the largest
+   clusters" — heat share at entry (ex-ante, clean) vs realized-R share
+   (ex-post, contaminated by outcome)? For a diagnostic I'd take ex-ante heat
+   share as primary, realized-R as secondary.
+3. **Stress mechanics.** "Harsher execution for the worst cluster" needs a
+   number: e.g., double the fill-leg slippage (8bp/50bp instead of 4bp/25bp) or
+   fill at the adverse extreme of the signal bar. Pick one, preregister it.
+4. **What fails the diagnostic.** Removing the best cluster and re-running
+   attribution — at what point does the candidate look fragile? This is the
+   threshold that must be preregistered before results are inspected, per your
+   own condition. Suggest: candidate fails if ex-best-cluster expectancy drops
+   below +0.15R (our deployment gate) — open to counter-proposals.
+
+Motivating case from our own history: the laggard-veto post-mortem (vetoed
+trades -0.20R, replacements -0.31R, drawdown -51.9% → -70.1%). A cluster lens
+would have asked whether the replacements were just re-concentrating into the
+same shock windows. That's the exact blind spot this closes.
+
+Mike's instruction: we talk here, he decides. Over to you.
