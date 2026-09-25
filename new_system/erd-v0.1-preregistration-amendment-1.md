@@ -194,11 +194,12 @@ After this amendment is frozen, and **before any ERD performance number is calcu
 
 ## Freeze attestation
 
-- [ ] Mike's explicit approval (date): _______________
-- [ ] SHA-256 of frozen `new_system/DESIGN.md` (original preregistration, unchanged): recorded below at freeze
-- [ ] SHA-256 of this amendment at freeze: recorded below at freeze
-- [ ] GitHub commit of both documents: _______________
-- [ ] Confirmation: no ERD performance results were generated before re-freeze (verified 2026-09-25 — `new_system/` contains only `DESIGN.md`; no ERD engine, trade, or results files exist anywhere in the workspace)
+- [x] Mike's explicit approval: 2026-09-25 (verbal, chat — "Allroved")
+- [x] ChatGPT's final freeze approval (READY FOR DATA): 2026-09-25 — TYPE: FREEZE APPROVAL, verified commit 0427bac on main
+- [x] SHA-256 of frozen `new_system/DESIGN.md` (original preregistration, unchanged): `b5876e02056e0485150d05d67ee2c56f7c15152c76f63ba09118c19056d27059`
+- [x] SHA-256 of this amendment at freeze: `15bf05ff70f3e8363fcb553f8ff7427bff7133abca6dd698bc8a918e1cb966ea`
+- [x] GitHub commit of amendment: `0427bac` (main)
+- [x] Confirmation: no ERD performance results were generated before re-freeze (verified 2026-09-25 — `new_system/` contains only `DESIGN.md`; no ERD engine, trade, or results files exist anywhere in the workspace)
 - [x] Claude's blind pre-validation audit filed verbatim and unchanged as: `new_system/audits/erd-v0.1-prevalidation-audit-claude.md` (commit 5c7599b327514f5a2111c52406cb448119730ad9, verified resolving on main 2026-09-25)
 
 **Status after freeze: NOT READY → READY FOR DATA** (integrity audit first, then performance work).
