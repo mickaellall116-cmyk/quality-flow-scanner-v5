@@ -16,16 +16,19 @@
 
 No arbitrary 4:00am cutoff. Event timing uses actual U.S. regular-session hours (NYSE calendar; early-close days honored at their actual close):
 
-- Release **before 09:30 ET** on trading day D → **S = D**.
-- Release **after 16:00 ET** (after that day's actual close) on trading day D → **S = next trading session**.
-- Release **during 09:30–16:00 ET** (during that day's actual session) → **EXCLUDE**.
+- Release **before that day's regular-session open** on trading day D → **S = D**.
+- Release **during that day's regular session** [open, actual close] → **EXCLUDE**.
+- Release **after that day's actual regular-session close** on trading day D → **S = next trading session**.
 - Release on a **weekend or NYSE holiday** → **S = next NYSE trading session**.
 - **Missing, ambiguous, or vendor-imputed timing → EXCLUDE.** Only explicit, validated timing information may qualify an event.
 - If the vendor timing code (BTO/DTM/AMC) disagrees with the timestamp-derived bucket → **ambiguous → EXCLUDE**.
+- A timestamp exactly at the regular-session close is treated as during-session → **EXCLUDE** (deterministic boundary; the interval [open, actual close] is closed).
+
+*(Clarification 2026-09-25 per ChatGPT final review: fixed 09:30/16:00 ET wording replaced with that day's actual regular-session open/close so NYSE early-close days are handled correctly — e.g., a 13:30 ET release after a 13:00 ET close is AMC/next-session, not DTM/excluded. Specification clarification only; no performance data involved.)*
 
 **Intrinio/Zacks fields (semantics to be verified at build):** `actual_reported_date`, `actual_reported_time` (both in ET), and the timing code (BTO = before open, DTM = during market, AMC = after close). The build must document the exact API endpoint, field names, and code semantics from Intrinio's documentation in the build log **before** the data gate; any deviation from the assumed semantics triggers a new preregistration amendment, not a silent fix.
 
-**Unit test required:** synthetic events at 08:59, 09:30, 12:00, 15:59, 16:01 ET and on a Saturday must map to the buckets above exactly.
+**Unit test required:** synthetic events at 08:59, 09:30, 12:00, 15:59, 16:01 ET and on a Saturday must map to the buckets above exactly — **plus at least one early-close-day case** (e.g., 13:00 ET close: 08:59 → S=D; 12:59 → EXCLUDE; 13:00 → EXCLUDE; 13:01 → next session).
 
 ---
 
@@ -196,13 +199,13 @@ After this amendment is frozen, and **before any ERD performance number is calcu
 - [ ] SHA-256 of this amendment at freeze: recorded below at freeze
 - [ ] GitHub commit of both documents: _______________
 - [ ] Confirmation: no ERD performance results were generated before re-freeze (verified 2026-09-25 — `new_system/` contains only `DESIGN.md`; no ERD engine, trade, or results files exist anywhere in the workspace)
-- [ ] Claude's blind pre-validation audit filed verbatim and unchanged as: _______________ (pending receipt via Mike)
+- [x] Claude's blind pre-validation audit filed verbatim and unchanged as: `new_system/audits/erd-v0.1-prevalidation-audit-claude.md` (commit 5c7599b327514f5a2111c52406cb448119730ad9, verified resolving on main 2026-09-25)
 
 **Status after freeze: NOT READY → READY FOR DATA** (integrity audit first, then performance work).
 
 ## Checksums (tamper-evident: SHA-256 of this document's content *above* this section, so the values below never invalidate themselves)
 
 - `DESIGN.md` (original frozen preregistration — unchanged): `b5876e02056e0485150d05d67ee2c56f7c15152c76f63ba09118c19056d27059`
-- This amendment, content above this section (as corrected 2026-09-25: max 6 positions restored, 25% single-name cap and $75k equity restored, K7 chronological-halves rule defined): `f827604f07a47e2e08aea4e5926ec0069d93d5e2ce70e4c460e522cb53553fd2`
+- This amendment, content above this section (as corrected 2026-09-25: max 6 positions restored, 25% single-name cap and $75k equity restored, K7 chronological-halves rule defined, §1 early-close-day clarification per ChatGPT final review, Claude audit filed): `15bf05ff70f3e8363fcb553f8ff7427bff7133abca6dd698bc8a918e1cb966ea`
 - `TEST_LEDGER.md` (full file): `38f6191742fca71068c4211ce19f190e51ad92301c07a89801465005ce50b455`
 - Verify: `awk '/^## Checksums/{exit} {print}' erd-v0.1-preregistration-amendment-1.md | sha256sum`
