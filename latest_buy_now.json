@@ -2,7 +2,7 @@
   "scanner": "Quality Flow Scanner V5.3",
   "scanner_version": "5.3",
   "rule_version": "2026-09-14-v3",
-  "generated_at": "2026-09-24T21:41:57.001107+00:00",
+  "generated_at": "2026-09-25T00:00:17.227125+00:00",
   "interval": "4h",
   "period": "180d",
   "signal_bar_close_at": "2026-09-24T16:00:00-04:00",
@@ -22,5 +22,5 @@
   "candidates": [],
   "source": "github-actions",
   "uses_closed_4h_candles": true,
-  "primary_candidates_frozen": false
+  "primary_candidates_frozen": true
 }
