@@ -1,0 +1,270 @@
+{
+ "summary": {
+  "1H": {
+   "V": {
+    "n": 250,
+    "hit_rate": 0.228,
+    "invalidation_rate": 0.404,
+    "median_bars_to_touch": 11,
+    "hits": 57,
+    "invalidated": 101
+   },
+   "E": {
+    "n": 330,
+    "hit_rate": 0.0848,
+    "invalidation_rate": 0.4242,
+    "median_bars_to_touch": 14.0,
+    "hits": 28,
+    "invalidated": 140
+   },
+   "N": {
+    "n": 246,
+    "hit_rate": 0.187,
+    "invalidation_rate": 0.4187,
+    "median_bars_to_touch": 14.5,
+    "hits": 46,
+    "invalidated": 103
+   },
+   "NT": {
+    "n": 98,
+    "hit_rate": 0.2347,
+    "invalidation_rate": 0.4082,
+    "median_bars_to_touch": 9,
+    "hits": 23,
+    "invalidated": 40
+   }
+  },
+  "4H": {
+   "V": {
+    "n": 81,
+    "hit_rate": 0.2099,
+    "invalidation_rate": 0.4444,
+    "median_bars_to_touch": 7,
+    "hits": 17,
+    "invalidated": 36
+   },
+   "E": {
+    "n": 102,
+    "hit_rate": 0.0588,
+    "invalidation_rate": 0.4216,
+    "median_bars_to_touch": 13.0,
+    "hits": 6,
+    "invalidated": 43
+   },
+   "N": {
+    "n": 78,
+    "hit_rate": 0.2436,
+    "invalidation_rate": 0.4231,
+    "median_bars_to_touch": 10,
+    "hits": 19,
+    "invalidated": 33
+   },
+   "NT": {
+    "n": 18,
+    "hit_rate": 0.3889,
+    "invalidation_rate": 0.2222,
+    "median_bars_to_touch": 8,
+    "hits": 7,
+    "invalidated": 4
+   }
+  },
+  "daily": {
+   "V": {
+    "n": 102,
+    "hit_rate": 0.2157,
+    "invalidation_rate": 0.3922,
+    "median_bars_to_touch": 16.0,
+    "hits": 22,
+    "invalidated": 40
+   },
+   "E": {
+    "n": 141,
+    "hit_rate": 0.0567,
+    "invalidation_rate": 0.4113,
+    "median_bars_to_touch": 9.5,
+    "hits": 8,
+    "invalidated": 58
+   },
+   "N": {
+    "n": 99,
+    "hit_rate": 0.1515,
+    "invalidation_rate": 0.3737,
+    "median_bars_to_touch": 14,
+    "hits": 15,
+    "invalidated": 37
+   },
+   "NT": {
+    "n": 20,
+    "hit_rate": 0.25,
+    "invalidation_rate": 0.5,
+    "median_bars_to_touch": 8,
+    "hits": 5,
+    "invalidated": 10
+   }
+  }
+ },
+ "per_ticker": {
+  "1H": {
+   "QQQ": {
+    "events": 81,
+    "measured": 129
+   },
+   "SMCI": {
+    "events": 95,
+    "measured": 36
+   },
+   "PLTR": {
+    "events": 89,
+    "measured": 91
+   },
+   "ANET": {
+    "events": 94,
+    "measured": 99
+   },
+   "SOFI": {
+    "events": 99,
+    "measured": 88
+   },
+   "RKLB": {
+    "events": 99,
+    "measured": 111
+   },
+   "ONDS": {
+    "events": 98,
+    "measured": 50
+   },
+   "DRAM": {
+    "events": 16,
+    "measured": 16
+   },
+   "SPCX": {
+    "events": 7,
+    "measured": 9
+   },
+   "BBAI": {
+    "events": 93,
+    "measured": 51
+   },
+   "NIO": {
+    "events": 93,
+    "measured": 60
+   },
+   "HOOD": {
+    "events": 97,
+    "measured": 116
+   },
+   "AMD": {
+    "events": 90,
+    "measured": 68
+   }
+  },
+  "4H": {
+   "QQQ": {
+    "events": 14,
+    "measured": 34
+   },
+   "SMCI": {
+    "events": 19,
+    "measured": 18
+   },
+   "PLTR": {
+    "events": 17,
+    "measured": 29
+   },
+   "ANET": {
+    "events": 15,
+    "measured": 31
+   },
+   "SOFI": {
+    "events": 12,
+    "measured": 15
+   },
+   "RKLB": {
+    "events": 19,
+    "measured": 35
+   },
+   "ONDS": {
+    "events": 20,
+    "measured": 26
+   },
+   "DRAM": {
+    "events": 3,
+    "measured": 5
+   },
+   "SPCX": {
+    "events": 2,
+    "measured": 3
+   },
+   "BBAI": {
+    "events": 16,
+    "measured": 16
+   },
+   "NIO": {
+    "events": 20,
+    "measured": 23
+   },
+   "HOOD": {
+    "events": 13,
+    "measured": 14
+   },
+   "AMD": {
+    "events": 17,
+    "measured": 30
+   }
+  },
+  "daily": {
+   "QQQ": {
+    "events": 17,
+    "measured": 36
+   },
+   "SMCI": {
+    "events": 22,
+    "measured": 38
+   },
+   "PLTR": {
+    "events": 20,
+    "measured": 34
+   },
+   "ANET": {
+    "events": 22,
+    "measured": 47
+   },
+   "SOFI": {
+    "events": 23,
+    "measured": 29
+   },
+   "RKLB": {
+    "events": 23,
+    "measured": 41
+   },
+   "ONDS": {
+    "events": 23,
+    "measured": 36
+   },
+   "DRAM": {
+    "events": 0,
+    "measured": 0
+   },
+   "SPCX": {
+    "events": 0,
+    "measured": 0
+   },
+   "BBAI": {
+    "events": 18,
+    "measured": 20
+   },
+   "NIO": {
+    "events": 26,
+    "measured": 34
+   },
+   "HOOD": {
+    "events": 20,
+    "measured": 25
+   },
+   "AMD": {
+    "events": 19,
+    "measured": 22
+   }
+  }
+ }
+}
