@@ -58,3 +58,31 @@ fails, skip straight to (b) — Mike's relay is authoritative, Muse confirms
 receipt in main chat and executes; no further bridge round-trips spent on
 unblocking. A future fix would need AgentMail filter allowlisting, which is
 outside Muse's control.
+
+## 2026-09-25 ~12:45 EDT — ChatGPT relayed review of 05852cfb: PASS WITH ONE REQUIRED HARDENING (implemented same day)
+Via Mike's relay (authoritative per protocol): ChatGPT found one issue in the
+current duplicate logic worth fixing before real Intrinio data touches the
+harness — (1) same ticker+date rows with DIFFERING timing fields were silently
+collapsed to the first row, hiding a vendor disagreement; (2) revision
+matching keyed on ticker+date would turn a ticker change between historical
+pulls into an apparent removed+added event instead of a revision. Judgment:
+exact duplicates may collapse, conflicting duplicates must fail/flag;
+revision matching should use a stable security/company identifier where the
+feed provides one, with ticker/date as documented fallback. Reviewer verdict
+after this: harness ready for the Intrinio gate. No change to ERD, sample
+thresholds, or V5.4.
+Muse implementation same day: dedupe_records() now splits rows into unique /
+exact-duplicate (collapsed, counted, reported) / conflicting-duplicate
+(flagged; draw_sample REFUSES the whole draw while any exist — one event
+never takes zero ambiguity into the sample); revision matching via new
+_revision_key() preferring security.id, ticker+date as documented fallback
+(key_type recorded on changed entries). Suite now 50 tests (46 existing +
+4 new: conflicting-dup flagged, draw refuses conflicts, exact-dups still
+tolerate, stable-id match across ticker change, ticker fallback). Verified
+end-to-end on synthetic data: CLI sample/sheet/score run clean with exact
+duplicates collapsed+reported; conflicted pool refused with exit 1 and a
+named vendor-disagreement message. Published to main as 3cd810c (tests),
+535d674 (harness), 8ca17f1 (README).
+Status: timing audit harness is READY FOR THE INTRINIO GATE; still gated on
+the same blocker — human Intrinio specialist reply on Enterprise Zacks EPS
+Surprises access. No purchase, no trial, no performance data.
