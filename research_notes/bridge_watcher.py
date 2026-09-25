@@ -42,13 +42,14 @@ def main():
     seen = set(state.get("seen_ids", []))
 
     raw = gws("+triage", "--max", "30",
-              "--query", f'subject:"{SUBJECT}" newer_than:3d',
+              "--query", '{from:quality-flow-research@agentmail.to subject:"AGENT RESEARCH BRIDGE"} newer_than:3d',
               "--format", "json")
     try:
-        msgs = json.loads(raw) if raw else []
+        data = json.loads(raw) if raw else []
     except json.JSONDecodeError:
         print("NO_NEW")
         return
+    msgs = data.get("messages", []) if isinstance(data, dict) else data
     if not isinstance(msgs, list):
         print("NO_NEW")
         return
@@ -71,7 +72,7 @@ def main():
             "from": m.get("from") or m.get("sender"),
             "subject": m.get("subject"),
             "date": m.get("date"),
-            "snippet": (detail.get("body") or detail.get("snippet") or "")[:4000],
+            "snippet": (detail.get("body_text") or detail.get("body") or detail.get("snippet") or "")[:4000],
         })
         seen.add(mid)
 
