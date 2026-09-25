@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-25T14:52:32.342288+00:00",
+  "as_of": "2026-09-25T18:52:49.730146+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,11 +7,11 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-25T14:52:32.320010+00:00",
-  "signals_logged": 22,
+  "last_successful_cycle": "2026-09-25T18:52:49.724216+00:00",
+  "signals_logged": 23,
   "grade_counts": {
     "A": 7,
-    "B": 14,
+    "B": 15,
     "C": 1
   },
   "grade_counts_by_cohort": {
@@ -22,24 +22,11 @@
     },
     "Forward-X2": {
       "A": 5,
-      "B": 11,
+      "B": 12,
       "C": 1
     }
   },
-  "pending_entries": [
-    {
-      "signal_id": "v54:AAPL:4h:2026-09-25T10:30:00-04:00:2026-09-15-v54",
-      "symbol": "AAPL",
-      "grade": "B",
-      "signal_bar": "2026-09-25T06:30:00-04:00"
-    },
-    {
-      "signal_id": "v54:DELL:4h:2026-09-25T10:30:00-04:00:2026-09-15-v54",
-      "symbol": "DELL",
-      "grade": "B",
-      "signal_bar": "2026-09-25T06:30:00-04:00"
-    }
-  ],
+  "pending_entries": [],
   "open_positions": [
     {
       "signal_id": "v54:INTC:4h:2026-09-15T10:30:00-04:00:2026-09-15-v54",
@@ -50,7 +37,7 @@
       "stop": 95.79588097698213,
       "tp1": 107.79639865727073,
       "status": "open_runner",
-      "bars_held": 24,
+      "bars_held": 25,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 8.186423580160177,
@@ -65,7 +52,7 @@
       "stop": 668.3522394952015,
       "tp1": 705.2307387827768,
       "status": "open_runner",
-      "bars_held": 18,
+      "bars_held": 19,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 3.549029867592519,
@@ -80,7 +67,7 @@
       "stop": 309.2632915755711,
       "tp1": 348.5091821379598,
       "status": "open_runner",
-      "bars_held": 14,
+      "bars_held": 15,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 3.8831585391889547,
@@ -95,11 +82,11 @@
       "stop": 45.81544024797135,
       "tp1": 50.73407637306976,
       "status": "open_runner",
-      "bars_held": 14,
+      "bars_held": 15,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 2.952606550068037,
-      "mae_r": -0.366663350005748
+      "mae_r": -0.8748467487428173
     },
     {
       "signal_id": "v54:VEEV:4h:2026-09-22T14:30:00-04:00:2026-09-15-v54",
@@ -110,10 +97,10 @@
       "stop": 258.7238705785707,
       "tp1": 276.79667034476364,
       "status": "open_runner",
-      "bars_held": 8,
+      "bars_held": 9,
       "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 3.281251860262147,
+      "mfe_r": 3.3893465706513743,
       "mae_r": -0.5744848628240331
     },
     {
@@ -125,10 +112,10 @@
       "stop": 892.3073247924756,
       "tp1": 1026.6926576118653,
       "status": "open_full",
-      "bars_held": 6,
+      "bars_held": 7,
       "tp1_taken": false,
       "profit_protect_armed": null,
-      "mfe_r": 0.3502704898701597,
+      "mfe_r": 0.4077120597619023,
       "mae_r": -0.6071888410703221
     },
     {
@@ -140,7 +127,7 @@
       "stop": 93.93662832944473,
       "tp1": 97.53259011773136,
       "status": "open_full",
-      "bars_held": 6,
+      "bars_held": 7,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.4911285859426875,
@@ -155,7 +142,7 @@
       "stop": 196.61191875026725,
       "tp1": 212.94381089649804,
       "status": "open_full",
-      "bars_held": 3,
+      "bars_held": 4,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.4317126638638102,
@@ -170,7 +157,7 @@
       "stop": 260.63922066363205,
       "tp1": 272.959579823595,
       "status": "open_full",
-      "bars_held": 2,
+      "bars_held": 3,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.1477275530223987,
@@ -185,11 +172,41 @@
       "stop": 2.6675197647537634,
       "tp1": 3.0745304485265468,
       "status": "open_full",
-      "bars_held": 2,
+      "bars_held": 3,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.6747234336822234,
       "mae_r": -0.13956139526674705
+    },
+    {
+      "signal_id": "v54:AAPL:4h:2026-09-25T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "AAPL",
+      "grade": "B",
+      "entry": 336.3550109863281,
+      "entry_bar": "2026-09-25T10:30:00-04:00",
+      "stop": 332.09953436078825,
+      "tp1": 346.0228010702023,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.9646347119176626,
+      "mae_r": -0.03583531324679256
+    },
+    {
+      "signal_id": "v54:DELL:4h:2026-09-25T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "DELL",
+      "grade": "B",
+      "entry": 556.75,
+      "entry_bar": "2026-09-25T10:30:00-04:00",
+      "stop": 536.141244859984,
+      "tp1": 598.8872734273286,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.8273176946948534,
+      "mae_r": -0.006793940123323299
     }
   ],
   "closed_trades": 5,
