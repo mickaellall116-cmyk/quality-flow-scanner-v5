@@ -1,5 +1,5 @@
 """
-ERD v0.1 — 50-event Intrinio/Zacks timing-integrity audit harness.
+ERD v0.1 -- 50-event Intrinio/Zacks timing-integrity audit harness.
 
 Frozen gate (erd-v0.1-preregistration-amendment-1.md, section 15 DATA GATE):
   1. Random sample of 50 qualifying events, stratified to include >=10 BMO,
@@ -21,12 +21,27 @@ This harness implements steps that can run without human judgment:
 The primary-source verification itself is manual (a human checks each
 newswire timestamp); the sheet is the tracking artifact for that work.
 
+Reviewer-mandated integrity controls (ChatGPT PASS decision, 2026-09-25):
+  C1. Sample hash: SHA-256 over a canonical serialization of each sampled
+      row's vendor fields, stored in audit_sample.json BEFORE any human
+      examines evidence. `sheet` and `score` recompute and REFUSE on mismatch.
+  C2. Raw vendor data immutability: `fetch` stores SHA-256 of the raw record
+      payload as `raw_hash`; `sample` verifies before drawing and refuses on
+      mismatch; `verify` re-hashes any fetch file (OK / TAMPERED).
+  C3. No-replacement rule: sampled events are final. A missing/ambiguous
+      event scores as a non-match and against coverage per the frozen rules;
+      it is NEVER swapped for a convenient substitute. No code path exists
+      that replaces sampled events.
+  C4. Precommitted evidence precedence (EVIDENCE_PRECEDENCE): printed into
+      the verification sheet header BEFORE human examination.
+
 Generates ZERO performance data. This is a data-integrity gate, not a study.
 
 Usage:
   export INTRINIO_API_KEY='<key>'   # never commit this
   python3 audit_harness.py fetch --start 2005-01-01 --end 2026-06-30 \\
       --out raw_surprises.json
+  python3 audit_harness.py verify --in raw_surprises.json
   python3 audit_harness.py sample --in raw_surprises.json --seed 20260925 \\
       --out audit_sample.json
   python3 audit_harness.py sheet --in audit_sample.json \\
@@ -37,8 +52,8 @@ Usage:
 
 import argparse
 import csv
+import hashlib
 import json
-import math
 import os
 import random
 import sys
@@ -63,6 +78,84 @@ CODE_TO_BUCKET = {
     "AMC": "AMC",   # after market close -> S = next session
     "DTM": "DTM",   # during the market -> EXCLUDE per frozen event clock
 }
+
+VALID_BUCKETS = {"BMO", "AMC", "DTM"}
+
+
+class SampleIntegrityError(ValueError):
+    """Sample/raw integrity verification failed. Never caught silently."""
+
+
+# ---------------------------------------------------------------- C4: evidence precedence (precommitted)
+
+EVIDENCE_PRECEDENCE = (
+    "1. Company IR press-release timestamp (highest authority)",
+    "2. Newswire timestamp (Business Wire / PR Newswire)",
+    "3. NYSE official calendar: that day's actual regular-session open/close "
+    "(early closes honored)",
+    "4. Intrinio/Zacks vendor fields (lowest authority -- the data under audit)",
+)
+EVIDENCE_CONFLICT_RULES = (
+    "Conflicts between (1) and (2) resolve to the earliest published timestamp.",
+    "Vendor timing code (BTO/DTM/AMC) disagreeing with the timestamp-derived "
+    "bucket -> ambiguous -> EXCLUDE per frozen Amendment section 1.",
+    "Missing, ambiguous, or vendor-imputed timing -> EXCLUDE. "
+    "Timing is never imputed.",
+)
+
+
+# ---------------------------------------------------------------- C1/C2: hashing
+
+def _canonical(obj):
+    """Canonical JSON: sorted keys, no whitespace. Deterministic for hashing."""
+    return json.dumps(obj, sort_keys=True, separators=(",", ":"),
+                      ensure_ascii=True)
+
+
+def compute_raw_hash(records):
+    """C2: SHA-256 over the canonical raw vendor record payload."""
+    return hashlib.sha256(_canonical(records).encode("utf-8")).hexdigest()
+
+
+def check_raw_integrity(payload):
+    """C2: verify a fetch payload's raw_hash. Returns (True, '') or (False, reason)."""
+    stored = payload.get("raw_hash")
+    if not stored:
+        return (False, "no raw_hash present -- refetch with the current harness")
+    actual = compute_raw_hash(payload.get("records") or [])
+    if actual != stored:
+        return (False, "raw_hash mismatch -- vendor data modified after fetch")
+    return (True, "")
+
+
+ROW_VENDOR_FIELDS = ("event_id", "ticker", "intrinio_reported_date",
+                     "intrinio_reported_time", "intrinio_code", "derived_bucket")
+
+
+def _row_projection(row):
+    return {k: row.get(k, "") for k in ROW_VENDOR_FIELDS}
+
+
+def compute_sample_hash(rows):
+    """C1: SHA-256 over the canonical vendor-field projection of each row."""
+    h = hashlib.sha256()
+    for row in rows:
+        h.update(_canonical(_row_projection(row)).encode("utf-8"))
+    return h.hexdigest()
+
+
+def verify_sample_hash(rows, stored_hash):
+    """C1: recompute and compare. Raises SampleIntegrityError on any mismatch."""
+    if not stored_hash:
+        raise SampleIntegrityError(
+            "no sample_hash stored -- sample predates integrity controls")
+    actual = compute_sample_hash(rows)
+    if actual != stored_hash:
+        raise SampleIntegrityError(
+            "sample_hash mismatch: stored=%s... actual=%s... -- the sample "
+            "was tampered with or substituted after the draw"
+            % (stored_hash[:16], actual[:16]))
+    return True
 
 
 # ---------------------------------------------------------------- fetch
@@ -101,10 +194,15 @@ def _event_year(rec):
 
 
 def _is_qualifying(rec):
-    """Qualifying = has a parseable reported date and a known timing code."""
+    """Qualifying = parseable reported date AND a reported time AND a known
+    timing code. A record with missing actual_reported_time cannot have its
+    time verified against primary sources, so it is not qualifying."""
     d = rec.get("actual_reported_date") or ""
+    t = rec.get("actual_reported_time") or ""
     code = (rec.get("actual_reported_code") or "").upper()
     if len(d) < 10 or d[4] != "-" or d[7] != "-":
+        return False
+    if not t.strip():
         return False
     return code in CODE_TO_BUCKET
 
@@ -113,7 +211,12 @@ def draw_sample(records, seed):
     """
     Deterministic stratified draw honoring the frozen strata:
       50 events, >=10 BMO (BTO), >=10 AMC, >=8 distinct calendar years.
-    Retries with seed+1, seed+2, ... until strata hold (bounded).
+
+    The retry loop (seed, seed+1, ...) exists ONLY to satisfy the frozen
+    strata; the seed actually used is committed in the output. Re-running
+    with a different seed after seeing the draw -- e.g. to dodge
+    inconvenient events -- is prohibited: the output is final (see C3).
+
     Returns (sample_records, seed_used).
     """
     qualifying = [r for r in records if _is_qualifying(r)]
@@ -175,24 +278,74 @@ SHEET_FIELDS = ["event_id", "ticker",
                 "date_bucket_match_YN", "notes"]
 
 
-def write_sheet(rows, path):
+def _sheet_header_lines(sample_hash):
+    """C4: precedence block committed BEFORE any human examines evidence."""
+    lines = [
+        "# ERD v0.1 timing-audit verification sheet -- human verification worksheet",
+        f"# sample_hash: {sample_hash}",
+        "#",
+        "# EVIDENCE PRECEDENCE (precommitted; do not reorder during verification):",
+    ]
+    lines += [f"# {p}" for p in EVIDENCE_PRECEDENCE]
+    lines.append("# Conflict rules:")
+    lines += [f"# {r}" for r in EVIDENCE_CONFLICT_RULES]
+    lines += [
+        "#",
+        "# NO-REPLACEMENT RULE (C3): the 50 sampled events are final. A sampled",
+        "# event that turns out missing/ambiguous is scored as a non-match and",
+        "# counts against coverage per the frozen rules. It is NEVER replaced",
+        "# with a convenient substitute. No code path exists that swaps events.",
+        "#",
+    ]
+    return lines
+
+
+def write_sheet(rows, path, sample_hash):
     with open(path, "w", newline="", encoding="utf-8") as f:
+        for line in _sheet_header_lines(sample_hash):
+            f.write(line + "\n")
         w = csv.DictWriter(f, fieldnames=SHEET_FIELDS)
         w.writeheader()
         w.writerows(rows)
     print(f"wrote {len(rows)} rows -> {path}")
 
 
+def _read_sheet(path):
+    """Read a verification sheet: returns (sample_hash_or_None, data_rows)."""
+    sample_hash = None
+    with open(path, newline="", encoding="utf-8") as f:
+        body = [ln for ln in f if not ln.lstrip().startswith("#")]
+    # recover the hash from the comment lines separately
+    with open(path, encoding="utf-8") as f:
+        for ln in f:
+            s = ln.strip()
+            if s.startswith("# sample_hash:"):
+                sample_hash = s.split(":", 1)[1].strip()
+                break
+    rows = list(csv.DictReader(body))
+    return sample_hash, rows
+
+
 # ---------------------------------------------------------------- score
 
+def _valid_bucket(v):
+    return (v or "").strip().upper() in VALID_BUCKETS
+
+
 def score_sheet(path):
-    with open(path, newline="", encoding="utf-8") as f:
-        rows = list(csv.DictReader(f))
+    # C1: the vendor columns must still hash to the committed sample_hash.
+    # Any edit to a vendor field after the draw -> refusal.
+    stored_hash, rows = _read_sheet(path)
+    verify_sample_hash(rows, stored_hash)
 
     n = len(rows)
     filled = [r for r in rows if (r.get("date_bucket_match_YN") or "").strip().upper() in ("Y", "N")]
+    # C3: a row counts as a match ONLY with Y AND a valid verified bucket.
+    # Rows without a valid verified_bucket (missing/ambiguous timing) are
+    # non-matches -- never replaced, never excused.
     matches = sum(1 for r in filled
-                  if (r.get("date_bucket_match_YN") or "").strip().upper() == "Y")
+                  if (r.get("date_bucket_match_YN") or "").strip().upper() == "Y"
+                  and _valid_bucket(r.get("verified_bucket")))
     bmo = sum(1 for r in rows if (r.get("verified_bucket") or "").strip().upper() == "BMO")
     amc = sum(1 for r in rows if (r.get("verified_bucket") or "").strip().upper() == "AMC")
     years = { (r.get("verified_date") or "")[:4] for r in filled
@@ -201,13 +354,15 @@ def score_sheet(path):
     # Row-level coverage proxy: fraction of sampled events with a valid
     # verified timing classification. (Full-window coverage per the amendment
     # also needs the universe pull; reported separately.)
-    valid_timing = sum(1 for r in rows if (r.get("verified_bucket") or "").strip())
+    valid_timing = sum(1 for r in rows if _valid_bucket(r.get("verified_bucket")))
     coverage = (valid_timing / n) if n else 0.0
 
     # Revision-pattern screen: count mismatches by direction.
     mismatch_dirs = {}
     for r in filled:
-        if (r.get("date_bucket_match_YN") or "").strip().upper() == "N":
+        is_match = ((r.get("date_bucket_match_YN") or "").strip().upper() == "Y"
+                    and _valid_bucket(r.get("verified_bucket")))
+        if not is_match:
             key = (f"intrinio={r.get('intrinio_reported_date')}/{r.get('intrinio_code')}"
                    f" vs verified={r.get('verified_date')}/{r.get('verified_bucket')}")
             mismatch_dirs[key] = mismatch_dirs.get(key, 0) + 1
@@ -237,6 +392,16 @@ def score_sheet(path):
     return report
 
 
+# ---------------------------------------------------------------- verify
+
+def verify_file(path):
+    """C2: re-hash a fetch file's raw payload. Returns (status, reason)."""
+    with open(path, encoding="utf-8") as f:
+        payload = json.load(f)
+    ok, reason = check_raw_integrity(payload)
+    return ("OK", "") if ok else ("TAMPERED", reason)
+
+
 # ---------------------------------------------------------------- cli
 
 def main():
@@ -247,6 +412,9 @@ def main():
     p.add_argument("--start", required=True)
     p.add_argument("--end", required=True)
     p.add_argument("--out", required=True)
+
+    p = sub.add_parser("verify", help="re-hash a fetch file: OK or TAMPERED")
+    p.add_argument("--in", dest="inp", required=True)
 
     p = sub.add_parser("sample", help="draw the stratified 50-event sample")
     p.add_argument("--in", dest="inp", required=True)
@@ -267,30 +435,52 @@ def main():
         if not key:
             sys.exit("INTRINIO_API_KEY is not set")
         recs = fetch_surprises(key, args.start, args.end)
+        payload = {"start": args.start, "end": args.end,
+                   "n": len(recs),
+                   "raw_hash": compute_raw_hash(recs),  # C2
+                   "records": recs}
         with open(args.out, "w", encoding="utf-8") as f:
-            json.dump({"start": args.start, "end": args.end,
-                       "n": len(recs), "records": recs}, f)
-        print(f"saved {len(recs)} records -> {args.out}")
+            json.dump(payload, f)
+        print(f"saved {len(recs)} records (raw_hash {payload['raw_hash'][:16]}...) -> {args.out}")
+
+    elif args.cmd == "verify":
+        status, reason = verify_file(args.inp)
+        print(status + (f": {reason}" if reason else ""))
+        sys.exit(0 if status == "OK" else 1)
 
     elif args.cmd == "sample":
         with open(args.inp, encoding="utf-8") as f:
             payload = json.load(f)
+        ok, reason = check_raw_integrity(payload)  # C2: refuse on tampered raw
+        if not ok:
+            sys.exit(f"REFUSING to sample: {reason}")
         sample, seed_used = draw_sample(payload["records"], args.seed)
         rows = [to_audit_row(r, i) for i, r in enumerate(sample)]
+        sample_hash = compute_sample_hash(rows)  # C1: hash BEFORE evidence
+        out = {"seed_requested": args.seed, "seed_used": seed_used,
+               "sample_hash": sample_hash,
+               "raw_hash_verified": payload.get("raw_hash"),
+               "n": len(rows), "rows": rows,
+               "source_window": {k: payload[k] for k in ("start", "end") if k in payload}}
         with open(args.out, "w", encoding="utf-8") as f:
-            json.dump({"seed_requested": args.seed, "seed_used": seed_used,
-                       "n": len(rows), "rows": rows,
-                       "source_window": {k: payload[k] for k in ("start", "end") if k in payload}},
-                      f, indent=2)
-        print(f"drew {len(rows)} events (seed {seed_used}) -> {args.out}")
+            json.dump(out, f, indent=2)
+        print(f"drew {len(rows)} events (seed {seed_used}, "
+              f"sample_hash {sample_hash[:16]}...) -> {args.out}")
 
     elif args.cmd == "sheet":
         with open(args.inp, encoding="utf-8") as f:
             payload = json.load(f)
-        write_sheet(payload["rows"], args.out)
+        try:
+            verify_sample_hash(payload["rows"], payload.get("sample_hash"))  # C1
+        except SampleIntegrityError as e:
+            sys.exit(f"REFUSING to build sheet: {e}")
+        write_sheet(payload["rows"], args.out, payload["sample_hash"])
 
     elif args.cmd == "score":
-        score_sheet(args.inp)
+        try:
+            score_sheet(args.inp)
+        except SampleIntegrityError as e:
+            sys.exit(f"REFUSING to score: {e}")
 
 
 if __name__ == "__main__":
