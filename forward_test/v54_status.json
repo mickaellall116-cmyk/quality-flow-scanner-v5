@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-24T20:56:23.613180+00:00",
+  "as_of": "2026-09-25T02:55:27.774622+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,7 +7,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-09-24T20:56:23.604042+00:00",
+  "last_successful_cycle": "2026-09-25T02:55:27.760672+00:00",
   "signals_logged": 19,
   "grade_counts": {
     "A": 7,
