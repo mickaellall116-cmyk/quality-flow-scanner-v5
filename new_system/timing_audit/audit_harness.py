@@ -34,6 +34,14 @@ Reviewer-mandated integrity controls (ChatGPT PASS decision, 2026-09-25):
       that replaces sampled events.
   C4. Precommitted evidence precedence (EVIDENCE_PRECEDENCE): printed into
       the verification sheet header BEFORE human examination.
+  C5. Scorer version freeze (SCORER_VERSION): embedded in the sample file,
+      the sheet header, and the score report. `sheet` and `score` REFUSE
+      artifacts from any other scorer version. Frozen before real data.
+  C6. Duplicate/revision handling: duplicate vendor rows (same ticker+date)
+      are dropped before stratification and reported (one event = one slot);
+      detect_vendor_revisions() diffs two pulls on event key and flags any
+      timing-field restatement (backfill) for the gate's systematic-revision
+      screen.
 
 Generates ZERO performance data. This is a data-integrity gate, not a study.
 
@@ -81,9 +89,92 @@ CODE_TO_BUCKET = {
 
 VALID_BUCKETS = {"BMO", "AMC", "DTM"}
 
+# C5: scorer version. Frozen before real data. Embedded in the sample file,
+# the verification sheet header, and the score report; `sheet` and `score`
+# REFUSE when the version on the artifact differs from this harness.
+# Bump ONLY with a new preregistration amendment.
+SCORER_VERSION = "1.0.0"
+
 
 class SampleIntegrityError(ValueError):
     """Sample/raw integrity verification failed. Never caught silently."""
+
+
+# ---------------------------------------------------------------- C6: event identity, duplicates, revisions
+
+TIMING_FIELDS = ("actual_reported_date", "actual_reported_time",
+                 "actual_reported_code")
+
+
+def _event_key(rec):
+    """Canonical event identity: ticker + reported date. Two vendor rows with
+    the same key are the same earnings event (duplicates or revisions)."""
+    ticker = ((rec.get("security") or {}).get("ticker")
+              or rec.get("ticker") or "").strip().upper()
+    return (ticker, (rec.get("actual_reported_date") or "").strip())
+
+
+def dedupe_records(records):
+    """Drop duplicate vendor rows (same ticker+date), keeping the first
+    occurrence. Returns (unique_records, n_duplicates_removed). Duplicates are
+    reported, never silently collapsed: one event must never occupy two
+    sample slots."""
+    seen = set()
+    unique = []
+    for r in records:
+        k = _event_key(r)
+        if k in seen:
+            continue
+        seen.add(k)
+        unique.append(r)
+    return unique, len(records) - len(unique)
+
+
+def detect_vendor_revisions(old_records, new_records):
+    """Diff two vendor pulls on event key. A timing-field change between pulls
+    is a vendor revision (restatement/backfill) -- the exact pattern the
+    frozen gate's 'no systematic revision' criterion screens for.
+    Returns {"changed": [...], "added": [...], "removed": [...]} where each
+    changed entry is {"event_key", "ticker", "changes": {field: (old, new)}}.
+    Pure function: no network, no mutation."""
+    old_by_key = {}
+    for r in old_records:
+        old_by_key.setdefault(_event_key(r), r)
+    new_by_key = {}
+    for r in new_records:
+        new_by_key.setdefault(_event_key(r), r)
+    changed, added, removed = [], [], []
+    for k, new_r in new_by_key.items():
+        old_r = old_by_key.get(k)
+        if old_r is None:
+            added.append({"event_key": k,
+                          "ticker": new_r.get("ticker") or ""})
+            continue
+        diffs = {}
+        for f in TIMING_FIELDS:
+            o, n = (old_r.get(f) or ""), (new_r.get(f) or "")
+            if o != n:
+                diffs[f] = (o, n)
+        if diffs:
+            changed.append({"event_key": k,
+                            "ticker": new_r.get("ticker") or "",
+                            "changes": diffs})
+    for k, old_r in old_by_key.items():
+        if k not in new_by_key:
+            removed.append({"event_key": k,
+                            "ticker": old_r.get("ticker") or ""})
+    return {"changed": changed, "added": added, "removed": removed}
+
+
+def check_scorer_version(artifact_version):
+    """C5: refuse when an artifact was produced by a different scorer version.
+    Raises SampleIntegrityError on mismatch. Never caught silently."""
+    if artifact_version != SCORER_VERSION:
+        raise SampleIntegrityError(
+            f"scorer_version mismatch: artifact={artifact_version!r} "
+            f"harness={SCORER_VERSION!r} -- the scorer changed since this "
+            f"artifact was produced; re-freeze under a new amendment")
+    return True
 
 
 # ---------------------------------------------------------------- C4: evidence precedence (precommitted)
@@ -220,6 +311,12 @@ def draw_sample(records, seed):
     Returns (sample_records, seed_used).
     """
     qualifying = [r for r in records if _is_qualifying(r)]
+    # C6: one event = one slot. Drop duplicate vendor rows (same ticker+date)
+    # before stratification; duplicates are reported, never silently kept.
+    qualifying, n_dupes = dedupe_records(qualifying)
+    if n_dupes:
+        print(f"removed {n_dupes} duplicate vendor rows (same ticker+date)",
+              file=sys.stderr)
     bto = [r for r in qualifying if (r.get("actual_reported_code") or "").upper() == "BTO"]
     amc = [r for r in qualifying if (r.get("actual_reported_code") or "").upper() == "AMC"]
     if len(bto) < MIN_BMO or len(amc) < MIN_AMC:
@@ -278,11 +375,12 @@ SHEET_FIELDS = ["event_id", "ticker",
                 "date_bucket_match_YN", "notes"]
 
 
-def _sheet_header_lines(sample_hash):
+def _sheet_header_lines(sample_hash, scorer_version):
     """C4: precedence block committed BEFORE any human examines evidence."""
     lines = [
         "# ERD v0.1 timing-audit verification sheet -- human verification worksheet",
         f"# sample_hash: {sample_hash}",
+        f"# scorer_version: {scorer_version}",
         "#",
         "# EVIDENCE PRECEDENCE (precommitted; do not reorder during verification):",
     ]
@@ -300,9 +398,9 @@ def _sheet_header_lines(sample_hash):
     return lines
 
 
-def write_sheet(rows, path, sample_hash):
+def write_sheet(rows, path, sample_hash, scorer_version=SCORER_VERSION):
     with open(path, "w", newline="", encoding="utf-8") as f:
-        for line in _sheet_header_lines(sample_hash):
+        for line in _sheet_header_lines(sample_hash, scorer_version):
             f.write(line + "\n")
         w = csv.DictWriter(f, fieldnames=SHEET_FIELDS)
         w.writeheader()
@@ -311,19 +409,21 @@ def write_sheet(rows, path, sample_hash):
 
 
 def _read_sheet(path):
-    """Read a verification sheet: returns (sample_hash_or_None, data_rows)."""
+    """Read a verification sheet: returns (sample_hash, scorer_version, rows)."""
     sample_hash = None
+    scorer_version = None
     with open(path, newline="", encoding="utf-8") as f:
         body = [ln for ln in f if not ln.lstrip().startswith("#")]
-    # recover the hash from the comment lines separately
+    # recover the hash and version from the comment lines separately
     with open(path, encoding="utf-8") as f:
         for ln in f:
             s = ln.strip()
             if s.startswith("# sample_hash:"):
                 sample_hash = s.split(":", 1)[1].strip()
-                break
+            elif s.startswith("# scorer_version:"):
+                scorer_version = s.split(":", 1)[1].strip()
     rows = list(csv.DictReader(body))
-    return sample_hash, rows
+    return sample_hash, scorer_version, rows
 
 
 # ---------------------------------------------------------------- score
@@ -335,7 +435,9 @@ def _valid_bucket(v):
 def score_sheet(path):
     # C1: the vendor columns must still hash to the committed sample_hash.
     # Any edit to a vendor field after the draw -> refusal.
-    stored_hash, rows = _read_sheet(path)
+    # C5: the sheet must have been built by this exact scorer version.
+    stored_hash, artifact_version, rows = _read_sheet(path)
+    check_scorer_version(artifact_version)
     verify_sample_hash(rows, stored_hash)
 
     n = len(rows)
@@ -374,6 +476,7 @@ def score_sheet(path):
                    else "FAIL")
 
     report = {
+        "scorer_version": SCORER_VERSION,
         "n_rows": n,
         "n_scored": len(filled),
         "n_unfilled": unfilled,
@@ -458,6 +561,7 @@ def main():
         rows = [to_audit_row(r, i) for i, r in enumerate(sample)]
         sample_hash = compute_sample_hash(rows)  # C1: hash BEFORE evidence
         out = {"seed_requested": args.seed, "seed_used": seed_used,
+               "scorer_version": SCORER_VERSION,  # C5: frozen scorer identity
                "sample_hash": sample_hash,
                "raw_hash_verified": payload.get("raw_hash"),
                "n": len(rows), "rows": rows,
@@ -471,10 +575,12 @@ def main():
         with open(args.inp, encoding="utf-8") as f:
             payload = json.load(f)
         try:
+            check_scorer_version(payload.get("scorer_version"))  # C5
             verify_sample_hash(payload["rows"], payload.get("sample_hash"))  # C1
         except SampleIntegrityError as e:
             sys.exit(f"REFUSING to build sheet: {e}")
-        write_sheet(payload["rows"], args.out, payload["sample_hash"])
+        write_sheet(payload["rows"], args.out, payload["sample_hash"],
+                    payload.get("scorer_version") or SCORER_VERSION)
 
     elif args.cmd == "score":
         try:
