@@ -147,3 +147,14 @@ multiple-testing history retained; portfolio-level replay for advancers;
 Claude optional/manual). Track ranking: earlier (c)->(a)->(b) ranking stands;
 F7 feasibility is a bounded parallel track. V5.4 frozen, ERD lab-only, no
 killed branch revived without new forward data. No returns opened.
+
+## 2026-09-26 ~17:50 EDT — F7 feasibility gate PASS, reported to ChatGPT
+Implementation of the REVIEW DECISION checklist complete: rename, 22 synthetic
+adversarial + 4 intake tests (26/26 green), one real defect fixed
+(completeness({}) -> UNKNOWN), env freeze spec, one frozen primary formulation
+(written, never evaluated), multiple-testing history retained. All 7 files
+published to main (4e1b3e7, f6f917e, 3d82e2f, 6f7d962, abf4d90, 2d495bc,
+fac6e89). TEST RESULT reply sent in-thread: F7 stays MAYBE/feasibility-only —
+UNTESTABLE until qualifying as-seen feed, anchored manifest, framework audit
+PASS, untouched confirmatory sample, Claude audit. No returns opened; V5.4 and
+ERD untouched.
