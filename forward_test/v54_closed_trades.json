@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-09-21T14:55:15.773709+00:00",
-  "count": 4,
+  "as_of": "2026-09-25T14:52:32.352183+00:00",
+  "count": 5,
   "trades": [
     {
       "type": "close",
@@ -169,6 +169,48 @@
       "v53_entry": "YES",
       "v53_score": 100,
       "logged_at": "2026-09-21T14:55:15.766557+00:00"
+    },
+    {
+      "type": "close",
+      "signal_id": "v54:GLXY:4h:2026-09-24T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "GLXY",
+      "signal_time": "2026-09-24T10:30:00-04:00",
+      "grade": "C",
+      "market_gate": "CAUTION",
+      "market_regime": "RISK-ON",
+      "rvol_exact": 0.5921547351345203,
+      "daily_state": "not_confirmed",
+      "weekly_state": "unknown",
+      "risk_reward": 1.774,
+      "confirmation_15m": false,
+      "premarket": {
+        "pm_last": 24.89,
+        "pm_gap_pct": -3.49,
+        "pm_range_pct": 3.84,
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "pm_read": "BEARISH"
+      },
+      "entry": 25.674999237060547,
+      "entry_bar": "2026-09-24T10:30:00-04:00",
+      "tp1": 28.01529288863265,
+      "stop": 24.316615137740577,
+      "reached_plus_1r": false,
+      "tp1_taken": false,
+      "partial_r": null,
+      "runner_r": null,
+      "blended_r": -1.0,
+      "mfe_r": 0.0405,
+      "mae_r": -1.1153,
+      "bars_held": 3,
+      "exit_reason": "stop",
+      "exit_px": 24.316615137740577,
+      "exit_bar": "2026-09-25T06:30:00-04:00",
+      "v53_vetoed": false,
+      "v53_state": "PULLBACK BUY",
+      "v53_entry": "YES",
+      "v53_score": 100,
+      "logged_at": "2026-09-25T14:52:32.319920+00:00"
     }
   ]
 }
