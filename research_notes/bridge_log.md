@@ -86,3 +86,46 @@ named vendor-disagreement message. Published to main as 3cd810c (tests),
 Status: timing audit harness is READY FOR THE INTRINIO GATE; still gated on
 the same blocker — human Intrinio specialist reply on Enterprise Zacks EPS
 Surprises access. No purchase, no trial, no performance data.
+
+## 2026-09-25 ~18:40 EDT — root cause found for AgentMail outbound blocks (fix requires ChatGPT's side)
+Third block: ChatGPT's MAYBE review (multiple-testing candidate-family ledger proposal) blocked again on AgentMail outbound; relayed via Mike. New diagnosis (AgentMail docs + community skill notes): AgentMail auto-adds an org-level send-block entry after a bounce/rejection — 403 "Recipient(s) blocked" that refuses the send before mail leaves, regardless of content. This fits the evidence: the first review reply arrived fine; every send after that failed, including the <2,000-char plain-text retry with no links/tables — content shaping cannot fix recipient-level suppression. This revises the earlier "outside Muse's control" note: the block is fixable, but only by the AgentMail account holder (ChatGPT's side) via the Lists API: GET /v0/lists/send/block/mickaellall116@gmail.com → DELETE the entry (expect 204; 409 read_only = do not loop) → resend. Fix instructions passed to Mike for ChatGPT. Until confirmed fixed, Mike's relay stays authoritative.
+
+## 2026-09-25 ~18:55 EDT — bridge moved to GitHub (Mike's decision)
+Per ChatGPT's proposal (relayed via Mike) and Mike's "Yes": standing issue
+#1 "Quality Flow Research Bridge" is now the primary channel; email/AgentMail
+is fallback only. Setup: issue created with protocol body; Muse's side posts
+via commits to research_notes/bridge_thread.md (commit 6972ce3) because its
+GitHub token returns 403 "Resource not accessible by personal access token"
+on issue comments and issue edits — create + read work, comment/edit do not
+(scope limit). ChatGPT replies as issue comments; bridge_watcher.py now polls
+issue #1 comments AND the Gmail fallback thread every 10 min. Mandate updated
+(commit 10939e1). If Mike reconnects the GitHub connector with a broader
+token, Muse can post comments directly and bridge_thread.md becomes redundant.
+
+## 2026-09-25 ~19:20 EDT — ChatGPT (via Mike): process fixed, underlying block not
+ChatGPT confirmed the process fix is complete (relay authoritative, GitHub
+records decisions, no blind retries) but its AgentMail outbound suppression is
+not removable from its connector — endorsing the GitHub bridge as the fix that
+removes email delivery from the workflow. Recorded in bridge_thread.md
+(862e2be). Email stays fallback only.
+
+## 2026-09-25 ~19:20 EDT — bridge VERIFIED end-to-end
+ChatGPT's PASS comment (5840969127) confirmed readable via API. Live path:
+Muse → bridge_thread.md → ChatGPT → Issue #1 comment → 10-min watcher.
+GitHub primary, email fallback. Frozen state re-acknowledged.
+
+## 2026-09-26 ~00:40 EDT — 3H hybrid forward baseline done (Mike-authorized research)
+Per Mike's 2026-09-26 authorization to investigate the 3H paper-only idea
+(research only — not approved, not deployed): re-ran the frozen 3H plain
+Hybrid spec (pine_2h3h_backtest, canonical pine_backtest.py unmodified, 25bps
+costs, 14 tickers) on 1H data through 2026-09-25 15:30 ET. Full-window
+reproduction matches the historical study exactly (371 trades, +0.158R @25bps,
+50.7% win, PF 1.24) — pipeline faithful. Forward window (entry >= 2026-09-15):
+n = 0 trades; last 3H signal fired 2026-09-14 (HOOD, stopped). Verdict: the
++0.15R gate cannot be evaluated on forward data yet — neither pass nor fail;
+historical +0.158R stands unreplicated and unrefuted. Live arbiter needs
+weeks-to-months of paper sidecar; re-check at the ~50-signal checkpoint (late
+Oct 2026) alongside the other arbiters. Nothing for Claude to independently
+confirm (no forward trades). Report: research_notes/3h_hybrid_forward_baseline_2026-09-26.md
+(committed 668282c). Intrinio: inbox checked 2026-09-26 ~00:33 EDT — still no
+human specialist reply; access remains the blocker, no purchase, no trial.
