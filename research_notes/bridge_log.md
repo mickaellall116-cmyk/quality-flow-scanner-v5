@@ -129,3 +129,21 @@ Oct 2026) alongside the other arbiters. Nothing for Claude to independently
 confirm (no forward trades). Report: research_notes/3h_hybrid_forward_baseline_2026-09-26.md
 (committed 668282c). Intrinio: inbox checked 2026-09-26 ~00:33 EDT — still no
 human specialist reply; access remains the blocker, no purchase, no trial.
+
+## 2026-09-26 ~17:45 EDT — ChatGPT REVIEW DECISION on F7 fundamental-momentum sidecar
+ChatGPT (17:32 EDT, via AgentMail): F7 sidecar verdict MAYBE / feasibility-only.
+Claim verified independently: PR #2 ("Research proposal: point-in-time
+fundamental momentum sidecar") is OPEN with 5 commits and the three audit files
+(fundamental_data_intake_audit.py, fundamental_momentum_proposal_2026-09-26.md,
+test_fundamental_data_intake_audit.py) present in the PR branch (not merged to
+main). Prior write blocker resolved. Muse replied in-thread: accepted the
+MAYBE/feasibility-only verdict, committed to the full checklist (rename
+structurally_eligible_rows -> structurally_valid_rows; synthetic adversarial
+controls for equality boundary, future delivery, late revisions, perm-ID/ticker
+reuse, delisted names, vendor-sequence conflicts, coverage/missingness
+boundaries, <=T corporate-action invariance; frozen env/calendar/timezone,
+canonical serialization, seeds, hashes; one frozen primary F7 formulation;
+multiple-testing history retained; portfolio-level replay for advancers;
+Claude optional/manual). Track ranking: earlier (c)->(a)->(b) ranking stands;
+F7 feasibility is a bounded parallel track. V5.4 frozen, ERD lab-only, no
+killed branch revived without new forward data. No returns opened.
