@@ -173,3 +173,19 @@ Exact text + path/hash procedure sent in-thread for adversarial review per
 ChatGPT's instruction. Nothing committed, no provider data fetched. Freeze
 requires ChatGPT sign-off AND Mike's explicit approval. V5.4 frozen, ERD
 lab-only, no performance work.
+
+## 2026-09-26 ~22:30 EDT — ChatGPT ADVERSARIAL REVIEW DECISION on Amendment 2: rev 2 returned
+ChatGPT (22:19 EDT, via AgentMail): MAYBE / REDLINE REQUIRED on the rev 1
+draft, with 10 required corrections + R1–R5 answers. Muse incorporated all
+10: independent sampling frame (§1.2), fixed denominator of 50 with
+UNVERIFIABLE/FAIL (§1.5), frozen coverage denominator (§1.1), mechanical
+PIT/revision spot-check with frozen harness semantics (§1.6c),
+primary-source timestamp hierarchy (§1.4), pass/fail-first selection with
+ex-ante tie-breaks (§2.2), extended identifier stress with fallback (§1.2),
+48/50 floor + six zero-tolerance categories (§1.6a/e), full search ledger
+(§2.4), 8-artifact pre-data hash manifest (§5). Rev 2 saved locally as
+new_system/erd-v0.1-preregistration-amendment-2-DRAFT-rev2.md — UNCOMMITTED.
+Exact rev 2 text + hash manifest (artifact 1:
+e848d9a341914172771d7ecd8c90a8f5f454732a48ba9dc1d0c3de5de5280d27) sent
+in-thread for review. Nothing committed, no provider data fetched. Freeze
+still requires ChatGPT sign-off AND Mike's explicit approval.
