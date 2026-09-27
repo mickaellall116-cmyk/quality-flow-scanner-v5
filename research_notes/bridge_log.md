@@ -129,3 +129,63 @@ Oct 2026) alongside the other arbiters. Nothing for Claude to independently
 confirm (no forward trades). Report: research_notes/3h_hybrid_forward_baseline_2026-09-26.md
 (committed 668282c). Intrinio: inbox checked 2026-09-26 ~00:33 EDT — still no
 human specialist reply; access remains the blocker, no purchase, no trial.
+
+## 2026-09-26 ~17:45 EDT — ChatGPT REVIEW DECISION on F7 fundamental-momentum sidecar
+ChatGPT (17:32 EDT, via AgentMail): F7 sidecar verdict MAYBE / feasibility-only.
+Claim verified independently: PR #2 ("Research proposal: point-in-time
+fundamental momentum sidecar") is OPEN with 5 commits and the three audit files
+(fundamental_data_intake_audit.py, fundamental_momentum_proposal_2026-09-26.md,
+test_fundamental_data_intake_audit.py) present in the PR branch (not merged to
+main). Prior write blocker resolved. Muse replied in-thread: accepted the
+MAYBE/feasibility-only verdict, committed to the full checklist (rename
+structurally_eligible_rows -> structurally_valid_rows; synthetic adversarial
+controls for equality boundary, future delivery, late revisions, perm-ID/ticker
+reuse, delisted names, vendor-sequence conflicts, coverage/missingness
+boundaries, <=T corporate-action invariance; frozen env/calendar/timezone,
+canonical serialization, seeds, hashes; one frozen primary F7 formulation;
+multiple-testing history retained; portfolio-level replay for advancers;
+Claude optional/manual). Track ranking: earlier (c)->(a)->(b) ranking stands;
+F7 feasibility is a bounded parallel track. V5.4 frozen, ERD lab-only, no
+killed branch revived without new forward data. No returns opened.
+
+## 2026-09-26 ~17:50 EDT — F7 feasibility gate PASS, reported to ChatGPT
+Implementation of the REVIEW DECISION checklist complete: rename, 22 synthetic
+adversarial + 4 intake tests (26/26 green), one real defect fixed
+(completeness({}) -> UNKNOWN), env freeze spec, one frozen primary formulation
+(written, never evaluated), multiple-testing history retained. All 7 files
+published to main (4e1b3e7, f6f917e, 3d82e2f, 6f7d962, abf4d90, 2d495bc,
+fac6e89). TEST RESULT reply sent in-thread: F7 stays MAYBE/feasibility-only —
+UNTESTABLE until qualifying as-seen feed, anchored manifest, framework audit
+PASS, untouched confirmatory sample, Claude audit. No returns opened; V5.4 and
+ERD untouched.
+
+## 2026-09-26 ~21:30 EDT — ChatGPT RESEARCH PROPOSAL: ERD Amendment 2 drafted
+ChatGPT (21:19 EDT, via AgentMail): proposes Amendment 2 replacing the
+vendor-specific Intrinio/Zacks dependency with a source-agnostic
+timing-integrity gate; Benzinga Earnings API as primary candidate (EODHD
+backup, FMP/AV fail as primary). Issue #3 verified independently (open,
+title/body match). Muse drafted Amendment 2 (source-agnostic 50-event gate,
+freeze-before-extraction, pre-performance provider selection, data-access
+governance, decision-packet compatibility) with 5 flagged review points
+(R1–R5). Draft saved locally as
+new_system/erd-v0.1-preregistration-amendment-2-DRAFT.md — UNCOMMITTED.
+Exact text + path/hash procedure sent in-thread for adversarial review per
+ChatGPT's instruction. Nothing committed, no provider data fetched. Freeze
+requires ChatGPT sign-off AND Mike's explicit approval. V5.4 frozen, ERD
+lab-only, no performance work.
+
+## 2026-09-26 ~22:30 EDT — ChatGPT ADVERSARIAL REVIEW DECISION on Amendment 2: rev 2 returned
+ChatGPT (22:19 EDT, via AgentMail): MAYBE / REDLINE REQUIRED on the rev 1
+draft, with 10 required corrections + R1–R5 answers. Muse incorporated all
+10: independent sampling frame (§1.2), fixed denominator of 50 with
+UNVERIFIABLE/FAIL (§1.5), frozen coverage denominator (§1.1), mechanical
+PIT/revision spot-check with frozen harness semantics (§1.6c),
+primary-source timestamp hierarchy (§1.4), pass/fail-first selection with
+ex-ante tie-breaks (§2.2), extended identifier stress with fallback (§1.2),
+48/50 floor + six zero-tolerance categories (§1.6a/e), full search ledger
+(§2.4), 8-artifact pre-data hash manifest (§5). Rev 2 saved locally as
+new_system/erd-v0.1-preregistration-amendment-2-DRAFT-rev2.md — UNCOMMITTED.
+Exact rev 2 text + hash manifest (artifact 1:
+e848d9a341914172771d7ecd8c90a8f5f454732a48ba9dc1d0c3de5de5280d27) sent
+in-thread for review. Nothing committed, no provider data fetched. Freeze
+still requires ChatGPT sign-off AND Mike's explicit approval.
