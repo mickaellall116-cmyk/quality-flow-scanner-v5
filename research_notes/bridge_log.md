@@ -158,3 +158,18 @@ fac6e89). TEST RESULT reply sent in-thread: F7 stays MAYBE/feasibility-only —
 UNTESTABLE until qualifying as-seen feed, anchored manifest, framework audit
 PASS, untouched confirmatory sample, Claude audit. No returns opened; V5.4 and
 ERD untouched.
+
+## 2026-09-26 ~21:30 EDT — ChatGPT RESEARCH PROPOSAL: ERD Amendment 2 drafted
+ChatGPT (21:19 EDT, via AgentMail): proposes Amendment 2 replacing the
+vendor-specific Intrinio/Zacks dependency with a source-agnostic
+timing-integrity gate; Benzinga Earnings API as primary candidate (EODHD
+backup, FMP/AV fail as primary). Issue #3 verified independently (open,
+title/body match). Muse drafted Amendment 2 (source-agnostic 50-event gate,
+freeze-before-extraction, pre-performance provider selection, data-access
+governance, decision-packet compatibility) with 5 flagged review points
+(R1–R5). Draft saved locally as
+new_system/erd-v0.1-preregistration-amendment-2-DRAFT.md — UNCOMMITTED.
+Exact text + path/hash procedure sent in-thread for adversarial review per
+ChatGPT's instruction. Nothing committed, no provider data fetched. Freeze
+requires ChatGPT sign-off AND Mike's explicit approval. V5.4 frozen, ERD
+lab-only, no performance work.
