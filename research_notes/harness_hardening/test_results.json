@@ -1,0 +1,186 @@
+{
+  "suite": "V5.4 forward-harness network-timeout hardening \u2014 synthetic fault injection",
+  "run_utc": "2026-09-28T17:48:41Z",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "network_used": false
+  },
+  "harness_under_test": {
+    "path": "lab copy /tmp/harness_hardening/v54_forward_harness.py",
+    "sha256": "faaf725aad2f162e6cbb0fe20ca97b60024151389cd34fd09126e40314ce96d7"
+  },
+  "test_source": {
+    "path": "research_notes/harness_hardening/test_fault_injection.py",
+    "sha256": "9365b7222d3188727c4fede66d49f72e892a616795a0de66f4871f6c51c9bb64"
+  },
+  "summary": {
+    "tests": 23,
+    "passed": 23,
+    "failed": 0,
+    "checks_passed": 94
+  },
+  "tests": [
+    {
+      "test": "test_watchdog_timeout_non_retriable",
+      "status": "pass",
+      "checks_passed": 7,
+      "duration_s": 0.501,
+      "error": null
+    },
+    {
+      "test": "test_raised_transient_still_retries_once",
+      "status": "pass",
+      "checks_passed": 3,
+      "duration_s": 0.101,
+      "error": null
+    },
+    {
+      "test": "test_429_without_retry_after_trips_global",
+      "status": "pass",
+      "checks_passed": 4,
+      "duration_s": 0.0,
+      "error": null
+    },
+    {
+      "test": "test_429_with_retry_after_retries_once_then_succeeds",
+      "status": "pass",
+      "checks_passed": 4,
+      "duration_s": 0.005,
+      "error": null
+    },
+    {
+      "test": "test_5xx_single_bounded_retry",
+      "status": "pass",
+      "checks_passed": 2,
+      "duration_s": 0.104,
+      "error": null
+    },
+    {
+      "test": "test_5xx_persistent_gives_up_after_one_retry",
+      "status": "pass",
+      "checks_passed": 3,
+      "duration_s": 0.101,
+      "error": null
+    },
+    {
+      "test": "test_frame_validation",
+      "status": "pass",
+      "checks_passed": 7,
+      "duration_s": 0.008,
+      "error": null
+    },
+    {
+      "test": "test_classify_failure",
+      "status": "pass",
+      "checks_passed": 5,
+      "duration_s": 0.0,
+      "error": null
+    },
+    {
+      "test": "test_missing_universe_symbol_suppresses_entries_but_exits_continue",
+      "status": "pass",
+      "checks_passed": 7,
+      "duration_s": 0.037,
+      "error": null
+    },
+    {
+      "test": "test_open_position_gap_defers_never_invents",
+      "status": "pass",
+      "checks_passed": 8,
+      "duration_s": 0.002,
+      "error": null
+    },
+    {
+      "test": "test_outage_recovery_catches_up_chronologically",
+      "status": "pass",
+      "checks_passed": 7,
+      "duration_s": 0.011,
+      "error": null
+    },
+    {
+      "test": "test_empty_frame_defers",
+      "status": "pass",
+      "checks_passed": 2,
+      "duration_s": 0.001,
+      "error": null
+    },
+    {
+      "test": "test_malformed_timestamps_defer",
+      "status": "pass",
+      "checks_passed": 2,
+      "duration_s": 0.001,
+      "error": null
+    },
+    {
+      "test": "test_unresolved_security_event_fails_closed",
+      "status": "pass",
+      "checks_passed": 5,
+      "duration_s": 0.001,
+      "error": null
+    },
+    {
+      "test": "test_global_rate_limit_halts_new_requests",
+      "status": "pass",
+      "checks_passed": 4,
+      "duration_s": 0.0,
+      "error": null
+    },
+    {
+      "test": "test_healthy_cycle_no_suppression",
+      "status": "pass",
+      "checks_passed": 5,
+      "duration_s": 0.013,
+      "error": null
+    },
+    {
+      "test": "test_replay_path_without_provider",
+      "status": "pass",
+      "checks_passed": 2,
+      "duration_s": 0.013,
+      "error": null
+    },
+    {
+      "test": "test_degraded_never_no_signals_label",
+      "status": "pass",
+      "checks_passed": 3,
+      "duration_s": 0.0,
+      "error": null
+    },
+    {
+      "test": "test_atomic_write_roundtrip",
+      "status": "pass",
+      "checks_passed": 4,
+      "duration_s": 0.001,
+      "error": null
+    },
+    {
+      "test": "test_hardened_downloads_restores_patches",
+      "status": "pass",
+      "checks_passed": 2,
+      "duration_s": 0.0,
+      "error": null
+    },
+    {
+      "test": "test_auxiliary_failures_never_gate",
+      "status": "pass",
+      "checks_passed": 3,
+      "duration_s": 0.0,
+      "error": null
+    },
+    {
+      "test": "test_budget_exhaustion_aborts_new_signal_staging",
+      "status": "pass",
+      "checks_passed": 3,
+      "duration_s": 0.002,
+      "error": null
+    },
+    {
+      "test": "test_strategy_files_untouched",
+      "status": "pass",
+      "checks_passed": 2,
+      "duration_s": 0.003,
+      "error": null
+    }
+  ]
+}
