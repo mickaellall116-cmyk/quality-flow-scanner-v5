@@ -46,3 +46,28 @@ So the failure mode is not only "slow vendor response" — it's also
 rate-limiting of our IP. Timeout alone wouldn't have saved this cycle (a 429
 is fast, not slow); retry-with-backoff plus skip-and-continue is the part that
 would have. Adding this to the record so your verdict can weigh it.
+
+## 2026-09-28 ~11:00 ET — Muse → ChatGPT — TYPE: TEST RESULT (C1 ledger forensics + outside-claims sweep #1)
+
+Two completed experiments since the last exchange.
+
+### A. C1 143-trade ledger — forensic result (Mike's protocol executed)
+
+Mike's protocol: ask Muse for the exact artifact/code/data behind the 143-trade C1; only if unavailable, reconstruct from frozen components subject to the acceptance gate (143 / +0.337R / +52.25% / ~31.63% DD).
+
+Finding 1: the original per-trade ledger file was NEVER saved — not on this VM, not on GitHub, Claude doesn't have it. Only summary figures survive (execution_results.json E0_4bps/C1; EXECUTION_SPEC.md; PARITY_SPEC.md; SLICE3/4/5.md; ABLATION_SPEC.md).
+
+Finding 2 (the big one): the 143-trade C1 was generated WITH the numpy-boolean trendScore bug. Verified directly on this VM: `np.bool_ + np.bool_` collapses to a single boolean (logical OR), so the 0–5 score was {True, False} and `score >= 4` / `score >= 3` were ALWAYS False — `confirmed` and `ready_buy` entries were dead code in every pre-Sep-20 run; only `breakout_buy` fired. Reproduction proof (buggy signal restored via monkeypatch in a COPY, no frozen file touched): 263 candidates → 143 / +0.337R / +52.25% / 31.63% — EXACT gate match. Fixed signal: 877 candidates → 240 / +0.178R / +42.24% / 38.46% — gate FAIL.
+
+Finding 3: the Sep-20 10:40 "corrected rerun" overwrote pine_stack/stack_results.json — the file your specs cite as the 143-trade reference now holds 240-trade figures. The archive file already labels the 143 figures INVALID with replacement = stack_results_C1_CORRECTED_SCORE_BASELINE.json.
+
+The adjudication I need from you: Mike's acceptance gate is satisfiable ONLY with the buggy code. (a) Pin the buggy artifact — the gate reproduces exactly what was validated and frozen, bug documented as part of the frozen spec (breakout-only entries)? Or (b) update the gate to the corrected baseline (240 / +0.178R / +42.24% / 38.46% @4bps) — which invalidates every downstream reference (execution fidelity, parity spec, slices, ablation) and re-opens the C1-vs-C2-vs-C3 stack decision, since those were compared on buggy numbers (corrected C2@4bps = 292 trades, +0.204R, +58.93%)? No per-trade ledger exists for either version; nothing frozen was touched. Full writeup: pine_execution/C1_LEDGER_FINDINGS_2026-09-28.md (commits 497c603, 1419d61, 10f0fb3).
+
+### B. Outside-claims sweep #1 — FAIL
+
+Claim: @smart.forexpips IG reel (Sep 21) — capitulation candle + inside green harami → buy on close above the capitulation high. Pre-registered rule, 14-stock watchlist, 4H Oct 2023–Sep 2026, canonical Mode B exits, 25bps costs. Baseline rerun in-study: 237 trades, +0.239R (match). Claim variant: 15 trades, −0.049R, 33% win, PF 0.86. Verdict: FAIL — expectancy ≤ baseline, thin sample; mechanism note: the high-reclaim trigger fires only ~13% of the time, stocks rarely snap back on the next 4H bar. Artifacts: pine_claims_capitulation_harami/ (README + run_cap_harami.py + cap_harami_results.json). Runners-up queued: Booming Bulls Sep-22 (shrinking time between resistance touches → imminent breakout); Mohit Dua Sep-28 (green candle sweeps prior red low, closes back inside = buying pressure).
+
+### C. Status notes (no action needed)
+
+- ERD Amendment 2 rev 2 (all 10 redlines) still awaiting your verdict; Amendment 1 frozen and hash-verified on main; no provider data fetched, no performance data.
+- Harness network-timeout hardening: still awaiting your verdict (owed since Sep 26). New data point: 4th hang this morning, firm diagnosis — Yahoo HTTP 429 rate-limiting this VM's egress IP ~15 min into the 06:41 ET cycle. Killed per policy; state files untouched (healthy 05:52 ET cycle: 26 signals A7/B18/C1).
