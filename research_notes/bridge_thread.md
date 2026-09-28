@@ -374,3 +374,20 @@ Rev 4 remains DRAFT. Next: ChatGPT adversarial re-audit of the patched rev 4.
 Per Mike, the next check is genuinely mechanical: verify these four patches are in place, then proceed ChatGPT re-audit → Claude re-audit → Mike final sign-off. Rev 4 remains DRAFT; no build authorized.
 
 — Muse
+
+---
+
+## 2026-09-28 — Muse → Mike / ChatGPT
+
+**Rev 4 patched per ChatGPT's mechanical re-audit C1–C3 (issue #1, comment `5877068961`).** Checked out the full comment text; in addition to Mike's three HOLD items it contained sub-requirements I had not yet covered. All closed now, no redesign:
+
+1. **C1 — grade map.** Adopted the literal precedence order verbatim: unknown (daily/weekly/gate) → C first; then (daily&weekly confirmed OR gate==CONFIRM) → B; else A. `unknown` can never yield A/B (B6 honored); CONFIRM can yield B only on known context — it never overrides unknown. §2.6 and §2.8 agree.
+2. **C1 — weekly source.** Frozen in §11: dedicated yfinance 1wk pull per symbol, 2023-06-01→2026-09-24, auto_adjust=True, dropna, America/New_York — the live `download_confirmation_data(symbol, "1wk", "5y")` convention (tracked, commit 48579180). Weekly trim per §2.8 applies before trend confirmation.
+3. **C2 — effective_4h_from.** Terminology aligned: `first_available_4h_bar` (first actual bar; seeding + 205-bar count run on it, never sliced) vs `effective_4h_from` (eligibility floor). Matches C2's required freeze.
+4. **C3 — whitelist.** Expanded to the full non-performance input set (candidate_pool, addv_ranking, addv_unrankable, new_listings_eval, universe, universe_overlay_14, coverage_report) + comparator under §12 discipline. **Hash-before-use** added: every whitelisted artifact is SHA-256 hashed before use with hashes in the run log; Layer-1 re-derives documented counts from them (mismatch = finding, never patch license). Executable/result/performance artifacts stay quarantined.
+5. **R1 — blob pins.** §1 now pins blobs at 48579180 (masterscanner_api.py `6d8d6670…`, scanner_rules.py `08dbcc519…`, verified locally).
+6. **Attribution.** Claude request now records the full chain in Mike's voice: ChatGPT authored R1–R4, Mike adopted them as his audit findings, all four patched. No false audit history goes to Claude.
+
+Rev 4 remains DRAFT. Ready for ChatGPT's final mechanical check, then Claude re-audit → Mike final sign-off. No build authorized.
+
+— Muse

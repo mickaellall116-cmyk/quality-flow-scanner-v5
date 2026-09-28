@@ -5,10 +5,12 @@
 (issue #1, comment `5876792377`, 2026-09-28T19:16:58Z). **Patched 2026-09-28
 per Mike's four redlines (issue #1); patched again same day per Mike's HOLD —
 three internal contradictions resolved (§2.6/§2.8 grade map, §3
-effective_4h_from floor, §1 artifact whitelist) + Claude request wording.
+effective_4h_from floor, §1 artifact whitelist) + Claude request wording;
+patched a third time per ChatGPT's mechanical re-audit C1–C3 (literal grade
+precedence order, weekly-cache source frozen in §11, blob pins + expanded
+whitelist with hash-before-use, full-chain R1–R4 attribution).
 Still DRAFT, no sign-off yet.**
-Pending: ChatGPT re-audit (mechanical check of these patches) → Claude
-re-audit → Mike final sign-off.
+Pending: ChatGPT final mechanical check → Claude re-audit → Mike final sign-off.
 **NO BUILD AUTHORIZED YET.**
 **Owner:** Mike
 **Supersedes:** rev 3 (`CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928.md`,
@@ -56,25 +58,40 @@ canonical replica**, never "recovered original."
   their provenance is unverified, and consulting them would be
   outcome-targeting through another channel, violating Mike's "never
   present a reconstruction as the record" directive.
-- **Whitelist — non-performance input artifacts (may be read). Resolved
-  2026-09-28 (Mike HOLD):**
+- **Whitelist — non-performance input artifacts (may be read; SHA-256
+  hashed before use, hashes recorded in the run log). Resolved 2026-09-28
+  (Mike HOLD / ChatGPT C3):**
+  - `canonical_baseline/candidate_pool.json` — 272-name candidate pool.
+  - `canonical_baseline/addv_ranking_20230930.json` — ADDV ranking
+    (229 rankable; top-120 cutoff).
+  - `canonical_baseline/addv_unrankable.json` — 43 unrankable names.
+  - `canonical_baseline/new_listings_eval.json` — 15 post-cutoff listing
+    candidates (11 admitted / 4 rejected).
+  - `canonical_baseline/universe.json` — final 131-symbol universe.
+  - `canonical_baseline/universe_overlay_14.json` — the 14-name overlay
+    identities (6 non-universe outsiders) for the overlay reporting leg.
   - `canonical_baseline/coverage_report.json` — per-symbol
     `effective_4h_from`, expected/actual 4H bar counts, missing%, quality
     flags. Input-data manifest only.
-  - `canonical_baseline/universe_overlay_14.json` — the 14-name overlay
-    identities (6 non-universe outsiders) for the overlay reporting leg.
   - The comparator file (`research_notes/
     CANONICAL_RECONSTRUCTION_SEALED_ORACLE_20260928.json`), opened only
     under the §12 discipline (after semantics frozen, code hash-locked,
     Run 1 complete, Layer-1 passed).
-  - Rebuilt cache files (4H/daily) are **outputs** of the rebuild per §11
+  - Rebuilt 4H/daily/weekly caches are **outputs** of the rebuild per §11
     provenance rules, not consulted sources.
+  Provenance note: these files' construction is described in UNIVERSE.md;
+  their byte-level provenance is unverified, which is why they are hashed
+  before use and why every Layer-1 check re-derives the documented counts
+  from them (a mismatch is a finding, never a patch license).
 - **Live-code provenance for the transcribed signal logic (§2).** The six
   docs cite the live V5.4 implementation with file:line references. Tracked
   live files (`scanner_rules.py`, `masterscanner_api.py`) are pinned to the
   verifiable support commit `48579180d21fda07339fa9305d30828bffef0bc3`
   (latest commit touching both files; the `dac44624` citation in the first
-  rev-4 draft was invalid and is withdrawn). `v54_engine.py` /
+  rev-4 draft was invalid and is withdrawn). Blob pins at 48579180
+  (verified locally): `masterscanner_api.py` →
+  `6d8d6670fe89e7bc1c901816a18e7fff2a90dc00`; `scanner_rules.py` →
+  `08dbcc519efc97425778cad83dc01fa07e7cb7f8`. `v54_engine.py` /
   `v54_rules.py` are **not** committed in the repo, so no commit ref exists
   for them; the version pin is `V54_RULE_VERSION = "2026-09-15-v54"`.
   **The transcription in §2 is the authoritative freeze.** Transcribed logic
@@ -202,17 +219,17 @@ Grading consumes only these context fields — never raw dataframes
   spec; `v54_rules.py` docstring). No auxiliary input vetoes a signal:
   MTF/daily/weekly/15m/premarket/market-gate are grading context only.
   The only gates are §2.4.
-- Grade map: hard gates fail → ineligible (None). Else
-  `daily==confirmed and weekly==confirmed` → **B** (CONFIRMED). Else
+- Grade map — literal precedence order (frozen 2026-09-28, Mike HOLD /
+  ChatGPT C1): hard gates fail → ineligible (None). Else if
   `daily==unknown or weekly==unknown or gate==UNKNOWN` → **C**
-  (OBSERVATION). Else → **A** (EARLY).
-  **Resolved 2026-09-28 (Mike HOLD):** `unknown` MTF can never yield A or
-  B — with hard gates passed it yields **C**. The earlier draft's
-  `or gate==CONFIRM → B` path is removed; it contradicted the frozen B6
-  resolution (now consistent with §2.8). A CONFIRM gate keeps context known
-  (avoids C via UNKNOWN) but never upgrades a grade. The handoff's
-  "weaker" (as distinct from "unknown") has no deterministic definition and
-  currently grades A — flagged, not invented (standing memory 2026-09-15).
+  (OBSERVATION). Else if `(daily==confirmed and weekly==confirmed) or
+  gate==CONFIRM` → **B** (CONFIRMED). Else → **A** (EARLY).
+  `unknown` MTF can never yield A or B — the unknown check runs first
+  (frozen B6 resolution, consistent with §2.8). A CONFIRM gate can yield B
+  when daily/weekly context is known (transcribed rule preserved); it never
+  overrides `unknown` to B. The handoff's "weaker" (as distinct from
+  "unknown") has no deterministic definition and currently grades A —
+  flagged, not invented (standing memory 2026-09-15).
   Basis: JUDGMENT — reconstructed transcription of the uncommitted
   `v54_rules.v54_grade` (not recovered fact); the A/B/C map, the grading-only
   role of MTF/market-gate context, and the observational-only status of
@@ -257,10 +274,12 @@ PIT_FEATURES rule 7; morning-cycle staleness is correct behavior):
 ## §3. Warmup / first signal-eligible bar — FROZEN (B2)
 
 - **Indicator seeding horizon.** Indicators are computed causally from each
-  symbol's **raw series start** (first available 4H bar) — never from
-  `effective_4h_from`. `ewm(adjust=False)` needs no explicit seed bars; the
-  `min_bars` gate below provides stability. Warmup bars are for indicator
-  seeding only, never for signal evaluation (PIT_FEATURES rule 6).
+  symbol's **`first_available_4h_bar`** (first actual bar in the fetched
+  series) — never from `effective_4h_from`. `ewm(adjust=False)` needs no
+  explicit seed bars; the `min_bars` gate below provides stability. Warmup
+  bars are for indicator seeding only, never for signal evaluation
+  (PIT_FEATURES rule 6). Pre-`effective_4h_from` bars are NOT sliced away
+  before warmup.
 - **Per-symbol minimum.** `v54_classify` returns None unless the 4H frame
   holds `min_bars = max(TREND_EMA, ATR_BASE_LEN, VOL_BASE_LEN, VWAP_LEN) + 5
   = 205` bars. The 205-bar count runs on the raw series.
@@ -588,6 +607,13 @@ historical numpy trendScore bug / score-based mirror logic is absent:**
   wall-clock aggregation (09:30–13:30, 13:30–16:00 ET), OHLCV first/max/min/last/sum,
   session-local DST-safe construction, one bar on early closes. Do NOT reuse the
   production `resample_closed_4h` global-resample behavior.
+- Weekly cache (frozen 2026-09-28, ChatGPT C1): dedicated yfinance 1wk pull
+  per symbol, window 2023-06-01→2026-09-24, `auto_adjust=True` (fully
+  adjusted), `dropna()`, America/New_York — the live
+  `download_confirmation_data(symbol, "1wk", "5y")` convention
+  (`masterscanner_api.py:102-107`, commit 48579180). The
+  `closed_higher_timeframe` weekly trim (§2.8) applies before
+  `timeframe_trend_confirmed`. Basis: DERIVABLE (tracked live code).
 - Every cache file: SHA-256 + fetch timestamp logged; no hand edits, ever.
 - Deterministic order everywhere: timestamp asc, then symbol asc. No dict-order
   or thread-order dependence.

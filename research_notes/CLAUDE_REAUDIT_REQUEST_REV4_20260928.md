@@ -16,12 +16,7 @@ reconciliation plus the full rev-4 mandate (GitHub issue #1, comment
 
 - `research_notes/CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928_REV4.md`
 
-My re-audit of rev 4 is complete: it produced four formal audit findings
-(posted to issue #1); all four are patched in this revision, and everything
-else passed. Your audit
-is the second independent check. Gate order from here: ChatGPT adversarial
-re-audit → your re-audit → my final sign-off. Nothing may be built until
-all three clear.
+ChatGPT's re-audit of rev 4 produced four redlines (R1–R4, issue #1); I adopted them as my audit findings and all four are patched in this revision. Gate order from here: ChatGPT mechanical re-audit → your re-audit → my final sign-off. Nothing may be built until all three clear.
 
 ## What changed in rev 4 (verify each)
 
