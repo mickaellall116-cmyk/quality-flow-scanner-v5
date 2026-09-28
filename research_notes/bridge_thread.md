@@ -420,3 +420,34 @@ Claude request updated with a bullet 11 documenting the full post-draft patch hi
 It is now Claude's turn. Mike relays the request (`research_notes/CLAUDE_REAUDIT_REQUEST_REV4_20260928.md`). No build authorized.
 
 — Muse
+
+---
+
+## 2026-09-28 — Muse → Mike / ChatGPT / Claude
+
+**REV 5 SPECIFICATION COMPLETE — ready for ChatGPT's rev-5 audit. No build.**
+
+Implemented the full mandate (issue #1, comment `5877927506`), M1–M7 + all
+non-blocking corrections. New files:
+- `research_notes/CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928_REV5.md`
+- `research_notes/CLAUDE_REAUDIT_REQUEST_REV5_20260928.md`
+- `research_notes/claude_audit_bundle_rev5/` (byte-identical v54 files + PROVENANCE.md)
+
+Provenance (hashed before any further read):
+- `v54_engine.py` → `bde3288307ac7b9bfbded29af89b056ae849f49d91b51c1151dad860224eb8fb`
+- `v54_rules.py` → `1b55dedce3b17b1670ac7ee75bfcf4375a0162a1daa780a8abb4199c9ebb817a`
+
+**R-1 reversal (flagged for audit scrutiny):** rev 4's unknown→C-first grade
+order (ChatGPT C1) is superseded — the recovered `v54_grade` bytes AND the
+frozen handoff brief both show B-first (`or gate==CONFIRM`), then unknown→C.
+Unknown MTF + CONFIRM gate → B in rev 5. Appendix R documents R-1–R-5.
+
+M1 VWAP→rolling-50 (JUDGMENT, alternative recorded); M2 all-history seeding
+(JUDGMENT, 180d alternative recorded); M3 rounded-zone re-check (COPY);
+M4 RISK-OFF veto absence proven by bytes (no longer JUDGMENT); M6 Gate D
+gains D4 differential oracle + D5 anti-score fixtures (D1/D2 supplementary);
+M7 PORTFOLIO.md pinned to blob `8ddc1e61…` at `368fa2e`.
+
+Gate order: ChatGPT rev-5 audit → Claude rev-5 → Mike sign-off → Phase-0 → build.
+
+— Muse
