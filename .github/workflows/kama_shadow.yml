@@ -1,0 +1,57 @@
+name: KAMA Shadow Logger
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "forward_test/v54_status.json"
+      - "forward_test/v54_closed_trades.json"
+      - "forward_test/v54_ai_observer.json"
+      - "forward_test/kama_shadow_watcher.py"
+      - "forward_test/KAMA_SHADOW_PROTOCOL.md"
+      - ".github/workflows/kama_shadow.yml"
+  schedule:
+    - cron: "*/30 * * * *"
+
+concurrency:
+  group: kama-shadow-logger
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: requirements_api.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements_api.txt
+
+      - name: Compile passive logger
+        run: python -m py_compile forward_test/kama_shadow_watcher.py
+
+      - name: Update KAMA shadow log
+        run: python forward_test/kama_shadow_watcher.py
+
+      - name: Commit shadow snapshot
+        run: |
+          git config user.name "KAMA Shadow Bot"
+          git config user.email "actions@github.com"
+          git add forward_test/kama_shadow.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Update KAMA shadow log"
+          git pull --rebase origin main
+          git push origin HEAD:main
