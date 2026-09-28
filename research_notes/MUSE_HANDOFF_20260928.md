@@ -22,6 +22,85 @@ Repository: `mickaellall116-cmyk/quality-flow-scanner-v5`
 - Do not alter signal generation, ranking, sizing, stops, TP1, exits, or alerts because of KAMA.
 - Any exploratory work belongs on a research branch/worktree.
 
+## 1A) Pre-HEMA context — full research arc Muse must retain
+
+Muse was unavailable for longer than the HEMA work. The following earlier state is part of the handoff and must be treated as standing context, not rediscovered from scratch.
+
+### Frozen QF / V3.6-V3.7 lineage
+- Primary timeframe: **4H**. A 1H transfer test failed badly and is closed.
+- V3.6 entry/exit mechanics were the stable signal core. V3.7 was a **clean parity/observability release**, not a new edge: no entry-rule change vs V3.6.
+- The trendScore issue was a Python mirror bug only; Pine's 0-5 score was already correct.
+- Entry Mode is frozen to **Hybrid**. The three optional "Use X as Real Entry" toggles for pullback/FVG/sweep stay false unless explicitly studied; they can silently change signal semantics.
+- TradingView Strategy Tester equity curves are not the canonical portfolio benchmark; Pine is used for parity/visual validation only.
+
+### Earlier V3.6 research results
+The original 4H UX51 V3.6 study (2024-09-16 through 2026-09-14) produced roughly:
+- 263 trades
+- 44.9% win rate
+- +0.195R expectancy
+- PF 1.33
+- ~+35% return
+- ~35% max DD
+
+Important transfer/expansion failures:
+- 1H transfer: ~+0.009R, ~-54% return, ~67% DD, 1,394 trades -> FAIL.
+- Pine/scanner agreement filter: only 14/263 overlap, overlapping trades ~-0.24R -> FAIL as a gate.
+- Blind larger-universe expansion: ~-0.01R -> FAIL.
+- Daily transfer: ~-0.05R -> FAIL.
+- Weekly transfer: small sample, ~31 trades and +0.55R -> only a MAYBE, never promoted.
+- Legacy V1.1 looked excellent in a bull window (~+0.30R) but failed 2022 (~-0.08R).
+- Relative-strength variants looked good in the bull window but also failed 2022. Do not revive them from the old selected sample.
+
+### Portfolio-selection / risk work before canonical reframe
+On crowded bars, ranking the top 2 by **20-bar stock return minus SPY** improved the selected-sample result:
+- ~154 trades
+- ~+0.32R/trade vs ~+0.20R without the ranking
+- DD ~32.7% vs ~35.2%
+- no obvious 2022 harm in that historical check.
+
+Sector-cap and risk controls were then studied:
+- max 2 positions/sector improved DD and expectancy in the selected-sample simulation;
+- drawdown/risk gate helped on its own;
+- the combined stack later showed redundancy.
+
+The locked research stack known as **C1** became:
+- V3.6 entries/exits unchanged;
+- top-2 20-bar return-minus-SPY ranking;
+- max 2 per sector;
+- risk gate at 5% portfolio risk.
+
+Engineering parity replay reproduced that stack exactly:
+- 143 trades
+- ~+0.337R/trade
+- ~+52.25% return
+- ~31.63% DD
+- rejections: 94 ranked out, 16 sector-capped, 10 risk-gate
+- alert/dedup/fault-isolation suite passed 29/29.
+
+These numbers are historical **selected-sample engineering evidence**, not canonical proof. Later PIT/cost/execution work showed that the broad canonical system was near flat at realistic 50 bps. Do not use the C1 headline as evidence that QF itself is proven.
+
+### Frozen V5.4 forward test
+V5.4 was frozen for untouched forward measurement on ~250 symbols (UX51 + X2):
+- signal/exit logic frozen;
+- forward checkpoints planned around ~50 and ~100 signals;
+- no rule patching while forward data accumulates.
+
+Published forward status before the current KAMA shadow work had 26 signals logged by 2026-09-25. That forward stream continues independently of KAMA.
+
+### Important methodological lessons already earned
+- Portfolio replay is mandatory. Filters/vetoes can look good trade-by-trade but fail after slot/heat displacement.
+- Concentration is a first-class failure mode: top trades/episodes carried a large share of historical P&L.
+- Realistic costs matter; QF degrades sharply as round-trip friction rises.
+- Tiny structural stops can create absurd notional leverage unless explicit capital/gross constraints are enforced.
+- Effective sample size is closer to market episodes than raw trade count when signals cluster.
+- No hand-picked watchlist result may be treated as broad-universe proof.
+- Once a family has been explored on a dataset, a second attempt needs genuinely new/held-out data rather than retuning the same history.
+
+### Other research underway before HEMA
+- **ERD v0.1** is a separate fresh-system architecture, not a QF filter. It was frozen lab-only and blocked on clean point-in-time earnings data/timing validation. Do not mix ERD with the trend-probe work.
+- Fundamental/F7 work reached infrastructure/feasibility review only; no performance claim should be inferred from those artifacts.
+- Macro items Mike asked about (MOVE/rate velocity, CPI, Nasdaq, Russell 2000, 10Y, ARM weekly context) are research/context ideas, **not part of the frozen QF entry rule** unless separately preregistered and tested.
+
 ## 2) What happened while Muse was unavailable
 
 ### A. HEMA line of research is closed
