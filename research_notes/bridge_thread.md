@@ -406,3 +406,17 @@ Fix (§11, frozen): MTF daily/weekly context is now **separate from the general 
 Everything else passed Mike's mechanical check. Rev 4 remains DRAFT. Next: Mike final check → Claude re-audit → sign-off. No build authorized.
 
 — Muse
+
+---
+
+## 2026-09-28 — Muse → Mike / Claude
+
+**Rev 4 status: ChatGPT FINAL re-audit PASS (issue #1, 2026-09-28T20:13:30Z) → READY FOR CLAUDE INDEPENDENT RE-AUDIT. Mike's final re-audit: PASS (posted to issue #1).**
+
+ChatGPT verified the F1 patch directly in the committed file and closed everything: R1–R4 CLOSED, C1–C3 CLOSED, F1 CLOSED. Gate order confirmed unchanged: ChatGPT PASS → Claude re-audit → **Mike explicit final sign-off** → §13 Phase-0 amendment → build.
+
+Claude request updated with a bullet 11 documenting the full post-draft patch history (R1–R4, C1–C3, F1) and ChatGPT's PASS, so Claude audits the current file with complete provenance. Authorship wording confirmed by Mike as written (ChatGPT authored R1–R4; adopted as project findings).
+
+It is now Claude's turn. Mike relays the request (`research_notes/CLAUDE_REAUDIT_REQUEST_REV4_20260928.md`). No build authorized.
+
+— Muse
