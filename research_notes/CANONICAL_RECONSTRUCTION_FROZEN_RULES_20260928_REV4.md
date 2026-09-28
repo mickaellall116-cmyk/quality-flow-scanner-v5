@@ -3,8 +3,12 @@
 **Date:** 2026-09-28
 **Status:** DRAFT rev 4 — addresses the Claude-audit reconciliation + rev-4 mandate
 (issue #1, comment `5876792377`, 2026-09-28T19:16:58Z). **Patched 2026-09-28
-per Mike's four redlines (issue #1); still DRAFT, no sign-off yet.**
-Pending: ChatGPT re-audit → Claude re-audit → Mike final sign-off.
+per Mike's four redlines (issue #1); patched again same day per Mike's HOLD —
+three internal contradictions resolved (§2.6/§2.8 grade map, §3
+effective_4h_from floor, §1 artifact whitelist) + Claude request wording.
+Still DRAFT, no sign-off yet.**
+Pending: ChatGPT re-audit (mechanical check of these patches) → Claude
+re-audit → Mike final sign-off.
 **NO BUILD AUTHORIZED YET.**
 **Owner:** Mike
 **Supersedes:** rev 3 (`CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928.md`,
@@ -43,13 +47,28 @@ canonical replica**, never "recovered original."
   `de01ff70a13e680c5468ae5e6e81177c981832e0` (parent of first canonical-doc
   commit `e77bb16`). Do NOT source symbols from current main.
 - **Untracked-file quarantine (process control).** Local untracked files under
+  `canonical_baseline/` are **not** canonical spec. The only implementation
+  sources are the six docs, this frozen spec, and the **whitelisted
+  non-performance input artifacts** below. Everything else untracked under
   `canonical_baseline/` (`simlib.py`, `modeb_engine.py`, `run_portfolio.py`,
-  `canonical_trades.json`, `portfolio_results.json`, data pickles, etc.) are
-  **not** canonical spec and must **not** be opened, read, or consulted for
-  any implementation choice. Their provenance is unverified; consulting them
-  would be outcome-targeting through another channel and would also violate
-  Mike's "never present a reconstruction as the record" directive. The six
-  docs plus this frozen spec are the only implementation sources.
+  `canonical_trades.json`, `portfolio_results.json`, data pickles, etc.)
+  must **not** be opened, read, or consulted for any implementation choice:
+  their provenance is unverified, and consulting them would be
+  outcome-targeting through another channel, violating Mike's "never
+  present a reconstruction as the record" directive.
+- **Whitelist — non-performance input artifacts (may be read). Resolved
+  2026-09-28 (Mike HOLD):**
+  - `canonical_baseline/coverage_report.json` — per-symbol
+    `effective_4h_from`, expected/actual 4H bar counts, missing%, quality
+    flags. Input-data manifest only.
+  - `canonical_baseline/universe_overlay_14.json` — the 14-name overlay
+    identities (6 non-universe outsiders) for the overlay reporting leg.
+  - The comparator file (`research_notes/
+    CANONICAL_RECONSTRUCTION_SEALED_ORACLE_20260928.json`), opened only
+    under the §12 discipline (after semantics frozen, code hash-locked,
+    Run 1 complete, Layer-1 passed).
+  - Rebuilt cache files (4H/daily) are **outputs** of the rebuild per §11
+    provenance rules, not consulted sources.
 - **Live-code provenance for the transcribed signal logic (§2).** The six
   docs cite the live V5.4 implementation with file:line references. Tracked
   live files (`scanner_rules.py`, `masterscanner_api.py`) are pinned to the
@@ -184,12 +203,16 @@ Grading consumes only these context fields — never raw dataframes
   MTF/daily/weekly/15m/premarket/market-gate are grading context only.
   The only gates are §2.4.
 - Grade map: hard gates fail → ineligible (None). Else
-  `fully_confirmed = (daily==confirmed and weekly==confirmed) or
-  gate==CONFIRM` → **B** (CONFIRMED). Else `context_known =
-  daily≠unknown and weekly≠unknown and gate≠UNKNOWN` false → **C**
-  (OBSERVATION). Else → **A** (EARLY). The handoff's "weaker" (as distinct
-  from "unknown") has no deterministic definition and currently grades A —
-  flagged, not invented (standing memory 2026-09-15).
+  `daily==confirmed and weekly==confirmed` → **B** (CONFIRMED). Else
+  `daily==unknown or weekly==unknown or gate==UNKNOWN` → **C**
+  (OBSERVATION). Else → **A** (EARLY).
+  **Resolved 2026-09-28 (Mike HOLD):** `unknown` MTF can never yield A or
+  B — with hard gates passed it yields **C**. The earlier draft's
+  `or gate==CONFIRM → B` path is removed; it contradicted the frozen B6
+  resolution (now consistent with §2.8). A CONFIRM gate keeps context known
+  (avoids C via UNKNOWN) but never upgrades a grade. The handoff's
+  "weaker" (as distinct from "unknown") has no deterministic definition and
+  currently grades A — flagged, not invented (standing memory 2026-09-15).
   Basis: JUDGMENT — reconstructed transcription of the uncommitted
   `v54_rules.v54_grade` (not recovered fact); the A/B/C map, the grading-only
   role of MTF/market-gate context, and the observational-only status of
@@ -234,17 +257,23 @@ PIT_FEATURES rule 7; morning-cycle staleness is correct behavior):
 ## §3. Warmup / first signal-eligible bar — FROZEN (B2)
 
 - **Indicator seeding horizon.** Indicators are computed causally from each
-  symbol's series start (series begins at `effective_4h_from`,
-  UNIVERSE.md). `ewm(adjust=False)` needs no explicit seed bars; the
+  symbol's **raw series start** (first available 4H bar) — never from
+  `effective_4h_from`. `ewm(adjust=False)` needs no explicit seed bars; the
   `min_bars` gate below provides stability. Warmup bars are for indicator
   seeding only, never for signal evaluation (PIT_FEATURES rule 6).
 - **Per-symbol minimum.** `v54_classify` returns None unless the 4H frame
   holds `min_bars = max(TREND_EMA, ATR_BASE_LEN, VOL_BASE_LEN, VWAP_LEN) + 5
-  = 205` bars. The first signal-eligible bar index is therefore the 205th
-  4H bar of the symbol's own series (0-indexed 204).
-- **First eligible bar (operational).** For each symbol, the first bar at
-  which a signal may be evaluated is the earliest 4H bar satisfying ALL of:
-  (a) ≥205 bars of that symbol's 4H history exist through it;
+  = 205` bars. The 205-bar count runs on the raw series.
+- **`effective_4h_from` is an eligibility floor, not the data start —
+  resolved 2026-09-28 (Mike HOLD).** UNIVERSE.md: "backtests should use
+  `max(eligible_from, effective_4h_from)`." The raw 4H series may begin
+  earlier (e.g. GEV/RDDT/TEM: raw 4H from 2024-09-26, but
+  `effective_4h_from` = their 60th 4H bar ≈ 2024-11-07, recorded per-symbol
+  in `coverage_report.json`). Signal evaluation is floored at
+  `effective_4h_from`; indicator seeding is not.
+- **First signal-eligible bar (operational).** For each symbol, the earliest
+  4H bar at which a signal may be evaluated is the earliest bar satisfying
+  ALL of: (a) ≥205 bars of that symbol's raw 4H history exist through it;
   (b) its timestamp ≥ universe `eligible_from` (UNIVERSE.md);
   (c) its timestamp ≥ `effective_4h_from` (coverage_report.json).
 - **ARM / new-listing ambiguity — RESOLVED.** The 30-trading-day
