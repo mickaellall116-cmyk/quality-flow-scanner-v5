@@ -101,36 +101,40 @@ def stable_rng(seed: int, key: str) -> np.random.Generator:
     return np.random.default_rng(int.from_bytes(b, "little", signed=False))
 
 
-def matched_random_events(frames: dict[str, pd.DataFrame], spy: pd.DataFrame, hema_events: pd.DataFrame, seed: int) -> pd.DataFrame:
-    rows = []
-    if hema_events.empty:
-        return pd.DataFrame()
-    counts = hema_events.groupby(["symbol", "month"]).size()
-    for (sym, month), n in counts.items():
-        df = frames[sym]
-        valid = []
+def build_random_pools(frames: dict[str, pd.DataFrame], spy: pd.DataFrame) -> dict[tuple[str, str], pd.DataFrame]:
+    """Precompute all eligible non-HEMA-event rows once for fast matched draws."""
+    buckets: dict[tuple[str, str], list[dict]] = {}
+    need = max(HORIZONS)
+    for sym, df in frames.items():
         for i in range(len(df)):
-            if i + 1 + max(HORIZONS) - 1 >= len(df):
-                continue
-            ts = df.index[i]
-            m = str(ts.to_period("M")) if ts.tzinfo is None else str(ts.tz_localize(None).to_period("M"))
-            if m != month:
+            if i + need >= len(df):
                 continue
             if bool(df["big_green"].iloc[i]):
                 continue
             if not np.isfinite(df["HEMA20"].iloc[i]) or not np.isfinite(df["HEMA40"].iloc[i]):
                 continue
-            valid.append(i)
-        if not valid:
+            rec = event_record(sym, df, spy, i, "random")
+            if rec is None:
+                continue
+            buckets.setdefault((sym, rec["month"]), []).append(rec)
+    return {k: pd.DataFrame(v) for k, v in buckets.items()}
+
+
+def matched_random_events(
+    pools: dict[tuple[str, str], pd.DataFrame],
+    counts: pd.Series,
+    seed: int,
+) -> pd.DataFrame:
+    parts = []
+    for (sym, month), n in counts.items():
+        pool = pools.get((sym, month))
+        if pool is None or pool.empty:
             continue
         rng = stable_rng(seed, f"{sym}|{month}")
-        replace = len(valid) < int(n)
-        chosen = rng.choice(valid, size=int(n), replace=replace)
-        for i in np.atleast_1d(chosen):
-            rec = event_record(sym, df, spy, int(i), "random")
-            if rec is not None:
-                rows.append(rec)
-    return pd.DataFrame(rows)
+        take = int(n)
+        idx = rng.choice(len(pool), size=take, replace=(len(pool) < take))
+        parts.append(pool.iloc[np.atleast_1d(idx)])
+    return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
 
 
 def paired_boot(values: np.ndarray, seed: int = 280928, reps: int = 20000) -> dict:
@@ -266,8 +270,10 @@ def main() -> None:
 
     random_summary_rows = []
     random_events_first = None
+    random_counts = hema.groupby(["symbol", "month"]).size()
+    random_pools = build_random_pools(frames, spy_h4)
     for seed in RANDOM_SEEDS:
-        rnd = matched_random_events(frames, spy_h4, hema, seed)
+        rnd = matched_random_events(random_pools, random_counts, seed)
         if random_events_first is None:
             random_events_first = rnd.copy()
         s = summarize_events(rnd)
