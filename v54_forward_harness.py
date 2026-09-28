@@ -103,7 +103,9 @@ _OBS_EXCLUDED_KEYS = {
 #     catch-up on recovery; outage preserved in the audit log.
 #  3. 429: honor Retry-After within budget; otherwise record
 #     provider_rate_limited and stop further vendor requests for the cycle
-#     (treated as global). Transient timeout/5xx: at most one bounded retry.
+#     (treated as global). Watchdog timeout: never retried (the vendor call
+#     may still be alive). Other transient timeout/5xx that actually
+#     returned or raised: at most one bounded retry.
 #  4. Bounded runtime: 45s per-request ceiling, 10-minute cycle ceiling.
 #  5. Coverage as first-class output; a degraded cycle is never "NO SIGNALS".
 #  6. Delisting/corporate-action ambiguity fails closed: unresolved
@@ -325,11 +327,26 @@ def validate_primary_frame(symbol: str, df: Any) -> None:
                                   f"missing column {col}")
 
 
+class _WatchdogTimeout(TimeoutError):
+    """Watchdog deadline exceeded while the vendor thread was still alive.
+
+    The underlying vendor call may STILL BE IN FLIGHT (an abandoned daemon
+    thread cannot be killed). It must therefore NEVER be retried: a retry
+    would put two live requests for the same symbol on the wire and amplify
+    the rate limiting this hardening is meant to contain. Only transient
+    failures that actually returned or raised (no live abandoned call) are
+    retriable.
+    """
+
+
 def _call_with_deadline(fn, args, kwargs, deadline_s: float):
     """Run fn in a daemon thread; (True, result) or (False, exception).
 
-    An abandoned thread on timeout cannot be killed (documented); it is
-    daemonic so it never blocks process exit.
+    On watchdog timeout the returned exception is a _WatchdogTimeout, so
+    callers can distinguish "vendor call may still be alive" (non-retriable)
+    from "vendor call raised" (retriable if transient). An abandoned thread
+    cannot be killed (documented); it is daemonic so it never blocks
+    process exit.
     """
     box: Dict[str, Any] = {}
 
@@ -343,7 +360,9 @@ def _call_with_deadline(fn, args, kwargs, deadline_s: float):
     t.start()
     t.join(deadline_s)
     if t.is_alive():
-        return False, TimeoutError(f"deadline {deadline_s:g}s exceeded")
+        return False, _WatchdogTimeout(
+            f"watchdog deadline {deadline_s:g}s exceeded; vendor call may "
+            f"still be in flight (abandoned daemon thread, non-retriable)")
     if "exc" in box:
         return False, box["exc"]
     return True, box.get("result")
@@ -394,9 +413,11 @@ def hardened_call(symbol: str, kind: str, fn: Callable, *args,
 
     kind: "primary" (gating) or "auxiliary" (tracked, never gating).
     Raises DataUnavailable / RateLimited on failure. At most one bounded
-    retry for transient faults; a 429 without a usable Retry-After trips
-    the cycle-global rate-limit flag (primary only) so no further vendor
-    requests are made this cycle.
+    retry for transient faults that actually returned or raised; a WATCHDOG
+    timeout (vendor call may still be alive in its daemon thread) is NEVER
+    retried. A 429 without a usable Retry-After trips the cycle-global
+    rate-limit flag (primary only) so no further vendor requests are made
+    this cycle.
     """
     if health.global_rate_limited:
         raise RateLimited(symbol, REASON_RATE_LIMITED,
@@ -437,9 +458,10 @@ def hardened_call(symbol: str, kind: str, fn: Callable, *args,
                 raise RateLimited(symbol, REASON_RATE_LIMITED, str(exc)[:200])
             health.note_aux(symbol, kind, reason)
             raise DataUnavailable(symbol, reason, str(exc)[:200])
-        transient = (reason in (REASON_TIMEOUT, REASON_TRANSIENT)
-                     or (reason == REASON_RATE_LIMITED
-                         and retry_after is not None))
+        transient = (not isinstance(exc, _WatchdogTimeout)
+                     and (reason in (REASON_TIMEOUT, REASON_TRANSIENT)
+                          or (reason == REASON_RATE_LIMITED
+                              and retry_after is not None)))
         if allow_retry and attempt < HARD_MAX_RETRIES and transient:
             sleep_s = (retry_after if retry_after is not None
                        else retry_backoff_s)
