@@ -1,6 +1,6 @@
 {
   "protocol": "KAMA_SHADOW_PROTOCOL.md",
-  "updated_at": "2026-09-28T14:54:27+00:00",
+  "updated_at": "2026-09-28T20:40:29+00:00",
   "start_at": "2026-09-28T13:46:00+00:00",
   "review_target_signals": 100,
   "data_quality_checkpoint": 50,
@@ -10,12 +10,7 @@
   "primary_cohort_frozen_at": null,
   "primary_cohort_resolved": 0,
   "review_ready": false,
-  "new_signal_ids_this_run": [
-    "v54:NET:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
-    "v54:CRWD:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
-    "v54:OKTA:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
-    "v54:RBRK:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54"
-  ],
+  "new_signal_ids_this_run": [],
   "errors_this_run": [],
   "events": [
     {
