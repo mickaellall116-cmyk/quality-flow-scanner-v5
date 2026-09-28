@@ -32,7 +32,7 @@ jobs:
         run: pip install -r requirements_api.txt
 
       - name: Run HEMA research
-        run: python research_notes/hema_research.py --output-dir hema_results
+        run: PYTHONPATH=. python research_notes/hema_research.py --output-dir hema_results
 
       - name: Upload results
         if: always()
