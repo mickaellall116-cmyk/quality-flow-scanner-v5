@@ -1,8 +1,9 @@
 # Canonical Reconstruction — FROZEN RULES
 **Date:** 2026-09-28
-**Status:** FROZEN — pending Claude audit, ChatGPT review, Mike sign-off. NO BUILD AUTHORIZED YET.
+**Status:** FROZEN rev 3 — addresses ChatGPT's 18:31Z redlines; pending Claude audit, ChatGPT re-review, Mike sign-off. NO BUILD AUTHORIZED YET.
 **Owner:** Mike
-**Supersedes:** `CANONICAL_RECONSTRUCTION_PLAN_20260928.md` §0 and §9 (per owner directive 2026-09-28)
+**Supersedes:** `CANONICAL_RECONSTRUCTION_PLAN_20260928.md` §0 and §9 (per owner directive 2026-09-28);
+rev 2 of this file (commit `22f85ae`)
 
 This document freezes every remaining implementation choice for rebuilding the
 canonical V5 environment from the six surviving spec documents. It is written so
@@ -37,7 +38,11 @@ is labeled **reconstructed canonical replica**, never "recovered original."
 
 ## §2. Layer-1 oracle — PRE-RUN structural/specification checks (visible)
 
-These invariants must hold before any performance comparison. Tolerances frozen here.
+These invariants depend only on inputs and construction rules, never on running
+the backtest. They must hold before any backtest output is examined. Tolerances
+frozen here. (Per ChatGPT 18:31Z redline: all backtest-output-dependent counts —
+raw candidates, skip funnel, accepted, open-at-end — live ONLY in the sealed
+Layer-2 oracle, §3.)
 
 ### Universe / data
 - Candidate pool: **272** names exact.
@@ -49,12 +54,8 @@ These invariants must hold before any performance comparison. Tolerances frozen 
 - Effective 4H history ≈ 2023-10-26→2026-09-24 (start within ±5 trading days; any divergence recorded with cause).
 - Session labels 09:30 / 13:30 ET; exactly one bar on NYSE early-close days.
 
-### Signal layer
-- Raw V5.4 candidates: **4,127** exact (Gate E).
-
-### Portfolio-decision layer
-- Skip funnel: **622** busy / **744** slot-rank / **2,387** heat / **374** accepted — exact (Gate F).
-- Max concurrent open: **6** exact; open at sample end: **6** exact.
+### Rule parameters (not outcomes)
+- Max concurrent open positions: **6** (rule parameter, PORTFOLIO.md).
 
 ---
 
@@ -66,6 +67,10 @@ Historical performance outcomes live ONLY in the sealed file
 run completes and Layer-1 checks pass. Verify the hash before unsealing.
 
 Frozen tolerances (all must be met; any miss is a finding, never tuning permission):
+- Backtest decision counts: raw candidates **4,127** exact; skip funnel **622**
+  busy / **744** slot-rank / **2,387** heat / **374** accepted exact; max concurrent
+  **6** exact; open at sample end **6** exact. (Moved here from Layer-1 per
+  ChatGPT 18:31Z — these are backtest outputs, examined only post-run.)
 - Headline E: −0.0013 ± 0.05 R/trade; win 39.8% ± 3pp; PF 1.00 ± 0.10.
 - Max DD: −40.7R ± 10R; total return negative and |return| < 5%.
 - Cost ladder strictly decreasing in cost (25bps E > 50bps E > 75bps E > 100bps E),
@@ -88,7 +93,9 @@ as such, never revisited after the run.
 where `marked_equity` is equity marked at the last 4H close. After the 50% TP1
 scale-out, the position contributes half its original planned risk (the runner
 retains the structural stop per ENGINE.md).
-Basis: DERIVABLE ("sum of current position risks" + "runner retains structural stop").
+Basis: JUDGMENT (relabeled per ChatGPT 18:31Z — "current position risks" is in
+the doc, but choosing remaining-shares × entry-stop over marked-to-market risk
+is a judgment call, recorded here).
 
 ### A2. Pending-entry reservation — FROZEN
 An accepted signal reserves one slot and its $750 planned risk in heat from the
@@ -105,15 +112,23 @@ At each signal-bar close, process that bar's candidate batch in this order:
 3. Heat check in that same rank order, first-fit: accept while
    `(heat + 750 / marked_equity) ≤ 5%`; the rest are heat-skipped.
 Pending entries from prior bars already occupy their slot and heat before step 1.
-Basis: DERIVABLE (documented funnel order busy → slot/rank → heat).
+Basis: JUDGMENT (relabeled per ChatGPT 18:31Z — the funnel lists busy → slot →
+heat, but the batch mechanics and first-fit heat rule involve judgment,
+recorded here).
 
 ### A4. rs_top2 benchmark formula — FROZEN
-`rs_top2 = (Close4H[i] / Close4H[i−20] − 1) − (SPY_daily[t] / SPY_daily[t−20d] − 1)`,
-where `i` is the signal bar (20 closed 4H bars, strict PIT) and `t` is the last
-completed daily SPY bar with timestamp ≤ signal-bar close. Signals with fewer
-than 20 closed 4H bars are unrankable and sort last. Ranked at signal bar `i`;
-entry unaffected (next-bar open).
-Basis: EXPLICIT (PIT_FEATURES.md:34; `pine_ranking/pine_ranking.py:95-114`).
+`rs_top2 = (symbol 20-bar 4H return) − (SPY 20-bar daily return)`, where:
+- symbol leg = `Close4H[i] / Close4H[i−20] − 1` over the 20 closed 4H bars ending
+  at signal bar `i` (strict PIT — no bar with timestamp > signal-bar close);
+- SPY leg = return over the **20 completed SPY daily bars** ending at the last
+  completed daily SPY bar with timestamp ≤ signal-bar close (strict PIT).
+Ranked at signal bar `i`. Signals with fewer than 20 closed 4H bars are
+unrankable and sort last. Ties broken by signal timestamp, then symbol asc.
+Entry unaffected (next-bar open).
+Basis: EXPLICIT in prose (PIT_FEATURES.md pins "symbol leg = 20 closed 4H bars"
+and "SPY leg = last completed daily bar ≤ signal-bar close"; the 20-daily-bar
+lookback is frozen here per ChatGPT 18:31Z — the cited `pine_ranking.py` line
+range is not verifiable in the surviving repo, so no file/line claim is made).
 
 ### A5. Early-close availability timestamp — FROZEN
 The single 09:30 bar on NYSE early-close days becomes available at **13:00 ET**
@@ -122,15 +137,32 @@ actual (session-local close). Signals evaluated on it carry bar-close timestamp
 Basis: JUDGMENT (exchange-calendar semantics under session-local construction).
 
 ### A6. Marked-equity / event ordering — FROZEN
-At each event timestamp, process in this order:
-1. Mode B engine exits/fills for that bar (stop, TP1, Profit-Protect, timeout) in
-   symbol-asc order; each leg's cost deducted immediately.
-2. Pending-entry fills in rank order (re-check entry > stop invalidation);
-   entry-leg cost deducted immediately.
-3. At 4H bar closes, mark equity.
+
+**At each 4H bar close** (bar `i` completes at timestamp T), process in this order:
+1. Finalize the Mode B engine for bar `i` — all intrabar events (stop, TP1,
+   Profit-Protect arming, timeout scheduling) are engine-internal; each leg's
+   cost deducted immediately at its event.
+2. **Snapshot:** mark equity at the close of bar `i` → `E_mark(T)`. This snapshot
+   is the heat denominator for every decision stamped T and is never recomputed
+   within T.
+3. **New-signal batch evaluation:** run signal detection on completed bar `i`,
+   then the A3 batch competition (busy → rank → heat first-fit) using `E_mark(T)`
+   and slots freed by exits realized in bar `i`; pending entries from prior bars
+   already occupy slot + heat.
+4. Accepted signals become pending entries (reserve slot + $750 heat) stamped T.
+
+**At each 4H bar open** (bar `i+1`):
+1. Engine-scheduled fills execute first (e.g. armed Profit-Protect exits),
+   symbol-asc; each leg's cost deducted immediately.
+2. Pending-entry fills execute in rank order; re-check the entry > stop
+   invalidation at fill time. Entry-leg cost deducted immediately. Invalidated
+   pendings release their slot + heat reservation.
+3. No equity marking at opens (marks happen only at closes, step 2 above).
+
 Costs are deducted at the leg's event, never batched or deferred.
 Basis: JUDGMENT (consistent with "costs deducted at event legs; equity marked at
-4H closes").
+4H closes"; the explicit close/open split and the `E_mark(T)` snapshot are frozen
+here per ChatGPT 18:31Z).
 
 ### A7. Rounding outside Mode B — FROZEN
 No intermediate rounding. `shares = floor(750 / (entry − stop))` (integer).
@@ -227,5 +259,5 @@ this document to DRAFT.
 
 ## §11. Sealed-oracle commitment
 
-SHA-256: `2656855d79c3d516d01c4a4b698b298c0fc2c2b2fd6df327f84dbbd5095f1546`
+SHA-256: `90962b798e3f442bb4df854fd34fc823c564a4a003753b3590a0cca89e7fc61a`
 File: `research_notes/CANONICAL_RECONSTRUCTION_SEALED_ORACLE_20260928.json`
