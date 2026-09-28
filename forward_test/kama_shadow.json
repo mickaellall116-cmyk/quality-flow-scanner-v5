@@ -1,0 +1,16 @@
+{
+  "protocol": "KAMA_SHADOW_PROTOCOL.md",
+  "updated_at": "2026-09-28T14:08:18+00:00",
+  "start_at": "2026-09-28T13:46:00+00:00",
+  "review_target_signals": 100,
+  "data_quality_checkpoint": 50,
+  "signal_count": 0,
+  "checkpoint_50_reached": false,
+  "primary_cohort_signal_ids": null,
+  "primary_cohort_frozen_at": null,
+  "primary_cohort_resolved": 0,
+  "review_ready": false,
+  "new_signal_ids_this_run": [],
+  "errors_this_run": [],
+  "events": []
+}
