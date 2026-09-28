@@ -63,6 +63,15 @@ ChatGPT's re-audit of rev 4 produced four redlines (R1–R4, issue #1); I adopte
     untracked `canonical_baseline/` implementation/data files (unverified
     provenance). Is this quarantine correctly scoped — does it block
     outcome-targeting without blocking legitimate spec sources?
+11. **Post-draft patches (all in the file you are auditing):** R1–R4
+    (support-commit/blob pins, JUDGMENT labeling, Gate-D carve-out,
+    missing-bar freeze, gate order); C1–C3 (literal grade precedence
+    unknown→C first, weekly MTF source, `first_available_4h_bar` vs
+    `effective_4h_from` separation, expanded artifact whitelist with
+    hash-before-use); F1 (§11 MTF-context historical adapter: 2y daily /
+    5y weekly as-of each decision time). ChatGPT's final mechanical
+    re-audit (issue #1, 2026-09-28T20:13:30Z) verified all of these in the
+    committed file: **PASS / READY FOR CLAUDE INDEPENDENT RE-AUDIT**.
 
 ## Audit verdict requested
 

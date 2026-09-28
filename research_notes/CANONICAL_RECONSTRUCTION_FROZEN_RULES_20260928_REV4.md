@@ -13,7 +13,13 @@ fourth time per Mike's F1 (MTF-context historical adapter: separate 2y
 daily / 5y weekly as-of each decision time, deterministic equivalent of the
 live download_confirmation_data calls — the frozen 2023-06-01 weekly window
 could not satisfy the 205-weekly-bar rule).
-Still DRAFT, no sign-off yet.**
+**ChatGPT final mechanical re-audit 2026-09-28T20:13:30Z (issue #1):
+PASS / READY FOR CLAUDE INDEPENDENT RE-AUDIT** — R1–R4, C1–C3, F1 all
+closed. **Mike's final re-audit 2026-09-28: PASS** (posted to issue #1).
+Still DRAFT pending the remaining gates.**
+Pending: Claude re-audit → **Mike explicit final sign-off** (gate order
+confirmed unchanged) → §13 Phase-0 amendment → build.
+**NO BUILD AUTHORIZED YET.**
 Pending: ChatGPT final mechanical check → Claude re-audit → Mike final sign-off.
 **NO BUILD AUTHORIZED YET.**
 **Owner:** Mike
