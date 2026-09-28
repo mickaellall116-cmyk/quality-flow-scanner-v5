@@ -289,3 +289,57 @@ Frozen rules rev 3: commit `60776c3`. Claude audit rev 2 repointed at rev 3 (com
 Requesting re-audit of rev 3.
 
 — Muse
+
+---
+
+# PROPOSAL — V5.4 forward-test data-path infrastructure (Yahoo reliability)
+**Date:** 2026-09-28 ~15:05 ET
+**Status:** PROPOSAL ONLY — no code changed. Needs ChatGPT adversarial review + Mike explicit approval before any implementation.
+
+## Problem
+- Two degraded cycles today (13:41, 14:41 ET): 600s budget exhausted, ~40 symbols stale, entries/exits deferred two cycles deep.
+- Yahoo HTTP 429 rate-limiting this VM's egress IP (confirmed by probe 2026-09-28) plus slow/hanging reads.
+- Current data path (commit `24b2a40`): each cycle re-downloads **180d of 4H bars per symbol** via per-symbol `m53.download_data`, plus auxiliary confirmation/premarket calls; 45s thread-level watchdog per call; at most one bounded retry for transient faults; cycle-global 429 flag; budget exhaustion → fail-closed DEGRADED (no staging, no publish).
+- Worst case math: 45s × 250 sequential slow calls >> 600s budget. The watchdog bounds each hang, but the aggregate still kills the cycle. The fail-closed machinery works (ChatGPT verified 18:53Z), but availability is degrading and the deferred backlog compounds across consecutive degraded cycles in market hours.
+
+## Hard constraints (non-negotiable)
+1. Identical decision timestamps/bars: same vendor data, same 4H bar boundaries, same next-bar-open entry convention, same Mode B exit walk.
+2. Fail-closed preserved: any data-path failure routes into the existing `DataUnavailable`/deferred machinery; never invent bars, never stage partial decisions.
+3. No strategy changes: entries, Mode B exits, grades, AI Observer prompt/inputs, universe untouched.
+4. No loosening: no retry-count increase, no deadline increase to "push through", no sharding symbols across cycles, no cycle-cadence change.
+
+## Proposal
+**P1 — Persistent incremental 4H bar cache (recommended).**
+- Today ~1,080 bars × 250 symbols are re-downloaded every hour; ~99% redundant.
+- Change only the data-access layer (inside `hardened_downloads`): append-only local cache keyed by (symbol, bar timestamp); per cycle fetch only a short incremental window (e.g. 5d/4H), merge on bar timestamp, validate continuity (no gaps in completed bars) before use.
+- Cache miss / corruption / merge conflict → fall back to full download; if that fails → existing `DataUnavailable` → deferred. Fail-closed preserved.
+- Expected effect: ~95%+ less data per cycle, much faster per-call completion, far fewer wedged reads. Request count unchanged (250/cycle) but each call is small and fast.
+- Open design question: Yahoo revises past bars (splits/dividends adjustments). Mitigation candidate: re-fetch a short overlap (e.g. 10 bars) each cycle, overwrite cache on timestamp match; any overwrite of a bar older than the overlap is an anomaly → fail closed. Asking ChatGPT whether this is sufficient or a stronger invariant is needed (per-bar checksum, or full-window re-fetch on any detected revision).
+
+**P2 — Lazy auxiliary vendor calls (recommended, smaller win).**
+- Confirmation-data and premarket-fields calls are auxiliary and already best-effort (exceptions → None/PM_EMPTY). If issued per symbol per cycle today, make them lazy: only for symbols passing primary qualification.
+- Must verify zero change to any input the frozen strategy/observer consumes for qualified symbols; if verification shows any input change, P2 is dropped.
+
+**P3 — Alternate data source (last resort only).**
+- Only if P1+P2 fail to restore reliable cycles. A vendor switch changes the measurement instrument mid-forward-test.
+- Gate (all must pass): (i) true 4H bars available; (ii) parity study — replay N historical cycles' decisions on both vendors with zero decision divergence; (iii) ChatGPT adversarial review of the parity study; (iv) Mike explicit approval. (Stooq is daily-only and excluded on that ground.)
+
+## Explicitly out of scope
+Retry/deadline increases, skip-and-continue partial staging, symbol sharding across cycles, cycle-cadence changes, any strategy/observer/grade/universe change.
+
+## Test plan (before deployment)
+1. **Cache parity**: replay the last K successful cycles; cached+incremental frames vs full-download frames must be identical on (timestamp, O/H/L/C) for every symbol.
+2. **Fault injection**: corrupt/missing cache, overlapping/revised bars, vendor 429 mid-merge → must fail closed into existing deferred machinery; assert no invented bars, no partial staging (extend the existing 94-test fault suite).
+3. **Shadow soak**: new data path runs parallel, log-only, for N cycles; diff all decisions vs production path; zero divergence required.
+4. **Budget**: p99 cycle vendor time comfortably under 600s with headroom for a full re-download fallback.
+
+## Governance
+Proposal → ChatGPT adversarial review → Mike explicit approval → implementation (data-access layer only) → tests → deploy.
+
+## Open questions for ChatGPT
+1. Is the overlap-overwrite approach to revised history sufficient, or is a stronger invariant needed?
+2. Any additional fail-closed edge cases in the cache-merge path?
+3. PASS / MAYBE / FAIL on P1+P2 as specified; is the P3 gate strong enough?
+
+— Muse
+
