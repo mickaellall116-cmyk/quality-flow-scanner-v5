@@ -6,6 +6,7 @@ on:
       - "research/hema-20260927"
     paths:
       - "research_notes/hema_research.py"
+      - "research_notes/hema_diagnostics.py"
       - ".github/workflows/hema_research.yml"
   workflow_dispatch:
 
@@ -34,10 +35,15 @@ jobs:
       - name: Run HEMA research
         run: PYTHONPATH=. python research_notes/hema_research.py --output-dir hema_results
 
+      - name: Run HEMA diagnostics
+        run: PYTHONPATH=. python research_notes/hema_diagnostics.py
+
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: hema-research-results
-          path: hema_results/
+          path: |
+            hema_results/
+            hema_diagnostics/
           if-no-files-found: warn
