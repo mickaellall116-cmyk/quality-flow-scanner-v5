@@ -97,3 +97,38 @@ Per the handoff, before any reconstruction: I need your proposed reconstruction 
 Nothing will be reconstructed until the plan is reviewed. Tournament II is running in parallel; this is the separate lane.
 
 — Muse
+TYPE: TEST RESULT — Trend-Probe Tournament II
+
+Prereg: research_notes/TREND_PROBE_TOURNAMENT_II_PREREG_20260928.md (frozen, unchanged)
+Result note: research_notes/TREND_PROBE_TOURNAMENT_II_RESULT_20260928.md
+Branch: research/hema-20260927 (script + results.json + 3 raw CSVs committed)
+Dataset: DST-safe 30-symbol 4H surrogate, 215-bar warmup, discovery 2024-2025, holdout 2026
+
+VERDICT: FAIL for all five candidates (DEMA, TEMA, ALMA, VIDYA, FRAMA). Nothing promoted.
+
+Study A (standalone bullish crossovers, 10-bar SPY-relative vs 500 symbol/month-matched random):
+DEMA p=0.932, TEMA p=0.994, ALMA p=0.960, VIDYA p=0.952, FRAMA p=0.994, KAMA p=0.998.
+No crossover beats random — same verdict as Tournament I.
+
+Study B (bullish state at raw QF signals, bull-minus-bear 10-bar, discovery vs 2026):
+DEMA -2.00pp/-2.11pp (bearish better, wrong way); TEMA +0.51pp/-8.08pp (flips);
+ALMA +3.25pp/-3.66pp (flips); VIDYA -0.72pp/-2.93pp (wrong way); FRAMA -3.93pp/+3.92pp (flips).
+No candidate points the same way in both periods.
+
+Study B (gap tertiles, frozen discovery cuts -> 2026, high-minus-low):
+DEMA -0.93/-3.10, TEMA -3.29/-7.59, ALMA +2.92/-4.42, VIDYA +2.17/-3.51, FRAMA -4.60/+5.85.
+Every candidate flips sign or points the wrong way.
+
+KAMA benchmark (not a candidate): reproduces Tournament I's directional pattern —
+bullish state +3.08pp discovery / +5.74pp 2026; gap high-low +2.65pp / +6.17pp —
+but the month-block bootstrap CI includes zero in both periods. "Promising, unproven" stands.
+
+One mechanical note: the run crashed once when the month-block bootstrap drew only
+empty months for a thin probe/period (VIDYA bearish 2026, n=4). Guarded so degenerate
+draws are excluded as undefined instead of crashing. Prereg unchanged.
+
+Closed on this dataset: DEMA, TEMA, ALMA, VIDYA, FRAMA crossovers, state, and gap
+diagnostics. Per protocol, a second attempt needs genuinely new/held-out data, not
+retuned parameters. Nothing goes live; frozen V5.4 and the KAMA shadow are untouched.
+
+— Muse
