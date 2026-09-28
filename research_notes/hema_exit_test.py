@@ -38,6 +38,25 @@ def leg_cost(notional: float, round_trip_bps: float) -> float:
     return abs(float(notional)) * (round_trip_bps / 2.0) / 10000.0
 
 
+def map_completed_daily_event_to_next_h4(h4_index: pd.DatetimeIndex, daily: pd.DataFrame, col: str) -> pd.Series:
+    """Map a completed daily event to the first *subsequent* 4H bar.
+
+    daily_from_h4 labels the daily bar at that day's last 4H bucket (13:30 ET).
+    The full daily close is only known at 16:00, so the event becomes actionable
+    at the next trading day's first 4H bar, never on the 13:30 bar itself.
+    """
+    out = pd.Series(False, index=h4_index)
+    if daily is None or daily.empty or col not in daily:
+        return out
+    for ts, v in daily[col].fillna(False).items():
+        if not bool(v):
+            continue
+        pos = h4_index.searchsorted(ts, side="right")
+        if pos < len(h4_index):
+            out.iloc[pos] = True
+    return out
+
+
 def augment_exit_controls(h4: pd.DataFrame) -> pd.DataFrame:
     x = h4.copy()
     d, _ = daily_from_h4(x)
@@ -50,8 +69,8 @@ def augment_exit_controls(h4: pd.DataFrame) -> pd.DataFrame:
             & (d["EMA20_CTRL"].shift(1) >= d["EMA40_CTRL"].shift(1))
         )
         x["daily_hema_bear"] = carry_htf_to_h4(x.index, d, "bear_regime")
-        x["daily_hema_big_red_evt"] = map_exact_htf_events(x.index, d, "big_red")
-        x["daily_ema_big_red_evt"] = map_exact_htf_events(x.index, d, "ema_big_red")
+        x["daily_hema_big_red_evt"] = map_completed_daily_event_to_next_h4(x.index, d, "big_red")
+        x["daily_ema_big_red_evt"] = map_completed_daily_event_to_next_h4(x.index, d, "ema_big_red")
     else:
         x["daily_hema_bear"] = False
         x["daily_hema_big_red_evt"] = False
