@@ -15,9 +15,9 @@
    validation. The rebuild must come from the surviving specs alone.
 3. **Frozen spec exists.** The primary audit target is now:
    `research_notes/CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928.md`
-   (commit `22f85ae`), with the sealed Layer-2 oracle at
+   (commit `60776c3`), with the sealed Layer-2 oracle at
    `research_notes/CANONICAL_RECONSTRUCTION_SEALED_ORACLE_20260928.json`
-   (SHA-256 `2656855d79c3d516d01c4a4b698b298c0fc2c2b2fd6df327f84dbbd5095f1546`).
+   (SHA-256 `90962b798e3f442bb4df854fd34fc823c564a4a003753b3590a0cca89e7fc61a).
 
 ## Source documents (unchanged)
 
