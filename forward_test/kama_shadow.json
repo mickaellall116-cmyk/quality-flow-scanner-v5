@@ -1,16 +1,128 @@
 {
   "protocol": "KAMA_SHADOW_PROTOCOL.md",
-  "updated_at": "2026-09-28T14:53:20+00:00",
+  "updated_at": "2026-09-28T14:54:27+00:00",
   "start_at": "2026-09-28T13:46:00+00:00",
   "review_target_signals": 100,
   "data_quality_checkpoint": 50,
-  "signal_count": 0,
+  "signal_count": 4,
   "checkpoint_50_reached": false,
   "primary_cohort_signal_ids": null,
   "primary_cohort_frozen_at": null,
   "primary_cohort_resolved": 0,
   "review_ready": false,
-  "new_signal_ids_this_run": [],
+  "new_signal_ids_this_run": [
+    "v54:NET:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
+    "v54:CRWD:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
+    "v54:OKTA:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
+    "v54:RBRK:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54"
+  ],
   "errors_this_run": [],
-  "events": []
+  "events": [
+    {
+      "signal_id": "v54:CRWD:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "CRWD",
+      "signal_time": "2026-09-28T10:30:00-04:00",
+      "first_logged_at": "2026-09-28T14:54:25+00:00",
+      "source": "v54_ai_observer",
+      "tested_session_state": {
+        "valid": true,
+        "bars": 1447,
+        "bar_start": "2026-09-25T13:30:00-04:00",
+        "kama20": 249.35651246683577,
+        "kama40": 234.22694546370747,
+        "bull": true,
+        "gap_pct_of_kama40": 6.459362296330062
+      },
+      "live_grid_state": {
+        "valid": true,
+        "bars": 1447,
+        "bar_start": "2026-09-25T13:30:00-04:00",
+        "kama20": 249.35651246683562,
+        "kama40": 234.22694550609424,
+        "bull": true,
+        "gap_pct_of_kama40": 6.459362277064629
+      },
+      "outcome": {
+        "resolved": false
+      },
+      "signal_record_sha256": "5e4bb56e292d6ed3997917c9aff7d042296e6d5ce4b09c24e78a783db52c858e"
+    },
+    {
+      "signal_id": "v54:NET:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "NET",
+      "signal_time": "2026-09-28T10:30:00-04:00",
+      "first_logged_at": "2026-09-28T14:54:24+00:00",
+      "source": "v54_ai_observer",
+      "tested_session_state": {
+        "valid": true,
+        "bars": 1447,
+        "bar_start": "2026-09-25T13:30:00-04:00",
+        "kama20": 341.338353817552,
+        "kama40": 320.75155350715113,
+        "bull": true,
+        "gap_pct_of_kama40": 6.418301044936903
+      },
+      "live_grid_state": {
+        "valid": true,
+        "bars": 1447,
+        "bar_start": "2026-09-25T13:30:00-04:00",
+        "kama20": 341.3383538178039,
+        "kama40": 320.7503626692306,
+        "bull": true,
+        "gap_pct_of_kama40": 6.418696140276681
+      },
+      "outcome": {
+        "resolved": false
+      },
+      "signal_record_sha256": "055af88e527fb0e2093621c1ce704741eef354afbd01e50d6812078d42cd1aeb"
+    },
+    {
+      "signal_id": "v54:OKTA:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "OKTA",
+      "signal_time": "2026-09-28T10:30:00-04:00",
+      "first_logged_at": "2026-09-28T14:54:26+00:00",
+      "source": "v54_ai_observer",
+      "tested_session_state": {
+        "valid": true,
+        "bars": 1447,
+        "bar_start": "2026-09-25T13:30:00-04:00",
+        "kama20": 192.67093978366523,
+        "kama40": 188.45538908947958,
+        "bull": true,
+        "gap_pct_of_kama40": 2.2368958057145782
+      },
+      "live_grid_state": {
+        "valid": true,
+        "bars": 1447,
+        "bar_start": "2026-09-25T13:30:00-04:00",
+        "kama20": 192.6709397820422,
+        "kama40": 188.4553864579557,
+        "bull": true,
+        "gap_pct_of_kama40": 2.236897232452928
+      },
+      "outcome": {
+        "resolved": false
+      },
+      "signal_record_sha256": "186b938ddd15900db29e3c28dc72d7d19c4fcc2a85aa70ba467c044d5404658e"
+    },
+    {
+      "signal_id": "v54:RBRK:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "RBRK",
+      "signal_time": "2026-09-28T10:30:00-04:00",
+      "first_logged_at": "2026-09-28T14:54:27+00:00",
+      "source": "v54_ai_observer",
+      "tested_session_state": {
+        "valid": false,
+        "reason": "download"
+      },
+      "live_grid_state": {
+        "valid": false,
+        "reason": "download"
+      },
+      "outcome": {
+        "resolved": false
+      },
+      "signal_record_sha256": "4d6ace594f184b03e0bb0bba62cd6c6ab0a17c7eef3cbae164033a7f8b482bd4"
+    }
+  ]
 }
