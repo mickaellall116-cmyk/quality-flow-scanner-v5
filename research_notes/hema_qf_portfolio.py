@@ -22,7 +22,7 @@ import pandas as pd
 
 from research_notes.hema_research import (
     SYMBOLS, fetch_symbol, regular_1h, resample_closed_4h,
-    add_hema, add_qf_core, daily_from_h4, weekly_from_h4,
+    add_hema, add_qf_core, daily_from_h4, weekly_from_h4, ema,
 )
 
 INITIAL_EQUITY=75_000.0
@@ -34,6 +34,8 @@ ROUND_TRIP_BPS=50.0
 ENTRY_VARIANTS = [
     "qf_baseline",
     "qf_4h_bull",
+    "qf_ema20_40_bull",
+    "qf_spy_bull",
     "qf_daily_bull",
     "qf_4h_daily_bull",
     "qf_recent_big_green_4",
@@ -72,6 +74,13 @@ def prepare_symbol(sym, spy_h4):
 
     h4["daily_bull"]=carry_htf_to_h4(h4.index,d,"bull_regime")
     h4["weekly_bull"]=carry_htf_to_h4(h4.index,w,"bull_regime")
+    h4["EMA20_CTRL"]=ema(h4["Close"],20)
+    h4["EMA40_CTRL"]=ema(h4["Close"],40)
+    h4["ema20_40_bull"]=h4["EMA20_CTRL"]>h4["EMA40_CTRL"]
+    spy_close=spy_h4["Close"].reindex(h4.index,method="ffill")
+    spy_e200=ema(spy_h4["Close"],200).reindex(h4.index,method="ffill")
+    spy_e200_lag=ema(spy_h4["Close"],200).shift(20).reindex(h4.index,method="ffill")
+    h4["spy_bull"]=(spy_close>spy_e200) & (spy_e200>spy_e200_lag)
     h4["daily_big_red_evt"]=map_exact_htf_events(h4.index,d,"big_red")
 
     # first small green after most recent big green, invalidated by big red
@@ -97,6 +106,8 @@ def entry_mask(h4, variant):
     q=h4["qf_event"].fillna(False)
     if variant=="qf_baseline":return q
     if variant=="qf_4h_bull":return q & h4["bull_regime"].fillna(False)
+    if variant=="qf_ema20_40_bull":return q & h4["ema20_40_bull"].fillna(False)
+    if variant=="qf_spy_bull":return q & h4["spy_bull"].fillna(False)
     if variant=="qf_daily_bull":return q & h4["daily_bull"].fillna(False)
     if variant=="qf_4h_daily_bull":return q & h4["bull_regime"].fillna(False) & h4["daily_bull"].fillna(False)
     if variant=="qf_recent_big_green_4":return q & h4["recent_big_green_4"].fillna(False)
@@ -121,13 +132,16 @@ class Position:
     pending_exit:bool=False
     pending_reason:str=""
     bars:int=0
+    entry_cost:float=0.0
+    partial_pnl:float=0.0
+    partial_cost:float=0.0
 
-def cost_dollars(notional, half_round_trip=True):
-    # 50 bps round trip = 25 bps each leg.
-    bps=(ROUND_TRIP_BPS/2.0 if half_round_trip else ROUND_TRIP_BPS)/10000.0
+def cost_dollars(notional, cost_bps=ROUND_TRIP_BPS, half_round_trip=True):
+    # cost_bps is full round-trip bps; each actual leg pays half.
+    bps=(cost_bps/2.0 if half_round_trip else cost_bps)/10000.0
     return abs(notional)*bps
 
-def simulate(entry_variant, exit_variant, frames):
+def simulate(entry_variant, exit_variant, frames, cost_bps=ROUND_TRIP_BPS):
     equity=INITIAL_EQUITY
     realized=0.0
     positions={}
@@ -167,9 +181,9 @@ def simulate(entry_variant, exit_variant, frames):
             if not np.isfinite(rps) or rps<=0 or entry<=0:continue
             shares=max(1,int(math.floor(planned_risk/rps)))
             notional=shares*entry
-            c=cost_dollars(notional)
+            c=cost_dollars(notional,cost_bps)
             realized-=c; equity-=c
-            positions[sym]=Position(sym,ei,ts,entry,stop,tp1,shares,rps,shares*rps,False,shares,0.0,False,False,"",0)
+            positions[sym]=Position(sym,ei,ts,entry,stop,tp1,shares,rps,shares*rps,False,shares,0.0,False,False,"",0,c,0.0,0.0)
             events.append({"time":str(ts),"symbol":sym,"event":"ENTRY","price":entry,"shares":shares,"cost":c})
         pending_entries=still
 
@@ -189,13 +203,15 @@ def simulate(entry_variant, exit_variant, frames):
             if p.pending_exit:
                 fill=o; qty=p.runner_shares if p.tp1_taken else p.shares
                 pnl=(fill-p.entry)*qty
-                cc=cost_dollars(fill*qty)
+                cc=cost_dollars(fill*qty,cost_bps)
                 realized+=pnl-cc; equity+=pnl-cc
                 full_r=(fill-p.entry)/p.risk_per_share
                 blend=(0.5*p.partial_r+0.5*full_r) if p.tp1_taken else full_r
                 trades.append({"symbol":sym,"entry_time":str(p.entry_time),"exit_time":str(ts),
                                "entry_variant":entry_variant,"exit_variant":exit_variant,
-                               "reason":p.pending_reason,"gross_r":blend,"net_pnl":pnl-cc,
+                               "reason":p.pending_reason,"gross_r":blend,
+                               "net_pnl":p.partial_pnl+pnl-p.entry_cost-p.partial_cost-cc,
+                               "net_r":(p.partial_pnl+pnl-p.entry_cost-p.partial_cost-cc)/p.planned_risk,
                                "bars":p.bars,"tp1":p.tp1_taken})
                 to_close.append(sym); continue
 
@@ -206,13 +222,15 @@ def simulate(entry_variant, exit_variant, frames):
                 fill=o if o<p.stop else p.stop
                 qty=p.runner_shares if p.tp1_taken else p.shares
                 pnl=(fill-p.entry)*qty
-                cc=cost_dollars(fill*qty)
+                cc=cost_dollars(fill*qty,cost_bps)
                 realized+=pnl-cc; equity+=pnl-cc
                 rr=(fill-p.entry)/p.risk_per_share
                 blend=(0.5*p.partial_r+0.5*rr) if p.tp1_taken else rr
                 trades.append({"symbol":sym,"entry_time":str(p.entry_time),"exit_time":str(ts),
                                "entry_variant":entry_variant,"exit_variant":exit_variant,
-                               "reason":"STOP","gross_r":blend,"net_pnl":pnl-cc,
+                               "reason":"STOP","gross_r":blend,
+                               "net_pnl":p.partial_pnl+pnl-p.entry_cost-p.partial_cost-cc,
+                               "net_r":(p.partial_pnl+pnl-p.entry_cost-p.partial_cost-cc)/p.planned_risk,
                                "bars":p.bars,"tp1":p.tp1_taken})
                 to_close.append(sym); continue
 
@@ -221,9 +239,11 @@ def simulate(entry_variant, exit_variant, frames):
                 fill=o if o>p.tp1 else p.tp1
                 qty=max(1,p.shares//2)
                 pnl=(fill-p.entry)*qty
-                cc=cost_dollars(fill*qty)
+                cc=cost_dollars(fill*qty,cost_bps)
                 realized+=pnl-cc; equity+=pnl-cc
                 p.partial_r=(fill-p.entry)/p.risk_per_share
+                p.partial_pnl+=pnl
+                p.partial_cost+=cc
                 p.tp1_taken=True
                 p.runner_shares=p.shares-qty
                 events.append({"time":str(ts),"symbol":sym,"event":"TP1","price":fill,"shares":qty,"cost":cc})
@@ -231,13 +251,15 @@ def simulate(entry_variant, exit_variant, frames):
                 if p.bars>=30:
                     # runner timeout at close
                     qty2=p.runner_shares
-                    pnl2=(c-p.entry)*qty2; cc2=cost_dollars(c*qty2)
+                    pnl2=(c-p.entry)*qty2; cc2=cost_dollars(c*qty2,cost_bps)
                     realized+=pnl2-cc2; equity+=pnl2-cc2
                     rr=(c-p.entry)/p.risk_per_share
                     blend=0.5*p.partial_r+0.5*rr
                     trades.append({"symbol":sym,"entry_time":str(p.entry_time),"exit_time":str(ts),
                                    "entry_variant":entry_variant,"exit_variant":exit_variant,
-                                   "reason":"TIMEOUT","gross_r":blend,"net_pnl":pnl+pnl2-cc-cc2,
+                                   "reason":"TIMEOUT","gross_r":blend,
+                                   "net_pnl":p.partial_pnl+pnl2-p.entry_cost-p.partial_cost-cc2,
+                                   "net_r":(p.partial_pnl+pnl2-p.entry_cost-p.partial_cost-cc2)/p.planned_risk,
                                    "bars":p.bars,"tp1":True})
                     to_close.append(sym)
                 continue
@@ -262,13 +284,15 @@ def simulate(entry_variant, exit_variant, frames):
             # timeout
             if p.bars>=30:
                 qty=p.runner_shares if p.tp1_taken else p.shares
-                pnl=(c-p.entry)*qty; cc=cost_dollars(c*qty)
+                pnl=(c-p.entry)*qty; cc=cost_dollars(c*qty,cost_bps)
                 realized+=pnl-cc; equity+=pnl-cc
                 rr=(c-p.entry)/p.risk_per_share
                 blend=(0.5*p.partial_r+0.5*rr) if p.tp1_taken else rr
                 trades.append({"symbol":sym,"entry_time":str(p.entry_time),"exit_time":str(ts),
                                "entry_variant":entry_variant,"exit_variant":exit_variant,
-                               "reason":"TIMEOUT","gross_r":blend,"net_pnl":pnl-cc,
+                               "reason":"TIMEOUT","gross_r":blend,
+                               "net_pnl":p.partial_pnl+pnl-p.entry_cost-p.partial_cost-cc,
+                               "net_r":(p.partial_pnl+pnl-p.entry_cost-p.partial_cost-cc)/p.planned_risk,
                                "bars":p.bars,"tp1":p.tp1_taken})
                 to_close.append(sym)
 
@@ -306,13 +330,19 @@ def simulate(entry_variant, exit_variant, frames):
     if tdf.empty:
         return {"entry_variant":entry_variant,"exit_variant":exit_variant,"n":0},tdf
     r=tdf.gross_r.astype(float)
+    nr=tdf.net_r.astype(float)
     wins=r[r>0]; losses=r[r<=0]
     pf=float(wins.sum()/abs(losses.sum())) if len(losses) and losses.sum()!=0 else None
+    nw=nr[nr>0]; nl=nr[nr<=0]
+    npf=float(nw.sum()/abs(nl.sum())) if len(nl) and nl.sum()!=0 else None
     return {
-        "entry_variant":entry_variant,"exit_variant":exit_variant,
+        "entry_variant":entry_variant,"exit_variant":exit_variant,"cost_bps":cost_bps,
         "n":int(len(tdf)),"gross_expectancy_r":round(float(r.mean()),4),
-        "median_r":round(float(r.median()),4),"win_pct":round(float((r>0).mean()*100),2),
+        "net_expectancy_r":round(float(nr.mean()),4),
+        "median_r":round(float(r.median()),4),"net_median_r":round(float(nr.median()),4),
+        "win_pct":round(float((r>0).mean()*100),2),"net_win_pct":round(float((nr>0).mean()*100),2),
         "profit_factor":round(pf,3) if pf is not None and np.isfinite(pf) else None,
+        "net_profit_factor":round(npf,3) if npf is not None and np.isfinite(npf) else None,
         "realized_pnl":round(float(realized),2),"ending_equity_marked":round(float(ending),2),
         "return_pct_marked":round(float((ending/INITIAL_EQUITY-1)*100),2),
         "open_positions":int(len(positions)),
@@ -338,9 +368,16 @@ def main():
             s,t=simulate(ev,xv,frames)
             summaries.append(s)
             if not t.empty:alltr.append(t)
+    cost_ladder=[]
+    for bps in [25.0,50.0,75.0,100.0]:
+        for ev in ["qf_baseline","qf_4h_bull","qf_ema20_40_bull","qf_spy_bull"]:
+            s,_=simulate(ev,"current",frames,cost_bps=bps)
+            cost_ladder.append(s)
+
     sdf=pd.DataFrame(summaries).sort_values(["entry_variant","exit_variant"])
     tdf=pd.concat(alltr,ignore_index=True) if alltr else pd.DataFrame()
     sdf.to_csv(out/"summary.csv",index=False)
+    pd.DataFrame(cost_ladder).to_csv(out/"cost_ladder.csv",index=False)
     tdf.to_csv(out/"trades.csv",index=False)
 
     baseline=next((x for x in summaries if x["entry_variant"]=="qf_baseline" and x["exit_variant"]=="current"),None)
@@ -348,9 +385,10 @@ def main():
         if baseline and x.get("n",0):
             x["delta_expectancy_r_vs_baseline"]=round(x["gross_expectancy_r"]-baseline["gross_expectancy_r"],4)
             x["delta_return_pp_vs_baseline"]=round(x["return_pct_marked"]-baseline["return_pct_marked"],2)
-    payload={"data_note":"30-symbol recent-history structural-core surrogate; NOT canonical V5.4 baseline",
+    payload={"data_note":"30-symbol recent-history structural-core surrogate; NOT canonical V5.4 baseline. NY-localized 4H bars, DST-safe.",
              "symbols":list(frames.keys()),"baseline":baseline,
-             "results":sorted(summaries,key=lambda z:z.get("gross_expectancy_r",-999),reverse=True)}
+             "cost_ladder":cost_ladder,
+             "results":sorted(summaries,key=lambda z:z.get("net_expectancy_r",-999),reverse=True)}
     (out/"results.json").write_text(json.dumps(payload,indent=2))
     print("QF_HEMA_PORTFOLIO_START")
     print(json.dumps(payload,indent=2))
