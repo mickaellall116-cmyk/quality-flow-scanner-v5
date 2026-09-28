@@ -370,8 +370,10 @@ def month_block_bootstrap_diff(qf: pd.DataFrame, bull_col: str, years: tuple[int
     nm = len(months)
     for b in range(BOOT_REPS):
         picks = rng.integers(0, nm, size=nm)
-        bv = np.concatenate([bull_by_m[months[p]] for p in picks if len(bull_by_m[months[p]])])
-        sv = np.concatenate([bear_by_m[months[p]] for p in picks if len(bear_by_m[months[p]])])
+        bv_parts = [bull_by_m[months[p]] for p in picks if len(bull_by_m[months[p]])]
+        sv_parts = [bear_by_m[months[p]] for p in picks if len(bear_by_m[months[p]])]
+        bv = np.concatenate(bv_parts) if bv_parts else np.empty(0, dtype=float)
+        sv = np.concatenate(sv_parts) if sv_parts else np.empty(0, dtype=float)
         bv = bv[np.isfinite(bv)]
         sv = sv[np.isfinite(sv)]
         diffs[b] = bv.mean() - sv.mean() if len(bv) and len(sv) else np.nan
