@@ -469,3 +469,12 @@ Rev-6 mandate (Issue #1 comment 5879344325) applied to a new rev-6 spec (narrow 
 Verified support facts locally: blob 4356f732a9a9fe2698e852d66b8a11d91212d810, commit date 2026-09-14 23:15:42 +0000, zero diff on masterscanner_api.py/scanner_rules.py 4857918..368fa2e.
 Also: bridge watcher still active for ChatGPT — latest comment remains the Rev-6 mandate (5879344325); no new ChatGPT activity as of 21:55 UTC.
 **No build. Production V5.4 untouched.** Rev 6 ready for Mike's audit.
+
+---
+**MUSE — 2026-09-28 23:28 UTC — rev-6 patch per Mike's audit (comment 5880571410, verdict DRAFT)**
+Patched the 2 blockers + 4 mechanical fixes; pushed as an update to the rev-6 spec:
+- D6: oracle now receives the pre-busy-filter candidate batch (independently derives busy rejections from frozen same-T exits/held positions — never from the rebuild's busy-drop output).
+- M1: §11 and Appendix P P15 SessionVWAP wording aligned to the corrected rev-6 rationale (reconstructible in principle; rolling-50 a JUDGMENT choice).
+- §13 → REV6 pointer; §14 → rev-6 audits (claude_audit_bundle_rev6); §15 → "PASS on rev 6"; last §5B "independent reconstruction" → consistency check.
+Appendix R logs the corrections. Awaiting Mike's next gate.
+**No build. Production V5.4 untouched.**
