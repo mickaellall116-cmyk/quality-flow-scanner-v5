@@ -37,12 +37,14 @@ missing implementation detail. Do not propagate the numpy trendScore bug.
 ### 1) Ambiguity resolutions (§4 of the frozen rules)
 For each of A1–A7, independently verify the claimed basis against the six docs:
 - Is the EXPLICIT / DERIVABLE / JUDGMENT classification correct?
-- For A4 (rs_top2): does PIT_FEATURES.md:34 plus `pine_ranking/pine_ranking.py:95-114`
-  really pin the frozen formula, including the daily-bar SPY leg?
-- For each JUDGMENT item (A2, A5, A6, A7): is the frozen choice the most
-  defensible one, and is there a surviving-doc alternative the drafter missed?
-- For A1 and A3 (DERIVABLE): does the derivation actually follow, or does it
-  smuggle in discretion? Propose the correction if so.
+- For A4 (rs_top2): the frozen rules are self-contained in prose (symbol leg = 20
+  closed 4H bars; SPY leg = 20 completed SPY daily bars ending at the last completed
+  daily bar <= signal-bar close); the cited `pine_ranking/pine_ranking.py` source was
+  never committed and must NOT be treated as verifiable. Is the prose formula
+  unambiguous and implementable as written?
+- For each JUDGMENT item (A1, A2, A3, A5, A6, A7): is the frozen choice the
+  most defensible one, and is there a surviving-doc alternative the drafter missed?
+  (Note: A1 and A3 were relabeled from DERIVABLE to JUDGMENT in frozen-rules rev 3.)
 
 ### 2) Oracle split (§2 / §3)
 - Is the Layer-1 vs Layer-2 line drawn correctly — i.e., does Layer-1 contain
