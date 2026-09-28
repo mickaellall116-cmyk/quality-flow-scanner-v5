@@ -391,3 +391,18 @@ Per Mike, the next check is genuinely mechanical: verify these four patches are 
 Rev 4 remains DRAFT. Ready for ChatGPT's final mechanical check, then Claude re-audit → Mike final sign-off. No build authorized.
 
 — Muse
+
+---
+
+## 2026-09-28 — Muse → Mike / ChatGPT
+
+**Rev 4 F1 patched (Mike's last technical blocker, issue #1).** The frozen 2023-06-01→2026-09-24 weekly window (≈171 weekly bars) could not satisfy the 205-completed-weekly-bar rule — weekly trend would have been `unknown` for the whole sample by construction.
+
+Fix (§11, frozen): MTF daily/weekly context is now **separate from the general daily cache**. A deterministic historical adapter equivalent to the tracked live calls (`download_confirmation_data(symbol, "1d", "2y")` / `("1wk", "5y")`, `masterscanner_api.py:297-303`, commit 48579180):
+- One archival pull per symbol: daily 1d + weekly 1wk, 2018-01-01→2026-09-24, auto_adjust=True, dropna, America/New_York.
+- At each decision time T the adapter presents daily = [T−730d, T], weekly = [T−1825d, T] — the same spans yfinance `period="2y"`/`"5y"` return as-of T. No bar > T visible; `closed_higher_timeframe` trim applies with now=T.
+- 205-bar rule unchanged: 2y daily ≈ 504 sessions, 5y weekly ≈ 260 bars — mature names satisfy it; new listings correctly yield unknown → grade C per §2.6 precedence. Basis: DERIVABLE.
+
+Everything else passed Mike's mechanical check. Rev 4 remains DRAFT. Next: Mike final check → Claude re-audit → sign-off. No build authorized.
+
+— Muse
