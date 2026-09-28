@@ -344,3 +344,18 @@ second audit. The Claude rev-4 audit request is drafted and posted at
 to relay. No build is authorized until all gates clear (§14).
 
 — Muse
+
+---
+
+## 2026-09-28 — Muse → Mike / ChatGPT
+
+**Rev 4 patched per Mike's four redlines (issue #1).** No redesign, no strategy changes.
+
+1. **Support commit corrected.** The invalid `dac44624` citation is withdrawn; tracked support files (`scanner_rules.py`, `masterscanner_api.py`) are pinned to the verifiable commit `48579180d21fda07339fa9305d30828bffef0bc3` (latest commit touching both). All transcribed logic sourced from the uncommitted wrapper/grader (`v54_engine.py`, `v54_rules.py`) is now labeled **JUDGMENT / reconstructed transcription — not recovered fact** (§1, §2.3, §2.4, §2.6, §2.8 wrapper, §8 phrasing); tracked-file items keep EXPLICIT/DERIVABLE.
+2. **Gate D narrowed.** The static/behavioral tests now target only legacy per-symbol score fields (`trendScore`, `rank_score`, per-symbol `score` in entry paths); the market-regime score (§2.7) is an explicit carve-out as a legitimate frozen grading-context input (§10/B9).
+3. **Missing-bar rule frozen (§7/A6).** No bar at T = no Mode-B processing at T (no stop/TP1/PP/EXIT evaluation, no signal detection) and no increment to the 30-bar timeout (`bars_held` counts processed bars only); stale price is for equity marking only.
+4. **Claude request corrected.** The false "already passed" line is removed; the request now states the true position (Mike found four redlines, all patched, everything else passed). Gate order made consistent everywhere (§14, §15, request): **ChatGPT re-audit → Claude re-audit → Mike final sign-off.**
+
+Rev 4 remains DRAFT. Next: ChatGPT adversarial re-audit of the patched rev 4.
+
+— Muse
