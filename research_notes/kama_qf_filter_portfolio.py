@@ -24,6 +24,7 @@ COSTS = [25.0, 50.0, 75.0, 100.0]
 MIN_STOP_PCT = 0.01
 MAX_POS_FRAC = 1.0
 MAX_GROSS_FRAC = 1.0
+WARMUP = 215
 
 
 def kama(s: pd.Series, er_length: int, fast: int = 2, slow: int = 30) -> pd.Series:
@@ -185,8 +186,13 @@ def simulate(frames: dict[str, pd.DataFrame], cost_bps: float, use_kama_filter: 
     raw_qf = 0
     kama_filter_rejects = 0
 
+    warmup_skips = 0
+
     for sym, df in frames.items():
         for i in np.flatnonzero(df["qf_event"].fillna(False).to_numpy()):
+            if i < WARMUP:
+                warmup_skips += 1
+                continue
             if i + 1 >= len(df):
                 continue
             raw_qf += 1
@@ -482,6 +488,7 @@ def simulate(frames: dict[str, pd.DataFrame], cost_bps: float, use_kama_filter: 
         "cost_bps": cost_bps,
         "use_kama_filter": use_kama_filter,
         "raw_qf_candidates": raw_qf,
+        "warmup_skips": warmup_skips,
         "kama_filter_rejects": kama_filter_rejects,
         "accepted_entries": int(len(edf)),
         "closed_trades": int(len(tdf)),
@@ -585,7 +592,7 @@ def main():
     bk, kk = keyset(base_t), keyset(kama_t)
 
     payload = {
-        "data_note": "30-symbol DST-safe 4H surrogate; not canonical 131-symbol PIT",
+        "data_note": "30-symbol DST-safe 4H surrogate; 215-bar warmup enforced; not canonical 131-symbol PIT",
         "kama_definition": "KAMA20>KAMA40, ER length equals line length, fast=2, slow=30",
         "risk_rules": {
             "min_stop_pct": MIN_STOP_PCT,
