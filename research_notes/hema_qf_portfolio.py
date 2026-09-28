@@ -46,6 +46,7 @@ EXIT_VARIANTS = [
     "4h_big_red",
     "daily_big_red",
     "4h_small_red_clean",
+    "4h_ema20_40_big_red",
 ]
 
 def carry_htf_to_h4(h4_index, htf, col):
@@ -77,6 +78,7 @@ def prepare_symbol(sym, spy_h4):
     h4["EMA20_CTRL"]=ema(h4["Close"],20)
     h4["EMA40_CTRL"]=ema(h4["Close"],40)
     h4["ema20_40_bull"]=h4["EMA20_CTRL"]>h4["EMA40_CTRL"]
+    h4["ema20_40_big_red"]=(h4["EMA20_CTRL"]<h4["EMA40_CTRL"]) & (h4["EMA20_CTRL"].shift(1)>=h4["EMA40_CTRL"].shift(1))
     spy_close=spy_h4["Close"].reindex(h4.index,method="ffill")
     spy_e200=ema(spy_h4["Close"],200).reindex(h4.index,method="ffill")
     spy_e200_lag=ema(spy_h4["Close"],200).shift(20).reindex(h4.index,method="ffill")
@@ -284,6 +286,8 @@ def simulate(entry_variant, exit_variant, frames, cost_bps=ROUND_TRIP_BPS):
                     fire=bool(row["daily_big_red_evt"])
                 elif exit_variant=="4h_small_red_clean":
                     fire=bool(row["small_red_clean"])
+                elif exit_variant=="4h_ema20_40_big_red":
+                    fire=bool(row["ema20_40_big_red"])
                 if fire:
                     p.pending_exit=True;p.pending_reason=exit_variant
 
