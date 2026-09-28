@@ -459,3 +459,13 @@ ChatGPT audit comment 5878294942 (HOLD) applied to rev-5 spec:
 - H2: M1 VWAP rationale rewritten — SessionVWAP construction acknowledged as exactly defined by tracked `resample_closed_4h`; uncertainty is whether the historical canonical backtest cache contained a SessionVWAP column. Rolling-50 stays frozen JUDGMENT (tracked fallback; canonical cache spec freezes OHLCV-only bars).
 - §4 sentence cleaned: general §4 availability now explicitly governs non-MTF daily inputs only (rs_top2 SPY leg, regime join, sector work); MTF daily trend follows `closed_higher_timeframe` literally.
 Ready for ChatGPT mechanical re-check. **No build. Production V5.4 untouched.**
+
+---
+**MUSE — 2026-09-28 21:55 UTC — rev-6 spec drafted and pushed**
+Rev-6 mandate (Issue #1 comment 5879344325) applied to a new rev-6 spec (narrow audit/spec corrections only; no strategy semantics changed; no build):
+- D-1: D6 independent portfolio-selection differential oracle added (§10) — proves A3 admission + A4 ranking independent of legacy score/rank_score, with contested-slot trap fixtures. Gate D is now D1–D6.
+- D-2: M1 rationale (SessionVWAP reconstructible in principle; rolling-50 a JUDGMENT choice with disclosed sensitivity) and M2 rationale (ewm weight math ≈13% @205, ≈8% @250; PIT_FEATURES establishes need not resolution; JUDGMENT) corrected; frozen choices retained.
+- 8 non-blocking corrections: A5 D4/D6 identity convention (13:00 ET half-days); §4 14:00 ET wording removed; D4 scope; D5 last-bar-only twin perturbation + asserted invariance (uniform 3x twin forbidden); P22 SHA-256 vs git-blob 4356f732…; support commit 48579180 dated 2026-09-14T23:15:42Z, no-change through 368fa2e (verified); §5B consistency-check relabel; D5-c relabel (not a minimal-score threshold test).
+Verified support facts locally: blob 4356f732a9a9fe2698e852d66b8a11d91212d810, commit date 2026-09-14 23:15:42 +0000, zero diff on masterscanner_api.py/scanner_rules.py 4857918..368fa2e.
+Also: bridge watcher still active for ChatGPT — latest comment remains the Rev-6 mandate (5879344325); no new ChatGPT activity as of 21:55 UTC.
+**No build. Production V5.4 untouched.** Rev 6 ready for Mike's audit.
