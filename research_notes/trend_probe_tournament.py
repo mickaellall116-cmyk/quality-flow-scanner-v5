@@ -181,8 +181,9 @@ def build_random_pool_for_indicator(
     frames: dict[str, pd.DataFrame],
     spy: pd.DataFrame,
     indicator: str,
-) -> dict[tuple[str, str], pd.DataFrame]:
-    pools: dict[tuple[str, str], list[dict]] = {}
+) -> dict[tuple[str, str], np.ndarray]:
+    """Precompute numeric random-control pools for speed; columns are ret/excess by horizon."""
+    buckets: dict[tuple[str, str], list[list[float]]] = {}
     cross_col = f"{indicator}_cross_up"
     for sym, df in frames.items():
         for i in range(WARMUP, len(df)):
@@ -191,26 +192,13 @@ def build_random_pool_for_indicator(
             if bool(df[cross_col].iloc[i]):
                 continue
             rec = forward_record(sym, df, spy, i, "random")
-            if rec is not None:
-                pools.setdefault((sym, rec["month"]), []).append(rec)
-    return {k: pd.DataFrame(v) for k, v in pools.items()}
-
-
-def matched_draw(
-    pools: dict[tuple[str, str], pd.DataFrame],
-    counts: pd.Series,
-    seed: int,
-) -> pd.DataFrame:
-    parts = []
-    for (sym, month), n in counts.items():
-        pool = pools.get((sym, month))
-        if pool is None or pool.empty:
-            continue
-        rng = stable_rng(seed, f"{sym}|{month}")
-        take = int(n)
-        idx = rng.choice(len(pool), size=take, replace=(len(pool) < take))
-        parts.append(pool.iloc[np.atleast_1d(idx)])
-    return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
+            if rec is None:
+                continue
+            row = []
+            for h in HORIZONS:
+                row.extend([float(rec[f"ret_{h}"]), float(rec[f"excess_{h}"])])
+            buckets.setdefault((sym, rec["month"]), []).append(row)
+    return {k: np.asarray(v, dtype=float) for k, v in buckets.items()}
 
 
 def random_compare(events: pd.DataFrame, frames: dict[str, pd.DataFrame], spy: pd.DataFrame, indicator: str) -> tuple[dict, pd.DataFrame]:
@@ -218,9 +206,26 @@ def random_compare(events: pd.DataFrame, frames: dict[str, pd.DataFrame], spy: p
     pools = build_random_pool_for_indicator(frames, spy, indicator)
     rows = []
     for seed in RANDOM_SEEDS:
-        rnd = matched_draw(pools, counts, seed)
-        s = summarize_forward(rnd)
-        s["seed"] = seed
+        pieces = []
+        for (sym, month), n in counts.items():
+            pool = pools.get((sym, month))
+            if pool is None or len(pool) == 0:
+                continue
+            rng = stable_rng(seed, f"{sym}|{month}")
+            take = int(n)
+            idx = rng.choice(len(pool), size=take, replace=(len(pool) < take))
+            pieces.append(pool[np.atleast_1d(idx)])
+        arr = np.concatenate(pieces, axis=0) if pieces else np.empty((0, 2 * len(HORIZONS)))
+        s = {"n": int(len(arr)), "seed": seed}
+        for j, h in enumerate(HORIZONS):
+            rv = arr[:, 2*j] if len(arr) else np.array([], dtype=float)
+            evv = arr[:, 2*j+1] if len(arr) else np.array([], dtype=float)
+            rv = rv[np.isfinite(rv)]
+            evv = evv[np.isfinite(evv)]
+            s[f"mean_ret_{h}_pct"] = float(rv.mean() * 100.0) if len(rv) else None
+            s[f"median_ret_{h}_pct"] = float(np.median(rv) * 100.0) if len(rv) else None
+            s[f"hit_{h}_pct"] = float((rv > 0).mean() * 100.0) if len(rv) else None
+            s[f"mean_excess_{h}_pct"] = float(evv.mean() * 100.0) if len(evv) else None
         rows.append(s)
         if seed % 100 == 0:
             print("RANDOM", indicator, seed)
@@ -240,7 +245,6 @@ def random_compare(events: pd.DataFrame, frames: dict[str, pd.DataFrame], spy: p
             "one_sided_p_random_ge_actual": float((1 + int((vals >= actual).sum())) / (len(vals) + 1)) if len(vals) and actual is not None else None,
         }
     return comp, rdf
-
 
 def qf_record(sym: str, df: pd.DataFrame, spy: pd.DataFrame, i: int) -> dict | None:
     if i < 1 or i + 20 >= len(df) or i + 1 >= len(df):
