@@ -336,9 +336,7 @@ def simulate(entry_variant, exit_variant, frames, cost_bps=ROUND_TRIP_BPS):
 
     tdf=pd.DataFrame(trades)
     if tdf.empty:
-        return {"entry_variant":entry_variant,"exit_variant":exit_variant,
-                               "entry_px":p.entry,"stop_px":p.stop,"tp1_px":p.tp1,"risk_per_share":p.risk_per_share,
-                               "shares":p.shares,"planned_risk":p.planned_risk,"n":0},tdf
+        return {"entry_variant":entry_variant,"exit_variant":exit_variant,"cost_bps":cost_bps,"n":0},tdf
     r=tdf.gross_r.astype(float)
     nr=tdf.net_r.astype(float)
     wins=r[r>0]; losses=r[r<=0]
@@ -346,9 +344,7 @@ def simulate(entry_variant, exit_variant, frames, cost_bps=ROUND_TRIP_BPS):
     nw=nr[nr>0]; nl=nr[nr<=0]
     npf=float(nw.sum()/abs(nl.sum())) if len(nl) and nl.sum()!=0 else None
     return {
-        "entry_variant":entry_variant,"exit_variant":exit_variant,
-                               "entry_px":p.entry,"stop_px":p.stop,"tp1_px":p.tp1,"risk_per_share":p.risk_per_share,
-                               "shares":p.shares,"planned_risk":p.planned_risk,"cost_bps":cost_bps,
+        "entry_variant":entry_variant,"exit_variant":exit_variant,"cost_bps":cost_bps,
         "n":int(len(tdf)),"gross_expectancy_r":round(float(r.mean()),4),
         "net_expectancy_r":round(float(nr.mean()),4),
         "median_r":round(float(r.median()),4),"net_median_r":round(float(nr.median()),4),
