@@ -194,7 +194,7 @@ canonical replica**, never "recovered original."
   - `canonical_baseline/new_listings_eval.json` — 15 post-cutoff listing
     candidates (11 admitted / 4 rejected).
   - `canonical_baseline/universe.json` — final 131-symbol universe
-    (**check target** for the §5B independent reconstruction, never a
+    (**check target** for the §5B consistency check, never a
     check source).
   - `canonical_baseline/universe_overlay_14.json` — the 14-name overlay
     identities (6 non-universe outsiders) for the overlay reporting leg.
@@ -944,19 +944,24 @@ D1/D2 are **supplementary guards only — not proof**. Proof is D4 + D5
   D4/D5 prove eligible-signal *identity* is independent of legacy score /
   regime logic; D6 proves **contested-slot portfolio selection** (the A3
   admission sequence + A4 ranking) is likewise independent. D6 must:
-  1. Consume the rebuild's **pre-portfolio eligible candidate stream** at
-     every decision T (the A3 step-1 input: post-busy-drop candidates with
-     their frozen features).
+  1. Consume the rebuild's **pre-portfolio eligible candidate batch** at
+     every decision T — the full eligible-candidate batch **before**
+     busy/ranking/slot/heat filtering (the A3 input candidates with their
+     frozen features, including candidates the rebuild's own busy-drop
+     would later reject). The oracle must receive every candidate it is
+     asked to independently reject; a post-busy-drop stream would make
+     independent proof of busy rejections impossible.
   2. Independently recompute A4 ranking from frozen inputs/formula only:
      symbol 20 completed-4H-bar return; minus SPY 20 completed-daily-bar
      return ending at the last daily bar available by T (§4); unrankable
      last; frozen deterministic tie-break (rs_top2 desc, signal timestamp,
      symbol asc).
-  3. Independently replay the A3 portfolio admission sequence at each T:
-     same-T exits / busy state as frozen; rank top-N / rs_top2; slot
-     availability; first-fit heat check against the frozen 5% rule and the
-     §7/A6 `E_mark` semantics (including pending-entry reservation);
-     fully deterministic ordering.
+  3. Independently replay the A3 portfolio admission sequence at each T
+     from the unfiltered batch: derive busy state from the frozen same-T
+     exits / held positions (never from the rebuild's busy-drop output);
+     rank top-N / rs_top2; slot availability; first-fit heat check against
+     the frozen 5% rule and the §7/A6 `E_mark` semantics (including
+     pending-entry reservation); fully deterministic ordering.
   4. Compare the independent result with the rebuild **at every evaluated
      decision point**: ranked order of competing eligible candidates;
      busy rejections; slot-rank rejections; heat rejections; accepted
@@ -989,7 +994,8 @@ D1/D2 are **supplementary guards only — not proof**. Proof is D4 + D5
   wall-clock aggregation (09:30–13:30, 13:30–16:00 ET), OHLCV first/max/min/last/sum,
   session-local DST-safe construction, one bar on early closes. Do NOT reuse the
   production `resample_closed_4h` global-resample behavior (which carries
-  SessionVWAP — unavailable to the rebuild by construction, §2.2/M1).
+  SessionVWAP — not part of the frozen rebuild cache; the rebuild uses
+  the frozen rolling-50 VWAP, a JUDGMENT choice, §2.2/M1).
 - **MTF-context historical adapter (F1, frozen 2026-09-28, Mike).**
   MTF daily/weekly context is **separate from the general daily cache**
   above. The tracked live path fetched MTF context per decision as
@@ -1053,7 +1059,7 @@ replace:
 > "The reproduced headline must reconcile trade-by-trade to the published baseline."
 with:
 > "Phase 0 reconciles against the frozen multi-invariant comparator in
-> `CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928_REV5.md` (§5 pre-run, §6
+> `CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928_REV6.md` (§5 pre-run, §6
 > post-run). Exact trade-by-trade reconciliation is required only if an
 > original trade ledger becomes available. The rebuild result is labeled a
 > reconstructed canonical replica from an unblinded replication, not a
@@ -1066,9 +1072,9 @@ Apply it when (not before) Claude + ChatGPT + Mike approve this frozen spec.
 
 ## §14. Remaining gates — DO NOT BUILD until all clear
 
-1. ChatGPT adversarial re-audit of rev 5.
-2. Claude independent re-audit of rev 5 (Mike relays the rev-5 audit
-   package: rev-5 spec + rev-5 request + `claude_audit_bundle_rev5/`).
+1. ChatGPT adversarial re-audit of rev 6.
+2. Claude independent re-audit of rev 6 (Mike relays the rev-6 audit
+   package: rev-6 spec + rev-6 request + `claude_audit_bundle_rev6/`).
 3. Mike's explicit final sign-off on the frozen spec.
 4. The §13 amendment applied to the validation prereg.
 
@@ -1078,7 +1084,7 @@ Build starts only after 1–4. Any material finding returns this document to DRA
 
 ## §15. Freeze attestation + comparator commitment
 
-- [ ] ChatGPT re-audit: PASS on rev 5
+- [ ] ChatGPT re-audit: PASS on rev 6
 - [ ] Claude re-audit: READY (no unresolved material ambiguity)
 - [ ] Mike final sign-off
 - [ ] §13 amendment applied to validation prereg
@@ -1113,7 +1119,9 @@ commitment only.
 | P12 | MTF wrapper: trim, 205-count, `timeframe_trend_confirmed`; EMA21 rising `>=` | §2.8 | COPY | `v54_engine._v54_trend_state` bytes + `scanner_rules.py:217-260` |
 | P13 | Stop/TP1 from raw zone bounds; `bar_close_at` | §2.5/§2.1 | COPY | `scanner_rules.trade_levels`/`bar_close_at` (48579180); raw-bounds call in v54 bytes |
 | P14 | Indicator math (EMA/ATR/ADX/VOL_BASE), constants | §2.2 | COPY | `masterscanner_api.add_indicators` (48579180) |
-| P15 | VWAP := rolling-50 on the rebuilt 4H series | §2.2 | JUDGMENT | `rolling_vwap(df,50)` is the tracked fallback; the rebuild cannot produce SessionVWAP (§11); alternative recorded |
+| P15 | VWAP := rolling-50 on the rebuilt 4H series | §2.2 | JUDGMENT | `rolling_vwap(df,50)` is the tracked fallback; SessionVWAP is
+reconstructible in principle but not part of the frozen rebuild cache —
+rolling-50 is a JUDGMENT choice (§2.2/M1); alternative recorded |
 | P16 | Indicator seeding from `first_available_4h_bar` (all-history) | §3 | JUDGMENT | live-faithful 180d alternative recorded (`v54_scan_symbols` default) |
 | P17 | `min_bars` = 205; `effective_4h_from` as eligibility floor | §3 | COPY/DERIVABLE | v54 bytes (`max(...)+5`); UNIVERSE.md `max(eligible_from, effective_4h_from)` |
 | P18 | Daily availability incl. 13:00 early-close; MTF helper literal 16:00 | §4 | EXPLICIT+COPY | PIT_FEATURES rules 2,8; `closed_higher_timeframe` bytes |
@@ -1147,6 +1155,13 @@ commitment only.
   `4356f732…`; support commit `48579180` dated 2026-09-14T23:15:42Z with
   no-change record through `368fa2e`; §5B relabeled a consistency check;
   D5-c relabeled (not a minimal-score threshold test).
+- **Mike's audit corrections (Issue #1 comment `5880571410`, verdict DRAFT):**
+  D6 input fixed to the pre-busy-filter candidate batch so the oracle can
+  independently derive busy rejections (post-busy-drop input made busy
+  proof impossible); §11 and Appendix P SessionVWAP wording aligned to the
+  corrected M1 rationale (reconstructible in principle; rolling-50 a
+  JUDGMENT choice); §13/§14/§15 pointers updated REV5 → REV6; remaining
+  §5B "independent reconstruction" wording completed to consistency check.
 
 ### Rev 4 → rev 5
 
