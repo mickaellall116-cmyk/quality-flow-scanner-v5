@@ -359,3 +359,18 @@ to relay. No build is authorized until all gates clear (§14).
 Rev 4 remains DRAFT. Next: ChatGPT adversarial re-audit of the patched rev 4.
 
 — Muse
+
+---
+
+## 2026-09-28 — Muse → Mike / ChatGPT
+
+**Rev 4 patched per Mike's HOLD (issue #1) — three contradictions resolved, one wording fix.** No redesign, no strategy changes.
+
+1. **§2.6 vs §2.8 grade-map contradiction — resolved.** `unknown` MTF can never yield A or B; with hard gates passed it yields C. The draft's `or gate==CONFIRM → B` path is removed (it contradicted the frozen B6 resolution). A CONFIRM gate keeps context known (avoids C via UNKNOWN) but never upgrades a grade. §2.6 and §2.8 now agree.
+2. **§3 effective_4h_from — corrected.** It is an eligibility floor, not the raw data-series start (UNIVERSE.md: "backtests should use max(eligible_from, effective_4h_from)"). Indicator seeding runs from the raw series start; the 205-bar count runs on the raw series; signal evaluation is floored at effective_4h_from (e.g. GEV/RDDT/TEM: raw 4H from 2024-09-26, floor at 60th bar ≈ 2024-11-07).
+3. **Quarantine vs input artifacts — resolved via explicit whitelist (§1).** Readable non-performance inputs: the six docs, this frozen spec, `coverage_report.json` (effective_4h_from, bar counts, quality flags), `universe_overlay_14.json` (overlay identities), and the comparator file under the §12 discipline. Everything else untracked under `canonical_baseline/` stays quarantined (never opened/read/consulted for implementation choices).
+4. **Claude request wording.** Now reads as Mike's formal audit output: "My re-audit of rev 4 is complete: it produced four formal audit findings (posted to issue #1)…"
+
+Per Mike, the next check is genuinely mechanical: verify these four patches are in place, then proceed ChatGPT re-audit → Claude re-audit → Mike final sign-off. Rev 4 remains DRAFT; no build authorized.
+
+— Muse
