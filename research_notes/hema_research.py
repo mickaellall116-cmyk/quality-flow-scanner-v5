@@ -230,7 +230,7 @@ def weekly_from_h4(h4: pd.DataFrame) -> pd.DataFrame:
     idx = x.index.tz_convert("America/New_York") if x.index.tz is not None else x.index.tz_localize("America/New_York")
     keys = [f"{t.isocalendar().year}-{t.isocalendar().week:02d}" for t in idx]
     rows=[]
-    for key in pd.unique(keys):
+    for key in pd.Index(keys).unique():
         mask = np.array(keys)==key
         g=x[mask]
         ts=g.index[-1]
@@ -578,7 +578,7 @@ def main():
             idx=tmp.index
             keys=[f"{t.isocalendar().year}-{t.isocalendar().week:02d}" for t in idx]
             rows=[]
-            for key in pd.unique(keys):
+            for key in pd.Index(keys).unique():
                 g=tmp[np.array(keys)==key]
                 ts=g.index[-1]
                 rows.append((ts,float(g["Open"].iloc[0]),float(g["High"].max()),float(g["Low"].min()),float(g["Close"].iloc[-1]),float(g["Volume"].sum())))
