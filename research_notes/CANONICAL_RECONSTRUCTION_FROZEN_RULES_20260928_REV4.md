@@ -2,8 +2,10 @@
 
 **Date:** 2026-09-28
 **Status:** DRAFT rev 4 — addresses the Claude-audit reconciliation + rev-4 mandate
-(issue #1, comment `5876792377`, 2026-09-28T19:16:58Z). Pending: Mike re-audit →
-Claude re-audit → Mike sign-off. **NO BUILD AUTHORIZED YET.**
+(issue #1, comment `5876792377`, 2026-09-28T19:16:58Z). **Patched 2026-09-28
+per Mike's four redlines (issue #1); still DRAFT, no sign-off yet.**
+Pending: ChatGPT re-audit → Claude re-audit → Mike final sign-off.
+**NO BUILD AUTHORIZED YET.**
 **Owner:** Mike
 **Supersedes:** rev 3 (`CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928.md`,
 commit `60776c3`), which **failed the Claude independent audit** and returned
@@ -50,14 +52,17 @@ canonical replica**, never "recovered original."
   docs plus this frozen spec are the only implementation sources.
 - **Live-code provenance for the transcribed signal logic (§2).** The six
   docs cite the live V5.4 implementation with file:line references. Tracked
-  live files are pinned to repo commit
-  `dac44624ccee080e18be69be893399cc4e55b82a`
-  (`scanner_rules.py`, `masterscanner_api.py`). `v54_engine.py` /
+  live files (`scanner_rules.py`, `masterscanner_api.py`) are pinned to the
+  verifiable support commit `48579180d21fda07339fa9305d30828bffef0bc3`
+  (latest commit touching both files; the `dac44624` citation in the first
+  rev-4 draft was invalid and is withdrawn). `v54_engine.py` /
   `v54_rules.py` are **not** committed in the repo, so no commit ref exists
   for them; the version pin is `V54_RULE_VERSION = "2026-09-15-v54"`.
-  **The transcription in §2 is the authoritative freeze** — file references
-  below are provenance notes, not dependencies. Nothing in this work modifies
-  any live file; V5.4 production stays frozen.
+  **The transcription in §2 is the authoritative freeze.** Transcribed logic
+  sourced from the uncommitted wrapper/grader files is labeled
+  **JUDGMENT / reconstructed transcription — not recovered fact**
+  (per-subsection basis notes in §2). Nothing in this work modifies any live
+  file; V5.4 production stays frozen.
 
 ---
 
@@ -109,7 +114,9 @@ On 4H OHLCV (`masterscanner_api.add_indicators`):
   `PULLBACK_NEAR_EMA_PCT=2.5`, `HOT_EXTENSION_PCT=6.0`,
   `BUY_ZONE_ATR_WIDTH=0.45`, `STOP_ZONE_ATR_BUFFER=0.65`,
   `TP_ZONE_ATR_EXTENSION=2.50`, `MIN_ADX=20.0` (V5.4 hard gate).
-  Basis: DERIVABLE (transcribed from the live files the six docs cite).
+  Basis: DERIVABLE (transcribed from the tracked
+  `masterscanner_api.add_indicators` and helpers at commit 48579180, the
+  files the six docs cite).
 
 ### §2.3 Structural contract — pure setup triggers
 
@@ -136,9 +143,11 @@ With `price=Close[i]`, `e9/e21/e55/e200` as above, `adx=ADX[i]`:
   `protection == "SAFE"` **and** `above_vwap` **and** `in_zone`,
   where `in_zone = (zone_low ≤ price ≤ zone_high)`,
   `zone_low = max(0, e21 − ATR×0.45)`, `zone_high = e21 + ATR×0.45`.
-  Basis: DERIVABLE (transcribed from `v54_engine.v54_classify` /
-  `_pure_setup_triggers`, the function PORTFOLIO.md names as the signal
-  source; no score appears in any condition — see §10/B9).
+  Basis: JUDGMENT — reconstructed transcription of the uncommitted
+  `v54_engine.v54_classify` / `_pure_setup_triggers` (not recovered fact;
+  no commit ref exists). Cross-checked against the six docs, which name
+  this function as the signal source (PORTFOLIO.md) and describe its
+  behavior; no score appears in any condition — see §10/B9.
 
 ### §2.4 Hard gates (eligibility)
 
@@ -147,8 +156,12 @@ With `price=Close[i]`, `e9/e21/e55/e200` as above, `adx=ADX[i]`:
 `above_vwap is True`, price inside buy zone —
 `scanner_rules.is_structural_candidate`) **plus** `ADX ≥ 20.0` evaluated at
 signal bar `i`, never revised. Rows failing the gates are recorded as
-ineligible (grade None) — they are not signals. Basis: EXPLICIT
-(`v54_rules.py`, handoff 2026-09-15).
+ineligible (grade None) — they are not signals. Basis: JUDGMENT —
+reconstructed transcription of the uncommitted `v54_rules.v54_hard_gates_pass`
+(not recovered fact); the structural contract it wraps is in the tracked
+`scanner_rules.is_structural_candidate` (commit 48579180), and the ADX ≥ 20
+gate plus ineligible→None recording are in the frozen handoff spec
+(2026-09-15).
 
 ### §2.5 Stop / TP1 levels
 
@@ -177,7 +190,10 @@ Grading consumes only these context fields — never raw dataframes
   (OBSERVATION). Else → **A** (EARLY). The handoff's "weaker" (as distinct
   from "unknown") has no deterministic definition and currently grades A —
   flagged, not invented (standing memory 2026-09-15).
-  Basis: EXPLICIT (`v54_rules.py`).
+  Basis: JUDGMENT — reconstructed transcription of the uncommitted
+  `v54_rules.v54_grade` (not recovered fact); the A/B/C map, the grading-only
+  role of MTF/market-gate context, and the observational-only status of
+  15m/premarket are in the frozen handoff spec.
 
 ### §2.7 Market gate computation (grading context)
 
@@ -207,7 +223,11 @@ PIT_FEATURES rule 7; morning-cycle staleness is correct behavior):
 - `unknown` can never yield A or B: with hard gates passed it yields **C**
   (§2.6). Missing auxiliary input is **never gating** — it is grading
   context only (B6 resolved).
-  Basis: EXPLICIT (`v54_engine.py`, `scanner_rules.py:217-260`).
+  Basis: mixed. `closed_higher_timeframe`, `timeframe_trend_confirmed`, and
+  the 205-bar rule: EXPLICIT (tracked `scanner_rules.py:217-260`, commit
+  48579180). The confirmed/not_confirmed/unknown labeling wrapper:
+  JUDGMENT — reconstructed transcription of the uncommitted
+  `v54_engine._v54_trend_state` (not recovered fact).
 
 ---
 
@@ -395,9 +415,15 @@ Basis: JUDGMENT.
 2. **Snapshot:** `E_mark(T) = cash(T) + Σ_open(shares × close_i)`, where
    `cash(T)` starts at $75,000 and reflects every fill and every leg-cost
    deducted through bar `i`'s close. This snapshot is the heat denominator
-   for every decision stamped T and is never recomputed within T. **No-bar
-   at T:** a symbol with no bar at T is marked at its last available close
-   (stale mark, flagged in outputs); this never blocks the run.
+   for every decision stamped T and is never recomputed within T.
+   **Missing-bar rule (frozen 2026-09-28):** a symbol with no bar at T
+   receives **no Mode-B processing at T** — no stop/TP1/Profit-Protect/EXIT
+   evaluation, no signal detection, and its 30-bar timeout clock does not
+   increment (`bars_held` counts processed bars only; entry bar = #1 per
+   ENGINE.md). The stale last-available close is used **only** for the
+   equity-marking snapshot `E_mark(T)` (flagged stale in outputs); it never
+   generates fills, signals, or timeout progress. A missing bar never blocks
+   the run.
 3. **New-signal batch evaluation:** run signal detection on completed bar `i`,
    then the A3 batch competition (busy → rank → heat first-fit) using
    `E_mark(T)` and slots freed by exits realized in bar `i`; pending entries
@@ -458,7 +484,8 @@ Basis: JUDGMENT.
 - In `classify`, `exit_signal` also sets protection/state EXIT, but the
   backtest consumes scanner EXIT **only** through the PP-armed pending-exit
   path above.
-  Basis: EXPLICIT (ENGINE.md §1/§3; `v54_engine._pure_setup_triggers`).
+  Basis: EXPLICIT (ENGINE.md §1/§3; the `_pure_setup_triggers` phrasing is a
+  JUDGMENT reconstructed transcription per §2.3).
 
 ---
 
@@ -504,12 +531,18 @@ Basis: JUDGMENT.
 **B9 — Gate D (runs before the portfolio sim): the rebuild must prove the
 historical numpy trendScore bug / score-based mirror logic is absent:**
 - **D1 (static):** the rebuilt signal module contains no reference to
-  `trendScore`, `score` thresholds, or `rank_score` in any decision path
-  (mechanical grep assertion over the rebuild tree; score fields may exist
-  as logged-only columns, never as conditions).
-- **D2 (behavioral):** entry YES/NO decisions are invariant to score
-  perturbation — re-run signal generation with all logged score fields
-  randomized/shuffled; the accepted-signal set must be byte-identical.
+  legacy per-symbol score fields — `trendScore`, `rank_score`, or per-symbol
+  `score` — in any entry-decision path (mechanical grep assertion over the
+  rebuild tree; such fields may exist as logged-only columns, never as
+  conditions). **Carve-out:** the market-regime score (§2.7 — the QQQ
+  0–100 score used only for BLOCK/CAUTION/CONFIRM gate computation, a
+  grading-context input) is a legitimate frozen input and is explicitly
+  excluded from this ban.
+- **D2 (behavioral):** entry YES/NO decisions are invariant to legacy
+  score perturbation — re-run signal generation with all logged legacy
+  per-symbol score fields randomized/shuffled; the accepted-signal set must
+  be byte-identical. The market-regime score is excluded from the
+  perturbation (frozen grading-context input, not an entry input).
 - **D3 (bug-class):** all trigger conditions coerce numpy scalars with
   explicit `bool()` on scalar comparisons; no bare numpy boolean arrays
   appear in conditionals (the historical bug class: numpy-boolean
@@ -570,22 +603,21 @@ Apply it when (not before) Claude + ChatGPT + Mike approve this frozen spec.
 
 ## §14. Remaining gates — DO NOT BUILD until all clear
 
-1. Mike's re-audit of THIS rev-4 draft (his turn immediately on posting).
-2. Claude independent re-audit of rev 4 (Mike relays the rev-4 audit package).
-3. ChatGPT adversarial re-audit of rev 4 (queued after Mike's pass, per owner turn order).
-4. Mike's explicit sign-off on the frozen spec.
-5. The §13 amendment applied to the validation prereg.
+1. ChatGPT adversarial re-audit of the patched rev 4.
+2. Claude independent re-audit of the patched rev 4 (Mike relays the rev-4
+   audit package).
+3. Mike's explicit final sign-off on the frozen spec.
+4. The §13 amendment applied to the validation prereg.
 
-Build starts only after 1–5. Any material finding returns this document to DRAFT.
+Build starts only after 1–4. Any material finding returns this document to DRAFT.
 
 ---
 
 ## §15. Freeze attestation + comparator commitment
 
-- [ ] Mike re-audit: PASS on rev 4
+- [ ] ChatGPT re-audit: PASS on patched rev 4
 - [ ] Claude re-audit: READY (no unresolved material ambiguity)
-- [ ] ChatGPT re-audit: PASS / sign-off on frozen spec
-- [ ] Mike sign-off
+- [ ] Mike final sign-off
 - [ ] §13 amendment applied to validation prereg
 - [ ] Code + spec + cache-manifest SHA-256 hash-lock recorded before Run 1
 
