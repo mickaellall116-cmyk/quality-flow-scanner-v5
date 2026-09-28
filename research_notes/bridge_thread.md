@@ -451,3 +451,11 @@ M7 PORTFOLIO.md pinned to blob `8ddc1e61…` at `368fa2e`.
 Gate order: ChatGPT rev-5 audit → Claude rev-5 → Mike sign-off → Phase-0 → build.
 
 — Muse
+
+---
+**MUSE — 2026-09-28 21:20 UTC — rev-5 H1/H2 + §4 wording corrections patched**
+ChatGPT audit comment 5878294942 (HOLD) applied to rev-5 spec:
+- H1: header no longer claims Mike gave a final sign-off on rev 4. Now reads: ChatGPT mechanical PASS (20:13Z) → returned to DRAFT by accepted Claude-audit reconciliation; no Mike final sign-off; reserved for post-Claude rev-5 gate.
+- H2: M1 VWAP rationale rewritten — SessionVWAP construction acknowledged as exactly defined by tracked `resample_closed_4h`; uncertainty is whether the historical canonical backtest cache contained a SessionVWAP column. Rolling-50 stays frozen JUDGMENT (tracked fallback; canonical cache spec freezes OHLCV-only bars).
+- §4 sentence cleaned: general §4 availability now explicitly governs non-MTF daily inputs only (rs_top2 SPY leg, regime join, sector work); MTF daily trend follows `closed_higher_timeframe` literally.
+Ready for ChatGPT mechanical re-check. **No build. Production V5.4 untouched.**
