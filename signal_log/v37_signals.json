@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-25T18:02:54+00:00",
+  "updated_at": "2026-09-28T18:02:49+00:00",
   "timeframe": "4H",
   "source": "v37-watchlist-watcher",
   "watchlist": [
@@ -18,8 +18,36 @@
     "HOOD",
     "AMD"
   ],
-  "event_count": 29,
+  "event_count": 31,
   "events": [
+    {
+      "detected_at": "2026-09-28T18:02:42+00:00",
+      "signal_bar_close": "2026-09-28T13:30:00-04:00",
+      "symbol": "QQQ",
+      "timeframe": "4H",
+      "entry_px": 737.81,
+      "stop_px": 728.23,
+      "tp1_px": 750.58,
+      "score": 4,
+      "adx": 18.2,
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at the buy zone, right near its short-term average price.",
+      "source": "watchlist"
+    },
+    {
+      "detected_at": "2026-09-28T18:02:49+00:00",
+      "signal_bar_close": "2026-09-28T13:30:00-04:00",
+      "symbol": "AMD",
+      "timeframe": "4H",
+      "entry_px": 606.18,
+      "stop_px": 581.1,
+      "tp1_px": 639.62,
+      "score": 5,
+      "adx": 37.9,
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at the buy zone, right near its short-term average price.",
+      "source": "watchlist"
+    },
     {
       "detected_at": "2026-09-25T18:02:45+00:00",
       "signal_bar_close": "2026-09-25T13:30:00-04:00",
