@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-09-25T14:52:32.352183+00:00",
-  "count": 5,
+  "as_of": "2026-09-28T14:52:47.481246+00:00",
+  "count": 6,
   "trades": [
     {
       "type": "close",
@@ -211,6 +211,48 @@
       "v53_entry": "YES",
       "v53_score": 100,
       "logged_at": "2026-09-25T14:52:32.319920+00:00"
+    },
+    {
+      "type": "close",
+      "signal_id": "v54:RBLX:4h:2026-09-18T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "RBLX",
+      "signal_time": "2026-09-18T14:30:00-04:00",
+      "grade": "A",
+      "market_gate": "CAUTION",
+      "market_regime": "CAUTIOUS",
+      "rvol_exact": 0.8270618442990552,
+      "daily_state": "not_confirmed",
+      "weekly_state": "not_confirmed",
+      "risk_reward": 2.174,
+      "confirmation_15m": true,
+      "premarket": {
+        "pm_last": 47.63,
+        "pm_gap_pct": 0.27,
+        "pm_range_pct": 2.28,
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "pm_read": "NEUTRAL"
+      },
+      "entry": 47.369998931884766,
+      "entry_bar": "2026-09-18T14:30:00-04:00",
+      "tp1": 50.73407637306976,
+      "stop": 45.81544024797135,
+      "reached_plus_1r": true,
+      "tp1_taken": true,
+      "partial_r": 1.082,
+      "runner_r": -2.4251,
+      "blended_r": -0.1306,
+      "mfe_r": 2.9526,
+      "mae_r": -3.107,
+      "bars_held": 17,
+      "exit_reason": "runner-exit",
+      "exit_px": 43.599998474121094,
+      "exit_bar": "2026-09-28T06:30:00-04:00",
+      "v53_vetoed": false,
+      "v53_state": "PULLBACK BUY",
+      "v53_entry": "YES",
+      "v53_score": 100,
+      "logged_at": "2026-09-28T14:52:47.438112+00:00"
     }
   ]
 }
