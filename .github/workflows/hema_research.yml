@@ -7,6 +7,7 @@ on:
     paths:
       - "research_notes/hema_research.py"
       - "research_notes/hema_diagnostics.py"
+      - "research_notes/hema_qf_portfolio.py"
       - ".github/workflows/hema_research.yml"
   workflow_dispatch:
 
@@ -38,6 +39,9 @@ jobs:
       - name: Run HEMA diagnostics
         run: PYTHONPATH=. python research_notes/hema_diagnostics.py
 
+      - name: Run Quality Flow x HEMA portfolio test
+        run: PYTHONPATH=. python research_notes/hema_qf_portfolio.py
+
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
@@ -46,4 +50,5 @@ jobs:
           path: |
             hema_results/
             hema_diagnostics/
+            hema_qf_portfolio/
           if-no-files-found: warn
