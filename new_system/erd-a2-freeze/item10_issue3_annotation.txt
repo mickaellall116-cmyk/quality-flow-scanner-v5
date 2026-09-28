@@ -1,0 +1,7 @@
+> SUPERSEDED (per ERD v0.1 Amendment 2, frozen <date>, commit <hash>): the
+> pass-criteria bullet "events with missing/ambiguous timing are excluded
+> by rule" is replaced. The validation sample denominator is fixed at 50;
+> sampled events with missing, ambiguous, vendor-imputed, or conflicting
+> timing — or with no retrievable primary source — are coded
+> UNVERIFIABLE/FAIL and STAY in the denominator. No exclusion, no redraw,
+> no replacement. All other issue #3 content is unchanged.

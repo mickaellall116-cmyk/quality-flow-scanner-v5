@@ -1,0 +1,15 @@
+SYNTHETIC FRAME — determinism check only, not the real frame
+frame rows: 240
+sample size run1/run2: 50/50
+sha256 run1: 01732b0a91f107fc97c6761a3c09fa53ef95667e6e14ed9421f0c2a29c2040ae
+sha256 run2: 01732b0a91f107fc97c6761a3c09fa53ef95667e6e14ed9421f0c2a29c2040ae
+byte-for-byte identical: True
+distinct years: 8 (quota 8): [2013, 2015, 2016, 2017, 2018, 2019, 2023, 2024]
+delisted in sample: 5 (quota 2)
+ticker_change in sample: 5 (quota 2)
+acquisition in sample: 2 (quota 2)
+shortfalls: none
+no timing fields in serialization: True
+transition sample deterministic: True, n=20 (expect 20)
+transition subset of sample: True
+DETERMINISM SELF-CHECK: PASS

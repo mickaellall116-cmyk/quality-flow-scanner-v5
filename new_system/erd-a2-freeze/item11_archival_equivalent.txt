@@ -1,0 +1,6 @@
+none
+
+Frozen value per Amendment 2 rev 4 §5 item 11. Consequence per §1.6(c)(iii):
+the availability claim must be corroborated by versioned provider evidence
+alone; otherwise provider PIT status is FAIL/UNVERIFIED. Ad-hoc archives
+assembled after the gate runs do not count.
