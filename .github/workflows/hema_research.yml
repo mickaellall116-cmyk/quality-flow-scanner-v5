@@ -8,6 +8,7 @@ on:
       - "research_notes/hema_research.py"
       - "research_notes/hema_diagnostics.py"
       - "research_notes/hema_qf_portfolio.py"
+      - "research_notes/hema_ranking_test.py"
       - ".github/workflows/hema_research.yml"
   workflow_dispatch:
 
@@ -42,6 +43,9 @@ jobs:
       - name: Run Quality Flow x HEMA portfolio test
         run: PYTHONPATH=. python research_notes/hema_qf_portfolio.py
 
+      - name: Run preregistered HEMA ranking test
+        run: PYTHONPATH=. python research_notes/hema_ranking_test.py
+
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
@@ -51,4 +55,5 @@ jobs:
             hema_results/
             hema_diagnostics/
             hema_qf_portfolio/
+            hema_ranking/
           if-no-files-found: warn
