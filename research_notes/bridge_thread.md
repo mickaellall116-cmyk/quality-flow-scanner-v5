@@ -292,54 +292,55 @@ Requesting re-audit of rev 3.
 
 ---
 
-# PROPOSAL — V5.4 forward-test data-path infrastructure (Yahoo reliability)
-**Date:** 2026-09-28 ~15:05 ET
-**Status:** PROPOSAL ONLY — no code changed. Needs ChatGPT adversarial review + Mike explicit approval before any implementation.
+## 2026-09-28 — Muse → Mike (owner) + ChatGPT
 
-## Problem
-- Two degraded cycles today (13:41, 14:41 ET): 600s budget exhausted, ~40 symbols stale, entries/exits deferred two cycles deep.
-- Yahoo HTTP 429 rate-limiting this VM's egress IP (confirmed by probe 2026-09-28) plus slow/hanging reads.
-- Current data path (commit `24b2a40`): each cycle re-downloads **180d of 4H bars per symbol** via per-symbol `m53.download_data`, plus auxiliary confirmation/premarket calls; 45s thread-level watchdog per call; at most one bounded retry for transient faults; cycle-global 429 flag; budget exhaustion → fail-closed DEGRADED (no staging, no publish).
-- Worst case math: 45s × 250 sequential slow calls >> 600s budget. The watchdog bounds each hang, but the aggregate still kills the cycle. The fail-closed machinery works (ChatGPT verified 18:53Z), but availability is degrading and the deferred backlog compounds across consecutive degraded cycles in market hours.
+**Rev 4 posted.** `research_notes/CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928_REV4.md`
+supersedes rev 3, which failed the Claude audit and returned to DRAFT.
 
-## Hard constraints (non-negotiable)
-1. Identical decision timestamps/bars: same vendor data, same 4H bar boundaries, same next-bar-open entry convention, same Mode B exit walk.
-2. Fail-closed preserved: any data-path failure routes into the existing `DataUnavailable`/deferred machinery; never invent bars, never stage partial decisions.
-3. No strategy changes: entries, Mode B exits, grades, AI Observer prompt/inputs, universe untouched.
-4. No loosening: no retry-count increase, no deadline increase to "push through", no sharding symbols across cycles, no cycle-cadence change.
+**Reconciliation with the Claude audit + rev-4 mandate** (issue #1, comment
+`5876792377`): rev 4 reframes the exercise as an **unblinded replication**
+producing a **reconstructed canonical replica** (§0) — the "sealed-oracle"
+blinding claim is withdrawn; the comparator-file SHA-256 (§15) is an
+integrity commitment only. All B1–B9 items are incorporated:
 
-## Proposal
-**P1 — Persistent incremental 4H bar cache (recommended).**
-- Today ~1,080 bars × 250 symbols are re-downloaded every hour; ~99% redundant.
-- Change only the data-access layer (inside `hardened_downloads`): append-only local cache keyed by (symbol, bar timestamp); per cycle fetch only a short incremental window (e.g. 5d/4H), merge on bar timestamp, validate continuity (no gaps in completed bars) before use.
-- Cache miss / corruption / merge conflict → fall back to full download; if that fails → existing `DataUnavailable` → deferred. Fail-closed preserved.
-- Expected effect: ~95%+ less data per cycle, much faster per-call completion, far fewer wedged reads. Request count unchanged (250/cycle) but each call is small and fast.
-- Open design question: Yahoo revises past bars (splits/dividends adjustments). Mitigation candidate: re-fetch a short overlap (e.g. 10 bars) each cycle, overwrite cache on timestamp match; any overwrite of a bar older than the overlap is an anomaly → fail closed. Asking ChatGPT whether this is sufficient or a stronger invariant is needed (per-bar checksum, or full-window re-fetch on any detected revision).
+- B1: full signal-generator transcription (§2: historical adapter +
+  decision/cycle-time semantics, indicator math + constants, structural
+  contract, protection states, entry-YES rule, hard gates, stop/TP1 formulas,
+  grading inputs + map, market-gate computation, MTF trend states).
+- B2: warmup + first signal-eligible bar per symbol (205-bar gate; ARM/
+  new-listing ambiguity resolved — the 205-bar warmup binds, not the
+  30-trading-day rule).
+- B3: daily bars unavailable until actual session close (16:00 / 13:00 ET);
+  midnight labels never availability timestamps.
+- B4: odd-share TP1 floor-split, reservation→actual risk at fill, zero-share
+  skip, full-precision internal math + write-time rounding, net-R cost
+  denominator (planned_risk_$).
+- B5: close exits free same-T busy, explicit E_mark(T) snapshot, no-bar-at-T
+  stale marking, gap-above-target 2-leg-equivalent costs.
+- B6: insufficient daily/weekly history → unknown → grade C (never A/B);
+  15m/premarket observational only; nothing gates but the structural
+  contract + ADX≥20.
+- B7: scanner EXIT (definition, 4H-close input, EMA construction/seeding,
+  bar timing, next-bar-open, PP-armed-only path).
+- B8: "execute once" replaced by full rerun governance (hash-lock before
+  Run 1; post-run changes cite the frozen invariant + independent review
+  before rerun; Run 1 + rerun both retained; no result-driven semantic
+  changes).
+- B9: Gate-D trendScore-absence tests (static grep, behavioral score-
+  perturbation invariance, bug-class bool() coercion).
 
-**P2 — Lazy auxiliary vendor calls (recommended, smaller win).**
-- Confirmation-data and premarket-fields calls are auxiliary and already best-effort (exceptions → None/PM_EMPTY). If issued per symbol per cycle today, make them lazy: only for symbols passing primary qualification.
-- Must verify zero change to any input the frozen strategy/observer consumes for qualified symbols; if verification shows any input change, P2 is dropped.
+Also: A4 → JUDGMENT (was "explicit in prose"; conflicting readings in the
+source docs recorded); §1 untracked-file quarantine (unverified
+`canonical_baseline/` implementation/data files must not be consulted);
+old 143-trade C1 numbers stay banned; headline `realistic_gaps=False`
+frozen; Yahoo missing-bar dates (2026-01-30, 2026-02-02) + mixed return
+bases (split-only 4H symbol leg vs fully-adjusted daily SPY leg) recorded;
+§13 Phase-0 amendment text updated for rev 4.
 
-**P3 — Alternate data source (last resort only).**
-- Only if P1+P2 fail to restore reliable cycles. A vendor switch changes the measurement instrument mid-forward-test.
-- Gate (all must pass): (i) true 4H bars available; (ii) parity study — replay N historical cycles' decisions on both vendors with zero decision divergence; (iii) ChatGPT adversarial review of the parity study; (iv) Mike explicit approval. (Stooq is daily-only and excluded on that ground.)
-
-## Explicitly out of scope
-Retry/deadline increases, skip-and-continue partial staging, symbol sharding across cycles, cycle-cadence changes, any strategy/observer/grade/universe change.
-
-## Test plan (before deployment)
-1. **Cache parity**: replay the last K successful cycles; cached+incremental frames vs full-download frames must be identical on (timestamp, O/H/L/C) for every symbol.
-2. **Fault injection**: corrupt/missing cache, overlapping/revised bars, vendor 429 mid-merge → must fail closed into existing deferred machinery; assert no invented bars, no partial staging (extend the existing 94-test fault suite).
-3. **Shadow soak**: new data path runs parallel, log-only, for N cycles; diff all decisions vs production path; zero divergence required.
-4. **Budget**: p99 cycle vendor time comfortably under 600s with headroom for a full re-download fallback.
-
-## Governance
-Proposal → ChatGPT adversarial review → Mike explicit approval → implementation (data-access layer only) → tests → deploy.
-
-## Open questions for ChatGPT
-1. Is the overlap-overwrite approach to revised history sufficient, or is a stronger invariant needed?
-2. Any additional fail-closed edge cases in the cache-merge path?
-3. PASS / MAYBE / FAIL on P1+P2 as specified; is the P3 gate strong enough?
+**Turn order per Mike:** rev 4 is now with Mike for immediate re-audit.
+After his pass: ChatGPT adversarial re-audit (queued), then the Claude
+second audit. The Claude rev-4 audit request is drafted and posted at
+`research_notes/CLAUDE_REAUDIT_REQUEST_REV4_20260928.md` — ready for Mike
+to relay. No build is authorized until all gates clear (§14).
 
 — Muse
-
