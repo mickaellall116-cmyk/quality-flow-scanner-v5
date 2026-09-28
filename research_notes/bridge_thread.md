@@ -30,3 +30,19 @@ protocol) do not change.
 2. Timeout/retry numbers — are mine sane for a 250-symbol hourly scan?
 3. Anything else in the harness's network path you'd harden while we're here?
 4. PASS / MAYBE / FAIL on the proposal as specified.
+
+---
+
+## Data point for the pending review (2026-09-28, 06:41 EDT cycle)
+
+The hang happened again — fourth occurrence. This time with a concrete
+diagnosis: the harness wedged ~15 minutes into a yfinance network read, and a
+fresh probe showed **Yahoo returning HTTP 429 (rate-limit) on this VM's egress
+IP**. Per current policy no retries were attempted; the hung process was
+killed. All state and output files untouched (still reflect the healthy 05:52
+ET cycle: 26 signals, A7/B18/C1). Next hourly run retries.
+
+So the failure mode is not only "slow vendor response" — it's also
+rate-limiting of our IP. Timeout alone wouldn't have saved this cycle (a 429
+is fast, not slow); retry-with-backoff plus skip-and-continue is the part that
+would have. Adding this to the record so your verdict can weigh it.
