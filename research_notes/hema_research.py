@@ -29,7 +29,7 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
-from scanner_rules import resample_closed_4h, bar_close_at
+from scanner_rules import bar_close_at
 
 SYMBOLS = [
     "NVDA","SMCI","IREN","PLTR","TSLA","AVGO","MSFT","AMD","ARM","ANET",
@@ -209,6 +209,79 @@ def regular_1h(df: pd.DataFrame) -> pd.DataFrame:
     x.index = local
     mins = local.hour*60 + local.minute
     return x[(mins >= 570) & (mins < 960)].copy()
+
+
+def resample_closed_4h(df: pd.DataFrame, symbol: str, now: pd.Timestamp | None = None) -> pd.DataFrame:
+    """DST-safe session-aligned 4H bars for research.
+
+    The production helper uses one global pandas 4H resample origin. Across a
+    DST boundary that origin stays fixed in absolute time, which shifts winter
+    labels to 08:30/12:30 ET. Here each US trading date is bucketed explicitly
+    in New York wall time: 09:30-13:30 and 13:30-16:00.
+    """
+    if df.empty:
+        return df.copy()
+    x=df.copy().sort_index()
+    if not isinstance(x.index,pd.DatetimeIndex):
+        raise TypeError("Market data must use a DatetimeIndex")
+    is_crypto=symbol.upper().endswith("-USD")
+    if is_crypto:
+        bars=x.resample("4h",origin="start_day",label="left",closed="left").agg(
+            {"Open":"first","High":"max","Low":"min","Close":"last","Volume":"sum"}
+        ).dropna(subset=["Open","High","Low","Close"])
+        return bars
+
+    idx=x.index
+    if idx.tz is None:
+        idx=idx.tz_localize("America/New_York")
+    else:
+        idx=idx.tz_convert("America/New_York")
+    x.index=idx
+    mins=idx.hour*60+idx.minute
+    x=x[(mins>=570)&(mins<960)].copy()
+    if x.empty:
+        return x
+
+    typical=(x["High"]+x["Low"]+x["Close"])/3.0
+    day=x.index.normalize()
+    pv=typical*x["Volume"]
+    cum_pv=pv.groupby(day).cumsum()
+    cum_vol=x["Volume"].groupby(day).cumsum().replace(0,np.nan)
+    x["SessionVWAP"]=cum_pv/cum_vol
+
+    rows=[]
+    for d,g in x.groupby(x.index.normalize(),sort=True):
+        gm=g.index.hour*60+g.index.minute
+        for start_min,end_min in ((570,810),(810,960)):
+            b=g[(gm>=start_min)&(gm<end_min)]
+            if b.empty:
+                continue
+            hh=start_min//60; mm=start_min%60
+            label=pd.Timestamp(d).replace(hour=hh,minute=mm)
+            rows.append({
+                "idx":label,
+                "Open":float(b["Open"].iloc[0]),
+                "High":float(b["High"].max()),
+                "Low":float(b["Low"].min()),
+                "Close":float(b["Close"].iloc[-1]),
+                "Volume":float(b["Volume"].sum()),
+                "SessionVWAP":float(b["SessionVWAP"].iloc[-1]),
+            })
+    bars=pd.DataFrame(rows).set_index("idx").sort_index() if rows else pd.DataFrame()
+    if bars.empty:
+        return bars
+
+    if now is None:
+        now=pd.Timestamp.now(tz="America/New_York")
+    else:
+        now=pd.Timestamp(now)
+        if now.tzinfo is None:
+            now=now.tz_localize("America/New_York")
+        else:
+            now=now.tz_convert("America/New_York")
+    if now < bar_close_at(bars.index[-1],symbol):
+        bars=bars.iloc[:-1]
+    return bars
 
 def daily_from_h4(h4: pd.DataFrame) -> tuple[pd.DataFrame, dict[pd.Timestamp,pd.Timestamp]]:
     if h4.empty:
