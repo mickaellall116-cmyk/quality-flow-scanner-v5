@@ -8,7 +8,11 @@ three internal contradictions resolved (§2.6/§2.8 grade map, §3
 effective_4h_from floor, §1 artifact whitelist) + Claude request wording;
 patched a third time per ChatGPT's mechanical re-audit C1–C3 (literal grade
 precedence order, weekly-cache source frozen in §11, blob pins + expanded
-whitelist with hash-before-use, full-chain R1–R4 attribution).
+whitelist with hash-before-use, full-chain R1–R4 attribution); patched a
+fourth time per Mike's F1 (MTF-context historical adapter: separate 2y
+daily / 5y weekly as-of each decision time, deterministic equivalent of the
+live download_confirmation_data calls — the frozen 2023-06-01 weekly window
+could not satisfy the 205-weekly-bar rule).
 Still DRAFT, no sign-off yet.**
 Pending: ChatGPT final mechanical check → Claude re-audit → Mike final sign-off.
 **NO BUILD AUTHORIZED YET.**
@@ -77,8 +81,8 @@ canonical replica**, never "recovered original."
     CANONICAL_RECONSTRUCTION_SEALED_ORACLE_20260928.json`), opened only
     under the §12 discipline (after semantics frozen, code hash-locked,
     Run 1 complete, Layer-1 passed).
-  - Rebuilt 4H/daily/weekly caches are **outputs** of the rebuild per §11
-    provenance rules, not consulted sources.
+  - Rebuilt 4H/daily caches and the MTF archival pull are **outputs** of the
+    rebuild per §11 provenance rules, not consulted sources.
   Provenance note: these files' construction is described in UNIVERSE.md;
   their byte-level provenance is unverified, which is why they are hashed
   before use and why every Layer-1 check re-derives the documented counts
@@ -607,13 +611,29 @@ historical numpy trendScore bug / score-based mirror logic is absent:**
   wall-clock aggregation (09:30–13:30, 13:30–16:00 ET), OHLCV first/max/min/last/sum,
   session-local DST-safe construction, one bar on early closes. Do NOT reuse the
   production `resample_closed_4h` global-resample behavior.
-- Weekly cache (frozen 2026-09-28, ChatGPT C1): dedicated yfinance 1wk pull
-  per symbol, window 2023-06-01→2026-09-24, `auto_adjust=True` (fully
-  adjusted), `dropna()`, America/New_York — the live
-  `download_confirmation_data(symbol, "1wk", "5y")` convention
-  (`masterscanner_api.py:102-107`, commit 48579180). The
-  `closed_higher_timeframe` weekly trim (§2.8) applies before
-  `timeframe_trend_confirmed`. Basis: DERIVABLE (tracked live code).
+- **MTF-context historical adapter (F1, frozen 2026-09-28, Mike).**
+  MTF daily/weekly context is **separate from the general daily cache**
+  above. The tracked live path fetched MTF context per decision as
+  `download_confirmation_data(symbol, "1d", "2y")` and
+  `download_confirmation_data(symbol, "1wk", "5y")`
+  (`masterscanner_api.py:297-303`, commit 48579180) — i.e. 2y of daily /
+  5y of weekly as-of each decision time. A frozen 2023-06-01→2026-09-24
+  weekly window cannot satisfy the 205-completed-weekly-bar rule (≈171
+  weekly bars), so weekly trend would be `unknown` for the whole sample by
+  construction. The reconstruction therefore uses a deterministic
+  historical adapter equivalent to the live calls:
+  - One archival vendor pull per symbol: daily 1d and weekly 1wk,
+    2018-01-01→2026-09-24, `auto_adjust=True`, `dropna()`,
+    America/New_York (2018-01-01 covers T−1825d for every T ≥ 2023-01-01).
+  - At each decision time T the adapter presents daily = bars in
+    [T−730d, T] and weekly = bars in [T−1825d, T] — the same spans
+    yfinance `period="2y"` / `period="5y"` return as-of T.
+  - No bar with timestamp > T is visible to the adapter (no lookahead);
+    the `closed_higher_timeframe` trim (§2.8) applies with now=T.
+  - The 205-completed-bar rule is unchanged: 2y daily ≈ 504 sessions and
+    5y weekly ≈ 260 bars both satisfy it for mature names; new listings
+    (ARM, SPCX, GEV/RDDT/TEM) correctly yield `unknown` → grade C per the
+    §2.6 precedence order. Basis: DERIVABLE (tracked live code).
 - Every cache file: SHA-256 + fetch timestamp logged; no hand edits, ever.
 - Deterministic order everywhere: timestamp asc, then symbol asc. No dict-order
   or thread-order dependence.
