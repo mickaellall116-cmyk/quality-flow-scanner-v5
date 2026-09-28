@@ -203,7 +203,10 @@ def regular_1h(df: pd.DataFrame) -> pd.DataFrame:
         local = idx.tz_convert("America/New_York")
     else:
         local = idx.tz_localize("America/New_York")
-        x.index = local
+    # Critical: resampling must operate on the NY-localized index itself.
+    # Filtering with a converted helper index but leaving x.index in UTC
+    # shifts winter 4H buckets to 08:30/12:30 ET around DST.
+    x.index = local
     mins = local.hour*60 + local.minute
     return x[(mins >= 570) & (mins < 960)].copy()
 
