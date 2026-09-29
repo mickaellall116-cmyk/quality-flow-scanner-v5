@@ -1,0 +1,1203 @@
+[
+ {
+  "symbol": "SPY",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 1,
+  "addv_usd_per_day": 32168905100.923634,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "TSLA",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 2,
+  "addv_usd_per_day": 29950095450.90387,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "NVDA",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 3,
+  "addv_usd_per_day": 22017527086.11256,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "QQQ",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 4,
+  "addv_usd_per_day": 18163726157.83973,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "AAPL",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 5,
+  "addv_usd_per_day": 10537434624.373674,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MSFT",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 6,
+  "addv_usd_per_day": 8064794812.915707,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "AMZN",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 7,
+  "addv_usd_per_day": 7212456228.57306,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "META",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 8,
+  "addv_usd_per_day": 6883078666.662025,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "AMD",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 9,
+  "addv_usd_per_day": 6484406660.289574,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "IWM",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 10,
+  "addv_usd_per_day": 4654635936.5486145,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "GOOGL",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 11,
+  "addv_usd_per_day": 3600359042.0865417,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "JNJ",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 12,
+  "addv_usd_per_day": 3457421340.2542353,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "NFLX",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 13,
+  "addv_usd_per_day": 2566945615.2920723,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "TLT",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 14,
+  "addv_usd_per_day": 2456863533.3824754,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "AVGO",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 15,
+  "addv_usd_per_day": 1957745873.2042313,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "XOM",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 16,
+  "addv_usd_per_day": 1545059780.9724808,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "XLE",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 17,
+  "addv_usd_per_day": 1505382307.597053,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "UNH",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 18,
+  "addv_usd_per_day": 1474541809.626484,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ADBE",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 19,
+  "addv_usd_per_day": 1463203427.4327278,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "LLY",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 20,
+  "addv_usd_per_day": 1422803958.366394,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "DIS",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 21,
+  "addv_usd_per_day": 1337209374.210608,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "JPM",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 22,
+  "addv_usd_per_day": 1286879500.7573366,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "INTC",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 23,
+  "addv_usd_per_day": 1281536506.910172,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "XLF",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 24,
+  "addv_usd_per_day": 1278892686.1667156,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "V",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 25,
+  "addv_usd_per_day": 1229187425.2878666,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ORCL",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 26,
+  "addv_usd_per_day": 1126704834.9013329,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "BAC",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 27,
+  "addv_usd_per_day": 1117581488.46156,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "BA",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 28,
+  "addv_usd_per_day": 1105135599.2018938,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "SMH",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 29,
+  "addv_usd_per_day": 1099404354.6190739,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "BRK-B",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 30,
+  "addv_usd_per_day": 1085661517.098713,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "CRM",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 31,
+  "addv_usd_per_day": 1064966357.4616432,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "DIA",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 32,
+  "addv_usd_per_day": 1046747751.2067318,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "XLK",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 33,
+  "addv_usd_per_day": 1032086443.1987762,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "GLD",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 34,
+  "addv_usd_per_day": 1030228164.688468,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "CVX",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 35,
+  "addv_usd_per_day": 1025228224.229312,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "PANW",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 36,
+  "addv_usd_per_day": 1002042748.6165524,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "COIN",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 37,
+  "addv_usd_per_day": 994626942.8321123,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "PLTR",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 38,
+  "addv_usd_per_day": 990482163.2222579,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "PYPL",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 39,
+  "addv_usd_per_day": 976047212.4730945,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ABNB",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 40,
+  "addv_usd_per_day": 931455313.3691907,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MU",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 41,
+  "addv_usd_per_day": 928054107.1303129,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MA",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 42,
+  "addv_usd_per_day": 911781645.9082127,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "CSCO",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 43,
+  "addv_usd_per_day": 907465480.4251671,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "UBER",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 44,
+  "addv_usd_per_day": 897010835.2011263,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "QCOM",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 45,
+  "addv_usd_per_day": 894762375.878346,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "SMCI",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 46,
+  "addv_usd_per_day": 893095548.5465825,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "COST",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 47,
+  "addv_usd_per_day": 872774930.4488182,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "HD",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 48,
+  "addv_usd_per_day": 867110965.7912731,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "BKNG",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 49,
+  "addv_usd_per_day": 832428346.6362953,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "WMT",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 50,
+  "addv_usd_per_day": 816130039.020896,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "TSM",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 51,
+  "addv_usd_per_day": 800469380.7058334,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "SNOW",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 52,
+  "addv_usd_per_day": 796194772.7334738,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "AMAT",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 53,
+  "addv_usd_per_day": 786728239.1602993,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "PG",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 54,
+  "addv_usd_per_day": 782654273.3639002,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "PEP",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 55,
+  "addv_usd_per_day": 777247865.5603409,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "TMO",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 56,
+  "addv_usd_per_day": 768561253.9008617,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "TXN",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 57,
+  "addv_usd_per_day": 764517777.1805763,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "NKE",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 58,
+  "addv_usd_per_day": 751136329.4492006,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "LRCX",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 59,
+  "addv_usd_per_day": 718200155.7918787,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "PFE",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 60,
+  "addv_usd_per_day": 708407273.4916478,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "NIO",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 61,
+  "addv_usd_per_day": 704928312.3506591,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ASML",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 62,
+  "addv_usd_per_day": 702815146.2853432,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "INTU",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 63,
+  "addv_usd_per_day": 692344466.7149067,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "VZ",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 64,
+  "addv_usd_per_day": 688764303.029865,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "SHOP",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 65,
+  "addv_usd_per_day": 683365411.1385584,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "KO",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 66,
+  "addv_usd_per_day": 673318873.8243878,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MELI",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 67,
+  "addv_usd_per_day": 672313345.221138,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "CAT",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 68,
+  "addv_usd_per_day": 659651785.146594,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ARKK",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 69,
+  "addv_usd_per_day": 653473594.454205,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "DHR",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 70,
+  "addv_usd_per_day": 651823524.5627606,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "GS",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 71,
+  "addv_usd_per_day": 629084126.2826443,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MCD",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 72,
+  "addv_usd_per_day": 627824670.3810453,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ABBV",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 73,
+  "addv_usd_per_day": 623206263.7394428,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "RTX",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 74,
+  "addv_usd_per_day": 621756895.426166,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "NOW",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 75,
+  "addv_usd_per_day": 619626272.5299001,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "XYZ",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 76,
+  "addv_usd_per_day": 616468730.2134693,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "WFC",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 77,
+  "addv_usd_per_day": 612807681.3464344,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MRVL",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 78,
+  "addv_usd_per_day": 603028176.1392534,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "DE",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 79,
+  "addv_usd_per_day": 575519842.6613808,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "SCHW",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 80,
+  "addv_usd_per_day": 566008739.0117466,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "NEE",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 81,
+  "addv_usd_per_day": 564404330.7857096,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ISRG",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 82,
+  "addv_usd_per_day": 562562562.3761177,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "AMGN",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 83,
+  "addv_usd_per_day": 561207100.6031036,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "T",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 84,
+  "addv_usd_per_day": 552383888.1199822,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MS",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 85,
+  "addv_usd_per_day": 550629770.5129147,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ENPH",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 86,
+  "addv_usd_per_day": 543934678.643024,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "F",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 87,
+  "addv_usd_per_day": 539592192.2859222,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "UNP",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 88,
+  "addv_usd_per_day": 537696985.4703665,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "SBUX",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 89,
+  "addv_usd_per_day": 536720646.6719389,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "OXY",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 90,
+  "addv_usd_per_day": 534502062.77933717,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "AI",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 91,
+  "addv_usd_per_day": 523192720.6685662,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "CRWD",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 92,
+  "addv_usd_per_day": 522548678.82635593,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MDB",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 93,
+  "addv_usd_per_day": 521587710.10813713,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "IBM",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 94,
+  "addv_usd_per_day": 518636332.63759613,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ON",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 95,
+  "addv_usd_per_day": 516719102.5878787,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "HON",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 96,
+  "addv_usd_per_day": 510941070.63338375,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "CMG",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 97,
+  "addv_usd_per_day": 508982391.74574614,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "SLB",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 98,
+  "addv_usd_per_day": 488338066.16963744,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "COP",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 99,
+  "addv_usd_per_day": 486389156.96212053,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "GE",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 100,
+  "addv_usd_per_day": 483216373.81076,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "LIN",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 101,
+  "addv_usd_per_day": 466288348.8656521,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "KLAC",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 102,
+  "addv_usd_per_day": 458985998.6616969,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "FDX",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 103,
+  "addv_usd_per_day": 456429254.5651965,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "VLO",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 104,
+  "addv_usd_per_day": 453141176.5340805,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MPC",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 105,
+  "addv_usd_per_day": 447525192.7747369,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MARA",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 106,
+  "addv_usd_per_day": 439687738.6919692,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ANET",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 107,
+  "addv_usd_per_day": 437969141.9167042,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "GM",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 108,
+  "addv_usd_per_day": 435400793.7347561,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "LMT",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 109,
+  "addv_usd_per_day": 432696104.9337387,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "MRNA",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 110,
+  "addv_usd_per_day": 427361538.1062746,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ETN",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 111,
+  "addv_usd_per_day": 420440742.3827648,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "DDOG",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 112,
+  "addv_usd_per_day": 417569124.7576952,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "NXPI",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 113,
+  "addv_usd_per_day": 416244983.9245796,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "WDAY",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 114,
+  "addv_usd_per_day": 413346920.5626488,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "REGN",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 115,
+  "addv_usd_per_day": 408438295.73163986,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "UPST",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 116,
+  "addv_usd_per_day": 406622735.45544744,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "FCX",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 117,
+  "addv_usd_per_day": 397142461.5404546,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "FTNT",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 118,
+  "addv_usd_per_day": 383250504.5297146,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "GILD",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 119,
+  "addv_usd_per_day": 378821223.05027246,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "DVN",
+  "eligible_from": "2023-10-01",
+  "eligible_to": "2026-09-30",
+  "reason": "top120_addv_2023-09-30",
+  "addv_rank_2023_09_30": 120,
+  "addv_usd_per_day": 375727588.3530736,
+  "provenance": "stage_a_recomputed_addv_ranking"
+ },
+ {
+  "symbol": "ARM",
+  "eligible_from": "2023-10-26",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2023-09-14",
+  "trail20d_addv_usd_per_day_at_elig": 288689213.0140114,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "BMNR",
+  "eligible_from": "2025-07-21",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2025-06-05",
+  "trail20d_addv_usd_per_day_at_elig": 1320420540.7716942,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "CRWV",
+  "eligible_from": "2025-05-12",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2025-03-28",
+  "trail20d_addv_usd_per_day_at_elig": 360884234.0037346,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "DRAM",
+  "eligible_from": "2026-05-15",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2026-04-02",
+  "trail20d_addv_usd_per_day_at_elig": 1313694085.758133,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "GEV",
+  "eligible_from": "2024-05-09",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2024-03-27",
+  "trail20d_addv_usd_per_day_at_elig": 629923200.2089691,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "GLXY",
+  "eligible_from": "2025-07-01",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2025-05-16",
+  "trail20d_addv_usd_per_day_at_elig": 132897357.64561653,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "NBIS",
+  "eligible_from": "2024-12-03",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2024-10-21",
+  "trail20d_addv_usd_per_day_at_elig": 121873199.52100754,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "RDDT",
+  "eligible_from": "2024-05-03",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2024-03-21",
+  "trail20d_addv_usd_per_day_at_elig": 100653350.29647827,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "SNDK",
+  "eligible_from": "2025-03-28",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2025-02-13",
+  "trail20d_addv_usd_per_day_at_elig": 200370706.86380386,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "SPCX",
+  "eligible_from": "2026-07-28",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2026-06-12",
+  "trail20d_addv_usd_per_day_at_elig": 10439810985.818863,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ },
+ {
+  "symbol": "TEM",
+  "eligible_from": "2024-07-30",
+  "eligible_to": "2026-09-30",
+  "reason": "new_listing_passed_liquidity_gate",
+  "addv_rank_2023_09_30": null,
+  "listing_date": "2024-06-14",
+  "trail20d_addv_usd_per_day_at_elig": 34929202.23859787,
+  "trail20d_addv_gate_usd_per_day": 25000000.0,
+  "provenance": "stage_a_recomputed_new_listing_eval"
+ }
+]

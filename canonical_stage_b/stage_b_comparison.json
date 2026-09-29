@@ -1,0 +1,53 @@
+{
+ "rule": "top-120 ADDV rank (stage-A recomputed) + 11 admitted listings (stage-A recomputed eval)",
+ "whitelisted_input_hashes": {
+  "addv_ranking_20230930.json": "a1748bf63e2ca8e03092eb4afa72b0ea533aa3b9b5a626ffa6ec03f2b1ed0e0f",
+  "universe.json": "fa21ca55724993fab6709ab83fef7f2001e7d7672fa9e24f97beb24066893b16",
+  "universe_overlay_14.json": "ecb124d717918ecffe453a47a5d69b9836f01b93cecf1e76a43829d09ea2c07c"
+ },
+ "rebuilt_artifact": "canonical_stage_b/universe_rebuilt.json",
+ "rebuilt_sha256": "25627b138df21575a58fbe1d40b2e42efde205d9f1f997d76e4ad9bcffb82a25",
+ "identity": {
+  "rebuilt_n": 131,
+  "target_n": 131,
+  "exact_match": true,
+  "rebuilt_only": [],
+  "target_only": []
+ },
+ "metadata": {
+  "exact_field_divergences": [],
+  "max_addv_rel_dev_top120": 4.463412131360002e-08,
+  "max_trail20d_rel_dev_listings": 0.0008367403609704834,
+  "target_only_fields": [
+   "delisted",
+   "eligible_from_method",
+   "sector"
+  ]
+ },
+ "overlay": {
+  "n": 14,
+  "members": [
+   "AMD",
+   "ANET",
+   "DRAM",
+   "NIO",
+   "PLTR",
+   "QQQ",
+   "SMCI",
+   "SPCX"
+  ],
+  "members_all_in_rebuilt": true,
+  "outsiders": [
+   "ASTX",
+   "BBAI",
+   "HOOD",
+   "ONDS",
+   "RKLB",
+   "SOFI"
+  ],
+  "outsiders_all_outside_rebuilt": true,
+  "six_outsiders_claim_holds": true
+ },
+ "findings": [],
+ "verdict": "PASS"
+}

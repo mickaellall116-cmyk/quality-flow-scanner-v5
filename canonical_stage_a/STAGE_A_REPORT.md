@@ -680,7 +680,12 @@ plus the CYBR (acquired 2025) and SQ (renamed XYZ) docstring entries.
 | admitted_11_identities_exact | admitted=['ARM', 'BMNR', 'CRWV', 'DRAM', 'GEV', 'GLXY', 'NBIS', 'RDDT', 'SNDK', 'SPCX', 'TEM'] | **PASS** |
 | rejected_4_identities_exact | rejected=['CORZ', 'NNE', 'RBRK', 'UMAC'] | **PASS** |
 
-**GATE A: PASS** — all 12 invariant checks pass. No miss; no tuning was performed or needed.
+**GATE A: PASS** — all 11 invariant checks pass. No miss; no tuning was performed or needed.
+
+*(Correction, 2026-09-29: an earlier revision of this report said "12 invariant checks."
+`gate_a_verdict.json` contains 11 named checks; the ASTX quote-type result is stored
+separately in the same JSON, not as a named check. The count is corrected to 11 here.
+Substance unchanged — all checks pass.)*
 
 Key corroborating values (independent recomputation vs documented):
 - #120 DVN $375.73M/day (doc $375.7M), #121 DAL $373.22M/day (doc $373.2M)
