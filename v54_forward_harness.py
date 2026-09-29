@@ -480,18 +480,32 @@ def hardened_call(symbol: str, kind: str, fn: Callable, *args,
 
 
 @contextlib.contextmanager
-def hardened_downloads(health: ProviderHealth):
+def hardened_downloads(health: ProviderHealth,
+                       primary_cache: Optional[Dict[tuple, pd.DataFrame]] = None):
     """Patch eng.m53 download entry points with hardened wrappers for one
-    cycle. Restored in `finally`. Strategy code is untouched."""
+    cycle. Restored in `finally`. Strategy code is untouched.
+
+    `primary_cache` is cycle-scoped and stores only frames that passed the
+    existing primary validator. Cached frames are returned even if a later
+    request exhausts the cycle budget or trips the global 429 guard, so
+    already-validated open-position bars remain usable for exit processing.
+    """
     m53 = eng.m53
     orig_download = m53.download_data
     orig_conf = m53.download_confirmation_data
     orig_premarket = m53.premarket_fields
 
+    cache = primary_cache if primary_cache is not None else {}
+
     def _primary(symbol, interval, period):
-        return hardened_call(symbol, "primary", orig_download,
-                             symbol, interval, period, health=health,
-                             frame_validator=validate_primary_frame)
+        key = (symbol, interval, period)
+        if key in cache:
+            return cache[key]
+        frame = hardened_call(symbol, "primary", orig_download,
+                              symbol, interval, period, health=health,
+                              frame_validator=validate_primary_frame)
+        cache[key] = frame
+        return frame
 
     def _conf(symbol, interval, period):
         # Frozen behavior: exceptions -> None (best-effort confirmation).
@@ -1271,8 +1285,28 @@ def run_once(publish: bool = False) -> Dict[str, Any]:
                               "score": 0, "gate": "BLOCK"}
     rows: List[Dict[str, Any]] = []
     t0 = time.monotonic()
+    primary_cache: Dict[tuple, pd.DataFrame] = {}
     try:
-        with hardened_downloads(health):
+        with hardened_downloads(health, primary_cache):
+            # Infrastructure-only priority pass: protect forward exits before
+            # the expensive full-universe scan.  These exact validated frames
+            # are reused by the scan and run_cycle; no strategy decision is
+            # made here and no partial-universe entry is permitted.
+            priority_symbols = sorted(
+                {p.get("symbol") for p in tracker.positions.values()
+                 if p.get("status") != "closed" and p.get("symbol")}
+                | {p.get("symbol") for p in state.get("pending", {}).values()
+                   if p.get("symbol")}
+                | {market_sym, "QQQ", "SPY"}
+            )
+            for sym in priority_symbols:
+                try:
+                    eng.m53.download_data(sym, INTERVAL, PERIOD)
+                except DataUnavailable:
+                    # Existing health bookkeeping already records the reason.
+                    # A missing priority bar stays explicitly deferred.
+                    continue
+
             try:
                 rows, regime = eng.v54_scan_symbols(
                     FORWARD_UNIVERSE, THEME_MAP, INTERVAL, PERIOD)
