@@ -1,0 +1,1620 @@
+{
+ "universe": "UX51 4H",
+ "data_window": {
+  "start": "2024-09-15T12:00:00+00:00",
+  "end": "2026-09-15T08:00:00+00:00"
+ },
+ "symbols_used": [
+  "AAPL",
+  "AMAT",
+  "AMD",
+  "AMZN",
+  "APP",
+  "ARKK",
+  "ARM",
+  "ASTS",
+  "AVAX-USD",
+  "AVGO",
+  "BTC-USD",
+  "COIN",
+  "CRM",
+  "CRWD",
+  "DDOG",
+  "DOGE-USD",
+  "ETH-USD",
+  "F",
+  "GOOGL",
+  "HOOD",
+  "INTC",
+  "IWM",
+  "LINK-USD",
+  "LRCX",
+  "LUNR",
+  "MELI",
+  "META",
+  "MRNA",
+  "MSFT",
+  "MSTR",
+  "MU",
+  "NET",
+  "NFLX",
+  "NIO",
+  "NU",
+  "NVDA",
+  "PFE",
+  "PLTR",
+  "PYPL",
+  "QCOM",
+  "RKLB",
+  "SHOP",
+  "SMCI",
+  "SMH",
+  "SNOW",
+  "SOFI",
+  "SOL-USD",
+  "SPY",
+  "TSLA",
+  "XLF",
+  "XRP-USD"
+ ],
+ "code": "canonical pine_backtest.py UNMODIFIED; only trendBull swapped per variant; exits (incl. trend_bear mirror) identical across variants",
+ "candidates_frozen_up_front": [
+  "CURRENT",
+  "FULL_STACK",
+  "PRICE_STRUCTURE",
+  "DONCHIAN",
+  "SUPERTREND_DIR",
+  "LOOSE"
+ ],
+ "notes": [
+  "Candidate set fixed before any results were seen; each tested once; no tuning.",
+  "CURRENT fidelity-verified bar-for-bar == pb.pine_buy_signal.",
+  "Judge candidates vs in-test CURRENT only (different universe/window from other studies)."
+ ],
+ "variants": {
+  "CURRENT": {
+   "pooled": [
+    {
+     "config": "PINE_V36_trendfilter:CURRENT:UX51:4h",
+     "cost": "4bps",
+     "trades": 877,
+     "win_rate_pct": 44.9,
+     "expectancy_net_r": 0.141,
+     "profit_factor": 1.21,
+     "total_return_pct": 36.32,
+     "max_drawdown_pct": 42.3,
+     "avg_hold_bars": 17.6,
+     "market_exposure_pct": 88.5,
+     "tp1_hit_rate_pct": 46.3,
+     "skipped_gap_below_stop": 2,
+     "skipped_max_positions": 496,
+     "skipped_max_risk": 100,
+     "exit_reasons": {
+      "stop": 740,
+      "ema55-break": 137
+     },
+     "avg_winner_r": 1.81,
+     "avg_loser_r": -1.22,
+     "stop_out_pct": 84.4
+    },
+    {
+     "config": "PINE_V36_trendfilter:CURRENT:UX51:4h",
+     "cost": "25bps",
+     "trades": 877,
+     "win_rate_pct": 44.4,
+     "expectancy_net_r": 0.069,
+     "profit_factor": 1.1,
+     "total_return_pct": 11.78,
+     "max_drawdown_pct": 44.95,
+     "avg_hold_bars": 17.6,
+     "market_exposure_pct": 88.5,
+     "tp1_hit_rate_pct": 46.3,
+     "skipped_gap_below_stop": 2,
+     "skipped_max_positions": 496,
+     "skipped_max_risk": 100,
+     "exit_reasons": {
+      "stop": 740,
+      "ema55-break": 137
+     },
+     "avg_winner_r": 1.762,
+     "avg_loser_r": -1.281,
+     "stop_out_pct": 84.4
+    }
+   ],
+   "per_ticker_25bps": {
+    "AAPL": {
+     "trades": 10,
+     "expectancy_25bps_r": 0.332
+    },
+    "AMAT": {
+     "trades": 20,
+     "expectancy_25bps_r": -0.367
+    },
+    "AMD": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.71
+    },
+    "AMZN": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.117
+    },
+    "APP": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.067
+    },
+    "ARKK": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.552
+    },
+    "ARM": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.466
+    },
+    "ASTS": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.004
+    },
+    "AVAX-USD": {
+     "trades": 41,
+     "expectancy_25bps_r": -0.06
+    },
+    "AVGO": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.84
+    },
+    "BTC-USD": {
+     "trades": 46,
+     "expectancy_25bps_r": -0.175
+    },
+    "COIN": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.411
+    },
+    "CRM": {
+     "trades": 6,
+     "expectancy_25bps_r": -0.471
+    },
+    "CRWD": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.334
+    },
+    "DDOG": {
+     "trades": 10,
+     "expectancy_25bps_r": 1.946
+    },
+    "DOGE-USD": {
+     "trades": 42,
+     "expectancy_25bps_r": 0.159
+    },
+    "ETH-USD": {
+     "trades": 49,
+     "expectancy_25bps_r": -0.122
+    },
+    "F": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.201
+    },
+    "GOOGL": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.82
+    },
+    "HOOD": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.356
+    },
+    "INTC": {
+     "trades": 11,
+     "expectancy_25bps_r": 1.195
+    },
+    "IWM": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.366
+    },
+    "LINK-USD": {
+     "trades": 49,
+     "expectancy_25bps_r": -0.217
+    },
+    "LRCX": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.066
+    },
+    "LUNR": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.005
+    },
+    "MELI": {
+     "trades": 12,
+     "expectancy_25bps_r": -0.667
+    },
+    "META": {
+     "trades": 7,
+     "expectancy_25bps_r": -0.974
+    },
+    "MRNA": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.082
+    },
+    "MSFT": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.336
+    },
+    "MSTR": {
+     "trades": 6,
+     "expectancy_25bps_r": -0.21
+    },
+    "MU": {
+     "trades": 18,
+     "expectancy_25bps_r": 0.882
+    },
+    "NET": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.267
+    },
+    "NFLX": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.911
+    },
+    "NIO": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.49
+    },
+    "NU": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.395
+    },
+    "NVDA": {
+     "trades": 21,
+     "expectancy_25bps_r": -0.247
+    },
+    "PFE": {
+     "trades": 14,
+     "expectancy_25bps_r": -0.218
+    },
+    "PLTR": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.491
+    },
+    "PYPL": {
+     "trades": 8,
+     "expectancy_25bps_r": 0.423
+    },
+    "QCOM": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.121
+    },
+    "RKLB": {
+     "trades": 16,
+     "expectancy_25bps_r": 0.57
+    },
+    "SHOP": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.001
+    },
+    "SMCI": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.156
+    },
+    "SMH": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.924
+    },
+    "SNOW": {
+     "trades": 8,
+     "expectancy_25bps_r": 1.09
+    },
+    "SOFI": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.197
+    },
+    "SOL-USD": {
+     "trades": 43,
+     "expectancy_25bps_r": 0.391
+    },
+    "SPY": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.211
+    },
+    "TSLA": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.343
+    },
+    "XLF": {
+     "trades": 14,
+     "expectancy_25bps_r": -0.557
+    },
+    "XRP-USD": {
+     "trades": 44,
+     "expectancy_25bps_r": 0.414
+    }
+   }
+  },
+  "FULL_STACK": {
+   "pooled": [
+    {
+     "config": "PINE_V36_trendfilter:FULL_STACK:UX51:4h",
+     "cost": "4bps",
+     "trades": 870,
+     "win_rate_pct": 45.2,
+     "expectancy_net_r": 0.145,
+     "profit_factor": 1.22,
+     "total_return_pct": 13.5,
+     "max_drawdown_pct": 41.91,
+     "avg_hold_bars": 17.7,
+     "market_exposure_pct": 88.5,
+     "tp1_hit_rate_pct": 46.6,
+     "skipped_gap_below_stop": 2,
+     "skipped_max_positions": 477,
+     "skipped_max_risk": 103,
+     "exit_reasons": {
+      "stop": 738,
+      "ema55-break": 132
+     },
+     "avg_winner_r": 1.808,
+     "avg_loser_r": -1.224,
+     "stop_out_pct": 84.8
+    },
+    {
+     "config": "PINE_V36_trendfilter:FULL_STACK:UX51:4h",
+     "cost": "25bps",
+     "trades": 870,
+     "win_rate_pct": 44.6,
+     "expectancy_net_r": 0.073,
+     "profit_factor": 1.1,
+     "total_return_pct": -7.07,
+     "max_drawdown_pct": 44.55,
+     "avg_hold_bars": 17.7,
+     "market_exposure_pct": 88.5,
+     "tp1_hit_rate_pct": 46.6,
+     "skipped_gap_below_stop": 2,
+     "skipped_max_positions": 477,
+     "skipped_max_risk": 103,
+     "exit_reasons": {
+      "stop": 738,
+      "ema55-break": 132
+     },
+     "avg_winner_r": 1.76,
+     "avg_loser_r": -1.285,
+     "stop_out_pct": 84.8
+    }
+   ],
+   "per_ticker_25bps": {
+    "AAPL": {
+     "trades": 10,
+     "expectancy_25bps_r": 0.332
+    },
+    "AMAT": {
+     "trades": 19,
+     "expectancy_25bps_r": -0.304
+    },
+    "AMD": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.71
+    },
+    "AMZN": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.117
+    },
+    "APP": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.067
+    },
+    "ARKK": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.552
+    },
+    "ARM": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.466
+    },
+    "ASTS": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.004
+    },
+    "AVAX-USD": {
+     "trades": 40,
+     "expectancy_25bps_r": -0.035
+    },
+    "AVGO": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.84
+    },
+    "BTC-USD": {
+     "trades": 46,
+     "expectancy_25bps_r": -0.175
+    },
+    "COIN": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.411
+    },
+    "CRM": {
+     "trades": 6,
+     "expectancy_25bps_r": -0.471
+    },
+    "CRWD": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.404
+    },
+    "DDOG": {
+     "trades": 10,
+     "expectancy_25bps_r": 1.946
+    },
+    "DOGE-USD": {
+     "trades": 40,
+     "expectancy_25bps_r": 0.21
+    },
+    "ETH-USD": {
+     "trades": 49,
+     "expectancy_25bps_r": -0.122
+    },
+    "F": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.201
+    },
+    "GOOGL": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.82
+    },
+    "HOOD": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.356
+    },
+    "INTC": {
+     "trades": 11,
+     "expectancy_25bps_r": 1.195
+    },
+    "IWM": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.366
+    },
+    "LINK-USD": {
+     "trades": 49,
+     "expectancy_25bps_r": -0.217
+    },
+    "LRCX": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.066
+    },
+    "LUNR": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.005
+    },
+    "MELI": {
+     "trades": 12,
+     "expectancy_25bps_r": -0.667
+    },
+    "META": {
+     "trades": 7,
+     "expectancy_25bps_r": -0.974
+    },
+    "MRNA": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.082
+    },
+    "MSFT": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.336
+    },
+    "MSTR": {
+     "trades": 6,
+     "expectancy_25bps_r": -0.21
+    },
+    "MU": {
+     "trades": 18,
+     "expectancy_25bps_r": 0.75
+    },
+    "NET": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.207
+    },
+    "NFLX": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.911
+    },
+    "NIO": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.49
+    },
+    "NU": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.395
+    },
+    "NVDA": {
+     "trades": 21,
+     "expectancy_25bps_r": -0.247
+    },
+    "PFE": {
+     "trades": 13,
+     "expectancy_25bps_r": -0.13
+    },
+    "PLTR": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.491
+    },
+    "PYPL": {
+     "trades": 8,
+     "expectancy_25bps_r": 0.423
+    },
+    "QCOM": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.121
+    },
+    "RKLB": {
+     "trades": 16,
+     "expectancy_25bps_r": 0.57
+    },
+    "SHOP": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.001
+    },
+    "SMCI": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.156
+    },
+    "SMH": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.924
+    },
+    "SNOW": {
+     "trades": 7,
+     "expectancy_25bps_r": 1.378
+    },
+    "SOFI": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.195
+    },
+    "SOL-USD": {
+     "trades": 43,
+     "expectancy_25bps_r": 0.391
+    },
+    "SPY": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.211
+    },
+    "TSLA": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.343
+    },
+    "XLF": {
+     "trades": 14,
+     "expectancy_25bps_r": -0.619
+    },
+    "XRP-USD": {
+     "trades": 44,
+     "expectancy_25bps_r": 0.414
+    }
+   }
+  },
+  "PRICE_STRUCTURE": {
+   "pooled": [
+    {
+     "config": "PINE_V36_trendfilter:PRICE_STRUCTURE:UX51:4h",
+     "cost": "4bps",
+     "trades": 877,
+     "win_rate_pct": 44.8,
+     "expectancy_net_r": 0.136,
+     "profit_factor": 1.2,
+     "total_return_pct": 12.02,
+     "max_drawdown_pct": 41.91,
+     "avg_hold_bars": 17.6,
+     "market_exposure_pct": 88.5,
+     "tp1_hit_rate_pct": 46.2,
+     "skipped_gap_below_stop": 3,
+     "skipped_max_positions": 486,
+     "skipped_max_risk": 101,
+     "exit_reasons": {
+      "stop": 742,
+      "ema55-break": 132,
+      "ema55-bear": 3
+     },
+     "avg_winner_r": 1.807,
+     "avg_loser_r": -1.22,
+     "stop_out_pct": 84.6
+    },
+    {
+     "config": "PINE_V36_trendfilter:PRICE_STRUCTURE:UX51:4h",
+     "cost": "25bps",
+     "trades": 877,
+     "win_rate_pct": 44.2,
+     "expectancy_net_r": 0.064,
+     "profit_factor": 1.09,
+     "total_return_pct": -8.26,
+     "max_drawdown_pct": 44.55,
+     "avg_hold_bars": 17.6,
+     "market_exposure_pct": 88.5,
+     "tp1_hit_rate_pct": 46.2,
+     "skipped_gap_below_stop": 3,
+     "skipped_max_positions": 486,
+     "skipped_max_risk": 101,
+     "exit_reasons": {
+      "stop": 742,
+      "ema55-break": 132,
+      "ema55-bear": 3
+     },
+     "avg_winner_r": 1.759,
+     "avg_loser_r": -1.281,
+     "stop_out_pct": 84.6
+    }
+   ],
+   "per_ticker_25bps": {
+    "AAPL": {
+     "trades": 10,
+     "expectancy_25bps_r": 0.332
+    },
+    "AMAT": {
+     "trades": 20,
+     "expectancy_25bps_r": -0.367
+    },
+    "AMD": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.71
+    },
+    "AMZN": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.096
+    },
+    "APP": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.067
+    },
+    "ARKK": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.552
+    },
+    "ARM": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.466
+    },
+    "ASTS": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.004
+    },
+    "AVAX-USD": {
+     "trades": 41,
+     "expectancy_25bps_r": -0.007
+    },
+    "AVGO": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.84
+    },
+    "BTC-USD": {
+     "trades": 46,
+     "expectancy_25bps_r": -0.175
+    },
+    "COIN": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.411
+    },
+    "CRM": {
+     "trades": 6,
+     "expectancy_25bps_r": -0.471
+    },
+    "CRWD": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.404
+    },
+    "DDOG": {
+     "trades": 10,
+     "expectancy_25bps_r": 1.946
+    },
+    "DOGE-USD": {
+     "trades": 41,
+     "expectancy_25bps_r": 0.195
+    },
+    "ETH-USD": {
+     "trades": 50,
+     "expectancy_25bps_r": -0.126
+    },
+    "F": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.201
+    },
+    "GOOGL": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.82
+    },
+    "HOOD": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.249
+    },
+    "INTC": {
+     "trades": 11,
+     "expectancy_25bps_r": 1.195
+    },
+    "IWM": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.366
+    },
+    "LINK-USD": {
+     "trades": 49,
+     "expectancy_25bps_r": -0.217
+    },
+    "LRCX": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.066
+    },
+    "LUNR": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.005
+    },
+    "MELI": {
+     "trades": 12,
+     "expectancy_25bps_r": -0.667
+    },
+    "META": {
+     "trades": 7,
+     "expectancy_25bps_r": -0.974
+    },
+    "MRNA": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.082
+    },
+    "MSFT": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.336
+    },
+    "MSTR": {
+     "trades": 7,
+     "expectancy_25bps_r": -0.416
+    },
+    "MU": {
+     "trades": 18,
+     "expectancy_25bps_r": 0.75
+    },
+    "NET": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.153
+    },
+    "NFLX": {
+     "trades": 12,
+     "expectancy_25bps_r": -0.942
+    },
+    "NIO": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.49
+    },
+    "NU": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.395
+    },
+    "NVDA": {
+     "trades": 21,
+     "expectancy_25bps_r": -0.273
+    },
+    "PFE": {
+     "trades": 13,
+     "expectancy_25bps_r": -0.13
+    },
+    "PLTR": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.491
+    },
+    "PYPL": {
+     "trades": 8,
+     "expectancy_25bps_r": 0.423
+    },
+    "QCOM": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.121
+    },
+    "RKLB": {
+     "trades": 16,
+     "expectancy_25bps_r": 0.57
+    },
+    "SHOP": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.001
+    },
+    "SMCI": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.156
+    },
+    "SMH": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.924
+    },
+    "SNOW": {
+     "trades": 8,
+     "expectancy_25bps_r": 1.09
+    },
+    "SOFI": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.195
+    },
+    "SOL-USD": {
+     "trades": 43,
+     "expectancy_25bps_r": 0.393
+    },
+    "SPY": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.211
+    },
+    "TSLA": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.343
+    },
+    "XLF": {
+     "trades": 14,
+     "expectancy_25bps_r": -0.619
+    },
+    "XRP-USD": {
+     "trades": 44,
+     "expectancy_25bps_r": 0.414
+    }
+   }
+  },
+  "DONCHIAN": {
+   "pooled": [
+    {
+     "config": "PINE_V36_trendfilter:DONCHIAN:UX51:4h",
+     "cost": "4bps",
+     "trades": 866,
+     "win_rate_pct": 45.3,
+     "expectancy_net_r": 0.147,
+     "profit_factor": 1.22,
+     "total_return_pct": 28.65,
+     "max_drawdown_pct": 41.91,
+     "avg_hold_bars": 17.8,
+     "market_exposure_pct": 88.3,
+     "tp1_hit_rate_pct": 46.5,
+     "skipped_gap_below_stop": 2,
+     "skipped_max_positions": 471,
+     "skipped_max_risk": 110,
+     "exit_reasons": {
+      "stop": 732,
+      "ema55-break": 133,
+      "ema55-bear": 1
+     },
+     "avg_winner_r": 1.8,
+     "avg_loser_r": -1.219,
+     "stop_out_pct": 84.5
+    },
+    {
+     "config": "PINE_V36_trendfilter:DONCHIAN:UX51:4h",
+     "cost": "25bps",
+     "trades": 866,
+     "win_rate_pct": 44.7,
+     "expectancy_net_r": 0.075,
+     "profit_factor": 1.11,
+     "total_return_pct": 8.83,
+     "max_drawdown_pct": 44.55,
+     "avg_hold_bars": 17.8,
+     "market_exposure_pct": 88.4,
+     "tp1_hit_rate_pct": 46.5,
+     "skipped_gap_below_stop": 2,
+     "skipped_max_positions": 479,
+     "skipped_max_risk": 103,
+     "exit_reasons": {
+      "stop": 732,
+      "ema55-break": 133,
+      "ema55-bear": 1
+     },
+     "avg_winner_r": 1.752,
+     "avg_loser_r": -1.28,
+     "stop_out_pct": 84.5
+    }
+   ],
+   "per_ticker_25bps": {
+    "AAPL": {
+     "trades": 10,
+     "expectancy_25bps_r": 0.332
+    },
+    "AMAT": {
+     "trades": 19,
+     "expectancy_25bps_r": -0.304
+    },
+    "AMD": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.71
+    },
+    "AMZN": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.117
+    },
+    "APP": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.067
+    },
+    "ARKK": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.552
+    },
+    "ARM": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.466
+    },
+    "ASTS": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.004
+    },
+    "AVAX-USD": {
+     "trades": 40,
+     "expectancy_25bps_r": -0.035
+    },
+    "AVGO": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.84
+    },
+    "BTC-USD": {
+     "trades": 45,
+     "expectancy_25bps_r": -0.102
+    },
+    "COIN": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.411
+    },
+    "CRM": {
+     "trades": 6,
+     "expectancy_25bps_r": -0.471
+    },
+    "CRWD": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.404
+    },
+    "DDOG": {
+     "trades": 10,
+     "expectancy_25bps_r": 1.717
+    },
+    "DOGE-USD": {
+     "trades": 39,
+     "expectancy_25bps_r": 0.16
+    },
+    "ETH-USD": {
+     "trades": 48,
+     "expectancy_25bps_r": -0.102
+    },
+    "F": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.201
+    },
+    "GOOGL": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.82
+    },
+    "HOOD": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.356
+    },
+    "INTC": {
+     "trades": 11,
+     "expectancy_25bps_r": 1.195
+    },
+    "IWM": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.366
+    },
+    "LINK-USD": {
+     "trades": 49,
+     "expectancy_25bps_r": -0.217
+    },
+    "LRCX": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.066
+    },
+    "LUNR": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.005
+    },
+    "MELI": {
+     "trades": 12,
+     "expectancy_25bps_r": -0.667
+    },
+    "META": {
+     "trades": 6,
+     "expectancy_25bps_r": -0.242
+    },
+    "MRNA": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.082
+    },
+    "MSFT": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.336
+    },
+    "MSTR": {
+     "trades": 7,
+     "expectancy_25bps_r": -0.433
+    },
+    "MU": {
+     "trades": 18,
+     "expectancy_25bps_r": 0.75
+    },
+    "NET": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.116
+    },
+    "NFLX": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.911
+    },
+    "NIO": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.49
+    },
+    "NU": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.31
+    },
+    "NVDA": {
+     "trades": 21,
+     "expectancy_25bps_r": -0.247
+    },
+    "PFE": {
+     "trades": 13,
+     "expectancy_25bps_r": -0.13
+    },
+    "PLTR": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.491
+    },
+    "PYPL": {
+     "trades": 8,
+     "expectancy_25bps_r": 0.423
+    },
+    "QCOM": {
+     "trades": 11,
+     "expectancy_25bps_r": 0.121
+    },
+    "RKLB": {
+     "trades": 16,
+     "expectancy_25bps_r": 0.57
+    },
+    "SHOP": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.001
+    },
+    "SMCI": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.156
+    },
+    "SMH": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.924
+    },
+    "SNOW": {
+     "trades": 7,
+     "expectancy_25bps_r": 1.378
+    },
+    "SOFI": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.195
+    },
+    "SOL-USD": {
+     "trades": 43,
+     "expectancy_25bps_r": 0.391
+    },
+    "SPY": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.211
+    },
+    "TSLA": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.343
+    },
+    "XLF": {
+     "trades": 14,
+     "expectancy_25bps_r": -0.619
+    },
+    "XRP-USD": {
+     "trades": 44,
+     "expectancy_25bps_r": 0.366
+    }
+   }
+  },
+  "SUPERTREND_DIR": {
+   "pooled": [
+    {
+     "config": "PINE_V36_trendfilter:SUPERTREND_DIR:UX51:4h",
+     "cost": "4bps",
+     "trades": 1032,
+     "win_rate_pct": 43.4,
+     "expectancy_net_r": 0.114,
+     "profit_factor": 1.19,
+     "total_return_pct": 51.74,
+     "max_drawdown_pct": 40.84,
+     "avg_hold_bars": 15.3,
+     "market_exposure_pct": 89.3,
+     "tp1_hit_rate_pct": 40.1,
+     "skipped_gap_below_stop": 3,
+     "skipped_max_positions": 582,
+     "skipped_max_risk": 94,
+     "exit_reasons": {
+      "stop": 745,
+      "ema55-break": 159,
+      "ema55-bear": 128
+     },
+     "avg_winner_r": 1.665,
+     "avg_loser_r": -1.076,
+     "stop_out_pct": 72.2
+    },
+    {
+     "config": "PINE_V36_trendfilter:SUPERTREND_DIR:UX51:4h",
+     "cost": "25bps",
+     "trades": 1032,
+     "win_rate_pct": 42.5,
+     "expectancy_net_r": 0.043,
+     "profit_factor": 1.07,
+     "total_return_pct": 19.77,
+     "max_drawdown_pct": 44.45,
+     "avg_hold_bars": 15.3,
+     "market_exposure_pct": 89.3,
+     "tp1_hit_rate_pct": 40.1,
+     "skipped_gap_below_stop": 3,
+     "skipped_max_positions": 582,
+     "skipped_max_risk": 94,
+     "exit_reasons": {
+      "stop": 745,
+      "ema55-break": 159,
+      "ema55-bear": 128
+     },
+     "avg_winner_r": 1.629,
+     "avg_loser_r": -1.13,
+     "stop_out_pct": 72.2
+    }
+   ],
+   "per_ticker_25bps": {
+    "AAPL": {
+     "trades": 10,
+     "expectancy_25bps_r": 0.332
+    },
+    "AMAT": {
+     "trades": 19,
+     "expectancy_25bps_r": -0.304
+    },
+    "AMD": {
+     "trades": 16,
+     "expectancy_25bps_r": 0.603
+    },
+    "AMZN": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.117
+    },
+    "APP": {
+     "trades": 16,
+     "expectancy_25bps_r": -0.057
+    },
+    "ARKK": {
+     "trades": 18,
+     "expectancy_25bps_r": -0.531
+    },
+    "ARM": {
+     "trades": 16,
+     "expectancy_25bps_r": 0.498
+    },
+    "ASTS": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.004
+    },
+    "AVAX-USD": {
+     "trades": 60,
+     "expectancy_25bps_r": -0.047
+    },
+    "AVGO": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.554
+    },
+    "BTC-USD": {
+     "trades": 45,
+     "expectancy_25bps_r": -0.139
+    },
+    "COIN": {
+     "trades": 13,
+     "expectancy_25bps_r": -0.399
+    },
+    "CRM": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.31
+    },
+    "CRWD": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.404
+    },
+    "DDOG": {
+     "trades": 11,
+     "expectancy_25bps_r": 1.757
+    },
+    "DOGE-USD": {
+     "trades": 62,
+     "expectancy_25bps_r": 0.07
+    },
+    "ETH-USD": {
+     "trades": 48,
+     "expectancy_25bps_r": -0.102
+    },
+    "F": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.201
+    },
+    "GOOGL": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.783
+    },
+    "HOOD": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.23
+    },
+    "INTC": {
+     "trades": 12,
+     "expectancy_25bps_r": 1.086
+    },
+    "IWM": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.366
+    },
+    "LINK-USD": {
+     "trades": 71,
+     "expectancy_25bps_r": -0.159
+    },
+    "LRCX": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.112
+    },
+    "LUNR": {
+     "trades": 18,
+     "expectancy_25bps_r": -0.132
+    },
+    "MELI": {
+     "trades": 16,
+     "expectancy_25bps_r": -0.504
+    },
+    "META": {
+     "trades": 9,
+     "expectancy_25bps_r": -0.759
+    },
+    "MRNA": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.082
+    },
+    "MSFT": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.336
+    },
+    "MSTR": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.1
+    },
+    "MU": {
+     "trades": 19,
+     "expectancy_25bps_r": 0.82
+    },
+    "NET": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.267
+    },
+    "NFLX": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.911
+    },
+    "NIO": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.49
+    },
+    "NU": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.395
+    },
+    "NVDA": {
+     "trades": 21,
+     "expectancy_25bps_r": -0.247
+    },
+    "PFE": {
+     "trades": 13,
+     "expectancy_25bps_r": -0.13
+    },
+    "PLTR": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.514
+    },
+    "PYPL": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.193
+    },
+    "QCOM": {
+     "trades": 16,
+     "expectancy_25bps_r": 0.001
+    },
+    "RKLB": {
+     "trades": 17,
+     "expectancy_25bps_r": 0.505
+    },
+    "SHOP": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.028
+    },
+    "SMCI": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.156
+    },
+    "SMH": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.839
+    },
+    "SNOW": {
+     "trades": 9,
+     "expectancy_25bps_r": 0.984
+    },
+    "SOFI": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.172
+    },
+    "SOL-USD": {
+     "trades": 69,
+     "expectancy_25bps_r": 0.141
+    },
+    "SPY": {
+     "trades": 14,
+     "expectancy_25bps_r": -0.048
+    },
+    "TSLA": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.343
+    },
+    "XLF": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.569
+    },
+    "XRP-USD": {
+     "trades": 61,
+     "expectancy_25bps_r": 0.247
+    }
+   }
+  },
+  "LOOSE": {
+   "pooled": [
+    {
+     "config": "PINE_V36_trendfilter:LOOSE:UX51:4h",
+     "cost": "4bps",
+     "trades": 974,
+     "win_rate_pct": 43.6,
+     "expectancy_net_r": 0.106,
+     "profit_factor": 1.17,
+     "total_return_pct": 31.53,
+     "max_drawdown_pct": 44.99,
+     "avg_hold_bars": 16.3,
+     "market_exposure_pct": 89.0,
+     "tp1_hit_rate_pct": 42.8,
+     "skipped_gap_below_stop": 3,
+     "skipped_max_positions": 580,
+     "skipped_max_risk": 84,
+     "exit_reasons": {
+      "stop": 750,
+      "ema55-break": 160,
+      "ema55-bear": 64
+     },
+     "avg_winner_r": 1.709,
+     "avg_loser_r": -1.134,
+     "stop_out_pct": 77.0
+    },
+    {
+     "config": "PINE_V36_trendfilter:LOOSE:UX51:4h",
+     "cost": "25bps",
+     "trades": 974,
+     "win_rate_pct": 42.8,
+     "expectancy_net_r": 0.034,
+     "profit_factor": 1.05,
+     "total_return_pct": 10.86,
+     "max_drawdown_pct": 47.94,
+     "avg_hold_bars": 16.3,
+     "market_exposure_pct": 89.0,
+     "tp1_hit_rate_pct": 42.8,
+     "skipped_gap_below_stop": 3,
+     "skipped_max_positions": 582,
+     "skipped_max_risk": 83,
+     "exit_reasons": {
+      "stop": 750,
+      "ema55-break": 160,
+      "ema55-bear": 64
+     },
+     "avg_winner_r": 1.67,
+     "avg_loser_r": -1.191,
+     "stop_out_pct": 77.0
+    }
+   ],
+   "per_ticker_25bps": {
+    "AAPL": {
+     "trades": 10,
+     "expectancy_25bps_r": 0.332
+    },
+    "AMAT": {
+     "trades": 20,
+     "expectancy_25bps_r": -0.367
+    },
+    "AMD": {
+     "trades": 16,
+     "expectancy_25bps_r": 0.603
+    },
+    "AMZN": {
+     "trades": 12,
+     "expectancy_25bps_r": -0.155
+    },
+    "APP": {
+     "trades": 13,
+     "expectancy_25bps_r": -0.016
+    },
+    "ARKK": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.552
+    },
+    "ARM": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.466
+    },
+    "ASTS": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.026
+    },
+    "AVAX-USD": {
+     "trades": 48,
+     "expectancy_25bps_r": -0.116
+    },
+    "AVGO": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.618
+    },
+    "BTC-USD": {
+     "trades": 57,
+     "expectancy_25bps_r": -0.225
+    },
+    "COIN": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.435
+    },
+    "CRM": {
+     "trades": 8,
+     "expectancy_25bps_r": -0.369
+    },
+    "CRWD": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.334
+    },
+    "DDOG": {
+     "trades": 10,
+     "expectancy_25bps_r": 1.717
+    },
+    "DOGE-USD": {
+     "trades": 48,
+     "expectancy_25bps_r": 0.113
+    },
+    "ETH-USD": {
+     "trades": 58,
+     "expectancy_25bps_r": -0.118
+    },
+    "F": {
+     "trades": 18,
+     "expectancy_25bps_r": -0.201
+    },
+    "GOOGL": {
+     "trades": 13,
+     "expectancy_25bps_r": 0.82
+    },
+    "HOOD": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.249
+    },
+    "INTC": {
+     "trades": 11,
+     "expectancy_25bps_r": 1.195
+    },
+    "IWM": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.366
+    },
+    "LINK-USD": {
+     "trades": 60,
+     "expectancy_25bps_r": -0.182
+    },
+    "LRCX": {
+     "trades": 17,
+     "expectancy_25bps_r": -0.066
+    },
+    "LUNR": {
+     "trades": 18,
+     "expectancy_25bps_r": -0.132
+    },
+    "MELI": {
+     "trades": 14,
+     "expectancy_25bps_r": -0.503
+    },
+    "META": {
+     "trades": 9,
+     "expectancy_25bps_r": -0.771
+    },
+    "MRNA": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.082
+    },
+    "MSFT": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.336
+    },
+    "MSTR": {
+     "trades": 8,
+     "expectancy_25bps_r": 0.044
+    },
+    "MU": {
+     "trades": 18,
+     "expectancy_25bps_r": 0.882
+    },
+    "NET": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.267
+    },
+    "NFLX": {
+     "trades": 14,
+     "expectancy_25bps_r": -0.684
+    },
+    "NIO": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.49
+    },
+    "NU": {
+     "trades": 19,
+     "expectancy_25bps_r": -0.318
+    },
+    "NVDA": {
+     "trades": 23,
+     "expectancy_25bps_r": -0.275
+    },
+    "PFE": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.219
+    },
+    "PLTR": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.596
+    },
+    "PYPL": {
+     "trades": 10,
+     "expectancy_25bps_r": -0.28
+    },
+    "QCOM": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.01
+    },
+    "RKLB": {
+     "trades": 17,
+     "expectancy_25bps_r": 0.505
+    },
+    "SHOP": {
+     "trades": 14,
+     "expectancy_25bps_r": 0.001
+    },
+    "SMCI": {
+     "trades": 12,
+     "expectancy_25bps_r": -0.196
+    },
+    "SMH": {
+     "trades": 15,
+     "expectancy_25bps_r": 0.839
+    },
+    "SNOW": {
+     "trades": 9,
+     "expectancy_25bps_r": 0.984
+    },
+    "SOFI": {
+     "trades": 12,
+     "expectancy_25bps_r": 0.197
+    },
+    "SOL-USD": {
+     "trades": 52,
+     "expectancy_25bps_r": 0.26
+    },
+    "SPY": {
+     "trades": 15,
+     "expectancy_25bps_r": -0.053
+    },
+    "TSLA": {
+     "trades": 11,
+     "expectancy_25bps_r": -0.376
+    },
+    "XLF": {
+     "trades": 14,
+     "expectancy_25bps_r": -0.55
+    },
+    "XRP-USD": {
+     "trades": 50,
+     "expectancy_25bps_r": 0.363
+    }
+   }
+  }
+ }
+}

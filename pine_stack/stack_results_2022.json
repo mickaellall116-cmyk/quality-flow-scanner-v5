@@ -1,0 +1,231 @@
+{
+ "notes": [
+  "2022 validation of all four stack cases; same framework as every prior study. No refit."
+ ],
+ "cases": {
+  "C0": {
+   "4bps": {
+    "config": "stack",
+    "cost": "4bps",
+    "trades": 93,
+    "win_rate_pct": 46.2,
+    "expectancy_net_r": 0.121,
+    "profit_factor": 1.18,
+    "total_return_pct": 6.97,
+    "max_drawdown_pct": 24.95,
+    "avg_hold_bars": 18.7,
+    "market_exposure_pct": 86.9,
+    "tp1_hit_rate_pct": 41.9,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 68,
+    "skipped_max_risk": 15,
+    "exit_reasons": {
+     "stop": 75,
+     "ema55-break": 11,
+     "eod": 7
+    },
+    "avg_winner_r": 1.731,
+    "avg_loser_r": -1.264,
+    "stop_out_pct": 80.6,
+    "pct_entries_half_risk": 0.0,
+    "sector_cap_skips": 0,
+    "rank_skips": 0
+   },
+   "25bps": {
+    "config": "stack",
+    "cost": "25bps",
+    "trades": 95,
+    "win_rate_pct": 46.3,
+    "expectancy_net_r": 0.052,
+    "profit_factor": 1.07,
+    "total_return_pct": 0.76,
+    "max_drawdown_pct": 27.37,
+    "avg_hold_bars": 18.3,
+    "market_exposure_pct": 86.9,
+    "tp1_hit_rate_pct": 41.1,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 62,
+    "skipped_max_risk": 19,
+    "exit_reasons": {
+     "stop": 75,
+     "ema55-break": 13,
+     "eod": 7
+    },
+    "avg_winner_r": 1.641,
+    "avg_loser_r": -1.318,
+    "stop_out_pct": 78.9,
+    "pct_entries_half_risk": 0.0,
+    "sector_cap_skips": 0,
+    "rank_skips": 0
+   }
+  },
+  "C1": {
+   "4bps": {
+    "config": "stack",
+    "cost": "4bps",
+    "trades": 94,
+    "win_rate_pct": 47.9,
+    "expectancy_net_r": 0.217,
+    "profit_factor": 1.35,
+    "total_return_pct": 17.3,
+    "max_drawdown_pct": 21.03,
+    "avg_hold_bars": 19.0,
+    "market_exposure_pct": 86.9,
+    "tp1_hit_rate_pct": 43.6,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 74,
+    "skipped_max_risk": 7,
+    "exit_reasons": {
+     "stop": 76,
+     "ema55-break": 11,
+     "eod": 7
+    },
+    "avg_winner_r": 1.751,
+    "avg_loser_r": -1.193,
+    "stop_out_pct": 80.9,
+    "pct_entries_half_risk": 0.0,
+    "sector_cap_skips": 1,
+    "rank_skips": 74
+   },
+   "25bps": {
+    "config": "stack",
+    "cost": "25bps",
+    "trades": 94,
+    "win_rate_pct": 47.9,
+    "expectancy_net_r": 0.14,
+    "profit_factor": 1.21,
+    "total_return_pct": 9.33,
+    "max_drawdown_pct": 23.55,
+    "avg_hold_bars": 19.0,
+    "market_exposure_pct": 86.9,
+    "tp1_hit_rate_pct": 43.6,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 74,
+    "skipped_max_risk": 7,
+    "exit_reasons": {
+     "stop": 76,
+     "ema55-break": 11,
+     "eod": 7
+    },
+    "avg_winner_r": 1.671,
+    "avg_loser_r": -1.267,
+    "stop_out_pct": 80.9,
+    "pct_entries_half_risk": 0.0,
+    "sector_cap_skips": 1,
+    "rank_skips": 74
+   }
+  },
+  "C2": {
+   "4bps": {
+    "config": "stack",
+    "cost": "4bps",
+    "trades": 98,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.124,
+    "profit_factor": 1.18,
+    "total_return_pct": 1.22,
+    "max_drawdown_pct": 19.4,
+    "avg_hold_bars": 18.4,
+    "market_exposure_pct": 86.9,
+    "tp1_hit_rate_pct": 41.8,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 78,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 80,
+     "ema55-break": 11,
+     "eod": 7
+    },
+    "avg_winner_r": 1.751,
+    "avg_loser_r": -1.257,
+    "stop_out_pct": 81.6,
+    "pct_entries_half_risk": 64.3,
+    "sector_cap_skips": 0,
+    "rank_skips": 78
+   },
+   "25bps": {
+    "config": "stack",
+    "cost": "25bps",
+    "trades": 98,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.048,
+    "profit_factor": 1.07,
+    "total_return_pct": 0.74,
+    "max_drawdown_pct": 18.61,
+    "avg_hold_bars": 18.4,
+    "market_exposure_pct": 86.9,
+    "tp1_hit_rate_pct": 41.8,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 78,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 80,
+     "ema55-break": 11,
+     "eod": 7
+    },
+    "avg_winner_r": 1.671,
+    "avg_loser_r": -1.33,
+    "stop_out_pct": 81.6,
+    "pct_entries_half_risk": 71.4,
+    "sector_cap_skips": 0,
+    "rank_skips": 78
+   }
+  },
+  "C3": {
+   "4bps": {
+    "config": "stack",
+    "cost": "4bps",
+    "trades": 97,
+    "win_rate_pct": 46.4,
+    "expectancy_net_r": 0.144,
+    "profit_factor": 1.22,
+    "total_return_pct": 1.53,
+    "max_drawdown_pct": 19.15,
+    "avg_hold_bars": 18.5,
+    "market_exposure_pct": 86.9,
+    "tp1_hit_rate_pct": 42.3,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 78,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 79,
+     "ema55-break": 11,
+     "eod": 7
+    },
+    "avg_winner_r": 1.751,
+    "avg_loser_r": -1.246,
+    "stop_out_pct": 81.4,
+    "pct_entries_half_risk": 62.9,
+    "sector_cap_skips": 1,
+    "rank_skips": 78
+   },
+   "25bps": {
+    "config": "stack",
+    "cost": "25bps",
+    "trades": 97,
+    "win_rate_pct": 46.4,
+    "expectancy_net_r": 0.068,
+    "profit_factor": 1.1,
+    "total_return_pct": 0.17,
+    "max_drawdown_pct": 19.07,
+    "avg_hold_bars": 18.5,
+    "market_exposure_pct": 86.9,
+    "tp1_hit_rate_pct": 42.3,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 78,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 79,
+     "ema55-break": 11,
+     "eod": 7
+    },
+    "avg_winner_r": 1.671,
+    "avg_loser_r": -1.32,
+    "stop_out_pct": 81.4,
+    "pct_entries_half_risk": 69.1,
+    "sector_cap_skips": 1,
+    "rank_skips": 78
+   }
+  }
+ }
+}

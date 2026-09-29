@@ -1,0 +1,11 @@
+loading 2022 4H caches...
+  32 symbols: ['AAPL', 'AMAT', 'AMD', 'AMZN', 'AVGO', 'BTC-USD', 'COST', 'CRM', 'ETH-USD', 'F', 'GOOGL', 'INTC', 'JPM', 'LLY', 'LRCX', 'MRNA', 'MSFT', 'MU', 'NFLX', 'NIO', 'NVDA', 'ORCL', 'PFE', 'PLTR', 'PYPL', 'QCOM', 'QQQ', 'SNOW', 'SPY', 'TSLA', 'WMT', 'XOM']
+loading benchmarks...
+== V0_control ==
+  [4bps] n=39 win=43.6% exp=0.287R PF=1.35 ret=11.21% dd=20.42% hold=20.1
+  [25bps] n=39 win=43.6% exp=0.205R PF=1.24 ret=7.95% dd=21.65% hold=20.1
+== C1_H1_rs ==
+  [4bps] n=38 win=42.1% exp=0.138R PF=1.16 ret=5.09% dd=21.94% hold=18.7
+  [25bps] n=38 win=42.1% exp=0.058R PF=1.07 ret=2.06% dd=23.51% hold=18.7
+DONE
+EXIT:0

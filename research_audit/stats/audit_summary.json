@@ -1,0 +1,94 @@
+{
+ "placebos": {
+  "shuffled_sector_rs_labels": {
+   "real": 0.1386,
+   "null_mean": -0.0205,
+   "null_sd": 0.0936,
+   "null_p5": -0.1796,
+   "null_p95": 0.1319,
+   "real_percentile": 95.55,
+   "empirical_p": 0.0445,
+   "n_draws": 2000
+  },
+  "random_filter_same_block_count": {
+   "real": 0.1386,
+   "null_mean": -0.0042,
+   "null_sd": 0.0903,
+   "null_p5": -0.1582,
+   "null_p95": 0.1393,
+   "real_percentile": 94.9,
+   "empirical_p": 0.051,
+   "n_draws": 2000
+  },
+  "random_ranking_crowded_bars": {
+   "real": 0.6507,
+   "null_mean": -0.0173,
+   "null_sd": 0.44,
+   "null_p5": -0.7434,
+   "null_p95": 0.7116,
+   "real_percentile": 92.95,
+   "empirical_p": 0.0705,
+   "n_draws": 2000
+  },
+  "shuffled_fvg_tags": {
+   "real": 0.0464,
+   "null_mean": 0.0273,
+   "null_sd": 0.0406,
+   "null_p5": -0.0427,
+   "null_p95": 0.0934,
+   "real_percentile": 66.85,
+   "empirical_p": 0.3315,
+   "n_draws": 2000
+  }
+ },
+ "verdicts": {
+  "multiple_testing": {
+   "raw_looks_estimate": "85-90",
+   "effective_independent_tests": "20-30",
+   "lonewolf": {
+    "naive_p": 0.0558,
+    "holm_m15": 0.84,
+    "holm_m25": 1.0,
+    "verdict": "Fail"
+   },
+   "adx_selection_edge": {
+    "naive_p": 0.0492,
+    "holm_m15": 0.74,
+    "holm_m25": 1.0,
+    "verdict": "Fail"
+   },
+   "adx_vs_takeall": {
+    "naive_p": 0.1214,
+    "holm_m15": 1.0,
+    "verdict": "Fail"
+   },
+   "fvg": {
+    "naive_p": 0.4069,
+    "holm_m15": 1.0,
+    "verdict": "Fail"
+   }
+  },
+  "placebos": {
+   "lonewolf_sector_shuffle": {
+    "real_pct": 95.55,
+    "p": 0.0445,
+    "verdict": "Warning"
+   },
+   "lonewolf_random_filter": {
+    "real_pct": 94.9,
+    "p": 0.051,
+    "verdict": "Warning"
+   },
+   "adx_random_ranking": {
+    "real_pct": 92.95,
+    "p": 0.0705,
+    "verdict": "Warning"
+   },
+   "fvg_tag_shuffle": {
+    "real_pct": 66.85,
+    "p": 0.3315,
+    "verdict": "Fail"
+   }
+  }
+ }
+}

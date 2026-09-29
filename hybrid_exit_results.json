@@ -1,0 +1,255 @@
+{
+ "modes": {
+  "A": "protect-1R all-or-nothing (baseline)",
+  "B": "50% at TP1, runner structural stop, EXIT gated to +1R",
+  "C": "50% at TP1, runner breakeven, EXIT ungated after TP1"
+ },
+ "runs": [
+  {
+   "config": "HYBRID_A:U15",
+   "cost": "4bps",
+   "trades": 63,
+   "win_rate_pct": 44.4,
+   "expectancy_net_r": 0.291,
+   "profit_factor": 1.55,
+   "total_return_pct": 20.24,
+   "max_drawdown_pct": 10.78,
+   "avg_hold_bars": 7.9,
+   "tp1_take_pct": 0.0,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 32,
+    "target": 27,
+    "scanner-exit": 3,
+    "time": 1
+   }
+  },
+  {
+   "config": "HYBRID_A:U15",
+   "cost": "25bps",
+   "trades": 63,
+   "win_rate_pct": 44.4,
+   "expectancy_net_r": 0.209,
+   "profit_factor": 1.36,
+   "total_return_pct": 14.29,
+   "max_drawdown_pct": 11.96,
+   "avg_hold_bars": 7.9,
+   "tp1_take_pct": 0.0,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 32,
+    "target": 27,
+    "scanner-exit": 3,
+    "time": 1
+   }
+  },
+  {
+   "config": "HYBRID_B:U15",
+   "cost": "4bps",
+   "trades": 57,
+   "win_rate_pct": 43.9,
+   "expectancy_net_r": 0.311,
+   "profit_factor": 1.58,
+   "total_return_pct": 20.67,
+   "max_drawdown_pct": 11.34,
+   "avg_hold_bars": 15.2,
+   "tp1_take_pct": 42.1,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 29,
+    "runner-time": 15,
+    "runner-exit": 7,
+    "scanner-exit": 3,
+    "runner-stop": 2,
+    "time": 1
+   }
+  },
+  {
+   "config": "HYBRID_B:U15",
+   "cost": "25bps",
+   "trades": 57,
+   "win_rate_pct": 43.9,
+   "expectancy_net_r": 0.234,
+   "profit_factor": 1.41,
+   "total_return_pct": 15.59,
+   "max_drawdown_pct": 13.12,
+   "avg_hold_bars": 15.2,
+   "tp1_take_pct": 42.1,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 29,
+    "runner-time": 15,
+    "runner-exit": 7,
+    "scanner-exit": 3,
+    "runner-stop": 2,
+    "time": 1
+   }
+  },
+  {
+   "config": "HYBRID_C:U15",
+   "cost": "4bps",
+   "trades": 59,
+   "win_rate_pct": 44.1,
+   "expectancy_net_r": 0.2,
+   "profit_factor": 1.4,
+   "total_return_pct": 14.12,
+   "max_drawdown_pct": 11.13,
+   "avg_hold_bars": 13.1,
+   "tp1_take_pct": 39.0,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 26,
+    "runner-time": 11,
+    "runner-stop": 10,
+    "scanner-exit": 9,
+    "runner-exit": 2,
+    "time": 1
+   }
+  },
+  {
+   "config": "HYBRID_C:U15",
+   "cost": "25bps",
+   "trades": 59,
+   "win_rate_pct": 42.4,
+   "expectancy_net_r": 0.124,
+   "profit_factor": 1.23,
+   "total_return_pct": 9.3,
+   "max_drawdown_pct": 12.62,
+   "avg_hold_bars": 13.1,
+   "tp1_take_pct": 39.0,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 26,
+    "runner-time": 11,
+    "runner-stop": 10,
+    "scanner-exit": 9,
+    "runner-exit": 2,
+    "time": 1
+   }
+  },
+  {
+   "config": "HYBRID_A:UX51",
+   "cost": "4bps",
+   "trades": 251,
+   "win_rate_pct": 43.4,
+   "expectancy_net_r": 0.316,
+   "profit_factor": 1.57,
+   "total_return_pct": 72.45,
+   "max_drawdown_pct": 21.34,
+   "avg_hold_bars": 7.5,
+   "tp1_take_pct": 0.0,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 133,
+    "target": 107,
+    "scanner-exit": 8,
+    "time": 2,
+    "gap-above-target": 1
+   }
+  },
+  {
+   "config": "HYBRID_A:UX51",
+   "cost": "25bps",
+   "trades": 251,
+   "win_rate_pct": 43.4,
+   "expectancy_net_r": 0.241,
+   "profit_factor": 1.4,
+   "total_return_pct": 49.36,
+   "max_drawdown_pct": 24.16,
+   "avg_hold_bars": 7.5,
+   "tp1_take_pct": 0.0,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 133,
+    "target": 107,
+    "scanner-exit": 8,
+    "time": 2,
+    "gap-above-target": 1
+   }
+  },
+  {
+   "config": "HYBRID_B:UX51",
+   "cost": "4bps",
+   "trades": 230,
+   "win_rate_pct": 42.6,
+   "expectancy_net_r": 0.4,
+   "profit_factor": 1.71,
+   "total_return_pct": 109.22,
+   "max_drawdown_pct": 17.4,
+   "avg_hold_bars": 14.9,
+   "tp1_take_pct": 42.2,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 124,
+    "runner-time": 53,
+    "runner-exit": 32,
+    "runner-stop": 12,
+    "scanner-exit": 8,
+    "time": 1
+   }
+  },
+  {
+   "config": "HYBRID_B:UX51",
+   "cost": "25bps",
+   "trades": 230,
+   "win_rate_pct": 42.6,
+   "expectancy_net_r": 0.325,
+   "profit_factor": 1.53,
+   "total_return_pct": 89.71,
+   "max_drawdown_pct": 18.47,
+   "avg_hold_bars": 14.9,
+   "tp1_take_pct": 42.2,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 124,
+    "runner-time": 53,
+    "runner-exit": 32,
+    "runner-stop": 12,
+    "scanner-exit": 8,
+    "time": 1
+   }
+  },
+  {
+   "config": "HYBRID_C:UX51",
+   "cost": "4bps",
+   "trades": 234,
+   "win_rate_pct": 42.7,
+   "expectancy_net_r": 0.38,
+   "profit_factor": 1.7,
+   "total_return_pct": 90.42,
+   "max_drawdown_pct": 16.74,
+   "avg_hold_bars": 13.8,
+   "tp1_take_pct": 40.6,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 111,
+    "runner-time": 46,
+    "runner-stop": 39,
+    "scanner-exit": 27,
+    "runner-exit": 10,
+    "time": 1
+   }
+  },
+  {
+   "config": "HYBRID_C:UX51",
+   "cost": "25bps",
+   "trades": 234,
+   "win_rate_pct": 42.3,
+   "expectancy_net_r": 0.305,
+   "profit_factor": 1.52,
+   "total_return_pct": 63.97,
+   "max_drawdown_pct": 17.82,
+   "avg_hold_bars": 13.8,
+   "tp1_take_pct": 40.6,
+   "skipped_gap_below_stop": 0,
+   "exit_reasons": {
+    "stop": 111,
+    "runner-time": 46,
+    "runner-stop": 39,
+    "scanner-exit": 27,
+    "runner-exit": 10,
+    "time": 1
+   }
+  }
+ ]
+}

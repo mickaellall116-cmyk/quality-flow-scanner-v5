@@ -1,0 +1,133 @@
+Downloading data (cached in v6_short_research/cache/)...
+  [1/20] 4h NVDA
+  [2/20] 4h AAPL
+  [3/20] 4h MSFT
+  [4/20] 4h META
+  [5/20] 4h AMD
+  [6/20] 4h AVGO
+  [7/20] 4h TSLA
+  [8/20] 4h PLTR
+  [9/20] 4h NFLX
+  [10/20] 4h CRM
+  [11/20] 4h ORCL
+  [12/20] 4h JPM
+  [13/20] 4h XOM
+  [14/20] 4h LLY
+  [15/20] 4h COST
+  [16/20] 4h GOOGL
+  [17/20] 4h AMZN
+  [18/20] 4h WMT
+  [19/20] 4h QQQ
+  [20/20] 4h SPY
+Universe: 18 symbols; dropped: []
+Signals: NVDA ...
+  -> 23 short signals, 10 trades
+Signals: AAPL ...
+  -> 42 short signals, 14 trades
+Signals: MSFT ...
+  -> 41 short signals, 16 trades
+Signals: META ...
+  -> 39 short signals, 15 trades
+Signals: AMD ...
+  -> 14 short signals, 7 trades
+Signals: AVGO ...
+  -> 31 short signals, 12 trades
+Signals: TSLA ...
+  -> 23 short signals, 9 trades
+Signals: PLTR ...
+  -> 35 short signals, 13 trades
+Signals: NFLX ...
+  -> 70 short signals, 19 trades
+Signals: CRM ...
+  -> 39 short signals, 11 trades
+Signals: ORCL ...
+  -> 49 short signals, 15 trades
+Signals: JPM ...
+  -> 29 short signals, 12 trades
+Signals: XOM ...
+  -> 24 short signals, 12 trades
+Signals: LLY ...
+  -> 44 short signals, 14 trades
+Signals: COST ...
+  -> 52 short signals, 17 trades
+Signals: GOOGL ...
+  -> 31 short signals, 12 trades
+Signals: AMZN ...
+  -> 27 short signals, 10 trades
+Signals: WMT ...
+  -> 44 short signals, 12 trades
+
+==== SHORT BACKTEST RESULTS ====
+{
+  "variant": "short / next-bar open",
+  "trades": 230,
+  "win_rate_pct": 35.2,
+  "avg_win_pct": 6.29,
+  "avg_loss_pct": -4.31,
+  "expectancy_pct": -0.576,
+  "expectancy_r": -0.08,
+  "profit_factor": 0.79,
+  "avg_hold_bars": 14.1,
+  "avg_borrow_pct_per_trade": 0.0312,
+  "exit_reasons": {
+    "stop": 128,
+    "time": 60,
+    "target": 42
+  },
+  "final_equity_10k_1pct_risk": 7746.25,
+  "max_drawdown_pct": 40.54
+}
+
+-- by regime --
+[
+  {
+    "group": "RISK-ON",
+    "trades": 82,
+    "win_rate_pct": 40.2,
+    "expectancy_pct": 0.161,
+    "expectancy_r": -0.034
+  },
+  {
+    "group": "RISK-OFF",
+    "trades": 81,
+    "win_rate_pct": 28.4,
+    "expectancy_pct": -1.647,
+    "expectancy_r": -0.297
+  },
+  {
+    "group": "CAUTIOUS",
+    "trades": 67,
+    "win_rate_pct": 37.3,
+    "expectancy_pct": -0.184,
+    "expectancy_r": 0.127
+  }
+]
+
+-- by setup --
+[
+  {
+    "group": "S1_BREAKDOWN",
+    "trades": 127,
+    "win_rate_pct": 37.8,
+    "expectancy_pct": -0.504,
+    "expectancy_r": 0.029
+  },
+  {
+    "group": "S3_BULL_TRAP",
+    "trades": 69,
+    "win_rate_pct": 43.5,
+    "expectancy_pct": 0.186,
+    "expectancy_r": 0.044
+  },
+  {
+    "group": "S2_PULLBACK_SHORT",
+    "trades": 34,
+    "win_rate_pct": 8.8,
+    "expectancy_pct": -2.391,
+    "expectancy_r": -0.737
+  }
+]
+
+QQQ buy-and-hold same window: 52.93%
+Results saved to /home/hatch/workspace/quality-flow-scanner-v5/v6_short_research/short_backtest_results.json
+EXIT=0

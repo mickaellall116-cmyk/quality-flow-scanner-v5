@@ -1,0 +1,14 @@
+{
+ "placebo": "random_ranking_crowded_bars",
+ "n_bars": 21,
+ "n_draws": 2000,
+ "real_adx_mean_edge_r": 0.6507,
+ "null_mean_r": -0.0173,
+ "null_sd_r": 0.44,
+ "null_p5_r": -0.7434,
+ "null_p50_r": -0.0223,
+ "null_p95_r": 0.7116,
+ "real_percentile": 92.95,
+ "empirical_p_value": 0.0705,
+ "note": "null = random ranking selects same-sized subset per bar; expected null mean is ~0 by symmetry"
+}

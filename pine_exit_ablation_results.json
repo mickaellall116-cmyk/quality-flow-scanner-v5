@@ -1,0 +1,145 @@
+{
+ "notes": [
+  "Exit-ablation on the Pine V3.6 reimplementation (pine_backtest.py).",
+  "Entries byte-identical across variants (same signal logic, entry px, gap-skip rule, universe UX51, 4H bars, costs, portfolio constraints).",
+  "baseline must reproduce ~+0.195R (sanity check).",
+  "time20: fixed 20-bar exit at next-bar open; structural stop kept SYNTHETICALLY for sizing/R-denomination only, never triggered.",
+  "stop_tp1: stop + 50%-TP1 as Pine; runner keeps initial stop (no trail), no EMA55/trend-bear exits, 30-bar cap.",
+  "Caveat: one-position-per-symbol means exit timing shifts subsequent entry availability, so realized trade lists can diverge; entry LOGIC is identical and the gap is the economic value of the exit component."
+ ],
+ "variants": {
+  "baseline": {
+   "label": "Pine entries + Pine exits (rerun)",
+   "runs": [
+    {
+     "config": "PINE_V36_ablation:baseline:UX51:4h",
+     "cost": "4bps",
+     "trades": 263,
+     "win_rate_pct": 44.9,
+     "expectancy_net_r": 0.195,
+     "profit_factor": 1.27,
+     "total_return_pct": 35.3,
+     "max_drawdown_pct": 35.17,
+     "avg_hold_bars": 18.1,
+     "market_exposure_pct": 76.1,
+     "tp1_hit_rate_pct": 47.5,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 79,
+     "skipped_max_risk": 24,
+     "exit_reasons": {
+      "stop": 247,
+      "ema55-break": 16
+     }
+    },
+    {
+     "config": "PINE_V36_ablation:baseline:UX51:4h",
+     "cost": "25bps",
+     "trades": 263,
+     "win_rate_pct": 44.1,
+     "expectancy_net_r": 0.115,
+     "profit_factor": 1.15,
+     "total_return_pct": 19.92,
+     "max_drawdown_pct": 37.16,
+     "avg_hold_bars": 18.1,
+     "market_exposure_pct": 76.1,
+     "tp1_hit_rate_pct": 47.5,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 79,
+     "skipped_max_risk": 24,
+     "exit_reasons": {
+      "stop": 247,
+      "ema55-break": 16
+     }
+    }
+   ]
+  },
+  "time20": {
+   "label": "Pine entries + fixed 20-bar exit, no stop/TP1/trail",
+   "runs": [
+    {
+     "config": "PINE_V36_ablation:time20:UX51:4h",
+     "cost": "4bps",
+     "trades": 277,
+     "win_rate_pct": 49.8,
+     "expectancy_net_r": 0.329,
+     "profit_factor": 1.39,
+     "total_return_pct": 37.12,
+     "max_drawdown_pct": 34.97,
+     "avg_hold_bars": 20.0,
+     "market_exposure_pct": 82.0,
+     "tp1_hit_rate_pct": 0.0,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 77,
+     "skipped_max_risk": 27,
+     "exit_reasons": {
+      "time-20": 277
+     }
+    },
+    {
+     "config": "PINE_V36_ablation:time20:UX51:4h",
+     "cost": "25bps",
+     "trades": 277,
+     "win_rate_pct": 49.5,
+     "expectancy_net_r": 0.249,
+     "profit_factor": 1.28,
+     "total_return_pct": 22.67,
+     "max_drawdown_pct": 36.55,
+     "avg_hold_bars": 20.0,
+     "market_exposure_pct": 82.2,
+     "tp1_hit_rate_pct": 0.0,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 75,
+     "skipped_max_risk": 28,
+     "exit_reasons": {
+      "time-20": 277
+     }
+    }
+   ]
+  },
+  "stop_tp1": {
+   "label": "Pine entries + stop & 50%-TP1 only, no trail/EMA55, 30-bar cap",
+   "runs": [
+    {
+     "config": "PINE_V36_ablation:stop_tp1:UX51:4h",
+     "cost": "4bps",
+     "trades": 272,
+     "win_rate_pct": 43.4,
+     "expectancy_net_r": 0.125,
+     "profit_factor": 1.18,
+     "total_return_pct": 31.56,
+     "max_drawdown_pct": 23.89,
+     "avg_hold_bars": 17.6,
+     "market_exposure_pct": 78.0,
+     "tp1_hit_rate_pct": 49.3,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 81,
+     "skipped_max_risk": 17,
+     "exit_reasons": {
+      "stop": 169,
+      "timecap-30": 103
+     }
+    },
+    {
+     "config": "PINE_V36_ablation:stop_tp1:UX51:4h",
+     "cost": "25bps",
+     "trades": 272,
+     "win_rate_pct": 39.3,
+     "expectancy_net_r": 0.045,
+     "profit_factor": 1.06,
+     "total_return_pct": 13.58,
+     "max_drawdown_pct": 26.78,
+     "avg_hold_bars": 17.6,
+     "market_exposure_pct": 78.0,
+     "tp1_hit_rate_pct": 49.3,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 81,
+     "skipped_max_risk": 15,
+     "exit_reasons": {
+      "stop": 169,
+      "timecap-30": 103
+     }
+    }
+   ]
+  }
+ }
+}

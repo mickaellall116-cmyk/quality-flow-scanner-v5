@@ -1,0 +1,102 @@
+{
+ "note": "POST-HOC diagnostics only; not candidates; cannot be adopted.",
+ "takeall_taken_subset_4bps": {
+  "config": "takeall-taken-subset",
+  "cost": "4bps",
+  "trades": 160,
+  "win_rate_pct": 45.0,
+  "expectancy_net_r": 0.239,
+  "profit_factor": 1.35,
+  "total_return_pct": 35.3,
+  "max_drawdown_pct": 35.17,
+  "avg_hold_bars": 18.7,
+  "market_exposure_pct": 76.1,
+  "tp1_hit_rate_pct": 48.1,
+  "skipped_gap_below_stop": 1,
+  "skipped_max_positions": 79,
+  "skipped_max_risk": 24,
+  "exit_reasons": {
+   "stop": 152,
+   "ema55-break": 8
+  },
+  "avg_winner_r": 2.064,
+  "avg_loser_r": -1.253,
+  "stop_out_pct": 95.0
+ },
+ "rs_bottom1": {
+  "config": "placebo:rs_bottom1",
+  "cost": "4bps",
+  "trades": 156,
+  "win_rate_pct": 44.9,
+  "expectancy_net_r": 0.208,
+  "profit_factor": 1.29,
+  "total_return_pct": 27.56,
+  "max_drawdown_pct": 34.2,
+  "avg_hold_bars": 18.8,
+  "market_exposure_pct": 75.1,
+  "tp1_hit_rate_pct": 48.1,
+  "skipped_gap_below_stop": 1,
+  "skipped_max_positions": 94,
+  "skipped_max_risk": 13,
+  "exit_reasons": {
+   "stop": 149,
+   "ema55-break": 7
+  },
+  "avg_winner_r": 2.056,
+  "avg_loser_r": -1.297,
+  "stop_out_pct": 95.5
+ },
+ "vol_bottom1": {
+  "config": "placebo:vol_bottom1",
+  "cost": "4bps",
+  "trades": 153,
+  "win_rate_pct": 45.1,
+  "expectancy_net_r": 0.247,
+  "profit_factor": 1.36,
+  "total_return_pct": 35.02,
+  "max_drawdown_pct": 33.91,
+  "avg_hold_bars": 18.9,
+  "market_exposure_pct": 76.1,
+  "tp1_hit_rate_pct": 48.4,
+  "skipped_gap_below_stop": 1,
+  "skipped_max_positions": 98,
+  "skipped_max_risk": 12,
+  "exit_reasons": {
+   "stop": 145,
+   "ema55-break": 8
+  },
+  "avg_winner_r": 2.075,
+  "avg_loser_r": -1.254,
+  "stop_out_pct": 94.8
+ },
+ "random_top2": {
+  "config": "placebo:random_top2",
+  "cost": "4bps",
+  "trades": 157,
+  "win_rate_pct": 45.9,
+  "expectancy_net_r": 0.245,
+  "profit_factor": 1.35,
+  "total_return_pct": 35.9,
+  "max_drawdown_pct": 33.71,
+  "avg_hold_bars": 19.1,
+  "market_exposure_pct": 76.1,
+  "tp1_hit_rate_pct": 49.0,
+  "skipped_gap_below_stop": 1,
+  "skipped_max_positions": 93,
+  "skipped_max_risk": 13,
+  "exit_reasons": {
+   "stop": 149,
+   "ema55-break": 8
+  },
+  "avg_winner_r": 2.071,
+  "avg_loser_r": -1.302,
+  "stop_out_pct": 94.9
+ },
+ "overlap": {
+  "rs_top2_taken": 154,
+  "takeall_taken": 160,
+  "intersection": 141,
+  "rs_only": 13,
+  "takeall_only": 19
+ }
+}

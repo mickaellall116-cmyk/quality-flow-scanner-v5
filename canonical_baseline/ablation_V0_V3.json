@@ -1,0 +1,47 @@
+{
+ "V0": {
+  "variant": "V0 old-system 14-name",
+  "n": 236,
+  "expectancy_r": 0.2704,
+  "win_rate_pct": 50.8,
+  "profit_factor": 1.43,
+  "total_r": 63.81,
+  "median_r": 0.1798
+ },
+ "V1": {
+  "variant": "V1 old-system 131-name",
+  "n": 2487,
+  "expectancy_r": -0.0808,
+  "win_rate_pct": 44.0,
+  "profit_factor": 0.89,
+  "total_r": -200.84,
+  "median_r": -0.5754
+ },
+ "V2": {
+  "variant": "V2 ModeB 131-name",
+  "n": 2995,
+  "expectancy_r": -0.0267,
+  "win_rate_pct": 41.7,
+  "profit_factor": 0.96,
+  "total_r": -80.12,
+  "median_r": -1.0465
+ },
+ "V2 realistic-gaps": {
+  "variant": "V2 ModeB 131-name realistic-gaps",
+  "n": 2995,
+  "expectancy_r": -0.0642,
+  "win_rate_pct": 40.4,
+  "profit_factor": 0.91,
+  "total_r": -192.18,
+  "median_r": -1.0502
+ },
+ "V3": {
+  "variant": "V3 v54+ModeB 131-name",
+  "n": 1645,
+  "expectancy_r": 0.0138,
+  "win_rate_pct": 36.1,
+  "profit_factor": 1.02,
+  "total_r": 22.69,
+  "median_r": -1.0634
+ }
+}

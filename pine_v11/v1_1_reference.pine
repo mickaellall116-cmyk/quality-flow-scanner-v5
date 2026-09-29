@@ -1,0 +1,134 @@
+//@version=6
+strategy("Quality Flow System V1.1 - Better Runner Exits",
+     overlay=true,
+     initial_capital=10000,
+     default_qty_type=strategy.percent_of_equity,
+     default_qty_value=10,
+     pyramiding=0)
+
+// ===== Inputs =====
+emaFastLen = input.int(21, "EMA Fast")
+emaSlowLen = input.int(55, "EMA Slow")
+breakoutLen = input.int(20, "Structure Breakout Length")
+
+cmfLen = input.int(20, "CMF Length")
+mfiLen = input.int(14, "MFI Length")
+mfiMin = input.int(40, "MFI Min")
+mfiMax = input.int(75, "MFI Max")
+
+atrLen = input.int(14, "ATR Length")
+atrBaseLen = input.int(50, "ATR Baseline")
+atrMinRatio = input.float(0.85, "Min ATR Regime Ratio")
+
+stopATR = input.float(2.0, "Stop ATR")
+tpATR = input.float(1.5, "TP1 ATR")
+runnerTrailATR = input.float(3.5, "Runner Trail ATR")
+
+useMFIExit = input.bool(false, "Use MFI Exit")
+useCMFExit = input.bool(true, "Use CMF Exit")
+trendConfirmBars = input.int(2, "EMA 55 Exit Confirm Bars")
+
+// ===== Core Indicators =====
+emaFast = ta.ema(close, emaFastLen)
+emaSlow = ta.ema(close, emaSlowLen)
+
+atr = ta.atr(atrLen)
+atrBase = ta.sma(atr, atrBaseLen)
+atrRatio = atr / atrBase
+atrOK = atrRatio >= atrMinRatio
+
+// ===== CMF =====
+mfMult = ((close - low) - (high - close)) / math.max(high - low, syminfo.mintick)
+mfVol = mfMult * volume
+cmf = ta.sma(mfVol, cmfLen) / ta.sma(volume, cmfLen)
+cmfFalling = cmf < cmf[1] and cmf[1] < cmf[2]
+
+// ===== MFI =====
+mfi = ta.mfi(hlc3, mfiLen)
+
+// ===== OBV Confirmation =====
+obv = ta.cum(close > close[1] ? volume : close < close[1] ? -volume : 0)
+obvUp = ta.ema(obv, 5) > ta.ema(obv, 20)
+
+// ===== Structure =====
+priorHigh = ta.highest(high, breakoutLen)[1]
+breakout = close > priorHigh
+
+// ===== Entry Logic =====
+trendBull = emaFast > emaSlow
+flowOK = cmf > 0
+mfiOK = mfi >= mfiMin and mfi <= mfiMax
+
+buySignal = trendBull and breakout and flowOK and mfiOK and atrOK
+
+// ===== Trade State =====
+var float entryPrice = na
+var float stopPrice = na
+var float tp1Price = na
+var bool tp1Hit = false
+
+if buySignal and strategy.position_size == 0
+    entryPrice := close
+    stopPrice := close - atr * stopATR
+    tp1Price := close + atr * tpATR
+    tp1Hit := false
+    strategy.entry("BUY", strategy.long)
+
+// ===== TP1 Partial =====
+if strategy.position_size > 0 and not tp1Hit and high >= tp1Price
+    tp1Hit := true
+    strategy.close("BUY", qty_percent=50, comment="TP1")
+
+// ===== Stops / Runner =====
+activeStop = tp1Hit ? entryPrice : stopPrice
+runnerTrail = close - atr * runnerTrailATR
+finalStop = tp1Hit ? math.max(activeStop, runnerTrail) : activeStop
+
+// ===== Exit Conditions =====
+cmfExit = useCMFExit and cmf < 0 and cmfFalling
+mfiExit = useMFIExit and mfi > 80 and ta.falling(mfi, 2)
+trendExit = math.sum(close < emaSlow ? 1 : 0, trendConfirmBars) == trendConfirmBars
+stopExit = close < finalStop
+
+exitSignal = strategy.position_size > 0 and (cmfExit or mfiExit or trendExit or stopExit)
+
+if exitSignal
+    strategy.close("BUY", comment="EXIT")
+
+// ===== Plots =====
+plot(emaFast, "EMA 21", color=color.new(color.green, 0))
+plot(emaSlow, "EMA 55", color=color.new(color.red, 0))
+
+plotshape(buySignal and strategy.position_size == 0, title="BUY", text="BUY",
+     style=shape.labelup, location=location.belowbar,
+     color=color.green, textcolor=color.white)
+
+plotshape(tp1Hit and strategy.position_size > 0, title="HOLD", text="HOLD",
+     style=shape.labelup, location=location.belowbar,
+     color=color.blue, textcolor=color.white)
+
+plotshape(exitSignal, title="EXIT", text="EXIT",
+     style=shape.labeldown, location=location.abovebar,
+     color=color.red, textcolor=color.white)
+
+// ===== Dashboard =====
+var table dash = table.new(position.top_right, 2, 6, border_width=1)
+
+if barstate.islast
+    table.cell(dash, 0, 0, "Trend")
+    table.cell(dash, 1, 0, trendBull ? "Bullish" : "Bearish")
+
+    table.cell(dash, 0, 1, "CMF")
+    table.cell(dash, 1, 1, cmf > 0 ? "Money In" : "Weak")
+
+    table.cell(dash, 0, 2, "MFI")
+    table.cell(dash, 1, 2, mfiOK ? "Healthy" : mfi > 75 ? "Hot" : "Weak")
+
+    table.cell(dash, 0, 3, "OBV")
+    table.cell(dash, 1, 3, obvUp ? "Confirming" : "Not Confirming")
+
+    table.cell(dash, 0, 4, "ATR Regime")
+    table.cell(dash, 1, 4, atrOK ? "Valid" : "Chop")
+
+    table.cell(dash, 0, 5, "State")
+    table.cell(dash, 1, 5, strategy.position_size > 0 ? "HOLD" : buySignal ? "BUY" : "WAIT")

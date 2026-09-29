@@ -1,0 +1,145 @@
+{
+ "per_timeframe": {
+  "1h": {
+   "armA_long_only": {
+    "n": 3275,
+    "expectancy": -0.1602,
+    "win_rate": 0.3637,
+    "profit_factor": 0.797,
+    "max_dd_R": 554.01,
+    "total_R": -524.652
+   },
+   "armB_combo": {
+    "n": 3275,
+    "expectancy": -0.5043,
+    "win_rate": 0.3646,
+    "profit_factor": 0.593,
+    "max_dd_R": 1655.221,
+    "total_R": -1651.738
+   },
+   "armB_long_leg_only": {
+    "n": 3275,
+    "expectancy": -0.1602,
+    "win_rate": 0.3637,
+    "profit_factor": 0.797,
+    "max_dd_R": 554.01,
+    "total_R": -524.652
+   },
+   "armB_short_leg_only": {
+    "n": 3275,
+    "expectancy": -0.3441,
+    "win_rate": 0.3279,
+    "profit_factor": 0.585,
+    "max_dd_R": 1174.226,
+    "total_R": -1127.086
+   },
+   "short_leg_win_rate": 0.3279
+  },
+  "4h": {
+   "armA_long_only": {
+    "n": 683,
+    "expectancy": 0.2543,
+    "win_rate": 0.448,
+    "profit_factor": 1.403,
+    "max_dd_R": 49.969,
+    "total_R": 173.685
+   },
+   "armB_combo": {
+    "n": 683,
+    "expectancy": -0.1797,
+    "win_rate": 0.4143,
+    "profit_factor": 0.827,
+    "max_dd_R": 155.783,
+    "total_R": -122.734
+   },
+   "armB_long_leg_only": {
+    "n": 683,
+    "expectancy": 0.2543,
+    "win_rate": 0.448,
+    "profit_factor": 1.403,
+    "max_dd_R": 49.969,
+    "total_R": 173.685
+   },
+   "armB_short_leg_only": {
+    "n": 683,
+    "expectancy": -0.434,
+    "win_rate": 0.2899,
+    "profit_factor": 0.446,
+    "max_dd_R": 334.146,
+    "total_R": -296.419
+   },
+   "short_leg_win_rate": 0.2899
+  },
+  "1d": {
+   "armA_long_only": {
+    "n": 821,
+    "expectancy": 0.329,
+    "win_rate": 0.4702,
+    "profit_factor": 1.608,
+    "max_dd_R": 37.737,
+    "total_R": 270.09
+   },
+   "armB_combo": {
+    "n": 821,
+    "expectancy": -0.0295,
+    "win_rate": 0.4324,
+    "profit_factor": 0.967,
+    "max_dd_R": 113.155,
+    "total_R": -24.226
+   },
+   "armB_long_leg_only": {
+    "n": 821,
+    "expectancy": 0.329,
+    "win_rate": 0.4702,
+    "profit_factor": 1.608,
+    "max_dd_R": 37.737,
+    "total_R": 270.09
+   },
+   "armB_short_leg_only": {
+    "n": 821,
+    "expectancy": -0.3585,
+    "win_rate": 0.3082,
+    "profit_factor": 0.511,
+    "max_dd_R": 352.288,
+    "total_R": -294.316
+   },
+   "short_leg_win_rate": 0.3082
+  }
+ },
+ "pooled": {
+  "armA_long_only": {
+   "n": 4779,
+   "expectancy": -0.0169,
+   "win_rate": 0.394,
+   "profit_factor": 0.977,
+   "max_dd_R": 324.953,
+   "total_R": -80.877
+  },
+  "armB_combo": {
+   "n": 4779,
+   "expectancy": -0.3764,
+   "win_rate": 0.3833,
+   "profit_factor": 0.673,
+   "max_dd_R": 1807.003,
+   "total_R": -1798.698
+  }
+ },
+ "skipped_gap_below_stop": 185,
+ "skip_reasons": {
+  "gap_below_stop": 65,
+  "degenerate_atr": 0,
+  "untradeable_guard": 120
+ },
+ "decision_rule": {
+  "timeframes_counted": [
+   "1h",
+   "4h",
+   "1d"
+  ],
+  "armB_beats_armA_on": [],
+  "c1_2of3": false,
+  "c2_pooled_positive": false,
+  "c3_dd_within_20pct": false,
+  "DECISION": "FAIL"
+ }
+}

@@ -1,0 +1,20 @@
+# Mike's positions — used ONLY for the "You own:" line in V3.7 signal alerts.
+#
+# ⚠️  FROM MEMORY (snapshots 2026-09-15 / 2026-09-18 / 2026-09-20).
+#     NEEDS MIKE'S VERIFICATION before being treated as authoritative.
+#     Quantities/cost bases may be stale; options legs are summarized.
+#
+# Never used for sizing, P&L, or any trading decision — display only.
+
+positions:
+  SMCI: {qty: 87,    avg: 34.80,  note: "shares"}
+  PLTR: {qty: 10,    avg: 175.28, note: "shares, entered 2026-09-18"}
+  ANET: {qty: 27.8,  avg: 191.01, note: "shares, two lots (May + Aug)"}
+  SOFI: {qty: 500,   avg: 18.80,  note: "shares"}
+  RKLB: {qty: 45,    avg: 94.36,  note: "shares"}
+  ONDS: {qty: 333.5, avg: 9.19,   note: "shares"}
+  DRAM: {qty: 26,    avg: 56.45,  note: "shares"}
+  SPCX: {qty: 6,     avg: 167.96, note: "shares"}
+  ASTX: {qty: 37.4,  avg: 39.27,  note: "shares"}
+  BBAI: {qty: 10,    avg: 24.00,  note: "Jan27 $5 calls (contracts @ $24 premium)"}
+  NIO:  {qty: 13,    avg: 6.60,   note: "shares"}

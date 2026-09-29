@@ -1,0 +1,350 @@
+{
+ "timeframe": "4h",
+ "notes": [
+  "Reimplementation of Mike's TradingView strategy 'Quality Flow System V3.6' (V3.3 engine, Hybrid mode, default inputs).",
+  "Approximations vs TV: 4h uses session-aligned bars (not TV regular 4h); TP1 fixed from signal-bar ATR (Pine recomputes live); gap-below-stop entries skipped.",
+  "Same costs/portfolio as backtest_v2: 4/25bps, $10k, 1%/trade, max 5 positions, 5% portfolio risk."
+ ],
+ "runs": [
+  {
+   "config": "PINE_V36_hybrid:U15:4h",
+   "cost": "4bps",
+   "trades": 94,
+   "win_rate_pct": 45.7,
+   "expectancy_net_r": 0.073,
+   "profit_factor": 1.1,
+   "total_return_pct": -1.39,
+   "max_drawdown_pct": 29.24,
+   "avg_hold_bars": 19.5,
+   "market_exposure_pct": 48.0,
+   "tp1_hit_rate_pct": 46.8,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 7,
+   "skipped_max_risk": 1,
+   "exit_reasons": {
+    "stop": 88,
+    "ema55-break": 6
+   }
+  },
+  {
+   "config": "PINE_V36_hybrid:U15:4h",
+   "cost": "25bps",
+   "trades": 94,
+   "win_rate_pct": 45.7,
+   "expectancy_net_r": -0.015,
+   "profit_factor": 0.98,
+   "total_return_pct": -8.71,
+   "max_drawdown_pct": 32.63,
+   "avg_hold_bars": 19.5,
+   "market_exposure_pct": 48.0,
+   "tp1_hit_rate_pct": 46.8,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 7,
+   "skipped_max_risk": 1,
+   "exit_reasons": {
+    "stop": 88,
+    "ema55-break": 6
+   }
+  },
+  {
+   "config": "PINE_V36_hybrid:UX51:4h",
+   "cost": "4bps",
+   "trades": 263,
+   "win_rate_pct": 44.9,
+   "expectancy_net_r": 0.195,
+   "profit_factor": 1.27,
+   "total_return_pct": 35.3,
+   "max_drawdown_pct": 35.17,
+   "avg_hold_bars": 18.1,
+   "market_exposure_pct": 76.1,
+   "tp1_hit_rate_pct": 47.5,
+   "skipped_gap_below_stop": 1,
+   "skipped_max_positions": 79,
+   "skipped_max_risk": 24,
+   "exit_reasons": {
+    "stop": 247,
+    "ema55-break": 16
+   }
+  },
+  {
+   "config": "PINE_V36_hybrid:UX51:4h",
+   "cost": "25bps",
+   "trades": 263,
+   "win_rate_pct": 44.1,
+   "expectancy_net_r": 0.115,
+   "profit_factor": 1.15,
+   "total_return_pct": 19.92,
+   "max_drawdown_pct": 37.16,
+   "avg_hold_bars": 18.1,
+   "market_exposure_pct": 76.1,
+   "tp1_hit_rate_pct": 47.5,
+   "skipped_gap_below_stop": 1,
+   "skipped_max_positions": 79,
+   "skipped_max_risk": 24,
+   "exit_reasons": {
+    "stop": 247,
+    "ema55-break": 16
+   }
+  }
+ ],
+ "per_symbol_U15": {
+  "AAPL": {
+   "n": 7,
+   "mean_r": -0.25
+  },
+  "AMD": {
+   "n": 4,
+   "mean_r": 0.666
+  },
+  "AVGO": {
+   "n": 4,
+   "mean_r": -0.266
+  },
+  "BTC-USD": {
+   "n": 21,
+   "mean_r": -0.329
+  },
+  "COIN": {
+   "n": 2,
+   "mean_r": -0.541
+  },
+  "ETH-USD": {
+   "n": 16,
+   "mean_r": 0.193
+  },
+  "META": {
+   "n": 2,
+   "mean_r": -1.991
+  },
+  "MSFT": {
+   "n": 2,
+   "mean_r": 2.007
+  },
+  "MSTR": {
+   "n": 3,
+   "mean_r": 0.58
+  },
+  "NVDA": {
+   "n": 6,
+   "mean_r": -0.121
+  },
+  "PLTR": {
+   "n": 7,
+   "mean_r": -0.369
+  },
+  "SOFI": {
+   "n": 2,
+   "mean_r": 2.226
+  },
+  "SOL-USD": {
+   "n": 16,
+   "mean_r": 0.601
+  },
+  "TSLA": {
+   "n": 2,
+   "mean_r": -0.307
+  }
+ },
+ "per_symbol_UX51": {
+  "AAPL": {
+   "n": 7,
+   "mean_r": -0.25
+  },
+  "AMAT": {
+   "n": 4,
+   "mean_r": -1.316
+  },
+  "AMD": {
+   "n": 4,
+   "mean_r": 0.666
+  },
+  "AMZN": {
+   "n": 1,
+   "mean_r": -0.605
+  },
+  "APP": {
+   "n": 3,
+   "mean_r": 1.215
+  },
+  "ARKK": {
+   "n": 5,
+   "mean_r": 0.062
+  },
+  "ARM": {
+   "n": 3,
+   "mean_r": 0.739
+  },
+  "ASTS": {
+   "n": 1,
+   "mean_r": 1.122
+  },
+  "AVAX-USD": {
+   "n": 15,
+   "mean_r": -0.572
+  },
+  "AVGO": {
+   "n": 4,
+   "mean_r": -0.266
+  },
+  "BTC-USD": {
+   "n": 21,
+   "mean_r": -0.329
+  },
+  "COIN": {
+   "n": 2,
+   "mean_r": -0.541
+  },
+  "CRM": {
+   "n": 1,
+   "mean_r": 2.965
+  },
+  "CRWD": {
+   "n": 3,
+   "mean_r": 2.067
+  },
+  "DDOG": {
+   "n": 2,
+   "mean_r": 0.247
+  },
+  "DOGE-USD": {
+   "n": 15,
+   "mean_r": 0.054
+  },
+  "ETH-USD": {
+   "n": 16,
+   "mean_r": 0.193
+  },
+  "F": {
+   "n": 2,
+   "mean_r": -1.218
+  },
+  "GOOGL": {
+   "n": 5,
+   "mean_r": 0.409
+  },
+  "HOOD": {
+   "n": 3,
+   "mean_r": 2.576
+  },
+  "INTC": {
+   "n": 2,
+   "mean_r": -0.324
+  },
+  "IWM": {
+   "n": 5,
+   "mean_r": -0.41
+  },
+  "LINK-USD": {
+   "n": 20,
+   "mean_r": 0.192
+  },
+  "LRCX": {
+   "n": 4,
+   "mean_r": 1.091
+  },
+  "LUNR": {
+   "n": 6,
+   "mean_r": 0.037
+  },
+  "MELI": {
+   "n": 4,
+   "mean_r": 0.168
+  },
+  "META": {
+   "n": 2,
+   "mean_r": -1.991
+  },
+  "MRNA": {
+   "n": 3,
+   "mean_r": -0.552
+  },
+  "MSFT": {
+   "n": 2,
+   "mean_r": 2.007
+  },
+  "MSTR": {
+   "n": 3,
+   "mean_r": 0.58
+  },
+  "MU": {
+   "n": 6,
+   "mean_r": 0.884
+  },
+  "NET": {
+   "n": 6,
+   "mean_r": 0.597
+  },
+  "NFLX": {
+   "n": 2,
+   "mean_r": -0.383
+  },
+  "NIO": {
+   "n": 2,
+   "mean_r": -0.235
+  },
+  "NU": {
+   "n": 4,
+   "mean_r": -0.793
+  },
+  "NVDA": {
+   "n": 6,
+   "mean_r": -0.121
+  },
+  "PFE": {
+   "n": 7,
+   "mean_r": -0.202
+  },
+  "PLTR": {
+   "n": 7,
+   "mean_r": -0.369
+  },
+  "PYPL": {
+   "n": 2,
+   "mean_r": -1.188
+  },
+  "QCOM": {
+   "n": 2,
+   "mean_r": -0.939
+  },
+  "RKLB": {
+   "n": 5,
+   "mean_r": 0.918
+  },
+  "SHOP": {
+   "n": 2,
+   "mean_r": -1.93
+  },
+  "SMH": {
+   "n": 2,
+   "mean_r": 3.877
+  },
+  "SNOW": {
+   "n": 3,
+   "mean_r": -1.095
+  },
+  "SOFI": {
+   "n": 2,
+   "mean_r": 2.226
+  },
+  "SOL-USD": {
+   "n": 16,
+   "mean_r": 0.601
+  },
+  "SPY": {
+   "n": 4,
+   "mean_r": -1.665
+  },
+  "TSLA": {
+   "n": 2,
+   "mean_r": -0.307
+  },
+  "XLF": {
+   "n": 4,
+   "mean_r": 0.411
+  },
+  "XRP-USD": {
+   "n": 11,
+   "mean_r": 2.729
+  }
+ }
+}

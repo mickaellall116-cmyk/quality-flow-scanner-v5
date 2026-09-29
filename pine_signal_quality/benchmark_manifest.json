@@ -1,0 +1,34 @@
+{
+ "QQQ": {
+  "file": "/home/hatch/workspace/quality-flow-scanner-v5/pine_signal_quality/cache/bench_1d_QQQ.pkl",
+  "freq": "1d"
+ },
+ "SPY": {
+  "file": "/home/hatch/workspace/quality-flow-scanner-v5/pine_signal_quality/cache/bench_1d_SPY.pkl",
+  "freq": "1d"
+ },
+ "XLC": {
+  "file": "/home/hatch/workspace/quality-flow-scanner-v5/pine_signal_quality/cache/bench_1d_XLC.pkl",
+  "freq": "1d"
+ },
+ "XLF": {
+  "file": "/home/hatch/workspace/quality-flow-scanner-v5/pine_signal_quality/cache/bench_1d_XLF.pkl",
+  "freq": "1d"
+ },
+ "XLI": {
+  "file": "/home/hatch/workspace/quality-flow-scanner-v5/pine_signal_quality/cache/bench_1d_XLI.pkl",
+  "freq": "1d"
+ },
+ "XLK": {
+  "file": "/home/hatch/workspace/quality-flow-scanner-v5/pine_signal_quality/cache/bench_1d_XLK.pkl",
+  "freq": "1d"
+ },
+ "XLV": {
+  "file": "/home/hatch/workspace/quality-flow-scanner-v5/pine_signal_quality/cache/bench_1d_XLV.pkl",
+  "freq": "1d"
+ },
+ "XLY": {
+  "file": "/home/hatch/workspace/quality-flow-scanner-v5/pine_signal_quality/cache/bench_1d_XLY.pkl",
+  "freq": "1d"
+ }
+}

@@ -1,0 +1,47 @@
+loading 4H cache (2024-09-16 -> 2026-09-14)...
+  51 symbols
+  baseline fidelity verified (V0 == pine_buy_signal on all bars)
+== V0_baseline ==
+  [4bps] n=263 win=44.9% exp=0.195R PF=1.27 ret=35.3% dd=35.17% hold=18.1
+  [25bps] n=263 win=44.1% exp=0.115R PF=1.15 ret=19.92% dd=37.16% hold=18.1
+== V1_no_volume ==
+  [4bps] n=350 win=45.7% exp=0.231R PF=1.35 ret=4.33% dd=28.06% hold=19.2
+  [25bps] n=350 win=44.9% exp=0.153R PF=1.22 ret=-10.32% dd=31.79% hold=19.2
+== V2_no_hot_guard ==
+  [4bps] n=566 win=48.4% exp=0.318R PF=1.48 ret=110.55% dd=36.03% hold=19.1
+  [25bps] n=566 win=47.5% exp=0.244R PF=1.35 ret=80.75% dd=38.1% hold=19.1
+== V3_no_trend_bull ==
+  [4bps] n=531 win=41.4% exp=0.082R PF=1.17 ret=33.99% dd=36.19% hold=10.8
+  [25bps] n=531 win=39.5% exp=0.008R PF=1.02 ret=0.56% dd=46.43% hold=10.8
+== V4_no_strong_trend ==
+  [4bps] n=512 win=45.7% exp=0.145R PF=1.21 ret=92.93% dd=32.51% hold=17.5
+  [25bps] n=512 win=44.5% exp=0.062R PF=1.08 ret=65.74% dd=36.47% hold=17.5
+== V5_no_score_gate ==
+  [4bps] n=1092 win=44.4% exp=0.178R PF=1.28 ret=70.88% dd=45.57% hold=17.1
+  [25bps] n=1092 win=44.0% exp=0.102R PF=1.15 ret=40.24% dd=47.23% hold=17.1
+== V6_no_breakout ==
+  [4bps] n=1309 win=47.4% exp=0.139R PF=1.3 ret=106.0% dd=41.3% hold=12.1
+  [25bps] n=1309 win=44.8% exp=0.071R PF=1.14 ret=59.14% dd=45.69% hold=12.1
+== V7_no_ready_prev ==
+  [4bps] n=263 win=44.9% exp=0.195R PF=1.27 ret=35.3% dd=35.17% hold=18.1
+  [25bps] n=263 win=44.1% exp=0.115R PF=1.15 ret=19.92% dd=37.16% hold=18.1
+== V8_confirmed_only ==
+  [4bps] n=0 win=n/a% exp=n/aR PF=n/a ret=n/a% dd=n/a% hold=n/a
+  [25bps] n=0 win=n/a% exp=n/aR PF=n/a ret=n/a% dd=n/a% hold=n/a
+== V9_breakout_only ==
+  [4bps] n=263 win=44.9% exp=0.195R PF=1.27 ret=35.3% dd=35.17% hold=18.1
+  [25bps] n=263 win=44.1% exp=0.115R PF=1.15 ret=19.92% dd=37.16% hold=18.1
+== V10_ready_only ==
+  [4bps] n=0 win=n/a% exp=n/aR PF=n/a ret=n/a% dd=n/a% hold=n/a
+  [25bps] n=0 win=n/a% exp=n/aR PF=n/a ret=n/a% dd=n/a% hold=n/a
+== V11_no_confirmed ==
+  [4bps] n=263 win=44.9% exp=0.195R PF=1.27 ret=35.3% dd=35.17% hold=18.1
+  [25bps] n=263 win=44.1% exp=0.115R PF=1.15 ret=19.92% dd=37.16% hold=18.1
+== V12_no_breakout_mode ==
+  [4bps] n=0 win=n/a% exp=n/aR PF=n/a ret=n/a% dd=n/a% hold=n/a
+  [25bps] n=0 win=n/a% exp=n/aR PF=n/a ret=n/a% dd=n/a% hold=n/a
+== V13_no_ready_mode ==
+  [4bps] n=263 win=44.9% exp=0.195R PF=1.27 ret=35.3% dd=35.17% hold=18.1
+  [25bps] n=263 win=44.1% exp=0.115R PF=1.15 ret=19.92% dd=37.16% hold=18.1
+DONE
+EXIT:0

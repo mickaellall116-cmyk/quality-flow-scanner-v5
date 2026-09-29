@@ -1,0 +1,14 @@
+{
+ "label": "INVALID - NumPy boolean-addition trendScore bug (pre-2026-09-20)",
+ "bug": "score summed NumPy boolean arrays -> collapsed to True/False; score>=4 and score>=3 never true; confirmed/ready entries dead in every run",
+ "fixed": "int() cast per condition before summing -> true 0-5 integer score",
+ "obsolete_figures": {
+  "trades": 143,
+  "win_rate_pct": 46.2,
+  "expectancy_R": 0.337,
+  "return_pct": 52.25,
+  "profit_factor": 1.49,
+  "max_drawdown_pct": 31.63
+ },
+ "replacement": "C1_CORRECTED_SCORE_BASELINE -> pine_stack/stack_results_C1_CORRECTED_SCORE_BASELINE.json"
+}

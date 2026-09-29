@@ -1,0 +1,497 @@
+{
+  "baseline": {
+    "n": 237,
+    "win_rate_pct": 50.6,
+    "expectancy_net_r": 0.239,
+    "profit_factor": 1.38
+  },
+  "buckets": {
+    "atr_price": {
+      "type": "quartile",
+      "edges": [
+        0.027065,
+        0.037085,
+        0.046074
+      ],
+      "groups": {
+        "Q1_low": {
+          "n": 60,
+          "win_rate_pct": 46.7,
+          "expectancy_net_r": -0.037,
+          "profit_factor": 0.95
+        },
+        "Q2": {
+          "n": 59,
+          "win_rate_pct": 45.8,
+          "expectancy_net_r": 0.189,
+          "profit_factor": 1.26
+        },
+        "Q3": {
+          "n": 59,
+          "win_rate_pct": 52.5,
+          "expectancy_net_r": 0.382,
+          "profit_factor": 1.69
+        },
+        "Q4_high": {
+          "n": 59,
+          "win_rate_pct": 57.6,
+          "expectancy_net_r": 0.426,
+          "profit_factor": 1.85
+        }
+      }
+    },
+    "breakout_atr": {
+      "type": "quartile",
+      "edges": [
+        -1.948581,
+        -1.099785,
+        -0.406465
+      ],
+      "groups": {
+        "Q1_low": {
+          "n": 60,
+          "win_rate_pct": 51.7,
+          "expectancy_net_r": 0.434,
+          "profit_factor": 1.88
+        },
+        "Q2": {
+          "n": 59,
+          "win_rate_pct": 50.8,
+          "expectancy_net_r": 0.157,
+          "profit_factor": 1.23
+        },
+        "Q3": {
+          "n": 59,
+          "win_rate_pct": 50.8,
+          "expectancy_net_r": 0.269,
+          "profit_factor": 1.38
+        },
+        "Q4_high": {
+          "n": 59,
+          "win_rate_pct": 49.2,
+          "expectancy_net_r": 0.092,
+          "profit_factor": 1.15
+        }
+      }
+    },
+    "stop_atr": {
+      "type": "quartile",
+      "edges": [
+        1.496175,
+        1.5,
+        1.505543
+      ],
+      "groups": {
+        "Q1_low": {
+          "n": 60,
+          "win_rate_pct": 53.3,
+          "expectancy_net_r": 0.134,
+          "profit_factor": 1.21
+        },
+        "Q2": {
+          "n": 60,
+          "win_rate_pct": 51.7,
+          "expectancy_net_r": 0.31,
+          "profit_factor": 1.48
+        },
+        "Q3": {
+          "n": 58,
+          "win_rate_pct": 43.1,
+          "expectancy_net_r": 0.151,
+          "profit_factor": 1.22
+        },
+        "Q4_high": {
+          "n": 59,
+          "win_rate_pct": 54.2,
+          "expectancy_net_r": 0.359,
+          "profit_factor": 1.68
+        }
+      }
+    },
+    "atr_pctile": {
+      "type": "tercile",
+      "n_missing": 5,
+      "groups": {
+        "high_gt66": {
+          "n": 145,
+          "win_rate_pct": 52.4,
+          "expectancy_net_r": 0.294,
+          "profit_factor": 1.5
+        },
+        "low_lt33": {
+          "n": 23,
+          "win_rate_pct": 60.9,
+          "expectancy_net_r": 0.204,
+          "profit_factor": 1.4
+        },
+        "mid_33_66": {
+          "n": 64,
+          "win_rate_pct": 45.3,
+          "expectancy_net_r": 0.216,
+          "profit_factor": 1.31
+        }
+      }
+    },
+    "rv_pctile": {
+      "type": "tercile",
+      "n_missing": 6,
+      "groups": {
+        "high_gt66": {
+          "n": 107,
+          "win_rate_pct": 54.2,
+          "expectancy_net_r": 0.402,
+          "profit_factor": 1.73
+        },
+        "low_lt33": {
+          "n": 39,
+          "win_rate_pct": 48.7,
+          "expectancy_net_r": -0.034,
+          "profit_factor": 0.95
+        },
+        "mid_33_66": {
+          "n": 85,
+          "win_rate_pct": 48.2,
+          "expectancy_net_r": 0.228,
+          "profit_factor": 1.35
+        }
+      }
+    }
+  },
+  "year_crosstab": {
+    "atr_price": {
+      "Q1_low|2024": {
+        "n": 25,
+        "win_rate_pct": 52.0,
+        "expectancy_net_r": 0.001,
+        "profit_factor": 1.0
+      },
+      "Q1_low|2025": {
+        "n": 25,
+        "win_rate_pct": 48.0,
+        "expectancy_net_r": 0.207,
+        "profit_factor": 1.37
+      },
+      "Q1_low|2026": {
+        "n": 10,
+        "win_rate_pct": 30.0,
+        "expectancy_net_r": -0.744,
+        "profit_factor": 0.44
+      },
+      "Q2|2024": {
+        "n": 19,
+        "win_rate_pct": 57.9,
+        "expectancy_net_r": 0.492,
+        "profit_factor": 2.03
+      },
+      "Q2|2025": {
+        "n": 22,
+        "win_rate_pct": 50.0,
+        "expectancy_net_r": 0.314,
+        "profit_factor": 1.44
+      },
+      "Q2|2026": {
+        "n": 18,
+        "win_rate_pct": 27.8,
+        "expectancy_net_r": -0.283,
+        "profit_factor": 0.71
+      },
+      "Q3|2024": {
+        "n": 14,
+        "win_rate_pct": 50.0,
+        "expectancy_net_r": 0.626,
+        "profit_factor": 2.16
+      },
+      "Q3|2025": {
+        "n": 27,
+        "win_rate_pct": 55.6,
+        "expectancy_net_r": 0.598,
+        "profit_factor": 2.09
+      },
+      "Q3|2026": {
+        "n": 18,
+        "win_rate_pct": 50.0,
+        "expectancy_net_r": -0.133,
+        "profit_factor": 0.77
+      },
+      "Q4_high|2024": {
+        "n": 17,
+        "win_rate_pct": 70.6,
+        "expectancy_net_r": 0.465,
+        "profit_factor": 2.74
+      },
+      "Q4_high|2025": {
+        "n": 28,
+        "win_rate_pct": 53.6,
+        "expectancy_net_r": 0.601,
+        "profit_factor": 2.1
+      },
+      "Q4_high|2026": {
+        "n": 14,
+        "win_rate_pct": 50.0,
+        "expectancy_net_r": 0.027,
+        "profit_factor": 1.04
+      }
+    },
+    "breakout_atr": {
+      "Q1_low|2024": {
+        "n": 28,
+        "win_rate_pct": 50.0,
+        "expectancy_net_r": 0.476,
+        "profit_factor": 2.07
+      },
+      "Q1_low|2025": {
+        "n": 19,
+        "win_rate_pct": 57.9,
+        "expectancy_net_r": 0.592,
+        "profit_factor": 2.51
+      },
+      "Q1_low|2026": {
+        "n": 13,
+        "win_rate_pct": 46.2,
+        "expectancy_net_r": 0.113,
+        "profit_factor": 1.15
+      },
+      "Q2|2024": {
+        "n": 19,
+        "win_rate_pct": 57.9,
+        "expectancy_net_r": 0.252,
+        "profit_factor": 1.46
+      },
+      "Q2|2025": {
+        "n": 29,
+        "win_rate_pct": 51.7,
+        "expectancy_net_r": 0.272,
+        "profit_factor": 1.37
+      },
+      "Q2|2026": {
+        "n": 11,
+        "win_rate_pct": 36.4,
+        "expectancy_net_r": -0.308,
+        "profit_factor": 0.65
+      },
+      "Q3|2024": {
+        "n": 13,
+        "win_rate_pct": 61.5,
+        "expectancy_net_r": 0.293,
+        "profit_factor": 1.52
+      },
+      "Q3|2025": {
+        "n": 24,
+        "win_rate_pct": 54.2,
+        "expectancy_net_r": 0.756,
+        "profit_factor": 2.35
+      },
+      "Q3|2026": {
+        "n": 22,
+        "win_rate_pct": 40.9,
+        "expectancy_net_r": -0.277,
+        "profit_factor": 0.71
+      },
+      "Q4_high|2024": {
+        "n": 15,
+        "win_rate_pct": 66.7,
+        "expectancy_net_r": 0.275,
+        "profit_factor": 1.58
+      },
+      "Q4_high|2025": {
+        "n": 30,
+        "win_rate_pct": 46.7,
+        "expectancy_net_r": 0.26,
+        "profit_factor": 1.44
+      },
+      "Q4_high|2026": {
+        "n": 14,
+        "win_rate_pct": 35.7,
+        "expectancy_net_r": -0.465,
+        "profit_factor": 0.42
+      }
+    },
+    "stop_atr": {
+      "Q1_low|2024": {
+        "n": 28,
+        "win_rate_pct": 71.4,
+        "expectancy_net_r": 0.422,
+        "profit_factor": 2.03
+      },
+      "Q1_low|2025": {
+        "n": 20,
+        "win_rate_pct": 45.0,
+        "expectancy_net_r": 0.386,
+        "profit_factor": 1.65
+      },
+      "Q1_low|2026": {
+        "n": 12,
+        "win_rate_pct": 25.0,
+        "expectancy_net_r": -0.956,
+        "profit_factor": 0.27
+      },
+      "Q2|2024": {
+        "n": 12,
+        "win_rate_pct": 50.0,
+        "expectancy_net_r": 0.084,
+        "profit_factor": 1.13
+      },
+      "Q2|2025": {
+        "n": 31,
+        "win_rate_pct": 61.3,
+        "expectancy_net_r": 0.546,
+        "profit_factor": 2.02
+      },
+      "Q2|2026": {
+        "n": 17,
+        "win_rate_pct": 35.3,
+        "expectancy_net_r": 0.038,
+        "profit_factor": 1.05
+      },
+      "Q3|2024": {
+        "n": 15,
+        "win_rate_pct": 53.3,
+        "expectancy_net_r": 0.515,
+        "profit_factor": 2.13
+      },
+      "Q3|2025": {
+        "n": 30,
+        "win_rate_pct": 40.0,
+        "expectancy_net_r": 0.241,
+        "profit_factor": 1.35
+      },
+      "Q3|2026": {
+        "n": 13,
+        "win_rate_pct": 38.5,
+        "expectancy_net_r": -0.477,
+        "profit_factor": 0.49
+      },
+      "Q4_high|2024": {
+        "n": 20,
+        "win_rate_pct": 45.0,
+        "expectancy_net_r": 0.276,
+        "profit_factor": 1.48
+      },
+      "Q4_high|2025": {
+        "n": 21,
+        "win_rate_pct": 61.9,
+        "expectancy_net_r": 0.628,
+        "profit_factor": 2.25
+      },
+      "Q4_high|2026": {
+        "n": 18,
+        "win_rate_pct": 55.6,
+        "expectancy_net_r": 0.138,
+        "profit_factor": 1.27
+      }
+    },
+    "atr_pctile": {
+      "high_gt66|2024": {
+        "n": 36,
+        "win_rate_pct": 69.4,
+        "expectancy_net_r": 0.796,
+        "profit_factor": 3.08
+      },
+      "high_gt66|2025": {
+        "n": 71,
+        "win_rate_pct": 50.7,
+        "expectancy_net_r": 0.325,
+        "profit_factor": 1.58
+      },
+      "high_gt66|2026": {
+        "n": 38,
+        "win_rate_pct": 39.5,
+        "expectancy_net_r": -0.24,
+        "profit_factor": 0.72
+      },
+      "low_lt33|2024": {
+        "n": 10,
+        "win_rate_pct": 60.0,
+        "expectancy_net_r": -0.253,
+        "profit_factor": 0.6
+      },
+      "low_lt33|2025": {
+        "n": 10,
+        "win_rate_pct": 60.0,
+        "expectancy_net_r": 0.818,
+        "profit_factor": 3.1
+      },
+      "low_lt33|2026": {
+        "n": 3,
+        "win_rate_pct": 66.7,
+        "expectancy_net_r": -0.321,
+        "profit_factor": 0.37
+      },
+      "mid_33_66|2024": {
+        "n": 27,
+        "win_rate_pct": 44.4,
+        "expectancy_net_r": 0.091,
+        "profit_factor": 1.17
+      },
+      "mid_33_66|2025": {
+        "n": 19,
+        "win_rate_pct": 57.9,
+        "expectancy_net_r": 0.902,
+        "profit_factor": 2.31
+      },
+      "mid_33_66|2026": {
+        "n": 18,
+        "win_rate_pct": 33.3,
+        "expectancy_net_r": -0.32,
+        "profit_factor": 0.66
+      }
+    },
+    "rv_pctile": {
+      "high_gt66|2024": {
+        "n": 29,
+        "win_rate_pct": 69.0,
+        "expectancy_net_r": 0.8,
+        "profit_factor": 3.32
+      },
+      "high_gt66|2025": {
+        "n": 44,
+        "win_rate_pct": 50.0,
+        "expectancy_net_r": 0.376,
+        "profit_factor": 1.61
+      },
+      "high_gt66|2026": {
+        "n": 34,
+        "win_rate_pct": 47.1,
+        "expectancy_net_r": 0.095,
+        "profit_factor": 1.15
+      },
+      "low_lt33|2024": {
+        "n": 14,
+        "win_rate_pct": 50.0,
+        "expectancy_net_r": 0.1,
+        "profit_factor": 1.15
+      },
+      "low_lt33|2025": {
+        "n": 20,
+        "win_rate_pct": 55.0,
+        "expectancy_net_r": 0.153,
+        "profit_factor": 1.24
+      },
+      "low_lt33|2026": {
+        "n": 5,
+        "win_rate_pct": 20.0,
+        "expectancy_net_r": -1.153,
+        "profit_factor": 0.06
+      },
+      "mid_33_66|2024": {
+        "n": 30,
+        "win_rate_pct": 53.3,
+        "expectancy_net_r": 0.132,
+        "profit_factor": 1.26
+      },
+      "mid_33_66|2025": {
+        "n": 36,
+        "win_rate_pct": 55.6,
+        "expectancy_net_r": 0.799,
+        "profit_factor": 2.77
+      },
+      "mid_33_66|2026": {
+        "n": 19,
+        "win_rate_pct": 26.3,
+        "expectancy_net_r": -0.704,
+        "profit_factor": 0.44
+      }
+    }
+  },
+  "unmapped": 0
+}

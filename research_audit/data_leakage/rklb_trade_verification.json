@@ -1,0 +1,14 @@
+{
+ "found": true,
+ "entry_match": true,
+ "stop_match": true,
+ "recomputed_net_r": 12.980891882514046,
+ "study_net_r": 12.980891882514046,
+ "match": true,
+ "reason": "stop",
+ "tp1_hit": true,
+ "exit": 11.900770276625371,
+ "entry_time": "2024-09-09 13:30:00-04:00",
+ "exit_time": "2024-11-15 09:30:00-05:00",
+ "hold_bars": 97
+}

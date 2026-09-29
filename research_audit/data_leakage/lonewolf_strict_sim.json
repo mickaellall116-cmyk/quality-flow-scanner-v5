@@ -1,0 +1,29 @@
+{
+ "CONTROL": {
+  "trades_taken": 180,
+  "expectancy_net_r": 0.2721,
+  "win_rate_pct": 50.6,
+  "blocked_n": 0,
+  "blocked_expectancy_net_r": null,
+  "total_return_pct": 56.28,
+  "max_drawdown_pct": 21.63
+ },
+ "NO_LONE_WOLF_study": {
+  "trades_taken": 137,
+  "expectancy_net_r": 0.3797,
+  "win_rate_pct": 54.0,
+  "blocked_n": 74,
+  "blocked_expectancy_net_r": 0.0639,
+  "total_return_pct": 66.23,
+  "max_drawdown_pct": 18.86
+ },
+ "NO_LONE_WOLF_strict": {
+  "trades_taken": 129,
+  "expectancy_net_r": 0.3646,
+  "win_rate_pct": 52.7,
+  "blocked_n": 82,
+  "blocked_expectancy_net_r": 0.0961,
+  "total_return_pct": 56.94,
+  "max_drawdown_pct": 18.38
+ }
+}

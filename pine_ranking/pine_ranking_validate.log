@@ -1,0 +1,17 @@
+loading 2022 4H caches...
+  32 symbols: ['AAPL', 'AMAT', 'AMD', 'AMZN', 'AVGO', 'BTC-USD', 'COST', 'CRM', 'ETH-USD', 'F', 'GOOGL', 'INTC', 'JPM', 'LLY', 'LRCX', 'MRNA', 'MSFT', 'MU', 'NFLX', 'NIO', 'NVDA', 'ORCL', 'PFE', 'PLTR', 'PYPL', 'QCOM', 'QQQ', 'SNOW', 'SPY', 'TSLA', 'WMT', 'XOM']
+generating 2022 candidates...
+  39 candidate trades
+loading benchmarks + features...
+2022 fidelity check: PASS
+== V0_control ==
+  [4bps] n=37 exp=0.376R PF=1.47 ret=11.21% dd=20.42%
+  [25bps] n=37 exp=0.293R PF=1.35 ret=7.95% dd=21.65%
+== C1_rs_top2 ==
+  [4bps] n=37 exp=0.376R PF=1.47 ret=11.22% dd=20.41%
+  [25bps] n=37 exp=0.293R PF=1.35 ret=7.96% dd=21.64%
+== C2_vol_top1 ==
+  [4bps] n=37 exp=0.376R PF=1.47 ret=11.22% dd=20.41%
+  [25bps] n=37 exp=0.293R PF=1.35 ret=7.96% dd=21.64%
+DONE
+EXIT:0

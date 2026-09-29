@@ -1,0 +1,108 @@
+{
+ "label": "bull_2024-2026_UX51_4h",
+ "cost": "4bps",
+ "r_space": {
+  "n": 263,
+  "expectancy_R": 0.195,
+  "total_R": 51.28,
+  "win_rate": 0.4487,
+  "profit_factor": 1.275
+ },
+ "schemes": {
+  "S0_fixed_1.00": {
+   "scheme": "S0_fixed_1.00",
+   "terminal_return_pct": 31.27,
+   "max_drawdown_pct": 35.97,
+   "max_drawdown_R_of_base_risk": 35.97,
+   "calmar": 0.869,
+   "longest_losing_streak_trades": 8,
+   "skipped_cap_count": 87,
+   "skipped_cap_risk": 17,
+   "final_equity": 13126.61,
+   "bootstrap": {
+    "n_boot": 10000,
+    "p_ruin_le50pct": 0.0018,
+    "p_dd_over20pct": 0.6866,
+    "maxdd_median_pct": 23.72,
+    "maxdd_p75_pct": 29.95,
+    "maxdd_p95_pct": 40.94
+   }
+  },
+  "S1_fixed_0.50": {
+   "scheme": "S1_fixed_0.50",
+   "terminal_return_pct": 14.32,
+   "max_drawdown_pct": 22.8,
+   "max_drawdown_R_of_base_risk": 22.8,
+   "calmar": 0.628,
+   "longest_losing_streak_trades": 8,
+   "skipped_cap_count": 98,
+   "skipped_cap_risk": 0,
+   "final_equity": 11431.63,
+   "bootstrap": {
+    "n_boot": 10000,
+    "p_ruin_le50pct": 0.0,
+    "p_dd_over20pct": 0.1023,
+    "maxdd_median_pct": 12.44,
+    "maxdd_p75_pct": 15.99,
+    "maxdd_p95_pct": 22.65
+   }
+  },
+  "S2_fixed_0.75": {
+   "scheme": "S2_fixed_0.75",
+   "terminal_return_pct": 20.39,
+   "max_drawdown_pct": 30.97,
+   "max_drawdown_R_of_base_risk": 30.97,
+   "calmar": 0.658,
+   "longest_losing_streak_trades": 8,
+   "skipped_cap_count": 98,
+   "skipped_cap_risk": 0,
+   "final_equity": 12039.2,
+   "bootstrap": {
+    "n_boot": 10000,
+    "p_ruin_le50pct": 0.0002,
+    "p_dd_over20pct": 0.3993,
+    "maxdd_median_pct": 18.22,
+    "maxdd_p75_pct": 23.21,
+    "maxdd_p95_pct": 32.3
+   }
+  },
+  "S3_fixed_1.25": {
+   "scheme": "S3_fixed_1.25",
+   "terminal_return_pct": 46.03,
+   "max_drawdown_pct": 40.51,
+   "max_drawdown_R_of_base_risk": 40.51,
+   "calmar": 1.136,
+   "longest_losing_streak_trades": 8,
+   "skipped_cap_count": 0,
+   "skipped_cap_risk": 128,
+   "final_equity": 14602.74,
+   "bootstrap": {
+    "n_boot": 10000,
+    "p_ruin_le50pct": 0.0055,
+    "p_dd_over20pct": 0.8734,
+    "maxdd_median_pct": 28.93,
+    "maxdd_p75_pct": 36.19,
+    "maxdd_p95_pct": 48.67
+   }
+  },
+  "S4_dd_gated": {
+   "scheme": "S4_dd_gated",
+   "terminal_return_pct": 29.49,
+   "max_drawdown_pct": 29.86,
+   "max_drawdown_R_of_base_risk": 29.86,
+   "calmar": 0.988,
+   "longest_losing_streak_trades": 8,
+   "skipped_cap_count": 98,
+   "skipped_cap_risk": 0,
+   "final_equity": 12949.48,
+   "bootstrap": {
+    "n_boot": 10000,
+    "p_ruin_le50pct": 0.0,
+    "p_dd_over20pct": 0.3052,
+    "maxdd_median_pct": 17.52,
+    "maxdd_p75_pct": 20.89,
+    "maxdd_p95_pct": 27.13
+   }
+  }
+ }
+}

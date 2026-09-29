@@ -1,0 +1,211 @@
+{
+ "notes": [
+  "2022 out-of-sample validation of frozen ranking candidates.",
+  "Protocol: signals >= 2022-01-01; EOD liquidation; identical features.",
+  "C1/C2 frozen in CANDIDATES_FROZEN.md before this ran. No refit on 2022."
+ ],
+ "symbols": [
+  "AAPL",
+  "AMAT",
+  "AMD",
+  "AMZN",
+  "AVGO",
+  "BTC-USD",
+  "COST",
+  "CRM",
+  "ETH-USD",
+  "F",
+  "GOOGL",
+  "INTC",
+  "JPM",
+  "LLY",
+  "LRCX",
+  "MRNA",
+  "MSFT",
+  "MU",
+  "NFLX",
+  "NIO",
+  "NVDA",
+  "ORCL",
+  "PFE",
+  "PLTR",
+  "PYPL",
+  "QCOM",
+  "QQQ",
+  "SNOW",
+  "SPY",
+  "TSLA",
+  "WMT",
+  "XOM"
+ ],
+ "variants": {
+  "V0_control": {
+   "4bps": {
+    "config": "PINE_V36_rankval:V0_control",
+    "cost": "4bps",
+    "trades": 37,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.376,
+    "profit_factor": 1.47,
+    "total_return_pct": 11.21,
+    "max_drawdown_pct": 20.42,
+    "avg_hold_bars": 21.0,
+    "market_exposure_pct": 53.4,
+    "tp1_hit_rate_pct": 43.2,
+    "skipped_gap_below_stop": 1,
+    "skipped_max_positions": 2,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 32,
+     "eod": 5
+    },
+    "fill_rate_pct": 94.9,
+    "candidates_available": 39,
+    "avg_winner_r": 2.554,
+    "avg_loser_r": -1.476,
+    "stop_out_pct": 86.5,
+    "all_candidates": {
+     "trades": 39,
+     "expectancy_net_r": 0.287,
+     "profit_factor": 1.35,
+     "win_rate_pct": 43.6
+    }
+   },
+   "25bps": {
+    "config": "PINE_V36_rankval:V0_control",
+    "cost": "25bps",
+    "trades": 37,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.293,
+    "profit_factor": 1.35,
+    "total_return_pct": 7.95,
+    "max_drawdown_pct": 21.65,
+    "avg_hold_bars": 21.0,
+    "market_exposure_pct": 53.4,
+    "tp1_hit_rate_pct": 43.2,
+    "skipped_gap_below_stop": 1,
+    "skipped_max_positions": 2,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 32,
+     "eod": 5
+    },
+    "fill_rate_pct": 94.9,
+    "candidates_available": 39,
+    "avg_winner_r": 2.46,
+    "avg_loser_r": -1.549,
+    "stop_out_pct": 86.5,
+    "all_candidates": {
+     "trades": 39,
+     "expectancy_net_r": 0.205,
+     "profit_factor": 1.24,
+     "win_rate_pct": 43.6
+    }
+   }
+  },
+  "C1_rs_top2": {
+   "4bps": {
+    "config": "PINE_V36_rankval:C1_rs_top2",
+    "cost": "4bps",
+    "trades": 37,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.376,
+    "profit_factor": 1.47,
+    "total_return_pct": 11.22,
+    "max_drawdown_pct": 20.41,
+    "avg_hold_bars": 21.0,
+    "market_exposure_pct": 53.4,
+    "tp1_hit_rate_pct": 43.2,
+    "skipped_gap_below_stop": 1,
+    "skipped_max_positions": 2,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 32,
+     "eod": 5
+    },
+    "fill_rate_pct": 94.9,
+    "candidates_available": 39,
+    "avg_winner_r": 2.554,
+    "avg_loser_r": -1.476,
+    "stop_out_pct": 86.5
+   },
+   "25bps": {
+    "config": "PINE_V36_rankval:C1_rs_top2",
+    "cost": "25bps",
+    "trades": 37,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.293,
+    "profit_factor": 1.35,
+    "total_return_pct": 7.96,
+    "max_drawdown_pct": 21.64,
+    "avg_hold_bars": 21.0,
+    "market_exposure_pct": 53.4,
+    "tp1_hit_rate_pct": 43.2,
+    "skipped_gap_below_stop": 1,
+    "skipped_max_positions": 2,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 32,
+     "eod": 5
+    },
+    "fill_rate_pct": 94.9,
+    "candidates_available": 39,
+    "avg_winner_r": 2.46,
+    "avg_loser_r": -1.549,
+    "stop_out_pct": 86.5
+   }
+  },
+  "C2_vol_top1": {
+   "4bps": {
+    "config": "PINE_V36_rankval:C2_vol_top1",
+    "cost": "4bps",
+    "trades": 37,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.376,
+    "profit_factor": 1.47,
+    "total_return_pct": 11.22,
+    "max_drawdown_pct": 20.41,
+    "avg_hold_bars": 21.0,
+    "market_exposure_pct": 53.4,
+    "tp1_hit_rate_pct": 43.2,
+    "skipped_gap_below_stop": 1,
+    "skipped_max_positions": 2,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 32,
+     "eod": 5
+    },
+    "fill_rate_pct": 94.9,
+    "candidates_available": 39,
+    "avg_winner_r": 2.554,
+    "avg_loser_r": -1.476,
+    "stop_out_pct": 86.5
+   },
+   "25bps": {
+    "config": "PINE_V36_rankval:C2_vol_top1",
+    "cost": "25bps",
+    "trades": 37,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.293,
+    "profit_factor": 1.35,
+    "total_return_pct": 7.96,
+    "max_drawdown_pct": 21.64,
+    "avg_hold_bars": 21.0,
+    "market_exposure_pct": 53.4,
+    "tp1_hit_rate_pct": 43.2,
+    "skipped_gap_below_stop": 1,
+    "skipped_max_positions": 2,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 32,
+     "eod": 5
+    },
+    "fill_rate_pct": 94.9,
+    "candidates_available": 39,
+    "avg_winner_r": 2.46,
+    "avg_loser_r": -1.549,
+    "stop_out_pct": 86.5
+   }
+  }
+ }
+}

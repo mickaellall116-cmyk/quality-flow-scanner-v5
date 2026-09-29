@@ -1,0 +1,294 @@
+{
+ "n_trades": 237,
+ "baseline": {
+  "n": 237,
+  "expectancy_net_r": 0.2388,
+  "win_rate_pct": 50.6,
+  "profit_factor": 1.38
+ },
+ "metrics": {
+  "dist_9ema_atr": {
+   "labels": [
+    "Q1 (least)",
+    "Q2",
+    "Q3",
+    "Q4 (most)"
+   ],
+   "buckets": {
+    "Q1 (least)": {
+     "n": 60,
+     "expectancy_net_r": 0.3242,
+     "win_rate_pct": 50.0,
+     "profit_factor": 1.58
+    },
+    "Q2": {
+     "n": 59,
+     "expectancy_net_r": -0.0207,
+     "win_rate_pct": 44.1,
+     "profit_factor": 0.97
+    },
+    "Q3": {
+     "n": 59,
+     "expectancy_net_r": 0.3926,
+     "win_rate_pct": 59.3,
+     "profit_factor": 1.76
+    },
+    "Q4 (most)": {
+     "n": 59,
+     "expectancy_net_r": 0.2575,
+     "win_rate_pct": 49.2,
+     "profit_factor": 1.4
+    }
+   },
+   "quartile_edges": [
+    0.29,
+    0.668,
+    1.091
+   ]
+  },
+  "dist_20ema_atr": {
+   "labels": [
+    "Q1 (least)",
+    "Q2",
+    "Q3",
+    "Q4 (most)"
+   ],
+   "buckets": {
+    "Q1 (least)": {
+     "n": 60,
+     "expectancy_net_r": 0.1053,
+     "win_rate_pct": 46.7,
+     "profit_factor": 1.18
+    },
+    "Q2": {
+     "n": 59,
+     "expectancy_net_r": 0.306,
+     "win_rate_pct": 52.5,
+     "profit_factor": 1.57
+    },
+    "Q3": {
+     "n": 59,
+     "expectancy_net_r": 0.2489,
+     "win_rate_pct": 52.5,
+     "profit_factor": 1.34
+    },
+    "Q4 (most)": {
+     "n": 59,
+     "expectancy_net_r": 0.2971,
+     "win_rate_pct": 50.8,
+     "profit_factor": 1.45
+    }
+   },
+   "quartile_edges": [
+    0.53,
+    1.102,
+    1.763
+   ]
+  },
+  "dist_breakout_atr": {
+   "labels": [
+    "Q1 (least)",
+    "Q2",
+    "Q3",
+    "Q4 (most)"
+   ],
+   "buckets": {
+    "Q1 (least)": {
+     "n": 60,
+     "expectancy_net_r": 0.4341,
+     "win_rate_pct": 51.7,
+     "profit_factor": 1.88
+    },
+    "Q2": {
+     "n": 59,
+     "expectancy_net_r": 0.1571,
+     "win_rate_pct": 50.8,
+     "profit_factor": 1.23
+    },
+    "Q3": {
+     "n": 59,
+     "expectancy_net_r": 0.2687,
+     "win_rate_pct": 50.8,
+     "profit_factor": 1.38
+    },
+    "Q4 (most)": {
+     "n": 59,
+     "expectancy_net_r": 0.0919,
+     "win_rate_pct": 49.2,
+     "profit_factor": 1.15
+    }
+   },
+   "quartile_edges": [
+    -1.949,
+    -1.1,
+    -0.406
+   ]
+  },
+  "gap_atr": {
+   "labels": [
+    "gap-down (<-0.2)",
+    "flat (-0.2..0.2)",
+    "gap-up small (0.2..0.6)",
+    "gap-up large (>0.6)"
+   ],
+   "buckets": {
+    "gap-down (<-0.2)": {
+     "n": 4,
+     "expectancy_net_r": -1.2825,
+     "win_rate_pct": 25.0,
+     "profit_factor": 0.1
+    },
+    "flat (-0.2..0.2)": {
+     "n": 222,
+     "expectancy_net_r": 0.2333,
+     "win_rate_pct": 49.5,
+     "profit_factor": 1.37
+    },
+    "gap-up small (0.2..0.6)": {
+     "n": 4,
+     "expectancy_net_r": 1.921,
+     "win_rate_pct": 100.0,
+     "profit_factor": null
+    },
+    "gap-up large (>0.6)": {
+     "n": 7,
+     "expectancy_net_r": 0.3206,
+     "win_rate_pct": 71.4,
+     "profit_factor": 2.01
+    }
+   }
+  },
+  "consec_greens": {
+   "labels": [
+    "0-1",
+    "2-3",
+    "4+"
+   ],
+   "buckets": {
+    "0-1": {
+     "n": 150,
+     "expectancy_net_r": 0.1833,
+     "win_rate_pct": 46.7,
+     "profit_factor": 1.28
+    },
+    "2-3": {
+     "n": 72,
+     "expectancy_net_r": 0.3672,
+     "win_rate_pct": 58.3,
+     "profit_factor": 1.66
+    },
+    "4+": {
+     "n": 15,
+     "expectancy_net_r": 0.1765,
+     "win_rate_pct": 53.3,
+     "profit_factor": 1.3
+    }
+   }
+  }
+ },
+ "persistence_d21_Q4_vs_rest_by_year": {
+  "2024": {
+   "n_ext": 20,
+   "exp_ext_r": 0.3589,
+   "n_rest": 55,
+   "exp_rest_r": 0.3433
+  },
+  "2025": {
+   "n_ext": 25,
+   "exp_ext_r": 0.2763,
+   "n_rest": 77,
+   "exp_rest_r": 0.4956
+  },
+  "2026": {
+   "n_ext": 14,
+   "exp_ext_r": 0.2459,
+   "n_rest": 46,
+   "exp_rest_r": -0.3909
+  }
+ },
+ "implied_drop_Q4_effect": {
+  "note": "descriptive only \u2014 what dropping the most-extended quartile would have done; NOT a proposed filter",
+  "kept": {
+   "n": 178,
+   "expectancy_net_r": 0.2194,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.36
+  },
+  "dropped": {
+   "n": 59,
+   "expectancy_net_r": 0.2971,
+   "win_rate_pct": 50.8,
+   "profit_factor": 1.45
+  }
+ },
+ "verdict": "FAIL \u2014 no measurable chase penalty; a chase filter is not justified (would have reduced expectancy on the d21 metric). The dbrk gradient is a signal-type composition effect, not entry timing.",
+ "signal_type_context": {
+  "note": "context only \u2014 explains the dbrk gradient; belongs to P13 follow-up",
+  "breakout": {
+   "n": 9,
+   "exp_r": 0.716,
+   "win_pct": 66.7,
+   "pf": 3.74
+  },
+  "breakout+ready": {
+   "n": 1,
+   "exp_r": -0.822
+  },
+  "confirmed": {
+   "n": 146,
+   "exp_r": 0.286,
+   "win_pct": 51.4,
+   "pf": 1.44
+  },
+  "confirmed+breakout": {
+   "n": 10,
+   "exp_r": 0.318,
+   "win_pct": 60.0,
+   "pf": 1.59
+  },
+  "confirmed+ready": {
+   "n": 52,
+   "exp_r": -0.053,
+   "win_pct": 46.2,
+   "pf": 0.92
+  },
+  "ready": {
+   "n": 19,
+   "exp_r": 0.463,
+   "win_pct": 47.4,
+   "pf": 1.89
+  }
+ },
+ "dbrk_year_persistence": {
+  "2024": {
+   "Q1": [
+    28,
+    0.476
+   ],
+   "Q4": [
+    15,
+    0.275
+   ]
+  },
+  "2025": {
+   "Q1": [
+    19,
+    0.592
+   ],
+   "Q4": [
+    30,
+    0.26
+   ]
+  },
+  "2026": {
+   "Q1": [
+    13,
+    0.113
+   ],
+   "Q4": [
+    14,
+    -0.465
+   ]
+  }
+ }
+}

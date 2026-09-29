@@ -1,0 +1,42 @@
+[
+ {
+  "config": "CORRECTED Hybrid",
+  "seconds": 12.9,
+  "4bps": {
+   "trades": 877,
+   "win_rate_pct": 44.9,
+   "expectancy_r": 0.141,
+   "profit_factor": 1.21,
+   "return_pct": 36.32,
+   "max_dd_pct": 42.3
+  },
+  "25bps": {
+   "trades": 877,
+   "win_rate_pct": 44.4,
+   "expectancy_r": 0.069,
+   "profit_factor": 1.1,
+   "return_pct": 11.78,
+   "max_dd_pct": 44.95
+  }
+ },
+ {
+  "config": "CORRECTED live (Aggr+PB+SW)",
+  "seconds": 12.2,
+  "4bps": {
+   "trades": 1145,
+   "win_rate_pct": 42.6,
+   "expectancy_r": 0.108,
+   "profit_factor": 1.17,
+   "return_pct": -3.75,
+   "max_dd_pct": 50.6
+  },
+  "25bps": {
+   "trades": 1145,
+   "win_rate_pct": 42.2,
+   "expectancy_r": 0.035,
+   "profit_factor": 1.05,
+   "return_pct": -31.38,
+   "max_dd_pct": 58.41
+  }
+ }
+]

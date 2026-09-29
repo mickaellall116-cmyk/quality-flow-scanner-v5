@@ -1,0 +1,285 @@
+{
+  "as_of": "2026-09-28T21:25:47.425734+00:00",
+  "experiment": "V5.4 multi-timeframe paper test (research only)",
+  "timeframe": "1d",
+  "label": "Daily",
+  "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading) \u2014 same as 4H forward test",
+  "isolation": "separate state/log; 4H forward test untouched; no observer; local only, never published",
+  "universe": "UX51+X2 (51+199 symbols)",
+  "last_successful_cycle": "2026-09-28T21:25:47.389407+00:00",
+  "signals_logged": 66,
+  "grade_counts": {
+    "A": 11,
+    "B": 54,
+    "C": 1
+  },
+  "pending_entries": 2,
+  "open_positions": [
+    {
+      "signal_id": "v54:BMNR:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "symbol": "BMNR",
+      "grade": "B",
+      "entry": 24.829999923706055,
+      "stop": 21.47632504770462,
+      "tp1": 28.33233065551153,
+      "status": "open_runner",
+      "bars_held": 7
+    },
+    {
+      "signal_id": "v54:ETH-USD:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "symbol": "ETH-USD",
+      "grade": "B",
+      "entry": 2445.485107421875,
+      "stop": 2328.273673980492,
+      "tp1": 2709.803787817299,
+      "status": "open_runner",
+      "bars_held": 11
+    },
+    {
+      "signal_id": "v54:ICP-USD:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "symbol": "ICP-USD",
+      "grade": "B",
+      "entry": 2.6339375972747803,
+      "stop": 2.435506537133289,
+      "tp1": 3.08614877477559,
+      "status": "open_runner",
+      "bars_held": 11
+    },
+    {
+      "signal_id": "v54:INJ-USD:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "symbol": "INJ-USD",
+      "grade": "B",
+      "entry": 5.723886489868164,
+      "stop": 5.061437959049852,
+      "tp1": 6.814790750006756,
+      "status": "open_runner",
+      "bars_held": 11
+    },
+    {
+      "signal_id": "v54:MSFT:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "symbol": "MSFT",
+      "grade": "B",
+      "entry": 497.4700012207031,
+      "stop": 480.33179625661074,
+      "tp1": 524.2594922983183,
+      "status": "open_full",
+      "bars_held": 7
+    },
+    {
+      "signal_id": "v54:SBET:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "symbol": "SBET",
+      "grade": "B",
+      "entry": 8.609999656677246,
+      "stop": 7.509070083796229,
+      "tp1": 9.846781262595512,
+      "status": "open_runner",
+      "bars_held": 7
+    },
+    {
+      "signal_id": "v54:SOL-USD:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "symbol": "SOL-USD",
+      "grade": "B",
+      "entry": 101.58739471435547,
+      "stop": 94.8778277106658,
+      "tp1": 111.71390495578999,
+      "status": "open_runner",
+      "bars_held": 11
+    },
+    {
+      "signal_id": "v54:VEEV:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "symbol": "VEEV",
+      "grade": "B",
+      "entry": 263.3999938964844,
+      "stop": 249.84250699449524,
+      "tp1": 288.0002332130893,
+      "status": "open_full",
+      "bars_held": 7
+    },
+    {
+      "signal_id": "v54:QCOM:1d:2026-09-18T04:00:00:2026-09-15-v54",
+      "symbol": "QCOM",
+      "grade": "B",
+      "entry": 180.61000061035156,
+      "stop": 165.4758024106625,
+      "tp1": 198.90934932432103,
+      "status": "open_runner",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:SHEL:1d:2026-09-18T04:00:00:2026-09-15-v54",
+      "symbol": "SHEL",
+      "grade": "B",
+      "entry": 94.72000122070312,
+      "stop": 92.22386671891827,
+      "tp1": 98.83939259743738,
+      "status": "open_full",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:SNOW:1d:2026-09-18T04:00:00:2026-09-15-v54",
+      "symbol": "SNOW",
+      "grade": "B",
+      "entry": 335.6300048828125,
+      "stop": 310.22122197671933,
+      "tp1": 374.48844607824145,
+      "status": "open_full",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:WDAY:1d:2026-09-18T04:00:00:2026-09-15-v54",
+      "symbol": "WDAY",
+      "grade": "A",
+      "entry": 194.1199951171875,
+      "stop": 181.04894693814597,
+      "tp1": 217.22920309037033,
+      "status": "open_full",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:PFE:1d:2026-09-21T04:00:00:2026-09-15-v54",
+      "symbol": "PFE",
+      "grade": "B",
+      "entry": 27.739999771118164,
+      "stop": 27.126213464864936,
+      "tp1": 29.14358921134878,
+      "status": "open_full",
+      "bars_held": 5
+    },
+    {
+      "signal_id": "v54:DOCU:1d:2026-09-22T04:00:00:2026-09-15-v54",
+      "symbol": "DOCU",
+      "grade": "A",
+      "entry": 67.2699966430664,
+      "stop": 62.99912960436328,
+      "tp1": 74.71732663474732,
+      "status": "open_full",
+      "bars_held": 4
+    },
+    {
+      "signal_id": "v54:MPC:1d:2026-09-22T04:00:00:2026-09-15-v54",
+      "symbol": "MPC",
+      "grade": "B",
+      "entry": 393.04998779296875,
+      "stop": 373.43727483664907,
+      "tp1": 431.422556505734,
+      "status": "open_full",
+      "bars_held": 4
+    },
+    {
+      "signal_id": "v54:PSX:1d:2026-09-22T04:00:00:2026-09-15-v54",
+      "symbol": "PSX",
+      "grade": "B",
+      "entry": 259.1499938964844,
+      "stop": 245.31136699141754,
+      "tp1": 279.44619266454384,
+      "status": "open_full",
+      "bars_held": 4
+    },
+    {
+      "signal_id": "v54:CRSP:1d:2026-09-23T04:00:00:2026-09-15-v54",
+      "symbol": "CRSP",
+      "grade": "A",
+      "entry": 54.95000076293945,
+      "stop": 52.054005901957545,
+      "tp1": 63.64213634808543,
+      "status": "open_full",
+      "bars_held": 3
+    },
+    {
+      "signal_id": "v54:DELL:1d:2026-09-24T04:00:00:2026-09-15-v54",
+      "symbol": "DELL",
+      "grade": "B",
+      "entry": 546.2899780273438,
+      "stop": 492.5310452328778,
+      "tp1": 618.5517539223218,
+      "status": "open_full",
+      "bars_held": 2
+    },
+    {
+      "signal_id": "v54:VLO:1d:2026-09-24T04:00:00:2026-09-15-v54",
+      "symbol": "VLO",
+      "grade": "B",
+      "entry": 378.0,
+      "stop": 360.7305930412928,
+      "tp1": 423.0003809733468,
+      "status": "open_full",
+      "bars_held": 2
+    },
+    {
+      "signal_id": "v54:VRTX:1d:2026-09-24T04:00:00:2026-09-15-v54",
+      "symbol": "VRTX",
+      "grade": "B",
+      "entry": 522.5499877929688,
+      "stop": 508.5650503057595,
+      "tp1": 558.8822997394298,
+      "status": "open_full",
+      "bars_held": 2
+    },
+    {
+      "signal_id": "v54:HUT:1d:2026-09-25T04:00:00:2026-09-15-v54",
+      "symbol": "HUT",
+      "grade": "B",
+      "entry": 95.95999908447266,
+      "stop": 86.20597870233378,
+      "tp1": 118.04064860145483,
+      "status": "open_full",
+      "bars_held": 1
+    },
+    {
+      "signal_id": "v54:S:1d:2026-09-25T04:00:00:2026-09-15-v54",
+      "symbol": "S",
+      "grade": "B",
+      "entry": 21.8700008392334,
+      "stop": 20.943319415814535,
+      "tp1": 25.618221108749232,
+      "status": "open_full",
+      "bars_held": 1
+    },
+    {
+      "signal_id": "v54:USO:1d:2026-09-25T04:00:00:2026-09-15-v54",
+      "symbol": "USO",
+      "grade": "B",
+      "entry": 151.88499450683594,
+      "stop": 140.95309768679485,
+      "tp1": 162.31702111329628,
+      "status": "open_full",
+      "bars_held": 1
+    },
+    {
+      "signal_id": "v54:ZS:1d:2026-09-25T04:00:00:2026-09-15-v54",
+      "symbol": "ZS",
+      "grade": "B",
+      "entry": 188.88999938964844,
+      "stop": 179.14516130116345,
+      "tp1": 220.80749056120035,
+      "status": "open_full",
+      "bars_held": 1
+    }
+  ],
+  "closed_trades": 10,
+  "cumulative_r": -10.0,
+  "avg_r_per_trade": -1.0,
+  "win_rate": 0.0,
+  "cycles_run": 12,
+  "last_cycle": {
+    "timeframe": "1d",
+    "new_signals": 6,
+    "new_signal_ids": [
+      "v54:QCOM:1d:2026-09-28T04:00:00:2026-09-15-v54",
+      "v54:ARM:1d:2026-09-28T04:00:00:2026-09-15-v54",
+      "v54:DELL:1d:2026-09-28T04:00:00:2026-09-15-v54",
+      "v54:DOCU:1d:2026-09-28T04:00:00:2026-09-15-v54",
+      "v54:S:1d:2026-09-28T04:00:00:2026-09-15-v54",
+      "v54:MARA:1d:2026-09-28T04:00:00:2026-09-15-v54"
+    ],
+    "opened": 5,
+    "closed": [
+      "v54:CRM:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "v54:NEM:1d:2026-09-17T04:00:00:2026-09-15-v54",
+      "v54:NOW:1d:2026-09-18T04:00:00:2026-09-15-v54",
+      "v54:REGN:1d:2026-09-21T04:00:00:2026-09-15-v54",
+      "v54:TEAM:1d:2026-09-25T04:00:00:2026-09-15-v54"
+    ],
+    "errors": []
+  }
+}

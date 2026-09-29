@@ -1,0 +1,24 @@
+ablation run started
+== BULL WINDOW ==
+candidates: 263
+L0 [4bps]: n=167 exp=0.215R PF=1.31 ret=31.79% dd=36.95% calmar=0.86 rankskip=0 secskip=0 riskskip=0 contested=80b/109s
+L0 [25bps]: n=167 exp=0.141R PF=1.19 ret=16.39% dd=41.07% calmar=0.399 rankskip=0 secskip=0 riskskip=0 contested=80b/109s
+L1 [4bps]: n=157 exp=0.3R PF=1.43 ret=47.3% dd=35.34% calmar=1.338 rankskip=106 secskip=0 riskskip=0 contested=81b/112s
+L1 [25bps]: n=157 exp=0.226R PF=1.31 ret=31.1% dd=39.03% calmar=0.797 rankskip=106 secskip=0 riskskip=0 contested=81b/112s
+L2 [4bps]: n=143 exp=0.273R PF=1.39 ret=38.09% dd=32.92% calmar=1.157 rankskip=103 secskip=17 riskskip=0 contested=82b/113s
+L2 [25bps]: n=143 exp=0.2R PF=1.27 ret=24.1% dd=37.95% calmar=0.635 rankskip=103 secskip=17 riskskip=0 contested=82b/113s
+L3 [4bps]: n=143 exp=0.337R PF=1.49 ret=52.25% dd=31.63% calmar=1.652 rankskip=94 secskip=16 riskskip=10 contested=76b/105s
+L3 [25bps]: n=142 exp=0.28R PF=1.39 ret=39.64% dd=33.79% calmar=1.173 rankskip=94 secskip=16 riskskip=11 contested=76b/105s
+fidelity L3 == locked C1 [4bps]: PASS
+fidelity L3 == locked C1 [25bps]: PASS
+== 2022 WINDOW ==
+2022 candidates: 39 symbols=32
+2022 L0 [4bps]: n=37 exp=0.376R ret=11.21% dd=21.28% calmar=0.527 rankskip=0 secskip=0 riskskip=0 contested=2b
+2022 L0 [25bps]: n=37 exp=0.293R ret=7.95% dd=23.07% calmar=0.345 rankskip=0 secskip=0 riskskip=0 contested=2b
+2022 L1 [4bps]: n=37 exp=0.376R ret=11.22% dd=21.27% calmar=0.528 rankskip=2 secskip=0 riskskip=0 contested=2b
+2022 L1 [25bps]: n=37 exp=0.293R ret=7.96% dd=23.06% calmar=0.345 rankskip=2 secskip=0 riskskip=0 contested=2b
+2022 L2 [4bps]: n=37 exp=0.376R ret=11.22% dd=21.27% calmar=0.528 rankskip=2 secskip=0 riskskip=0 contested=2b
+2022 L2 [25bps]: n=37 exp=0.293R ret=7.96% dd=23.06% calmar=0.345 rankskip=2 secskip=0 riskskip=0 contested=2b
+2022 L3 [4bps]: n=37 exp=0.376R ret=11.22% dd=21.27% calmar=0.528 rankskip=2 secskip=0 riskskip=0 contested=2b
+2022 L3 [25bps]: n=37 exp=0.293R ret=7.96% dd=23.06% calmar=0.345 rankskip=2 secskip=0 riskskip=0 contested=2b
+DONE

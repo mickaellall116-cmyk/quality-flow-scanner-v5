@@ -1,0 +1,404 @@
+{
+ "baseline": {
+  "n": 237,
+  "expectancy_r": 0.239,
+  "win_rate_pct": 50.6,
+  "profit_factor": 1.38,
+  "total_r": 56.59
+ },
+ "total_r": 56.59,
+ "buckets": {
+  "spy200": {
+   "above": {
+    "n": 229,
+    "expectancy_r": 0.194,
+    "win_rate_pct": 50.7,
+    "profit_factor": 1.31,
+    "total_r": 44.33,
+    "share_of_total_r_pct": 78.3
+   },
+   "below": {
+    "n": 8,
+    "expectancy_r": 1.532,
+    "win_rate_pct": 50.0,
+    "profit_factor": 4.12,
+    "total_r": 12.26,
+    "share_of_total_r_pct": 21.7
+   }
+  },
+  "qqq200": {
+   "above": {
+    "n": 230,
+    "expectancy_r": 0.187,
+    "win_rate_pct": 50.4,
+    "profit_factor": 1.3,
+    "total_r": 43.1,
+    "share_of_total_r_pct": 76.2
+   },
+   "below": {
+    "n": 7,
+    "expectancy_r": 1.927,
+    "win_rate_pct": 57.1,
+    "profit_factor": 6.01,
+    "total_r": 13.49,
+    "share_of_total_r_pct": 23.8
+   }
+  },
+  "e200slope": {
+   "falling": {
+    "n": 9,
+    "expectancy_r": 0.757,
+    "win_rate_pct": 44.4,
+    "profit_factor": 2.41,
+    "total_r": 6.81,
+    "share_of_total_r_pct": 12.0
+   },
+   "rising": {
+    "n": 228,
+    "expectancy_r": 0.218,
+    "win_rate_pct": 50.9,
+    "profit_factor": 1.35,
+    "total_r": 49.78,
+    "share_of_total_r_pct": 88.0
+   }
+  },
+  "vix": {
+   "high>30": {
+    "n": 1,
+    "expectancy_r": 1.285,
+    "win_rate_pct": 100.0,
+    "profit_factor": null,
+    "total_r": 1.28,
+    "share_of_total_r_pct": 2.3
+   },
+   "low<20": {
+    "n": 210,
+    "expectancy_r": 0.166,
+    "win_rate_pct": 50.5,
+    "profit_factor": 1.26,
+    "total_r": 34.8,
+    "share_of_total_r_pct": 61.5
+   },
+   "mid20-30": {
+    "n": 26,
+    "expectancy_r": 0.788,
+    "win_rate_pct": 50.0,
+    "profit_factor": 2.67,
+    "total_r": 20.5,
+    "share_of_total_r_pct": 36.2
+   }
+  },
+  "mom50": {
+   "neg": {
+    "n": 13,
+    "expectancy_r": 0.881,
+    "win_rate_pct": 53.8,
+    "profit_factor": 2.74,
+    "total_r": 11.45,
+    "share_of_total_r_pct": 20.2
+   },
+   "pos": {
+    "n": 224,
+    "expectancy_r": 0.201,
+    "win_rate_pct": 50.4,
+    "profit_factor": 1.32,
+    "total_r": 45.13,
+    "share_of_total_r_pct": 79.8
+   }
+  },
+  "rv20": {
+   "high": {
+    "n": 88,
+    "expectancy_r": 0.151,
+    "win_rate_pct": 48.9,
+    "profit_factor": 1.26,
+    "total_r": 13.32,
+    "share_of_total_r_pct": 23.5
+   },
+   "low": {
+    "n": 149,
+    "expectancy_r": 0.29,
+    "win_rate_pct": 51.7,
+    "profit_factor": 1.45,
+    "total_r": 43.27,
+    "share_of_total_r_pct": 76.5
+   }
+  },
+  "tri": {
+   "bear": {
+    "n": 5,
+    "expectancy_r": 1.452,
+    "win_rate_pct": 40.0,
+    "profit_factor": 3.69,
+    "total_r": 7.26,
+    "share_of_total_r_pct": 12.8
+   },
+   "bull": {
+    "n": 225,
+    "expectancy_r": 0.199,
+    "win_rate_pct": 50.7,
+    "profit_factor": 1.32,
+    "total_r": 44.78,
+    "share_of_total_r_pct": 79.1
+   },
+   "sideways": {
+    "n": 7,
+    "expectancy_r": 0.65,
+    "win_rate_pct": 57.1,
+    "profit_factor": 2.34,
+    "total_r": 4.55,
+    "share_of_total_r_pct": 8.0
+   }
+  }
+ },
+ "year_xtab": {
+  "spy200": {
+   "2024": {
+    "above": {
+     "n": 75,
+     "exp_r": 0.347
+    },
+    "below": {
+     "n": 0,
+     "exp_r": null
+    }
+   },
+   "2025": {
+    "above": {
+     "n": 96,
+     "exp_r": 0.39
+    },
+    "below": {
+     "n": 6,
+     "exp_r": 1.269
+    }
+   },
+   "2026": {
+    "above": {
+     "n": 58,
+     "exp_r": -0.331
+    },
+    "below": {
+     "n": 2,
+     "exp_r": null
+    }
+   }
+  },
+  "qqq200": {
+   "2024": {
+    "above": {
+     "n": 75,
+     "exp_r": 0.347
+    },
+    "below": {
+     "n": 0,
+     "exp_r": null
+    }
+   },
+   "2025": {
+    "above": {
+     "n": 96,
+     "exp_r": 0.39
+    },
+    "below": {
+     "n": 6,
+     "exp_r": 1.269
+    }
+   },
+   "2026": {
+    "above": {
+     "n": 59,
+     "exp_r": -0.346
+    },
+    "below": {
+     "n": 1,
+     "exp_r": null
+    }
+   }
+  },
+  "e200slope": {
+   "2024": {
+    "falling": {
+     "n": 0,
+     "exp_r": null
+    },
+    "rising": {
+     "n": 75,
+     "exp_r": 0.347
+    }
+   },
+   "2025": {
+    "falling": {
+     "n": 9,
+     "exp_r": 0.757
+    },
+    "rising": {
+     "n": 93,
+     "exp_r": 0.411
+    }
+   },
+   "2026": {
+    "falling": {
+     "n": 0,
+     "exp_r": null
+    },
+    "rising": {
+     "n": 60,
+     "exp_r": -0.242
+    }
+   }
+  },
+  "vix": {
+   "2024": {
+    "high>30": {
+     "n": 0,
+     "exp_r": null
+    },
+    "low<20": {
+     "n": 69,
+     "exp_r": 0.31
+    },
+    "mid20-30": {
+     "n": 6,
+     "exp_r": 0.781
+    }
+   },
+   "2025": {
+    "high>30": {
+     "n": 1,
+     "exp_r": null
+    },
+    "low<20": {
+     "n": 88,
+     "exp_r": 0.362
+    },
+    "mid20-30": {
+     "n": 13,
+     "exp_r": 0.919
+    }
+   },
+   "2026": {
+    "high>30": {
+     "n": 0,
+     "exp_r": null
+    },
+    "low<20": {
+     "n": 53,
+     "exp_r": -0.347
+    },
+    "mid20-30": {
+     "n": 7,
+     "exp_r": 0.551
+    }
+   }
+  },
+  "mom50": {
+   "2024": {
+    "neg": {
+     "n": 0,
+     "exp_r": null
+    },
+    "pos": {
+     "n": 75,
+     "exp_r": 0.347
+    }
+   },
+   "2025": {
+    "neg": {
+     "n": 8,
+     "exp_r": 0.875
+    },
+    "pos": {
+     "n": 94,
+     "exp_r": 0.405
+    }
+   },
+   "2026": {
+    "neg": {
+     "n": 5,
+     "exp_r": 0.89
+    },
+    "pos": {
+     "n": 55,
+     "exp_r": -0.345
+    }
+   }
+  },
+  "rv20": {
+   "2024": {
+    "high": {
+     "n": 23,
+     "exp_r": 0.201
+    },
+    "low": {
+     "n": 52,
+     "exp_r": 0.412
+    }
+   },
+   "2025": {
+    "high": {
+     "n": 41,
+     "exp_r": 0.176
+    },
+    "low": {
+     "n": 61,
+     "exp_r": 0.62
+    }
+   },
+   "2026": {
+    "high": {
+     "n": 24,
+     "exp_r": 0.062
+    },
+    "low": {
+     "n": 36,
+     "exp_r": -0.445
+    }
+   }
+  },
+  "tri": {
+   "2024": {
+    "bear": {
+     "n": 0,
+     "exp_r": null
+    },
+    "bull": {
+     "n": 75,
+     "exp_r": 0.347
+    },
+    "sideways": {
+     "n": 0,
+     "exp_r": null
+    }
+   },
+   "2025": {
+    "bear": {
+     "n": 5,
+     "exp_r": 1.452
+    },
+    "bull": {
+     "n": 92,
+     "exp_r": 0.412
+    },
+    "sideways": {
+     "n": 5,
+     "exp_r": -0.018
+    }
+   },
+   "2026": {
+    "bear": {
+     "n": 0,
+     "exp_r": null
+    },
+    "bull": {
+     "n": 58,
+     "exp_r": -0.331
+    },
+    "sideways": {
+     "n": 2,
+     "exp_r": null
+    }
+   }
+  }
+ }
+}

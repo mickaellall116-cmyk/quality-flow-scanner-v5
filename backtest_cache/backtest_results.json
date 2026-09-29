@@ -1,0 +1,457 @@
+{
+  "universe": [
+    "NVDA",
+    "PLTR",
+    "TSLA",
+    "SOFI",
+    "SMCI",
+    "AMD",
+    "AAPL",
+    "MSFT",
+    "META",
+    "COIN",
+    "MSTR",
+    "AVGO",
+    "BTC-USD",
+    "ETH-USD",
+    "SOL-USD"
+  ],
+  "window": "2024-09-16 09:30:00-04:00 -> 2026-09-14 13:30:00-04:00",
+  "structural_candidates": 108,
+  "gate_rejections": {
+    "market gate is BLOCK": 20,
+    "relative volume below 0.80x": 53,
+    "reward/risk below 2.0:1": 39,
+    "completed 15-minute confirmation missing": 108,
+    "market gate is CAUTION": 40,
+    "ADX below 20": 23,
+    "weekly/daily/4h alignment not confirmed": 31
+  },
+  "signals_per_symbol_ex15m": {
+    "NVDA": 1,
+    "PLTR": 1,
+    "TSLA": 0,
+    "SOFI": 0,
+    "SMCI": 0,
+    "AMD": 0,
+    "AAPL": 0,
+    "MSFT": 1,
+    "META": 0,
+    "COIN": 0,
+    "MSTR": 0,
+    "AVGO": 1,
+    "BTC-USD": 0,
+    "ETH-USD": 0,
+    "SOL-USD": 0
+  },
+  "structural_per_symbol": {
+    "NVDA": 11,
+    "PLTR": 13,
+    "TSLA": 8,
+    "SOFI": 14,
+    "SMCI": 9,
+    "AMD": 7,
+    "AAPL": 11,
+    "MSFT": 10,
+    "META": 8,
+    "COIN": 4,
+    "MSTR": 3,
+    "AVGO": 10,
+    "BTC-USD": 0,
+    "ETH-USD": 0,
+    "SOL-USD": 0
+  },
+  "skipped_gap_below_stop": 0,
+  "qqq_buy_hold_pct_same_window": 51.12,
+  "notes": "BUY NOW ex-15m: all live validation gates except the completed 15-minute confirmation (no 2y intraday history) and the live-only premarket snapshot. Entry variants: signal-bar close, next-bar open. Stop-first on same-bar stop/target touches. 4bps round-trip costs. Max hold 30 4h bars; early exit if scanner flips to EXIT.",
+  "close_entry": {
+    "variant": "signal-bar close",
+    "trades": 4,
+    "win_rate_pct": 25.0,
+    "avg_win_pct": 8.17,
+    "avg_loss_pct": -2.79,
+    "expectancy_pct": -0.048,
+    "expectancy_r": -0.239,
+    "profit_factor": 0.98,
+    "avg_hold_bars": 5.0,
+    "exit_reasons": {
+      "stop": 3,
+      "target": 1
+    },
+    "final_equity_10k_1pct_risk": 9895.42,
+    "max_drawdown_pct": 2.03,
+    "by_symbol": [
+      {
+        "group": "AVGO",
+        "trades": 1,
+        "win_rate_pct": 100.0,
+        "expectancy_pct": 8.169,
+        "expectancy_r": 2.046
+      },
+      {
+        "group": "MSFT",
+        "trades": 1,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -1.495,
+        "expectancy_r": -1.0
+      },
+      {
+        "group": "NVDA",
+        "trades": 1,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -3.241,
+        "expectancy_r": -1.0
+      },
+      {
+        "group": "PLTR",
+        "trades": 1,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -3.623,
+        "expectancy_r": -1.0
+      }
+    ],
+    "by_regime": [
+      {
+        "group": "RISK-ON",
+        "trades": 4,
+        "win_rate_pct": 25.0,
+        "expectancy_pct": -0.048,
+        "expectancy_r": -0.239
+      }
+    ],
+    "by_state": [
+      {
+        "group": "PULLBACK BUY",
+        "trades": 4,
+        "win_rate_pct": 25.0,
+        "expectancy_pct": -0.048,
+        "expectancy_r": -0.239
+      }
+    ]
+  },
+  "open_entry": {
+    "variant": "next-bar open",
+    "trades": 4,
+    "win_rate_pct": 25.0,
+    "avg_win_pct": 8.17,
+    "avg_loss_pct": -2.78,
+    "expectancy_pct": -0.044,
+    "expectancy_r": -0.239,
+    "profit_factor": 0.98,
+    "avg_hold_bars": 5.0,
+    "exit_reasons": {
+      "stop": 3,
+      "target": 1
+    },
+    "final_equity_10k_1pct_risk": 9895.42,
+    "max_drawdown_pct": 2.03,
+    "by_symbol": [
+      {
+        "group": "AVGO",
+        "trades": 1,
+        "win_rate_pct": 100.0,
+        "expectancy_pct": 8.169,
+        "expectancy_r": 2.046
+      },
+      {
+        "group": "MSFT",
+        "trades": 1,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -1.491,
+        "expectancy_r": -1.0
+      },
+      {
+        "group": "NVDA",
+        "trades": 1,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -3.237,
+        "expectancy_r": -1.0
+      },
+      {
+        "group": "PLTR",
+        "trades": 1,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -3.616,
+        "expectancy_r": -1.0
+      }
+    ],
+    "by_regime": [
+      {
+        "group": "RISK-ON",
+        "trades": 4,
+        "win_rate_pct": 25.0,
+        "expectancy_pct": -0.044,
+        "expectancy_r": -0.239
+      }
+    ],
+    "by_state": [
+      {
+        "group": "PULLBACK BUY",
+        "trades": 4,
+        "win_rate_pct": 25.0,
+        "expectancy_pct": -0.044,
+        "expectancy_r": -0.239
+      }
+    ]
+  },
+  "structural_close_entry": {
+    "variant": "structural / signal-bar close",
+    "trades": 76,
+    "win_rate_pct": 36.8,
+    "avg_win_pct": 6.87,
+    "avg_loss_pct": -2.68,
+    "expectancy_pct": 0.839,
+    "expectancy_r": 0.248,
+    "profit_factor": 1.5,
+    "avg_hold_bars": 6.5,
+    "exit_reasons": {
+      "stop": 31,
+      "target": 28,
+      "scanner-exit": 14,
+      "time": 3
+    },
+    "final_equity_10k_1pct_risk": 11853.52,
+    "max_drawdown_pct": 9.22,
+    "by_symbol": [
+      {
+        "group": "NVDA",
+        "trades": 10,
+        "win_rate_pct": 40.0,
+        "expectancy_pct": 0.362,
+        "expectancy_r": 0.097
+      },
+      {
+        "group": "PLTR",
+        "trades": 10,
+        "win_rate_pct": 40.0,
+        "expectancy_pct": 1.387,
+        "expectancy_r": 0.318
+      },
+      {
+        "group": "AAPL",
+        "trades": 8,
+        "win_rate_pct": 50.0,
+        "expectancy_pct": 1.113,
+        "expectancy_r": 0.642
+      },
+      {
+        "group": "SOFI",
+        "trades": 7,
+        "win_rate_pct": 57.1,
+        "expectancy_pct": 4.541,
+        "expectancy_r": 0.908
+      },
+      {
+        "group": "TSLA",
+        "trades": 7,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -2.922,
+        "expectancy_r": -0.743
+      },
+      {
+        "group": "AVGO",
+        "trades": 6,
+        "win_rate_pct": 16.7,
+        "expectancy_pct": -0.894,
+        "expectancy_r": -0.418
+      },
+      {
+        "group": "META",
+        "trades": 6,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": 0.216,
+        "expectancy_r": 0.125
+      },
+      {
+        "group": "AMD",
+        "trades": 5,
+        "win_rate_pct": 40.0,
+        "expectancy_pct": 2.401,
+        "expectancy_r": 0.344
+      },
+      {
+        "group": "MSFT",
+        "trades": 5,
+        "win_rate_pct": 60.0,
+        "expectancy_pct": 1.472,
+        "expectancy_r": 1.119
+      },
+      {
+        "group": "SMCI",
+        "trades": 5,
+        "win_rate_pct": 60.0,
+        "expectancy_pct": 4.839,
+        "expectancy_r": 1.184
+      },
+      {
+        "group": "COIN",
+        "trades": 4,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -4.019,
+        "expectancy_r": -0.84
+      },
+      {
+        "group": "MSTR",
+        "trades": 3,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": 0.875,
+        "expectancy_r": 0.106
+      }
+    ],
+    "by_regime": [
+      {
+        "group": "RISK-ON",
+        "trades": 57,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": 0.268,
+        "expectancy_r": 0.125
+      },
+      {
+        "group": "CAUTIOUS",
+        "trades": 19,
+        "win_rate_pct": 47.4,
+        "expectancy_pct": 2.554,
+        "expectancy_r": 0.617
+      }
+    ],
+    "by_state": [
+      {
+        "group": "PULLBACK BUY",
+        "trades": 76,
+        "win_rate_pct": 36.8,
+        "expectancy_pct": 0.839,
+        "expectancy_r": 0.248
+      }
+    ]
+  },
+  "structural_open_entry": {
+    "variant": "structural / next-bar open",
+    "trades": 76,
+    "win_rate_pct": 36.8,
+    "avg_win_pct": 6.43,
+    "avg_loss_pct": -2.66,
+    "expectancy_pct": 0.69,
+    "expectancy_r": 0.165,
+    "profit_factor": 1.41,
+    "avg_hold_bars": 6.5,
+    "exit_reasons": {
+      "stop": 31,
+      "target": 28,
+      "scanner-exit": 14,
+      "time": 3
+    },
+    "final_equity_10k_1pct_risk": 11130.11,
+    "max_drawdown_pct": 11.46,
+    "by_symbol": [
+      {
+        "group": "NVDA",
+        "trades": 10,
+        "win_rate_pct": 40.0,
+        "expectancy_pct": 0.029,
+        "expectancy_r": -0.08
+      },
+      {
+        "group": "PLTR",
+        "trades": 10,
+        "win_rate_pct": 40.0,
+        "expectancy_pct": 1.537,
+        "expectancy_r": 0.345
+      },
+      {
+        "group": "AAPL",
+        "trades": 8,
+        "win_rate_pct": 50.0,
+        "expectancy_pct": 0.822,
+        "expectancy_r": 0.426
+      },
+      {
+        "group": "SOFI",
+        "trades": 7,
+        "win_rate_pct": 57.1,
+        "expectancy_pct": 4.55,
+        "expectancy_r": 0.911
+      },
+      {
+        "group": "TSLA",
+        "trades": 7,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -3.185,
+        "expectancy_r": -0.798
+      },
+      {
+        "group": "AVGO",
+        "trades": 6,
+        "win_rate_pct": 16.7,
+        "expectancy_pct": -0.53,
+        "expectancy_r": -0.418
+      },
+      {
+        "group": "META",
+        "trades": 6,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": 0.21,
+        "expectancy_r": 0.114
+      },
+      {
+        "group": "AMD",
+        "trades": 5,
+        "win_rate_pct": 40.0,
+        "expectancy_pct": 2.59,
+        "expectancy_r": 0.184
+      },
+      {
+        "group": "MSFT",
+        "trades": 5,
+        "win_rate_pct": 60.0,
+        "expectancy_pct": 1.462,
+        "expectancy_r": 1.057
+      },
+      {
+        "group": "SMCI",
+        "trades": 5,
+        "win_rate_pct": 60.0,
+        "expectancy_pct": 4.188,
+        "expectancy_r": 1.095
+      },
+      {
+        "group": "COIN",
+        "trades": 4,
+        "win_rate_pct": 0.0,
+        "expectancy_pct": -4.42,
+        "expectancy_r": -0.84
+      },
+      {
+        "group": "MSTR",
+        "trades": 3,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": -0.316,
+        "expectancy_r": -0.276
+      }
+    ],
+    "by_regime": [
+      {
+        "group": "RISK-ON",
+        "trades": 57,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": 0.303,
+        "expectancy_r": 0.058
+      },
+      {
+        "group": "CAUTIOUS",
+        "trades": 19,
+        "win_rate_pct": 47.4,
+        "expectancy_pct": 1.85,
+        "expectancy_r": 0.484
+      }
+    ],
+    "by_state": [
+      {
+        "group": "PULLBACK BUY",
+        "trades": 76,
+        "win_rate_pct": 36.8,
+        "expectancy_pct": 0.69,
+        "expectancy_r": 0.165
+      }
+    ]
+  }
+}

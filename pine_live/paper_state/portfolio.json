@@ -1,0 +1,183 @@
+{
+ "portfolio": {
+  "cost": 0.0004,
+  "counters": {
+   "NO_SLOT": 0,
+   "RANKED_OUT": 63,
+   "RISK_CAP": 1,
+   "SECTOR_CAP": 19,
+   "TAKEN": 7
+  },
+  "events": [
+   {
+    "entry_px": 12.534000396728516,
+    "kind": "open",
+    "risk_dollars": 100.0,
+    "rs_score": 0.12080401201917645,
+    "sector": "CRYPTO",
+    "seq": 0,
+    "signal_id": "v36:LINK-USD:4h:2026-09-20T16:00:00+00:00",
+    "symbol": "LINK-USD",
+    "t": "2026-09-20T20:00:00+00:00"
+   },
+   {
+    "entry_px": 110.44000244140625,
+    "kind": "open",
+    "risk_dollars": 99.9592995289609,
+    "rs_score": 0.10269226385176311,
+    "sector": "CRYPTO",
+    "seq": 1,
+    "signal_id": "v36:SOL-USD:4h:2026-09-20T16:00:00+00:00",
+    "symbol": "SOL-USD",
+    "t": "2026-09-20T20:00:00+00:00"
+   },
+   {
+    "entry_px": 345.79998779296875,
+    "kind": "open",
+    "risk_dollars": 104.06187612608826,
+    "rs_score": 0.22466149599767515,
+    "sector": "AI_SOFTWARE",
+    "seq": 2,
+    "signal_id": "v36:NET:4h:2026-09-21T09:30:00-04:00",
+    "symbol": "NET",
+    "t": "2026-09-21T13:30:00-04:00"
+   },
+   {
+    "entry_px": 247.60000610351562,
+    "kind": "open",
+    "risk_dollars": 104.40955238507934,
+    "rs_score": 0.1529987289102548,
+    "sector": "AI_SOFTWARE",
+    "seq": 3,
+    "signal_id": "v36:CRWD:4h:2026-09-21T09:30:00-04:00",
+    "symbol": "CRWD",
+    "t": "2026-09-21T13:30:00-04:00"
+   },
+   {
+    "exit_px": 12.623923048212063,
+    "exit_reason": "stop",
+    "kind": "close",
+    "net_r": 0.2159798062799888,
+    "realized_after": 10021.597980628,
+    "seq": 4,
+    "signal_id": "v36:LINK-USD:4h:2026-09-20T16:00:00+00:00",
+    "symbol": "LINK-USD",
+    "t": "2026-09-23T16:00:00+00:00"
+   },
+   {
+    "exit_px": 114.06279546498824,
+    "exit_reason": "stop",
+    "kind": "close",
+    "net_r": 1.2648893167715802,
+    "realized_after": 10148.035430714152,
+    "seq": 5,
+    "signal_id": "v36:SOL-USD:4h:2026-09-20T16:00:00+00:00",
+    "symbol": "SOL-USD",
+    "t": "2026-09-23T16:00:00+00:00"
+   },
+   {
+    "entry_px": 163.0,
+    "kind": "open",
+    "risk_dollars": 103.01597190823973,
+    "rs_score": 0.1933927442941097,
+    "sector": "CRYPTO",
+    "seq": 6,
+    "signal_id": "v36:MSTR:4h:2026-09-23T09:30:00-04:00",
+    "symbol": "MSTR",
+    "t": "2026-09-23T13:30:00-04:00"
+   },
+   {
+    "entry_px": 120.16500091552734,
+    "kind": "open",
+    "risk_dollars": 102.94347040686617,
+    "rs_score": 0.12740920649653753,
+    "sector": "SEMIS",
+    "seq": 7,
+    "signal_id": "v36:INTC:4h:2026-09-23T09:30:00-04:00",
+    "symbol": "INTC",
+    "t": "2026-09-23T13:30:00-04:00"
+   },
+   {
+    "entry_px": 183.65499877929688,
+    "kind": "open",
+    "risk_dollars": 104.190294634912,
+    "rs_score": 0.3412675136789891,
+    "sector": "HEALTHCARE",
+    "seq": 8,
+    "signal_id": "v36:MRNA:4h:2026-09-24T09:30:00-04:00",
+    "symbol": "MRNA",
+    "t": "2026-09-24T13:30:00-04:00"
+   }
+  ],
+  "max_dd": 0.042069967820281946,
+  "open_time_s": 720000.0,
+  "peak": 10536.942120554275,
+  "positions": {
+   "CRWD": {
+    "entry_px": 247.60000610351562,
+    "entry_time": "2026-09-21T13:30:00-04:00",
+    "risk_dollars": 104.40955238507934,
+    "risk_frac": 0.05395056239438369,
+    "sector": "AI_SOFTWARE",
+    "signal_id": "v36:CRWD:4h:2026-09-21T09:30:00-04:00",
+    "size": 1935.2820017303188,
+    "stop_px": 234.24184652537812,
+    "symbol": "CRWD",
+    "tp1_px": 265.35754081446976
+   },
+   "INTC": {
+    "entry_px": 120.16500091552734,
+    "entry_time": "2026-09-23T13:30:00-04:00",
+    "risk_dollars": 102.94347040686617,
+    "risk_frac": 0.053424464052579786,
+    "sector": "SEMIS",
+    "signal_id": "v36:INTC:4h:2026-09-23T09:30:00-04:00",
+    "size": 1926.897578336964,
+    "stop_px": 113.74525014373754,
+    "symbol": "INTC",
+    "tp1_px": 128.75800397908563
+   },
+   "MRNA": {
+    "entry_px": 183.65499877929688,
+    "entry_time": "2026-09-24T13:30:00-04:00",
+    "risk_dollars": 104.190294634912,
+    "risk_frac": 0.0669776939464544,
+    "sector": "HEALTHCARE",
+    "signal_id": "v36:MRNA:4h:2026-09-24T09:30:00-04:00",
+    "size": 1555.5969233310325,
+    "stop_px": 171.35421047932067,
+    "symbol": "MRNA",
+    "tp1_px": 200.0560498459318
+   },
+   "MSTR": {
+    "entry_px": 163.0,
+    "entry_time": "2026-09-23T13:30:00-04:00",
+    "risk_dollars": 103.01597190823973,
+    "risk_frac": 0.05840413222930611,
+    "sector": "CRYPTO",
+    "signal_id": "v36:MSTR:4h:2026-09-23T09:30:00-04:00",
+    "size": 1763.8473165525131,
+    "stop_px": 153.4801264466231,
+    "symbol": "MSTR",
+    "tp1_px": 175.7849005776796
+   },
+   "NET": {
+    "entry_px": 345.79998779296875,
+    "entry_time": "2026-09-21T13:30:00-04:00",
+    "risk_dollars": 104.06187612608826,
+    "risk_frac": 0.051586908560366164,
+    "sector": "AI_SOFTWARE",
+    "signal_id": "v36:NET:4h:2026-09-21T09:30:00-04:00",
+    "size": 2017.2148134117544,
+    "stop_px": 327.96123544251714,
+    "symbol": "NET",
+    "tp1_px": 369.85834704669594
+   }
+  },
+  "prev_t": "2026-09-29T04:00:00+00:00",
+  "realized": 10148.035430714152,
+  "seq": 9,
+  "total_time_s": 748800.0
+ },
+ "schema": "paper-state-v1"
+}

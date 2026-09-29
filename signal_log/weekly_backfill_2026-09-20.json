@@ -1,0 +1,581 @@
+[
+ {
+  "symbol": "QQQ",
+  "signals": [
+   {
+    "week_of": "2026-06-08",
+    "entry": 720.55,
+    "stop": 679.06,
+    "tp1": 775.87,
+    "adx": 24.3,
+    "result": "LOSS",
+    "mfe_r": 0.6,
+    "weeks_to_resolve": 7
+   }
+  ],
+  "warning": null
+ },
+ {
+  "symbol": "SMCI",
+  "signals": [],
+  "warning": null
+ },
+ {
+  "symbol": "PLTR",
+  "signals": [
+   {
+    "week_of": "2025-11-03",
+    "entry": 177.93,
+    "stop": 150.83,
+    "tp1": 214.07,
+    "adx": 32.9,
+    "result": "LOSS",
+    "mfe_r": 0.63,
+    "weeks_to_resolve": 2
+   },
+   {
+    "week_of": "2025-11-10",
+    "entry": 174.01,
+    "stop": 145.58,
+    "tp1": 211.91,
+    "adx": 31.4,
+    "result": "LOSS",
+    "mfe_r": 0.87,
+    "weeks_to_resolve": 11
+   }
+  ],
+  "warning": null
+ },
+ {
+  "symbol": "ANET",
+  "signals": [
+   {
+    "week_of": "2025-10-13",
+    "entry": 143.1,
+    "stop": 123.74,
+    "tp1": 168.91,
+    "adx": 33.6,
+    "result": "LOSS",
+    "mfe_r": 1.13,
+    "weeks_to_resolve": 5
+   },
+   {
+    "week_of": "2025-11-03",
+    "entry": 134.65,
+    "stop": 113.54,
+    "tp1": 162.8,
+    "adx": 33.9,
+    "result": "OPEN",
+    "mfe_r": 0.81,
+    "weeks_to_resolve": 12
+   },
+   {
+    "week_of": "2026-09-14",
+    "entry": 199.39,
+    "stop": 169.86,
+    "tp1": 238.76,
+    "adx": 20.7,
+    "result": "OPEN",
+    "mfe_r": 0.0,
+    "weeks_to_resolve": 0
+   }
+  ],
+  "warning": null
+ },
+ {
+  "symbol": "SOFI",
+  "signals": [
+   {
+    "week_of": "2025-09-29",
+    "entry": 25.24,
+    "stop": 21.51,
+    "tp1": 30.22,
+    "adx": 48.3,
+    "result": "WIN",
+    "mfe_r": 1.96,
+    "weeks_to_resolve": 4
+   },
+   {
+    "week_of": "2025-10-06",
+    "entry": 26.19,
+    "stop": 22.23,
+    "tp1": 31.46,
+    "adx": 48.5,
+    "result": "WIN",
+    "mfe_r": 1.61,
+    "weeks_to_resolve": 3
+   },
+   {
+    "week_of": "2025-11-03",
+    "entry": 28.21,
+    "stop": 23.66,
+    "tp1": 34.28,
+    "adx": 48.9,
+    "result": "LOSS",
+    "mfe_r": 0.99,
+    "weeks_to_resolve": 2
+   },
+   {
+    "week_of": "2025-11-10",
+    "entry": 27.82,
+    "stop": 22.93,
+    "tp1": 34.34,
+    "adx": 48.4,
+    "result": "LOSS",
+    "mfe_r": 0.53,
+    "weeks_to_resolve": 11
+   },
+   {
+    "week_of": "2025-11-17",
+    "entry": 25.19,
+    "stop": 20.11,
+    "tp1": 31.97,
+    "adx": 46.5,
+    "result": "LOSS",
+    "mfe_r": 1.03,
+    "weeks_to_resolve": 11
+   },
+   {
+    "week_of": "2025-12-01",
+    "entry": 27.78,
+    "stop": 22.57,
+    "tp1": 34.73,
+    "adx": 43.8,
+    "result": "LOSS",
+    "mfe_r": 0.4,
+    "weeks_to_resolve": 8
+   },
+   {
+    "week_of": "2026-01-05",
+    "entry": 27.4,
+    "stop": 22.82,
+    "tp1": 33.51,
+    "adx": 35.7,
+    "result": "LOSS",
+    "mfe_r": 0.0,
+    "weeks_to_resolve": 3
+   }
+  ],
+  "warning": null
+ },
+ {
+  "symbol": "RKLB",
+  "signals": [
+   {
+    "week_of": "2025-09-22",
+    "entry": 46.26,
+    "stop": 36.33,
+    "tp1": 59.51,
+    "adx": 44.5,
+    "result": "WIN",
+    "mfe_r": 2.74,
+    "weeks_to_resolve": 2
+   },
+   {
+    "week_of": "2025-10-13",
+    "entry": 66.27,
+    "stop": 54.31,
+    "tp1": 82.22,
+    "adx": 47.6,
+    "result": "LOSS",
+    "mfe_r": 0.49,
+    "weeks_to_resolve": 3
+   },
+   {
+    "week_of": "2025-12-08",
+    "entry": 61.49,
+    "stop": 47.35,
+    "tp1": 80.34,
+    "adx": 35.0,
+    "result": "WIN",
+    "mfe_r": 2.01,
+    "weeks_to_resolve": 4
+   },
+   {
+    "week_of": "2025-12-15",
+    "entry": 70.52,
+    "stop": 55.48,
+    "tp1": 90.58,
+    "adx": 34.9,
+    "result": "WIN",
+    "mfe_r": 1.93,
+    "weeks_to_resolve": 4
+   },
+   {
+    "week_of": "2025-12-22",
+    "entry": 70.65,
+    "stop": 55.67,
+    "tp1": 90.62,
+    "adx": 35.5,
+    "result": "WIN",
+    "mfe_r": 1.93,
+    "weeks_to_resolve": 3
+   },
+   {
+    "week_of": "2026-03-16",
+    "entry": 67.23,
+    "stop": 50.46,
+    "tp1": 89.59,
+    "adx": 31.9,
+    "result": "WIN",
+    "mfe_r": 1.54,
+    "weeks_to_resolve": 5
+   },
+   {
+    "week_of": "2026-04-13",
+    "entry": 84.8,
+    "stop": 66.69,
+    "tp1": 108.94,
+    "adx": 28.3,
+    "result": "WIN",
+    "mfe_r": 2.67,
+    "weeks_to_resolve": 4
+   },
+   {
+    "week_of": "2026-04-20",
+    "entry": 79.68,
+    "stop": 61.36,
+    "tp1": 104.1,
+    "adx": 28.9,
+    "result": "WIN",
+    "mfe_r": 1.42,
+    "weeks_to_resolve": 2
+   },
+   {
+    "week_of": "2026-06-08",
+    "entry": 102.39,
+    "stop": 76.83,
+    "tp1": 136.47,
+    "adx": 34.9,
+    "result": "LOSS",
+    "mfe_r": 0.35,
+    "weeks_to_resolve": 5
+   },
+   {
+    "week_of": "2026-06-15",
+    "entry": 107.24,
+    "stop": 82.39,
+    "tp1": 140.37,
+    "adx": 34.1,
+    "result": "LOSS",
+    "mfe_r": 0.01,
+    "weeks_to_resolve": 1
+   }
+  ],
+  "warning": null
+ },
+ {
+  "symbol": "ONDS",
+  "signals": [
+   {
+    "week_of": "2025-10-27",
+    "entry": 6.44,
+    "stop": 4.34,
+    "tp1": 9.24,
+    "adx": 50.6,
+    "result": "WIN",
+    "mfe_r": 1.38,
+    "weeks_to_resolve": 5
+   },
+   {
+    "week_of": "2025-11-03",
+    "entry": 5.81,
+    "stop": 3.67,
+    "tp1": 8.66,
+    "adx": 48.4,
+    "result": "WIN",
+    "mfe_r": 1.43,
+    "weeks_to_resolve": 3
+   },
+   {
+    "week_of": "2025-11-17",
+    "entry": 6.74,
+    "stop": 4.43,
+    "tp1": 9.81,
+    "adx": 45.8,
+    "result": "WIN",
+    "mfe_r": 1.36,
+    "weeks_to_resolve": 3
+   },
+   {
+    "week_of": "2025-12-01",
+    "entry": 9.07,
+    "stop": 6.65,
+    "tp1": 12.3,
+    "adx": 44.7,
+    "result": "WIN",
+    "mfe_r": 2.49,
+    "weeks_to_resolve": 5
+   },
+   {
+    "week_of": "2025-12-08",
+    "entry": 8.75,
+    "stop": 6.31,
+    "tp1": 12.0,
+    "adx": 44.5,
+    "result": "WIN",
+    "mfe_r": 2.6,
+    "weeks_to_resolve": 4
+   },
+   {
+    "week_of": "2025-12-15",
+    "entry": 9.22,
+    "stop": 6.75,
+    "tp1": 12.52,
+    "adx": 43.5,
+    "result": "WIN",
+    "mfe_r": 2.38,
+    "weeks_to_resolve": 3
+   },
+   {
+    "week_of": "2025-12-29",
+    "entry": 11.02,
+    "stop": 8.44,
+    "tp1": 14.46,
+    "adx": 42.8,
+    "result": "WIN",
+    "mfe_r": 1.58,
+    "weeks_to_resolve": 1
+   },
+   {
+    "week_of": "2026-01-12",
+    "entry": 12.16,
+    "stop": 9.19,
+    "tp1": 16.12,
+    "adx": 45.1,
+    "result": "LOSS",
+    "mfe_r": 0.73,
+    "weeks_to_resolve": 3
+   },
+   {
+    "week_of": "2026-01-19",
+    "entry": 12.17,
+    "stop": 9.14,
+    "tp1": 16.21,
+    "adx": 45.9,
+    "result": "LOSS",
+    "mfe_r": 0.3,
+    "weeks_to_resolve": 2
+   },
+   {
+    "week_of": "2026-01-26",
+    "entry": 10.36,
+    "stop": 7.23,
+    "tp1": 14.53,
+    "adx": 45.2,
+    "result": "OPEN",
+    "mfe_r": 0.66,
+    "weeks_to_resolve": 12
+   },
+   {
+    "week_of": "2026-02-02",
+    "entry": 9.69,
+    "stop": 6.45,
+    "tp1": 14.0,
+    "adx": 43.2,
+    "result": "OPEN",
+    "mfe_r": 0.84,
+    "weeks_to_resolve": 12
+   },
+   {
+    "week_of": "2026-03-02",
+    "entry": 9.83,
+    "stop": 6.58,
+    "tp1": 14.17,
+    "adx": 38.6,
+    "result": "OPEN",
+    "mfe_r": 1.22,
+    "weeks_to_resolve": 12
+   },
+   {
+    "week_of": "2026-03-09",
+    "entry": 10.16,
+    "stop": 6.95,
+    "tp1": 14.44,
+    "adx": 37.8,
+    "result": "OPEN",
+    "mfe_r": 1.25,
+    "weeks_to_resolve": 12
+   },
+   {
+    "week_of": "2026-05-11",
+    "entry": 10.62,
+    "stop": 7.44,
+    "tp1": 14.86,
+    "adx": 28.5,
+    "result": "LOSS",
+    "mfe_r": 1.11,
+    "weeks_to_resolve": 6
+   },
+   {
+    "week_of": "2026-05-25",
+    "entry": 13.22,
+    "stop": 9.8,
+    "tp1": 17.78,
+    "adx": 29.2,
+    "result": "LOSS",
+    "mfe_r": 0.27,
+    "weeks_to_resolve": 2
+   },
+   {
+    "week_of": "2026-06-01",
+    "entry": 10.43,
+    "stop": 6.85,
+    "tp1": 15.21,
+    "adx": 30.2,
+    "result": "LOSS",
+    "mfe_r": 0.11,
+    "weeks_to_resolve": 6
+   }
+  ],
+  "warning": null
+ },
+ {
+  "symbol": "DRAM",
+  "signals": [],
+  "warning": "insufficient weekly data (25 bars)"
+ },
+ {
+  "symbol": "SPCX",
+  "signals": [],
+  "warning": "insufficient weekly data (15 bars)"
+ },
+ {
+  "symbol": "ASTX",
+  "signals": [],
+  "warning": "insufficient weekly data (63 bars)"
+ },
+ {
+  "symbol": "BBAI",
+  "signals": [
+   {
+    "week_of": "2025-09-22",
+    "entry": 6.73,
+    "stop": 4.71,
+    "tp1": 9.43,
+    "adx": 28.6,
+    "result": "OPEN",
+    "mfe_r": 1.32,
+    "weeks_to_resolve": 12
+   },
+   {
+    "week_of": "2025-10-20",
+    "entry": 7.05,
+    "stop": 4.92,
+    "tp1": 9.89,
+    "adx": 32.7,
+    "result": "OPEN",
+    "mfe_r": 0.16,
+    "weeks_to_resolve": 12
+   },
+   {
+    "week_of": "2025-10-27",
+    "entry": 6.92,
+    "stop": 4.86,
+    "tp1": 9.67,
+    "adx": 33.2,
+    "result": "OPEN",
+    "mfe_r": 0.23,
+    "weeks_to_resolve": 12
+   },
+   {
+    "week_of": "2025-12-08",
+    "entry": 6.38,
+    "stop": 4.33,
+    "tp1": 9.12,
+    "adx": 29.3,
+    "result": "LOSS",
+    "mfe_r": 0.12,
+    "weeks_to_resolve": 8
+   },
+   {
+    "week_of": "2025-12-15",
+    "entry": 6.26,
+    "stop": 4.25,
+    "tp1": 8.94,
+    "adx": 28.2,
+    "result": "LOSS",
+    "mfe_r": 0.18,
+    "weeks_to_resolve": 7
+   }
+  ],
+  "warning": null
+ },
+ {
+  "symbol": "NIO",
+  "signals": [],
+  "warning": null
+ },
+ {
+  "symbol": "HOOD",
+  "signals": [
+   {
+    "week_of": "2026-06-15",
+    "entry": 108.15,
+    "stop": 87.9,
+    "tp1": 135.14,
+    "adx": 19.5,
+    "result": "LOSS",
+    "mfe_r": 0.59,
+    "weeks_to_resolve": 6
+   },
+   {
+    "week_of": "2026-06-22",
+    "entry": 98.69,
+    "stop": 77.78,
+    "tp1": 126.57,
+    "adx": 20.1,
+    "result": "OPEN",
+    "mfe_r": 1.27,
+    "weeks_to_resolve": 12
+   },
+   {
+    "week_of": "2026-09-14",
+    "entry": 119.82,
+    "stop": 97.37,
+    "tp1": 149.75,
+    "adx": 18.6,
+    "result": "OPEN",
+    "mfe_r": 0.0,
+    "weeks_to_resolve": 0
+   }
+  ],
+  "warning": null
+ },
+ {
+  "symbol": "AMD",
+  "signals": [
+   {
+    "week_of": "2025-11-10",
+    "entry": 246.81,
+    "stop": 214.97,
+    "tp1": 289.26,
+    "adx": 37.0,
+    "result": "LOSS",
+    "mfe_r": 0.06,
+    "weeks_to_resolve": 1
+   },
+   {
+    "week_of": "2026-08-03",
+    "entry": 483.36,
+    "stop": 389.19,
+    "tp1": 608.91,
+    "adx": 36.9,
+    "result": "OPEN",
+    "mfe_r": 0.81,
+    "weeks_to_resolve": 6
+   },
+   {
+    "week_of": "2026-09-14",
+    "entry": 559.82,
+    "stop": 470.7,
+    "tp1": 678.65,
+    "adx": 27.5,
+    "result": "OPEN",
+    "mfe_r": 0.0,
+    "weeks_to_resolve": 0
+   }
+  ],
+  "warning": null
+ }
+]

@@ -1,0 +1,39 @@
+trades: 374 total, 21 masked-14, 353 working
+
+=== RS3 (rs) ===
+  W=63 quartile: n=353 (unranked 0) means={'top': -0.0614, 'middle': 0.0476, 'bottom': -0.5657} mono=False
+  W=63 tercile: n=353 (unranked 0) means={'top': 0.0481, 'middle': -0.1304, 'bottom': -0.2487} mono=True
+  W=42 quartile: n=353 (unranked 0) means={'top': 0.0568, 'middle': -0.1377, 'bottom': -0.181} mono=True
+  W=42 tercile: n=353 (unranked 0) means={'top': 0.0634, 'middle': -0.2378, 'bottom': -0.2131} mono=False
+  W=84 quartile: n=353 (unranked 0) means={'top': 0.0075, 'middle': -0.0333, 'bottom': -0.2957} mono=True
+  W=84 tercile: n=353 (unranked 0) means={'top': -0.0396, 'middle': -0.0015, 'bottom': -0.0565} mono=False
+  VERDICT RS3: FAIL  flags={"mono_full": false, "top_pos_full": false, "mono_val": false, "delta_val_pos": true, "costs_mono": false, "costs_top_pos": false, "boot_p95": true, "loso_min_pos": true, "wf_majority_pos": false, "conc_top3_pos": false, "perturb_direction": true, "perturb_monotonic": true}
+
+=== RS6 (rs) ===
+  W=126 quartile: n=352 (unranked 1) means={'top': 0.0441, 'middle': -0.0652, 'bottom': -0.2282} mono=True
+  W=126 tercile: n=352 (unranked 1) means={'top': 0.024, 'middle': -0.0732, 'bottom': -0.164} mono=True
+  W=63 quartile: n=353 (unranked 0) means={'top': -0.0614, 'middle': 0.0476, 'bottom': -0.5657} mono=False
+  W=63 tercile: n=353 (unranked 0) means={'top': 0.0481, 'middle': -0.1304, 'bottom': -0.2487} mono=True
+  W=168 quartile: n=351 (unranked 2) means={'top': 0.0577, 'middle': -0.127, 'bottom': -0.1381} mono=True
+  W=168 tercile: n=351 (unranked 2) means={'top': 0.0485, 'middle': -0.1707, 'bottom': -0.1163} mono=False
+  VERDICT RS6: MAYBE  flags={"mono_full": true, "top_pos_full": true, "mono_val": true, "delta_val_pos": true, "costs_mono": true, "costs_top_pos": false, "boot_p95": false, "loso_min_pos": true, "wf_majority_pos": false, "conc_top3_pos": false, "perturb_direction": true, "perturb_monotonic": false}
+
+=== SECTOR_RS (sector_rs) ===
+  W=63 quartile: n=330 (unranked 23) means={'top': -0.132, 'middle': 0.008, 'bottom': 0.284} mono=False
+  W=63 tercile: n=330 (unranked 23) means={'top': -0.0321, 'middle': -0.011, 'bottom': 0.0972} mono=False
+  W=42 quartile: n=330 (unranked 23) means={'top': -0.0091, 'middle': -0.0539, 'bottom': 0.1961} mono=False
+  W=42 tercile: n=330 (unranked 23) means={'top': 0.0018, 'middle': -0.2035, 'bottom': 0.2836} mono=False
+  W=84 quartile: n=330 (unranked 23) means={'top': -0.2057, 'middle': 0.0467, 'bottom': 0.3326} mono=False
+  W=84 tercile: n=330 (unranked 23) means={'top': -0.1532, 'middle': 0.0275, 'bottom': 0.3076} mono=False
+  VERDICT SECTOR_RS: FAIL  flags={"mono_full": false, "top_pos_full": false, "mono_val": false, "delta_val_pos": false, "costs_mono": false, "costs_top_pos": false, "boot_p95": false, "loso_min_pos": false, "wf_majority_pos": false, "conc_top3_pos": false, "perturb_direction": false, "perturb_monotonic": false}
+
+=== HI52 (hi52) ===
+  W=252 quartile: n=305 (unranked 48) means={'top': -0.0699, 'middle': 0.0104, 'bottom': -0.171} mono=False
+  W=252 tercile: n=305 (unranked 48) means={'top': -0.0428, 'middle': -0.0517, 'bottom': -0.0132} mono=False
+  W=63 quartile: n=353 (unranked 0) means={'top': 0.0026, 'middle': -0.0644, 'bottom': 0.082} mono=False
+  W=63 tercile: n=353 (unranked 0) means={'top': -0.0227, 'middle': -0.0062, 'bottom': -0.1532} mono=False
+  W=126 quartile: n=352 (unranked 1) means={'top': -0.017, 'middle': -0.0031, 'bottom': -0.4997} mono=False
+  W=126 tercile: n=352 (unranked 1) means={'top': -0.0463, 'middle': -0.0456, 'bottom': 0.1351} mono=False
+  VERDICT HI52: FAIL  flags={"mono_full": false, "top_pos_full": false, "mono_val": false, "delta_val_pos": false, "costs_mono": false, "costs_top_pos": false, "boot_p95": false, "loso_min_pos": true, "wf_majority_pos": true, "conc_top3_pos": false, "perturb_direction": false, "perturb_monotonic": false}
+
+Wrote: /home/hatch/workspace/quality-flow-scanner-v5/selection_edge/phase2_strength

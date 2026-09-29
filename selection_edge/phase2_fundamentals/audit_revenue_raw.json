@@ -1,0 +1,202 @@
+[
+ {
+  "symbol": "TSLA",
+  "n_cols": 7,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2024-12-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "AMZN",
+  "n_cols": 6,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-03-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "NFLX",
+  "n_cols": 5,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-06-30..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "ADBE",
+  "n_cols": 7,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-02-28..2026-08-31",
+  "error": null
+ },
+ {
+  "symbol": "INTC",
+  "n_cols": 5,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-06-30..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "BA",
+  "n_cols": 6,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-03-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "PANW",
+  "n_cols": 7,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-01-31..2026-07-31",
+  "error": null
+ },
+ {
+  "symbol": "MU",
+  "n_cols": 5,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-05-31..2026-05-31",
+  "error": null
+ },
+ {
+  "symbol": "QCOM",
+  "n_cols": 7,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2024-12-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "WMT",
+  "n_cols": 6,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-01-31..2026-07-31",
+  "error": null
+ },
+ {
+  "symbol": "PG",
+  "n_cols": 7,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2024-12-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "NKE",
+  "n_cols": 5,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-05-31..2026-05-31",
+  "error": null
+ },
+ {
+  "symbol": "INTU",
+  "n_cols": 6,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-01-31..2026-07-31",
+  "error": null
+ },
+ {
+  "symbol": "MELI",
+  "n_cols": 6,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2024-12-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "MCD",
+  "n_cols": 5,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-06-30..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "XYZ",
+  "n_cols": 7,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2024-12-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "SCHW",
+  "n_cols": 5,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-06-30..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "T",
+  "n_cols": 6,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-03-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "UNP",
+  "n_cols": 7,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2024-12-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "CRWD",
+  "n_cols": 5,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-07-31..2026-07-31",
+  "error": null
+ },
+ {
+  "symbol": "HON",
+  "n_cols": 7,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2024-12-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "GE",
+  "n_cols": 7,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2024-12-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "VLO",
+  "n_cols": 6,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-03-31..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "LMT",
+  "n_cols": 5,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2025-06-30..2026-06-30",
+  "error": null
+ },
+ {
+  "symbol": "NXPI",
+  "n_cols": 6,
+  "rev_row": "Total Revenue",
+  "rev_q_inwin": 5,
+  "rev_span": "2024-12-31..2026-06-30",
+  "error": null
+ }
+]

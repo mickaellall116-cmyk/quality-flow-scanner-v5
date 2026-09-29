@@ -1,0 +1,19 @@
+loading 4H cache (2024-09-16 -> 2026-09-14)...
+  51 symbols
+  baseline fidelity verified (V0 == pine_buy_signal on all bars)
+== V0_baseline ==
+  [4bps] n=263 win=44.9% exp=0.195R PF=1.27 ret=35.3% dd=35.17% hold=18.1
+  [25bps] n=263 win=44.1% exp=0.115R PF=1.15 ret=19.92% dd=37.16% hold=18.1
+== V1_no_volume ==
+  [4bps] n=350 win=45.7% exp=0.231R PF=1.35 ret=4.33% dd=28.06% hold=19.2
+  [25bps] n=350 win=44.9% exp=0.153R PF=1.22 ret=-10.32% dd=31.79% hold=19.2
+== V2_no_hot_guard ==
+  [4bps] n=566 win=48.4% exp=0.318R PF=1.48 ret=110.55% dd=36.03% hold=19.1
+  [25bps] n=566 win=47.5% exp=0.244R PF=1.35 ret=80.75% dd=38.1% hold=19.1
+== V3_no_trend_bull ==
+  [4bps] n=531 win=41.4% exp=0.082R PF=1.17 ret=33.99% dd=36.19% hold=10.8
+  [25bps] n=531 win=39.5% exp=0.008R PF=1.02 ret=0.56% dd=46.43% hold=10.8
+== V4_no_strong_trend ==
+  [4bps] n=512 win=45.7% exp=0.145R PF=1.21 ret=92.93% dd=32.51% hold=17.5
+  [25bps] n=512 win=44.5% exp=0.062R PF=1.08 ret=65.74% dd=36.47% hold=17.5
+== V5_no_score_gate ==

@@ -1,0 +1,271 @@
+{
+  "spec": "v6_short_research/SHORT_SPEC.md (written before coding)",
+  "universe": [
+    "NVDA",
+    "AAPL",
+    "MSFT",
+    "META",
+    "AMD",
+    "AVGO",
+    "TSLA",
+    "PLTR",
+    "NFLX",
+    "CRM",
+    "ORCL",
+    "JPM",
+    "XOM",
+    "LLY",
+    "COST",
+    "GOOGL",
+    "AMZN",
+    "WMT"
+  ],
+  "dropped_symbols": [],
+  "window": "2024-09-16 09:30:00-04:00 -> 2026-09-14 13:30:00-04:00",
+  "signals_total": 657,
+  "signals_by_setup": {
+    "S1": 300,
+    "S2": 251,
+    "S3": 106
+  },
+  "signals_per_symbol": {
+    "NVDA": 23,
+    "AAPL": 42,
+    "MSFT": 41,
+    "META": 39,
+    "AMD": 14,
+    "AVGO": 31,
+    "TSLA": 23,
+    "PLTR": 35,
+    "NFLX": 70,
+    "CRM": 39,
+    "ORCL": 49,
+    "JPM": 29,
+    "XOM": 24,
+    "LLY": 44,
+    "COST": 52,
+    "GOOGL": 31,
+    "AMZN": 27,
+    "WMT": 44
+  },
+  "skipped_adverse_gap": 2,
+  "qqq_buy_hold_pct_same_window": 52.93,
+  "borrow_assumption": "1% annualized over trading days held, liquid large caps only \u2014 approximation, see spec",
+  "notes": "Short mirror of the long walk-forward backtest: point-in-time signals on closed 4H bars, next-bar-open entry, stop-first ties, 4bps round trip + borrow, 1 position/symbol, 30-bar max hold. No market-gate entry filter by design \u2014 regime is measured, not filtered (see by_regime split).",
+  "summary": {
+    "variant": "short / next-bar open",
+    "trades": 230,
+    "win_rate_pct": 35.2,
+    "avg_win_pct": 6.29,
+    "avg_loss_pct": -4.31,
+    "expectancy_pct": -0.576,
+    "expectancy_r": -0.08,
+    "profit_factor": 0.79,
+    "avg_hold_bars": 14.1,
+    "avg_borrow_pct_per_trade": 0.0312,
+    "exit_reasons": {
+      "stop": 128,
+      "time": 60,
+      "target": 42
+    },
+    "final_equity_10k_1pct_risk": 7746.25,
+    "max_drawdown_pct": 40.54,
+    "by_symbol": [
+      {
+        "group": "NFLX",
+        "trades": 19,
+        "win_rate_pct": 42.1,
+        "expectancy_pct": 1.164,
+        "expectancy_r": 0.029
+      },
+      {
+        "group": "COST",
+        "trades": 17,
+        "win_rate_pct": 47.1,
+        "expectancy_pct": -0.744,
+        "expectancy_r": -0.208
+      },
+      {
+        "group": "MSFT",
+        "trades": 16,
+        "win_rate_pct": 31.2,
+        "expectancy_pct": -0.773,
+        "expectancy_r": 0.427
+      },
+      {
+        "group": "META",
+        "trades": 15,
+        "win_rate_pct": 53.3,
+        "expectancy_pct": 1.601,
+        "expectancy_r": 0.627
+      },
+      {
+        "group": "ORCL",
+        "trades": 15,
+        "win_rate_pct": 53.3,
+        "expectancy_pct": 2.728,
+        "expectancy_r": 0.511
+      },
+      {
+        "group": "AAPL",
+        "trades": 14,
+        "win_rate_pct": 28.6,
+        "expectancy_pct": -1.224,
+        "expectancy_r": -0.304
+      },
+      {
+        "group": "LLY",
+        "trades": 14,
+        "win_rate_pct": 28.6,
+        "expectancy_pct": -1.211,
+        "expectancy_r": -0.435
+      },
+      {
+        "group": "PLTR",
+        "trades": 13,
+        "win_rate_pct": 23.1,
+        "expectancy_pct": -3.003,
+        "expectancy_r": -0.271
+      },
+      {
+        "group": "AVGO",
+        "trades": 12,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": -1.588,
+        "expectancy_r": -0.261
+      },
+      {
+        "group": "GOOGL",
+        "trades": 12,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": -0.579,
+        "expectancy_r": -0.138
+      },
+      {
+        "group": "JPM",
+        "trades": 12,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": -1.245,
+        "expectancy_r": -0.139
+      },
+      {
+        "group": "WMT",
+        "trades": 12,
+        "win_rate_pct": 58.3,
+        "expectancy_pct": 1.352,
+        "expectancy_r": 0.291
+      },
+      {
+        "group": "XOM",
+        "trades": 12,
+        "win_rate_pct": 8.3,
+        "expectancy_pct": -2.569,
+        "expectancy_r": -0.625
+      },
+      {
+        "group": "CRM",
+        "trades": 11,
+        "win_rate_pct": 36.4,
+        "expectancy_pct": -0.595,
+        "expectancy_r": -0.287
+      },
+      {
+        "group": "AMZN",
+        "trades": 10,
+        "win_rate_pct": 30.0,
+        "expectancy_pct": -0.867,
+        "expectancy_r": -0.206
+      },
+      {
+        "group": "NVDA",
+        "trades": 10,
+        "win_rate_pct": 10.0,
+        "expectancy_pct": -3.466,
+        "expectancy_r": -0.628
+      },
+      {
+        "group": "TSLA",
+        "trades": 9,
+        "win_rate_pct": 33.3,
+        "expectancy_pct": -1.27,
+        "expectancy_r": -0.162
+      },
+      {
+        "group": "AMD",
+        "trades": 7,
+        "win_rate_pct": 28.6,
+        "expectancy_pct": -0.65,
+        "expectancy_r": -0.291
+      }
+    ],
+    "by_regime": [
+      {
+        "group": "RISK-ON",
+        "trades": 82,
+        "win_rate_pct": 40.2,
+        "expectancy_pct": 0.161,
+        "expectancy_r": -0.034
+      },
+      {
+        "group": "RISK-OFF",
+        "trades": 81,
+        "win_rate_pct": 28.4,
+        "expectancy_pct": -1.647,
+        "expectancy_r": -0.297
+      },
+      {
+        "group": "CAUTIOUS",
+        "trades": 67,
+        "win_rate_pct": 37.3,
+        "expectancy_pct": -0.184,
+        "expectancy_r": 0.127
+      }
+    ],
+    "by_setup": [
+      {
+        "group": "S1_BREAKDOWN",
+        "trades": 127,
+        "win_rate_pct": 37.8,
+        "expectancy_pct": -0.504,
+        "expectancy_r": 0.029
+      },
+      {
+        "group": "S3_BULL_TRAP",
+        "trades": 69,
+        "win_rate_pct": 43.5,
+        "expectancy_pct": 0.186,
+        "expectancy_r": 0.044
+      },
+      {
+        "group": "S2_PULLBACK_SHORT",
+        "trades": 34,
+        "win_rate_pct": 8.8,
+        "expectancy_pct": -2.391,
+        "expectancy_r": -0.737
+      }
+    ],
+    "by_gate": [
+      {
+        "group": "BLOCK",
+        "trades": 119,
+        "win_rate_pct": 35.3,
+        "expectancy_pct": -0.908,
+        "expectancy_r": -0.042
+      },
+      {
+        "group": "CAUTION",
+        "trades": 74,
+        "win_rate_pct": 35.1,
+        "expectancy_pct": 0.001,
+        "expectancy_r": -0.124
+      },
+      {
+        "group": "CONFIRM",
+        "trades": 37,
+        "win_rate_pct": 35.1,
+        "expectancy_pct": -0.663,
+        "expectancy_r": -0.112
+      }
+    ]
+  }
+}

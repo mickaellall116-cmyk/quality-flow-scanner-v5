@@ -1,0 +1,556 @@
+{
+ "n_genuine_crowded_bars": 21,
+ "selection_edge_adx": {
+  "n_bars": 21,
+  "mean_edge_r": 0.6507,
+  "median_edge_r": 0.2274,
+  "pos_frac": 0.571,
+  "bootstrap": {
+   "n": 5000,
+   "p5": 0.002,
+   "p25": 0.3627,
+   "p50": 0.6296,
+   "p75": 0.9012,
+   "p95": 1.2959,
+   "frac_above_0": 0.9508
+  },
+  "bars": [
+   {
+    "t": "2024-05-24 13:30:00-04:00",
+    "edge": -0.2343,
+    "sel": -0.9471,
+    "rej": -0.7129,
+    "syms": [
+     "AMD",
+     "SMCI"
+    ]
+   },
+   {
+    "t": "2024-06-20 13:30:00-04:00",
+    "edge": -0.1204,
+    "sel": -1.2002,
+    "rej": -1.0799,
+    "syms": [
+     "QQQ",
+     "RKLB",
+     "SMCI"
+    ]
+   },
+   {
+    "t": "2024-11-12 13:30:00-05:00",
+    "edge": 1.3702,
+    "sel": 3.3316,
+    "rej": 1.9614,
+    "syms": [
+     "HOOD",
+     "PLTR"
+    ]
+   },
+   {
+    "t": "2024-12-11 13:30:00-05:00",
+    "edge": 0.1275,
+    "sel": 0.6777,
+    "rej": 0.5502,
+    "syms": [
+     "HOOD",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2024-12-20 13:30:00-05:00",
+    "edge": 0.4691,
+    "sel": 1.1396,
+    "rej": 0.6704,
+    "syms": [
+     "ANET",
+     "BBAI",
+     "ONDS"
+    ]
+   },
+   {
+    "t": "2025-01-03 13:30:00-05:00",
+    "edge": 2.1877,
+    "sel": 0.2736,
+    "rej": -1.914,
+    "syms": [
+     "HOOD",
+     "PLTR",
+     "RKLB"
+    ]
+   },
+   {
+    "t": "2025-06-11 13:30:00-04:00",
+    "edge": 0.2274,
+    "sel": -0.8052,
+    "rej": -1.0327,
+    "syms": [
+     "ANET",
+     "RKLB"
+    ]
+   },
+   {
+    "t": "2025-06-16 13:30:00-04:00",
+    "edge": -2.0233,
+    "sel": 3.8263,
+    "rej": 5.8496,
+    "syms": [
+     "BBAI",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2025-07-16 13:30:00-04:00",
+    "edge": 1.566,
+    "sel": 1.9331,
+    "rej": 0.367,
+    "syms": [
+     "BBAI",
+     "NIO"
+    ]
+   },
+   {
+    "t": "2025-07-31 09:30:00-04:00",
+    "edge": 2.1908,
+    "sel": 2.4796,
+    "rej": 0.2888,
+    "syms": [
+     "ONDS",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2025-08-04 13:30:00-04:00",
+    "edge": 1.7208,
+    "sel": 0.4773,
+    "rej": -1.2435,
+    "syms": [
+     "ANET",
+     "HOOD",
+     "SMCI"
+    ]
+   },
+   {
+    "t": "2025-08-27 13:30:00-04:00",
+    "edge": 0.7653,
+    "sel": -1.1376,
+    "rej": -1.9029,
+    "syms": [
+     "NIO",
+     "QQQ"
+    ]
+   },
+   {
+    "t": "2025-10-02 13:30:00-04:00",
+    "edge": -2.0337,
+    "sel": -0.3166,
+    "rej": 1.7171,
+    "syms": [
+     "QQQ",
+     "RKLB"
+    ]
+   },
+   {
+    "t": "2025-10-14 13:30:00-04:00",
+    "edge": 2.7751,
+    "sel": 1.5302,
+    "rej": -1.245,
+    "syms": [
+     "PLTR",
+     "QQQ",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2025-10-20 13:30:00-04:00",
+    "edge": -0.0624,
+    "sel": -1.3893,
+    "rej": -1.3269,
+    "syms": [
+     "HOOD",
+     "SMCI",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2026-01-23 13:30:00-05:00",
+    "edge": -2.2579,
+    "sel": -1.3267,
+    "rej": 0.9313,
+    "syms": [
+     "ANET",
+     "RKLB"
+    ]
+   },
+   {
+    "t": "2026-04-20 13:30:00-04:00",
+    "edge": 5.1036,
+    "sel": 3.6608,
+    "rej": -1.4428,
+    "syms": [
+     "HOOD",
+     "QQQ"
+    ]
+   },
+   {
+    "t": "2026-05-14 13:30:00-04:00",
+    "edge": 3.5572,
+    "sel": 2.7389,
+    "rej": -0.8184,
+    "syms": [
+     "NIO",
+     "SMCI"
+    ]
+   },
+   {
+    "t": "2026-06-02 13:30:00-04:00",
+    "edge": -0.2211,
+    "sel": -1.5627,
+    "rej": -1.3416,
+    "syms": [
+     "HOOD",
+     "ONDS",
+     "PLTR"
+    ]
+   },
+   {
+    "t": "2026-06-04 13:30:00-04:00",
+    "edge": -0.2028,
+    "sel": -1.3792,
+    "rej": -1.1764,
+    "syms": [
+     "ANET",
+     "HOOD"
+    ]
+   },
+   {
+    "t": "2026-06-12 13:30:00-04:00",
+    "edge": -1.2408,
+    "sel": -0.7092,
+    "rej": 0.5316,
+    "syms": [
+     "AMD",
+     "ANET",
+     "QQQ"
+    ]
+   }
+  ]
+ },
+ "selection_edge_rs": {
+  "n_bars": 21,
+  "mean_edge_r": -0.4179,
+  "median_edge_r": -0.0854,
+  "pos_frac": 0.476,
+  "bootstrap": {
+   "n": 5000,
+   "p5": -1.2207,
+   "p25": -0.7491,
+   "p50": -0.3975,
+   "p75": -0.0708,
+   "p95": 0.371,
+   "frac_above_0": 0.208
+  },
+  "bars": [
+   {
+    "t": "2024-05-24 13:30:00-04:00",
+    "edge": 0.2343,
+    "sel": -0.7129,
+    "rej": -0.9471,
+    "syms": [
+     "AMD",
+     "SMCI"
+    ]
+   },
+   {
+    "t": "2024-06-20 13:30:00-04:00",
+    "edge": -0.0854,
+    "sel": -1.1886,
+    "rej": -1.1032,
+    "syms": [
+     "QQQ",
+     "RKLB",
+     "SMCI"
+    ]
+   },
+   {
+    "t": "2024-11-12 13:30:00-05:00",
+    "edge": 1.3702,
+    "sel": 3.3316,
+    "rej": 1.9614,
+    "syms": [
+     "HOOD",
+     "PLTR"
+    ]
+   },
+   {
+    "t": "2024-12-11 13:30:00-05:00",
+    "edge": 0.1275,
+    "sel": 0.6777,
+    "rej": 0.5502,
+    "syms": [
+     "HOOD",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2024-12-20 13:30:00-05:00",
+    "edge": 0.1175,
+    "sel": 1.0223,
+    "rej": 0.9048,
+    "syms": [
+     "ANET",
+     "BBAI",
+     "ONDS"
+    ]
+   },
+   {
+    "t": "2025-01-03 13:30:00-05:00",
+    "edge": -3.7208,
+    "sel": -1.6958,
+    "rej": 2.0249,
+    "syms": [
+     "HOOD",
+     "PLTR",
+     "RKLB"
+    ]
+   },
+   {
+    "t": "2025-06-11 13:30:00-04:00",
+    "edge": -0.2274,
+    "sel": -1.0327,
+    "rej": -0.8052,
+    "syms": [
+     "ANET",
+     "RKLB"
+    ]
+   },
+   {
+    "t": "2025-06-16 13:30:00-04:00",
+    "edge": 2.0233,
+    "sel": 5.8496,
+    "rej": 3.8263,
+    "syms": [
+     "BBAI",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2025-07-16 13:30:00-04:00",
+    "edge": 1.566,
+    "sel": 1.9331,
+    "rej": 0.367,
+    "syms": [
+     "BBAI",
+     "NIO"
+    ]
+   },
+   {
+    "t": "2025-07-31 09:30:00-04:00",
+    "edge": -2.1908,
+    "sel": 0.2888,
+    "rej": 2.4796,
+    "syms": [
+     "ONDS",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2025-08-04 13:30:00-04:00",
+    "edge": -5.3693,
+    "sel": -4.2495,
+    "rej": 1.1198,
+    "syms": [
+     "ANET",
+     "HOOD",
+     "SMCI"
+    ]
+   },
+   {
+    "t": "2025-08-27 13:30:00-04:00",
+    "edge": 0.7653,
+    "sel": -1.1376,
+    "rej": -1.9029,
+    "syms": [
+     "NIO",
+     "QQQ"
+    ]
+   },
+   {
+    "t": "2025-10-02 13:30:00-04:00",
+    "edge": 2.0337,
+    "sel": 1.7171,
+    "rej": -0.3166,
+    "syms": [
+     "QQQ",
+     "RKLB"
+    ]
+   },
+   {
+    "t": "2025-10-14 13:30:00-04:00",
+    "edge": -1.173,
+    "sel": -1.1019,
+    "rej": 0.0711,
+    "syms": [
+     "PLTR",
+     "QQQ",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2025-10-20 13:30:00-04:00",
+    "edge": -0.4695,
+    "sel": -1.525,
+    "rej": -1.0555,
+    "syms": [
+     "HOOD",
+     "SMCI",
+     "SOFI"
+    ]
+   },
+   {
+    "t": "2026-01-23 13:30:00-05:00",
+    "edge": -2.2579,
+    "sel": -1.3267,
+    "rej": 0.9313,
+    "syms": [
+     "ANET",
+     "RKLB"
+    ]
+   },
+   {
+    "t": "2026-04-20 13:30:00-04:00",
+    "edge": -5.1036,
+    "sel": -1.4428,
+    "rej": 3.6608,
+    "syms": [
+     "HOOD",
+     "QQQ"
+    ]
+   },
+   {
+    "t": "2026-05-14 13:30:00-04:00",
+    "edge": 3.5572,
+    "sel": 2.7389,
+    "rej": -0.8184,
+    "syms": [
+     "NIO",
+     "SMCI"
+    ]
+   },
+   {
+    "t": "2026-06-02 13:30:00-04:00",
+    "edge": -0.2211,
+    "sel": -1.5627,
+    "rej": -1.3416,
+    "syms": [
+     "HOOD",
+     "ONDS",
+     "PLTR"
+    ]
+   },
+   {
+    "t": "2026-06-04 13:30:00-04:00",
+    "edge": -0.2028,
+    "sel": -1.3792,
+    "rej": -1.1764,
+    "syms": [
+     "ANET",
+     "HOOD"
+    ]
+   },
+   {
+    "t": "2026-06-12 13:30:00-04:00",
+    "edge": 0.451,
+    "sel": -0.1452,
+    "rej": -0.5962,
+    "syms": [
+     "AMD",
+     "ANET",
+     "QQQ"
+    ]
+   }
+  ]
+ },
+ "per_method_full_sample": {
+  "takeall": {
+   "eligible_signals": 237,
+   "selected_signals": 178,
+   "expectancy_r": 0.2209,
+   "profit_factor": 1.34,
+   "win_rate_pct": 50.0,
+   "avg_winner_r": 1.7557,
+   "avg_loser_r": -1.3139,
+   "mean_mfe_r": 2.808,
+   "mean_mae_r": -1.142,
+   "max_dd_pct": 25.3,
+   "total_return_pct": 42.05,
+   "opportunity_cost": {
+    "rejected_n": 0,
+    "rejected_exp_r": null
+   }
+  },
+  "rs": {
+   "eligible_signals": 237,
+   "selected_signals": 179,
+   "expectancy_r": 0.1599,
+   "profit_factor": 1.24,
+   "win_rate_pct": 48.0,
+   "avg_winner_r": 1.7471,
+   "avg_loser_r": -1.3077,
+   "mean_mfe_r": 2.742,
+   "mean_mae_r": -1.157,
+   "max_dd_pct": 31.25,
+   "total_return_pct": 27.02,
+   "opportunity_cost": {
+    "rejected_n": 11,
+    "rejected_exp_r": 0.311
+   }
+  },
+  "adx": {
+   "eligible_signals": 237,
+   "selected_signals": 178,
+   "expectancy_r": 0.3137,
+   "profit_factor": 1.5,
+   "win_rate_pct": 50.6,
+   "avg_winner_r": 1.8508,
+   "avg_loser_r": -1.2584,
+   "mean_mfe_r": 3.006,
+   "mean_mae_r": -1.118,
+   "max_dd_pct": 26.78,
+   "total_return_pct": 68.01,
+   "opportunity_cost": {
+    "rejected_n": 14,
+    "rejected_exp_r": -0.6495
+   }
+  }
+ },
+ "per_method_crowded_bars": {
+  "takeall": {
+   "selected_at_crowded": 25,
+   "expectancy_r": -0.0209,
+   "win_rate_pct": 40.0,
+   "avg_winner_r": 2.0926,
+   "avg_loser_r": -1.4299
+  },
+  "rs": {
+   "selected_at_crowded": 26,
+   "expectancy_r": -0.2779,
+   "win_rate_pct": 34.6,
+   "avg_winner_r": 1.9089,
+   "avg_loser_r": -1.4356
+  },
+  "adx": {
+   "selected_at_crowded": 26,
+   "expectancy_r": 0.5685,
+   "win_rate_pct": 46.2,
+   "avg_winner_r": 2.5277,
+   "avg_loser_r": -1.1107
+  }
+ },
+ "combo_decision": {
+  "rs_expectancy_r": 0.1599,
+  "takeall_expectancy_r": 0.2209,
+  "rs_beats_takeall": false,
+  "combo_run": false,
+  "reason": "RS ranking does not beat take-all (+0.160R vs +0.221R); per the prompt and the mandate's 'do not combine weak discoveries' rule, the RS+ADX combo is NOT justified and was not run."
+ }
+}

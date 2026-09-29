@@ -1,0 +1,558 @@
+{
+ "factor": "FAM5_vol_regime_percentile",
+ "rule": "63d realized-vol percentile rank vs own trailing 252 values",
+ "base_key": "fam5_63",
+ "pre_registered": "REPORT.md Sections 1-4, locked before computation",
+ "n_trades_total": 353,
+ "n_trades_with_factor": 269,
+ "n_excluded_null_factor": 84,
+ "headline": {
+  "TOP": {
+   "n": 72,
+   "exp": -0.0034,
+   "pf": 0.995,
+   "win_rate": 0.403,
+   "max_dd_r": -14.386,
+   "total_r": -0.24
+  },
+  "MIDDLE": {
+   "n": 131,
+   "exp": -0.0838,
+   "pf": 0.887,
+   "win_rate": 0.366,
+   "max_dd_r": -37.13,
+   "total_r": -10.98
+  },
+  "BOTTOM": {
+   "n": 66,
+   "exp": 0.1182,
+   "pf": 1.183,
+   "win_rate": 0.439,
+   "max_dd_r": -15.752,
+   "total_r": 7.8
+  },
+  "monotonic": false,
+  "top_minus_bottom": -0.1216
+ },
+ "cost_ladder": {
+  "25bps": {
+   "TOP": {
+    "n": 72,
+    "exp": 0.0894,
+    "pf": 1.144,
+    "win_rate": 0.403,
+    "max_dd_r": -11.953,
+    "total_r": 6.44
+   },
+   "MIDDLE": {
+    "n": 131,
+    "exp": 0.0179,
+    "pf": 1.026,
+    "win_rate": 0.366,
+    "max_dd_r": -31.576,
+    "total_r": 2.35
+   },
+   "BOTTOM": {
+    "n": 66,
+    "exp": 0.2359,
+    "pf": 1.409,
+    "win_rate": 0.439,
+    "max_dd_r": -11.247,
+    "total_r": 15.57
+   },
+   "monotonic": false,
+   "top_minus_bottom": -0.1465
+  },
+  "50bps": {
+   "TOP": {
+    "n": 72,
+    "exp": -0.0034,
+    "pf": 0.995,
+    "win_rate": 0.403,
+    "max_dd_r": -14.386,
+    "total_r": -0.24
+   },
+   "MIDDLE": {
+    "n": 131,
+    "exp": -0.0838,
+    "pf": 0.887,
+    "win_rate": 0.366,
+    "max_dd_r": -37.13,
+    "total_r": -10.98
+   },
+   "BOTTOM": {
+    "n": 66,
+    "exp": 0.1182,
+    "pf": 1.183,
+    "win_rate": 0.439,
+    "max_dd_r": -15.752,
+    "total_r": 7.8
+   },
+   "monotonic": false,
+   "top_minus_bottom": -0.1216
+  },
+  "75bps": {
+   "TOP": {
+    "n": 72,
+    "exp": -0.0962,
+    "pf": 0.869,
+    "win_rate": 0.389,
+    "max_dd_r": -16.82,
+    "total_r": -6.93
+   },
+   "MIDDLE": {
+    "n": 131,
+    "exp": -0.1856,
+    "pf": 0.769,
+    "win_rate": 0.359,
+    "max_dd_r": -42.683,
+    "total_r": -24.31
+   },
+   "BOTTOM": {
+    "n": 66,
+    "exp": 0.0005,
+    "pf": 1.001,
+    "win_rate": 0.424,
+    "max_dd_r": -20.256,
+    "total_r": 0.03
+   },
+   "monotonic": false,
+   "top_minus_bottom": -0.0967
+  },
+  "100bps": {
+   "TOP": {
+    "n": 72,
+    "exp": -0.189,
+    "pf": 0.762,
+    "win_rate": 0.375,
+    "max_dd_r": -19.253,
+    "total_r": -13.61
+   },
+   "MIDDLE": {
+    "n": 131,
+    "exp": -0.2873,
+    "pf": 0.669,
+    "win_rate": 0.351,
+    "max_dd_r": -48.237,
+    "total_r": -37.64
+   },
+   "BOTTOM": {
+    "n": 66,
+    "exp": -0.1171,
+    "pf": 0.852,
+    "win_rate": 0.379,
+    "max_dd_r": -24.761,
+    "total_r": -7.73
+   },
+   "monotonic": false,
+   "top_minus_bottom": -0.0719
+  }
+ },
+ "dev": {
+  "TOP": {
+   "n": 11,
+   "exp": -0.4551,
+   "pf": 0.469,
+   "win_rate": 0.273,
+   "max_dd_r": -4.033,
+   "total_r": -5.01
+  },
+  "MIDDLE": {
+   "n": 22,
+   "exp": -0.4305,
+   "pf": 0.476,
+   "win_rate": 0.318,
+   "max_dd_r": -11.626,
+   "total_r": -9.47
+  },
+  "BOTTOM": {
+   "n": 9,
+   "exp": 1.534,
+   "pf": 6.793,
+   "win_rate": 0.778,
+   "max_dd_r": -1.274,
+   "total_r": 13.81
+  },
+  "monotonic": false,
+  "top_minus_bottom": -1.9891
+ },
+ "val": {
+  "TOP": {
+   "n": 61,
+   "exp": 0.0781,
+   "pf": 1.121,
+   "win_rate": 0.426,
+   "max_dd_r": -14.386,
+   "total_r": 4.76
+  },
+  "MIDDLE": {
+   "n": 109,
+   "exp": -0.0139,
+   "pf": 0.981,
+   "win_rate": 0.376,
+   "max_dd_r": -24.304,
+   "total_r": -1.51
+  },
+  "BOTTOM": {
+   "n": 57,
+   "exp": -0.1053,
+   "pf": 0.851,
+   "win_rate": 0.386,
+   "max_dd_r": -15.752,
+   "total_r": -6.0
+  },
+  "monotonic": true,
+  "top_minus_bottom": 0.1834
+ },
+ "years": {
+  "2024": {
+   "TOP": {
+    "n": 11,
+    "exp": -0.4551,
+    "pf": 0.469,
+    "win_rate": 0.273,
+    "max_dd_r": -4.033,
+    "total_r": -5.01
+   },
+   "MIDDLE": {
+    "n": 22,
+    "exp": -0.4305,
+    "pf": 0.476,
+    "win_rate": 0.318,
+    "max_dd_r": -11.626,
+    "total_r": -9.47
+   },
+   "BOTTOM": {
+    "n": 9,
+    "exp": 1.534,
+    "pf": 6.793,
+    "win_rate": 0.778,
+    "max_dd_r": -1.274,
+    "total_r": 13.81
+   },
+   "monotonic": false,
+   "top_minus_bottom": -1.9891
+  },
+  "2025": {
+   "TOP": {
+    "n": 30,
+    "exp": -0.1119,
+    "pf": 0.853,
+    "win_rate": 0.367,
+    "max_dd_r": -13.42,
+    "total_r": -3.36
+   },
+   "MIDDLE": {
+    "n": 54,
+    "exp": -0.1105,
+    "pf": 0.851,
+    "win_rate": 0.37,
+    "max_dd_r": -24.304,
+    "total_r": -5.97
+   },
+   "BOTTOM": {
+    "n": 28,
+    "exp": 0.0725,
+    "pf": 1.109,
+    "win_rate": 0.464,
+    "max_dd_r": -7.16,
+    "total_r": 2.03
+   },
+   "monotonic": false,
+   "top_minus_bottom": -0.1844
+  },
+  "2026": {
+   "TOP": {
+    "n": 31,
+    "exp": 0.2619,
+    "pf": 1.496,
+    "win_rate": 0.484,
+    "max_dd_r": -4.822,
+    "total_r": 8.12
+   },
+   "MIDDLE": {
+    "n": 55,
+    "exp": 0.0811,
+    "pf": 1.115,
+    "win_rate": 0.382,
+    "max_dd_r": -12.87,
+    "total_r": 4.46
+   },
+   "BOTTOM": {
+    "n": 29,
+    "exp": -0.2771,
+    "pf": 0.628,
+    "win_rate": 0.31,
+    "max_dd_r": -9.219,
+    "total_r": -8.04
+   },
+   "monotonic": true,
+   "top_minus_bottom": 0.539
+  }
+ },
+ "walk_forward_12mo_observe_6mo_test": [
+  {
+   "observe": "2023-10-01..2024-10-01",
+   "test": "2024-10-01..2025-04-01",
+   "observe_delta": -3.4368,
+   "observe_n": 12,
+   "test_delta": 0.0437,
+   "test_n": 63
+  },
+  {
+   "observe": "2024-04-01..2025-04-01",
+   "test": "2025-04-01..2025-10-01",
+   "observe_delta": -0.4891,
+   "observe_n": 75,
+   "test_delta": -0.8514,
+   "test_n": 52
+  },
+  {
+   "observe": "2024-10-01..2025-10-01",
+   "test": "2025-10-01..2026-04-01",
+   "observe_delta": -0.3898,
+   "observe_n": 115,
+   "test_delta": -0.0327,
+   "test_n": 64
+  },
+  {
+   "observe": "2025-04-01..2026-04-01",
+   "test": "2026-04-01..2026-10-01",
+   "observe_delta": -0.4575,
+   "observe_n": 116,
+   "test_delta": 0.6573,
+   "test_n": 78
+  }
+ ],
+ "perturbations": {
+  "fam5_42": {
+   "headline": {
+    "TOP": {
+     "n": 87,
+     "exp": -0.0757,
+     "pf": 0.889,
+     "win_rate": 0.402,
+     "max_dd_r": -21.319,
+     "total_r": -6.59
+    },
+    "MIDDLE": {
+     "n": 135,
+     "exp": 0.0438,
+     "pf": 1.063,
+     "win_rate": 0.393,
+     "max_dd_r": -26.715,
+     "total_r": 5.91
+    },
+    "BOTTOM": {
+     "n": 60,
+     "exp": -0.0815,
+     "pf": 0.889,
+     "win_rate": 0.4,
+     "max_dd_r": -16.75,
+     "total_r": -4.89
+    },
+    "monotonic": false,
+    "top_minus_bottom": 0.0058
+   },
+   "val": {
+    "TOP": {
+     "n": 74,
+     "exp": 0.0108,
+     "pf": 1.016,
+     "win_rate": 0.405,
+     "max_dd_r": -17.037,
+     "total_r": 0.8
+    },
+    "MIDDLE": {
+     "n": 104,
+     "exp": 0.1143,
+     "pf": 1.169,
+     "win_rate": 0.404,
+     "max_dd_r": -17.706,
+     "total_r": 11.88
+    },
+    "BOTTOM": {
+     "n": 50,
+     "exp": -0.2963,
+     "pf": 0.614,
+     "win_rate": 0.36,
+     "max_dd_r": -16.75,
+     "total_r": -14.81
+    },
+    "monotonic": false,
+    "top_minus_bottom": 0.3071
+   }
+  },
+  "fam5_84": {
+   "headline": {
+    "TOP": {
+     "n": 70,
+     "exp": -0.1306,
+     "pf": 0.817,
+     "win_rate": 0.371,
+     "max_dd_r": -15.771,
+     "total_r": -9.14
+    },
+    "MIDDLE": {
+     "n": 143,
+     "exp": 0.0527,
+     "pf": 1.076,
+     "win_rate": 0.406,
+     "max_dd_r": -25.203,
+     "total_r": 7.54
+    },
+    "BOTTOM": {
+     "n": 43,
+     "exp": -0.0924,
+     "pf": 0.87,
+     "win_rate": 0.372,
+     "max_dd_r": -9.336,
+     "total_r": -3.97
+    },
+    "monotonic": false,
+    "top_minus_bottom": -0.0382
+   },
+   "val": {
+    "TOP": {
+     "n": 63,
+     "exp": -0.0531,
+     "pf": 0.924,
+     "win_rate": 0.381,
+     "max_dd_r": -15.771,
+     "total_r": -3.35
+    },
+    "MIDDLE": {
+     "n": 124,
+     "exp": 0.0033,
+     "pf": 1.005,
+     "win_rate": 0.403,
+     "max_dd_r": -17.963,
+     "total_r": 0.41
+    },
+    "BOTTOM": {
+     "n": 39,
+     "exp": -0.0548,
+     "pf": 0.924,
+     "win_rate": 0.359,
+     "max_dd_r": -8.234,
+     "total_r": -2.14
+    },
+    "monotonic": false,
+    "top_minus_bottom": 0.0017
+   }
+  }
+ },
+ "concentration": {
+  "top_symbols_by_topbucket_r": [
+   [
+    "ARM",
+    5.45
+   ],
+   [
+    "CRWD",
+    5.43
+   ],
+   [
+    "MS",
+    4.16
+   ],
+   [
+    "JPM",
+    3.36
+   ],
+   [
+    "CRM",
+    3.36
+   ],
+   [
+    "KLAC",
+    3.11
+   ],
+   [
+    "CVX",
+    2.74
+   ],
+   [
+    "GOOGL",
+    2.3
+   ]
+  ],
+  "drop_top1": {
+   "n": 266,
+   "delta": -0.1984,
+   "top_exp": -0.0802,
+   "monotonic": false
+  },
+  "drop_top3": {
+   "n": 261,
+   "delta": -0.3184,
+   "top_exp": -0.2246,
+   "monotonic": false
+  },
+  "drop_top5": {
+   "n": 252,
+   "delta": -0.4324,
+   "top_exp": -0.3332,
+   "monotonic": false
+  }
+ },
+ "bootstrap_delta_trade": {
+  "n_iter": 5000,
+  "block": "trade",
+  "n_valid": 5000,
+  "mean": -0.1201,
+  "ci95_lo": -0.7184,
+  "ci95_hi": 0.451,
+  "p_positive": 0.351
+ },
+ "bootstrap_delta_symbol_block": {
+  "n_iter": 5000,
+  "block": "symbol",
+  "n_valid": 5000,
+  "mean": -0.1191,
+  "ci95_lo": -0.7227,
+  "ci95_hi": 0.475,
+  "p_positive": 0.3468
+ },
+ "top_absolute": {
+  "n": 72,
+  "exp": -0.0034,
+  "ci95": [
+   -0.3654,
+   0.4019
+  ],
+  "clears_zero": false
+ },
+ "loso": {
+  "delta": {
+   "n": 104,
+   "min": -0.1984,
+   "q25": -0.1417,
+   "median": -0.1216,
+   "mean": -0.1216,
+   "max": 0.0063,
+   "n_negative": 103
+  },
+  "top_exp": {
+   "n": 104,
+   "min": -0.081,
+   "q25": -0.0034,
+   "median": -0.0034,
+   "mean": -0.0034,
+   "max": 0.0489,
+   "n_negative": 73
+  }
+ },
+ "verdict": {
+  "verdict": "FAIL",
+  "hard_fails": [
+   "headline not monotonic TOP>MID>BOTTOM",
+   "TOP bucket not positive @50bps",
+   "delta not positive @75bps (-0.0967)",
+   "perturbation fam5_84 flips direction (headline -0.0382, val 0.0017)",
+   "LOSO delta min -0.1984 < 0",
+   "bootstrap delta CI includes 0 [-0.7184, 0.451]"
+  ],
+  "notes": []
+ }
+}

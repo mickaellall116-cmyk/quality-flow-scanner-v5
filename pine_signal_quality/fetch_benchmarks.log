@@ -1,0 +1,76 @@
+  NVDA: sector=Technology -> etf=XLK
+  PLTR: sector=Technology -> etf=XLK
+  TSLA: sector=Consumer Cyclical -> etf=XLY
+  SOFI: sector=Financial Services -> etf=XLF
+  SMCI: sector=Technology -> etf=XLK
+  AMD: sector=Technology -> etf=XLK
+  AAPL: sector=Technology -> etf=XLK
+  MSFT: sector=Technology -> etf=XLK
+  META: sector=Communication Services -> etf=XLC
+  COIN: sector=Financial Services -> etf=XLF
+  MSTR: sector=Technology -> etf=XLK
+  AVGO: sector=Technology -> etf=XLK
+  GOOGL: sector=Communication Services -> etf=XLC
+  AMZN: sector=Consumer Cyclical -> etf=XLY
+  NFLX: sector=Communication Services -> etf=XLC
+  CRM: sector=Technology -> etf=XLK
+  MU: sector=Technology -> etf=XLK
+  INTC: sector=Technology -> etf=XLK
+  LRCX: sector=Technology -> etf=XLK
+  AMAT: sector=Technology -> etf=XLK
+  QCOM: sector=Technology -> etf=XLK
+  ARM: sector=Technology -> etf=XLK
+  HOOD: sector=Financial Services -> etf=XLF
+  APP: sector=Communication Services -> etf=XLC
+  NET: sector=Technology -> etf=XLK
+  SNOW: sector=Technology -> etf=XLK
+  DDOG: sector=Technology -> etf=XLK
+  CRWD: sector=Technology -> etf=XLK
+  SHOP: sector=Technology -> etf=XLK
+  RKLB: sector=Industrials -> etf=XLI
+  ASTS: sector=Technology -> etf=XLK
+  LUNR: sector=Industrials -> etf=XLI
+  PYPL: sector=Financial Services -> etf=XLF
+  NU: sector=Financial Services -> etf=XLF
+  MELI: sector=Consumer Cyclical -> etf=XLY
+  NIO: sector=Consumer Cyclical -> etf=XLY
+  MRNA: sector=Healthcare -> etf=XLV
+  PFE: sector=Healthcare -> etf=XLV
+  F: sector=Consumer Cyclical -> etf=XLY
+sector_map frozen to disk
+benchmark ETFs needed: ['QQQ', 'SPY', 'XLC', 'XLF', 'XLI', 'XLK', 'XLV', 'XLY']
+$QQQ: 1h data not available for startTime=1622520000 and endTime=1685678400. The requested range must be within the last 730 days.
+
+1 Failed download:
+['QQQ']: 1h data not available for startTime=1622520000 and endTime=1685678400. The requested range must be within the last 730 days.
+$QQQ: 1h data not available for startTime=1622520000 and endTime=1685678400. The requested range must be within the last 730 days.
+
+1 Failed download:
+['QQQ']: 1h data not available for startTime=1622520000 and endTime=1685678400. The requested range must be within the last 730 days.
+$QQQ: 1h data not available for startTime=1622520000 and endTime=1685678400. The requested range must be within the last 730 days.
+
+1 Failed download:
+['QQQ']: 1h data not available for startTime=1622520000 and endTime=1685678400. The requested range must be within the last 730 days.
+$QQQ: 1h data not available for startTime=1622520000 and endTime=1685678400. The requested range must be within the last 730 days.
+
+1 Failed download:
+['QQQ']: 1h data not available for startTime=1622520000 and endTime=1685678400. The requested range must be within the last 730 days.
+  QQQ 2021-06-01: FAILED all tries
+$QQQ: 1h data not available for startTime=1685678400 and endTime=1748836800. The requested range must be within the last 730 days.
+
+1 Failed download:
+['QQQ']: 1h data not available for startTime=1685678400 and endTime=1748836800. The requested range must be within the last 730 days.
+$QQQ: 1h data not available for startTime=1685678400 and endTime=1748836800. The requested range must be within the last 730 days.
+
+1 Failed download:
+['QQQ']: 1h data not available for startTime=1685678400 and endTime=1748836800. The requested range must be within the last 730 days.
+$QQQ: 1h data not available for startTime=1685678400 and endTime=1748836800. The requested range must be within the last 730 days.
+
+1 Failed download:
+['QQQ']: 1h data not available for startTime=1685678400 and endTime=1748836800. The requested range must be within the last 730 days.
+$QQQ: 1h data not available for startTime=1685678400 and endTime=1748836800. The requested range must be within the last 730 days.
+
+1 Failed download:
+['QQQ']: 1h data not available for startTime=1685678400 and endTime=1748836800. The requested range must be within the last 730 days.
+  QQQ 2023-06-02: FAILED all tries
+  QQQ 2025-06-02->2026-09-19: 2261 bars

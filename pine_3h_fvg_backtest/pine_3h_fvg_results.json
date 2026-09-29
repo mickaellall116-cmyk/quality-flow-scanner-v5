@@ -1,0 +1,534 @@
+{
+ "fvg_marginal_bars_not_canonical": 317,
+ "fvg_sub_signal_bars_total": 1427,
+ "combos": [
+  {
+   "name": "BASE(all-off)",
+   "trades": 371,
+   "trades_added_by_fvg": 0,
+   "skipped_gap": 0,
+   "pooled": [
+    {
+     "config": "3H_FVG:BASE(all-off)",
+     "cost": "4bps",
+     "trades": 371,
+     "win_rate_pct": 51.8,
+     "expectancy_net_r": 0.221,
+     "profit_factor": 1.35,
+     "total_return_pct": 93.7,
+     "max_drawdown_pct": 34.91,
+     "avg_hold_bars": 18.5,
+     "market_exposure_pct": 85.3,
+     "tp1_hit_rate_pct": 55.3,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 63,
+     "skipped_max_risk": 15,
+     "exit_reasons": {
+      "stop": 324,
+      "ema55-break": 45,
+      "ema55-bear": 2
+     }
+    },
+    {
+     "config": "3H_FVG:BASE(all-off)",
+     "cost": "25bps",
+     "trades": 371,
+     "win_rate_pct": 50.7,
+     "expectancy_net_r": 0.158,
+     "profit_factor": 1.24,
+     "total_return_pct": 55.81,
+     "max_drawdown_pct": 39.32,
+     "avg_hold_bars": 18.5,
+     "market_exposure_pct": 85.3,
+     "tp1_hit_rate_pct": 55.3,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 62,
+     "skipped_max_risk": 16,
+     "exit_reasons": {
+      "stop": 324,
+      "ema55-break": 45,
+      "ema55-bear": 2
+     }
+    }
+   ],
+   "per_ticker": [
+    {
+     "symbol": "QQQ",
+     "trades": 39,
+     "4bps": {
+      "trades": 39,
+      "win_rate_pct": 46.2,
+      "expectancy_net_r": -0.072,
+      "profit_factor": 0.91
+     },
+     "25bps": {
+      "trades": 39,
+      "win_rate_pct": 43.6,
+      "expectancy_net_r": -0.264,
+      "profit_factor": 0.71
+     }
+    },
+    {
+     "symbol": "SMCI",
+     "trades": 32,
+     "4bps": {
+      "trades": 32,
+      "win_rate_pct": 40.6,
+      "expectancy_net_r": -0.159,
+      "profit_factor": 0.8
+     },
+     "25bps": {
+      "trades": 32,
+      "win_rate_pct": 40.6,
+      "expectancy_net_r": -0.201,
+      "profit_factor": 0.75
+     }
+    },
+    {
+     "symbol": "PLTR",
+     "trades": 29,
+     "4bps": {
+      "trades": 29,
+      "win_rate_pct": 62.1,
+      "expectancy_net_r": 0.659,
+      "profit_factor": 2.47
+     },
+     "25bps": {
+      "trades": 29,
+      "win_rate_pct": 62.1,
+      "expectancy_net_r": 0.601,
+      "profit_factor": 2.28
+     }
+    },
+    {
+     "symbol": "ANET",
+     "trades": 36,
+     "4bps": {
+      "trades": 36,
+      "win_rate_pct": 50.0,
+      "expectancy_net_r": 0.076,
+      "profit_factor": 1.13
+     },
+     "25bps": {
+      "trades": 36,
+      "win_rate_pct": 50.0,
+      "expectancy_net_r": 0.004,
+      "profit_factor": 1.01
+     }
+    },
+    {
+     "symbol": "SOFI",
+     "trades": 39,
+     "4bps": {
+      "trades": 39,
+      "win_rate_pct": 51.3,
+      "expectancy_net_r": -0.061,
+      "profit_factor": 0.91
+     },
+     "25bps": {
+      "trades": 39,
+      "win_rate_pct": 46.2,
+      "expectancy_net_r": -0.117,
+      "profit_factor": 0.84
+     }
+    },
+    {
+     "symbol": "RKLB",
+     "trades": 36,
+     "4bps": {
+      "trades": 36,
+      "win_rate_pct": 55.6,
+      "expectancy_net_r": 0.491,
+      "profit_factor": 2.03
+     },
+     "25bps": {
+      "trades": 36,
+      "win_rate_pct": 52.8,
+      "expectancy_net_r": 0.452,
+      "profit_factor": 1.91
+     }
+    },
+    {
+     "symbol": "ONDS",
+     "trades": 32,
+     "4bps": {
+      "trades": 32,
+      "win_rate_pct": 50.0,
+      "expectancy_net_r": 0.238,
+      "profit_factor": 1.46
+     },
+     "25bps": {
+      "trades": 32,
+      "win_rate_pct": 50.0,
+      "expectancy_net_r": 0.214,
+      "profit_factor": 1.4
+     }
+    },
+    {
+     "symbol": "DRAM",
+     "trades": 3,
+     "4bps": {
+      "trades": 3,
+      "win_rate_pct": 0.0,
+      "expectancy_net_r": -1.737,
+      "profit_factor": 0.0
+     },
+     "25bps": {
+      "trades": 3,
+      "win_rate_pct": 0.0,
+      "expectancy_net_r": -1.803,
+      "profit_factor": 0.0
+     }
+    },
+    {
+     "symbol": "SPCX",
+     "trades": 0
+    },
+    {
+     "symbol": "ASTX",
+     "trades": 9,
+     "4bps": {
+      "trades": 9,
+      "win_rate_pct": 44.4,
+      "expectancy_net_r": -0.062,
+      "profit_factor": 0.89
+     },
+     "25bps": {
+      "trades": 9,
+      "win_rate_pct": 44.4,
+      "expectancy_net_r": -0.078,
+      "profit_factor": 0.87
+     }
+    },
+    {
+     "symbol": "BBAI",
+     "trades": 29,
+     "4bps": {
+      "trades": 29,
+      "win_rate_pct": 58.6,
+      "expectancy_net_r": 0.461,
+      "profit_factor": 1.92
+     },
+     "25bps": {
+      "trades": 29,
+      "win_rate_pct": 58.6,
+      "expectancy_net_r": 0.429,
+      "profit_factor": 1.83
+     }
+    },
+    {
+     "symbol": "NIO",
+     "trades": 22,
+     "4bps": {
+      "trades": 22,
+      "win_rate_pct": 54.5,
+      "expectancy_net_r": -0.099,
+      "profit_factor": 0.86
+     },
+     "25bps": {
+      "trades": 22,
+      "win_rate_pct": 54.5,
+      "expectancy_net_r": -0.148,
+      "profit_factor": 0.8
+     }
+    },
+    {
+     "symbol": "HOOD",
+     "trades": 35,
+     "4bps": {
+      "trades": 35,
+      "win_rate_pct": 54.3,
+      "expectancy_net_r": 0.654,
+      "profit_factor": 2.22
+     },
+     "25bps": {
+      "trades": 35,
+      "win_rate_pct": 54.3,
+      "expectancy_net_r": 0.604,
+      "profit_factor": 2.08
+     }
+    },
+    {
+     "symbol": "AMD",
+     "trades": 30,
+     "4bps": {
+      "trades": 30,
+      "win_rate_pct": 56.7,
+      "expectancy_net_r": 0.562,
+      "profit_factor": 1.82
+     },
+     "25bps": {
+      "trades": 30,
+      "win_rate_pct": 56.7,
+      "expectancy_net_r": 0.5,
+      "profit_factor": 1.7
+     }
+    }
+   ]
+  },
+  {
+   "name": "FVG-only",
+   "trades": 434,
+   "trades_added_by_fvg": 116,
+   "skipped_gap": 0,
+   "pooled": [
+    {
+     "config": "3H_FVG:FVG-only",
+     "cost": "4bps",
+     "trades": 434,
+     "win_rate_pct": 48.8,
+     "expectancy_net_r": 0.172,
+     "profit_factor": 1.28,
+     "total_return_pct": 35.66,
+     "max_drawdown_pct": 34.69,
+     "avg_hold_bars": 17.7,
+     "market_exposure_pct": 86.9,
+     "tp1_hit_rate_pct": 52.5,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 82,
+     "skipped_max_risk": 18,
+     "exit_reasons": {
+      "stop": 361,
+      "ema55-break": 71,
+      "ema55-bear": 2
+     }
+    },
+    {
+     "config": "3H_FVG:FVG-only",
+     "cost": "25bps",
+     "trades": 434,
+     "win_rate_pct": 47.9,
+     "expectancy_net_r": 0.107,
+     "profit_factor": 1.16,
+     "total_return_pct": 6.86,
+     "max_drawdown_pct": 41.24,
+     "avg_hold_bars": 17.7,
+     "market_exposure_pct": 86.9,
+     "tp1_hit_rate_pct": 52.5,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 80,
+     "skipped_max_risk": 21,
+     "exit_reasons": {
+      "stop": 361,
+      "ema55-break": 71,
+      "ema55-bear": 2
+     }
+    }
+   ],
+   "per_ticker": [
+    {
+     "symbol": "QQQ",
+     "trades": 51,
+     "4bps": {
+      "trades": 51,
+      "win_rate_pct": 41.2,
+      "expectancy_net_r": -0.164,
+      "profit_factor": 0.8
+     },
+     "25bps": {
+      "trades": 51,
+      "win_rate_pct": 39.2,
+      "expectancy_net_r": -0.354,
+      "profit_factor": 0.62
+     }
+    },
+    {
+     "symbol": "SMCI",
+     "trades": 35,
+     "4bps": {
+      "trades": 35,
+      "win_rate_pct": 37.1,
+      "expectancy_net_r": -0.196,
+      "profit_factor": 0.75
+     },
+     "25bps": {
+      "trades": 35,
+      "win_rate_pct": 37.1,
+      "expectancy_net_r": -0.237,
+      "profit_factor": 0.71
+     }
+    },
+    {
+     "symbol": "PLTR",
+     "trades": 38,
+     "4bps": {
+      "trades": 38,
+      "win_rate_pct": 52.6,
+      "expectancy_net_r": 0.35,
+      "profit_factor": 1.6
+     },
+     "25bps": {
+      "trades": 38,
+      "win_rate_pct": 52.6,
+      "expectancy_net_r": 0.294,
+      "profit_factor": 1.49
+     }
+    },
+    {
+     "symbol": "ANET",
+     "trades": 46,
+     "4bps": {
+      "trades": 46,
+      "win_rate_pct": 47.8,
+      "expectancy_net_r": 0.027,
+      "profit_factor": 1.05
+     },
+     "25bps": {
+      "trades": 46,
+      "win_rate_pct": 47.8,
+      "expectancy_net_r": -0.047,
+      "profit_factor": 0.93
+     }
+    },
+    {
+     "symbol": "SOFI",
+     "trades": 42,
+     "4bps": {
+      "trades": 42,
+      "win_rate_pct": 52.4,
+      "expectancy_net_r": -0.027,
+      "profit_factor": 0.96
+     },
+     "25bps": {
+      "trades": 42,
+      "win_rate_pct": 45.2,
+      "expectancy_net_r": -0.083,
+      "profit_factor": 0.88
+     }
+    },
+    {
+     "symbol": "RKLB",
+     "trades": 42,
+     "4bps": {
+      "trades": 42,
+      "win_rate_pct": 54.8,
+      "expectancy_net_r": 0.563,
+      "profit_factor": 2.28
+     },
+     "25bps": {
+      "trades": 42,
+      "win_rate_pct": 54.8,
+      "expectancy_net_r": 0.524,
+      "profit_factor": 2.15
+     }
+    },
+    {
+     "symbol": "ONDS",
+     "trades": 34,
+     "4bps": {
+      "trades": 34,
+      "win_rate_pct": 47.1,
+      "expectancy_net_r": 0.14,
+      "profit_factor": 1.25
+     },
+     "25bps": {
+      "trades": 34,
+      "win_rate_pct": 47.1,
+      "expectancy_net_r": 0.116,
+      "profit_factor": 1.2
+     }
+    },
+    {
+     "symbol": "DRAM",
+     "trades": 4,
+     "4bps": {
+      "trades": 4,
+      "win_rate_pct": 0.0,
+      "expectancy_net_r": -1.284,
+      "profit_factor": 0.0
+     },
+     "25bps": {
+      "trades": 4,
+      "win_rate_pct": 0.0,
+      "expectancy_net_r": -1.345,
+      "profit_factor": 0.0
+     }
+    },
+    {
+     "symbol": "SPCX",
+     "trades": 0
+    },
+    {
+     "symbol": "ASTX",
+     "trades": 10,
+     "4bps": {
+      "trades": 10,
+      "win_rate_pct": 50.0,
+      "expectancy_net_r": 0.044,
+      "profit_factor": 1.08
+     },
+     "25bps": {
+      "trades": 10,
+      "win_rate_pct": 50.0,
+      "expectancy_net_r": 0.028,
+      "profit_factor": 1.05
+     }
+    },
+    {
+     "symbol": "BBAI",
+     "trades": 33,
+     "4bps": {
+      "trades": 33,
+      "win_rate_pct": 54.5,
+      "expectancy_net_r": 0.308,
+      "profit_factor": 1.49
+     },
+     "25bps": {
+      "trades": 33,
+      "win_rate_pct": 54.5,
+      "expectancy_net_r": 0.275,
+      "profit_factor": 1.43
+     }
+    },
+    {
+     "symbol": "NIO",
+     "trades": 24,
+     "4bps": {
+      "trades": 24,
+      "win_rate_pct": 54.2,
+      "expectancy_net_r": 0.098,
+      "profit_factor": 1.18
+     },
+     "25bps": {
+      "trades": 24,
+      "win_rate_pct": 54.2,
+      "expectancy_net_r": 0.049,
+      "profit_factor": 1.09
+     }
+    },
+    {
+     "symbol": "HOOD",
+     "trades": 43,
+     "4bps": {
+      "trades": 43,
+      "win_rate_pct": 48.8,
+      "expectancy_net_r": 0.507,
+      "profit_factor": 1.98
+     },
+     "25bps": {
+      "trades": 43,
+      "win_rate_pct": 48.8,
+      "expectancy_net_r": 0.457,
+      "profit_factor": 1.84
+     }
+    },
+    {
+     "symbol": "AMD",
+     "trades": 32,
+     "4bps": {
+      "trades": 32,
+      "win_rate_pct": 56.2,
+      "expectancy_net_r": 0.576,
+      "profit_factor": 1.88
+     },
+     "25bps": {
+      "trades": 32,
+      "win_rate_pct": 56.2,
+      "expectancy_net_r": 0.515,
+      "profit_factor": 1.75
+     }
+    }
+   ]
+  }
+ ]
+}

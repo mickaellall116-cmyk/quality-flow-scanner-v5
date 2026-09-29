@@ -1,0 +1,305 @@
+{
+ "notes": [
+  "2022 out-of-sample validation of frozen entry candidates.",
+  "Protocol: signals >= 2022-01-01 only; EOD liquidation at last close.",
+  "Candidates frozen in CANDIDATES_FROZEN.md before this ran."
+ ],
+ "symbols": [
+  "AAPL",
+  "AMAT",
+  "AMD",
+  "AMZN",
+  "AVGO",
+  "BTC-USD",
+  "COST",
+  "CRM",
+  "ETH-USD",
+  "F",
+  "GOOGL",
+  "INTC",
+  "JPM",
+  "LLY",
+  "LRCX",
+  "MRNA",
+  "MSFT",
+  "MU",
+  "NFLX",
+  "NIO",
+  "NVDA",
+  "ORCL",
+  "PFE",
+  "PLTR",
+  "PYPL",
+  "QCOM",
+  "QQQ",
+  "SNOW",
+  "SPY",
+  "TSLA",
+  "WMT",
+  "XOM"
+ ],
+ "variants": {
+  "V0_baseline": {
+   "runs": [
+    {
+     "config": "PINE_V36_entryval:V0_baseline:2022:4h",
+     "cost": "4bps",
+     "trades": 39,
+     "win_rate_pct": 43.6,
+     "expectancy_net_r": 0.287,
+     "profit_factor": 1.35,
+     "total_return_pct": 11.21,
+     "max_drawdown_pct": 20.42,
+     "avg_hold_bars": 20.1,
+     "market_exposure_pct": 53.4,
+     "tp1_hit_rate_pct": 41.0,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 2,
+     "skipped_max_risk": 0,
+     "exit_reasons": {
+      "stop": 34,
+      "eod": 5
+     },
+     "avg_winner_r": 2.554,
+     "avg_loser_r": -1.465,
+     "stop_out_pct": 87.2
+    },
+    {
+     "config": "PINE_V36_entryval:V0_baseline:2022:4h",
+     "cost": "25bps",
+     "trades": 39,
+     "win_rate_pct": 43.6,
+     "expectancy_net_r": 0.205,
+     "profit_factor": 1.24,
+     "total_return_pct": 7.95,
+     "max_drawdown_pct": 21.65,
+     "avg_hold_bars": 20.1,
+     "market_exposure_pct": 53.4,
+     "tp1_hit_rate_pct": 41.0,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 2,
+     "skipped_max_risk": 0,
+     "exit_reasons": {
+      "stop": 34,
+      "eod": 5
+     },
+     "avg_winner_r": 2.46,
+     "avg_loser_r": -1.537,
+     "stop_out_pct": 87.2
+    }
+   ]
+  },
+  "C1_drop_harmful": {
+   "runs": [
+    {
+     "config": "PINE_V36_entryval:C1_drop_harmful:2022:4h",
+     "cost": "4bps",
+     "trades": 122,
+     "win_rate_pct": 47.5,
+     "expectancy_net_r": 0.007,
+     "profit_factor": 1.01,
+     "total_return_pct": -1.19,
+     "max_drawdown_pct": 28.53,
+     "avg_hold_bars": 18.1,
+     "market_exposure_pct": 69.6,
+     "tp1_hit_rate_pct": 44.3,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 42,
+     "skipped_max_risk": 2,
+     "exit_reasons": {
+      "stop": 108,
+      "eod": 10,
+      "ema55-break": 4
+     },
+     "avg_winner_r": 1.521,
+     "avg_loser_r": -1.365,
+     "stop_out_pct": 88.5
+    },
+    {
+     "config": "PINE_V36_entryval:C1_drop_harmful:2022:4h",
+     "cost": "25bps",
+     "trades": 122,
+     "win_rate_pct": 45.9,
+     "expectancy_net_r": -0.068,
+     "profit_factor": 0.91,
+     "total_return_pct": -6.69,
+     "max_drawdown_pct": 31.55,
+     "avg_hold_bars": 18.1,
+     "market_exposure_pct": 69.6,
+     "tp1_hit_rate_pct": 44.3,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 42,
+     "skipped_max_risk": 2,
+     "exit_reasons": {
+      "stop": 108,
+      "eod": 10,
+      "ema55-break": 4
+     },
+     "avg_winner_r": 1.495,
+     "avg_loser_r": -1.393,
+     "stop_out_pct": 88.5
+    }
+   ]
+  },
+  "C2_drop_harmful_neutral": {
+   "runs": [
+    {
+     "config": "PINE_V36_entryval:C2_drop_harmful_neutral:2022:4h",
+     "cost": "4bps",
+     "trades": 263,
+     "win_rate_pct": 43.3,
+     "expectancy_net_r": -0.089,
+     "profit_factor": 0.87,
+     "total_return_pct": -15.46,
+     "max_drawdown_pct": 35.7,
+     "avg_hold_bars": 15.3,
+     "market_exposure_pct": 91.8,
+     "tp1_hit_rate_pct": 39.5,
+     "skipped_gap_below_stop": 4,
+     "skipped_max_positions": 107,
+     "skipped_max_risk": 25,
+     "exit_reasons": {
+      "stop": 192,
+      "ema55-break": 57,
+      "eod": 14
+     },
+     "avg_winner_r": 1.381,
+     "avg_loser_r": -1.214,
+     "stop_out_pct": 73.0
+    },
+    {
+     "config": "PINE_V36_entryval:C2_drop_harmful_neutral:2022:4h",
+     "cost": "25bps",
+     "trades": 263,
+     "win_rate_pct": 41.8,
+     "expectancy_net_r": -0.168,
+     "profit_factor": 0.77,
+     "total_return_pct": -14.32,
+     "max_drawdown_pct": 40.26,
+     "avg_hold_bars": 15.3,
+     "market_exposure_pct": 91.8,
+     "tp1_hit_rate_pct": 39.5,
+     "skipped_gap_below_stop": 4,
+     "skipped_max_positions": 106,
+     "skipped_max_risk": 26,
+     "exit_reasons": {
+      "stop": 192,
+      "ema55-break": 57,
+      "eod": 14
+     },
+     "avg_winner_r": 1.352,
+     "avg_loser_r": -1.261,
+     "stop_out_pct": 73.0
+    }
+   ]
+  },
+  "C3_breakout_pure": {
+   "runs": [
+    {
+     "config": "PINE_V36_entryval:C3_breakout_pure:2022:4h",
+     "cost": "4bps",
+     "trades": 122,
+     "win_rate_pct": 47.5,
+     "expectancy_net_r": 0.007,
+     "profit_factor": 1.01,
+     "total_return_pct": -1.19,
+     "max_drawdown_pct": 28.53,
+     "avg_hold_bars": 18.1,
+     "market_exposure_pct": 69.6,
+     "tp1_hit_rate_pct": 44.3,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 42,
+     "skipped_max_risk": 2,
+     "exit_reasons": {
+      "stop": 108,
+      "eod": 10,
+      "ema55-break": 4
+     },
+     "avg_winner_r": 1.521,
+     "avg_loser_r": -1.365,
+     "stop_out_pct": 88.5
+    },
+    {
+     "config": "PINE_V36_entryval:C3_breakout_pure:2022:4h",
+     "cost": "25bps",
+     "trades": 122,
+     "win_rate_pct": 45.9,
+     "expectancy_net_r": -0.068,
+     "profit_factor": 0.91,
+     "total_return_pct": -6.69,
+     "max_drawdown_pct": 31.55,
+     "avg_hold_bars": 18.1,
+     "market_exposure_pct": 69.6,
+     "tp1_hit_rate_pct": 44.3,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 42,
+     "skipped_max_risk": 2,
+     "exit_reasons": {
+      "stop": 108,
+      "eod": 10,
+      "ema55-break": 4
+     },
+     "avg_winner_r": 1.495,
+     "avg_loser_r": -1.393,
+     "stop_out_pct": 88.5
+    }
+   ]
+  }
+ },
+ "candidate_cfgs": {
+  "V0_baseline": {
+   "volume": true,
+   "hot_guard": true,
+   "trend_bull": true,
+   "strong_trend": true,
+   "score_gate": true,
+   "breakout": true,
+   "ready_prev": true,
+   "modes": [
+    "breakout",
+    "confirmed",
+    "ready"
+   ]
+  },
+  "C1_drop_harmful": {
+   "volume": false,
+   "hot_guard": false,
+   "trend_bull": true,
+   "strong_trend": true,
+   "score_gate": true,
+   "breakout": true,
+   "ready_prev": true,
+   "modes": [
+    "breakout",
+    "confirmed",
+    "ready"
+   ]
+  },
+  "C2_drop_harmful_neutral": {
+   "volume": false,
+   "hot_guard": false,
+   "trend_bull": true,
+   "strong_trend": true,
+   "score_gate": false,
+   "breakout": true,
+   "ready_prev": true,
+   "modes": [
+    "breakout",
+    "confirmed",
+    "ready"
+   ]
+  },
+  "C3_breakout_pure": {
+   "volume": false,
+   "hot_guard": false,
+   "trend_bull": true,
+   "strong_trend": true,
+   "score_gate": false,
+   "breakout": true,
+   "ready_prev": true,
+   "modes": [
+    "breakout"
+   ]
+  }
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "placebo": "random_filter_same_block_count",
+ "n_trades": 237,
+ "n_blocked": 83,
+ "n_draws": 2000,
+ "real_delta_r": 0.1386,
+ "null_mean_delta_r": -0.0042,
+ "null_sd_delta_r": 0.0903,
+ "null_p5_r": -0.1582,
+ "null_p50_r": -0.0019,
+ "null_p95_r": 0.1393,
+ "real_percentile": 94.9,
+ "empirical_p_value": 0.051,
+ "note": "null = the specific WHICH of the 83 blocked trades is random; symmetric so null mean ~0"
+}

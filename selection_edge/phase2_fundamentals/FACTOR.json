@@ -1,0 +1,24 @@
+{
+ "blinding": "QQQ, SMCI, PLTR, ANET, SOFI, RKLB, ONDS, DRAM, SPCX, ASTX, BBAI, NIO, HOOD, AMD masked from construction and evaluation",
+ "buckets": {
+  "bottom": "pct < 25 (weak revisions)",
+  "middle": "25 <= pct < 75",
+  "top": "pct >= 75 (strong revisions)"
+ },
+ "construction": "V(s,d) = #up - #down with d-63 trading days < GradeDate <= d, d = last completed daily bar <= signal-bar close",
+ "cross_section": "percentile rank of V(signaled ticker, d) among 117 working names at same d; ties = average rank",
+ "date": "2026-09-24",
+ "factor_id": "F7-REV",
+ "family": 7,
+ "gates": {
+  "FAIL": "otherwise",
+  "MAYBE": "top>bottom directionally but a gate fails or sample too thin",
+  "PASS": "monotonic full-sample AND validation; top>0 @50bps; top>0 @75bps; LOSO sign-stable"
+ },
+ "name": "Net analyst rating revisions, trailing 63 trading days",
+ "population": "canonical_trades.json minus 14 blinded names minus 23 ETF trades -> 330 stock trades",
+ "primary_metric": "net_r_50bps",
+ "primary_question": "monotonicity: E[top] > E[middle] > E[bottom]",
+ "source": "yfinance get_upgrades_downgrades() \u2014 GradeDate, Action in {up, down}",
+ "status": "tested 2026-09-24: FAIL (inverted monotonicity, top -0.1354R @50bps, bottom +0.4802R; P(spread>0)=1.7%)"
+}

@@ -1,0 +1,47 @@
+//@version=6
+strategy("Quality Flow System V3.6 - V3.3 Engine + V3.5 Dashboard", overlay=true, initial_capital=1000000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, pyramiding=0, max_labels_count=500, max_boxes_count=100)
+
+// ============================================================
+// INPUTS
+// ============================================================
+ema9Len   = input.int(9, "EMA 9")
+ema21Len  = input.int(21, "EMA 21")
+ema55Len  = input.int(55, "EMA 55")
+ema200Len = input.int(200, "EMA 200")
+
+atrLen     = input.int(14, "ATR Length")
+adxLen     = input.int(14, "ADX Length")
+adxSmooth  = input.int(14, "ADX Smoothing")
+volLen     = input.int(20, "Volume MA")
+
+breakoutBars = input.int(10, "Breakout Lookback")
+tpATR        = input.float(2.0, "TP1 ATR", step=0.1)
+slATR        = input.float(1.5, "Stop ATR", step=0.1)
+trailATR     = input.float(2.5, "Runner Trail ATR", step=0.1)
+hotATR       = input.float(1.5, "HOT ATR Distance", step=0.1)
+
+pivotLen        = input.int(3, "Structure Pivot Length")
+sweepLookback   = input.int(20, "Liquidity Sweep Lookback")
+buyZoneAtrWidth = input.float(0.35, "Buy Zone ATR Width", step=0.05)
+nearZoneATR     = input.float(0.50, "Near Buy Zone ATR", step=0.05)
+
+useVolumeFilter = input.bool(true, "Use Volume Filter")
+avoidHotEntries = input.bool(true, "Avoid HOT Entries")
+
+// Smart money features are informational by default
+usePullbackAsEntry = input.bool(false, "Use Pullback as Real Entry")
+useFvgAsEntry      = input.bool(false, "Use FVG as Real Entry")
+useSweepAsEntry    = input.bool(false, "Use Sweep as Real Entry")
+
+showLabels    = input.bool(true, "Show Labels")
+showDashboard = input.bool(true, "Show Dashboard")
+showBuyZone   = input.bool(true, "Show Buy Zone")
+showFVG       = input.bool(true, "Show Latest Bull FVG")
+
+entryMode = input.string("Hybrid", "Entry Mode", options=["Conservative", "Hybrid", "Aggressive"])
+
+// (Full script as pasted by Mike 2026-09-20; retained here as the research
+// reference for the live-config backtest. See run_liveconfig.py.)
+// NOTE: Mike's live chart settings per 2026-09-20 screenshots:
+//   Entry Mode = Aggressive, Use Pullback as Real Entry = true,
+//   Use Sweep as Real Entry = true, Use FVG as Real Entry = false.

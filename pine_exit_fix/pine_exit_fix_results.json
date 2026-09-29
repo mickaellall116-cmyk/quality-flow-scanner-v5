@@ -1,0 +1,191 @@
+{
+ "notes": [
+  "Exit-fix exploratory, pre-specified in PINE_EXIT_FIX_SPEC.md.",
+  "Entries byte-identical across variants; only exit management varies.",
+  "baseline must reproduce ~+0.195R (sanity check).",
+  "fixA: stop 2.25x ATR, rest baseline. fixB: 2.25x stop until +1R MFE, then baseline mgmt. fixC: baseline stop, 3.5x trail, no trendBear.",
+  "Winner criterion: highest expectancy_net_r at 4bps with maxDD <= 40%."
+ ],
+ "variants": {
+  "baseline": {
+   "label": "Pine entries + Pine exits (rerun sanity)",
+   "runs": [
+    {
+     "config": "PINE_V36_exitfix:baseline:UX51:4h",
+     "cost": "4bps",
+     "trades": 263,
+     "win_rate_pct": 44.9,
+     "expectancy_net_r": 0.195,
+     "profit_factor": 1.27,
+     "total_return_pct": 35.3,
+     "max_drawdown_pct": 35.17,
+     "avg_hold_bars": 18.1,
+     "market_exposure_pct": 76.1,
+     "tp1_hit_rate_pct": 47.5,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 79,
+     "skipped_max_risk": 24,
+     "exit_reasons": {
+      "stop": 247,
+      "ema55-break": 16
+     }
+    },
+    {
+     "config": "PINE_V36_exitfix:baseline:UX51:4h",
+     "cost": "25bps",
+     "trades": 263,
+     "win_rate_pct": 44.1,
+     "expectancy_net_r": 0.115,
+     "profit_factor": 1.15,
+     "total_return_pct": 19.92,
+     "max_drawdown_pct": 37.16,
+     "avg_hold_bars": 18.1,
+     "market_exposure_pct": 76.1,
+     "tp1_hit_rate_pct": 47.5,
+     "skipped_gap_below_stop": 1,
+     "skipped_max_positions": 79,
+     "skipped_max_risk": 24,
+     "exit_reasons": {
+      "stop": 247,
+      "ema55-break": 16
+     }
+    }
+   ]
+  },
+  "fixA": {
+   "label": "wide_stop: stop 2.25x ATR, rest baseline",
+   "runs": [
+    {
+     "config": "PINE_V36_exitfix:fixA:UX51:4h",
+     "cost": "4bps",
+     "trades": 254,
+     "win_rate_pct": 52.8,
+     "expectancy_net_r": 0.234,
+     "profit_factor": 1.47,
+     "total_return_pct": 24.79,
+     "max_drawdown_pct": 22.54,
+     "avg_hold_bars": 22.1,
+     "market_exposure_pct": 78.9,
+     "tp1_hit_rate_pct": 55.9,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 79,
+     "skipped_max_risk": 28,
+     "exit_reasons": {
+      "stop": 224,
+      "ema55-break": 30
+     }
+    },
+    {
+     "config": "PINE_V36_exitfix:fixA:UX51:4h",
+     "cost": "25bps",
+     "trades": 254,
+     "win_rate_pct": 51.2,
+     "expectancy_net_r": 0.181,
+     "profit_factor": 1.35,
+     "total_return_pct": 16.12,
+     "max_drawdown_pct": 24.75,
+     "avg_hold_bars": 22.1,
+     "market_exposure_pct": 78.9,
+     "tp1_hit_rate_pct": 55.9,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 79,
+     "skipped_max_risk": 28,
+     "exit_reasons": {
+      "stop": 224,
+      "ema55-break": 30
+     }
+    }
+   ]
+  },
+  "fixB": {
+   "label": "late_arm: 2.25x stop until +1R MFE, then baseline mgmt",
+   "runs": [
+    {
+     "config": "PINE_V36_exitfix:fixB:UX51:4h",
+     "cost": "4bps",
+     "trades": 250,
+     "win_rate_pct": 54.4,
+     "expectancy_net_r": 0.289,
+     "profit_factor": 1.57,
+     "total_return_pct": 46.61,
+     "max_drawdown_pct": 17.87,
+     "avg_hold_bars": 24.8,
+     "market_exposure_pct": 81.0,
+     "tp1_hit_rate_pct": 60.4,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 88,
+     "skipped_max_risk": 25,
+     "exit_reasons": {
+      "stop": 248,
+      "ema55-break": 2
+     }
+    },
+    {
+     "config": "PINE_V36_exitfix:fixB:UX51:4h",
+     "cost": "25bps",
+     "trades": 250,
+     "win_rate_pct": 53.6,
+     "expectancy_net_r": 0.236,
+     "profit_factor": 1.44,
+     "total_return_pct": 34.28,
+     "max_drawdown_pct": 19.08,
+     "avg_hold_bars": 24.8,
+     "market_exposure_pct": 81.0,
+     "tp1_hit_rate_pct": 60.4,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 86,
+     "skipped_max_risk": 28,
+     "exit_reasons": {
+      "stop": 248,
+      "ema55-break": 2
+     }
+    }
+   ]
+  },
+  "fixC": {
+   "label": "slow_trail: baseline stop, 3.5x trail, no trendBear exit",
+   "runs": [
+    {
+     "config": "PINE_V36_exitfix:fixC:UX51:4h",
+     "cost": "4bps",
+     "trades": 246,
+     "win_rate_pct": 42.7,
+     "expectancy_net_r": 0.419,
+     "profit_factor": 1.58,
+     "total_return_pct": 92.58,
+     "max_drawdown_pct": 42.92,
+     "avg_hold_bars": 23.9,
+     "market_exposure_pct": 77.9,
+     "tp1_hit_rate_pct": 46.7,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 83,
+     "skipped_max_risk": 22,
+     "exit_reasons": {
+      "stop": 206,
+      "ema55-break": 40
+     }
+    },
+    {
+     "config": "PINE_V36_exitfix:fixC:UX51:4h",
+     "cost": "25bps",
+     "trades": 246,
+     "win_rate_pct": 40.7,
+     "expectancy_net_r": 0.339,
+     "profit_factor": 1.44,
+     "total_return_pct": 73.41,
+     "max_drawdown_pct": 44.24,
+     "avg_hold_bars": 23.9,
+     "market_exposure_pct": 77.9,
+     "tp1_hit_rate_pct": 46.7,
+     "skipped_gap_below_stop": 0,
+     "skipped_max_positions": 83,
+     "skipped_max_risk": 22,
+     "exit_reasons": {
+      "stop": 206,
+      "ema55-break": 40
+     }
+    }
+   ]
+  }
+ }
+}

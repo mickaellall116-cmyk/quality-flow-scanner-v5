@@ -1,0 +1,221 @@
+{
+ "baseline": {
+  "n": 237,
+  "expectancy_r": 0.239,
+  "win_rate_pct": 50.6,
+  "profit_factor": 1.38,
+  "total_r": 56.59
+ },
+ "total_r": 56.59,
+ "bucket_cuts": {
+  "dollar_vol_terciles": [
+   444282058.1334319,
+   1821223100.775568
+  ],
+  "avg_dollar_vol_terciles": [
+   285611844.18751997,
+   1193809962.3884528
+  ],
+  "expansion_quartiles": [
+   1.107822823283554,
+   1.3265138232070341,
+   1.5900709625359593
+  ]
+ },
+ "buckets": {
+  "rvol_bucket": {
+   "high>1.5": {
+    "n": 83,
+    "expectancy_r": 0.248,
+    "win_rate_pct": 51.8,
+    "profit_factor": 1.4,
+    "total_r": 20.55,
+    "share_of_total_r_pct": 36.3
+   },
+   "med0.8-1.5": {
+    "n": 154,
+    "expectancy_r": 0.234,
+    "win_rate_pct": 50.0,
+    "profit_factor": 1.37,
+    "total_r": 36.04,
+    "share_of_total_r_pct": 63.7
+   }
+  },
+  "dollar_vol_bucket": {
+   "T1_low": {
+    "n": 79,
+    "expectancy_r": 0.505,
+    "win_rate_pct": 58.2,
+    "profit_factor": 2.05,
+    "total_r": 39.91,
+    "share_of_total_r_pct": 70.5
+   },
+   "T2_mid": {
+    "n": 79,
+    "expectancy_r": 0.073,
+    "win_rate_pct": 45.6,
+    "profit_factor": 1.1,
+    "total_r": 5.74,
+    "share_of_total_r_pct": 10.1
+   },
+   "T3_high": {
+    "n": 79,
+    "expectancy_r": 0.138,
+    "win_rate_pct": 48.1,
+    "profit_factor": 1.21,
+    "total_r": 10.93,
+    "share_of_total_r_pct": 19.3
+   }
+  },
+  "avg_dollar_vol_bucket": {
+   "T1_low": {
+    "n": 79,
+    "expectancy_r": 0.347,
+    "win_rate_pct": 57.0,
+    "profit_factor": 1.66,
+    "total_r": 27.4,
+    "share_of_total_r_pct": 48.4
+   },
+   "T2_mid": {
+    "n": 79,
+    "expectancy_r": 0.327,
+    "win_rate_pct": 49.4,
+    "profit_factor": 1.49,
+    "total_r": 25.81,
+    "share_of_total_r_pct": 45.6
+   },
+   "T3_high": {
+    "n": 79,
+    "expectancy_r": 0.043,
+    "win_rate_pct": 45.6,
+    "profit_factor": 1.06,
+    "total_r": 3.38,
+    "share_of_total_r_pct": 6.0
+   }
+  },
+  "expansion_bucket": {
+   "Q1": {
+    "n": 60,
+    "expectancy_r": 0.327,
+    "win_rate_pct": 55.0,
+    "profit_factor": 1.56,
+    "total_r": 19.6,
+    "share_of_total_r_pct": 34.6
+   },
+   "Q2": {
+    "n": 59,
+    "expectancy_r": 0.361,
+    "win_rate_pct": 55.9,
+    "profit_factor": 1.66,
+    "total_r": 21.3,
+    "share_of_total_r_pct": 37.6
+   },
+   "Q3": {
+    "n": 59,
+    "expectancy_r": 0.059,
+    "win_rate_pct": 45.8,
+    "profit_factor": 1.08,
+    "total_r": 3.48,
+    "share_of_total_r_pct": 6.1
+   },
+   "Q4": {
+    "n": 59,
+    "expectancy_r": 0.207,
+    "win_rate_pct": 45.8,
+    "profit_factor": 1.32,
+    "total_r": 12.2,
+    "share_of_total_r_pct": 21.6
+   }
+  }
+ },
+ "year_xtab": {
+  "rvol_bucket": {
+   "2024": {
+    "high>1.5": {
+     "n": 26,
+     "exp_r": -0.001
+    },
+    "med0.8-1.5": {
+     "n": 49,
+     "exp_r": 0.532
+    }
+   },
+   "2025": {
+    "high>1.5": {
+     "n": 36,
+     "exp_r": 0.789
+    },
+    "med0.8-1.5": {
+     "n": 66,
+     "exp_r": 0.252
+    }
+   },
+   "2026": {
+    "high>1.5": {
+     "n": 21,
+     "exp_r": -0.373
+    },
+    "med0.8-1.5": {
+     "n": 39,
+     "exp_r": -0.172
+    }
+   }
+  },
+  "expansion_bucket": {
+   "2024": {
+    "Q1": {
+     "n": 21,
+     "exp_r": 0.873
+    },
+    "Q2": {
+     "n": 23,
+     "exp_r": 0.256
+    },
+    "Q3": {
+     "n": 19,
+     "exp_r": 0.065
+    },
+    "Q4": {
+     "n": 12,
+     "exp_r": 0.05
+    }
+   },
+   "2025": {
+    "Q1": {
+     "n": 27,
+     "exp_r": 0.25
+    },
+    "Q2": {
+     "n": 20,
+     "exp_r": 0.794
+    },
+    "Q3": {
+     "n": 24,
+     "exp_r": 0.16
+    },
+    "Q4": {
+     "n": 31,
+     "exp_r": 0.6
+    }
+   },
+   "2026": {
+    "Q1": {
+     "n": 12,
+     "exp_r": -0.456
+    },
+    "Q2": {
+     "n": 16,
+     "exp_r": -0.029
+    },
+    "Q3": {
+     "n": 16,
+     "exp_r": -0.1
+    },
+    "Q4": {
+     "n": 16,
+     "exp_r": -0.437
+    }
+   }
+  }
+ }
+}

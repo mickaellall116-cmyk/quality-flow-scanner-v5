@@ -1,0 +1,57 @@
+== bull window ==
+  AAPL: 7
+  AMAT: 4
+  AMD: 4
+  AMZN: 1
+  APP: 3
+  ARKK: 5
+  ARM: 3
+  ASTS: 1
+  AVAX-USD: 15
+  AVGO: 4
+  BTC-USD: 21
+  COIN: 2
+  CRM: 1
+  CRWD: 3
+  DDOG: 2
+  DOGE-USD: 15
+  ETH-USD: 16
+  F: 2
+  GOOGL: 5
+  HOOD: 3
+  INTC: 2
+  IWM: 5
+  LINK-USD: 20
+  LRCX: 4
+  LUNR: 6
+  MELI: 4
+  META: 2
+  MRNA: 3
+  MSFT: 2
+  MSTR: 3
+  MU: 6
+  NET: 6
+  NFLX: 2
+  NIO: 2
+  NU: 4
+  NVDA: 6
+  PFE: 7
+  PLTR: 7
+  PYPL: 2
+  QCOM: 2
+  RKLB: 5
+  SHOP: 2
+  SMCI: 0
+  SMH: 2
+  SNOW: 3
+  SOFI: 2
+  SOL-USD: 16
+  SPY: 4
+  TSLA: 2
+  XLF: 4
+  XRP-USD: 11
+FIDELITY: n=263 exp=0.195R (baseline: 263, +0.195R)
+== 2022 window ==
+  25 symbols
+2022: n=30
+done

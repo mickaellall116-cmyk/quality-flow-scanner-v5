@@ -1,0 +1,63 @@
+{
+  "framework": "backtest.py structural variant verbatim (is_structural_candidate only; no market-gate/rel-vol/RR/MTF/15m filters), next-bar-open entry, scanner stop/TP1, stop-first ties, scanner-EXIT early exit, 30-bar max hold, 4bps, 1 position/symbol. RISK-OFF entry YES->WATCH downgrade kept unchanged (vetoed count logged).",
+  "universe": [
+    "SH",
+    "PSQ"
+  ],
+  "window_w1": {
+    "bars": "4H",
+    "data": "yfinance 2y 1h -> scanner 4H resample",
+    "actual": "2024-09-18 09:30:00-04:00 -> 2026-09-17 13:30:00-04:00",
+    "skipped_adverse_gap": 0,
+    "signal_counts": {
+      "SH": {
+        "structural": 0,
+        "risk_off_vetoed_approx": 6,
+        "trades": 0
+      },
+      "PSQ": {
+        "structural": 0,
+        "risk_off_vetoed_approx": 4,
+        "trades": 0
+      }
+    },
+    "summary": {
+      "variant": "long structural on SH/PSQ / 4H 2y",
+      "trades": 0
+    },
+    "buy_hold_pct": {
+      "SH": -20.68,
+      "PSQ": -31.02,
+      "QQQ": 52.65,
+      "SPY": 39.01
+    }
+  },
+  "window_w2": {
+    "bars": "DAILY (adaptation \u2014 4H unavailable for 2022; bar-count rules kept literal, so 30-bar hold = 30 trading days)",
+    "data": "yfinance daily 2020-06-01 -> 2023-01-15; signals 2022-01-01 -> 2022-12-31",
+    "actual": "2020-06-01 00:00:00-04:00 -> 2023-01-13 00:00:00-05:00",
+    "skipped_adverse_gap": 0,
+    "signal_counts": {
+      "SH": {
+        "structural": 0,
+        "risk_off_vetoed_approx": 11,
+        "trades": 0
+      },
+      "PSQ": {
+        "structural": 0,
+        "risk_off_vetoed_approx": 13,
+        "trades": 0
+      }
+    },
+    "summary": {
+      "variant": "long structural on SH/PSQ / daily 2022",
+      "trades": 0
+    },
+    "buy_hold_pct_2022": {
+      "SH": 19.68,
+      "PSQ": 37.8,
+      "QQQ": -33.22,
+      "SPY": -18.65
+    }
+  }
+}

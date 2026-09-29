@@ -1,0 +1,323 @@
+{
+ "variants": {
+  "CONTROL": {
+   "n": 180,
+   "expectancy_net_r": 0.2721,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.43,
+   "median_r": 0.1078,
+   "avg_winner_r": 1.7919,
+   "avg_loser_r": -1.2819,
+   "max_losing_streak": 6,
+   "trades_taken": 180,
+   "total_return_pct": 56.28,
+   "max_drawdown_pct": 21.63,
+   "market_exposure_pct": 84.2,
+   "skipped_cap_count": 44,
+   "skipped_cap_risk": 13,
+   "blocked_n": 0,
+   "blocked_expectancy_net_r": null,
+   "blocked_win_rate_pct": null,
+   "blocked_by_reason": {},
+   "yearly": {
+    "2024": {
+     "n": 59,
+     "expectancy_net_r": 0.4203
+    },
+    "2025": {
+     "n": 68,
+     "expectancy_net_r": 0.4253
+    },
+    "2026": {
+     "n": 53,
+     "expectancy_net_r": -0.0894
+    }
+   },
+   "walkforward": {
+    "train_le2024": {
+     "n": 59,
+     "expectancy_net_r": 0.4203
+    },
+    "test_ge2025": {
+     "n": 121,
+     "expectancy_net_r": 0.1998
+    }
+   }
+  },
+  "THEME_CAP2": {
+   "n": 180,
+   "expectancy_net_r": 0.2721,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.43,
+   "median_r": 0.1078,
+   "avg_winner_r": 1.7919,
+   "avg_loser_r": -1.2819,
+   "max_losing_streak": 6,
+   "trades_taken": 180,
+   "total_return_pct": 56.28,
+   "max_drawdown_pct": 21.63,
+   "market_exposure_pct": 84.2,
+   "skipped_cap_count": 44,
+   "skipped_cap_risk": 13,
+   "blocked_n": 0,
+   "blocked_expectancy_net_r": null,
+   "blocked_win_rate_pct": null,
+   "blocked_by_reason": {},
+   "yearly": {
+    "2024": {
+     "n": 59,
+     "expectancy_net_r": 0.4203
+    },
+    "2025": {
+     "n": 68,
+     "expectancy_net_r": 0.4253
+    },
+    "2026": {
+     "n": 53,
+     "expectancy_net_r": -0.0894
+    }
+   },
+   "walkforward": {
+    "train_le2024": {
+     "n": 59,
+     "expectancy_net_r": 0.4203
+    },
+    "test_ge2025": {
+     "n": 121,
+     "expectancy_net_r": 0.1998
+    }
+   }
+  },
+  "CORR_07": {
+   "n": 165,
+   "expectancy_net_r": 0.3208,
+   "win_rate_pct": 51.5,
+   "profit_factor": 1.54,
+   "median_r": 0.2123,
+   "avg_winner_r": 1.7688,
+   "avg_loser_r": -1.2177,
+   "max_losing_streak": 6,
+   "trades_taken": 165,
+   "total_return_pct": 61.7,
+   "max_drawdown_pct": 21.99,
+   "market_exposure_pct": 83.1,
+   "skipped_cap_count": 32,
+   "skipped_cap_risk": 12,
+   "blocked_n": 28,
+   "blocked_expectancy_net_r": -0.1331,
+   "blocked_win_rate_pct": 39.3,
+   "blocked_by_reason": {
+    "corr>0.7": {
+     "n": 28,
+     "expectancy_net_r": -0.1331
+    }
+   },
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "expectancy_net_r": 0.4769
+    },
+    "2025": {
+     "n": 64,
+     "expectancy_net_r": 0.5213
+    },
+    "2026": {
+     "n": 45,
+     "expectancy_net_r": -0.1587
+    }
+   },
+   "walkforward": {
+    "train_le2024": {
+     "n": 56,
+     "expectancy_net_r": 0.4769
+    },
+    "test_ge2025": {
+     "n": 109,
+     "expectancy_net_r": 0.2406
+    }
+   }
+  },
+  "CORR_06": {
+   "n": 149,
+   "expectancy_net_r": 0.3282,
+   "win_rate_pct": 51.7,
+   "profit_factor": 1.55,
+   "median_r": 0.2207,
+   "avg_winner_r": 1.7845,
+   "avg_loser_r": -1.2291,
+   "max_losing_streak": 5,
+   "trades_taken": 149,
+   "total_return_pct": 56.39,
+   "max_drawdown_pct": 21.31,
+   "market_exposure_pct": 83.1,
+   "skipped_cap_count": 32,
+   "skipped_cap_risk": 5,
+   "blocked_n": 51,
+   "blocked_expectancy_net_r": -0.1102,
+   "blocked_win_rate_pct": 41.2,
+   "blocked_by_reason": {
+    "corr>0.6": {
+     "n": 51,
+     "expectancy_net_r": -0.1102
+    }
+   },
+   "yearly": {
+    "2024": {
+     "n": 52,
+     "expectancy_net_r": 0.4984
+    },
+    "2025": {
+     "n": 55,
+     "expectancy_net_r": 0.646
+    },
+    "2026": {
+     "n": 42,
+     "expectancy_net_r": -0.2984
+    }
+   },
+   "walkforward": {
+    "train_le2024": {
+     "n": 52,
+     "expectancy_net_r": 0.4984
+    },
+    "test_ge2025": {
+     "n": 97,
+     "expectancy_net_r": 0.2371
+    }
+   }
+  },
+  "CORR_08": {
+   "n": 179,
+   "expectancy_net_r": 0.2609,
+   "win_rate_pct": 52.0,
+   "profit_factor": 1.42,
+   "median_r": 0.2207,
+   "avg_winner_r": 1.685,
+   "avg_loser_r": -1.2791,
+   "max_losing_streak": 6,
+   "trades_taken": 179,
+   "total_return_pct": 52.63,
+   "max_drawdown_pct": 22.36,
+   "market_exposure_pct": 84.1,
+   "skipped_cap_count": 38,
+   "skipped_cap_risk": 14,
+   "blocked_n": 6,
+   "blocked_expectancy_net_r": 0.9163,
+   "blocked_win_rate_pct": 33.3,
+   "blocked_by_reason": {
+    "corr>0.8": {
+     "n": 6,
+     "expectancy_net_r": 0.9163
+    }
+   },
+   "yearly": {
+    "2024": {
+     "n": 59,
+     "expectancy_net_r": 0.4203
+    },
+    "2025": {
+     "n": 68,
+     "expectancy_net_r": 0.3997
+    },
+    "2026": {
+     "n": 52,
+     "expectancy_net_r": -0.1014
+    }
+   },
+   "walkforward": {
+    "train_le2024": {
+     "n": 59,
+     "expectancy_net_r": 0.4203
+    },
+    "test_ge2025": {
+     "n": 120,
+     "expectancy_net_r": 0.1825
+    }
+   }
+  },
+  "CLUSTER1": {
+   "n": 152,
+   "expectancy_net_r": 0.3443,
+   "win_rate_pct": 52.0,
+   "profit_factor": 1.62,
+   "median_r": 0.244,
+   "avg_winner_r": 1.7268,
+   "avg_loser_r": -1.1518,
+   "max_losing_streak": 8,
+   "trades_taken": 152,
+   "total_return_pct": 62.98,
+   "max_drawdown_pct": 27.02,
+   "market_exposure_pct": 83.1,
+   "skipped_cap_count": 12,
+   "skipped_cap_risk": 6,
+   "blocked_n": 67,
+   "blocked_expectancy_net_r": -0.11,
+   "blocked_win_rate_pct": 41.8,
+   "blocked_by_reason": {
+    "cluster_cap": {
+     "n": 67,
+     "expectancy_net_r": -0.11
+    }
+   },
+   "yearly": {
+    "2024": {
+     "n": 50,
+     "expectancy_net_r": 0.6224
+    },
+    "2025": {
+     "n": 64,
+     "expectancy_net_r": 0.4244
+    },
+    "2026": {
+     "n": 38,
+     "expectancy_net_r": -0.1563
+    }
+   },
+   "walkforward": {
+    "train_le2024": {
+     "n": 50,
+     "expectancy_net_r": 0.6224
+    },
+    "test_ge2025": {
+     "n": 102,
+     "expectancy_net_r": 0.208
+    }
+   }
+  }
+ },
+ "theme_map": {
+  "QQQ": "Index",
+  "SMCI": "AI Infra",
+  "ANET": "AI Infra",
+  "PLTR": "Software/AI",
+  "BBAI": "Software/AI",
+  "SOFI": "Fintech",
+  "HOOD": "Fintech",
+  "AMD": "Semis",
+  "DRAM": "Semis/Memory",
+  "RKLB": "Space",
+  "SPCX": "Space",
+  "ASTX": "Space",
+  "ONDS": "Drones",
+  "NIO": "China EV"
+ },
+ "cluster_map": {
+  "AMD": "Semis+AI Infra",
+  "DRAM": "Semis+AI Infra",
+  "SMCI": "Semis+AI Infra",
+  "ANET": "Semis+AI Infra",
+  "PLTR": "Software/AI",
+  "BBAI": "Software/AI",
+  "SOFI": "Fintech",
+  "HOOD": "Fintech",
+  "RKLB": "Space",
+  "SPCX": "Space",
+  "ASTX": "Space",
+  "ONDS": "Other",
+  "NIO": "Other",
+  "QQQ": "Other"
+ },
+ "corr_window": 60,
+ "cost_bps": 25,
+ "note": "entries/exits identical (canonical Hybrid); only admission differs"
+}

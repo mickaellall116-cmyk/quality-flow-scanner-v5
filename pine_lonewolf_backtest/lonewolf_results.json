@@ -1,0 +1,248 @@
+{
+ "hypothesis": "skipping lone-wolf entries (stockRS>0, sectorRS<=0) improves expectancy",
+ "sector_mapping": {
+  "QQQ": "XLK",
+  "SMCI": "SOXX",
+  "PLTR": "XLK",
+  "ANET": "XLK",
+  "SOFI": "XLF",
+  "RKLB": "XLI",
+  "ONDS": "XLK",
+  "DRAM": "SOXX",
+  "SPCX": "XLI",
+  "ASTX": "XLK",
+  "BBAI": "XLK",
+  "NIO": "XLY",
+  "HOOD": "XLF",
+  "AMD": "SOXX"
+ },
+ "lookback_trading_days": 20,
+ "cost_bps": 25,
+ "variants": {
+  "CONTROL": {
+   "n": 180,
+   "expectancy_net_r": 0.2721,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.43,
+   "trades_taken": 180,
+   "trades_generated": 237,
+   "total_return_pct": 56.28,
+   "max_drawdown_pct": 21.63,
+   "market_exposure_pct": 84.2,
+   "skipped_cap_count": 44,
+   "skipped_cap_risk": 13,
+   "blocked_n": 0,
+   "blocked_expectancy_net_r": null,
+   "blocked_win_rate_pct": null,
+   "blocked_total_r": null,
+   "blocked_by_symbol": {},
+   "yearly": {
+    "2024": {
+     "n": 59,
+     "expectancy_net_r": 0.4203
+    },
+    "2025": {
+     "n": 68,
+     "expectancy_net_r": 0.4253
+    },
+    "2026": {
+     "n": 53,
+     "expectancy_net_r": -0.0894
+    }
+   },
+   "walkforward": {
+    "train_le2024": {
+     "n": 59,
+     "expectancy_net_r": 0.4203
+    },
+    "test_ge2025": {
+     "n": 121,
+     "expectancy_net_r": 0.1998
+    }
+   }
+  },
+  "NO_LONE_WOLF": {
+   "n": 137,
+   "expectancy_net_r": 0.3797,
+   "win_rate_pct": 54.0,
+   "profit_factor": 1.65,
+   "trades_taken": 137,
+   "trades_generated": 237,
+   "total_return_pct": 66.23,
+   "max_drawdown_pct": 18.86,
+   "market_exposure_pct": 75.9,
+   "skipped_cap_count": 19,
+   "skipped_cap_risk": 7,
+   "blocked_n": 74,
+   "blocked_expectancy_net_r": 0.0639,
+   "blocked_win_rate_pct": 50.0,
+   "blocked_total_r": 4.73,
+   "blocked_by_symbol": {
+    "AMD": {
+     "n": 5,
+     "expectancy_net_r": -0.4629
+    },
+    "ANET": {
+     "n": 8,
+     "expectancy_net_r": -0.0342
+    },
+    "ASTX": {
+     "n": 1,
+     "expectancy_net_r": 0.0683
+    },
+    "BBAI": {
+     "n": 2,
+     "expectancy_net_r": 0.0178
+    },
+    "HOOD": {
+     "n": 7,
+     "expectancy_net_r": 0.6363
+    },
+    "NIO": {
+     "n": 5,
+     "expectancy_net_r": 0.0411
+    },
+    "ONDS": {
+     "n": 4,
+     "expectancy_net_r": -0.4459
+    },
+    "PLTR": {
+     "n": 4,
+     "expectancy_net_r": 0.9096
+    },
+    "QQQ": {
+     "n": 8,
+     "expectancy_net_r": -0.9188
+    },
+    "RKLB": {
+     "n": 15,
+     "expectancy_net_r": 0.4368
+    },
+    "SMCI": {
+     "n": 7,
+     "expectancy_net_r": -0.5608
+    },
+    "SOFI": {
+     "n": 8,
+     "expectancy_net_r": 0.6783
+    }
+   },
+   "yearly": {
+    "2024": {
+     "n": 49,
+     "expectancy_net_r": 0.4446
+    },
+    "2025": {
+     "n": 56,
+     "expectancy_net_r": 0.4823
+    },
+    "2026": {
+     "n": 32,
+     "expectancy_net_r": 0.1007
+    }
+   },
+   "walkforward": {
+    "train_le2024": {
+     "n": 49,
+     "expectancy_net_r": 0.4446
+    },
+    "test_ge2025": {
+     "n": 88,
+     "expectancy_net_r": 0.3435
+    }
+   }
+  }
+ },
+ "robustness": {
+  "lookback20_cost50": {
+   "lone_wolf_flagged": 83,
+   "CONTROL": {
+    "n": 179,
+    "expectancy_net_r": 0.2119,
+    "win_rate_pct": 50.8,
+    "profit_factor": 1.32,
+    "trades_taken": 179,
+    "total_return_pct": 40.05,
+    "max_drawdown_pct": 22.77
+   },
+   "NO_LONE_WOLF": {
+    "n": 137,
+    "expectancy_net_r": 0.3174,
+    "win_rate_pct": 54.0,
+    "profit_factor": 1.52,
+    "trades_taken": 137,
+    "total_return_pct": 52.67,
+    "max_drawdown_pct": 20.1
+   },
+   "delta_exp_r": 0.1055
+  },
+  "lookback20_cost100": {
+   "lone_wolf_flagged": 83,
+   "CONTROL": {
+    "n": 180,
+    "expectancy_net_r": 0.0965,
+    "win_rate_pct": 50.6,
+    "profit_factor": 1.13,
+    "trades_taken": 180,
+    "total_return_pct": 13.61,
+    "max_drawdown_pct": 30.67
+   },
+   "NO_LONE_WOLF": {
+    "n": 136,
+    "expectancy_net_r": 0.1828,
+    "win_rate_pct": 52.9,
+    "profit_factor": 1.27,
+    "trades_taken": 136,
+    "total_return_pct": 26.14,
+    "max_drawdown_pct": 22.54
+   },
+   "delta_exp_r": 0.0863
+  },
+  "lookback10_cost25": {
+   "lone_wolf_flagged": 75,
+   "CONTROL": {
+    "n": 180,
+    "expectancy_net_r": 0.2721,
+    "win_rate_pct": 50.6,
+    "profit_factor": 1.43,
+    "trades_taken": 180,
+    "total_return_pct": 56.28,
+    "max_drawdown_pct": 21.63
+   },
+   "NO_LONE_WOLF": {
+    "n": 147,
+    "expectancy_net_r": 0.2243,
+    "win_rate_pct": 53.1,
+    "profit_factor": 1.35,
+    "trades_taken": 147,
+    "total_return_pct": 35.67,
+    "max_drawdown_pct": 19.12
+   },
+   "delta_exp_r": -0.0478
+  },
+  "lookback40_cost25": {
+   "lone_wolf_flagged": 85,
+   "CONTROL": {
+    "n": 180,
+    "expectancy_net_r": 0.2721,
+    "win_rate_pct": 50.6,
+    "profit_factor": 1.43,
+    "trades_taken": 180,
+    "total_return_pct": 56.28,
+    "max_drawdown_pct": 21.63
+   },
+   "NO_LONE_WOLF": {
+    "n": 134,
+    "expectancy_net_r": 0.2358,
+    "win_rate_pct": 50.0,
+    "profit_factor": 1.36,
+    "trades_taken": 134,
+    "total_return_pct": 34.72,
+    "max_drawdown_pct": 22.49
+   },
+   "delta_exp_r": -0.0363
+  }
+ },
+ "verdict": "MAYBE (strong)",
+ "verdict_reason": "Pre-registered filter test of the P10 sector-agreement finding. NO_LONE_WOLF beats CONTROL by +0.108R pooled (+0.380R vs +0.272R), wins in all 3 years (2026 flips from -0.089R to +0.101R), walk-forward test_ge2025 +0.344R vs +0.200R (+0.144R OOS), DD improves (18.9% vs 21.6%), blocked trades span 12 symbols, survives cost stress (delta +0.106R @50bps, +0.086R @100bps). NOT PASS: fails the mandate's nearby-parameter gate -- 10-day and 40-day RS lookbacks flip the delta negative (-0.048R / -0.036R). The edge is specific to the pre-declared 20-day definition. Blocked trades ran +0.064R (mildly positive, not dead money) -- the filter removes below-average trades, with real opportunity cost (blocked HOOD +0.64R, PLTR +0.91R, SOFI +0.68R winners left on the table). Needs forward validation before any production discussion."
+}

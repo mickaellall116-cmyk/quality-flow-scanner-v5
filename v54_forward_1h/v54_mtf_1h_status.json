@@ -1,0 +1,372 @@
+{
+  "as_of": "2026-09-29T11:37:38.694830+00:00",
+  "experiment": "V5.4 multi-timeframe paper test (research only)",
+  "timeframe": "1h",
+  "label": "1H",
+  "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading) \u2014 same as 4H forward test",
+  "isolation": "separate state/log; 4H forward test untouched; no observer; local only, never published",
+  "universe": "UX51+X2 (51+199 symbols)",
+  "last_successful_cycle": "2026-09-29T11:37:37.933397+00:00",
+  "signals_logged": 199,
+  "grade_counts": {
+    "A": 71,
+    "B": 109,
+    "C": 19
+  },
+  "pending_entries": 2,
+  "open_positions": [
+    {
+      "signal_id": "v54:ISRG:1h:2026-09-23T15:30:00-04:00:2026-09-15-v54",
+      "symbol": "ISRG",
+      "grade": "A",
+      "entry": 398.6199951171875,
+      "stop": 394.33995917728623,
+      "tp1": 406.3447991873607,
+      "status": "open_runner",
+      "bars_held": 25
+    },
+    {
+      "signal_id": "v54:KLAC:1h:2026-09-24T13:30:00-04:00:2026-09-15-v54",
+      "symbol": "KLAC",
+      "grade": "A",
+      "entry": 184.7899932861328,
+      "stop": 181.51857749054125,
+      "tp1": 191.23765564751776,
+      "status": "open_full",
+      "bars_held": 20
+    },
+    {
+      "signal_id": "v54:LUNR:1h:2026-09-24T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "LUNR",
+      "grade": "A",
+      "entry": 15.279999732971191,
+      "stop": 15.00348250366796,
+      "tp1": 16.260881387866753,
+      "status": "open_full",
+      "bars_held": 19
+    },
+    {
+      "signal_id": "v54:TSM:1h:2026-09-24T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "TSM",
+      "grade": "B",
+      "entry": 443.7449951171875,
+      "stop": 440.5526668646296,
+      "tp1": 453.5938812769475,
+      "status": "open_runner",
+      "bars_held": 19
+    },
+    {
+      "signal_id": "v54:AMGN:1h:2026-09-24T15:30:00-04:00:2026-09-15-v54",
+      "symbol": "AMGN",
+      "grade": "B",
+      "entry": 406.1700134277344,
+      "stop": 399.0534145813567,
+      "tp1": 413.71817362383916,
+      "status": "open_runner",
+      "bars_held": 18
+    },
+    {
+      "signal_id": "v54:LRCX:1h:2026-09-24T15:30:00-04:00:2026-09-15-v54",
+      "symbol": "LRCX",
+      "grade": "A",
+      "entry": 303.44000244140625,
+      "stop": 297.2623161153098,
+      "tp1": 314.1756022409636,
+      "status": "open_runner",
+      "bars_held": 18
+    },
+    {
+      "signal_id": "v54:SMCI:1h:2026-09-24T15:30:00-04:00:2026-09-15-v54",
+      "symbol": "SMCI",
+      "grade": "A",
+      "entry": 41.040000915527344,
+      "stop": 40.046957051562245,
+      "tp1": 42.98363090045999,
+      "status": "open_runner",
+      "bars_held": 18
+    },
+    {
+      "signal_id": "v54:XLK:1h:2026-09-24T15:30:00-04:00:2026-09-15-v54",
+      "symbol": "XLK",
+      "grade": "B",
+      "entry": 194.25999450683594,
+      "stop": 192.8045217219554,
+      "tp1": 196.9302578747883,
+      "status": "open_full",
+      "bars_held": 18
+    },
+    {
+      "signal_id": "v54:ASML:1h:2026-09-24T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "ASML",
+      "grade": "A",
+      "entry": 1725.550048828125,
+      "stop": 1699.7353966687333,
+      "tp1": 1766.0125465401914,
+      "status": "open_runner",
+      "bars_held": 17
+    },
+    {
+      "signal_id": "v54:TEM:1h:2026-09-24T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "TEM",
+      "grade": "C",
+      "entry": 77.84500122070312,
+      "stop": 74.9002402953357,
+      "tp1": 82.44788484749941,
+      "status": "open_runner",
+      "bars_held": 17
+    },
+    {
+      "signal_id": "v54:DAL:1h:2026-09-24T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "DAL",
+      "grade": "A",
+      "entry": 82.80000305175781,
+      "stop": 81.0225481850756,
+      "tp1": 84.45704635077419,
+      "status": "open_runner",
+      "bars_held": 16
+    },
+    {
+      "signal_id": "v54:DJT:1h:2026-09-24T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "DJT",
+      "grade": "A",
+      "entry": 9.085000038146973,
+      "stop": 8.923126414164514,
+      "tp1": 9.406569569846573,
+      "status": "open_full",
+      "bars_held": 16
+    },
+    {
+      "signal_id": "v54:MSFT:1h:2026-09-24T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "MSFT",
+      "grade": "B",
+      "entry": 497.75,
+      "stop": 493.44629983619336,
+      "tp1": 506.97611939087716,
+      "status": "open_runner",
+      "bars_held": 15
+    },
+    {
+      "signal_id": "v54:RGTI:1h:2026-09-24T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "RGTI",
+      "grade": "B",
+      "entry": 16.274999618530273,
+      "stop": 15.869121142488313,
+      "tp1": 17.15972575972515,
+      "status": "open_runner",
+      "bars_held": 15
+    },
+    {
+      "signal_id": "v54:JNJ:1h:2026-09-24T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "JNJ",
+      "grade": "B",
+      "entry": 271.75,
+      "stop": 268.0846610941065,
+      "tp1": 275.87412770176644,
+      "status": "open_full",
+      "bars_held": 14
+    },
+    {
+      "signal_id": "v54:NVDA:1h:2026-09-24T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "NVDA",
+      "grade": "B",
+      "entry": 225.25,
+      "stop": 222.83671234741584,
+      "tp1": 229.0168394301938,
+      "status": "open_runner",
+      "bars_held": 14
+    },
+    {
+      "signal_id": "v54:AMC:1h:2026-09-25T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "AMC",
+      "grade": "B",
+      "entry": 2.871299982070923,
+      "stop": 2.7680471983743793,
+      "tp1": 3.040691884256365,
+      "status": "open_runner",
+      "bars_held": 12
+    },
+    {
+      "signal_id": "v54:PFE:1h:2026-09-25T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "PFE",
+      "grade": "B",
+      "entry": 28.28499984741211,
+      "stop": 28.003911021068784,
+      "tp1": 28.76161755566438,
+      "status": "open_runner",
+      "bars_held": 12
+    },
+    {
+      "signal_id": "v54:TMO:1h:2026-09-25T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "TMO",
+      "grade": "B",
+      "entry": 671.1900024414062,
+      "stop": 659.9845133623688,
+      "tp1": 687.4341615646537,
+      "status": "open_full",
+      "bars_held": 10
+    },
+    {
+      "signal_id": "v54:ANET:1h:2026-09-25T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "ANET",
+      "grade": "B",
+      "entry": 205.77499389648438,
+      "stop": 203.42427576476564,
+      "tp1": 211.81382380180492,
+      "status": "open_full",
+      "bars_held": 7
+    },
+    {
+      "signal_id": "v54:ABBV:1h:2026-09-28T13:30:00-04:00:2026-09-15-v54",
+      "symbol": "ABBV",
+      "grade": "B",
+      "entry": 265.7099914550781,
+      "stop": 262.71261223558525,
+      "tp1": 269.1524242969115,
+      "status": "open_full",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:ILMN:1h:2026-09-28T13:30:00-04:00:2026-09-15-v54",
+      "symbol": "ILMN",
+      "grade": "B",
+      "entry": 270.9200134277344,
+      "stop": 261.0163900899549,
+      "tp1": 278.62286325709334,
+      "status": "open_full",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:NXPI:1h:2026-09-28T13:30:00-04:00:2026-09-15-v54",
+      "symbol": "NXPI",
+      "grade": "A",
+      "entry": 235.39999389648438,
+      "stop": 231.9677915633446,
+      "tp1": 242.6464009384976,
+      "status": "open_full",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:ON:1h:2026-09-28T13:30:00-04:00:2026-09-15-v54",
+      "symbol": "ON",
+      "grade": "A",
+      "entry": 75.3499984741211,
+      "stop": 73.5317773967777,
+      "tp1": 78.38461905475882,
+      "status": "open_full",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:RKLB:1h:2026-09-28T13:30:00-04:00:2026-09-15-v54",
+      "symbol": "RKLB",
+      "grade": "A",
+      "entry": 73.20999908447266,
+      "stop": 71.47003317785442,
+      "tp1": 76.64957599412477,
+      "status": "open_full",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:VRTX:1h:2026-09-28T13:30:00-04:00:2026-09-15-v54",
+      "symbol": "VRTX",
+      "grade": "B",
+      "entry": 527.2349853515625,
+      "stop": 516.9431046043413,
+      "tp1": 532.6027143870305,
+      "status": "open_full",
+      "bars_held": 6
+    },
+    {
+      "signal_id": "v54:JBL:1h:2026-09-28T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "JBL",
+      "grade": "A",
+      "entry": 311.5799865722656,
+      "stop": 309.0085699711719,
+      "tp1": 326.38020711213005,
+      "status": "open_full",
+      "bars_held": 5
+    },
+    {
+      "signal_id": "v54:NET:1h:2026-09-28T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "NET",
+      "grade": "B",
+      "entry": 353.7300109863281,
+      "stop": 345.30015728660834,
+      "tp1": 369.1835233160843,
+      "status": "open_full",
+      "bars_held": 5
+    },
+    {
+      "signal_id": "v54:GME:1h:2026-09-28T15:30:00-04:00:2026-09-15-v54",
+      "symbol": "GME",
+      "grade": "A",
+      "entry": 23.93000030517578,
+      "stop": 23.383745291729987,
+      "tp1": 25.11862229109908,
+      "status": "open_full",
+      "bars_held": 4
+    },
+    {
+      "signal_id": "v54:RBRK:1h:2026-09-28T15:30:00-04:00:2026-09-15-v54",
+      "symbol": "RBRK",
+      "grade": "C",
+      "entry": 112.91000366210938,
+      "stop": 109.98518970730352,
+      "tp1": 116.99821137187233,
+      "status": "open_full",
+      "bars_held": 4
+    },
+    {
+      "signal_id": "v54:FTNT:1h:2026-09-28T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "FTNT",
+      "grade": "B",
+      "entry": 175.97999572753906,
+      "stop": 173.46734183517594,
+      "tp1": 181.59069222251128,
+      "status": "open_full",
+      "bars_held": 3
+    },
+    {
+      "signal_id": "v54:MSTR:1h:2026-09-28T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "MSTR",
+      "grade": "A",
+      "entry": 160.04519653320312,
+      "stop": 156.84947306637676,
+      "tp1": 168.49608811780806,
+      "status": "open_full",
+      "bars_held": 3
+    },
+    {
+      "signal_id": "v54:OKTA:1h:2026-09-28T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "OKTA",
+      "grade": "B",
+      "entry": 201.74000549316406,
+      "stop": 196.69128328106282,
+      "tp1": 209.79944252788823,
+      "status": "open_full",
+      "bars_held": 3
+    },
+    {
+      "signal_id": "v54:WMT:1h:2026-09-28T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "WMT",
+      "grade": "A",
+      "entry": 108.56999969482422,
+      "stop": 107.77114467290156,
+      "tp1": 110.44829005635492,
+      "status": "open_full",
+      "bars_held": 3
+    }
+  ],
+  "closed_trades": 76,
+  "cumulative_r": -27.6275,
+  "avg_r_per_trade": -0.3635,
+  "win_rate": 0.2105,
+  "cycles_run": 255,
+  "last_cycle": {
+    "timeframe": "1h",
+    "new_signals": 0,
+    "new_signal_ids": [],
+    "opened": 0,
+    "closed": [],
+    "errors": []
+  }
+}

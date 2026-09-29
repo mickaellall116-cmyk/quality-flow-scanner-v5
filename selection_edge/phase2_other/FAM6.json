@@ -1,0 +1,561 @@
+{
+ "factor": "FAM6_dollar_volume_trend",
+ "rule": "OLS slope of log(dollar volume) over trailing 63 trading days",
+ "base_key": "fam6_63",
+ "pre_registered": "REPORT.md Sections 1-4, locked before computation",
+ "n_trades_total": 353,
+ "n_trades_with_factor": 353,
+ "n_excluded_null_factor": 0,
+ "headline": {
+  "TOP": {
+   "n": 140,
+   "exp": 0.0698,
+   "pf": 1.105,
+   "win_rate": 0.414,
+   "max_dd_r": -21.14,
+   "total_r": 9.78
+  },
+  "MIDDLE": {
+   "n": 158,
+   "exp": -0.0756,
+   "pf": 0.896,
+   "win_rate": 0.386,
+   "max_dd_r": -24.342,
+   "total_r": -11.94
+  },
+  "BOTTOM": {
+   "n": 55,
+   "exp": -0.1449,
+   "pf": 0.821,
+   "win_rate": 0.327,
+   "max_dd_r": -15.867,
+   "total_r": -7.97
+  },
+  "monotonic": true,
+  "top_minus_bottom": 0.2147
+ },
+ "cost_ladder": {
+  "25bps": {
+   "TOP": {
+    "n": 140,
+    "exp": 0.158,
+    "pf": 1.258,
+    "win_rate": 0.414,
+    "max_dd_r": -14.593,
+    "total_r": 22.12
+   },
+   "MIDDLE": {
+    "n": 158,
+    "exp": 0.0415,
+    "pf": 1.063,
+    "win_rate": 0.386,
+    "max_dd_r": -16.689,
+    "total_r": 6.56
+   },
+   "BOTTOM": {
+    "n": 55,
+    "exp": -0.0187,
+    "pf": 0.974,
+    "win_rate": 0.327,
+    "max_dd_r": -11.388,
+    "total_r": -1.03
+   },
+   "monotonic": true,
+   "top_minus_bottom": 0.1767
+  },
+  "50bps": {
+   "TOP": {
+    "n": 140,
+    "exp": 0.0698,
+    "pf": 1.105,
+    "win_rate": 0.414,
+    "max_dd_r": -21.14,
+    "total_r": 9.78
+   },
+   "MIDDLE": {
+    "n": 158,
+    "exp": -0.0756,
+    "pf": 0.896,
+    "win_rate": 0.386,
+    "max_dd_r": -24.342,
+    "total_r": -11.94
+   },
+   "BOTTOM": {
+    "n": 55,
+    "exp": -0.1449,
+    "pf": 0.821,
+    "win_rate": 0.327,
+    "max_dd_r": -15.867,
+    "total_r": -7.97
+   },
+   "monotonic": true,
+   "top_minus_bottom": 0.2147
+  },
+  "75bps": {
+   "TOP": {
+    "n": 140,
+    "exp": -0.0183,
+    "pf": 0.974,
+    "win_rate": 0.393,
+    "max_dd_r": -28.568,
+    "total_r": -2.57
+   },
+   "MIDDLE": {
+    "n": 158,
+    "exp": -0.1927,
+    "pf": 0.76,
+    "win_rate": 0.367,
+    "max_dd_r": -33.177,
+    "total_r": -30.45
+   },
+   "BOTTOM": {
+    "n": 55,
+    "exp": -0.2711,
+    "pf": 0.696,
+    "win_rate": 0.327,
+    "max_dd_r": -20.345,
+    "total_r": -14.91
+   },
+   "monotonic": true,
+   "top_minus_bottom": 0.2528
+  },
+  "100bps": {
+   "TOP": {
+    "n": 140,
+    "exp": -0.1065,
+    "pf": 0.862,
+    "win_rate": 0.386,
+    "max_dd_r": -35.995,
+    "total_r": -14.91
+   },
+   "MIDDLE": {
+    "n": 158,
+    "exp": -0.3098,
+    "pf": 0.649,
+    "win_rate": 0.342,
+    "max_dd_r": -48.282,
+    "total_r": -48.95
+   },
+   "BOTTOM": {
+    "n": 55,
+    "exp": -0.3973,
+    "pf": 0.593,
+    "win_rate": 0.309,
+    "max_dd_r": -26.21,
+    "total_r": -21.85
+   },
+   "monotonic": true,
+   "top_minus_bottom": 0.2908
+  }
+ },
+ "dev": {
+  "TOP": {
+   "n": 48,
+   "exp": -0.2402,
+   "pf": 0.691,
+   "win_rate": 0.354,
+   "max_dd_r": -12.573,
+   "total_r": -11.53
+  },
+  "MIDDLE": {
+   "n": 47,
+   "exp": -0.417,
+   "pf": 0.493,
+   "win_rate": 0.34,
+   "max_dd_r": -18.623,
+   "total_r": -19.6
+  },
+  "BOTTOM": {
+   "n": 20,
+   "exp": 0.3534,
+   "pf": 1.495,
+   "win_rate": 0.4,
+   "max_dd_r": -6.433,
+   "total_r": 7.07
+  },
+  "monotonic": false,
+  "top_minus_bottom": -0.5936
+ },
+ "val": {
+  "TOP": {
+   "n": 92,
+   "exp": 0.2316,
+   "pf": 1.383,
+   "win_rate": 0.446,
+   "max_dd_r": -13.101,
+   "total_r": 21.31
+  },
+  "MIDDLE": {
+   "n": 111,
+   "exp": 0.069,
+   "pf": 1.1,
+   "win_rate": 0.405,
+   "max_dd_r": -9.422,
+   "total_r": 7.66
+  },
+  "BOTTOM": {
+   "n": 35,
+   "exp": -0.4296,
+   "pf": 0.504,
+   "win_rate": 0.286,
+   "max_dd_r": -13.59,
+   "total_r": -15.04
+  },
+  "monotonic": true,
+  "top_minus_bottom": 0.6612
+ },
+ "years": {
+  "2024": {
+   "TOP": {
+    "n": 48,
+    "exp": -0.2402,
+    "pf": 0.691,
+    "win_rate": 0.354,
+    "max_dd_r": -12.573,
+    "total_r": -11.53
+   },
+   "MIDDLE": {
+    "n": 47,
+    "exp": -0.417,
+    "pf": 0.493,
+    "win_rate": 0.34,
+    "max_dd_r": -18.623,
+    "total_r": -19.6
+   },
+   "BOTTOM": {
+    "n": 20,
+    "exp": 0.3534,
+    "pf": 1.495,
+    "win_rate": 0.4,
+    "max_dd_r": -6.433,
+    "total_r": 7.07
+   },
+   "monotonic": false,
+   "top_minus_bottom": -0.5936
+  },
+  "2025": {
+   "TOP": {
+    "n": 36,
+    "exp": 0.233,
+    "pf": 1.361,
+    "win_rate": 0.444,
+    "max_dd_r": -10.949,
+    "total_r": 8.39
+   },
+   "MIDDLE": {
+    "n": 65,
+    "exp": 0.1239,
+    "pf": 1.178,
+    "win_rate": 0.415,
+    "max_dd_r": -9.422,
+    "total_r": 8.06
+   },
+   "BOTTOM": {
+    "n": 19,
+    "exp": -0.2922,
+    "pf": 0.627,
+    "win_rate": 0.368,
+    "max_dd_r": -6.497,
+    "total_r": -5.55
+   },
+   "monotonic": true,
+   "top_minus_bottom": 0.5252
+  },
+  "2026": {
+   "TOP": {
+    "n": 56,
+    "exp": 0.2307,
+    "pf": 1.399,
+    "win_rate": 0.446,
+    "max_dd_r": -13.101,
+    "total_r": 12.92
+   },
+   "MIDDLE": {
+    "n": 46,
+    "exp": -0.0087,
+    "pf": 0.987,
+    "win_rate": 0.391,
+    "max_dd_r": -9.138,
+    "total_r": -0.4
+   },
+   "BOTTOM": {
+    "n": 16,
+    "exp": -0.5929,
+    "pf": 0.384,
+    "win_rate": 0.188,
+    "max_dd_r": -8.336,
+    "total_r": -9.49
+   },
+   "monotonic": true,
+   "top_minus_bottom": 0.8236
+  }
+ },
+ "walk_forward_12mo_observe_6mo_test": [
+  {
+   "observe": "2023-10-01..2024-10-01",
+   "test": "2024-10-01..2025-04-01",
+   "observe_delta": -0.5021,
+   "observe_n": 85,
+   "test_delta": -0.2418,
+   "test_n": 63
+  },
+  {
+   "observe": "2024-04-01..2025-04-01",
+   "test": "2025-04-01..2025-10-01",
+   "observe_delta": -0.1351,
+   "observe_n": 141,
+   "test_delta": -0.4145,
+   "test_n": 57
+  },
+  {
+   "observe": "2024-10-01..2025-10-01",
+   "test": "2025-10-01..2026-04-01",
+   "observe_delta": -0.2941,
+   "observe_n": 120,
+   "test_delta": 1.8117,
+   "test_n": 69
+  },
+  {
+   "observe": "2025-04-01..2026-04-01",
+   "test": "2026-04-01..2026-10-01",
+   "observe_delta": 0.8395,
+   "observe_n": 126,
+   "test_delta": 0.3442,
+   "test_n": 79
+  }
+ ],
+ "perturbations": {
+  "fam6_42": {
+   "headline": {
+    "TOP": {
+     "n": 157,
+     "exp": -0.0261,
+     "pf": 0.962,
+     "win_rate": 0.395,
+     "max_dd_r": -27.681,
+     "total_r": -4.1
+    },
+    "MIDDLE": {
+     "n": 143,
+     "exp": -0.059,
+     "pf": 0.918,
+     "win_rate": 0.399,
+     "max_dd_r": -21.147,
+     "total_r": -8.44
+    },
+    "BOTTOM": {
+     "n": 53,
+     "exp": 0.0454,
+     "pf": 1.057,
+     "win_rate": 0.34,
+     "max_dd_r": -9.796,
+     "total_r": 2.41
+    },
+    "monotonic": false,
+    "top_minus_bottom": -0.0715
+   },
+   "val": {
+    "TOP": {
+     "n": 108,
+     "exp": 0.1192,
+     "pf": 1.194,
+     "win_rate": 0.444,
+     "max_dd_r": -13.906,
+     "total_r": 12.87
+    },
+    "MIDDLE": {
+     "n": 96,
+     "exp": 0.0221,
+     "pf": 1.031,
+     "win_rate": 0.396,
+     "max_dd_r": -15.269,
+     "total_r": 2.12
+    },
+    "BOTTOM": {
+     "n": 34,
+     "exp": -0.0312,
+     "pf": 0.963,
+     "win_rate": 0.294,
+     "max_dd_r": -9.796,
+     "total_r": -1.06
+    },
+    "monotonic": true,
+    "top_minus_bottom": 0.1504
+   }
+  },
+  "fam6_84": {
+   "headline": {
+    "TOP": {
+     "n": 131,
+     "exp": 0.0061,
+     "pf": 1.009,
+     "win_rate": 0.382,
+     "max_dd_r": -36.293,
+     "total_r": 0.8
+    },
+    "MIDDLE": {
+     "n": 155,
+     "exp": 0.0298,
+     "pf": 1.043,
+     "win_rate": 0.413,
+     "max_dd_r": -11.4,
+     "total_r": 4.62
+    },
+    "BOTTOM": {
+     "n": 67,
+     "exp": -0.2322,
+     "pf": 0.704,
+     "win_rate": 0.343,
+     "max_dd_r": -19.464,
+     "total_r": -15.56
+    },
+    "monotonic": false,
+    "top_minus_bottom": 0.2383
+   },
+   "val": {
+    "TOP": {
+     "n": 91,
+     "exp": 0.2887,
+     "pf": 1.458,
+     "win_rate": 0.429,
+     "max_dd_r": -17.553,
+     "total_r": 26.27
+    },
+    "MIDDLE": {
+     "n": 102,
+     "exp": 0.0617,
+     "pf": 1.091,
+     "win_rate": 0.412,
+     "max_dd_r": -8.53,
+     "total_r": 6.29
+    },
+    "BOTTOM": {
+     "n": 45,
+     "exp": -0.4141,
+     "pf": 0.478,
+     "win_rate": 0.333,
+     "max_dd_r": -18.801,
+     "total_r": -18.64
+    },
+    "monotonic": true,
+    "top_minus_bottom": 0.7028
+   }
+  }
+ },
+ "concentration": {
+  "top_symbols_by_topbucket_r": [
+   [
+    "SNDK",
+    14.24
+   ],
+   [
+    "ARM",
+    11.27
+   ],
+   [
+    "MS",
+    4.16
+   ],
+   [
+    "GOOGL",
+    4.02
+   ],
+   [
+    "CAT",
+    3.23
+   ],
+   [
+    "WMT",
+    3.01
+   ],
+   [
+    "BMNR",
+    2.95
+   ],
+   [
+    "QCOM",
+    2.79
+   ]
+  ],
+  "drop_top1": {
+   "n": 349,
+   "delta": 0.1121,
+   "top_exp": -0.0328,
+   "monotonic": true
+  },
+  "drop_top3": {
+   "n": 345,
+   "delta": -0.0058,
+   "top_exp": -0.1507,
+   "monotonic": false
+  },
+  "drop_top5": {
+   "n": 334,
+   "delta": -0.0688,
+   "top_exp": -0.2137,
+   "monotonic": false
+  }
+ },
+ "bootstrap_delta_trade": {
+  "n_iter": 5000,
+  "block": "trade",
+  "n_valid": 5000,
+  "mean": 0.2169,
+  "ci95_lo": -0.3703,
+  "ci95_hi": 0.7511,
+  "p_positive": 0.7752
+ },
+ "bootstrap_delta_symbol_block": {
+  "n_iter": 5000,
+  "block": "symbol",
+  "n_valid": 5000,
+  "mean": 0.2095,
+  "ci95_lo": -0.4269,
+  "ci95_hi": 0.7941,
+  "p_positive": 0.7496
+ },
+ "top_absolute": {
+  "n": 140,
+  "exp": 0.0698,
+  "ci95": [
+   -0.2155,
+   0.3843
+  ],
+  "clears_zero": false
+ },
+ "loso": {
+  "delta": {
+   "n": 114,
+   "min": 0.1121,
+   "q25": 0.2047,
+   "median": 0.2147,
+   "mean": 0.2147,
+   "max": 0.3725,
+   "n_negative": 0
+  },
+  "top_exp": {
+   "n": 114,
+   "min": -0.0328,
+   "q25": 0.0668,
+   "median": 0.0698,
+   "mean": 0.0698,
+   "max": 0.097,
+   "n_negative": 2
+  }
+ },
+ "verdict": {
+  "verdict": "FAIL",
+  "hard_fails": [
+   "dev/val direction inconsistent (dev delta -0.5936 vs val +0.6612) \u2014 fails written MAYBE gate (directionally consistent)",
+   "perturbation fam6_42 flips direction on headline (-0.0715)",
+   "bootstrap delta 95% CI includes 0 [-0.3703, 0.7511]",
+   "TOP bucket does not clear zero (95% CI [-0.2155, 0.3843])",
+   "concentration: dropping top-3 TOP-bucket symbols (SNDK, ARM, MS) kills the delta (0.2147 -> -0.0058) and flips TOP expectancy negative (0.0698 -> -0.1507); ex-SNDK/ARM the TOP bucket is -15.7R net",
+   "walk-forward: 2 of 4 test windows negative (-0.2418, -0.4145)"
+  ],
+  "notes": [
+   "auto-judge initially returned MAYBE; overridden to FAIL against the written gates (MAYBE requires directional consistency, which dev/val violates). Override documented in REPORT.md."
+  ],
+  "override": "auto-judge MAYBE was too lenient (did not encode dev/val sign-consistency); corrected to FAIL per REPORT.md Section 4 gates."
+ }
+}

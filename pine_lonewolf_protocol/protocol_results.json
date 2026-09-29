@@ -1,0 +1,480 @@
+{
+ "formulations": [
+  "SIGN15",
+  "SIGN20",
+  "SIGN25",
+  "REL15",
+  "REL20",
+  "REL25"
+ ],
+ "costs_bps": [
+  25,
+  50,
+  75,
+  100
+ ],
+ "n_trades": 237,
+ "sanity_sign20_25bps": {
+  "n": 137,
+  "expectancy_net_r": 0.3797,
+  "win_rate_pct": 54.0,
+  "profit_factor": 1.65
+ },
+ "dev_selection": {
+  "SIGN20": {
+   "dev_delta": 0.0242,
+   "dev_blocked_exp": 0.1585,
+   "dev_control_exp": 0.4203,
+   "dev_taken_n": 49,
+   "dev_blocked_n": 17
+  },
+  "REL20": {
+   "dev_delta": 0.0225,
+   "dev_blocked_exp": 0.179,
+   "dev_control_exp": 0.4203,
+   "dev_taken_n": 48,
+   "dev_blocked_n": 18
+  }
+ },
+ "selected": {
+  "formulation": "SIGN20",
+  "tiebreak_invoked": true,
+  "dev_delta": 0.0242
+ },
+ "validation": {
+  "formulation": "SIGN20",
+  "control_exp": 0.1998,
+  "filtered_exp": 0.3435,
+  "val_delta": 0.1437,
+  "control_n": 121,
+  "filtered_n": 88
+ },
+ "walkforward": {
+  "windows": [
+   {
+    "window": "T1",
+    "test_control_exp": 0.6867,
+    "test_filtered_exp": 0.8915,
+    "test_n": 33,
+    "train_control_exp": 0.0076,
+    "train_filtered_exp": -0.0681,
+    "test_delta": 0.2048
+   },
+   {
+    "window": "T2",
+    "test_control_exp": 1.1668,
+    "test_filtered_exp": 1.1966,
+    "test_n": 32,
+    "train_control_exp": 0.3146,
+    "train_filtered_exp": 0.3873,
+    "test_delta": 0.0298
+   },
+   {
+    "window": "T3",
+    "test_control_exp": -0.4477,
+    "test_filtered_exp": -0.4515,
+    "test_n": 36,
+    "train_control_exp": 0.923,
+    "train_filtered_exp": 1.0413,
+    "test_delta": -0.0038
+   },
+   {
+    "window": "T4",
+    "test_control_exp": 0.1229,
+    "test_filtered_exp": 0.3131,
+    "test_n": 39,
+    "train_control_exp": 0.3121,
+    "train_filtered_exp": 0.4042,
+    "test_delta": 0.1902
+   }
+  ],
+  "combined": {
+   "combined_test_control_exp": 0.3477,
+   "combined_test_filtered_exp": 0.5106,
+   "combined_test_n": 140,
+   "combined_test_delta": 0.1629
+  }
+ },
+ "yearly": {
+  "2024": {
+   "control_n": 59,
+   "control_exp": 0.4203,
+   "filtered_exp": 0.4446,
+   "delta": 0.0243
+  },
+  "2025": {
+   "control_n": 68,
+   "control_exp": 0.4253,
+   "filtered_exp": 0.4823,
+   "delta": 0.057
+  },
+  "2026": {
+   "control_n": 53,
+   "control_exp": -0.0894,
+   "filtered_exp": 0.1007,
+   "delta": 0.1901
+  }
+ },
+ "regimes": {
+  "bull_highvol": {
+   "control_n": 83,
+   "control_exp": -0.0057,
+   "filtered_exp": 0.0435,
+   "delta": 0.0492
+  },
+  "bull_lowvol": {
+   "control_n": 87,
+   "control_exp": 0.4295,
+   "filtered_exp": 0.5109,
+   "delta": 0.0815
+  },
+  "weak_highvol": {
+   "thin": true,
+   "control_n": 10
+  },
+  "weak_lowvol": {
+   "thin": true,
+   "control_n": 0
+  }
+ },
+ "perturbation": {
+  "SIGN15": {
+   "25bps": 0.02,
+   "50bps": 0.0241,
+   "75bps": 0.0122,
+   "100bps": 0.0074
+  },
+  "SIGN20": {
+   "25bps": 0.1075,
+   "50bps": 0.1055,
+   "75bps": 0.0871,
+   "100bps": 0.0863
+  },
+  "SIGN25": {
+   "25bps": -0.0162,
+   "50bps": -0.0246,
+   "75bps": -0.0391,
+   "100bps": -0.0465
+  },
+  "REL15": {
+   "25bps": -0.0749,
+   "50bps": -0.081,
+   "75bps": -0.0932,
+   "100bps": -0.0982
+  },
+  "REL20": {
+   "25bps": 0.0971,
+   "50bps": 0.0969,
+   "75bps": 0.08,
+   "100bps": 0.081
+  },
+  "REL25": {
+   "25bps": -0.0089,
+   "50bps": -0.0187,
+   "75bps": -0.0345,
+   "100bps": -0.0432
+  }
+ },
+ "cost_stress_selected": {
+  "25bps": {
+   "delta": 0.1075,
+   "control_exp": 0.2721,
+   "filtered_exp": 0.3797
+  },
+  "50bps": {
+   "delta": 0.1055,
+   "control_exp": 0.2119,
+   "filtered_exp": 0.3174
+  },
+  "75bps": {
+   "delta": 0.0871,
+   "control_exp": 0.1577,
+   "filtered_exp": 0.2449
+  },
+  "100bps": {
+   "delta": 0.0863,
+   "control_exp": 0.0965,
+   "filtered_exp": 0.1828
+  }
+ },
+ "concentration": {
+  "blocked_total_r": 7.67,
+  "blocked_n": 62,
+  "symbol": {
+   "top1_share_of_improvement": -1.006,
+   "top1": [
+    [
+     "QQQ",
+     -7.71
+    ]
+   ],
+   "top3_share_of_improvement": -1.587,
+   "top3": [
+    [
+     "QQQ",
+     -7.71
+    ],
+    [
+     "AMD",
+     -2.67
+    ],
+    [
+     "ONDS",
+     -1.78
+    ]
+   ],
+   "top5_share_of_improvement": -1.936,
+   "top5": [
+    [
+     "QQQ",
+     -7.71
+    ],
+    [
+     "AMD",
+     -2.67
+    ],
+    [
+     "ONDS",
+     -1.78
+    ],
+    [
+     "NIO",
+     -1.39
+    ],
+    [
+     "BBAI",
+     -1.29
+    ]
+   ]
+  },
+  "sector": {
+   "top1_share_of_improvement": -0.946,
+   "top1": [
+    [
+     "XLK",
+     -7.25
+    ]
+   ],
+   "top3_share_of_improvement": -1.433,
+   "top3": [
+    [
+     "XLK",
+     -7.25
+    ],
+    [
+     "SOXX",
+     -2.35
+    ],
+    [
+     "XLY",
+     -1.39
+    ]
+   ],
+   "top5_share_of_improvement": 1.0,
+   "top5": [
+    [
+     "XLK",
+     -7.25
+    ],
+    [
+     "SOXX",
+     -2.35
+    ],
+    [
+     "XLY",
+     -1.39
+    ],
+    [
+     "XLI",
+     8.88
+    ],
+    [
+     "XLF",
+     9.77
+    ]
+   ]
+  },
+  "year": {
+   "top1_share_of_improvement": -1.266,
+   "top1": [
+    [
+     "2026",
+     -9.7
+    ]
+   ],
+   "top3_share_of_improvement": 1.0,
+   "top3": [
+    [
+     "2026",
+     -9.7
+    ],
+    [
+     "2024",
+     2.69
+    ],
+    [
+     "2025",
+     14.68
+    ]
+   ],
+   "top5_share_of_improvement": 1.0,
+   "top5": [
+    [
+     "2026",
+     -9.7
+    ],
+    [
+     "2024",
+     2.69
+    ],
+    [
+     "2025",
+     14.68
+    ]
+   ]
+  }
+ },
+ "bootstrap_primary": {
+  "B": 10000,
+  "mean": 0.1396,
+  "p5": -0.0042,
+  "p50": 0.1382,
+  "p95": 0.2857,
+  "P_delta_gt_0": 0.9442
+ },
+ "bootstrap_secondary_blocked_vs_allowed": {
+  "B": 10000,
+  "mean": 0.2559,
+  "p5": -0.213,
+  "p50": 0.2568,
+  "p95": 0.7235,
+  "P_gap_gt_0": 0.8157
+ },
+ "loso": {
+  "QQQ": {
+   "delta": 0.0342,
+   "control_n": 167,
+   "filtered_n": 126
+  },
+  "SMCI": {
+   "delta": 0.0876,
+   "control_n": 170,
+   "filtered_n": 132
+  },
+  "PLTR": {
+   "delta": 0.0802,
+   "control_n": 176,
+   "filtered_n": 131
+  },
+  "ANET": {
+   "delta": 0.1163,
+   "control_n": 169,
+   "filtered_n": 125
+  },
+  "SOFI": {
+   "delta": 0.1862,
+   "control_n": 172,
+   "filtered_n": 126
+  },
+  "RKLB": {
+   "delta": 0.1208,
+   "control_n": 170,
+   "filtered_n": 132
+  },
+  "ONDS": {
+   "delta": 0.0466,
+   "control_n": 177,
+   "filtered_n": 130
+  },
+  "DRAM": {
+   "delta": 0.1075,
+   "control_n": 180,
+   "filtered_n": 137
+  },
+  "SPCX": {
+   "delta": 0.1075,
+   "control_n": 180,
+   "filtered_n": 137
+  },
+  "ASTX": {
+   "delta": 0.1091,
+   "control_n": 177,
+   "filtered_n": 135
+  },
+  "BBAI": {
+   "delta": 0.0373,
+   "control_n": 172,
+   "filtered_n": 131
+  },
+  "NIO": {
+   "delta": 0.1616,
+   "control_n": 176,
+   "filtered_n": 132
+  },
+  "HOOD": {
+   "delta": 0.1466,
+   "control_n": 174,
+   "filtered_n": 130
+  },
+  "AMD": {
+   "delta": 0.1005,
+   "control_n": 167,
+   "filtered_n": 125
+  }
+ },
+ "economic": {
+  "delta_expectancy": 0.1076,
+  "delta_pf": 0.22,
+  "delta_dd_pct": -2.78,
+  "trades_removed": 62,
+  "trades_added": 0,
+  "control_taken": 180,
+  "filtered_taken": 137,
+  "cap_skipped_control": 57,
+  "cap_skipped_filtered": 26,
+  "opportunity_cost_blocked_exp": 0.1237,
+  "return_per_unit_risk_control": 2.6,
+  "return_per_unit_risk_filtered": 3.51,
+  "control": {
+   "exp": 0.2721,
+   "pf": 1.43,
+   "dd": 21.63,
+   "ret": 56.28
+  },
+  "filtered": {
+   "exp": 0.3797,
+   "pf": 1.65,
+   "dd": 18.86,
+   "ret": 66.23
+  },
+  "validation_delta_exp": 0.1437
+ },
+ "live_paper": {
+  "note": "F_A (sign-cut 20d) papered live via v54_lonewolf_overlay.py (hourly cron lonewolf-overlay-cycle). This study does NOT change the overlay regardless of outcome.",
+  "selected_formulation": "SIGN20",
+  "overlay_formulation": "SIGN20",
+  "match": true
+ },
+ "gates": {
+  "a_val_delta_gt_0.05": true,
+  "b_rolling_combined_gt_0": true,
+  "c_val_years_2025_2026_positive": true,
+  "d_perturb_2of3_each_family": false,
+  "e_loso_no_collapse": true,
+  "f_bootstrap_P95": false,
+  "g_survives_100bps": true,
+  "h_top1_lt_50pct": true
+ },
+ "verdict": "MAYBE",
+ "verdict_detail": {
+  "val_delta": 0.1437,
+  "y2025_delta": 0.057,
+  "y2026_delta": 0.1901,
+  "sign_lookbacks_positive": 2,
+  "rel_lookbacks_positive": 1,
+  "loso_min_delta": 0.0342,
+  "bootstrap_P": 0.9442,
+  "delta_100bps": 0.0863,
+  "top1_share": -1.006
+ }
+}

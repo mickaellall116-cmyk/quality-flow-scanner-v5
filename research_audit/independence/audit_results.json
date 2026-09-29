@@ -1,0 +1,783 @@
+{
+ "independence": {
+  "n": 237,
+  "trades_overlapping_any_other": 229,
+  "trades_overlapping_any_other_pct": 96.6,
+  "mean_overlaps_per_trade": 7.76,
+  "overlap_count_distribution": {
+   "0": 8,
+   "1": 8,
+   "2": 5,
+   "3": 19,
+   "4": 27,
+   "5": 18,
+   "6": 30,
+   "7": 23,
+   "8": 18,
+   "9": 10,
+   "10": 16,
+   "11": 14,
+   "12": 5,
+   "13": 4,
+   "14": 5,
+   "15": 3,
+   "16": 7,
+   "17": 6,
+   "18": 3,
+   "19": 2,
+   "20": 1,
+   "21": 2,
+   "24": 1,
+   "26": 1,
+   "33": 1
+  },
+  "trades_heavily_overlapping_any_pct": 96.2,
+  "max_concurrent_open": 11,
+  "concurrent_open_at_entry": {
+   "mean": 5.08,
+   "median": 5.0,
+   "p90": 8.0,
+   "dist": {
+    "1": 15,
+    "2": 24,
+    "3": 25,
+    "4": 35,
+    "5": 42,
+    "6": 23,
+    "7": 39,
+    "8": 13,
+    "9": 13,
+    "10": 5,
+    "11": 3
+   }
+  },
+  "same_entry_bar": {
+   "n_bars_with_2plus": 30,
+   "n_bars_with_3plus": 8
+  },
+  "entry_r_correlation": {
+   "same_bar_all": {
+    "n_pairs": 46,
+    "pearson_r": 0.262
+   },
+   "same_day_all": {
+    "n_pairs": 51,
+    "pearson_r": 0.0506
+   },
+   "same_bar_same_theme": {
+    "n_pairs": 7,
+    "pearson_r": -0.6075
+   },
+   "same_bar_diff_theme": {
+    "n_pairs": 39,
+    "pearson_r": 0.3502
+   },
+   "null_same_bar": {
+    "mean_r": -0.0074,
+    "sd": 0.1472,
+    "p_two_sided": 0.078
+   }
+  },
+  "theme_breakdown": {
+   "AI software": {
+    "n": 37,
+    "total_r": 19.523522971150705,
+    "mean_r": 0.5276627830040731,
+    "share_trades_pct": 15.6,
+    "share_pnl_pct": 34.5
+   },
+   "Fintech": {
+    "n": 46,
+    "total_r": 17.15466536189075,
+    "mean_r": 0.3729275078671902,
+    "share_trades_pct": 19.4,
+    "share_pnl_pct": 30.3
+   },
+   "Space": {
+    "n": 30,
+    "total_r": 16.48954407301565,
+    "mean_r": 0.5496514691005217,
+    "share_trades_pct": 12.7,
+    "share_pnl_pct": 29.1
+   },
+   "Drones/IoT": {
+    "n": 16,
+    "total_r": 10.559286700032354,
+    "mean_r": 0.6599554187520221,
+    "share_trades_pct": 6.8,
+    "share_pnl_pct": 18.7
+   },
+   "EV/consumer": {
+    "n": 12,
+    "total_r": 1.6149221643457756,
+    "mean_r": 0.13457684702881464,
+    "share_trades_pct": 5.1,
+    "share_pnl_pct": 2.9
+   },
+   "AI infra/semis": {
+    "n": 67,
+    "total_r": -4.020137113675954,
+    "mean_r": -0.06000204647277543,
+    "share_trades_pct": 28.3,
+    "share_pnl_pct": -7.1
+   },
+   "Tech index (QQQ)": {
+    "n": 29,
+    "total_r": -4.735548150461008,
+    "mean_r": -0.16329476380900027,
+    "share_trades_pct": 12.2,
+    "share_pnl_pct": -8.4
+   }
+  },
+  "effective_n": {
+   "cluster_date_theme": {
+    "n_clusters": 229,
+    "mean_cluster_size": 1.03,
+    "icc": 0.0,
+    "design_effect": 1.0,
+    "n_eff": 237.0
+   },
+   "cluster_month_theme": {
+    "n_clusters": 127,
+    "mean_cluster_size": 1.86,
+    "icc": 0.0574,
+    "design_effect": 1.049,
+    "n_eff": 225.8
+   },
+   "cluster_date_sector": {
+    "n_clusters": 227,
+    "mean_cluster_size": 1.04,
+    "icc": 0.0,
+    "design_effect": 1.0,
+    "n_eff": 237.0
+   }
+  },
+  "collapsed_bets": {
+   "same_bar_same_theme": {
+    "n_bets": 230,
+    "bet_expectancy": 0.2624,
+    "bet_total_r": 60.34
+   },
+   "same_date_same_theme": {
+    "n_bets": 229,
+    "bet_expectancy": 0.2462,
+    "bet_total_r": 56.39
+   },
+   "same_bar_any_theme": {
+    "n_bets": 199,
+    "bet_expectancy": 0.2876,
+    "bet_total_r": 57.23
+   }
+  }
+ },
+ "concentration_baseline": {
+  "label": "baseline_237",
+  "n": 237,
+  "total_r": 56.59,
+  "expectancy": 0.2388,
+  "top_trades": {
+   "top_1": {
+    "sum_r": 8.67,
+    "share_pnl_pct": 15.3,
+    "trades": [
+     {
+      "symbol": "HOOD",
+      "entry": "2025-04-29 13:30:00-04:00",
+      "r": 8.67
+     }
+    ],
+    "expectancy_without": 0.203
+   },
+   "top_3": {
+    "sum_r": 22.03,
+    "share_pnl_pct": 38.9,
+    "trades": [
+     {
+      "symbol": "HOOD",
+      "entry": "2025-04-29 13:30:00-04:00",
+      "r": 8.67
+     },
+     {
+      "symbol": "RKLB",
+      "entry": "2024-10-01 13:30:00-04:00",
+      "r": 6.69
+     },
+     {
+      "symbol": "ONDS",
+      "entry": "2025-08-14 13:30:00-04:00",
+      "r": 6.68
+     }
+    ],
+    "expectancy_without": 0.1477
+   },
+   "top_5": {
+    "sum_r": 33.76,
+    "share_pnl_pct": 59.7,
+    "trades": [
+     {
+      "symbol": "HOOD",
+      "entry": "2025-04-29 13:30:00-04:00",
+      "r": 8.67
+     },
+     {
+      "symbol": "RKLB",
+      "entry": "2024-10-01 13:30:00-04:00",
+      "r": 6.69
+     },
+     {
+      "symbol": "ONDS",
+      "entry": "2025-08-14 13:30:00-04:00",
+      "r": 6.68
+     },
+     {
+      "symbol": "AMD",
+      "entry": "2026-04-02 13:30:00-04:00",
+      "r": 5.88
+     },
+     {
+      "symbol": "SOFI",
+      "entry": "2025-06-16 13:30:00-04:00",
+      "r": 5.85
+     }
+    ]
+   },
+   "top_10": {
+    "sum_r": 56.51,
+    "share_pnl_pct": 99.9,
+    "trades": [
+     {
+      "symbol": "HOOD",
+      "entry": "2025-04-29 13:30:00-04:00",
+      "r": 8.67
+     },
+     {
+      "symbol": "RKLB",
+      "entry": "2024-10-01 13:30:00-04:00",
+      "r": 6.69
+     },
+     {
+      "symbol": "ONDS",
+      "entry": "2025-08-14 13:30:00-04:00",
+      "r": 6.68
+     },
+     {
+      "symbol": "AMD",
+      "entry": "2026-04-02 13:30:00-04:00",
+      "r": 5.88
+     },
+     {
+      "symbol": "SOFI",
+      "entry": "2025-06-16 13:30:00-04:00",
+      "r": 5.85
+     },
+     {
+      "symbol": "RKLB",
+      "entry": "2025-06-18 13:30:00-04:00",
+      "r": 5.68
+     },
+     {
+      "symbol": "SOFI",
+      "entry": "2024-10-30 09:30:00-04:00",
+      "r": 4.89
+     },
+     {
+      "symbol": "RKLB",
+      "entry": "2026-04-30 13:30:00-04:00",
+      "r": 4.38
+     },
+     {
+      "symbol": "ONDS",
+      "entry": "2025-05-29 09:30:00-04:00",
+      "r": 3.95
+     },
+     {
+      "symbol": "SOFI",
+      "entry": "2024-10-08 13:30:00-04:00",
+      "r": 3.84
+     }
+    ]
+   }
+  },
+  "top3_red_flag": false,
+  "hhi_pnl": 2747.6,
+  "best_month": {
+   "label": "2025-06",
+   "sum_r": 22.89,
+   "n": 13,
+   "share_pnl_pct": 40.5,
+   "expectancy_without": 0.1504
+  },
+  "best_year": {
+   "label": "2025",
+   "sum_r": 45.07,
+   "n": 102,
+   "share_pnl_pct": 79.6,
+   "expectancy_without": 0.0853
+  },
+  "best_3_months": {
+   "labels": [
+    "2025-06",
+    "2026-04",
+    "2024-10"
+   ],
+   "sum_r": 47.37,
+   "share_pnl_pct": 83.7,
+   "expectancy_without": 0.0452
+  },
+  "by_symbol": [
+   {
+    "label": "RKLB",
+    "sum_r": 19.94,
+    "n": 25,
+    "share_pnl_pct": 35.2
+   },
+   {
+    "label": "PLTR",
+    "sum_r": 14.13,
+    "n": 20,
+    "share_pnl_pct": 25.0
+   },
+   {
+    "label": "HOOD",
+    "sum_r": 13.32,
+    "n": 22,
+    "share_pnl_pct": 23.5
+   },
+   {
+    "label": "ONDS",
+    "sum_r": 10.56,
+    "n": 16,
+    "share_pnl_pct": 18.7
+   },
+   {
+    "label": "BBAI",
+    "sum_r": 5.39,
+    "n": 17,
+    "share_pnl_pct": 9.5
+   },
+   {
+    "label": "AMD",
+    "sum_r": 4.53,
+    "n": 23,
+    "share_pnl_pct": 8.0
+   },
+   {
+    "label": "SOFI",
+    "sum_r": 3.83,
+    "n": 24,
+    "share_pnl_pct": 6.8
+   },
+   {
+    "label": "NIO",
+    "sum_r": 1.61,
+    "n": 12,
+    "share_pnl_pct": 2.9
+   },
+   {
+    "label": "ANET",
+    "sum_r": -2.64,
+    "n": 25,
+    "share_pnl_pct": -4.7
+   },
+   {
+    "label": "ASTX",
+    "sum_r": -3.45,
+    "n": 5,
+    "share_pnl_pct": -6.1
+   },
+   {
+    "label": "QQQ",
+    "sum_r": -4.74,
+    "n": 29,
+    "share_pnl_pct": -8.4
+   },
+   {
+    "label": "SMCI",
+    "sum_r": -5.91,
+    "n": 19,
+    "share_pnl_pct": -10.4
+   }
+  ],
+  "by_theme": [
+   {
+    "label": "AI software",
+    "sum_r": 19.52,
+    "n": 37,
+    "share_pnl_pct": 34.5
+   },
+   {
+    "label": "Fintech",
+    "sum_r": 17.15,
+    "n": 46,
+    "share_pnl_pct": 30.3
+   },
+   {
+    "label": "Space",
+    "sum_r": 16.49,
+    "n": 30,
+    "share_pnl_pct": 29.1
+   },
+   {
+    "label": "Drones/IoT",
+    "sum_r": 10.56,
+    "n": 16,
+    "share_pnl_pct": 18.7
+   },
+   {
+    "label": "EV/consumer",
+    "sum_r": 1.61,
+    "n": 12,
+    "share_pnl_pct": 2.9
+   },
+   {
+    "label": "AI infra/semis",
+    "sum_r": -4.02,
+    "n": 67,
+    "share_pnl_pct": -7.1
+   },
+   {
+    "label": "Tech index (QQQ)",
+    "sum_r": -4.74,
+    "n": 29,
+    "share_pnl_pct": -8.4
+   }
+  ],
+  "by_sector": [
+   {
+    "label": "XLI",
+    "sum_r": 19.94,
+    "n": 25,
+    "share_pnl_pct": 35.2
+   },
+   {
+    "label": "XLK",
+    "sum_r": 19.26,
+    "n": 112,
+    "share_pnl_pct": 34.0
+   },
+   {
+    "label": "XLF",
+    "sum_r": 17.15,
+    "n": 46,
+    "share_pnl_pct": 30.3
+   },
+   {
+    "label": "XLY",
+    "sum_r": 1.61,
+    "n": 12,
+    "share_pnl_pct": 2.9
+   },
+   {
+    "label": "SOXX",
+    "sum_r": -1.38,
+    "n": 42,
+    "share_pnl_pct": -2.4
+   }
+  ]
+ },
+ "concentration_retained": {
+  "label": "lonewolf_retained_154",
+  "n": 154,
+  "total_r": 58.11,
+  "expectancy": 0.3773,
+  "top_trades": {
+   "top_1": {
+    "sum_r": 8.67,
+    "share_pnl_pct": 14.9,
+    "trades": [
+     {
+      "symbol": "HOOD",
+      "entry": "2025-04-29 13:30:00-04:00",
+      "r": 8.67
+     }
+    ],
+    "expectancy_without": 0.3231
+   },
+   "top_3": {
+    "sum_r": 22.03,
+    "share_pnl_pct": 37.9,
+    "trades": [
+     {
+      "symbol": "HOOD",
+      "entry": "2025-04-29 13:30:00-04:00",
+      "r": 8.67
+     },
+     {
+      "symbol": "RKLB",
+      "entry": "2024-10-01 13:30:00-04:00",
+      "r": 6.69
+     },
+     {
+      "symbol": "ONDS",
+      "entry": "2025-08-14 13:30:00-04:00",
+      "r": 6.68
+     }
+    ],
+    "expectancy_without": 0.2389
+   },
+   "top_5": {
+    "sum_r": 32.8,
+    "share_pnl_pct": 56.4,
+    "trades": [
+     {
+      "symbol": "HOOD",
+      "entry": "2025-04-29 13:30:00-04:00",
+      "r": 8.67
+     },
+     {
+      "symbol": "RKLB",
+      "entry": "2024-10-01 13:30:00-04:00",
+      "r": 6.69
+     },
+     {
+      "symbol": "ONDS",
+      "entry": "2025-08-14 13:30:00-04:00",
+      "r": 6.68
+     },
+     {
+      "symbol": "AMD",
+      "entry": "2026-04-02 13:30:00-04:00",
+      "r": 5.88
+     },
+     {
+      "symbol": "SOFI",
+      "entry": "2024-10-30 09:30:00-04:00",
+      "r": 4.89
+     }
+    ]
+   },
+   "top_10": {
+    "sum_r": 51.25,
+    "share_pnl_pct": 88.2,
+    "trades": [
+     {
+      "symbol": "HOOD",
+      "entry": "2025-04-29 13:30:00-04:00",
+      "r": 8.67
+     },
+     {
+      "symbol": "RKLB",
+      "entry": "2024-10-01 13:30:00-04:00",
+      "r": 6.69
+     },
+     {
+      "symbol": "ONDS",
+      "entry": "2025-08-14 13:30:00-04:00",
+      "r": 6.68
+     },
+     {
+      "symbol": "AMD",
+      "entry": "2026-04-02 13:30:00-04:00",
+      "r": 5.88
+     },
+     {
+      "symbol": "SOFI",
+      "entry": "2024-10-30 09:30:00-04:00",
+      "r": 4.89
+     },
+     {
+      "symbol": "ONDS",
+      "entry": "2025-05-29 09:30:00-04:00",
+      "r": 3.95
+     },
+     {
+      "symbol": "BBAI",
+      "entry": "2025-06-16 13:30:00-04:00",
+      "r": 3.83
+     },
+     {
+      "symbol": "QQQ",
+      "entry": "2026-04-20 13:30:00-04:00",
+      "r": 3.66
+     },
+     {
+      "symbol": "RKLB",
+      "entry": "2025-12-15 13:30:00-05:00",
+      "r": 3.53
+     },
+     {
+      "symbol": "AMD",
+      "entry": "2026-04-29 13:30:00-04:00",
+      "r": 3.48
+     }
+    ]
+   }
+  },
+  "top3_red_flag": false,
+  "hhi_pnl": 1858.3,
+  "best_month": {
+   "label": "2026-04",
+   "sum_r": 12.97,
+   "n": 6,
+   "share_pnl_pct": 22.3,
+   "expectancy_without": 0.305
+  },
+  "best_year": {
+   "label": "2025",
+   "sum_r": 36.07,
+   "n": 69,
+   "share_pnl_pct": 62.1,
+   "expectancy_without": 0.2593
+  },
+  "best_3_months": {
+   "labels": [
+    "2026-04",
+    "2025-06",
+    "2024-11"
+   ],
+   "sum_r": 36.13,
+   "share_pnl_pct": 62.2,
+   "expectancy_without": 0.1628
+  },
+  "by_symbol": [
+   {
+    "label": "ONDS",
+    "sum_r": 12.34,
+    "n": 12,
+    "share_pnl_pct": 21.2
+   },
+   {
+    "label": "HOOD",
+    "sum_r": 11.71,
+    "n": 11,
+    "share_pnl_pct": 20.2
+   },
+   {
+    "label": "RKLB",
+    "sum_r": 11.67,
+    "n": 9,
+    "share_pnl_pct": 20.1
+   },
+   {
+    "label": "PLTR",
+    "sum_r": 10.49,
+    "n": 16,
+    "share_pnl_pct": 18.1
+   },
+   {
+    "label": "BBAI",
+    "sum_r": 7.82,
+    "n": 14,
+    "share_pnl_pct": 13.5
+   },
+   {
+    "label": "AMD",
+    "sum_r": 6.85,
+    "n": 18,
+    "share_pnl_pct": 11.8
+   },
+   {
+    "label": "QQQ",
+    "sum_r": 2.61,
+    "n": 21,
+    "share_pnl_pct": 4.5
+   },
+   {
+    "label": "NIO",
+    "sum_r": 2.41,
+    "n": 6,
+    "share_pnl_pct": 4.1
+   },
+   {
+    "label": "SOFI",
+    "sum_r": 0.08,
+    "n": 14,
+    "share_pnl_pct": 0.1
+   },
+   {
+    "label": "SMCI",
+    "sum_r": -1.98,
+    "n": 12,
+    "share_pnl_pct": -3.4
+   },
+   {
+    "label": "ANET",
+    "sum_r": -2.37,
+    "n": 17,
+    "share_pnl_pct": -4.1
+   },
+   {
+    "label": "ASTX",
+    "sum_r": -3.51,
+    "n": 4,
+    "share_pnl_pct": -6.0
+   }
+  ],
+  "by_theme": [
+   {
+    "label": "AI software",
+    "sum_r": 18.31,
+    "n": 30,
+    "share_pnl_pct": 31.5
+   },
+   {
+    "label": "Drones/IoT",
+    "sum_r": 12.34,
+    "n": 12,
+    "share_pnl_pct": 21.2
+   },
+   {
+    "label": "Fintech",
+    "sum_r": 11.79,
+    "n": 25,
+    "share_pnl_pct": 20.3
+   },
+   {
+    "label": "Space",
+    "sum_r": 8.15,
+    "n": 13,
+    "share_pnl_pct": 14.0
+   },
+   {
+    "label": "Tech index (QQQ)",
+    "sum_r": 2.61,
+    "n": 21,
+    "share_pnl_pct": 4.5
+   },
+   {
+    "label": "AI infra/semis",
+    "sum_r": 2.49,
+    "n": 47,
+    "share_pnl_pct": 4.3
+   },
+   {
+    "label": "EV/consumer",
+    "sum_r": 2.41,
+    "n": 6,
+    "share_pnl_pct": 4.1
+   }
+  ],
+  "by_sector": [
+   {
+    "label": "XLK",
+    "sum_r": 27.38,
+    "n": 84,
+    "share_pnl_pct": 47.1
+   },
+   {
+    "label": "XLF",
+    "sum_r": 11.79,
+    "n": 25,
+    "share_pnl_pct": 20.3
+   },
+   {
+    "label": "XLI",
+    "sum_r": 11.67,
+    "n": 9,
+    "share_pnl_pct": 20.1
+   },
+   {
+    "label": "SOXX",
+    "sum_r": 4.86,
+    "n": 30,
+    "share_pnl_pct": 8.4
+   },
+   {
+    "label": "XLY",
+    "sum_r": 2.41,
+    "n": 6,
+    "share_pnl_pct": 4.1
+   }
+  ]
+ }
+}

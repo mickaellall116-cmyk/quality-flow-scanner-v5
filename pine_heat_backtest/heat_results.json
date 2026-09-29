@@ -1,0 +1,147 @@
+{
+ "setup": {
+  "universe": [
+   "QQQ",
+   "SMCI",
+   "PLTR",
+   "ANET",
+   "SOFI",
+   "RKLB",
+   "ONDS",
+   "DRAM",
+   "SPCX",
+   "ASTX",
+   "BBAI",
+   "NIO",
+   "HOOD",
+   "AMD"
+  ],
+  "cost_bps": 25,
+  "generated": 237,
+  "taken": 180,
+  "total_return_pct": 56.28,
+  "max_drawdown_pct": 21.63,
+  "skipped_cap_count": 44,
+  "skipped_cap_risk": 13
+ },
+ "heat_buckets": {
+  "<2%": {
+   "n": 67,
+   "expectancy_r": 0.149,
+   "win_rate_pct": 46.3,
+   "profit_factor": 1.25,
+   "total_r": 10.0,
+   "avg_port_mae_pct": -1.31,
+   "avg_n_open_at_entry": 1.03
+  },
+  "2-3%": {
+   "n": 47,
+   "expectancy_r": 0.425,
+   "win_rate_pct": 57.4,
+   "profit_factor": 1.66,
+   "total_r": 20.0,
+   "avg_port_mae_pct": -2.615,
+   "avg_n_open_at_entry": 2.81
+  },
+  "3-4%": {
+   "n": 66,
+   "expectancy_r": 0.288,
+   "win_rate_pct": 50.0,
+   "profit_factor": 1.43,
+   "total_r": 18.99,
+   "avg_port_mae_pct": -2.975,
+   "avg_n_open_at_entry": 3.7
+  },
+  "4-5%": {
+   "n": 0
+  },
+  "5% (cap)": {
+   "n": 0
+  }
+ },
+ "heat_distribution": {
+  "<2%": 67,
+  "2-3%": 47,
+  "3-4%": 66,
+  "4-5%": 0,
+  "5% (cap)": 0
+ },
+ "year_xtab": {
+  "2024": {
+   "<2%": {
+    "n": 23,
+    "exp_r": 0.153
+   },
+   "2-3%": {
+    "n": 13,
+    "exp_r": 0.22
+   },
+   "3-4%": {
+    "n": 23,
+    "exp_r": 0.801
+   },
+   "4-5%": {
+    "n": 0,
+    "exp_r": null
+   },
+   "5% (cap)": {
+    "n": 0,
+    "exp_r": null
+   }
+  },
+  "2025": {
+   "<2%": {
+    "n": 20,
+    "exp_r": -0.114
+   },
+   "2-3%": {
+    "n": 21,
+    "exp_r": 0.851
+   },
+   "3-4%": {
+    "n": 27,
+    "exp_r": 0.494
+   },
+   "4-5%": {
+    "n": 0,
+    "exp_r": null
+   },
+   "5% (cap)": {
+    "n": 0,
+    "exp_r": null
+   }
+  },
+  "2026": {
+   "<2%": {
+    "n": 24,
+    "exp_r": 0.365
+   },
+   "2-3%": {
+    "n": 13,
+    "exp_r": -0.057
+   },
+   "3-4%": {
+    "n": 16,
+    "exp_r": -0.798
+   },
+   "4-5%": {
+    "n": 0,
+    "exp_r": null
+   },
+   "5% (cap)": {
+    "n": 0,
+    "exp_r": null
+   }
+  }
+ },
+ "heat_histogram_0.5pct": {
+  "0.0": 20,
+  "0.5": 15,
+  "1.0": 10,
+  "1.5": 22,
+  "2.0": 9,
+  "2.5": 38,
+  "3.0": 23,
+  "3.5": 43
+ }
+}

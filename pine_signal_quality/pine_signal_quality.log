@@ -1,0 +1,19 @@
+loading 4H cache...
+  51 symbols
+loading benchmarks...
+  benchmarks: ['QQQ', 'SPY', 'XLC', 'XLF', 'XLI', 'XLK', 'XLV', 'XLY']
+  symbols with sector ETF: 39/51
+== V0_control ==
+  [4bps] n=263 win=44.9% exp=0.195R PF=1.27 ret=35.3% dd=35.17% hold=18.1 tp1=47.5% stopout=93.9%
+  [25bps] n=263 win=44.1% exp=0.115R PF=1.15 ret=19.92% dd=37.16% hold=18.1 tp1=47.5% stopout=93.9%
+== H1_rs ==
+  [4bps] n=216 win=47.2% exp=0.294R PF=1.43 ret=41.54% dd=33.15% hold=18.6 tp1=49.5% stopout=95.8%
+  [25bps] n=216 win=46.3% exp=0.218R PF=1.3 ret=25.21% dd=38.69% hold=18.6 tp1=49.5% stopout=95.8%
+== H2_contraction ==
+  [4bps] n=117 win=47.9% exp=0.213R PF=1.28 ret=20.18% dd=30.83% hold=19.3 tp1=48.7% stopout=94.0%
+  [25bps] n=117 win=47.9% exp=0.12R PF=1.15 ret=9.61% dd=33.74% hold=19.3 tp1=48.7% stopout=94.0%
+== H3_tightbase ==
+  [4bps] n=27 win=51.9% exp=1.517R PF=3.83 ret=46.98% dd=9.63% hold=24.8 tp1=55.6% stopout=88.9%
+  [25bps] n=27 win=51.9% exp=1.436R PF=3.47 ret=44.22% dd=10.28% hold=24.8 tp1=55.6% stopout=88.9%
+DONE
+EXIT:0

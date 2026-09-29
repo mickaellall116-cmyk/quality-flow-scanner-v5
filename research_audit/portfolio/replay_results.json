@@ -1,0 +1,268 @@
+{
+ "config": {
+  "book": 75000.0,
+  "risk_pct": 0.01,
+  "max_pos": 6,
+  "heat_cap": 0.05,
+  "cost_per_leg": 0.0025,
+  "universe": [
+   "QQQ",
+   "SMCI",
+   "PLTR",
+   "ANET",
+   "SOFI",
+   "RKLB",
+   "ONDS",
+   "DRAM",
+   "SPCX",
+   "ASTX",
+   "BBAI",
+   "NIO",
+   "HOOD",
+   "AMD"
+  ],
+  "period": "Oct2023-Sep2026 4H"
+ },
+ "independent_no_portfolio": {
+  "n": 237,
+  "expectancy_net_r": 0.2388,
+  "max_drawdown_r": 30.74,
+  "total_r": 56.59
+ },
+ "primary_alpha": {
+  "n_trades": 237,
+  "n_taken": 183,
+  "taken_pct": 77.2,
+  "expectancy_net_r": 0.2172,
+  "win_rate_pct": 50.8,
+  "profit_factor": 1.34,
+  "total_r": 39.74,
+  "final_equity": 106912.6,
+  "total_return_pct": 42.55,
+  "max_drawdown_pct": 27.71,
+  "skipped": {
+   "slots": 0,
+   "heat": 54,
+   "afford": 0,
+   "theme": 0,
+   "cash": 0
+  },
+  "contested_timestamps": 20,
+  "genuine_choice_timestamps": 20,
+  "theme_max_concurrency": {
+   "Fintech": 2,
+   "Index": 1,
+   "Space": 2,
+   "China EV": 1,
+   "Semis": 1,
+   "AI Infra": 2,
+   "Software/AI": 2,
+   "Drones": 1
+  }
+ },
+ "ordering_sensitivity": {
+  "watchlist": {
+   "n_trades": 237,
+   "n_taken": 180,
+   "taken_pct": 75.9,
+   "expectancy_net_r": 0.2104,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.32,
+   "total_r": 37.87,
+   "final_equity": 104847.11,
+   "total_return_pct": 39.8,
+   "max_drawdown_pct": 23.28,
+   "skipped": {
+    "slots": 0,
+    "heat": 57,
+    "afford": 0,
+    "theme": 0,
+    "cash": 0
+   },
+   "contested_timestamps": 22,
+   "genuine_choice_timestamps": 22,
+   "theme_max_concurrency": {
+    "Fintech": 2,
+    "Index": 1,
+    "Space": 2,
+    "China EV": 1,
+    "Semis": 1,
+    "AI Infra": 2,
+    "Software/AI": 2,
+    "Drones": 1
+   },
+   "jaccard_vs_alpha": 0.9005
+  },
+  "reverse": {
+   "n_trades": 237,
+   "n_taken": 181,
+   "taken_pct": 76.4,
+   "expectancy_net_r": 0.1886,
+   "win_rate_pct": 49.2,
+   "profit_factor": 1.28,
+   "total_r": 34.13,
+   "final_equity": 100991.7,
+   "total_return_pct": 34.66,
+   "max_drawdown_pct": 27.59,
+   "skipped": {
+    "slots": 0,
+    "heat": 56,
+    "afford": 0,
+    "theme": 0,
+    "cash": 0
+   },
+   "contested_timestamps": 20,
+   "genuine_choice_timestamps": 20,
+   "theme_max_concurrency": {
+    "Fintech": 2,
+    "Index": 1,
+    "Space": 2,
+    "China EV": 1,
+    "Semis": 1,
+    "AI Infra": 2,
+    "Software/AI": 2,
+    "Drones": 1
+   },
+   "jaccard_vs_alpha": 0.8571
+  },
+  "random5": {
+   "expectancy_range": [
+    0.2178,
+    0.2297
+   ],
+   "jaccard_vs_alpha_range": [
+    0.9105,
+    0.9365
+   ]
+  }
+ },
+ "theme_cap_2": {
+  "n_trades": 237,
+  "n_taken": 183,
+  "taken_pct": 77.2,
+  "expectancy_net_r": 0.2172,
+  "win_rate_pct": 50.8,
+  "profit_factor": 1.34,
+  "total_r": 39.74,
+  "final_equity": 106912.6,
+  "total_return_pct": 42.55,
+  "max_drawdown_pct": 27.71,
+  "skipped": {
+   "slots": 0,
+   "heat": 54,
+   "afford": 0,
+   "theme": 0,
+   "cash": 0
+  },
+  "contested_timestamps": 20,
+  "genuine_choice_timestamps": 20,
+  "theme_max_concurrency": {
+   "Fintech": 2,
+   "Index": 1,
+   "Space": 2,
+   "China EV": 1,
+   "Semis": 1,
+   "AI Infra": 2,
+   "Software/AI": 2,
+   "Drones": 1
+  }
+ },
+ "cash_cap": {
+  "n_trades": 237,
+  "n_taken": 183,
+  "taken_pct": 77.2,
+  "expectancy_net_r": 0.2172,
+  "win_rate_pct": 50.8,
+  "profit_factor": 1.34,
+  "total_r": 39.74,
+  "final_equity": 107161.48,
+  "total_return_pct": 42.88,
+  "max_drawdown_pct": 27.56,
+  "skipped": {
+   "slots": 0,
+   "heat": 54,
+   "afford": 0,
+   "theme": 0,
+   "cash": 0
+  },
+  "contested_timestamps": 20,
+  "genuine_choice_timestamps": 20,
+  "theme_max_concurrency": {
+   "Fintech": 2,
+   "Index": 1,
+   "Space": 2,
+   "China EV": 1,
+   "Semis": 1,
+   "AI Infra": 2,
+   "Software/AI": 2,
+   "Drones": 1
+  }
+ },
+ "fixed_base": {
+  "n_trades": 237,
+  "n_taken": 185,
+  "taken_pct": 78.1,
+  "expectancy_net_r": 0.201,
+  "win_rate_pct": 50.8,
+  "profit_factor": 1.31,
+  "total_r": 37.19,
+  "final_equity": 102983.27,
+  "total_return_pct": 37.31,
+  "max_drawdown_pct": 18.95,
+  "skipped": {
+   "slots": 0,
+   "heat": 52,
+   "afford": 0,
+   "theme": 0,
+   "cash": 0
+  },
+  "contested_timestamps": 22,
+  "genuine_choice_timestamps": 22,
+  "theme_max_concurrency": {
+   "Fintech": 2,
+   "Index": 1,
+   "Space": 2,
+   "China EV": 1,
+   "Semis": 1,
+   "AI Infra": 2,
+   "Software/AI": 2,
+   "Drones": 1
+  }
+ },
+ "theme2_cash": {
+  "n_trades": 237,
+  "n_taken": 183,
+  "taken_pct": 77.2,
+  "expectancy_net_r": 0.2172,
+  "win_rate_pct": 50.8,
+  "profit_factor": 1.34,
+  "total_r": 39.74,
+  "final_equity": 107161.48,
+  "total_return_pct": 42.88,
+  "max_drawdown_pct": 27.56,
+  "skipped": {
+   "slots": 0,
+   "heat": 54,
+   "afford": 0,
+   "theme": 0,
+   "cash": 0
+  },
+  "contested_timestamps": 20,
+  "genuine_choice_timestamps": 20,
+  "theme_max_concurrency": {
+   "Fintech": 2,
+   "Index": 1,
+   "Space": 2,
+   "China EV": 1,
+   "Semis": 1,
+   "AI Infra": 2,
+   "Software/AI": 2,
+   "Drones": 1
+  }
+ },
+ "taken_vs_skipped_quality": {
+  "taken_mean_r": 0.2772,
+  "skipped_mean_r": 0.1084,
+  "n_skipped": 54
+ }
+}

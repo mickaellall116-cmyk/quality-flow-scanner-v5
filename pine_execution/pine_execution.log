@@ -1,0 +1,41 @@
+== BULL WINDOW ==
+== bull: 263 candidates ==
+bull E0_4bps C0: n=160 exp=0.239R PF=1.35 ret=35.3% dd=35.17% calmar=1.004 skirisk=24
+bull E0_4bps C1: n=143 exp=0.337R PF=1.49 ret=52.25% dd=31.63% calmar=1.652 skirisk=10
+bull E1_10bps C0: n=160 exp=0.218R PF=1.31 ret=30.73% dd=35.66% calmar=0.862 skirisk=24
+bull E1_10bps C1: n=143 exp=0.316R PF=1.45 ret=47.69% dd=32.06% calmar=1.488 skirisk=10
+bull E2_25bps C0: n=160 exp=0.165R PF=1.23 ret=19.92% dd=37.16% calmar=0.536 skirisk=24
+bull E2_25bps C1: n=142 exp=0.28R PF=1.39 ret=39.64% dd=33.79% calmar=1.173 skirisk=11
+bull E3_50bps C0: n=160 exp=0.076R PF=1.1 ret=3.8% dd=43.49% calmar=0.087 skirisk=24
+bull E3_50bps C1: n=142 exp=0.185R PF=1.24 ret=21.91% dd=38.02% calmar=0.576 skirisk=11
+bull E4_adverse10 C0: n=160 exp=0.195R PF=1.28 ret=26.75% dd=35.07% calmar=0.763 skirisk=24
+bull E4_adverse10 C1: n=142 exp=0.306R PF=1.46 ret=45.68% dd=31.06% calmar=1.471 skirisk=11
+bull E6_100bps C0: n=160 exp=-0.102R PF=0.89 ret=-22.29% dd=54.31% calmar=-0.41 skirisk=25
+bull E6_100bps C1: n=141 exp=0.027R PF=1.03 ret=-3.22% dd=46.12% calmar=-0.07 skirisk=12
+bull C0 taken-count by cost leg: {'E0_4bps': 160, 'E1_10bps': 160, 'E2_25bps': 160, 'E3_50bps': 160, 'E6_100bps': 160}
+bull C1 taken-count by cost leg: {'E0_4bps': 143, 'E1_10bps': 143, 'E2_25bps': 142, 'E3_50bps': 142, 'E6_100bps': 141}
+bull C0 break-even: 71.3 bps
+bull C1 break-even: 107.6 bps
+bull E5 (miss 10%, 20 reps): exp median=0.306 p10=0.223 p90=0.409; ret median=43.67%
+fidelity E0 C1 vs pine_stack C1@4bps: PASS (got 143/0.337R/52.25%/31.63%; want 143/0.337/52.25/31.63)
+consistency E2 C1 vs pine_stack C1@25bps: got 0.28R/39.64%/33.79% vs ref 0.28R/39.64%/33.79%
+== 2022 WINDOW ==
+== 2022: 39 candidates ==
+2022 E0_4bps C0: n=37 exp=0.376R PF=1.47 ret=11.21% dd=21.28% calmar=0.527 skirisk=0
+2022 E0_4bps C1: n=37 exp=0.376R PF=1.47 ret=11.22% dd=21.27% calmar=0.528 skirisk=0
+2022 E1_10bps C0: n=37 exp=0.352R PF=1.44 ret=10.27% dd=21.79% calmar=0.471 skirisk=0
+2022 E1_10bps C1: n=37 exp=0.352R PF=1.44 ret=10.28% dd=21.79% calmar=0.472 skirisk=0
+2022 E2_25bps C0: n=37 exp=0.293R PF=1.35 ret=7.95% dd=23.07% calmar=0.345 skirisk=0
+2022 E2_25bps C1: n=37 exp=0.293R PF=1.35 ret=7.96% dd=23.06% calmar=0.345 skirisk=0
+2022 E3_50bps C0: n=37 exp=0.195R PF=1.22 ret=4.19% dd=25.16% calmar=0.167 skirisk=0
+2022 E3_50bps C1: n=37 exp=0.195R PF=1.22 ret=4.2% dd=25.15% calmar=0.167 skirisk=0
+2022 E4_adverse10 C0: n=37 exp=0.287R PF=1.36 ret=8.14% dd=21.32% calmar=0.382 skirisk=0
+2022 E4_adverse10 C1: n=37 exp=0.287R PF=1.36 ret=8.15% dd=21.32% calmar=0.382 skirisk=0
+2022 E6_100bps C0: n=37 exp=-0.002R PF=1.0 ret=-3.0% dd=29.19% calmar=-0.103 skirisk=0
+2022 E6_100bps C1: n=37 exp=-0.002R PF=1.0 ret=-2.99% dd=29.18% calmar=-0.102 skirisk=0
+2022 C0 taken-count by cost leg: {'E0_4bps': 37, 'E1_10bps': 37, 'E2_25bps': 37, 'E3_50bps': 37, 'E6_100bps': 37}
+2022 C1 taken-count by cost leg: {'E0_4bps': 37, 'E1_10bps': 37, 'E2_25bps': 37, 'E3_50bps': 37, 'E6_100bps': 37}
+2022 C0 break-even: 99.5 bps
+2022 C1 break-even: 99.5 bps
+2022 E5 (miss 10%, 20 reps): exp median=0.417 p10=0.122 p90=0.547; ret median=12.0%
+DONE

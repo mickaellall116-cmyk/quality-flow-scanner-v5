@@ -1,0 +1,2244 @@
+{
+ "half_days": [
+  "2023-11-24",
+  "2024-07-03",
+  "2024-11-29",
+  "2024-12-24",
+  "2025-07-03",
+  "2025-11-28",
+  "2025-12-24"
+ ],
+ "empirical_single_bar_gaps": [
+  "2026-01-30",
+  "2026-02-02"
+ ],
+ "symbols": [
+  {
+   "symbol": "SPY",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "TSLA",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "NVDA",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "QQQ",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "AAPL",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MSFT",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "AMZN",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "META",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "AMD",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "IWM",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "GOOGL",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "JNJ",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "NFLX",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "TLT",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "AVGO",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "XOM",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "XLE",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "UNH",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ADBE",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "LLY",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "DIS",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "JPM",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "INTC",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "XLF",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "V",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ORCL",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "BAC",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "BA",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "SMH",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "BRK-B",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "CRM",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "DIA",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "XLK",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "GLD",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "CVX",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "PANW",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "COIN",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "PLTR",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "PYPL",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ABNB",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MU",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MA",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "CSCO",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "UBER",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "QCOM",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "SMCI",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "COST",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "HD",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "BKNG",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "WMT",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "TSM",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "SNOW",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "AMAT",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "PG",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "PEP",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "TMO",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-11-03",
+   "expected_4h": 1437,
+   "actual_4h": 1439,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "TXN",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "NKE",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "LRCX",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "PFE",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "NIO",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ASML",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "INTU",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "VZ",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "SHOP",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "KO",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MELI",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "CAT",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ARKK",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "DHR",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "GS",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MCD",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ABBV",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "RTX",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "NOW",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "XYZ",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2025-01-21",
+   "expected_4h": 837,
+   "actual_4h": 839,
+   "missing_pct": -0.24,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "WFC",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MRVL",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "DE",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "SCHW",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "NEE",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ISRG",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "AMGN",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "T",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MS",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ENPH",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "F",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "UNP",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "SBUX",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "OXY",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "AI",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "CRWD",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MDB",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "IBM",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ON",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "HON",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "CMG",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "SLB",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "COP",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "GE",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "LIN",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "KLAC",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "FDX",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "VLO",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MPC",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MARA",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ANET",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "GM",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "LMT",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "MRNA",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1451,
+   "actual_4h": 1451,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ETN",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "DDOG",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "NXPI",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "WDAY",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "REGN",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "UPST",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "FCX",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "FTNT",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "GILD",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "DVN",
+   "eligible_from": "2023-10-01",
+   "effective_4h_from": "2023-10-26",
+   "expected_4h": 1449,
+   "actual_4h": 1451,
+   "missing_pct": -0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "ARM",
+   "eligible_from": "2023-10-26",
+   "effective_4h_from": "2023-12-08",
+   "expected_4h": 1392,
+   "actual_4h": 1392,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "BMNR",
+   "eligible_from": "2025-07-21",
+   "effective_4h_from": "2025-07-21",
+   "expected_4h": 592,
+   "actual_4h": 592,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "CRWV",
+   "eligible_from": "2025-05-12",
+   "effective_4h_from": "2025-05-09",
+   "expected_4h": 687,
+   "actual_4h": 686,
+   "missing_pct": 0.15,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "DRAM",
+   "eligible_from": "2026-05-15",
+   "effective_4h_from": "2026-05-14",
+   "expected_4h": 182,
+   "actual_4h": 183,
+   "missing_pct": -0.55,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "GEV",
+   "eligible_from": "2024-05-09",
+   "effective_4h_from": "2024-11-06",
+   "expected_4h": 933,
+   "actual_4h": 936,
+   "missing_pct": -0.32,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "GLXY",
+   "eligible_from": "2025-07-01",
+   "effective_4h_from": "2025-06-30",
+   "expected_4h": 617,
+   "actual_4h": 618,
+   "missing_pct": -0.16,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "NBIS",
+   "eligible_from": "2024-12-03",
+   "effective_4h_from": "2024-12-03",
+   "expected_4h": 900,
+   "actual_4h": 900,
+   "missing_pct": 0.0,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "RDDT",
+   "eligible_from": "2024-05-03",
+   "effective_4h_from": "2024-11-06",
+   "expected_4h": 933,
+   "actual_4h": 936,
+   "missing_pct": -0.32,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "SNDK",
+   "eligible_from": "2025-03-28",
+   "effective_4h_from": "2025-04-04",
+   "expected_4h": 735,
+   "actual_4h": 734,
+   "missing_pct": 0.14,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "SPCX",
+   "eligible_from": "2026-07-28",
+   "effective_4h_from": "2026-07-27",
+   "expected_4h": 84,
+   "actual_4h": 85,
+   "missing_pct": -1.19,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  },
+  {
+   "symbol": "TEM",
+   "eligible_from": "2024-07-30",
+   "effective_4h_from": "2024-11-06",
+   "expected_4h": 935,
+   "actual_4h": 936,
+   "missing_pct": -0.11,
+   "flagged": false,
+   "quality": {
+    "nan_ohlc": 0,
+    "zero_volume": 0,
+    "dup_ts": 0,
+    "bad_wick": 0,
+    "tz_ok": true,
+    "bars_not_0930_1330": 0
+   }
+  }
+ ]
+}

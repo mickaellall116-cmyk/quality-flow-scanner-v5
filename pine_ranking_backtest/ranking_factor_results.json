@@ -1,0 +1,499 @@
+{
+ "control": "rs_spy top2",
+ "clustering": {
+  "contested_timestamps": 54,
+  "genuine_choice": 21,
+  "histogram": {
+   "1": 31,
+   "2": 15,
+   "3": 8
+  }
+ },
+ "variants": {
+  "takeall_ref": {
+   "trades": 178,
+   "expectancy_net_r": 0.2209,
+   "win_rate_pct": 50.0,
+   "profit_factor": 1.34,
+   "max_drawdown_pct": 25.3,
+   "total_return_pct": 42.05,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.5006
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.219
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.0836
+    }
+   }
+  },
+  "rs_spy_CONTROL": {
+   "trades": 179,
+   "expectancy_net_r": 0.1599,
+   "win_rate_pct": 48.0,
+   "profit_factor": 1.24,
+   "max_drawdown_pct": 31.25,
+   "total_return_pct": 27.02,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4656
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.195
+    },
+    "2026": {
+     "n": 52,
+     "exp_r": -0.217
+    }
+   }
+  },
+  "rs_sector": {
+   "trades": 179,
+   "expectancy_net_r": 0.1737,
+   "win_rate_pct": 48.6,
+   "profit_factor": 1.26,
+   "max_drawdown_pct": 29.47,
+   "total_return_pct": 30.32,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4656
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.195
+    },
+    "2026": {
+     "n": 52,
+     "exp_r": -0.1697
+    }
+   }
+  },
+  "mom20": {
+   "trades": 179,
+   "expectancy_net_r": 0.1599,
+   "win_rate_pct": 48.0,
+   "profit_factor": 1.24,
+   "max_drawdown_pct": 31.25,
+   "total_return_pct": 27.02,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4656
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.195
+    },
+    "2026": {
+     "n": 52,
+     "exp_r": -0.217
+    }
+   }
+  },
+  "mom50": {
+   "trades": 180,
+   "expectancy_net_r": 0.2038,
+   "win_rate_pct": 48.9,
+   "profit_factor": 1.31,
+   "max_drawdown_pct": 31.2,
+   "total_return_pct": 37.52,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.507
+    },
+    "2025": {
+     "n": 72,
+     "exp_r": 0.269
+    },
+    "2026": {
+     "n": 52,
+     "exp_r": -0.2131
+    }
+   }
+  },
+  "adx": {
+   "trades": 178,
+   "expectancy_net_r": 0.3137,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.5,
+   "max_drawdown_pct": 26.78,
+   "total_return_pct": 68.01,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.5029
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.4812
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.1273
+    }
+   }
+  },
+  "breakout_dist": {
+   "trades": 178,
+   "expectancy_net_r": 0.2319,
+   "win_rate_pct": 49.4,
+   "profit_factor": 1.36,
+   "max_drawdown_pct": 29.46,
+   "total_return_pct": 44.07,
+   "yearly": {
+    "2024": {
+     "n": 57,
+     "exp_r": 0.4383
+    },
+    "2025": {
+     "n": 70,
+     "exp_r": 0.3589
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.1731
+    }
+   }
+  },
+  "vol_expansion": {
+   "trades": 180,
+   "expectancy_net_r": 0.2544,
+   "win_rate_pct": 50.0,
+   "profit_factor": 1.4,
+   "max_drawdown_pct": 29.23,
+   "total_return_pct": 51.81,
+   "yearly": {
+    "2024": {
+     "n": 57,
+     "exp_r": 0.4405
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.4475
+    },
+    "2026": {
+     "n": 52,
+     "exp_r": -0.2133
+    }
+   }
+  },
+  "dollar_liq": {
+   "trades": 176,
+   "expectancy_net_r": 0.2867,
+   "win_rate_pct": 51.1,
+   "profit_factor": 1.46,
+   "max_drawdown_pct": 26.47,
+   "total_return_pct": 58.98,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4903
+    },
+    "2025": {
+     "n": 69,
+     "exp_r": 0.4055
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.0974
+    }
+   }
+  },
+  "atr_mom": {
+   "trades": 179,
+   "expectancy_net_r": 0.2118,
+   "win_rate_pct": 49.7,
+   "profit_factor": 1.32,
+   "max_drawdown_pct": 27.59,
+   "total_return_pct": 39.88,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4964
+    },
+    "2025": {
+     "n": 72,
+     "exp_r": 0.1835
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.0609
+    }
+   }
+  },
+  "dist_200ema": {
+   "trades": 178,
+   "expectancy_net_r": 0.2245,
+   "win_rate_pct": 49.4,
+   "profit_factor": 1.35,
+   "max_drawdown_pct": 26.52,
+   "total_return_pct": 42.35,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4584
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.3256
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.1731
+    }
+   }
+  },
+  "dist_high": {
+   "trades": 180,
+   "expectancy_net_r": 0.1832,
+   "win_rate_pct": 48.9,
+   "profit_factor": 1.28,
+   "max_drawdown_pct": 29.51,
+   "total_return_pct": 32.77,
+   "yearly": {
+    "2024": {
+     "n": 57,
+     "exp_r": 0.4383
+    },
+    "2025": {
+     "n": 72,
+     "exp_r": 0.1796
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.0968
+    }
+   }
+  },
+  "trend_score": {
+   "trades": 178,
+   "expectancy_net_r": 0.2892,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.46,
+   "max_drawdown_pct": 26.78,
+   "total_return_pct": 60.35,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.5006
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.4221
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.1279
+    }
+   }
+  },
+  "rr": {
+   "trades": 180,
+   "expectancy_net_r": 0.2311,
+   "win_rate_pct": 50.0,
+   "profit_factor": 1.37,
+   "max_drawdown_pct": 29.83,
+   "total_return_pct": 46.7,
+   "yearly": {
+    "2024": {
+     "n": 57,
+     "exp_r": 0.4301
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.3935
+    },
+    "2026": {
+     "n": 52,
+     "exp_r": -0.2088
+    }
+   }
+  },
+  "C_rs_adx": {
+   "trades": 179,
+   "expectancy_net_r": 0.1944,
+   "win_rate_pct": 48.6,
+   "profit_factor": 1.29,
+   "max_drawdown_pct": 29.32,
+   "total_return_pct": 35.54,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.5029
+    },
+    "2025": {
+     "n": 72,
+     "exp_r": 0.1822
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.1273
+    }
+   }
+  },
+  "C_rs_vol": {
+   "trades": 179,
+   "expectancy_net_r": 0.1739,
+   "win_rate_pct": 48.6,
+   "profit_factor": 1.26,
+   "max_drawdown_pct": 29.39,
+   "total_return_pct": 30.45,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4656
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.2307
+    },
+    "2026": {
+     "n": 52,
+     "exp_r": -0.2176
+    }
+   }
+  },
+  "C_rs_rr": {
+   "trades": 179,
+   "expectancy_net_r": 0.1827,
+   "win_rate_pct": 48.0,
+   "profit_factor": 1.28,
+   "max_drawdown_pct": 31.3,
+   "total_return_pct": 32.86,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4633
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.2699
+    },
+    "2026": {
+     "n": 52,
+     "exp_r": -0.2387
+    }
+   }
+  }
+ },
+ "extended": {
+  "cost_stress_50_100bps": {
+   "C_adx_vol": {
+    "50bps_exp_r": 0.256,
+    "100bps_exp_r": 0.138
+   },
+   "C_adx_rr": {
+    "50bps_exp_r": 0.232,
+    "100bps_exp_r": 0.108
+   },
+   "adx": {
+    "50bps_exp_r": 0.252,
+    "100bps_exp_r": 0.135
+   },
+   "trend_score": {
+    "50bps_exp_r": 0.227,
+    "100bps_exp_r": 0.109
+   },
+   "rs_spy_CONTROL": {
+    "50bps_exp_r": 0.101,
+    "100bps_exp_r": 0.003
+   },
+   "takeall_ref": {
+    "50bps_exp_r": 0.157,
+    "100bps_exp_r": 0.028
+   }
+  },
+  "swap_analysis_vs_control": {
+   "adx": {
+    "swapped_in_n": 17,
+    "swapped_in_exp_r": 0.954,
+    "swapped_out_n": 18,
+    "swapped_out_exp_r": -0.611,
+    "in_symbols": {
+     "HOOD": 3,
+     "QQQ": 5,
+     "AMD": 2,
+     "BBAI": 3,
+     "RKLB": 1,
+     "NIO": 2,
+     "ONDS": 1
+    }
+   },
+   "trend_score": {
+    "swapped_in_n": 16,
+    "swapped_in_exp_r": 0.698,
+    "swapped_out_n": 17,
+    "swapped_out_exp_r": -0.688,
+    "in_symbols": {
+     "HOOD": 3,
+     "SOFI": 1,
+     "QQQ": 5,
+     "RKLB": 1,
+     "BBAI": 3,
+     "AMD": 1,
+     "PLTR": 1,
+     "NIO": 1
+    }
+   },
+   "dollar_liq": {
+    "swapped_in_n": 16,
+    "swapped_in_exp_r": 0.349,
+    "swapped_out_n": 19,
+    "swapped_out_exp_r": -0.856,
+    "in_symbols": {
+     "HOOD": 5,
+     "QQQ": 6,
+     "AMD": 2,
+     "BBAI": 2,
+     "PLTR": 1
+    }
+   },
+   "vol_expansion": {
+    "swapped_in_n": 13,
+    "swapped_in_exp_r": 0.684,
+    "swapped_out_n": 12,
+    "swapped_out_exp_r": -0.689,
+    "in_symbols": {
+     "SMCI": 1,
+     "RKLB": 2,
+     "AMD": 1,
+     "HOOD": 2,
+     "BBAI": 1,
+     "PLTR": 1,
+     "QQQ": 2,
+     "NIO": 2,
+     "ONDS": 1
+    }
+   },
+   "mom50": {
+    "swapped_in_n": 11,
+    "swapped_in_exp_r": -0.103,
+    "swapped_out_n": 10,
+    "swapped_out_exp_r": -0.919,
+    "in_symbols": {
+     "HOOD": 3,
+     "SMCI": 1,
+     "BBAI": 3,
+     "RKLB": 1,
+     "QQQ": 1,
+     "PLTR": 1,
+     "NIO": 1
+    }
+   }
+  },
+  "notes": [
+   "mom20 is mathematically identical to rs_spy: SPY return is a constant shift for all contenders at a timestamp, so rank order is unchanged. Redundant duplicate, not an independent test.",
+   "rs_spy control UNDERPERFORMS take-all on this 14-stock universe (+0.160R vs +0.221R at 25bps). The UX51 rs_top2 benefit does not transfer here.",
+   "C_adx_vol (+0.318R) vs adx alone (+0.314R): +0.004R delta = noise. No combo earns its keep."
+  ]
+ }
+}

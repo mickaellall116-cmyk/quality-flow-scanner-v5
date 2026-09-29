@@ -1,0 +1,64 @@
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"AAPL","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"AMAT","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"AMD","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"AMZN","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"APP","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"ARKK","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"ARM","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"ASTS","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"AVAX-USD","watermark":"2026-09-18T12:00:00+00:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"AVGO","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"BTC-USD","watermark":"2026-09-18T12:00:00+00:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"COIN","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"CRM","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"CRWD","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"DDOG","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"DOGE-USD","watermark":"2026-09-18T12:00:00+00:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"ETH-USD","watermark":"2026-09-18T12:00:00+00:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"F","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"GOOGL","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"HOOD","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"INTC","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"IWM","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"LINK-USD","watermark":"2026-09-18T12:00:00+00:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"LRCX","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"LUNR","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"MELI","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"META","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"MRNA","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"MSFT","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"MSTR","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"MU","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"NET","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"NFLX","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"NIO","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"NU","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"NVDA","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"PFE","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"PLTR","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"PYPL","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"QCOM","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"RKLB","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"SHOP","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"SMCI","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"SMH","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"SNOW","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"SOFI","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"SOL-USD","watermark":"2026-09-18T12:00:00+00:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"SPY","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"TSLA","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"XLF","watermark":"2026-09-18T09:30:00-04:00"}
+{"event":"watermark_initialized","reason":"no prior watermark; paper starts now","symbol":"XRP-USD","watermark":"2026-09-18T12:00:00+00:00"}
+{"event":"paper_initialized","n_symbols":51,"note":"watermarks set to latest bar opens; zero cycles on first run"}
+{"bar_time":"2026-09-18T16:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-18T13:30:00-04:00","detection_delay_minutes":0.08,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-18T20:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-19T00:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-19T04:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-19T08:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-19T12:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-19T16:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-19T20:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-20T00:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-20T04:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}
+{"bar_time":"2026-09-20T08:00:00+00:00","detection_delay_minutes":0.02,"event":"cycle_complete","timestamp_status":"no_contenders"}

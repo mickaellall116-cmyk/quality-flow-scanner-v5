@@ -1,0 +1,30 @@
+{
+  "new_signals": 0,
+  "new_signal_ids": [],
+  "opened": 0,
+  "closed": [],
+  "errors": [],
+  "output": "/home/hatch/workspace/quality-flow-scanner-v5/latest_v54_signals.json",
+  "snapshot_files": {
+    "v54_status.json": "/home/hatch/workspace/quality-flow-scanner-v5/forward_test/v54_status.json",
+    "v54_closed_trades.json": "/home/hatch/workspace/quality-flow-scanner-v5/forward_test/v54_closed_trades.json",
+    "v54_ai_observer.json": "/home/hatch/workspace/quality-flow-scanner-v5/forward_test/v54_ai_observer.json"
+  },
+  "publish": {
+    "ok": true,
+    "pushed": false,
+    "note": "up to date"
+  },
+  "fvg_sidecar": {
+    "ok": true,
+    "paper": true,
+    "variant": "hybrid+fvg-entry",
+    "symbols_scanned": 14,
+    "new_signals": 0,
+    "opened": 0,
+    "closed": [],
+    "errors": [],
+    "started_at": "2026-09-26T09:02:34.255938+00:00",
+    "finished_at": "2026-09-26T09:02:40.810275+00:00"
+  }
+}

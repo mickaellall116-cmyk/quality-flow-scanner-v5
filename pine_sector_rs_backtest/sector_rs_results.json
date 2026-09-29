@@ -1,0 +1,150 @@
+{
+ "n_trades": 237,
+ "baseline": {
+  "n": 237,
+  "expectancy_net_r": 0.2388,
+  "win_rate_pct": 50.6,
+  "profit_factor": 1.38
+ },
+ "sector_mapping": {
+  "QQQ": "XLK",
+  "SMCI": "SOXX",
+  "PLTR": "XLK",
+  "ANET": "XLK",
+  "SOFI": "XLF",
+  "RKLB": "XLI",
+  "ONDS": "XLK",
+  "DRAM": "SOXX",
+  "SPCX": "XLI",
+  "ASTX": "XLK",
+  "BBAI": "XLK",
+  "NIO": "XLY",
+  "HOOD": "XLF",
+  "AMD": "SOXX"
+ },
+ "lookback_trading_days": 20,
+ "buckets": {
+  "both_pos (agree strong)": {
+   "n": 124,
+   "expectancy_net_r": 0.4639,
+   "win_rate_pct": 54.8,
+   "profit_factor": 1.81,
+   "mean_stock_rs_pct": 20.57,
+   "mean_sector_rs_pct": 3.57
+  },
+  "stock_lead (stock strong, sector weak)": {
+   "n": 83,
+   "expectancy_net_r": -0.0183,
+   "win_rate_pct": 47.0,
+   "profit_factor": 0.97,
+   "mean_stock_rs_pct": 15.79,
+   "mean_sector_rs_pct": -2.01
+  },
+  "sector_lead (sector strong, stock weak)": {
+   "n": 16,
+   "expectancy_net_r": -0.1445,
+   "win_rate_pct": 43.8,
+   "profit_factor": 0.79,
+   "mean_stock_rs_pct": -3.21,
+   "mean_sector_rs_pct": 2.67
+  },
+  "both_neg (agree weak)": {
+   "n": 14,
+   "expectancy_net_r": 0.2072,
+   "win_rate_pct": 42.9,
+   "profit_factor": 1.36,
+   "mean_stock_rs_pct": -4.84,
+   "mean_sector_rs_pct": -2.51
+  }
+ },
+ "incremental_sector_agreement": {
+  "given stockRS>0 | sector agrees>0": {
+   "n": 124,
+   "expectancy_net_r": 0.4639,
+   "win_rate_pct": 54.8,
+   "profit_factor": 1.81
+  },
+  "given stockRS>0 | sector disagrees<=0": {
+   "n": 83,
+   "expectancy_net_r": -0.0183,
+   "win_rate_pct": 47.0,
+   "profit_factor": 0.97
+  },
+  "given stockRS<=0 | sector agrees>0": {
+   "n": 16,
+   "expectancy_net_r": -0.1445,
+   "win_rate_pct": 43.8,
+   "profit_factor": 0.79
+  },
+  "given stockRS<=0 | sector disagrees<=0": {
+   "n": 14,
+   "expectancy_net_r": 0.2072,
+   "win_rate_pct": 42.9,
+   "profit_factor": 1.36
+  }
+ },
+ "persistence_bothpos_vs_stocklead_by_year": {
+  "2024": {
+   "both_pos": {
+    "n": 37,
+    "exp_r": 0.4873
+   },
+   "stock_lead": {
+    "n": 25,
+    "exp_r": 0.1081
+   }
+  },
+  "2025": {
+   "both_pos": {
+    "n": 56,
+    "exp_r": 0.6322
+   },
+   "stock_lead": {
+    "n": 33,
+    "exp_r": 0.2727
+   }
+  },
+  "2026": {
+   "both_pos": {
+    "n": 31,
+    "exp_r": 0.1318
+   },
+   "stock_lead": {
+    "n": 25,
+    "exp_r": -0.529
+   }
+  }
+ },
+ "by_sector_etf": {
+  "SOXX": {
+   "n": 42,
+   "expectancy_net_r": -0.0328,
+   "win_rate_pct": 42.9,
+   "profit_factor": 0.96
+  },
+  "XLF": {
+   "n": 46,
+   "expectancy_net_r": 0.3729,
+   "win_rate_pct": 47.8,
+   "profit_factor": 1.62
+  },
+  "XLI": {
+   "n": 25,
+   "expectancy_net_r": 0.7974,
+   "win_rate_pct": 60.0,
+   "profit_factor": 2.86
+  },
+  "XLK": {
+   "n": 112,
+   "expectancy_net_r": 0.1719,
+   "win_rate_pct": 52.7,
+   "profit_factor": 1.27
+  },
+  "XLY": {
+   "n": 12,
+   "expectancy_net_r": 0.1346,
+   "win_rate_pct": 50.0,
+   "profit_factor": 1.29
+  }
+ }
+}

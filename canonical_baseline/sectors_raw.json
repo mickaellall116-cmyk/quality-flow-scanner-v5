@@ -1,0 +1,788 @@
+{
+ "SPY": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "State Street SPDR S&P 500 ETF Trust"
+ },
+ "TSLA": {
+  "sector": "Consumer Cyclical",
+  "industry": "Auto Manufacturers",
+  "quoteType": "EQUITY",
+  "longName": "Tesla, Inc."
+ },
+ "NVDA": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "NVIDIA Corporation"
+ },
+ "QQQ": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "Invesco QQQ Trust"
+ },
+ "AAPL": {
+  "sector": "Technology",
+  "industry": "Consumer Electronics",
+  "quoteType": "EQUITY",
+  "longName": "Apple Inc."
+ },
+ "MSFT": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "Microsoft Corporation"
+ },
+ "AMZN": {
+  "sector": "Consumer Cyclical",
+  "industry": "Internet Retail",
+  "quoteType": "EQUITY",
+  "longName": "Amazon.com, Inc."
+ },
+ "META": {
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "quoteType": "EQUITY",
+  "longName": "Meta Platforms, Inc."
+ },
+ "AMD": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "Advanced Micro Devices, Inc."
+ },
+ "IWM": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "iShares Russell 2000 ETF"
+ },
+ "GOOGL": {
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "quoteType": "EQUITY",
+  "longName": "Alphabet Inc."
+ },
+ "JNJ": {
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - General",
+  "quoteType": "EQUITY",
+  "longName": "Johnson & Johnson"
+ },
+ "NFLX": {
+  "sector": "Communication Services",
+  "industry": "Entertainment",
+  "quoteType": "EQUITY",
+  "longName": "Netflix, Inc."
+ },
+ "TLT": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "iShares 20+ Year Treasury Bond ETF"
+ },
+ "AVGO": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "Broadcom Inc."
+ },
+ "XOM": {
+  "sector": "Energy",
+  "industry": "Oil & Gas Integrated",
+  "quoteType": "EQUITY",
+  "longName": "ExxonMobil Holdings Corporation"
+ },
+ "XLE": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "State Street Energy Select Sector SPDR ETF"
+ },
+ "UNH": {
+  "sector": "Healthcare",
+  "industry": "Healthcare Plans",
+  "quoteType": "EQUITY",
+  "longName": "UnitedHealth Group Incorporated"
+ },
+ "ADBE": {
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "quoteType": "EQUITY",
+  "longName": "Adobe Inc."
+ },
+ "LLY": {
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - General",
+  "quoteType": "EQUITY",
+  "longName": "Eli Lilly and Company"
+ },
+ "DIS": {
+  "sector": "Communication Services",
+  "industry": "Entertainment",
+  "quoteType": "EQUITY",
+  "longName": "The Walt Disney Company"
+ },
+ "JPM": {
+  "sector": "Financial Services",
+  "industry": "Banks - Diversified",
+  "quoteType": "EQUITY",
+  "longName": "JPMorgan Chase & Co."
+ },
+ "INTC": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "Intel Corporation"
+ },
+ "XLF": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "State Street Financial Select Sector SPDR ETF"
+ },
+ "V": {
+  "sector": "Financial Services",
+  "industry": "Credit Services",
+  "quoteType": "EQUITY",
+  "longName": "Visa Inc."
+ },
+ "ORCL": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "Oracle Corporation"
+ },
+ "BAC": {
+  "sector": "Financial Services",
+  "industry": "Banks - Diversified",
+  "quoteType": "EQUITY",
+  "longName": "Bank of America Corporation"
+ },
+ "BA": {
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "quoteType": "EQUITY",
+  "longName": "The Boeing Company"
+ },
+ "SMH": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "VanEck Semiconductor ETF"
+ },
+ "BRK-B": {
+  "sector": "Financial Services",
+  "industry": "Insurance - Diversified",
+  "quoteType": "EQUITY",
+  "longName": "Berkshire Hathaway Inc."
+ },
+ "CRM": {
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "quoteType": "EQUITY",
+  "longName": "Salesforce, Inc."
+ },
+ "DIA": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "State Street SPDR Dow Jones Industrial Average ETF Trust"
+ },
+ "XLK": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "State Street Technology Select Sector SPDR ETF"
+ },
+ "GLD": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "SPDR Gold Shares"
+ },
+ "CVX": {
+  "sector": "Energy",
+  "industry": "Oil & Gas Integrated",
+  "quoteType": "EQUITY",
+  "longName": "Chevron Corporation"
+ },
+ "PANW": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "Palo Alto Networks, Inc."
+ },
+ "COIN": {
+  "sector": "Financial Services",
+  "industry": "Financial Data & Stock Exchanges",
+  "quoteType": "EQUITY",
+  "longName": "Coinbase Global, Inc."
+ },
+ "PLTR": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "Palantir Technologies Inc."
+ },
+ "PYPL": {
+  "sector": "Financial Services",
+  "industry": "Credit Services",
+  "quoteType": "EQUITY",
+  "longName": "PayPal Holdings, Inc."
+ },
+ "ABNB": {
+  "sector": "Consumer Cyclical",
+  "industry": "Travel Services",
+  "quoteType": "EQUITY",
+  "longName": "Airbnb, Inc."
+ },
+ "MU": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "Micron Technology, Inc."
+ },
+ "MA": {
+  "sector": "Financial Services",
+  "industry": "Credit Services",
+  "quoteType": "EQUITY",
+  "longName": "Mastercard Incorporated"
+ },
+ "CSCO": {
+  "sector": "Technology",
+  "industry": "Communication Equipment",
+  "quoteType": "EQUITY",
+  "longName": "Cisco Systems, Inc."
+ },
+ "UBER": {
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "quoteType": "EQUITY",
+  "longName": "Uber Technologies, Inc."
+ },
+ "QCOM": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "QUALCOMM Incorporated"
+ },
+ "SMCI": {
+  "sector": "Technology",
+  "industry": "Computer Hardware",
+  "quoteType": "EQUITY",
+  "longName": "Super Micro Computer, Inc."
+ },
+ "COST": {
+  "sector": "Consumer Defensive",
+  "industry": "Discount Stores",
+  "quoteType": "EQUITY",
+  "longName": "Costco Wholesale Corporation"
+ },
+ "HD": {
+  "sector": "Consumer Cyclical",
+  "industry": "Home Improvement Retail",
+  "quoteType": "EQUITY",
+  "longName": "The Home Depot, Inc."
+ },
+ "BKNG": {
+  "sector": "Consumer Cyclical",
+  "industry": "Travel Services",
+  "quoteType": "EQUITY",
+  "longName": "Booking Holdings Inc."
+ },
+ "WMT": {
+  "sector": "Consumer Defensive",
+  "industry": "Discount Stores",
+  "quoteType": "EQUITY",
+  "longName": "Walmart Inc."
+ },
+ "TSM": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "Taiwan Semiconductor Manufacturing Company Limited"
+ },
+ "SNOW": {
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "quoteType": "EQUITY",
+  "longName": "Snowflake Inc."
+ },
+ "AMAT": {
+  "sector": "Technology",
+  "industry": "Semiconductor Equipment & Materials",
+  "quoteType": "EQUITY",
+  "longName": "Applied Materials, Inc."
+ },
+ "PG": {
+  "sector": "Consumer Defensive",
+  "industry": "Household & Personal Products",
+  "quoteType": "EQUITY",
+  "longName": "The Procter & Gamble Company"
+ },
+ "PEP": {
+  "sector": "Consumer Defensive",
+  "industry": "Beverages - Non-Alcoholic",
+  "quoteType": "EQUITY",
+  "longName": "PepsiCo, Inc."
+ },
+ "TMO": {
+  "sector": "Healthcare",
+  "industry": "Diagnostics & Research",
+  "quoteType": "EQUITY",
+  "longName": "Thermo Fisher Scientific Inc."
+ },
+ "TXN": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "Texas Instruments Incorporated"
+ },
+ "NKE": {
+  "sector": "Consumer Cyclical",
+  "industry": "Footwear & Accessories",
+  "quoteType": "EQUITY",
+  "longName": "NIKE, Inc."
+ },
+ "LRCX": {
+  "sector": "Technology",
+  "industry": "Semiconductor Equipment & Materials",
+  "quoteType": "EQUITY",
+  "longName": "Lam Research Corporation"
+ },
+ "PFE": {
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - General",
+  "quoteType": "EQUITY",
+  "longName": "Pfizer Inc."
+ },
+ "NIO": {
+  "sector": "Consumer Cyclical",
+  "industry": "Auto Manufacturers",
+  "quoteType": "EQUITY",
+  "longName": "NIO Inc."
+ },
+ "ASML": {
+  "sector": "Technology",
+  "industry": "Semiconductor Equipment & Materials",
+  "quoteType": "EQUITY",
+  "longName": "ASML Holding N.V."
+ },
+ "INTU": {
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "quoteType": "EQUITY",
+  "longName": "Intuit Inc."
+ },
+ "VZ": {
+  "sector": "Communication Services",
+  "industry": "Telecom Services",
+  "quoteType": "EQUITY",
+  "longName": "Verizon Communications Inc."
+ },
+ "SHOP": {
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "quoteType": "EQUITY",
+  "longName": "Shopify Inc."
+ },
+ "KO": {
+  "sector": "Consumer Defensive",
+  "industry": "Beverages - Non-Alcoholic",
+  "quoteType": "EQUITY",
+  "longName": "The Coca-Cola Company"
+ },
+ "MELI": {
+  "sector": "Consumer Cyclical",
+  "industry": "Internet Retail",
+  "quoteType": "EQUITY",
+  "longName": "MercadoLibre, Inc."
+ },
+ "CAT": {
+  "sector": "Industrials",
+  "industry": "Farm & Heavy Construction Machinery",
+  "quoteType": "EQUITY",
+  "longName": "Caterpillar Inc."
+ },
+ "ARKK": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "ARK Innovation ETF"
+ },
+ "DHR": {
+  "sector": "Healthcare",
+  "industry": "Diagnostics & Research",
+  "quoteType": "EQUITY",
+  "longName": "Danaher Corporation"
+ },
+ "GS": {
+  "sector": "Financial Services",
+  "industry": "Capital Markets",
+  "quoteType": "EQUITY",
+  "longName": "The Goldman Sachs Group, Inc."
+ },
+ "MCD": {
+  "sector": "Consumer Cyclical",
+  "industry": "Restaurants",
+  "quoteType": "EQUITY",
+  "longName": "McDonald's Corporation"
+ },
+ "ABBV": {
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - General",
+  "quoteType": "EQUITY",
+  "longName": "AbbVie Inc."
+ },
+ "RTX": {
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "quoteType": "EQUITY",
+  "longName": "RTX Corporation"
+ },
+ "NOW": {
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "quoteType": "EQUITY",
+  "longName": "ServiceNow, Inc."
+ },
+ "XYZ": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "Block, Inc."
+ },
+ "WFC": {
+  "sector": "Financial Services",
+  "industry": "Banks - Diversified",
+  "quoteType": "EQUITY",
+  "longName": "Wells Fargo & Company"
+ },
+ "MRVL": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "Marvell Technology, Inc."
+ },
+ "DE": {
+  "sector": "Industrials",
+  "industry": "Farm & Heavy Construction Machinery",
+  "quoteType": "EQUITY",
+  "longName": "Deere & Company"
+ },
+ "SCHW": {
+  "sector": "Financial Services",
+  "industry": "Capital Markets",
+  "quoteType": "EQUITY",
+  "longName": "The Charles Schwab Corporation"
+ },
+ "NEE": {
+  "sector": "Utilities",
+  "industry": "Utilities - Regulated Electric",
+  "quoteType": "EQUITY",
+  "longName": "NextEra Energy, Inc."
+ },
+ "ISRG": {
+  "sector": "Healthcare",
+  "industry": "Medical Instruments & Supplies",
+  "quoteType": "EQUITY",
+  "longName": "Intuitive Surgical, Inc."
+ },
+ "AMGN": {
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - General",
+  "quoteType": "EQUITY",
+  "longName": "Amgen Inc."
+ },
+ "T": {
+  "sector": "Communication Services",
+  "industry": "Telecom Services",
+  "quoteType": "EQUITY",
+  "longName": "AT&T Inc."
+ },
+ "MS": {
+  "sector": "Financial Services",
+  "industry": "Capital Markets",
+  "quoteType": "EQUITY",
+  "longName": "Morgan Stanley"
+ },
+ "ENPH": {
+  "sector": "Technology",
+  "industry": "Solar",
+  "quoteType": "EQUITY",
+  "longName": "Enphase Energy, Inc."
+ },
+ "F": {
+  "sector": "Consumer Cyclical",
+  "industry": "Auto Manufacturers",
+  "quoteType": "EQUITY",
+  "longName": "Ford Motor Company"
+ },
+ "UNP": {
+  "sector": "Industrials",
+  "industry": "Railroads",
+  "quoteType": "EQUITY",
+  "longName": "Union Pacific Corporation"
+ },
+ "SBUX": {
+  "sector": "Consumer Cyclical",
+  "industry": "Restaurants",
+  "quoteType": "EQUITY",
+  "longName": "Starbucks Corporation"
+ },
+ "OXY": {
+  "sector": "Energy",
+  "industry": "Oil & Gas E&P",
+  "quoteType": "EQUITY",
+  "longName": "Occidental Petroleum Corporation"
+ },
+ "AI": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "C3.ai, Inc."
+ },
+ "CRWD": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "CrowdStrike Holdings, Inc."
+ },
+ "MDB": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "MongoDB, Inc."
+ },
+ "IBM": {
+  "sector": "Technology",
+  "industry": "Information Technology Services",
+  "quoteType": "EQUITY",
+  "longName": "International Business Machines Corporation"
+ },
+ "ON": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "ON Semiconductor Corporation"
+ },
+ "HON": {
+  "sector": "Industrials",
+  "industry": "Conglomerates",
+  "quoteType": "EQUITY",
+  "longName": "Honeywell International Inc."
+ },
+ "CMG": {
+  "sector": "Consumer Cyclical",
+  "industry": "Restaurants",
+  "quoteType": "EQUITY",
+  "longName": "Chipotle Mexican Grill, Inc."
+ },
+ "SLB": {
+  "sector": "Energy",
+  "industry": "Oil & Gas Equipment & Services",
+  "quoteType": "EQUITY",
+  "longName": "SLB N.V."
+ },
+ "COP": {
+  "sector": "Energy",
+  "industry": "Oil & Gas E&P",
+  "quoteType": "EQUITY",
+  "longName": "ConocoPhillips"
+ },
+ "GE": {
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "quoteType": "EQUITY",
+  "longName": "GE Aerospace"
+ },
+ "LIN": {
+  "sector": "Basic Materials",
+  "industry": "Specialty Chemicals",
+  "quoteType": "EQUITY",
+  "longName": "Linde plc"
+ },
+ "KLAC": {
+  "sector": "Technology",
+  "industry": "Semiconductor Equipment & Materials",
+  "quoteType": "EQUITY",
+  "longName": "KLA Corporation"
+ },
+ "FDX": {
+  "sector": "Industrials",
+  "industry": "Integrated Freight & Logistics",
+  "quoteType": "EQUITY",
+  "longName": "FedEx Corporation"
+ },
+ "VLO": {
+  "sector": "Energy",
+  "industry": "Oil & Gas Refining & Marketing",
+  "quoteType": "EQUITY",
+  "longName": "Valero Energy Corporation"
+ },
+ "MPC": {
+  "sector": "Energy",
+  "industry": "Oil & Gas Refining & Marketing",
+  "quoteType": "EQUITY",
+  "longName": "Marathon Petroleum Corporation"
+ },
+ "MARA": {
+  "sector": "Financial Services",
+  "industry": "Capital Markets",
+  "quoteType": "EQUITY",
+  "longName": "MARA Holdings, Inc."
+ },
+ "ANET": {
+  "sector": "Technology",
+  "industry": "Computer Hardware",
+  "quoteType": "EQUITY",
+  "longName": "Arista Networks, Inc."
+ },
+ "GM": {
+  "sector": "Consumer Cyclical",
+  "industry": "Auto Manufacturers",
+  "quoteType": "EQUITY",
+  "longName": "General Motors Company"
+ },
+ "LMT": {
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "quoteType": "EQUITY",
+  "longName": "Lockheed Martin Corporation"
+ },
+ "MRNA": {
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "quoteType": "EQUITY",
+  "longName": "Moderna, Inc."
+ },
+ "ETN": {
+  "sector": "Industrials",
+  "industry": "Specialty Industrial Machinery",
+  "quoteType": "EQUITY",
+  "longName": "Eaton Corporation plc"
+ },
+ "DDOG": {
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "quoteType": "EQUITY",
+  "longName": "Datadog, Inc."
+ },
+ "NXPI": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "NXP Semiconductors N.V."
+ },
+ "WDAY": {
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "quoteType": "EQUITY",
+  "longName": "Workday, Inc."
+ },
+ "REGN": {
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "quoteType": "EQUITY",
+  "longName": "Regeneron Pharmaceuticals, Inc."
+ },
+ "UPST": {
+  "sector": "Financial Services",
+  "industry": "Credit Services",
+  "quoteType": "EQUITY",
+  "longName": "Upstart Holdings, Inc."
+ },
+ "FCX": {
+  "sector": "Basic Materials",
+  "industry": "Copper",
+  "quoteType": "EQUITY",
+  "longName": "Freeport-McMoRan Inc."
+ },
+ "FTNT": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "Fortinet, Inc."
+ },
+ "GILD": {
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - General",
+  "quoteType": "EQUITY",
+  "longName": "Gilead Sciences, Inc."
+ },
+ "DVN": {
+  "sector": "Energy",
+  "industry": "Oil & Gas E&P",
+  "quoteType": "EQUITY",
+  "longName": "Devon Energy Corporation"
+ },
+ "ARM": {
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "quoteType": "EQUITY",
+  "longName": "Arm Holdings plc"
+ },
+ "BMNR": {
+  "sector": "Financial Services",
+  "industry": "Capital Markets",
+  "quoteType": "EQUITY",
+  "longName": "Bitmine Immersion Technologies, Inc."
+ },
+ "CRWV": {
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "quoteType": "EQUITY",
+  "longName": "CoreWeave, Inc."
+ },
+ "DRAM": {
+  "sector": null,
+  "industry": null,
+  "quoteType": "ETF",
+  "longName": "Roundhill Memory ETF"
+ },
+ "GEV": {
+  "sector": "Industrials",
+  "industry": "Specialty Industrial Machinery",
+  "quoteType": "EQUITY",
+  "longName": "GE Vernova Inc."
+ },
+ "GLXY": {
+  "sector": "Financial Services",
+  "industry": "Capital Markets",
+  "quoteType": "EQUITY",
+  "longName": "Galaxy Digital"
+ },
+ "NBIS": {
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "quoteType": "EQUITY",
+  "longName": null
+ },
+ "RDDT": {
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "quoteType": "EQUITY",
+  "longName": "Reddit, Inc."
+ },
+ "SNDK": {
+  "sector": "Technology",
+  "industry": "Computer Hardware",
+  "quoteType": "EQUITY",
+  "longName": "Sandisk Corporation"
+ },
+ "SPCX": {
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "quoteType": "EQUITY",
+  "longName": "Space Exploration Technologies Corp."
+ },
+ "TEM": {
+  "sector": "Healthcare",
+  "industry": "Health Information Services",
+  "quoteType": "EQUITY",
+  "longName": "Tempus AI, Inc."
+ }
+}

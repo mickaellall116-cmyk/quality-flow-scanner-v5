@@ -1,0 +1,18 @@
+{
+ "placebo": "shuffled_fvg_tags",
+ "n_shared": 203,
+ "n_base_only": 34,
+ "n_fvg_only": 63,
+ "n_draws": 2000,
+ "real_delta_r": 0.0464,
+ "fvg_only_exp_r": 0.3871,
+ "base_only_exp_r": 0.1504,
+ "null_mean_delta_r": 0.0273,
+ "null_sd_delta_r": 0.0406,
+ "null_p5_r": -0.0427,
+ "null_p50_r": 0.0285,
+ "null_p95_r": 0.0934,
+ "real_percentile": 66.85,
+ "empirical_p_value": 0.3315,
+ "note": "null = which of the 97 variant-specific trades are 'FVG-selected' is random; shared 203 trades fill identically"
+}

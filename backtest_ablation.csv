@@ -1,0 +1,37 @@
+config,cost,trades,win_rate_pct,avg_win_pct,avg_loss_pct,expectancy_net_r,expectancy_gross_r,profit_factor,total_return_pct,max_drawdown_pct,avg_hold_bars,market_exposure_pct,skipped_gap_below_stop,skipped_max_positions,skipped_max_risk,exit_reasons,eligible,universe,exit_mode,risk_pct
+U15:S0_structural__scanner,4bps,76,40.8,5.84,-2.77,0.166,0.182,1.45,13.61,11.21,6.7,39.8,0,1,0,"{'stop': 32, 'target': 28, 'scanner-exit': 13, 'time': 3}",True,U15,scanner,0.01
+U15:S0_structural__noexit,4bps,72,40.3,6.48,-3.05,0.21,0.225,1.43,16.25,10.78,7.6,44.2,0,1,0,"{'stop': 39, 'target': 29, 'time': 4}",True,U15,noexit,0.01
+U15:S0_structural__protect1R,4bps,73,41.1,6.34,-3.04,0.221,0.237,1.46,17.46,10.78,7.4,43.3,0,1,0,"{'stop': 38, 'target': 29, 'scanner-exit': 3, 'time': 3}",True,U15,protect1R,0.01
+U15:S_plus_market__scanner,4bps,38,36.8,4.99,-2.98,0.001,0.015,0.98,-0.27,6.28,8.1,28.7,0,0,0,"{'stop': 18, 'target': 12, 'scanner-exit': 8}",True,U15,scanner,0.01
+U15:S_plus_market__noexit,4bps,37,35.1,5.88,-3.34,-0.015,-0.001,0.96,-0.84,6.5,9.2,31.8,0,0,0,"{'stop': 23, 'target': 13, 'time': 1}",True,U15,noexit,0.01
+U15:S_plus_market__protect1R,4bps,38,36.8,5.63,-3.31,0.012,0.027,0.99,0.16,5.93,8.9,31.0,0,0,0,"{'stop': 22, 'target': 13, 'scanner-exit': 3}",True,U15,protect1R,0.01
+U15:S_plus_rvol__scanner,4bps,46,37.0,6.17,-2.75,0.165,0.179,1.32,7.17,9.52,6.5,30.2,0,0,0,"{'stop': 20, 'target': 16, 'scanner-exit': 8, 'time': 2}",True,U15,scanner,0.01
+U15:S_plus_rvol__noexit,4bps,45,40.0,6.8,-3.18,0.223,0.237,1.42,9.83,9.79,7.6,37.2,0,0,0,"{'stop': 25, 'target': 18, 'time': 2}",True,U15,noexit,0.01
+U15:S_plus_rvol__protect1R,4bps,45,37.8,6.7,-3.06,0.192,0.206,1.33,8.27,9.79,7.4,36.1,0,0,0,"{'stop': 24, 'target': 17, 'scanner-exit': 2, 'time': 2}",True,U15,protect1R,0.01
+U15:S_plus_adx__scanner,4bps,64,43.8,5.92,-3.05,0.18,0.195,1.51,12.6,9.88,7.1,39.6,0,1,0,"{'stop': 29, 'target': 25, 'scanner-exit': 9, 'time': 1}",True,U15,scanner,0.01
+U15:S_plus_adx__noexit,4bps,62,43.5,6.5,-3.18,0.279,0.295,1.58,18.99,10.78,8.1,44.1,0,1,0,"{'stop': 33, 'target': 27, 'time': 2}",True,U15,noexit,0.01
+U15:S_plus_adx__protect1R,4bps,63,44.4,6.35,-3.16,0.291,0.307,1.6,20.24,10.78,7.9,43.3,0,1,0,"{'stop': 32, 'target': 27, 'scanner-exit': 3, 'time': 1}",True,U15,protect1R,0.01
+U15:S_plus_rr__scanner,4bps,55,36.4,6.1,-2.42,0.133,0.15,1.44,6.91,9.56,6.3,33.3,0,0,0,"{'stop': 24, 'target': 18, 'scanner-exit': 9, 'time': 3, 'gap-above-target': 1}",True,U15,scanner,0.01
+U15:S_plus_rr__noexit,4bps,52,36.5,6.91,-2.66,0.217,0.234,1.49,11.04,9.78,7.3,38.6,0,0,0,"{'stop': 29, 'target': 19, 'time': 3, 'gap-above-target': 1}",True,U15,noexit,0.01
+U15:S_plus_rr__protect1R,4bps,52,36.5,6.91,-2.62,0.226,0.243,1.52,11.55,9.78,7.2,37.7,0,0,0,"{'stop': 28, 'target': 19, 'time': 3, 'gap-above-target': 1, 'scanner-exit': 1}",True,U15,protect1R,0.01
+U15:S_plus_mtf__scanner,4bps,29,41.4,4.89,-2.35,0.021,0.041,1.47,0.3,9.12,6.0,22.5,0,0,0,"{'stop': 15, 'target': 10, 'scanner-exit': 3, 'time': 1}",True,U15,scanner,0.01
+U15:S_plus_mtf__noexit,4bps,28,35.7,5.88,-2.3,0.125,0.144,1.42,3.08,9.12,6.6,23.8,0,0,0,"{'stop': 16, 'target': 10, 'time': 2}",True,U15,noexit,0.01
+U15:S_plus_mtf__protect1R,4bps,28,39.3,5.41,-2.35,0.151,0.17,1.49,3.83,9.12,6.2,22.8,0,0,0,"{'stop': 15, 'target': 10, 'scanner-exit': 2, 'time': 1}",True,U15,protect1R,0.01
+U15:F0_full_ex15m__scanner,4bps,2,50.0,8.17,-3.24,0.512,0.524,2.52,1.0,1.01,7.5,7.0,0,0,0,"{'stop': 1, 'target': 1}",False,U15,scanner,0.01
+U15:F0_full_ex15m__noexit,4bps,2,50.0,8.17,-3.24,0.512,0.524,2.52,1.0,1.01,7.5,7.0,0,0,0,"{'stop': 1, 'target': 1}",False,U15,noexit,0.01
+U15:F0_full_ex15m__protect1R,4bps,2,50.0,8.17,-3.24,0.512,0.524,2.52,1.0,1.01,7.5,7.0,0,0,0,"{'stop': 1, 'target': 1}",False,U15,protect1R,0.01
+U15:F_minus_market__scanner,4bps,10,40.0,8.74,-3.11,0.266,0.279,1.88,2.57,4.13,5.6,10.0,0,0,0,"{'stop': 6, 'target': 4}",True,U15,scanner,0.01
+U15:F_minus_market__noexit,4bps,10,40.0,8.74,-3.11,0.266,0.279,1.88,2.57,4.13,5.6,10.0,0,0,0,"{'stop': 6, 'target': 4}",True,U15,noexit,0.01
+U15:F_minus_market__protect1R,4bps,10,40.0,8.74,-3.11,0.266,0.279,1.88,2.57,4.13,5.6,10.0,0,0,0,"{'stop': 6, 'target': 4}",True,U15,protect1R,0.01
+U15:F_minus_rvol__scanner,4bps,6,33.3,5.17,-2.81,-0.23,-0.215,0.92,-1.42,2.39,7.8,11.2,0,0,0,"{'stop': 4, 'target': 2}",False,U15,scanner,0.01
+U15:F_minus_rvol__noexit,4bps,6,33.3,5.17,-2.81,-0.23,-0.215,0.92,-1.42,2.39,7.8,11.2,0,0,0,"{'stop': 4, 'target': 2}",False,U15,noexit,0.01
+U15:F_minus_rvol__protect1R,4bps,6,33.3,5.17,-2.81,-0.23,-0.215,0.92,-1.42,2.39,7.8,11.2,0,0,0,"{'stop': 4, 'target': 2}",False,U15,protect1R,0.01
+U15:F_minus_adx__scanner,4bps,4,50.0,5.85,-2.21,0.702,0.718,2.65,2.79,1.01,7.0,7.1,0,0,0,"{'target': 2, 'stop': 1, 'scanner-exit': 1}",False,U15,scanner,0.01
+U15:F_minus_adx__noexit,4bps,4,50.0,5.85,-2.8,0.573,0.59,2.09,2.26,1.4,7.2,8.6,0,0,0,"{'stop': 2, 'target': 2}",False,U15,noexit,0.01
+U15:F_minus_adx__protect1R,4bps,4,50.0,5.85,-2.21,0.702,0.718,2.65,2.79,1.01,7.0,7.1,0,0,0,"{'target': 2, 'stop': 1, 'scanner-exit': 1}",False,U15,protect1R,0.01
+U15:F_minus_rr__scanner,4bps,4,50.0,5.65,-3.6,0.403,0.416,1.57,1.57,2.02,11.2,10.7,0,0,0,"{'stop': 2, 'target': 2}",False,U15,scanner,0.01
+U15:F_minus_rr__noexit,4bps,4,50.0,5.65,-3.6,0.403,0.416,1.57,1.57,2.02,11.2,10.7,0,0,0,"{'stop': 2, 'target': 2}",False,U15,noexit,0.01
+U15:F_minus_rr__protect1R,4bps,4,50.0,5.65,-3.6,0.403,0.416,1.57,1.57,2.02,11.2,10.7,0,0,0,"{'stop': 2, 'target': 2}",False,U15,protect1R,0.01
+U15:F_minus_mtf__scanner,4bps,11,27.3,4.15,-2.72,-0.241,-0.226,0.57,-2.7,5.33,5.9,11.5,0,0,0,"{'stop': 5, 'scanner-exit': 4, 'target': 2}",True,U15,scanner,0.01
+U15:F_minus_mtf__noexit,4bps,11,27.3,7.1,-3.35,-0.158,-0.143,0.8,-1.86,5.97,8.7,19.0,0,0,0,"{'stop': 8, 'target': 3}",True,U15,noexit,0.01
+U15:F_minus_mtf__protect1R,4bps,11,27.3,7.1,-3.19,-0.117,-0.102,0.84,-1.4,5.54,8.6,17.9,0,0,0,"{'stop': 7, 'target': 3, 'scanner-exit': 1}",True,U15,protect1R,0.01

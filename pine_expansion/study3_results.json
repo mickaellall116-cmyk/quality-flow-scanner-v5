@@ -1,0 +1,143 @@
+{
+ "notes": [
+  "Study 3: unmodified Pine V3.6 on Daily and Weekly. Lookbacks kept in bars.",
+  "Daily uses backtest_cache/v3/d1_5y_*.pkl (2021-09-15->2026-09-15).",
+  "Weekly uses yfinance 1wk downloads (cache_w1/). WARMUP=215 kept."
+ ],
+ "daily": [
+  {
+   "config": "PINE_V36_hybrid:UX51:1d",
+   "cost": "4bps",
+   "trades": 262,
+   "win_rate_pct": 47.3,
+   "expectancy_net_r": -0.048,
+   "profit_factor": 0.94,
+   "total_return_pct": -17.84,
+   "max_drawdown_pct": 40.11,
+   "avg_hold_bars": 17.5,
+   "market_exposure_pct": 82.6,
+   "tp1_hit_rate_pct": 49.6,
+   "skipped_gap_below_stop": 1,
+   "skipped_max_positions": 96,
+   "skipped_max_risk": 18,
+   "exit_reasons": {
+    "stop": 249,
+    "ema55-break": 13
+   }
+  },
+  {
+   "config": "PINE_V36_hybrid:UX51:1d",
+   "cost": "25bps",
+   "trades": 262,
+   "win_rate_pct": 46.6,
+   "expectancy_net_r": -0.099,
+   "profit_factor": 0.88,
+   "total_return_pct": -24.7,
+   "max_drawdown_pct": 41.21,
+   "avg_hold_bars": 17.5,
+   "market_exposure_pct": 82.6,
+   "tp1_hit_rate_pct": 49.6,
+   "skipped_gap_below_stop": 1,
+   "skipped_max_positions": 95,
+   "skipped_max_risk": 19,
+   "exit_reasons": {
+    "stop": 249,
+    "ema55-break": 13
+   }
+  }
+ ],
+ "weekly": [
+  {
+   "config": "PINE_V36_hybrid:UX51:1wk",
+   "cost": "4bps",
+   "trades": 31,
+   "win_rate_pct": 58.1,
+   "expectancy_net_r": 0.547,
+   "profit_factor": 2.05,
+   "total_return_pct": 25.74,
+   "max_drawdown_pct": 16.23,
+   "avg_hold_bars": 16.4,
+   "market_exposure_pct": 86.2,
+   "tp1_hit_rate_pct": 61.3,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 15,
+   "skipped_max_risk": 0,
+   "exit_reasons": {
+    "stop": 31
+   }
+  },
+  {
+   "config": "PINE_V36_hybrid:UX51:1wk",
+   "cost": "25bps",
+   "trades": 31,
+   "win_rate_pct": 58.1,
+   "expectancy_net_r": 0.527,
+   "profit_factor": 1.99,
+   "total_return_pct": 25.38,
+   "max_drawdown_pct": 16.3,
+   "avg_hold_bars": 16.4,
+   "market_exposure_pct": 86.2,
+   "tp1_hit_rate_pct": 61.3,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 15,
+   "skipped_max_risk": 0,
+   "exit_reasons": {
+    "stop": 31
+   }
+  }
+ ],
+ "weekly_symbols": [
+  "NVDA",
+  "PLTR",
+  "TSLA",
+  "SOFI",
+  "SMCI",
+  "AMD",
+  "AAPL",
+  "MSFT",
+  "META",
+  "COIN",
+  "MSTR",
+  "AVGO",
+  "BTC-USD",
+  "ETH-USD",
+  "SOL-USD",
+  "GOOGL",
+  "AMZN",
+  "NFLX",
+  "CRM",
+  "MU",
+  "INTC",
+  "LRCX",
+  "AMAT",
+  "QCOM",
+  "ARM",
+  "HOOD",
+  "APP",
+  "NET",
+  "SNOW",
+  "DDOG",
+  "CRWD",
+  "SHOP",
+  "RKLB",
+  "ASTS",
+  "LUNR",
+  "PYPL",
+  "NU",
+  "MELI",
+  "SPY",
+  "IWM",
+  "SMH",
+  "ARKK",
+  "XLF",
+  "DOGE-USD",
+  "AVAX-USD",
+  "LINK-USD",
+  "XRP-USD",
+  "NIO",
+  "MRNA",
+  "PFE",
+  "F"
+ ],
+ "weekly_trade_count_check": 31
+}

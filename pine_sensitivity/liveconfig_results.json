@@ -1,0 +1,30 @@
+{
+ "config": "LIVE Aggressive+pullback+sweep",
+ "seconds": 11.1,
+ "4bps": {
+  "trades": 856,
+  "win_rate_pct": 43.8,
+  "expectancy_r": 0.14,
+  "profit_factor": 1.21,
+  "return_pct": 80.4,
+  "max_dd_pct": 51.08,
+  "avg_hold_bars": 17.5,
+  "exit_reasons": {
+   "stop": 708,
+   "ema55-break": 148
+  }
+ },
+ "25bps": {
+  "trades": 856,
+  "win_rate_pct": 43.7,
+  "expectancy_r": 0.066,
+  "profit_factor": 1.09,
+  "return_pct": 46.19,
+  "max_dd_pct": 53.04,
+  "avg_hold_bars": 17.5,
+  "exit_reasons": {
+   "stop": 708,
+   "ema55-break": 148
+  }
+ }
+}

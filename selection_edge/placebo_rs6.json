@@ -1,0 +1,15 @@
+{
+ "real_top_n": 145,
+ "real_top_mean": 0.044089772571801404,
+ "mid_mean": -0.0651880655748144,
+ "bot_mean": -0.2281755009858955,
+ "placebo_mean": 0.0359731937495752,
+ "placebo_sd": 0.05102121160801274,
+ "placebo_p5": -0.0484498439890033,
+ "placebo_p95": 0.1207885589639103,
+ "percentile": 56.8,
+ "p_random_beats": 0.432,
+ "overlap_14_n": 0,
+ "overlap_14_pct": 0.0,
+ "top_n_incl14": 145
+}

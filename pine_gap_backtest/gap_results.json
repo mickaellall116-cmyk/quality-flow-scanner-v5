@@ -1,0 +1,212 @@
+{
+ "n_trades": 237,
+ "baseline": {
+  "n": 237,
+  "expectancy_net_r": 0.2388,
+  "win_rate_pct": 50.6,
+  "profit_factor": 1.38
+ },
+ "definitions": {
+  "gap_atr": "(Open[i+1]-Close[i])/atr[i]; entry bar = i+1",
+  "no_gap": "|gap| < 0.15 ATR",
+  "large_gap": "|gap| >= 0.5 ATR",
+  "hold_fade": "gap-up held: entry-bar close >= open; gap-up faded: close < open; gap-down held: close <= open; gap-down faded: close > open",
+  "open_loc": "entry-bar open position inside prior 10-bar range (0=lows, 1=highs)",
+  "premarket_note": "not separately measurable on 4H bars; inter-bar gap IS the overnight/weekend gap"
+ },
+ "metrics": {
+  "gap_up_size": {
+   "labels": [
+    "no/neg gap",
+    "gap-up small (0.15..0.5)",
+    "gap-up large (>=0.5)"
+   ],
+   "buckets": {
+    "no/neg gap": {
+     "n": 223,
+     "expectancy_net_r": 0.2158,
+     "win_rate_pct": 49.8,
+     "profit_factor": 1.33
+    },
+    "gap-up small (0.15..0.5)": {
+     "n": 7,
+     "expectancy_net_r": 0.8892,
+     "win_rate_pct": 57.1,
+     "profit_factor": 5.26
+    },
+    "gap-up large (>=0.5)": {
+     "n": 7,
+     "expectancy_net_r": 0.3206,
+     "win_rate_pct": 71.4,
+     "profit_factor": 2.01
+    }
+   }
+  },
+  "gap_down_size": {
+   "labels": [
+    "no/pos gap",
+    "gap-down small (-0.5..-0.15)",
+    "gap-down large (<=-0.5)"
+   ],
+   "buckets": {
+    "no/pos gap": {
+     "n": 232,
+     "expectancy_net_r": 0.2738,
+     "win_rate_pct": 51.3,
+     "profit_factor": 1.45
+    },
+    "gap-down small (-0.5..-0.15)": {
+     "n": 2,
+     "expectancy_net_r": -0.6093,
+     "win_rate_pct": 50.0,
+     "profit_factor": 0.32
+    },
+    "gap-down large (<=-0.5)": {
+     "n": 3,
+     "expectancy_net_r": -1.904,
+     "win_rate_pct": 0.0,
+     "profit_factor": 0.0
+    }
+   }
+  },
+  "abs_gap_atr": {
+   "labels": [
+    "Q1 (least)",
+    "Q2",
+    "Q3",
+    "Q4 (most)"
+   ],
+   "buckets": {
+    "Q1 (least)": {
+     "n": 60,
+     "expectancy_net_r": 0.3085,
+     "win_rate_pct": 51.7,
+     "profit_factor": 1.54
+    },
+    "Q2": {
+     "n": 59,
+     "expectancy_net_r": -0.0728,
+     "win_rate_pct": 39.0,
+     "profit_factor": 0.91
+    },
+    "Q3": {
+     "n": 59,
+     "expectancy_net_r": 0.5761,
+     "win_rate_pct": 61.0,
+     "profit_factor": 2.03
+    },
+    "Q4 (most)": {
+     "n": 59,
+     "expectancy_net_r": 0.142,
+     "win_rate_pct": 50.8,
+     "profit_factor": 1.25
+    }
+   },
+   "quartile_edges": [
+    0.002,
+    0.005,
+    0.013
+   ]
+  },
+  "gap_hold_fade": {
+   "labels": [
+    "no gap",
+    "gap-up held",
+    "gap-up faded",
+    "gap-down held",
+    "gap-down faded"
+   ],
+   "buckets": {
+    "no gap": {
+     "n": 218,
+     "expectancy_net_r": 0.2525,
+     "win_rate_pct": 50.5,
+     "profit_factor": 1.4
+    },
+    "gap-up held": {
+     "n": 7,
+     "expectancy_net_r": 0.2053,
+     "win_rate_pct": 57.1,
+     "profit_factor": 1.6
+    },
+    "gap-up faded": {
+     "n": 7,
+     "expectancy_net_r": 1.0044,
+     "win_rate_pct": 71.4,
+     "profit_factor": 6.5
+    },
+    "gap-down held": {
+     "n": 2,
+     "expectancy_net_r": -2.2021,
+     "win_rate_pct": 0.0,
+     "profit_factor": 0.0
+    },
+    "gap-down faded": {
+     "n": 3,
+     "expectancy_net_r": -0.8421,
+     "win_rate_pct": 33.3,
+     "profit_factor": 0.19
+    }
+   }
+  },
+  "open_location_10bar": {
+   "labels": [
+    "Q1 (least)",
+    "Q2",
+    "Q3",
+    "Q4 (most)"
+   ],
+   "buckets": {
+    "Q1 (least)": {
+     "n": 60,
+     "expectancy_net_r": 0.1024,
+     "win_rate_pct": 46.7,
+     "profit_factor": 1.16
+    },
+    "Q2": {
+     "n": 59,
+     "expectancy_net_r": 0.3835,
+     "win_rate_pct": 54.2,
+     "profit_factor": 1.65
+    },
+    "Q3": {
+     "n": 59,
+     "expectancy_net_r": 0.178,
+     "win_rate_pct": 52.5,
+     "profit_factor": 1.26
+    },
+    "Q4 (most)": {
+     "n": 59,
+     "expectancy_net_r": 0.2934,
+     "win_rate_pct": 49.2,
+     "profit_factor": 1.49
+    }
+   },
+   "quartile_edges": [
+    0.545,
+    0.711,
+    0.827
+   ]
+  }
+ },
+ "persistence_big_gap_vs_rest_by_year": {
+  "2024": {
+   "n_big": 3,
+   "exp_big_r": -0.2745,
+   "n_rest": 72,
+   "exp_rest_r": 0.3734
+  },
+  "2025": {
+   "n_big": 5,
+   "exp_big_r": -0.2497,
+   "n_rest": 97,
+   "exp_rest_r": 0.4775
+  },
+  "2026": {
+   "n_big": 2,
+   "exp_big_r": -0.698,
+   "n_rest": 58,
+   "exp_rest_r": -0.2266
+  }
+ }
+}

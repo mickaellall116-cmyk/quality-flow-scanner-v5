@@ -1,0 +1,17 @@
+{
+ "placebo": "shuffled_sector_rs_labels",
+ "n_trades": 237,
+ "n_draws": 2000,
+ "real_delta_r": 0.1386,
+ "real_blocked_n": 83,
+ "null_mean_delta_r": -0.0205,
+ "null_sd_delta_r": 0.0936,
+ "null_p5_r": -0.1796,
+ "null_p50_r": -0.0194,
+ "null_p95_r": 0.1319,
+ "null_blocked_n_mean": 84.7,
+ "null_blocked_n_sd": 2.5,
+ "real_percentile": 95.55,
+ "empirical_p_value": 0.0445,
+ "note": "null = sector RS unrelated to trade outcomes; the rule blocks trades on stock strength vs shuffled sector weakness"
+}

@@ -1,0 +1,27 @@
+== BULL WINDOW ==
+candidates: 877
+fidelity C0 == pb control: PASS (n=877, exp=0.141R; want 263/+0.195R)
+verify R1-only: n=277 exp=0.176R ret=42.11% dd=51.23% (want 154 / +0.324 / 52.78 / 32.65)
+verify R1+R2: n=240 exp=0.178R ret=42.24% dd=38.46% (want 143 / +0.337 / 52.25 / 31.63)
+verify R3-only: ret=13.03% dd=30.22% half%=89.3 (want 29.49 / 29.86)
+C0 [4bps]: n=281 exp=0.138R PF=1.2 ret=36.32% dd=42.3% calmar=None half%=0.0 secskip=0
+C0 [25bps]: n=281 exp=0.069R PF=1.1 ret=11.78% dd=44.95% calmar=None half%=0.0 secskip=0
+C1 [4bps]: n=240 exp=0.178R PF=1.27 ret=42.24% dd=38.46% calmar=None half%=0.0 secskip=74
+C1 [25bps]: n=240 exp=0.079R PF=1.11 ret=11.54% dd=40.24% calmar=None half%=0.0 secskip=80
+C2 [4bps]: n=292 exp=0.204R PF=1.3 ret=58.93% dd=39.96% calmar=None half%=93.5 secskip=0
+C2 [25bps]: n=292 exp=0.138R PF=1.19 ret=43.65% dd=41.3% calmar=None half%=93.5 secskip=0
+C3 [4bps]: n=240 exp=0.155R PF=1.22 ret=19.2% dd=27.69% calmar=None half%=87.5 secskip=70
+C3 [25bps]: n=240 exp=0.09R PF=1.12 ret=12.6% dd=27.92% calmar=None half%=91.7 secskip=70
+== 2022 WINDOW ==
+2022 candidates: 176 symbols=32
+2022 symbols missing from sector map: []
+2022 C0 [4bps]: n=93 exp=0.121R ret=6.97% dd=24.95% half%=0.0 secskip=0
+2022 C0 [25bps]: n=95 exp=0.052R ret=0.76% dd=27.37% half%=0.0 secskip=0
+2022 C1 [4bps]: n=94 exp=0.217R ret=17.3% dd=21.03% half%=0.0 secskip=1
+2022 C1 [25bps]: n=94 exp=0.14R ret=9.33% dd=23.55% half%=0.0 secskip=1
+2022 C2 [4bps]: n=98 exp=0.124R ret=1.22% dd=19.4% half%=64.3 secskip=0
+2022 C2 [25bps]: n=98 exp=0.048R ret=0.74% dd=18.61% half%=71.4 secskip=0
+2022 C3 [4bps]: n=97 exp=0.144R ret=1.53% dd=19.15% half%=62.9 secskip=1
+2022 C3 [25bps]: n=97 exp=0.068R ret=0.17% dd=19.07% half%=69.1 secskip=1
+DONE
+EXIT=0

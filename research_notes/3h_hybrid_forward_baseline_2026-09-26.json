@@ -1,0 +1,119 @@
+{
+ "spec": "canonical pine_backtest.py (Hybrid pine_buy_signal), 3H resample, unmodified transfer; portfolio $10k/1pct/max5/5pct; costs 4/25bps",
+ "data_window_1h": {
+  "QQQ": {
+   "bars": 2182
+  },
+  "SMCI": {
+   "bars": 2182
+  },
+  "PLTR": {
+   "bars": 2182
+  },
+  "ANET": {
+   "bars": 2182
+  },
+  "SOFI": {
+   "bars": 2182
+  },
+  "RKLB": {
+   "bars": 2182
+  },
+  "ONDS": {
+   "bars": 2182
+  },
+  "DRAM": {
+   "bars": 366
+  },
+  "SPCX": {
+   "bars": 219
+  },
+  "ASTX": {
+   "bars": 911
+  },
+  "BBAI": {
+   "bars": 2182
+  },
+  "NIO": {
+   "bars": 2182
+  },
+  "HOOD": {
+   "bars": 2182
+  },
+  "AMD": {
+   "bars": 2182
+  }
+ },
+ "forward_window": {
+  "start": "2026-09-15",
+  "end": "2026-09-25"
+ },
+ "full_window_pooled": [
+  {
+   "config": "3H_hybrid:WATCH14:full",
+   "cost": "4bps",
+   "trades": 371,
+   "win_rate_pct": 51.8,
+   "expectancy_net_r": 0.221,
+   "profit_factor": 1.35,
+   "total_return_pct": 93.7,
+   "max_drawdown_pct": 34.91,
+   "avg_hold_bars": 18.5,
+   "market_exposure_pct": 85.3,
+   "tp1_hit_rate_pct": 55.3,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 63,
+   "skipped_max_risk": 15,
+   "exit_reasons": {
+    "stop": 324,
+    "ema55-break": 45,
+    "ema55-bear": 2
+   }
+  },
+  {
+   "config": "3H_hybrid:WATCH14:full",
+   "cost": "25bps",
+   "trades": 371,
+   "win_rate_pct": 50.7,
+   "expectancy_net_r": 0.158,
+   "profit_factor": 1.24,
+   "total_return_pct": 55.81,
+   "max_drawdown_pct": 39.32,
+   "avg_hold_bars": 18.5,
+   "market_exposure_pct": 85.3,
+   "tp1_hit_rate_pct": 55.3,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 62,
+   "skipped_max_risk": 16,
+   "exit_reasons": {
+    "stop": 324,
+    "ema55-break": 45,
+    "ema55-bear": 2
+   }
+  }
+ ],
+ "forward_trade_level": {
+  "label": "forward>=2026-09-15",
+  "trades": 0
+ },
+ "forward_trades_by_symbol": {},
+ "symbols_used": [
+  "QQQ",
+  "SMCI",
+  "PLTR",
+  "ANET",
+  "SOFI",
+  "RKLB",
+  "ONDS",
+  "DRAM",
+  "SPCX",
+  "ASTX",
+  "BBAI",
+  "NIO",
+  "HOOD",
+  "AMD"
+ ],
+ "symbols_fail_closed": [],
+ "skipped_gap": 0,
+ "forward_trades": []
+}

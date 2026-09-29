@@ -1,0 +1,107 @@
+[
+ {
+  "symbol": "ARM",
+  "first_bar": "2023-09-14",
+  "elig_approx": "2023-10-26",
+  "trail20d_addv_M": 288.7,
+  "pass_gate": true
+ },
+ {
+  "symbol": "BMNR",
+  "first_bar": "2025-06-05",
+  "elig_approx": "2025-07-21",
+  "trail20d_addv_M": 1320.4,
+  "pass_gate": true
+ },
+ {
+  "symbol": "CORZ",
+  "first_bar": "2024-01-24",
+  "elig_approx": "2024-03-07",
+  "trail20d_addv_M": 14.0,
+  "pass_gate": false
+ },
+ {
+  "symbol": "CRWV",
+  "first_bar": "2025-03-28",
+  "elig_approx": "2025-05-12",
+  "trail20d_addv_M": 360.9,
+  "pass_gate": true
+ },
+ {
+  "symbol": "DRAM",
+  "first_bar": "2026-04-02",
+  "elig_approx": "2026-05-15",
+  "trail20d_addv_M": 1313.7,
+  "pass_gate": true
+ },
+ {
+  "symbol": "GEV",
+  "first_bar": "2024-03-27",
+  "elig_approx": "2024-05-09",
+  "trail20d_addv_M": 629.9,
+  "pass_gate": true
+ },
+ {
+  "symbol": "GLXY",
+  "first_bar": "2025-05-16",
+  "elig_approx": "2025-07-01",
+  "trail20d_addv_M": 132.9,
+  "pass_gate": true
+ },
+ {
+  "symbol": "NBIS",
+  "first_bar": "2024-10-21",
+  "elig_approx": "2024-12-03",
+  "trail20d_addv_M": 121.9,
+  "pass_gate": true
+ },
+ {
+  "symbol": "NNE",
+  "first_bar": "2024-05-08",
+  "elig_approx": "2024-06-21",
+  "trail20d_addv_M": 12.9,
+  "pass_gate": false
+ },
+ {
+  "symbol": "RBRK",
+  "first_bar": "2024-04-25",
+  "elig_approx": "2024-06-07",
+  "trail20d_addv_M": 24.5,
+  "pass_gate": false
+ },
+ {
+  "symbol": "RDDT",
+  "first_bar": "2024-03-21",
+  "elig_approx": "2024-05-03",
+  "trail20d_addv_M": 100.7,
+  "pass_gate": true
+ },
+ {
+  "symbol": "SNDK",
+  "first_bar": "2025-02-13",
+  "elig_approx": "2025-03-28",
+  "trail20d_addv_M": 200.4,
+  "pass_gate": true
+ },
+ {
+  "symbol": "SPCX",
+  "first_bar": "2026-06-12",
+  "elig_approx": "2026-07-28",
+  "trail20d_addv_M": 10439.8,
+  "pass_gate": true
+ },
+ {
+  "symbol": "TEM",
+  "first_bar": "2024-06-14",
+  "elig_approx": "2024-07-30",
+  "trail20d_addv_M": 34.9,
+  "pass_gate": true
+ },
+ {
+  "symbol": "UMAC",
+  "first_bar": "2024-02-14",
+  "elig_approx": "2024-03-28",
+  "trail20d_addv_M": 0.8,
+  "pass_gate": false
+ }
+]

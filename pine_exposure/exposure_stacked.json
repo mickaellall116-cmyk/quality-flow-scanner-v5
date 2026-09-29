@@ -1,0 +1,115 @@
+{
+ "notes": [
+  "Stacked secondary: rs_top2 first at contested bars, then E1 sector2 gate. Reported only; not a candidate path."
+ ],
+ "variants": {
+  "stacked_none": {
+   "4bps": {
+    "config": "PINE_V36_stacked:stacked_none",
+    "cost": "4bps",
+    "trades": 160,
+    "win_rate_pct": 45.0,
+    "expectancy_net_r": 0.239,
+    "profit_factor": 1.35,
+    "total_return_pct": 35.3,
+    "max_drawdown_pct": 35.17,
+    "calmar": 1.004,
+    "avg_winner_r": 2.064,
+    "avg_loser_r": -1.253,
+    "skipped_gate": 0,
+    "skipped_cap": 79,
+    "skipped_risk": 24,
+    "fill_rate_pct": 60.8
+   },
+   "25bps": {
+    "config": "PINE_V36_stacked:stacked_none",
+    "cost": "25bps",
+    "trades": 160,
+    "win_rate_pct": 45.0,
+    "expectancy_net_r": 0.165,
+    "profit_factor": 1.23,
+    "total_return_pct": 19.92,
+    "max_drawdown_pct": 37.16,
+    "calmar": 0.536,
+    "avg_winner_r": 1.987,
+    "avg_loser_r": -1.327,
+    "skipped_gate": 0,
+    "skipped_cap": 79,
+    "skipped_risk": 24,
+    "fill_rate_pct": 60.8
+   }
+  },
+  "stacked_rankonly": {
+   "4bps": {
+    "config": "PINE_V36_stacked:stacked_rankonly",
+    "cost": "4bps",
+    "trades": 154,
+    "win_rate_pct": 46.1,
+    "expectancy_net_r": 0.324,
+    "profit_factor": 1.48,
+    "total_return_pct": 52.78,
+    "max_drawdown_pct": 32.65,
+    "calmar": 1.617,
+    "avg_winner_r": 2.169,
+    "avg_loser_r": -1.254,
+    "skipped_gate": 0,
+    "skipped_cap": 97,
+    "skipped_risk": 12,
+    "fill_rate_pct": 58.6
+   },
+   "25bps": {
+    "config": "PINE_V36_stacked:stacked_rankonly",
+    "cost": "25bps",
+    "trades": 153,
+    "win_rate_pct": 45.8,
+    "expectancy_net_r": 0.26,
+    "profit_factor": 1.36,
+    "total_return_pct": 37.84,
+    "max_drawdown_pct": 33.63,
+    "calmar": 1.125,
+    "avg_winner_r": 2.124,
+    "avg_loser_r": -1.312,
+    "skipped_gate": 0,
+    "skipped_cap": 97,
+    "skipped_risk": 13,
+    "fill_rate_pct": 58.2
+   }
+  },
+  "stacked_C1": {
+   "4bps": {
+    "config": "PINE_V36_stacked:stacked_C1",
+    "cost": "4bps",
+    "trades": 143,
+    "win_rate_pct": 46.2,
+    "expectancy_net_r": 0.337,
+    "profit_factor": 1.49,
+    "total_return_pct": 52.25,
+    "max_drawdown_pct": 31.63,
+    "calmar": 1.652,
+    "avg_winner_r": 2.212,
+    "avg_loser_r": -1.27,
+    "skipped_gate": 16,
+    "skipped_cap": 94,
+    "skipped_risk": 10,
+    "fill_rate_pct": 54.4
+   },
+   "25bps": {
+    "config": "PINE_V36_stacked:stacked_C1",
+    "cost": "25bps",
+    "trades": 142,
+    "win_rate_pct": 45.8,
+    "expectancy_net_r": 0.28,
+    "profit_factor": 1.39,
+    "total_return_pct": 39.64,
+    "max_drawdown_pct": 33.79,
+    "calmar": 1.173,
+    "avg_winner_r": 2.17,
+    "avg_loser_r": -1.316,
+    "skipped_gate": 16,
+    "skipped_cap": 94,
+    "skipped_risk": 11,
+    "fill_rate_pct": 54.0
+   }
+  }
+ }
+}

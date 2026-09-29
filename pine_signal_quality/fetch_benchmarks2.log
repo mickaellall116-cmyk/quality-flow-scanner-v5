@@ -1,0 +1,12 @@
+benchmark ETFs needed: ['QQQ', 'SPY', 'XLC', 'XLF', 'XLI', 'XLK', 'XLV', 'XLY']
+QQQ: saved daily (1331 bars, 2021-06-01 -> 2026-09-17)
+SPY: saved daily (1331 bars, 2021-06-01 -> 2026-09-17)
+XLC: saved daily (1331 bars, 2021-06-01 -> 2026-09-17)
+XLF: saved daily (1331 bars, 2021-06-01 -> 2026-09-17)
+XLI: saved daily (1331 bars, 2021-06-01 -> 2026-09-17)
+XLK: saved daily (1331 bars, 2021-06-01 -> 2026-09-17)
+XLV: saved daily (1331 bars, 2021-06-01 -> 2026-09-17)
+XLY: saved daily (1331 bars, 2021-06-01 -> 2026-09-17)
+missing: []
+DONE
+EXIT:0

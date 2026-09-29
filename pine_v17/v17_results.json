@@ -1,0 +1,63 @@
+{
+ "spec": "V17_SPEC.md (frozen pre-test)",
+ "runs": [
+  {
+   "config": "PINE_V17_hybrid:UX51:4h",
+   "cost": "4bps",
+   "trades": 488,
+   "win_rate_pct": 52.3,
+   "expectancy_net_r": 0.338,
+   "profit_factor": 1.77,
+   "total_return_pct": 75.53,
+   "max_drawdown_pct": 42.26,
+   "avg_hold_bars": 23.2,
+   "market_exposure_pct": 86.0,
+   "tp1_hit_rate_pct": 55.5,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 230,
+   "skipped_max_risk": 41,
+   "exit_reasons": {
+    "stop": 279,
+    "weak": 137,
+    "cmf": 59,
+    "trend2": 13
+   },
+   "avg_winner_r": 1.489,
+   "avg_loser_r": -0.923,
+   "stop_out_pct": 57.2,
+   "early_trades": 258,
+   "confirmed_trades": 230,
+   "exp_early_r": 0.178,
+   "exp_confirmed_r": 0.517
+  },
+  {
+   "config": "PINE_V17_hybrid:UX51:4h",
+   "cost": "25bps",
+   "trades": 488,
+   "win_rate_pct": 49.4,
+   "expectancy_net_r": 0.28,
+   "profit_factor": 1.6,
+   "total_return_pct": 55.36,
+   "max_drawdown_pct": 46.52,
+   "avg_hold_bars": 23.2,
+   "market_exposure_pct": 86.0,
+   "tp1_hit_rate_pct": 55.5,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 241,
+   "skipped_max_risk": 37,
+   "exit_reasons": {
+    "stop": 279,
+    "weak": 137,
+    "cmf": 59,
+    "trend2": 13
+   },
+   "avg_winner_r": 1.517,
+   "avg_loser_r": -0.926,
+   "stop_out_pct": 57.2,
+   "early_trades": 258,
+   "confirmed_trades": 230,
+   "exp_early_r": 0.12,
+   "exp_confirmed_r": 0.46
+  }
+ ]
+}

@@ -1,0 +1,872 @@
+{
+ "hypothesis": "frozen in HYPOTHESIS.md (pre-run)",
+ "n_base": 237,
+ "n_fvg": 266,
+ "n_shared": 203,
+ "n_base_only": 34,
+ "n_fvg_only": 63,
+ "step2_matched": {
+  "shared_mean_delta_r": 0.0,
+  "shared_nonzero_deltas": 0,
+  "expectancy_fvg": 0.2852,
+  "expectancy_base": 0.2388,
+  "pooled_differential_dE": 0.0464,
+  "pf_fvg": 1.477,
+  "pf_base": 1.382,
+  "fvg_only_expectancy": 0.3871,
+  "base_only_expectancy": 0.1504
+ },
+ "step3_dev_validation": {
+  "25bps": {
+   "fvg_only": {
+    "dev": {
+     "n": 17,
+     "exp": 0.768
+    },
+    "val": {
+     "n": 46,
+     "exp": 0.2463
+    }
+   },
+   "base_only": {
+    "dev": {
+     "n": 12,
+     "exp": 0.2234
+    },
+    "val": {
+     "n": 22,
+     "exp": 0.1105
+    }
+   },
+   "shared": {
+    "dev": {
+     "n": 63,
+     "exp": 0.3711
+    },
+    "val": {
+     "n": 140,
+     "exp": 0.2007
+    }
+   },
+   "fvg_all": {
+    "dev": {
+     "n": 80,
+     "exp": 0.4554
+    },
+    "val": {
+     "n": 186,
+     "exp": 0.212
+    }
+   },
+   "base_all": {
+    "dev": {
+     "n": 75,
+     "exp": 0.3474
+    },
+    "val": {
+     "n": 162,
+     "exp": 0.1884
+    }
+   }
+  },
+  "50bps": {
+   "fvg_only": {
+    "dev": {
+     "n": 17,
+     "exp": 0.7118
+    },
+    "val": {
+     "n": 46,
+     "exp": 0.1808
+    }
+   },
+   "base_only": {
+    "dev": {
+     "n": 12,
+     "exp": 0.1533
+    },
+    "val": {
+     "n": 22,
+     "exp": 0.0451
+    }
+   },
+   "shared": {
+    "dev": {
+     "n": 63,
+     "exp": 0.3047
+    },
+    "val": {
+     "n": 140,
+     "exp": 0.1435
+    }
+   },
+   "fvg_all": {
+    "dev": {
+     "n": 80,
+     "exp": 0.3912
+    },
+    "val": {
+     "n": 186,
+     "exp": 0.1527
+    }
+   },
+   "base_all": {
+    "dev": {
+     "n": 75,
+     "exp": 0.2805
+    },
+    "val": {
+     "n": 162,
+     "exp": 0.1301
+    }
+   }
+  },
+  "75bps": {
+   "fvg_only": {
+    "dev": {
+     "n": 17,
+     "exp": 0.6557
+    },
+    "val": {
+     "n": 46,
+     "exp": 0.1154
+    }
+   },
+   "base_only": {
+    "dev": {
+     "n": 12,
+     "exp": 0.0833
+    },
+    "val": {
+     "n": 22,
+     "exp": -0.0203
+    }
+   },
+   "shared": {
+    "dev": {
+     "n": 63,
+     "exp": 0.2383
+    },
+    "val": {
+     "n": 140,
+     "exp": 0.0863
+    }
+   },
+   "fvg_all": {
+    "dev": {
+     "n": 80,
+     "exp": 0.327
+    },
+    "val": {
+     "n": 186,
+     "exp": 0.0935
+    }
+   },
+   "base_all": {
+    "dev": {
+     "n": 75,
+     "exp": 0.2135
+    },
+    "val": {
+     "n": 162,
+     "exp": 0.0718
+    }
+   }
+  },
+  "100bps": {
+   "fvg_only": {
+    "dev": {
+     "n": 17,
+     "exp": 0.5995
+    },
+    "val": {
+     "n": 46,
+     "exp": 0.05
+    }
+   },
+   "base_only": {
+    "dev": {
+     "n": 12,
+     "exp": 0.0132
+    },
+    "val": {
+     "n": 22,
+     "exp": -0.0857
+    }
+   },
+   "shared": {
+    "dev": {
+     "n": 63,
+     "exp": 0.172
+    },
+    "val": {
+     "n": 140,
+     "exp": 0.0291
+    }
+   },
+   "fvg_all": {
+    "dev": {
+     "n": 80,
+     "exp": 0.2628
+    },
+    "val": {
+     "n": 186,
+     "exp": 0.0343
+    }
+   },
+   "base_all": {
+    "dev": {
+     "n": 75,
+     "exp": 0.1466
+    },
+    "val": {
+     "n": 162,
+     "exp": 0.0135
+    }
+   }
+  }
+ },
+ "step4_walkforward": {
+  "windows": [
+   {
+    "window": "Oct2023-Sep2024",
+    "kind": "train",
+    "n_fvg": 51,
+    "n_base": 47,
+    "dE": 0.3503
+   },
+   {
+    "window": "Oct2024-Mar2025",
+    "kind": "test",
+    "n_fvg": 49,
+    "n_base": 45,
+    "dE": -0.2287
+   },
+   {
+    "window": "Apr2024-Mar2025",
+    "kind": "train",
+    "n_fvg": 100,
+    "n_base": 92,
+    "dE": 0.0672
+   },
+   {
+    "window": "Apr2025-Sep2025",
+    "kind": "test",
+    "n_fvg": 56,
+    "n_base": 55,
+    "dE": 0.1512
+   },
+   {
+    "window": "Oct2024-Sep2025",
+    "kind": "train",
+    "n_fvg": 105,
+    "n_base": 100,
+    "dE": -0.0311
+   },
+   {
+    "window": "Oct2025-Mar2026",
+    "kind": "test",
+    "n_fvg": 55,
+    "n_base": 45,
+    "dE": 0.204
+   },
+   {
+    "window": "Apr2025-Mar2026",
+    "kind": "train",
+    "n_fvg": 111,
+    "n_base": 100,
+    "dE": 0.1066
+   },
+   {
+    "window": "Apr2026-Sep2026",
+    "kind": "test",
+    "n_fvg": 55,
+    "n_base": 45,
+    "dE": -0.0807
+   }
+  ],
+  "combined_test": {
+   "n_fvg": 215,
+   "n_base": 190,
+   "dE_combined": -0.0289
+  }
+ },
+ "step5_year_regime": {
+  "25bps": {
+   "by_year": {
+    "2023": {
+     "n_fvg": 0,
+     "n_base": 0,
+     "dE": null
+    },
+    "2024": {
+     "n_fvg": 80,
+     "n_base": 75,
+     "dE": 0.108
+    },
+    "2025": {
+     "n_fvg": 112,
+     "n_base": 102,
+     "dE": 0.0904
+    },
+    "2026": {
+     "n_fvg": 74,
+     "n_base": 60,
+     "dE": -0.0305
+    }
+   },
+   "by_regime": {
+    "bull": {
+     "n_fvg": 246,
+     "n_base": 221,
+     "dE": 0.0019
+    },
+    "bear/sideways": {
+     "n_fvg": 20,
+     "n_base": 16,
+     "dE": 0.5078
+    },
+    "unknown": {
+     "n_fvg": 0,
+     "n_base": 0,
+     "dE": null
+    }
+   }
+  },
+  "50bps": {
+   "by_year": {
+    "2023": {
+     "n_fvg": 0,
+     "n_base": 0,
+     "dE": null
+    },
+    "2024": {
+     "n_fvg": 80,
+     "n_base": 75,
+     "dE": 0.1107
+    },
+    "2025": {
+     "n_fvg": 112,
+     "n_base": 102,
+     "dE": 0.0946
+    },
+    "2026": {
+     "n_fvg": 74,
+     "n_base": 60,
+     "dE": -0.0396
+    }
+   },
+   "by_regime": {
+    "bull": {
+     "n_fvg": 246,
+     "n_base": 221,
+     "dE": 0.0022
+    },
+    "bear/sideways": {
+     "n_fvg": 20,
+     "n_base": 16,
+     "dE": 0.5056
+    },
+    "unknown": {
+     "n_fvg": 0,
+     "n_base": 0,
+     "dE": null
+    }
+   }
+  },
+  "75bps": {
+   "by_year": {
+    "2023": {
+     "n_fvg": 0,
+     "n_base": 0,
+     "dE": null
+    },
+    "2024": {
+     "n_fvg": 80,
+     "n_base": 75,
+     "dE": 0.1135
+    },
+    "2025": {
+     "n_fvg": 112,
+     "n_base": 102,
+     "dE": 0.0989
+    },
+    "2026": {
+     "n_fvg": 74,
+     "n_base": 60,
+     "dE": -0.0487
+    }
+   },
+   "by_regime": {
+    "bull": {
+     "n_fvg": 246,
+     "n_base": 221,
+     "dE": 0.0026
+    },
+    "bear/sideways": {
+     "n_fvg": 20,
+     "n_base": 16,
+     "dE": 0.5035
+    },
+    "unknown": {
+     "n_fvg": 0,
+     "n_base": 0,
+     "dE": null
+    }
+   }
+  },
+  "100bps": {
+   "by_year": {
+    "2023": {
+     "n_fvg": 0,
+     "n_base": 0,
+     "dE": null
+    },
+    "2024": {
+     "n_fvg": 80,
+     "n_base": 75,
+     "dE": 0.1163
+    },
+    "2025": {
+     "n_fvg": 112,
+     "n_base": 102,
+     "dE": 0.1031
+    },
+    "2026": {
+     "n_fvg": 74,
+     "n_base": 60,
+     "dE": -0.0578
+    }
+   },
+   "by_regime": {
+    "bull": {
+     "n_fvg": 246,
+     "n_base": 221,
+     "dE": 0.0029
+    },
+    "bear/sideways": {
+     "n_fvg": 20,
+     "n_base": 16,
+     "dE": 0.5013
+    },
+    "unknown": {
+     "n_fvg": 0,
+     "n_base": 0,
+     "dE": null
+    }
+   }
+  }
+ },
+ "step6_cost_stress": {
+  "25bps": {
+   "exp_fvg": 0.2852,
+   "exp_base": 0.2388,
+   "dE": 0.0464,
+   "pf_fvg": 1.477,
+   "pf_base": 1.382
+  },
+  "50bps": {
+   "exp_fvg": 0.2245,
+   "exp_base": 0.1777,
+   "dE": 0.0467,
+   "pf_fvg": 1.356,
+   "pf_base": 1.27
+  },
+  "75bps": {
+   "exp_fvg": 0.1637,
+   "exp_base": 0.1167,
+   "dE": 0.0471,
+   "pf_fvg": 1.247,
+   "pf_base": 1.169
+  },
+  "100bps": {
+   "exp_fvg": 0.103,
+   "exp_base": 0.0556,
+   "dE": 0.0474,
+   "pf_fvg": 1.148,
+   "pf_base": 1.077
+  }
+ },
+ "step7_perturbation": {
+  "none": {
+   "n_fvg_only_kept": 63,
+   "dropped_trades": [],
+   "dE": 0.0464
+  },
+  "drop_top1": {
+   "n_fvg_only_kept": 62,
+   "dropped_trades": [
+    {
+     "symbol": "RKLB",
+     "signal_time": "2024-09-09T09:30:00-04:00",
+     "net_r": 12.981
+    }
+   ],
+   "dE": -0.0015
+  },
+  "drop_top3": {
+   "n_fvg_only_kept": 60,
+   "dropped_trades": [
+    {
+     "symbol": "RKLB",
+     "signal_time": "2024-09-09T09:30:00-04:00",
+     "net_r": 12.981
+    },
+    {
+     "symbol": "SOFI",
+     "signal_time": "2025-05-27T09:30:00-04:00",
+     "net_r": 7.92
+    },
+    {
+     "symbol": "AMD",
+     "signal_time": "2025-10-03T09:30:00-04:00",
+     "net_r": 7.512
+    }
+   ],
+   "dE": -0.0584
+  }
+ },
+ "step8_concentration": {
+  "total_R_differential": 19.272,
+  "top1_trades": {
+   "trades": [
+    {
+     "symbol": "RKLB",
+     "net_r": 12.981
+    }
+   ],
+   "sum_r": 12.981,
+   "share_of_differential": 0.674
+  },
+  "top3_trades": {
+   "trades": [
+    {
+     "symbol": "RKLB",
+     "net_r": 12.981
+    },
+    {
+     "symbol": "SOFI",
+     "net_r": 7.92
+    },
+    {
+     "symbol": "AMD",
+     "net_r": 7.512
+    }
+   ],
+   "sum_r": 28.412,
+   "share_of_differential": 1.474
+  },
+  "top5_trades": {
+   "trades": [
+    {
+     "symbol": "RKLB",
+     "net_r": 12.981
+    },
+    {
+     "symbol": "SOFI",
+     "net_r": 7.92
+    },
+    {
+     "symbol": "AMD",
+     "net_r": 7.512
+    },
+    {
+     "symbol": "BBAI",
+     "net_r": 3.825
+    },
+    {
+     "symbol": "ANET",
+     "net_r": 3.617
+    }
+   ],
+   "sum_r": 35.853,
+   "share_of_differential": 1.86
+  },
+  "by_symbol": {
+   "top1_symbol": {
+    "members": [
+     [
+      "RKLB",
+      14.574
+     ]
+    ],
+    "sum_r": 14.574,
+    "share_of_differential": 0.756
+   },
+   "top3_symbol": {
+    "members": [
+     [
+      "RKLB",
+      14.574
+     ],
+     [
+      "SOFI",
+      7.136
+     ],
+     [
+      "AMD",
+      6.617
+     ]
+    ],
+    "sum_r": 28.327,
+    "share_of_differential": 1.47
+   },
+   "top5_symbol": {
+    "members": [
+     [
+      "RKLB",
+      14.574
+     ],
+     [
+      "SOFI",
+      7.136
+     ],
+     [
+      "AMD",
+      6.617
+     ],
+     [
+      "NIO",
+      2.996
+     ],
+     [
+      "ASTX",
+      2.273
+     ]
+    ],
+    "sum_r": 33.596,
+    "share_of_differential": 1.743
+   }
+  },
+  "by_theme": {
+   "top1_theme": {
+    "members": [
+     [
+      "Space",
+      16.847
+     ]
+    ],
+    "sum_r": 16.847,
+    "share_of_differential": 0.874
+   },
+   "top3_theme": {
+    "members": [
+     [
+      "Space",
+      16.847
+     ],
+     [
+      "Fintech",
+      7.336
+     ],
+     [
+      "Semis",
+      6.617
+     ]
+    ],
+    "sum_r": 30.8,
+    "share_of_differential": 1.598
+   },
+   "top5_theme": {
+    "members": [
+     [
+      "Space",
+      16.847
+     ],
+     [
+      "Fintech",
+      7.336
+     ],
+     [
+      "Semis",
+      6.617
+     ],
+     [
+      "China EV",
+      2.996
+     ],
+     [
+      "AI Infra",
+      0.342
+     ]
+    ],
+    "sum_r": 34.137,
+    "share_of_differential": 1.771
+   }
+  },
+  "by_year": {
+   "members": [
+    [
+     "2025",
+     14.547
+    ],
+    [
+     "2024",
+     10.374
+    ],
+    [
+     "2026",
+     -5.65
+    ]
+   ],
+   "top1_share": 0.755
+  }
+ },
+ "step9_bootstrap": {
+  "B": 10000,
+  "seed": 42,
+  "frac_dE_positive": 0.5931,
+  "frac_dE_gt_0_02": 0.5501,
+  "p5": -0.2432,
+  "p50": 0.0431,
+  "p95": 0.3397,
+  "observed_dE": 0.0464
+ },
+ "step10_loso": {
+  "QQQ": {
+   "n_fvg": 234,
+   "n_base": 208,
+   "dE": 0.0536,
+   "sign_flipped": false
+  },
+  "SMCI": {
+   "n_fvg": 247,
+   "n_base": 218,
+   "dE": 0.0411,
+   "sign_flipped": false
+  },
+  "PLTR": {
+   "n_fvg": 243,
+   "n_base": 217,
+   "dE": 0.0659,
+   "sign_flipped": false
+  },
+  "ANET": {
+   "n_fvg": 237,
+   "n_base": 212,
+   "dE": 0.0518,
+   "sign_flipped": false
+  },
+  "SOFI": {
+   "n_fvg": 240,
+   "n_base": 213,
+   "dE": 0.033,
+   "sign_flipped": false
+  },
+  "RKLB": {
+   "n_fvg": 241,
+   "n_base": 212,
+   "dE": 0.0243,
+   "sign_flipped": false
+  },
+  "ONDS": {
+   "n_fvg": 247,
+   "n_base": 221,
+   "dE": 0.058,
+   "sign_flipped": false
+  },
+  "DRAM": {
+   "n_fvg": 265,
+   "n_base": 237,
+   "dE": 0.0521,
+   "sign_flipped": false
+  },
+  "SPCX": {
+   "n_fvg": 266,
+   "n_base": 237,
+   "dE": 0.0464,
+   "sign_flipped": false
+  },
+  "ASTX": {
+   "n_fvg": 260,
+   "n_base": 232,
+   "dE": 0.0425,
+   "sign_flipped": false
+  },
+  "BBAI": {
+   "n_fvg": 241,
+   "n_base": 220,
+   "dE": 0.0742,
+   "sign_flipped": false
+  },
+  "NIO": {
+   "n_fvg": 253,
+   "n_base": 225,
+   "dE": 0.0328,
+   "sign_flipped": false
+  },
+  "HOOD": {
+   "n_fvg": 242,
+   "n_base": 215,
+   "dE": 0.0568,
+   "sign_flipped": false
+  },
+  "AMD": {
+   "n_fvg": 242,
+   "n_base": 214,
+   "dE": 0.0178,
+   "sign_flipped": false
+  }
+ },
+ "step11_economic": {
+  "25bps": {
+   "d_expectancy": 0.0464,
+   "d_pf": 0.095,
+   "d_max_dd": 5.341,
+   "trades_added": 63,
+   "trades_removed": 34,
+   "opportunity_cost_added_bucket_exp": 0.3871,
+   "opportunity_cost_removed_bucket_exp": 0.1504,
+   "total_R_fvg": 75.858,
+   "total_R_base": 56.586,
+   "return_per_risk_fvg": 2.102,
+   "return_per_risk_base": 1.841
+  },
+  "50bps": {
+   "d_expectancy": 0.0467,
+   "d_pf": 0.086,
+   "d_max_dd": null,
+   "trades_added": 63,
+   "trades_removed": 34,
+   "opportunity_cost_added_bucket_exp": 0.3241,
+   "opportunity_cost_removed_bucket_exp": 0.0833,
+   "total_R_fvg": 59.705,
+   "total_R_base": 42.119,
+   "return_per_risk_fvg": null,
+   "return_per_risk_base": null
+  },
+  "75bps": {
+   "d_expectancy": 0.0471,
+   "d_pf": 0.078,
+   "d_max_dd": null,
+   "trades_added": 63,
+   "trades_removed": 34,
+   "opportunity_cost_added_bucket_exp": 0.2612,
+   "opportunity_cost_removed_bucket_exp": 0.0163,
+   "total_R_fvg": 43.552,
+   "total_R_base": 27.651,
+   "return_per_risk_fvg": null,
+   "return_per_risk_base": null
+  },
+  "100bps": {
+   "d_expectancy": 0.0474,
+   "d_pf": 0.071,
+   "d_max_dd": null,
+   "trades_added": 63,
+   "trades_removed": 34,
+   "opportunity_cost_added_bucket_exp": 0.1982,
+   "opportunity_cost_removed_bucket_exp": -0.0508,
+   "total_R_fvg": 27.399,
+   "total_R_base": 13.183,
+   "return_per_risk_fvg": null,
+   "return_per_risk_base": null
+  },
+  "dd_detail": {
+   "max_dd_fvg": 36.084,
+   "max_dd_base": 30.743
+  }
+ },
+ "step12_forward": {
+  "note": "Exact FVG version papered live via FVG paper sidecar since 2026-09-23. This study does not change it. Forward validation is the arbiter; revisit at the ~50-signal checkpoint (late Oct 2026)."
+ }
+}

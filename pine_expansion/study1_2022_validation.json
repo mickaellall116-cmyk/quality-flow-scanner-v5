@@ -1,0 +1,101 @@
+{
+ "notes": [
+  "Supplementary 2022 validation of Study 1 bonus finding (not pre-specified).",
+  "30 symbols, Dukascopy 4H 2022.",
+  "Signals from 2022-01-01 only (entry_time >= cutoff), mirroring exit_fix window.",
+  "No EOD liquidation (differs from exit_fix); both legs treated identically."
+ ],
+ "n_structural": 74,
+ "scanner_s0": [
+  {
+   "config": "2022_scanner_s0:4h",
+   "cost": "4bps",
+   "trades": 35,
+   "win_rate_pct": 28.6,
+   "avg_win_pct": 5.33,
+   "avg_loss_pct": -2.8,
+   "expectancy_net_r": -0.125,
+   "expectancy_gross_r": -0.103,
+   "profit_factor": 0.76,
+   "total_return_pct": -4.56,
+   "max_drawdown_pct": 9.79,
+   "avg_hold_bars": 10.3,
+   "market_exposure_pct": 26.8,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 0,
+   "skipped_max_risk": 0,
+   "exit_reasons": {
+    "stop": 20,
+    "target": 10,
+    "scanner-exit": 4,
+    "time": 1
+   },
+   "eligible": true
+  },
+  {
+   "config": "2022_scanner_s0:4h",
+   "cost": "25bps",
+   "trades": 35,
+   "win_rate_pct": 28.6,
+   "avg_win_pct": 5.12,
+   "avg_loss_pct": -3.01,
+   "expectancy_net_r": -0.236,
+   "expectancy_gross_r": -0.103,
+   "profit_factor": 0.68,
+   "total_return_pct": -8.23,
+   "max_drawdown_pct": 11.8,
+   "avg_hold_bars": 10.3,
+   "market_exposure_pct": 26.8,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 0,
+   "skipped_max_risk": 0,
+   "exit_reasons": {
+    "stop": 20,
+    "target": 10,
+    "scanner-exit": 4,
+    "time": 1
+   },
+   "eligible": true
+  }
+ ],
+ "pine": [
+  {
+   "config": "2022_pine:4h",
+   "cost": "4bps",
+   "trades": 32,
+   "win_rate_pct": 37.5,
+   "expectancy_net_r": -0.331,
+   "profit_factor": 0.65,
+   "total_return_pct": -9.21,
+   "max_drawdown_pct": 19.43,
+   "avg_hold_bars": 20.2,
+   "market_exposure_pct": 56.0,
+   "tp1_hit_rate_pct": 40.6,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 1,
+   "skipped_max_risk": 0,
+   "exit_reasons": {
+    "stop": 32
+   }
+  },
+  {
+   "config": "2022_pine:4h",
+   "cost": "25bps",
+   "trades": 32,
+   "win_rate_pct": 37.5,
+   "expectancy_net_r": -0.404,
+   "profit_factor": 0.59,
+   "total_return_pct": -11.29,
+   "max_drawdown_pct": 20.94,
+   "avg_hold_bars": 20.2,
+   "market_exposure_pct": 56.0,
+   "tp1_hit_rate_pct": 40.6,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 1,
+   "skipped_max_risk": 0,
+   "exit_reasons": {
+    "stop": 32
+   }
+  }
+ ]
+}

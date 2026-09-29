@@ -1,0 +1,95 @@
+{
+ "notes": [
+  "Study 2: unmodified Pine V3.6 4H on X2 cohort (199 symbols).",
+  "X2 bars: masterscanner_api.download_data(sym,'4h','2y') -> session-aligned 4H.",
+  "Symbols dropped only for missing/empty/no-volume data; coverage documented."
+ ],
+ "x2_symbols_requested": 199,
+ "x2_symbols_used": 199,
+ "x2_symbols_dropped": [],
+ "x2": [
+  {
+   "config": "PINE_V36_hybrid:X2:4h",
+   "cost": "4bps",
+   "trades": 888,
+   "win_rate_pct": 46.1,
+   "expectancy_net_r": -0.012,
+   "profit_factor": 0.98,
+   "total_return_pct": 16.02,
+   "max_drawdown_pct": 41.7,
+   "avg_hold_bars": 17.4,
+   "market_exposure_pct": 85.4,
+   "tp1_hit_rate_pct": 48.9,
+   "skipped_gap_below_stop": 3,
+   "skipped_max_positions": 491,
+   "skipped_max_risk": 152,
+   "exit_reasons": {
+    "stop": 842,
+    "ema55-break": 46
+   }
+  },
+  {
+   "config": "PINE_V36_hybrid:X2:4h",
+   "cost": "25bps",
+   "trades": 888,
+   "win_rate_pct": 44.6,
+   "expectancy_net_r": -0.089,
+   "profit_factor": 0.88,
+   "total_return_pct": -4.23,
+   "max_drawdown_pct": 43.95,
+   "avg_hold_bars": 17.4,
+   "market_exposure_pct": 85.4,
+   "tp1_hit_rate_pct": 48.9,
+   "skipped_gap_below_stop": 3,
+   "skipped_max_positions": 463,
+   "skipped_max_risk": 179,
+   "exit_reasons": {
+    "stop": 842,
+    "ema55-break": 46
+   }
+  }
+ ],
+ "pooled": [
+  {
+   "config": "PINE_V36_hybrid:POOLED:4h",
+   "cost": "4bps",
+   "trades": 1151,
+   "win_rate_pct": 45.8,
+   "expectancy_net_r": 0.035,
+   "profit_factor": 1.05,
+   "total_return_pct": 20.64,
+   "max_drawdown_pct": 50.57,
+   "avg_hold_bars": 17.6,
+   "market_exposure_pct": 86.5,
+   "tp1_hit_rate_pct": 48.6,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 661,
+   "skipped_max_risk": 234,
+   "exit_reasons": {
+    "stop": 1089,
+    "ema55-break": 62
+   }
+  },
+  {
+   "config": "PINE_V36_hybrid:POOLED:4h",
+   "cost": "25bps",
+   "trades": 1151,
+   "win_rate_pct": 44.5,
+   "expectancy_net_r": -0.042,
+   "profit_factor": 0.94,
+   "total_return_pct": -3.07,
+   "max_drawdown_pct": 51.14,
+   "avg_hold_bars": 17.6,
+   "market_exposure_pct": 86.5,
+   "tp1_hit_rate_pct": 48.6,
+   "skipped_gap_below_stop": 0,
+   "skipped_max_positions": 700,
+   "skipped_max_risk": 197,
+   "exit_reasons": {
+    "stop": 1089,
+    "ema55-break": 62
+   }
+  }
+ ],
+ "pooled_symbols": 250
+}

@@ -1,0 +1,265 @@
+{
+ "notes": [
+  "Exposure study. Spec EXPOSURE_SPEC.md frozen before testing.",
+  "V3.6 entries/exits identical; sizing fixed 1%; portfolio gates only."
+ ],
+ "n_candidates": 263,
+ "variants": {
+  "V0_control": {
+   "4bps": {
+    "config": "PINE_V36_exposure:V0_control",
+    "cost": "4bps",
+    "trades": 160,
+    "win_rate_pct": 45.0,
+    "expectancy_net_r": 0.239,
+    "profit_factor": 1.35,
+    "total_return_pct": 35.3,
+    "max_drawdown_pct": 35.17,
+    "calmar": 1.004,
+    "avg_winner_r": 2.064,
+    "avg_loser_r": -1.253,
+    "skipped_gate": 0,
+    "skipped_cap": 79,
+    "skipped_risk": 24,
+    "fill_rate_pct": 60.8
+   },
+   "25bps": {
+    "config": "PINE_V36_exposure:V0_control",
+    "cost": "25bps",
+    "trades": 160,
+    "win_rate_pct": 45.0,
+    "expectancy_net_r": 0.165,
+    "profit_factor": 1.23,
+    "total_return_pct": 19.92,
+    "max_drawdown_pct": 37.16,
+    "calmar": 0.536,
+    "avg_winner_r": 1.987,
+    "avg_loser_r": -1.327,
+    "skipped_gate": 0,
+    "skipped_cap": 79,
+    "skipped_risk": 24,
+    "fill_rate_pct": 60.8
+   }
+  },
+  "E1_sector2": {
+   "4bps": {
+    "config": "PINE_V36_exposure:E1_sector2",
+    "cost": "4bps",
+    "trades": 143,
+    "win_rate_pct": 46.9,
+    "expectancy_net_r": 0.299,
+    "profit_factor": 1.44,
+    "total_return_pct": 42.29,
+    "max_drawdown_pct": 29.68,
+    "calmar": 1.425,
+    "avg_winner_r": 2.092,
+    "avg_loser_r": -1.282,
+    "skipped_gate": 20,
+    "skipped_cap": 89,
+    "skipped_risk": 11,
+    "fill_rate_pct": 54.4
+   },
+   "25bps": {
+    "config": "PINE_V36_exposure:E1_sector2",
+    "cost": "25bps",
+    "trades": 144,
+    "win_rate_pct": 46.5,
+    "expectancy_net_r": 0.206,
+    "profit_factor": 1.29,
+    "total_return_pct": 25.0,
+    "max_drawdown_pct": 35.46,
+    "calmar": 0.705,
+    "avg_winner_r": 1.999,
+    "avg_loser_r": -1.354,
+    "skipped_gate": 19,
+    "skipped_cap": 82,
+    "skipped_risk": 18,
+    "fill_rate_pct": 54.8
+   }
+  },
+  "E2_mega3": {
+   "4bps": {
+    "config": "PINE_V36_exposure:E2_mega3",
+    "cost": "4bps",
+    "trades": 162,
+    "win_rate_pct": 45.1,
+    "expectancy_net_r": 0.212,
+    "profit_factor": 1.31,
+    "total_return_pct": 30.32,
+    "max_drawdown_pct": 33.84,
+    "calmar": 0.896,
+    "avg_winner_r": 1.998,
+    "avg_loser_r": -1.252,
+    "skipped_gate": 3,
+    "skipped_cap": 81,
+    "skipped_risk": 17,
+    "fill_rate_pct": 61.6
+   },
+   "25bps": {
+    "config": "PINE_V36_exposure:E2_mega3",
+    "cost": "25bps",
+    "trades": 161,
+    "win_rate_pct": 44.7,
+    "expectancy_net_r": 0.144,
+    "profit_factor": 1.2,
+    "total_return_pct": 16.33,
+    "max_drawdown_pct": 35.72,
+    "calmar": 0.457,
+    "avg_winner_r": 1.947,
+    "avg_loser_r": -1.314,
+    "skipped_gate": 3,
+    "skipped_cap": 81,
+    "skipped_risk": 18,
+    "fill_rate_pct": 61.2
+   }
+  },
+  "E3_corr70": {
+   "4bps": {
+    "config": "PINE_V36_exposure:E3_corr70",
+    "cost": "4bps",
+    "trades": 146,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.281,
+    "profit_factor": 1.41,
+    "total_return_pct": 40.29,
+    "max_drawdown_pct": 31.3,
+    "calmar": 1.287,
+    "avg_winner_r": 2.113,
+    "avg_loser_r": -1.273,
+    "skipped_gate": 32,
+    "skipped_cap": 71,
+    "skipped_risk": 14,
+    "fill_rate_pct": 55.5
+   },
+   "25bps": {
+    "config": "PINE_V36_exposure:E3_corr70",
+    "cost": "25bps",
+    "trades": 146,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.208,
+    "profit_factor": 1.29,
+    "total_return_pct": 26.08,
+    "max_drawdown_pct": 35.39,
+    "calmar": 0.737,
+    "avg_winner_r": 2.036,
+    "avg_loser_r": -1.342,
+    "skipped_gate": 32,
+    "skipped_cap": 68,
+    "skipped_risk": 17,
+    "fill_rate_pct": 55.5
+   }
+  },
+  "E4_cap3": {
+   "4bps": {
+    "config": "PINE_V36_exposure:E4_cap3",
+    "cost": "4bps",
+    "trades": 111,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.437,
+    "profit_factor": 1.65,
+    "total_return_pct": 50.79,
+    "max_drawdown_pct": 32.51,
+    "calmar": 1.562,
+    "avg_winner_r": 2.414,
+    "avg_loser_r": -1.244,
+    "skipped_gate": 0,
+    "skipped_cap": 152,
+    "skipped_risk": 0,
+    "fill_rate_pct": 42.2
+   },
+   "25bps": {
+    "config": "PINE_V36_exposure:E4_cap3",
+    "cost": "25bps",
+    "trades": 111,
+    "win_rate_pct": 45.9,
+    "expectancy_net_r": 0.365,
+    "profit_factor": 1.51,
+    "total_return_pct": 39.26,
+    "max_drawdown_pct": 34.9,
+    "calmar": 1.125,
+    "avg_winner_r": 2.341,
+    "avg_loser_r": -1.315,
+    "skipped_gate": 0,
+    "skipped_cap": 152,
+    "skipped_risk": 0,
+    "fill_rate_pct": 42.2
+   }
+  }
+ },
+ "diagnostics": {
+  "D1": {
+   "t_peak": "2024-11-22 16:00:00+00:00",
+   "t_trough": "2025-06-13 13:30:00-04:00",
+   "dd_pct": 35.17,
+   "avg_concurrency": 1.13,
+   "max_concurrency": 5,
+   "n_open_at_start": 2,
+   "sectors_at_start": [
+    "CRYPTO",
+    "CRYPTO"
+   ],
+   "mean_pairwise_corr_at_start": 0.46
+  },
+  "D2": {
+   "share_of_dd_on_ge3_concurrent": 0.428,
+   "dd_window_bars": 1492,
+   "concurrency_hist": {
+    "0": 859,
+    "1": 146,
+    "2": 143,
+    "3": 153,
+    "4": 153,
+    "5": 38
+   }
+  },
+  "D3": {
+   "n_multitrade_cohorts": 14,
+   "trades_in_cohorts": 31,
+   "median_var_ratio": 1.546,
+   "mean_var_ratio": 1.314,
+   "mean_sign_agreement": 0.845
+  },
+  "D4": {
+   "CRYPTO": {
+    "trades": 68,
+    "total_r": 20.78,
+    "dd_window_r": 22.48
+   },
+   "ETF": {
+    "trades": 9,
+    "total_r": 4.97,
+    "dd_window_r": 0.69
+   },
+   "HEALTHCARE": {
+    "trades": 10,
+    "total_r": -3.07,
+    "dd_window_r": -1.65
+   },
+   "CONSUMER": {
+    "trades": 10,
+    "total_r": -4.2,
+    "dd_window_r": -2.01
+   },
+   "SPACE": {
+    "trades": 7,
+    "total_r": -2.03,
+    "dd_window_r": -1.27
+   },
+   "FINTECH": {
+    "trades": 9,
+    "total_r": 2.94,
+    "dd_window_r": -3.43
+   },
+   "AI_SOFTWARE": {
+    "trades": 21,
+    "total_r": 15.53,
+    "dd_window_r": 4.56
+   },
+   "SEMIS": {
+    "trades": 26,
+    "total_r": 3.37,
+    "dd_window_r": 0.0
+   }
+  }
+ }
+}

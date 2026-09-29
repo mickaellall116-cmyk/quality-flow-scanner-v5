@@ -15,12 +15,9 @@ live download_confirmation_data calls — the frozen 2023-06-01 weekly window
 could not satisfy the 205-weekly-bar rule).
 **ChatGPT final mechanical re-audit 2026-09-28T20:13:30Z (issue #1):
 PASS / READY FOR CLAUDE INDEPENDENT RE-AUDIT** — R1–R4, C1–C3, F1 all
-closed. **Mike's final re-audit 2026-09-28: PASS** (posted to issue #1).
-Still DRAFT pending the remaining gates.**
+closed. Still DRAFT pending the remaining gates.
 Pending: Claude re-audit → **Mike explicit final sign-off** (gate order
 confirmed unchanged) → §13 Phase-0 amendment → build.
-**NO BUILD AUTHORIZED YET.**
-Pending: ChatGPT final mechanical check → Claude re-audit → Mike final sign-off.
 **NO BUILD AUTHORIZED YET.**
 **Owner:** Mike
 **Supersedes:** rev 3 (`CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928.md`,
@@ -696,7 +693,7 @@ Build starts only after 1–4. Any material finding returns this document to DRA
 
 ## §15. Freeze attestation + comparator commitment
 
-- [ ] ChatGPT re-audit: PASS on patched rev 4
+- [x] ChatGPT re-audit: PASS on patched rev 4
 - [ ] Claude re-audit: READY (no unresolved material ambiguity)
 - [ ] Mike final sign-off
 - [ ] §13 amendment applied to validation prereg

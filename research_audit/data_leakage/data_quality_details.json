@@ -1,0 +1,517 @@
+{
+ "symbol_checks": {
+  "QQQ": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "SMCI": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "PLTR": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "ANET": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "SOFI": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "RKLB": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "ONDS": {
+   "h1_bars": 5079,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "DRAM": {
+   "h1_bars": 840,
+   "h4_bars": 240,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2026-04-02 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2026-04-02 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 120,
+   "days_with_2_bars_pct": 100.0,
+   "days_with_1_bar": 0,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 3.8333333333333335
+  },
+  "SPCX": {
+   "h1_bars": 495,
+   "h4_bars": 142,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2026-06-12 11:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2026-06-12 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 71,
+   "days_with_2_bars_pct": 100.0,
+   "days_with_1_bar": 0,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 3.8333333333333335
+  },
+  "ASTX": {
+   "h1_bars": 2113,
+   "h4_bars": 604,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2025-07-11 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2025-07-11 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 303,
+   "days_with_2_bars_pct": 99.3,
+   "days_with_1_bar": 2,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 3.8333333333333335
+  },
+  "BBAI": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "NIO": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "HOOD": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  },
+  "AMD": {
+   "h1_bars": 5082,
+   "h4_bars": 1453,
+   "h1_tz": "America/New_York",
+   "h4_tz": "America/New_York",
+   "h1_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 15:30:00-04:00"
+   ],
+   "h4_range": [
+    "2023-10-25 09:30:00-04:00",
+    "2026-09-23 13:30:00-04:00"
+   ],
+   "h4_impossible_wick": 0,
+   "h4_nan_ohlc": 0,
+   "h4_zero_volume": 0,
+   "h4_dup_ts": 0,
+   "h1_dup_ts": 0,
+   "h1_outside_session": 0,
+   "h4_bar_starts_et": [
+    570,
+    810
+   ],
+   "days": 730,
+   "days_with_2_bars_pct": 99.0,
+   "days_with_1_bar": 7,
+   "days_with_0_gt2_bars": 0,
+   "max_gap_calendar_days": 4.0
+  }
+ },
+ "split_checks": {
+  "SMCI": {
+   "pre_close": 41.706504821777344,
+   "post_close": 40.3075008392334,
+   "ratio": 1.0347082789410307,
+   "split_adjusted": true
+  },
+  "SMCI_4x_jumps": [],
+  "ASTX_4x_jumps": []
+ },
+ "trade_verifications": {
+  "n_trades": 237,
+  "baseline_n_expected": 237,
+  "RKLB_2024-09-09T09:30:00-04:00": {
+   "found": false
+  },
+  "HOOD_2025-04-29T09:30:00-04:00": {
+   "found": true,
+   "entry": 48.917598724365234,
+   "raw_entry": 48.917598724365234,
+   "stop": 45.664779962851654,
+   "raw_stop": 45.664779962851654,
+   "tp1": 53.24455857044585,
+   "exit": 77.23677742365065,
+   "gross_ret_pct": 57.891596148974486,
+   "risk_frac_pct": 6.649587973118135,
+   "net_r": 8.668446282987533,
+   "r_recomputed_match": true,
+   "reason": "stop",
+   "tp1_hit": true,
+   "entry_time": "2025-04-29 13:30:00-04:00",
+   "exit_time": "2025-08-04 09:30:00-04:00",
+   "hold_bars": 130
+  },
+  "RKLB_2024-10-01T09:30:00-04:00": {
+   "found": true,
+   "entry": 9.239999771118164,
+   "raw_entry": 9.239999771118164,
+   "stop": 8.600587212552393,
+   "raw_stop": 8.600587212552393,
+   "tp1": 10.085883029951303,
+   "exit": 13.537941400534734,
+   "gross_ret_pct": 46.51452095108073,
+   "risk_frac_pct": 6.920049506542293,
+   "net_r": 6.685576585448086,
+   "r_recomputed_match": true,
+   "reason": "stop",
+   "tp1_hit": true,
+   "entry_time": "2024-10-01 13:30:00-04:00",
+   "exit_time": "2024-11-15 09:30:00-05:00",
+   "hold_bars": 65
+  },
+  "ONDS_2025-08-14T09:30:00-04:00": {
+   "found": true,
+   "entry": 3.6649999618530273,
+   "raw_entry": 3.6649999618530273,
+   "stop": 3.1618952273678893,
+   "raw_stop": 3.1618952273678893,
+   "tp1": 4.3423395793501385,
+   "exit": 7.0336699804099325,
+   "gross_ret_pct": 91.9145990073545,
+   "risk_frac_pct": 13.727278027876643,
+   "net_r": 6.677550991624617,
+   "r_recomputed_match": true,
+   "reason": "stop",
+   "tp1_hit": true,
+   "entry_time": "2025-08-14 13:30:00-04:00",
+   "exit_time": "2025-10-10 13:30:00-04:00",
+   "hold_bars": 80
+  },
+  "AMD_2026-04-02T09:30:00-04:00": {
+   "found": true,
+   "entry": 215.17999267578125,
+   "raw_entry": 215.17999267578125,
+   "stop": 204.96622010655216,
+   "raw_stop": 204.96622010655216,
+   "tp1": 228.79835610142004,
+   "exit": 275.7241749989522,
+   "gross_ret_pct": 28.136529595664996,
+   "risk_frac_pct": 4.746618141500971,
+   "net_r": 5.875031183116564,
+   "r_recomputed_match": true,
+   "reason": "stop",
+   "tp1_hit": true,
+   "entry_time": "2026-04-02 13:30:00-04:00",
+   "exit_time": "2026-04-28 13:30:00-04:00",
+   "hold_bars": 34
+  },
+  "SOFI_2025-06-16T09:30:00-04:00": {
+   "found": true,
+   "entry": 14.694999694824219,
+   "raw_entry": 14.694999694824219,
+   "stop": 14.031783573604594,
+   "raw_stop": 14.031783573604594,
+   "tp1": 15.572621037195828,
+   "exit": 18.611310327863052,
+   "gross_ret_pct": 26.65063432711885,
+   "risk_frac_pct": 4.513209492976163,
+   "net_r": 5.849636354839221,
+   "r_recomputed_match": true,
+   "reason": "stop",
+   "tp1_hit": true,
+   "entry_time": "2025-06-16 13:30:00-04:00",
+   "exit_time": "2025-07-30 13:30:00-04:00",
+   "hold_bars": 59
+  }
+ }
+}

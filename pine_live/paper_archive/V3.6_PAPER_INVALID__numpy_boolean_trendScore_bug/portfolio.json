@@ -1,0 +1,22 @@
+{
+ "portfolio": {
+  "cost": 0.0004,
+  "counters": {
+   "NO_SLOT": 0,
+   "RANKED_OUT": 0,
+   "RISK_CAP": 0,
+   "SECTOR_CAP": 0,
+   "TAKEN": 0
+  },
+  "events": [],
+  "max_dd": 0.0,
+  "open_time_s": 0.0,
+  "peak": 10000.0,
+  "positions": {},
+  "prev_t": "2026-09-20T08:00:00+00:00",
+  "realized": 10000.0,
+  "seq": 0,
+  "total_time_s": 144000.0
+ },
+ "schema": "paper-state-v1"
+}

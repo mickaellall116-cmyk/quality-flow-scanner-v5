@@ -1,0 +1,137 @@
+{
+ "overlap_bucket_r_corr": {
+  "0": {
+   "n_pairs": 27046,
+   "pearson_r": -0.01
+  },
+  "(0,.25]": {
+   "n_pairs": 462,
+   "pearson_r": -0.0667
+  },
+  "(.25,.5]": {
+   "n_pairs": 269,
+   "pearson_r": 0.4271
+  },
+  "(.5,.75]": {
+   "n_pairs": 133,
+   "pearson_r": 0.4814
+  },
+  "(.75,1]": {
+   "n_pairs": 56,
+   "pearson_r": 0.7444
+  }
+ },
+ "n_eff_corr_matrix": {
+  "n_eff": 82.8,
+  "mean_pairwise_rho": 0.0079
+ },
+ "connected_components_any_overlap": {
+  "n_components": 18,
+  "sizes_desc": [
+   76,
+   51,
+   29,
+   23,
+   17,
+   11,
+   10,
+   7,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ "connected_components_heavy_overlap": {
+  "n_components": 21,
+  "sizes_desc": [
+   51,
+   39,
+   37,
+   28,
+   23,
+   13,
+   11,
+   10,
+   7,
+   4,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ "heavy_overlap_vs_isolated": {
+  "heavy_n": 158,
+  "heavy_mean_r": 0.8307,
+  "isolated_n": 79,
+  "isolated_mean_r": -0.9452
+ },
+ "top10_trades": [
+  {
+   "symbol": "HOOD",
+   "entry_ym": "2025-04",
+   "r": 8.67
+  },
+  {
+   "symbol": "RKLB",
+   "entry_ym": "2024-10",
+   "r": 6.69
+  },
+  {
+   "symbol": "ONDS",
+   "entry_ym": "2025-08",
+   "r": 6.68
+  },
+  {
+   "symbol": "AMD",
+   "entry_ym": "2026-04",
+   "r": 5.88
+  },
+  {
+   "symbol": "SOFI",
+   "entry_ym": "2025-06",
+   "r": 5.85
+  },
+  {
+   "symbol": "RKLB",
+   "entry_ym": "2025-06",
+   "r": 5.68
+  },
+  {
+   "symbol": "SOFI",
+   "entry_ym": "2024-10",
+   "r": 4.89
+  },
+  {
+   "symbol": "RKLB",
+   "entry_ym": "2026-04",
+   "r": 4.38
+  },
+  {
+   "symbol": "ONDS",
+   "entry_ym": "2025-05",
+   "r": 3.95
+  },
+  {
+   "symbol": "SOFI",
+   "entry_ym": "2024-10",
+   "r": 3.84
+  }
+ ],
+ "expectancy_without_top5": 0.0984,
+ "expectancy_without_top10": 0.0004
+}

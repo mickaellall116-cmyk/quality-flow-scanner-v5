@@ -1,0 +1,222 @@
+{
+  "finished_at": "2026-09-29T10:51:10.197531+00:00",
+  "cycle_status": "DEGRADED",
+  "entries_suppressed": true,
+  "new_signals": 0,
+  "opened": 0,
+  "closed": [],
+  "errors": [
+    {
+      "scope": "cycle",
+      "error": "budget exhausted before staging"
+    }
+  ],
+  "publish": {
+    "ok": false,
+    "skipped": true,
+    "reason": "cycle DEGRADED: snapshot not pushed"
+  },
+  "coverage": {
+    "expected_symbols": 250,
+    "fresh_symbols": 215,
+    "degraded_symbols": [
+      {
+        "symbol": "AAPL",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "ABBV",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "AFRM",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "AMC",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "ANET",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "BMNR",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "BRK-B",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "CIFR",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "CLSK",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "COIN",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "CORZ",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "CRWD",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "DAL",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "DE",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "DELL",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "FDX",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "GLXY",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "GM",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "HUT",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "INTC",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "LITE",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "MARA",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "NET",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "OKTA",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "QBTS",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "RBLX",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "RBRK",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "RIOT",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "SBET",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "SHEL",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "SNAP",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "UAL",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      },
+      {
+        "symbol": "VEEV",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "VLO",
+        "reason": "cycle_budget_exhausted",
+        "detail": "cycle wall-clock budget exhausted"
+      },
+      {
+        "symbol": "WULF",
+        "reason": "not_attempted",
+        "detail": "no vendor request completed this cycle"
+      }
+    ],
+    "unresolved_security_events": [],
+    "open_position_data_gaps": [
+      "AAPL",
+      "ABBV",
+      "AMC",
+      "ANET",
+      "COIN",
+      "DE",
+      "DELL",
+      "INTC",
+      "LITE",
+      "NET",
+      "SHEL",
+      "VEEV",
+      "VLO"
+    ],
+    "global_provider_status": "degraded",
+    "market_data_gap": "",
+    "retries": 0,
+    "cycle_duration_s": 600.3,
+    "entries_suppressed": true,
+    "auxiliary_failures": []
+  }
+}

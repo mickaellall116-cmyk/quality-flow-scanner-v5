@@ -1,0 +1,52 @@
+{
+ "label": "V3.6_PAPER_CORRECTED_SCORE_BASELINE",
+ "status": "ACTIVE",
+ "started_at": "2026-09-20T10:48:00-04:00",
+ "started_by": "Mike's instruction 2026-09-20: archive invalid paper phase, restart from zero with corrected canonical score logic",
+ "supersedes": "V3.6_PAPER_INVALID__numpy_boolean_trendScore_bug (preserved at pine_live/paper_archive/V3.6_PAPER_INVALID__numpy_boolean_trendScore_bug/)",
+ "strategy": {
+  "frozen": true,
+  "version": "V3.6 Hybrid (canonical)",
+  "note": "Entries, exits, rs_top2 ranking, 2-per-sector cap, 5% portfolio-risk gate, 5 max positions, exits-before-entries all frozen. No parameter tuning, no entry changes, no improvements based on historical results."
+ },
+ "canonical_reference": {
+  "note": "From this point forward the corrected canonical function is the only reference for paper/live parity.",
+  "canonical_file": "pine_backtest.py",
+  "canonical_sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+  "mirror_file": "pine_live/decompose.py",
+  "mirror_sha256": "7d7cc9a7bfc5b524bdb06181a0d7b1799272441e2316f1414dfda7d3266a27ba",
+  "score_fix": "each of the 5 trendScore conditions int-cast before summing -> true 0-5 integer score",
+  "regression_test": "tests/test_pine_score_fix.py (9 tests, green 2026-09-20)"
+ },
+ "code_provenance": {
+  "repo_head_commit": "a88729f09b76a8a89dbdd5bb6f8d6565fdfa8a92",
+  "score_fix_commit": "a141ca9f9ef530c842b56d9e56a816d9265e3944",
+  "score_fix_commit_note": "Fix committed 2026-09-20 as a141ca9 (fix-only: the two trendScore corrections + 9 regression tests, no strategy changes). Committed blobs verified byte-for-byte identical to the sha256 fingerprints pinned at baseline start, so the paper baseline continues uninterrupted. The pre-commit HEAD (a88729f) and sha256 values above are retained as the audit trail of what was running when the baseline started.",
+  "score_fix_commit_verified": "2026-09-20: git show HEAD:<file> sha256 == pinned sha256 for all three committed files"
+ },
+ "deployment_gate": {
+  "state": "CLOSED",
+  "threshold": "+0.15R expectancy",
+  "corrected_historical_results": {
+   "hybrid_25bps": "+0.069R (877 trades) \u2014 below threshold",
+   "live_aggressive_25bps": "+0.035R (1145 trades) \u2014 below threshold"
+  },
+  "phase_role": "validation/research only \u2014 not justification to deploy"
+ },
+ "paper_config": {
+  "paper_only": true,
+  "starting_equity": 10000,
+  "risk_per_position": "1%",
+  "cost_legs": [
+   "4bps",
+   "25bps"
+  ],
+  "max_positions": 5,
+  "max_per_sector": 2,
+  "total_risk_gate": "5%",
+  "ranking": "rs_top2 when signals exceed free slots",
+  "exits_before_entries": true,
+  "no_cherry_picking": true,
+  "notify": "opens, closes, HALTs/errors, weekly summaries only; quiet on clean no-op cycles"
+ }
+}

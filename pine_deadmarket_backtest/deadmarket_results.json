@@ -1,0 +1,157 @@
+{
+ "CONTROL": {
+  "taken": {
+   "n": 180,
+   "expectancy_net_r": 0.2721,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.43,
+   "median_r": 0.1078,
+   "avg_winner_r": 1.7919,
+   "avg_loser_r": -1.2819,
+   "max_losing_streak": 6,
+   "total_return_pct": 56.28,
+   "max_drawdown_pct": 21.63,
+   "skipped_cap": 44,
+   "skipped_risk": 13,
+   "blocked_n": 0
+  },
+  "blocked": {
+   "n": 0
+  },
+  "by_year": {
+   "2024": {
+    "n": 59,
+    "expectancy_net_r": 0.4203,
+    "win_rate_pct": 55.9,
+    "profit_factor": 1.83,
+    "median_r": 0.3091,
+    "avg_winner_r": 1.6588,
+    "avg_loser_r": -1.1515,
+    "max_losing_streak": 6
+   },
+   "2025": {
+    "n": 68,
+    "expectancy_net_r": 0.4253,
+    "win_rate_pct": 50.0,
+    "profit_factor": 1.68,
+    "median_r": -0.0205,
+    "avg_winner_r": 2.1101,
+    "avg_loser_r": -1.2595,
+    "max_losing_streak": 6
+   },
+   "2026": {
+    "n": 53,
+    "expectancy_net_r": -0.0894,
+    "win_rate_pct": 45.3,
+    "profit_factor": 0.89,
+    "median_r": -0.7145,
+    "avg_winner_r": 1.5243,
+    "avg_loser_r": -1.425,
+    "max_losing_streak": 5
+   }
+  },
+  "walk_forward": {
+   "train": {
+    "n": 59,
+    "expectancy_net_r": 0.4203,
+    "win_rate_pct": 55.9,
+    "profit_factor": 1.83,
+    "median_r": 0.3091,
+    "avg_winner_r": 1.6588,
+    "avg_loser_r": -1.1515,
+    "max_losing_streak": 6
+   },
+   "test": {
+    "n": 121,
+    "expectancy_net_r": 0.1998,
+    "win_rate_pct": 47.9,
+    "profit_factor": 1.29,
+    "median_r": -0.4841,
+    "avg_winner_r": 1.8677,
+    "avg_loser_r": -1.3357,
+    "max_losing_streak": 6
+   }
+  }
+ },
+ "NO_DEAD_MARKET": {
+  "taken": {
+   "n": 163,
+   "expectancy_net_r": 0.2981,
+   "win_rate_pct": 50.9,
+   "profit_factor": 1.48,
+   "median_r": 0.2123,
+   "avg_winner_r": 1.8139,
+   "avg_loser_r": -1.2746,
+   "max_losing_streak": 7,
+   "total_return_pct": 56.71,
+   "max_drawdown_pct": 20.9,
+   "skipped_cap": 35,
+   "skipped_risk": 12,
+   "blocked_n": 27
+  },
+  "blocked": {
+   "n": 27,
+   "expectancy_net_r": 0.1168,
+   "win_rate_pct": 51.9,
+   "profit_factor": 1.19,
+   "median_r": 0.1474,
+   "avg_winner_r": 1.3898,
+   "avg_loser_r": -1.2541,
+   "max_losing_streak": 2
+  },
+  "by_year": {
+   "2024": {
+    "n": 52,
+    "expectancy_net_r": 0.3885,
+    "win_rate_pct": 55.8,
+    "profit_factor": 1.78,
+    "median_r": 0.3852,
+    "avg_winner_r": 1.5855,
+    "avg_loser_r": -1.1207,
+    "max_losing_streak": 6
+   },
+   "2025": {
+    "n": 60,
+    "expectancy_net_r": 0.5333,
+    "win_rate_pct": 51.7,
+    "profit_factor": 1.88,
+    "median_r": 0.2822,
+    "avg_winner_r": 2.2049,
+    "avg_loser_r": -1.2535,
+    "max_losing_streak": 7
+   },
+   "2026": {
+    "n": 51,
+    "expectancy_net_r": -0.071,
+    "win_rate_pct": 45.1,
+    "profit_factor": 0.91,
+    "median_r": -0.7145,
+    "avg_winner_r": 1.5749,
+    "avg_loser_r": -1.4229,
+    "max_losing_streak": 5
+   }
+  },
+  "walk_forward": {
+   "train": {
+    "n": 52,
+    "expectancy_net_r": 0.3885,
+    "win_rate_pct": 55.8,
+    "profit_factor": 1.78,
+    "median_r": 0.3852,
+    "avg_winner_r": 1.5855,
+    "avg_loser_r": -1.1207,
+    "max_losing_streak": 6
+   },
+   "test": {
+    "n": 111,
+    "expectancy_net_r": 0.2557,
+    "win_rate_pct": 48.6,
+    "profit_factor": 1.37,
+    "median_r": -0.4841,
+    "avg_winner_r": 1.9366,
+    "avg_loser_r": -1.3367,
+    "max_losing_streak": 7
+   }
+  }
+ }
+}

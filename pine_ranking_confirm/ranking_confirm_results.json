@@ -1,0 +1,475 @@
+{
+ "variants": {
+  "takeall": {
+   "trades": 178,
+   "expectancy_net_r": 0.2209,
+   "win_rate_pct": 50.0,
+   "profit_factor": 1.34,
+   "max_drawdown_pct": 25.3,
+   "total_return_pct": 42.05,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.5006
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.219
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.0836
+    }
+   }
+  },
+  "rs_spy_CONTROL": {
+   "trades": 179,
+   "expectancy_net_r": 0.1599,
+   "win_rate_pct": 48.0,
+   "profit_factor": 1.24,
+   "max_drawdown_pct": 31.25,
+   "total_return_pct": 27.02,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4656
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.195
+    },
+    "2026": {
+     "n": 52,
+     "exp_r": -0.217
+    }
+   }
+  },
+  "adx": {
+   "trades": 178,
+   "expectancy_net_r": 0.3137,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.5,
+   "max_drawdown_pct": 26.78,
+   "total_return_pct": 68.01,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.5029
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.4812
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.1273
+    }
+   }
+  },
+  "adx10": {
+   "trades": 177,
+   "expectancy_net_r": 0.2723,
+   "win_rate_pct": 50.3,
+   "profit_factor": 1.42,
+   "max_drawdown_pct": 26.78,
+   "total_return_pct": 55.66,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.5029
+    },
+    "2025": {
+     "n": 70,
+     "exp_r": 0.379
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.1273
+    }
+   }
+  },
+  "adx20": {
+   "trades": 178,
+   "expectancy_net_r": 0.3018,
+   "win_rate_pct": 50.6,
+   "profit_factor": 1.48,
+   "max_drawdown_pct": 26.78,
+   "total_return_pct": 64.14,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.4691
+    },
+    "2025": {
+     "n": 71,
+     "exp_r": 0.4591
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.1007
+    }
+   }
+  },
+  "C_rs_adx": {
+   "trades": 179,
+   "expectancy_net_r": 0.1944,
+   "win_rate_pct": 48.6,
+   "profit_factor": 1.29,
+   "max_drawdown_pct": 29.32,
+   "total_return_pct": 35.54,
+   "yearly": {
+    "2024": {
+     "n": 56,
+     "exp_r": 0.5029
+    },
+    "2025": {
+     "n": 72,
+     "exp_r": 0.1822
+    },
+    "2026": {
+     "n": 51,
+     "exp_r": -0.1273
+    }
+   }
+  }
+ },
+ "contested_hist": {
+  "1": 31,
+  "2": 15,
+  "3": 8
+ },
+ "genuine_contests": 21,
+ "opportunity_cost": {
+  "rs_spy_CONTROL": {
+   "ranked_out_n": 11,
+   "ranked_out_exp_r": 0.311,
+   "swapped_in_n": 12,
+   "swapped_in_exp_r": -0.6057
+  },
+  "adx": {
+   "ranked_out_n": 14,
+   "ranked_out_exp_r": -0.6495,
+   "swapped_in_n": 14,
+   "swapped_in_exp_r": 0.5302
+  },
+  "adx10": {
+   "ranked_out_n": 11,
+   "ranked_out_exp_r": -0.4921,
+   "swapped_in_n": 10,
+   "swapped_in_exp_r": 0.3466
+  },
+  "adx20": {
+   "ranked_out_n": 17,
+   "ranked_out_exp_r": -0.6091,
+   "swapped_in_n": 17,
+   "swapped_in_exp_r": 0.2385
+  },
+  "C_rs_adx": {
+   "ranked_out_n": 5,
+   "ranked_out_exp_r": -0.0972,
+   "swapped_in_n": 6,
+   "swapped_in_exp_r": -0.836
+  }
+ },
+ "symbol_concentration": {
+  "rs_spy_CONTROL": {
+   "selected": {
+    "RKLB": {
+     "n": 22,
+     "exp_r": 0.8827
+    },
+    "SOFI": {
+     "n": 22,
+     "exp_r": 0.1952
+    },
+    "ANET": {
+     "n": 20,
+     "exp_r": -0.3599
+    },
+    "QQQ": {
+     "n": 19,
+     "exp_r": -0.2187
+    },
+    "PLTR": {
+     "n": 18,
+     "exp_r": 0.9507
+    },
+    "AMD": {
+     "n": 17,
+     "exp_r": -0.0497
+    },
+    "HOOD": {
+     "n": 14,
+     "exp_r": 0.6009
+    },
+    "SMCI": {
+     "n": 14,
+     "exp_r": -0.6339
+    },
+    "ONDS": {
+     "n": 11,
+     "exp_r": 0.4067
+    },
+    "NIO": {
+     "n": 9,
+     "exp_r": -0.1017
+    },
+    "BBAI": {
+     "n": 9,
+     "exp_r": -0.1289
+    },
+    "ASTX": {
+     "n": 4,
+     "exp_r": -0.4832
+    }
+   },
+   "rejected_vs_takeall": {
+    "QQQ": {
+     "n": 6,
+     "exp_r": 0.212
+    },
+    "SOFI": {
+     "n": 1,
+     "exp_r": 0.5502
+    },
+    "PLTR": {
+     "n": 1,
+     "exp_r": -1.5949
+    },
+    "HOOD": {
+     "n": 1,
+     "exp_r": 0.8574
+    },
+    "ANET": {
+     "n": 1,
+     "exp_r": 0.9313
+    },
+    "AMD": {
+     "n": 1,
+     "exp_r": 1.4052
+    }
+   }
+  },
+  "adx": {
+   "selected": {
+    "QQQ": {
+     "n": 23,
+     "exp_r": -0.1313
+    },
+    "RKLB": {
+     "n": 20,
+     "exp_r": 0.876
+    },
+    "AMD": {
+     "n": 18,
+     "exp_r": -0.051
+    },
+    "SOFI": {
+     "n": 18,
+     "exp_r": 0.4294
+    },
+    "ANET": {
+     "n": 17,
+     "exp_r": -0.3744
+    },
+    "PLTR": {
+     "n": 17,
+     "exp_r": 1.1192
+    },
+    "HOOD": {
+     "n": 16,
+     "exp_r": 0.7301
+    },
+    "ONDS": {
+     "n": 12,
+     "exp_r": 0.5795
+    },
+    "BBAI": {
+     "n": 12,
+     "exp_r": 0.5816
+    },
+    "SMCI": {
+     "n": 11,
+     "exp_r": -0.2417
+    },
+    "NIO": {
+     "n": 10,
+     "exp_r": 0.0839
+    },
+    "ASTX": {
+     "n": 4,
+     "exp_r": -0.4832
+    }
+   },
+   "rejected_vs_takeall": {
+    "SOFI": {
+     "n": 4,
+     "exp_r": -0.4456
+    },
+    "ANET": {
+     "n": 3,
+     "exp_r": 0.1897
+    },
+    "QQQ": {
+     "n": 2,
+     "exp_r": 0.068
+    },
+    "SMCI": {
+     "n": 2,
+     "exp_r": -2.4812
+    },
+    "PLTR": {
+     "n": 2,
+     "exp_r": -1.7544
+    },
+    "RKLB": {
+     "n": 1,
+     "exp_r": 0.4562
+    }
+   }
+  }
+ },
+ "crowded_bars": {
+  "n_timestamps": 8,
+  "n_candidates": 24,
+  "by_variant": {
+   "takeall": {
+    "taken_at_crowded": 13,
+    "exp_r": -0.9638
+   },
+   "rs_spy_CONTROL": {
+    "taken_at_crowded": 13,
+    "exp_r": -1.0753
+   },
+   "adx": {
+    "taken_at_crowded": 12,
+    "exp_r": -0.317
+   },
+   "C_rs_adx": {
+    "taken_at_crowded": 13,
+    "exp_r": -1.1638
+   }
+  },
+  "differential_picks": {
+   "adx_only_n": 6,
+   "adx_only_exp_r": 0.2842,
+   "adx_only_symbols": [
+    "BBAI",
+    "HOOD",
+    "QQQ"
+   ],
+   "rs_only_n": 7,
+   "rs_only_exp_r": -1.21,
+   "rs_only_symbols": [
+    "AMD",
+    "ANET",
+    "PLTR",
+    "RKLB",
+    "SMCI",
+    "SOFI"
+   ]
+  }
+ },
+ "walk_forward": {
+  "train_le2024": {
+   "takeall": {
+    "trades": 56,
+    "expectancy_net_r": 0.5006,
+    "win_rate_pct": 58.9,
+    "profit_factor": 2.05,
+    "max_drawdown_pct": 12.62,
+    "total_return_pct": 30.72
+   },
+   "rs_spy_CONTROL": {
+    "trades": 56,
+    "expectancy_net_r": 0.4656,
+    "win_rate_pct": 57.1,
+    "profit_factor": 1.93,
+    "max_drawdown_pct": 14.78,
+    "total_return_pct": 28.07
+   },
+   "adx": {
+    "trades": 56,
+    "expectancy_net_r": 0.5029,
+    "win_rate_pct": 58.9,
+    "profit_factor": 2.05,
+    "max_drawdown_pct": 12.62,
+    "total_return_pct": 30.88
+   },
+   "adx10": {
+    "trades": 56,
+    "expectancy_net_r": 0.5029,
+    "win_rate_pct": 58.9,
+    "profit_factor": 2.05,
+    "max_drawdown_pct": 12.62,
+    "total_return_pct": 30.88
+   },
+   "adx20": {
+    "trades": 56,
+    "expectancy_net_r": 0.4691,
+    "win_rate_pct": 57.1,
+    "profit_factor": 1.94,
+    "max_drawdown_pct": 14.77,
+    "total_return_pct": 28.33
+   },
+   "C_rs_adx": {
+    "trades": 56,
+    "expectancy_net_r": 0.5029,
+    "win_rate_pct": 58.9,
+    "profit_factor": 2.06,
+    "max_drawdown_pct": 12.62,
+    "total_return_pct": 30.89
+   }
+  },
+  "test_ge2025": {
+   "takeall": {
+    "trades": 122,
+    "expectancy_net_r": 0.1439,
+    "win_rate_pct": 46.7,
+    "profit_factor": 1.2,
+    "max_drawdown_pct": 25.3,
+    "total_return_pct": 15.91
+   },
+   "rs_spy_CONTROL": {
+    "trades": 123,
+    "expectancy_net_r": 0.0718,
+    "win_rate_pct": 44.7,
+    "profit_factor": 1.1,
+    "max_drawdown_pct": 31.25,
+    "total_return_pct": 5.79
+   },
+   "adx": {
+    "trades": 123,
+    "expectancy_net_r": 0.2094,
+    "win_rate_pct": 46.3,
+    "profit_factor": 1.3,
+    "max_drawdown_pct": 26.78,
+    "total_return_pct": 25.92
+   },
+   "adx10": {
+    "trades": 122,
+    "expectancy_net_r": 0.1521,
+    "win_rate_pct": 45.9,
+    "profit_factor": 1.21,
+    "max_drawdown_pct": 26.78,
+    "total_return_pct": 17.2
+   },
+   "adx20": {
+    "trades": 123,
+    "expectancy_net_r": 0.2077,
+    "win_rate_pct": 47.2,
+    "profit_factor": 1.3,
+    "max_drawdown_pct": 26.78,
+    "total_return_pct": 25.46
+   },
+   "C_rs_adx": {
+    "trades": 123,
+    "expectancy_net_r": 0.1049,
+    "win_rate_pct": 44.7,
+    "profit_factor": 1.14,
+    "max_drawdown_pct": 29.32,
+    "total_return_pct": 10.46
+   }
+  }
+ }
+}

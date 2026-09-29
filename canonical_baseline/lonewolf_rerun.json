@@ -1,0 +1,223 @@
+{
+ "candidates": 4127,
+ "blocked": 1109,
+ "blocked_pct": 26.87,
+ "kept": 3018,
+ "replication_check": {
+  "accepted": 374,
+  "canonical": 374,
+  "match": true
+ },
+ "accepted": 274,
+ "skip_counts": {
+  "busy": 342,
+  "slot": 66,
+  "heat": 2336,
+  "candidates": 3018
+ },
+ "levels": {
+  "25bps": {
+   "variant": "V5-lonewolf 25bps",
+   "n": 274,
+   "expectancy_r": -0.0504,
+   "win_rate_pct": 33.9,
+   "profit_factor": 0.93,
+   "total_r": -13.8,
+   "median_r": -1.0572
+  },
+  "50bps": {
+   "variant": "V5-lonewolf 50bps",
+   "n": 274,
+   "expectancy_r": -0.1746,
+   "win_rate_pct": 33.2,
+   "profit_factor": 0.78,
+   "total_r": -47.83,
+   "median_r": -1.119
+  },
+  "75bps": {
+   "variant": "V5-lonewolf 75bps",
+   "n": 274,
+   "expectancy_r": -0.2988,
+   "win_rate_pct": 32.5,
+   "profit_factor": 0.67,
+   "total_r": -81.86,
+   "median_r": -1.1834
+  },
+  "100bps": {
+   "variant": "V5-lonewolf 100bps",
+   "n": 274,
+   "expectancy_r": -0.423,
+   "win_rate_pct": 29.6,
+   "profit_factor": 0.57,
+   "total_r": -115.9,
+   "median_r": -1.248
+  }
+ },
+ "equity": {
+  "equity_start": 74959.24309158325,
+  "equity_end": 39131.78854457316,
+  "total_return_pct": -47.82,
+  "annualized_return_pct": -22.94,
+  "max_drawdown_pct": -63.81,
+  "max_drawdown_usd": -48982.0,
+  "max_drawdown_r": -65.3
+ },
+ "comparison_vs_canonical": {
+  "cost_sensitivity": {
+   "25bps": {
+    "base_E": 0.1029,
+    "filt_E": -0.0504,
+    "delta_E": -0.1533,
+    "base_total": 38.49,
+    "filt_total": -13.8,
+    "delta_total": -52.29
+   },
+   "50bps": {
+    "base_E": -0.0013,
+    "filt_E": -0.1746,
+    "delta_E": -0.1732,
+    "base_total": -0.5,
+    "filt_total": -47.83,
+    "delta_total": -47.33
+   },
+   "75bps": {
+    "base_E": -0.1056,
+    "filt_E": -0.2988,
+    "delta_E": -0.1932,
+    "base_total": -39.5,
+    "filt_total": -81.86,
+    "delta_total": -42.36
+   },
+   "100bps": {
+    "base_E": -0.2099,
+    "filt_E": -0.423,
+    "delta_E": -0.2131,
+    "base_total": -78.5,
+    "filt_total": -115.9,
+    "delta_total": -37.4
+   }
+  },
+  "baseline_headline": {
+   "trades": 374,
+   "expectancy_50bps": -0.0013,
+   "max_dd_pct": -39.8,
+   "total_return_pct": -0.9,
+   "win_pct": 39.8,
+   "pf": 1.0
+  },
+  "year_split_delta": {
+   "2024": {
+    "dE": -0.1072,
+    "dTotal": -10.02,
+    "base_n": 117,
+    "filt_n": 110
+   },
+   "2025": {
+    "dE": -0.2976,
+    "dTotal": -31.23,
+    "base_n": 128,
+    "filt_n": 99
+   },
+   "2026": {
+    "dE": 0.0696,
+    "dTotal": -6.09,
+    "base_n": 129,
+    "filt_n": 65
+   }
+  },
+  "blocked_taken_in_baseline": {
+   "n": 114,
+   "total_r_50bps": -2.22,
+   "mean_r": -0.019,
+   "win_pct": 43.0
+  },
+  "reshuffle": {
+   "common": 142,
+   "newly_admitted": {
+    "n": 132,
+    "total_r": -51.38,
+    "mean_r": -0.389
+   },
+   "dropped_from_book": {
+    "n": 232,
+    "total_r": -4.05,
+    "mean_r": -0.017
+   }
+  },
+  "concentration": {
+   "worst5": [
+    [
+     "GOOGL",
+     -6.67
+    ],
+    [
+     "JPM",
+     -5.7
+    ],
+    [
+     "SNDK",
+     -5.64
+    ],
+    [
+     "VLO",
+     -5.44
+    ],
+    [
+     "CAT",
+     -5.37
+    ]
+   ],
+   "worst5_share_of_delta": 0.61,
+   "best5": [
+    [
+     "AMGN",
+     6.44
+    ],
+    [
+     "MRNA",
+     5.44
+    ],
+    [
+     "TXN",
+     4.72
+    ],
+    [
+     "COP",
+     4.65
+    ],
+    [
+     "MSFT",
+     4.04
+    ]
+   ],
+   "ex_worst_symbol": {
+    "symbol": "GOOGL",
+    "filt_E": -0.1736,
+    "base_E": -0.0174
+   },
+   "ex_worst_delta_E": -0.1562
+  }
+ },
+ "blocked_characteristics": {
+  "by_signal_year_pct": {
+   "2024": 24.4,
+   "2025": 29.3,
+   "2026": 26.6
+  },
+  "by_sector": {
+   "Technology": 330,
+   "Financial Services": 181,
+   "Consumer Cyclical": 140,
+   "Healthcare": 125,
+   "Industrials": 124,
+   "Communication Services": 83,
+   "Consumer Defensive": 57,
+   "Energy": 48,
+   "Basic Materials": 17,
+   "Utilities": 4
+  },
+  "median_adx_blocked": 27.0,
+  "median_adx_kept": 26.6,
+  "etf_passthrough_candidates": 349
+ }
+}

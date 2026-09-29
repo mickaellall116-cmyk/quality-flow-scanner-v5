@@ -1,0 +1,86 @@
+[
+ {
+  "symbol": "QQQ",
+  "in_canonical_universe": true,
+  "canonical_reason": "top120_addv_2023-09-30",
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "SMCI",
+  "in_canonical_universe": true,
+  "canonical_reason": "top120_addv_2023-09-30",
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "PLTR",
+  "in_canonical_universe": true,
+  "canonical_reason": "top120_addv_2023-09-30",
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "ANET",
+  "in_canonical_universe": true,
+  "canonical_reason": "top120_addv_2023-09-30",
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "SOFI",
+  "in_canonical_universe": false,
+  "canonical_reason": null,
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "RKLB",
+  "in_canonical_universe": false,
+  "canonical_reason": null,
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "ONDS",
+  "in_canonical_universe": false,
+  "canonical_reason": null,
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "DRAM",
+  "in_canonical_universe": true,
+  "canonical_reason": "new_listing_passed_liquidity_gate",
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "SPCX",
+  "in_canonical_universe": true,
+  "canonical_reason": "new_listing_passed_liquidity_gate",
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "ASTX",
+  "in_canonical_universe": false,
+  "canonical_reason": null,
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "BBAI",
+  "in_canonical_universe": false,
+  "canonical_reason": null,
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "NIO",
+  "in_canonical_universe": true,
+  "canonical_reason": "top120_addv_2023-09-30",
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "HOOD",
+  "in_canonical_universe": false,
+  "canonical_reason": null,
+  "note": "reporting overlay only \u2014 never the validation universe"
+ },
+ {
+  "symbol": "AMD",
+  "in_canonical_universe": true,
+  "canonical_reason": "top120_addv_2023-09-30",
+  "note": "reporting overlay only \u2014 never the validation universe"
+ }
+]

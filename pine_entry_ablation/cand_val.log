@@ -1,0 +1,16 @@
+loading 2022 4H caches...
+  32 symbols: ['AAPL', 'AMAT', 'AMD', 'AMZN', 'AVGO', 'BTC-USD', 'COST', 'CRM', 'ETH-USD', 'F', 'GOOGL', 'INTC', 'JPM', 'LLY', 'LRCX', 'MRNA', 'MSFT', 'MU', 'NFLX', 'NIO', 'NVDA', 'ORCL', 'PFE', 'PLTR', 'PYPL', 'QCOM', 'QQQ', 'SNOW', 'SPY', 'TSLA', 'WMT', 'XOM']
+== V0_baseline ==
+  [4bps] n=39 win=43.6% exp=0.287R PF=1.35 ret=11.21% dd=20.42% hold=20.1
+  [25bps] n=39 win=43.6% exp=0.205R PF=1.24 ret=7.95% dd=21.65% hold=20.1
+== C1_drop_harmful ==
+  [4bps] n=122 win=47.5% exp=0.007R PF=1.01 ret=-1.19% dd=28.53% hold=18.1
+  [25bps] n=122 win=45.9% exp=-0.068R PF=0.91 ret=-6.69% dd=31.55% hold=18.1
+== C2_drop_harmful_neutral ==
+  [4bps] n=263 win=43.3% exp=-0.089R PF=0.87 ret=-15.46% dd=35.7% hold=15.3
+  [25bps] n=263 win=41.8% exp=-0.168R PF=0.77 ret=-14.32% dd=40.26% hold=15.3
+== C3_breakout_pure ==
+  [4bps] n=122 win=47.5% exp=0.007R PF=1.01 ret=-1.19% dd=28.53% hold=18.1
+  [25bps] n=122 win=45.9% exp=-0.068R PF=0.91 ret=-6.69% dd=31.55% hold=18.1
+DONE
+EXIT:0

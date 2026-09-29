@@ -1,0 +1,285 @@
+Downloading data (cached in backtest_cache/)...
+  [1/17] 4h NVDA
+  [2/17] 4h PLTR
+  [3/17] 4h TSLA
+  [4/17] 4h SOFI
+  [5/17] 4h SMCI
+  [6/17] 4h AMD
+  [7/17] 4h AAPL
+  [8/17] 4h MSFT
+  [9/17] 4h META
+  [10/17] 4h COIN
+  [11/17] 4h MSTR
+  [12/17] 4h AVGO
+  [13/17] 4h BTC-USD
+  [14/17] 4h ETH-USD
+  [15/17] 4h SOL-USD
+  [16/17] 4h QQQ
+  [17/17] 4h SPY
+  [1/15] daily/weekly NVDA
+  [2/15] daily/weekly PLTR
+  [3/15] daily/weekly TSLA
+  [4/15] daily/weekly SOFI
+  [5/15] daily/weekly SMCI
+  [6/15] daily/weekly AMD
+  [7/15] daily/weekly AAPL
+  [8/15] daily/weekly MSFT
+  [9/15] daily/weekly META
+  [10/15] daily/weekly COIN
+  [11/15] daily/weekly MSTR
+  [12/15] daily/weekly AVGO
+  [13/15] daily/weekly BTC-USD
+  [14/15] daily/weekly ETH-USD
+  [15/15] daily/weekly SOL-USD
+Signals: NVDA ...
+  -> 1 BUY NOW (ex-15m), 11 structural
+Signals: PLTR ...
+  -> 1 BUY NOW (ex-15m), 13 structural
+Signals: TSLA ...
+  -> 0 BUY NOW (ex-15m), 8 structural
+Signals: SOFI ...
+  -> 0 BUY NOW (ex-15m), 14 structural
+Signals: SMCI ...
+  -> 0 BUY NOW (ex-15m), 9 structural
+Signals: AMD ...
+  -> 0 BUY NOW (ex-15m), 7 structural
+Signals: AAPL ...
+  -> 0 BUY NOW (ex-15m), 11 structural
+Signals: MSFT ...
+  -> 1 BUY NOW (ex-15m), 10 structural
+Signals: META ...
+  -> 0 BUY NOW (ex-15m), 8 structural
+Signals: COIN ...
+  -> 0 BUY NOW (ex-15m), 4 structural
+Signals: MSTR ...
+  -> 0 BUY NOW (ex-15m), 3 structural
+Signals: AVGO ...
+  -> 1 BUY NOW (ex-15m), 10 structural
+Signals: BTC-USD ...
+  -> 0 BUY NOW (ex-15m), 0 structural
+Signals: ETH-USD ...
+  -> 0 BUY NOW (ex-15m), 0 structural
+Signals: SOL-USD ...
+  -> 0 BUY NOW (ex-15m), 0 structural
+
+==== RESULTS (next-bar open entry, full gates ex-15m) ====
+{
+  "variant": "next-bar open",
+  "trades": 4,
+  "win_rate_pct": 25.0,
+  "avg_win_pct": 8.17,
+  "avg_loss_pct": -2.78,
+  "expectancy_pct": -0.044,
+  "expectancy_r": -0.239,
+  "profit_factor": 0.98,
+  "avg_hold_bars": 5.0,
+  "exit_reasons": {
+    "stop": 3,
+    "target": 1
+  },
+  "final_equity_10k_1pct_risk": 9895.42,
+  "max_drawdown_pct": 2.03,
+  "by_symbol": [
+    {
+      "group": "AVGO",
+      "trades": 1,
+      "win_rate_pct": 100.0,
+      "expectancy_pct": 8.169,
+      "expectancy_r": 2.046
+    },
+    {
+      "group": "MSFT",
+      "trades": 1,
+      "win_rate_pct": 0.0,
+      "expectancy_pct": -1.491,
+      "expectancy_r": -1.0
+    },
+    {
+      "group": "NVDA",
+      "trades": 1,
+      "win_rate_pct": 0.0,
+      "expectancy_pct": -3.237,
+      "expectancy_r": -1.0
+    },
+    {
+      "group": "PLTR",
+      "trades": 1,
+      "win_rate_pct": 0.0,
+      "expectancy_pct": -3.616,
+      "expectancy_r": -1.0
+    }
+  ],
+  "by_regime": [
+    {
+      "group": "RISK-ON",
+      "trades": 4,
+      "win_rate_pct": 25.0,
+      "expectancy_pct": -0.044,
+      "expectancy_r": -0.239
+    }
+  ],
+  "by_state": [
+    {
+      "group": "PULLBACK BUY",
+      "trades": 4,
+      "win_rate_pct": 25.0,
+      "expectancy_pct": -0.044,
+      "expectancy_r": -0.239
+    }
+  ]
+}
+
+==== RESULTS (next-bar open entry, STRUCTURAL only) ====
+{
+  "variant": "structural / next-bar open",
+  "trades": 76,
+  "win_rate_pct": 36.8,
+  "avg_win_pct": 6.43,
+  "avg_loss_pct": -2.66,
+  "expectancy_pct": 0.69,
+  "expectancy_r": 0.165,
+  "profit_factor": 1.41,
+  "avg_hold_bars": 6.5,
+  "exit_reasons": {
+    "stop": 31,
+    "target": 28,
+    "scanner-exit": 14,
+    "time": 3
+  },
+  "final_equity_10k_1pct_risk": 11130.11,
+  "max_drawdown_pct": 11.46,
+  "by_symbol": [
+    {
+      "group": "NVDA",
+      "trades": 10,
+      "win_rate_pct": 40.0,
+      "expectancy_pct": 0.029,
+      "expectancy_r": -0.08
+    },
+    {
+      "group": "PLTR",
+      "trades": 10,
+      "win_rate_pct": 40.0,
+      "expectancy_pct": 1.537,
+      "expectancy_r": 0.345
+    },
+    {
+      "group": "AAPL",
+      "trades": 8,
+      "win_rate_pct": 50.0,
+      "expectancy_pct": 0.822,
+      "expectancy_r": 0.426
+    },
+    {
+      "group": "SOFI",
+      "trades": 7,
+      "win_rate_pct": 57.1,
+      "expectancy_pct": 4.55,
+      "expectancy_r": 0.911
+    },
+    {
+      "group": "TSLA",
+      "trades": 7,
+      "win_rate_pct": 0.0,
+      "expectancy_pct": -3.185,
+      "expectancy_r": -0.798
+    },
+    {
+      "group": "AVGO",
+      "trades": 6,
+      "win_rate_pct": 16.7,
+      "expectancy_pct": -0.53,
+      "expectancy_r": -0.418
+    },
+    {
+      "group": "META",
+      "trades": 6,
+      "win_rate_pct": 33.3,
+      "expectancy_pct": 0.21,
+      "expectancy_r": 0.114
+    },
+    {
+      "group": "AMD",
+      "trades": 5,
+      "win_rate_pct": 40.0,
+      "expectancy_pct": 2.59,
+      "expectancy_r": 0.184
+    },
+    {
+      "group": "MSFT",
+      "trades": 5,
+      "win_rate_pct": 60.0,
+      "expectancy_pct": 1.462,
+      "expectancy_r": 1.057
+    },
+    {
+      "group": "SMCI",
+      "trades": 5,
+      "win_rate_pct": 60.0,
+      "expectancy_pct": 4.188,
+      "expectancy_r": 1.095
+    },
+    {
+      "group": "COIN",
+      "trades": 4,
+      "win_rate_pct": 0.0,
+      "expectancy_pct": -4.42,
+      "expectancy_r": -0.84
+    },
+    {
+      "group": "MSTR",
+      "trades": 3,
+      "win_rate_pct": 33.3,
+      "expectancy_pct": -0.316,
+      "expectancy_r": -0.276
+    }
+  ],
+  "by_regime": [
+    {
+      "group": "RISK-ON",
+      "trades": 57,
+      "win_rate_pct": 33.3,
+      "expectancy_pct": 0.303,
+      "expectancy_r": 0.058
+    },
+    {
+      "group": "CAUTIOUS",
+      "trades": 19,
+      "win_rate_pct": 47.4,
+      "expectancy_pct": 1.85,
+      "expectancy_r": 0.484
+    }
+  ],
+  "by_state": [
+    {
+      "group": "PULLBACK BUY",
+      "trades": 76,
+      "win_rate_pct": 36.8,
+      "expectancy_pct": 0.69,
+      "expectancy_r": 0.165
+    }
+  ]
+}
+
+==== RESULTS (signal-bar close entry) ====
+{
+  "variant": "signal-bar close",
+  "trades": 4,
+  "win_rate_pct": 25.0,
+  "avg_win_pct": 8.17,
+  "avg_loss_pct": -2.79,
+  "expectancy_pct": -0.048,
+  "expectancy_r": -0.239,
+  "profit_factor": 0.98,
+  "avg_hold_bars": 5.0,
+  "exit_reasons": {
+    "stop": 3,
+    "target": 1
+  },
+  "final_equity_10k_1pct_risk": 9895.42,
+  "max_drawdown_pct": 2.03
+}
+
+QQQ buy-and-hold same window: 51.12%
+Structural candidates: 108; gate rejections: {'market gate is BLOCK': 20, 'relative volume below 0.80x': 53, 'reward/risk below 2.0:1': 39, 'completed 15-minute confirmation missing': 108, 'market gate is CAUTION': 40, 'ADX below 20': 23, 'weekly/daily/4h alignment not confirmed': 31}
+Results saved to /home/hatch/workspace/quality-flow-scanner-v5/backtest_cache/backtest_results.json

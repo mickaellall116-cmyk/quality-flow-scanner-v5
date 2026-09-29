@@ -5,9 +5,10 @@
 Issue #1, comment `5877927506`, 2026-09-28: Claude's rev-4 DRAFT verdict,
 independently reconciled by ChatGPT — **ACCEPTED**).
 **Supersedes:** rev 4 (`CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928_REV4.md`),
-which had ChatGPT's final mechanical PASS (20:13Z) and Mike's final
-re-audit PASS but was returned to DRAFT by the accepted Claude-audit
-reconciliation. Rev 4's audit history is retained for the record; rev 4 is
+which had ChatGPT's final mechanical PASS (20:13Z) but was returned to
+DRAFT by the accepted Claude-audit reconciliation. Mike gave no final
+sign-off on rev 4; final sign-off is reserved for the post-Claude rev-5
+gate. Rev 4's audit history is retained for the record; rev 4 is
 not operative.
 **NO BUILD AUTHORIZED.**
 
@@ -230,15 +231,23 @@ On 4H OHLCV (`masterscanner_api.add_indicators`):
   (COPY of `v54_engine.py`).
   **Label: JUDGMENT.** The tracked `add_indicators` prefers
   `SessionVWAP` when the column is present and uses rolling-50 only as
-  fallback; the production `resample_closed_4h` carries SessionVWAP
-  through the session-aligned resample. The rev-5 rebuild constructs 4H
-  OHLCV independently per UNIVERSE.md (explicit per-session wall-clock
-  aggregation, no SessionVWAP column — §11), so SessionVWAP is unavailable
-  and the fallback becomes the definition. **Recorded alternative
+  fallback; the tracked `resample_closed_4h` defines SessionVWAP exactly
+  (regular US session filter, cumulative session VWAP from typical price
+  × volume, grouped by local session date, carried through the 4H
+  resample at the 09:30 session offset). SessionVWAP's construction is
+  therefore well specified — the uncertainty is whether the **historical
+  canonical backtest cache actually contained** a SessionVWAP column. The
+  canonical historical 4H cache specification (UNIVERSE.md, §11) freezes
+  OHLCV-only bars with explicit per-session wall-clock aggregation and no
+  SessionVWAP column, and no surviving evidence shows the historical
+  portfolio baseline retained SessionVWAP in its cached 4H frames.
+  Rolling-50 — the tracked fallback — therefore becomes the frozen
+  definition for the historical reconstruction. **Recorded alternative
   (rejected):** reconstruct SessionVWAP per session from intraday data —
-  rejected because no canonical source pins its exact session-boundary
-  semantics for the historical window, and the choice must not be made on
-  Layer-2 fit.
+  rejected because the canonical cache specification freezes OHLCV-only
+  bars (SessionVWAP is not derivable from those bars), and the choice
+  must not be made on Layer-2 fit. Live SessionVWAP remains the stronger
+  live-path alternative.
 - `rvol = Volume / VOL_BASE` (0 if VOL_BASE ≤ 0) — observational only.
 - Triggers read index `i` (and `i−1` for crosses) only — never `i+1`.
 - Constants: `FAST_EMA=21, SLOW_EMA=55, TREND_EMA=200, ACCEL_EMA=9`;
@@ -481,9 +490,11 @@ PIT_FEATURES rule 7; morning-cycle staleness is correct behavior):
   daily inputs consumed **outside** the MTF helper (rs_top2 SPY leg,
   regime join, sector work). The helper takes precedence for MTF; neither
   rule is "fixed" to match the other.
-- Applies to every daily-resolution input: rs_top2 SPY leg, MTF daily
-  trend, regime join, sector work. Basis: EXPLICIT (PIT_FEATURES rules 2,
-  8) + COPY (helper semantics, `scanner_rules.py:217-244`).
+- Applies to every daily-resolution input consumed **outside** the MTF
+  helper: rs_top2 SPY leg, regime join, sector work. The MTF daily trend
+  read follows `closed_higher_timeframe` literally (see reconciliation
+  above), not this §4 availability rule. Basis: EXPLICIT (PIT_FEATURES
+  rules 2, 8) + COPY (helper semantics, `scanner_rules.py:217-244`).
 
 ---
 

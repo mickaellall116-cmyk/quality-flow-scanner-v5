@@ -1,0 +1,92 @@
+{
+ "n_trades": 237,
+ "baseline": {
+  "n": 237,
+  "expectancy_net_r": 0.2388,
+  "win_rate_pct": 50.6,
+  "profit_factor": 1.38
+ },
+ "signal_count_histogram": {
+  "1": 223,
+  "2": 120,
+  "3": 81,
+  "4": 52,
+  "5": 34,
+  "6": 12,
+  "7": 5,
+  "9": 1
+ },
+ "buckets": {
+  "1-2": {
+   "n": 106,
+   "expectancy_net_r": 0.2464,
+   "win_rate_pct": 50.9,
+   "profit_factor": 1.41
+  },
+  "3-5": {
+   "n": 113,
+   "expectancy_net_r": 0.2093,
+   "win_rate_pct": 51.3,
+   "profit_factor": 1.33
+  },
+  "6-10": {
+   "n": 18,
+   "expectancy_net_r": 0.3792,
+   "win_rate_pct": 44.4,
+   "profit_factor": 1.55
+  },
+  "10+": {
+   "n": 0
+  }
+ },
+ "persistence_crowded_vs_uncrowded_by_year": {
+  "2024": {
+   "n_crowded": 0,
+   "exp_crowded_r": null,
+   "n_uncrowded": 75,
+   "exp_uncrowded_r": 0.3474
+  },
+  "2025": {
+   "n_crowded": 15,
+   "exp_crowded_r": 0.7381,
+   "n_uncrowded": 87,
+   "exp_uncrowded_r": 0.3907
+  },
+  "2026": {
+   "n_crowded": 3,
+   "exp_crowded_r": -1.4153,
+   "n_uncrowded": 57,
+   "exp_uncrowded_r": -0.1806
+  }
+ },
+ "by_exact_count": {
+  "1": {
+   "n": 59,
+   "expectancy_net_r": 0.2567
+  },
+  "2": {
+   "n": 47,
+   "expectancy_net_r": 0.2334
+  },
+  "3": {
+   "n": 48,
+   "expectancy_net_r": 0.1409
+  },
+  "4": {
+   "n": 28,
+   "expectancy_net_r": 0.1813
+  },
+  "5": {
+   "n": 37,
+   "expectancy_net_r": 0.319
+  },
+  "6": {
+   "n": 14,
+   "expectancy_net_r": 0.1863
+  },
+  "7": {
+   "n": 4,
+   "expectancy_net_r": 1.0544
+  }
+ }
+}

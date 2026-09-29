@@ -1,0 +1,1722 @@
+[
+ {
+  "symbol": "AAPL",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "AAVE-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ABBV",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ABNB",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ADA-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ADBE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "AFRM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "AI",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ALB",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "AMAT",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "AMC",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "AMD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "AMGN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "AMT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "AMZN",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "ANET",
+  "sources": [
+   "data-cache-filename",
+   "signal_log/watchlist.txt",
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "APLD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "APP",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "ARB-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ARKK",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "ARM",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "ASML",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ASTS",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "ASTX",
+  "sources": [
+   "data-cache-filename",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "ATOM-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "AVAX-USD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "AVGO",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "BA",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BAC",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BBAI",
+  "sources": [
+   "data-cache-filename",
+   "signal_log/watchlist.txt",
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BE",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "BIIB",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BKNG",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BKR",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BMNR",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BNB-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BONK-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BP",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BRK-B",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "BTC-USD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "BTDR",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "BWXT",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "CAT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CCJ",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CDNS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CEG",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CIEN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CIFR",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CLS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CLSK",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CMG",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "COHR",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "COIN",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "COP",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CORZ",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "COST",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CPER",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CRM",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "CRSP",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CRWD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "CRWV",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CSCO",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CVX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "CYBR",
+  "sources": [
+   "v54_universe_x2.py docstring (acquired 2025, dropped from forward test)"
+  ]
+ },
+ {
+  "symbol": "DAL",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DASH",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DDOG",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "DE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DELL",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DHR",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DIA",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DIS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DJT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DKNG",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DLR",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DOCU",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DOGE-USD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "DOT-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "DRAM",
+  "sources": [
+   "data-cache-filename",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "DVN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "EBAY",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "EME",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "ENPH",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "EOG",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "EPD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "EQIX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "EQT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ET",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ETH-USD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "ETN",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "EXPE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "F",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "FANG",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "FCX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "FDX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "FET-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "FIL-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "FIS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "FSLR",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "FTNT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GEV",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GILD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GLD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GLXY",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GME",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GOOGL",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "GPN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "GS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "HAL",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "HBAR-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "HD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "HON",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "HOOD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "HPE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "HUBS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "HUT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "IBM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ICP-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ILMN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "INJ-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "INTC",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X",
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "INTU",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "IONQ",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "IREN",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "ISRG",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "IWM",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "JBL",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "JNJ",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "JPM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "KLAC",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "KMI",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "KO",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "LCID",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "LEU",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "LIN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "LINK-USD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "LITE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "LLY",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "LMT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "LRCX",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "LUNR",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "LYFT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "MA",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "MARA",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "MCD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "MDB",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "MELI",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "META",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "MP",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "MPC",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "MRNA",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "MRVL",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "MS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "MSFT",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "MSTR",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "MU",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X",
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "NBIS",
+  "sources": [
+   "rotation_watch.py:TICKERS",
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "NEAR-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "NEE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "NEM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "NET",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "NFLX",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "NIO",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "NKE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "NNE",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "NOC",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "NOW",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "NU",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "NVDA",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "NXPI",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "OKE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "OKLO",
+  "sources": [
+   "rotation_watch.py:TICKERS",
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "OKTA",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ON",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ONDO-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ONDS",
+  "sources": [
+   "data-cache-filename",
+   "rotation_watch.py:TICKERS",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "OPEN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ORCL",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "OXY",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "PANW",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "PATH",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "PEP",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "PFE",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "PG",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "PLTR",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "POWL",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "PPLT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "PSX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "PWR",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "PYPL",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "QBTS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "QCOM",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "QQQ",
+  "sources": [
+   "data-cache-filename",
+   "signal_log/watchlist.txt",
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "RBLX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "RBRK",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "RDDT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "REGN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "RENDER-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "RGTI",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "RIOT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "RKLB",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "RTX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "S",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SBET",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SBUX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SCHW",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SHEL",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SHIB-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SHOP",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "SLB",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SLV",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SMCI",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "SMH",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "SMR",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SNAP",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SNDK",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "SNOW",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "SNPS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SOFI",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "SOL-USD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "SOUN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "SPCX",
+  "sources": [
+   "data-cache-filename",
+   "signal_log/watchlist.txt"
+  ]
+ },
+ {
+  "symbol": "SPY",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "SQ",
+  "sources": [
+   "v54_universe_x2.py docstring (renamed XYZ)"
+  ]
+ },
+ {
+  "symbol": "STX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "T",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "TEAM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "TEM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "TLN",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "TLT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "TMO",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "TRX-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "TSLA",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_15",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "TSM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "TSSI",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "TTE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "TXN",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "UAL",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "UBER",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "UMAC",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "UNG",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "UNH",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "UNP",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "UPST",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "USAR",
+  "sources": [
+   "rotation_watch.py:TICKERS"
+  ]
+ },
+ {
+  "symbol": "USO",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "UUUU",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "V",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "VEEV",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "VLO",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "VRT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "VRTX",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "VST",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "VZ",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "WDAY",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "WDC",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "WFC",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "WIF-USD",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "WMB",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "WMT",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "WULF",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "XLE",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "XLF",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "XLK",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "XOM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "XRP-USD",
+  "sources": [
+   "data-cache-filename",
+   "pine_backtest:UNIVERSE_X"
+  ]
+ },
+ {
+  "symbol": "XYZ",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ZM",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ },
+ {
+  "symbol": "ZS",
+  "sources": [
+   "v54_universe_x2:UNIVERSE_X2"
+  ]
+ }
+]

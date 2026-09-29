@@ -1,0 +1,141 @@
+{
+ "A_regime_puts": {
+  "net_pnl": -2334.2,
+  "ann_drag_pct": -0.499,
+  "by_year": {
+   "2022": 3658.02,
+   "2023": -1738.48,
+   "2024": -1277.47,
+   "2025": -1192.06,
+   "2026": -1813.46
+  },
+  "max_dd_combined_pct": -30.84,
+  "max_dd_longonly_pct": -34.83,
+  "end_combined": 180277.72,
+  "end_longonly": 182611.93,
+  "trades": {
+   "buys": 27,
+   "sells": 32,
+   "rolls": 5,
+   "rebalances": 0,
+   "skips": 12
+  },
+  "premium_paid": 12241.07,
+  "payouts": 9906.87
+ },
+ "B_always_puts": {
+  "net_pnl": 18796.33,
+  "ann_drag_pct": 4.021,
+  "by_year": {
+   "2022": 18422.22,
+   "2023": -7154.5,
+   "2024": 11817.18,
+   "2025": 2374.57,
+   "2026": -6717.95
+  },
+  "max_dd_combined_pct": -19.43,
+  "max_dd_longonly_pct": -34.83,
+  "end_combined": 201408.26,
+  "end_longonly": 182611.93,
+  "trades": {
+   "buys": 5,
+   "sells": 56,
+   "rolls": 52,
+   "rebalances": 0,
+   "skips": 9
+  },
+  "premium_paid": 33312.96,
+  "payouts": 51296.52
+ },
+ "C_regime_SH": {
+  "net_pnl": -1528.12,
+  "ann_drag_pct": -0.327,
+  "by_year": {
+   "2022": -132.39,
+   "2023": -473.48,
+   "2024": -636.77,
+   "2025": -85.64,
+   "2026": -221.51
+  },
+  "max_dd_combined_pct": -34.81,
+  "max_dd_longonly_pct": -34.83,
+  "end_combined": 181083.8,
+  "end_longonly": 182611.93,
+  "trades": {
+   "buys": 23,
+   "sells": 23,
+   "rolls": 0,
+   "rebalances": 0,
+   "skips": 0
+  }
+ },
+ "D_always_SH": {
+  "net_pnl": -3498.9,
+  "ann_drag_pct": -0.748,
+  "by_year": {
+   "2022": 1988.47,
+   "2023": -1252.28,
+   "2024": -1592.27,
+   "2025": -1622.14,
+   "2026": -1112.1
+  },
+  "max_dd_combined_pct": -32.68,
+  "max_dd_longonly_pct": -34.83,
+  "end_combined": 179113.02,
+  "end_longonly": 182611.93,
+  "trades": {
+   "buys": 1,
+   "sells": 0,
+   "rolls": 0,
+   "rebalances": 56,
+   "skips": 0
+  }
+ },
+ "A_regime_puts_sens115": {
+  "net_pnl": -1675.42,
+  "premium_paid": 12896.9,
+  "payouts": 11221.47,
+  "max_dd_combined_pct": -30.49,
+  "trades": {
+   "buys": 27,
+   "sells": 31,
+   "rolls": 4,
+   "skips": 49
+  }
+ },
+ "B_always_puts_sens115": {
+  "net_pnl": -13622.45,
+  "premium_paid": 26193.86,
+  "payouts": 11152.4,
+  "max_dd_combined_pct": -28.64,
+  "trades": {
+   "buys": 6,
+   "sells": 54,
+   "rolls": 49,
+   "skips": 39
+  }
+ },
+ "_sweep_sigma_B": {
+  "1.05": {
+   "net_pnl": 2164.01,
+   "premium_paid": 28683.13,
+   "payouts": 30694.77
+  },
+  "1.1": {
+   "net_pnl": -10491.94,
+   "premium_paid": 28102.98,
+   "payouts": 16900.39
+  }
+ },
+ "_meta": {
+  "test_days": 1178,
+  "riskoff_days": 334,
+  "regime_counts": {
+   "RISK-ON": 602,
+   "RISK-OFF": 334,
+   "CAUTIOUS": 242
+  },
+  "window": "2022-01-03->2026-09-14",
+  "sigma_scale_primary": 1.0
+ }
+}

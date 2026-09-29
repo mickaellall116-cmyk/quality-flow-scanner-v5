@@ -1,0 +1,38 @@
+{
+ "25bps": {
+  "variant": "V4 25bps",
+  "n": 1645,
+  "expectancy_r": 0.0136,
+  "win_rate_pct": 36.1,
+  "profit_factor": 1.02,
+  "total_r": 22.4,
+  "median_r": -1.0622
+ },
+ "50bps": {
+  "variant": "V4 50bps",
+  "n": 1645,
+  "expectancy_r": -0.1174,
+  "win_rate_pct": 35.3,
+  "profit_factor": 0.85,
+  "total_r": -193.06,
+  "median_r": -1.1257
+ },
+ "75bps": {
+  "variant": "V4 75bps",
+  "n": 1645,
+  "expectancy_r": -0.2483,
+  "win_rate_pct": 33.9,
+  "profit_factor": 0.72,
+  "total_r": -408.52,
+  "median_r": -1.1899
+ },
+ "100bps": {
+  "variant": "V4 100bps",
+  "n": 1645,
+  "expectancy_r": -0.3793,
+  "win_rate_pct": 31.9,
+  "profit_factor": 0.61,
+  "total_r": -623.98,
+  "median_r": -1.2602
+ }
+}

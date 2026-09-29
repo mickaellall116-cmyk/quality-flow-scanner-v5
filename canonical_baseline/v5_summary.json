@@ -1,0 +1,46 @@
+{
+ "levels": {
+  "25bps": {
+   "variant": "V5 25bps",
+   "n": 374,
+   "expectancy_r": 0.1029,
+   "win_rate_pct": 39.8,
+   "profit_factor": 1.16,
+   "total_r": 38.49,
+   "median_r": -1.0391
+  },
+  "50bps": {
+   "variant": "V5 50bps",
+   "n": 374,
+   "expectancy_r": -0.0013,
+   "win_rate_pct": 39.8,
+   "profit_factor": 1.0,
+   "total_r": -0.5,
+   "median_r": -1.0819
+  },
+  "75bps": {
+   "variant": "V5 75bps",
+   "n": 374,
+   "expectancy_r": -0.1056,
+   "win_rate_pct": 38.0,
+   "profit_factor": 0.86,
+   "total_r": -39.5,
+   "median_r": -1.1229
+  },
+  "100bps": {
+   "variant": "V5 100bps",
+   "n": 374,
+   "expectancy_r": -0.2099,
+   "win_rate_pct": 36.4,
+   "profit_factor": 0.75,
+   "total_r": -78.5,
+   "median_r": -1.1675
+  }
+ },
+ "skip_counts": {
+  "busy": 622,
+  "slot": 744,
+  "heat": 2387,
+  "candidates": 4127
+ }
+}

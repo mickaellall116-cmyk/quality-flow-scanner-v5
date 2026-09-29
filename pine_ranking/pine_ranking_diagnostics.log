@@ -1,0 +1,8 @@
+loading data + candidates (same engine)...
+takeall taken subset: n=160 exp=0.239R PF=1.35 (control published: n=263, +0.195R)
+rs_bottom1: n=156 exp=0.208R PF=1.29 dd=34.2%
+vol_bottom1: n=153 exp=0.247R PF=1.36 dd=33.91%
+random_top2: n=157 exp=0.245R PF=1.35 dd=33.71%
+overlap rs_top2 vs takeall: {'rs_top2_taken': 154, 'takeall_taken': 160, 'intersection': 141, 'rs_only': 13, 'takeall_only': 19}
+DONE
+EXIT:0
