@@ -1,0 +1,137 @@
+[
+ {
+  "symbol": "ARM",
+  "first_bar": "2023-09-14",
+  "eligibility_date": "2023-10-26",
+  "trail20d_addv_usd": 288689213.0140114,
+  "trail20d_addv_M": 288.69,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "BMNR",
+  "first_bar": "2025-06-05",
+  "eligibility_date": "2025-07-21",
+  "trail20d_addv_usd": 1320420540.7716942,
+  "trail20d_addv_M": 1320.42,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "CORZ",
+  "first_bar": "2024-01-24",
+  "eligibility_date": "2024-03-07",
+  "trail20d_addv_usd": 14049998.96581173,
+  "trail20d_addv_M": 14.05,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": false
+ },
+ {
+  "symbol": "CRWV",
+  "first_bar": "2025-03-28",
+  "eligibility_date": "2025-05-12",
+  "trail20d_addv_usd": 360884234.0037346,
+  "trail20d_addv_M": 360.88,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "DRAM",
+  "first_bar": "2026-04-02",
+  "eligibility_date": "2026-05-15",
+  "trail20d_addv_usd": 1313694085.758133,
+  "trail20d_addv_M": 1313.69,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "GEV",
+  "first_bar": "2024-03-27",
+  "eligibility_date": "2024-05-09",
+  "trail20d_addv_usd": 629923200.2089691,
+  "trail20d_addv_M": 629.92,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "GLXY",
+  "first_bar": "2025-05-16",
+  "eligibility_date": "2025-07-01",
+  "trail20d_addv_usd": 132897357.64561653,
+  "trail20d_addv_M": 132.9,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "NBIS",
+  "first_bar": "2024-10-21",
+  "eligibility_date": "2024-12-03",
+  "trail20d_addv_usd": 121873199.52100754,
+  "trail20d_addv_M": 121.87,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "NNE",
+  "first_bar": "2024-05-08",
+  "eligibility_date": "2024-06-21",
+  "trail20d_addv_usd": 12862467.380123138,
+  "trail20d_addv_M": 12.86,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": false
+ },
+ {
+  "symbol": "RBRK",
+  "first_bar": "2024-04-25",
+  "eligibility_date": "2024-06-07",
+  "trail20d_addv_usd": 24547094.892196655,
+  "trail20d_addv_M": 24.55,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": false
+ },
+ {
+  "symbol": "RDDT",
+  "first_bar": "2024-03-21",
+  "eligibility_date": "2024-05-03",
+  "trail20d_addv_usd": 100653350.29647827,
+  "trail20d_addv_M": 100.65,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "SNDK",
+  "first_bar": "2025-02-13",
+  "eligibility_date": "2025-03-28",
+  "trail20d_addv_usd": 200370706.86380386,
+  "trail20d_addv_M": 200.37,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "SPCX",
+  "first_bar": "2026-06-12",
+  "eligibility_date": "2026-07-28",
+  "trail20d_addv_usd": 10439810985.818863,
+  "trail20d_addv_M": 10439.81,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "TEM",
+  "first_bar": "2024-06-14",
+  "eligibility_date": "2024-07-30",
+  "trail20d_addv_usd": 34929202.23859787,
+  "trail20d_addv_M": 34.93,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": true
+ },
+ {
+  "symbol": "UMAC",
+  "first_bar": "2024-02-14",
+  "eligibility_date": "2024-03-28",
+  "trail20d_addv_usd": 781409.0775823593,
+  "trail20d_addv_M": 0.78,
+  "gate_usd_per_day": 25000000.0,
+  "admitted": false
+ }
+]

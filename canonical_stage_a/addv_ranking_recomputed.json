@@ -1,0 +1,1834 @@
+[
+ {
+  "rank": 1,
+  "symbol": "SPY",
+  "addv": 32168905100.923634,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 2,
+  "symbol": "TSLA",
+  "addv": 29950095450.90387,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 3,
+  "symbol": "NVDA",
+  "addv": 22017527086.11256,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 4,
+  "symbol": "QQQ",
+  "addv": 18163726157.83973,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 5,
+  "symbol": "AAPL",
+  "addv": 10537434624.373674,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 6,
+  "symbol": "MSFT",
+  "addv": 8064794812.915707,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 7,
+  "symbol": "AMZN",
+  "addv": 7212456228.57306,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 8,
+  "symbol": "META",
+  "addv": 6883078666.662025,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 9,
+  "symbol": "AMD",
+  "addv": 6484406660.289574,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 10,
+  "symbol": "IWM",
+  "addv": 4654635936.5486145,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 11,
+  "symbol": "GOOGL",
+  "addv": 3600359042.0865417,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 12,
+  "symbol": "JNJ",
+  "addv": 3457421340.2542353,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 13,
+  "symbol": "NFLX",
+  "addv": 2566945615.2920723,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 14,
+  "symbol": "TLT",
+  "addv": 2456863533.3824754,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 15,
+  "symbol": "AVGO",
+  "addv": 1957745873.2042313,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 16,
+  "symbol": "XOM",
+  "addv": 1545059780.9724808,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 17,
+  "symbol": "XLE",
+  "addv": 1505382307.597053,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 18,
+  "symbol": "UNH",
+  "addv": 1474541809.626484,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 19,
+  "symbol": "ADBE",
+  "addv": 1463203427.4327278,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 20,
+  "symbol": "LLY",
+  "addv": 1422803958.366394,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 21,
+  "symbol": "DIS",
+  "addv": 1337209374.210608,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 22,
+  "symbol": "JPM",
+  "addv": 1286879500.7573366,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 23,
+  "symbol": "INTC",
+  "addv": 1281536506.910172,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 24,
+  "symbol": "XLF",
+  "addv": 1278892686.1667156,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 25,
+  "symbol": "V",
+  "addv": 1229187425.2878666,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 26,
+  "symbol": "ORCL",
+  "addv": 1126704834.9013329,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 27,
+  "symbol": "BAC",
+  "addv": 1117581488.46156,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 28,
+  "symbol": "BA",
+  "addv": 1105135599.2018938,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 29,
+  "symbol": "SMH",
+  "addv": 1099404354.6190739,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 30,
+  "symbol": "BRK-B",
+  "addv": 1085661517.098713,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 31,
+  "symbol": "CRM",
+  "addv": 1064966357.4616432,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 32,
+  "symbol": "DIA",
+  "addv": 1046747751.2067318,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 33,
+  "symbol": "XLK",
+  "addv": 1032086443.1987762,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 34,
+  "symbol": "GLD",
+  "addv": 1030228164.688468,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 35,
+  "symbol": "CVX",
+  "addv": 1025228224.229312,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 36,
+  "symbol": "PANW",
+  "addv": 1002042748.6165524,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 37,
+  "symbol": "COIN",
+  "addv": 994626942.8321123,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 38,
+  "symbol": "PLTR",
+  "addv": 990482163.2222579,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 39,
+  "symbol": "PYPL",
+  "addv": 976047212.4730945,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 40,
+  "symbol": "ABNB",
+  "addv": 931455313.3691907,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 41,
+  "symbol": "MU",
+  "addv": 928054107.1303129,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 42,
+  "symbol": "MA",
+  "addv": 911781645.9082127,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 43,
+  "symbol": "CSCO",
+  "addv": 907465480.4251671,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 44,
+  "symbol": "UBER",
+  "addv": 897010835.2011263,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 45,
+  "symbol": "QCOM",
+  "addv": 894762375.878346,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 46,
+  "symbol": "SMCI",
+  "addv": 893095548.5465825,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 47,
+  "symbol": "COST",
+  "addv": 872774930.4488182,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 48,
+  "symbol": "HD",
+  "addv": 867110965.7912731,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 49,
+  "symbol": "BKNG",
+  "addv": 832428346.6362953,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 50,
+  "symbol": "WMT",
+  "addv": 816130039.020896,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 51,
+  "symbol": "TSM",
+  "addv": 800469380.7058334,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 52,
+  "symbol": "SNOW",
+  "addv": 796194772.7334738,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 53,
+  "symbol": "AMAT",
+  "addv": 786728239.1602993,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 54,
+  "symbol": "PG",
+  "addv": 782654273.3639002,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 55,
+  "symbol": "PEP",
+  "addv": 777247865.5603409,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 56,
+  "symbol": "TMO",
+  "addv": 768561253.9008617,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 57,
+  "symbol": "TXN",
+  "addv": 764517777.1805763,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 58,
+  "symbol": "NKE",
+  "addv": 751136329.4492006,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 59,
+  "symbol": "LRCX",
+  "addv": 718200155.7918787,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 60,
+  "symbol": "PFE",
+  "addv": 708407273.4916478,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 61,
+  "symbol": "NIO",
+  "addv": 704928312.3506591,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 62,
+  "symbol": "ASML",
+  "addv": 702815146.2853432,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 63,
+  "symbol": "INTU",
+  "addv": 692344466.7149067,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 64,
+  "symbol": "VZ",
+  "addv": 688764303.029865,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 65,
+  "symbol": "SHOP",
+  "addv": 683365411.1385584,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 66,
+  "symbol": "KO",
+  "addv": 673318873.8243878,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 67,
+  "symbol": "MELI",
+  "addv": 672313345.221138,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 68,
+  "symbol": "CAT",
+  "addv": 659651785.146594,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 69,
+  "symbol": "ARKK",
+  "addv": 653473594.454205,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 70,
+  "symbol": "DHR",
+  "addv": 651823524.5627606,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 71,
+  "symbol": "GS",
+  "addv": 629084126.2826443,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 72,
+  "symbol": "MCD",
+  "addv": 627824670.3810453,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 73,
+  "symbol": "ABBV",
+  "addv": 623206263.7394428,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 74,
+  "symbol": "RTX",
+  "addv": 621756895.426166,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 75,
+  "symbol": "NOW",
+  "addv": 619626272.5299001,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 76,
+  "symbol": "XYZ",
+  "addv": 616468730.2134693,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 77,
+  "symbol": "WFC",
+  "addv": 612807681.3464344,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 78,
+  "symbol": "MRVL",
+  "addv": 603028176.1392534,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 79,
+  "symbol": "DE",
+  "addv": 575519842.6613808,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 80,
+  "symbol": "SCHW",
+  "addv": 566008739.0117466,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 81,
+  "symbol": "NEE",
+  "addv": 564404330.7857096,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 82,
+  "symbol": "ISRG",
+  "addv": 562562562.3761177,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 83,
+  "symbol": "AMGN",
+  "addv": 561207100.6031036,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 84,
+  "symbol": "T",
+  "addv": 552383888.1199822,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 85,
+  "symbol": "MS",
+  "addv": 550629770.5129147,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 86,
+  "symbol": "ENPH",
+  "addv": 543934678.643024,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 87,
+  "symbol": "F",
+  "addv": 539592192.2859222,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 88,
+  "symbol": "UNP",
+  "addv": 537696985.4703665,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 89,
+  "symbol": "SBUX",
+  "addv": 536720646.6719389,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 90,
+  "symbol": "OXY",
+  "addv": 534502062.77933717,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 91,
+  "symbol": "AI",
+  "addv": 523192720.6685662,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 92,
+  "symbol": "CRWD",
+  "addv": 522548678.82635593,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 93,
+  "symbol": "MDB",
+  "addv": 521587710.10813713,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 94,
+  "symbol": "IBM",
+  "addv": 518636332.63759613,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 95,
+  "symbol": "ON",
+  "addv": 516719102.5878787,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 96,
+  "symbol": "HON",
+  "addv": 510941070.63338375,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 97,
+  "symbol": "CMG",
+  "addv": 508982391.74574614,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 98,
+  "symbol": "SLB",
+  "addv": 488338066.16963744,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 99,
+  "symbol": "COP",
+  "addv": 486389156.96212053,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 100,
+  "symbol": "GE",
+  "addv": 483216373.81076,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 101,
+  "symbol": "LIN",
+  "addv": 466288348.8656521,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 102,
+  "symbol": "KLAC",
+  "addv": 458985998.6616969,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 103,
+  "symbol": "FDX",
+  "addv": 456429254.5651965,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 104,
+  "symbol": "VLO",
+  "addv": 453141176.5340805,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 105,
+  "symbol": "MPC",
+  "addv": 447525192.7747369,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 106,
+  "symbol": "MARA",
+  "addv": 439687738.6919692,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 107,
+  "symbol": "ANET",
+  "addv": 437969141.9167042,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 108,
+  "symbol": "GM",
+  "addv": 435400793.7347561,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 109,
+  "symbol": "LMT",
+  "addv": 432696104.9337387,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 110,
+  "symbol": "MRNA",
+  "addv": 427361538.1062746,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 111,
+  "symbol": "ETN",
+  "addv": 420440742.3827648,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 112,
+  "symbol": "DDOG",
+  "addv": 417569124.7576952,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 113,
+  "symbol": "NXPI",
+  "addv": 416244983.9245796,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 114,
+  "symbol": "WDAY",
+  "addv": 413346920.5626488,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 115,
+  "symbol": "REGN",
+  "addv": 408438295.73163986,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 116,
+  "symbol": "UPST",
+  "addv": 406622735.45544744,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 117,
+  "symbol": "FCX",
+  "addv": 397142461.5404546,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 118,
+  "symbol": "FTNT",
+  "addv": 383250504.5297146,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 119,
+  "symbol": "GILD",
+  "addv": 378821223.05027246,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 120,
+  "symbol": "DVN",
+  "addv": 375727588.3530736,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 121,
+  "symbol": "DAL",
+  "addv": 373216020.52634954,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 122,
+  "symbol": "FSLR",
+  "addv": 367778515.22607803,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 123,
+  "symbol": "SNPS",
+  "addv": 355926239.9010658,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 124,
+  "symbol": "AMT",
+  "addv": 349593266.8215513,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 125,
+  "symbol": "RBLX",
+  "addv": 345539523.682189,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 126,
+  "symbol": "DKNG",
+  "addv": 345298218.3065504,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 127,
+  "symbol": "VRTX",
+  "addv": 343094626.57527924,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 128,
+  "symbol": "ALB",
+  "addv": 334448666.7680025,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 129,
+  "symbol": "CDNS",
+  "addv": 328774853.2974005,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 130,
+  "symbol": "SOFI",
+  "addv": 322676051.82418156,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 131,
+  "symbol": "ZS",
+  "addv": 316092198.68626595,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 132,
+  "symbol": "EOG",
+  "addv": 314062136.3161206,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 133,
+  "symbol": "SLV",
+  "addv": 312784095.16293705,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 134,
+  "symbol": "PSX",
+  "addv": 312565073.2899189,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 135,
+  "symbol": "UAL",
+  "addv": 302356762.5795841,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 136,
+  "symbol": "RIOT",
+  "addv": 302307096.4719355,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 137,
+  "symbol": "NOC",
+  "addv": 297918538.3049488,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 138,
+  "symbol": "NEM",
+  "addv": 281672175.01814365,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 139,
+  "symbol": "AFRM",
+  "addv": 276864861.2532288,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 140,
+  "symbol": "HAL",
+  "addv": 272950534.64355767,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 141,
+  "symbol": "SNAP",
+  "addv": 272097726.9929603,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 142,
+  "symbol": "BIIB",
+  "addv": 270637359.51662064,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 143,
+  "symbol": "TEAM",
+  "addv": 268600046.4152098,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 144,
+  "symbol": "DELL",
+  "addv": 265370012.40592003,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 145,
+  "symbol": "EQIX",
+  "addv": 264140458.05835724,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 146,
+  "symbol": "ILMN",
+  "addv": 261868881.4953134,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 147,
+  "symbol": "LCID",
+  "addv": 260243738.65887344,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 148,
+  "symbol": "EXPE",
+  "addv": 259094627.77067423,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 149,
+  "symbol": "DLR",
+  "addv": 258111276.1870265,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 150,
+  "symbol": "MSTR",
+  "addv": 257422316.53022766,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 151,
+  "symbol": "DASH",
+  "addv": 255370937.23537922,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 152,
+  "symbol": "FANG",
+  "addv": 250591382.82170296,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 153,
+  "symbol": "SHEL",
+  "addv": 250560786.0518334,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 154,
+  "symbol": "HUBS",
+  "addv": 249735638.97600174,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 155,
+  "symbol": "OKE",
+  "addv": 243035472.49488235,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 156,
+  "symbol": "FIS",
+  "addv": 241094113.1099403,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 157,
+  "symbol": "NET",
+  "addv": 238682693.6158955,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 158,
+  "symbol": "ZM",
+  "addv": 237897203.2557845,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 159,
+  "symbol": "BP",
+  "addv": 235659916.6840762,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 160,
+  "symbol": "BKR",
+  "addv": 232689217.5103575,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 161,
+  "symbol": "AMC",
+  "addv": 230144766.07949793,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 162,
+  "symbol": "EBAY",
+  "addv": 226782728.15465927,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 163,
+  "symbol": "GD",
+  "addv": 223472480.75299263,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 164,
+  "symbol": "EQT",
+  "addv": 213921907.3421538,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 165,
+  "symbol": "USO",
+  "addv": 213516908.49636793,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 166,
+  "symbol": "GPN",
+  "addv": 211330713.47162724,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 167,
+  "symbol": "VRT",
+  "addv": 203476199.551785,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 168,
+  "symbol": "IONQ",
+  "addv": 199542002.5713101,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 169,
+  "symbol": "WMB",
+  "addv": 184756629.67723906,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 170,
+  "symbol": "KMI",
+  "addv": 184621854.3249339,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 171,
+  "symbol": "CEG",
+  "addv": 177138354.87078428,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 172,
+  "symbol": "NU",
+  "addv": 176174474.32166114,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 173,
+  "symbol": "VEEV",
+  "addv": 175680796.87268734,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 174,
+  "symbol": "OKTA",
+  "addv": 172759170.49241066,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 175,
+  "symbol": "HPE",
+  "addv": 172146916.34774655,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 176,
+  "symbol": "LYFT",
+  "addv": 163202599.13107604,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 177,
+  "symbol": "DOCU",
+  "addv": 160553836.12703085,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 178,
+  "symbol": "STX",
+  "addv": 158654409.9505782,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 179,
+  "symbol": "CCJ",
+  "addv": 152764362.9842013,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 180,
+  "symbol": "JBL",
+  "addv": 146922380.60917854,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 181,
+  "symbol": "PWR",
+  "addv": 142920733.76066685,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 182,
+  "symbol": "VST",
+  "addv": 141822322.09092677,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 183,
+  "symbol": "WDC",
+  "addv": 140186428.42693028,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 184,
+  "symbol": "ET",
+  "addv": 129939316.32680446,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 185,
+  "symbol": "COHR",
+  "addv": 128192122.77003527,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 186,
+  "symbol": "PATH",
+  "addv": 126555606.00605756,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 187,
+  "symbol": "UNG",
+  "addv": 124994539.62893486,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 188,
+  "symbol": "S",
+  "addv": 116532596.64181918,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 189,
+  "symbol": "HOOD",
+  "addv": 104081771.40208781,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 190,
+  "symbol": "APP",
+  "addv": 97502117.92299151,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 191,
+  "symbol": "EPD",
+  "addv": 90666807.92449117,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 192,
+  "symbol": "LITE",
+  "addv": 76698958.06471705,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 193,
+  "symbol": "CIEN",
+  "addv": 73632028.3085525,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 194,
+  "symbol": "OPEN",
+  "addv": 72903732.38505423,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 195,
+  "symbol": "EME",
+  "addv": 65340419.5253849,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 196,
+  "symbol": "MP",
+  "addv": 64164808.5778147,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 197,
+  "symbol": "TTE",
+  "addv": 63193060.814499855,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 198,
+  "symbol": "CLSK",
+  "addv": 60181164.98320736,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 199,
+  "symbol": "GME",
+  "addv": 55875282.36427605,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 200,
+  "symbol": "CRSP",
+  "addv": 48638273.214924335,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 201,
+  "symbol": "BE",
+  "addv": 48249012.33732998,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 202,
+  "symbol": "BWXT",
+  "addv": 40975690.51413536,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 203,
+  "symbol": "SOUN",
+  "addv": 40425954.396029934,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 204,
+  "symbol": "APLD",
+  "addv": 37081973.021905124,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 205,
+  "symbol": "CLS",
+  "addv": 34467903.13086659,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 206,
+  "symbol": "HUT",
+  "addv": 33214477.015463114,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 207,
+  "symbol": "RKLB",
+  "addv": 29152376.386829466,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 208,
+  "symbol": "UUUU",
+  "addv": 17868805.149783194,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 209,
+  "symbol": "DJT",
+  "addv": 17805546.19489312,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 210,
+  "symbol": "RGTI",
+  "addv": 17447105.16705271,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 211,
+  "symbol": "WULF",
+  "addv": 15785060.881960765,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 212,
+  "symbol": "QBTS",
+  "addv": 10368266.188638192,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 213,
+  "symbol": "POWL",
+  "addv": 9165720.317396522,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 214,
+  "symbol": "OKLO",
+  "addv": 8879541.280663013,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 215,
+  "symbol": "IREN",
+  "addv": 7795794.641887024,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 216,
+  "symbol": "ASTS",
+  "addv": 7711723.488568515,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 217,
+  "symbol": "SMR",
+  "addv": 7330372.807684541,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 218,
+  "symbol": "LEU",
+  "addv": 7312494.726252556,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 219,
+  "symbol": "PPLT",
+  "addv": 7105749.8787641525,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 220,
+  "symbol": "BBAI",
+  "addv": 5879789.430071041,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 221,
+  "symbol": "CIFR",
+  "addv": 5420489.026949555,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 222,
+  "symbol": "TLN",
+  "addv": 3970419.2189097404,
+  "win_bars": 64,
+  "first_bar": "2023-06-02",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 223,
+  "symbol": "LUNR",
+  "addv": 2663501.993863657,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 224,
+  "symbol": "CPER",
+  "addv": 2202404.649564624,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 225,
+  "symbol": "BTDR",
+  "addv": 1194851.1724695563,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 226,
+  "symbol": "USAR",
+  "addv": 989409.854443868,
+  "win_bars": 54,
+  "first_bar": "2023-07-17",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 227,
+  "symbol": "ONDS",
+  "addv": 928619.3231922574,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 228,
+  "symbol": "SBET",
+  "addv": 15114.98811122775,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ },
+ {
+  "rank": 229,
+  "symbol": "TSSI",
+  "addv": 4152.968753688037,
+  "win_bars": 64,
+  "first_bar": "2023-06-01",
+  "last_bar": "2026-09-24"
+ }
+]

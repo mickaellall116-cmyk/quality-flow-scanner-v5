@@ -1,0 +1,174 @@
+[
+ {
+  "symbol": "AAVE-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "ADA-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "ARB-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "ARM",
+  "reason": "thin_history_12bars"
+ },
+ {
+  "symbol": "ASTX",
+  "reason": "leveraged_etf"
+ },
+ {
+  "symbol": "ATOM-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "AVAX-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "BMNR",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "BNB-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "BONK-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "BTC-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "CORZ",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "CRWV",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "CYBR",
+  "reason": "no_daily_data"
+ },
+ {
+  "symbol": "DOGE-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "DOT-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "DRAM",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "ETH-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "FET-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "FIL-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "GEV",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "GLXY",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "HBAR-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "ICP-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "INJ-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "LINK-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "NBIS",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "NEAR-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "NNE",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "ONDO-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "RBRK",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "RDDT",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "RENDER-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "SHIB-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "SNDK",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "SOL-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "SPCX",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "SQ",
+  "reason": "renamed_XYZ_alias"
+ },
+ {
+  "symbol": "TEM",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "TRX-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "UMAC",
+  "reason": "listed_after_cutoff"
+ },
+ {
+  "symbol": "WIF-USD",
+  "reason": "crypto_pair"
+ },
+ {
+  "symbol": "XRP-USD",
+  "reason": "crypto_pair"
+ }
+]

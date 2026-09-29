@@ -1,0 +1,65 @@
+{
+ "gate": "A",
+ "overall": "PASS",
+ "checks": [
+  {
+   "name": "pool_272_exact",
+   "verdict": "PASS",
+   "detail": "pool=272"
+  },
+  {
+   "name": "rankable_229",
+   "verdict": "PASS",
+   "detail": "rankable=229"
+  },
+  {
+   "name": "unrankable_43",
+   "verdict": "PASS",
+   "detail": "unrankable=43"
+  },
+  {
+   "name": "rankable_plus_unrankable_272",
+   "verdict": "PASS",
+   "detail": "229+43=272"
+  },
+  {
+   "name": "cutoff_120_identity",
+   "verdict": "PASS",
+   "detail": "#120=DVN $375.7M/day"
+  },
+  {
+   "name": "cutoff_120_value",
+   "verdict": "PASS",
+   "detail": "#120 DVN observed $375.73M vs target $375.7M"
+  },
+  {
+   "name": "cutoff_121_identity",
+   "verdict": "PASS",
+   "detail": "#121=DAL $373.2M/day"
+  },
+  {
+   "name": "cutoff_121_value",
+   "verdict": "PASS",
+   "detail": "#121 DAL observed $373.22M vs target $373.2M"
+  },
+  {
+   "name": "listing_candidates_15",
+   "verdict": "PASS",
+   "detail": "candidates=15: ['ARM', 'BMNR', 'CORZ', 'CRWV', 'DRAM', 'GEV', 'GLXY', 'NBIS', 'NNE', 'RBRK', 'RDDT', 'SNDK', 'SPCX', 'TEM', 'UMAC']"
+  },
+  {
+   "name": "admitted_11_identities_exact",
+   "verdict": "PASS",
+   "detail": "admitted=['ARM', 'BMNR', 'CRWV', 'DRAM', 'GEV', 'GLXY', 'NBIS', 'RDDT', 'SNDK', 'SPCX', 'TEM']"
+  },
+  {
+   "name": "rejected_4_identities_exact",
+   "verdict": "PASS",
+   "detail": "rejected=['CORZ', 'NNE', 'RBRK', 'UMAC']"
+  }
+ ],
+ "astx_quoteType_check": {
+  "ASTX": "ETF"
+ },
+ "run_timestamp_utc": "2026-09-29T21:21:06Z"
+}
