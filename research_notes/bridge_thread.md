@@ -478,3 +478,95 @@ Patched the 2 blockers + 4 mechanical fixes; pushed as an update to the rev-6 sp
 - §13 → REV6 pointer; §14 → rev-6 audits (claude_audit_bundle_rev6); §15 → "PASS on rev 6"; last §5B "independent reconstruction" → consistency check.
 Appendix R logs the corrections. Awaiting Mike's next gate.
 **No build. Production V5.4 untouched.**
+
+
+---
+
+# REVISED PROPOSAL (rev 2) — V5.4 forward-test data-path infrastructure
+**Date:** 2026-09-28 ~21:45 ET
+**Status:** PROPOSAL ONLY — no code changed. Responds to Issue #1 comment `5881833504` (MAYBE / REDLINE REQUIRED on commit `aac22f71`). Requires ChatGPT re-review + Mike explicit approval before any implementation.
+**Note:** the original proposal section (commit `aac22f71`, 18:56Z) was clobbered from the current bridge file by a later whole-file PUT (`6daee2171`, 19:23Z) from a stale local copy; the commit remains in history. This revision is appended to the live remote content. Two writers appending to this file need a fetch-append-put discipline or they will keep wiping each other.
+
+## 0. Measured baseline (new since the original proposal)
+
+Micro-probe 2026-09-28 ~21:40 ET, 4 sequential requests, 45s timeouts:
+- SPY 5m/2d: 1.0s OK (156 rows); AAPL 1d/10d: 0.4s OK; QQQ 15m/5d: 0.5s OK; MSFT 1h/180d: 0.9s OK (1,251 rows). No 429s.
+- The vendor is healthy right now. The 8-cycle 429/budget-exhaustion incident (13:41–20:41 ET) appears cleared for the moment. This proposal prevents recurrence; it does not fix an ongoing outage.
+
+Static per-cycle request budget (code inspection; every `yf.download` = 1 HTTP GET, `threads=False`):
+
+| # | Call site | Endpoint | Calls/cycle |
+|---|---|---|---|
+| 1 | `get_market_regime` | 1h/180d × QQQ, SPY | 2 |
+| 2 | `market_df` (`MARKET_SYMBOL` = QQQ — fetched twice today) | 1h/180d × QQQ | 1 |
+| 3 | scan × 250 symbols: primary `download_data` | 1h/180d | 250 |
+| 4 | scan × 250: `download_confirmation_data` | 1d/2y, 1wk/5y, 15m/5d | 750 |
+| 5 | scan × 250: `premarket_fields` | 5m/2d prepost + 1d/10d | 500 |
+| 6 | exit-walk `dl_cache` re-download (open/pending symbols) | 1h/180d | ~16 |
+| **Total** | | | **≈1,519** |
+
+Auxiliary (rows 4–5) = 1,250 calls = 82% of the budget. Conceded: no proposal that leaves the auxiliary count untouched can claim to address 429s. The original P1 admitted this; the verdict correctly refused the claim.
+
+## R1 — P1 revised: cache at the 1H level with deterministic local adjustment (redline #1)
+
+**Correction accepted.** The primary path is `yf.download(interval="1h", period="180d", auto_adjust=True)` → `dropna` → `resample_closed_4h`, where session 4H bars are built from 1H bars and SessionVWAP = cumulative per-session 1H typical×volume / cumulative volume (`last` per 4H bar). Caching 4H rows cannot reproduce the classifier input. **The cache stores the 1H frame** (post-dropna, pre-resample). Resampling, SessionVWAP, EMA/ATR/ADX seeding, and the completed-bar mask are pure functions of the 1H frame + symbol + cycle timestamp, reproduced deterministically at read time.
+
+**Corporate-action contract.** Cache `auto_adjust=False` 1H bars: raw OHLCV plus the Dividends and Stock Splits columns — the actions stream is the observable corporate-action signal, free in the same response. A frozen deterministic `apply_yahoo_adjustment()` in the data layer reproduces Yahoo's `auto_adjust=True` output (splits scale OHLC and volume; dividends scale OHLC only). **Parity gate G1 requires byte-identical output vs Yahoo's own `auto_adjust=True` on a corpus containing in-window splits and dividends; any mismatch and P1 does not ship.**
+
+**Reconciliation policy (frozen before implementation):**
+1. Overlap hash-compare: each incremental fetch (5d/1h) overlaps the cached tail by 24 1H bars; any OHLCV hash mismatch → vendor revision → invalidate that symbol's cache → full re-fetch.
+2. Corporate-action detection: any new dividend/split action in the incremental window → invalidate → full re-fetch (unadjusted) → local adjustment re-applied.
+3. Backstop: staggered full-window re-fetch per symbol every 7 days (~36 symbols/cycle, budgeted in §R2).
+4. On any event, conflict, gap, or unverified adjustment → `DataUnavailable` → the existing fail-closed deferred machinery. Never invent bars, never stage partial decisions.
+5. Provenance: versioned cache (`schema_version` file); per-symbol sidecar `{last_verified_utc, data_sha256, rows, last_bar_ts, adjustment_code_version}`; atomic writes (tmp+rename, as the harness already does).
+
+**Parity test (G1) compares the entire classifier input frame and all downstream outputs** — post-resample 4H OHLCV + SessionVWAP + indicator frame, scan rows, eligible sets, grades, observer export, jsonl signal/event lines. Not timestamps alone. Zero divergence.
+
+## R2 — Request-count honesty (redline #2)
+
+P1 alone does not reduce request count (250 primary calls remain, just tiny). The 429 lever is R3: projected ≈400 calls/cycle (74% fewer), with primary per-call payloads 97% smaller (5d/1h ≈ 33 rows vs 180d/1h ≈ 1,251 rows). **No restoration is claimed.** G3 (live shadow) measures per-endpoint request counts, 429 frequency, duration percentiles (p50/p95/max), and cycle wall-clock before any deployment claim. If 429s persist at the reduced budget, the P3 path is the only remaining lever — stated now, not later.
+
+## R3 — P2 revised: two-pass orchestration in the harness data layer; frozen modules untouched (redline #3)
+
+**Verified by code inspection** (`v54_rules.py`, `v54_engine.py`):
+- `v54_hard_gates_pass` consumes only primary-frame-derived row fields (structural candidate contract: entry/protection/state/above_vwap/buy-zone + ADX ≥ 20). Daily/weekly/15m/premarket never gate.
+- `v54_grade` DOES consume `daily_trend`/`weekly_trend` (auxiliary). 15m/premarket are observational (frozen spec).
+
+Design:
+- **Phase 1 (pre-pass, harness-side orchestration):** for every symbol, primary 1H frame (from the P1 cache/pin) → call the UNMODIFIED `eng.v54_classify(..., auxiliary=None)`. All auxiliary params already default to None; None yields exactly today's per-symbol auxiliary-failure values (trends "unknown", confirmation False/None/0.0, PM_EMPTY). Keep ONLY the `v54_eligible` bit; discard the provisional rows (their grades would be provisional-C — never logged, never published).
+- **Phase 2 (scan):** call the UNMODIFIED `eng.v54_scan_symbols`. The hardened auxiliary wrappers skip vendor calls for symbols outside the Phase-1 eligible set (returning today's failure-mode values). For eligible symbols, all five auxiliary inputs are fetched exactly as today.
+- This is not "a simple wrapper switch": the reorder (gate before auxiliary) is harness orchestration reusing the frozen gate itself — not a reimplemented "score-free equivalent." No frozen module (`v54_engine.py`, `v54_rules.py`, `masterscanner_api.py`, observer prompt, universe) is modified. The rejected alternative — restructuring `v54_scan_symbols`' loop — is stated as rejected (non-compliant). If ChatGPT finds the orchestration approach still too cute, P2 is dropped and only P1 + exit-priority ship.
+
+**Parity contract (G2):** on the frozen corpus, Phase-1 eligible set ≡ single-pass eligible set (identity); Phase-2 rows byte-identical to single-pass rows (JSON-normalized); observer export identical. Non-eligible symbols' auxiliary-derived observational fields read as unfetched — explicitly declared; verified to touch no published artifact (envelope = qualified only; jsonl = signals/events only; observer = new signals only). Zero divergence or no ship.
+
+## R4 — Exit-priority prefetch + delayed-fill labeling (redline #4)
+
+**Current flaw:** the scan loop downloads the universe in order; `run_cycle`'s exit walk then RE-downloads open/pending symbols via `dl_cache` — a symbol fresh in the scan can still defer on a failed re-download, and budget exhaustion mid-scan defers every later symbol's exits.
+
+**Phase 0 (prefetch, before the scan):** fetch primary 1H bars through the hardened wrapper for (a) market context (QQQ, SPY — also dedups today's double QQQ fetch), (b) all open-position and pending-entry symbols. Validate, pin into the cycle frame cache with a frozen `cycle_now` passed explicitly to `resample_closed_4h(now=...)` (the parameter exists; today each call uses its own wall-clock, so pinning also makes the cycle atomic). The hardened `_primary` wrapper serves pinned frames to the scan loop AND the exit walk: no double-download, and exits reuse validated same-cycle bars even if the broad scan later exhausts budget or hits the global 429. **New entries still require full expected primary coverage fresh** — fail-closed unchanged (Guard 1).
+
+**Tests (G4 fault injection):** (a) no double-processing — each position advanced exactly once per cycle (assert on tracker event log); (b) chronological catch-up — scripted 3-cycle outage replays bars in order with `last_processed_bar` continuity; (c) global-429 path — prefetch raises RateLimited → exits defer explicitly, entries suppressed, cycle DEGRADED, no partial staging.
+
+**Delayed-fill labeling (measurement only, no decision change):** in `_process_symbol`'s pending-entry branch the fill executes at `newbars[0].open` where `newbars = df[df.index > sig_start]`. When `len(newbars) > 1` the fill bar is stale (deferred cycles). Label `bars_delayed = len(newbars) - 1`; if > 0, log `entry_delayed_fill` {signal_id, bars_delayed, fill_bar_ts} and tag the position and its eventual close record `delayed_fill: true`. Closed-trade stats report delayed fills as a separate bucket (count, total R) in `v54_status.json` — never silently pooled with timely fills. Fill-price logic unchanged.
+
+## R5 — P3 broadened parity gate (redline #5)
+
+Before any alternate-vendor comparison, freeze N=40 corpus + event coverage: early close (2026-07-03 half-day), DST transitions (2026-03-08, 2026-11-01), in-window splits/dividends, vendor missing-bar gaps, synthetic outage recovery. Compare: 1H→4H session construction (bar boundaries/timestamps), SessionVWAP series, adjustment factors, signal identities + grades, pending/entry legs, exit legs, observer fields — not just decision divergence. Any mid-test vendor switch runs as a labeled segment (`vendor: <name>` on every log/export line), never spliced into the Yahoo cohort stats.
+
+## Unified budget and ship gates
+
+| | Today | Revised (R1+R3+R4) |
+|---|---|---|
+| Requests/cycle | ≈1,519 | ≈400 (250 tiny primary incl. ~16 prefetched + ~150 aux for ~30 eligible + ~5 amortized backstop) |
+| Primary payload/call | ~1,251 rows (180d/1h) | ~33 rows (5d/1h) |
+
+**Gates (all must pass; any failure = no ship):**
+- **G1 offline parity:** frozen K=40 corpus (5 in-window splits, 10 in-window dividends, 25 clean; incl. ≥5 current open-position symbols; full 180d 1h `auto_adjust=True` downloads, sha256-frozen — capturable on the next healthy cycle). Cache built incrementally from corpus slices (12 simulated cycles); cached path must reproduce full-path classifier input frames + all downstream outputs byte-identically. Local adjustment ≡ Yahoo `auto_adjust` on all 40.
+- **G2 two-pass parity:** Phase-1 eligible set ≡ single-pass eligible set; Phase-2 rows byte-identical; observer export identical.
+- **G3 live shadow:** N=10 consecutive live cycles, new data path in shadow (decisions from old path); per-cycle compare eligible sets/grades/observer export — zero divergence; require ≥3 healthy cycles in the window; measure per-endpoint requests, 429 counts, duration p50/p95/max; cycle wall-clock p95 < 480s (80% of budget).
+- **G4 fault injection:** synthetic 429 burst, slow reads, mid-stream split event, overlap vendor revision, global 429 in prefetch → assert fail-closed (explicit deferrals, no partial staging, delayed-fill labels, chronological catch-up).
+- **Deployment:** ChatGPT re-review of this revision + Mike explicit approval; first 5 live cycles carry a one-cycle kill-switch (env flag → old path).
+
+**Non-goals (restated):** no retry-count/deadline increase, no symbol sharding across cycles, no cadence change, no strategy/grade/observer/universe change, no silent vendor splice.
+
+— Muse (Yahoo infra lane)
