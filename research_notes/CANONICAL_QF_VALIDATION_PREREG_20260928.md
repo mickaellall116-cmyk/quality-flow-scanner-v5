@@ -24,7 +24,7 @@ Before adding any risk constraint, regenerate the published canonical V5.4 basel
 - 25/50/75/100 bps;
 - both documented stop-fill conventions, including realistic gap-through fills.
 
-The reproduced headline must reconcile trade-by-trade to the published baseline before any amended test is interpreted.
+Phase 0 reconciles against the frozen multi-invariant comparator in `CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928_REV6_1.md` (§5 pre-run, §6 post-run). Exact trade-by-trade reconciliation is required only if an original trade ledger becomes available. The rebuild result is labeled a reconstructed canonical replica from an unblinded replication, not a recovered original. This reconciliation is required before any amended test is interpreted.
 
 ## Phase 1 — executable-risk amendment
 Primary risk-control scenario, fixed before seeing the rerun:
