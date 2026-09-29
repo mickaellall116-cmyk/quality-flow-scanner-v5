@@ -1,0 +1,975 @@
+{
+  "generated_at_utc": "2026-09-29T22:53:44.402470+00:00",
+  "fetch_shape": "period=730d, interval=1h, prepost=False, auto_adjust=False",
+  "fetch_shape_note": "period-based fetch serves 730 trading sessions; explicit start/end 1H is capped at 730 calendar days; GEV/RDDT/TEM: period=730d server-errors (Yahoo 1H boundary at 2024-09-30 for these tickers), recovered with period=max, same endpoint/interval",
+  "symbols": [
+    {
+      "symbol": "AAPL",
+      "fetched_at_utc": "2026-09-29T22:53:44.402489+00:00",
+      "completed_at_utc": "2026-09-29T22:53:45.791267+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "ABBV",
+      "fetched_at_utc": "2026-09-29T22:53:47.023576+00:00",
+      "completed_at_utc": "2026-09-29T22:53:47.680408+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "ABNB",
+      "fetched_at_utc": "2026-09-29T22:53:48.932056+00:00",
+      "completed_at_utc": "2026-09-29T22:53:49.513400+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "ADBE",
+      "fetched_at_utc": "2026-09-29T22:53:50.754100+00:00",
+      "completed_at_utc": "2026-09-29T22:53:51.363559+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "AI",
+      "fetched_at_utc": "2026-09-29T22:53:52.598022+00:00",
+      "completed_at_utc": "2026-09-29T22:53:53.136091+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "AMAT",
+      "fetched_at_utc": "2026-09-29T22:53:54.375772+00:00",
+      "completed_at_utc": "2026-09-29T22:53:54.947876+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "AMD",
+      "fetched_at_utc": "2026-09-29T22:53:56.179664+00:00",
+      "completed_at_utc": "2026-09-29T22:53:56.797032+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "AMGN",
+      "fetched_at_utc": "2026-09-29T22:53:58.029962+00:00",
+      "completed_at_utc": "2026-09-29T22:53:58.658205+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "AMZN",
+      "fetched_at_utc": "2026-09-29T22:53:59.898683+00:00",
+      "completed_at_utc": "2026-09-29T22:54:00.546093+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "ANET",
+      "fetched_at_utc": "2026-09-29T22:54:01.786889+00:00",
+      "completed_at_utc": "2026-09-29T22:54:02.712110+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "ARKK",
+      "fetched_at_utc": "2026-09-29T22:54:11.954870+00:00",
+      "completed_at_utc": "2026-09-29T22:54:12.572457+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "ARM",
+      "fetched_at_utc": "2026-09-29T22:54:13.806389+00:00",
+      "completed_at_utc": "2026-09-29T22:54:14.401880+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "ASML",
+      "fetched_at_utc": "2026-09-29T22:54:15.641214+00:00",
+      "completed_at_utc": "2026-09-29T22:54:16.288035+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "ASTX",
+      "fetched_at_utc": "2026-09-29T22:54:17.520725+00:00",
+      "completed_at_utc": "2026-09-29T22:54:17.844863+00:00",
+      "n_1h": 2131,
+      "error": null
+    },
+    {
+      "symbol": "AVGO",
+      "fetched_at_utc": "2026-09-29T22:54:19.059214+00:00",
+      "completed_at_utc": "2026-09-29T22:54:20.288816+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "BA",
+      "fetched_at_utc": "2026-09-29T22:54:21.521654+00:00",
+      "completed_at_utc": "2026-09-29T22:54:22.096824+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "BAC",
+      "fetched_at_utc": "2026-09-29T22:54:23.330665+00:00",
+      "completed_at_utc": "2026-09-29T22:54:23.917539+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "BBAI",
+      "fetched_at_utc": "2026-09-29T22:54:25.151692+00:00",
+      "completed_at_utc": "2026-09-29T22:54:25.715949+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "BKNG",
+      "fetched_at_utc": "2026-09-29T22:54:26.948898+00:00",
+      "completed_at_utc": "2026-09-29T22:54:28.080562+00:00",
+      "n_1h": 5071,
+      "error": null
+    },
+    {
+      "symbol": "BMNR",
+      "fetched_at_utc": "2026-09-29T22:54:29.318543+00:00",
+      "completed_at_utc": "2026-09-29T22:54:29.653507+00:00",
+      "n_1h": 2292,
+      "error": null
+    },
+    {
+      "symbol": "BRK-B",
+      "fetched_at_utc": "2026-09-29T22:54:38.873188+00:00",
+      "completed_at_utc": "2026-09-29T22:54:39.485525+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "CAT",
+      "fetched_at_utc": "2026-09-29T22:54:40.720101+00:00",
+      "completed_at_utc": "2026-09-29T22:54:41.368970+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "CMG",
+      "fetched_at_utc": "2026-09-29T22:54:42.600649+00:00",
+      "completed_at_utc": "2026-09-29T22:54:43.488288+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "COIN",
+      "fetched_at_utc": "2026-09-29T22:54:44.739915+00:00",
+      "completed_at_utc": "2026-09-29T22:54:45.372558+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "COP",
+      "fetched_at_utc": "2026-09-29T22:54:46.607944+00:00",
+      "completed_at_utc": "2026-09-29T22:54:47.230217+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "COST",
+      "fetched_at_utc": "2026-09-29T22:54:48.478720+00:00",
+      "completed_at_utc": "2026-09-29T22:54:49.184161+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "CRM",
+      "fetched_at_utc": "2026-09-29T22:54:50.417258+00:00",
+      "completed_at_utc": "2026-09-29T22:54:51.068327+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "CRWD",
+      "fetched_at_utc": "2026-09-29T22:54:52.301731+00:00",
+      "completed_at_utc": "2026-09-29T22:54:53.587798+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "CRWV",
+      "fetched_at_utc": "2026-09-29T22:54:54.830083+00:00",
+      "completed_at_utc": "2026-09-29T22:54:55.246857+00:00",
+      "n_1h": 2622,
+      "error": null
+    },
+    {
+      "symbol": "CSCO",
+      "fetched_at_utc": "2026-09-29T22:54:56.464028+00:00",
+      "completed_at_utc": "2026-09-29T22:54:57.076195+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "CVX",
+      "fetched_at_utc": "2026-09-29T22:55:06.316024+00:00",
+      "completed_at_utc": "2026-09-29T22:55:06.907470+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "DDOG",
+      "fetched_at_utc": "2026-09-29T22:55:08.148333+00:00",
+      "completed_at_utc": "2026-09-29T22:55:08.841450+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "DE",
+      "fetched_at_utc": "2026-09-29T22:55:10.074805+00:00",
+      "completed_at_utc": "2026-09-29T22:55:10.712554+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "DHR",
+      "fetched_at_utc": "2026-09-29T22:55:11.945445+00:00",
+      "completed_at_utc": "2026-09-29T22:55:12.538131+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "DIA",
+      "fetched_at_utc": "2026-09-29T22:55:13.776649+00:00",
+      "completed_at_utc": "2026-09-29T22:55:14.366816+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "DIS",
+      "fetched_at_utc": "2026-09-29T22:55:15.598159+00:00",
+      "completed_at_utc": "2026-09-29T22:55:16.193495+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "DRAM",
+      "fetched_at_utc": "2026-09-29T22:55:17.426826+00:00",
+      "completed_at_utc": "2026-09-29T22:55:17.660598+00:00",
+      "n_1h": 868,
+      "error": null
+    },
+    {
+      "symbol": "DVN",
+      "fetched_at_utc": "2026-09-29T22:55:18.870281+00:00",
+      "completed_at_utc": "2026-09-29T22:55:19.553042+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "ENPH",
+      "fetched_at_utc": "2026-09-29T22:55:20.788116+00:00",
+      "completed_at_utc": "2026-09-29T22:55:21.426299+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "ETN",
+      "fetched_at_utc": "2026-09-29T22:55:22.657813+00:00",
+      "completed_at_utc": "2026-09-29T22:55:23.312173+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "F",
+      "fetched_at_utc": "2026-09-29T22:55:32.545722+00:00",
+      "completed_at_utc": "2026-09-29T22:55:33.134109+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "FCX",
+      "fetched_at_utc": "2026-09-29T22:55:34.370211+00:00",
+      "completed_at_utc": "2026-09-29T22:55:34.953801+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "FDX",
+      "fetched_at_utc": "2026-09-29T22:55:36.187341+00:00",
+      "completed_at_utc": "2026-09-29T22:55:37.471041+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "FTNT",
+      "fetched_at_utc": "2026-09-29T22:55:38.714986+00:00",
+      "completed_at_utc": "2026-09-29T22:55:39.402525+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "GE",
+      "fetched_at_utc": "2026-09-29T22:55:40.638431+00:00",
+      "completed_at_utc": "2026-09-29T22:55:41.601692+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "GEV",
+      "fetched_at_utc": "2026-09-29T23:00:35.855669+00:00",
+      "completed_at_utc": "2026-09-29T23:00:37.365409+00:00",
+      "n_1h": 3477,
+      "error": null,
+      "fetch_shape": "period=max (period=730d server-errors for this ticker)",
+      "first_1h": "2024-09-30T09:30:00-04:00",
+      "last_1h": "2026-09-29T15:30:00-04:00"
+    },
+    {
+      "symbol": "GILD",
+      "fetched_at_utc": "2026-09-29T22:55:44.517133+00:00",
+      "completed_at_utc": "2026-09-29T22:55:45.147640+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "GLD",
+      "fetched_at_utc": "2026-09-29T22:55:46.380738+00:00",
+      "completed_at_utc": "2026-09-29T22:55:47.009986+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "GLXY",
+      "fetched_at_utc": "2026-09-29T22:55:48.244649+00:00",
+      "completed_at_utc": "2026-09-29T22:55:48.662200+00:00",
+      "n_1h": 2387,
+      "error": null
+    },
+    {
+      "symbol": "GM",
+      "fetched_at_utc": "2026-09-29T22:55:49.878196+00:00",
+      "completed_at_utc": "2026-09-29T22:55:50.442478+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "GOOGL",
+      "fetched_at_utc": "2026-09-29T22:55:59.676596+00:00",
+      "completed_at_utc": "2026-09-29T22:56:00.253612+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "GS",
+      "fetched_at_utc": "2026-09-29T22:56:01.488403+00:00",
+      "completed_at_utc": "2026-09-29T22:56:02.096961+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "HD",
+      "fetched_at_utc": "2026-09-29T22:56:03.329667+00:00",
+      "completed_at_utc": "2026-09-29T22:56:04.085570+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "HON",
+      "fetched_at_utc": "2026-09-29T22:56:05.336021+00:00",
+      "completed_at_utc": "2026-09-29T22:56:07.137842+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "HOOD",
+      "fetched_at_utc": "2026-09-29T22:56:08.380884+00:00",
+      "completed_at_utc": "2026-09-29T22:56:09.006645+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "IBM",
+      "fetched_at_utc": "2026-09-29T22:56:10.241658+00:00",
+      "completed_at_utc": "2026-09-29T22:56:10.910045+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "INTC",
+      "fetched_at_utc": "2026-09-29T22:56:12.143526+00:00",
+      "completed_at_utc": "2026-09-29T22:56:12.787052+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "INTU",
+      "fetched_at_utc": "2026-09-29T22:56:14.021252+00:00",
+      "completed_at_utc": "2026-09-29T22:56:14.683902+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "ISRG",
+      "fetched_at_utc": "2026-09-29T22:56:15.916381+00:00",
+      "completed_at_utc": "2026-09-29T22:56:16.616472+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "IWM",
+      "fetched_at_utc": "2026-09-29T22:56:17.848459+00:00",
+      "completed_at_utc": "2026-09-29T22:56:18.421400+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "JNJ",
+      "fetched_at_utc": "2026-09-29T22:56:27.655232+00:00",
+      "completed_at_utc": "2026-09-29T22:56:28.261586+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "JPM",
+      "fetched_at_utc": "2026-09-29T22:56:29.497536+00:00",
+      "completed_at_utc": "2026-09-29T22:56:30.071019+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "KLAC",
+      "fetched_at_utc": "2026-09-29T22:56:31.318622+00:00",
+      "completed_at_utc": "2026-09-29T22:56:33.073378+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "KO",
+      "fetched_at_utc": "2026-09-29T22:56:34.306901+00:00",
+      "completed_at_utc": "2026-09-29T22:56:34.914873+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "LIN",
+      "fetched_at_utc": "2026-09-29T22:56:36.147799+00:00",
+      "completed_at_utc": "2026-09-29T22:56:36.720407+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "LLY",
+      "fetched_at_utc": "2026-09-29T22:56:37.953173+00:00",
+      "completed_at_utc": "2026-09-29T22:56:38.593688+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "LMT",
+      "fetched_at_utc": "2026-09-29T22:56:39.826237+00:00",
+      "completed_at_utc": "2026-09-29T22:56:40.457395+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "LRCX",
+      "fetched_at_utc": "2026-09-29T22:56:41.691130+00:00",
+      "completed_at_utc": "2026-09-29T22:56:42.612215+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "MA",
+      "fetched_at_utc": "2026-09-29T22:56:43.849036+00:00",
+      "completed_at_utc": "2026-09-29T22:56:44.563567+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "MARA",
+      "fetched_at_utc": "2026-09-29T22:56:45.795343+00:00",
+      "completed_at_utc": "2026-09-29T22:56:46.472155+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "MCD",
+      "fetched_at_utc": "2026-09-29T22:56:55.705706+00:00",
+      "completed_at_utc": "2026-09-29T22:56:56.313520+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "MDB",
+      "fetched_at_utc": "2026-09-29T22:56:57.546669+00:00",
+      "completed_at_utc": "2026-09-29T22:56:58.229351+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "MELI",
+      "fetched_at_utc": "2026-09-29T22:56:59.475717+00:00",
+      "completed_at_utc": "2026-09-29T22:57:00.087169+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "META",
+      "fetched_at_utc": "2026-09-29T22:57:01.318734+00:00",
+      "completed_at_utc": "2026-09-29T22:57:01.972702+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "MPC",
+      "fetched_at_utc": "2026-09-29T22:57:03.207051+00:00",
+      "completed_at_utc": "2026-09-29T22:57:03.760920+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "MRNA",
+      "fetched_at_utc": "2026-09-29T22:57:04.995177+00:00",
+      "completed_at_utc": "2026-09-29T22:57:05.608399+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "MRVL",
+      "fetched_at_utc": "2026-09-29T22:57:06.842678+00:00",
+      "completed_at_utc": "2026-09-29T22:57:07.514582+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "MS",
+      "fetched_at_utc": "2026-09-29T22:57:08.752654+00:00",
+      "completed_at_utc": "2026-09-29T22:57:09.450429+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "MSFT",
+      "fetched_at_utc": "2026-09-29T22:57:10.693411+00:00",
+      "completed_at_utc": "2026-09-29T22:57:11.400555+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "MU",
+      "fetched_at_utc": "2026-09-29T22:57:12.641786+00:00",
+      "completed_at_utc": "2026-09-29T22:57:13.327628+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "NBIS",
+      "fetched_at_utc": "2026-09-29T22:57:22.566619+00:00",
+      "completed_at_utc": "2026-09-29T22:57:23.071949+00:00",
+      "n_1h": 3373,
+      "error": null
+    },
+    {
+      "symbol": "NEE",
+      "fetched_at_utc": "2026-09-29T22:57:24.304860+00:00",
+      "completed_at_utc": "2026-09-29T22:57:24.951558+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "NFLX",
+      "fetched_at_utc": "2026-09-29T22:57:26.184466+00:00",
+      "completed_at_utc": "2026-09-29T22:57:27.344021+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "NIO",
+      "fetched_at_utc": "2026-09-29T22:57:28.582701+00:00",
+      "completed_at_utc": "2026-09-29T22:57:29.121139+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "NKE",
+      "fetched_at_utc": "2026-09-29T22:57:30.363437+00:00",
+      "completed_at_utc": "2026-09-29T22:57:30.967637+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "NOW",
+      "fetched_at_utc": "2026-09-29T22:57:32.200393+00:00",
+      "completed_at_utc": "2026-09-29T22:57:33.968619+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "NVDA",
+      "fetched_at_utc": "2026-09-29T22:57:35.206525+00:00",
+      "completed_at_utc": "2026-09-29T22:57:36.062846+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "NXPI",
+      "fetched_at_utc": "2026-09-29T22:57:37.296480+00:00",
+      "completed_at_utc": "2026-09-29T22:57:37.973445+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "ON",
+      "fetched_at_utc": "2026-09-29T22:57:39.207561+00:00",
+      "completed_at_utc": "2026-09-29T22:57:39.784554+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "ONDS",
+      "fetched_at_utc": "2026-09-29T22:57:41.024481+00:00",
+      "completed_at_utc": "2026-09-29T22:57:41.633210+00:00",
+      "n_1h": 5070,
+      "error": null
+    },
+    {
+      "symbol": "ORCL",
+      "fetched_at_utc": "2026-09-29T22:57:50.872250+00:00",
+      "completed_at_utc": "2026-09-29T22:57:51.517828+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "OXY",
+      "fetched_at_utc": "2026-09-29T22:57:52.751022+00:00",
+      "completed_at_utc": "2026-09-29T22:57:53.402760+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "PANW",
+      "fetched_at_utc": "2026-09-29T22:57:54.635406+00:00",
+      "completed_at_utc": "2026-09-29T22:57:55.543973+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "PEP",
+      "fetched_at_utc": "2026-09-29T22:57:56.777585+00:00",
+      "completed_at_utc": "2026-09-29T22:57:57.358885+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "PFE",
+      "fetched_at_utc": "2026-09-29T22:57:58.607698+00:00",
+      "completed_at_utc": "2026-09-29T22:57:59.186097+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "PG",
+      "fetched_at_utc": "2026-09-29T22:58:00.427052+00:00",
+      "completed_at_utc": "2026-09-29T22:58:01.108269+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "PLTR",
+      "fetched_at_utc": "2026-09-29T22:58:02.342712+00:00",
+      "completed_at_utc": "2026-09-29T22:58:02.993120+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "PYPL",
+      "fetched_at_utc": "2026-09-29T22:58:04.226436+00:00",
+      "completed_at_utc": "2026-09-29T22:58:04.861411+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "QCOM",
+      "fetched_at_utc": "2026-09-29T22:58:06.096315+00:00",
+      "completed_at_utc": "2026-09-29T22:58:06.744133+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "QQQ",
+      "fetched_at_utc": "2026-09-29T22:58:07.977720+00:00",
+      "completed_at_utc": "2026-09-29T22:58:08.657457+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "RDDT",
+      "fetched_at_utc": "2026-09-29T23:00:40.552054+00:00",
+      "completed_at_utc": "2026-09-29T23:00:40.981224+00:00",
+      "n_1h": 3477,
+      "error": null,
+      "fetch_shape": "period=max (period=730d server-errors for this ticker)",
+      "first_1h": "2024-09-30T09:30:00-04:00",
+      "last_1h": "2026-09-29T15:30:00-04:00"
+    },
+    {
+      "symbol": "REGN",
+      "fetched_at_utc": "2026-09-29T22:58:19.985985+00:00",
+      "completed_at_utc": "2026-09-29T22:58:20.593864+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "RKLB",
+      "fetched_at_utc": "2026-09-29T22:58:21.828078+00:00",
+      "completed_at_utc": "2026-09-29T22:58:22.462582+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "RTX",
+      "fetched_at_utc": "2026-09-29T22:58:23.700809+00:00",
+      "completed_at_utc": "2026-09-29T22:58:24.423868+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "SBUX",
+      "fetched_at_utc": "2026-09-29T22:58:25.658999+00:00",
+      "completed_at_utc": "2026-09-29T22:58:26.396511+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "SCHW",
+      "fetched_at_utc": "2026-09-29T22:58:27.628515+00:00",
+      "completed_at_utc": "2026-09-29T22:58:28.307825+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "SHOP",
+      "fetched_at_utc": "2026-09-29T22:58:29.540646+00:00",
+      "completed_at_utc": "2026-09-29T22:58:30.143218+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "SLB",
+      "fetched_at_utc": "2026-09-29T22:58:31.377213+00:00",
+      "completed_at_utc": "2026-09-29T22:58:31.943615+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "SMCI",
+      "fetched_at_utc": "2026-09-29T22:58:33.176650+00:00",
+      "completed_at_utc": "2026-09-29T22:58:34.535352+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "SMH",
+      "fetched_at_utc": "2026-09-29T22:58:35.769744+00:00",
+      "completed_at_utc": "2026-09-29T22:58:36.409317+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "SNDK",
+      "fetched_at_utc": "2026-09-29T22:58:45.649140+00:00",
+      "completed_at_utc": "2026-09-29T22:58:46.065891+00:00",
+      "n_1h": 2793,
+      "error": null
+    },
+    {
+      "symbol": "SNOW",
+      "fetched_at_utc": "2026-09-29T22:58:47.284188+00:00",
+      "completed_at_utc": "2026-09-29T22:58:47.921154+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "SOFI",
+      "fetched_at_utc": "2026-09-29T22:58:49.163168+00:00",
+      "completed_at_utc": "2026-09-29T22:58:49.692979+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "SPCX",
+      "fetched_at_utc": "2026-09-29T22:58:50.932544+00:00",
+      "completed_at_utc": "2026-09-29T22:58:51.144567+00:00",
+      "n_1h": 523,
+      "error": null
+    },
+    {
+      "symbol": "SPY",
+      "fetched_at_utc": "2026-09-29T22:58:52.348822+00:00",
+      "completed_at_utc": "2026-09-29T22:58:52.953569+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "T",
+      "fetched_at_utc": "2026-09-29T22:58:54.186303+00:00",
+      "completed_at_utc": "2026-09-29T22:58:54.778248+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "TEM",
+      "fetched_at_utc": "2026-09-29T23:00:44.114343+00:00",
+      "completed_at_utc": "2026-09-29T23:00:44.543862+00:00",
+      "n_1h": 3478,
+      "error": null,
+      "fetch_shape": "period=max (period=730d server-errors for this ticker)",
+      "first_1h": "2024-09-30T09:30:00-04:00",
+      "last_1h": "2026-09-29T15:30:00-04:00"
+    },
+    {
+      "symbol": "TLT",
+      "fetched_at_utc": "2026-09-29T22:58:57.638913+00:00",
+      "completed_at_utc": "2026-09-29T22:58:58.274062+00:00",
+      "n_1h": 5074,
+      "error": null
+    },
+    {
+      "symbol": "TMO",
+      "fetched_at_utc": "2026-09-29T22:58:59.506681+00:00",
+      "completed_at_utc": "2026-09-29T22:59:00.136417+00:00",
+      "n_1h": 5029,
+      "error": null
+    },
+    {
+      "symbol": "TSLA",
+      "fetched_at_utc": "2026-09-29T22:59:01.368905+00:00",
+      "completed_at_utc": "2026-09-29T22:59:02.126667+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "TSM",
+      "fetched_at_utc": "2026-09-29T22:59:11.362559+00:00",
+      "completed_at_utc": "2026-09-29T22:59:11.944479+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "TXN",
+      "fetched_at_utc": "2026-09-29T22:59:13.177313+00:00",
+      "completed_at_utc": "2026-09-29T22:59:13.772956+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "UBER",
+      "fetched_at_utc": "2026-09-29T22:59:15.007020+00:00",
+      "completed_at_utc": "2026-09-29T22:59:15.568017+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "UNH",
+      "fetched_at_utc": "2026-09-29T22:59:16.799940+00:00",
+      "completed_at_utc": "2026-09-29T22:59:17.574574+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "UNP",
+      "fetched_at_utc": "2026-09-29T22:59:18.807020+00:00",
+      "completed_at_utc": "2026-09-29T22:59:19.363809+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "UPST",
+      "fetched_at_utc": "2026-09-29T22:59:20.596538+00:00",
+      "completed_at_utc": "2026-09-29T22:59:21.196810+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "V",
+      "fetched_at_utc": "2026-09-29T22:59:22.429644+00:00",
+      "completed_at_utc": "2026-09-29T22:59:23.068472+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "VLO",
+      "fetched_at_utc": "2026-09-29T22:59:24.301356+00:00",
+      "completed_at_utc": "2026-09-29T22:59:24.854742+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "VZ",
+      "fetched_at_utc": "2026-09-29T22:59:26.088249+00:00",
+      "completed_at_utc": "2026-09-29T22:59:26.713170+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "WDAY",
+      "fetched_at_utc": "2026-09-29T22:59:27.947491+00:00",
+      "completed_at_utc": "2026-09-29T22:59:28.519517+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "WFC",
+      "fetched_at_utc": "2026-09-29T22:59:37.753904+00:00",
+      "completed_at_utc": "2026-09-29T22:59:38.328384+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "WMT",
+      "fetched_at_utc": "2026-09-29T22:59:39.573646+00:00",
+      "completed_at_utc": "2026-09-29T22:59:40.685443+00:00",
+      "n_1h": 5073,
+      "error": null
+    },
+    {
+      "symbol": "XLE",
+      "fetched_at_utc": "2026-09-29T22:59:41.918106+00:00",
+      "completed_at_utc": "2026-09-29T22:59:43.698948+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "XLF",
+      "fetched_at_utc": "2026-09-29T22:59:44.933046+00:00",
+      "completed_at_utc": "2026-09-29T22:59:45.505252+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "XLK",
+      "fetched_at_utc": "2026-09-29T22:59:46.739577+00:00",
+      "completed_at_utc": "2026-09-29T22:59:47.893051+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "XOM",
+      "fetched_at_utc": "2026-09-29T22:59:49.127960+00:00",
+      "completed_at_utc": "2026-09-29T22:59:49.697905+00:00",
+      "n_1h": 5072,
+      "error": null
+    },
+    {
+      "symbol": "XYZ",
+      "fetched_at_utc": "2026-09-29T22:59:50.937301+00:00",
+      "completed_at_utc": "2026-09-29T22:59:51.387889+00:00",
+      "n_1h": 2953,
+      "error": null
+    }
+  ]
+}
