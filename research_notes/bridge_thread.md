@@ -570,3 +570,53 @@ Before any alternate-vendor comparison, freeze N=40 corpus + event coverage: ear
 **Non-goals (restated):** no retry-count/deadline increase, no symbol sharding across cycles, no cadence change, no strategy/grade/observer/universe change, no silent vendor splice.
 
 — Muse (Yahoo infra lane)
+
+
+---
+
+# REVISED PROPOSAL (rev 3) — three redlines from ChatGPT's re-review of da87669
+**Date:** 2026-09-28 ~23:00 ET
+**Status:** PROPOSAL ONLY — no code changed. Addresses ChatGPT's three corrections on rev-2 (relayed by Mike 2026-09-28 ~22:50 ET; verdict MAYBE, implementation approval withheld pending this revision + Mike's review).
+
+## C1 — Adjustment contract fixed (rev-2 §R1)
+
+**Accepted:** `yf.download` defaults to `actions=False`, so rev-2's proposed call would not have returned the dividend/split columns it claimed to cache. Verified live 2026-09-28 ~23:00 ET (yfinance 1.7.0).
+
+**Corrected contract:**
+- Incremental fetch: `yf.download(interval="1h", period="5d", auto_adjust=False, actions=True, threads=False)` → frame contains `Open, High, Low, Close, Adj Close, Volume, Dividends, Stock Splits` (verified: all eight columns returned).
+- The frozen `apply_yahoo_adjustment()` does NOT use an action-derived formula. It implements yfinance's actual `auto_adjust` semantics for the pinned version: `OHLC_adjusted = OHLC × (Adj Close / Close)` per bar. Verified live: manual ratio application reproduces yfinance 1.7.0 `auto_adjust=True` output with **0.0 max abs diff on all four OHLC columns** (AAPL, 1h/5d, 35 bars). Volume follows 1.7.0's volume semantics, pinned the same way.
+- **Adj Close is retained** in the cached frame as an independent check: the applied ratio must equal `Adj Close / Close` on every bar; any deviation → `DataUnavailable` (fail closed).
+- **yfinance is pinned** (1.7.0 — the version the corpus is captured and tested under). Any version change → parity corpus re-captured and G1 re-run; no silent library drift.
+- **The 40-symbol byte-parity test is the deciding gate:** `apply_yahoo_adjustment(raw)` must be byte-identical to Yahoo's own `auto_adjust=True` output on all 40 corpus symbols (5 in-window splits, 10 in-window dividends, 25 clean). Fail on any symbol → no ship. No production use of an unverified formula.
+- G1 corpus is paired per symbol: (a) full-window `auto_adjust=True` download = reference output; (b) full-window `auto_adjust=False, actions=True` download = cache input, sliced into 12 simulated incremental windows. Testing against (a) keeps the gate non-circular.
+
+## C2 — G2 comparison corrected (rev-2 §R3)
+
+**Accepted:** rev-2's G2 was contradictory — it demanded byte-identical Phase-2 rows for all symbols while declaring ineligible rows' auxiliary fields unfetched.
+
+**Corrected G2:**
+- **Eligible rows** (Phase-1 eligible set): Phase-2 scan rows must be byte-identical to the single-pass scan rows (JSON-normalized), including all auxiliary-derived fields. All published outputs (envelope, jsonl signal/event lines, observer export) byte-identical.
+- **Ineligible rows:** compare the eligibility bit (must match exactly) plus every primary-derived field consumed by decisions (hard-gate inputs: entry/protection/state/above_vwap/buy_zone, ADX, trendScore inputs, structural candidate fields, full 4H indicator frame). Auxiliary-derived observational fields for ineligible rows are explicitly declared unfetched (None-mode values) and excluded from comparison — with the containment proof that no ineligible row reaches any published artifact (envelope = qualified only; jsonl = signals/events only; observer = new signals only).
+- Zero divergence within each tier, or no ship.
+
+## C3 — Request budget reconciled (rev-2 §R1/§R2)
+
+**Accepted:** rev-2 stated two different backstop schedules ("~36 full refreshes per cycle" vs "~5 amortized"). The "~36" was per-day arithmetic mislabeled per-cycle.
+
+**One schedule:** the full 250-symbol universe is re-verified (full-window re-fetch) staggered across 7 days. The cycle runs hourly around the clock (~168 cycles/week) → 250/168 ≈ 1.5 → **2 full re-fetches per cycle amortized**.
+
+**Recalculated per-cycle budget:**
+
+| Segment | Calls/cycle |
+|---|---|
+| Primary 1H incremental, full 250-symbol universe (first ~16 = open/pending priority prefetch) | 250 |
+| Market context QQQ + SPY (deduped against universe) | 2 |
+| Auxiliary for ~30 Phase-1-eligible symbols × 5 endpoints | 150 |
+| Backstop full-window re-fetch, amortized | 2 |
+| **Total** | **≈404** |
+
+vs. ≈1,519 today (−73%). No restoration claimed until G3 measures per-endpoint 429 rates and cycle wall-clock in live shadow.
+
+**Unchanged from rev-2:** exit-priority Phase 0, delayed-fill labeling, frozen-module boundary, gates G1/G3/G4 as specified, kill-switch, non-goals. Awaiting ChatGPT re-review of this revision, then Mike's implementation decision.
+
+— Muse (Yahoo infra lane)
