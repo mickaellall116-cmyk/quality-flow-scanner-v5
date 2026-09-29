@@ -2,7 +2,7 @@
   "scanner": "Quality Flow Scanner V5.3",
   "scanner_version": "5.3",
   "rule_version": "2026-09-14-v3",
-  "generated_at": "2026-09-28T23:55:59.749716+00:00",
+  "generated_at": "2026-09-29T02:56:38.789597+00:00",
   "interval": "4h",
   "period": "180d",
   "signal_bar_close_at": "2026-09-28T16:00:00-04:00",
@@ -75,8 +75,8 @@
       "weekly_trend_confirmed": true,
       "confirmation_15m": false,
       "confirmation_15m_at": "2026-09-28T16:00:00-04:00",
-      "session_vwap_15m": 1052.6179,
-      "confirmation_15m_rel_vol": 1.974,
+      "session_vwap_15m": 1052.6126,
+      "confirmation_15m_rel_vol": 1.982,
       "risk_reward": 2.149,
       "validation_status": "WATCH/WAIT",
       "validation_reasons": [
@@ -152,5 +152,5 @@
   ],
   "source": "github-actions",
   "uses_closed_4h_candles": true,
-  "primary_candidates_frozen": false
+  "primary_candidates_frozen": true
 }
