@@ -48,6 +48,15 @@ THEME_MAP: Dict[str, str] = (
 )
 COHORT_SIZES = {"UX51": len(UX51_UNIVERSE), "X2": len(ux2.UNIVERSE_X2)}
 INTERVAL, PERIOD = "4h", "180d"
+INTERVAL_TD = pd.Timedelta(INTERVAL)  # deterministic bar length for timing-state checks
+
+
+def _as_utc(ts: pd.Timestamp) -> pd.Timestamp:
+    """Normalize a timestamp to tz-aware UTC for wall-clock comparisons."""
+    ts = pd.Timestamp(ts)
+    if ts.tzinfo is None:
+        return ts.tz_localize("UTC")
+    return ts.tz_convert("UTC")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATE_PATH = os.path.join(BASE_DIR, "v54_forward", "state.json")
@@ -567,6 +576,7 @@ class CycleContext:
     get_4h: Callable[[str], pd.DataFrame]      # symbol -> closed 4H bars
     get_market_4h: Callable[[], pd.DataFrame]  # QQQ closed 4H bars
     provider: Optional[ProviderHealth] = None  # None = replay/unhardened path
+    now: Optional[datetime] = None  # wall-clock override for tests; None = real clock
 
 
 def blank_state() -> Dict[str, Any]:
@@ -627,15 +637,19 @@ def _process_symbol(sym: str, df: pd.DataFrame, ctx: CycleContext,
     bars_walked = 0
     entry_bars: Dict[str, Any] = {}  # sids opened this cycle -> entry bar ts
     # Pending entries: open at the first completed bar after the signal bar.
-    # Outage containment (PR #7 amendment): a pending entry whose intended
-    # next-bar execution was missed because data was unavailable or the
-    # cycle budget was exhausted must never be filled retrospectively once
-    # data returns. If the symbol was deferred while this entry was pending
-    # (flag set by _defer_symbol_data) and newer completed bars now exist
-    # beyond the intended fill bar, the entry is unexecutable: void it,
-    # keep the full audit trail, and do not open a position. A single
-    # deferred cycle that costs no fill bar still fills at the intended
-    # bar's open (timely under the frozen next-bar-open convention).
+    # Outage containment (PR #7 amendment + timing-state follow-up): a pending
+    # entry whose intended next-bar execution was missed because data was
+    # unavailable or the cycle budget was exhausted must never be filled
+    # retrospectively once data returns. If the symbol was deferred while
+    # this entry was pending (flag set by _defer_symbol_data) the entry is
+    # unexecutable when either (a) newer completed bars exist beyond the
+    # intended fill bar, or (b) the intended fill bar (start + INTERVAL) was
+    # already complete at the last blind deferral (last_defer_time_utc).
+    # Case (b) closes the edge where the fill bar completed during the
+    # outage but no second bar has completed yet. A single deferred cycle
+    # whose fill bar completed after our last attempt still fills at the
+    # intended bar's open (timely under the frozen next-bar-open
+    # convention).
     for sid, pend in list(state["pending"].items()):
         if pend.get("symbol") != sym:
             continue
@@ -644,13 +658,38 @@ def _process_symbol(sym: str, df: pd.DataFrame, ctx: CycleContext,
         if newbars.empty:
             continue  # no completed bar after the signal bar yet
         ts = newbars.index[0]
-        if pend.get("data_missed_while_pending") and len(newbars) > 1:
+        # Timing-state edge case (PR #7 follow-up): the bar-count proxy
+        # (len(newbars) > 1) misses a stale fill when the intended fill bar
+        # completed during the outage but no second bar has completed yet.
+        # The fill bar's end is deterministic (bar start + INTERVAL); if it
+        # was already complete at our last blind deferral, filling now would
+        # be retrospective. A fill bar that completed after our last attempt
+        # is treated as fresh (the blessed single-blip case).
+        void_entry = False
+        void_detail: Dict[str, Any] = {}
+        if pend.get("data_missed_while_pending"):
+            fill_bar_end = _as_utc(ts) + INTERVAL_TD
+            void_detail["fill_bar_end"] = fill_bar_end.isoformat()
+            if len(newbars) > 1:
+                void_entry = True
+                void_detail["stale_basis"] = "newer_completed_bars"
+            else:
+                defer_iso = pend.get("last_defer_time_utc")
+                if defer_iso:
+                    last_defer = _as_utc(pd.Timestamp(defer_iso))
+                    void_detail["last_defer_time_utc"] = defer_iso
+                    if fill_bar_end <= last_defer:
+                        void_entry = True
+                        void_detail["stale_basis"] = \
+                            "fill_bar_completed_while_blind"
+        if void_entry:
             log.log_event(sid, {"event": "entry_unexecutable_after_outage",
                                 "symbol": sym,
                                 "signal_bar_start": pend["signal_bar_start"],
                                 "intended_fill_bar": ts.isoformat(),
                                 "intended_fill_open": float(newbars.iloc[0]["Open"]),
                                 "newer_completed_bars": len(newbars) - 1,
+                                **void_detail,
                                 "reason": "intended next-bar execution missed "
                                           "during data outage; retrospective "
                                           "fill prohibited"})
@@ -691,7 +730,8 @@ def _process_symbol(sym: str, df: pd.DataFrame, ctx: CycleContext,
 def _defer_symbol_data(sym: str, exc: DataUnavailable,
                        sids_open: List[str], sids_pending: List[str],
                        state: Dict[str, Any], log: ForwardLog,
-                       summary: Dict[str, Any]) -> None:
+                       summary: Dict[str, Any],
+                       now: Optional[datetime] = None) -> None:
     """Guard 2: mark data-deferred; never assume an exit, never invent one.
 
     Open positions get `exit_data_deferred`; pending entries get
@@ -718,6 +758,12 @@ def _defer_symbol_data(sym: str, exc: DataUnavailable,
         pend = state["pending"].get(sid)
         if pend is not None:
             pend["data_missed_while_pending"] = True
+            # Timing state for the stale-fill edge case: the last wall-clock
+            # moment we attempted (and failed) to fetch while blind. Updated
+            # on every deferral; _process_symbol voids the entry when the
+            # intended fill bar was already complete by this time.
+            clock = now or datetime.now(timezone.utc)
+            pend["last_defer_time_utc"] = clock.isoformat()
     outages = state.setdefault("data_outages", {})
     rec = outages.setdefault(sym, {"since": datetime.now(timezone.utc).isoformat(),
                                    "reason": exc.reason, "count": 0})
@@ -751,6 +797,7 @@ def run_cycle(ctx: CycleContext, state: Dict[str, Any],
     """
     t0 = time.monotonic()
     provider: Optional[ProviderHealth] = getattr(ctx, "provider", None)
+    ctx_now: Optional[datetime] = getattr(ctx, "now", None)
     seen = set(state["seen_signal_ids"])
     summary: Dict[str, Any] = {"new_signals": 0, "new_signal_ids": [],
                                "opened": 0, "closed": [], "errors": [],
@@ -814,7 +861,8 @@ def run_cycle(ctx: CycleContext, state: Dict[str, Any],
                 and not prov_health.auxiliary):
             _defer_symbol_data(sym, DataUnavailable(sym, prov_health.reason,
                                                     prov_health.detail),
-                               sids_open, sids_pending, state, log, summary)
+                               sids_open, sids_pending, state, log, summary,
+                               now=ctx_now)
             continue
         try:
             df = ctx.get_4h(sym)
@@ -822,7 +870,7 @@ def run_cycle(ctx: CycleContext, state: Dict[str, Any],
             if provider is not None:
                 provider.note(sym, exc.reason, exc.detail)
             _defer_symbol_data(sym, exc, sids_open, sids_pending,
-                               state, log, summary)
+                               state, log, summary, now=ctx_now)
             continue
         except Exception as exc:  # never let one symbol kill the cycle
             summary["errors"].append({"symbol": sym, "error": str(exc)[:200]})
@@ -833,7 +881,7 @@ def run_cycle(ctx: CycleContext, state: Dict[str, Any],
             if provider is not None:
                 provider.note(sym, exc.reason, exc.detail)
             _defer_symbol_data(sym, exc, sids_open, sids_pending,
-                               state, log, summary)
+                               state, log, summary, now=ctx_now)
             continue
         # Market frame: the frozen exit path tolerates None (same as the
         # old code when market data was absent); a market gap never defers
