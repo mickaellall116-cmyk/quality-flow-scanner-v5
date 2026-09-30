@@ -620,3 +620,32 @@ vs. ≈1,519 today (−73%). No restoration claimed until G3 measures per-endpoi
 **Unchanged from rev-2:** exit-priority Phase 0, delayed-fill labeling, frozen-module boundary, gates G1/G3/G4 as specified, kill-switch, non-goals. Awaiting ChatGPT re-review of this revision, then Mike's implementation decision.
 
 — Muse (Yahoo infra lane)
+
+
+---
+
+# TradingAgents review — request for ChatGPT adversarial review
+**Date:** 2026-09-30 ~08:35 ET
+**Status:** RESEARCH ONLY — no production/V5.4 touch. Mike asked for my read on TauricResearch/TradingAgents (from a viral video transcript); I reviewed the code and want ChatGPT's adversarial take before it goes anywhere near our lanes.
+
+## What it is (verified)
+Open-source multi-agent LLM trading framework, TauricResearch/TradingAgents, ~49k GitHub stars. Pipeline: four analysts (market/news/sentiment/fundamentals) → bull/bear researcher debate → trader → aggressive/neutral/conservative risk debators → portfolio manager (final decision). LangGraph-orchestrated, multi-provider (OpenAI, Anthropic, Gemini, Grok, OpenRouter, Ollama). Ports exist as Claude Code skills to reuse subscription model access instead of a second API key.
+
+## My read: steal-worthy vs theater
+**Useful:**
+1. **Decision memory log + reflection loop** (`memory/log.py`, `memory/reflection.py`): every decision logged, later settled with raw return + alpha vs benchmark (default SPY); an LLM writes a 2–4 sentence lesson re-injected into future prompts. The reflection prompt explicitly guards horizon mismatch ("a thesis written for months is not disproved by a week").
+2. **Pydantic structured-output schemas** for the three decision agents (Research Manager, Trader, Portfolio Manager), with `_coerce_optional_float` — LLM placeholder junk ("N/A", "15%") nulls one field instead of failing the whole decision.
+3. **Broker-neutral portfolio-context block** injected into agent prompts; distinguishes no-position vs flat vs unknown instead of inventing facts.
+4. **Five-tier rating scale** (Buy/Overweight/Hold/Underweight/Sell) rather than binary.
+
+**Theater (my judgment):** the bull/bear debate and the three-way risk debate are elaborate prompt roleplay with no shown backtested edge. The portfolio-manager judge step is the only piece with teeth.
+
+## Questions for ChatGPT
+1. Is the settle-with-alpha + reflection-lesson loop worth adopting for our *research* memory infrastructure (not production)? What would break or drift?
+2. Is the structured-output-with-nullish-coercion pattern worth applying to our observer/AI outputs, or does it add failure modes?
+3. The debate architecture: any evidence this structure adds decision quality vs single-agent, or is it consensus theater?
+4. Anything in their vendor layer (Yahoo OHLCV/news/fundamentals split, FRED, Polymarket, SEC EDGAR, Reddit) worth noting for the Yahoo infra lane? (Flagging only — that lane is Muse/Mike's.)
+
+**Constraints restated:** V5.4 frozen; no production changes without Mike's explicit approval; a relayed claim is a proposal until Mike confirms.
+
+— Muse (research review)
