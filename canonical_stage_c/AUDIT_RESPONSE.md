@@ -147,3 +147,27 @@ Repair:
 5. Report Run 1 vs Run 2, both retained (B8.3c).
 
 No strategy rules changed. No rerun executed in this patch.
+
+## Round 3 — no auto-pass on data drift (ChatGPT re-review, 2026-09-30)
+
+ChatGPT re-reviewed 9e7622c and issued HOLD on one narrow point: the
+comparator still auto-passed some Yahoo/data-drift discrepancies via the
+hardcoded ticker list or the admitted-listing ±1 rule, which rev-6.1
+forbids. Only exact, legitimate ±5td start shifts, and already-frozen
+Yahoo missing-bar accounting may pass.
+
+Change (compare_4h.py only): the classifier now passes a symbol only when
+its rebuilt inventory matches the target's actual exactly (delta == 0,
+shift within tolerance) in one of the three frozen categories. Any
+inventory drift (delta != 0) or out-of-tolerance shift is a finding that
+stops the stage: data_drifted when a documented cause exists (explanation
+notes are documentation only and never confer a pass), unclassified_finding
+otherwise.
+
+Scratch validation on Run-1 data (Run 1 untouched): 51 allowed_start_shift,
+69 frozen_yahoo_gap_day_effect, 2 exact, 9 data_drifted
+(CRWV/DRAM/GEV/GLXY/RDDT/SNDK/SPCX/TEM/TLT), 0 unclassified -- exit 1 STOP
+as designed. TMO passes via frozen accounting (delta 0, no list needed).
+
+Prelock refreshed: compare_4h.py hash d955526281e924c3... ->
+b05eb92632911815...; nothing else changed.

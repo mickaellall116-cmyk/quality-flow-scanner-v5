@@ -1,6 +1,6 @@
 {
-  "purpose": "B8 pre-rerun hash lock for Stage C Run 2 (rev-6.1 \u00a710/B8.1, \u00a715) \u2014 REFRESHED for amended patch (R1/R2)",
-  "created_at_utc": "2026-09-30T00:39:55.146796+00:00",
+  "purpose": "B8 pre-rerun hash lock for Stage C Run 2 (rev-6.1 \u00a710/B8.1, \u00a715) \u2014 REFRESHED for round-3 comparator (no auto-pass on data drift)",
+  "created_at_utc": "2026-09-30T01:30:12.066814+00:00",
   "run1_preserved_commit": "66bc1e8b1eb4cce020f4d19c2acc8258e948301a",
   "round1_patch_commit": "265354deb86e43e70c9af90db990f66fba7959a7",
   "note": "Recorded BEFORE any Run 2 byte is fetched. Run 2 executes the repaired scripts verbatim only after Mike authorizes the rerun.",
@@ -45,7 +45,7 @@
     },
     {
       "path": "canonical_stage_c/compare_4h.py",
-      "sha256": "d955526281e924c38d6e9bd8b5689b77669f716c143ff670696d653f9b128789"
+      "sha256": "b05eb9263291181547e5a8d65c44fd29bce4ee574cab1464619365db98ef7111"
     },
     {
       "path": "canonical_stage_c/hash_run_inputs.py",
@@ -77,7 +77,8 @@
     "fetch_4h.py fallback": "rev-6.1 \u00a711 (fresh 4H cache construction; exact acquisition path)",
     "compare_4h.py expected_4h": "rev-6.1 \u00a75B (check against coverage_report.json's expected bar counts)",
     "compare_4h.py from-effective primary + classification": "rev-6.1 \u00a75B + UNIVERSE.md effective-window definition (R1)",
-    "run-dir isolation": "B8.3c (both runs retained/reported) + R2 stale-tag mixing prevention"
+    "run-dir isolation": "B8.3c (both runs retained/reported) + R2 stale-tag mixing prevention",
+    "compare_4h.py no auto-pass": "ChatGPT re-review: pass categories are exactly exact / allowed_start_shift / frozen_yahoo_gap_day_effect; any inventory drift (delta != 0) is a data_drifted/unclassified finding that stops the stage"
   },
   "b8_3b_review": "Independent reviewer: ChatGPT (adversarial reviewer). Final decision-maker: Mike. Status: amended patch pending ChatGPT re-review.",
   "b8_3c_retention": "Run 1 outputs retained at 66bc1e8; Run 2 outputs will be written to canonical_stage_c/run2/ and both reported",
