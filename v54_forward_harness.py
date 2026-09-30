@@ -35,6 +35,7 @@ from typing import Any, Callable, Dict, List, Optional
 import pandas as pd
 
 import hybrid_exit_test  # frozen UX51 universe (import-time safe: main() guarded)
+import scanner_rules as sr  # canonical session bar construction (bar_close_at)
 import v54_universe_x2 as ux2  # frozen X2 universe (added 2026-09-15, day 1)
 import v54_engine as eng
 from v54_exit_tracker import ModeBTracker, close_summary
@@ -48,7 +49,6 @@ THEME_MAP: Dict[str, str] = (
 )
 COHORT_SIZES = {"UX51": len(UX51_UNIVERSE), "X2": len(ux2.UNIVERSE_X2)}
 INTERVAL, PERIOD = "4h", "180d"
-INTERVAL_TD = pd.Timedelta(INTERVAL)  # deterministic bar length for timing-state checks
 
 
 def _as_utc(ts: pd.Timestamp) -> pd.Timestamp:
@@ -643,8 +643,9 @@ def _process_symbol(sym: str, df: pd.DataFrame, ctx: CycleContext,
     # retrospectively once data returns. If the symbol was deferred while
     # this entry was pending (flag set by _defer_symbol_data) the entry is
     # unexecutable when either (a) newer completed bars exist beyond the
-    # intended fill bar, or (b) the intended fill bar (start + INTERVAL) was
-    # already complete at the last blind deferral (last_defer_time_utc).
+    # intended fill bar, or (b) the intended fill bar's canonical close
+    # (scanner_rules.bar_close_at) was already past at the last blind
+    # deferral (last_defer_time_utc).
     # Case (b) closes the edge where the fill bar completed during the
     # outage but no second bar has completed yet. A single deferred cycle
     # whose fill bar completed after our last attempt still fills at the
@@ -661,14 +662,16 @@ def _process_symbol(sym: str, df: pd.DataFrame, ctx: CycleContext,
         # Timing-state edge case (PR #7 follow-up): the bar-count proxy
         # (len(newbars) > 1) misses a stale fill when the intended fill bar
         # completed during the outage but no second bar has completed yet.
-        # The fill bar's end is deterministic (bar start + INTERVAL); if it
-        # was already complete at our last blind deferral, filling now would
-        # be retrospective. A fill bar that completed after our last attempt
-        # is treated as fresh (the blessed single-blip case).
+        # The fill bar's close comes from the scanner's canonical
+        # bar_close_at() -- session bars are NOT all 4h long (the 13:30 bar
+        # closes at 16:00, not 17:30). If the bar was already complete at
+        # our last blind deferral, filling now would be retrospective. A
+        # fill bar that completed after our last attempt is treated as
+        # fresh (the blessed single-blip case).
         void_entry = False
         void_detail: Dict[str, Any] = {}
         if pend.get("data_missed_while_pending"):
-            fill_bar_end = _as_utc(ts) + INTERVAL_TD
+            fill_bar_end = _as_utc(sr.bar_close_at(ts, sym))
             void_detail["fill_bar_end"] = fill_bar_end.isoformat()
             if len(newbars) > 1:
                 void_entry = True
