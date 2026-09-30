@@ -32,13 +32,21 @@ Expected-bar calendar (independent of any quarantined data):
   - Expected 4H per symbol: 2 per full trading day, 1 per early close, over
     [symbol first-1H-bar date, 2026-09-24].
 
-Output per symbol: canonical_stage_c/data_4h/{SYM}.json
+Output per symbol: <run>/data_4h/{SYM}.json
   {symbol, generated_at_utc, provenance, n_1h, first_1h, last_1h,
    bars: [{t (ISO, America/New_York), o,h,l,c,v, n_1h}], anomalies_1h: [...]}
-plus canonical_stage_c/build_4h_summary.json (per-symbol coverage/quality).
+plus <run>/build_4h_summary.json (per-symbol coverage/quality).
+
+RUN ISOLATION (R2): --run-dir selects a run-specific directory
+(default: canonical_stage_c, the Run 1 layout). Run 2 MUST use
+--run-dir canonical_stage_c/run2. The builder only ever reads raw 1H files
+from its own run dir, so a symbol changing fetch shape between runs cannot
+merge stale prior-run bytes with fresh bytes.
 """
+import argparse
 import csv
 import json
+import os
 from datetime import date, datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -61,6 +69,14 @@ WINDOW_END = date(2026, 9, 24)      # frozen window end (UNIVERSE.md / §5B)
 # effective 4H eligibility = 60th 4H bar (listing + 30 trading days rule).
 ADMITTED_LISTINGS = {"ARM", "BMNR", "CRWV", "DRAM", "GEV", "GLXY", "NBIS",
                      "RDDT", "SNDK", "SPCX", "TEM"}
+
+
+def parse_args():
+    p = argparse.ArgumentParser(description="Stage C 1H->4H build (rev-6.1 §11)")
+    p.add_argument("--run-dir", default=os.environ.get("CANONICAL_RUN_DIR"),
+                   help="run-specific directory; default canonical_stage_c "
+                        "(Run 1 layout). Run 2: --run-dir canonical_stage_c/run2")
+    return p.parse_args()
 
 
 def trading_days():
@@ -165,13 +181,19 @@ def quality(bars):
 
 
 def main():
+    global RAW_DIR, OUT_DIR
+    args = parse_args()
+    RUN = Path(args.run_dir) if args.run_dir else STAGE_C
+    RAW_DIR = RUN / "raw_1h"
+    OUT_DIR = RUN / "data_4h"
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"run dir: {RUN}")
     days = trading_days()
     early = {d for d in days if d.isoformat() in EARLY_CLOSES_DOC}
     print(f"trading days in window: {len(days)}, early closes: "
           f"{sorted(d.isoformat() for d in early)}")
 
-    manifest = json.loads((STAGE_C / "fetch_4h_manifest.json").read_text())
+    manifest = json.loads((RUN / "fetch_4h_manifest.json").read_text())
     syms = [s["symbol"] for s in manifest["symbols"]]
     summary = {"generated_at_utc": datetime.now(timezone.utc).isoformat(),
                "rule": "1H open-time session assignment; agg o=first,h=max,l=min,c=last,v=sum; "
@@ -229,7 +251,7 @@ def main():
             "anomalies_1h": anomalies,
         }
         (OUT_DIR / f"{sym}.json").write_text(json.dumps(out))
-    (STAGE_C / "build_4h_summary.json").write_text(json.dumps(summary, indent=2))
+    (RUN / "build_4h_summary.json").write_text(json.dumps(summary, indent=2))
     n4 = sum(s["n_4h"] for s in summary["symbols"])
     print(f"built {len(summary['symbols'])} symbols, {n4} 4H bars total")
 

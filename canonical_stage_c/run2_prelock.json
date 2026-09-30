@@ -1,8 +1,9 @@
 {
-  "purpose": "B8 pre-rerun hash lock for Stage C Run 2 (rev-6.1 \u00a710/B8.1, \u00a715)",
-  "created_at_utc": "2026-09-30T00:00:52.621336+00:00",
+  "purpose": "B8 pre-rerun hash lock for Stage C Run 2 (rev-6.1 \u00a710/B8.1, \u00a715) \u2014 REFRESHED for amended patch (R1/R2)",
+  "created_at_utc": "2026-09-30T00:39:55.146796+00:00",
   "run1_preserved_commit": "66bc1e8b1eb4cce020f4d19c2acc8258e948301a",
-  "note": "Recorded BEFORE any Run 2 byte is fetched. Run 2 executes the repaired scripts verbatim only after Mike approves the audit-repair patch.",
+  "round1_patch_commit": "265354deb86e43e70c9af90db990f66fba7959a7",
+  "note": "Recorded BEFORE any Run 2 byte is fetched. Run 2 executes the repaired scripts verbatim only after Mike authorizes the rerun.",
   "frozen_spec_rev6_1": {
     "path": "research_notes/CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928_REV6_1.md",
     "sha256": "53d3a5b8309fb3832e12bdf3ede24b55214919ec79f9c53f6096cddf7f371d9e"
@@ -36,15 +37,19 @@
   "rebuild_code": [
     {
       "path": "canonical_stage_c/fetch_4h.py",
-      "sha256": "204c75936a1e8951bf4e213b03fcd76b760ae3ebf326742d56103d33754e3fe8"
+      "sha256": "9832575215d3511ca8ced326525f81b9b07b832b4275a604a64562665488bd5d"
     },
     {
       "path": "canonical_stage_c/build_4h.py",
-      "sha256": "9a6ee78a76c7fda7d501e556239699e4a281d424176df42db3834c3eb9a7aae3"
+      "sha256": "6a2d5801bd5d7b56acecb6c47c8861511f8bde916f2377992745f43cd65cd183"
     },
     {
       "path": "canonical_stage_c/compare_4h.py",
-      "sha256": "dfbf181a36b51bcc46d4aefd1593c0afc432359a27c2dd15be19b9c352f0268a"
+      "sha256": "d955526281e924c38d6e9bd8b5689b77669f716c143ff670696d653f9b128789"
+    },
+    {
+      "path": "canonical_stage_c/hash_run_inputs.py",
+      "sha256": "69b4643d2ed79bd9d464b17615cbd4bcff114637695dd178cd5cdbce8c48ade1"
     }
   ],
   "check_target_coverage_report": {
@@ -70,8 +75,16 @@
   },
   "b8_3a_citations": {
     "fetch_4h.py fallback": "rev-6.1 \u00a711 (fresh 4H cache construction; exact acquisition path)",
-    "compare_4h.py expected_4h": "rev-6.1 \u00a75B (check against coverage_report.json's expected bar counts)"
+    "compare_4h.py expected_4h": "rev-6.1 \u00a75B (check against coverage_report.json's expected bar counts)",
+    "compare_4h.py from-effective primary + classification": "rev-6.1 \u00a75B + UNIVERSE.md effective-window definition (R1)",
+    "run-dir isolation": "B8.3c (both runs retained/reported) + R2 stale-tag mixing prevention"
   },
-  "b8_3b_review": "pending \u2014 Mike reviews the audit-repair patch before any rerun",
-  "b8_3c_retention": "Run 1 outputs retained at 66bc1e8; Run 2 outputs will be written separately and both reported"
+  "b8_3b_review": "Independent reviewer: ChatGPT (adversarial reviewer). Final decision-maker: Mike. Status: amended patch pending ChatGPT re-review.",
+  "b8_3c_retention": "Run 1 outputs retained at 66bc1e8; Run 2 outputs will be written to canonical_stage_c/run2/ and both reported",
+  "run2_runbook": [
+    "python3 fetch_4h.py --run-dir canonical_stage_c/run2",
+    "python3 hash_run_inputs.py --run-dir canonical_stage_c/run2  (B8 cache-manifest freeze BEFORE build/compare)",
+    "python3 build_4h.py --run-dir canonical_stage_c/run2",
+    "python3 compare_4h.py --run-dir canonical_stage_c/run2"
+  ]
 }

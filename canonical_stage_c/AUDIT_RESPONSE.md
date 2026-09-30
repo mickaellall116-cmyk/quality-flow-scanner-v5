@@ -87,3 +87,63 @@ forward: every number I report comes from a read artifact, cited.
 3. Both runs' outputs are retained and reported (B8.3c). No semantic
    changes: the repairs restore frozen-rule compliance (§11, §5B); nothing
    was adjusted to force a pass (B8.4).
+
+---
+
+## Round 2 — amended patch (ChatGPT review of 265354d; verdict HOLD, two redlines)
+
+Reviewer: ChatGPT (B8.3(b) independent reviewer). Final decision-maker: Mike.
+(Correction of my round-1 wording, which wrongly named Mike the B8.3(b)
+reviewer.)
+
+### R1 — §5B comparator: effective-window comparison is now the primary gate
+Finding: swapping actual_4h→expected_4h fixed the field source, but the
+primary/aggregate gap still used total raw cache bars. For admitted new
+listings this is structurally wrong (BMNR: expected 592, from-effective
+592, total 651 — the old aggregate reported a −59 "miss" on an exact
+symbol).
+
+Repair in compare_4h.py:
+- `bar_count_gap` (primary, the only aggregated gap) =
+  expected_4h − rebuilt_n_4h_from_effective. Total raw cache count is kept
+  per symbol as `bar_count_gap_total_raw`, informational only, never
+  aggregated.
+- Every nonzero primary gap gets an explicit mechanical classification:
+  exact / allowed_start_shift / frozen_yahoo_gap_day_effect /
+  ticker_specific_availability / unclassified_finding. The classifier checks
+  the identity rebuilt_from_effective == target_actual_4h − shift_bars + delta
+  (shift_bars from the SPY daily session calendar, 2/day, 1 on half days).
+  Anything not mechanically explained is unclassified_finding, and any
+  unclassified finding stops the stage (nonzero exit after writing evidence).
+- Validated against Run-1 data in a scratch dir (Run-1 artifacts untouched):
+  131 compared → 51 allowed_start_shift, 68 frozen_yahoo_gap_day_effect,
+  4 exact, 8 ticker_specific_availability, 0 unclassified. BMNR/ARM now read
+  exact / +6 allowed shift instead of −59 / −53.
+
+### R2 — Run 2 isolated on disk
+Finding: all three scripts still read/wrote Run-1 paths, and build_4h.py
+loads both p730 and pmax tags — a symbol changing fetch shape on Run 2
+could merge stale Run-1 bytes with fresh Run-2 bytes.
+
+Repair:
+- fetch_4h.py, build_4h.py, compare_4h.py all accept --run-dir
+  (or CANONICAL_RUN_DIR). Default = canonical_stage_c (Run-1 layout,
+  byte-for-byte reproducible). Run 2 MUST use
+  --run-dir canonical_stage_c/run2 → run2/raw_1h, run2/data_4h,
+  run2/fetch_4h_manifest.json, run2/build_4h_summary.json,
+  run2/stage_c_comparison.json.
+- fetch_4h.py refuses (exit 1) to fetch into a raw_1h dir that already
+  contains files — code-controlled proof against stale-tag mixing.
+- New runbook helper hash_run_inputs.py: after a run's fetch and BEFORE
+  build/compare, it hash-locks the fetch manifest plus every raw 1H file
+  (per-file SHA-256 + combined inputs_digest) into <run>/run_input_lock.json.
+  This is the B8 cache-manifest freeze for the downstream Stage-C steps.
+
+### Run-2 runbook (executes only after Mike authorizes the rerun)
+1. python3 fetch_4h.py --run-dir canonical_stage_c/run2
+2. python3 hash_run_inputs.py --run-dir canonical_stage_c/run2   (B8 freeze)
+3. python3 build_4h.py --run-dir canonical_stage_c/run2
+4. python3 compare_4h.py --run-dir canonical_stage_c/run2
+5. Report Run 1 vs Run 2, both retained (B8.3c).
+
+No strategy rules changed. No rerun executed in this patch.

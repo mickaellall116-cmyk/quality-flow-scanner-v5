@@ -21,15 +21,26 @@ FETCH PATH (audit-repaired; this is the exact path that produced Run 1):
     on the primary shape. A symbol failing both shapes is recorded as a
     finding; no hammering.
 
-Output: raw 1H CSVs under canonical_stage_c/raw_1h/{SYM}_p730.csv or
-{SYM}_pmax.csv (tag matches the shape actually used; build_4h.py loads
-both), plus canonical_stage_c/fetch_4h_manifest.json with one record per
-symbol: fetch_shape, first_1h, last_1h, n_1h, error, fetch timestamps.
+Output (under the run directory; see --run-dir):
+  raw 1H CSVs: <run>/raw_1h/{SYM}_p730.csv or {SYM}_pmax.csv
+  (tag matches the shape actually used; build_4h.py loads both),
+  plus <run>/fetch_4h_manifest.json with one record per symbol:
+  fetch_shape, first_1h, last_1h, n_1h, error, fetch timestamps.
+
+RUN ISOLATION (R2): --run-dir selects a run-specific directory
+(default: canonical_stage_c, the Run 1 layout). Run 2 MUST use
+--run-dir canonical_stage_c/run2 so no Run-1 raw/build artifact is ever
+read or overwritten. The fetch refuses to run if <run>/raw_1h already
+contains files (code-controlled proof against stale-tag mixing: a rerun
+cannot merge old Run-1 bytes with fresh Run-2 bytes).
 
 Frozen-rule basis: rev-6.1 §11 (fresh 4H cache; no quarantined reuse).
 """
+import argparse
 import csv
 import json
+import os
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -38,7 +49,6 @@ import yfinance as yf
 
 WORKTREE = Path(__file__).resolve().parent.parent
 STAGE_C = WORKTREE / "canonical_stage_c"
-RAW_DIR = STAGE_C / "raw_1h"
 UNIVERSE_REBUILT = WORKTREE / "canonical_stage_b" / "universe_rebuilt.json"
 OVERLAY_OUTSIDERS = ["SOFI", "RKLB", "ONDS", "ASTX", "BBAI", "HOOD"]
 
@@ -46,6 +56,15 @@ SLEEP_BETWEEN = 1.2
 SLEEP_EVERY10 = 8.0
 MAX_RETRIES = 2
 SHAPES = ("730d", "max")  # primary, then deterministic fallback
+
+
+def parse_args():
+    p = argparse.ArgumentParser(description="Stage C 1H fetch (rev-6.1 §11)")
+    p.add_argument("--run-dir", default=os.environ.get("CANONICAL_RUN_DIR"),
+                   help="run-specific output directory; "
+                        "default canonical_stage_c (Run 1 layout). "
+                        "Run 2: --run-dir canonical_stage_c/run2")
+    return p.parse_args()
 
 
 def symbols():
@@ -102,9 +121,19 @@ def fetch_one(sym):
 
 
 def main():
+    args = parse_args()
+    RUN = Path(args.run_dir) if args.run_dir else STAGE_C
+    RAW_DIR = RUN / "raw_1h"
+    # R2 run isolation: never fetch into a directory that already holds raw
+    # input files. A rerun into a dirty dir could mix stale prior-run bytes
+    # with fresh bytes (build_4h.py loads both p730 and pmax tags).
+    if RAW_DIR.exists() and any(RAW_DIR.iterdir()):
+        sys.exit(f"refusing: {RAW_DIR} already contains files; "
+                 f"use a clean run dir (e.g. --run-dir {STAGE_C}/run2)")
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     syms = symbols()
     print(f"{len(syms)} symbols; primary period=730d, deterministic period=max fallback")
+    print(f"run dir: {RUN}")
     manifest = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "fetch_shape": "primary period=730d then deterministic period=max fallback; "
@@ -144,7 +173,7 @@ def main():
             print(f"  {n}/137 done, last={sym}", flush=True)
             time.sleep(SLEEP_EVERY10)
         time.sleep(SLEEP_BETWEEN)
-    out = STAGE_C / "fetch_4h_manifest.json"
+    out = RUN / "fetch_4h_manifest.json"
     out.write_text(json.dumps(manifest, indent=2))
     fails = sum(1 for s in manifest["symbols"] if s["error"])
     pmax = sum(1 for s in manifest["symbols"] if s["fetch_shape"] == "period=max")
