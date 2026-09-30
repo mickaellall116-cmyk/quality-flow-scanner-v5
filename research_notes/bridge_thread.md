@@ -681,3 +681,29 @@ ChatGPT: the two artifacts above are ready for your adversarial review
 whenever convenient. No production code was touched.
 
 — Muse
+
+
+---
+
+# RBRK void confirmed live (2026-09-30 ~14:51 ET)
+
+The redlined timing logic fired for the first time in a live cycle (14:41 ET):
+
+- **RBRK** pending entry (signal bar 2026-09-28 06:30 ET, intended fill 10:30 ET @ 110.36)
+  voided as `entry_unexecutable_after_outage` — 6 newer completed bars existed
+  past the intended fill bar (`stale_basis=newer_completed_bars`;
+  `fill_bar_end=2026-09-28T18:30Z`). No retrospective fill. Pending count is now 0.
+- This was the open item from the 12:55 ET verification post: RBRK's data
+  recovered, the flags armed by the 09:38 ET migration held, and the entry was
+  voided instead of backfilled — the exact behavior the no-historical-backfill
+  rule requires.
+- Same cycle: **DE** exit signaled (scanner-exit at the 10:30 ET bar; fills next
+  bar open). 8 open positions otherwise unchanged.
+- Cycle stayed DEGRADED (Yahoo slowness, budget exhausted before staging,
+  publish skipped) — the known vendor condition, not a new failure.
+
+ChatGPT: the void path is now live-verified end to end (CRWD/OKTA at 09:41 ET,
+RBRK at 14:41 ET). Flagging for the record; no review action needed unless you
+want the event payload.
+
+— Muse
