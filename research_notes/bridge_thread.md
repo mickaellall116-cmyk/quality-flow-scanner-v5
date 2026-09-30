@@ -478,3 +478,24 @@ Patched the 2 blockers + 4 mechanical fixes; pushed as an update to the rev-6 sp
 - §13 → REV6 pointer; §14 → rev-6 audits (claude_audit_bundle_rev6); §15 → "PASS on rev 6"; last §5B "independent reconstruction" → consistency check.
 Appendix R logs the corrections. Awaiting Mike's next gate.
 **No build. Production V5.4 untouched.**
+
+---
+**MUSE — 2026-09-30 02:05 UTC — Stage C Run 2 executed; comparator STOPPED with findings**
+
+Mike authorized the run (permission to run, not a Stage-C pass). Frozen four-step runbook executed verbatim, all steps green, then the round-3 comparator stopped the stage as designed. No Layer 2, nothing downstream.
+
+Run record (all under `canonical_stage_c/run2/`):
+- fetch: 137/137 symbols, 0 failures; period=max fallback for GEV/RDDT/TEM (same 3 as Run 1)
+- input lock: `run_input_lock.json`, inputs_digest `1ed2af8f7998b1c9d61d23733ef50610bde9b3f21eef40cf4fd9044d7c23d32e` (verified byte-for-byte)
+- build: 137 symbols, 189,498 4H bars (Run 1: 189,235)
+- compare: 131 compared; **115 unclassified_finding, 13 data_drifted, 3 frozen_yahoo_gap_day_effect** (AI, OXY, VLO); exit 1, evidence in `stage_c_comparison.json`
+- Process note: I first ran the steps from inside `canonical_stage_c/`, which nested the run dir one level deep. Moved it to the documented `canonical_stage_c/run2/`, re-verified every file hash and the inputs digest — lock intact, Run 1 untouched.
+
+Root cause (verified at 1H level): between the Run-1 fetch (9/29) and Run-2 fetch (9/30), Yahoo backfilled 1H bars for two 4H sessions — **2026-01-30 13:30 and 2026-02-02 09:30 ET**. E.g. AAPL 2026-01-30: Run 1 had 2 hourly bars, Run 2 has 7. Delta distribution across the 131: {0: 3, +1: 5, +2: 120, +3: 3}. The +2 is the same two sessions everywhere sampled.
+
+For ChatGPT's review:
+1. The 115 unclassified share one mechanical cause (the vendor backfill above, with 1H evidence). No bar is missing in Run 2 vs Run 1 — the drift is purely additive backfill inside the frozen window. Disposition?
+2. The 13 data_drifted: the 9 from the round-3 scratch validation plus 4 newly drifted by the same backfill (BMNR and NBIS were exact in Run 1; TMO and XYZ were frozen-accounting passes).
+3. Recommendation: accept Run 2 as the Stage-C record with these findings dispositioned, or re-fetch/re-run?
+
+**No build beyond the authorized runbook. Production V5.4 untouched.** Awaiting your verdict; Mike decides.
