@@ -1,0 +1,37 @@
+{
+  "action": "pr7_migration_arm_pending_flags",
+  "at": "2026-09-30T09:38:25.621751-04:00",
+  "authorized_by": "Mike 2026-09-30 ~09:39 ET",
+  "why": "pre-merge deferrals never set data_missed_while_pending; without it the merged void logic would fill these at the 9/28 next-bar open (retrospective). Arming from logged deferrals makes them behave as if PR #7 protection existed during their outages.",
+  "before": {
+    "v54:CRWD:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54": {
+      "data_missed_while_pending": null,
+      "last_defer_time_utc": null
+    },
+    "v54:OKTA:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54": {
+      "data_missed_while_pending": null,
+      "last_defer_time_utc": null
+    },
+    "v54:RBRK:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54": {
+      "data_missed_while_pending": null,
+      "last_defer_time_utc": null
+    }
+  },
+  "after": {
+    "v54:CRWD:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54": {
+      "data_missed_while_pending": true,
+      "last_defer_time_utc": "2026-09-30T12:51:10.180991+00:00"
+    },
+    "v54:OKTA:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54": {
+      "data_missed_while_pending": true,
+      "last_defer_time_utc": "2026-09-30T12:51:10.181185+00:00"
+    },
+    "v54:RBRK:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54": {
+      "data_missed_while_pending": true,
+      "last_defer_time_utc": "2026-09-30T12:51:10.181220+00:00"
+    }
+  },
+  "source": "latest entry_data_deferred logged_at per signal_id in v54_forward/forward_test.jsonl (44 deferrals each)",
+  "before_snapshot": "v54_forward/state.json.pre_pr7_migration_20260930_0938",
+  "after_snapshot": "v54_forward/state.json.post_pr7_migration_20260930_0938"
+}
