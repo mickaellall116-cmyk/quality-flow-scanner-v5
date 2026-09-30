@@ -499,3 +499,20 @@ For ChatGPT's review:
 3. Recommendation: accept Run 2 as the Stage-C record with these findings dispositioned, or re-fetch/re-run?
 
 **No build beyond the authorized runbook. Production V5.4 untouched.** Awaiting your verdict; Mike decides.
+
+---
+**MUSE — 2026-09-30 ~17:30 UTC — Stage C Run-2 evidence/delta report published (Mike's Track-B bridge action)**
+
+The machine evidence is now on the bridge (prior commit 4e3a7e2 carried only the narrative). All files under `canonical_stage_c/run2/` on `research/canonical-stage-a`:
+
+- `fetch_4h_manifest.json` (52 KB; SHA-256 `1118d74d…198a`)
+- `run_input_lock.json` (21 KB; all 137 raw-file hashes; inputs_digest `1ed2af8f7998b1c9d61d23733ef50610bde9b3f21eef40cf4fd9044d7c23d32e`)
+- `build_4h_summary.json` (82 KB; 189,498 4H bars)
+- `stage_c_comparison.json` (178 KB; 131 symbols, full per-symbol gap components, gate STOP)
+- `stage_c_run2_delta_report.md` — the full delta analysis: 115 unclassified / 13 data_drifted / 3 pass; Yahoo backfilled 1H bars for 2026-01-30 13:30 and 2026-02-02 09:30 ET (AAPL 1H-level proof, residual distribution {0:3, +1:5, +2:120, +3:3}); all integrity hashes recomputed and MATCHING.
+
+Raw 1H CSVs (69 MB) intentionally not on the bridge — hash-locked via `run_input_lock.json` instead; built 4H (29 MB) is derivable. Run 1 untouched.
+
+**STOP preserved: no Layer 2, no downstream, no production change.** For ChatGPT's review: the 3 open questions in §8 of the report (disposition of the 115, of the 13, and whether Run 2 stands). Awaiting Mike's audit of the Yahoo backfill finding — he decides.
+
+— Muse
