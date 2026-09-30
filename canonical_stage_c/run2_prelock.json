@@ -1,0 +1,77 @@
+{
+  "purpose": "B8 pre-rerun hash lock for Stage C Run 2 (rev-6.1 \u00a710/B8.1, \u00a715)",
+  "created_at_utc": "2026-09-30T00:00:52.621336+00:00",
+  "run1_preserved_commit": "66bc1e8b1eb4cce020f4d19c2acc8258e948301a",
+  "note": "Recorded BEFORE any Run 2 byte is fetched. Run 2 executes the repaired scripts verbatim only after Mike approves the audit-repair patch.",
+  "frozen_spec_rev6_1": {
+    "path": "research_notes/CANONICAL_RECONSTRUCTION_FROZEN_RULES_20260928_REV6_1.md",
+    "sha256": "53d3a5b8309fb3832e12bdf3ede24b55214919ec79f9c53f6096cddf7f371d9e"
+  },
+  "six_docs": [
+    {
+      "path": "canonical_baseline/ENGINE.md",
+      "sha256": "064f8768ad0f97c7c04433a2d709a4bd1072bf83d954381de9308e0096ccc620"
+    },
+    {
+      "path": "canonical_baseline/LONEWOLF_RERUN.md",
+      "sha256": "1bbdd32b2a4908bc2c0f835ce4e65605ebf5b8cf408c11ef37bc9229c1203eaf"
+    },
+    {
+      "path": "canonical_baseline/PIT_FEATURES.md",
+      "sha256": "580ecc7ddef819a0a54a0c1a54d443449273960e7970a00c51092d02f6bb353a"
+    },
+    {
+      "path": "canonical_baseline/PORTFOLIO.md",
+      "sha256": "8ddc1e61fb0a8b85939fad547da0d73428bcc4299ce554731db30e4634f8d5ab"
+    },
+    {
+      "path": "canonical_baseline/REBASELINE.md",
+      "sha256": "9417ccdcc483a644278e4856ea03b43277026204733955012d4ddad9df5fc561"
+    },
+    {
+      "path": "canonical_baseline/UNIVERSE.md",
+      "sha256": "1df084af8e9924b13bec9ed175d44e4e0705487939748b8e29fe2724d19ad28d"
+    }
+  ],
+  "rebuild_code": [
+    {
+      "path": "canonical_stage_c/fetch_4h.py",
+      "sha256": "204c75936a1e8951bf4e213b03fcd76b760ae3ebf326742d56103d33754e3fe8"
+    },
+    {
+      "path": "canonical_stage_c/build_4h.py",
+      "sha256": "9a6ee78a76c7fda7d501e556239699e4a281d424176df42db3834c3eb9a7aae3"
+    },
+    {
+      "path": "canonical_stage_c/compare_4h.py",
+      "sha256": "dfbf181a36b51bcc46d4aefd1593c0afc432359a27c2dd15be19b9c352f0268a"
+    }
+  ],
+  "check_target_coverage_report": {
+    "whitelisted_sha256": "fdb6e33a1b2edde231e607f9c5cd8f33f82f2d8b82caaac473fc551c26faed2b",
+    "note": "read by compare_4h.py with hash assertion before use; lives at canonical_baseline/coverage_report.json in the scanner repo per Run 1 layout"
+  },
+  "stage_b_input_universe_rebuilt": {
+    "path": "canonical_stage_b/universe_rebuilt.json",
+    "sha256": "25627b138df21575a58fbe1d40b2e42efde205d9f1f997d76e4ad9bcffb82a25",
+    "note": "rebuilt artifact SHA-256 25627b138df21575a58fbe1d40b2e42efde205d9f1f997d76e4ad9bcffb82a25 (Stage B)"
+  },
+  "overlay_outsider_provenance": {
+    "hardcoded_in_fetch": [
+      "SOFI",
+      "RKLB",
+      "ONDS",
+      "ASTX",
+      "BBAI",
+      "HOOD"
+    ],
+    "whitelisted_overlay_sha256": "ecb124d717918ecffe453a47a5d69b9836f01b93cecf1e76a43829d09ea2c07c",
+    "file": "canonical_baseline/universe_overlay_14.json"
+  },
+  "b8_3a_citations": {
+    "fetch_4h.py fallback": "rev-6.1 \u00a711 (fresh 4H cache construction; exact acquisition path)",
+    "compare_4h.py expected_4h": "rev-6.1 \u00a75B (check against coverage_report.json's expected bar counts)"
+  },
+  "b8_3b_review": "pending \u2014 Mike reviews the audit-repair patch before any rerun",
+  "b8_3c_retention": "Run 1 outputs retained at 66bc1e8; Run 2 outputs will be written separately and both reported"
+}

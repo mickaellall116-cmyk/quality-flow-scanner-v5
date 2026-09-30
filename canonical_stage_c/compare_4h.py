@@ -3,11 +3,21 @@
 
 coverage_report.json is the CHECK TARGET (hashed before use; expected
 SHA-256 fdb6e33a1b2edde231e607f9c5cd8f33f82f2d8b82caaac473fc551c26faed2b).
-Tolerance: documented missing-bar exceptions only (§5B).
+Per rev-6.1 §5B the check is against coverage_report.json's EXPECTED bar
+counts (tolerance: documented missing-bar exceptions only): effective 4H
+history ≈ 2023-10-26→2026-09-24 (start within ±5 trading days; any
+divergence recorded with cause); session labels 09:30 / 13:30 ET; exactly
+one bar on NYSE early-close days.
+
+AUDIT REPAIR (2026-09-29): the Run 1 comparator computed its gaps against
+target_actual_4h; §5B requires expected_4h. Fixed below (bar_count_gap and
+bar_count_gap_from_effective now use expected_4h). target_actual_4h is still
+recorded per symbol for reference.
 
 Known systematic divergence (material finding, documented with cause):
-the rebuilt cache starts 2024-09-30 (Yahoo 1H trailing-730d cap) while the
-target expects 2023-10-26. This is NOT tuned around.
+the rebuilt cache starts 2023-10-31 (Yahoo period="730d" serves 730 trading
+sessions) while the target expects 2023-10-26 — 3 trading days, within the
+§5B ±5td tolerance. This is NOT tuned around.
 
 Output: canonical_stage_c/stage_c_comparison.json
 """
@@ -60,8 +70,9 @@ def main():
             "rebuilt_missing_pct_servable": m["missing_pct_servable"],
             "rebuilt_quality": m["quality"],
             "effective_from_match": m["effective_4h_from"] == t["effective_4h_from"],
-            "bar_count_gap": t["actual_4h"] - m["n_4h"],
-            "bar_count_gap_from_effective": t["actual_4h"] - m["n_4h_from_effective"],
+            # §5B: gaps are against expected_4h (NOT actual_4h).
+            "bar_count_gap": t["expected_4h"] - m["n_4h"],
+            "bar_count_gap_from_effective": t["expected_4h"] - m["n_4h_from_effective"],
         })
     for sym in sorted(mine):
         if sym not in tmap:
