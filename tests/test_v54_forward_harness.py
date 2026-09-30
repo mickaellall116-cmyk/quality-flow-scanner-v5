@@ -171,10 +171,13 @@ def test_pending_entry_multi_cycle_outage_voided_not_backfilled():
 
 
 def test_pending_entry_stale_single_bar_voided_by_timing_state():
-    """Mike's edge case: the intended fill bar (13:30-17:30 ET) completed
-    during the outage, and data recovers before a second bar completes, so
-    only one new bar exists. The bar-count proxy cannot catch this; the
-    timing state (fill_bar_end <= last_defer_time_utc) must void it."""
+    """Mike's edge case: the intended fill bar starts 13:30 ET and its
+    canonical close is 16:00 ET (session bar, not a full 4h bar). A Yahoo
+    outage at 16:30 ET leaves the fill bar complete while blind, and data
+    recovers before a second bar completes, so only one new bar exists.
+    The bar-count proxy cannot catch this, and a naive start+4h rule
+    (17:30 > 16:30) would wrongly allow the stale fill. The canonical
+    bar_close_at (16:00 <= 16:30) must void it."""
     tmp = tempfile.mkdtemp()
     df = _outage_df()
     row = _row(df.index[0])
@@ -186,11 +189,12 @@ def test_pending_entry_stale_single_bar_voided_by_timing_state():
     assert sid in state["pending"]
 
     feed.outage = True
-    # Both blind deferrals land AFTER the fill bar ended (17:30 ET).
+    # Both blind deferrals land after the canonical 16:00 ET close but
+    # before the naive 17:30 ET close a start+4h rule would assume.
     _cycle(df, [], state, log, tracker, feed, 1,
-           now=_now("2026-01-06 18:00"))
+           now=_now("2026-01-06 16:30"))
     _cycle(df, [], state, log, tracker, feed, 1,
-           now=_now("2026-01-06 19:00"))
+           now=_now("2026-01-06 17:00"))
     feed.outage = False
 
     # Recovery: bars 0-1 only; the next bar has not completed yet.
