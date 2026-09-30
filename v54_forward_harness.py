@@ -627,6 +627,15 @@ def _process_symbol(sym: str, df: pd.DataFrame, ctx: CycleContext,
     bars_walked = 0
     entry_bars: Dict[str, Any] = {}  # sids opened this cycle -> entry bar ts
     # Pending entries: open at the first completed bar after the signal bar.
+    # Outage containment (PR #7 amendment): a pending entry whose intended
+    # next-bar execution was missed because data was unavailable or the
+    # cycle budget was exhausted must never be filled retrospectively once
+    # data returns. If the symbol was deferred while this entry was pending
+    # (flag set by _defer_symbol_data) and newer completed bars now exist
+    # beyond the intended fill bar, the entry is unexecutable: void it,
+    # keep the full audit trail, and do not open a position. A single
+    # deferred cycle that costs no fill bar still fills at the intended
+    # bar's open (timely under the frozen next-bar-open convention).
     for sid, pend in list(state["pending"].items()):
         if pend.get("symbol") != sym:
             continue
@@ -635,6 +644,19 @@ def _process_symbol(sym: str, df: pd.DataFrame, ctx: CycleContext,
         if newbars.empty:
             continue  # no completed bar after the signal bar yet
         ts = newbars.index[0]
+        if pend.get("data_missed_while_pending") and len(newbars) > 1:
+            log.log_event(sid, {"event": "entry_unexecutable_after_outage",
+                                "symbol": sym,
+                                "signal_bar_start": pend["signal_bar_start"],
+                                "intended_fill_bar": ts.isoformat(),
+                                "intended_fill_open": float(newbars.iloc[0]["Open"]),
+                                "newer_completed_bars": len(newbars) - 1,
+                                "reason": "intended next-bar execution missed "
+                                          "during data outage; retrospective "
+                                          "fill prohibited"})
+            summary["entries_unexecutable"].append(sid)
+            del state["pending"][sid]
+            continue
         snap = state["snapshots"][sid]
         pos = tracker.open_position(snap, float(newbars.iloc[0]["Open"]), ts.isoformat())
         if pos is None:
@@ -689,6 +711,13 @@ def _defer_symbol_data(sym: str, exc: DataUnavailable,
                                           "detail": exc.detail[:200]})
         log.log_event(sid, {"event": "entry_data_deferred", "symbol": sym,
                             "reason": exc.reason, "detail": exc.detail[:200]})
+        # Outage containment (PR #7 amendment): remember that this pending
+        # entry lost a fill opportunity to missing data. _process_symbol
+        # voids the entry instead of backfilling it if the intended fill
+        # bar is historical on recovery.
+        pend = state["pending"].get(sid)
+        if pend is not None:
+            pend["data_missed_while_pending"] = True
     outages = state.setdefault("data_outages", {})
     rec = outages.setdefault(sym, {"since": datetime.now(timezone.utc).isoformat(),
                                    "reason": exc.reason, "count": 0})
@@ -726,6 +755,7 @@ def run_cycle(ctx: CycleContext, state: Dict[str, Any],
     summary: Dict[str, Any] = {"new_signals": 0, "new_signal_ids": [],
                                "opened": 0, "closed": [], "errors": [],
                                "data_deferred": [],
+                               "entries_unexecutable": [],
                                "entries_suppressed": False,
                                "suppression_reason": "",
                                "cycle_status": CYCLE_HEALTHY}
@@ -1292,11 +1322,14 @@ def run_once(publish: bool = False) -> Dict[str, Any]:
             # the expensive full-universe scan.  These exact validated frames
             # are reused by the scan and run_cycle; no strategy decision is
             # made here and no partial-universe entry is permitted.
+            # Pending entries are deliberately NOT prefetched: a cached
+            # pending frame must never authorize a historical fill. A
+            # pending entry whose intended next-bar execution was missed
+            # during an outage is voided as unexecutable (see
+            # _process_symbol), never backfilled.
             priority_symbols = sorted(
                 {p.get("symbol") for p in tracker.positions.values()
                  if p.get("status") != "closed" and p.get("symbol")}
-                | {p.get("symbol") for p in state.get("pending", {}).values()
-                   if p.get("symbol")}
                 | {market_sym, "QQQ", "SPY"}
             )
             for sym in priority_symbols:
