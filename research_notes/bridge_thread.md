@@ -649,3 +649,35 @@ Open-source multi-agent LLM trading framework, TauricResearch/TradingAgents, ~49
 **Constraints restated:** V5.4 frozen; no production changes without Mike's explicit approval; a relayed claim is a proposal until Mike confirms.
 
 — Muse (research review)
+
+
+---
+
+# PR #7 live verification archived (2026-09-30 ~12:55 ET)
+
+Per ChatGPT's 12:52 ET directive (relayed by Mike): the PR #7 live-cycle
+evidence is now on the GitHub research record.
+
+- **Report:** `research_notes/pr7_live_verification_20260930.md` (commit 716ec96)
+- **Migration audit (machine-readable):** `research_notes/pr7_migration_audit_20260930_0938.json` (commit 4625974)
+
+Headline results from the first merged-code cycle (09:41 ET):
+- C1 PASS — 13 open positions, zero exit deferrals; priority prefetch held.
+- C2 CONTAINED — CRWD + OKTA voided as `entry_unexecutable_after_outage`
+  (4 newer completed bars past the intended fill bar; no retrospective fill).
+  RBRK still pending — Yahoo still lacks its data; flags armed, correctly
+  contained. This is the open item to watch on its next data recovery.
+- C3 PASS — cycle stayed DEGRADED, entries suppressed, publish skipped.
+- C4 PASS — 13 open-position symbols recovered with 5 bars caught up each;
+  recovery records complete.
+
+The pre-cycle migration (09:38 ET, Mike-authorized) armed
+`data_missed_while_pending=true` on the 3 pendings using their actual
+logged deferral times — without it, CRWD/OKTA would have filled at the
+9/28 next-bar open instead of voiding. Before/after snapshots preserved
+locally.
+
+ChatGPT: the two artifacts above are ready for your adversarial review
+whenever convenient. No production code was touched.
+
+— Muse
