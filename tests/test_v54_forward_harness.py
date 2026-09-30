@@ -89,12 +89,17 @@ class _ScriptedFeed:
         return self.df
 
 
-def _cycle(df_full, row_or_rows, state, log, tracker, feed, n_bars):
+def _now(s):
+    # Pin wall-clock to the fictional bar timeline (bars are America/New_York).
+    return pd.Timestamp(s, tz="America/New_York")
+
+
+def _cycle(df_full, row_or_rows, state, log, tracker, feed, n_bars, now=None):
     feed.df = df_full.iloc[:n_bars]
     ctx = hz.CycleContext(
         scan_rows=row_or_rows, regime={"gate": "BLOCK", "regime": "RISK-OFF",
                                        "score": 35},
-        get_4h=feed, get_market_4h=lambda: df_full.iloc[:0])
+        get_4h=feed, get_market_4h=lambda: df_full.iloc[:0], now=now)
     return hz.run_cycle(ctx, state, log, tracker)
 
 
@@ -113,7 +118,10 @@ def test_pending_entry_one_cycle_outage_still_fills_timely():
     assert sid in state["pending"], "fill bar not complete yet -> stays pending"
 
     feed.outage = True
-    s2 = _cycle(df, [], state, log, tracker, feed, 1)
+    # Fill bar is 13:30-17:30 ET; the blind deferral at 14:00 ET lands while
+    # it is still forming, so the fill stays timely.
+    s2 = _cycle(df, [], state, log, tracker, feed, 1,
+                now=_now("2026-01-06 14:00"))
     assert s2["opened"] == 0
     assert state["pending"][sid].get("data_missed_while_pending") is True
     assert any(e["event"] == "entry_data_deferred"
@@ -160,6 +168,45 @@ def test_pending_entry_multi_cycle_outage_voided_not_backfilled():
     # original signal/pending record preserved for audit
     assert log.get_signal(sid) is not None
     assert "pending_entry" in kinds
+
+
+def test_pending_entry_stale_single_bar_voided_by_timing_state():
+    """Mike's edge case: the intended fill bar (13:30-17:30 ET) completed
+    during the outage, and data recovers before a second bar completes, so
+    only one new bar exists. The bar-count proxy cannot catch this; the
+    timing state (fill_bar_end <= last_defer_time_utc) must void it."""
+    tmp = tempfile.mkdtemp()
+    df = _outage_df()
+    row = _row(df.index[0])
+    sid = row["signal_id"]
+    state, log, tracker = _fresh(tmp)
+    feed = _ScriptedFeed(df.iloc[:1])
+
+    _cycle(df, [row], state, log, tracker, feed, 1)
+    assert sid in state["pending"]
+
+    feed.outage = True
+    # Both blind deferrals land AFTER the fill bar ended (17:30 ET).
+    _cycle(df, [], state, log, tracker, feed, 1,
+           now=_now("2026-01-06 18:00"))
+    _cycle(df, [], state, log, tracker, feed, 1,
+           now=_now("2026-01-06 19:00"))
+    feed.outage = False
+
+    # Recovery: bars 0-1 only; the next bar has not completed yet.
+    s = _cycle(df, [], state, log, tracker, feed, 2)
+    assert s["opened"] == 0, "stale single-bar fill must be refused"
+    assert s["entries_unexecutable"] == [sid]
+    assert sid not in state["pending"]
+    assert tracker.get(sid) is None
+
+    voids = [e for e in log.get_events(sid)
+             if e["event"] == "entry_unexecutable_after_outage"]
+    assert len(voids) == 1
+    assert voids[0]["stale_basis"] == "fill_bar_completed_while_blind"
+    assert voids[0]["newer_completed_bars"] == 0
+    assert voids[0]["intended_fill_open"] == 101.0
+    assert log.get_signal(sid) is not None, "signal record preserved"
 
 
 def test_pending_entry_recovery_many_historical_bars_no_phantom_fill():
