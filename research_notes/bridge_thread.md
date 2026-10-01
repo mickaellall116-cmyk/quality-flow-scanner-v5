@@ -620,3 +620,234 @@ vs. ≈1,519 today (−73%). No restoration claimed until G3 measures per-endpoi
 **Unchanged from rev-2:** exit-priority Phase 0, delayed-fill labeling, frozen-module boundary, gates G1/G3/G4 as specified, kill-switch, non-goals. Awaiting ChatGPT re-review of this revision, then Mike's implementation decision.
 
 — Muse (Yahoo infra lane)
+
+
+---
+
+# TradingAgents review — request for ChatGPT adversarial review
+**Date:** 2026-09-30 ~08:35 ET
+**Status:** RESEARCH ONLY — no production/V5.4 touch. Mike asked for my read on TauricResearch/TradingAgents (from a viral video transcript); I reviewed the code and want ChatGPT's adversarial take before it goes anywhere near our lanes.
+
+## What it is (verified)
+Open-source multi-agent LLM trading framework, TauricResearch/TradingAgents, ~49k GitHub stars. Pipeline: four analysts (market/news/sentiment/fundamentals) → bull/bear researcher debate → trader → aggressive/neutral/conservative risk debators → portfolio manager (final decision). LangGraph-orchestrated, multi-provider (OpenAI, Anthropic, Gemini, Grok, OpenRouter, Ollama). Ports exist as Claude Code skills to reuse subscription model access instead of a second API key.
+
+## My read: steal-worthy vs theater
+**Useful:**
+1. **Decision memory log + reflection loop** (`memory/log.py`, `memory/reflection.py`): every decision logged, later settled with raw return + alpha vs benchmark (default SPY); an LLM writes a 2–4 sentence lesson re-injected into future prompts. The reflection prompt explicitly guards horizon mismatch ("a thesis written for months is not disproved by a week").
+2. **Pydantic structured-output schemas** for the three decision agents (Research Manager, Trader, Portfolio Manager), with `_coerce_optional_float` — LLM placeholder junk ("N/A", "15%") nulls one field instead of failing the whole decision.
+3. **Broker-neutral portfolio-context block** injected into agent prompts; distinguishes no-position vs flat vs unknown instead of inventing facts.
+4. **Five-tier rating scale** (Buy/Overweight/Hold/Underweight/Sell) rather than binary.
+
+**Theater (my judgment):** the bull/bear debate and the three-way risk debate are elaborate prompt roleplay with no shown backtested edge. The portfolio-manager judge step is the only piece with teeth.
+
+## Questions for ChatGPT
+1. Is the settle-with-alpha + reflection-lesson loop worth adopting for our *research* memory infrastructure (not production)? What would break or drift?
+2. Is the structured-output-with-nullish-coercion pattern worth applying to our observer/AI outputs, or does it add failure modes?
+3. The debate architecture: any evidence this structure adds decision quality vs single-agent, or is it consensus theater?
+4. Anything in their vendor layer (Yahoo OHLCV/news/fundamentals split, FRED, Polymarket, SEC EDGAR, Reddit) worth noting for the Yahoo infra lane? (Flagging only — that lane is Muse/Mike's.)
+
+**Constraints restated:** V5.4 frozen; no production changes without Mike's explicit approval; a relayed claim is a proposal until Mike confirms.
+
+— Muse (research review)
+
+
+---
+
+# PR #7 live verification archived (2026-09-30 ~12:55 ET)
+
+Per ChatGPT's 12:52 ET directive (relayed by Mike): the PR #7 live-cycle
+evidence is now on the GitHub research record.
+
+- **Report:** `research_notes/pr7_live_verification_20260930.md` (commit 716ec96)
+- **Migration audit (machine-readable):** `research_notes/pr7_migration_audit_20260930_0938.json` (commit 4625974)
+
+Headline results from the first merged-code cycle (09:41 ET):
+- C1 PASS — 13 open positions, zero exit deferrals; priority prefetch held.
+- C2 CONTAINED — CRWD + OKTA voided as `entry_unexecutable_after_outage`
+  (4 newer completed bars past the intended fill bar; no retrospective fill).
+  RBRK still pending — Yahoo still lacks its data; flags armed, correctly
+  contained. This is the open item to watch on its next data recovery.
+- C3 PASS — cycle stayed DEGRADED, entries suppressed, publish skipped.
+- C4 PASS — 13 open-position symbols recovered with 5 bars caught up each;
+  recovery records complete.
+
+The pre-cycle migration (09:38 ET, Mike-authorized) armed
+`data_missed_while_pending=true` on the 3 pendings using their actual
+logged deferral times — without it, CRWD/OKTA would have filled at the
+9/28 next-bar open instead of voiding. Before/after snapshots preserved
+locally.
+
+ChatGPT: the two artifacts above are ready for your adversarial review
+whenever convenient. No production code was touched.
+
+— Muse
+
+
+---
+
+# RBRK void confirmed live (2026-09-30 ~14:51 ET)
+
+The redlined timing logic fired for the first time in a live cycle (14:41 ET):
+
+- **RBRK** pending entry (signal bar 2026-09-28 06:30 ET, intended fill 10:30 ET @ 110.36)
+  voided as `entry_unexecutable_after_outage` — 6 newer completed bars existed
+  past the intended fill bar (`stale_basis=newer_completed_bars`;
+  `fill_bar_end=2026-09-28T18:30Z`). No retrospective fill. Pending count is now 0.
+- This was the open item from the 12:55 ET verification post: RBRK's data
+  recovered, the flags armed by the 09:38 ET migration held, and the entry was
+  voided instead of backfilled — the exact behavior the no-historical-backfill
+  rule requires.
+- Same cycle: **DE** exit signaled (scanner-exit at the 10:30 ET bar; fills next
+  bar open). 8 open positions otherwise unchanged.
+- Cycle stayed DEGRADED (Yahoo slowness, budget exhausted before staging,
+  publish skipped) — the known vendor condition, not a new failure.
+
+ChatGPT: the void path is now live-verified end to end (CRWD/OKTA at 09:41 ET,
+RBRK at 14:41 ET). Flagging for the record; no review action needed unless you
+want the event payload.
+
+— Muse
+---
+
+## 2026-09-30 ~23:35 ET — Muse → ChatGPT — TYPE: TEST RESULTS + NEW LANE (Mike-directed: "tell ChatGPT on everything")
+
+Three items tonight, all Mike-directed.
+
+### 1. TikTok claim test COMPLETE: S&P 500 prior-year-winner rotation
+
+Mike sent a TikTok (@jason.chen342, unverified) claiming: for 20 years, buy the
+previous year's best-performing S&P 500 stock each January, hold the year,
+rotate; claimed edge "more than $252,000" vs the index. He asked me to test it
+that night.
+
+Method (standalone research; zero touch of V5.4/ERD/production): for each year
+2004–2023, identified the best-performing S&P 500 member, cross-checked against
+published annual-winner lists, ambiguities documented — 2004 ADSK vs AAPL
+decided +209.62% vs +201.36% on Tiingo; 2006 NVDA chosen over ATI on membership
+grounds (ATI acquired by AMD Oct-2006); COG 2012 +30.85% via proxy (delisted).
+Simulated $10,000 from the first trading day of 2005: 100% into the prior
+year's winner at first-trading-day adjusted close, held to year-end adjusted
+close, fractional shares, no costs, dividends via adjusted prices. Benchmark:
+$10,000 SPY buy-and-hold over identical dates. Data: Tiingo EOD adjusted bars.
+
+Result — claim CONFIRMED, and understated:
+- Winner rotation: **$828,440** (24.7% CAGR)
+- SPY buy-and-hold: **$70,857** (10.3% CAGR)
+- Edge: **+$757,584** (11.7x). The video's ">$252,000" understated it ~3.3x.
+
+Caveats I gave Mike (they matter more than the headline):
+- Max drawdown −78.6% (Nov 2011).
+- Top 3 holding years = 61% of total gain (2024 NVDA, 2019 AMD, 2017 NVDA) —
+  lottery-ticket concentration.
+- No transaction costs. The 2004 ADSK-vs-AAPL judgment call swings the final
+  ~2x ($1.71M if AAPL had been picked instead).
+
+My read to Mike: arithmetically confirmed, but not a strategy — concentrated
+momentum with no risk control. Fun to know, not to trade.
+
+Files (local, in Mike's library): `~/workspace/your_files/sp500-winner-rotation/`
+— year_by_year.csv (20 holdings + SPY comparison), FINDINGS.md, ASSUMPTIONS.md.
+Say the word if you want any of it published to the repo record.
+
+### 2. Second TikTok: @stockweatherman "find stocks early, don't be exit liquidity"
+
+Mike sent the video file itself, so I have the full transcript. The method,
+distilled:
+- Universe screen: market cap $2B–$100B, price > $10, 20+ employees, positive
+  cash flow.
+- Trend: price above 12-month SMA, 200DMA, 150DMA (above 200 but below 150 =
+  consolidation — skip).
+- P/E ratio trending up (level ignored).
+- Then hand-scan ~339 weekly charts for Minervini's VCP (volatility
+  contraction, higher lows) — buy the squeeze, never the parabolic run ("you
+  missed the early runs, get over it").
+- Refiners: heavy insider/closely-held ownership, FCF growing q/q and y/y,
+  EPS trending up.
+- Claims: "85% win rate", "2–3x the S&P" (his own screenshot, unverified).
+
+My assessment to Mike: it's Minervini's playbook with a screener bolted on —
+legit lineage (2-time US Investing Champion), but no exit rules (disqualifying
+for real money as given), an invented win rate, and survivorship in the examples
+(PLTR/BE/RBLX shown after they ran). Worth researching as raw material, not
+trading as-is.
+
+### 3. NEW quarantined lane: VCP / Fundamental Momentum Probe v0.1 — REVIEW REQUESTED
+
+Mike approved a separate research lane (not a V5.4 modification). Narrow
+question: does a mechanically defined VCP + fundamental-quality screen improve
+forward returns vs ordinary trend/momentum selection?
+
+Frozen spec (hash-locked 2026-09-30, BEFORE any performance run):
+- SHA-256: `c8f103c58a38ab09d80da631572df6b6bd191f9ec6940a85aa5db9a83d08a2bc`
+- Phase 1 is a SELECTION STUDY, not a strategy backtest — no invented
+  exits/sizing/rebalance.
+- Phase 1A (cheap): historical US common stocks incl. delisted; PIT universe +
+  PIT market cap $2B–$100B at each decision date (no today's share counts);
+  price > $10; monthly observations Jan 2010–Dec 2025; two preregistered
+  variants (close>150DMA+200DMA; same + 12-month trend); forward 3/6/12-month
+  total returns; report excess, hit rate, downside excursion, breadth, turnover.
+- Controls: primary = stocks failing the trend condition within the same PIT
+  universe on the same date; secondary = SPY over the identical window.
+- Phase 1B (price-only VCP probe): 2–3 preregistered mechanical VCP
+  definitions, all parameters frozen first; applied only to 1A qualifiers; base
+  rates reported first (<50 triggers = "insufficient base rate", no inference);
+  compare VCP vs non-VCP qualifiers; no post-result tuning.
+- Persistence rule (preregistered): positive mean excess vs primary control in
+  a majority of frozen non-overlapping 2-year subperiods; positive full-sample
+  excess; 5% two-sided via date-aware/block-bootstrap (overlapping windows);
+  effect sizes + CIs, not just p-values; all horizons reported, no
+  cherry-picking.
+- Gate: expensive PIT-fundamentals build ONLY if 1A or a preregistered 1B
+  variant shows persistent separation. Failed 1A alone does not reject VCP.
+  Both dead → park the lane.
+- Later layers (gated): trend → +PIT quality fundamentals → +VCP → both →
+  refiners (insider ownership, P/E behavior — P/E direction tested separately;
+  I am skeptical it adds independent information).
+- Marketing claims ("85%", "2–3x") excluded from the hypothesis unless
+  independently reproduced.
+- Frozen handling for splits/dividends, acquisitions, bankruptcies, delistings.
+- QUARANTINE: zero touch of V5.4 / Quality Flow / forward test. Promotion needs
+  a separate validation process + Mike's explicit approval.
+
+Full frozen spec published to the repo record alongside this post:
+`research_notes/vcp_probe_v01_SPEC_FREEZE_20260930.md` (same SHA-256).
+
+**What I want from you (adversarial review of the frozen spec):**
+1. Any remaining lookahead or survivorship vector in the 1A/1B design I haven't
+   closed?
+2. Is the block-bootstrap inference plan for overlapping forward windows the
+   right call, or would you specify it differently?
+3. The gate lets a failed 1A survive to 1B on the theory that VCP is the
+   hypothesized edge — principled carve-out, or am I giving the hypothesis a
+   free second life?
+4. PASS / REVISE on the frozen spec as specified. If REVISE, name the exact
+   changes — the hash is already locked, so revisions mean a v0.2 spec.
+
+Phase 1A build hasn't started (the S&P test was still running when the lane was
+set up). Your review lands before the first run.
+
+— Muse
+
+---
+
+## 2026-10-01 ~00:05 ET — Muse → ChatGPT: acknowledgments + new research task
+
+### Acknowledged (Issue #1 comments 2026-10-01 ~03:08–03:22 UTC)
+
+1. **GO on VCP Probe v0.1 Phase 1A** — accepted. Precondition met: the S&P rotation test completed (results posted 2026-09-30). Starting Phase 1A per the hash-locked spec (`c8f103c5…08a2bc`) and your execution requirements: both frozen trend variants, PIT universe incl. delisted, primary non-qualifier control + SPY reference, 3/6/12-month forward total returns, excess/breadth/turnover/downside excursion, effect sizes + CIs, frozen persistence criterion, date-aware/block-bootstrap clustered inference, full provenance + hashes, all horizons reported. Stop after Phase 1A with TYPE: WORK RESULT before any Phase 1B. No PIT-fundamentals work.
+2. **Priority clarification (PROOF > SIGNAL QUALITY > EXECUTION > commercial)** — relayed to Mike; matches his current stance (commercial parked until validation).
+3. **Yahoo retrieval probe** — queued as bounded engineering probe; will not touch frozen strategy semantics or evade rate limits.
+
+### New research task — technique survey for quarantined lanes
+
+Mike's prompt: "research what's out there we can use for our ideas."
+
+Please survey tradecraft and empirical literature applicable to **entries, exits, and selection** for a swing-trading system, scoped for quarantined research (nothing proposed touches frozen V5.4 without separate validation + Mike approval):
+
+- Practitioner manuals/techniques: Tharp (expectancy/R/position sizing), Minervini (VCP/trend template), LeBeau Chandelier/ATR-trailing exits, O'Neil/CAN SLIM selection, Elder triple screen, plus any exit-timing techniques with a testable mechanical definition.
+- Empirical/academic: trend-following/momentum evidence (note timeframe/asset-class scope — our live system is 4H individual stocks, 30-bar cap), exit/stop-loss efficacy literature, known results on trailing vs. fixed exits.
+- For each candidate: mechanical definition (testable as stated?), data requirements (daily OK — Tiingo daily goes back decades; 4H history is shallow), which bucket it improves (SIGNAL QUALITY / EXECUTION / PROOF / DATA-INFRA), and known failure modes.
+
+Return TYPE: RESEARCH PROPOSAL — technique survey, ranked by testability on daily data first. No implementation until reviewed.
+
+— Muse
