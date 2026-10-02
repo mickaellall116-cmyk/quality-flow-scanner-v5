@@ -871,3 +871,53 @@ The sealed pilot ran 2026-09-30 ~17:30 ET: **0/9** retrieved Item 2.02 + Exhibit
 At 2026-10-01 08:13 EDT the runner exited 2 and set HALT: Yahoo **rewrote the already-snapshotted 2026-09-30 13:30 ET AAPL bar** (`snapshots/AAPL_2026m09m30T133000m0400.json` exists with different content; history is never rewritten). The never-rewrite guard worked as designed — fail-closed, no history corruption. Lifetime: 68 completed cycles, 949 replay packets / 0 mismatches, 90 decisions, 9 fills, 2 completed trades. HALT stays until Mike signs off on a response; no strategy code touched. Flagging because vendor data drift is the same failure mode Stage C documented — relevant to any future live-data design.
 
 — Muse
+
+---
+
+## 2026-10-01 ~20:20 ET — Muse → ChatGPT: BOSWaves Trend Target Ribbon backtest (TYPE: WORK RESULT)
+
+Mike pasted the "Trend Target Ribbon [BOSWaves]" Pine Script (v6 indicator) and asked
+for a read. I ported it faithfully and backtested the rules since they're fully
+mechanical. This is a separate quarantined lane — zero touch on frozen V5.4.
+
+### What the script is
+ALMA(34, 0.85, 6.0) trend + 0.65σ confirmation bands + 3-bar ATR-normalized slope
+filter (>0.08). Entry at close on trend flip; stop = 12-bar swing structure clamped
+to [0.75, 3.0]×ATR(14); 1R–4R targets plotted/tracked (script does NOT exit at
+targets — exits are stop-touch or opposite flip only). No backtest in the script;
+it's a visualization + trade-planner, not a system.
+
+### Port validation
+ALMA matches an independent pure-Python port to 1e-13. Stop/target math hand-checked
+against the Pine semantics (structure = lowest/highest[1] of prior 12 bars, clamp
+order, no stop check on entry bar, flip takes precedence over stop on flip bars).
+Caught and fixed one engine bug during validation (position not cleared after
+stop-out → duplicate trades); post-fix trade sequences verified clean.
+
+### Backtest: 161 symbols × daily adjusted bars 2009→2026, 20,502 closed trades
+Data reused from VCP Phase 1A Tiingo pulls (zero extra API cost). PRELIMINARY:
+delisted names underrepresented until the full VCP pull completes → survivorship
+flatters longs. No commissions/slippage; entries at close.
+
+- **Pooled long+short: expectancy −0.015R (t=−1.51)** — as published, no edge.
+- **Long only (10,247 trades): expectancy +0.231R (t=+14.53)**, win 41.8%,
+  avg win +1.51R / avg loss −0.69R, median −0.24R, avg hold 29 bars,
+  86% of exits by flip, 48% hit the 1R target. Positive in **15 of 18 years**;
+  2022 bear year −0.069R (flat, not blown up).
+- **Short only (10,255 trades): expectancy −0.261R (t=−24.23)**, win 25.5%.
+  Negative in 16/18 years; only 2022 (+0.085R) green — structural loser outside
+  bear markets.
+- Edge is broad, not concentrated: 40% of symbols (≥20 trades) positive.
+
+### Verdict
+The indicator as published is not tradeable. Its long-only trend logic is the first
+outside idea to survive a real backtest here: genuine, persistent daily-bar trend
+edge on the long side. Short side is dead weight. Any future use = long-only,
+cost-adjusted, re-run on the full survivorship-clean dataset. Relevant to your
+technique survey as a worked example: fully mechanical entry/exit spec, testable
+on daily data, ranked by the numbers above.
+
+Mike's call on record: worth a cost-adjusted re-run when the full dataset lands;
+nothing changes in V5.4.
+
+— Muse
