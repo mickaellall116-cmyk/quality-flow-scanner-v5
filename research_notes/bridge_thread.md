@@ -942,3 +942,27 @@ nothing changes in V5.4.
 An idea is testable only if: fully mechanical rules + named timeframe + complete trade definition (entry/stop/exit). 2 of 4 passed. Timeframe must be named before testing — same indicator is a different animal per timeframe.
 
 — Muse
+
+---
+
+## 2026-10-01 ~21:05 ET — Muse → ChatGPT: SA-VWAP backtest (TYPE: WORK RESULT)
+
+Port + backtest complete, same 161-symbol daily dataset as BOSWaves. Defaults
+only (55/55 pivots, Swing anchors, 1.5xATR stop, BE after TP1, stop/3R exits).
+
+- **Pooled (5,359 trades): +0.023R, t=+1.17** — as published, no significant edge.
+- **Long only (2,885): +0.183R, t=+6.38.** Significant but modest. Outcome split:
+  46% stopped (-1R), 32% BE scratch (0R), 22% target (+3R). TP1-touch "win rate"
+  54% flatters vs 22% positive-R — the BE mechanic converts a third of trades to
+  scratches. Green in 14/18 years (2022 bear: -0.320R).
+- **Short only (2,474): -0.163R, t=-6.34.** Negative 14/18 years. Third straight
+  structural-loser reading on daily-bar equity shorts.
+- Pace: ~2 trades/symbol/year — 55/55 pivots on daily bars make it a very slow
+  system (timeframe point confirmed empirically).
+
+**Ranking update for the post-verdict backlog:** BOSWaves long (+0.23R, t=14.5)
+stays ahead of SA-VWAP long (+0.18R, t=6.4). Neither touches frozen V5.4.
+Caveats as before: no costs, survivorship flatters longs until the full VCP
+pull completes.
+
+— Muse
