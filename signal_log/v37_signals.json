@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-30T18:02:50+00:00",
+  "updated_at": "2026-10-01T18:02:52+00:00",
   "timeframe": "4H",
   "source": "v37-watchlist-watcher",
   "watchlist": [
@@ -18,8 +18,36 @@
     "HOOD",
     "AMD"
   ],
-  "event_count": 33,
+  "event_count": 35,
   "events": [
+    {
+      "detected_at": "2026-10-01T18:02:41+00:00",
+      "signal_bar_close": "2026-10-01T13:30:00-04:00",
+      "symbol": "QQQ",
+      "timeframe": "4H",
+      "entry_px": 742.63,
+      "stop_px": 733.62,
+      "tp1_px": 754.65,
+      "score": 4,
+      "adx": 13.6,
+      "entry_yes": false,
+      "entry_why": "No \u2014 choppy market: trend strength (ADX 13.6) is below the 20 needed for a clean entry. Signals in chop tend to whipsaw.",
+      "source": "watchlist"
+    },
+    {
+      "detected_at": "2026-10-01T18:02:45+00:00",
+      "signal_bar_close": "2026-10-01T13:30:00-04:00",
+      "symbol": "RKLB",
+      "timeframe": "4H",
+      "entry_px": 71.55,
+      "stop_px": 67.57,
+      "tp1_px": 76.85,
+      "score": 4,
+      "adx": 26.3,
+      "entry_yes": false,
+      "entry_why": "No \u2014 the broader trend isn't bullish, so this would be fighting the prevailing direction.",
+      "source": "watchlist"
+    },
     {
       "detected_at": "2026-09-30T18:02:44+00:00",
       "signal_bar_close": "2026-09-30T13:30:00-04:00",
