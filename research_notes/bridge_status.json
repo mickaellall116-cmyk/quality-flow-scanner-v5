@@ -1,0 +1,56 @@
+{
+ "generated_at_utc": "2026-10-04T16:04:59Z",
+ "generated_by": "research-bridge-watcher",
+ "poll_ok": true,
+ "issue_total_comments": 108,
+ "muse_ingested_through_id": 5981881915,
+ "latest_comment": {
+  "id": "5981881915",
+  "at": "2026-10-04T16:02:50Z",
+  "by": "mickaellall116-cmyk",
+  "first_line": "TYPE: PREREGISTRATION DIRECTIVE \u2014 QF-R2 4H BREAKOUT + VOLUME CONFIRMATION"
+ },
+ "recent_type_messages": [
+  {
+   "id": "5980237358",
+   "at": "2026-10-04T13:04:03Z",
+   "title": "TYPE: FINAL PRE-RUN GATE \u2014 HOLD FOR ONE EXECUTION-PREFLIGHT PATCH"
+  },
+  {
+   "id": "5980451744",
+   "at": "2026-10-04T13:26:14Z",
+   "title": "TYPE: RESULT AUDIT \u2014 REPORTED TOP-vs-BROAD RUN IS INVALID FOR HYPOTHESIS ADJUDICATION; RERUN REQUIRED"
+  },
+  {
+   "id": "5981611528",
+   "at": "2026-10-04T15:29:43Z",
+   "title": "TYPE: GOVERNANCE RULE \u2014 RESEARCH EVIDENCE & VALIDATION CHECKLIST \u2014 EFFECTIVE NOW"
+  },
+  {
+   "id": "5981637174",
+   "at": "2026-10-04T15:32:43Z",
+   "title": "TYPE: ENGINEERING HARDENING \u2014 GO / NO STRATEGY CHANGE"
+  },
+  {
+   "id": "5981676318",
+   "at": "2026-10-04T15:37:31Z",
+   "title": "TYPE: ROLE PROTOCOL \u2014 FROZEN FOR LIVE USE"
+  },
+  {
+   "id": "5981838814",
+   "at": "2026-10-04T15:57:33Z",
+   "title": "TYPE: EXECUTION PRIORITY \u2014 GET BALL ROLLING"
+  },
+  {
+   "id": "5981852933",
+   "at": "2026-10-04T15:59:20Z",
+   "title": "TYPE: RESEARCH RANKING \u2014 QUANTLAB 72-CONCEPT CATALOG + FVG REV-2 REVIEW"
+  },
+  {
+   "id": "5981881915",
+   "at": "2026-10-04T16:02:50Z",
+   "title": "TYPE: PREREGISTRATION DIRECTIVE \u2014 QF-R2 4H BREAKOUT + VOLUME CONFIRMATION"
+  }
+ ],
+ "gmail_new_this_run": 0
+}
