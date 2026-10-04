@@ -1,4 +1,8 @@
-"""Canonical bar construction and signal validation for MasterScanner V5.2."""
+"""Canonical bar construction and signal validation helpers.
+
+Shared by the MasterScanner V5.x pipeline (V5.3 API serving layer and the
+V5.4 forward-test engine, which imports indicator math, level math, bar
+construction, and MTF/premarket/15m readers from this module)."""
 
 from __future__ import annotations
 
@@ -89,7 +93,9 @@ def resample_closed_4h(
     symbol: str,
     now: Optional[pd.Timestamp] = None,
 ) -> pd.DataFrame:
-    """Build session 4-hour bars and exclude the actively forming bar.
+    """LEGACY — DO NOT USE FOR NEW WORK. See resample_closed_4h_session_anchored.
+
+    Build session 4-hour bars and exclude the actively forming bar.
 
     US symbols produce 09:30-13:30 and 13:30-16:00 ET bars. The latter is a
     shortened closing-session bar. A cumulative regular-session VWAP is retained
@@ -338,6 +344,15 @@ def is_buy_now_result(row: Mapping[str, Any]) -> bool:
 
 
 def filter_buy_now(rows: Iterable[Mapping[str, Any]], limit: Optional[int] = None) -> list[Mapping[str, Any]]:
+    """Filter + rank BUY NOW candidates (V5.3 API serving layer).
+
+    ACTIVE USE: masterscanner_api.py `/buy-now` endpoint.
+    NOT USED BY: the frozen V5.4 forward-test decision path
+    (v54_forward_harness.py / v54_engine.py / v54_rules.py explicitly exclude
+    the V5.3 veto logic). Do not wire this into V5.4 without a new
+    preregistered proposal. See tests/test_hardening_20261004.py for the
+    static invariant guarding the V5.4 path.
+    """
     valid = [annotate_validation(row) for row in rows if is_buy_now_result(row)]
     valid.sort(key=lambda row: (float(row.get("risk_reward", 0)), int(row.get("rank_score", 0))), reverse=True)
     return valid if limit is None else valid[:limit]
