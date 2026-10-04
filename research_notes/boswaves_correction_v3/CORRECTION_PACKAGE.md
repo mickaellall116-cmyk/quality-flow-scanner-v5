@@ -80,3 +80,44 @@ coverage-gate behavior end to end). Neither promotion verdict changes.
 - c37b3cdb1b885129e7147cd6ef3e64af7633396332f63464793f7f49e76e340a  coverage_gate_spec.md
 - 6c4137d8ebb392c23a99a1eb3388810fd4d4695baadce7fd38e20295e9f75525  validate_v3c1.py
 - f065a3d3ad8e45f79067f538a080ea1428191dbc8f05e829eefd15dfa705d232  ticker_boundary_fixtures.md
+
+---
+## v4 addendum — verification-driven fixes (2026-10-04, Mike's action request)
+
+Mike authorized controlled-fixture verification against the frozen v3 code
+("run we need to get back on track" — engineering tests + reversible fixes on
+research code; NOT a strategy relaunch, no performance runs, no holdout).
+
+Two code fixes resulted, both spec-to-code corrections, neither strategy tuning:
+
+1. **Alphabetical tie-break on cross-security ranking ties** (protocol §2:
+   "Exact ties: broken by symbol alphabetical ascending"). The ranking sort was
+   `(signal_date, -mom_score)` with no alphabetical fallback, so exact ties
+   resolved by input order (stable sort) rather than per the spec. Now
+   `(signal_date, -mom_score, symbol)`. Only affects exact floating-point ties
+   across different securities (vanishingly rare with real data); no impact on
+   any computed result.
+
+2. **`ticker_at()` fallback for unknown securities.** `sec_id()` maps unknown
+   symbols to `SEC_<sym>`, but `ticker_at()` raised KeyError for them. Now
+   returns the raw symbol — needed for synthetic fixture inputs and any
+   out-of-mapping symbol.
+
+Verification suite `run_verification_fixtures.py`: 61/61 pass against the
+actual frozen code with synthetic inputs (no network/data/holdout):
+  A. dedup — all 5 alias pairs x both arrival orders x exact ties x 20 random
+     shuffles; held-alias block; 12 boundary dates; 831/826 counts.
+  B. portfolio — staggered cohorts, heat/sector/position caps, exit-release,
+     alphabetical tie-break (behavioral + source).
+  C. fills — next-open entry, invalid gap entry, entry-day stop, gap-through
+     active stop, stop-before-flip sequencing, hand-derived P&L at 4/25bps.
+  D. coverage — INCONCLUSIVE precedence over FAIL, strict-> boundaries,
+     hand-derived Calmar.
+
+## SHA-256 (v4, supersedes v3 hashes)
+
+- 0516872fcf36c38faef0349340f3bd7ccfdda1dd6725c89f3150e6c411e740e6  universe_mapping.json
+- c37b3cdb1b885129e7147cd6ef3e64af7633396332f63464793f7f49e76e340a  coverage_gate_spec.md
+- 3bb93b91699ec5be978e74df9cf2fdd6fbec07fd2378dcedcc501a579f39cc9a  validate_v3c1.py
+- f065a3d3ad8e45f79067f538a080ea1428191dbc8f05e829eefd15dfa705d232  ticker_boundary_fixtures.md
+- 18f6b593cdad8a768368a9507360f6d608f775c6dd03b8ce18395f41f6364196  run_verification_fixtures.py
