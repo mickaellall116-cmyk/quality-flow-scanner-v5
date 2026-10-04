@@ -172,15 +172,24 @@ def apply_portfolio(candidates, sectors, spy_close_by_date, spy_dates,
         # deterministic: one candidate per (signal_date, security identity).
         # Higher mom_score wins; on EXACT ties (expected for duplicate files
         # with identical prices -> identical momentum scores) the
-        # lexicographically smallest raw ticker wins, so file/glob ordering
-        # can never choose the retained record. The admitted trade is then
-        # relabeled with the date-appropriate ticker for its signal date.
+        # lexicographically smallest RAW ticker wins, so file/glob ordering
+        # can never choose the retained record.
+        # NOTE (2026-10-04, ChatGPT): the tie-break must compare raw-to-raw.
+        # prev["_raw_symbol"] is kept separately because prev["symbol"] is
+        # relabeled only AFTER the collapse loop below; comparing against the
+        # relabeled value made the retained record order-dependent.
         if prev is None or t["mom_score"] > prev["mom_score"] or \
-                (t["mom_score"] == prev["mom_score"] and t["symbol"] < prev["symbol"]):
+                (t["mom_score"] == prev["mom_score"]
+                 and t["symbol"] < prev["_raw_symbol"]):
             c = dict(t)
-            c["symbol"] = ticker_at(k[1], t["signal_date"])
-            c["security_id"] = k[1]
+            c["_raw_symbol"] = t["symbol"]
             deduped[k] = c
+    # Relabel AFTER collapse: the admitted trade carries the date-appropriate
+    # ticker for its signal date; the raw origin is dropped from the record.
+    for k, c in deduped.items():
+        c["symbol"] = ticker_at(k[1], c["signal_date"])
+        c["security_id"] = k[1]
+        del c["_raw_symbol"]
     n_alias_collapsed = len(candidates) - len(deduped)
     cands = sorted(deduped.values(),
                    key=lambda t: (t["signal_date"], -t["mom_score"], t["symbol"]))
@@ -345,6 +354,48 @@ def tail_diagnostics(trades_25bps):
 # ----------------------------------------------------------------------------
 # Driver
 # ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# Metric + verdict helpers (§6/§7) — factored for testability; main() calls these
+# ----------------------------------------------------------------------------
+def max_drawdown(equity_curve):
+    """Max peak-to-trough drawdown from an ordered list of equity values."""
+    peak = 0.0
+    maxdd = 0.0
+    for eq in equity_curve:
+        peak = max(peak, eq)
+        if peak > 0:
+            maxdd = max(maxdd, (peak - eq) / peak)
+    return maxdd
+
+
+def annualized_return(total_ret, n_trading_days, periods_per_year=252):
+    """CAGR from total return over n trading days."""
+    if n_trading_days <= 0 or total_ret <= -1:
+        return -1.0
+    return (1 + total_ret) ** (periods_per_year / n_trading_days) - 1
+
+
+def calmar_ratio(cagr, maxdd):
+    """Annualized Calmar = CAGR / max drawdown (0 when no drawdown)."""
+    return cagr / maxdd if maxdd > 0 else 0.0
+
+
+def compute_verdict(gates, cluster_consistent=True):
+    """Verdict precedence per §7.7.
+
+    gates: dict of named boolean gate outcomes including "coverage_ok".
+    Coverage failure -> INCONCLUSIVE even when every performance gate passes;
+    raw performance failures are preserved as FAIL. Cluster-inconsistency
+    (bootstrap vs clustered-t disagreeing) -> INCONCLUSIVE.
+    """
+    verdict = "PASS" if all(gates.values()) else "FAIL"
+    if not gates.get("clusters_ok", False) or not cluster_consistent:
+        verdict = "INCONCLUSIVE"
+    if not gates.get("coverage_ok", False):
+        verdict = "INCONCLUSIVE"
+    return verdict
+
+
 def sha256_file(p):
     h = hashlib.sha256()
     with open(p, "rb") as f:
@@ -561,20 +612,19 @@ def main():
     pnl25 = [p for t, (r, p) in zip(taken, apply_costs(taken, 25)) if id(t) not in open_ids]
     exd = [t["exit_date"] for t in taken if id(t) not in open_ids]
     ord_e = np.argsort(exd)
-    eq = 100000.0; peak = eq; maxdd = 0.0; curve = []
+    eq = 100000.0; curve = []
     for i in ord_e:
         eq += pnl25[i]
         curve.append((exd[i], eq))
-        peak = max(peak, eq)
-        maxdd = max(maxdd, (peak - eq) / peak if peak > 0 else 0.0)
+    maxdd = max_drawdown([c[1] for c in curve])
     total_ret = eq / 100000.0 - 1
     # trading days first entry -> last exit
     alld = sorted(spy_dates)
     d0 = min(t["entry_date"] for t in taken if id(t) not in open_ids)
     d1 = max(t["exit_date"] for t in taken if id(t) not in open_ids)
     ntd = sum(1 for d in alld if d0 <= d <= d1)
-    cagr = (1 + total_ret) ** (252 / ntd) - 1 if ntd > 0 and total_ret > -1 else -1.0
-    calmar = cagr / maxdd if maxdd > 0 else 0.0
+    cagr = annualized_return(total_ret, ntd)
+    calmar = calmar_ratio(cagr, maxdd)
     print(f"equity: final=${eq:,.0f} total_ret={total_ret:+.2%} ntd={ntd} "
           f"CAGR={cagr:+.2%} maxDD={maxdd:.2%} Calmar={calmar:.2f}")
 
@@ -640,11 +690,8 @@ def main():
         "clusters_ok": bool(cl["G1"] >= 30 and cl["G2"] >= 24),
         "coverage_ok": bool(coverage_ok),
     }
-    verdict = "PASS" if all(gates.values()) else "FAIL"
-    if not (cl["G1"] >= 30 and cl["G2"] >= 24) or not bb["excludes_zero"] == (abs(cl["t"]) > 2.0):
-        verdict = "INCONCLUSIVE"
-    if not coverage_ok:
-        verdict = "INCONCLUSIVE"
+    verdict = compute_verdict(
+        gates, cluster_consistent=(bb["excludes_zero"] == (abs(cl["t"]) > 2.0)))
     print("GATES:", gates, "->", verdict)
 
     # ---- save everything
