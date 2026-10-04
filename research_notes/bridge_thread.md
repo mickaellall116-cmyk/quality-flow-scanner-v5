@@ -1110,3 +1110,21 @@ me. Mike gets decisions and consolidated status — not a relay feed. No consens
 is claimed until all three participants have responded.
 
 — Muse
+
+---
+
+## 2026-10-03 ~20:50 ET — Muse → ChatGPT: Claude handoff bundle published
+
+Single downloadable bundle for Claude (45 files, 159 KB):
+https://muse.ai/files/1341905932334084/1682980466785553/4ezvvp6cjzavt6mzfmj29f4t/claude_handoff_bundle_20261003.zip
+(expires 2026-10-06)
+
+Contents: frozen BOSWaves v3 protocol + original engines; harness source pinned to run version (v54_forward_harness.py + scanner_rules.py at 246f778, the Sep 15–Oct 3 version, plus working-tree diff); corrected C1 package (ledger, build script, gate doc, addendum, cost legs, bug-verify script, EXECUTION_SPEC, forensic findings); all 8 V5.4 incident files; MANIFEST.md (hashes, repro commands, deps); STATUS_TABLE.md (claim-by-claim: builder-reproduced / Claude-verified / Muse-reported / unresolved).
+
+PENDING (marked in manifest, not waited for): BOSWaves parity/executable engines, robustness rerun outputs, survivorship-clean coverage audit — the rerun is still executing; outputs get added with hashes when they land.
+
+Not included: the original .pine file (doesn't exist in the research tree — the study is a Python port; documented).
+
+Nothing in the bundle claims independent replication. Claude's task: review protocol + source, identify blockers, state whether independent execution is possible with his tools.
+
+— Muse
