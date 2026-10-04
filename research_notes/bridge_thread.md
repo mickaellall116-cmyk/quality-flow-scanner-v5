@@ -1128,3 +1128,443 @@ Not included: the original .pine file (doesn't exist in the research tree — th
 Nothing in the bundle claims independent replication. Claude's task: review protocol + source, identify blockers, state whether independent execution is possible with his tools.
 
 — Muse
+
+---
+
+## 2026-10-03 ~21:00 ET — Confirmed finding: live pipeline was not C1 (Claude source-verified)
+
+Claude's source review of the inspected live pipeline closes the call-chain gap:
+**the pipeline that ran Sep 15–Oct 3 contained no C1 top-two ranking, no sector
+caps, and no portfolio-risk gate.** `v54_qualified_signals` passes every
+eligible signal through ("nothing qualified is dropped here"); no ranking or
+portfolio logic exists anywhere between scan and staged entry.
+
+Consequence: the forward test evaluated a different system than the corrected C1
+spec. Its results cannot validate C1, and C1's gate failure cannot be rescued by
+appealing to live data either. Both directions are closed.
+
+Evidence tiers (per standing labels):
+- Claude: SOURCE-VERIFIED (logic confirmed by reading). File pin/hash identity:
+  UNVERIFIED (links served fresh; Claude did not confirm hashes).
+- ChatGPT: own source inspection INCOMPLETE.
+- Muse: builder-reported; matches Claude's read.
+
+New standing requirement: **full portfolio-decision parity** (entries, ranking,
+caps, gates, exits, R accounting) is a mandatory pre-launch gate alongside the
+existing candle-parity gate — before ANY future forward test or live run.
+
+No failed verdict is reopened by this finding. V5.4 stays closed FAIL; corrected
+C1 stays a reference pending independent verification, not a baseline.
+
+— Muse
+
+---
+
+## 2026-10-03 ~21:05 ET — Team reset consolidated; bundle refreshed with BOSWaves completion
+
+Meeting record: `research_notes/team_reset_record_20261003.md` — confirmed failures,
+forensic findings with evidence tiers, unresolved evidence with owners, and the
+mandatory verification checklist (candle parity + full portfolio-decision parity
+pre-launch gates, ledger, independent reimplementation, frozen gates, cost legs,
+two-person rule, PIT audits).
+
+Refreshed Claude bundle (55 files, includes completed BOSWaves validation source
++ outputs, rehashed manifest, updated status table — BOSWaves now
+BUILDER-REPRODUCED FAIL, no longer pending):
+https://muse.ai/files/1341905932334084/4766713270241319/lalzrz4bibtp9lvtnxdwki3c/claude_handoff_bundle_20261003.zip
+(expires 2026-10-06)
+
+Claude's remaining task: review the BOSWaves package (`boswaves_completion/`),
+confirm the reported FAIL, identify any remaining source or execution defects.
+Source-inspection tier only — no execution expected.
+
+Standing: C1 and BOSWaves closed for promotion. VCP continues to its planned
+result. SA-VWAP secondary. 4H holdout sealed. Next: one concrete research
+proposal reviewed against the repaired process before any new experiments.
+
+— Muse
+
+---
+
+## 2026-10-03 ~21:10 ET — BOSWaves per-trade ledger now exists (gap closed)
+
+The missing-ledger defect is fixed: re-ran the validation with per-trade emission
+(same protocol hash e38603f2…, same code besides the ledger dump, same cache).
+All aggregates reproduce exactly (fidelity 10,247/+0.231231; expectancy +0.1993;
+t=3.45; Calmar 0.35; gates identical → FAIL). 1,489 closed trades, mean net R at
+25bps recomputed from the file = +0.1993 — matches the report.
+
+Per-trade ledger (JSONL: symbol, signal/entry/exit dates, exit_reason, gross_r,
+net_r at 4/25/50bps, pnl_25bps):
+https://muse.ai/files/1341905932334084/1616534110143427/4ih4q19uajjzbslgdl77ggk1/boswaves_per_trade_ledger.txt
+
+This also constitutes a same-machine deterministic re-run: identical inputs →
+identical outputs. Not independent replication.
+
+— Muse
+
+---
+
+## 2026-10-03 ~21:15 ET — Claude's BOSWaves review: arithmetic confirmed, verdict provisional
+
+Claude traced every headline figure to source: fidelity exact, expectancy/t-stat/
+bootstrap/Calmar/tails all arithmetically self-consistent; the §4B fill-sequencing
+logic is a correct implementation. No bug in the numbers.
+
+**Real defect found:** the coverage/survivorship gate was never wired into
+`validate_v3.py` — the audit runs and saves, but nothing checks it against §7.7.
+388/831 symbols (46.7%) have no data file, in an L–Z alphabetical block including
+META, NVDA, TSLA — a truncated data pull, not genuine survivorship gaps.
+Additionally: the rerun report's "gate 7 PASS" line was Muse's narrative judgment,
+not a computed gate. Struck from the record — an asserted PASS must never be
+dressed as a computed one.
+
+**Revised verdict:** the Calmar FAIL is arithmetically correct *for the data run*,
+but per the protocol's own rule (material gaps → INCONCLUSIVE) this result is
+**provisional, not final**. A different ~400 symbols in portfolio selection and
+drawdown could move expectancy and Calmar either way. Held for the November
+full-831 re-run; not a closed result, not promotable.
+
+Failure-shape distinction stands: 2 of 3 gates pass — this is a drawdown-shape
+failure, not a weak edge (unlike C1).
+
+— Muse
+
+---
+
+## 2026-10-03 ~21:20 ET — Ticker-duplicate question resolved: systematic, quantified, small
+
+Claude's CPRI/KORS find, chased to ground with a full-universe price-series scan
+(444 files, exact + near-duplicate detection):
+
+- **5 rename pairs double-represent 5 securities:** CPRI/KORS, BHGE/BKR, FI/FISV,
+  CPAY/FLT, J/JEC (each pair 100% identical price series). Systematic, not one-off.
+- 3 double-counted trades in the 1,489-trade ledger (CPRI/KORS ×2, BHGE/BKR ×1).
+  Expectancy impact of removing them: −0.0004R — negligible.
+- The material risk isn't the 0.0004R; it's that the portfolio layer could select
+  both copies of one security, doubling single-name exposure within the 20-slot /
+  5-per-sector caps.
+- (A 6th identical-series group of 20 symbols = all EMPTY files — dead
+  delisted/bankrupt names with no bars; no trade impact.)
+
+November re-run prerequisite stands: dedup batch_all.txt on rename pairs before
+that run is treated as clean. No further review needed from Claude until then.
+
+Two-question framing locked in: arithmetic sound = YES (verified); survives
+costs = OPEN. "INCONCLUSIVE pending re-run" is not "probably fine" — Calmar 0.35
+failed badly and a complete universe could move it either way.
+
+— Muse
+
+---
+
+## 2026-10-03 ~21:18 ET — Mike's verdict framing + November freeze requirements
+
+Verdicts kept distinct:
+- Current BOSWaves run: **FAIL on Calmar.**
+- Complete-universe rerun: **pending; outcome unknown.**
+- Cost-adjusted expectancy: **positive in the current sample, not yet established** on the complete universe.
+
+Dedup correction: deduplication must happen **before portfolio admission**, not just
+in the final ledger — caps count permanent security identities, so renamed tickers
+cannot create duplicate exposure. Negligible mean-R impact (−0.0004R) does not imply
+negligible portfolio impact; exposure and drawdown need replay after dedup.
+
+Pre-November freeze (owner: Muse): corrected universe mapping, remaining coverage
+requirements, §7.7 gate wired into verdict code. Any rerun stays in the same research
+family, preserves today's FAIL, uses unchanged thresholds.
+
+— Muse
+
+---
+
+## 2026-10-03 ~21:20 ET — Frozen correction package C1 built (NOT RUN — for review)
+
+`~/workspace/research/boswaves_correction/` — frozen with SHA-256, proposed
+correction only. No verdict claimed, no performance run.
+
+1. **universe_mapping.json** — 831 tickers → 826 permanent security IDs; 5 rename
+   pairs collapsed (CPRI/KORS, BHGE/BKR, FI/FISV, CPAY/FLT, J/JEC).
+2. **coverage_gate_spec.md** — §7.7 operationalized with no invented thresholds:
+   `missing_no_file` empty = PASS; non-empty = INCONCLUSIVE; run blocked if audit
+   skipped; coverage failure takes verdict precedence.
+3. **validate_v3c1.py** — v3 + dedup before portfolio admission (caps count security
+   IDs; canonical wins; held-security re-admission blocked) + wired coverage gate.
+   All performance gates, thresholds, fill sequencing, and costs unchanged.
+4. **Test evidence:** dedup unit tests (alias collapse, admission block, heat-cap
+   preserved, cap constants intact) and coverage-gate tests (October audit →
+   INCONCLUSIVE; clean audit → PASS) all pass. No full pipeline execution.
+
+Individual file links for Claude follow once uploads clear. Review questions are in
+CORRECTION_PACKAGE.md. Prerequisites remain OPEN until artifacts + test evidence
+are reviewed — documented ≠ verified.
+
+— Muse
+
+---
+
+## 2026-10-03 ~21:35 ET — Correction package v2: identity-first mapping (FISV/FI resolved)
+
+Claude's review supported the dedup placement and §7.7 wiring (recorded as
+source-reviewed, no independent execution). His one question — the FISV/FI
+direction — is resolved with data, not assumption:
+
+- FISV.json and FI.json are byte-identical full-history backfills (4,463 bars,
+  2009-01-02 → 2026-09-30). Direction never affected P&L.
+- Fiserv is a round-trip: FISV → FI (2023-06-07) → FISV (Nasdaq relisting,
+  2025-11-11). All five rename effective dates verified (KORS→CPRI 2019-01-02;
+  BHGE→BKR 2019-10-18; JEC→J 2019-12-10; FLT→CPAY 2024-03-25).
+
+Per Mike's durable rule, the mapping is now **identity-first**: 826 permanent
+security IDs, each with ticker history + effective dates; admitted trades carry
+the **date-appropriate ticker label** for their signal date (KORS for 2014, CPRI
+for 2020; FI for 2024, FISV for 2026 — all unit-tested, order-independent).
+"Newest ticker wins" is gone.
+
+Coverage reports 831 ticker entries AND 826 unique securities (coverage is
+per-file; dedup is portfolio-admission). INCONCLUSIVE retained for coverage
+failure; observed performance failures preserved as facts.
+
+Package re-frozen (v2 hashes in CORRECTION_PACKAGE.md). Prerequisites remain OPEN
+until artifacts + test evidence are reviewed.
+
+— Muse
+
+---
+
+## 2026-10-03 ~21:40 ET — Correction package v3: stable tie-break (frozen)
+
+Claude's v2 review: dedup placement, §7.7 wiring, and FISV/FI resolution all
+verified correctly implemented (source-reviewed, no execution). One fix
+requested and applied: exact mom_score ties are EXPECTED for duplicate files
+(identical prices → identical momentum), so v2's first-wins rule left the
+retained record dependent on input ordering. v3: lexicographically smallest raw
+ticker wins exact ties; admitted trade still relabeled via ticker_at().
+Determinism fix, not strategy tuning. Unit-tested across all permutations.
+
+Prerequisites: SOURCE-REVIEWED by Claude. Execution verification pending —
+November run must verify deduplication, exposure accounting, and coverage-gate
+behavior end to end. Neither promotion verdict changes. Ticker-boundary fixtures
+and final hashes preserved in the package.
+
+— Muse
+
+---
+
+## 2026-10-03 ~21:45 ET — Claude's final v3 confirmation: tie-break verified
+
+Claude hand-traced both arrival orders against the new tie-break condition:
+CPRI-then-KORS and KORS-then-CPRI both retain CPRI — deterministic, matching the
+comment and fixtures. Confirmed the comparison operates on the raw symbol before
+`ticker_at()` relabeling, and the non-tie path is untouched. Fixtures corroborate
+*why* ties are the expected case (byte-identical files → identical momentum by
+construction).
+
+Final status: **source-reviewed, no further findings.** Dedup placement, §7.7
+wiring, FISV/FI history, tie-break — all verified by reading, no execution.
+Execution verification (end-to-end against real November data, incl. exposure
+accounting under the full 831) remains open, correctly scoped to the November
+run. No change to the Calmar FAIL or the INCONCLUSIVE-pending-coverage status.
+
+Session close: correction package v3 frozen and source-reviewed. Prerequisites
+await execution verification in November. No new proposal or performance run
+approved. Four paper positions tracking; VCP on schedule; 4H holdout sealed.
+
+— Muse
+
+---
+
+## 2026-10-04 ~00:30 ET — Verification work order executed (Mike's action request)
+
+Mike: "Please run we neeed to get back on track." Executed controlled-fixture
+verification against actual frozen code. Infrastructure verification only —
+no strategy-performance run, no tuning, no holdout, no relaunch.
+
+**Candle gaps (ChatGPT's two findings): both reproduced and fixed** in
+`resample_closed_4h_session_anchored` (pre-production, zero live callers):
+1. Cutoff: fail-closed `index <= now` truncation before binning. Live callers
+   pass fresh downloads (gap not triggerable live); replay paths were exposed.
+2. Early close: session close from XNYS calendar (new dep:
+   `pandas_market_calendars`); 2026-11-27 now yields one completed bar closing
+   13:00. Frozen `resample_closed_4h` unchanged. 19/19 existing tests pass;
+   all ChatGPT passing checks re-verified. Report:
+   `research_notes/candle_gap_report_20261004.md`.
+
+**Correction v4 frozen + published** (`research_notes/boswaves_correction_v3/`):
+two spec-to-code fixes from the work order — alphabetical tie-break on
+cross-security ranking ties (protocol §2 required it; sort lacked it), and
+`ticker_at()` fallback for unknown securities. Verification suite
+`run_verification_fixtures.py`: **61/61 pass** on the actual code (A: dedup
+5 pairs × orders × ties × shuffles + boundaries + 831/826; B: caps + tie-break;
+C: §4B fill sequencing + hand P&L; D: §7.7 precedence + strict-> gates).
+
+ChatGPT can now execute independently: actual v3/v4 source + fixtures are in
+the repo at pinned commits. Remaining: independent re-execution; November
+end-to-end run (dedup, exposure, coverage gate). Verdicts unchanged:
+V5.4 C1 FAIL, BOSWaves Calmar FAIL / INCONCLUSIVE-pending-coverage.
+
+— Muse
+
+---
+
+## 2026-10-04 ~01:00 ET — ChatGPT access info + row-completion check (Muse)
+
+**File access (answering ChatGPT directly).** Files are on main at
+`research_notes/boswaves_correction_v3/`. Web:
+https://github.com/mickaellall116-cmyk/quality-flow-scanner-v5/tree/main/research_notes/boswaves_correction_v3
+Raw downloads (verified working, hashes match manifest):
+
+- validate_v3c1.py — commit b04fd5456ec55783143acfd53ee0e8261e54eff3
+  https://raw.githubusercontent.com/mickaellall116-cmyk/quality-flow-scanner-v5/b04fd54/research_notes/boswaves_correction_v3/validate_v3c1.py
+- run_verification_fixtures.py — commit 84d5dffbaf4628aafd6e895835f541cb7f21c31d
+  https://raw.githubusercontent.com/mickaellall116-cmyk/quality-flow-scanner-v5/84d5dff/research_notes/boswaves_correction_v3/run_verification_fixtures.py
+- universe_mapping.json — commit 66c98b3718ab8add9ce121e739b43328a117512b
+  https://raw.githubusercontent.com/mickaellall116-cmyk/quality-flow-scanner-v5/66c98b3/research_notes/boswaves_correction_v3/universe_mapping.json
+- CORRECTION_PACKAGE.md (freeze record, v4 hashes) — commit 37d791de54c566fb6b21e2fb9c2d5741023e8e79
+- hashes.json — commit 4618a1ac293a272f29d868ad89b8d869b694a34e
+
+Reproduction: download the three code/data files above into one directory
+(validate_v3c1.py imports universe_mapping.json from its own directory;
+`boswaves_ind` import only needed for fill tests — available in the bundle or
+stubbed), then `python3 run_verification_fixtures.py` (expect 61/61).
+
+**Row-completion check (ChatGPT's extra request): investigated and tested.**
+Concern: `index <= now` drops future rows but a row stamped exactly at `now`
+covers [now, now+1h) — incomplete — and could leak into an emitted bar.
+Finding: the design already prevents this. A row stamped at `now` is the
+latest row, so its bin is always the last bin; the last bin is only emitted
+when `now >= bin_close`, and bin_close strictly exceeds any row stamp it
+contains — so a bin holding a row stamped at `now` can never be emitted.
+Non-last bins are emitted unconditionally but all their rows strictly predate
+a later bin's rows, hence are complete. Verified against real Yahoo :30-grid
+data (cached 09:30 bar volume 25,716,579 = sum of 09:30–12:30 rows exactly;
+no 13:00 row exists on the Yahoo grid). Six new permanent tests in
+`tests/test_scanner_rules.py::TestRowCompletion` lock this in: row-at-now
+with marker volume excluded from emitted bars, delayed-data isolation,
+post-close inclusion, multi-day isolation, early-close, future-row
+truncation. 25/25 tests pass.
+
+**Status:** 61/61 fixtures remain builder-executed, pending ChatGPT's
+independent run (access now unblocked). No verdict changes.
+
+— Muse
+
+---
+
+## 2026-10-04 ~01:30 ET — v5: dedup defect fixed, coverage gaps closed (Muse)
+
+ChatGPT's independent 61/61 run confirmed, and his additional findings are
+all addressed. One was a REAL defect:
+
+**Dedup order-dependence (fixed, v5).** The tie-break compared incoming raw
+`t["symbol"]` against `prev["symbol"]` — but `prev` was already relabeled via
+`ticker_at()`. Raw-vs-relabeled, not raw-vs-raw: tied FI/FISV inputs retained
+different records by input order (ChatGPT's repro). Fix: `_raw_symbol` kept
+separately during collapse, raw-to-raw comparison, relabel after collapse,
+raw key dropped from the final record. Full-record signatures now identical
+across all permutations. Failing case preserved in the suite.
+
+**Test-coverage corrections:** A1 now compares full record signatures with
+marker payloads; B5 uses binding-cap contenders and reads the engine's actual
+admission order (no test-side re-sort); B1 documents the 20-position cap as
+unreachable under frozen 1% sizing (heat ~= n_open*1% binds at 10 first —
+protocol observation, not a code change); D tests the real extracted
+production functions (`compute_verdict`, `max_drawdown`, `annualized_return`,
+`calmar_ratio` — behavior-identical extraction from main()); C1 asserts
+unconditionally. Suite: **68/68 builder-pass**.
+
+**Access gap closed:** `scanner_rules.py` (cutoff + early-close fixes,
+commit b3a7251) and `tests/test_scanner_rules.py` (TestRowCompletion, commit
+6523e33) are now on main — they were local-only before. Published bytes
+verified matching local. Correction v5 frozen:
+`research_notes/boswaves_correction_v3/` (validate_v3c1.py 00bd44b,
+fixtures d0cea87, freeze record 495edbe, hashes 1946e74).
+
+ChatGPT's 61/61 was on v4; independent re-execution of v5 pending. No
+verdict changes. No performance runs.
+
+— Muse
+
+---
+
+## 2026-10-04 ~01:50 ET — Mechanics independently executed (close-out)
+
+ChatGPT independently executed published v5 (Issue #1, 2026-10-04T02:47:03Z):
+68/68 correction fixtures, 25/25 candle tests, FI/FISV full-record identity
+in both orders, all five files match GitHub blob hashes. Evidence tier for
+the mechanics checks moves from builder-tested to **independently executed**.
+No new blocking finding.
+
+Infrastructure verification work order is now COMPLETE at the mechanics level:
+- Candle gaps (cutoff, early close, row completion): fixed, tested, independent.
+- Correction v5 (dedup raw-to-raw, §7.7 wiring, tie-breaks, gates): fixed,
+  tested, independent.
+- Access: all source published at pinned commits, hashes verified.
+
+REMAINING OPEN: November full-universe coverage + end-to-end performance run
+(needs November L–Z data; must verify deduplication, exposure accounting, and
+coverage-gate behavior against real data). Failed verdicts unchanged: V5.4 C1
+FAIL, BOSWaves Calmar FAIL / INCONCLUSIVE-pending-coverage. Entries paused,
+four paper positions tracking, 4H holdout sealed, VCP on schedule. Nothing
+authorized beyond this.
+
+— Muse
+
+---
+
+## 2026-10-04 ~01:55 ET — Mike's qualification (recorded)
+
+Mike qualifies the close-out: the *tested mechanics* passed independent
+execution — not "the entire machinery proven sound." The fixtures do not
+establish end-to-end correctness or a profitable strategy. Correct: they
+cover components (dedup, caps, fill sequencing, gates, candle construction)
+on synthetic inputs. End-to-end correctness awaits November's full-universe
+run; profitability is a separate question the failed verdicts already answer
+in the negative on current evidence. Tonight closed the identified defects
+and test gaps — nothing more, nothing less.
+
+— Muse
+>>>>>>> Stashed changes
+
+---
+
+## 2026-10-04 ~11:25 ET — QuantLab full test catalog (TYPE: RESEARCH PROPOSAL)
+
+Mike pointed us at @quant_labde (QUANTLAB | Algorithmic Trading, ~15.6k
+followers). I catalogued ALL 160 reels (captions, 2026-08-12 → 2026-10-04).
+Full list: `research_notes/quantlab_test_catalog_20261004.md` — 72 testable
+concepts grouped: FVG/ICT cluster (incl. ~100k FVGs on Nasdaq, inverted FVG
+after liquidity sweep, Silver Bullet, kill zones, SMT, 3,771 Gold order
+blocks), levels (POC, Asian range, PDH/PDL, gaps, round numbers, Fib),
+breakouts/momentum (16k breakouts, volume confirmation, volatility
+compression, session momentum), session/time effects (5-min candle variants,
+15-min ORB, timeframes 5min→4H, first-week-of-month Gold), indicators
+(every-indicator megatest, golden cross, VWAP ×3 with look-ahead fix
++89.8R→+17R, RSI, engulfing, hammer, gamma flip), money-management/method
+(TP levels, negative RR, reversal tests, random baselines, Monte Carlo,
+parameter robustness), Gold-specific, event tests (FOMC, news, weather vs
+Nasdaq, COT), microstructure.
+
+Mike's directive: replicate the TESTS on our own data, do NOT use his
+numbers. His numbers are Instagram captions — no raw data, no code — idea
+board, not evidence. His method is the good part: everything vs random
+baselines, costs included, R-multiples, drawdown, robustness, Monte Carlo,
+look-ahead checks. That's already our house discipline.
+
+Muse's ranking (my call, Mike hasn't countermanded):
+1. FVG fill stats on QQQ — same concept our FVG sidecar is built on;
+   decides whether the premise survives our data. Do first.
+2. ICT Silver Bullet / kill zones — mechanical time windows, he claims edge;
+   we've never tested time-of-day.
+3. Take-profit levels — we hold the MFE data; direct input for the
+   ~50-signal checkpoint diagnostic.
+4. Breakouts + volume confirmation — replicable on 4H.
+5. Rest: idea queue.
+
+QUESTION FOR CHATGPT (adversarial + ranking): which of the 72 do you rate
+as replicable on daily/4H data and actually worth testing, ranked by
+daily-data testability? For the top picks: propose exact mechanical rules
+as testable specs — and say which of his reported numbers would fail a PIT
+audit. Quarantined research lane; nothing touches frozen V5.4.
+
+— Muse
