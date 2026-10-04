@@ -61,7 +61,7 @@ def build_4h(symbols):
             p = os.path.join(HERE, "pine_1h", "cache", f"h1_{sym}.pkl")
         df1h = pd.read_pickle(p)
         # Corrected session-anchored 4H
-        df4h = sr.resample_closed_4h_session_anchored(df1h)
+        df4h = sr.resample_closed_4h_session_anchored(df1h, sym)
         # Restrict to study window + warmup (warmup already in 1H)
         df4h = df4h[df4h.index >= pd.Timestamp("2024-10-07", tz="America/New_York")]
         if "Volume" not in df4h.columns or df4h["Volume"].isna().all():
@@ -163,6 +163,62 @@ def filter_top_trades(all_trades, membership):
     return top_trades
 
 
+def marked_equity_at_end(taken_trades, closes, study_end, cost):
+    """Replay taken trades to compute marked equity at study end.
+
+    Uses frozen System-1 sizing (1% of equity, halved under S4 DD gate).
+    Does not modify pine_stack.py; replays from the taken trade list.
+    """
+    def mark(sym, t):
+        s = closes[sym]
+        idx = s.index.searchsorted(t, side="right") - 1
+        return float(s.iloc[idx]) if idx >= 0 else float(s.iloc[0])
+
+    events = []
+    for tr in taken_trades:
+        events.append((tr["entry_time"], "entry", tr))
+        events.append((tr["exit_time"], "exit", tr))
+    events.sort(key=lambda e: (e[0], e[1]))
+
+    realized = pb.START_EQUITY
+    peak = realized
+    open_pos = []  # (trade, risk_dollars, size)
+
+    for t, kind, tr in events:
+        if t > study_end:
+            break
+        if kind == "entry":
+            # Marked equity for DD gate
+            unreal = sum(((mark(p[0]["symbol"], t) - p[0]["entry"]) / p[0]["entry"]) * p[2]
+                         for p in open_pos)
+            eq = realized + unreal
+            peak = max(peak, eq)
+            cur_risk = pb.RISK_PCT
+            if eq <= 0.90 * peak:
+                cur_risk = pb.RISK_PCT / 2.0
+            risk_dollars = cur_risk * eq
+            risk_frac = (tr["entry"] - tr["stop"]) / tr["entry"]
+            size = risk_dollars / risk_frac if risk_frac > 0 else 0.0
+            open_pos.append((tr, risk_dollars, size))
+        else:
+            for i, (otr, rd, sz) in enumerate(open_pos):
+                if otr is tr:
+                    _, _, net_r, _ = pb._outcome(tr["entry"], tr["stop"],
+                                                 tr["exit"], cost)
+                    realized += rd * net_r
+                    open_pos.pop(i)
+                    break
+            # Update peak on exits (marked)
+            unreal = sum(((mark(p[0]["symbol"], t) - p[0]["entry"]) / p[0]["entry"]) * p[2]
+                         for p in open_pos)
+            peak = max(peak, realized + unreal)
+
+    # Mark remaining open positions at study end
+    unreal_end = sum(((mark(tr["symbol"], study_end) - tr["entry"]) / tr["entry"]) * sz
+                     for tr, rd, sz in open_pos)
+    return realized + unreal_end
+
+
 def run_leg(trades, closes, data, spy, cost_name, tag):
     """Run simulate_stack + compute gates inputs."""
     from pine_signal_quality import load_benchmarks
@@ -186,13 +242,13 @@ def run_leg(trades, closes, data, spy, cost_name, tag):
         _, _, net_r, _ = pb._outcome(tr["entry"], tr["stop"], tr["exit"], cost)
         net_rs.append(net_r)
         tr["_net_r"] = net_r
-    # Calmar from marked-equity curve
-    curve = port["curve"]
-    eqs = [c[1] for c in curve]
+    # Calmar from marked equity: max_dd from simulate_stack (marked),
+    # final marked equity via replay (frozen sizing, no pine_stack changes).
     max_dd = port["max_drawdown"]
     years = (STUDY_END - STUDY_START).days / 365.25
-    if eqs and eqs[0] > 0:
-        cagr = (eqs[-1] / eqs[0]) ** (1 / years) - 1
+    final_marked = marked_equity_at_end(taken, closes, STUDY_END, cost)
+    if final_marked > 0 and pb.START_EQUITY > 0:
+        cagr = (final_marked / pb.START_EQUITY) ** (1 / years) - 1
     else:
         cagr = 0.0
     calmar = cagr / max_dd if max_dd > 0 else 0.0
@@ -200,7 +256,9 @@ def run_leg(trades, closes, data, spy, cost_name, tag):
             "expectancy": float(np.mean(net_rs)) if net_rs else 0.0,
             "net_rs": net_rs, "taken": taken,
             "calmar": float(calmar), "cagr": float(cagr),
-            "max_dd": float(max_dd), "port": port}
+            "max_dd": float(max_dd),
+            "final_marked": float(final_marked),
+            "port": port}
 
 
 def run_performance():
