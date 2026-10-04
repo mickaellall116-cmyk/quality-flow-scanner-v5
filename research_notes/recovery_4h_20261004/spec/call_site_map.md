@@ -13,6 +13,13 @@ UTC-midnight-anchored; grid shifts with DST and download-window length.
 **Known defect:** live forward test produced 06:30/10:30/14:30 ET bars instead of
 09:30/13:30 (2026-09-15 through 2026-10-03).
 
+**ADDITIONAL ROLE (rev 2, Gap 1):** This function (not Path 3) generated
+`backtest_cache/v3/h4_*.pkl` (52 files, 2026-09-15) via an uncommitted process.
+The UTC-anchored 13:30/17:30 grid, SessionVWAP column, and `last_bar_*` attrs
+in the cache match this function's exact behavior. The 240-trade C1 baseline
+(+0.178R) was built on this grid — see `spec/cache_provenance_forensic.md`
+and `spec/cache_contamination_audit.md`.
+
 | Call site | Role | Evidence family |
 |-----------|------|-----------------|
 | `masterscanner_api.py:98` | `/buy-now` endpoint | Live API signals |
@@ -44,11 +51,18 @@ within each day but a third distinct implementation.
 
 | Call site | Role | Evidence family |
 |-----------|------|-----------------|
-| `canonical_baseline/scripts/fetch_4h.py:80-81` | `backtest_cache/v3/h4_*.pkl` generation | **C1 240-trade corrected baseline** (+0.178R), all pine_backtest 4H runs |
+| `canonical_baseline/scripts/fetch_4h.py:80-81` | `canonical_baseline/data/h4_*.pkl` generation (137 files, 2026-09-25) | Canonical baseline data (clean 09:30/13:30 ET grid) |
 
-**Note:** This is the path behind the 240-trade C1 reproduction reference.
-Phase A fixtures must prove byte-identity (or document deltas) between Path 2
-and Path 3 on identical 1H inputs.
+**CORRECTION (rev 2, Gap 1):** Path 3 did NOT generate `backtest_cache/v3/h4_*.pkl`.
+That claim in rev 1 was wrong. The v3 cache (52 files, 2026-09-15) was generated
+by the legacy `resample_closed_4h` (Path 1 mechanism) via an uncommitted process —
+see `spec/cache_provenance_forensic.md` for the full trace. Path 3's actual output
+is the clean-grid `canonical_baseline/data/` set.
+
+**Note:** `fetch_4h.py`'s per-day-origin output is byte-identical in OHLCV to the
+session-anchored Path 2 on identical inputs (proven in Phase A fixtures).
+Either could serve as the canonical grid; Path 2 is designated canonical for
+its explicit DST handling and causal cutoff.
 
 ## Path 4 — VENDOR 4H (live harness)
 **Mechanism:** `eng.m53.download_data(symbol, "4h", "180d")` — Yahoo vendor-resampled
