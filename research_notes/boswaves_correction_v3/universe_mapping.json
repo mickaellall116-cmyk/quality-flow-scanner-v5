@@ -1,0 +1,8297 @@
+{
+ "securities": {
+  "SEC_CAPRI_HOLDINGS": {
+   "tickers": [
+    {
+     "ticker": "KORS",
+     "from": null,
+     "to": "2019-01-01"
+    },
+    {
+     "ticker": "CPRI",
+     "from": "2019-01-02",
+     "to": null
+    }
+   ],
+   "note": "Michael Kors Holdings -> Capri Holdings; ticker KORS -> CPRI effective 2019-01-02"
+  },
+  "SEC_BAKER_HUGHES": {
+   "tickers": [
+    {
+     "ticker": "BHGE",
+     "from": null,
+     "to": "2019-10-17"
+    },
+    {
+     "ticker": "BKR",
+     "from": "2019-10-18",
+     "to": null
+    }
+   ],
+   "note": "Baker Hughes, a GE company -> Baker Hughes Company; BHGE -> BKR effective 2019-10-18"
+  },
+  "SEC_JACOBS": {
+   "tickers": [
+    {
+     "ticker": "JEC",
+     "from": null,
+     "to": "2019-12-09"
+    },
+    {
+     "ticker": "J",
+     "from": "2019-12-10",
+     "to": null
+    }
+   ],
+   "note": "Jacobs Engineering Group -> Jacobs Solutions; JEC -> J effective 2019-12-10"
+  },
+  "SEC_CORPAY": {
+   "tickers": [
+    {
+     "ticker": "FLT",
+     "from": null,
+     "to": "2024-03-24"
+    },
+    {
+     "ticker": "CPAY",
+     "from": "2024-03-25",
+     "to": null
+    }
+   ],
+   "note": "FleetCor Technologies -> Corpay; FLT -> CPAY effective 2024-03-25"
+  },
+  "SEC_FISERV": {
+   "tickers": [
+    {
+     "ticker": "FISV",
+     "from": null,
+     "to": "2023-06-06"
+    },
+    {
+     "ticker": "FI",
+     "from": "2023-06-07",
+     "to": "2025-11-10"
+    },
+    {
+     "ticker": "FISV",
+     "from": "2025-11-11",
+     "to": null
+    }
+   ],
+   "note": "Fiserv: FISV -> FI effective 2023-06-07; FI -> FISV (Nasdaq relisting) effective 2025-11-11"
+  },
+  "SEC_A": {
+   "tickers": [
+    {
+     "ticker": "A",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AABA": {
+   "tickers": [
+    {
+     "ticker": "AABA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AAL": {
+   "tickers": [
+    {
+     "ticker": "AAL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AAP": {
+   "tickers": [
+    {
+     "ticker": "AAP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AAPL": {
+   "tickers": [
+    {
+     "ticker": "AAPL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ABBV": {
+   "tickers": [
+    {
+     "ticker": "ABBV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ABC": {
+   "tickers": [
+    {
+     "ticker": "ABC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ABMD": {
+   "tickers": [
+    {
+     "ticker": "ABMD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ABNB": {
+   "tickers": [
+    {
+     "ticker": "ABNB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ABT": {
+   "tickers": [
+    {
+     "ticker": "ABT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ACGL": {
+   "tickers": [
+    {
+     "ticker": "ACGL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ACN": {
+   "tickers": [
+    {
+     "ticker": "ACN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ACS": {
+   "tickers": [
+    {
+     "ticker": "ACS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ADBE": {
+   "tickers": [
+    {
+     "ticker": "ADBE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ADI": {
+   "tickers": [
+    {
+     "ticker": "ADI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ADM": {
+   "tickers": [
+    {
+     "ticker": "ADM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ADP": {
+   "tickers": [
+    {
+     "ticker": "ADP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ADS": {
+   "tickers": [
+    {
+     "ticker": "ADS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ADSK": {
+   "tickers": [
+    {
+     "ticker": "ADSK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ADT": {
+   "tickers": [
+    {
+     "ticker": "ADT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AEE": {
+   "tickers": [
+    {
+     "ticker": "AEE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AEP": {
+   "tickers": [
+    {
+     "ticker": "AEP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AES": {
+   "tickers": [
+    {
+     "ticker": "AES",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AET": {
+   "tickers": [
+    {
+     "ticker": "AET",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AFL": {
+   "tickers": [
+    {
+     "ticker": "AFL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AGN": {
+   "tickers": [
+    {
+     "ticker": "AGN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AIG": {
+   "tickers": [
+    {
+     "ticker": "AIG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AIV": {
+   "tickers": [
+    {
+     "ticker": "AIV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AIZ": {
+   "tickers": [
+    {
+     "ticker": "AIZ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AJG": {
+   "tickers": [
+    {
+     "ticker": "AJG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AKAM": {
+   "tickers": [
+    {
+     "ticker": "AKAM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AKS": {
+   "tickers": [
+    {
+     "ticker": "AKS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ALB": {
+   "tickers": [
+    {
+     "ticker": "ALB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ALGN": {
+   "tickers": [
+    {
+     "ticker": "ALGN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ALK": {
+   "tickers": [
+    {
+     "ticker": "ALK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ALL": {
+   "tickers": [
+    {
+     "ticker": "ALL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ALLE": {
+   "tickers": [
+    {
+     "ticker": "ALLE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ALTR": {
+   "tickers": [
+    {
+     "ticker": "ALTR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ALXN": {
+   "tickers": [
+    {
+     "ticker": "ALXN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AMAT": {
+   "tickers": [
+    {
+     "ticker": "AMAT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AMCR": {
+   "tickers": [
+    {
+     "ticker": "AMCR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AMD": {
+   "tickers": [
+    {
+     "ticker": "AMD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AME": {
+   "tickers": [
+    {
+     "ticker": "AME",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AMG": {
+   "tickers": [
+    {
+     "ticker": "AMG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AMGN": {
+   "tickers": [
+    {
+     "ticker": "AMGN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AMP": {
+   "tickers": [
+    {
+     "ticker": "AMP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AMT": {
+   "tickers": [
+    {
+     "ticker": "AMT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AMTM": {
+   "tickers": [
+    {
+     "ticker": "AMTM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AMZN": {
+   "tickers": [
+    {
+     "ticker": "AMZN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AN": {
+   "tickers": [
+    {
+     "ticker": "AN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ANDV": {
+   "tickers": [
+    {
+     "ticker": "ANDV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ANET": {
+   "tickers": [
+    {
+     "ticker": "ANET",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ANF": {
+   "tickers": [
+    {
+     "ticker": "ANF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ANRZQ": {
+   "tickers": [
+    {
+     "ticker": "ANRZQ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ANSS": {
+   "tickers": [
+    {
+     "ticker": "ANSS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ANTM": {
+   "tickers": [
+    {
+     "ticker": "ANTM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AON": {
+   "tickers": [
+    {
+     "ticker": "AON",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AOS": {
+   "tickers": [
+    {
+     "ticker": "AOS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_APA": {
+   "tickers": [
+    {
+     "ticker": "APA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_APC": {
+   "tickers": [
+    {
+     "ticker": "APC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_APD": {
+   "tickers": [
+    {
+     "ticker": "APD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_APH": {
+   "tickers": [
+    {
+     "ticker": "APH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_APO": {
+   "tickers": [
+    {
+     "ticker": "APO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_APOL": {
+   "tickers": [
+    {
+     "ticker": "APOL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_APP": {
+   "tickers": [
+    {
+     "ticker": "APP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_APTV": {
+   "tickers": [
+    {
+     "ticker": "APTV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ARE": {
+   "tickers": [
+    {
+     "ticker": "ARE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ARES": {
+   "tickers": [
+    {
+     "ticker": "ARES",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ARG": {
+   "tickers": [
+    {
+     "ticker": "ARG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ARNC": {
+   "tickers": [
+    {
+     "ticker": "ARNC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ATGE": {
+   "tickers": [
+    {
+     "ticker": "ATGE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ATI": {
+   "tickers": [
+    {
+     "ticker": "ATI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ATO": {
+   "tickers": [
+    {
+     "ticker": "ATO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ATVI": {
+   "tickers": [
+    {
+     "ticker": "ATVI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AVB": {
+   "tickers": [
+    {
+     "ticker": "AVB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AVGO": {
+   "tickers": [
+    {
+     "ticker": "AVGO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AVP": {
+   "tickers": [
+    {
+     "ticker": "AVP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AVY": {
+   "tickers": [
+    {
+     "ticker": "AVY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AWK": {
+   "tickers": [
+    {
+     "ticker": "AWK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AXON": {
+   "tickers": [
+    {
+     "ticker": "AXON",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AXP": {
+   "tickers": [
+    {
+     "ticker": "AXP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AYE": {
+   "tickers": [
+    {
+     "ticker": "AYE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AYI": {
+   "tickers": [
+    {
+     "ticker": "AYI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_AZO": {
+   "tickers": [
+    {
+     "ticker": "AZO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BA": {
+   "tickers": [
+    {
+     "ticker": "BA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BAC": {
+   "tickers": [
+    {
+     "ticker": "BAC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BALL": {
+   "tickers": [
+    {
+     "ticker": "BALL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BAX": {
+   "tickers": [
+    {
+     "ticker": "BAX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BBBY": {
+   "tickers": [
+    {
+     "ticker": "BBBY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BBT": {
+   "tickers": [
+    {
+     "ticker": "BBT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BBWI": {
+   "tickers": [
+    {
+     "ticker": "BBWI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BBY": {
+   "tickers": [
+    {
+     "ticker": "BBY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BCR": {
+   "tickers": [
+    {
+     "ticker": "BCR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BDK": {
+   "tickers": [
+    {
+     "ticker": "BDK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BDX": {
+   "tickers": [
+    {
+     "ticker": "BDX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BEAM": {
+   "tickers": [
+    {
+     "ticker": "BEAM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BEN": {
+   "tickers": [
+    {
+     "ticker": "BEN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BF.B": {
+   "tickers": [
+    {
+     "ticker": "BF.B",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BG": {
+   "tickers": [
+    {
+     "ticker": "BG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BHF": {
+   "tickers": [
+    {
+     "ticker": "BHF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BIG": {
+   "tickers": [
+    {
+     "ticker": "BIG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BIIB": {
+   "tickers": [
+    {
+     "ticker": "BIIB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BIO": {
+   "tickers": [
+    {
+     "ticker": "BIO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BJS": {
+   "tickers": [
+    {
+     "ticker": "BJS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BK": {
+   "tickers": [
+    {
+     "ticker": "BK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BKNG": {
+   "tickers": [
+    {
+     "ticker": "BKNG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BLDR": {
+   "tickers": [
+    {
+     "ticker": "BLDR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BLK": {
+   "tickers": [
+    {
+     "ticker": "BLK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BLL": {
+   "tickers": [
+    {
+     "ticker": "BLL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BMC": {
+   "tickers": [
+    {
+     "ticker": "BMC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BMS": {
+   "tickers": [
+    {
+     "ticker": "BMS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BMY": {
+   "tickers": [
+    {
+     "ticker": "BMY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BNI": {
+   "tickers": [
+    {
+     "ticker": "BNI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BR": {
+   "tickers": [
+    {
+     "ticker": "BR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BRCM": {
+   "tickers": [
+    {
+     "ticker": "BRCM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BRK.B": {
+   "tickers": [
+    {
+     "ticker": "BRK.B",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BRO": {
+   "tickers": [
+    {
+     "ticker": "BRO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BSX": {
+   "tickers": [
+    {
+     "ticker": "BSX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BTUUQ": {
+   "tickers": [
+    {
+     "ticker": "BTUUQ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BWA": {
+   "tickers": [
+    {
+     "ticker": "BWA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BX": {
+   "tickers": [
+    {
+     "ticker": "BX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BXLT": {
+   "tickers": [
+    {
+     "ticker": "BXLT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_BXP": {
+   "tickers": [
+    {
+     "ticker": "BXP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_C": {
+   "tickers": [
+    {
+     "ticker": "C",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CA": {
+   "tickers": [
+    {
+     "ticker": "CA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CAG": {
+   "tickers": [
+    {
+     "ticker": "CAG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CAH": {
+   "tickers": [
+    {
+     "ticker": "CAH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CAM": {
+   "tickers": [
+    {
+     "ticker": "CAM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CARR": {
+   "tickers": [
+    {
+     "ticker": "CARR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CAT": {
+   "tickers": [
+    {
+     "ticker": "CAT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CB": {
+   "tickers": [
+    {
+     "ticker": "CB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CBE": {
+   "tickers": [
+    {
+     "ticker": "CBE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CBOE": {
+   "tickers": [
+    {
+     "ticker": "CBOE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CBRE": {
+   "tickers": [
+    {
+     "ticker": "CBRE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CBS": {
+   "tickers": [
+    {
+     "ticker": "CBS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CCE": {
+   "tickers": [
+    {
+     "ticker": "CCE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CCEP": {
+   "tickers": [
+    {
+     "ticker": "CCEP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CCI": {
+   "tickers": [
+    {
+     "ticker": "CCI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CCL": {
+   "tickers": [
+    {
+     "ticker": "CCL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CDAY": {
+   "tickers": [
+    {
+     "ticker": "CDAY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CDNS": {
+   "tickers": [
+    {
+     "ticker": "CDNS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CDW": {
+   "tickers": [
+    {
+     "ticker": "CDW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CE": {
+   "tickers": [
+    {
+     "ticker": "CE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CEG": {
+   "tickers": [
+    {
+     "ticker": "CEG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CELG": {
+   "tickers": [
+    {
+     "ticker": "CELG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CEPH": {
+   "tickers": [
+    {
+     "ticker": "CEPH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CERN": {
+   "tickers": [
+    {
+     "ticker": "CERN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CF": {
+   "tickers": [
+    {
+     "ticker": "CF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CFG": {
+   "tickers": [
+    {
+     "ticker": "CFG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CFN": {
+   "tickers": [
+    {
+     "ticker": "CFN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CHD": {
+   "tickers": [
+    {
+     "ticker": "CHD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CHK": {
+   "tickers": [
+    {
+     "ticker": "CHK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CHRW": {
+   "tickers": [
+    {
+     "ticker": "CHRW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CHTR": {
+   "tickers": [
+    {
+     "ticker": "CHTR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CI": {
+   "tickers": [
+    {
+     "ticker": "CI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CINF": {
+   "tickers": [
+    {
+     "ticker": "CINF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CL": {
+   "tickers": [
+    {
+     "ticker": "CL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CLF": {
+   "tickers": [
+    {
+     "ticker": "CLF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CLX": {
+   "tickers": [
+    {
+     "ticker": "CLX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CMA": {
+   "tickers": [
+    {
+     "ticker": "CMA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CMCSA": {
+   "tickers": [
+    {
+     "ticker": "CMCSA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CMCSK": {
+   "tickers": [
+    {
+     "ticker": "CMCSK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CME": {
+   "tickers": [
+    {
+     "ticker": "CME",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CMG": {
+   "tickers": [
+    {
+     "ticker": "CMG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CMI": {
+   "tickers": [
+    {
+     "ticker": "CMI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CMS": {
+   "tickers": [
+    {
+     "ticker": "CMS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CNC": {
+   "tickers": [
+    {
+     "ticker": "CNC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CNP": {
+   "tickers": [
+    {
+     "ticker": "CNP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CNX": {
+   "tickers": [
+    {
+     "ticker": "CNX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COF": {
+   "tickers": [
+    {
+     "ticker": "COF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COG": {
+   "tickers": [
+    {
+     "ticker": "COG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COIN": {
+   "tickers": [
+    {
+     "ticker": "COIN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COL": {
+   "tickers": [
+    {
+     "ticker": "COL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COO": {
+   "tickers": [
+    {
+     "ticker": "COO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COP": {
+   "tickers": [
+    {
+     "ticker": "COP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COR": {
+   "tickers": [
+    {
+     "ticker": "COR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COST": {
+   "tickers": [
+    {
+     "ticker": "COST",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COTY": {
+   "tickers": [
+    {
+     "ticker": "COTY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_COV": {
+   "tickers": [
+    {
+     "ticker": "COV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CPB": {
+   "tickers": [
+    {
+     "ticker": "CPB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CPGX": {
+   "tickers": [
+    {
+     "ticker": "CPGX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CPRT": {
+   "tickers": [
+    {
+     "ticker": "CPRT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CPT": {
+   "tickers": [
+    {
+     "ticker": "CPT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CPWR": {
+   "tickers": [
+    {
+     "ticker": "CPWR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CRH": {
+   "tickers": [
+    {
+     "ticker": "CRH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CRL": {
+   "tickers": [
+    {
+     "ticker": "CRL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CRM": {
+   "tickers": [
+    {
+     "ticker": "CRM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CRWD": {
+   "tickers": [
+    {
+     "ticker": "CRWD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CSCO": {
+   "tickers": [
+    {
+     "ticker": "CSCO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CSGP": {
+   "tickers": [
+    {
+     "ticker": "CSGP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CSRA": {
+   "tickers": [
+    {
+     "ticker": "CSRA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CSX": {
+   "tickers": [
+    {
+     "ticker": "CSX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CTAS": {
+   "tickers": [
+    {
+     "ticker": "CTAS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CTL": {
+   "tickers": [
+    {
+     "ticker": "CTL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CTLT": {
+   "tickers": [
+    {
+     "ticker": "CTLT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CTRA": {
+   "tickers": [
+    {
+     "ticker": "CTRA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CTSH": {
+   "tickers": [
+    {
+     "ticker": "CTSH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CTVA": {
+   "tickers": [
+    {
+     "ticker": "CTVA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CTXS": {
+   "tickers": [
+    {
+     "ticker": "CTXS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CVC": {
+   "tickers": [
+    {
+     "ticker": "CVC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CVH": {
+   "tickers": [
+    {
+     "ticker": "CVH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CVNA": {
+   "tickers": [
+    {
+     "ticker": "CVNA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CVS": {
+   "tickers": [
+    {
+     "ticker": "CVS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CVX": {
+   "tickers": [
+    {
+     "ticker": "CVX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CXO": {
+   "tickers": [
+    {
+     "ticker": "CXO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_CZR": {
+   "tickers": [
+    {
+     "ticker": "CZR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_D": {
+   "tickers": [
+    {
+     "ticker": "D",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DAL": {
+   "tickers": [
+    {
+     "ticker": "DAL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DASH": {
+   "tickers": [
+    {
+     "ticker": "DASH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DAY": {
+   "tickers": [
+    {
+     "ticker": "DAY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DD": {
+   "tickers": [
+    {
+     "ticker": "DD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DDOG": {
+   "tickers": [
+    {
+     "ticker": "DDOG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DE": {
+   "tickers": [
+    {
+     "ticker": "DE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DECK": {
+   "tickers": [
+    {
+     "ticker": "DECK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DELL": {
+   "tickers": [
+    {
+     "ticker": "DELL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DF": {
+   "tickers": [
+    {
+     "ticker": "DF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DFS": {
+   "tickers": [
+    {
+     "ticker": "DFS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DG": {
+   "tickers": [
+    {
+     "ticker": "DG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DGX": {
+   "tickers": [
+    {
+     "ticker": "DGX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DHI": {
+   "tickers": [
+    {
+     "ticker": "DHI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DHR": {
+   "tickers": [
+    {
+     "ticker": "DHR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DIS": {
+   "tickers": [
+    {
+     "ticker": "DIS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DISCA": {
+   "tickers": [
+    {
+     "ticker": "DISCA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DISCK": {
+   "tickers": [
+    {
+     "ticker": "DISCK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DISH": {
+   "tickers": [
+    {
+     "ticker": "DISH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DLR": {
+   "tickers": [
+    {
+     "ticker": "DLR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DLTR": {
+   "tickers": [
+    {
+     "ticker": "DLTR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DNB": {
+   "tickers": [
+    {
+     "ticker": "DNB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DNR": {
+   "tickers": [
+    {
+     "ticker": "DNR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DO": {
+   "tickers": [
+    {
+     "ticker": "DO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DOC": {
+   "tickers": [
+    {
+     "ticker": "DOC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DOV": {
+   "tickers": [
+    {
+     "ticker": "DOV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DOW": {
+   "tickers": [
+    {
+     "ticker": "DOW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DPZ": {
+   "tickers": [
+    {
+     "ticker": "DPZ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DRE": {
+   "tickers": [
+    {
+     "ticker": "DRE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DRI": {
+   "tickers": [
+    {
+     "ticker": "DRI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DTE": {
+   "tickers": [
+    {
+     "ticker": "DTE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DTV": {
+   "tickers": [
+    {
+     "ticker": "DTV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DUK": {
+   "tickers": [
+    {
+     "ticker": "DUK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DVA": {
+   "tickers": [
+    {
+     "ticker": "DVA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DVN": {
+   "tickers": [
+    {
+     "ticker": "DVN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DWDP": {
+   "tickers": [
+    {
+     "ticker": "DWDP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DXC": {
+   "tickers": [
+    {
+     "ticker": "DXC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_DXCM": {
+   "tickers": [
+    {
+     "ticker": "DXCM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EA": {
+   "tickers": [
+    {
+     "ticker": "EA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EBAY": {
+   "tickers": [
+    {
+     "ticker": "EBAY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ECL": {
+   "tickers": [
+    {
+     "ticker": "ECL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ED": {
+   "tickers": [
+    {
+     "ticker": "ED",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EFX": {
+   "tickers": [
+    {
+     "ticker": "EFX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EG": {
+   "tickers": [
+    {
+     "ticker": "EG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EIX": {
+   "tickers": [
+    {
+     "ticker": "EIX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EKDKQ": {
+   "tickers": [
+    {
+     "ticker": "EKDKQ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EL": {
+   "tickers": [
+    {
+     "ticker": "EL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ELV": {
+   "tickers": [
+    {
+     "ticker": "ELV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EMC": {
+   "tickers": [
+    {
+     "ticker": "EMC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EME": {
+   "tickers": [
+    {
+     "ticker": "EME",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EMN": {
+   "tickers": [
+    {
+     "ticker": "EMN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EMR": {
+   "tickers": [
+    {
+     "ticker": "EMR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ENDP": {
+   "tickers": [
+    {
+     "ticker": "ENDP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ENPH": {
+   "tickers": [
+    {
+     "ticker": "ENPH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EOG": {
+   "tickers": [
+    {
+     "ticker": "EOG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EP": {
+   "tickers": [
+    {
+     "ticker": "EP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EPAM": {
+   "tickers": [
+    {
+     "ticker": "EPAM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EQIX": {
+   "tickers": [
+    {
+     "ticker": "EQIX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EQR": {
+   "tickers": [
+    {
+     "ticker": "EQR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EQT": {
+   "tickers": [
+    {
+     "ticker": "EQT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ERIE": {
+   "tickers": [
+    {
+     "ticker": "ERIE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ES": {
+   "tickers": [
+    {
+     "ticker": "ES",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ESRX": {
+   "tickers": [
+    {
+     "ticker": "ESRX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ESS": {
+   "tickers": [
+    {
+     "ticker": "ESS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ESV": {
+   "tickers": [
+    {
+     "ticker": "ESV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ETFC": {
+   "tickers": [
+    {
+     "ticker": "ETFC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ETN": {
+   "tickers": [
+    {
+     "ticker": "ETN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ETR": {
+   "tickers": [
+    {
+     "ticker": "ETR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ETSY": {
+   "tickers": [
+    {
+     "ticker": "ETSY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EVHC": {
+   "tickers": [
+    {
+     "ticker": "EVHC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EVRG": {
+   "tickers": [
+    {
+     "ticker": "EVRG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EW": {
+   "tickers": [
+    {
+     "ticker": "EW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EXC": {
+   "tickers": [
+    {
+     "ticker": "EXC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EXE": {
+   "tickers": [
+    {
+     "ticker": "EXE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EXPD": {
+   "tickers": [
+    {
+     "ticker": "EXPD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EXPE": {
+   "tickers": [
+    {
+     "ticker": "EXPE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_EXR": {
+   "tickers": [
+    {
+     "ticker": "EXR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_F": {
+   "tickers": [
+    {
+     "ticker": "F",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FANG": {
+   "tickers": [
+    {
+     "ticker": "FANG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FAST": {
+   "tickers": [
+    {
+     "ticker": "FAST",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FB": {
+   "tickers": [
+    {
+     "ticker": "FB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FBHS": {
+   "tickers": [
+    {
+     "ticker": "FBHS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FCPT": {
+   "tickers": [
+    {
+     "ticker": "FCPT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FCX": {
+   "tickers": [
+    {
+     "ticker": "FCX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FDO": {
+   "tickers": [
+    {
+     "ticker": "FDO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FDS": {
+   "tickers": [
+    {
+     "ticker": "FDS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FDX": {
+   "tickers": [
+    {
+     "ticker": "FDX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FE": {
+   "tickers": [
+    {
+     "ticker": "FE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FFIV": {
+   "tickers": [
+    {
+     "ticker": "FFIV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FHN": {
+   "tickers": [
+    {
+     "ticker": "FHN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FICO": {
+   "tickers": [
+    {
+     "ticker": "FICO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FII": {
+   "tickers": [
+    {
+     "ticker": "FII",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FIS": {
+   "tickers": [
+    {
+     "ticker": "FIS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FITB": {
+   "tickers": [
+    {
+     "ticker": "FITB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FIX": {
+   "tickers": [
+    {
+     "ticker": "FIX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FL": {
+   "tickers": [
+    {
+     "ticker": "FL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FLIR": {
+   "tickers": [
+    {
+     "ticker": "FLIR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FLR": {
+   "tickers": [
+    {
+     "ticker": "FLR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FLS": {
+   "tickers": [
+    {
+     "ticker": "FLS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FMC": {
+   "tickers": [
+    {
+     "ticker": "FMC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FOSL": {
+   "tickers": [
+    {
+     "ticker": "FOSL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FOX": {
+   "tickers": [
+    {
+     "ticker": "FOX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FOXA": {
+   "tickers": [
+    {
+     "ticker": "FOXA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FRC": {
+   "tickers": [
+    {
+     "ticker": "FRC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FRT": {
+   "tickers": [
+    {
+     "ticker": "FRT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FRX": {
+   "tickers": [
+    {
+     "ticker": "FRX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FSLR": {
+   "tickers": [
+    {
+     "ticker": "FSLR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FTI": {
+   "tickers": [
+    {
+     "ticker": "FTI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FTNT": {
+   "tickers": [
+    {
+     "ticker": "FTNT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FTR": {
+   "tickers": [
+    {
+     "ticker": "FTR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_FTV": {
+   "tickers": [
+    {
+     "ticker": "FTV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GAS": {
+   "tickers": [
+    {
+     "ticker": "GAS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GD": {
+   "tickers": [
+    {
+     "ticker": "GD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GDDY": {
+   "tickers": [
+    {
+     "ticker": "GDDY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GE": {
+   "tickers": [
+    {
+     "ticker": "GE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GEHC": {
+   "tickers": [
+    {
+     "ticker": "GEHC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GEN": {
+   "tickers": [
+    {
+     "ticker": "GEN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GENZ": {
+   "tickers": [
+    {
+     "ticker": "GENZ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GEV": {
+   "tickers": [
+    {
+     "ticker": "GEV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GGP": {
+   "tickers": [
+    {
+     "ticker": "GGP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GHC": {
+   "tickers": [
+    {
+     "ticker": "GHC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GILD": {
+   "tickers": [
+    {
+     "ticker": "GILD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GIS": {
+   "tickers": [
+    {
+     "ticker": "GIS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GL": {
+   "tickers": [
+    {
+     "ticker": "GL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GLW": {
+   "tickers": [
+    {
+     "ticker": "GLW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GM": {
+   "tickers": [
+    {
+     "ticker": "GM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GMCR": {
+   "tickers": [
+    {
+     "ticker": "GMCR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GME": {
+   "tickers": [
+    {
+     "ticker": "GME",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GNRC": {
+   "tickers": [
+    {
+     "ticker": "GNRC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GNW": {
+   "tickers": [
+    {
+     "ticker": "GNW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GOOG": {
+   "tickers": [
+    {
+     "ticker": "GOOG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GOOGL": {
+   "tickers": [
+    {
+     "ticker": "GOOGL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GPC": {
+   "tickers": [
+    {
+     "ticker": "GPC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GPN": {
+   "tickers": [
+    {
+     "ticker": "GPN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GPS": {
+   "tickers": [
+    {
+     "ticker": "GPS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GR": {
+   "tickers": [
+    {
+     "ticker": "GR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GRMN": {
+   "tickers": [
+    {
+     "ticker": "GRMN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GS": {
+   "tickers": [
+    {
+     "ticker": "GS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GT": {
+   "tickers": [
+    {
+     "ticker": "GT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_GWW": {
+   "tickers": [
+    {
+     "ticker": "GWW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HAL": {
+   "tickers": [
+    {
+     "ticker": "HAL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HAR": {
+   "tickers": [
+    {
+     "ticker": "HAR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HAS": {
+   "tickers": [
+    {
+     "ticker": "HAS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HBAN": {
+   "tickers": [
+    {
+     "ticker": "HBAN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HBI": {
+   "tickers": [
+    {
+     "ticker": "HBI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HCA": {
+   "tickers": [
+    {
+     "ticker": "HCA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HCBK": {
+   "tickers": [
+    {
+     "ticker": "HCBK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HCP": {
+   "tickers": [
+    {
+     "ticker": "HCP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HD": {
+   "tickers": [
+    {
+     "ticker": "HD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HES": {
+   "tickers": [
+    {
+     "ticker": "HES",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HFC": {
+   "tickers": [
+    {
+     "ticker": "HFC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HIG": {
+   "tickers": [
+    {
+     "ticker": "HIG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HII": {
+   "tickers": [
+    {
+     "ticker": "HII",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HLT": {
+   "tickers": [
+    {
+     "ticker": "HLT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HNZ": {
+   "tickers": [
+    {
+     "ticker": "HNZ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HOG": {
+   "tickers": [
+    {
+     "ticker": "HOG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HOLX": {
+   "tickers": [
+    {
+     "ticker": "HOLX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HON": {
+   "tickers": [
+    {
+     "ticker": "HON",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HOOD": {
+   "tickers": [
+    {
+     "ticker": "HOOD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HOT": {
+   "tickers": [
+    {
+     "ticker": "HOT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HP": {
+   "tickers": [
+    {
+     "ticker": "HP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HPE": {
+   "tickers": [
+    {
+     "ticker": "HPE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HPQ": {
+   "tickers": [
+    {
+     "ticker": "HPQ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HRB": {
+   "tickers": [
+    {
+     "ticker": "HRB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HRL": {
+   "tickers": [
+    {
+     "ticker": "HRL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HRS": {
+   "tickers": [
+    {
+     "ticker": "HRS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HSH": {
+   "tickers": [
+    {
+     "ticker": "HSH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HSIC": {
+   "tickers": [
+    {
+     "ticker": "HSIC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HSP": {
+   "tickers": [
+    {
+     "ticker": "HSP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HST": {
+   "tickers": [
+    {
+     "ticker": "HST",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HSY": {
+   "tickers": [
+    {
+     "ticker": "HSY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HUBB": {
+   "tickers": [
+    {
+     "ticker": "HUBB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HUM": {
+   "tickers": [
+    {
+     "ticker": "HUM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_HWM": {
+   "tickers": [
+    {
+     "ticker": "HWM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IBKR": {
+   "tickers": [
+    {
+     "ticker": "IBKR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IBM": {
+   "tickers": [
+    {
+     "ticker": "IBM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ICE": {
+   "tickers": [
+    {
+     "ticker": "ICE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IDXX": {
+   "tickers": [
+    {
+     "ticker": "IDXX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IEX": {
+   "tickers": [
+    {
+     "ticker": "IEX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IFF": {
+   "tickers": [
+    {
+     "ticker": "IFF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IGT": {
+   "tickers": [
+    {
+     "ticker": "IGT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ILMN": {
+   "tickers": [
+    {
+     "ticker": "ILMN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_INCY": {
+   "tickers": [
+    {
+     "ticker": "INCY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_INFO": {
+   "tickers": [
+    {
+     "ticker": "INFO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_INTC": {
+   "tickers": [
+    {
+     "ticker": "INTC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_INTU": {
+   "tickers": [
+    {
+     "ticker": "INTU",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_INVH": {
+   "tickers": [
+    {
+     "ticker": "INVH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IP": {
+   "tickers": [
+    {
+     "ticker": "IP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IPG": {
+   "tickers": [
+    {
+     "ticker": "IPG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IPGP": {
+   "tickers": [
+    {
+     "ticker": "IPGP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IQV": {
+   "tickers": [
+    {
+     "ticker": "IQV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IR": {
+   "tickers": [
+    {
+     "ticker": "IR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IRM": {
+   "tickers": [
+    {
+     "ticker": "IRM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ISRG": {
+   "tickers": [
+    {
+     "ticker": "ISRG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IT": {
+   "tickers": [
+    {
+     "ticker": "IT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ITT": {
+   "tickers": [
+    {
+     "ticker": "ITT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ITW": {
+   "tickers": [
+    {
+     "ticker": "ITW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_IVZ": {
+   "tickers": [
+    {
+     "ticker": "IVZ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JAVA": {
+   "tickers": [
+    {
+     "ticker": "JAVA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JBHT": {
+   "tickers": [
+    {
+     "ticker": "JBHT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JBL": {
+   "tickers": [
+    {
+     "ticker": "JBL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JCI": {
+   "tickers": [
+    {
+     "ticker": "JCI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JCP": {
+   "tickers": [
+    {
+     "ticker": "JCP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JEF": {
+   "tickers": [
+    {
+     "ticker": "JEF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JKHY": {
+   "tickers": [
+    {
+     "ticker": "JKHY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JNJ": {
+   "tickers": [
+    {
+     "ticker": "JNJ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JNPR": {
+   "tickers": [
+    {
+     "ticker": "JNPR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JNS": {
+   "tickers": [
+    {
+     "ticker": "JNS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JOY": {
+   "tickers": [
+    {
+     "ticker": "JOY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JPM": {
+   "tickers": [
+    {
+     "ticker": "JPM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_JWN": {
+   "tickers": [
+    {
+     "ticker": "JWN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_K": {
+   "tickers": [
+    {
+     "ticker": "K",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KDP": {
+   "tickers": [
+    {
+     "ticker": "KDP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KEY": {
+   "tickers": [
+    {
+     "ticker": "KEY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KEYS": {
+   "tickers": [
+    {
+     "ticker": "KEYS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KG": {
+   "tickers": [
+    {
+     "ticker": "KG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KHC": {
+   "tickers": [
+    {
+     "ticker": "KHC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KIM": {
+   "tickers": [
+    {
+     "ticker": "KIM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KKR": {
+   "tickers": [
+    {
+     "ticker": "KKR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KLAC": {
+   "tickers": [
+    {
+     "ticker": "KLAC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KMB": {
+   "tickers": [
+    {
+     "ticker": "KMB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KMI": {
+   "tickers": [
+    {
+     "ticker": "KMI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KMX": {
+   "tickers": [
+    {
+     "ticker": "KMX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KO": {
+   "tickers": [
+    {
+     "ticker": "KO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KR": {
+   "tickers": [
+    {
+     "ticker": "KR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KRFT": {
+   "tickers": [
+    {
+     "ticker": "KRFT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KSS": {
+   "tickers": [
+    {
+     "ticker": "KSS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KSU": {
+   "tickers": [
+    {
+     "ticker": "KSU",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_KVUE": {
+   "tickers": [
+    {
+     "ticker": "KVUE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_L": {
+   "tickers": [
+    {
+     "ticker": "L",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LB": {
+   "tickers": [
+    {
+     "ticker": "LB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LDOS": {
+   "tickers": [
+    {
+     "ticker": "LDOS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LEG": {
+   "tickers": [
+    {
+     "ticker": "LEG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LEN": {
+   "tickers": [
+    {
+     "ticker": "LEN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LH": {
+   "tickers": [
+    {
+     "ticker": "LH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LHX": {
+   "tickers": [
+    {
+     "ticker": "LHX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LIFE": {
+   "tickers": [
+    {
+     "ticker": "LIFE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LII": {
+   "tickers": [
+    {
+     "ticker": "LII",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LIN": {
+   "tickers": [
+    {
+     "ticker": "LIN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LKQ": {
+   "tickers": [
+    {
+     "ticker": "LKQ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LLL": {
+   "tickers": [
+    {
+     "ticker": "LLL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LLTC": {
+   "tickers": [
+    {
+     "ticker": "LLTC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LLY": {
+   "tickers": [
+    {
+     "ticker": "LLY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LM": {
+   "tickers": [
+    {
+     "ticker": "LM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LMT": {
+   "tickers": [
+    {
+     "ticker": "LMT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LNC": {
+   "tickers": [
+    {
+     "ticker": "LNC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LNT": {
+   "tickers": [
+    {
+     "ticker": "LNT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LO": {
+   "tickers": [
+    {
+     "ticker": "LO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LOW": {
+   "tickers": [
+    {
+     "ticker": "LOW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LRCX": {
+   "tickers": [
+    {
+     "ticker": "LRCX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LSI": {
+   "tickers": [
+    {
+     "ticker": "LSI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LULU": {
+   "tickers": [
+    {
+     "ticker": "LULU",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LUMN": {
+   "tickers": [
+    {
+     "ticker": "LUMN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LUV": {
+   "tickers": [
+    {
+     "ticker": "LUV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LVLT": {
+   "tickers": [
+    {
+     "ticker": "LVLT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LVS": {
+   "tickers": [
+    {
+     "ticker": "LVS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LW": {
+   "tickers": [
+    {
+     "ticker": "LW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LXK": {
+   "tickers": [
+    {
+     "ticker": "LXK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LYB": {
+   "tickers": [
+    {
+     "ticker": "LYB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_LYV": {
+   "tickers": [
+    {
+     "ticker": "LYV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_M": {
+   "tickers": [
+    {
+     "ticker": "M",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MA": {
+   "tickers": [
+    {
+     "ticker": "MA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MAA": {
+   "tickers": [
+    {
+     "ticker": "MAA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MAC": {
+   "tickers": [
+    {
+     "ticker": "MAC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MAR": {
+   "tickers": [
+    {
+     "ticker": "MAR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MAS": {
+   "tickers": [
+    {
+     "ticker": "MAS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MAT": {
+   "tickers": [
+    {
+     "ticker": "MAT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MCD": {
+   "tickers": [
+    {
+     "ticker": "MCD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MCHP": {
+   "tickers": [
+    {
+     "ticker": "MCHP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MCK": {
+   "tickers": [
+    {
+     "ticker": "MCK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MCO": {
+   "tickers": [
+    {
+     "ticker": "MCO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MDLZ": {
+   "tickers": [
+    {
+     "ticker": "MDLZ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MDP": {
+   "tickers": [
+    {
+     "ticker": "MDP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MDT": {
+   "tickers": [
+    {
+     "ticker": "MDT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MEE": {
+   "tickers": [
+    {
+     "ticker": "MEE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MET": {
+   "tickers": [
+    {
+     "ticker": "MET",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_META": {
+   "tickers": [
+    {
+     "ticker": "META",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MFE": {
+   "tickers": [
+    {
+     "ticker": "MFE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MGM": {
+   "tickers": [
+    {
+     "ticker": "MGM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MHK": {
+   "tickers": [
+    {
+     "ticker": "MHK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MHS": {
+   "tickers": [
+    {
+     "ticker": "MHS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MI": {
+   "tickers": [
+    {
+     "ticker": "MI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MIL": {
+   "tickers": [
+    {
+     "ticker": "MIL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MJN": {
+   "tickers": [
+    {
+     "ticker": "MJN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MKC": {
+   "tickers": [
+    {
+     "ticker": "MKC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MKTX": {
+   "tickers": [
+    {
+     "ticker": "MKTX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MLM": {
+   "tickers": [
+    {
+     "ticker": "MLM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MMC": {
+   "tickers": [
+    {
+     "ticker": "MMC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MMI": {
+   "tickers": [
+    {
+     "ticker": "MMI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MMM": {
+   "tickers": [
+    {
+     "ticker": "MMM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MNK": {
+   "tickers": [
+    {
+     "ticker": "MNK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MNST": {
+   "tickers": [
+    {
+     "ticker": "MNST",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MO": {
+   "tickers": [
+    {
+     "ticker": "MO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MOH": {
+   "tickers": [
+    {
+     "ticker": "MOH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MOLX": {
+   "tickers": [
+    {
+     "ticker": "MOLX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MON": {
+   "tickers": [
+    {
+     "ticker": "MON",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MOS": {
+   "tickers": [
+    {
+     "ticker": "MOS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MPC": {
+   "tickers": [
+    {
+     "ticker": "MPC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MPWR": {
+   "tickers": [
+    {
+     "ticker": "MPWR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MRK": {
+   "tickers": [
+    {
+     "ticker": "MRK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MRNA": {
+   "tickers": [
+    {
+     "ticker": "MRNA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MRO": {
+   "tickers": [
+    {
+     "ticker": "MRO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MS": {
+   "tickers": [
+    {
+     "ticker": "MS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MSCI": {
+   "tickers": [
+    {
+     "ticker": "MSCI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MSFT": {
+   "tickers": [
+    {
+     "ticker": "MSFT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MSI": {
+   "tickers": [
+    {
+     "ticker": "MSI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MTB": {
+   "tickers": [
+    {
+     "ticker": "MTB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MTCH": {
+   "tickers": [
+    {
+     "ticker": "MTCH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MTD": {
+   "tickers": [
+    {
+     "ticker": "MTD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MU": {
+   "tickers": [
+    {
+     "ticker": "MU",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MUR": {
+   "tickers": [
+    {
+     "ticker": "MUR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MWV": {
+   "tickers": [
+    {
+     "ticker": "MWV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MWW": {
+   "tickers": [
+    {
+     "ticker": "MWW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MXIM": {
+   "tickers": [
+    {
+     "ticker": "MXIM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_MYL": {
+   "tickers": [
+    {
+     "ticker": "MYL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NAVI": {
+   "tickers": [
+    {
+     "ticker": "NAVI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NBL": {
+   "tickers": [
+    {
+     "ticker": "NBL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NBR": {
+   "tickers": [
+    {
+     "ticker": "NBR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NCLH": {
+   "tickers": [
+    {
+     "ticker": "NCLH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NDAQ": {
+   "tickers": [
+    {
+     "ticker": "NDAQ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NDSN": {
+   "tickers": [
+    {
+     "ticker": "NDSN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NE": {
+   "tickers": [
+    {
+     "ticker": "NE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NEE": {
+   "tickers": [
+    {
+     "ticker": "NEE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NEM": {
+   "tickers": [
+    {
+     "ticker": "NEM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NFLX": {
+   "tickers": [
+    {
+     "ticker": "NFLX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NFX": {
+   "tickers": [
+    {
+     "ticker": "NFX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NI": {
+   "tickers": [
+    {
+     "ticker": "NI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NKE": {
+   "tickers": [
+    {
+     "ticker": "NKE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NKTR": {
+   "tickers": [
+    {
+     "ticker": "NKTR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NLOK": {
+   "tickers": [
+    {
+     "ticker": "NLOK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NLSN": {
+   "tickers": [
+    {
+     "ticker": "NLSN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NOC": {
+   "tickers": [
+    {
+     "ticker": "NOC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NOV": {
+   "tickers": [
+    {
+     "ticker": "NOV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NOVL": {
+   "tickers": [
+    {
+     "ticker": "NOVL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NOW": {
+   "tickers": [
+    {
+     "ticker": "NOW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NRG": {
+   "tickers": [
+    {
+     "ticker": "NRG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NSC": {
+   "tickers": [
+    {
+     "ticker": "NSC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NSM": {
+   "tickers": [
+    {
+     "ticker": "NSM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NTAP": {
+   "tickers": [
+    {
+     "ticker": "NTAP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NTRS": {
+   "tickers": [
+    {
+     "ticker": "NTRS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NUE": {
+   "tickers": [
+    {
+     "ticker": "NUE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NVDA": {
+   "tickers": [
+    {
+     "ticker": "NVDA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NVLS": {
+   "tickers": [
+    {
+     "ticker": "NVLS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NVR": {
+   "tickers": [
+    {
+     "ticker": "NVR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NWL": {
+   "tickers": [
+    {
+     "ticker": "NWL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NWS": {
+   "tickers": [
+    {
+     "ticker": "NWS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NWSA": {
+   "tickers": [
+    {
+     "ticker": "NWSA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NXPI": {
+   "tickers": [
+    {
+     "ticker": "NXPI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NYT": {
+   "tickers": [
+    {
+     "ticker": "NYT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_NYX": {
+   "tickers": [
+    {
+     "ticker": "NYX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_O": {
+   "tickers": [
+    {
+     "ticker": "O",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ODFL": {
+   "tickers": [
+    {
+     "ticker": "ODFL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ODP": {
+   "tickers": [
+    {
+     "ticker": "ODP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_OGN": {
+   "tickers": [
+    {
+     "ticker": "OGN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_OI": {
+   "tickers": [
+    {
+     "ticker": "OI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_OKE": {
+   "tickers": [
+    {
+     "ticker": "OKE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_OMC": {
+   "tickers": [
+    {
+     "ticker": "OMC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ON": {
+   "tickers": [
+    {
+     "ticker": "ON",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ORCL": {
+   "tickers": [
+    {
+     "ticker": "ORCL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ORLY": {
+   "tickers": [
+    {
+     "ticker": "ORLY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_OTIS": {
+   "tickers": [
+    {
+     "ticker": "OTIS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_OXY": {
+   "tickers": [
+    {
+     "ticker": "OXY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PANW": {
+   "tickers": [
+    {
+     "ticker": "PANW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PARA": {
+   "tickers": [
+    {
+     "ticker": "PARA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PAYC": {
+   "tickers": [
+    {
+     "ticker": "PAYC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PAYX": {
+   "tickers": [
+    {
+     "ticker": "PAYX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PBCT": {
+   "tickers": [
+    {
+     "ticker": "PBCT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PBG": {
+   "tickers": [
+    {
+     "ticker": "PBG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PBI": {
+   "tickers": [
+    {
+     "ticker": "PBI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PCAR": {
+   "tickers": [
+    {
+     "ticker": "PCAR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PCG": {
+   "tickers": [
+    {
+     "ticker": "PCG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PCL": {
+   "tickers": [
+    {
+     "ticker": "PCL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PCP": {
+   "tickers": [
+    {
+     "ticker": "PCP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PDCO": {
+   "tickers": [
+    {
+     "ticker": "PDCO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PEAK": {
+   "tickers": [
+    {
+     "ticker": "PEAK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PEG": {
+   "tickers": [
+    {
+     "ticker": "PEG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PENN": {
+   "tickers": [
+    {
+     "ticker": "PENN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PEP": {
+   "tickers": [
+    {
+     "ticker": "PEP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PETM": {
+   "tickers": [
+    {
+     "ticker": "PETM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PFE": {
+   "tickers": [
+    {
+     "ticker": "PFE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PFG": {
+   "tickers": [
+    {
+     "ticker": "PFG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PG": {
+   "tickers": [
+    {
+     "ticker": "PG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PGN": {
+   "tickers": [
+    {
+     "ticker": "PGN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PGR": {
+   "tickers": [
+    {
+     "ticker": "PGR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PH": {
+   "tickers": [
+    {
+     "ticker": "PH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PHM": {
+   "tickers": [
+    {
+     "ticker": "PHM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PKG": {
+   "tickers": [
+    {
+     "ticker": "PKG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PKI": {
+   "tickers": [
+    {
+     "ticker": "PKI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PLD": {
+   "tickers": [
+    {
+     "ticker": "PLD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PLL": {
+   "tickers": [
+    {
+     "ticker": "PLL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PLTR": {
+   "tickers": [
+    {
+     "ticker": "PLTR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PM": {
+   "tickers": [
+    {
+     "ticker": "PM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PNC": {
+   "tickers": [
+    {
+     "ticker": "PNC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PNR": {
+   "tickers": [
+    {
+     "ticker": "PNR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PNW": {
+   "tickers": [
+    {
+     "ticker": "PNW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PODD": {
+   "tickers": [
+    {
+     "ticker": "PODD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_POM": {
+   "tickers": [
+    {
+     "ticker": "POM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_POOL": {
+   "tickers": [
+    {
+     "ticker": "POOL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PPG": {
+   "tickers": [
+    {
+     "ticker": "PPG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PPL": {
+   "tickers": [
+    {
+     "ticker": "PPL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PRGO": {
+   "tickers": [
+    {
+     "ticker": "PRGO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PRU": {
+   "tickers": [
+    {
+     "ticker": "PRU",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PSA": {
+   "tickers": [
+    {
+     "ticker": "PSA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PSKY": {
+   "tickers": [
+    {
+     "ticker": "PSKY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PSX": {
+   "tickers": [
+    {
+     "ticker": "PSX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PTC": {
+   "tickers": [
+    {
+     "ticker": "PTC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PTV": {
+   "tickers": [
+    {
+     "ticker": "PTV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PVH": {
+   "tickers": [
+    {
+     "ticker": "PVH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PWR": {
+   "tickers": [
+    {
+     "ticker": "PWR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PX": {
+   "tickers": [
+    {
+     "ticker": "PX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PXD": {
+   "tickers": [
+    {
+     "ticker": "PXD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_PYPL": {
+   "tickers": [
+    {
+     "ticker": "PYPL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_Q": {
+   "tickers": [
+    {
+     "ticker": "Q",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_QCOM": {
+   "tickers": [
+    {
+     "ticker": "QCOM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_QEP": {
+   "tickers": [
+    {
+     "ticker": "QEP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_QLGC": {
+   "tickers": [
+    {
+     "ticker": "QLGC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_QRVO": {
+   "tickers": [
+    {
+     "ticker": "QRVO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_R": {
+   "tickers": [
+    {
+     "ticker": "R",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RAI": {
+   "tickers": [
+    {
+     "ticker": "RAI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RCL": {
+   "tickers": [
+    {
+     "ticker": "RCL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RDC": {
+   "tickers": [
+    {
+     "ticker": "RDC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RE": {
+   "tickers": [
+    {
+     "ticker": "RE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_REG": {
+   "tickers": [
+    {
+     "ticker": "REG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_REGN": {
+   "tickers": [
+    {
+     "ticker": "REGN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RF": {
+   "tickers": [
+    {
+     "ticker": "RF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RHI": {
+   "tickers": [
+    {
+     "ticker": "RHI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RHT": {
+   "tickers": [
+    {
+     "ticker": "RHT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RIG": {
+   "tickers": [
+    {
+     "ticker": "RIG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RJF": {
+   "tickers": [
+    {
+     "ticker": "RJF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RL": {
+   "tickers": [
+    {
+     "ticker": "RL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RMD": {
+   "tickers": [
+    {
+     "ticker": "RMD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ROK": {
+   "tickers": [
+    {
+     "ticker": "ROK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ROL": {
+   "tickers": [
+    {
+     "ticker": "ROL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ROP": {
+   "tickers": [
+    {
+     "ticker": "ROP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ROST": {
+   "tickers": [
+    {
+     "ticker": "ROST",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RRC": {
+   "tickers": [
+    {
+     "ticker": "RRC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RRD": {
+   "tickers": [
+    {
+     "ticker": "RRD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RSG": {
+   "tickers": [
+    {
+     "ticker": "RSG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RSHCQ": {
+   "tickers": [
+    {
+     "ticker": "RSHCQ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RTN": {
+   "tickers": [
+    {
+     "ticker": "RTN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RTX": {
+   "tickers": [
+    {
+     "ticker": "RTX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RVTY": {
+   "tickers": [
+    {
+     "ticker": "RVTY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_RX": {
+   "tickers": [
+    {
+     "ticker": "RX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_S": {
+   "tickers": [
+    {
+     "ticker": "S",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SBAC": {
+   "tickers": [
+    {
+     "ticker": "SBAC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SBNY": {
+   "tickers": [
+    {
+     "ticker": "SBNY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SBUX": {
+   "tickers": [
+    {
+     "ticker": "SBUX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SCG": {
+   "tickers": [
+    {
+     "ticker": "SCG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SCHW": {
+   "tickers": [
+    {
+     "ticker": "SCHW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SE": {
+   "tickers": [
+    {
+     "ticker": "SE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SEDG": {
+   "tickers": [
+    {
+     "ticker": "SEDG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SEE": {
+   "tickers": [
+    {
+     "ticker": "SEE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SHLD": {
+   "tickers": [
+    {
+     "ticker": "SHLD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SHW": {
+   "tickers": [
+    {
+     "ticker": "SHW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SIAL": {
+   "tickers": [
+    {
+     "ticker": "SIAL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SIG": {
+   "tickers": [
+    {
+     "ticker": "SIG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SII": {
+   "tickers": [
+    {
+     "ticker": "SII",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SIVB": {
+   "tickers": [
+    {
+     "ticker": "SIVB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SJM": {
+   "tickers": [
+    {
+     "ticker": "SJM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SLB": {
+   "tickers": [
+    {
+     "ticker": "SLB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SLG": {
+   "tickers": [
+    {
+     "ticker": "SLG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SLM": {
+   "tickers": [
+    {
+     "ticker": "SLM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SMCI": {
+   "tickers": [
+    {
+     "ticker": "SMCI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SNA": {
+   "tickers": [
+    {
+     "ticker": "SNA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SNDK": {
+   "tickers": [
+    {
+     "ticker": "SNDK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SNI": {
+   "tickers": [
+    {
+     "ticker": "SNI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SNPS": {
+   "tickers": [
+    {
+     "ticker": "SNPS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SO": {
+   "tickers": [
+    {
+     "ticker": "SO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SOLS": {
+   "tickers": [
+    {
+     "ticker": "SOLS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SOLV": {
+   "tickers": [
+    {
+     "ticker": "SOLV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SPG": {
+   "tickers": [
+    {
+     "ticker": "SPG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SPGI": {
+   "tickers": [
+    {
+     "ticker": "SPGI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SPLS": {
+   "tickers": [
+    {
+     "ticker": "SPLS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SRCL": {
+   "tickers": [
+    {
+     "ticker": "SRCL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SRE": {
+   "tickers": [
+    {
+     "ticker": "SRE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_STE": {
+   "tickers": [
+    {
+     "ticker": "STE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_STI": {
+   "tickers": [
+    {
+     "ticker": "STI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_STJ": {
+   "tickers": [
+    {
+     "ticker": "STJ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_STLD": {
+   "tickers": [
+    {
+     "ticker": "STLD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_STR": {
+   "tickers": [
+    {
+     "ticker": "STR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_STT": {
+   "tickers": [
+    {
+     "ticker": "STT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_STX": {
+   "tickers": [
+    {
+     "ticker": "STX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_STZ": {
+   "tickers": [
+    {
+     "ticker": "STZ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SUN": {
+   "tickers": [
+    {
+     "ticker": "SUN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SUNEQ": {
+   "tickers": [
+    {
+     "ticker": "SUNEQ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SVU": {
+   "tickers": [
+    {
+     "ticker": "SVU",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SW": {
+   "tickers": [
+    {
+     "ticker": "SW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SWK": {
+   "tickers": [
+    {
+     "ticker": "SWK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SWKS": {
+   "tickers": [
+    {
+     "ticker": "SWKS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SWN": {
+   "tickers": [
+    {
+     "ticker": "SWN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SWY": {
+   "tickers": [
+    {
+     "ticker": "SWY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SYF": {
+   "tickers": [
+    {
+     "ticker": "SYF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SYK": {
+   "tickers": [
+    {
+     "ticker": "SYK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SYMC": {
+   "tickers": [
+    {
+     "ticker": "SYMC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_SYY": {
+   "tickers": [
+    {
+     "ticker": "SYY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_T": {
+   "tickers": [
+    {
+     "ticker": "T",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TAP": {
+   "tickers": [
+    {
+     "ticker": "TAP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TDC": {
+   "tickers": [
+    {
+     "ticker": "TDC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TDG": {
+   "tickers": [
+    {
+     "ticker": "TDG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TDY": {
+   "tickers": [
+    {
+     "ticker": "TDY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TE": {
+   "tickers": [
+    {
+     "ticker": "TE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TECH": {
+   "tickers": [
+    {
+     "ticker": "TECH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TEG": {
+   "tickers": [
+    {
+     "ticker": "TEG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TEL": {
+   "tickers": [
+    {
+     "ticker": "TEL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TER": {
+   "tickers": [
+    {
+     "ticker": "TER",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TFC": {
+   "tickers": [
+    {
+     "ticker": "TFC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TFX": {
+   "tickers": [
+    {
+     "ticker": "TFX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TGNA": {
+   "tickers": [
+    {
+     "ticker": "TGNA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TGT": {
+   "tickers": [
+    {
+     "ticker": "TGT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_THC": {
+   "tickers": [
+    {
+     "ticker": "THC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TIE": {
+   "tickers": [
+    {
+     "ticker": "TIE",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TIF": {
+   "tickers": [
+    {
+     "ticker": "TIF",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TJX": {
+   "tickers": [
+    {
+     "ticker": "TJX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TKO": {
+   "tickers": [
+    {
+     "ticker": "TKO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TLAB": {
+   "tickers": [
+    {
+     "ticker": "TLAB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TMK": {
+   "tickers": [
+    {
+     "ticker": "TMK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TMO": {
+   "tickers": [
+    {
+     "ticker": "TMO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TMUS": {
+   "tickers": [
+    {
+     "ticker": "TMUS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TPL": {
+   "tickers": [
+    {
+     "ticker": "TPL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TPR": {
+   "tickers": [
+    {
+     "ticker": "TPR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TRGP": {
+   "tickers": [
+    {
+     "ticker": "TRGP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TRIP": {
+   "tickers": [
+    {
+     "ticker": "TRIP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TRMB": {
+   "tickers": [
+    {
+     "ticker": "TRMB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TROW": {
+   "tickers": [
+    {
+     "ticker": "TROW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TRV": {
+   "tickers": [
+    {
+     "ticker": "TRV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TSCO": {
+   "tickers": [
+    {
+     "ticker": "TSCO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TSLA": {
+   "tickers": [
+    {
+     "ticker": "TSLA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TSN": {
+   "tickers": [
+    {
+     "ticker": "TSN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TSS": {
+   "tickers": [
+    {
+     "ticker": "TSS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TT": {
+   "tickers": [
+    {
+     "ticker": "TT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TTD": {
+   "tickers": [
+    {
+     "ticker": "TTD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TTWO": {
+   "tickers": [
+    {
+     "ticker": "TTWO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TWC": {
+   "tickers": [
+    {
+     "ticker": "TWC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TWTR": {
+   "tickers": [
+    {
+     "ticker": "TWTR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TWX": {
+   "tickers": [
+    {
+     "ticker": "TWX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TXN": {
+   "tickers": [
+    {
+     "ticker": "TXN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TXT": {
+   "tickers": [
+    {
+     "ticker": "TXT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_TYL": {
+   "tickers": [
+    {
+     "ticker": "TYL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UA": {
+   "tickers": [
+    {
+     "ticker": "UA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UAA": {
+   "tickers": [
+    {
+     "ticker": "UAA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UAL": {
+   "tickers": [
+    {
+     "ticker": "UAL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UBER": {
+   "tickers": [
+    {
+     "ticker": "UBER",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UDR": {
+   "tickers": [
+    {
+     "ticker": "UDR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UHS": {
+   "tickers": [
+    {
+     "ticker": "UHS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ULTA": {
+   "tickers": [
+    {
+     "ticker": "ULTA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UNH": {
+   "tickers": [
+    {
+     "ticker": "UNH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UNM": {
+   "tickers": [
+    {
+     "ticker": "UNM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UNP": {
+   "tickers": [
+    {
+     "ticker": "UNP",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UPS": {
+   "tickers": [
+    {
+     "ticker": "UPS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_URBN": {
+   "tickers": [
+    {
+     "ticker": "URBN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_URI": {
+   "tickers": [
+    {
+     "ticker": "URI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_USB": {
+   "tickers": [
+    {
+     "ticker": "USB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_UTX": {
+   "tickers": [
+    {
+     "ticker": "UTX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_V": {
+   "tickers": [
+    {
+     "ticker": "V",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VAR": {
+   "tickers": [
+    {
+     "ticker": "VAR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VFC": {
+   "tickers": [
+    {
+     "ticker": "VFC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VIAB": {
+   "tickers": [
+    {
+     "ticker": "VIAB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VIAC": {
+   "tickers": [
+    {
+     "ticker": "VIAC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VIAV": {
+   "tickers": [
+    {
+     "ticker": "VIAV",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VICI": {
+   "tickers": [
+    {
+     "ticker": "VICI",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VLO": {
+   "tickers": [
+    {
+     "ticker": "VLO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VLTO": {
+   "tickers": [
+    {
+     "ticker": "VLTO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VMC": {
+   "tickers": [
+    {
+     "ticker": "VMC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VNO": {
+   "tickers": [
+    {
+     "ticker": "VNO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VNT": {
+   "tickers": [
+    {
+     "ticker": "VNT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VRSK": {
+   "tickers": [
+    {
+     "ticker": "VRSK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VRSN": {
+   "tickers": [
+    {
+     "ticker": "VRSN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VRTX": {
+   "tickers": [
+    {
+     "ticker": "VRTX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VST": {
+   "tickers": [
+    {
+     "ticker": "VST",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VTR": {
+   "tickers": [
+    {
+     "ticker": "VTR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VTRS": {
+   "tickers": [
+    {
+     "ticker": "VTRS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_VZ": {
+   "tickers": [
+    {
+     "ticker": "VZ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WAB": {
+   "tickers": [
+    {
+     "ticker": "WAB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WAT": {
+   "tickers": [
+    {
+     "ticker": "WAT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WBA": {
+   "tickers": [
+    {
+     "ticker": "WBA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WBD": {
+   "tickers": [
+    {
+     "ticker": "WBD",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WCG": {
+   "tickers": [
+    {
+     "ticker": "WCG",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WDAY": {
+   "tickers": [
+    {
+     "ticker": "WDAY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WDC": {
+   "tickers": [
+    {
+     "ticker": "WDC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WEC": {
+   "tickers": [
+    {
+     "ticker": "WEC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WELL": {
+   "tickers": [
+    {
+     "ticker": "WELL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WFC": {
+   "tickers": [
+    {
+     "ticker": "WFC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WFM": {
+   "tickers": [
+    {
+     "ticker": "WFM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WHR": {
+   "tickers": [
+    {
+     "ticker": "WHR",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WIN": {
+   "tickers": [
+    {
+     "ticker": "WIN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WLTW": {
+   "tickers": [
+    {
+     "ticker": "WLTW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WM": {
+   "tickers": [
+    {
+     "ticker": "WM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WMB": {
+   "tickers": [
+    {
+     "ticker": "WMB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WMT": {
+   "tickers": [
+    {
+     "ticker": "WMT",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WPX": {
+   "tickers": [
+    {
+     "ticker": "WPX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WRB": {
+   "tickers": [
+    {
+     "ticker": "WRB",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WRK": {
+   "tickers": [
+    {
+     "ticker": "WRK",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WSM": {
+   "tickers": [
+    {
+     "ticker": "WSM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WST": {
+   "tickers": [
+    {
+     "ticker": "WST",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WTW": {
+   "tickers": [
+    {
+     "ticker": "WTW",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WU": {
+   "tickers": [
+    {
+     "ticker": "WU",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WY": {
+   "tickers": [
+    {
+     "ticker": "WY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WYND": {
+   "tickers": [
+    {
+     "ticker": "WYND",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_WYNN": {
+   "tickers": [
+    {
+     "ticker": "WYNN",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_X": {
+   "tickers": [
+    {
+     "ticker": "X",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XEC": {
+   "tickers": [
+    {
+     "ticker": "XEC",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XEL": {
+   "tickers": [
+    {
+     "ticker": "XEL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XL": {
+   "tickers": [
+    {
+     "ticker": "XL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XLNX": {
+   "tickers": [
+    {
+     "ticker": "XLNX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XOM": {
+   "tickers": [
+    {
+     "ticker": "XOM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XRAY": {
+   "tickers": [
+    {
+     "ticker": "XRAY",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XRX": {
+   "tickers": [
+    {
+     "ticker": "XRX",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XTO": {
+   "tickers": [
+    {
+     "ticker": "XTO",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XYL": {
+   "tickers": [
+    {
+     "ticker": "XYL",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_XYZ": {
+   "tickers": [
+    {
+     "ticker": "XYZ",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_YUM": {
+   "tickers": [
+    {
+     "ticker": "YUM",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ZBH": {
+   "tickers": [
+    {
+     "ticker": "ZBH",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ZBRA": {
+   "tickers": [
+    {
+     "ticker": "ZBRA",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ZION": {
+   "tickers": [
+    {
+     "ticker": "ZION",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  },
+  "SEC_ZTS": {
+   "tickers": [
+    {
+     "ticker": "ZTS",
+     "from": null,
+     "to": null
+    }
+   ],
+   "note": ""
+  }
+ },
+ "universe_tickers": 831,
+ "distinct_securities": 826,
+ "rule": "canonical security identity; date-appropriate ticker labels (not newest-ticker-wins)"
+}
