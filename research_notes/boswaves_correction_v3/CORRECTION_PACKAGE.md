@@ -121,3 +121,49 @@ actual frozen code with synthetic inputs (no network/data/holdout):
 - 3bb93b91699ec5be978e74df9cf2fdd6fbec07fd2378dcedcc501a579f39cc9a  validate_v3c1.py
 - f065a3d3ad8e45f79067f538a080ea1428191dbc8f05e829eefd15dfa705d232  ticker_boundary_fixtures.md
 - 18f6b593cdad8a768368a9507360f6d608f775c6dd03b8ce18395f41f6364196  run_verification_fixtures.py
+
+---
+## v5 addendum — ChatGPT's independent-execution findings (2026-10-04)
+
+ChatGPT independently executed the v4 fixture suite: 61/61 passed. Additional
+checks found one real defect and four test-coverage gaps; all addressed here.
+
+**Real defect: tied-alias retained record was order-dependent (FIXED).**
+The dedup tie-break compared the incoming raw `t["symbol"]` against
+`prev["symbol"]` — but `prev` had already been relabeled via `ticker_at()`,
+so the comparison was raw-vs-relabeled, not raw-vs-raw. Repro (ChatGPT):
+tied FI/FISV candidates with marker payloads — input [FISV,FI] retained the
+FISV record, input [FI,FISV] retained the FI record (displayed symbol and
+security_id identical either way). Fix: keep `_raw_symbol` separately during
+the collapse, compare raw-to-raw, relabel via `ticker_at()` only AFTER the
+collapse loop, and drop the raw key from the final record. Full-record
+signatures now identical across all input permutations.
+
+**Test-coverage corrections (all in run_verification_fixtures.py):**
+- A1: compares FULL retained-record signatures (incl. marker payloads) across
+  20 random shuffles + both orders per pair, not just displayed symbol.
+- B5: uses binding-cap contenders (11 tied candidates, heat binds at 10) and
+  inspects the engine's actual admission order — no re-sorting in the test.
+- B1: documents that the 20-position cap is UNREACHABLE under the frozen 1%
+  risk sizing (heat ~= n_open * 1% always binds first at 10). The cap remains
+  as defense-in-depth; this is a protocol observation, not a code change.
+- D: tests the REAL production functions — `compute_verdict`,
+  `max_drawdown`, `annualized_return`, `calmar_ratio` — extracted from main()
+  with behavior-identical refactoring. The local `verdict_for` copy is gone.
+- C1: asserts the expected trade unconditionally (was len>=0 with conditional
+  fill check).
+
+**Also published (were local-only):** `scanner_rules.py` with the cutoff +
+early-close fixes (commit b3a7251) and `tests/test_scanner_rules.py` with
+TestRowCompletion (commit 6523e33) — ChatGPT's "not available at path" gap.
+
+Suite: 68/68 pass (builder). ChatGPT's 61/61 independent run was on v4;
+independent re-execution of v5 pending.
+
+## SHA-256 (v5, supersedes v4 hashes)
+
+- 0516872fcf36c38faef0349340f3bd7ccfdda1dd6725c89f3150e6c411e740e6  universe_mapping.json
+- c37b3cdb1b885129e7147cd6ef3e64af7633396332f63464793f7f49e76e340a  coverage_gate_spec.md
+- 67e1a6d69a5fefc34efc853efa1299831f8fae58c209324ff8baba735033bbdd  validate_v3c1.py
+- f065a3d3ad8e45f79067f538a080ea1428191dbc8f05e829eefd15dfa705d232  ticker_boundary_fixtures.md
+- e4cc0a0478759d83acf71bb0fe8455a1f7d2ce7627558114764073c059b7874c  run_verification_fixtures.py
