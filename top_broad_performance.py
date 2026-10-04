@@ -9,10 +9,9 @@ System: gen_candidates -> compute_features -> simulate_stack
 Universe: BROAD=218 stocks; TOP=50 quarterly (frozen composite).
 Window: 2025-03-17 -> 2026-09-14. Costs: 4bps + 25bps.
 """
-import sys, os, json
+import sys, os, json, hashlib
 import pandas as pd
 import numpy as np
-import yfinance as yf
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -95,20 +94,33 @@ def load_spy():
     return spy
 
 
-def compute_top_membership(symbols, spy):
-    """Quarterly TOP-50 for each rebalance date. Returns dict rebal -> set."""
-    # Daily data for ranking
-    print("Downloading daily data for ranking...", flush=True)
+def compute_top_membership(symbols):
+    """Quarterly TOP-50 from FROZEN daily data (hash-verified). No live download."""
+    manifest = json.load(open(os.path.join(
+        HERE, "research_notes", "daily_ranking_manifest_20261004.json")))
     daily = {}
-    for sym in symbols:
-        try:
-            df = yf.download(sym, start="2024-06-01", end="2026-09-16",
-                             interval="1d", prepost=False, progress=False,
-                             auto_adjust=False)
-            if len(df) > 130:
-                daily[sym] = df
-        except Exception as e:
-            print(f"  daily fail {sym}: {e}", flush=True)
+    for sym, meta in manifest["files"].items():
+        if sym == "SPY" or sym not in symbols:
+            continue
+        path = os.path.join(HERE, "daily_ranking_frozen_20261004", f"d1_{sym}.pkl")
+        if not os.path.exists(path):
+            print(f"  SKIP {sym}: frozen file missing", flush=True)
+            continue
+        # Strict hash verification
+        with open(path, "rb") as f:
+            h = hashlib.sha256(f.read()).hexdigest()
+        if h != meta["sha256"]:
+            raise RuntimeError(f"HASH MISMATCH: {sym} daily input corrupted")
+        df = pd.read_pickle(path)
+        daily[sym] = df
+    print(f"Loaded {len(daily)} frozen daily series (hash-verified)", flush=True)
+    # SPY
+    spy_path = os.path.join(HERE, "daily_ranking_frozen_20261004", "d1_SPY.pkl")
+    with open(spy_path, "rb") as f:
+        spy_h = hashlib.sha256(f.read()).hexdigest()
+    if spy_h != manifest["files"]["SPY"]["sha256"]:
+        raise RuntimeError("HASH MISMATCH: SPY daily input corrupted")
+    spy = pd.read_pickle(spy_path)
     spy_close = spy["Close"].iloc[:, 0] if isinstance(spy["Close"], pd.DataFrame) else spy["Close"]
     # Split dates from manifest/adjudication (frozen)
     split_dates = {
@@ -234,7 +246,10 @@ def run_leg(trades, closes, data, spy, cost_name, tag):
         if t["symbol"] not in sector_map:
             sector_map[t["symbol"]] = f"UNMAPPED_{t['symbol']}"
     cost = pb.COSTS[cost_name]
-    port = simulate_stack(trades, closes, cost, True, True, False, sector_map)
+    # FROZEN System-1: use_ranking=True, sector_cap=True, dd_gate=True (S4).
+    # Mike 2026-10-04: the adjudicating rerun uses the full frozen stack
+    # including the S4 drawdown gate. b96a3f0 (dd_gate=False) is descriptive only.
+    port = simulate_stack(trades, closes, cost, True, True, True, sector_map)
     taken = [trades[i] for i in port["taken"]]
     # Per-trade net R
     net_rs = []
@@ -266,8 +281,7 @@ def run_performance():
     symbols = load_universe()
     data, closes = build_4h(symbols)
     all_trades, skipped_gap = gen_all_trades(data)
-    spy = load_spy()
-    membership = compute_top_membership(symbols, spy)
+    membership = compute_top_membership(symbols)
     top_trades = filter_top_trades(all_trades, membership)
 
     results = {"window": ["2025-03-17", "2026-09-14"],
