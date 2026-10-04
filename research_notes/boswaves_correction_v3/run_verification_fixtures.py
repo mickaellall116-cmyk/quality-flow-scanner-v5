@@ -36,10 +36,18 @@ def check(name, cond, detail=""):
 
 
 def mk_cand(symbol, sig_date, mom=0.5, exit_date="2020-06-01", entry=80.0,
-            stop=75.0, gross_r=1.0):
-    return {"symbol": symbol, "signal_date": sig_date, "entry_date": sig_date,
-            "exit_date": exit_date, "entry": entry, "exit": 95.0, "stop": stop,
-            "risk": entry - stop, "gross_r": gross_r, "mom_score": mom}
+            stop=75.0, gross_r=1.0, marker=None):
+    d = {"symbol": symbol, "signal_date": sig_date, "entry_date": sig_date,
+         "exit_date": exit_date, "entry": entry, "exit": 95.0, "stop": stop,
+         "risk": entry - stop, "gross_r": gross_r, "mom_score": mom}
+    if marker is not None:
+        d["raw_marker"] = marker
+    return d
+
+
+def record_sig(t):
+    """Full retained-record signature for order-independence checks."""
+    return tuple(sorted((k, repr(v)) for k, v in t.items()))
 
 
 # ---------------------------------------------------------------- A. DEDUP
@@ -56,15 +64,27 @@ for a, b in pairs:
         taken, skipped, _ = v3c1.apply_portfolio(cands, {}, {}, [])
         check(f"A1 dedup {a}/{b} order {order}", len(taken) == 1,
               f"took {[t['symbol'] for t in taken]}")
-    # randomized order, 20 shuffles, exact ties
+    # randomized order, 20 shuffles, exact ties — FULL record compared,
+    # including a per-alias marker payload (ChatGPT 2026-10-04: displayed
+    # symbol + security_id alone missed the order-dependent record defect)
     seen = set()
     for _ in range(20):
         o = [a, b]; rng.shuffle(o)
-        taken, _, _ = v3c1.apply_portfolio(
-            [mk_cand(s, "2020-01-15", mom=0.5) for s in o], {}, {}, [])
-        seen.add((taken[0]["symbol"], taken[0]["security_id"]))
-    check(f"A1 {a}/{b} randomized exact-tie deterministic", len(seen) == 1,
-          f"variants: {seen}")
+        cands = [mk_cand(s, "2020-01-15", mom=0.5, marker=f"from_{s}") for s in o]
+        taken, _, _ = v3c1.apply_portfolio(cands, {}, {}, [])
+        seen.add(record_sig(taken[0]))
+    check(f"A1 {a}/{b} randomized exact-tie full-record deterministic",
+          len(seen) == 1, f"variants: {len(seen)}")
+    # targeted: the exact ChatGPT repro (FI/FISV, 2024-01-15, markers)
+    if {a, b} == {"FISV", "FI"}:
+        recs = set()
+        for perm in ([a, b], [b, a]):
+            cands = [mk_cand(s, "2024-01-15", mom=0.5, marker=f"from_{s}")
+                     for s in perm]
+            taken, _, _ = v3c1.apply_portfolio(cands, {}, {}, [])
+            recs.add(record_sig(taken[0]))
+        check("A1 ChatGPT repro: tied FI/FISV full record order-independent",
+              len(recs) == 1)
 
 # A2: held alias blocks new admission under alternate label BEFORE caps
 taken, skipped, _ = v3c1.apply_portfolio(
@@ -125,15 +145,20 @@ taken, skipped, _ = v3c1.apply_portfolio(cands, {}, {}, [])
 check("B1 staggered cohorts all admitted", len(taken) == 30 and not skipped,
       f"took {len(taken)} skipped {len(skipped)}")
 
-# B1b: 20-cap with exits freeing slots mid-stream and heat neutralized by
-# exits: 25 signals same date, first 5 exit next day -> 20 held max
+# B1b: the 20-position cap is UNREACHABLE under the frozen 1%-risk sizing:
+# heat = sum(risk_dollars)/equity with risk_dollars = 1% of equity at admission,
+# so heat ~= n_open * 1% and always binds at 10 concurrent positions first.
+# Verified by construction (no reachable state has 20 open with heat < 10%).
+# The cap remains as defense-in-depth; its check logic (n_open >= 20) is
+# inspected, not behaviorally reachable.
 cands = [mk_cand(f"T{i:03d}", "2020-01-15",
                  exit_date="2020-01-16" if i < 5 else "2020-12-31",
                  mom=1.0 - i * 0.01) for i in range(25)]
-# heat binds at 10 here (1% each, concurrent) — expected, not the cap under test
 taken, skipped, _ = v3c1.apply_portfolio(cands, {}, {}, [])
-check("B1b heat binds before position cap (10 concurrent)",
+check("B1b heat binds at 10; 20-cap unreachable under 1% sizing (documented)",
       len(taken) == 10 and all(s["reason"] == "skipped_heat_cap" for s in skipped))
+check("B1b position-cap check present in code",
+      "n_open >= 20" in open("validate_v3c1.py").read())
 
 # B2: sector cap — 6 same-sector concurrent -> 5th... 6th skipped
 syms = [f"Q{i}" for i in range(7)]
@@ -163,28 +188,25 @@ taken, skipped, _ = v3c1.apply_portfolio(cands, {}, {}, [])
 check("B4 exits release capacity", len(taken) == 20 and not skipped,
       f"took {len(taken)} skipped {len(skipped)}")
 
-# B5: deterministic cross-security ties -> alphabetical (protocol §2)
-cands = [mk_cand(s, "2020-01-15", exit_date="2020-01-16", mom=0.5)
-         for s in ["ZZZ", "AAA", "MMM"]]
-taken, skipped, _ = v3c1.apply_portfolio(cands, {}, {}, [])
-# heat binds at 10 — not hit here (3 candidates). Order of admission = rank order.
-# Verify ranking order via mom_score tie -> alphabetical: check internal sort
-order = sorted(["ZZZ", "AAA", "MMM"])
-check("B5 alphabetical tie-break specified", True, "verified via sort key below")
-import re as _re
-src = open(os.path.join(HERE, "validate_v3c1.py")).read()
-check("B5 sort key has alphabetical fallback",
-      '-t["mom_score"],t["symbol"]' in src.replace(" ", ""))
-# behavioral: tied mom_scores admitted in alphabetical order regardless of input
-for perm in (["ZZZ", "MMM", "AAA"], ["MMM", "ZZZ", "AAA"]):
-    cands = [mk_cand(s, "2020-01-15", exit_date="2020-01-16", mom=0.5) for s in perm]
-    taken, _, _ = v3c1.apply_portfolio(cands, {}, {}, [])
-    # heat never binds (3 positions); all admitted — verify ranking order via
-    # internal sort by re-sorting the taken set the same way the code does
-    ranked = sorted(taken, key=lambda t: (t["signal_date"], -t["mom_score"], t["symbol"]))
-    check(f"B5 behavioral alphabetical order {perm}",
-          [t["symbol"] for t in ranked] == ["AAA", "MMM", "ZZZ"],
-          f"{[t['symbol'] for t in ranked]}")
+# B5: deterministic cross-security ties -> alphabetical (protocol §2).
+# ChatGPT 2026-10-04: do NOT re-sort in the test — use binding-cap contenders
+# and inspect the engine's actual admission order.
+for perm in (["ZZZ", "MMM", "AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG",
+              "HHH", "III"],
+             ["III", "HHH", "GGG", "FFF", "EEE", "DDD", "CCC", "BBB", "AAA",
+              "MMM", "ZZZ"]):
+    cands = [mk_cand(s, "2020-01-15", exit_date="2020-12-31", mom=0.5)
+             for s in perm]
+    taken, skipped, _ = v3c1.apply_portfolio(cands, {}, {}, [])
+    # 11 tied candidates, heat binds at 10 -> engine's admission order is the
+    # ranking order; must be alphabetical regardless of input permutation
+    got = [t["symbol"] for t in taken]
+    expect = sorted(perm)[:-1]  # 10 alphabetically-first admitted
+    check(f"B5 binding-cap admission order alphabetical {perm[0]}..{perm[-1]}",
+          got == expect and len(taken) == 10
+          and skipped[0]["reason"] == "skipped_heat_cap"
+          and skipped[0]["symbol"] == sorted(perm)[-1],
+          f"{got}")
 
 # ---------------------------------------------------------------- C. FILLS
 print("== C. Fills / costs ==")
@@ -213,13 +235,14 @@ o = [100.0] * 20; h = [102.0] * 20; l = [98.0] * 20; c = [100.0] * 20
 c[5] = 105.0; h[5] = 106.0  # flip bar
 flips = [False] * 20; flips[5] = True
 trades, signals, invalid = run_fill(dates, o, h, l, c, flips)
-check("C1 bull flip -> entry pending -> filled next open",
-      len(trades) >= 0 and len(signals) == 1 and signals[0]["signal_date"] == dates[5],
+check("C1 bull flip -> signal recorded",
+      len(signals) == 1 and signals[0]["signal_date"] == dates[5],
       f"signals={signals}")
-if trades:
-    t = trades[0]
-    check("C1 entry at next open", t["entry_date"] == dates[6] and t["entry"] == o[6],
-          f"{t['entry_date']} @ {t['entry']}")
+# ChatGPT 2026-10-04: assert the expected trade unconditionally, not len>=0
+check("C1 entry filled at next open (unconditional)",
+      len(trades) == 1 and trades[0]["entry_date"] == dates[6]
+      and trades[0]["entry"] == o[6],
+      f"{trades[0] if trades else 'NO TRADE'}")
 
 # C2: invalid opening gap — fill <= pre-existing stop -> skipped + logged
 # compute the plan first via a controlled flip, then gap the next open down
@@ -291,40 +314,47 @@ check("D2 388 unexplained -> INCONCLUSIVE (not FAIL)",
       len(cov_bad["missing_no_file"]) == 388)
 
 
-def verdict_for(g):
-    v = "PASS" if all(g.values()) else "FAIL"
-    if not g["coverage_ok"]:
-        v = "INCONCLUSIVE"
-    return v
-
-
+# ChatGPT 2026-10-04: test the REAL production verdict function
+# (v3c1.compute_verdict), not a locally reimplemented copy.
 base = {"fidelity": True, "expectancy_gt_015": True, "clustered_t_gt_2": True,
         "calmar_gt_1": True, "tail_top1_gt_0": True, "tail_bestyr_gt_0": True,
         "clusters_ok": True, "coverage_ok": True}
-check("D3 all pass -> PASS", verdict_for(base) == "PASS")
+check("D3 all pass -> PASS (production compute_verdict)",
+      v3c1.compute_verdict(base) == "PASS")
 bad = dict(base, coverage_ok=False)
-check("D3 coverage fail + all perf pass -> INCONCLUSIVE",
-      verdict_for(bad) == "INCONCLUSIVE")
+check("D3 coverage fail + all perf pass -> INCONCLUSIVE (production)",
+      v3c1.compute_verdict(bad) == "INCONCLUSIVE")
 bad2 = dict(base, coverage_ok=False, calmar_gt_1=False)
-check("D3 coverage fail + Calmar fail -> INCONCLUSIVE (precedence)",
-      verdict_for(bad2) == "INCONCLUSIVE")
+check("D3 coverage fail + Calmar fail -> INCONCLUSIVE precedence (production)",
+      v3c1.compute_verdict(bad2) == "INCONCLUSIVE")
 bad3 = dict(base, calmar_gt_1=False)
-check("D3 Calmar fail, coverage ok -> FAIL (preserved)",
-      verdict_for(bad3) == "FAIL")
+check("D3 Calmar fail, coverage ok -> FAIL preserved (production)",
+      v3c1.compute_verdict(bad3) == "FAIL")
+bad4 = dict(base, clusters_ok=False)
+check("D3 cluster inconsistency -> INCONCLUSIVE (production)",
+      v3c1.compute_verdict(bad4) == "INCONCLUSIVE")
+check("D3 explicit cluster_consistent=False -> INCONCLUSIVE (production)",
+      v3c1.compute_verdict(base, cluster_consistent=False) == "INCONCLUSIVE")
 
 # D4: strict-> boundaries — equality fails
 check("D4 expectancy == 0.15 fails strict >", not (0.15 > 0.15))
 check("D4 Calmar == 1.0 fails strict >", not (1.0 > 1.0))
 check("D4 |t| == 2.0 fails strict >", not (abs(2.0) > 2.0))
 
-# D5: Calmar formula on hand-constructed equity fixture
-# equity: 100k -> 200k peak -> 150k trough -> 180k end over 2 years
-# CAGR = (180/100)^(1/2)-1 = 0.34164; maxDD = (200-150)/200 = 0.25
-import math
-cagr = (180000 / 100000) ** (1 / 2) - 1
-maxdd = (200000 - 150000) / 200000
-calmar = cagr / maxdd
-check("D5 Calmar hand calc", abs(calmar - 1.36656) < 1e-4, f"{calmar:.5f}")
+# D5: real production metric helpers on a hand-constructed equity fixture.
+# equity: 100k -> 200k peak -> 150k trough -> 180k end over 2y (504 trading days)
+# maxDD = 50/200 = 0.25; CAGR = 1.8^(252/504)-1 = 0.34164; Calmar = 1.36656
+eq_curve = [100000.0, 200000.0, 150000.0, 180000.0]
+maxdd = v3c1.max_drawdown(eq_curve)
+check("D5 max_drawdown (production)", abs(maxdd - 0.25) < 1e-12, f"{maxdd}")
+cagr = v3c1.annualized_return(0.8, 504)
+check("D5 annualized_return (production)", abs(cagr - 0.341640) < 1e-5, f"{cagr}")
+calmar = v3c1.calmar_ratio(cagr, maxdd)
+check("D5 calmar_ratio (production)", abs(calmar - 1.36656) < 1e-4, f"{calmar:.5f}")
+check("D5 calmar_ratio zero-drawdown -> 0.0 (production)",
+      v3c1.calmar_ratio(0.2, 0.0) == 0.0)
+check("D5 annualized_return degenerate (production)",
+      v3c1.annualized_return(0.5, 0) == -1.0)
 
 print()
 n_pass = sum(1 for _, s, _ in results if s == PASS)
