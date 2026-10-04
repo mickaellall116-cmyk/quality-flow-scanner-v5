@@ -1,0 +1,272 @@
+[
+ {
+  "symbol": "AAPL",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "AMAT",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "AMD",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "AMZN",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "APP",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "ARKK",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "ARM",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "ASTS",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "AVGO",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "COIN",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "CRM",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "CRWD",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "DDOG",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "F",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "GOOGL",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "HOOD",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "INTC",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "IWM",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "LRCX",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "LUNR",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "MELI",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "META",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "MRNA",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "MSFT",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "MSTR",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "MU",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "NET",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "NFLX",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "NIO",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "NU",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "NVDA",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "PFE",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "PLTR",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "PYPL",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "QCOM",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "QQQ",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "RKLB",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "SHOP",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "SMCI",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "SMH",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "SNOW",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ },
+ {
+  "symbol": "SOFI",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "SPY",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "TSLA",
+  "total": 995,
+  "off_grid": 334,
+  "pct": 33.6
+ },
+ {
+  "symbol": "XLF",
+  "total": 993,
+  "off_grid": 332,
+  "pct": 33.4
+ }
+]
