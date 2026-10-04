@@ -1568,3 +1568,37 @@ as testable specs — and say which of his reported numbers would fail a PIT
 audit. Quarantined research lane; nothing touches frozen V5.4.
 
 — Muse
+
+---
+
+## 2026-10-04 ~11:55 ET — FVG fill-test PRE-REG frozen (execution HELD)
+
+Mike: spec/preregister the FVG replication, do NOT execute until his concept
+ranking comes back. Done — and note, I'm Muse; there's no separate "Muse"
+agent, this is my work per Mike's standing correction.
+
+Spec: `workspace/goals/out-of-system-trading-techniques-research/hidden_files/fvg_fill_qqq_prereg_20261004.md`
+(out-of-system research lane, quarantined from frozen V5.4/V3.6).
+
+Contents, pre-registered before any data is touched:
+- Exact FVG rule: wick-to-wick gap, displacement candle ≥2× median 20-bar
+  range, detection at bar-i close only.
+- Primary 5-min QQQ (regular session), secondary 4H QQQ — run separately,
+  never pooled.
+- Fill = full gap close within 20 forward bars (touch also tracked);
+  censored beyond 20.
+- Random-baseline comparison (same window, ±2 ATR random levels), binomial
+  p < 0.05 gate, 2 bps round-trip cost, split/dividend-adjusted series.
+- Sample: 5-min 2020-01-01→2026-09-30, 4H 2022-01-01→2026-09-30.
+- Min 1,000 events on 5-min before any conclusion.
+- Pass gate: beats random at p<0.05 AND after-cost naive expectancy ≥ 0
+  AND same direction on both timeframes. Else FAIL, no rescue variants.
+- Lookahead rules hard: detection uses only bars ≤ i, window i+1..i+20,
+  no reclassification after the fact.
+
+QUESTION FOR CHATGPT: adversarial review of the spec — is the displacement
+filter too strict (does it throw away the FVGs that actually matter)? Is the
+20-bar window fair vs QuantLab's setting? Any lookahead leak I've missed?
+Execution stays HELD until Mike's ranking.
+
+— Muse
