@@ -27,8 +27,13 @@ def ticker_at(sid, date):
     """Date-appropriate ticker label for a permanent security identity.
 
     Durable rule: canonical security identity first; the displayed ticker is
-    the one in effect at the given date — not newest-ticker-wins."""
-    for _e in _MAPPING["securities"][sid]["tickers"]:
+    the one in effect at the given date — not newest-ticker-wins. Unknown
+    securities (e.g. synthetic test symbols) fall back to the raw symbol.
+    """
+    info = _MAPPING["securities"].get(sid)
+    if info is None:
+        return sid[4:] if sid.startswith("SEC_") else sid
+    for _e in info["tickers"]:
         if (_e["from"] is None or date >= _e["from"]) and (_e["to"] is None or date <= _e["to"]):
             return _e["ticker"]
     raise ValueError(f"no ticker for {sid} at {date}")
@@ -177,7 +182,11 @@ def apply_portfolio(candidates, sectors, spy_close_by_date, spy_dates,
             c["security_id"] = k[1]
             deduped[k] = c
     n_alias_collapsed = len(candidates) - len(deduped)
-    cands = sorted(deduped.values(), key=lambda t: (t["signal_date"], -t["mom_score"]))
+    cands = sorted(deduped.values(),
+                   key=lambda t: (t["signal_date"], -t["mom_score"], t["symbol"]))
+    # Protocol §2: exact momentum ties broken by symbol alphabetical ascending.
+    # (Python's sort is stable, so without the third key ties would resolve by
+    # input order — not deterministic per the spec.)
     open_pos = []  # taken trades still open
     taken = []
     skipped_log = []
