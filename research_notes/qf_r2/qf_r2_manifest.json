@@ -1,0 +1,49 @@
+{
+ "hypothesis": "QF-R2-BRK-VOL-4H-001",
+ "spec": "research_notes/qf_r2/qf_r2_brk_vol_4h_prereg_20261004.md",
+ "spec_sha256": "82c7f732a1c8ca2534afc3522f0aa108a0a08e6548ada8a6a4a0629219be239b",
+ "runner": "research_notes/qf_r2/qf_r2_runner.py",
+ "runner_sha256": "d3924ace9d0ff3720f1ea04bbc984c729d3725197081fda9e563150b50a75e9d",
+ "fixtures": "research_notes/qf_r2/qf_r2_fixtures.py",
+ "fixtures_sha256": "671cf6218d574be4cc8a27cee6803792845c19b194dc23a5843fd51f70cd12c6",
+ "input_verification": {
+  "1h_manifest": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/yahoo_1h_input_manifest_20261004.json",
+  "1h_manifest_sha256": "59e44036e1e11a64fade836dec6418c3faafea15735a9861362cf1ced2bbacc3",
+  "1h_files_checked": 225,
+  "1h_pool": 218,
+  "spy_daily": "/home/hatch/workspace/quality-flow-scanner-v5/daily_ranking_frozen_20261004/d1_SPY.pkl",
+  "spy_daily_sha256": "ac240ce01f28258349d377466104edb1e23741987f9d25bdcf279a8b76162552"
+ },
+ "module_hashes": {
+  "scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c"
+ },
+ "constants": {
+  "study_window": [
+   "2025-03-17",
+   "2026-09-14"
+  ],
+  "volume_threshold": 1.5,
+  "baseline_bars": 20,
+  "prior_high_n": 20,
+  "stop_atr_mult": 0.5,
+  "tp_r": 2.0,
+  "max_hold_bars": 20,
+  "cost_bps_primary": 25.0,
+  "cost_bps_diag": 4.0,
+  "seed": 20261004,
+  "n_perm": 10000,
+  "n_boot": 10000,
+  "min_pairs": 300
+ },
+ "raw_evidence_paths": [
+  "raw_evidence/events.csv",
+  "raw_evidence/matches.csv",
+  "raw_evidence/ledger.csv",
+  "raw_evidence/inference_in.csv",
+  "raw_evidence/inference_out.csv",
+  "raw_evidence/gates.json",
+  "raw_evidence/code_data_manifest.json"
+ ],
+ "evidence_tier": "COMPUTED",
+ "performance_status": "HELD \u2014 no market-performance run executed"
+}
