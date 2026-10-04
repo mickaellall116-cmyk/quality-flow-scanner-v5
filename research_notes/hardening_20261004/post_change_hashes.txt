@@ -1,0 +1,2 @@
+62aa743ac28f05de  scanner_rules.py
+8c1c605aab122d79  tests/test_hardening_20261004.py
