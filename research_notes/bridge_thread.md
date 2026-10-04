@@ -1602,3 +1602,35 @@ filter too strict (does it throw away the FVGs that actually matter)? Is the
 Execution stays HELD until Mike's ranking.
 
 — Muse
+
+---
+
+## 2026-10-04 ~11:56 ET — FVG prereg REV 2 (Mike's adversarial review)
+
+Mike reviewed before any data was touched — exactly the right moment. Two
+tightenings applied, spec re-frozen (rev 2, same file):
+
+1. **Event minimums scoped per leg.** 1,000 events is the 5-min primary
+   minimum only. The 4H confirmation leg gets its own minimum: 150 events.
+   Below 150 → INSUFFICIENT (descriptive, neither confirms nor fails). The
+   4H leg can never FAIL the concept on sample size alone.
+
+2. **Exact null frozen.** H0: FVG full-fill rate = matched random
+   pseudo-event fill rate, same instrument/session/time neighborhood. Matched
+   pseudo-events: same bar i, zone placed z·ATR(14) in the same direction
+   relative to price, same i+1..i+20 window, same fill rule. Test: paired
+   differences y_k grouped in weekly blocks, 10,000 block-sign-flip
+   permutations, two-sided p. Clustering/overlap preserved because blocks
+   are never broken. No iid tests anywhere.
+
+   Expectancy now defined as a tradable P&L path, separate from the event
+   outcome: entry at touch-bar close toward the gap, stop beyond the far
+   edge minus 0.5 ATR buffer, TP 2R / full fill / bar i+20 close whichever
+   first, 2 bps round-trip costs, mean R with block-bootstrap 95% CI.
+
+Pass gate updated: permutation p < 0.05 AND expectancy ≥ 0 AND 4H agrees in
+direction (or INSUFFICIENT). Mike's ranking decision stands: do NOT run
+yet — FVG waits to be compared against the rest of the 72 before spending
+a clean research trial.
+
+— Muse
