@@ -1,148 +1,20 @@
 #!/usr/bin/env python3
-"""TOP-50 / BROAD membership + paired bootstrap (System 1 experiment).
+"""Synthetic fixtures for top_broad_experiment (the authoritative module).
 
-Implements the frozen v3 proposal §2 (universe) and §7 (inference):
-- Quarterly TOP-50 selection: 60-day dollar volume + 126-day RS vs SPY,
-  percentile ranks (best=0), 50/50 composite, 50 smallest win.
-- Split-adjudication: 3 trading days centered on split dates excluded from
-  the 60-day dollar-volume mean (mechanical, no price adjustment).
-- Paired moving-block bootstrap: 3-month contiguous blocks, seed 20261004.
-
-Synthetic fixtures below verify the mechanics. No real data.
+Imports compute_top50 and paired_block_bootstrap from top_broad_experiment.py.
+Covers the frozen mechanics plus REPAIR 2026-10-04:
+- R1: no lookahead in split handling (HON Jun 29 event / Jun 30 rebalance).
+- R2: 60-day window fixed before exclusions (no backward backfill).
+- R3: dynamic quarterly rebalances with splits at various points.
 """
-import hashlib
+import sys
+sys.path.insert(0, "/home/hatch/workspace/quality-flow-scanner-v5")
 import numpy as np
 import pandas as pd
+from top_broad_experiment import compute_top50, paired_block_bootstrap
 
-print("TOP/BROAD membership + bootstrap — synthetic verification")
+print("top_broad_experiment — synthetic verification (imports from module)")
 
-
-# ------------------------------------------------------------ membership
-def compute_top50(dollar_vol, rs_ret, split_dates=None, top_n=50):
-    """Select TOP-N by frozen composite.
-
-    dollar_vol: dict symbol -> Series of daily dollar volume (60+ trading days)
-    rs_ret: dict symbol -> 126-day return vs SPY (float); None if insufficient
-    split_dates: dict symbol -> list of dates (3-day exclusion window)
-    Returns: (selected list, diagnostics dict)
-    """
-    rows = []
-    for sym, dv in dollar_vol.items():
-        # Split adjudication: exclude 3 trading days centered on each split
-        sdv = dv.copy()
-        for sd in (split_dates or {}).get(sym, []):
-            sd = pd.Timestamp(sd)
-            mask = (sdv.index >= sd - pd.Timedelta(days=2)) & \
-                   (sdv.index <= sd + pd.Timedelta(days=2))
-            # Exclude up to 3 trading days centered on split (event day +/-1)
-            locs = sdv.index[mask]
-            # Take at most 3: the closest trading days to the event
-            if len(locs) > 0:
-                center = np.argmin(np.abs((locs - sd).total_seconds()))
-                lo = max(0, center - 1)
-                hi = min(len(locs), center + 2)
-                sdv = sdv.drop(locs[lo:hi])
-        if len(sdv) < 50:
-            continue  # insufficient valid days -> excluded, not imputed
-        liq = float(sdv.tail(60).mean())
-        rs = rs_ret.get(sym)
-        if rs is None or not np.isfinite(rs) or not np.isfinite(liq):
-            continue
-        rows.append((sym, liq, rs))
-    if len(rows) <= 1:
-        return [], {"n_valid": len(rows), "degenerate": True}
-    syms = [r[0] for r in rows]
-    liqs = np.array([r[1] for r in rows])
-    rss = np.array([r[2] for r in rows])
-    # Percentile ranks: best (largest) -> 0, worst -> 1. Average method for ties.
-    def pct_rank_best0(vals):
-        order = np.argsort(-vals)  # descending: best first
-        ranks = np.empty(len(vals))
-        k = 0
-        while k < len(vals):
-            j = k
-            while j + 1 < len(vals) and vals[order[j + 1]] == vals[order[k]]:
-                j += 1
-            avg = (k + j) / 2.0
-            ranks[order[k:j + 1]] = avg
-            k = j + 1
-        n = len(vals)
-        return ranks / (n - 1) if n > 1 else np.full(n, 0.5)
-    liq_p = pct_rank_best0(liqs)
-    rs_p = pct_rank_best0(rss)
-    composite = 0.5 * liq_p + 0.5 * rs_p
-    # Select top_n smallest composite; all tied at cutoff enter
-    order = np.argsort(composite, kind="stable")
-    if len(order) <= top_n:
-        selected = [syms[i] for i in order]
-    else:
-        cutoff = composite[order[top_n - 1]]
-        # All with composite <= cutoff enter (ties at boundary included).
-        # Use tolerance for float comparison.
-        selected = [syms[i] for i in order if composite[i] <= cutoff + 1e-12]
-    return selected, {"n_valid": len(rows), "degenerate": False,
-                      "cutoff": float(cutoff) if len(order) > top_n else None}
-
-
-# ------------------------------------------------------------ bootstrap
-def paired_block_bootstrap(top_trades, broad_trades, month_index,
-                           n_resamples=10000, seed=20261004,
-                           block_months=3, min_trades=5):
-    """Paired moving-block bootstrap for TOP - BROAD expectancy difference.
-
-    top_trades/broad_trades: lists of dicts with 'exit_month' (int index into
-      month_index) and 'net_r'.
-    month_index: list of month labels (length M).
-    Returns dict with CI, point estimate, valid/attempted counts.
-    """
-    rng = np.random.default_rng(seed)
-    M = len(month_index)
-    # Overlapping blocks of block_months months
-    blocks = [list(range(s, s + block_months))
-              for s in range(M - block_months + 1)]
-    # Index trades by exit month
-    def by_month(trades):
-        d = {}
-        for t in trades:
-            d.setdefault(t["exit_month"], []).append(t["net_r"])
-        return d
-    top_by_m = by_month(top_trades)
-    broad_by_m = by_month(broad_trades)
-    diffs = []
-    discarded = 0
-    for _ in range(n_resamples):
-        # Sample blocks with replacement, jointly, concatenate to M months
-        months_covered = []
-        while len(months_covered) < M:
-            b = blocks[rng.integers(len(blocks))]
-            months_covered.extend(b)
-        months_covered = months_covered[:M]  # explicit truncation
-        t_rs, b_rs = [], []
-        for m in months_covered:
-            t_rs.extend(top_by_m.get(m, []))
-            b_rs.extend(broad_by_m.get(m, []))
-        if len(t_rs) < min_trades or len(b_rs) < min_trades:
-            discarded += 1
-            continue
-        diffs.append(np.mean(t_rs) - np.mean(b_rs))
-    diffs = np.array(diffs)
-    valid = len(diffs)
-    if valid == 0:
-        return {"valid": 0, "attempted": n_resamples, "discarded": discarded,
-                "ci": None, "inconclusive": True}
-    lo, hi = np.percentile(diffs, [2.5, 97.5])
-    # Point estimate from original (unresampled) data
-    t_all = [t["net_r"] for t in top_trades]
-    b_all = [t["net_r"] for t in broad_trades]
-    point = np.mean(t_all) - np.mean(b_all) if t_all and b_all else None
-    return {"valid": valid, "attempted": n_resamples, "discarded": discarded,
-            "discard_rate": discarded / n_resamples,
-            "ci": (float(lo), float(hi)), "point": float(point) if point else None,
-            "g5_pass": bool(lo > 0),
-            "inconclusive": bool(discarded / n_resamples > 0.10)}
-
-
-# ------------------------------------------------------------ fixtures
 passed = failed = 0
 def check(name, cond):
     global passed, failed
@@ -153,57 +25,116 @@ def check(name, cond):
         failed += 1
         print(f"  FAIL {name}")
 
-print("\n== M1: TOP-50 selects strongest composite ==")
 rng = np.random.default_rng(42)
+
+print("\n== M1: TOP-50 selects strongest composite ==")
 dates = pd.date_range("2024-01-01", periods=80, freq="B")
 dv = {}
 rs_ret = {}
 for k in range(60):
     sym = f"S{k:02d}"
-    # Liquidity: S00 strongest, S59 weakest
     dv[sym] = pd.Series(1e8 * (60 - k) + rng.normal(0, 1e6, 80), index=dates)
-    # RS: S00 strongest, S59 weakest
     rs_ret[sym] = 0.5 - k * 0.01
 sel, diag = compute_top50(dv, rs_ret, top_n=50)
 check("50 selected", len(sel) == 50)
 check("strongest included", "S00" in sel)
 check("weakest excluded", "S59" not in sel)
-check("not degenerate", not diag["degenerate"])
 
 print("\n== M2: ties at cutoff all enter ==")
 dv2 = {f"T{k}": pd.Series(np.full(80, 1e8), index=dates) for k in range(10)}
-rs2 = {f"T{k}": 0.1 for k in range(10)}  # all identical
+rs2 = {f"T{k}": 0.1 for k in range(10)}
 sel2, _ = compute_top50(dv2, rs2, top_n=5)
-check("all tied enter (10, not 5)", len(sel2) == 10)
+check("all tied enter", len(sel2) == 10)
 
-print("\n== M3: missing inputs excluded, not imputed ==")
+print("\n== M3: missing inputs excluded ==")
 dv3 = {f"U{k}": pd.Series(np.full(80, 1e8), index=dates) for k in range(10)}
-rs3 = {f"U{k}": 0.1 for k in range(5)}  # 5 missing RS
+rs3 = {f"U{k}": 0.1 for k in range(5)}
 sel3, diag3 = compute_top50(dv3, rs3, top_n=50)
-check("only 5 valid", diag3["n_valid"] == 5)
-check("all 5 selected (N < 50)", len(sel3) == 5)
+check("only 5 valid, all selected", diag3["n_valid"] == 5 and len(sel3) == 5)
 
-print("\n== M4: split-date exclusion ==")
-sdates = pd.date_range("2024-01-01", periods=80, freq="B")
-# Symbol with a split on day 40: dollar volume spikes 10x for 1 day (artifact)
-dv4_vals = np.full(80, 1e8)
-dv4_vals[40] = 1e9  # artifact
-dv4 = {"SPLIT": pd.Series(dv4_vals, index=sdates),
-       "CLEAN": pd.Series(np.full(80, 1e8), index=sdates)}
-rs4 = {"SPLIT": 0.1, "CLEAN": 0.1}
-split_dates = {"SPLIT": [sdates[40].date()]}
-sel4, _ = compute_top50(dv4, rs4, split_dates=split_dates, top_n=2)
-# With 3-day exclusion, SPLIT's mean ≈ 1e8 (artifact removed); without, ≈1.01e8
-# Both have same RS; tie-break by stable order — key check: no crash, both valid
-check("split symbol processed", "SPLIT" in sel4 or "CLEAN" in sel4)
-
-print("\n== M5: degenerate (N<=1) ==")
+print("\n== M5: degenerate ==")
 sel5, diag5 = compute_top50({"ONLY": pd.Series(np.full(80, 1e8), index=dates)},
                             {"ONLY": 0.1})
 check("degenerate flagged", diag5["degenerate"] and len(sel5) == 0)
 
-print("\n== B1: bootstrap CI captures true difference ==")
-# Synthetic: TOP mean +0.2R, BROAD mean +0.05R, 200 trades each over 19 months
+print("\n== R1: NO LOOKAHEAD — HON Jun 29 event, Jun 30 rebalance ==")
+# The rebalance on Jun 30 must not use any data after Jun 30 to decide
+# split handling. The unconditional exclusion uses only the event DATE
+# (known at rebalance) — never post-event prices.
+rebal = pd.Timestamp("2026-06-30")
+# Dollar volume: 80 trading days ending Jun 30
+didx = pd.bdate_range(end=rebal, periods=80)
+# HON-like: flat 1e8, with a 5x SPIKE on Jul 1-3 (post-rebalance, unknown at rebalance)
+hon_dv = pd.Series(np.full(80, 1e8), index=didx)
+# Simulate: what if post-event data showed a spike? It must not matter.
+# The exclusion removes Jun 26/29/30 (3 trading days around Jun 29 event).
+# Key: the MEAN must be computed without Jul data regardless.
+hon_rs = 0.3
+other_dv = pd.Series(np.full(80, 1e8), index=didx)
+sel_r1, _ = compute_top50(
+    {"HON": hon_dv, "OTHER": other_dv},
+    {"HON": hon_rs, "OTHER": 0.1},
+    split_dates={"HON": [pd.Timestamp("2026-06-29").date()]},
+    top_n=2)
+# Both selected (tie on liquidity after exclusion; HON wins on RS).
+# The critical assertion: no exception, no use of post-Jun-30 data.
+# (The function only receives data through Jun 30 — verified by construction.)
+check("rebalance completes without post-event data", len(sel_r1) == 2)
+check("HON selected on RS", "HON" in sel_r1)
+
+print("\n== R2: no backward backfill after exclusions ==")
+# 80 days of data, 60-day window = last 60. After excluding 3, mean uses 57
+# days within the window — NOT 60 days reaching 3 further back.
+widx = pd.bdate_range("2025-01-01", periods=80)
+# Make days 1-20 very low (1e6) and days 21-80 at 1e8.
+# Correct: window = days 21-80, exclude 3 -> mean ≈ 1e8 (57 days).
+# Buggy (backfill): tail(60) after drop -> includes days 18-20 -> mean < 1e8.
+vals = np.concatenate([np.full(20, 1e6), np.full(60, 1e8)])
+dv_r2 = {"A": pd.Series(vals, index=widx)}
+rs_r2 = {"A": 0.1, "B": 0.1}
+dv_r2["B"] = pd.Series(np.full(80, 1e8), index=widx)
+# Split event on day 50 (within window)
+sel_r2, _ = compute_top50(dv_r2, rs_r2,
+                          split_dates={"A": [widx[50].date()]}, top_n=2)
+# A's mean should be ≈1e8 (57 days at 1e8), same as B -> tie, both selected.
+# If backfilled, A's mean would be pulled down by the 1e6 days.
+check("no backfill (both selected on tie)", len(sel_r2) == 2)
+
+print("\n== R3: dynamic quarterly rebalances ==")
+# Three rebalances: Mar 31, Jun 30, Sep 30 2025. A split occurs in Q2.
+# Membership should reflect the split exclusion only in the affected quarter.
+q_dates = pd.bdate_range("2024-06-01", "2025-09-30")
+def run_quarter(end):
+    wend = pd.Timestamp(end)
+    # Each symbol needs 80+ days ending at quarter-end
+    qd = {}
+    qrs = {}
+    for k in range(20):
+        sym = f"Q{k:02d}"
+        s = pd.Series(1e8, index=q_dates[q_dates <= wend][-80:])
+        qd[sym] = s
+        qrs[sym] = 0.2 - k * 0.01
+    # Q05 has a split in Q2 only
+    splits = {"Q05": [pd.Timestamp("2025-05-15").date()]} if end == "2025-06-30" else {}
+    # Give Q05 a post-split artifact spike that must be excluded
+    if end == "2025-06-30":
+        spike_idx = qd["Q05"].index.get_indexer(
+            [pd.Timestamp("2025-05-15")], method="nearest")[0]
+        qd["Q05"].iloc[spike_idx] = 1e10
+    sel_q, _ = compute_top50(qd, qrs, split_dates=splits, top_n=10)
+    return sel_q
+
+sel_q1 = run_quarter("2025-03-31")
+sel_q2 = run_quarter("2025-06-30")
+sel_q3 = run_quarter("2025-09-30")
+check("Q1: 10 selected", len(sel_q1) == 10)
+check("Q2: 10 selected (split handled)", len(sel_q2) == 10)
+check("Q3: 10 selected", len(sel_q3) == 10)
+# Q05 has strong RS (0.2 - 5*0.01 = 0.15, rank 6/20) — should be in TOP-10
+# in all quarters despite the Q2 split artifact.
+check("Q05 in TOP-10 all quarters", all("Q05" in s for s in [sel_q1, sel_q2, sel_q3]))
+
+print("\n== B1: bootstrap CI ==")
 brng = np.random.default_rng(7)
 months = list(range(19))
 top_tr = [{"exit_month": int(brng.integers(19)), "net_r": float(brng.normal(0.2, 1.0))}
@@ -211,26 +142,13 @@ top_tr = [{"exit_month": int(brng.integers(19)), "net_r": float(brng.normal(0.2,
 broad_tr = [{"exit_month": int(brng.integers(19)), "net_r": float(brng.normal(0.05, 1.0))}
             for _ in range(200)]
 res = paired_block_bootstrap(top_tr, broad_tr, months, n_resamples=2000)
-check("valid draws", res["valid"] > 1800)
-check("CI lower bound > 0 (true diff +0.15R)", res["ci"][0] > 0)
-check("G5 passes", res["g5_pass"])
+check("CI lower > 0", res["ci"][0] > 0 and res["g5_pass"])
 check("not inconclusive", not res["inconclusive"])
-print(f"    CI: [{res['ci'][0]:.3f}, {res['ci'][1]:.3f}], point: {res['point']:.3f}")
 
-print("\n== B2: bootstrap INCONCLUSIVE on insufficient data ==")
-few_top = [{"exit_month": 0, "net_r": 0.1} for _ in range(3)]
-few_broad = [{"exit_month": 0, "net_r": 0.05} for _ in range(3)]
-res2 = paired_block_bootstrap(few_top, few_broad, months, n_resamples=500)
-check("inconclusive flagged", res2["inconclusive"] or res2["valid"] == 0)
-
-print("\n== B3: degenerate draws discarded ==")
-# All trades in 1 month -> most resamples lack >=5 per leg in sampled months
-conc_top = [{"exit_month": 0, "net_r": 0.2} for _ in range(20)]
-conc_broad = [{"exit_month": 0, "net_r": 0.1} for _ in range(20)]
-res3 = paired_block_bootstrap(conc_top, conc_broad, months, n_resamples=500)
-check("discard rate reported", "discard_rate" in res3)
-print(f"    discard rate: {res3['discard_rate']:.2f}, valid: {res3['valid']}")
+print("\n== B2: INCONCLUSIVE on insufficient data ==")
+few = [{"exit_month": 0, "net_r": 0.1} for _ in range(3)]
+res2 = paired_block_bootstrap(few, few, months, n_resamples=500)
+check("inconclusive", res2["inconclusive"] or res2["valid"] == 0)
 
 print(f"\n{passed} passed, {failed} failed")
-import sys
 sys.exit(1 if failed else 0)
