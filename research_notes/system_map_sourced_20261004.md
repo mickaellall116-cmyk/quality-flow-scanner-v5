@@ -33,9 +33,9 @@
 |-------|--------|-------------------|
 | Signals | `v54_engine.py`, harness scan | Frozen V5.4 (per-harness) |
 | Exits | `v54_exit_tracker.py` `ModeBTracker` | **Intrabar** stops (stop wins ties); TP1 50%; **Profit Protect** (+1R arming gates scanner EXIT → next-bar open); **30-bar max hold** |
-| Portfolio | `v54_forward_harness.py` | Per-position tracking; admission controls **not yet mapped** — requires source verification before any claim |
+| Portfolio admission | **Claude source-reviewed** (Issue #1 comment `5975208144`, 2026-10-04) | **Per-symbol busy control ONLY** — `_busy()` prevents another open/pending position in the same symbol. **No** cross-symbol ranking, **no** sector cap, **no** portfolio-risk/heat gate. `v54_qualified_signals` is eligibility-only (no sorting/truncation/top-N). |
 
-**Open item:** the forward harness's slot/ranking/heat admission logic has not been source-verified for this map. No claim is made about it here.
+**Claude's conclusion (linked, not re-verified here):** "The inspected live pipeline did not implement the intended C1 top-two ranking, sector cap or portfolio-risk gate. It therefore cannot validate the C1 portfolio stack." Evidence tier: source-inspected call-chain (Claude); pin/hash identity unverified; no independent rerun.
 
 ## System 3: REV6 spec — as-specified (no implementation)
 
@@ -56,10 +56,14 @@
 
 ## What this means for the experiment
 
-Mike's objective: *test whether a defined stock-selection rule improves the intended Quality Flow system.*
+**Mike's decision (2026-10-04): System 1 is the experiment stack.** Test the complete studied C1 with TOP-vs-BROAD as the only difference.
 
-- If the intended system is **System 1**, the experiment is fully specified: same `gen_candidates` + `compute_features` + `simulate_stack` code, only the universe split changes (TOP-50 vs BROAD-225). The corrected C1 is the baseline.
-- If the intended system is **System 2**, the forward harness's admission logic must be source-mapped first, and a System-2 backtest baseline must be built (none exists).
-- System 3 requires implementation before it can be tested.
+**Qualification 1 — reproduction reference vs experiment baseline:** the 240-trade/+0.178R result is a **reproduction reference** (it validates that the code reproduces the studied numbers). It is **not** the experiment's baseline, because the experiment uses **corrected session-anchored candles** (commit `b3a7251`) while the 240-trade result used the old candle grid. The BROAD leg must be **newly computed** on corrected candles; the old headline cannot serve as the comparison point.
 
-**No lineage chosen here.** The data inventory continues. Performance runs remain paused.
+**Qualification 2 — portfolio verification:** the 16 synthetic fixtures tested the trade engine and the C0 control portfolio. The actual `simulate_stack` selection (rs top-2), sizing (1% equity), and caps (sector 2, 5 slots, 5% heat, S4 DD gate) now have **9 targeted fixtures** (`tests/test_simulate_stack_20261004.py`), all passing. Builder-tested; independent inspection pending.
+
+- If the intended system is **System 1**, the experiment is fully specified: same `gen_candidates` + `compute_features` + `simulate_stack` code, only the universe split changes (TOP-50 vs BROAD-225). The BROAD leg is computed fresh on corrected candles.
+- If the intended system is **System 2**, a System-2 backtest baseline must be built (none exists). Not the current experiment.
+- System 3 requires implementation before it can be tested. Not the current experiment.
+
+**No lineage ambiguity remains for this experiment: System 1.** The data inventory continues. Performance runs remain paused.
