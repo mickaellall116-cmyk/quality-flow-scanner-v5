@@ -286,6 +286,9 @@ def run_performance():
 
     results = {"window": ["2025-03-17", "2026-09-14"],
                "broad_n": len(symbols), "legs": {}}
+    # BUGFIX 2026-10-04: spy was referenced but never defined; run_leg does
+    # not use it (benchmarks come from load_benchmarks()). Defined as None.
+    spy = None
     for cost_name in ["4bps", "25bps"]:
         broad = run_leg(all_trades, closes, data, spy, cost_name, "BROAD")
         top = run_leg(top_trades, closes, data, spy, cost_name, "TOP")
