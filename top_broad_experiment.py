@@ -45,12 +45,20 @@ def compute_top50(dollar_vol, rs_ret, split_dates=None, top_n=TOP_N):
         window = dv.tail(LIQ_WINDOW).copy()
         # REPAIR 1: unconditional exclusion — no continuity classification,
         # no post-event data. All flagged events treated identically.
+        # BOUNDS CHECK (2026-10-04): only exclude when the split date falls
+        # WITHIN the 60-day window. An old or future split outside the lookback
+        # must not remove unrelated days via nearest-snapping.
+        window_start = window.index[0]
+        window_end = window.index[-1]
         for sd in (split_dates or {}).get(sym, []):
-            sd = pd.Timestamp(sd).tz_localize(None) if pd.Timestamp(sd).tzinfo else pd.Timestamp(sd)
-            widx = window.index.tz_localize(None) if hasattr(window.index, 'tz_localize') else window.index
-            # Find trading days within +/-1 calendar day of the event
+            sd = pd.Timestamp(sd)
+            sd_naive = sd.tz_localize(None) if sd.tzinfo else sd
+            widx = window.index
+            widx_naive = widx.tz_localize(None) if widx.tzinfo else widx
+            if not (widx_naive[0] <= sd_naive <= widx_naive[-1]):
+                continue  # outside lookback — ignore
             try:
-                center = widx.get_indexer([sd], method="nearest")[0]
+                center = widx_naive.get_indexer([sd_naive], method="nearest")[0]
             except Exception:
                 continue
             lo = max(0, center - SPLIT_EXCL_HALF)
