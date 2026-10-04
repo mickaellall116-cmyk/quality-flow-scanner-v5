@@ -198,3 +198,32 @@ Do NOT create a filter initially. First report descriptive results: trade count,
 ---
 
 *Logged 2026-09-24 (Lane 2). No backtesting performed. No verdicts declared. All await the corrected baseline.*
+
+## H13 — Absorption as entry confirmation (Mike's spec, 2026-10-04)
+
+**Hypothesis:** 4H long signals whose entry bar (or the 1–2 bars preceding it) shows *absorption* — unusually high volume with unusually small price displacement — behave differently from signals entering on expansion bars. Direction unknown: absorption may mark informed accumulation (continuation) or distribution into the breakout (trap).
+
+**Mechanism:** Absorption is an orderflow concept: large volume traded with little price movement means a large participant is filling against the tape. The reel's "Absorption Bubbles" indicator is a paid TradingView black box and will NOT be purchased — the testable move is to define absorption mechanically: volume z-score (vs trailing 20-bar mean) in the top decile AND true range in the bottom tercile on the same bar, all strict PIT from OHLCV alone. No proprietary data, no footprint feed required.
+
+**Reason noticed:** IG reel from @profitprotrading (2026-08-23) demonstrating "Absorption Bubbles" + "Pro Scalper" paid indicators on crypto scalping, with unverified +$4,700 profit counter — classic indicator marketing. Mike's call 2026-10-04: don't buy the box, extract the testable concept. Distinct from H12 (auction structure): this is single-bar volume/range microstructure at the entry bar, not prior-week profile levels.
+
+**Test sketch (on corrected framework — canonical PIT Mode B baseline, once available):**
+For every V5.4 long signal, compute on the entry bar and the 2 bars before it: volume z-score (20-bar trailing) and true-range percentile (20-bar trailing). Classify each signal BEFORE looking at results:
+1. Absorption at entry bar (vol z ≥ 2.0 AND range ≤ 33rd pct)
+2. Absorption on either of the 2 prior bars
+3. No absorption in the 3-bar window (control)
+4. Expansion control: vol z ≥ 2.0 AND range ≥ 67th pct (high volume WITH displacement)
+
+Primary questions:
+A. Do absorption-at-entry signals differ in expectancy from the no-absorption control?
+B. Is absorption predictive of direction (continuation vs immediate fade — check 5-bar forward return sign)?
+C. Does the expansion control outperform absorption (i.e., is it just "big volume" that matters, not absorption specifically)?
+D. Perturb pre-registered thresholds (vol z 1.5/2.0/2.5; range pct 25/33/50) — effect must survive nearby definitions.
+
+Do NOT create a filter initially. First report descriptive results: trade count, expectancy, PF, win rate, MFE, MAE per group. Compare against volume-shuffled placebo bars to test whether the absorption *combination* carries information beyond volume alone.
+
+**Gates:** PASS / MAYBE / FAIL per the 12-step protocol. The initial goal is NOT to add absorption to V5.4 — it is to determine whether the mechanical absorption proxy contains incremental information beyond the current Quality Flow signal. If the effect is real, it becomes an entry-confirmation candidate for post-verdict research; if not, the reel's "edge" was marketing.
+
+---
+
+*Logged 2026-10-04 (Lane 2). No backtesting performed. No verdicts declared. Awaits the corrected baseline. Backlog remains PARKED per Mike's 2026-09-24 directive.*
