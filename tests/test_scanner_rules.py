@@ -1,5 +1,6 @@
 import unittest
 
+import numpy as np
 import pandas as pd
 
 from scanner_rules import (
@@ -10,6 +11,7 @@ from scanner_rules import (
     premarket_snapshot,
     previous_regular_close,
     resample_closed_4h,
+    resample_closed_4h_session_anchored,
     validation_reasons,
 )
 
@@ -212,6 +214,70 @@ class PremarketSnapshotTests(unittest.TestCase):
         )
         now = pd.Timestamp("2026-09-14 13:30", tz="America/New_York")
         self.assertEqual(previous_regular_close(daily, now=now), 100.0)
+
+
+class TestRowCompletion(unittest.TestCase):
+    """A row stamped exactly at `now` covers [now, now+1h) — it is incomplete
+    and must never leak into an emitted (closed) bar. Verified 2026-10-04
+    per ChatGPT's review: the causal cutoff + forming-bin exclusion already
+    guarantee this; these tests lock it in."""
+
+    STAMPS = ["09:30", "10:30", "11:30", "12:30", "13:30", "14:30", "15:30"]
+
+    def h30(self, date, stamps, marker=None):
+        idx = pd.DatetimeIndex(
+            [pd.Timestamp(f"{date} {s}", tz="America/New_York") for s in stamps])
+        a = np.arange(len(idx), dtype=float) + 100
+        df = pd.DataFrame(
+            {"Open": a, "High": a + 2, "Low": a - 2, "Close": a + 1,
+             "Volume": [100.0] * len(idx)}, index=idx)
+        if marker:
+            ts, vol = marker
+            df.loc[pd.Timestamp(f"{date} {ts}", tz="America/New_York"), "Volume"] = vol
+        return df
+
+    def test_row_stamped_exactly_at_now_excluded(self):
+        df = self.h30("2026-03-09", self.STAMPS, marker=("13:30", 999999.0))
+        bars = resample_closed_4h_session_anchored(
+            df, "AAPL", now=pd.Timestamp("2026-03-09 13:30", tz="America/New_York"))
+        self.assertEqual(len(bars), 1)
+        self.assertEqual(bars["Volume"].iloc[0], 400.0)  # marker volume excluded
+
+    def test_delayed_data_forming_bin_excluded(self):
+        df = self.h30("2026-03-09", self.STAMPS, marker=("13:30", 999999.0))
+        bars = resample_closed_4h_session_anchored(
+            df, "AAPL", now=pd.Timestamp("2026-03-09 14:00", tz="America/New_York"))
+        self.assertEqual(len(bars), 1)
+        self.assertEqual(bars["Volume"].iloc[0], 400.0)
+
+    def test_completed_session_includes_all_rows(self):
+        df = self.h30("2026-03-09", self.STAMPS, marker=("13:30", 999999.0))
+        bars = resample_closed_4h_session_anchored(
+            df, "AAPL", now=pd.Timestamp("2026-03-09 16:05", tz="America/New_York"))
+        self.assertEqual(len(bars), 2)
+        self.assertEqual(bars["Volume"].iloc[1], 999999.0 + 200.0)
+
+    def test_multiday_incomplete_row_isolated(self):
+        d1 = self.h30("2026-03-09", self.STAMPS)
+        d2 = self.h30("2026-03-10", self.STAMPS[:5], marker=("13:30", 777777.0))
+        bars = resample_closed_4h_session_anchored(
+            pd.concat([d1, d2]), "AAPL",
+            now=pd.Timestamp("2026-03-10 13:30", tz="America/New_York"))
+        self.assertEqual(len(bars), 3)
+        self.assertEqual(bars["Volume"].iloc[2], 400.0)
+
+    def test_early_close_completed_bar(self):
+        df = self.h30("2026-11-27", ["09:30", "10:30", "11:30", "12:30"])
+        bars = resample_closed_4h_session_anchored(
+            df, "AAPL", now=pd.Timestamp("2026-11-27 13:05", tz="America/New_York"))
+        self.assertEqual(len(bars), 1)
+        self.assertEqual(bars.attrs["last_bar_close_at"], "2026-11-27T13:00:00-05:00")
+
+    def test_future_rows_truncated(self):
+        df = self.h30("2026-03-09", self.STAMPS)
+        bars = resample_closed_4h_session_anchored(
+            df, "AAPL", now=pd.Timestamp("2026-03-09 12:00", tz="America/New_York"))
+        self.assertEqual(len(bars), 0)
 
 
 if __name__ == "__main__":

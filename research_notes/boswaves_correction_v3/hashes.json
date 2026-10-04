@@ -1,0 +1,7 @@
+{
+  "universe_mapping.json": "0516872fcf36c38faef0349340f3bd7ccfdda1dd6725c89f3150e6c411e740e6",
+  "coverage_gate_spec.md": "c37b3cdb1b885129e7147cd6ef3e64af7633396332f63464793f7f49e76e340a",
+  "validate_v3c1.py": "67e1a6d69a5fefc34efc853efa1299831f8fae58c209324ff8baba735033bbdd",
+  "ticker_boundary_fixtures.md": "f065a3d3ad8e45f79067f538a080ea1428191dbc8f05e829eefd15dfa705d232",
+  "run_verification_fixtures.py": "e4cc0a0478759d83acf71bb0fe8455a1f7d2ce7627558114764073c059b7874c"
+}

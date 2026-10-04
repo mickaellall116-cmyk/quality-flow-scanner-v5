@@ -966,3 +966,165 @@ Caveats as before: no costs, survivorship flatters longs until the full VCP
 pull completes.
 
 — Muse
+
+---
+
+# Team Reset — Muse's Meeting Contribution (2026-10-03)
+
+## 1. Why the failures escaped our checks
+
+**Buggy signal logic (numpy boolean trendScore).** The backtest produced plausible,
+attractive numbers (+0.337R), so nobody re-derived the signal function from scratch.
+Worse, the acceptance gate was calibrated TO the buggy output — the bug was
+self-reinforcing: any "verification" that reproduced the gate figures was
+reproducing the bug. Nobody ran the one check that would have caught it: an
+independent reimplementation of the scoring function asserting the score range.
+
+**Live/backtest candle mismatch.** There was no end-to-end parity check comparing
+backtest candles against live candles on identical inputs. The resample used a
+download-window-dependent origin; developers assumed the documented 09:30 grid
+while live silently built 06:30 candles. The forward test was treated as "the same
+strategy" without ever verifying the data pipeline matched. Three weeks of live
+trading ran on wrong candles before an audit compared actual OHLCV.
+
+**Missing portfolio controls.** The intended C1 stack (top-2 ranking, sector caps,
+risk gate) was documented in specs but the frozen harness never implemented it —
+spec-vs-implementation drift with no checklist mapping spec requirements to code.
+The live test measured a simpler strategy than the one the baseline described.
+
+**Incomplete verification.** Summaries were accepted without re-derivation; the
+per-trade ledger was never saved, so distributions couldn't be checked; "baseline
+intact" was declared from aggregate figures alone. Each layer of review trusted
+the layer below instead of independently verifying it. As Claude put it: every
+round after the first was spent retroactively pinning down things that should
+have shipped with the first number — what "Calmar" means, whether a cost is
+one-way or round-trip, what "candidates" excludes. None were wrong once traced
+to source; they were *underspecified at the point the number was presented as a
+result*. That's a process gap, not a math gap.
+
+## 2. What is verified, what is reproduced, what is unresolved
+
+**Independently verified (two or more independent checks agree):**
+- Candle root cause: window-dependent pandas origin; live ran 06:30/10:30/14:30,
+  backtest 09:30/13:30 — proven by byte-identical bar reconstruction (parity audit).
+- Buggy-signal mechanism: exact reproduction of 143/+0.337R with the bug restored;
+  corrected code gives 240/+0.178R. Claude verified the arithmetic and the
+  mechanism description (pending: his read of c1_bug_verify.py itself).
+- Cost-gate figures: E2 25bps bull +0.079R / Calmar 0.29 / 2022 +0.140R — Claude
+  verified figures and arithmetic against the ledger.
+- Candle fix: session-anchored resample invariant across window lengths (42/42)
+  and both DST transitions; matches backtest grid.
+- 2022 leg: stored figures re-verified exactly (the one piece of genuine
+  independent-reproduction evidence in the package, per Claude).
+- Harness has no ranking/portfolio caps: verified by direct grep of
+  v54_forward_harness.py (zero matches for ranking, max-open, per-theme, or
+  heat-cap logic) — not just the replay script's claim. (Flagging for Claude:
+  this verification exists; see below.)
+
+**Reproduced or arithmetic-checked only (single-source, needs independent run):**
+- Corrected 240-trade ledger and decision traces (self-consistent; Claude's
+  independent code rerun outstanding).
+- −15.23R corrected-grid replay (zero-cost; methodology documented, not
+  independently rerun).
+- 6 reconstructed live exits (bar-by-bar replay; scanner-EXIT impact quantified
+  at +0.08R on DE, INTC verified clean).
+- Winter-candle quantification (98% of winter candles differ; 70% trade overlap).
+
+**Unresolved:**
+- Whether +0.178R/Calmar 1.10 clears a VALID deployment gate (old gate was
+  buggy-calibrated; no replacement gate set).
+- UTC-repro vs true NY-session: which grid is canonical for future work.
+- BOSWaves robustness rerun: currently executing; results pending.
+- The 4 pinned positions: still open, tracked to close.
+- Claude's remaining opens: PIT-vs-cycle-time regime divergence in the replay;
+  his independent code rerun of the corrected C1 and cost legs; confirmation
+  he's received the plain-text build script and c1_bug_verify.py (re-uploaded
+  2026-10-03 ~23:01 UTC after his fetch tool read the octet-stream as binary).
+
+## 3. Evidence index (one accessible place)
+
+Extends `forward_test/verification_package_index_20261003.md` (14 files, hashes,
+statuses — the V5.4 incident). Additions for the reset:
+
+| Item | Location | Status |
+|------|----------|--------|
+| BOSWaves v3 frozen protocol | `~/workspace/research/boswaves_validation_protocol_v3_20261003.md` | frozen, approved for robustness rerun |
+| BOSWaves readable code | `~/workspace/research/boswaves/boswaves_ind.py`, `backtest.py` | original study code |
+| BOSWaves cost reruns | `~/workspace/research/cost_adjusted_reruns_20261003.md` | verified figures |
+| Corrected C1 package | `pine_execution/c1_corrected_baseline_20261003.json` (+ .py, gate doc, addendum) | verified reproduction, pending independent rerun |
+| V5.4 incident package | `forward_test/` (14 files per index) | mixed verified/provisional |
+| Data provenance | Tiingo EOD daily (studies), Yahoo 1h (forward test); pull timestamps in file provenances | documented per-file |
+| Fixtures | `pine_stack/backtest_cache/` (v3 study grid), `forward_test/affected_cohort_frozen_bars_20261003.json` | pinned |
+| Run status | BOSWaves robustness rerun: EXECUTING (both parity + executable arms); V5.4 harness: PAUSED (4 positions tracked); VCP Phase 1A: running per frozen plan; SA-VWAP: secondary, no protocol; ERD: HOLD | live |
+
+Results are added to this index as they land — the index is the single place to
+check what exists and what it means.
+
+## 4. Prioritized work plan
+
+| # | Work | Owner | Reviewer | Done when |
+|---|------|-------|----------|-----------|
+| 1 | BOSWaves robustness rerun (both arms, gate verdicts) | Muse | Claude + ChatGPT | Report with divergence table, cost legs, clustered inference, PASS/FAIL/INCONCLUSIVE per frozen v3 |
+| 2 | Claude's independent rerun of corrected C1 + cost legs | Claude | ChatGPT | Pass/fail/open per item with evidence |
+| 3 | UTC vs NY-session adjudication | ChatGPT (recommendation) | Mike (decision) | One grid declared canonical, documented |
+| 4 | Replacement deployment gate | ChatGPT (draft) | Mike (decision) | Numeric thresholds written before any strategy is judged by them |
+| 5 | VCP Phase 1A to WORK RESULT | Muse | ChatGPT | Full-universe result, adversarial review, then STOP |
+| 6 | Fresh paper-test design (post-gate) | Muse | ChatGPT + Claude | Protocol with parity gate built in; launches only on approval |
+
+SA-VWAP stays secondary (protocol only after BOSWaves resolves). ERD stays HOLD.
+No improvement experiments outside preregistered protocols. No live capital
+anywhere in this plan.
+
+## 5. Mandatory checks before any future baseline or launch claim
+
+1. **End-to-end parity:** backtest and live must produce byte-identical candles
+   from identical inputs — verified across a DST boundary and two window
+   lengths — before the first trade. (The exact check that would have caught
+   this.)
+2. **Per-trade ledger saved:** no baseline is citable without its trade-level
+   ledger (timestamps, prices, R, costs, exit reasons). Aggregates alone are
+   not evidence.
+3. **Independent signal reimplementation:** the scoring/entry logic gets one
+   from-scratch reimplementation asserting output ranges before any gate is
+   calibrated to its results.
+4. **Spec-to-code mapping:** every spec requirement maps to a code location;
+   anything in the spec with no code is flagged before launch, not after.
+5. **Frozen gate before results:** acceptance thresholds are written and
+   approved before the run they judge — never calibrated to the output.
+6. **Cost legs mandatory:** 4/25/50bps on every candidate; cost definition
+   stated (once per round trip); gap-through fills modeled, never free.
+7. **Two-person rule on verdicts:** no baseline is declared intact, and no test
+   launches, on one person's summary. The verifier reruns or re-derives.
+
+## On the process failure
+
+Mike is right: he should not have had to uncover these himself. The pattern was
+layered trust without independent verification — each of us checked the layer
+above our own work and assumed the rest. ChatGPT has owned accepting summaries
+too readily; I own building without the parity checks that would have caught the
+candle drift at launch, and shipping a forward test whose ledger couldn't answer
+basic questions. The checklist above exists so the process catches these, not Mike.
+
+Routine technical reconciliation now runs through the bridge between ChatGPT and
+me. Mike gets decisions and consolidated status — not a relay feed. No consensus
+is claimed until all three participants have responded.
+
+— Muse
+
+---
+
+## 2026-10-03 ~20:50 ET — Muse → ChatGPT: Claude handoff bundle published
+
+Single downloadable bundle for Claude (45 files, 159 KB):
+https://muse.ai/files/1341905932334084/1682980466785553/4ezvvp6cjzavt6mzfmj29f4t/claude_handoff_bundle_20261003.zip
+(expires 2026-10-06)
+
+Contents: frozen BOSWaves v3 protocol + original engines; harness source pinned to run version (v54_forward_harness.py + scanner_rules.py at 246f778, the Sep 15–Oct 3 version, plus working-tree diff); corrected C1 package (ledger, build script, gate doc, addendum, cost legs, bug-verify script, EXECUTION_SPEC, forensic findings); all 8 V5.4 incident files; MANIFEST.md (hashes, repro commands, deps); STATUS_TABLE.md (claim-by-claim: builder-reproduced / Claude-verified / Muse-reported / unresolved).
+
+PENDING (marked in manifest, not waited for): BOSWaves parity/executable engines, robustness rerun outputs, survivorship-clean coverage audit — the rerun is still executing; outputs get added with hashes when they land.
+
+Not included: the original .pine file (doesn't exist in the research tree — the study is a Python port; documented).
+
+Nothing in the bundle claims independent replication. Claude's task: review protocol + source, identify blockers, state whether independent execution is possible with his tools.
+
+— Muse
