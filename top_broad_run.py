@@ -35,7 +35,10 @@ import top_broad_experiment as tbe
 # Frozen pins
 MANIFEST = os.path.join(HERE, "research_notes", "yahoo_1h_input_manifest_20261004.json")
 MODULE_HASHES = {
-    "top_broad_experiment.py": None,  # filled at preflight from git
+    "top_broad_experiment.py": "a9cbc5cf4debdda7",
+    # Note: top_broad_run.py does not pin itself (self-referential).
+    # It is verified by its git commit, not by content hash.
+    "top_broad_performance.py": "2c7759ae83d426ef",
     "pine_backtest.py": "447a9a13bb2ec7ab",
     "pine_stack/pine_stack.py": "839e4800624de253",
 }
@@ -82,7 +85,7 @@ def preflight():
     else:
         msgs.append(f"P1 PASS: {len(manifest['files'])} input hashes verified")
 
-    # P2: module hashes (compare working tree to pinned prefixes)
+    # P2: module hashes — STRICT: any mismatch FAILS (no notes, no warnings)
     for mod, pin_prefix in MODULE_HASHES.items():
         if pin_prefix is None:
             continue
@@ -92,9 +95,9 @@ def preflight():
             msgs.append(f"P2 FAIL: {mod} missing")
             continue
         actual = sha256_file(p)[:16]
-        if not actual.startswith(pin_prefix[:8]):
-            # Allow for the repaired module (hash changed by authorized repair)
-            msgs.append(f"P2 NOTE: {mod} hash {actual} (repaired 2026-10-04)")
+        if actual != pin_prefix:
+            ok = False
+            msgs.append(f"P2 FAIL: {mod} hash {actual} != pinned {pin_prefix}")
         else:
             msgs.append(f"P2 PASS: {mod} matches pin")
     # top_broad_experiment.py: verify it imports and fixtures pass
@@ -139,6 +142,25 @@ def preflight():
     except Exception as e:
         ok = False
         msgs.append(f"P3 FAIL: {e}")
+
+    # P1b: daily ranking manifest hashes
+    try:
+        dman = json.load(open(os.path.join(
+            HERE, "research_notes", "daily_ranking_manifest_20261004.json")))
+    except FileNotFoundError:
+        return False, ["P1b FAIL: daily manifest not found"]
+    dbad = []
+    for sym, meta in dman["files"].items():
+        p = os.path.join(HERE, "daily_ranking_frozen_20261004", f"d1_{sym}.pkl")
+        if not os.path.exists(p):
+            dbad.append(sym + " (missing)")
+        elif sha256_file(p) != meta["sha256"]:
+            dbad.append(sym)
+    if dbad:
+        ok = False
+        msgs.append(f"P1b FAIL: {len(dbad)} daily hash mismatches: {dbad[:5]}")
+    else:
+        msgs.append(f"P1b PASS: {len(dman['files'])} daily input hashes verified")
 
     return ok, msgs
 
