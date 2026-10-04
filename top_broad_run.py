@@ -38,7 +38,7 @@ MODULE_HASHES = {
     "top_broad_experiment.py": "a9cbc5cf4debdda7",
     # Note: top_broad_run.py does not pin itself (self-referential).
     # It is verified by its git commit, not by content hash.
-    "top_broad_performance.py": "2c7759ae83d426ef",
+    "top_broad_performance.py": "526f784f0646d5e2",  # updated 2026-10-04: spy=None bugfix (unused var)
     "pine_backtest.py": "447a9a13bb2ec7ab",
     "pine_stack/pine_stack.py": "839e4800624de253",
 }
