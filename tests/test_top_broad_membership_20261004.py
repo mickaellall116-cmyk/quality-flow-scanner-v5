@@ -150,5 +150,39 @@ few = [{"exit_month": 0, "net_r": 0.1} for _ in range(3)]
 res2 = paired_block_bootstrap(few, few, months, n_resamples=500)
 check("inconclusive", res2["inconclusive"] or res2["valid"] == 0)
 
+print("\n== SB1: split date OUTSIDE window does not remove days ==")
+# Split 6 months before the 60-day window: must not touch the mean.
+widx_sb = pd.bdate_range("2025-01-01", periods=80)
+vals_sb = np.full(80, 1e8)
+dv_sb = {"X": pd.Series(vals_sb, index=widx_sb),
+         "Y": pd.Series(np.full(80, 1e8), index=widx_sb)}
+rs_sb = {"X": 0.1, "Y": 0.1}
+# Event 100 days before window start (way outside)
+old_event = (widx_sb[19] - pd.Timedelta(days=100)).date()
+sel_sb, _ = compute_top50(dv_sb, rs_sb,
+                           split_dates={"X": [old_event]}, top_n=2)
+# X's 60-day mean must be exactly 1e8 (no days removed). Both tie -> selected.
+check("outside-window split ignored", len(sel_sb) == 2)
+
+print("\n== SB2: split date at window EDGE excludes correctly ==")
+# Split exactly on the first day of the 60-day window (day 21 of 80).
+# Should exclude days 21-23 (3 days), mean of remaining 57 ≈ 1e8.
+widx_e = pd.bdate_range("2025-01-01", periods=80)
+vals_e = np.full(80, 1e8)
+# Put a spike on days 21-23 to prove they're excluded
+vals_e[21:24] = 1e10
+dv_e = {"P": pd.Series(vals_e, index=widx_e),
+        "Q": pd.Series(np.full(80, 1e8), index=widx_e)}
+rs_e = {"P": 0.2, "Q": 0.1}  # P wins on RS regardless
+sel_e, _ = compute_top50(dv_e, rs_e,
+                          split_dates={"P": [widx_e[21].date()]}, top_n=2)
+# P's mean after exclusion ≈ 1e8 (spike removed); Q = 1e8. P wins on RS.
+check("edge split: spike days excluded, P selected on RS", "P" in sel_e)
+# Future split (after window end) also ignored
+future_event = (widx_e[-1] + pd.Timedelta(days=100)).date()
+sel_f, _ = compute_top50(dv_e, rs_e,
+                          split_dates={"P": [future_event]}, top_n=2)
+check("future split ignored", len(sel_f) == 2)
+
 print(f"\n{passed} passed, {failed} failed")
 sys.exit(1 if failed else 0)
