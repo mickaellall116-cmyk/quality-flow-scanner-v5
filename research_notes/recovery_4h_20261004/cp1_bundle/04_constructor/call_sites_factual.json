@@ -1,0 +1,266 @@
+{
+ "resample_closed_4h": [
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 13,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 41,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 56,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 66,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 74,
+   "kind": "reference"
+  },
+  {
+   "file": "masterscanner_api.py",
+   "line": 41,
+   "kind": "reference"
+  },
+  {
+   "file": "masterscanner_api.py",
+   "line": 98,
+   "kind": "reference"
+  },
+  {
+   "file": "backtest_v2.py",
+   "line": 5,
+   "kind": "reference"
+  },
+  {
+   "file": "backtest_v2.py",
+   "line": 679,
+   "kind": "reference"
+  },
+  {
+   "file": "forward_test/kama_shadow_watcher.py",
+   "line": 27,
+   "kind": "reference"
+  },
+  {
+   "file": "forward_test/kama_shadow_watcher.py",
+   "line": 272,
+   "kind": "reference"
+  },
+  {
+   "file": "forward_test/kama_shadow_watcher.py",
+   "line": 309,
+   "kind": "reference"
+  },
+  {
+   "file": "v6_short_v2/data_2022.py",
+   "line": 23,
+   "kind": "reference"
+  },
+  {
+   "file": "v6_short_v2/data_2022.py",
+   "line": 41,
+   "kind": "reference"
+  },
+  {
+   "file": "v6_short_v2/data_2022.py",
+   "line": 165,
+   "kind": "reference"
+  },
+  {
+   "file": "v6_short_v2/track_a_v2_autopsy.py",
+   "line": 15,
+   "kind": "reference"
+  },
+  {
+   "file": "v6_short_v2/track_a_v2_autopsy.py",
+   "line": 371,
+   "kind": "reference"
+  },
+  {
+   "file": "pine_exit_fix/fetch_2022_extra.py",
+   "line": 5,
+   "kind": "reference"
+  },
+  {
+   "file": "pine_exit_fix/fetch_2022_extra.py",
+   "line": 25,
+   "kind": "reference"
+  },
+  {
+   "file": "pine_exit_fix/fetch_2022_extra.py",
+   "line": 65,
+   "kind": "reference"
+  },
+  {
+   "file": "pine_live/__init__.py",
+   "line": 9,
+   "kind": "reference"
+  },
+  {
+   "file": "scanner_streamlit_v5_1_morning_action.py",
+   "line": 38,
+   "kind": "reference"
+  },
+  {
+   "file": "scanner_streamlit_v5_1_morning_action.py",
+   "line": 215,
+   "kind": "reference"
+  },
+  {
+   "file": "scanner_streamlit_v5_mode_aware.py",
+   "line": 38,
+   "kind": "reference"
+  },
+  {
+   "file": "scanner_streamlit_v5_mode_aware.py",
+   "line": 215,
+   "kind": "reference"
+  },
+  {
+   "file": "build_affected_cohort_archive.py",
+   "line": 5,
+   "kind": "reference"
+  },
+  {
+   "file": "build_affected_cohort_archive.py",
+   "line": 29,
+   "kind": "reference"
+  },
+  {
+   "file": "build_affected_cohort_archive.py",
+   "line": 93,
+   "kind": "reference"
+  },
+  {
+   "file": "quantify_scanner_exit.py",
+   "line": 51,
+   "kind": "reference"
+  },
+  {
+   "file": "scanner_rules.py",
+   "line": 42,
+   "kind": "reference"
+  },
+  {
+   "file": "scanner_rules.py",
+   "line": 87,
+   "kind": "definition"
+  },
+  {
+   "file": "scanner_rules.py",
+   "line": 166,
+   "kind": "reference"
+  }
+ ],
+ "resample_closed_4h_session_anchored": [
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 14,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 241,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 248,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 255,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 263,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 271,
+   "kind": "reference"
+  },
+  {
+   "file": "tests/test_scanner_rules.py",
+   "line": 278,
+   "kind": "reference"
+  },
+  {
+   "file": "research_notes/recovery_4h_20261004/fixtures/test_4h_fixtures.py",
+   "line": 3,
+   "kind": "reference"
+  },
+  {
+   "file": "research_notes/recovery_4h_20261004/fixtures/test_4h_fixtures.py",
+   "line": 28,
+   "kind": "reference"
+  },
+  {
+   "file": "data_inventory_scratch_20261004/gen_report.py",
+   "line": 12,
+   "kind": "reference"
+  },
+  {
+   "file": "data_inventory_scratch_20261004/gen_report.py",
+   "line": 32,
+   "kind": "reference"
+  },
+  {
+   "file": "data_inventory_scratch_20261004/gen_report.py",
+   "line": 50,
+   "kind": "reference"
+  },
+  {
+   "file": "data_inventory_scratch_20261004/run_inventory.py",
+   "line": 22,
+   "kind": "reference"
+  },
+  {
+   "file": "data_inventory_scratch_20261004/run_inventory.py",
+   "line": 104,
+   "kind": "reference"
+  },
+  {
+   "file": "replay_4h_corrected.py",
+   "line": 16,
+   "kind": "reference"
+  },
+  {
+   "file": "replay_4h_corrected.py",
+   "line": 255,
+   "kind": "reference"
+  },
+  {
+   "file": "replay_4h_corrected.py",
+   "line": 595,
+   "kind": "reference"
+  },
+  {
+   "file": "top_broad_performance.py",
+   "line": 63,
+   "kind": "reference"
+  },
+  {
+   "file": "scanner_rules.py",
+   "line": 103,
+   "kind": "reference"
+  },
+  {
+   "file": "scanner_rules.py",
+   "line": 149,
+   "kind": "definition"
+  }
+ ]
+}
