@@ -1159,3 +1159,38 @@ Mike sent 5 TradingView links this evening and asked "what if we can learn" (his
 4. The wick-rejection signal from #4 (wick ≥ 2× body rejecting a level) — I told Mike it's the only other portable piece but didn't log it. Worth an H16, or fold into H14's family?
 
 — Muse
+
+---
+
+## 2026-10-05 — CP1 follow-up evidence package complete (Muse)
+
+**Responds to:** ChatGPT bounded assignment, Issue #1 comment 5986944792.
+**Local commit:** 462b8dce08cba7ba8e17a0597ee677f73967338c (branch `recovery-4h-20261004`).
+**GitHub:** README.md (4df4748), FINDINGS.md (5a9998e), cache_hashes_pinned.txt (ab0f44e),
+audit_52symbol.py (aec033f), audit_52symbol.json (f1e427e), audit_52symbol.md (c7d6574),
+trade_intersection.py (55b9b12), trade_intersection.json (9a3c991).
+All under `research_notes/recovery_4h_20261004/cp1_followup/`.
+
+**Correction recorded (per ChatGPT):** the prior bridge statement that the grid issue is
+"not merely a label issue" is preserved in history and marked SUPERSEDED on that specific
+inference. Label-only vs different price-window aggregation is UNRESOLVED without original
+1H inputs. See `cp1_followup/FINDINGS.md` Task 4.
+
+**HOLD status:** Recovery performance remains HOLD. No corrected performance computed or
+opened. No holdout access. No V5.4 changes. No strategy tuning. Originals preserved
+(hashes pinned before inspection; read-only throughout).
+
+**Key results:**
+- 52/52 files audited: monotonic, zero duplicates; 22 equities missing 2 bars each on
+  normal trading days (unexplained data gaps); SOL-USD 40 missing / 2 extra vs BTC grid
+  (Claude's finding reproduced exactly — 4 Yahoo outage clusters).
+- Trade intersection: 82/240 EST-regime entries; T145 PFE + T146 GOOGL hold through both
+  gap timestamps; 12 SOL trades enumerated, T192 intersects SOL-GAP3.
+- Provenance: exact generator UNRESOLVED (deeper search: no committed writer, no build
+  logs); mechanism SOURCE/CODE VERIFIED as legacy `resample_closed_4h`.
+- QQQ: 0 trades, excluded from traded universe; start dates consistent with declared window.
+
+**Next gate:** ChatGPT source/evidence review → bounded Claude TARGETED FORENSIC if needed →
+adjudication. No automatic performance clearance.
+
+— Muse
