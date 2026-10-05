@@ -1,0 +1,155 @@
+{
+ "generated": "2026-10-04",
+ "branch": "recovery-4h-20261004",
+ "purpose": "Gap 3: complete hash/input manifest for recovery pre-run rev 2",
+ "files": {
+  "scanner_rules.py": {
+   "sha256": "7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac"
+  },
+  "pine_backtest.py": {
+   "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5"
+  },
+  "pine_stack/pine_stack.py": {
+   "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa"
+  },
+  "pine_exposure/pine_exposure.py": {
+   "sha256": "9f646161c27f6b28febe0980d03665bc9c1502fb844d37be6fd1d72ee45102be"
+  },
+  "canonical_baseline/scripts/fetch_4h.py": {
+   "sha256": "2a4994a26dbb98e244a14173a06697476835206c3d8d268ad21900dd43e0cbeb"
+  },
+  "pine_execution/c1_corrected_baseline_20261003.py": {
+   "sha256": "4568823cb8fe645a820c64bb4fac112fa7c90ac860bf626611467f7d94ea8f2b"
+  },
+  "pine_execution/leg3_winter_candles_20261003.py": {
+   "sha256": "a8d064574c7fb2ef05a8b57407d211b816860dd79c9802e6fa6105b09a974c37"
+  },
+  "backtest_cache/v3/d1_5y_SPY.pkl": {
+   "sha256": "9b70495adda82d4741b61b7a4abb06f50d03591a57fc8934ff270c17b05bb042"
+  }
+ },
+ "universe": {
+  "source": "pine_backtest.UNIVERSE_X",
+  "count": 51,
+  "symbols": [
+   "AAPL",
+   "AMAT",
+   "AMD",
+   "AMZN",
+   "APP",
+   "ARKK",
+   "ARM",
+   "ASTS",
+   "AVAX-USD",
+   "AVGO",
+   "BTC-USD",
+   "COIN",
+   "CRM",
+   "CRWD",
+   "DDOG",
+   "DOGE-USD",
+   "ETH-USD",
+   "F",
+   "GOOGL",
+   "HOOD",
+   "INTC",
+   "IWM",
+   "LINK-USD",
+   "LRCX",
+   "LUNR",
+   "MELI",
+   "META",
+   "MRNA",
+   "MSFT",
+   "MSTR",
+   "MU",
+   "NET",
+   "NFLX",
+   "NIO",
+   "NU",
+   "NVDA",
+   "PFE",
+   "PLTR",
+   "PYPL",
+   "QCOM",
+   "RKLB",
+   "SHOP",
+   "SMCI",
+   "SMH",
+   "SNOW",
+   "SOFI",
+   "SOL-USD",
+   "SPY",
+   "TSLA",
+   "XLF",
+   "XRP-USD"
+  ],
+  "definition_sha256": "d139d7bf21165c79cb112a091cdcf7b021b86bd06f2165e07fb75932e6fa27dc"
+ },
+ "sector_map": {
+  "source": "pine_exposure.pine_exposure.SECTOR",
+  "count": 51,
+  "sha256": "9bab23b72dcb18d04935071f2bec94955cb8fa9df96f50dc11b72990dcd7fbb9"
+ },
+ "cache_files": {
+  "dir": "backtest_cache/v3/",
+  "count": 52,
+  "sha256": {
+   "AAPL": "020a257e35cd1cf6cececc4f8786450be61398a91a39710b455bccbd40f05c1f",
+   "AMAT": "a98461f9db32e2b56473dc50b21de71288439f88649b470edd448a0f82ca5980",
+   "AMD": "5487a3b0130f6cd5eb8a541d3fd7823eace9fffb43b9e0159b966dce53f15c5e",
+   "AMZN": "2294824d36df5e64b0c0a7345457f8208f2c1cf354fe372c9b0eb94e39aa3932",
+   "APP": "a84e0025e26b011fafb3f3892f92fe86faeb9e71ee826951344efc380c6dc529",
+   "ARKK": "988f48ac1685d0d8785ebca0395cc43ce9f35cdf6995828bbe0a59f92baebbf0",
+   "ARM": "7c1f5b80279fc471fce03faee75b0cb778b4af87cad5ef9cf07d718927c10d68",
+   "ASTS": "8fdadcba29e695b0f934bc7965551065e48f538a1da943a76200207787c1b3df",
+   "AVAX-USD": "c37fd29bdb3853826ef6638513caf9910fb7bbc75aa5283d7b40af0220e7e14f",
+   "AVGO": "556a61a48f732981d749c05d11825b17accad8d2a722cfe18cc8494b01100a84",
+   "BTC-USD": "70962b2a9822e49c858e14990b88e81ba0955c15db74b0b83e7e68c7d16f7091",
+   "COIN": "71e97b2b8e89e82f9c02c01f813f522bdf17040f087b4a579253ca719e247070",
+   "CRM": "3648e8b9a6c9ab246063592951eb75d23af76f6faeef434099b13b0a6676da23",
+   "CRWD": "5b713b6122865e18758f6371e39312b3193c4af1d40122d2809cf40e7c93aec6",
+   "DDOG": "0ce24f1ec331e5fc31a73d29a479dd8a6e079dafe784c003f652157e005e914d",
+   "DOGE-USD": "7e555e88948682667de7392947d5f469d8b9ed43d0ebd9b4e9951021e6a50f71",
+   "ETH-USD": "0f0629f680644d5b8aa5c5933f728224f7c9049e88ae8f7a5fc2210ff6df336a",
+   "F": "a3ea85a934d70b07eae986aa554e6a057244fd7a2d40df90cffaccfa7b5c51f9",
+   "GOOGL": "d1662a08f406ff44712c1dc41d059a46c1e36475c9fdc2c50384b10e1aa16691",
+   "HOOD": "d3270da494e121c16bed1a1259e49df08295e359ab2c6714de419209e84ba96a",
+   "INTC": "fa5dcd49f062146cc2abf4afae7bb7522877fd0f90ae6ba5084b91096296dece",
+   "IWM": "1ee03bdd458c1e7837313b841d0686f33a0aab0ecbc93adf0ab366cf24cd5562",
+   "LINK-USD": "524896ce2999ff26df69a0e9157a2d8d9d393cb2f065720604815d8bf828ae41",
+   "LRCX": "efef5f790ca0aa09279923768d2f562e7298d5e97641c2be6c5c62274ab981dd",
+   "LUNR": "2456ed66e935242c21065edd79ee7a68c6d878fce0907baab2ec2b77453872ed",
+   "MELI": "9eb2f01928312afc1e18c93d5b526a626fef2e15a49040f944e5417a4e541402",
+   "META": "aaaa26f4f7a1f1fd11a7d22302c34bfd3c0b902f983f50fdc759d872bcc566cd",
+   "MRNA": "fb1274205eb82f71b09202d518b8d600a65de67def7ad095fa127979ccfc028b",
+   "MSFT": "60867c4bdd0c344d38dcb2d820d3aece53c8b785dd2c45cc65326e4de6b81076",
+   "MSTR": "38a2b7c002e1048f29cba36b0938be35dcb64e7d5620e1a1c9289d6d7cfaeb4a",
+   "MU": "6a56a4529c51e1cba1b1e63af5b09cdad9a893bc6a092268509a344a485e5587",
+   "NET": "2b77ff7115b15b8354c9ef820bc5c2e90956a548eeac1b36a5412ee3f2f5ff01",
+   "NFLX": "4555eb4f727c86ecec5f9637aa229ce29e774fac8993121154150c735a3fdb88",
+   "NIO": "7c47debec72268366295fdfa07341af4df264959602242dbe06e55d1f78a7e6a",
+   "NU": "09d525cab2b7235d7a6cada10adc1a04366f4a07ac77529dfbcbe03ed3c97baa",
+   "NVDA": "661ee8dbf83c0a6e1161408256184d5613c1a61c884b0be92ab46f5c065c995d",
+   "PFE": "3eaf9f5282511754d0baf6f67570f815b9e92568c85fa3f7900634fbffcbae0c",
+   "PLTR": "c945e1d0079d9f89bf43c6d5e42f7a7491ec5a372b761d0ac493b5ee69915fa9",
+   "PYPL": "7e6580606d4d73ffc96b6ea12b5af61d9f19d30353c1a94d719ded26ba56c427",
+   "QCOM": "074e9b7d86f7bf271bdd953e1ca272fb1704b91e5404ed8293adceb42581870f",
+   "QQQ": "e9d93682fb8c920cf099e1eb275746e16051948d15458dc3fab709c21b98f4ec",
+   "RKLB": "ca13471b1c2cf765024299b0237791073fafdb2e3985f73f23d625f959cef6b1",
+   "SHOP": "9c227531f7b6fdd815513815a98153630a784b4ee4b8d4aa38c0c151b1f60195",
+   "SMCI": "71bf85ecddca75ee55cee9f0b29299ac19b9c68e1efd8ab5cf1bc4ca5de9c819",
+   "SMH": "45bdf830db638d04143e3a468c4b10c05d9cdefe5e5b62ad4982663339b143b6",
+   "SNOW": "21cbd2c869544f6f700e23b3f6a37d2753f1cb092e7513e5e3b7747413e646a2",
+   "SOFI": "1b7caf6281e4b6666174313bf0812e7166f6a2ffb6c501b98e71b5d6f020f2fd",
+   "SOL-USD": "33ddac323c4d1175ba3a2edd3705b672de480d4f639ed9e777ab4e8f9f85afc4",
+   "SPY": "cc7eacc38083ab90c1476a5aa798f7be5d28d5a1a7788130f6f435166adfeb8e",
+   "TSLA": "86ab62914bbb1d05bd2c0eba2b941f98f18c23c5bdd30f2befceb685332413ae",
+   "XLF": "86fab75cc2dd4b1f4f946cdbd3df99dbd54bd6ba7e8764df1115557711f3385d",
+   "XRP-USD": "b79e46168c2708c330e54e47b04c71c035867c0094054531afcd88362ebda8b5"
+  }
+ },
+ "raw_1h_inputs": {
+  "note": "No raw 1H cache in backtest_cache/v3/ - 1H inputs were transient Yahoo downloads, not preserved"
+ }
+}
