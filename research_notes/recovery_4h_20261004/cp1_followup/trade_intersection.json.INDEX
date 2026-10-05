@@ -1,0 +1,13 @@
+{
+  "file": "trade_intersection.json",
+  "shards": 4,
+  "total_chars": 90182,
+  "sha256": "02608fd49331e5d795ac678440c7d9792f74d577eeb454d7bd68686b234fd872",
+  "reassembly": "concatenate shards in order, parse as JSON",
+  "shard_files": [
+    "trade_intersection.json.shard00",
+    "trade_intersection.json.shard01",
+    "trade_intersection.json.shard02",
+    "trade_intersection.json.shard03"
+  ]
+}
