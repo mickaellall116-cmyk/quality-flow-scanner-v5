@@ -51,13 +51,13 @@ performance data is included.
 
 | File | Commit |
 |------|--------|
-| `CP1_BUNDLE_INDEX.md` | _pending_ |
-| `01_cache_grid/h4_cache_hashes.json` | _pending_ |
-| `01_cache_grid/bar_timestamps_raw.json` | _pending_ |
-| `02_c1_ledger/c1_240_trade_ledger.json` | _pending_ |
-| `03_manifests/complete_manifest_rev2.json` | _pending_ |
-| `04_constructor/resampler_source.py` | _pending_ |
-| `04_constructor/call_sites_factual.json` | _pending_ |
-| `05_data_tier/data_tier_metadata.md` | _pending_ |
-| `06_fixtures/phase_a_results.json` | _pending_ |
-| `06_fixtures/test_4h_fixtures.py` | _pending_ |
+| `CP1_BUNDLE_INDEX.md` | `fde9b4d` |
+| `01_cache_grid/h4_cache_hashes.json` | `eca8a79` |
+| `01_cache_grid/bar_timestamps_raw.json` | `81490d7` |
+| `02_c1_ledger/c1_240_trade_ledger.json` | `68e9469` |
+| `03_manifests/complete_manifest_rev2.json` | `c3861c9` |
+| `04_constructor/resampler_source.py` | `bd1951f` |
+| `04_constructor/call_sites_factual.json` | `f07e8a7` |
+| `05_data_tier/data_tier_metadata.md` | `0bd886f` |
+| `06_fixtures/phase_a_results.json` | `9ec6260` |
+| `06_fixtures/test_4h_fixtures.py` | `86d3a9d` |
