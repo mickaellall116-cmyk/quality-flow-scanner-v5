@@ -1,1 +1,49 @@
-IyBQcm92ZW5hbmNlIFNlYXJjaCBFdmlkZW5jZSDigJQgdjMgaDQgY2FjaGUgZ2VuZXJhdG9yCioqRGF0ZToqKiAyMDI2LTEwLTA1IHwgKipNZXRob2Q6KiogQ09NUFVURUQgKGNvbW1hbmRzIHJ1biwgb3V0cHV0cyByZWNvcmRlZCB2ZXJiYXRpbSkKKipTY29wZToqKiBMb2NhdGUgdGhlIGFjdHVhbCBnZW5lcmF0b3Igb2YgYGJhY2t0ZXN0X2NhY2hlL3YzL2g0XyoucGtsYCAoNTIgZmlsZXMpLgoKIyMgU2VhcmNoIDE6IHNjcmlwdHMgcmVmZXJlbmNpbmcgdGhlIGNhY2hlIHBhdGgKQ29tbWFuZDogYGdyZXAgLXJsICJiYWNrdGVzdF9jYWNoZS92MyIgLS1pbmNsdWRlPSIqLnB5IiAuYApSZXN1bHQ6IDEzIGZpbGVzIChsaXN0ZWQgYmVsb3cpLiBDbGFzc2lmaWNhdGlvbiBieSB3cml0ZSBiZWhhdmlvcjoKCnwgRmlsZSB8IFJvbGUgcmUgdjMvaDRfKi5wa2wgfAp8LS0tfC0tLXwKfCBgcGluZV9lbnRyeV90aW1pbmdfYmFja3Rlc3QvZmV0Y2hfcmVzYW1wbGVfNGgucHlgIHwgRG9jdW1lbnRzIGNvbnZlbnRpb247IHdyaXRlcyB0byBgY2Fub25pY2FsX2Jhc2VsaW5lL2RhdGEvYCwgTk9UIHYzIHwKfCBgcGluZV9leGVjdXRpb24vYzFfY29ycmVjdGVkX2Jhc2VsaW5lXzIwMjYxMDAzLnB5YCB8IFJFQURFUiAobG9hZHMgdmlhIGBsb2FkX2J1bGwoKWApOyBhc3NlcnRzIGdyaWQgfAp8IGBwaW5lX2V4aXRfZml4L3BpbmVfZXhpdF9maXgucHlgIHwgUkVBREVSIChkb2NzdHJpbmcgcmVmZXJlbmNlKSB8CnwgYHBpbmVfZXhwYW5zaW9uL3N0dWR5MV9hZ3JlZW1lbnQucHlgIHwgUkVBREVSICgiRVhBQ1QgYmFycyB0aGUgUGluZSBiYXNlbGluZSB1c2VkIikgfAp8IGBwaW5lX2V4cGFuc2lvbi9zdHVkeTNfdGltZWZyYW1lcy5weWAgfCBSRUFERVIgKHJlZmVyZW5jZXMgZDFfNXlfKi5wa2wsIGRpZmZlcmVudCBmaWxlcykgfAp8IGBwaW5lX2xpdmUvdGVzdHMvdGVzdF9zbGljZSoucHlgICg0IGZpbGVzKSB8IFJFQURFUiAodGVzdCBmaXh0dXJlcykgfAp8IGBjYW5vbmljYWxfYmFzZWxpbmUvc2NyaXB0cy9idWlsZF9wb29sLnB5YCB8IFJFQURFUiAoZ2xvYiBpbmNsdWRlcyB2MyBpbiBzZWFyY2ggcGF0dGVybnMpIHwKfCBgcmVzZWFyY2hfbm90ZXMvcmVjb3ZlcnlfNGhfMjAyNjEwMDQvKi90ZXN0XzRoX2ZpeHR1cmVzLnB5YCB8IFJFQURFUiAoZml4dHVyZXMpIHwKfCBgcmVzZWFyY2hfbm90ZXMvcmVjb3ZlcnlfNGhfMjAyNjEwMDQvY3AxX2ZvbGxvd3VwL2F1ZGl0XzUyc3ltYm9sLnB5YCB8IFJFQURFUiAodGhpcyBhdWRpdCkgfAoKIyMgU2VhcmNoIDI6IHdyaXRlIG9wZXJhdGlvbnMgdGFyZ2V0aW5nIGg0XyoucGtsIGluIHYzCkNvbW1hbmQ6IGBncmVwIC1ybiAndG9fcGlja2xlLipiYWNrdGVzdF9jYWNoZS92My9oNF8nIC0taW5jbHVkZT0iKi5weSIgLmAKUmVzdWx0OiAqKnplcm8gbWF0Y2hlcy4qKiBObyBjb21taXR0ZWQgc2NyaXB0IHdyaXRlcyBoNCBmaWxlcyB0byB0aGlzIHBhdGguCgojIyBTZWFyY2ggMzogZ2l0IGhpc3RvcnkKQ29tbWFuZDogYGdpdCBsb2cgLS1vbmVsaW5lIC0tYWxsIC0tIGJhY2t0ZXN0X2NhY2hlL3YzL2AKUmVzdWx0OiBubyBjYWNoZS1maWxlIGNvbW1pdHMgKGZpbGVzIG5ldmVyIGNvbW1pdHRlZDsgb25seSBpbmNpZGVudGFsIG1lcmdlIHJlZmVyZW5jZXMpLgoKIyMgU2VhcmNoIDQ6IGZpbGVzeXN0ZW0gYnVpbGQgbG9ncwpDb21tYW5kOiBgZmluZCAuIC1uYW1lICIqLmxvZyIgLW5ld2VyIDxyZXBvLXJvb3QtbWFya2VyPmAgKDIwMjYtMTAtMDQpClJlc3VsdDogbm8gYnVpbGQgbG9ncyBmb3IgdGhlIFNlcC0xNSAyMDI2IGdlbmVyYXRpb24gcnVuLgoKIyMgQnl0ZS1mZWF0dXJlIG1lY2hhbmlzbSBpZGVudGlmaWNhdGlvbiAoU09VUkNFL0NPREUgVkVSSUZJRUQpClRoZSA1MiBmaWxlcyBleGhpYml0OiAxMzozMC8xNzozMCBVVEMgZ3JpZCwgYFNlc3Npb25WV0FQYCBjb2x1bW4sIGBsYXN0X2Jhcl8qYAphdHRycywgZm9ybWluZy1iYXIgZXhjbHVzaW9uLiBUaGVzZSBtYXRjaCBsZWdhY3kgYHJlc2FtcGxlX2Nsb3NlZF80aGAKKGBzY2FubmVyX3J1bGVzLnB5YCwgYG9yaWdpbj0ic3RhcnRfZGF5ImAsIGBvZmZzZXQ9IjloMzBtaW4iYCkgb24gZXZlcnkgdGVzdGVkCmZlYXR1cmUuIFRoaXMgaWRlbnRpZmllcyB0aGUgTUVDSEFOSVNNIChmZWF0dXJlLXNpZ25hdHVyZSBjb21wYXRpYmlsaXR5KS4KCioqUXVhbGlmaWNhdGlvbiAocGVyIHJldmlldyBpdGVtIEQpOioqIGZlYXR1cmUtc2lnbmF0dXJlIGNvbXBhdGliaWxpdHkgaXMgTk9UCnJlcHJvZHVjZWQgT0hMQ1YgYnl0ZSBlcXVhbGl0eS4gV2UgaGF2ZSBub3QgcmUtcnVuIHRoZSBsZWdhY3kgZnVuY3Rpb24gb24gdGhlCm9yaWdpbmFsIDFIIGlucHV0cyAobm90IHJldGFpbmVkKSBhbmQgY29tcGFyZWQgb3V0cHV0IGJ5dGVzLiBUaGUgYnVpbGRlciBjbGFpbQppcyB0aGVyZWZvcmU6IG1lY2hhbmlzbSBpZGVudGlmaWVkIGJ5IHNpZ25hdHVyZSwgZXhhY3QgYnVpbGRlciBVTlJFU09MVkVELgoKIyMgVmVyZGljdAp8IENsYWltIHwgVGFnIHwKfC0tLXwtLS18CnwgTWVjaGFuaXNtID0gbGVnYWN5IGByZXNhbXBsZV9jbG9zZWRfNGhgIChmZWF0dXJlLXNpZ25hdHVyZSBtYXRjaCkgfCBTT1VSQ0UvQ09ERSBWRVJJRklFRCB8CnwgRXhhY3QgaW52b2tpbmcgc2NyaXB0L3Nlc3Npb24vY29tbWFuZC9jb25maWcgfCBVTlJFU09MVkVEIChwZXJtYW5lbnQgZ2FwKSB8CnwgQnl0ZS1lcXVhbGl0eSByZXByb2R1Y3Rpb24gb2YgYnVpbGRlciB8IFVOUkVTT0xWRUQgKG9yaWdpbmFsIDFIIGlucHV0cyBub3QgcmV0YWluZWQpIHwK
+# Provenance Search Evidence — v3 h4 cache generator
+**Date:** 2026-10-05 | **Method:** COMPUTED (commands run, outputs recorded verbatim)
+**Scope:** Locate the actual generator of `backtest_cache/v3/h4_*.pkl` (52 files).
+
+## Search 1: scripts referencing the cache path
+Command: `grep -rl "backtest_cache/v3" --include="*.py" .`
+Result: 13 files (listed below). Classification by write behavior:
+
+| File | Role re v3/h4_*.pkl |
+|---|---|
+| `pine_entry_timing_backtest/fetch_resample_4h.py` | Documents convention; writes to `canonical_baseline/data/`, NOT v3 |
+| `pine_execution/c1_corrected_baseline_20261003.py` | READER (loads via `load_bull()`); asserts grid |
+| `pine_exit_fix/pine_exit_fix.py` | READER (docstring reference) |
+| `pine_expansion/study1_agreement.py` | READER ("EXACT bars the Pine baseline used") |
+| `pine_expansion/study3_timeframes.py` | READER (references d1_5y_*.pkl, different files) |
+| `pine_live/tests/test_slice*.py` (4 files) | READER (test fixtures) |
+| `canonical_baseline/scripts/build_pool.py` | READER (glob includes v3 in search patterns) |
+| `research_notes/recovery_4h_20261004/*/test_4h_fixtures.py` | READER (fixtures) |
+| `research_notes/recovery_4h_20261004/cp1_followup/audit_52symbol.py` | READER (this audit) |
+
+## Search 2: write operations targeting h4_*.pkl in v3
+Command: `grep -rn 'to_pickle.*backtest_cache/v3/h4_' --include="*.py" .`
+Result: **zero matches.** No committed script writes h4 files to this path.
+
+## Search 3: git history
+Command: `git log --oneline --all -- backtest_cache/v3/`
+Result: no cache-file commits (files never committed; only incidental merge references).
+
+## Search 4: filesystem build logs
+Command: `find . -name "*.log" -newer <repo-root-marker>` (2026-10-04)
+Result: no build logs for the Sep-15 2026 generation run.
+
+## Byte-feature mechanism identification (SOURCE/CODE VERIFIED)
+The 52 files exhibit: 13:30/17:30 UTC grid, `SessionVWAP` column, `last_bar_*`
+attrs, forming-bar exclusion. These match legacy `resample_closed_4h`
+(`scanner_rules.py`, `origin="start_day"`, `offset="9h30min"`) on every tested
+feature. This identifies the MECHANISM (feature-signature compatibility).
+
+**Qualification (per review item D):** feature-signature compatibility is NOT
+reproduced OHLCV byte equality. We have not re-run the legacy function on the
+original 1H inputs (not retained) and compared output bytes. The builder claim
+is therefore: mechanism identified by signature, exact builder UNRESOLVED.
+
+## Verdict
+| Claim | Tag |
+|---|---|
+| Mechanism = legacy `resample_closed_4h` (feature-signature match) | SOURCE/CODE VERIFIED |
+| Exact invoking script/session/command/config | UNRESOLVED (permanent gap) |
+| Byte-equality reproduction of builder | UNRESOLVED (original 1H inputs not retained) |
