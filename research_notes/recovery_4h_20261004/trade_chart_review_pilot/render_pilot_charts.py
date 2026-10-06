@@ -113,7 +113,9 @@ def main():
         # ---- source-row table ----
         csv_path = os.path.join(tables_dir, f"{tid}_{sym}_source_rows.csv")
         with open(csv_path, "w", newline="") as f:
-            wr = csv.writer(f)
+            # lineterminator="\n": CRLF would be normalized on upload, breaking
+            # byte-parity verification. LF throughout.
+            wr = csv.writer(f, lineterminator="\n")
             wr.writerow([
                 "row_kind", "timestamp_ny", "timestamp_utc", "open", "high",
                 "low", "close", "volume", "label_status", "in_holding_window",
