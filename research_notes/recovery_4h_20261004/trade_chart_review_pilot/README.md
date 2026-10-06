@@ -8,9 +8,47 @@ Six pilot trades rendered from **retained evidence only** — no fresh data fetc
 no holdout access, no corrected-performance run, no frozen-system changes.
 Charts supplement the numerical CP1 audit; visual agreement cannot prove byte parity.
 
+## REV 2 corrections (ChatGPT read-back, Issue #1 comment 6023866252)
+
+Applied 2026-10-06. All changes are presentation/provenance fixes; no new data,
+no recomputation from unretained sources.
+
+1. **SVG charts added** (`charts/<TID>_<SYM>.svg`): text-safe (matplotlib
+   `svg.fonttype=none`, real `<text>` elements), self-contained, remotely
+   readable. PNGs remain local-only (connector binary limitation, see below).
+2. **CSV tables restructured** (`tables/<TID>_<SYM>_source_rows.csv`):
+   - Gap rows now cite the **canonical shard-reconstructed**
+     `trade_intersection.json` SHA-256 (`02608fd4…`), with an explicit note
+     mapping the local pretty-print hash (`a457e7a1…`, content-identical).
+   - Every row carries the anchored `trade_id` and the deterministic
+     `ledger_row_index` (integer position in `c1_240_trade_ledger.json`'s trade
+     list; `(symbol, entry_time)` pairs are unique across all 240 trades, so the
+     index is unambiguous).
+   - Timestamps and prices are separate explicit columns
+     (`event_timestamp_et`, `event_timestamp_utc`, `price`) — no overloading.
+   - New columns (or explicit `UNAVAILABLE` labels): `candle_end_time_et`
+     (derived as candle start + 4h on the recorded 4h grid), `pinned_source_commit`,
+     `system_engine_version`, `equity_session_boundary`, `intended_entry_price`,
+     `recorded_fill_price`, `target_tp1_price`, `target_stop_price`.
+   - Labeled `UNAVAILABLE` (never inferred): system/engine version (no version
+     string retained in the ledger provenance), equity session boundary (not
+     recorded; defective grid makes session mapping UNRESOLVED), intended entry
+     price (ledger records one entry price = the backtest's recorded fill; no
+     separate intended entry exists), TP1 price target (ledger carries
+     `tp1_hit` boolean only).
+3. **Selection chronology corrected** (`pilot_selection.json`): the
+   `"published_before_rendering": true` claim was removed. Replaced with
+   `selection_render_chronology`, which documents the observed mtimes/commits
+   and states plainly that any "published before rendering" claim beyond the
+   documented observations is self-reported chronology — the pilot directory was
+   untracked in git, so no timestamped commit cleanly anchors selection-before-render.
+4. **Manifest expanded** (`SHA256_MANIFEST.txt`): now lists every file in the
+   package (charts, tables, README, selection, renderer) except itself.
+
 ## Selection
 
-Published in `pilot_selection.json` **before** rendering (rule + trade IDs):
+Trade IDs (rule descriptions in `pilot_selection.json`; the selection's
+render chronology is documented there as self-reported — see REV 2 note 3):
 
 | # | Trade | Symbol | Rule |
 |---|-------|--------|------|
@@ -70,7 +108,10 @@ size limit; visual content is unchanged.
 
 ## Manifest
 
-`SHA256_MANIFEST.txt` lists SHA-256 hashes of all charts and tables.
+`SHA256_MANIFEST.txt` lists SHA-256 hashes of every file in the package
+(charts PNG+SVG, tables, README, `pilot_selection.json`, renderer) except the
+manifest itself. PNGs are hashed for local verification even though they are
+not published (see below).
 
 ## Publication note
 

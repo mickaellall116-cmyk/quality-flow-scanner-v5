@@ -1,1 +1,91 @@
-{"authorized":"Mike, 2026-10-06, via parent agent (relay from ChatGPT Issue #1 comment 6017640614 accepted by Mike with 'Review')","bounded_assignment":"GitHub Issue #1 comment 6017640614 (ChatGPT)","constraints":{"no_corrected_performance_run":true,"no_fresh_data_fetch":true,"no_frozen_system_changes":true,"no_historical_signal_insertion":true,"no_holdout_access":true,"no_profit_loss_based_selection":true,"no_spending":true,"read_only_reuse":true,"sources":["research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.json (rev2-corrected)","research_notes/recovery_4h_20261004/cp1_bundle/02_c1_ledger/c1_240_trade_ledger.json","research_notes/recovery_4h_20261004/cp1_followup/audit_52symbol.json","backtest_cache/v3/h4_*.pkl (retained defective-grid bars)"]},"deduplication":"by trade_id; all six rules yielded distinct IDs, no collisions","note":"Charts supplement the numerical audit. Visual agreement cannot prove byte parity.","protocol":"pilot trade-chart evidence review","published_before_rendering":true,"selected":[{"asset_class":"equity","entry_time":"2026-01-14T12:30:00-05:00","rule":1,"symbol":"PFE","trade_id":"T145","why":"exact gap intersection; gap_refs: AUDIT-GAP(PFE 2026-01-30 afternoon_slot_absent), AUDIT-GAP(PFE 2026-02-02 morning_slot_absent)"},{"asset_class":"equity","entry_time":"2026-01-21T12:30:00-05:00","rule":2,"symbol":"GOOGL","trade_id":"T146","why":"exact gap intersection; gap_refs: AUDIT-GAP(GOOGL 2026-01-30 afternoon_slot_absent), AUDIT-GAP(GOOGL 2026-02-02 morning_slot_absent)"},{"asset_class":"equity","entry_time":"2025-02-24T08:30:00-05:00","rule":3,"symbol":"LRCX","trade_id":"T029","why":"earliest entry among 51 equity trades with equity_shifted_regime_entry=true"},{"asset_class":"equity","entry_time":"2025-03-10T13:30:00-04:00","rule":4,"symbol":"PFE","trade_id":"T041","why":"earliest entry among 115 equity trades with equity_shifted_regime_entry=false"},{"asset_class":"crypto","entry_time":"2024-11-05T04:00:00+00:00","rule":5,"symbol":"DOGE-USD","trade_id":"T005","why":"earliest entry among 31 crypto trades with crypto_est_calendar_entry=true"},{"asset_class":"crypto","entry_time":"2025-01-23T00:00:00+00:00","rule":6,"symbol":"SOL-USD","trade_id":"T027","why":"earliest SOL-USD trade within the 31 crypto-calendar set; T192 SOL exact-gap intersection withdrawn (zero SOL trades intersect exact gaps)"}],"selection_rule":["1. T145 PFE: exact-gap-intersection equity trade from trade_intersection.json (gap_refs non-empty)","2. T146 GOOGL: exact-gap-intersection equity trade from trade_intersection.json (gap_refs non-empty)","3. Earliest shifted equity entry: equity trade with equity_shifted_regime_entry=true, min(entry_time)","4. Earliest unshifted equity entry: equity trade with equity_shifted_regime_entry=false, min(entry_time)","5. Earliest crypto calendar entry: trade with crypto_est_calendar_entry=true, min(entry_time)","6. Earliest SOL trade within the 31 crypto-calendar set (T192 SOL exact-gap intersection was WITHDRAWN; zero SOL trades intersect exact gaps)"]}
+{
+  "authorized": "Mike, 2026-10-06, via parent agent (relay from ChatGPT Issue #1 comment 6017640614 accepted by Mike with 'Review')",
+  "bounded_assignment": "GitHub Issue #1 comment 6017640614 (ChatGPT)",
+  "constraints": {
+    "no_corrected_performance_run": true,
+    "no_fresh_data_fetch": true,
+    "no_frozen_system_changes": true,
+    "no_historical_signal_insertion": true,
+    "no_holdout_access": true,
+    "no_profit_loss_based_selection": true,
+    "no_spending": true,
+    "read_only_reuse": true,
+    "sources": [
+      "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.json (rev2-corrected)",
+      "research_notes/recovery_4h_20261004/cp1_bundle/02_c1_ledger/c1_240_trade_ledger.json",
+      "research_notes/recovery_4h_20261004/cp1_followup/audit_52symbol.json",
+      "backtest_cache/v3/h4_*.pkl (retained defective-grid bars)"
+    ]
+  },
+  "deduplication": "by trade_id; all six rules yielded distinct IDs, no collisions",
+  "note": "Charts supplement the numerical audit. Visual agreement cannot prove byte parity.",
+  "protocol": "pilot trade-chart evidence review",
+  "selected": [
+    {
+      "asset_class": "equity",
+      "entry_time": "2026-01-14T12:30:00-05:00",
+      "rule": 1,
+      "symbol": "PFE",
+      "trade_id": "T145",
+      "why": "exact gap intersection; gap_refs: AUDIT-GAP(PFE 2026-01-30 afternoon_slot_absent), AUDIT-GAP(PFE 2026-02-02 morning_slot_absent)"
+    },
+    {
+      "asset_class": "equity",
+      "entry_time": "2026-01-21T12:30:00-05:00",
+      "rule": 2,
+      "symbol": "GOOGL",
+      "trade_id": "T146",
+      "why": "exact gap intersection; gap_refs: AUDIT-GAP(GOOGL 2026-01-30 afternoon_slot_absent), AUDIT-GAP(GOOGL 2026-02-02 morning_slot_absent)"
+    },
+    {
+      "asset_class": "equity",
+      "entry_time": "2025-02-24T08:30:00-05:00",
+      "rule": 3,
+      "symbol": "LRCX",
+      "trade_id": "T029",
+      "why": "earliest entry among 51 equity trades with equity_shifted_regime_entry=true"
+    },
+    {
+      "asset_class": "equity",
+      "entry_time": "2025-03-10T13:30:00-04:00",
+      "rule": 4,
+      "symbol": "PFE",
+      "trade_id": "T041",
+      "why": "earliest entry among 115 equity trades with equity_shifted_regime_entry=false"
+    },
+    {
+      "asset_class": "crypto",
+      "entry_time": "2024-11-05T04:00:00+00:00",
+      "rule": 5,
+      "symbol": "DOGE-USD",
+      "trade_id": "T005",
+      "why": "earliest entry among 31 crypto trades with crypto_est_calendar_entry=true"
+    },
+    {
+      "asset_class": "crypto",
+      "entry_time": "2025-01-23T00:00:00+00:00",
+      "rule": 6,
+      "symbol": "SOL-USD",
+      "trade_id": "T027",
+      "why": "earliest SOL-USD trade within the 31 crypto-calendar set; T192 SOL exact-gap intersection withdrawn (zero SOL trades intersect exact gaps)"
+    }
+  ],
+  "selection_render_chronology": {
+    "renders_observed": [
+      "artifacts (tables, SHA256_MANIFEST) existed by 14:12:45Z per commit 00c706b7; output dirs created 13:58:35Z local mtime \u2014 first render pass before the commit",
+      "re-render at 2026-10-06T14:43Z after renderer edit (palette-32 PNG path)",
+      "SHA256_MANIFEST rewritten 2026-10-06T14:59:47Z"
+    ],
+    "selection_committed_remote": "commit 00c706b7 at 2026-10-06T14:12:45Z",
+    "selection_written_local_mtime": "2026-10-06T13:58:11Z",
+    "verdict": "NOT a clean pre-render anchor: commit 00c706b7 (14:12:45Z) predates the final 14:43Z render but postdates an earlier ~13:58Z render pass. Any claim of 'published before rendering' beyond this is self-reported chronology from local mtimes."
+  },
+  "selection_rule": [
+    "1. T145 PFE: exact-gap-intersection equity trade from trade_intersection.json (gap_refs non-empty)",
+    "2. T146 GOOGL: exact-gap-intersection equity trade from trade_intersection.json (gap_refs non-empty)",
+    "3. Earliest shifted equity entry: equity trade with equity_shifted_regime_entry=true, min(entry_time)",
+    "4. Earliest unshifted equity entry: equity trade with equity_shifted_regime_entry=false, min(entry_time)",
+    "5. Earliest crypto calendar entry: trade with crypto_est_calendar_entry=true, min(entry_time)",
+    "6. Earliest SOL trade within the 31 crypto-calendar set (T192 SOL exact-gap intersection was WITHDRAWN; zero SOL trades intersect exact gaps)"
+  ]
+}
