@@ -15,6 +15,39 @@
 | `trade_intersection.json` | Machine-readable: all 240 trades with EST-regime flags and gap references (T145 PFE, T146 GOOGL). T192 SOL intersection WITHDRAWN — zero SOL trades intersect exact gaps. 51 equity shifted-regime entries + 31 crypto calendar entries. | COMPUTED |
 | `FINDINGS.md` | Concise findings/unknowns table for all 6 tasks, every finding tagged COMPUTED / SOURCE/CODE VERIFIED / REPRODUCED / UNRESOLVED | — |
 
+## Shard reassembly (trade_intersection.json)
+
+`trade_intersection.json` exceeds the single-file upload size limit, so it is
+stored as 4 shards plus an index. Reassemble the canonical minified form:
+
+Filenames in order:
+1. `trade_intersection.json.shard00`
+2. `trade_intersection.json.shard01`
+3. `trade_intersection.json.shard02`
+4. `trade_intersection.json.shard03`
+
+Concatenation command (run in this directory):
+
+```bash
+cat trade_intersection.json.shard00 \
+    trade_intersection.json.shard01 \
+    trade_intersection.json.shard02 \
+    trade_intersection.json.shard03 > trade_intersection.json
+```
+
+Expected canonical SHA-256 of the reassembled file:
+
+```
+02608fd49331e5d795ac678440c7d9792f74d577eeb454d7bd68686b234fd872
+```
+
+The reassembled file parses as JSON (240 trades). `trade_intersection.json.INDEX`
+records the shard file list, total character count (90182), and the same
+canonical SHA-256. A local pretty-printed copy may also exist; it is
+content-identical to the canonical minified form but has a different hash
+(local pretty-print SHA-256: `a457e7a10845650eeb2b4be6c7a2b0ca02c91dff2667f5a4687b4e8b6b460684`).
+Cite the canonical shard hash `02608fd4…` as the authoritative reference.
+
 ## Reading notes
 
 - `audit_52symbol.json`: XNYS comparator classifies slots as 14,986 shifted (the DST fixed-UTC-grid defect scope) + 44 true absent (2 each on 22 symbols: 2026-01-30 afternoon + 2026-02-02 morning) + 225 scheduled early-close truncations. The 82 calendar-period entries split into 51 equity shifted-regime entries (defect exposure) + 31 crypto EST-calendar entries (calendar membership only, NOT a defect).
