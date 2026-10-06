@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-02T18:03:02+00:00",
+  "updated_at": "2026-10-06T18:02:56+00:00",
   "timeframe": "4H",
   "source": "v37-watchlist-watcher",
   "watchlist": [
@@ -18,8 +18,50 @@
     "HOOD",
     "AMD"
   ],
-  "event_count": 37,
+  "event_count": 40,
   "events": [
+    {
+      "detected_at": "2026-10-06T18:02:48+00:00",
+      "signal_bar_close": "2026-10-06T13:30:00-04:00",
+      "symbol": "PLTR",
+      "timeframe": "4H",
+      "entry_px": 192.57,
+      "stop_px": 186.92,
+      "tp1_px": 200.09,
+      "score": 4,
+      "adx": 28.8,
+      "entry_yes": false,
+      "entry_why": "No \u2014 the trend looks fine but price isn't at a good spot to enter. Better to wait for a pullback to support.",
+      "source": "watchlist"
+    },
+    {
+      "detected_at": "2026-10-06T18:02:49+00:00",
+      "signal_bar_close": "2026-10-06T13:30:00-04:00",
+      "symbol": "ANET",
+      "timeframe": "4H",
+      "entry_px": 212.3,
+      "stop_px": 205.96,
+      "tp1_px": 220.76,
+      "score": 3,
+      "adx": 20.6,
+      "entry_yes": false,
+      "entry_why": "No \u2014 the trend looks fine but price isn't at a good spot to enter. Better to wait for a pullback to support.",
+      "source": "watchlist"
+    },
+    {
+      "detected_at": "2026-10-05T18:02:45+00:00",
+      "signal_bar_close": "2026-10-05T13:30:00-04:00",
+      "symbol": "PLTR",
+      "timeframe": "4H",
+      "entry_px": 188.74,
+      "stop_px": 182.97,
+      "tp1_px": 196.44,
+      "score": 4,
+      "adx": 25.9,
+      "entry_yes": true,
+      "entry_why": "Yes \u2014 uptrend, price holding at bullish support \u2014 an old price gap is acting as a floor underneath.",
+      "source": "watchlist"
+    },
     {
       "detected_at": "2026-10-02T18:02:52+00:00",
       "signal_bar_close": "2026-10-02T13:30:00-04:00",
