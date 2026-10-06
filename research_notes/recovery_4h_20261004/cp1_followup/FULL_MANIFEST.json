@@ -6,7 +6,7 @@
   },
   {
    "path": "research_notes/recovery_4h_20261004/cp1_followup/README.md",
-   "sha256": "b4dbe0f21054f2f8f95c6067c781394f3f8d97be1dde9f6507bf9bde9c8a112b"
+   "sha256": "e972573dee4852503951e7d1c7e89f19b2fcdaec6fbbbb9a8f6d8104a35d88ab"
   },
   {
    "path": "research_notes/recovery_4h_20261004/cp1_followup/audit_52symbol.json",
@@ -26,7 +26,8 @@
   },
   {
    "path": "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.json",
-   "sha256": "a457e7a10845650eeb2b4be6c7a2b0ca02c91dff2667f5a4687b4e8b6b460684"
+   "sha256": "02608fd49331e5d795ac678440c7d9792f74d577eeb454d7bd68686b234fd872",
+   "note": "Canonical shard-reconstructed form (4 shards concatenated, SHA-256 of minified JSON). Local pretty-printed copy is content-identical."
   },
   {
    "path": "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.py",
