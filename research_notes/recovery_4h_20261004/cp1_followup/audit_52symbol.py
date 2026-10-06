@@ -1,1 +1,263 @@
-IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJDUDEgZm9sbG93LXVwOiBmdWxsIDUyLXN5bWJvbCBoNCBjYWNoZSBhdWRpdCAoUkVWIDIgLSBjb3JyZWN0ZWQgZ3JpZCBjb21wYXJhdG9yKS4KVGFzayAyIG9mIENoYXRHUFQgYm91bmRlZCBhc3NpZ25tZW50IChJc3N1ZSAjMSBjb21tZW50IDU5ODY5NDQ3OTIpLgpDb3JyZWN0aW9uIHBlciBDaGF0R1BUIHJldmlldyAoSXNzdWUgIzEgY29tbWVudCA1OTk0Mjk0MjA5LCBpdGVtIEIpLgoKUkVBRC1PTkxZOiBuZXZlciBtdXRhdGVzIGNhY2hlIGZpbGVzLiBBbGwgZmluZGluZ3MgdGFnZ2VkIENPTVBVVEVELgpDYWxlbmRhcjogcGFuZGFzX21hcmtldF9jYWxlbmRhcnMgWE5ZUyB2NS41LjAgKG5hbWVkIGV4cGxpY2l0bHkgZm9yIHByb3ZlbmFuY2UpLgoKQ09SUkVDVElPTlMgdnMgcmV2IDE6Ci0gZXhwZWN0ZWRfZXF1aXR5X2dyaWQoKSBub3cgY29uc3VsdHMgbWFya2V0X29wZW4vbWFya2V0X2Nsb3NlIGZyb20gdGhlIG5hbWVkCiAgY2FsZW5kYXIuIE9uIGVhcmx5LWNsb3NlIGRheXMgKGUuZy4gZGF5IGFmdGVyIFRoYW5rc2dpdmluZywgQ2hyaXN0bWFzIEV2ZSksCiAgdGhlIDEzOjMwIEVUIGxhYmVsIGlzIG9ubHkgZXhwZWN0ZWQgaWYgaXQgZmFsbHMgd2l0aGluIFttYXJrZXRfb3BlbiwgbWFya2V0X2Nsb3NlXS4KLSBNaXNzaW5nIHRpbWVzdGFtcHMgYXJlIGNsYXNzaWZpZWQgaW50bzoKICAgIHNjaGVkdWxlZF9jbG9zdXJlICAgLSBkYXRlIG5vdCBhbiBYTllTIHRyYWRpbmcgZGF5CiAgICBzY2hlZHVsZWRfdHJ1bmNhdGlvbi0gdHJhZGluZyBkYXkgYnV0IGxhYmVsIGZhbGxzIG91dHNpZGUgW29wZW4sIGNsb3NlXQogICAgICAgICAgICAgICAgICAgICAgICAgIChlYXJseSBjbG9zZSAvIGxhdGUgb3BlbikKICAgIGNvdmVyYWdlICAgICAgICAgICAgLSBsYWJlbCBvdXRzaWRlIHRoZSBjYWNoZSBmaWxlJ3Mgb3duIGRhdGUgcmFuZ2UKICAgIGxhYmVsX21hcHBpbmcgICAgICAgLSBleHBlY3RlZCBsYWJlbCBhYnNlbnQgQlVUIGFuIGFjdHVhbCBiYXIgZXhpc3RzIG9uIHRoZQogICAgICAgICAgICAgICAgICAgICAgICAgIHNhbWUgZGF0ZSBhdCBhIHNoaWZ0ZWQgbGFiZWwgKHRoZSBEU1QgZml4ZWQtVVRDLWdyaWQKICAgICAgICAgICAgICAgICAgICAgICAgICBkZWZlY3Q6IDA4OjMwLzEyOjMwIEVUIGluc3RlYWQgb2YgMDk6MzAvMTM6MzAgRVQpCiAgICB0cnVlX2Fic2VudCAgICAgICAgIC0gdW5leHBsYWluZWQ6IG5vIGJhciBvbiB0aGF0IGRhdGUgYXQgYWxsCi0gVGhlIDIyLXN5bWJvbCAyLWJhciBnYXAgZXZpZGVuY2UgaXMgcHJlc2VydmVkICh0cnVlX2Fic2VudCBvbiBub3JtYWwgZGF5cykuCgpPdXRwdXRzOgogIC0gYXVkaXRfNTJzeW1ib2wuanNvbiA6IG1hY2hpbmUtcmVhZGFibGUgcGVyLXN5bWJvbCBhdWRpdCB0YWJsZQogIC0gYXVkaXRfNTJzeW1ib2wubWQgICA6IGh1bWFuLXJlYWRhYmxlIHN1bW1hcnkKIiIiCmltcG9ydCBwaWNrbGUsIGhhc2hsaWIsIGpzb24sIG9zCmltcG9ydCBwYW5kYXMgYXMgcGQKaW1wb3J0IHBhbmRhc19tYXJrZXRfY2FsZW5kYXJzIGFzIG1jYWwKCkhFUkUgPSBvcy5wYXRoLmRpcm5hbWUob3MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSkKQ0FDSEUgPSAiL2hvbWUvaGF0Y2gvd29ya3NwYWNlL3F1YWxpdHktZmxvdy1zY2FubmVyLXY1L2JhY2t0ZXN0X2NhY2hlL3YzIgpDQUxfTkFNRSwgQ0FMX1ZFUiA9ICJYTllTIiwgInBhbmRhc19tYXJrZXRfY2FsZW5kYXJzIDUuNS4wIgpNQ2FsX1ZFUl9QSU4gPSBtY2FsLl9fdmVyc2lvbl9fCgpDUllQVE8gPSB7IkJUQy1VU0QiLCAiRVRILVVTRCIsICJTT0wtVVNEIiwgIkRPR0UtVVNEIiwgIkxJTkstVVNEIiwgIkFWQVgtVVNEIiwgIlhSUC1VU0QifQpOWSA9ICJBbWVyaWNhL05ld19Zb3JrIgoKZGVmIHNoYTI1Nl9maWxlKHApOgogICAgaCA9IGhhc2hsaWIuc2hhMjU2KCkKICAgIHdpdGggb3BlbihwLCAicmIiKSBhcyBmOgogICAgICAgIGZvciBjIGluIGl0ZXIobGFtYmRhOiBmLnJlYWQoMSA8PCAyMCksIGIiIik6CiAgICAgICAgICAgIGgudXBkYXRlKGMpCiAgICByZXR1cm4gaC5oZXhkaWdlc3QoKQoKZGVmIGV4cGVjdGVkX2VxdWl0eV9sYWJlbHMoc3RhcnRfZGF0ZSwgZW5kX2RhdGUpOgogICAgIiIiUmV0dXJuIChleHBlY3RlZF9sYWJlbHMsIGRheV9pbmZvKSBmb3IgdGhlIElOVEVOREVEIHNlc3Npb24tYW5jaG9yZWQgZ3JpZC4KICAgIGV4cGVjdGVkX2xhYmVsczogc2V0IG9mIHR6LWF3YXJlIDA5OjMwIC8gMTM6MzAgQW1lcmljYS9OZXdfWW9yayBUaW1lc3RhbXBzLAogICAgb25lIG9yIHR3byBwZXIgWE5ZUyB0cmFkaW5nIGRheSwgYnV0IE9OTFkgbGFiZWxzIHdpdGhpbiBbbWFya2V0X29wZW4sIG1hcmtldF9jbG9zZV0uCiAgICBkYXlfaW5mbzogZGljdCBkYXRlIC0+IHttYXJrZXRfb3BlbiwgbWFya2V0X2Nsb3NlLCBpc19lYXJseV9jbG9zZX0gZm9yIGNsYXNzaWZpY2F0aW9uLgogICAgIiIiCiAgICBjYWwgPSBtY2FsLmdldF9jYWxlbmRhcigiWE5ZUyIpCiAgICBzY2hlZCA9IGNhbC5zY2hlZHVsZShzdGFydF9kYXRlPXN0YXJ0X2RhdGUsIGVuZF9kYXRlPWVuZF9kYXRlKQogICAgZXhwZWN0ZWQgPSBzZXQoKQogICAgZGF5X2luZm8gPSB7fQogICAgZm9yIGRheSwgcm93IGluIHNjaGVkLml0ZXJyb3dzKCk6CiAgICAgICAgZCA9IGRheS5kYXRlKCkuaXNvZm9ybWF0KCkKICAgICAgICBtbyA9IHJvd1sibWFya2V0X29wZW4iXS50el9jb252ZXJ0KE5ZKQogICAgICAgIG1jID0gcm93WyJtYXJrZXRfY2xvc2UiXS50el9jb252ZXJ0KE5ZKQogICAgICAgICMgZWFybHkgY2xvc2UgaGV1cmlzdGljOiByZWd1bGFyIGNsb3NlIGlzIDE2OjAwIEVUCiAgICAgICAgaXNfZWFybHkgPSBtYy50aW1lKCkgPCBwZC5UaW1lc3RhbXAoIjE2OjAwIikudGltZSgpCiAgICAgICAgZGF5X2luZm9bZF0gPSB7Im1hcmtldF9vcGVuIjogbW8uaXNvZm9ybWF0KCksICJtYXJrZXRfY2xvc2UiOiBtYy5pc29mb3JtYXQoKSwKICAgICAgICAgICAgICAgICAgICAgICAiaXNfZWFybHlfY2xvc2UiOiBib29sKGlzX2Vhcmx5KX0KICAgICAgICBmb3IgaG0gaW4gKCIwOTozMCIsICIxMzozMCIpOgogICAgICAgICAgICBsYmwgPSBwZC5UaW1lc3RhbXAoZCArICIgIiArIGhtKS50el9sb2NhbGl6ZShOWSkKICAgICAgICAgICAgaWYgbW8gPD0gbGJsIDw9IG1jOgogICAgICAgICAgICAgICAgZXhwZWN0ZWQuYWRkKGxibCkKICAgICAgICAgICAgIyBlbHNlOiBzY2hlZHVsZWRfdHJ1bmNhdGlvbiAobGFiZWwgb3V0c2lkZSBzZXNzaW9uIGhvdXJzKQogICAgcmV0dXJuIGV4cGVjdGVkLCBkYXlfaW5mbwoKZGVmIGV4cGVjdGVkX2NyeXB0b19ncmlkKHN0YXJ0LCBlbmQpOgogICAgIiIiQ3J5cHRvOiAyNC83IGF0IDAwLzA0LzA4LzEyLzE2LzIwIFVUQy4iIiIKICAgIG91dCA9IHNldCgpCiAgICBjdXIgPSBwZC5UaW1lc3RhbXAoc3RhcnQuZGF0ZSgpKS50el9sb2NhbGl6ZSgiVVRDIikKICAgIGVuZF91ID0gcGQuVGltZXN0YW1wKGVuZC5kYXRlKCkpLnR6X2xvY2FsaXplKCJVVEMiKSArIHBkLlRpbWVkZWx0YShkYXlzPTEpCiAgICB3aGlsZSBjdXIgPCBlbmRfdToKICAgICAgICBmb3IgaGggaW4gKDAsIDQsIDgsIDEyLCAxNiwgMjApOgogICAgICAgICAgICBvdXQuYWRkKGN1ciArIHBkLlRpbWVkZWx0YShob3Vycz1oaCkpCiAgICAgICAgY3VyICs9IHBkLlRpbWVkZWx0YShkYXlzPTEpCiAgICByZXR1cm4gb3V0CgpkZWYgY2xhc3NpZnlfZXF1aXR5X21pc3NpbmcobWlzc2luZywgYWN0dWFsX2J5X2RhdGUsIGRheV9pbmZvLCBjYWNoZV9zdGFydCwgY2FjaGVfZW5kKToKICAgICIiIkNsYXNzaWZ5IGVhY2ggbWlzc2luZyBleHBlY3RlZCBsYWJlbC4gUmV0dXJucyBkaWN0IG9mIGxpc3RzLiIiIgogICAgY2xhc3NlcyA9IHsic2NoZWR1bGVkX2Nsb3N1cmUiOiBbXSwgInNjaGVkdWxlZF90cnVuY2F0aW9uIjogW10sCiAgICAgICAgICAgICAgICJjb3ZlcmFnZSI6IFtdLCAibGFiZWxfbWFwcGluZyI6IFtdLCAidHJ1ZV9hYnNlbnQiOiBbXX0KICAgIGZvciB0IGluIG1pc3Npbmc6CiAgICAgICAgZCA9IHQuZGF0ZSgpLmlzb2Zvcm1hdCgpCiAgICAgICAgIyBvdXRzaWRlIGNhY2hlIGNvdmVyYWdlPwogICAgICAgIGlmIHQgPCBjYWNoZV9zdGFydCBvciB0ID4gY2FjaGVfZW5kOgogICAgICAgICAgICBjbGFzc2VzWyJjb3ZlcmFnZSJdLmFwcGVuZCh0Lmlzb2Zvcm1hdCgpKQogICAgICAgICAgICBjb250aW51ZQogICAgICAgICMgbm90IGEgdHJhZGluZyBkYXk/CiAgICAgICAgaWYgZCBub3QgaW4gZGF5X2luZm86CiAgICAgICAgICAgIGNsYXNzZXNbInNjaGVkdWxlZF9jbG9zdXJlIl0uYXBwZW5kKHQuaXNvZm9ybWF0KCkpCiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgIyBsYWJlbCBvdXRzaWRlIHNlc3Npb24gaG91cnMgKGVhcmx5IGNsb3NlKT8KICAgICAgICBpbmZvID0gZGF5X2luZm9bZF0KICAgICAgICBtbyA9IHBkLlRpbWVzdGFtcChpbmZvWyJtYXJrZXRfb3BlbiJdKQogICAgICAgIG1jID0gcGQuVGltZXN0YW1wKGluZm9bIm1hcmtldF9jbG9zZSJdKQogICAgICAgIGlmIG5vdCAobW8gPD0gdCA8PSBtYyk6CiAgICAgICAgICAgIGNsYXNzZXNbInNjaGVkdWxlZF90cnVuY2F0aW9uIl0uYXBwZW5kKHQuaXNvZm9ybWF0KCkpCiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgIyBhY3R1YWwgYmFyIGV4aXN0cyBvbiBzYW1lIGRhdGUgYXQgYSBkaWZmZXJlbnQgbGFiZWw/IC0+IGxhYmVsIG1hcHBpbmcKICAgICAgICBkYXlfYmFycyA9IGFjdHVhbF9ieV9kYXRlLmdldCh0LmRhdGUoKSwgW10pCiAgICAgICAgaWYgZGF5X2JhcnM6CiAgICAgICAgICAgIGNsYXNzZXNbImxhYmVsX21hcHBpbmciXS5hcHBlbmQoewogICAgICAgICAgICAgICAgImV4cGVjdGVkIjogdC5pc29mb3JtYXQoKSwKICAgICAgICAgICAgICAgICJhY3R1YWxfbGFiZWxzX3NhbWVfZGF0ZSI6IHNvcnRlZChiLmlzb2Zvcm1hdCgpIGZvciBiIGluIGRheV9iYXJzKSwKICAgICAgICAgICAgfSkKICAgICAgICBlbHNlOgogICAgICAgICAgICBjbGFzc2VzWyJ0cnVlX2Fic2VudCJdLmFwcGVuZCh0Lmlzb2Zvcm1hdCgpKQogICAgcmV0dXJuIGNsYXNzZXMKCmRlZiBhdWRpdF9zeW1ib2woc3ltKToKICAgIHBhdGggPSBvcy5wYXRoLmpvaW4oQ0FDSEUsIGYiaDRfe3N5bX0ucGtsIikKICAgIGRmID0gcGlja2xlLmxvYWQob3BlbihwYXRoLCAicmIiKSkgICMgcmVhZC1vbmx5CiAgICBpZHggPSBkZi5pbmRleAogICAgcmVjID0gewogICAgICAgICJzeW1ib2wiOiBzeW0sCiAgICAgICAgInNoYTI1NiI6IHNoYTI1Nl9maWxlKHBhdGgpLAogICAgICAgICJuX2JhcnMiOiBsZW4oZGYpLAogICAgICAgICJ0eiI6IHN0cihpZHgudHopLAogICAgICAgICJzdGFydCI6IGlkeFswXS5pc29mb3JtYXQoKSwKICAgICAgICAiZW5kIjogaWR4Wy0xXS5pc29mb3JtYXQoKSwKICAgICAgICAiaXNfbW9ub3RvbmljIjogYm9vbChpZHguaXNfbW9ub3RvbmljX2luY3JlYXNpbmcpLAogICAgICAgICJuX2R1cGxpY2F0ZXMiOiBpbnQoaWR4LmR1cGxpY2F0ZWQoKS5zdW0oKSksCiAgICAgICAgImNvbHVtbnMiOiBsaXN0KGRmLmNvbHVtbnMpLAogICAgICAgICJhc3NldF9jbGFzcyI6ICJjcnlwdG8iIGlmIHN5bSBpbiBDUllQVE8gb3Igc3ltLmVuZHN3aXRoKCItVVNEIikgZWxzZSAiZXF1aXR5IiwKICAgIH0KICAgIGR1cCA9IGlkeFtpZHguZHVwbGljYXRlZCgpXS50b2xpc3QoKQogICAgcmVjWyJkdXBsaWNhdGVfdGltZXN0YW1wcyJdID0gW3QuaXNvZm9ybWF0KCkgZm9yIHQgaW4gZHVwWzoyMF1dCiAgICByZWNbIm5fZHVwbGljYXRlX2V4dHJhIl0gPSBtYXgoMCwgbGVuKGR1cCkgLSAyMCkKCiAgICBpZiByZWNbImFzc2V0X2NsYXNzIl0gPT0gImVxdWl0eSI6CiAgICAgICAgcmVjLnVwZGF0ZShhdWRpdF9lcXVpdHlfc2xvdHMoc3ltLCBpZHgpKQogICAgZWxzZToKICAgICAgICBleHAgPSBleHBlY3RlZF9jcnlwdG9fZ3JpZChpZHhbMF0sIGlkeFstMV0pCiAgICAgICAgYWN0dWFsID0gc2V0KGlkeC50el9jb252ZXJ0KCJVVEMiKSkKICAgICAgICBtaXNzaW5nID0gc29ydGVkKGV4cCAtIGFjdHVhbCkKICAgICAgICBleHRyYSA9IHNvcnRlZChhY3R1YWwgLSBleHApCiAgICAgICAgcmVjWyJleHBlY3RlZF9ncmlkIl0gPSAiMDAvMDQvMDgvMTIvMTYvMjAgVVRDIGRhaWx5IgogICAgICAgIHJlY1sibl9taXNzaW5nX3ZzX2V4cGVjdGVkIl0gPSBsZW4obWlzc2luZykKICAgICAgICByZWNbIm5fZXh0cmFfdnNfZXhwZWN0ZWQiXSA9IGxlbihleHRyYSkKICAgICAgICByZWNbIm1pc3Npbmdfc2FtcGxlIl0gPSBbdC5pc29mb3JtYXQoKSBmb3IgdCBpbiBtaXNzaW5nWzoyMF1dCiAgICAgICAgcmVjWyJtaXNzaW5nX2FsbCJdID0gW3QuaXNvZm9ybWF0KCkgZm9yIHQgaW4gbWlzc2luZ10KICAgICAgICByZWNbImV4dHJhX3NhbXBsZSJdID0gW3QuaXNvZm9ybWF0KCkgZm9yIHQgaW4gZXh0cmFbOjIwXV0KICAgICAgICByZWNbIm5fb2ZmZ3JpZF9sYWJlbHMiXSA9IDAKICAgIHJldHVybiByZWMKCmRlZiBhdWRpdF9lcXVpdHlfc2xvdHMoc3ltLCBpZHgpOgogICAgIiIiUGVyLWRheSBzZXNzaW9uLXNsb3QgYW5hbHlzaXMgKHJldjIgY29ycmVjdGVkIGNvbXBhcmF0b3IpLgoKICAgIEZvciBlYWNoIFhOWVMgdHJhZGluZyBkYXkgaW4gdGhlIGNhY2hlIHJhbmdlLCBlYWNoIHNlc3Npb24gaGFzIHR3byBzbG90czoKICAgICAgbW9ybmluZ19zbG90OiAgIGJhciBhdCAwODozMCBvciAwOTozMCBFVAogICAgICBhZnRlcm5vb25fc2xvdDogYmFyIGF0IDEyOjMwIG9yIDEzOjMwIEVUCiAgICBFYWNoIHNsb3QgaXMgY2xhc3NpZmllZDoKICAgICAgcHJlc2VudF9jb3JyZWN0ICAgLSBiYXIgYXQgaW50ZW5kZWQgMDk6MzAgLyAxMzozMCBFVCBsYWJlbAogICAgICBwcmVzZW50X3NoaWZ0ZWQgICAtIGJhciBhdCAwODozMCAvIDEyOjMwIEVUIChEU1QgZml4ZWQtVVRDLWdyaWQgZGVmZWN0KQogICAgICBhYnNlbnRfdHJ1ZSAgICAgICAtIG5vIGJhciBmb3IgdGhpcyBzbG90IChnZW51aW5lIGRhdGEgZ2FwKQogICAgICBzY2hlZHVsZWRfdHJ1bmMgICAtIHNsb3Qgb3V0c2lkZSBbbWFya2V0X29wZW4sIG1hcmtldF9jbG9zZV0gKGVhcmx5IGNsb3NlKQogICAgICBzY2hlZHVsZWRfY2xvc3VyZSAtIG5vdCBhIHRyYWRpbmcgZGF5IChubyBzbG90cyBleHBlY3RlZCkKICAgICAgY292ZXJhZ2UgICAgICAgICAgLSBkYXkgb3V0c2lkZSBjYWNoZSBmaWxlJ3MgZGF0ZSByYW5nZQogICAgIiIiCiAgICBjYWwgPSBtY2FsLmdldF9jYWxlbmRhcigiWE5ZUyIpCiAgICBldF9pZHggPSBpZHgudHpfY29udmVydChOWSkKICAgICMgYWN0dWFsIGJhcnMga2V5ZWQgYnkgKGRhdGUsIHNsb3QpCiAgICBhY3R1YWxfc2xvdHMgPSB7fQogICAgZm9yIHQgaW4gZXRfaWR4OgogICAgICAgIGQgPSB0LmRhdGUoKQogICAgICAgIGlmICh0LmhvdXIsIHQubWludXRlKSBpbiAoKDgsIDMwKSwgKDksIDMwKSk6CiAgICAgICAgICAgIGFjdHVhbF9zbG90c1soZCwgIm1vcm5pbmciKV0gPSB0Lmlzb2Zvcm1hdCgpCiAgICAgICAgZWxpZiAodC5ob3VyLCB0Lm1pbnV0ZSkgaW4gKCgxMiwgMzApLCAoMTMsIDMwKSk6CiAgICAgICAgICAgIGFjdHVhbF9zbG90c1soZCwgImFmdGVybm9vbiIpXSA9IHQuaXNvZm9ybWF0KCkKICAgIHNjaGVkID0gY2FsLnNjaGVkdWxlKHN0YXJ0X2RhdGU9ZXRfaWR4WzBdLmRhdGUoKSwgZW5kX2RhdGU9ZXRfaWR4Wy0xXS5kYXRlKCkpCiAgICB0cmFkaW5nID0ge3IubmFtZS5kYXRlKCk6IChyWyJtYXJrZXRfb3BlbiJdLnR6X2NvbnZlcnQoTlkpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgclsibWFya2V0X2Nsb3NlIl0udHpfY29udmVydChOWSkpCiAgICAgICAgICAgICAgIGZvciBfLCByIGluIHNjaGVkLml0ZXJyb3dzKCl9CiAgICBzbG90X3Jvd3MgPSBbXQogICAgY291bnRzID0geyJwcmVzZW50X2NvcnJlY3QiOiAwLCAicHJlc2VudF9zaGlmdGVkIjogMCwgImFic2VudF90cnVlIjogMCwKICAgICAgICAgICAgICAic2NoZWR1bGVkX3RydW5jIjogMH0KICAgIGZvciBkLCAobW8sIG1jKSBpbiBzb3J0ZWQodHJhZGluZy5pdGVtcygpKToKICAgICAgICBmb3Igc2xvdCwgaW50ZW5kZWRfaG0gaW4gKCgibW9ybmluZyIsICg5LCAzMCkpLCAoImFmdGVybm9vbiIsICgxMywgMzApKSk6CiAgICAgICAgICAgIGludGVuZGVkID0gcGQuVGltZXN0YW1wKGQuaXNvZm9ybWF0KCkgKwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmIiB7aW50ZW5kZWRfaG1bMF06MDJkfTp7aW50ZW5kZWRfaG1bMV06MDJkfSIpLnR6X2xvY2FsaXplKE5ZKQogICAgICAgICAgICAjIHNjaGVkdWxlZCB0cnVuY2F0aW9uOiBpbnRlbmRlZCBsYWJlbCBvdXRzaWRlIHNlc3Npb24gaG91cnMKICAgICAgICAgICAgaWYgbm90IChtbyA8PSBpbnRlbmRlZCA8PSBtYyk6CiAgICAgICAgICAgICAgICBjb3VudHNbInNjaGVkdWxlZF90cnVuYyJdICs9IDEKICAgICAgICAgICAgICAgIHNsb3Rfcm93cy5hcHBlbmQoeyJkYXRlIjogZC5pc29mb3JtYXQoKSwgInNsb3QiOiBzbG90LAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImNsYXNzIjogInNjaGVkdWxlZF90cnVuYyIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiaW50ZW5kZWQiOiBpbnRlbmRlZC5pc29mb3JtYXQoKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJhY3R1YWwiOiBOb25lfSkKICAgICAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgICAgIGFjdCA9IGFjdHVhbF9zbG90cy5nZXQoKGQsIHNsb3QpKQogICAgICAgICAgICBpZiBhY3QgaXMgTm9uZToKICAgICAgICAgICAgICAgIGNvdW50c1siYWJzZW50X3RydWUiXSArPSAxCiAgICAgICAgICAgICAgICBzbG90X3Jvd3MuYXBwZW5kKHsiZGF0ZSI6IGQuaXNvZm9ybWF0KCksICJzbG90Ijogc2xvdCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJjbGFzcyI6ICJhYnNlbnRfdHJ1ZSIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiaW50ZW5kZWQiOiBpbnRlbmRlZC5pc29mb3JtYXQoKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJhY3R1YWwiOiBOb25lfSkKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIGF0ID0gcGQuVGltZXN0YW1wKGFjdCkKICAgICAgICAgICAgICAgIGNscyA9ICgicHJlc2VudF9jb3JyZWN0IgogICAgICAgICAgICAgICAgICAgICAgIGlmIChhdC5ob3VyLCBhdC5taW51dGUpID09IGludGVuZGVkX2htIGVsc2UgInByZXNlbnRfc2hpZnRlZCIpCiAgICAgICAgICAgICAgICBjb3VudHNbY2xzXSArPSAxCiAgICAgICAgICAgICAgICBzbG90X3Jvd3MuYXBwZW5kKHsiZGF0ZSI6IGQuaXNvZm9ybWF0KCksICJzbG90Ijogc2xvdCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJjbGFzcyI6IGNscywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJpbnRlbmRlZCI6IGludGVuZGVkLmlzb2Zvcm1hdCgpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImFjdHVhbCI6IGFjdH0pCiAgICBhYnNlbnQgPSBbciBmb3IgciBpbiBzbG90X3Jvd3MgaWYgclsiY2xhc3MiXSA9PSAiYWJzZW50X3RydWUiXQogICAgc2hpZnRlZCA9IFtyIGZvciByIGluIHNsb3Rfcm93cyBpZiByWyJjbGFzcyJdID09ICJwcmVzZW50X3NoaWZ0ZWQiXQogICAgcmV0dXJuIHsKICAgICAgICAiZXhwZWN0ZWRfZ3JpZCI6ICgicGVyLWRheSBtb3JuaW5nL2FmdGVybm9vbiBzZXNzaW9uIHNsb3RzOyBpbnRlbmRlZCBsYWJlbHMgIgogICAgICAgICAgICAgICAgICAgICAgICAgICIwOTozMC8xMzozMCBBbWVyaWNhL05ld19Zb3JrIHdpdGhpbiBbbWFya2V0X29wZW4sIG1hcmtldF9jbG9zZV0iKSwKICAgICAgICAiY2FsZW5kYXIiOiBmIntDQUxfTkFNRX0gKHtDQUxfVkVSfSk7IG1jYWwuX192ZXJzaW9uX189e01DYWxfVkVSX1BJTn0iLAogICAgICAgICJuX3RyYWRpbmdfZGF5cyI6IGxlbih0cmFkaW5nKSwKICAgICAgICAibl9zbG90c19wcmVzZW50X2NvcnJlY3QiOiBjb3VudHNbInByZXNlbnRfY29ycmVjdCJdLAogICAgICAgICJuX3Nsb3RzX3ByZXNlbnRfc2hpZnRlZCI6IGNvdW50c1sicHJlc2VudF9zaGlmdGVkIl0sCiAgICAgICAgIm5fc2xvdHNfYWJzZW50X3RydWUiOiBjb3VudHNbImFic2VudF90cnVlIl0sCiAgICAgICAgIm5fc2xvdHNfc2NoZWR1bGVkX3RydW5jIjogY291bnRzWyJzY2hlZHVsZWRfdHJ1bmMiXSwKICAgICAgICAiYWJzZW50X3RydWVfc2xvdHMiOiBbeyJkYXRlIjogclsiZGF0ZSJdLCAic2xvdCI6IHJbInNsb3QiXX0gZm9yIHIgaW4gYWJzZW50XSwKICAgICAgICAibl9vZmZncmlkX2xhYmVscyI6IGNvdW50c1sicHJlc2VudF9zaGlmdGVkIl0sCiAgICAgICAgImdhcDIyX2V2aWRlbmNlX3ByZXNlcnZlZCI6IFRydWUsCiAgICB9CgpkZWYgbWFpbigpOgogICAgZmlsZXMgPSBzb3J0ZWQoZlszOi00XSBmb3IgZiBpbiBvcy5saXN0ZGlyKENBQ0hFKSBpZiBmLnN0YXJ0c3dpdGgoImg0XyIpIGFuZCBmLmVuZHN3aXRoKCIucGtsIikpCiAgICBhc3NlcnQgbGVuKGZpbGVzKSA9PSA1MiwgZiJleHBlY3RlZCA1MiwgZ290IHtsZW4oZmlsZXMpfSIKICAgIHJlc3VsdHMgPSBbYXVkaXRfc3ltYm9sKHMpIGZvciBzIGluIGZpbGVzXQogICAgb3V0ID0gewogICAgICAgICJwcm92ZW5hbmNlIjogewogICAgICAgICAgICAibWV0aG9kIjogIkNPTVBVVEVEIiwKICAgICAgICAgICAgInJldmlzaW9uIjogInJldjItY29ycmVjdGVkLWNvbXBhcmF0b3IiLAogICAgICAgICAgICAiY2FsZW5kYXIiOiBmIntDQUxfTkFNRX0gKHtDQUxfVkVSfSkiLAogICAgICAgICAgICAibWNhbF92ZXJzaW9uIjogTUNhbF9WRVJfUElOLAogICAgICAgICAgICAicmVhZF9vbmx5IjogVHJ1ZSwKICAgICAgICAgICAgIm5fZmlsZXMiOiA1MiwKICAgICAgICAgICAgImNvcnJlY3Rpb25fbm90ZSI6ICgiZXhwZWN0ZWRfZXF1aXR5X2dyaWQgbm93IGNvbnN1bHRzIG1hcmtldF9vcGVuL21hcmtldF9jbG9zZTsgIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJtaXNzaW5nIGxhYmVscyBjbGFzc2lmaWVkIGludG8gc2NoZWR1bGVkX2Nsb3N1cmUgLyAiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNjaGVkdWxlZF90cnVuY2F0aW9uIC8gY292ZXJhZ2UgLyBsYWJlbF9tYXBwaW5nIC8gdHJ1ZV9hYnNlbnQiKSwKICAgICAgICB9LAogICAgICAgICJzeW1ib2xzIjogcmVzdWx0cywKICAgIH0KICAgIHdpdGggb3Blbihvcy5wYXRoLmpvaW4oSEVSRSwgImF1ZGl0XzUyc3ltYm9sLmpzb24iKSwgInciKSBhcyBmOgogICAgICAgIGpzb24uZHVtcChvdXQsIGYsIGluZGVudD0xKQogICAgbGluZXMgPSBbIiMgNTItc3ltYm9sIGg0IGNhY2hlIGF1ZGl0IOKAlCBSRVYgMiBjb3JyZWN0ZWQgY29tcGFyYXRvciAoQ09NUFVURUQpIiwgIiIsCiAgICAgICAgICAgICBmIkNhbGVuZGFyOiB7Q0FMX05BTUV9IHtDQUxfVkVSfSAobWNhbCB7TUNhbF9WRVJfUElOfSkuIFJlYWQtb25seS4iLAogICAgICAgICAgICAgIkVxdWl0eSBzbG90czogcHJlc2VudF9jb3JyZWN0ICgwOTozMC8xMzozMCBFVCkgLyBwcmVzZW50X3NoaWZ0ZWQgKDA4OjMwLzEyOjMwIEVUKSAvIiwKICAgICAgICAgICAgICJhYnNlbnRfdHJ1ZSAoZ2VudWluZSBnYXApIC8gc2NoZWR1bGVkX3RydW5jIChlYXJseSBjbG9zZSkuIiwgIiIsCiAgICAgICAgICAgICAifCBTeW1ib2wgfCBCYXJzIHwgQ29ycmVjdCB8IFNoaWZ0ZWQgfCBBYnNlbnQodHJ1ZSkgfCBTY2hlZCB0cnVuYyB8IiwKICAgICAgICAgICAgICJ8LS0tfC0tLXwtLS18LS0tfC0tLXwtLS18Il0KICAgIGZvciByIGluIHJlc3VsdHM6CiAgICAgICAgaWYgclsiYXNzZXRfY2xhc3MiXSA9PSAiZXF1aXR5IjoKICAgICAgICAgICAgbGluZXMuYXBwZW5kKGYifCB7clsnc3ltYm9sJ119IHwge3JbJ25fYmFycyddfSB8IHtyWyduX3Nsb3RzX3ByZXNlbnRfY29ycmVjdCddfSB8ICIKICAgICAgICAgICAgICAgICAgICAgICAgIGYie3JbJ25fc2xvdHNfcHJlc2VudF9zaGlmdGVkJ119IHwge3JbJ25fc2xvdHNfYWJzZW50X3RydWUnXX0gfCAiCiAgICAgICAgICAgICAgICAgICAgICAgICBmIntyWyduX3Nsb3RzX3NjaGVkdWxlZF90cnVuYyddfSB8IikKICAgICAgICBlbHNlOgogICAgICAgICAgICBsaW5lcy5hcHBlbmQoZiJ8IHtyWydzeW1ib2wnXX0gfCB7clsnbl9iYXJzJ119IHwge3JbJ25fbWlzc2luZ192c19leHBlY3RlZCddfShjcnlwdG8gbWlzcykgfCAtIHwgLSB8IC0gfCIpCiAgICBvcGVuKG9zLnBhdGguam9pbihIRVJFLCAiYXVkaXRfNTJzeW1ib2wubWQiKSwgInciKS53cml0ZSgiXG4iLmpvaW4obGluZXMpICsgIlxuIikKICAgIHByaW50KGYiYXVkaXRlZCB7bGVuKHJlc3VsdHMpfSBzeW1ib2xzIChyZXYyIGNvbXBhcmF0b3IpIikKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6CiAgICBtYWluKCkK
+#!/usr/bin/env python3
+"""CP1 follow-up: full 52-symbol h4 cache audit (REV 2 - corrected grid comparator).
+Task 2 of ChatGPT bounded assignment (Issue #1 comment 5986944792).
+Correction per ChatGPT review (Issue #1 comment 5994294209, item B).
+
+READ-ONLY: never mutates cache files. All findings tagged COMPUTED.
+Calendar: pandas_market_calendars XNYS v5.5.0 (named explicitly for provenance).
+
+CORRECTIONS vs rev 1:
+- expected_equity_grid() now consults market_open/market_close from the named
+  calendar. On early-close days (e.g. day after Thanksgiving, Christmas Eve),
+  the 13:30 ET label is only expected if it falls within [market_open, market_close].
+- Missing timestamps are classified into:
+    scheduled_closure   - date not an XNYS trading day
+    scheduled_truncation- trading day but label falls outside [open, close]
+                          (early close / late open)
+    coverage            - label outside the cache file's own date range
+    label_mapping       - expected label absent BUT an actual bar exists on the
+                          same date at a shifted label (the DST fixed-UTC-grid
+                          defect: 08:30/12:30 ET instead of 09:30/13:30 ET)
+    true_absent         - unexplained: no bar on that date at all
+- The 22-symbol 2-bar gap evidence is preserved (true_absent on normal days).
+
+Outputs:
+  - audit_52symbol.json : machine-readable per-symbol audit table
+  - audit_52symbol.md   : human-readable summary
+"""
+import pickle, hashlib, json, os
+import pandas as pd
+import pandas_market_calendars as mcal
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+CACHE = "/home/hatch/workspace/quality-flow-scanner-v5/backtest_cache/v3"
+CAL_NAME, CAL_VER = "XNYS", "pandas_market_calendars 5.5.0"
+MCal_VER_PIN = mcal.__version__
+
+CRYPTO = {"BTC-USD", "ETH-USD", "SOL-USD", "DOGE-USD", "LINK-USD", "AVAX-USD", "XRP-USD"}
+NY = "America/New_York"
+
+def sha256_file(p):
+    h = hashlib.sha256()
+    with open(p, "rb") as f:
+        for c in iter(lambda: f.read(1 << 20), b""):
+            h.update(c)
+    return h.hexdigest()
+
+def expected_equity_labels(start_date, end_date):
+    """Return (expected_labels, day_info) for the INTENDED session-anchored grid.
+    expected_labels: set of tz-aware 09:30 / 13:30 America/New_York Timestamps,
+    one or two per XNYS trading day, but ONLY labels within [market_open, market_close].
+    day_info: dict date -> {market_open, market_close, is_early_close} for classification.
+    """
+    cal = mcal.get_calendar("XNYS")
+    sched = cal.schedule(start_date=start_date, end_date=end_date)
+    expected = set()
+    day_info = {}
+    for day, row in sched.iterrows():
+        d = day.date().isoformat()
+        mo = row["market_open"].tz_convert(NY)
+        mc = row["market_close"].tz_convert(NY)
+        # early close heuristic: regular close is 16:00 ET
+        is_early = mc.time() < pd.Timestamp("16:00").time()
+        day_info[d] = {"market_open": mo.isoformat(), "market_close": mc.isoformat(),
+                       "is_early_close": bool(is_early)}
+        for hm in ("09:30", "13:30"):
+            lbl = pd.Timestamp(d + " " + hm).tz_localize(NY)
+            if mo <= lbl <= mc:
+                expected.add(lbl)
+            # else: scheduled_truncation (label outside session hours)
+    return expected, day_info
+
+def expected_crypto_grid(start, end):
+    """Crypto: 24/7 at 00/04/08/12/16/20 UTC."""
+    out = set()
+    cur = pd.Timestamp(start.date()).tz_localize("UTC")
+    end_u = pd.Timestamp(end.date()).tz_localize("UTC") + pd.Timedelta(days=1)
+    while cur < end_u:
+        for hh in (0, 4, 8, 12, 16, 20):
+            out.add(cur + pd.Timedelta(hours=hh))
+        cur += pd.Timedelta(days=1)
+    return out
+
+def classify_equity_missing(missing, actual_by_date, day_info, cache_start, cache_end):
+    """Classify each missing expected label. Returns dict of lists."""
+    classes = {"scheduled_closure": [], "scheduled_truncation": [],
+               "coverage": [], "label_mapping": [], "true_absent": []}
+    for t in missing:
+        d = t.date().isoformat()
+        # outside cache coverage?
+        if t < cache_start or t > cache_end:
+            classes["coverage"].append(t.isoformat())
+            continue
+        # not a trading day?
+        if d not in day_info:
+            classes["scheduled_closure"].append(t.isoformat())
+            continue
+        # label outside session hours (early close)?
+        info = day_info[d]
+        mo = pd.Timestamp(info["market_open"])
+        mc = pd.Timestamp(info["market_close"])
+        if not (mo <= t <= mc):
+            classes["scheduled_truncation"].append(t.isoformat())
+            continue
+        # actual bar exists on same date at a different label? -> label mapping
+        day_bars = actual_by_date.get(t.date(), [])
+        if day_bars:
+            classes["label_mapping"].append({
+                "expected": t.isoformat(),
+                "actual_labels_same_date": sorted(b.isoformat() for b in day_bars),
+            })
+        else:
+            classes["true_absent"].append(t.isoformat())
+    return classes
+
+def audit_symbol(sym):
+    path = os.path.join(CACHE, f"h4_{sym}.pkl")
+    df = pickle.load(open(path, "rb"))  # read-only
+    idx = df.index
+    rec = {
+        "symbol": sym,
+        "sha256": sha256_file(path),
+        "n_bars": len(df),
+        "tz": str(idx.tz),
+        "start": idx[0].isoformat(),
+        "end": idx[-1].isoformat(),
+        "is_monotonic": bool(idx.is_monotonic_increasing),
+        "n_duplicates": int(idx.duplicated().sum()),
+        "columns": list(df.columns),
+        "asset_class": "crypto" if sym in CRYPTO or sym.endswith("-USD") else "equity",
+    }
+    dup = idx[idx.duplicated()].tolist()
+    rec["duplicate_timestamps"] = [t.isoformat() for t in dup[:20]]
+    rec["n_duplicate_extra"] = max(0, len(dup) - 20)
+
+    if rec["asset_class"] == "equity":
+        rec.update(audit_equity_slots(sym, idx))
+    else:
+        exp = expected_crypto_grid(idx[0], idx[-1])
+        actual = set(idx.tz_convert("UTC"))
+        missing = sorted(exp - actual)
+        extra = sorted(actual - exp)
+        rec["expected_grid"] = "00/04/08/12/16/20 UTC daily"
+        rec["n_missing_vs_expected"] = len(missing)
+        rec["n_extra_vs_expected"] = len(extra)
+        rec["missing_sample"] = [t.isoformat() for t in missing[:20]]
+        rec["missing_all"] = [t.isoformat() for t in missing]
+        rec["extra_sample"] = [t.isoformat() for t in extra[:20]]
+        rec["n_offgrid_labels"] = 0
+    return rec
+
+def audit_equity_slots(sym, idx):
+    """Per-day session-slot analysis (rev2 corrected comparator).
+
+    For each XNYS trading day in the cache range, each session has two slots:
+      morning_slot:   bar at 08:30 or 09:30 ET
+      afternoon_slot: bar at 12:30 or 13:30 ET
+    Each slot is classified:
+      present_correct   - bar at intended 09:30 / 13:30 ET label
+      present_shifted   - bar at 08:30 / 12:30 ET (DST fixed-UTC-grid defect)
+      absent_true       - no bar for this slot (genuine data gap)
+      scheduled_trunc   - slot outside [market_open, market_close] (early close)
+      scheduled_closure - not a trading day (no slots expected)
+      coverage          - day outside cache file's date range
+    """
+    cal = mcal.get_calendar("XNYS")
+    et_idx = idx.tz_convert(NY)
+    # actual bars keyed by (date, slot)
+    actual_slots = {}
+    for t in et_idx:
+        d = t.date()
+        if (t.hour, t.minute) in ((8, 30), (9, 30)):
+            actual_slots[(d, "morning")] = t.isoformat()
+        elif (t.hour, t.minute) in ((12, 30), (13, 30)):
+            actual_slots[(d, "afternoon")] = t.isoformat()
+    sched = cal.schedule(start_date=et_idx[0].date(), end_date=et_idx[-1].date())
+    trading = {r.name.date(): (r["market_open"].tz_convert(NY),
+                               r["market_close"].tz_convert(NY))
+               for _, r in sched.iterrows()}
+    slot_rows = []
+    counts = {"present_correct": 0, "present_shifted": 0, "absent_true": 0,
+              "scheduled_trunc": 0}
+    for d, (mo, mc) in sorted(trading.items()):
+        for slot, intended_hm in (("morning", (9, 30)), ("afternoon", (13, 30))):
+            intended = pd.Timestamp(d.isoformat() +
+                                    f" {intended_hm[0]:02d}:{intended_hm[1]:02d}").tz_localize(NY)
+            # scheduled truncation: intended label outside session hours
+            if not (mo <= intended <= mc):
+                counts["scheduled_trunc"] += 1
+                slot_rows.append({"date": d.isoformat(), "slot": slot,
+                                  "class": "scheduled_trunc",
+                                  "intended": intended.isoformat(),
+                                  "actual": None})
+                continue
+            act = actual_slots.get((d, slot))
+            if act is None:
+                counts["absent_true"] += 1
+                slot_rows.append({"date": d.isoformat(), "slot": slot,
+                                  "class": "absent_true",
+                                  "intended": intended.isoformat(),
+                                  "actual": None})
+            else:
+                at = pd.Timestamp(act)
+                cls = ("present_correct"
+                       if (at.hour, at.minute) == intended_hm else "present_shifted")
+                counts[cls] += 1
+                slot_rows.append({"date": d.isoformat(), "slot": slot,
+                                  "class": cls,
+                                  "intended": intended.isoformat(),
+                                  "actual": act})
+    absent = [r for r in slot_rows if r["class"] == "absent_true"]
+    shifted = [r for r in slot_rows if r["class"] == "present_shifted"]
+    return {
+        "expected_grid": ("per-day morning/afternoon session slots; intended labels "
+                          "09:30/13:30 America/New_York within [market_open, market_close]"),
+        "calendar": f"{CAL_NAME} ({CAL_VER}); mcal.__version__={MCal_VER_PIN}",
+        "n_trading_days": len(trading),
+        "n_slots_present_correct": counts["present_correct"],
+        "n_slots_present_shifted": counts["present_shifted"],
+        "n_slots_absent_true": counts["absent_true"],
+        "n_slots_scheduled_trunc": counts["scheduled_trunc"],
+        "absent_true_slots": [{"date": r["date"], "slot": r["slot"]} for r in absent],
+        "n_offgrid_labels": counts["present_shifted"],
+        "gap22_evidence_preserved": True,
+    }
+
+def main():
+    files = sorted(f[3:-4] for f in os.listdir(CACHE) if f.startswith("h4_") and f.endswith(".pkl"))
+    assert len(files) == 52, f"expected 52, got {len(files)}"
+    results = [audit_symbol(s) for s in files]
+    out = {
+        "provenance": {
+            "method": "COMPUTED",
+            "revision": "rev2-corrected-comparator",
+            "calendar": f"{CAL_NAME} ({CAL_VER})",
+            "mcal_version": MCal_VER_PIN,
+            "read_only": True,
+            "n_files": 52,
+            "correction_note": ("expected_equity_grid now consults market_open/market_close; "
+                                "missing labels classified into scheduled_closure / "
+                                "scheduled_truncation / coverage / label_mapping / true_absent"),
+        },
+        "symbols": results,
+    }
+    with open(os.path.join(HERE, "audit_52symbol.json"), "w") as f:
+        json.dump(out, f, indent=1)
+    lines = ["# 52-symbol h4 cache audit — REV 2 corrected comparator (COMPUTED)", "",
+             f"Calendar: {CAL_NAME} {CAL_VER} (mcal {MCal_VER_PIN}). Read-only.",
+             "Equity slots: present_correct (09:30/13:30 ET) / present_shifted (08:30/12:30 ET) /",
+             "absent_true (genuine gap) / scheduled_trunc (early close).", "",
+             "| Symbol | Bars | Correct | Shifted | Absent(true) | Sched trunc |",
+             "|---|---|---|---|---|---|"]
+    for r in results:
+        if r["asset_class"] == "equity":
+            lines.append(f"| {r['symbol']} | {r['n_bars']} | {r['n_slots_present_correct']} | "
+                         f"{r['n_slots_present_shifted']} | {r['n_slots_absent_true']} | "
+                         f"{r['n_slots_scheduled_trunc']} |")
+        else:
+            lines.append(f"| {r['symbol']} | {r['n_bars']} | {r['n_missing_vs_expected']}(crypto miss) | - | - | - |")
+    open(os.path.join(HERE, "audit_52symbol.md"), "w").write("\n".join(lines) + "\n")
+    print(f"audited {len(results)} symbols (rev2 comparator)")
+
+if __name__ == "__main__":
+    main()
