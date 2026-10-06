@@ -71,3 +71,14 @@ size limit; visual content is unchanged.
 ## Manifest
 
 `SHA256_MANIFEST.txt` lists SHA-256 hashes of all charts and tables.
+
+## Publication note
+
+Text files (README, selection, renderer, tables, manifest) are published to
+the repo `main` branch via the GitHub MCP connector and verified byte-identical
+by Git blob SHA. The six PNG charts are **local-only**: the MCP connector's
+`create_or_update_file`/`push_files` tools accept text content only (the server
+UTF-8-encodes the content string before base64; binary bytes do not round-trip —
+verified by a probe upload that produced a corrupted blob, since removed).
+Charts are reproducible byte-identical from `render_pilot_charts.py`; their
+SHA-256 hashes are in the manifest for independent verification.
