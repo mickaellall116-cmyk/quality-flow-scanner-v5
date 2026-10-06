@@ -63,8 +63,10 @@ Reads (relative to the repo root):
 
 Writes `charts/`, `tables/`, and `SHA256_MANIFEST.txt` into the output dir.
 
-Note: render at dpi>=150. dpi=110 triggers an Agg subpixel rasterization
-artifact (spurious gray box) in matplotlib 3.6.3.
+Note: render at dpi>=130. dpi=110 triggers an Agg subpixel rasterization
+artifact (spurious gray box) in matplotlib 3.6.3. Charts are saved as
+palette-32 PNGs to stay under the GitHub MCP connector's single-argument
+size limit; visual content is unchanged.
 
 ## Manifest
 

@@ -157,7 +157,9 @@ def main():
                 ])
 
         # ---- chart ----
-        fig, ax = plt.subplots(figsize=(14, 7))
+        # figsize (12,6) dpi=130: balances readability against the GitHub MCP
+        # connector's ~128KB single-argument limit (raw-text upload).
+        fig, ax = plt.subplots(figsize=(12, 6))
         xs = mdates.date2num(w.index.to_pydatetime())
         width = 0.12
         up = w["Close"] >= w["Open"]
@@ -215,9 +217,18 @@ def main():
         fig.tight_layout(rect=[0, 0.03, 1, 1])
         png_path = os.path.join(charts_dir, f"{tid}_{sym}.png")
         # dpi=150: dpi=110 triggers an Agg subpixel rasterization artifact
-        # (spurious gray box) in matplotlib 3.6.3; 150+ is clean.
-        fig.savefig(png_path, dpi=150)
+        # (spurious gray box) in matplotlib 3.6.3; 130+ is clean.
+        # Palette-32: keeps PNGs small enough for the GitHub MCP connector's
+        # ~128KB single-argument limit (raw text upload, no base64).
+        import io as _io
+        from PIL import Image as _Image
+        _buf = _io.BytesIO()
+        fig.savefig(_buf, dpi=130, format="png")
         plt.close(fig)
+        _buf.seek(0)
+        _img = _Image.open(_buf).convert(
+            "P", palette=_Image.ADAPTIVE, colors=32)
+        _img.save(png_path, format="PNG", optimize=True)
 
         for p in (png_path, csv_path):
             manifest_rows.append((p, sha256_file(p)))
