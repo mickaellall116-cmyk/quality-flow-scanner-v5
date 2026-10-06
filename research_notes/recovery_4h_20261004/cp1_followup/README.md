@@ -12,12 +12,12 @@
 | `audit_52symbol.json` | Machine-readable per-symbol audit: bars, tz, start/end, monotonicity, duplicates, missing/extra vs expected grid, off-grid label counts | COMPUTED |
 | `audit_52symbol.md` | Human-readable audit summary table | COMPUTED |
 | `trade_intersection.py` | Reproducible intersection code | — |
-| `trade_intersection.json` | Machine-readable: all 240 trades with EST-regime flags and gap references (T145 PFE, T146 GOOGL, T192 SOL) | COMPUTED |
+| `trade_intersection.json` | Machine-readable: all 240 trades with EST-regime flags and gap references (T145 PFE, T146 GOOGL). T192 SOL intersection WITHDRAWN — zero SOL trades intersect exact gaps. 51 equity shifted-regime entries + 31 crypto calendar entries. | COMPUTED |
 | `FINDINGS.md` | Concise findings/unknowns table for all 6 tasks, every finding tagged COMPUTED / SOURCE/CODE VERIFIED / REPRODUCED / UNRESOLVED | — |
 
 ## Reading notes
 
-- `audit_52symbol.json`: for equities, "missing_vs_expected" (339) counts intended-grid (09:30/13:30 ET) bars absent from the actual UTC-anchored cache — this IS the grid shift, not 339 unexplained gaps. True unexplained gaps are the 2-bar deficit on 22 symbols (see FINDINGS.md Task 2).
+- `audit_52symbol.json`: XNYS comparator classifies slots as 14,986 shifted (the DST fixed-UTC-grid defect scope) + 44 true absent (2 each on 22 symbols: 2026-01-30 afternoon + 2026-02-02 morning) + 225 scheduled early-close truncations. The 82 calendar-period entries split into 51 equity shifted-regime entries (defect exposure) + 31 crypto EST-calendar entries (calendar membership only, NOT a defect).
 - `trade_intersection.json`: "gap_refs" enumerates temporal coincidence only. The file's `disclaimer` field states plainly that overlap is not proof of performance impact.
 - Originals preserved: no cache file was modified; hashes pinned before inspection.
 
