@@ -2,11 +2,16 @@
  "package": [
   {
    "path": "research_notes/recovery_4h_20261004/cp1_followup/FINDINGS.md",
-   "sha256": "23b227d2edc79c00e1367db22cedfce57fb4e71cf34017b2a2a02a4590f1231c"
+   "sha256": "96fc191a6a74c9ad2557ab998a4999648895fa9cdf633d0bbd90d10be9e57f78"
+  },
+  {
+   "path": "research_notes/recovery_4h_20261004/cp1_followup/PROVENANCE_SEARCH.md",
+   "sha256": "e118c89ba349171e02154c6b52eade2d4d207b2628fb92a8154b67a3c5d2f098",
+   "note": "Provenance search record: how candidate source files were located; documents the search, not new evidence."
   },
   {
    "path": "research_notes/recovery_4h_20261004/cp1_followup/README.md",
-   "sha256": "e972573dee4852503951e7d1c7e89f19b2fcdaec6fbbbb9a8f6d8104a35d88ab"
+   "sha256": "326e63ef4ae989560a29ddc0e1f7fa2a06ed83af08f24ddf351b8c5d4ad5375c"
   },
   {
    "path": "research_notes/recovery_4h_20261004/cp1_followup/audit_52symbol.json",
@@ -28,6 +33,31 @@
    "path": "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.json",
    "sha256": "02608fd49331e5d795ac678440c7d9792f74d577eeb454d7bd68686b234fd872",
    "note": "Canonical shard-reconstructed form (4 shards concatenated, SHA-256 of minified JSON). Local pretty-printed copy is content-identical."
+  },
+  {
+   "path": "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.json.INDEX",
+   "sha256": "305e865984c7db89b67c372f20c1079c4335377f1bd08048bc43c716daf8cf0c",
+   "note": "Shard index: file list in reassembly order, total chars, canonical SHA-256 of reassembled form."
+  },
+  {
+   "path": "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.json.shard00",
+   "sha256": "d0aa64980eb168d99613a159c6e16aab08e1d775fb083d983d793ede8b26e4ee",
+   "note": "Shard 1 of 4 of trade_intersection.json (canonical minified form). Concatenate shard00-03 in order; SHA-256 of concatenation = 02608fd49331e5d795ac678440c7d9792f74d577eeb454d7bd68686b234fd872."
+  },
+  {
+   "path": "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.json.shard01",
+   "sha256": "eaa387df1fee7b06248bc5bf371c92dc5a4bbf76ed4600ea6819ad0a17133846",
+   "note": "Shard 2 of 4 of trade_intersection.json (canonical minified form)."
+  },
+  {
+   "path": "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.json.shard02",
+   "sha256": "e3d2da5aa0281cc01849625cd38521bdbe5a9bac7c9f92dec7682ac7900474e8",
+   "note": "Shard 3 of 4 of trade_intersection.json (canonical minified form)."
+  },
+  {
+   "path": "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.json.shard03",
+   "sha256": "578760235d2390e821ede5220e493fa137004a7155033aa9942e4b68d9f2a397",
+   "note": "Shard 4 of 4 of trade_intersection.json (canonical minified form)."
   },
   {
    "path": "research_notes/recovery_4h_20261004/cp1_followup/trade_intersection.py",
