@@ -1,6 +1,7 @@
-# Research Loop — State Machine (v1)
+# Research Loop — State Machine (v1.1)
 
 Per Issue #1 comment 6044381696 §2. Research-only.
+v1.1: shared gate path per ChatGPT adjudication 6047556037 (see §8).
 
 ## States
 
@@ -41,3 +42,31 @@ QUEUED → DESIGN → READY → RUNNING → EVIDENCE_READY → REVIEW → PASS
 - **Claude:** independent FULL/TARGETED audits at designated gates.
 - **Mike:** final authority on all kill/promotion/deployment decisions.
 - **Watch (bridge watcher):** coordinates; does NOT execute Muse's runtime or invoke Claude.
+
+## 8. v1.1 enforcement gate (ChatGPT 6047556037)
+
+The v1 fixtures demonstrated happy paths, not enforceable invariants.
+v1.1 adds ONE shared gate path that every transition and every dispatch
+must pass through — there is no bypass:
+
+1. **Transition legality** — the requested `from → to` must be in the
+   transition table above.
+2. **READY gate** — entering `READY` requires all preregistration fields
+   present AND valid against the real registry schema (`rule_spec_version`,
+   `trial_budget.allocated`, `dataset_pin`, `acceptance_criteria`,
+   `baseline_design`). `UNKNOWN`, missing, or invalid values → blocked and
+   routed to `HOLD` naming the blocker. `repair_budget.allocated_rounds`
+   must be a bounded number. Dependencies that are experiment IDs must
+   resolve to `PASS`.
+3. **RUNNING gate** — a second active `RUNNING` execution is prohibited.
+4. **Dispatch** routes through the same gate: only `READY → RUNNING`
+   dispatches. Dispatch on `QUEUED`/`DESIGN` is blocked.
+5. **ID immutability** — `add()` refuses an existing experiment ID
+   (including killed records). Revival requires a new ID.
+6. **Persistence** — task log and message ledger survive save/load/restart;
+   idempotency holds across restarts.
+7. **Message evidence** — `SENT`, `DELIVERED`, `ACK`, `WORK_RESULT` are
+   separate fields, never a replacing status.
+
+Fixtures: `fixtures/test_gates.py` (21/21 pass), output in
+`fixtures/fixture_output.txt`.
