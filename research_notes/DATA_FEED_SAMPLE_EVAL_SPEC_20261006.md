@@ -24,7 +24,12 @@ These are discrepancy-screen design fixes, not new performance experiments.
 ## Sample design (small, read-only, before buying)
 
 - **Symbols:** ~12–20, chosen adversarially: one with an in-window split, one with an in-window dividend, one low-liquidity name, one delisted symbol, plus liquid large-caps for baseline.
-- **Window:** overlapping our existing Yahoo 1H cache so every comparison is session-for-session against a known reference.
+- **Window:** session-for-session comparison against a Yahoo 1H **prospective
+  capture** (pulled at pilot time with request/receipt timestamps per [B3]).
+  **No retained Yahoo 1H cache exists** — the retained `backtest_cache/v3`
+  files are 4H on the defective grid and are not a 1H comparator. Never imply
+  an overlapping retained cache where none exists (corrected per ChatGPT
+  6030775964).
 - **Cost:** use only free tiers/trials; no paid commitment until §Gate.
 - **Vendor list (free/low-cost first):** Tiingo IEX intraday (already an observer, see §Tiingo note), EODHD, Benzinga (both named in the earlier free/low-cost tasking), and any other candidate ChatGPT names. Mike has declined $950/mo Intrinio/Zacks — do not propose them as the answer.
 - **[B6]** **Twelve Data may enter this screen** (Mike 2026-10-06).
