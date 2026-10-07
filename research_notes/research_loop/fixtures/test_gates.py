@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
 """
 Synthetic fixtures for the research-loop contract (Issue #1 6044381696 §7).
-Corrected per ChatGPT adjudication 6047556037 (v1.1).
+Corrected per ChatGPT adjudication 6047556037 (v1.1) and 6048255893 (v1.2).
 
-v1.1 changes:
-  - ONE shared gate path (`_gate`) for ALL transitions and dispatch.
-  - `transition(DESIGN, READY)` routes through the preregistration gate
-    (no bypass).
-  - `try_ready` REJECTS UNKNOWN values, invalid budgets, unresolved deps.
-  - `add()` PREVENTS ID overwrite (killed IDs stay killed).
-  - Field names validated against the real registry.json schema.
-  - task_log + message_ledger persist across save/load (JSON file).
-  - Second active RUNNING execution prohibited.
-  - Message evidence: separate SENT/DELIVERED/ACK/WORK_RESULT fields,
-    never a replacing status.
-  - ChatGPT's counterexamples added as fixtures F6–F13.
+v1.2 changes (final scaffold allocation):
+  - Absent dependency IDs REJECTED unless explicitly typed as external
+    prerequisites {"external_id": ..., "evidence_pin": ...} with a
+    nonempty separately-verified evidence pin.
+  - Budgets validated: integers (not bool), >= 0, used <= allocated,
+    for both trial_budget and repair_budget; unit must be nonempty str.
+  - dispatch() requires a nonempty immutable evidence pin.
+  - save() is atomic (temp + os.replace + fsync); Registry documented
+    as single-process only (no interprocess lock claimed).
+  - New fixtures F15–F17.
 
 Run: python3 test_gates.py
 Exit 0 = all fixtures pass.
@@ -79,15 +77,25 @@ class Registry:
             self._load()
 
     # ---- persistence ----
+    # Single-process only: no interprocess lock. Writes are atomic
+    # (temp file + os.replace + fsync) so a reader never sees a torn
+    # file, but two concurrent writers would lose updates. Do NOT run
+    # two Registry writers against the same persist_path, and do not
+    # claim concurrency safety from these in-memory fixtures.
     def save(self):
         if not self.persist_path:
             return
-        with open(self.persist_path, "w") as f:
-            json.dump({
-                "experiments": self.experiments,
-                "task_log": self.task_log,
-                "message_ledger": self.message_ledger,
-            }, f, indent=1)
+        payload = json.dumps({
+            "experiments": self.experiments,
+            "task_log": self.task_log,
+            "message_ledger": self.message_ledger,
+        }, indent=1)
+        tmp = self.persist_path + ".tmp"
+        with open(tmp, "w") as f:
+            f.write(payload)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, self.persist_path)
 
     def _load(self):
         with open(self.persist_path) as f:
@@ -162,31 +170,80 @@ class Registry:
         """Public transition — routes through the shared gate. No bypass."""
         return self._gate(exp_id, to_state, justification, decision_ref)
 
+    @staticmethod
+    def _valid_budget_numbers(allocated, used):
+        """Both must be integers (bool excluded), >= 0, used <= allocated.
+        (ChatGPT 6048255893 probe 2.)"""
+        for v in (allocated, used):
+            if isinstance(v, bool) or not isinstance(v, int):
+                return False
+            if v < 0:
+                return False
+        return used <= allocated
+
     def _check_ready_requirements(self, exp):
         """Reject missing/UNKNOWN preregistration, invalid budgets,
-        unresolved dependencies. (ChatGPT 6047556037)."""
+        unresolved or absent dependencies. (ChatGPT 6047556037, 6048255893)."""
         problems = []
         for field, label in READY_FIELD_MAP.items():
             v = exp.get(field)
             if not v or v == "UNKNOWN":
                 problems.append(f"{field} ({label}) missing or UNKNOWN")
-        # trial_budget.allocated must be a real allocation
+        # trial_budget: numeric, nonnegative, used <= allocated, integer
         tb = exp.get("trial_budget")
-        if not isinstance(tb, dict) or tb.get("allocated") in (None, "UNKNOWN"):
-            problems.append("trial_budget.allocated missing or UNKNOWN")
-        # repair_budget must be a valid bounded budget
+        if not isinstance(tb, dict):
+            problems.append("trial_budget invalid (not an object)")
+        else:
+            if not self._valid_budget_numbers(tb.get("allocated"),
+                                             tb.get("used")):
+                problems.append(
+                    f"trial_budget invalid: allocated={tb.get('allocated')!r} "
+                    f"used={tb.get('used')!r} "
+                    "(need integers, >= 0, used <= allocated)")
+            unit = tb.get("unit")
+            if unit is not None and (
+                    not isinstance(unit, str) or not unit.strip()):
+                problems.append("trial_budget.unit must be a nonempty string")
+        # repair_budget: same numeric discipline
         rb = exp.get("repair_budget")
         if not isinstance(rb, dict):
             problems.append("repair_budget invalid (not an object)")
-        elif rb.get("allocated_rounds") in (None, "UNKNOWN"):
-            problems.append("repair_budget.allocated_rounds missing or UNKNOWN")
-        # dependencies must resolve to PASSed experiments (if they are experiment IDs)
+        else:
+            if not self._valid_budget_numbers(rb.get("allocated_rounds"),
+                                             rb.get("used_rounds")):
+                problems.append(
+                    "repair_budget invalid: "
+                    f"allocated_rounds={rb.get('allocated_rounds')!r} "
+                    f"used_rounds={rb.get('used_rounds')!r} "
+                    "(need integers, >= 0, used <= allocated)")
+        # dependencies: strings must be registry IDs; absent IDs rejected
+        # unless explicitly typed as external prerequisites with a
+        # nonempty separately-verified evidence pin. (ChatGPT 6048255893)
         for dep in exp.get("dependencies") or []:
-            if dep in self.experiments:
-                st = self.experiments[dep]["state"]
-                if st != "PASS":
+            if isinstance(dep, str):
+                if dep in self.experiments:
+                    st = self.experiments[dep]["state"]
+                    if st != "PASS":
+                        problems.append(
+                            f"dependency {dep} unresolved (state={st})")
+                else:
                     problems.append(
-                        f"dependency {dep} unresolved (state={st})")
+                        f"dependency {dep} absent from registry — rejected "
+                        "unless typed as an external prerequisite with "
+                        "verified evidence")
+            elif isinstance(dep, dict):
+                ext_id = dep.get("external_id")
+                ev = dep.get("evidence_pin")
+                if not ext_id or not isinstance(ext_id, str):
+                    problems.append(
+                        f"external dependency missing external_id: {dep!r}")
+                elif (not isinstance(ev, str) or not ev.strip()):
+                    problems.append(
+                        f"external prerequisite {ext_id} lacks a verified "
+                        "evidence pin")
+                # else: accepted as external prerequisite
+            else:
+                problems.append(f"dependency entry malformed: {dep!r}")
         return (len(problems) == 0), problems
 
     def try_ready(self, exp_id):
@@ -196,7 +253,12 @@ class Registry:
     def dispatch(self, exp_id, task_revision, evidence_pin=""):
         """Dispatch routes through the shared gate: only READY -> RUNNING
         is permitted. QUEUED/DESIGN dispatch is blocked (ChatGPT 6047556037:
-        dispatch on QUEUED must not return 'dispatched')."""
+        dispatch on QUEUED must not return 'dispatched').
+        A nonempty immutable evidence/spec pin is REQUIRED (ChatGPT
+        6048255893): it is part of the idempotency key and an empty pin
+        is rejected before any state change."""
+        if not isinstance(evidence_pin, str) or not evidence_pin.strip():
+            return False, "dispatch requires a nonempty immutable evidence pin"
         key = [exp_id, task_revision, evidence_pin]
         if key in self.task_log:
             return False, "duplicate suppressed"
@@ -446,6 +508,65 @@ ok5, _ = r.transition("EXP-FIXTURE-14", "PASS", "claim accepted", "fixture")
 check("F14 DESIGN->READY->RUNNING->EVIDENCE_READY->REVIEW->PASS via gate",
       all([ok1, ok2, ok3, ok4, ok5])
       and r.experiments["EXP-FIXTURE-14"]["state"] == "PASS")
+
+# ---- Fixture 15 (ChatGPT 6048255893 probe 1): absent dependency ID ----
+r = Registry()
+e = preregistered_exp("EXP-FIXTURE-15")
+e["dependencies"] = ["EXP-NOT-IN-REGISTRY"]
+r.add(e)
+ok, msg = r.try_ready("EXP-FIXTURE-15")
+check("F15 absent dependency ID rejected",
+      not ok and "EXP-NOT-IN-REGISTRY" in msg
+      and r.experiments["EXP-FIXTURE-15"]["state"] == "HOLD", msg)
+
+# ---- Fixture 15b: explicitly typed external prerequisite accepted ----
+r = Registry()
+e = preregistered_exp("EXP-FIXTURE-15B")
+e["dependencies"] = [{"external_id": "twelvedata-free-tier-docs",
+                      "evidence_pin": "docs-sha-abc123"}]
+r.add(e)
+ok, msg = r.try_ready("EXP-FIXTURE-15B")
+check("F15b typed external prerequisite with evidence accepted", ok, msg)
+
+# ---- Fixture 15c: external prerequisite without evidence rejected ----
+r = Registry()
+e = preregistered_exp("EXP-FIXTURE-15C")
+e["dependencies"] = [{"external_id": "twelvedata-free-tier-docs",
+                      "evidence_pin": ""}]
+r.add(e)
+ok, msg = r.try_ready("EXP-FIXTURE-15C")
+check("F15c external prerequisite without evidence rejected",
+      not ok and r.experiments["EXP-FIXTURE-15C"]["state"] == "HOLD", msg)
+
+# ---- Fixture 16 (ChatGPT 6048255893 probe 2): negative budgets ----
+r = Registry()
+e = preregistered_exp("EXP-FIXTURE-16")
+e["trial_budget"] = {"allocated": -5, "used": 9, "unit": "runs"}
+e["repair_budget"] = {"allocated_rounds": -1, "used_rounds": 4}
+r.add(e)
+ok, msg = r.try_ready("EXP-FIXTURE-16")
+check("F16 negative/inconsistent budgets rejected",
+      not ok and r.experiments["EXP-FIXTURE-16"]["state"] == "HOLD", msg)
+
+# ---- Fixture 16b: used > allocated rejected ----
+r = Registry()
+e = preregistered_exp("EXP-FIXTURE-16B")
+e["trial_budget"] = {"allocated": 5, "used": 9, "unit": "runs"}
+r.add(e)
+ok, msg = r.try_ready("EXP-FIXTURE-16B")
+check("F16b trial used > allocated rejected",
+      not ok and r.experiments["EXP-FIXTURE-16B"]["state"] == "HOLD", msg)
+
+# ---- Fixture 17 (ChatGPT 6048255893 probe 3): empty evidence pin ----
+r = Registry()
+r.add(preregistered_exp("EXP-FIXTURE-17"))
+r.transition("EXP-FIXTURE-17", "READY", "ready", "fixture")
+ok, msg = r.dispatch("EXP-FIXTURE-17", "rev-a", "")
+check("F17 dispatch with empty evidence pin rejected",
+      not ok and "nonempty" in msg
+      and r.experiments["EXP-FIXTURE-17"]["state"] == "READY", msg)
+ok2, _ = r.dispatch("EXP-FIXTURE-17", "rev-a", "pin-1")
+check("F17 dispatch with nonempty pin still works", ok2)
 
 # ---- Summary ----
 failed = [n for n, c, _ in results if not c]

@@ -8,9 +8,9 @@
 [PASS] F5 KILL is terminal (no direct revival)
 [PASS] F6 dispatch on QUEUED blocked (not 'dispatched') — dispatch blocked: illegal transition QUEUED -> RUNNING
 [PASS] F7 direct DESIGN->READY without preregistration blocked — READY blocked, routed to HOLD: ['rule_spec_version (preregistered rules) missing or UNKNOWN', 'dataset_pin (data provenance) missing or UNKNOWN', 'acceptance_criteria (acceptance criteria) missing or UNKNOWN', 'baseline_design (baseline design) missing or UNKNOWN']
-[PASS] F8 try_ready rejects all-UNKNOWN preregistration — READY blocked, routed to HOLD: ['rule_spec_version (preregistered rules) missing or UNKNOWN', 'dataset_pin (data provenance) missing or UNKNOWN', 'acceptance_criteria (acceptance criteria) missing or UNKNOWN', 'baseline_design (baseline design) missing or UNKNOWN', 'trial_budget.allocated missing or UNKNOWN']
+[PASS] F8 try_ready rejects all-UNKNOWN preregistration — READY blocked, routed to HOLD: ['rule_spec_version (preregistered rules) missing or UNKNOWN', 'dataset_pin (data provenance) missing or UNKNOWN', 'acceptance_criteria (acceptance criteria) missing or UNKNOWN', 'baseline_design (baseline design) missing or UNKNOWN', "trial_budget invalid: allocated='UNKNOWN' used=0 (need integers, >= 0, used <= allocated)"]
 [PASS] F8b try_ready rejects unresolved dependency — READY blocked, routed to HOLD: ['dependency EXP-DEP unresolved (state=DESIGN)']
-[PASS] F8c try_ready rejects UNKNOWN repair budget — READY blocked, routed to HOLD: ['repair_budget.allocated_rounds missing or UNKNOWN']
+[PASS] F8c try_ready rejects UNKNOWN repair budget — READY blocked, routed to HOLD: ["repair_budget invalid: allocated_rounds='UNKNOWN' used_rounds=0 (need integers, >= 0, used <= allocated)"]
 [PASS] F9 add(existing killed ID) refused — no overwrite — ID EXP-FIXTURE-9 already exists (state=KILL) — overwrite prohibited; use a new experiment_id
 [PASS] F10 non-schema field name rejected — fields not in registry schema: ['preregistered_rules']
 [PASS] F11 task_log survives restart — task_log=[['EXP-FIXTURE-11', 'rev-a', 'pin-1']]
@@ -19,5 +19,12 @@
 [PASS] F12 second active RUNNING prohibited — dispatch blocked: second active execution prohibited; already running: EXP-FIXTURE-12A
 [PASS] F13 SENT and ACK recorded as separate fields — ledger={'SENT': {'evidence': 'slack-ts-456'}, 'ACK': {'evidence': 'explicit-ack'}}
 [PASS] F14 DESIGN->READY->RUNNING->EVIDENCE_READY->REVIEW->PASS via gate
+[PASS] F15 absent dependency ID rejected — READY blocked, routed to HOLD: ['dependency EXP-NOT-IN-REGISTRY absent from registry — rejected unless typed as an external prerequisite with verified evidence']
+[PASS] F15b typed external prerequisite with evidence accepted — ok
+[PASS] F15c external prerequisite without evidence rejected — READY blocked, routed to HOLD: ['external prerequisite twelvedata-free-tier-docs lacks a verified evidence pin']
+[PASS] F16 negative/inconsistent budgets rejected — READY blocked, routed to HOLD: ['trial_budget invalid: allocated=-5 used=9 (need integers, >= 0, used <= allocated)', 'repair_budget invalid: allocated_rounds=-1 used_rounds=4 (need integers, >= 0, used <= allocated)']
+[PASS] F16b trial used > allocated rejected — READY blocked, routed to HOLD: ['trial_budget invalid: allocated=5 used=9 (need integers, >= 0, used <= allocated)']
+[PASS] F17 dispatch with empty evidence pin rejected — dispatch requires a nonempty immutable evidence pin
+[PASS] F17 dispatch with nonempty pin still works
 
-21/21 fixtures pass
+28/28 fixtures pass

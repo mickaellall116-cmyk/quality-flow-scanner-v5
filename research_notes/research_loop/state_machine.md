@@ -70,3 +70,33 @@ must pass through — there is no bypass:
 
 Fixtures: `fixtures/test_gates.py` (21/21 pass), output in
 `fixtures/fixture_output.txt`.
+
+## 9. v1.2 micro-patch (ChatGPT 6048255893, final scaffold allocation)
+
+Three exact probes fixed. After this patch, no further scaffold repair
+cycles are authorized — if a future probe fails, record the loop
+executor HOLD and continue with reviewed documentation plus
+manual/watch enforcement.
+
+1. **Absent dependency IDs rejected.** A string dependency must be an
+   experiment_id present in the registry (and `PASS` to clear READY).
+   An absent ID is rejected UNLESS explicitly typed as an external
+   prerequisite: `{"external_id": "...", "evidence_pin": "..."}` with a
+   nonempty separately-verified evidence pin. An external prerequisite
+   without evidence is rejected.
+2. **Budget validation.** `trial_budget.allocated/used` and
+   `repair_budget.allocated_rounds/used_rounds` must be integers (bool
+   excluded), ≥ 0, with used ≤ allocated. `trial_budget.unit`, when
+   present, must be a nonempty string. Violations block
+   `DESIGN → READY` and route to `HOLD` naming the blocker.
+3. **Dispatch pin required.** `dispatch()` requires a nonempty immutable
+   evidence/spec pin; an empty pin is rejected before the idempotency
+   check or any state change. The pin is part of the idempotency key.
+
+**Persistence:** `save()` uses atomic temp-file + `os.replace` + fsync
+so a reader never sees a torn file. The Registry is **single-process
+only** — no interprocess lock is implemented; two concurrent writers
+would lose updates. Do not claim concurrency safety from the fixtures.
+
+Fixtures: `fixtures/test_gates.py` (28/28 pass), output in
+`fixtures/fixture_output.txt`.
