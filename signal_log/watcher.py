@@ -29,6 +29,10 @@ Event schema (JSONL, one object per line):
   tp1_px           entry_px + ATR * TP_ATR  (canonical, from pine_backtest)
   score            0-5 integer trend score (via pine_live.decompose)
   adx              ADX value on the signal bar
+  entry_yes        dashboard ENTRY verdict for the signal bar (mirrors the
+                   TradingView dashboard's entryYes: trend + location + risk
+                   all pass). True  -> ping-worthy; False -> logged only.
+  entry_why        plain-English reason for entry_yes, no jargon
   source           "watchlist"
 """
 
@@ -55,6 +59,11 @@ from pine_backtest import (  # noqa: E402
 )
 from pine_live.decompose import decompose_signal  # noqa: E402
 from scanner_rules import bar_close_at  # noqa: E402
+from signal_log.dashboard_entry import (  # noqa: E402
+    EntryAssessor,
+    format_alert,
+    load_positions,
+)
 
 SIGNAL_DIR = os.path.join(REPO_ROOT, "signal_log")
 WATCHLIST_PATH = os.path.join(SIGNAL_DIR, "watchlist.txt")
@@ -121,6 +130,11 @@ def evaluate_symbol(symbol: str, lookback: int, seen: set[tuple[str, str]]):
     if df is None or df.empty or len(df) < WARMUP + 2:
         return [], [f"{symbol}: insufficient data ({0 if df is None else len(df)} bars)"]
     df = add_pine_indicators(df)
+    # Dashboard entryYes mirror (observability only — never changes the signal).
+    try:
+        assessor = EntryAssessor(df)
+    except Exception as exc:  # noqa: BLE001
+        return [], [f"{symbol}: entry assessor failed: {type(exc).__name__}: {exc}"]
     n = len(df)
     lo = max(WARMUP, n - lookback)
     events: list[dict] = []
@@ -150,6 +164,13 @@ def evaluate_symbol(symbol: str, lookback: int, seen: set[tuple[str, str]]):
         close = float(r["Close"])
         atr = float(r["atr"])
         adx = float(r["adx"])
+        # Dashboard ENTRY verdict for this bar (display/ping filter only).
+        try:
+            assessment = assessor.assess(df, i, d)
+        except Exception as exc:  # noqa: BLE001
+            warnings.append(f"{symbol}: entry assess failed at bar {i}: "
+                            f"{type(exc).__name__}")
+            continue
         events.append({
             "detected_at": _utcnow_iso(),
             "signal_bar_close": bar_close.isoformat(),
@@ -160,6 +181,8 @@ def evaluate_symbol(symbol: str, lookback: int, seen: set[tuple[str, str]]):
             "tp1_px": round(close + atr * TP_ATR, 2),
             "score": int(d["trend_score"]),
             "adx": round(adx, 1),
+            "entry_yes": bool(assessment["entry_yes"]),
+            "entry_why": str(assessment["entry_why"]),
             "source": "watchlist",
         })
         seen.add(key)
@@ -280,12 +303,39 @@ def main() -> dict:
     snapshot = build_snapshot(load_all_events(), watchlist)
     pub = publish_snapshot(snapshot)
 
+    # Selective pinging: only ENTRY YES signals get a ping. The log keeps
+    # everything; new_no_signals is log-only. alert_text is the exact ping
+    # text the cron worker surfaces (see dashboard_entry.format_alert).
+    positions = load_positions()
+    new_entry_yes_signals: list[dict] = []
+    new_no_signals: list[dict] = []
+    for e in new_events:
+        if e.get("entry_yes"):
+            new_entry_yes_signals.append({
+                "symbol": e["symbol"],
+                "signal_bar_close": e["signal_bar_close"],
+                "entry_px": e["entry_px"],
+                "stop_px": e["stop_px"],
+                "tp1_px": e["tp1_px"],
+                "entry_why": e["entry_why"],
+                "alert_text": format_alert(e, positions),
+            })
+        else:
+            new_no_signals.append({
+                "symbol": e["symbol"],
+                "signal_bar_close": e["signal_bar_close"],
+                "entry_px": e["entry_px"],
+                "entry_why": e["entry_why"],
+            })
+
     return {
         "ok": True,
         "symbols": watchlist,
         "lookback_bars": lookback,
         "new_events": len(new_events),
         "events": new_events,
+        "new_entry_yes_signals": new_entry_yes_signals,
+        "new_no_signals": new_no_signals,
         "failures": failures,
         "warnings": warnings,
         "published": pub,

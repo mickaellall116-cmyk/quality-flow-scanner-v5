@@ -244,17 +244,29 @@ operational detail; this spec records the normative corrections.
   the feed is disqualified for adjusted-history use.
 
 **C4 — Snapshot retention (hard gate).** License must permit us to retain downloaded snapshots unchanged and hash-anchor them (the never-rewrite discipline only works if the contract allows immutable retention). No retention right = disqualified for the retained-history path.
-**[C5]** Twelve Data Terms of Use finding (public docs, pre-execution):
+**[C5]** Twelve Data Terms of Use finding (public docs, pre-execution,
+v3-expanded per ChatGPT 6037625281 blocker 4):
 §2.2(a) permits internal-use storage; §2.3(g) prohibits caching "beyond
 permitted timeframes specified in the Documentation" — and the Documentation
-specifies no retention durations. **Indefinite immutable retention is NOT
+specifies no retention durations (verified 2026-10-07). §16.1: "Customer may
+retain Data only: (a) For duration permitted by subscription; (b) As required
+for regulatory compliance; (c) Subject to any Third-Party Provider
+restrictions." §16.2: "Upon termination or expiration: (a) All Data must be
+deleted within 30 days." **Indefinite immutable retention is NOT
 evidenced → C4 recorded INSUFFICIENT for the retained-history path.**
+**v3 rule:** raw vendor payloads are stored PRIVATELY (local immutable store,
+never published — §2.2(e)/§2.4 prohibit redistribution without an add-on);
+only manifests (hashes, timestamps, sanitized params), code, and summaries
+are published. Retention envelope: pilot's bounded 30-day window + §16.2's
+30-day post-termination deletion.
 The pilot proceeds as a bounded prospective screen (T+0/T+7/T+30, internal
 use only). The rate budget must count **every** symbol × window × interval
-request, metadata/actions endpoint weights (2 credits per action call —
-not 1), warmup pagination, spot checks, retries, **and** T+7/T+30 re-pulls
-(see frozen plan v2 §5). Unavailable older 1H is INSUFFICIENT, never
-fabricated or silently substituted.
+request, metadata/actions endpoint weights (**exact weights named with
+entitlement evidence before execution** — the v2 "2 credits per action call"
+assumption was unverified and is withdrawn; see credit-weighted limiter in
+`research_notes/pilot_harness/rate_limiter.py`), warmup pagination, spot
+checks, retries, **and** T+7/T+30 re-pulls (see frozen plan v3 §5).
+Unavailable older 1H is INSUFFICIENT, never fabricated or silently substituted.
 
 **C5 — Historical universe coverage (scope limit for longer-history research; separate forward-use requirement).**
 - **[A6]** C5 as written is a **historical-research scope limit**: delisted-symbol 1H/daily coverage and point-in-time constituent availability (or documented feasible proxy) so multi-year backtests are not survivorship-biased. Absence remains a scope limit, not a forward-use disqualifier.

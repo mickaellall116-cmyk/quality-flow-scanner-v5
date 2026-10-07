@@ -1,14 +1,29 @@
-# Twelve Data Pilot — Frozen Execution Plan v2
+# Twelve Data Pilot — Frozen Execution Plan v3
 
 **Date:** 2026-10-07
-**Version:** v2 (supersedes v1, 2026-10-07)
-**Status:** FROZEN PLAN — awaiting ChatGPT spec read-back. Execution authorized by Mike 2026-10-06 ("just run if chat says") conditional on ChatGPT spec clearance; no redundant approval will be requested (correction 8).
-**Spec:** `research_notes/DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md` (with [A1]–[A6], [B1]–[B7], plus v2 spec revisions).
+**Version:** v3 (supersedes v2, 2026-10-07)
+**Status:** FROZEN PLAN — vendor execution HOLD per ChatGPT 6037625281.
+Next authorized work (offline harness + synthetic tests) complete;
+see `research_notes/pilot_harness/`. Execution authorized by Mike 2026-10-06
+("just run if chat says") conditional on ChatGPT spec clearance; no redundant
+approval will be requested.
+**Spec:** `research_notes/DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md` (with [A1]–[A6], [B1]–[B7], plus v2/v3 spec revisions).
 **Credential:** `custom.twelvedata` (Secure Vault). No key value in any public evidence.
 
 > This plan is documentation only. No vendor call executes until ChatGPT
 > clears the amended spec. When execution is authorized, this exact plan
 > runs unmodified; any deviation requires a new versioned plan.
+
+## Changelog v2 → v3 (ChatGPT read-back 6037625281, 6 blockers)
+
+| # | Blocker | Change |
+|---|---------|--------|
+| 1 | Runnable harness missing; wrong SHA in signal command | **NEW:** `research_notes/pilot_harness/` — isolated offline harness with `construct_4h.py`, `validate_input.py`, `rate_limiter.py`, `synthetic_data.py`, `verify_sources.py`, `warmup_math.py`, pinned `requirements.txt`, 15/15 synthetic tests passing. **SHA CORRECTED:** `pilot_decision.py --source-sha` now `447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5` (was the incorrect `447a9a13d0b7…`). |
+| 2 | WARMUP=215 ≠ EMA200 convergence | **DOCUMENTED:** seed weight after 215 updates = 11.65% (`warmup_math.py`). **RULE:** decision-impact checks (C2 BUY/NO re-runs) are INSUFFICIENT EVIDENCE unless a separately pinned initialization/sensitivity rule supports them. Acquisition/session checks proceed. |
+| 3 | No straddling-interval rejection in archival | **NEW:** `validate_input.py` fail-closed validator (V1–V7) runs BEFORE construction; rejects straddles, closed-day bars, missing constituents, unknown calendar dates (no 16:00 fallback). Synthetic tests T06–T08 confirm rejection. |
+| 4 | C4 retention entitlement missing | **ANALYZED:** Twelve Data Terms §2.2(a) permits internal-use storage; §2.3(g) caps at "permitted timeframes specified in the Documentation" (none specified); §16.1 limits to subscription duration; §16.2 requires deletion within 30 days of termination. **RULE:** raw vendor payloads stored PRIVATELY, never published; only manifests/code/summaries published. Indefinite immutable retention: INSUFFICIENT (unchanged). |
+| 5 | 8-second spacing insufficient for 2-credit requests | **NEW:** `rate_limiter.py` credit-weighted token-bucket design (8 cr/min, 800/day cap, fail-closed refusal). Exact endpoint weights named with entitlement evidence BEFORE execution — no assumed weights. |
+| 6 | Authorization citation is Muse's restatement | **CITED:** memory/2026-10-06.md:1240 — "Mike authorized the 20-symbol Twelve Data pilot to run as soon as ChatGPT clears the revised spec. No need to come back for separate approval." Conditional scope preserved; no redundant approval requested. |
 
 ## Changelog v1 → v2 (ChatGPT execution-packet corrections, 6030775964)
 
@@ -25,20 +40,23 @@
 
 ---
 
-## 0. Prerequisite matrix
+## 0. Prerequisite matrix (v3 — corrected per ChatGPT 6037625281)
 
 | Prereq | Status | Exact resolution |
 |--------|--------|------------------|
-| Symbol list frozen (20) | ✅ COMPLETED | §1 below; TWTR documented; DRAM reclassified; SPCX verified |
+| Symbol list frozen (20) | ✅ COMPLETED | §1; TWTR documented; DRAM reclassified; SPCX verified |
 | Calendar/action identities pinned | ✅ COMPLETED | §2; all dates verified against NYSE calendar / issuer press releases |
-| Warmup rule pinned | ✅ COMPLETED | §2d; 215 4H bars from archival pine_backtest.py WARMUP=215 |
-| Source identity pinned | ✅ COMPLETED | §4; commit 5b5ff2a; archival blob SHAs; runnable commands |
+| Warmup rule pinned | ⚠️ QUALIFIED | §2d; 215 4H bars from archival WARMUP=215. **Blocker 2:** seed weight 11.65% — EMA200 NOT converged. Acquisition/session checks proceed; decision-impact checks (C2) = INSUFFICIENT EVIDENCE unless separately pinned init rule supports them |
+| Source identity pinned | ✅ COMPLETED | §4; commit 5b5ff2a; archival blob SHAs; **SHA corrected** (blocker 1): pine_backtest.py `447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5` |
+| Runnable harness published | ✅ COMPLETED | **Blocker 1:** `research_notes/pilot_harness/` — construct/validate/limit/synthetic/verify modules, pinned requirements.txt, 15/15 synthetic tests passing (see tests/synthetic_test_output.txt) |
+| Fail-closed input validator | ✅ COMPLETED | **Blocker 3:** `validate_input.py` V1–V7; rejects straddles/closed-day bars/gaps/unknown dates; archival 16:00 fallback NOT replicated |
 | 1H interval spec | ✅ COMPLETED | §4; expected starts, partial-bar handling |
-| C4 retention evidence | ⚠️ MISSING | Twelve Data Terms permit internal-use storage but cap at "permitted timeframes specified in the Documentation," which specifies none → indefinite retention NOT evidenced. **Resolution:** pilot runs as bounded prospective screen (T+0/T+7/T+30, internal use only); C4 recorded INSUFFICIENT for retained-history path |
-| Rate budget complete | ✅ COMPLETED | §5; counts all calls incl. warmup pagination, actions, retries, re-pulls |
+| C4 retention evidence | ⚠️ BOUNDED | **Blocker 4:** Terms §2.2(a) permits internal-use storage; §2.3(g) + §16.1/16.2 bound retention (no indefinite entitlement). **Rule:** raw payloads PRIVATE, never published; manifests/code/summaries only. Indefinite retention: INSUFFICIENT |
+| Rate limiter (credit-weighted) | ✅ COMPLETED (design) | **Blocker 5:** `rate_limiter.py` token-bucket (8 cr/min, 800/day, fail-closed). Exact endpoint weights TBD with entitlement evidence before execution |
 | Credential safety | ✅ COMPLETED | §6; sanitized logging |
-| ChatGPT spec clearance | ⏳ PENDING | Awaiting read-back; execution held until cleared |
-| Mike authorization | ✅ COMPLETED | 2026-10-06 "just run if chat says" — conditional on ChatGPT clearance; no redundant approval |
+| Authorization record | ✅ COMPLETED | **Blocker 6:** memory/2026-10-06.md:1240 (resolvable); conditional scope preserved |
+| ChatGPT spec clearance | ⏳ PENDING | Vendor execution HOLD until cleared |
+| Mike authorization | ✅ COMPLETED | 2026-10-06 conditional; no redundant approval |
 
 **Narrower prospective screen (if a leg cannot be satisfied):** If TWTR 1H is
 unavailable on either feed at execution, the delisted leg is recorded as C5
@@ -137,11 +155,25 @@ against public sources before freezing.
 | Volume MA | 20 | `rolling(20).mean()` |
 | **Decision start** | **i = 215** | `WARMUP = 215`; `pine_buy_signal` returns False if e200/atr_base/adx is NaN |
 
-**Convergence justification:** 215 = 200 (EMA200 span, the dominant lookback;
-pandas `ewm(adjust=False)` converges asymptotically from the seed value) + 15
-(one full ATR(14) cycle + 1, ensuring the 50-bar ATR-baseline rolling mean is
-computed on stabilized ATR values). Identical insufficient history on both
-feeds does not make state defined — the warmup is absolute, not relative.
+**Convergence analysis (added v3, blocker 2):** The archival `ema()` uses
+pandas `ewm(span=200, adjust=False)`, which seeds from the first observation
+with `alpha = 2/201`. After n updates the seed weight is `(199/201)^n`.
+At n=215: **11.65%** — the EMA200 is NOT stabilized (see
+`research_notes/pilot_harness/warmup_math.py`; 10% threshold needs 231
+updates, 5% needs 300, 1% needs 461). **Do not claim convergence from the
+warmup count.** WARMUP=215 is the archival convention for decision-start
+indexing, not a convergence proof.
+
+**Frozen pilot rule (v3):**
+- **Acquisition/session checks (C1)** — bar counts, labels, DST weeks,
+  early-close, closed-day — proceed with the 215-bar 4H warmup. These do not
+  depend on EMA convergence.
+- **Decision-impact checks (C2)** — BUY/NO re-runs through frozen
+  `pine_buy_signal` — are **INSUFFICIENT EVIDENCE** unless a separately
+  pinned initialization/sensitivity rule and enough decision-timeframe
+  history support them. Identical insufficient history on both feeds does
+  not make state defined.
+- No new performance experiment is authorized.
 
 **Acquisition:** 215 4H sessions ≈ 72–108 trading days. 1H pulls start
 **2026-04-01** for the Sep-08 parity window (margin included). If Twelve Data
@@ -235,8 +267,9 @@ python3 pilot_pull.py --feed twelvedata --interval 1h --symbols-file pilot_symbo
 python3 pilot_construct.py --input pilot_raw/ --routine resample_closed_4h_session_anchored \
   --source-sha 7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac
 # Decision-impact check (215-bar 4H warmup, frozen signal logic)
+# CORRECTED v3 (blocker 1): SHA was 447a9a13d0b7… (incorrect); manifest-verified:
 python3 pilot_decision.py --bars pilot_4h/ --warmup 215 --routine pine_buy_signal \
-  --source-sha 447a9a13d0b7e69c8f5b6e93a4e5f6b7e8c9d0e1f2a3b4c5d6e7f8090a1b2c3
+  --source-sha 447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5
 # Parity comparison
 python3 pilot_parity.py --candidate pilot_4h/ --comparator yahoo_1h/ --tolerances pilot_tolerances.json
 ```
@@ -262,10 +295,19 @@ above; the `--source-sha` flags assert byte identity before running.)
 | Day 30 | Re-pull 20 × 1H (revision snapshot T+30d) | 20 |
 | **Peak day total** | | **≤ 220** |
 
-**Headroom:** ~580/day unused on peak day. All calls paced ≥ 8 seconds apart
-to respect the 8/minute limit. Budget counts every symbol × window × interval
-request, metadata/action endpoint weights (2 credits for actions — corrected
-v2), warmup pagination, spot checks, retries, and T+7/T+30 re-pulls.
+**Headroom:** ~580/day unused on peak day.
+
+**Credit-weighted limiter (added v3, blocker 5):** Eight-second spacing alone
+is INSUFFICIENT — a 2-credit request every 8 seconds consumes 15 credits/min
+against an 8/min budget. The pilot uses the token-bucket limiter in
+`research_notes/pilot_harness/rate_limiter.py`: each request declares its
+credit weight BEFORE execution; the bucket refills at 8 credits/60s; requests
+block until their full weight is available; a hard 800/day cap refuses
+(fail-closed, not queues) once reached. **Exact endpoint credit weights are
+named with entitlement evidence BEFORE execution** — the v2 assumption of
+2 credits per action call was unverified and is withdrawn. Budget counts every
+symbol × window × interval request, metadata/action endpoint weights,
+warmup pagination, spot checks, retries, and T+7/T+30 re-pulls.
 
 ---
 
@@ -337,12 +379,30 @@ failure. **No automatic blame assignment.**
 
 ### C4 — Snapshot retention
 - [ ] License clause permitting immutable retention quoted by section.
-- [ ] **Current finding: INSUFFICIENT.** Twelve Data Terms of Use
-      (§2.2(a) permits internal-use storage; §2.3(g) prohibits caching
-      "beyond permitted timeframes specified in the Documentation"; the
-      Documentation specifies no retention durations). Indefinite
-      immutable retention is **not evidenced**. Pilot proceeds as bounded
-      prospective screen only.
+- [ ] **v3 analysis (blocker 4)** — Twelve Data Terms of Use
+      (https://twelvedata.com/terms, last updated 2026-01-01):
+      - §2.2(a): license to "access, receive, process, and store Data solely
+        for Internal Use" — internal storage IS permitted during the
+        subscription.
+      - §2.3(g): prohibits storing/caching "beyond permitted timeframes
+        specified in the Documentation" — the public Documentation specifies
+        NO retention durations (verified 2026-10-07); no bounded entitlement
+        is evidenced there.
+      - §16.1: "Customer may retain Data only: (a) For duration permitted by
+        subscription; (b) As required for regulatory compliance; (c) Subject
+        to any Third-Party Provider restrictions."
+      - §16.2: "Upon termination or expiration: (a) All Data must be deleted
+        within 30 days."
+      - §2.2(e)/§2.4: redistribution or external display requires a
+        Redistribution Rights Add-On or separate agreement — **raw vendor
+        payloads and reconstructible bar CSVs MUST NOT be published**.
+- [ ] **Frozen rule (v3):** raw vendor payloads are stored PRIVATELY
+      (local immutable store, never pushed to GitHub or any public surface);
+      ONLY manifests (hashes, request/receipt timestamps, sanitized params),
+      code, and summaries are published. The pilot's bounded 30-day window
+      plus §16.2's 30-day post-termination deletion define the maximum
+      retention envelope. **Indefinite immutable retention: INSUFFICIENT
+      EVIDENCE** (unchanged from v2).
 
 ### Verdicts (restricted — correction 7)
 
@@ -372,28 +432,35 @@ This pilot plan **does not authorize**:
 - [ ] Publication of the API key or any credential value
 - [ ] Any change to frozen strategy code or the forward-test harness
 
-**Standing authorization (Mike 2026-10-06, exact record):** In chat, Mike
-said *"just run if chat says"* — authorizing the Twelve Data pilot to run
-as soon as ChatGPT clears the revised spec, with no second approval needed.
-**Conditional scope:** (a) ChatGPT must clear the amended spec first;
-(b) the pilot runs exactly as frozen in this plan; (c) free tier only, no
-spend; (d) any deviation requires a new versioned plan and re-authorization.
-This citation is the authorization record; no redundant approval is
-requested or required.
+**Standing authorization (v3, blocker 6 — resolvable record):**
+`memory/2026-10-06.md:1240` — "Mike authorized the 20-symbol Twelve Data
+pilot to run as soon as ChatGPT clears the revised spec. No need to come back
+for separate approval." In chat on 2026-10-06, Mike's words were "just run if
+chat says." **Conditional scope:** (a) ChatGPT must clear the amended spec
+first; (b) the pilot runs exactly as frozen in this plan; (c) free tier only,
+no spend; (d) any deviation requires a new versioned plan and
+re-authorization. This is the authorization record; no redundant approval is
+requested or required. Distinction: the chat quote is Mike's stated
+authorization; the memory line is the contemporaneous written record.
 
 ---
 
 ## 9. Deliverables (on execution)
 
-1. `pilot_raw/` — hash-anchored raw responses (immutable, 30-day bounded)
+1. `pilot_raw/` — hash-anchored raw responses, **PRIVATE local immutable store
+   ONLY** (v3, blocker 4: Terms §2.2(e)/§2.4 prohibit publishing raw vendor
+   payloads; never pushed to GitHub)
 2. `pilot_parity.csv` — per-symbol, per-bar parity vs Yahoo comparator
+   (publishable: derived comparison, not reconstructible raw data)
 3. `pilot_gates.md` — per-symbol C1–C4 pass/fail with evidence links and
    [B1] triage buckets
 4. `pilot_decision_impact.csv` — within-band and breach re-runs with
-   215-bar 4H warmup and downstream-bar tracing
+   215-bar 4H warmup and downstream-bar tracing (**only where the
+   decision-impact leg is not INSUFFICIENT per §2d**)
 5. `pilot_revisions.md` — T+7d/T+30d diff results, revision behavior verdict
 6. `pilot_verdict.md` — per-symbol summary with restricted verdicts
    (SUITABLE FOR NEXT VALIDATION STAGE / UNSUITABLE / INSUFFICIENT EVIDENCE)
 
-All deliverables published to `research_notes/` via git push, remote-verified
-byte-identical before claiming completion.
+Items 2–6 published to `research_notes/` via git push, remote-verified
+byte-identical before claiming completion. Item 1 never leaves the private
+store.
