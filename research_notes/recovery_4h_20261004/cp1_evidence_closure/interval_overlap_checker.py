@@ -94,7 +94,10 @@ def main():
 
     out_csv = os.path.join(HERE, "interval_overlap_full_output.csv")
     with open(out_csv, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        # lineterminator="\n": canonical LF; the csv module default (\r\n)
+        # would not survive the GitHub push byte-identically.
+        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()),
+                           lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
 
