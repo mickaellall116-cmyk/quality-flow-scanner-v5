@@ -112,12 +112,25 @@ def gen_case(case: str) -> pd.DataFrame:
         df = _bars(session_starts("2026-09-08"))
         df["timestamp"] = pd.DatetimeIndex(df["timestamp"]).tz_localize(None)
         return df
+    if case == "partial_1030":
+        # Causally-partial capture: only the 09:30 bar, whose interval
+        # [09:30,10:30) has closed as of 10:30. For as_of=10:00 the only
+        # causally-valid input is EMPTY (no 1H bar has closed yet).
+        df = _bars(session_starts("2026-09-08"))
+        keep = pd.Timestamp("2026-09-08 09:30").tz_localize(NY)
+        return df[df["timestamp"] == keep].reset_index(drop=True)
+    if case == "partial_1330":
+        # Bars 09:30–12:30 (intervals closed as of 13:30). First 4H bin
+        # [09:30,13:30) closes exactly at 13:30 → one completed bin.
+        df = _bars(session_starts("2026-09-08"))
+        cutoff = pd.Timestamp("2026-09-08 12:30").tz_localize(NY)
+        return df[df["timestamp"] <= cutoff].reset_index(drop=True)
     raise ValueError(f"unknown case: {case}")
 
 
 CASES = ["regular", "earlyclose", "holiday", "dst_spring", "dst_fall",
          "straddle_bad", "closeday_bad", "gap_bad",
-         "intervalend_bad", "naive"]
+         "intervalend_bad", "naive", "partial_1030", "partial_1330"]
 
 
 def main() -> int:

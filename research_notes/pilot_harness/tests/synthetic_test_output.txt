@@ -1,4 +1,4 @@
-[PASS] T01 entrypoint accepts regular day — validation: PASS (7 bars, 1 open days, 0 verified closed)
+[PASS] T01 entrypoint accepts regular day — source verification: PASS (unconditional)
 [PASS] T01b 15:30 partial flagged
 [PASS] T02 entrypoint accepts early-close day
 [PASS] T02b 12:30 partial flagged
@@ -7,21 +7,32 @@
 [PASS] T05 DST fall-back week → 10 bars — 10 bars
 [PASS] T06 entrypoint REJECTS straddling/off-grid interval — VALIDATION FAILED: V6: unexpected 1H bars on 2026-09-08: ['13:00']
 [PASS] T07 entrypoint REJECTS bars on closed day — VALIDATION FAILED: V4: bars present on exchange-closed day 2026-07-03 (7 bars); closed days must hav
-[PASS] T08 entrypoint REJECTS missing constituent — VALIDATION FAILED: V6: missing 1H constituents on 2026-09-08: ['11:30']; gaps must be observable, ne
+[PASS] T08 entrypoint REJECTS missing constituent — VALIDATION FAILED: V6: missing due 1H constituents on 2026-09-08 (as_of 2026-09-08 16:00:00-04:00): 
 [PASS] T09 regular day → 2 bars with expected OHLCV — 2 bars, values match
 [PASS] T10 early-close day → 1 bar with expected OHLCV — values match
 [PASS] T11 no defective-grid labels — labels=['09:30', '13:30']
 [PASS] T12 seed weight at 215 == 11.65%
 [PASS] T13 archival SHA-256 verification
-[PASS] R01 empty input + open window → FAIL (missing retrieval) — VALIDATION FAILED: V8: empty input but 1 exchange-OPEN sessions expected in window (['2026-09-08']...); missin
+[PASS] R01 empty input + open window → FAIL (missing retrieval) — VALIDATION FAILED: V8: empty input but 1 exchange-OPEN sessions have due constituents (interval end <= as_of 2
 [PASS] R02 interval_end +2h mismatch → FAIL V9 — VALIDATION FAILED: V9: interval_end mismatch at 2026-09-08 09:30:00-04:00: vendor documents 11:30, expected bo
 [PASS] R03a July 3 holiday → PASS, 0 bars (no phantom bars) — verified closed, 0 bars
-[PASS] R03b as-of 10:00 → 0 bars (incomplete bin not emitted) — 0 bars
+[PASS] R03b as-of 10:00, full-day input → FAIL V11 (not silently dropped) — VALIDATION FAILED: V11: bar at 2026-09-08 09:30:00-04:00 has interval end 2026-09-08 10:30:00-04:00 after as_o
 [PASS] R03c tz-naive input → FAIL (no silent localization) — FATAL: tz-naive input and no --assume-tz policy; refusing
 [PASS] R04 8 credits at t=0, 9th at t=7.5s → REFUSED — 8 granted=True, 9th=False
 [PASS] R05 5x2-credit burst → [T,T,T,T,F] — [True, True, True, True, False]
 [PASS] R06 daily cap persists across restart — spent after restart=4
 [PASS] R07 oversized 9-credit request → refused
+[PASS] R09a as-of 10:00, empty input → PASS, 0 completed bins — rc=0, bars=0
+[PASS] R09b as-of 10:00, full-day input → FAIL V11 (future rejected) — VALIDATION FAILED: V11: bar at 2026-09-08 09:30:00-04:00 has interval end 2026-09-08 10:30:00-04:00 after as_o
+[PASS] R09c as-of 10:30, 09:30 bar only → PASS, 0 completed bins — rc=0, bars=0
+[PASS] R09d as-of 13:30, 4 bars → PASS, 1 completed 4H bin — rc=0, bars=1
+[PASS] R09e as-of 16:00 (session close) → PASS, 2 bars — rc=0, bars=2
+[PASS] R10 restart at t=7.5s → 9th credit REFUSED (persisted window) — 9th=False, window_sum=8
+[PASS] R11 two-instance concurrency → 9th credit REFUSED — 8 granted=True, extras=(False,False)
+[PASS] R12 UTC day rollover → spent reset, window evicted — spent 3→0, window=0
+[PASS] R13a --verify-sources flag removed (no bypass flag exists) — usage: pilot_build.py [-h] --input INPUT --symbol SYMBOL --window-start
+                  
+[PASS] R13b verification runs unconditionally (no flag given) — unconditional PASS in stdout
 [PASS] R08 README uses synth_* fixture names (not synthetic_1h_*)
 
-25/25 passed
+35/35 passed

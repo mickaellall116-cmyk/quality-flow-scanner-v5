@@ -1,13 +1,33 @@
-# Twelve Data Pilot — Frozen Execution Plan v4
+# Twelve Data Pilot — Frozen Execution Plan v5
 
 **Date:** 2026-10-07
-**Version:** v4 (supersedes v3, 2026-10-07)
-**Status:** FROZEN PLAN — vendor execution HOLD per ChatGPT 6037625281/6037842097.
-Offline repair (harness v2 + 25/25 tests) complete; see `research_notes/pilot_harness/`.
+**Version:** v5 (supersedes v4, 2026-10-07)
+**Status:** FROZEN PLAN — vendor execution HOLD per ChatGPT 6037625281/6037842097/6039806101.
+Offline repair (harness v3 + 35/35 tests) complete; see `research_notes/pilot_harness/`.
 Execution authorized by Mike 2026-10-06 ("just run if chat says") conditional
 on ChatGPT spec clearance; no redundant approval will be requested.
-**Spec:** `research_notes/DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md` (with [A1]–[A6], [B1]–[B7], plus v2/v3/v4 spec revisions).
+**Spec:** `research_notes/DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md` (with [A1]–[A6], [B1]–[B7], plus v2/v3/v4/v5 spec revisions).
 **Credential:** `custom.twelvedata` (Secure Vault). No key value in any public evidence.
+
+> This plan is documentation only. No vendor call executes until ChatGPT
+> clears the amended spec. When execution is authorized, this exact plan
+> runs unmodified; any deviation requires a new versioned plan.
+
+## Changelog v4 → v5 (ChatGPT review 6039806101 — bounded offline repair)
+
+ChatGPT read the actual v4 artifacts and found 3 load-bearing findings.
+One bounded offline repair authorized and completed:
+
+| # | Finding | Repair |
+|---|---------|--------|
+| 1 | `pilot_build.py` called `validate()` without `as_of`: full-day fixture at 10:00 was validated then future rows silently dropped in construction ("output filtering, not causal input validation") | **V11 causal input (validate_input.py):** `as_of` MANDATORY tz-aware cutoff, now passed by the entrypoint. Expected constituents = those with documented interval end ≤ as_of. Any supplied bar with start OR end after as_of → REJECT (V11), never silently discarded. Open session may be causally partial; sessions complete before as_of must be fully present; verified closed days zero bars. R03b corrected: full-day at 10:00 → FAIL V11. New paired tests R09a–R09e (10:00/10:30/13:30/close boundaries). |
+| 2 | Rolling-minute cap not restart/shared-process safe: `_window` memory-only; `_today_key()` ran `gmtime()` on monotonic time; JSON writes neither atomic nor locked | **rate_limiter.py v3:** full (epoch-wall-time, weight) window ledger persisted; clock is EPOCH WALL TIME (injectable `FakeWallClock`); UTC day boundaries via `gmtime(wall)`; atomic temp+`os.replace` writes; interprocess `fcntl` locking on a sidecar lock file. New tests R10 (restart at 7.5s refuses 9th), R11 (two-instance concurrency), R12 (deterministic UTC rollover). |
+| 3 | Source verification optional (`--verify-sources` flag) despite "mandatory chain" claim | **Verification UNCONDITIONAL in `pilot_build.py`:** flag removed; the entrypoint always runs `verify_sources.py` and exits 3 on mismatch. Tests R13a (flag gone → argparse rejects) and R13b (PASS printed with no flag given). |
+
+**Tests:** 35/35 passing (`tests/run_all.py` → `tests/synthetic_test_output.txt`):
+T01–T13 legacy + R01–R08 (v4) + R09a–R09e, R10–R12, R13a–R13b (v5).
+**C4 + endpoint-credit entitlements:** remain **MISSING** per ChatGPT 6039806101.
+Do NOT claim all blockers resolved.
 
 > This plan is documentation only. No vendor call executes until ChatGPT
 > clears the amended spec. When execution is authorized, this exact plan
@@ -66,11 +86,11 @@ duration → C4 marked **MISSING** (was BOUNDED). Do NOT claim all blockers reso
 | Calendar/action identities pinned | ✅ COMPLETED | §2; all dates verified against NYSE calendar / issuer press releases |
 | Warmup rule pinned | ⚠️ QUALIFIED | §2d; 215 4H bars from archival WARMUP=215. Seed weight 11.65% — EMA200 NOT converged. Acquisition/session checks proceed; decision-impact checks (C2) = INSUFFICIENT EVIDENCE unless separately pinned init rule supports them |
 | Source identity pinned | ✅ COMPLETED | §4; archival blob SHAs; pine_backtest.py `447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5` |
-| Runnable harness published (v2) | ✅ COMPLETED | `research_notes/pilot_harness/` v2: `pilot_build.py` (mandatory entrypoint), `construct_4h.py` v2 (no fallback, as-of), `validate_input.py` v2 (window V8, interval-end V9, OHLCV V10), 25/25 tests passing |
-| Fail-closed input validator (v2) | ✅ COMPLETED | V1–V10; request-window enumeration; missing open-day sessions rejected; interval-end contract enforced; no silent localization |
+| Runnable harness published (v3) | ✅ COMPLETED | `research_notes/pilot_harness/` v3: `pilot_build.py` (mandatory entrypoint, unconditional verification, as_of passed to validate), `construct_4h.py` v2 (no fallback, as-of), `validate_input.py` v2 (window V8, interval-end V9, OHLCV V10, causal V11), 35/35 tests passing |
+| Fail-closed input validator (v2) | ✅ COMPLETED | V1–V11; request-window enumeration; missing open-day sessions rejected; interval-end contract enforced; causal as_of cutoff (V11: future rows rejected, not discarded); no silent localization |
 | 1H interval spec | ✅ COMPLETED | §4; expected starts, partial-bar handling |
 | C4 retention evidence | ❌ MISSING | Per ChatGPT 6037842097: private-storage correction stands, but post-termination deletion deadline ≠ permitted retention duration. No bounded retention entitlement evidenced. Do NOT claim resolved. |
-| Rate limiter (rolling-window v2) | ✅ COMPLETED (design) | `rate_limiter.py` v2: rolling 60s window, persistent daily accounting, oversized refusal, fake-clock tested. Exact endpoint weights TBD with entitlement evidence before execution |
+| Rate limiter (rolling-window v3) | ✅ COMPLETED (design) | `rate_limiter.py` v3: persisted (epoch-wall-time, weight) window ledger, atomic temp+rename writes, interprocess fcntl locking, deterministic UTC day rollover, restart/concurrency-safe. Exact endpoint weights TBD with entitlement evidence before execution |
 | Credential safety | ✅ COMPLETED | §6; sanitized logging |
 | Authorization record | ✅ COMPLETED | memory/2026-10-06.md:1240 (resolvable); conditional scope preserved |
 | ChatGPT spec clearance | ⏳ PENDING | Vendor execution HOLD until cleared |
@@ -278,17 +298,18 @@ overlapping retained cache.
 | Python deps | `pandas` (resample/ewm), `pandas_market_calendars` (NYSE calendar for session-close handling), `yfinance` (comparator) — versions pinned at execution in `pilot_env.txt` |
 | NYSE calendar | `pandas_market_calendars`, `XNYS` exchange; early-close/holiday schedule from library + https://www.nyse.com/trade/hours-calendars |
 
-**Runnable commands (v4 — the harness is published, not authored at execution):**
+**Runnable commands (v5 — the harness is published, not authored at execution):**
 ```bash
-# Cleared entrypoint (research_notes/pilot_harness/): verify → validate → construct
+# Cleared entrypoint (research_notes/pilot_harness/):
+# source verification UNCONDITIONAL → validate (as_of) → construct
 cd research_notes/pilot_harness
 python3 pilot_build.py --input 1h.csv --symbol AAPL \
   --window-start 2026-09-08 --window-end 2026-09-08 \
   --as-of 2026-09-08T16:00:00-04:00 \
-  --out /tmp/aapl_4h.csv --verify-sources
-# Regression suite (25/25)
+  --out /tmp/aapl_4h.csv
+# Regression suite (35/35)
 python3 tests/run_all.py
-# Limiter demo (fake clock, no network)
+# Limiter demo (fake wall clock, no network)
 python3 rate_limiter.py --demo
 ```
 (`pilot_pull.py` / `pilot_parity.py` for vendor acquisition remain authored at

@@ -94,15 +94,33 @@ def _norm_cols(df: pd.DataFrame) -> pd.DataFrame:
 
 def validate(df: pd.DataFrame, symbol: str,
              window_start: str, window_end: str,
-             interval_end_col: str | None = None) -> dict:
+             interval_end_col: str | None = None,
+             as_of: pd.Timestamp | None = None) -> dict:
     """Run all checks. Returns a report dict; raises ValidationError on failure.
 
     window_start/window_end: session dates 'YYYY-MM-DD' (inclusive).
     interval_end_col: optional column name carrying the vendor's documented
         interval end per bar; compared against expected boundaries.
+    as_of: MANDATORY tz-aware causal cutoff (ChatGPT 6039806101, finding 1).
+        Expected constituents are those whose (documented or derived)
+        interval end is <= as_of. Any supplied bar with start or end after
+        as_of is REJECTED (V11) — future data is never silently discarded.
+        An open session whose constituents are incomplete because as_of has
+        not passed is allowed to be causally partial; sessions complete
+        before as_of must be fully present; verified closed days must have
+        zero bars.
     """
+    if as_of is None:
+        raise TypeError("as_of is mandatory: validation is causal, "
+                        "pass a tz-aware cutoff")
+    as_of = pd.Timestamp(as_of)
+    if as_of.tz is None:
+        raise TypeError("as_of must be tz-aware")
+    as_of_ny = as_of.tz_convert(NY)
+
     report = {"symbol": symbol, "checks": {}, "partials": [],
-              "window": [window_start, window_end]}
+              "window": [window_start, window_end],
+              "as_of": str(as_of_ny)}
 
     ws = pd.Timestamp(window_start).tz_localize(NY).normalize()
     we = pd.Timestamp(window_end).tz_localize(NY).normalize()
@@ -159,6 +177,45 @@ def validate(df: pd.DataFrame, symbol: str,
             raise ValidationError("V2: index is not strictly increasing")
         report["checks"]["V2_ordered_unique"] = "pass"
 
+    # V11: causal input (ChatGPT 6039806101, finding 1). No supplied bar
+    # may carry information from after as_of. Reject any bar whose start
+    # OR interval end is after as_of — future rows are never silently
+    # discarded; they are a hard failure.
+    bar_end: dict = {}
+    if local is not None:
+        doc_ends = None
+        if interval_end_col is not None:
+            doc_ends = pd.to_datetime(df[interval_end_col])
+            if doc_ends.dt.tz is None:
+                raise ValidationError(
+                    "V9: interval_end column is tz-naive; refusing to "
+                    "silently localize")
+            doc_ends = doc_ends.dt.tz_convert(NY)
+        for i, ts in enumerate(local):
+            if ts > as_of_ny:
+                raise ValidationError(
+                    f"V11: bar start {ts} is after as_of {as_of_ny}; "
+                    f"future data rejected, not discarded")
+            end = doc_ends.iloc[i] if doc_ends is not None else None
+            if end is None:
+                # Derived end: next expected start, else session close.
+                # (Bars off the expected grid are caught by V6 below;
+                # bars on closed days by V4.)
+                day = ts.normalize()
+                sched = xnys_schedule(day)
+                if sched is not None:
+                    s_open, s_close = sched
+                    exp = expected_1h_starts(s_open, s_close)
+                    if ts in exp:
+                        end = expected_end(ts, exp, s_close)
+            if end is not None and end > as_of_ny:
+                raise ValidationError(
+                    f"V11: bar at {ts} has interval end {end} after as_of "
+                    f"{as_of_ny}; the interval has not closed — future "
+                    f"data rejected, not discarded")
+            bar_end[ts] = end
+    report["checks"]["V11_causal_input"] = "pass"
+
     # V8: enumerate expected sessions over the WHOLE request window.
     by_day: dict[pd.Timestamp, list] = {}
     if local is not None:
@@ -178,37 +235,69 @@ def validate(df: pd.DataFrame, symbol: str,
     report["expected_closed_days"] = len(closed_days)
 
     # V8c: empty frame with open days in window → missing retrieval.
+    # V8c: empty frame. Missing retrieval only if some session in the
+    # window has DUE constituents (interval end <= as_of). An empty frame
+    # with no due constituents is a causally-consistent partial capture
+    # (e.g. a 10:00 capture on a regular day: no 1H bar has closed yet).
     if df.empty:
-        if open_days:
-            missing = [d.strftime("%Y-%m-%d") for d, _ in open_days]
+        due_days = []
+        for day, (s_open, s_close) in open_days:
+            exp = expected_1h_starts(s_open, s_close)
+            due = [s for s in exp
+                   if expected_end(s, exp, s_close) <= as_of_ny]
+            if due:
+                due_days.append(day.strftime("%Y-%m-%d"))
+        if due_days:
             raise ValidationError(
-                f"V8: empty input but {len(open_days)} exchange-OPEN sessions "
-                f"expected in window ({missing[:5]}...); missing retrieval, "
-                f"not a verified closed window")
+                f"V8: empty input but {len(due_days)} exchange-OPEN sessions "
+                f"have due constituents (interval end <= as_of {as_of_ny}): "
+                f"{due_days[:5]}; missing retrieval, not a verified "
+                f"closed window")
         report["checks"]["V8_window_coverage"] = \
-            "pass (empty input, all expected days verified closed)"
+            ("pass (empty input, no due constituents as of "
+             f"{as_of_ny}; causally partial or all closed)")
         report["days_validated"] = 0
         report["bars_validated"] = 0
+        report["due_constituents"] = 0
+        report["causally_partial_days"] = [
+            d.strftime("%Y-%m-%d") for d, _ in open_days]
         return report
 
+    report["causally_partial_days"] = []
+    total_due = 0
     for day, (session_open, session_close) in open_days:
         starts = by_day.get(day, [])
-        # V8b: open day with zero bars → missing retrieval.
-        if not starts:
-            raise ValidationError(
-                f"V8: exchange-OPEN session {day.date()} has 0 bars; "
-                f"missing retrieval (verified open via XNYS calendar)")
-        # (V8a: closed days are validated separately below.)
 
         exp_starts = expected_1h_starts(session_open, session_close)
         exp_set = set(exp_starts)
         got_set = set(starts)
 
-        # V6: completeness + no extras
-        missing = sorted(exp_set - got_set)
+        # Due constituents: expected starts whose interval end <= as_of.
+        # Sessions complete before as_of have ALL constituents due;
+        # a session open at as_of may be causally partial (only due
+        # constituents required); sessions entirely after as_of have
+        # none due (any supplied bars already failed V11).
+        due_set = {s for s in exp_starts
+                   if expected_end(s, exp_starts, session_close) <= as_of_ny}
+        total_due += len(due_set)
+        if not due_set and not starts:
+            report["causally_partial_days"].append(day.strftime("%Y-%m-%d"))
+
+        # V8b: open day with zero bars but due constituents → missing.
+        if not starts and due_set:
+            raise ValidationError(
+                f"V8: exchange-OPEN session {day.date()} has 0 bars but "
+                f"{len(due_set)} constituents are due as of {as_of_ny}; "
+                f"missing retrieval (verified open via XNYS calendar)")
+        # (V8a: closed days are validated separately below.)
+
+        # V6: due-completeness + no extras. Gaps must be observable,
+        # never filled; off-grid bars are rejected, not ignored.
+        missing = sorted(due_set - got_set)
         if missing:
             raise ValidationError(
-                f"V6: missing 1H constituents on {day.date()}: "
+                f"V6: missing due 1H constituents on {day.date()} "
+                f"(as_of {as_of_ny}): "
                 f"{[t.strftime('%H:%M') for t in missing]}; "
                 f"gaps must be observable, never filled")
         extra = sorted(got_set - exp_set)
@@ -287,7 +376,7 @@ def validate(df: pd.DataFrame, symbol: str,
     report["checks"]["V3_no_straddles"] = "pass"
     report["checks"]["V4_no_closed_day_bars"] = "pass"
     report["checks"]["V5_calendar_resolved"] = "pass"
-    report["checks"]["V6_constituents_complete"] = "pass"
+    report["checks"]["V6_due_constituents_complete"] = "pass"
     report["checks"]["V7_intervals_wellformed"] = "pass"
     report["checks"]["V8_window_coverage"] = "pass"
     if interval_end_col is None:
@@ -295,6 +384,7 @@ def validate(df: pd.DataFrame, symbol: str,
             "not supplied (UNKNOWN vendor contract scope preserved)"
     report["days_validated"] = len(open_days)
     report["bars_validated"] = len(df)
+    report["due_constituents"] = total_due
     return report
 
 
@@ -309,13 +399,16 @@ def main() -> int:
     ap.add_argument("--interval-end-col", default=None,
                     help="optional column carrying the vendor's documented "
                          "interval end per bar")
+    ap.add_argument("--as-of", required=True,
+                    help="MANDATORY causal cutoff, ISO tz-aware "
+                         "(e.g. 2026-09-08T16:00:00-04:00)")
     args = ap.parse_args()
 
     df = pd.read_csv(args.input, parse_dates=["timestamp"], index_col="timestamp")
     df.index = pd.DatetimeIndex(df.index)
     try:
         report = validate(df, args.symbol, args.window_start, args.window_end,
-                          args.interval_end_col)
+                          args.interval_end_col, as_of=args.as_of)
     except ValidationError as e:
         print(f"VALIDATION FAILED: {e}", file=sys.stderr)
         return 2
