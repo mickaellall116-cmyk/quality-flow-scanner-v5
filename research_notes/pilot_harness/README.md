@@ -1,10 +1,32 @@
 # Pilot Harness — Isolated Offline 4H Construction + Validation
 
-**Version:** v1 (2026-10-07)
+**Version:** v2 (2026-10-07) — repair per ChatGPT 6037842097
 **Status:** OFFLINE/SYNTHETIC ONLY. No vendor API calls. No production changes.
 **Purpose:** Executable prerequisite for the Twelve Data pilot (ChatGPT 6037625281,
 blocker 1). Publishes the minimal isolated acquisition/construction harness,
 exact dependency lock, and runnable commands BEFORE any vendor call.
+
+## The cleared entrypoint
+
+**`pilot_build.py` is the ONLY cleared path from 1H input to 4H output.**
+It enforces, in order, with no bypass:
+
+1. Source verification (`--verify-sources`): pinned archival SHAs, fail-closed.
+2. Request-window validation: expected-session inventory over the whole
+   window, interval-end contract, OHLCV schema. Missing open-day sessions
+   → FAIL. Closed days → verified zero.
+3. Construction with as-of causal cutoff: constituent end <= as-of, only
+   completed bins emitted. No 16:00 fallback, no silent localization.
+
+```bash
+python3 pilot_build.py --input 1h.csv --symbol AAPL \
+    --window-start 2026-09-08 --window-end 2026-09-08 \
+    --as-of 2026-09-08T16:00:00-04:00 \
+    --out /tmp/aapl_4h.csv --verify-sources
+```
+
+Calling `construct_4h.py` or `validate_input.py` directly bypasses the
+mandatory chain and is NOT the cleared path.
 
 ## What this is
 
@@ -22,13 +44,15 @@ A standalone, dependency-pinned implementation of:
    constructor does not (it groups by start timestamp and falls back unknown
    dates to 16:00).
 
-3. **Credit-weighted rate limiter** (`rate_limiter.py`) — design for the
-   8 credits/min, 800/day free tier. Weighted token bucket; 8-second spacing
-   alone is insufficient for repeated 2-credit requests.
+3. **Credit-weighted rolling-window limiter** (`rate_limiter.py`) — v2
+   replaces the v1 token bucket (which allowed a 9th credit at t=7.5s under
+   an 8/min budget, per ChatGPT's probe). Rolling 60s window, persistent
+   daily accounting, oversized-request refusal. Fake-clock injectable.
 
 4. **Synthetic 1H generator + test suite** (`synthetic_data.py`, `tests/`) —
    covers regular day, early-close day, full holiday, DST transition
-   (spring-forward and fall-back), and partial-bar cases.
+   (spring-forward and fall-back), partial-bar cases, plus regression
+   fixtures for all four ChatGPT counterexamples.
 
 ## Quick start
 
@@ -40,35 +64,35 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-# 2. Verify pinned archival sources (fail-closed: abort if mismatch)
-python3 verify_sources.py
-
-# 3. Run the synthetic test suite
-python3 -m pytest tests/ -v
-# or without pytest:
+# 2. Run the synthetic + regression test suite (no pytest needed)
 python3 tests/run_all.py
 
-# 4. Construct 4H bars from synthetic 1H (example)
-python3 construct_4h.py --input tests/fixtures/synthetic_1h_regular.csv \
-    --symbol AAPL --out /tmp/aapl_4h.csv
+# 3. Cleared entrypoint: validate + construct a regular day
+python3 pilot_build.py --input tests/fixtures/synth_regular.csv \
+    --symbol AAPL --window-start 2026-09-08 --window-end 2026-09-08 \
+    --as-of 2026-09-08T16:00:00-04:00 \
+    --out /tmp/aapl_4h.csv --verify-sources
 
-# 5. Validate 1H input before construction (fail-closed)
-python3 validate_input.py --input tests/fixtures/synthetic_1h_earlyclose.csv \
-    --symbol AAPL --calendar xnys
+# 4. Cleared entrypoint: July 3 holiday → 0 bars (verified closed)
+python3 pilot_build.py --input tests/fixtures/synth_holiday.csv \
+    --symbol AAPL --window-start 2026-07-03 --window-end 2026-07-03 \
+    --as-of 2026-07-03T16:00:00-04:00 \
+    --out /tmp/aapl_holiday_4h.csv
 ```
 
 ## File map
 
 | File | Purpose |
 |------|---------|
-| `construct_4h.py` | Deterministic 1H→4H session construction |
-| `validate_input.py` | Fail-closed input validator (blocker 3) |
-| `rate_limiter.py` | Credit-weighted limiter design (blocker 5) |
-| `synthetic_data.py` | Synthetic 1H bar generator |
+| `pilot_build.py` | **Cleared entrypoint**: verify → validate → construct (no bypass) |
+| `construct_4h.py` | Deterministic 1H→4H session construction (v2: no fallback, as-of) |
+| `validate_input.py` | Fail-closed input validator v2 (window, interval-end, OHLCV) |
+| `rate_limiter.py` | Rolling-window credit limiter v2 (fake-clock injectable) |
+| `synthetic_data.py` | Synthetic 1H bar generator (10 cases incl. regression fixtures) |
 | `verify_sources.py` | Archival SHA-256 verification (fail-closed) |
 | `warmup_math.py` | EMA200 convergence analysis (blocker 2) |
 | `requirements.txt` | Pinned dependencies |
-| `tests/` | Synthetic test suite + fixtures |
+| `tests/` | Synthetic + regression suite (T01–T13, R01–R08) + fixtures |
 
 ## Design constraints
 

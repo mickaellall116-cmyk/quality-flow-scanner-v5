@@ -1,18 +1,36 @@
-# Twelve Data Pilot — Frozen Execution Plan v3
+# Twelve Data Pilot — Frozen Execution Plan v4
 
 **Date:** 2026-10-07
-**Version:** v3 (supersedes v2, 2026-10-07)
-**Status:** FROZEN PLAN — vendor execution HOLD per ChatGPT 6037625281.
-Next authorized work (offline harness + synthetic tests) complete;
-see `research_notes/pilot_harness/`. Execution authorized by Mike 2026-10-06
-("just run if chat says") conditional on ChatGPT spec clearance; no redundant
-approval will be requested.
-**Spec:** `research_notes/DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md` (with [A1]–[A6], [B1]–[B7], plus v2/v3 spec revisions).
+**Version:** v4 (supersedes v3, 2026-10-07)
+**Status:** FROZEN PLAN — vendor execution HOLD per ChatGPT 6037625281/6037842097.
+Offline repair (harness v2 + 25/25 tests) complete; see `research_notes/pilot_harness/`.
+Execution authorized by Mike 2026-10-06 ("just run if chat says") conditional
+on ChatGPT spec clearance; no redundant approval will be requested.
+**Spec:** `research_notes/DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md` (with [A1]–[A6], [B1]–[B7], plus v2/v3/v4 spec revisions).
 **Credential:** `custom.twelvedata` (Secure Vault). No key value in any public evidence.
 
 > This plan is documentation only. No vendor call executes until ChatGPT
 > clears the amended spec. When execution is authorized, this exact plan
 > runs unmodified; any deviation requires a new versioned plan.
+
+## Changelog v3 → v4 (ChatGPT harness review 6037842097 — bounded offline repair)
+
+ChatGPT probed the v3 harness and found 4 implementation counterexamples.
+One bounded offline repair authorized and completed:
+
+| # | Counterexample | Repair |
+|---|----------------|--------|
+| R1 | `validate(empty_df)` → PASS, days_validated=0 (missing sessions undetectable) | **validate_input.py v2:** request window (`--window-start/--window-end`) MANDATORY; expected sessions enumerated over the whole range. Closed day + 0 bars → PASS (verified closed, V8a). Open day + 0 bars → FAIL (missing retrieval, V8b). Empty frame + open window → FAIL (V8c). |
+| R2 | Explicit `interval_end` column with +2h ends ignored; V7 passed | **V9 interval-end contract:** supplied vendor ends compared against expected boundaries (next start / session close); mismatch → FAIL. Without the column, UNKNOWN vendor contract scope is preserved, never manufactured. **V10 OHLCV schema** added (finite, H≥max(O,C), L≤min(O,C), V≥0). |
+| R3 | `construct_4h()`/CLI bypass `validate()`; July 3 emitted bars via fallback; 09:30 bin emitted at 10:00; silent tz localization | **ONE mandatory entrypoint** `pilot_build.py`: source-verify → validate (window+contract+schema) → construct, no bypass. **construct_4h.py v2:** 16:00 fallback REMOVED (raises); `as_of` MANDATORY — constituent end ≤ as-of, only completed bins emitted; tz-naive input refused (explicit `--assume-tz` policy only). Early-close bin close = min(13:30, session_close). |
+| R4 | `CreditLimiter(8,800)` allowed 8 credits at t=0 + 9th at t=7.5s | **rate_limiter.py v2:** rolling 60-second window (not token bucket); oversized requests refused; persistent daily accounting (JSON sidecar, restart-safe); fake-clock injectable. ChatGPT's probe now returns REFUSED. |
+
+**Tests:** 25/25 passing (`tests/run_all.py` → `tests/synthetic_test_output.txt`):
+T01–T13 legacy (upgraded to `pilot_build.py`, T09/T10 now assert pinned OHLCV values) +
+R01–R08 regression (all four counterexamples + limiter properties + README path fix).
+**C4:** per ChatGPT 6037842097, private-storage correction stands but the
+post-termination deletion deadline does not establish permitted retention
+duration → C4 marked **MISSING** (was BOUNDED). Do NOT claim all blockers resolved.
 
 ## Changelog v2 → v3 (ChatGPT read-back 6037625281, 6 blockers)
 
@@ -40,21 +58,21 @@ approval will be requested.
 
 ---
 
-## 0. Prerequisite matrix (v3 — corrected per ChatGPT 6037625281)
+## 0. Prerequisite matrix (v4 — corrected per ChatGPT 6037842097)
 
 | Prereq | Status | Exact resolution |
 |--------|--------|------------------|
 | Symbol list frozen (20) | ✅ COMPLETED | §1; TWTR documented; DRAM reclassified; SPCX verified |
 | Calendar/action identities pinned | ✅ COMPLETED | §2; all dates verified against NYSE calendar / issuer press releases |
-| Warmup rule pinned | ⚠️ QUALIFIED | §2d; 215 4H bars from archival WARMUP=215. **Blocker 2:** seed weight 11.65% — EMA200 NOT converged. Acquisition/session checks proceed; decision-impact checks (C2) = INSUFFICIENT EVIDENCE unless separately pinned init rule supports them |
-| Source identity pinned | ✅ COMPLETED | §4; commit 5b5ff2a; archival blob SHAs; **SHA corrected** (blocker 1): pine_backtest.py `447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5` |
-| Runnable harness published | ✅ COMPLETED | **Blocker 1:** `research_notes/pilot_harness/` — construct/validate/limit/synthetic/verify modules, pinned requirements.txt, 15/15 synthetic tests passing (see tests/synthetic_test_output.txt) |
-| Fail-closed input validator | ✅ COMPLETED | **Blocker 3:** `validate_input.py` V1–V7; rejects straddles/closed-day bars/gaps/unknown dates; archival 16:00 fallback NOT replicated |
+| Warmup rule pinned | ⚠️ QUALIFIED | §2d; 215 4H bars from archival WARMUP=215. Seed weight 11.65% — EMA200 NOT converged. Acquisition/session checks proceed; decision-impact checks (C2) = INSUFFICIENT EVIDENCE unless separately pinned init rule supports them |
+| Source identity pinned | ✅ COMPLETED | §4; archival blob SHAs; pine_backtest.py `447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5` |
+| Runnable harness published (v2) | ✅ COMPLETED | `research_notes/pilot_harness/` v2: `pilot_build.py` (mandatory entrypoint), `construct_4h.py` v2 (no fallback, as-of), `validate_input.py` v2 (window V8, interval-end V9, OHLCV V10), 25/25 tests passing |
+| Fail-closed input validator (v2) | ✅ COMPLETED | V1–V10; request-window enumeration; missing open-day sessions rejected; interval-end contract enforced; no silent localization |
 | 1H interval spec | ✅ COMPLETED | §4; expected starts, partial-bar handling |
-| C4 retention evidence | ⚠️ BOUNDED | **Blocker 4:** Terms §2.2(a) permits internal-use storage; §2.3(g) + §16.1/16.2 bound retention (no indefinite entitlement). **Rule:** raw payloads PRIVATE, never published; manifests/code/summaries only. Indefinite retention: INSUFFICIENT |
-| Rate limiter (credit-weighted) | ✅ COMPLETED (design) | **Blocker 5:** `rate_limiter.py` token-bucket (8 cr/min, 800/day, fail-closed). Exact endpoint weights TBD with entitlement evidence before execution |
+| C4 retention evidence | ❌ MISSING | Per ChatGPT 6037842097: private-storage correction stands, but post-termination deletion deadline ≠ permitted retention duration. No bounded retention entitlement evidenced. Do NOT claim resolved. |
+| Rate limiter (rolling-window v2) | ✅ COMPLETED (design) | `rate_limiter.py` v2: rolling 60s window, persistent daily accounting, oversized refusal, fake-clock tested. Exact endpoint weights TBD with entitlement evidence before execution |
 | Credential safety | ✅ COMPLETED | §6; sanitized logging |
-| Authorization record | ✅ COMPLETED | **Blocker 6:** memory/2026-10-06.md:1240 (resolvable); conditional scope preserved |
+| Authorization record | ✅ COMPLETED | memory/2026-10-06.md:1240 (resolvable); conditional scope preserved |
 | ChatGPT spec clearance | ⏳ PENDING | Vendor execution HOLD until cleared |
 | Mike authorization | ✅ COMPLETED | 2026-10-06 conditional; no redundant approval |
 
@@ -238,8 +256,10 @@ overlapping retained cache.
 
 ### Corporate actions (C3)
 - Twelve Data: documented corporate-action endpoint. Record endpoint name,
-  action-list version/as-of, retrieval timestamp. **Assumed weight: verified
-  at execution; budget includes 2 credits per action call** (not 1).
+  action-list version/as-of, retrieval timestamp. **Weight: TBD with
+  entitlement evidence before execution** (v3's unverified 2-credit
+  assumption withdrawn per blocker 5 standing rule; the rolling-window
+  limiter takes weights as explicit parameters).
 - Yahoo: `yfinance` actions (splits/dividends) for the same windows.
 - **Lock:** adjustment basis (raw vs adjusted) per endpoint + action-list
   version before comparison. Per [B5], no same-response packaging required.
@@ -258,23 +278,22 @@ overlapping retained cache.
 | Python deps | `pandas` (resample/ewm), `pandas_market_calendars` (NYSE calendar for session-close handling), `yfinance` (comparator) — versions pinned at execution in `pilot_env.txt` |
 | NYSE calendar | `pandas_market_calendars`, `XNYS` exchange; early-close/holiday schedule from library + https://www.nyse.com/trade/hours-calendars |
 
-**Runnable commands (execution-time):**
+**Runnable commands (v4 — the harness is published, not authored at execution):**
 ```bash
-# 1H pull (Twelve Data, via custom.twelvedata credential — key never in command)
-python3 pilot_pull.py --feed twelvedata --interval 1h --symbols-file pilot_symbols.txt \
-  --start 2026-04-01 --end 2026-10-06 --timezone America/New_York --out pilot_raw/
-# 4H construction (deterministic, from pinned archival source)
-python3 pilot_construct.py --input pilot_raw/ --routine resample_closed_4h_session_anchored \
-  --source-sha 7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac
-# Decision-impact check (215-bar 4H warmup, frozen signal logic)
-# CORRECTED v3 (blocker 1): SHA was 447a9a13d0b7… (incorrect); manifest-verified:
-python3 pilot_decision.py --bars pilot_4h/ --warmup 215 --routine pine_buy_signal \
-  --source-sha 447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5
-# Parity comparison
-python3 pilot_parity.py --candidate pilot_4h/ --comparator yahoo_1h/ --tolerances pilot_tolerances.json
+# Cleared entrypoint (research_notes/pilot_harness/): verify → validate → construct
+cd research_notes/pilot_harness
+python3 pilot_build.py --input 1h.csv --symbol AAPL \
+  --window-start 2026-09-08 --window-end 2026-09-08 \
+  --as-of 2026-09-08T16:00:00-04:00 \
+  --out /tmp/aapl_4h.csv --verify-sources
+# Regression suite (25/25)
+python3 tests/run_all.py
+# Limiter demo (fake clock, no network)
+python3 rate_limiter.py --demo
 ```
-(`pilot_*.py` scripts are authored at execution time from the pinned sources
-above; the `--source-sha` flags assert byte identity before running.)
+(`pilot_pull.py` / `pilot_parity.py` for vendor acquisition remain authored at
+execution time from the pinned sources below; `--source-sha` flags assert byte
+identity before running. No vendor call executes until ChatGPT clears the spec.)
 
 ---
 

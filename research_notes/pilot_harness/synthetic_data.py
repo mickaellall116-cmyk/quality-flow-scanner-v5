@@ -100,11 +100,24 @@ def gen_case(case: str) -> pd.DataFrame:
         df = _bars(session_starts("2026-09-08"))
         drop_ts = pd.Timestamp("2026-09-08 11:30").tz_localize(NY)
         return df[df["timestamp"] != drop_ts].reset_index(drop=True)
+    if case == "intervalend_bad":
+        # Regular day with a vendor interval_end column whose every end is
+        # two hours AFTER the bar start — validator must reject (V9).
+        # ChatGPT 6037842097 probe: v1 ignored this column entirely.
+        df = _bars(session_starts("2026-09-08"))
+        df["interval_end"] = df["timestamp"] + pd.Timedelta(hours=2)
+        return df
+    if case == "naive":
+        # Tz-naive timestamps — entrypoint must refuse silent localization.
+        df = _bars(session_starts("2026-09-08"))
+        df["timestamp"] = pd.DatetimeIndex(df["timestamp"]).tz_localize(None)
+        return df
     raise ValueError(f"unknown case: {case}")
 
 
 CASES = ["regular", "earlyclose", "holiday", "dst_spring", "dst_fall",
-         "straddle_bad", "closeday_bad", "gap_bad"]
+         "straddle_bad", "closeday_bad", "gap_bad",
+         "intervalend_bad", "naive"]
 
 
 def main() -> int:

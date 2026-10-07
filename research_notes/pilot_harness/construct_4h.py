@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
 """
-construct_4h.py — Deterministic 1H → 4H session construction (isolated).
+construct_4h.py — Deterministic 1H → 4H session construction (isolated), v2
+(ChatGPT 6037842097 repair).
 
-Replicates the binning logic of archival
-`resample_closed_4h_session_anchored` (scanner_rules.py, pinned SHA-256
-7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac,
-lines 149-267) as a standalone module. The archival file is NEVER imported
-or modified; this is a clean-room replication for the isolated harness.
+v2 repairs:
+  R3a UNKNOWN-DATE FALLBACK REMOVED: v1 fell back to 16:00 for unknown
+      dates (archival behavior). v2 raises on unknown dates — the caller
+      (pilot_build.py) validates the calendar BEFORE construction, so an
+      unknown date here is a programming error, never a silent default.
+  R3b AS-OF ENFORCEMENT: v2 takes a mandatory `as_of` and enforces
+      constituent end <= as-of AND output-bin close <= as-of; only completed
+      bins are emitted. (v1 emitted a 09:30 bin at now=10:00 on a regular
+      day even though the bin had not closed.)
+  R3c NO SILENT LOCALIZATION: the CLI refuses tz-naive input. A vendor
+      timestamp policy must be declared explicitly (--assume-tz documents
+      the policy in the output manifest; it is never silent).
 
 Session bins (US equities, America/New_York):
   [09:30, 13:30) → labeled 09:30
@@ -16,9 +24,11 @@ Session bins (US equities, America/New_York):
 Bins are assigned explicitly from local session time — never via pandas
 `origin='start_day'`.
 
-Usage:
-  python3 construct_4h.py --input 1h.csv --symbol AAPL --out 4h.csv
-  Input CSV: timestamp (ISO, tz-aware), open, high, low, close, volume
+NOTE: construct_4h() is a library function. The CLEARED entrypoint is
+pilot_build.py, which runs source verification → validate_input (request
+window + interval-end contract + OHLCV schema) → construct_4h (as-of).
+Calling construct_4h.py --input directly bypasses validation and is NOT
+the cleared path.
 """
 import argparse
 import sys
@@ -31,36 +41,37 @@ SESSION_OPEN_MIN = 9 * 60 + 30          # 09:30 → 570
 FIRST_BIN_CUTOFF_MIN = 13 * 60 + 30     # 13:30 → 810
 
 
-def session_close_et(day: pd.Timestamp) -> pd.Timestamp | None:
+def session_close_et(day: pd.Timestamp) -> pd.Timestamp:
     """Per-date session close from the XNYS exchange calendar.
 
-    Returns None for unknown dates (caller decides the fail-closed policy;
-    the archival constructor falls back to 16:00 — see validate_input.py
-    for the harness's stricter handling).
+    Raises on unknown/closed dates — NO 16:00 fallback (v2).
     """
-    try:
-        import pandas_market_calendars as mcal
-        xnys = mcal.get_calendar("XNYS")
-        sched = xnys.schedule(start_date=day.date(), end_date=day.date())
-        if sched.empty:
-            return None
-        close = sched.iloc[0]["market_close"]
-        return pd.Timestamp(close).tz_convert(NY)
-    except Exception:
-        return None
+    import pandas_market_calendars as mcal
+    xnys = mcal.get_calendar("XNYS")
+    sched = xnys.schedule(start_date=day.date(), end_date=day.date())
+    if sched.empty:
+        raise ValueError(
+            f"session_close_et: {day.date()} is not an exchange-open day; "
+            f"refusing 16:00 fallback (validate the calendar first)")
+    close = sched.iloc[0]["market_close"]
+    return pd.Timestamp(close).tz_convert(NY)
 
 
 def construct_4h(df: pd.DataFrame, symbol: str,
                  session_closes: dict | None = None,
-                 now: pd.Timestamp | None = None) -> pd.DataFrame:
+                 as_of: pd.Timestamp | None = None) -> pd.DataFrame:
     """Build session-anchored 4H bars from 1H bars.
 
     Args:
         df: 1H bars with tz-aware DatetimeIndex and Open/High/Low/Close/Volume.
-        symbol: ticker (only used for labeling; no per-symbol logic).
+            Each row must carry an 'interval_end' (tz-aware) or ends are
+            derived as next-bar-start / session-close (caller must have
+            validated the interval-end contract first).
+        symbol: ticker (labeling only).
         session_closes: optional {date_normalized: close_timestamp} override.
-            When None, resolved per-date via session_close_et().
-        now: causal cutoff; rows dated after `now` are dropped (fail-closed).
+        as_of: MANDATORY causal cutoff. Constituents with interval end >
+            as_of are dropped; output bins are emitted only if the bin's
+            close <= as_of. Incomplete bins are never emitted.
 
     Returns:
         4H bars with tz-aware DatetimeIndex (America/New_York),
@@ -71,34 +82,38 @@ def construct_4h(df: pd.DataFrame, symbol: str,
     if not isinstance(df.index, pd.DatetimeIndex):
         raise TypeError("Market data must use a DatetimeIndex")
     if df.index.tz is None:
-        raise TypeError("US equity data must be tz-aware")
+        raise TypeError("US equity data must be tz-aware; refusing to "
+                        "silently localize (declare a timezone policy)")
+    if as_of is None:
+        raise TypeError("as_of is mandatory: only completed bins may be emitted")
+    as_of = pd.Timestamp(as_of)
+    if as_of.tz is None:
+        raise TypeError("as_of must be tz-aware")
 
     data = df.copy().sort_index()
-
-    # Fail-closed causal cutoff.
-    if now is not None:
-        cutoff = now.tz_convert(data.index.tz) if now.tz is not None \
-            else now.tz_localize(data.index.tz)
-        data = data[data.index <= cutoff]
-        if data.empty:
-            return data
-
     local = data.index.tz_convert(NY)
-    minutes = local.hour * 60 + local.minute
-    day_key = local.normalize()
 
-    # Per-date session close (16:00 regular, 13:00 early-close).
+    # Per-date session close — NO fallback (v2).
     closes: dict = {}
-    for d in pd.DatetimeIndex(day_key.unique()):
+    for d in pd.DatetimeIndex(local.normalize().unique()):
         if session_closes and d in session_closes:
             closes[d] = session_closes[d]
         else:
-            sc = session_close_et(d)
-            # NOTE: archival falls back to 16:00 for unknown dates.
-            # The harness validator (validate_input.py) rejects unknown
-            # dates BEFORE construction; this fallback only fires when the
-            # caller explicitly bypasses validation.
-            closes[d] = sc if sc is not None else d + pd.Timedelta(hours=16)
+            closes[d] = session_close_et(d)
+
+    # Constituent interval ends: vendor column if present, else derived.
+    cols_lower = {c.lower(): c for c in data.columns}
+    if "interval_end" in cols_lower:
+        ends = pd.to_datetime(data[cols_lower["interval_end"]])
+        if ends.dt.tz is None:
+            raise TypeError("interval_end column is tz-naive; refusing to "
+                            "silently localize")
+        ends = ends.dt.tz_convert(NY)
+    else:
+        ends = None  # derived below per-day
+
+    minutes = local.hour * 60 + local.minute
+    day_key = local.normalize()
     close_minutes = day_key.map(
         lambda d: int((closes[d] - d).total_seconds() // 60))
 
@@ -110,15 +125,57 @@ def construct_4h(df: pd.DataFrame, symbol: str,
     if data.empty:
         return data
 
+    # R3b: constituent end <= as_of. Derive per-bar ends for the cutoff.
+    if ends is not None:
+        cends = ends.loc[data.index].reset_index(drop=True)
+    else:
+        # Derived: next bar start within the day, else session close.
+        cends_list = []
+        day_groups = {}
+        for i, ts in enumerate(local):
+            day_groups.setdefault(ts.normalize(), []).append((i, ts))
+        derived = {}
+        for d, items in day_groups.items():
+            items_sorted = sorted(items, key=lambda x: x[1])
+            for j, (i, ts) in enumerate(items_sorted):
+                if j + 1 < len(items_sorted):
+                    derived[i] = items_sorted[j + 1][1]
+                else:
+                    derived[i] = closes[d]
+        cends = pd.Series([derived[i] for i in range(len(data))],
+                          index=data.index).dt.tz_convert(NY)
+    as_of_ny = as_of.tz_convert(NY)
+    keep = cends <= as_of_ny
+    data = data[keep].copy()
+    local = local[keep]
+    minutes = minutes[keep]
+    if data.empty:
+        return data
+
     # Explicit session bins.
     bin_start_min = [570 if m < FIRST_BIN_CUTOFF_MIN else 810
                      for m in minutes]
     session_key = local.normalize()
     labels = session_key + pd.to_timedelta(bin_start_min, unit="m")
     data = data.copy()
-    # labels inherit tz-awareness from session_key (already America/New_York);
-    # do NOT tz_localize an already-aware index.
     data["_bin"] = pd.DatetimeIndex(labels)
+
+    # R3b: emit only bins whose close <= as_of.
+    # First bin closes at min(13:30, session_close) — on early-close days
+    # the single [09:30,13:00) bin closes at the session close, not 13:30.
+    bin_close_min = {}
+    for b in data["_bin"].unique():
+        d = b.normalize()
+        bmin = b.hour * 60 + b.minute
+        if bmin < FIRST_BIN_CUTOFF_MIN:
+            bin_close_min[b] = min(d + pd.Timedelta(minutes=FIRST_BIN_CUTOFF_MIN),
+                                   closes[d])
+        else:
+            bin_close_min[b] = closes[d]
+    complete_bins = [b for b, c in bin_close_min.items() if c <= as_of_ny]
+    data = data[data["_bin"].isin(complete_bins)]
+    if data.empty:
+        return data.drop(columns=["_bin"], errors="ignore")
 
     bars = data.groupby("_bin").agg({
         "Open": "first", "High": "max", "Low": "min",
@@ -129,13 +186,23 @@ def construct_4h(df: pd.DataFrame, symbol: str,
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Deterministic 1H→4H construction")
-    ap.add_argument("--input", required=True, help="1H CSV (timestamp,open,high,low,close,volume)")
+    ap = argparse.ArgumentParser(description="Deterministic 1H→4H construction (v2)")
+    ap.add_argument("--input", required=True,
+                    help="1H CSV (timestamp,open,high,low,close,volume[,interval_end])")
     ap.add_argument("--symbol", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--as-of", required=True,
+                    help="causal cutoff, ISO tz-aware (only completed bins emitted)")
+    ap.add_argument("--assume-tz", default=None,
+                    help="EXPLICIT timezone policy for tz-naive input, e.g. "
+                         "America/New_York. Documents the assumption in stdout; "
+                         "never silent.")
     ap.add_argument("--verify-sources", action="store_true",
                     help="verify pinned archival SHAs before running (fail-closed)")
     args = ap.parse_args()
+
+    print("NOTE: direct construct_4h.py invocation bypasses input validation; "
+          "the cleared entrypoint is pilot_build.py", file=sys.stderr)
 
     if args.verify_sources:
         import subprocess
@@ -147,10 +214,20 @@ def main() -> int:
     df = pd.read_csv(args.input, parse_dates=["timestamp"], index_col="timestamp")
     df.index = pd.DatetimeIndex(df.index)
     if df.index.tz is None:
-        df.index = df.index.tz_localize(NY)
+        if args.assume_tz is None:
+            print("FATAL: tz-naive input and no --assume-tz policy; refusing "
+                  "to silently localize", file=sys.stderr)
+            return 2
+        df.index = df.index.tz_localize(args.assume_tz)
+        print(f"POLICY: localized naive timestamps as {args.assume_tz} "
+              f"(explicit --assume-tz)")
     df = df.rename(columns={c: c.capitalize() for c in df.columns})
 
-    bars = construct_4h(df, args.symbol)
+    try:
+        bars = construct_4h(df, args.symbol, as_of=args.as_of)
+    except (TypeError, ValueError) as e:
+        print(f"CONSTRUCTION FAILED: {e}", file=sys.stderr)
+        return 2
     out = Path(args.out)
     bars.to_csv(out, index_label="timestamp")
     print(f"Wrote {len(bars)} 4H bars → {out}")
