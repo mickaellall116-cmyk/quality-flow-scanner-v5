@@ -1,0 +1,10 @@
+[PASS] F1 duplicate input suppressed — duplicate suppressed
+[PASS] F1 task log has 2 entries
+[PASS] F2 blocked prerequisites -> HOLD — missing=['preregistered_rules', 'trial_budget', 'data_provenance', 'acceptance_criteria', 'prerequisites']
+[PASS] F3 repair exhaustion -> HOLD — budget exhausted -> HOLD
+[PASS] F4 EVIDENCE_READY -> PASS blocked — illegal transition EVIDENCE_READY -> PASS
+[PASS] F4 EVIDENCE_READY -> REVIEW -> PASS allowed
+[PASS] F5 killed experiment retained + searchable
+[PASS] F5 KILL is terminal (no direct revival)
+
+8/8 fixtures pass
