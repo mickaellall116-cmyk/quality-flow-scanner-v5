@@ -1,6 +1,7 @@
 # Data-Feed Sample-Evaluation Spec — draft for ChatGPT adversarial review
 
-Date: 2026-10-06. **Amended 2026-10-07** per ChatGPT amendment 6028744990.
+Date: 2026-10-06. **Amended 2026-10-07** per ChatGPT amendments 6028744990,
+6029985481, and execution-packet corrections 6030775964.
 Status: **PROPOSAL ONLY — no purchase, no build, no frozen-system change, no holdout spend.**
 Author: Muse. Reviewer: ChatGPT. Decider: Mike.
 
@@ -21,9 +22,22 @@ Seven further corrections applied per ChatGPT's independent read-back
 (6029985481). Each is marked **[B1]**–**[B7]** at the point of application below.
 These are discrepancy-screen design fixes, not new performance experiments.
 
+Eight execution-packet corrections applied per ChatGPT 6030775964 (2026-10-07).
+Each is marked **[C1]**–**[C8]** at the point of application below. The frozen
+execution plan (`research_notes/PILOT_EXECUTION_PLAN.md` v2) carries the full
+operational detail; this spec records the normative corrections.
+
 ## Sample design (small, read-only, before buying)
 
 - **Symbols:** ~12–20, chosen adversarially: one with an in-window split, one with an in-window dividend, one low-liquidity name, one delisted symbol, plus liquid large-caps for baseline.
+  **[C1]** The delisted leg is pinned to **TWTR** (Twitter, Inc.; NYSE; delisted
+  2022-11-08 following acquisition) per the frozen execution plan v2 §1. If
+  TWTR 1H is unavailable on either feed at execution, the delisted leg is
+  recorded as **C5 INSUFFICIENT** and the pilot proceeds at **19 symbols**
+  under the frozen fallback rule — no plan revision required. Ticker
+  identities for edge cases (SPCX: Nasdaq Global Select, IPO Jun 12 2026;
+  DRAM: Roundhill Memory ETF, Cboe BZX) are verified in plan v2 §1; no
+  ticker identity or IPO history is assumed.
 - **Window:** session-for-session comparison against a Yahoo 1H **prospective
   capture** (pulled at pilot time with request/receipt timestamps per [B3]).
   **No retained Yahoo 1H cache exists** — the retained `backtest_cache/v3`
@@ -45,7 +59,11 @@ These are discrepancy-screen design fixes, not new performance experiments.
   tier in the pilot budget worksheet. **No credential in public
   evidence**: the API key lives in the Secure Vault; published
   materials reference `custom.twelvedata` by name only, never the key
-  value.
+  value. **[C6]** Published request logs carry **sanitized parameters
+  with apikey/auth values REMOVED** — never an exact credential-bearing
+  query string. Scrub auth tokens from headers and error URLs as well.
+  Raw market-data payloads are independently hashable and preserved;
+  no secrets appear in stored requests, logs, or error output.
 - **[A5]** A 12–20-symbol pilot **cannot establish the absence of silent
   rewrites**. The pilot is a discrepancy screen, not a revision-policy proof.
   The spec therefore requires, in addition to the pilot: (a) **planned
@@ -81,7 +99,14 @@ These are discrepancy-screen design fixes, not new performance experiments.
   recorded as open scope differences with both contracts cited, not as
   candidate failures. A discrepancy is only chargeable to the candidate feed
   under bucket (i).
-- Early-close days (e.g., day-after-Thanksgiving, July 3): half sessions produce a single 09:30 bar and NO fabricated 13:30 bar.
+- Early-close days (e.g., day-after-Thanksgiving, 2025-11-28): half sessions produce a single 09:30 bar and NO fabricated 13:30 bar.
+  **[C2]** **July 3, 2026 is a FULL NYSE HOLIDAY, not an early close** — it is
+  tested separately as a CLOSED day (zero bars expected; any bar = hard fail).
+  Use only documented actual past early-close sessions (NYSE calendar:
+  https://www.nyse.com/trade/hours-calendars). Equities do not trade 23/25-hour
+  Sunday sessions at DST transitions — compare surrounding trading sessions
+  with the correct UTC offset instead; DST windows are retrospective only,
+  never future-date fallback.
 - DST boundaries: spring-forward/fall-back sessions produce correct bar counts and labels (the parity gate must span a DST boundary, per the standing rule).
 - **[A3]** Completed-bar causality, with four separated timestamps per bar:
   **bar label** (what the vendor stamps), **interval end** (when the
@@ -136,8 +161,14 @@ These are discrepancy-screen design fixes, not new performance experiments.
     **[B2]** Decision-impact checks run **across all matched inputs,
     including within-band differences**: a 0.1% OHLC difference that flips
     a signal on a bar is material regardless of the band. Each check
-    requires the documented **lookback/warmup** (minimum 50 bars preceding
-    the evaluated bar, so indicator state is defined) and must identify
+    requires the documented **lookback/warmup** — **[C3] 215 bars in the
+    evaluated indicator timeframe (4H), not 50 raw 1H rows** — pinned from
+    archival `pine_backtest.py` (WARMUP=215; EMA200 + rolling ATR baseline +
+    ADX; `pine_buy_signal` returns False while any is NaN). Identical
+    insufficient history on both feeds does not make indicator state
+    defined; if required history is unavailable, separate
+    acquisition/session checks from decision checks and mark the latter
+    INSUFFICIENT. No performance computation.
     **affected downstream bars** (every bar whose indicator values or
     signal state changes as a consequence, traced forward until state
     reconverges or the window ends). **IEX-only OHLC as well as volume
@@ -192,6 +223,15 @@ These are discrepancy-screen design fixes, not new performance experiments.
   version** (which corporate-action list version the adjustment was
   computed against, with its retrieval timestamp). An adjustment claim
   without a pinned action-list version is untestable.
+  **[C2]** Pinned corporate-action identities (frozen plan v2 §2b):
+  **NVDA 10:1 split — split-adjusted trading began 2024-06-10**
+  (not 06-07); **TSLA 3:1 split — split-adjusted trading began 2022-08-25**
+  (not 08-24). Distinguish effective/distribution dates from market ex-dates.
+  **AAPL $0.27/share quarterly dividend, ex-date 2026-08-10** — pinned as
+  the dividend test event. 'If declared' does not freeze an event; the
+  dividend leg requires a pinned ex-date or is marked INSUFFICIENT.
+  Sources: NYSE hours-calendars; NVIDIA Q1 FY2025 press release;
+  Tesla 3:1 split announcement.
   **Historical split/dividend sample selection must avoid holdouts** —
   choose action events from the research-visible window only; never
   select from sealed holdout periods to "get a better split."
@@ -204,6 +244,17 @@ These are discrepancy-screen design fixes, not new performance experiments.
   the feed is disqualified for adjusted-history use.
 
 **C4 — Snapshot retention (hard gate).** License must permit us to retain downloaded snapshots unchanged and hash-anchor them (the never-rewrite discipline only works if the contract allows immutable retention). No retention right = disqualified for the retained-history path.
+**[C5]** Twelve Data Terms of Use finding (public docs, pre-execution):
+§2.2(a) permits internal-use storage; §2.3(g) prohibits caching "beyond
+permitted timeframes specified in the Documentation" — and the Documentation
+specifies no retention durations. **Indefinite immutable retention is NOT
+evidenced → C4 recorded INSUFFICIENT for the retained-history path.**
+The pilot proceeds as a bounded prospective screen (T+0/T+7/T+30, internal
+use only). The rate budget must count **every** symbol × window × interval
+request, metadata/actions endpoint weights (2 credits per action call —
+not 1), warmup pagination, spot checks, retries, **and** T+7/T+30 re-pulls
+(see frozen plan v2 §5). Unavailable older 1H is INSUFFICIENT, never
+fabricated or silently substituted.
 
 **C5 — Historical universe coverage (scope limit for longer-history research; separate forward-use requirement).**
 - **[A6]** C5 as written is a **historical-research scope limit**: delisted-symbol 1H/daily coverage and point-in-time constituent availability (or documented feasible proxy) so multi-year backtests are not survivorship-biased. Absence remains a scope limit, not a forward-use disqualifier.
@@ -229,7 +280,7 @@ published with the pilot plan:
 - **Exact symbols** (the 20-symbol list, with the adversarial role of each:
   split / dividend / low-liquidity / delisted / large-cap baseline).
 - **Sample dates and lookback/warmup**: the evaluation window plus the
-  minimum 50-bar warmup preceding it per symbol.
+  **[C3] 215-bar 4H warmup** (frozen plan v2 §2d) preceding it per symbol.
 - **Available retained comparator inputs**: the exact Yahoo cache paths
   (or other retained reference) covering the window, with their retrieval
   timestamps and hashes. **If older Yahoo 1H inputs are absent, explicitly
@@ -237,6 +288,15 @@ published with the pilot plan:
   plan** — never imply an overlap cache exists when it does not.
 - **Source versions**: vendor API version/endpoint, our construction code
   version (commit SHA), and the comparator's as-of state.
+  **[C4]** Pinned deterministically per frozen plan v2 §4: 4H construction =
+  `resample_closed_4h_session_anchored` (archival scanner_rules.py,
+  SHA-256 `7db282dd…`); signal logic = `pine_buy_signal` (archival
+  pine_backtest.py, SHA-256 `447a9a13…`); dependency versions
+  (`pandas`, `pandas_market_calendars`, `yfinance`) recorded in
+  `pilot_env.txt` at execution; runnable pull/construct/decide/parity
+  commands in plan v2 §4. 1H interval starts/ends and partial-bar
+  handling (15:30-to-close, early-close) specified in plan v2 §3;
+  straddling intervals are rejected, not silently assigned.
 - **Budget and retention evidence**: the completed rate-budget worksheet
   (all calls incl. metadata/actions/retries/re-pulls vs the tier limit)
   and the license clause permitting immutable retention (C4), quoted or
@@ -244,6 +304,19 @@ published with the pilot plan:
 No sample call executes until this pinning is published.
 
 A feed proceeds to pricing **only if it passes C1–C4** (C5/C6 scope its use) **and** the [A6] forward-use requirements are evidenced (pinned universe, retention rights in hand, budget worksheet complete). Pricing is requested after qualification, not before. Mike decides whether any paid tier is worth it; the default answer remains free/low-cost or nothing.
+
+**[C7]** **Outcome vocabulary (replaces conflicting wording).** Per-symbol and
+feed-level outcomes are exactly one of **SUITABLE FOR NEXT VALIDATION
+STAGE** / **UNSUITABLE** / **INSUFFICIENT EVIDENCE** — never feed
+qualification or production clearance from this screen. Where this spec
+says "disqualified," read **UNSUITABLE** (fails a chargeable hard gate).
+"Disqualified for the retained-history path" (C4) = **INSUFFICIENT
+EVIDENCE** for that path, with the bounded prospective screen recorded
+separately. Any BUY/NO signal difference is a **material discrepancy
+requiring source/scope adjudication** per [B1] — not automatic proof the
+candidate is wrong. There is no phantom retained 1H cache; the comparator
+is prospective capture per [B3]. The initial result does not wait for
+T+7/T+30 and does not claim revision stability.
 
 ## §Tiingo note (what the observer has and hasn't established)
 
@@ -259,3 +332,14 @@ The Tiingo degraded-mode observer (Mike's approved design, local-only, hourly cr
 6. Are the four separated timestamps in [A3] (label / interval end / availability / revision time) sufficient for the causality check, or is a fifth needed?
 
 No code, no vendor calls, no purchases until the spec clears review and Mike approves the sample evaluation.
+
+**[C8] Authorization record.** Mike authorized the Twelve Data pilot on
+2026-10-06 with the exact words *"just run if chat says"* — conditional on
+ChatGPT clearing the amended spec, with no second approval needed once
+cleared. Conditional scope: (a) ChatGPT must clear the amended spec first;
+(b) the pilot runs exactly as frozen in `research_notes/PILOT_EXECUTION_PLAN.md`
+v2; (c) free tier only, no spend; (d) any deviation requires a new versioned
+plan and re-authorization. This citation is the authorization record; no
+redundant approval is requested or required. No vendor calls are cleared by
+any ChatGPT review comment — execution clearance comes from Mike's
+conditional authorization once the spec-clearance condition is met.
