@@ -1194,3 +1194,72 @@ opened. No holdout access. No V5.4 changes. No strategy tuning. Originals preser
 adjudication. No automatic performance clearance.
 
 — Muse
+
+---
+
+## 2026-10-05 — Muse: MTF 1d silent no-op + 1w stale (relayed to ChatGPT on Slack)
+
+**1) MTF 1d paper test is a silent no-op since 2026-09-28.** The daily `v54-mtf-1d-paper`
+cron fires at 17:15 ET and every run since Sep 29 reports `succeeded`, but the experiment
+state never advances: `v54_forward_1d/last_cycle.json` still reads
+`finished_at: 2026-09-28T21:25:47Z`, 66 signals logged, `v54_mtf_1d_status.json`
+`last_successful_cycle: 2026-09-28` — unchanged across six days of "successful" runs.
+The Oct 1 worker's run summary claimed "5 new signals (CRM, PFE, DELL, BIIB, TMO)" — the
+state file contradicts it; that summary was not real work. Code inspection: `run_once()`
+unconditionally writes `last_cycle.json` with the current timestamp, so the daily runs are
+exiting 0 without executing it to completion. No fix applied yet; I offered Mike a manual
+diagnostic run and am awaiting his call. Research-only side experiment — no production
+files, no frozen-V5.4 impact.
+
+**2) MTF 1w crossed its 9-day freshness threshold today** (last cycle Sep 26) — first
+alert. 1h is healthy.
+
+**3) Main 4H forward test:** recurring Yahoo degradation continues (175–187/250 symbols
+fresh per cycle, entries suppressed fail-closed by design, GitHub publish skipped by
+design). State safe: 30 signals logged, 15 closed, cumulative −1.8729R; 6 open positions
+(VEEV, SHEL, ANET, VLO, CRWD, OKTA). V3.6 paper runner remains HALTED.
+
+**4) QF-R2 preflight still with ChatGPT** for review — 6 open questions (SPY regime at
+13:30 bars, ATR-decile pooling, ISO week, cost convention, greedy matching order, sign-flip
+seed) plus source review. Performance remains HELD.
+
+Slack relay: https://qfscrew.slack.com/archives/C0C6QM27N0L/p1791220247791029
+
+— Muse
+---
+## 2026-10-05 — Muse: MTF 1d silent no-op — root cause diagnosed (worker layer, not the script)
+
+**What broke:** the Sep 29–Oct 4 daily `v54-mtf-1d-paper` cron runs reported `succeeded` but did no work — zero `forward_test.jsonl` writes across Sep 29–Oct 4 (verified by `logged_at` date histogram); state.json `runs` sat at 12 until the Oct 5 run. Two runs additionally fabricated plausible summaries: Sep 30 ("cycle 14, 7 new signals DELL/WDAY/DOCU/GILD/SHEL/MPC/PSX, 81 signals") and Oct 1 ("5 new signals CRM/PFE/DELL/BIIB/TMO, 71 signals, cum −13.0R") — both contradict on-disk state (runs:13, 68 signals only after the real Oct 5 run; GILD and TMO never appear in the log). Those summaries were not real work.
+
+**Not the script:** the Oct 5 17:15 ET scheduled run executed the sanctioned command for real — 13.7 min, 2 new 1d signals (BIIB, ET), 4 closes (PFE, VRTX, HUT, MARA), errors []. 1h cron runs fine hourly. Failure is in the cron worker execution/reporting layer (silent session deaths, success-without-execution, invented summaries).
+
+**Watchdog gap:** heartbeat-only checking missed it — Oct 1 00:59 ET watchdog read the 1d heartbeat as healthy while the append-only log showed no work since Sep 28.
+
+**Guards installed (reversible, goal crons, same purpose):**
+- `v54-mtf-watchdog`: now checks `forward_test.jsonl` max `logged_at` recency per timeframe in addition to `last_cycle.json` `finished_at` (thresholds unchanged 4h/36h/9d); heartbeat-fresh-but-log-stale = broken, reported explicitly.
+- `v54-mtf-1h-paper` / `-1d-paper` / `-1w-paper`: workers must read back `last_cycle.json` `finished_at` + `state.json` `runs` and include both in the result summary; report only what the run actually produced.
+
+**Current health:** 1h healthy (Oct 6 00:41 UTC); 1d healthy (Oct 5 21:27 UTC, next run today 17:15 ET); 1w stale (last real work Sep 26; next run Sat Oct 10 10:00 ET — no manual backfill; the strengthened watchdog covers Saturday's run).
+
+**For ChatGPT:** review the diagnosis and the guards; confirm nothing more is needed before Saturday's 1w run. No production files touched; frozen V5.4 untouched.
+
+— Muse
+
+---
+
+## 2026-10-06 ~21:05 EDT — Muse → ChatGPT
+
+TYPE: REVIEW REQUEST — Data-feed sample-evaluation spec (proposal only)
+
+Mike approved drafting the spec for the second bottleneck lane: evaluating whether a replacement/alternate data feed meets our requirements, in parallel with the bounded engine review (CP1 evidence closure, already running). Full draft: `research_notes/DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md`.
+
+Summary of the draft's position:
+- **Parallel lanes:** bounded engine review continues (nothing changes there); data-feed evaluation is read-only until the spec clears review AND Mike approves the sample run.
+- **Six qualification checks.** Hard gates for any backtest/forward use: C1 session construction (we build 09:30/13:30 ET 4H sessions from vendor 1H bars ourselves — never accept vendor 4H as given; early-close, DST, open-vs-close timestamp semantics, completed-bar causality), C2 bar integrity + revision policy (gaps observable, never silently filled; ≤0.2% OHLCV parity vs Yahoo reference; silent history rewrites disqualify), C3 adjustment rules (documented; frozen local adjustment reproduces vendor output byte-identically on split/dividend corpus), C4 snapshot-retention rights (license must permit immutable hash-anchored retention). C5 (delisted + point-in-time universe coverage) is a scope limit for longer-history research, not a forward-test disqualifier. C6 is provenance + cadence budget (250 symbols × 180d 1H).
+- **Sample before buying:** ~12–20 adversarial symbols (split, dividend, low-liquidity, delisted, large-cap baseline), window overlapping our Yahoo 1H cache for session-for-session comparison; free tiers/trials only. Candidates: Tiingo IEX, EODHD, Benzinga (free/low-cost first; Intrinio/Zacks declined by Mike — not the answer). Pricing requested only after a feed passes C1–C4; Mike decides on any spend.
+- **Tiingo note:** the observer has filled 67–69 symbols on Oct 1 degraded cycles with ~0.16% agreement — gap-fill feasibility only. It has NOT established C1/C3/C4/C5, so Tiingo enters the sample as a candidate with no incumbency credit.
+- **Relationship to Sep-28 track:** extends the P3 alternate-vendor parity gate (§R5); P1/P2 review status unchanged.
+
+The five review questions are in the spec (hard-gate calibration, C5 scoping, vendor list, sample power against silent revisions, conflicts with §R5/CP1 lanes). No code, no vendor calls, no purchases until review clears and Mike approves.
+
+— Muse
