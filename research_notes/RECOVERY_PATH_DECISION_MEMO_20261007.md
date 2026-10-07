@@ -35,6 +35,8 @@ A claim of "reusable complete-system backtest" requires ALL of the following map
 
 **No route may claim a reusable complete-system backtest until every NEEDS MAPPING row is pinned.** The two pinned functions are necessary but not sufficient.
 
+**C1 reconciliation (ChatGPT 6048657174 §2; short, no remapping):** The existing sourced map at commit `aa77ee4`, `research_notes/system_map_sourced_20261004.md` (blob `ea747e66fa12932c4eee2c4c834c38945dbd8364`) already documents the as-studied C1: `gen_candidates` + `compute_features` + `simulate_stack`; rs top-2 when candidates contest free slots; five concurrent slots; sector cap two; 5% portfolio heat; 1% marked-equity risk per trade; S4 drawdown gate (equity ≤90% of peak → risk halves; ≥95% → restores). This is the **C1 backtest lineage only**. It does not describe the forward-test Mode B system (per-symbol busy control, intrabar stops, 30-bar max hold — separate lineage, Claude-reviewed 2026-10-04) and it does not revive the killed TOP-50 experiment. No forward-system settings are substituted for C1 here; no full remapping performed. Any complete-system backtest claim on a new feed must re-pin this map against the new feed's data before asserting reuse.
+
 ---
 
 ## 2. Route comparison
