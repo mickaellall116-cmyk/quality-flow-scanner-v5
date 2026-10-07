@@ -15,8 +15,10 @@ if not is_crypto:
 bars = data.resample("4h", **kwargs).agg(aggregations)...
 ```
 
-- `origin="start_day"` anchors the 4h grid to **midnight UTC of the first
-  download day** (pandas behavior). The grid is UTC-fixed, not session-anchored.
+- `origin="start_day"` anchors the 4h grid to **midnight America/New_York of
+  the first 1H day** (pandas behavior for tz-aware index — corrected
+  2026-10-07; not midnight UTC). The grid is UTC-fixed thereafter, not
+  session-anchored, so DST moves the ET labels.
 - `offset="9h30min"` shifts bins to 09:30/13:30/17:30/21:30 UTC label positions.
 - `label="left", closed="left"`: bars are labeled by their left (start) edge;
   each bar covers [start, start+4h).
@@ -27,11 +29,21 @@ bars = data.resample("4h", **kwargs).agg(aggregations)...
 (`scanner_rules.py:149`) — session-anchored, not UTC-anchored. New work must
 use it; the legacy function is frozen for the affected cohort.
 
-## 2. The two label sets — CRITICAL DISTINCTION
+## 2. The two label sets — CRITICAL DISTINCTION (mechanism CORRECTED 2026-10-07)
 
-The same UTC-anchored defect produced **two different label sets** because the
-download windows started on different dates (different UTC-midnight anchors).
+The same `origin="start_day"` defect produced **two different label sets**.
 **Neither may stand in for the other.**
+
+> **Correction (2026-10-07, ChatGPT amendment 6028744990):** the mechanism
+> stated here in rev 1 ("different first-download date → different
+> UTC-midnight anchor phase") was wrong. `origin='start_day'` anchors to
+> midnight **in the index timezone** (`America/New_York`), not midnight UTC,
+> and a date change within one DST regime does not shift the grid at all.
+> The real mechanism — first day's DST *regime* moves the ET-midnight anchor
+> by 1h in UTC (05:00 vs 04:00), shifting the UTC-fixed grid — is derived
+> with a passing synthetic fixture in **`RESAMPLER_MECHANISM_FIXTURE.md`**
+> (`resampler_grid_fixture.py`). What follows is the corrected summary;
+> the fixture document is authoritative.
 
 ### Set A — Historical cache labels: 08:30 / 12:30 ET
 
@@ -41,8 +53,10 @@ download windows started on different dates (different UTC-midnight anchors).
 - **Observation:** 332 bars labeled 08:30/12:30 EST during EST regimes
   (2024-11-04…2025-03-07, 2025-11-03…2026-03-06). Underlying UTC bins are
   fixed at 13:30/17:30 UTC; during EDT the same bins label 09:30/13:30.
-- **Mechanism:** `[13:30,17:30)` UTC = `[08:30,12:30)` EST — the "morning" bin
-  covers a different hour set than the intended `[09:30,13:30)` EST session bin.
+- **Mechanism (corrected):** EDT-anchored 13:30/17:30 UTC grid (first 1H day
+  in EDT). `[13:30,17:30)` UTC = `[08:30,12:30)` EST — the "morning" bin
+  covers a different hour set than the intended `[09:30,13:30)` EST session
+  bin. Full derivation: `RESAMPLER_MECHANISM_FIXTURE.md`.
 - **Used by:** the 240-trade C1 baseline (+0.178R @4bps); the 51 equity
   shifted-regime entries were evaluated on these bars.
 
@@ -51,18 +65,22 @@ download windows started on different dates (different UTC-midnight anchors).
 - **Artifact:** live forward-test signals, 2026-09-15 through 2026-10-03.
 - **Evidence:** `research_notes/recovery_4h_20261004/spec/call_site_map.md:13`
   ("live forward test produced 06:30/10:30/14:30 ET bars instead of 09:30/13:30").
-- **Mechanism:** same `origin="start_day"` defect, but the live download window
-  started on a different date, so the UTC-midnight anchor fell on a different
-  phase — yielding 06:30/10:30/14:30 labels instead of 08:30/12:30.
+- **Mechanism (corrected):** EST-anchored 14:30 UTC grid (first 1H day in EST —
+  live window pinned to `start="2026-01-15"`, verified bar-for-bar identical
+  to the live `period="180d"` construction in `build_affected_cohort_archive.py`).
+  In EDT the bins fall at 06:30/10:30/14:30/18:30 local → three session bars
+  per day. Full derivation: `RESAMPLER_MECHANISM_FIXTURE.md`.
 - **Used by:** the frozen forward-test cohort (4 open paper positions:
   VEEV, SHEL, ANET, VLO) — pinned, entries paused.
 
-### Why they differ
+### Why they differ (corrected)
 
-`origin="start_day"` = midnight UTC **of the first download day**. A different
-first-download date → a different anchor → a different label phase. The cache
-build (2026-09-15, long historical window) and the live harness (rolling
-recent window) anchored differently. Same defect class, different manifestation.
+`origin="start_day"` = midnight **America/New_York** of the first 1H day —
+not midnight UTC. Midnight EST (05:00 UTC) vs midnight EDT (04:00 UTC)
+shifts the UTC-fixed grid by 1h. Cache build: first day in EDT → 13:30 UTC
+grid → 08:30/12:30 EST labels. Live: first day in EST → 14:30 UTC grid →
+06:30/10:30/14:30 EDT labels. Same defect class, different manifestation —
+via the DST-regime anchor, not the calendar date.
 
 ## 3. Early-close behavior
 

@@ -29,9 +29,9 @@ present in the local working tree on the `recovery-4h-20261004` branch,
 which is the line the entire CP1 forensic analysis was performed against.
 
 Verified 2026-10-06:
-- `sha256sum scanner_rules.py` (working tree) = `7db282dd…` ✅ matches manifest
-- `git hash-object` HEAD version = `7db282dd…` ✅
-- Remote `main` blob = `063c4e3c920c…` = `62aa743a…` ❌ different line
+- `sha256sum scanner_rules.py` (working tree) = `7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac` ✅ matches manifest SHA-256
+- `git hash-object scanner_rules.py` (working tree) = blob SHA-1 `087dd3a5da82e925b0fa31516763be08c2ceed8d` (SHA-1, not SHA-256 — corrected 2026-10-07)
+- Remote `main` blob = `063c4e3c920c…` = SHA-256 `62aa743a…` ❌ different line
 
 ## Interpretation
 
