@@ -40,18 +40,37 @@ v5 regression suite (ChatGPT 6039806101 findings):
   R09a as-of 10:00, truly partial (empty) input → PASS, 0 completed bins
   R09b as-of 10:00, full-day input → FAIL V11 (future rejected, not dropped)
   R09c as-of 10:30, 09:30 bar only → PASS, 0 completed bins
-  R09d as-of 13:30, bars 09:30–12:30 → PASS, 1 completed 4H bin
+  R09d as-of 13:30, bars 09:30–12:30 → PASS, 1 completed 4H bin, EXACT OHLCV
   R09e as-of 16:00 (session close) → PASS, 2 bars
   R10  limiter: restart at t=7.5s → 9th credit REFUSED (persisted window)
   R11  limiter: two-instance concurrency → 9th credit REFUSED
-  R12  limiter: UTC day rollover → spent reset, window evicted
+  R12  limiter: UTC day rollover → spent reset, window RETAINED <60s
   R13a --verify-sources flag removed (no bypass flag exists)
   R13b verification runs unconditionally (no flag given)
+
+v6 regression suite (ChatGPT 6043633584 defects):
+  R12  REPLACED: 8 credits at 23:59:50, 9th at 00:00:10 → REFUSED
+       (rolling window survives midnight); grant after 60s expiration.
+       Old R12 asserted the unsafe window reset.
+  R14a ChatGPT's exact probe: O/C=[10,20,30,40] at 13:30 →
+       O10/H41/L9/C40/V10 (was O10/H31/L9/C30/V6 before the fix)
+  R14b as-of sweep (10:30/13:30/16:00/early-close) with EXACT pinned OHLCV
+  R14c same sweep WITH correct interval_end column → byte-identical output
+       (one interval contract throughout)
+  R15a malformed-JSON ledger → LedgerCorruptError (fail-closed, no grant)
+  R15b invalid-schema ledger → LedgerCorruptError
+  R15c negative-credits ledger → LedgerCorruptError
+  R15d future-timestamp ledger → LedgerCorruptError
+  R16  REAL multiprocess contention: 4 processes x 5 tries → exactly 8 granted
+       (R11 was sequential interleaving of two objects, not contention)
+  R17a tampered archival copy → HASH MISMATCH detected (isolated copy)
+  R17b missing archival file → MISSING detected (isolated temp dir)
 
 Expected OHLCV values are pinned from seeded synthetic generation
 (synthetic_data.py SEED=20261007); any change in construction logic
 must update these values deliberately, never silently.
 """
+import multiprocessing as _mp
 import subprocess
 import sys
 import tempfile
@@ -61,6 +80,22 @@ HERE = Path(__file__).resolve().parent.parent
 FIX = HERE / "tests" / "fixtures"
 
 results: list[tuple[str, bool, str]] = []
+
+
+def _mp_acquire_worker(state_path: str, epoch: float, n_tries: int, q):
+    """Module-level worker for the real multiprocess contention test (R16).
+
+    Each process constructs its own limiter on the SHARED ledger file with
+    the SAME frozen wall-clock epoch, so the rolling window cannot slide
+    and every attempt truly contends. The fcntl sidecar lock serializes
+    the read-modify-write critical section across processes.
+    """
+    sys.path.insert(0, str(HERE))
+    from rate_limiter import RollingCreditLimiter, FakeWallClock
+    lim = RollingCreditLimiter(8, 800, state_path=state_path,
+                               clock=FakeWallClock(epoch))
+    granted = sum(1 for _ in range(n_tries) if lim.try_acquire(1))
+    q.put(granted)
 
 
 def check(name: str, cond: bool, detail: str = ""):
@@ -288,13 +323,26 @@ def main() -> int:
 
     # R09d: bars 09:30–12:30 at as_of=13:30 → PASS, exactly 1 completed
     # 4H bar (first bin [09:30,13:30) closes at 13:30).
+    # v6 (ChatGPT 6043633584, defect 1): assert EXACT OHLCV, not just
+    # count/label. Before the fix the 12:30 bar was dropped (derived end
+    # 16:00 > as_of) giving H31/C30/V6; the fix preserves all four
+    # constituents → H41/C40/V10. Pinned values from SEED=20261007.
     r = build("synth_partial_1330.csv", "2026-09-08", "2026-09-08",
               "2026-09-08T13:30:00-04:00", "r09d_4h.csv")
     df = read_bars("/tmp/r09d_4h.csv") if r.returncode == 0 else None
-    ok09d = (r.returncode == 0 and df is not None and len(df) == 1
-             and str(df.iloc[0]["timestamp"]) == "2026-09-08 09:30:00-04:00")
-    check("R09d as-of 13:30, 4 bars → PASS, 1 completed 4H bin",
-          ok09d, f"rc={r.returncode}, bars={len(df) if df is not None else '?'}")
+    row = df.iloc[0] if df is not None and len(df) == 1 else None
+    ok09d = (r.returncode == 0 and row is not None
+             and str(row["timestamp"]) == "2026-09-08 09:30:00-04:00"
+             and abs(row["Open"] - 99.00) < 0.005
+             and abs(row["High"] - 99.40) < 0.005
+             and abs(row["Low"] - 97.43) < 0.005
+             and abs(row["Close"] - 97.72) < 0.005
+             and int(row["Volume"]) == 1504824)
+    check("R09d as-of 13:30, 4 bars → 1 bin, EXACT OHLCV (defect 1)",
+          ok09d,
+          "O99.00/H99.40/L97.43/C97.72/V1504824" if ok09d
+          else (df.to_string() if df is not None
+                else r.stderr.strip()[:110]))
 
     # R09e: boundary at session close — full day at 16:00 → PASS, 2 bars.
     r = build("synth_regular.csv", "2026-09-08", "2026-09-08",
@@ -337,22 +385,29 @@ def main() -> int:
               all(seq) and extra1 is False and extra2 is False,
               f"8 granted={all(seq)}, extras=({extra1},{extra2})")
 
-    # R12: deterministic UTC day rollover — spent resets, window evicted.
+    # R12 (v6 REPLACED — ChatGPT 6043633584, defect 2): the rolling
+    # 60-second window must SURVIVE midnight. 8 credits at 23:59:50 UTC,
+    # 9th at 00:00:10 → REFUSED (window retains the 23:59:50 events;
+    # daily spent DID reset — the refusal is purely window-based).
+    # Grant returns only after actual 60s expiration (00:00:50).
+    # The old R12 asserted the unsafe full window reset (fail-open).
     with tempfile.TemporaryDirectory() as td:
         sp = Path(td) / "ledger.json"
-        rollover = float(_cal.timegm((2026, 10, 7, 23, 59, 50, 0, 0, 0)))
-        clk12 = FakeWallClock(rollover)
+        midnight = float(_cal.timegm((2026, 10, 7, 23, 59, 50, 0, 0, 0)))
+        clk12 = FakeWallClock(midnight)
         lim12 = RollingCreditLimiter(8, 800, state_path=sp, clock=clk12)
-        assert lim12.try_acquire(3, "late") is True
-        spent_before = lim12.daily_spent
+        got12 = [lim12.try_acquire(1, f"m{i}") for i in range(8)]
         clk12.advance(20)  # 2026-10-08 00:00:10 UTC
-        spent_after = lim12.daily_spent
-        wsum_after = lim12.window_sum()
-        next_day_ok = lim12.try_acquire(3, "next-day")
-        check("R12 UTC day rollover → spent reset, window evicted",
-              spent_before == 3 and spent_after == 0 and
-              wsum_after == 0 and next_day_ok is True,
-              f"spent {spent_before}→{spent_after}, window={wsum_after}")
+        ninth12 = lim12.try_acquire(1, "m9")
+        spent_midnight = lim12.daily_spent
+        check("R12a 8 before midnight, 9th after → REFUSED (window survives)",
+              all(got12) and ninth12 is False and spent_midnight == 0,
+              f"9th={ninth12}, daily_spent={spent_midnight}")
+        clk12.advance(40)  # 2026-10-08 00:00:50 UTC (60s after burst)
+        tenth12 = lim12.try_acquire(1, "m10")
+        check("R12b grant after actual 60s expiration",
+              tenth12 is True and lim12.daily_spent == 1,
+              f"10th={tenth12}, daily_spent={lim12.daily_spent}")
 
     # R13: source verification is UNCONDITIONAL (finding 3 fixed).
     # (a) No --verify-sources flag exists anymore: passing it must fail
@@ -372,6 +427,164 @@ def main() -> int:
           in r.stdout,
           "unconditional PASS in stdout" if r.returncode == 0
           else r.stderr.strip()[:90])
+
+    # ---- v6 regression suite: ChatGPT 6043633584 defects ----
+    # R14a: ChatGPT's EXACT probe. O/C=[10,20,30,40], H=[11,21,31,41],
+    # L=[9,19,29,39], V=[1,2,3,4] at as_of=13:30.
+    # Before the fix: O10/H31/L9/C30/V6 (12:30 bar dropped).
+    # After the fix:  O10/H41/L9/C40/V10 (all four constituents kept).
+    probe_csv = ("timestamp,open,high,low,close,volume\n"
+                 "2026-09-08 09:30:00-04:00,10,11,9,10,1\n"
+                 "2026-09-08 10:30:00-04:00,20,21,19,20,2\n"
+                 "2026-09-08 11:30:00-04:00,30,31,29,30,3\n"
+                 "2026-09-08 12:30:00-04:00,40,41,39,40,4\n")
+    Path("/tmp/r14a_probe.csv").write_text(probe_csv)
+    r = subprocess.run(
+        [sys.executable, str(HERE / "pilot_build.py"),
+         "--input", "/tmp/r14a_probe.csv", "--symbol", "PROBE",
+         "--window-start", "2026-09-08", "--window-end", "2026-09-08",
+         "--as-of", "2026-09-08T13:30:00-04:00",
+         "--out", "/tmp/r14a_4h.csv"],
+        capture_output=True, text=True)
+    df = read_bars("/tmp/r14a_4h.csv") if r.returncode == 0 else None
+    row = df.iloc[0] if df is not None and len(df) == 1 else None
+    ok14a = (r.returncode == 0 and row is not None
+             and abs(row["Open"] - 10) < 0.005
+             and abs(row["High"] - 41) < 0.005
+             and abs(row["Low"] - 9) < 0.005
+             and abs(row["Close"] - 40) < 0.005
+             and int(row["Volume"]) == 10)
+    check("R14a ChatGPT probe → O10/H41/L9/C40/V10 (defect 1)",
+          ok14a,
+          "exact probe values" if ok14a
+          else (df.to_string() if df is not None
+                else r.stderr.strip()[:110]))
+
+    # R14b: as-of sweep with EXACT pinned OHLCV (defect 1 acceptance).
+    # 10:30 → 0 bars; 13:30 → 1 bar (pinned); 16:00 → 2 bars (pinned);
+    # early close → 1 bar (pinned).
+    sweep = [
+        ("synth_partial_1030.csv", "2026-09-08",
+         "2026-09-08T10:30:00-04:00", 0, []),
+        ("synth_partial_1330.csv", "2026-09-08",
+         "2026-09-08T13:30:00-04:00", 1,
+         [("2026-09-08 09:30:00-04:00", 99.00, 99.40, 97.43, 97.72, 1504824)]),
+        ("synth_regular.csv", "2026-09-08",
+         "2026-09-08T16:00:00-04:00", 2,
+         [("2026-09-08 09:30:00-04:00", 99.00, 99.40, 97.43, 97.72, 1504824),
+          ("2026-09-08 13:30:00-04:00", 97.72, 98.02, 96.88, 97.43, 1909526)]),
+        ("synth_earlyclose.csv", "2025-11-28",
+         "2025-11-28T13:00:00-05:00", 1,
+         [("2025-11-28 09:30:00-05:00", 99.99, 101.53, 98.55, 101.19, 1863451)]),
+    ]
+    for i, (fixture, ws, asof, n_exp, exp_rows) in enumerate(sweep):
+        r = build(fixture, ws, ws, asof, f"r14b_{i}_4h.csv")
+        df = read_bars(f"/tmp/r14b_{i}_4h.csv") if r.returncode == 0 else None
+        ok = r.returncode == 0 and df is not None and len(df) == n_exp
+        for j, (ts, o, h, lo, c, v) in enumerate(exp_rows):
+            prow = df.iloc[j]
+            ok = ok and (str(prow["timestamp"]) == ts
+                         and abs(prow["Open"] - o) < 0.005
+                         and abs(prow["High"] - h) < 0.005
+                         and abs(prow["Low"] - lo) < 0.005
+                         and abs(prow["Close"] - c) < 0.005
+                         and int(prow["Volume"]) == v)
+        check(f"R14b as-of sweep {asof} → {n_exp} bars, exact OHLCV", ok,
+              f"{len(df)} bars" if ok and df is not None
+              else (df.to_string() if df is not None
+                    else r.stderr.strip()[:90]))
+
+    # R14c: same sweep WITH the correct interval_end column → output must
+    # be byte-identical to the no-column path (one interval contract).
+    r = build("synth_intervalend_ok.csv", "2026-09-08", "2026-09-08",
+              "2026-09-08T16:00:00-04:00", "r14c_4h.csv",
+              ["--interval-end-col", "interval_end"])
+    df = read_bars("/tmp/r14c_4h.csv") if r.returncode == 0 else None
+    ref = read_bars("/tmp/r14b_2_4h.csv")
+    ok14c = (r.returncode == 0 and df is not None
+             and df.to_csv(index=False) == ref.to_csv(index=False))
+    check("R14c documented ends → byte-identical to no-column path",
+          ok14c, "one interval contract" if ok14c
+          else (df.to_string() if df is not None
+                else r.stderr.strip()[:90]))
+
+    # R15: corrupt-ledger fail-closed (defect 3). Malformed/invalid
+    # EXISTING ledger → LedgerCorruptError; no credit granted.
+    import json as _json
+    from rate_limiter import LedgerCorruptError
+    corrupt_cases = [
+        ("R15a malformed JSON", "{not valid json"),
+        ("R15b invalid schema (spent as string)",
+         _json.dumps({"day": "2026-10-07", "spent": "lots", "window": []})),
+        ("R15c negative credits",
+         _json.dumps({"day": "2026-10-07", "spent": -5, "window": []})),
+        ("R15d future timestamp",
+         _json.dumps({"day": "2026-10-07", "spent": 0,
+                       "window": [[FakeWallClock()() + 3600, 1]]})),
+        ("R15e spent over daily cap",
+         _json.dumps({"day": "2026-10-07", "spent": 9999, "window": []})),
+    ]
+    for name, payload in corrupt_cases:
+        with tempfile.TemporaryDirectory() as td:
+            sp = Path(td) / "ledger.json"
+            sp.write_text(payload)
+            lim = RollingCreditLimiter(8, 800, state_path=sp,
+                                       clock=FakeWallClock())
+            try:
+                lim.try_acquire(1, "x")
+                raised = False
+            except LedgerCorruptError:
+                raised = True
+            check(f"{name} → LedgerCorruptError (fail-closed)", raised,
+                  "no credit granted" if raised else "GRANTED (fail-open!)")
+
+    # R16: REAL synchronized multiprocess contention (ChatGPT 6043633584).
+    # R11 was sequential interleaving of two objects — not contention.
+    # 4 processes x 5 simultaneous tries on one shared ledger, frozen
+    # clock (window cannot slide): exactly 8 of 20 granted.
+    with tempfile.TemporaryDirectory() as td:
+        sp = str(Path(td) / "mp_ledger.json")
+        epoch = FakeWallClock()()
+        q = _mp.Queue()
+        procs = [_mp.Process(target=_mp_acquire_worker,
+                             args=(sp, epoch, 5, q)) for _ in range(4)]
+        for p in procs:
+            p.start()
+        for p in procs:
+            p.join()
+        total16 = sum(q.get() for _ in procs)
+        ledger_ok16 = True
+        try:
+            _json.loads(Path(sp).read_text())
+        except ValueError:
+            ledger_ok16 = False
+        check("R16 4-process contention → exactly 8 of 20 granted",
+              total16 == 8 and ledger_ok16, f"granted={total16}")
+
+    # R17: source-verification tamper coverage on ISOLATED copies
+    # (ChatGPT 6043633584). Frozen sources are never modified — copies
+    # are made to a temp dir and tampered there.
+    import verify_sources
+    with tempfile.TemporaryDirectory() as td:
+        tdp = Path(td)
+        for name in verify_sources.PINNED:
+            (tdp / name).write_bytes(
+                (verify_sources.ARCHIVAL_DIR / name).read_bytes())
+        # Tamper: flip the last byte of pine_backtest.py.
+        pb = tdp / "pine_backtest.py"
+        data = pb.read_bytes()
+        pb.write_bytes(data[:-1] + (b"X" if data[-1:] != b"X" else b"Y"))
+        fails = verify_sources.verify_directory(tdp, verify_sources.PINNED)
+        check("R17a tampered archival copy → HASH MISMATCH detected",
+              any("HASH MISMATCH" in f and "pine_backtest" in f
+                  for f in fails),
+              str(fails)[:100])
+    with tempfile.TemporaryDirectory() as td:
+        fails = verify_sources.verify_directory(Path(td),
+                                                verify_sources.PINNED)
+        check("R17b missing archival files → MISSING detected",
+              all("MISSING" in f for f in fails) and len(fails) == 2,
+              str(fails)[:100])
 
     # R08: README fixture paths match reality.
     readme = (HERE / "README.md").read_text()

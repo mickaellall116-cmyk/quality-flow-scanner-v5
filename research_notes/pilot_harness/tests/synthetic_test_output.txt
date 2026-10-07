@@ -25,14 +25,29 @@
 [PASS] R09a as-of 10:00, empty input → PASS, 0 completed bins — rc=0, bars=0
 [PASS] R09b as-of 10:00, full-day input → FAIL V11 (future rejected) — VALIDATION FAILED: V11: bar at 2026-09-08 09:30:00-04:00 has interval end 2026-09-08 10:30:00-04:00 after as_o
 [PASS] R09c as-of 10:30, 09:30 bar only → PASS, 0 completed bins — rc=0, bars=0
-[PASS] R09d as-of 13:30, 4 bars → PASS, 1 completed 4H bin — rc=0, bars=1
+[PASS] R09d as-of 13:30, 4 bars → 1 bin, EXACT OHLCV (defect 1) — O99.00/H99.40/L97.43/C97.72/V1504824
 [PASS] R09e as-of 16:00 (session close) → PASS, 2 bars — rc=0, bars=2
 [PASS] R10 restart at t=7.5s → 9th credit REFUSED (persisted window) — 9th=False, window_sum=8
 [PASS] R11 two-instance concurrency → 9th credit REFUSED — 8 granted=True, extras=(False,False)
-[PASS] R12 UTC day rollover → spent reset, window evicted — spent 3→0, window=0
+[PASS] R12a 8 before midnight, 9th after → REFUSED (window survives) — 9th=False, daily_spent=0
+[PASS] R12b grant after actual 60s expiration — 10th=True, daily_spent=1
 [PASS] R13a --verify-sources flag removed (no bypass flag exists) — usage: pilot_build.py [-h] --input INPUT --symbol SYMBOL --window-start
                   
 [PASS] R13b verification runs unconditionally (no flag given) — unconditional PASS in stdout
+[PASS] R14a ChatGPT probe → O10/H41/L9/C40/V10 (defect 1) — exact probe values
+[PASS] R14b as-of sweep 2026-09-08T10:30:00-04:00 → 0 bars, exact OHLCV — 0 bars
+[PASS] R14b as-of sweep 2026-09-08T13:30:00-04:00 → 1 bars, exact OHLCV — 1 bars
+[PASS] R14b as-of sweep 2026-09-08T16:00:00-04:00 → 2 bars, exact OHLCV — 2 bars
+[PASS] R14b as-of sweep 2025-11-28T13:00:00-05:00 → 1 bars, exact OHLCV — 1 bars
+[PASS] R14c documented ends → byte-identical to no-column path — one interval contract
+[PASS] R15a malformed JSON → LedgerCorruptError (fail-closed) — no credit granted
+[PASS] R15b invalid schema (spent as string) → LedgerCorruptError (fail-closed) — no credit granted
+[PASS] R15c negative credits → LedgerCorruptError (fail-closed) — no credit granted
+[PASS] R15d future timestamp → LedgerCorruptError (fail-closed) — no credit granted
+[PASS] R15e spent over daily cap → LedgerCorruptError (fail-closed) — no credit granted
+[PASS] R16 4-process contention → exactly 8 of 20 granted — granted=8
+[PASS] R17a tampered archival copy → HASH MISMATCH detected — ['HASH MISMATCH: pine_backtest.py (expected 447a9a13bb2ec7ab…, got 9602f664f96b66e9…)']
+[PASS] R17b missing archival files → MISSING detected — ['MISSING: /tmp/tmp2j6so69u/pine_backtest.py', 'MISSING: /tmp/tmp2j6so69u/scanner_rules.py']
 [PASS] R08 README uses synth_* fixture names (not synthetic_1h_*)
 
-35/35 passed
+50/50 passed

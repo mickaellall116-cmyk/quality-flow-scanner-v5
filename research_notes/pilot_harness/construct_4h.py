@@ -59,19 +59,24 @@ def session_close_et(day: pd.Timestamp) -> pd.Timestamp:
 
 def construct_4h(df: pd.DataFrame, symbol: str,
                  session_closes: dict | None = None,
-                 as_of: pd.Timestamp | None = None) -> pd.DataFrame:
+                 as_of: pd.Timestamp | None = None,
+                 validated_ends: pd.Series | None = None) -> pd.DataFrame:
     """Build session-anchored 4H bars from 1H bars.
 
     Args:
         df: 1H bars with tz-aware DatetimeIndex and Open/High/Low/Close/Volume.
             Each row must carry an 'interval_end' (tz-aware) or ends are
-            derived as next-bar-start / session-close (caller must have
+            derived from the full expected session grid (caller must have
             validated the interval-end contract first).
         symbol: ticker (labeling only).
         session_closes: optional {date_normalized: close_timestamp} override.
         as_of: MANDATORY causal cutoff. Constituents with interval end >
             as_of are dropped; output bins are emitted only if the bin's
             close <= as_of. Incomplete bins are never emitted.
+        validated_ends: the validator's canonical validated interval ends
+            (tz-aware Series indexed by bar start), carried through the
+            cleared entrypoint. Takes precedence over all derivation.
+            (ChatGPT 6043633584, defect 1.)
 
     Returns:
         4H bars with tz-aware DatetimeIndex (America/New_York),
@@ -101,17 +106,6 @@ def construct_4h(df: pd.DataFrame, symbol: str,
         else:
             closes[d] = session_close_et(d)
 
-    # Constituent interval ends: vendor column if present, else derived.
-    cols_lower = {c.lower(): c for c in data.columns}
-    if "interval_end" in cols_lower:
-        ends = pd.to_datetime(data[cols_lower["interval_end"]])
-        if ends.dt.tz is None:
-            raise TypeError("interval_end column is tz-naive; refusing to "
-                            "silently localize")
-        ends = ends.dt.tz_convert(NY)
-    else:
-        ends = None  # derived below per-day
-
     minutes = local.hour * 60 + local.minute
     day_key = local.normalize()
     close_minutes = day_key.map(
@@ -125,25 +119,53 @@ def construct_4h(df: pd.DataFrame, symbol: str,
     if data.empty:
         return data
 
-    # R3b: constituent end <= as_of. Derive per-bar ends for the cutoff.
-    if ends is not None:
-        cends = ends.loc[data.index].reset_index(drop=True)
+    # Constituent interval ends (ChatGPT 6043633584, defect 1).
+    # Precedence:
+    #   1. validated_ends — the validator's canonical validated ends,
+    #      carried through the cleared entrypoint (pilot_build.py).
+    #      Fail-closed: every bar must have one.
+    #   2. Explicit vendor 'interval_end' column (caller-validated).
+    #   3. Derived from the FULL EXPECTED SESSION GRID — never
+    #      next-PRESENT-row/session-close. The old derivation dropped the
+    #      12:30 bar at as_of=13:30 (its derived end was session close
+    #      16:00 > as_of); the grid knows the 12:30 bar ends at 13:30.
+    cols_lower = {c.lower(): c for c in data.columns}
+    if validated_ends is not None:
+        missing = [ts for ts in data.index if ts not in validated_ends.index]
+        if missing:
+            raise ValueError(
+                f"construct_4h: validated_ends missing for "
+                f"{len(missing)} bars (e.g. {missing[0]}); refusing to "
+                f"re-derive ends")
+        cends = validated_ends.loc[data.index]
+        if cends.dt.tz is None:
+            raise TypeError("validated_ends is tz-naive; refusing to "
+                            "silently localize")
+        cends = cends.dt.tz_convert(NY)
+    elif "interval_end" in cols_lower:
+        ends = pd.to_datetime(data[cols_lower["interval_end"]])
+        if ends.dt.tz is None:
+            raise TypeError("interval_end column is tz-naive; refusing to "
+                            "silently localize")
+        cends = ends.dt.tz_convert(NY)
     else:
-        # Derived: next bar start within the day, else session close.
+        # Grid-derived fallback: next EXPECTED grid start, else session
+        # close. Off-grid bars are rejected (validate first).
+        from validate_input import (expected_1h_starts as _grid_starts,
+                                    expected_end as _grid_end)
         cends_list = []
-        day_groups = {}
-        for i, ts in enumerate(local):
-            day_groups.setdefault(ts.normalize(), []).append((i, ts))
-        derived = {}
-        for d, items in day_groups.items():
-            items_sorted = sorted(items, key=lambda x: x[1])
-            for j, (i, ts) in enumerate(items_sorted):
-                if j + 1 < len(items_sorted):
-                    derived[i] = items_sorted[j + 1][1]
-                else:
-                    derived[i] = closes[d]
-        cends = pd.Series([derived[i] for i in range(len(data))],
-                          index=data.index).dt.tz_convert(NY)
+        for ts in local:
+            d = ts.normalize()
+            s_open = d + pd.Timedelta(minutes=SESSION_OPEN_MIN)
+            s_close = closes[d]
+            exp = _grid_starts(s_open, s_close)
+            if ts not in exp:
+                raise ValueError(
+                    f"construct_4h: bar {ts} is not on the expected 1H grid; "
+                    f"validate the input first (pilot_build.py is the "
+                    f"cleared path)")
+            cends_list.append(_grid_end(ts, exp, s_close))
+        cends = pd.Series(cends_list, index=data.index).dt.tz_convert(NY)
     as_of_ny = as_of.tz_convert(NY)
     keep = cends <= as_of_ny
     data = data[keep].copy()

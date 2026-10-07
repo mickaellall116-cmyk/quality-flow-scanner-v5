@@ -259,12 +259,17 @@ def validate(df: pd.DataFrame, symbol: str,
         report["days_validated"] = 0
         report["bars_validated"] = 0
         report["due_constituents"] = 0
+        report["interval_ends"] = {}
         report["causally_partial_days"] = [
             d.strftime("%Y-%m-%d") for d, _ in open_days]
         return report
 
     report["causally_partial_days"] = []
     total_due = 0
+    # Canonical validated interval ends (ChatGPT 6043633584, defect 1).
+    # Construction must use THESE — never next-present-row/session-close.
+    # Keyed by bar start (NY tz-aware Timestamp) → canonical end.
+    canonical_ends: dict = {}
     for day, (session_open, session_close) in open_days:
         starts = by_day.get(day, [])
 
@@ -329,11 +334,18 @@ def validate(df: pd.DataFrame, symbol: str,
                         f"{got_end.strftime('%H:%M')}, expected boundary "
                         f"{exp_end.strftime('%H:%M')}; refusing to "
                         f"manufacture vendor semantics")
+                # Defect 1 (6043633584): carry the DECLARED vendor-end
+                # mapping (proven equal to the expected boundary above).
+                canonical_ends[ts] = got_end
             report["checks"].setdefault("V9_interval_end_contract", "pass")
 
         # V3 + V7: per-bar interval validation (derived ends, well-formed).
         for ts in starts:
             end = expected_end(ts, exp_starts, session_close)
+            # Defect 1 (6043633584): no vendor column → the canonical end
+            # is the expected grid end (NOT next-present-row). V9 already
+            # stored the declared vendor end when a column was supplied.
+            canonical_ends.setdefault(ts, end)
             duration_min = (end - ts).total_seconds() / 60
             if duration_min not in (60, 30):
                 raise ValidationError(
@@ -382,6 +394,13 @@ def validate(df: pd.DataFrame, symbol: str,
     if interval_end_col is None:
         report["checks"]["V9_interval_end_contract"] = \
             "not supplied (UNKNOWN vendor contract scope preserved)"
+    # Defect 1 (6043633584): canonical validated interval ends for
+    # construction. ISO strings; the cleared entrypoint carries these
+    # into construct_4h (validated_ends) so ends are never re-derived
+    # from next-present-row/session-close.
+    report["interval_ends"] = {
+        ts.isoformat(): end.isoformat()
+        for ts, end in sorted(canonical_ends.items())}
     report["days_validated"] = len(open_days)
     report["bars_validated"] = len(df)
     report["due_constituents"] = total_due

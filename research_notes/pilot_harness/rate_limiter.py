@@ -36,7 +36,9 @@ import argparse
 import calendar
 import fcntl
 import json
+import math
 import os
+import re
 import tempfile
 import threading
 import time
@@ -44,6 +46,19 @@ from contextlib import contextmanager, nullcontext
 from pathlib import Path
 
 WINDOW_SECONDS = 60.0
+
+# Ledger 'day' must be a UTC calendar date (YYYY-MM-DD).
+_DAY_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+class LedgerCorruptError(Exception):
+    """Persisted limiter ledger exists but is malformed or invalid.
+
+    Fail-closed: the limiter raises rather than silently resetting to a
+    zero budget (ChatGPT 6043633584, defect 3). A missing ledger file is
+    explicit initial creation (fresh state); anything else that cannot be
+    validated is corruption.
+    """
 
 
 class RollingCreditLimiter:
@@ -89,17 +104,67 @@ class RollingCreditLimiter:
             fh.close()
 
     # -- state load/save (call only under _locked) ----------------------
+    def _validate_state(self, raw: object, now: float) -> dict:
+        """Validate a persisted ledger's schema. Raises LedgerCorruptError.
+
+        Checks: JSON object root; 'day' is YYYY-MM-DD or absent/null;
+        'spent' is an int in [0, daily_cap]; 'window' is a list of
+        [epoch_seconds, weight] pairs with finite non-negative timestamps
+        (no far-future timestamps), positive weights bounded by the
+        per-minute budget. (ChatGPT 6043633584, defect 3.)
+        """
+        if not isinstance(raw, dict):
+            raise LedgerCorruptError(
+                f"ledger root is not a JSON object: {type(raw).__name__}")
+        day = raw.get("day")
+        if day is not None and (not isinstance(day, str)
+                                or not _DAY_RE.match(day)):
+            raise LedgerCorruptError(
+                f"ledger 'day' is not YYYY-MM-DD: {day!r}")
+        spent = raw.get("spent", 0)
+        if (not isinstance(spent, int) or isinstance(spent, bool)
+                or spent < 0 or spent > self._daily_cap):
+            raise LedgerCorruptError(
+                f"ledger 'spent' out of range [0, {self._daily_cap}]: "
+                f"{spent!r}")
+        window = raw.get("window", [])
+        if not isinstance(window, list):
+            raise LedgerCorruptError(
+                f"ledger 'window' is not a list: {type(window).__name__}")
+        clean: list[tuple[float, int]] = []
+        for item in window:
+            if not (isinstance(item, (list, tuple)) and len(item) == 2):
+                raise LedgerCorruptError(
+                    f"ledger window entry malformed: {item!r}")
+            t, w = item
+            if (not isinstance(t, (int, float)) or isinstance(t, bool)
+                    or not math.isfinite(t) or t < 0 or t > now + 60):
+                raise LedgerCorruptError(
+                    f"ledger window timestamp invalid: {t!r}")
+            if (not isinstance(w, int) or isinstance(w, bool)
+                    or w < 1 or w > self._cpm):
+                raise LedgerCorruptError(
+                    f"ledger window weight out of range [1, {self._cpm}]: "
+                    f"{w!r}")
+            clean.append((float(t), int(w)))
+        return {"day": day, "spent": spent, "window": clean}
+
     def _load(self) -> dict:
         if self._state_path is None:
             return self._mem
         try:
-            d = json.loads(self._state_path.read_text())
-            return {"day": str(d.get("day")),
-                    "spent": int(d.get("spent", 0)),
-                    "window": [(float(t), int(w))
-                               for t, w in d.get("window", [])]}
-        except (FileNotFoundError, ValueError, KeyError, TypeError):
+            raw_text = self._state_path.read_text()
+        except FileNotFoundError:
+            # Explicit initial creation: no ledger file yet. This is the
+            # ONLY path that yields a fresh zero-budget state (defect 3).
             return {"day": None, "spent": 0, "window": []}
+        try:
+            raw = json.loads(raw_text)
+        except ValueError as e:
+            # Malformed JSON in an EXISTING ledger file → corruption,
+            # not initial creation. Fail closed (defect 3).
+            raise LedgerCorruptError(f"ledger is malformed JSON: {e}")
+        return self._validate_state(raw, self._wall())
 
     def _save(self, state: dict):
         if self._state_path is None:
@@ -131,7 +196,14 @@ class RollingCreditLimiter:
         """Pure check; returns (granted, new_state)."""
         today = self._today_key(now)
         if state["day"] != today:
-            state = {"day": today, "spent": 0, "window": []}
+            # Day rollover: reset daily SPENT at the evidenced UTC day
+            # boundary, but RETAIN every minute-ledger event younger than
+            # 60 seconds — a rolling 60-second budget must survive
+            # midnight (ChatGPT 6043633584, defect 2). Wiping the window
+            # here was a fail-open: 8 credits at 23:59:50 + a 9th at
+            # 00:00:10 was GRANTED.
+            state = {"day": today, "spent": 0,
+                     "window": self._evict(state["window"], now)}
         window = self._evict(state["window"], now)
         if sum(w for _, w in window) + weight > self._cpm:
             return False, state

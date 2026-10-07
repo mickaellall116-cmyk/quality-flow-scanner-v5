@@ -1,6 +1,6 @@
 # Pilot Harness — Isolated Offline 4H Construction + Validation
 
-**Version:** v3 (2026-10-07) — bounded repair per ChatGPT 6039806101
+**Version:** v4 (2026-10-07) — consolidated offline patch per ChatGPT 6043633584
 **Status:** OFFLINE/SYNTHETIC ONLY. No vendor API calls. No production changes.
 **Purpose:** Executable prerequisite for the Twelve Data pilot (ChatGPT 6037625281,
 blocker 1). Publishes the minimal isolated acquisition/construction harness,
@@ -21,8 +21,11 @@ It enforces, in order, with no bypass:
    is never silently discarded. The current open session may be causally
    partial; sessions complete before as_of must be fully present; verified
    closed days must have zero bars.
-3. Construction with as-of causal cutoff: constituent end <= as-of, only
-   completed bins emitted. No 16:00 fallback, no silent localization.
+3. Construction with as-of causal cutoff AND the validator's canonical
+   validated interval ends carried through (ChatGPT 6043633584, defect 1):
+   constituent end <= as-of, only completed bins emitted, all validated
+   constituents preserved. No 16:00 fallback, no silent localization,
+   no next-present-row end derivation.
 
 ```bash
 python3 pilot_build.py --input 1h.csv --symbol AAPL \
@@ -50,21 +53,29 @@ A standalone, dependency-pinned implementation of:
    constructor does not (it groups by start timestamp and falls back unknown
    dates to 16:00).
 
-3. **Credit-weighted rolling-window limiter** (`rate_limiter.py`) — v3
-   replaces the v2 design (whose window ledger was memory-only, whose
-   day-boundary clock misused monotonic time, and whose JSON writes were
-   neither atomic nor locked — ChatGPT 6039806101, finding 2). v3 persists
-   the full (epoch-wall-time, weight) window ledger, uses epoch wall time
-   with an injectable clock, atomic temp+rename writes, and interprocess
-   fcntl locking. Rolling 60s window, persistent daily accounting,
+3. **Credit-weighted rolling-window limiter** (`rate_limiter.py`) — v4
+   (ChatGPT 6043633584): the rolling 60s window ledger now SURVIVES
+   midnight (defect 2: daily spent resets at the UTC day boundary, but
+   every minute-ledger event younger than 60s is retained — 8 credits at
+   23:59:50 + 9th at 00:00:10 is REFUSED). Corrupt/invalid EXISTING
+   ledger state fails CLOSED via `LedgerCorruptError` (defect 3:
+   malformed JSON, invalid schema, negative credits, and future
+   timestamps are distinguished from explicit initial creation, which is
+   the only path to a fresh zero-budget state). v3 persists the full
+   (epoch-wall-time, weight) window ledger, uses epoch wall time with an
+   injectable clock, atomic temp+rename writes, and interprocess fcntl
+   locking. Rolling 60s window, persistent daily accounting,
    oversized-request refusal, deterministic UTC day rollover.
 
 4. **Synthetic 1H generator + test suite** (`synthetic_data.py`, `tests/`) —
    covers regular day, early-close day, full holiday, DST transition
    (spring-forward and fall-back), partial-bar cases, causally-partial
-   as-of captures (10:00/10:30/13:30/close boundaries), plus regression
-   fixtures for all ChatGPT counterexamples. **35/35 tests pass**
-   (`tests/synthetic_test_output.txt`).
+   as-of captures (10:00/10:30/13:30/close boundaries), documented
+   interval-end fixtures, plus regression fixtures for all ChatGPT
+   counterexamples. **50/50 tests pass**
+   (`tests/synthetic_test_output.txt`), including exact pinned OHLCV
+   acceptance at every as-of boundary and a real 4-process contention
+   test.
 
 ## Quick start
 
@@ -102,15 +113,15 @@ python3 pilot_build.py --input tests/fixtures/synth_holiday.csv \
 
 | File | Purpose |
 |------|---------|
-| `pilot_build.py` | **Cleared entrypoint**: verify (unconditional) → validate (as_of) → construct (no bypass) |
-| `construct_4h.py` | Deterministic 1H→4H session construction (v2: no fallback, as-of) |
-| `validate_input.py` | Fail-closed input validator v2 (window, interval-end, OHLCV, V11 causal) |
-| `rate_limiter.py` | Rolling-window credit limiter v3 (persisted window, wall clock, fcntl-locked) |
-| `synthetic_data.py` | Synthetic 1H bar generator (10 cases incl. regression fixtures) |
-| `verify_sources.py` | Archival SHA-256 verification (fail-closed) |
+| `pilot_build.py` | **Cleared entrypoint**: verify (unconditional) → validate (as_of) → construct with validator-carried ends (no bypass) |
+| `construct_4h.py` | Deterministic 1H→4H session construction (v3: validated_ends carried; grid-derived fallback, no next-present-row) |
+| `validate_input.py` | Fail-closed input validator v3 (window, interval-end, OHLCV, V11 causal, canonical `interval_ends` for construction) |
+| `rate_limiter.py` | Rolling-window credit limiter v4 (midnight-surviving window, LedgerCorruptError fail-closed, fcntl-locked) |
+| `synthetic_data.py` | Synthetic 1H bar generator (13 cases incl. regression + intervalend_ok fixtures) |
+| `verify_sources.py` | Archival SHA-256 verification (fail-closed; `verify_directory()` factored for isolated tamper tests) |
 | `warmup_math.py` | EMA200 convergence analysis (blocker 2) |
 | `requirements.txt` | Pinned dependencies |
-| `tests/` | Synthetic + regression suite (T01–T13, R01–R08) + fixtures |
+| `tests/` | Synthetic + regression suite (T01–T13, R01–R17) + fixtures |
 
 ## Design constraints
 

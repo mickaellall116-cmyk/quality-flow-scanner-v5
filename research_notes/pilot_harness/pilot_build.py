@@ -120,9 +120,17 @@ def main() -> int:
         print(f"  [causally-partial] {d} (no constituents due as of cutoff)")
 
     # Step 3: construct (as-of enforced; no fallback; no silent localization).
+    # Defect 1 (ChatGPT 6043633584): carry the validator's canonical
+    # validated interval ends into construction. Construction must not
+    # re-derive ends from next-present-row/session-close (that dropped
+    # the 12:30 bar at as_of=13:30).
     df2 = df.rename(columns={c: c.capitalize() for c in df.columns})
+    ends_map = report.get("interval_ends") or {}
+    validated_ends = pd.Series(
+        {pd.Timestamp(k): pd.Timestamp(v) for k, v in ends_map.items()})
     try:
-        bars = construct_4h(df2, args.symbol, as_of=as_of)
+        bars = construct_4h(df2, args.symbol, as_of=as_of,
+                            validated_ends=validated_ends)
     except (TypeError, ValueError) as e:
         print(f"CONSTRUCTION FAILED: {e}", file=sys.stderr)
         return 2

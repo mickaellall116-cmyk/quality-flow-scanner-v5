@@ -36,20 +36,33 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
-def main() -> int:
+def verify_directory(archival_dir: Path, pinned: dict) -> list[str]:
+    """Verify pinned byte identities in a directory. Returns failure list
+    (empty = all verified). Factored for isolated copy-based tamper
+    testing without touching frozen sources (ChatGPT 6043633584)."""
     failures = []
-    for name, expected in PINNED.items():
-        p = ARCHIVAL_DIR / name
+    for name, expected in pinned.items():
+        p = archival_dir / name
         if not p.exists():
             failures.append(f"MISSING: {p}")
             continue
         actual = sha256_file(p)
+        if actual != expected:
+            failures.append(
+                f"HASH MISMATCH: {name} "
+                f"(expected {expected[:16]}…, got {actual[:16]}…)")
+    return failures
+
+
+def main() -> int:
+    failures = verify_directory(ARCHIVAL_DIR, PINNED)
+    for name, expected in PINNED.items():
+        p = ARCHIVAL_DIR / name
+        actual = sha256_file(p) if p.exists() else "<missing>"
         status = "OK " if actual == expected else "MISMATCH"
         print(f"[{status}] {name}")
         print(f"  expected: {expected}")
         print(f"  actual:   {actual}")
-        if actual != expected:
-            failures.append(f"HASH MISMATCH: {name}")
     if failures:
         print("\nFAIL-CLOSED: archival source verification failed:", file=sys.stderr)
         for f in failures:

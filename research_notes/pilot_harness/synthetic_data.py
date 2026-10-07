@@ -107,6 +107,18 @@ def gen_case(case: str) -> pd.DataFrame:
         df = _bars(session_starts("2026-09-08"))
         df["interval_end"] = df["timestamp"] + pd.Timedelta(hours=2)
         return df
+    if case == "intervalend_ok":
+        # Regular day with a CORRECT vendor interval_end column: each end
+        # is the next bar's start, the last bar's end is the session close.
+        # V9 must PASS and construction must produce byte-identical output
+        # to the no-column path (ChatGPT 6043633584, defect 1: one interval
+        # contract throughout).
+        df = _bars(session_starts("2026-09-08"))
+        starts = list(df["timestamp"])
+        ends = [s + pd.Timedelta(hours=1) for s in starts[:-1]]
+        ends.append(pd.Timestamp("2026-09-08 16:00").tz_localize(NY))
+        df["interval_end"] = pd.DatetimeIndex(ends).tz_convert(NY)
+        return df
     if case == "naive":
         # Tz-naive timestamps — entrypoint must refuse silent localization.
         df = _bars(session_starts("2026-09-08"))
@@ -130,7 +142,8 @@ def gen_case(case: str) -> pd.DataFrame:
 
 CASES = ["regular", "earlyclose", "holiday", "dst_spring", "dst_fall",
          "straddle_bad", "closeday_bad", "gap_bad",
-         "intervalend_bad", "naive", "partial_1030", "partial_1330"]
+         "intervalend_bad", "intervalend_ok", "naive",
+         "partial_1030", "partial_1330"]
 
 
 def main() -> int:
