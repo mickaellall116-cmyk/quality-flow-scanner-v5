@@ -1,13 +1,45 @@
-# Twelve Data Pilot — Frozen Execution Plan v6
+# Twelve Data Pilot — Frozen Execution Plan v7
 
-**Date:** 2026-10-07
-**Version:** v6 (supersedes v5, 2026-10-07)
+**Date:** 2026-10-08
+**Version:** v7 (supersedes v6, 2026-10-07 — retention amendment only; all v6 code/spec/window rules unchanged)
 **Status:** FROZEN PLAN — vendor execution HOLD per ChatGPT 6037625281/6037842097/6039806101/6043633584.
 Offline repair (harness v4 + 50/50 tests) complete; see `research_notes/pilot_harness/`.
 Execution authorized by Mike 2026-10-06 ("just run if chat says") conditional
 on ChatGPT spec clearance; no redundant approval will be requested.
 **Spec:** `research_notes/DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md` (with [A1]–[A6], [B1]–[B7], plus v2/v3/v4/v5/v6 spec revisions).
 **Credential:** `custom.twelvedata` (Secure Vault). No key value in any public evidence.
+
+> This plan is documentation only. No vendor call executes until ChatGPT
+> clears the amended spec. When execution is authorized, this exact plan
+> runs unmodified; any deviation requires a new versioned plan.
+> Do NOT label the path "cleared" until reviewer acceptance.
+
+## Changelog v6 → v7 (retention clarification, 2026-10-08, ChatGPT 6052566220)
+
+Mike supplied a reply attributed to Twelve Data's Dooz AI support agent:
+Basic (free) plan may download and store price data (e.g. 1H OHLC) for
+**personal, internal use (backtesting/research) while the account is active**;
+after cancellation/termination, **all downloaded data must be deleted within
+30 days**.
+
+**PROVENANCE:** user-supplied vendor AI-support transcript — **not
+independently authenticated** human/legal confirmation or a license
+amendment. Do not claim perpetual rights. Human/official-document
+corroboration may be pursued in parallel without claiming it exists.
+
+**Plan changes (v7):**
+- C4 retention gate (§0, §7): updated from MISSING to **BOUNDED RESOLVED**
+  — active-account personal/internal retention permitted; termination +
+  30-day deletion condition; retention inventory includes raw snapshots,
+  backups, and shared copies; raw vendor payloads remain PRIVATE (never
+  GitHub/Slack) per Terms §2.2(e)/§2.4.
+- Indefinite immutable retention beyond termination: still INSUFFICIENT
+  EVIDENCE — not granted by this reply. Do not hold the project for
+  indefinite post-cancellation storage.
+- Stop condition: a changed provider rule or contradictory authoritative
+  guidance requires stopping and reassessing the retention path.
+- No other v6 rule changes: windows, symbols, harness, rate budget, gates,
+  and HOLD boundaries are unchanged.
 
 > This plan is documentation only. No vendor call executes until ChatGPT
 > clears the amended spec. When execution is authorized, this exact plan
@@ -113,7 +145,7 @@ duration → C4 marked **MISSING** (was BOUNDED). Do NOT claim all blockers reso
 | Runnable harness published (v4) | ✅ COMPLETED | `research_notes/pilot_harness/` v4: `pilot_build.py` (mandatory entrypoint, unconditional verification, as_of passed to validate, validator-carried `validated_ends`), `construct_4h.py` v3 (validated ends carried; grid-derived fallback, no next-present-row), `validate_input.py` v3 (window V8, interval-end V9, OHLCV V10, causal V11, canonical `interval_ends`), 50/50 tests passing |
 | Fail-closed input validator (v3) | ✅ COMPLETED | V1–V11; request-window enumeration; missing open-day sessions rejected; interval-end contract enforced; causal as_of cutoff (V11: future rows rejected, not discarded); canonical interval ends carried to construction (defect 1); no silent localization |
 | 1H interval spec | ✅ COMPLETED | §4; expected starts, partial-bar handling; one interval contract throughout (documented-ends path byte-identical to derived path, R14c) |
-| C4 retention evidence | ❌ MISSING | Per ChatGPT 6043633584: private-storage correction stands, but post-termination deletion deadline ≠ permitted retention duration. No bounded retention entitlement evidenced. Do NOT claim resolved. |
+| C4 retention evidence | ✅ BOUNDED RESOLVED (v7, 2026-10-08) | Active-account personal/internal retention permitted on Basic (free) per Mike-supplied Twelve Data Dooz AI-support transcript (user-supplied, NOT independently authenticated — no perpetual rights claimed). Retention envelope: subscription duration; all downloaded data (raw snapshots, backups, shared copies) deleted within 30 days of cancellation/termination. Raw vendor payloads stay PRIVATE (never GitHub/Slack) per Terms §2.2(e)/§2.4. Indefinite post-termination retention: still INSUFFICIENT EVIDENCE. Stop-and-reassess if provider rule changes or authoritative guidance contradicts. |
 | Rate limiter (rolling-window v4) | ✅ COMPLETED (design) | `rate_limiter.py` v4: persisted (epoch-wall-time, weight) window ledger; window SURVIVES midnight (defect 2: spent resets, sub-60s events retained); `LedgerCorruptError` fail-closed on corrupt existing ledger (defect 3); atomic temp+rename writes; interprocess fcntl locking; real 4-process contention proven (R16). Exact endpoint weights TBD with entitlement evidence before execution |
 | Credential safety | ✅ COMPLETED | §6; sanitized logging |
 | Authorization record | ✅ COMPLETED | memory/2026-10-06.md:1240 (resolvable); conditional scope preserved |
@@ -461,13 +493,20 @@ failure. **No automatic blame assignment.**
       - §2.2(e)/§2.4: redistribution or external display requires a
         Redistribution Rights Add-On or separate agreement — **raw vendor
         payloads and reconstructible bar CSVs MUST NOT be published**.
-- [ ] **Frozen rule (v3):** raw vendor payloads are stored PRIVATELY
+- [ ] **Frozen rule (v3, amended v7):** raw vendor payloads are stored PRIVATELY
       (local immutable store, never pushed to GitHub or any public surface);
       ONLY manifests (hashes, request/receipt timestamps, sanitized params),
-      code, and summaries are published. The pilot's bounded 30-day window
-      plus §16.2's 30-day post-termination deletion define the maximum
-      retention envelope. **Indefinite immutable retention: INSUFFICIENT
-      EVIDENCE** (unchanged from v2).
+      code, and summaries are published. **Retention envelope (v7):**
+      personal/internal backtesting data may be retained for the duration of
+      the ACTIVE Basic subscription per Mike-supplied Twelve Data Dooz
+      AI-support clarification (user-supplied transcript, not independently
+      authenticated — provenance preserved, no perpetual rights claimed).
+      Upon cancellation or account termination: **all downloaded data —
+      including raw snapshots, backups, and shared copies — deleted within
+      30 days** per Terms §16.2 and the support clarification. Indefinite
+      post-termination retention: INSUFFICIENT EVIDENCE. A changed provider
+      rule or contradictory authoritative guidance → stop and reassess the
+      retention path. No raw licensed data is published on GitHub/Slack.
 
 ### Verdicts (restricted — correction 7)
 

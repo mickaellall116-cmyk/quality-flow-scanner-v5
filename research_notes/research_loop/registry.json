@@ -1,607 +1,647 @@
 {
- "created_at": "2026-10-07T21:15:00Z",
- "experiments": [
-  {
-   "acceptance_criteria": "ChatGPT independent probe reproduction + acceptance of isolated prerequisite scope",
-   "attempted_variations": [
+  "created_at": "2026-10-07T21:15:00Z",
+  "experiments": [
     {
-     "description": "Calendar/symbol/warmup corrections",
-     "result": "HOLD by ChatGPT 6037625281",
-     "variation_id": "v2",
-     "verdict_ref": "6037625281"
+      "acceptance_criteria": "ChatGPT independent probe reproduction + acceptance of isolated prerequisite scope",
+      "attempted_variations": [
+        {
+          "description": "Calendar/symbol/warmup corrections",
+          "result": "HOLD by ChatGPT 6037625281",
+          "variation_id": "v2",
+          "verdict_ref": "6037625281"
+        },
+        {
+          "description": "Isolated offline harness, 15/15 tests",
+          "result": "HOLD by ChatGPT 6037842097 \u2014 4 gaps",
+          "variation_id": "v3",
+          "verdict_ref": "6037842097"
+        },
+        {
+          "description": "Bounded repair, 25/25 tests",
+          "result": "HOLD by ChatGPT 6039806101 \u2014 3 load-bearing issues",
+          "variation_id": "v4",
+          "verdict_ref": "6039806101"
+        },
+        {
+          "description": "Mandatory as-of, persistent limiter, unconditional verification; 35/35",
+          "result": "HOLD by ChatGPT 6043633584 \u2014 3 defects",
+          "variation_id": "v5",
+          "verdict_ref": "6043633584"
+        },
+        {
+          "description": "Consolidated patch: partial-bin OHLCV, midnight limiter, corrupt-ledger fail-closed; 50/50",
+          "result": "ACCEPTED as isolated prerequisite",
+          "variation_id": "v6",
+          "verdict_ref": "6044057762"
+        }
+      ],
+      "baseline_design": "Synthetic fixtures with pinned expected outputs; ChatGPT independent probes as adversarial baseline",
+      "code_pin": "fd03906",
+      "costs": "N/A \u2014 offline synthetic",
+      "created_at": "2026-10-07T14:00:00Z",
+      "dataset_pin": "synthetic only \u2014 no vendor data",
+      "decision_refs": [
+        "6044057762 (ChatGPT acceptance)",
+        "fd03906 (commit)"
+      ],
+      "dependencies": [],
+      "experiment_id": "EXP-20261007-HARNESS-V56",
+      "failure_data_source": "N/A",
+      "failure_market": "N/A",
+      "failure_reason": "N/A \u2014 passed",
+      "failure_strategy_family": "N/A",
+      "failure_timeframe": "N/A",
+      "hypothesis": "An isolated offline synthetic harness can validate Twelve Data pilot input construction, rate limiting, and source verification without vendor calls.",
+      "limitations": [
+        "C4 retention + endpoint-credit entitlements remain MISSING",
+        "Synthetic only \u2014 no vendor behavior validated"
+      ],
+      "literature_intake": "UNKNOWN",
+      "next_action": "NONE \u2014 PASS scoped to isolated offline prerequisite only",
+      "output_pin": "50/50 tests passing (tests/synthetic_test_output.txt in fd03906)",
+      "owner": "Muse",
+      "primary_sources": [
+        "Issue #1 comments 6039806101 (v5 spec), 6043633584 (v6 spec)"
+      ],
+      "repair_budget": {
+        "allocated_rounds": 6,
+        "used_rounds": 6
+      },
+      "robustness_diagnostics": [
+        "10:00/10:30/13:30/16:00/early-close boundaries",
+        "restart-at-7.5s",
+        "two-instance concurrency",
+        "UTC rollover",
+        "4-process contention",
+        "ledger corruption"
+      ],
+      "rule_spec_version": "PILOT_EXECUTION_PLAN v6",
+      "state": "PASS",
+      "title": "Twelve Data pilot offline harness repairs (v5 + v6)",
+      "trial_budget": {
+        "allocated": "UNKNOWN",
+        "unit": "rounds",
+        "used": "6 repair rounds"
+      },
+      "validation_split": "N/A \u2014 prerequisite harness, not a strategy test",
+      "verdict": "PASS \u2014 scoped to isolated offline/synthetic harness prerequisite ONLY. Never grants deployment, CP2, or performance clearance."
     },
     {
-     "description": "Isolated offline harness, 15/15 tests",
-     "result": "HOLD by ChatGPT 6037842097 \u2014 4 gaps",
-     "variation_id": "v3",
-     "verdict_ref": "6037842097"
+      "acceptance_criteria": "UNKNOWN \u2014 not preregistered (exploratory diagnostic)",
+      "attempted_variations": [
+        {
+          "description": "ORB v1 vs 1000 random variants each on QQQ/SPY",
+          "result": "HOLD \u2014 null mismatch, overstated claims",
+          "variation_id": "base",
+          "verdict_ref": "6046384583"
+        }
+      ],
+      "baseline_design": "1000 random-entry variants per symbol: same nominal risk unit, 2R target, random bar + random direction. NOTE (ChatGPT): risk distance mismatch \u2014 ORB realized risk differs from random nominal risk. Null does not match estimand.",
+      "code_pin": "838bb89 (research_notes/orb_15m_random_benchmark_20261007/artifacts/orb_test.py, SHA256 01416fb9...)",
+      "costs": "1bp/3bp/5bp per-side SCENARIOS (not measured fills)",
+      "created_at": "2026-10-07T18:20:00Z",
+      "dataset_pin": "Tiingo IEX 15m, QQQ+SPY, 2024-10-01 to 2026-10-07, 527 days each \u2014 hashes in ARTIFACTS_MANIFEST.md",
+      "decision_refs": [
+        "6046384583 (ChatGPT evidence review)",
+        "838bb89 (artifacts + corrections)"
+      ],
+      "dependencies": [],
+      "experiment_id": "EXP-20261007-ORB-15M",
+      "failure_data_source": "Tiingo IEX",
+      "failure_market": "QQQ, SPY",
+      "failure_reason": "null_mismatch",
+      "failure_strategy_family": "orb",
+      "failure_timeframe": "15m intraday",
+      "hypothesis": "A 15-minute opening range breakout (first 15m high/low, entry on close outside, stop at opposite side, 2R target) has timing edge beyond random entries on QQQ/SPY.",
+      "limitations": [
+        "Null mismatch: ORB entry at breakout close vs random at range width \u2014 risk distances differ",
+        "Tiingo IEX prints only, not consolidated tape",
+        "No preregistration \u2014 exploratory",
+        "Per-trade ledger unavailable (aggregates only)",
+        "2026 weakness is descriptive, not causal"
+      ],
+      "literature_intake": "UNKNOWN",
+      "next_action": "Fix null design (matched risk distance) before any rerun \u2014 per ChatGPT 6046384583",
+      "output_pin": "838bb89 (report + corrections)",
+      "owner": "Muse",
+      "primary_sources": [
+        "QuantLab video transcript (Mike-provided 2026-10-07)"
+      ],
+      "repair_budget": {
+        "allocated_rounds": 1,
+        "used_rounds": 1
+      },
+      "robustness_diagnostics": [
+        "Two symbols (correlated)",
+        "Per-year breakdown",
+        "Cost scenarios 1/3/5bp"
+      ],
+      "rule_spec_version": "ORB-v1: 09:30-09:45 ET range, first close outside = entry, stop at other side, 2R target, stop-wins-ties, EOD exit, 1 trade/day max",
+      "state": "HOLD",
+      "title": "15-minute Opening Range Breakout vs random-entry benchmark (QQQ/SPY)",
+      "trial_budget": {
+        "allocated": 1000,
+        "unit": "random_variants_per_symbol",
+        "used": 1000
+      },
+      "validation_split": "Single 2-year window; no held-out. QQQ/SPY correlated, not independent.",
+      "verdict": "HOLD \u2014 exploratory diagnostic. No genuine-edge or universal nontradeability verdict accepted. Do not rerun until null design is fixed."
     },
     {
-     "description": "Bounded repair, 25/25 tests",
-     "result": "HOLD by ChatGPT 6039806101 \u2014 3 load-bearing issues",
-     "variation_id": "v4",
-     "verdict_ref": "6039806101"
+      "acceptance_criteria": "ChatGPT adjudication",
+      "attempted_variations": [
+        {
+          "code_pin": "1440a3b",
+          "description": "Initial decision memo (Mike-confirmed 'Yes brainstorm')",
+          "output_blob": "f4ee2b9609e8 (verified byte-identical)",
+          "result": "Delivered; ChatGPT 6047556037 requested bounded corrections",
+          "variation_id": "v1",
+          "verdict_ref": "6047556037"
+        },
+        {
+          "code_pin": "65e75ca",
+          "description": "Bounded corrections per ChatGPT 6047556037: vendor-scoped Route 3, prerequisite/stop table, C1 map placeholder, authorship correction",
+          "output_blob": "07021db349101feea7f21fd4754bd0c954200dbe (verified)",
+          "result": "ACCEPTED as planning decision record (planning acceptance only)",
+          "variation_id": "v2",
+          "verdict_ref": "ChatGPT 6048255893"
+        }
+      ],
+      "baseline_design": "N/A \u2014 planning document",
+      "code_pin": "65e75ca",
+      "costs": "Effort estimates with evidence-vs-assumption separation; Route 1 bounded to 2 weeks (to 2026-10-21)",
+      "created_at": "2026-10-07T17:30:00Z",
+      "dataset_pin": "N/A",
+      "decision_refs": [
+        "1440a3b (v1 commit, history)",
+        "65e75ca (v2 commit)",
+        "6048255893 (ChatGPT acceptance scope)",
+        "6048657174 (scaffold adjudication references v2 pin)"
+      ],
+      "dependencies": [],
+      "experiment_id": "EXP-20261007-RECOVERY-MEMO",
+      "failure_data_source": "N/A",
+      "failure_market": "N/A",
+      "failure_reason": "N/A",
+      "failure_strategy_family": "N/A",
+      "failure_timeframe": "N/A",
+      "hypothesis": "N/A \u2014 decision memo, not a strategy test. Recommends Route 3 (narrow prospective capture) primary, Route 1 (Twelve Data pilot) bounded parallel, Route 2 historical not recommended.",
+      "limitations": [
+        "Planning only \u2014 no acquisition, spending, performance, or frozen-system authorization"
+      ],
+      "literature_intake": "UNKNOWN",
+      "next_action": "Feed gates evidence table (this handoff item 3); Route 1 bounded evidence-gathering ceiling to 2026-10-21",
+      "output_pin": "65e75ca (blob 07021db349101feea7f21fd4754bd0c954200dbe, verified)",
+      "owner": "Muse",
+      "primary_sources": [
+        "Issue #1 comments 6043456992, 6043557374 (brainstorm request + addendum)",
+        "Six repair rounds as maintenance evidence"
+      ],
+      "repair_budget": {
+        "allocated_rounds": "N/A",
+        "used_rounds": "N/A"
+      },
+      "robustness_diagnostics": [],
+      "rule_spec_version": "RECOVERY_PATH_DECISION_MEMO_20261007.md v2",
+      "state": "REVIEW",
+      "title": "Recovery-path decision memo: Twelve Data vs Yahoo vs prospective capture",
+      "trial_budget": {
+        "allocated": "N/A",
+        "unit": "N/A",
+        "used": "N/A"
+      },
+      "validation_split": "N/A",
+      "verdict": "ACCEPTED as planning decision record per ChatGPT 6048255893. Planning acceptance ONLY. Twelve Data and any prospective vendor remain HOLD until the prerequisite table resolves (P1 entitlements, P3 retention, P4 spec clearance, P6 vendor-terms). Route ranking: Route 3 (prospective, conditional) primary; Route 1 (TD pilot) bounded parallel; Route 2 historical requires case-specific qualification. Prior v1 pin 1440a3b/blob f4ee2b9609e8 preserved in attempted_variations history."
     },
     {
-     "description": "Mandatory as-of, persistent limiter, unconditional verification; 35/35",
-     "result": "HOLD by ChatGPT 6043633584 \u2014 3 defects",
-     "variation_id": "v5",
-     "verdict_ref": "6043633584"
+      "acceptance_criteria": "ChatGPT review",
+      "attempted_variations": [],
+      "baseline_design": "N/A \u2014 survey",
+      "code_pin": "N/A",
+      "costs": "N/A",
+      "created_at": "2026-10-07T18:00:00Z",
+      "dataset_pin": "N/A",
+      "decision_refs": [
+        "6046384583 (ChatGPT: reference accepted, gates not adopted)"
+      ],
+      "dependencies": [],
+      "experiment_id": "EXP-20261007-METHODS-SURVEY",
+      "failure_data_source": "N/A",
+      "failure_market": "N/A",
+      "failure_reason": "N/A",
+      "failure_strategy_family": "N/A",
+      "failure_timeframe": "N/A",
+      "hypothesis": "N/A \u2014 literature survey. Maps professional quant validation methods (DSR, PBO/CSCV, permutation nulls, Harvey-Liu haircuts) for adoption consideration.",
+      "limitations": [
+        "Secondary/community examples separated from primary findings in corrections table"
+      ],
+      "literature_intake": {
+        "finding": "Professional null-hypothesis and multiple-testing apparatus",
+        "hypothesis_derived": "Adopt DSR/PBO/permutation nulls as standing diagnostics",
+        "source": "Multiple primary"
+      },
+      "next_action": "Await ChatGPT review of correction table",
+      "output_pin": "e827500 (report, blob 61ae428ce958) + 838bb89 (corrections)",
+      "owner": "Muse",
+      "primary_sources": [
+        "Lopez de Prado (2018, 2020)",
+        "Chan (2008, 2013, 2017)",
+        "Bailey & Lopez de Prado (2014) DSR",
+        "Harvey & Liu (2015)",
+        "Zuckerman (2019)"
+      ],
+      "repair_budget": {
+        "allocated_rounds": "N/A",
+        "used_rounds": "N/A"
+      },
+      "robustness_diagnostics": [],
+      "rule_spec_version": "report.md v1 + METHODS_SURVEY_CORRECTIONS_20261007.md",
+      "state": "REVIEW",
+      "title": "Top-quant research & testing methods survey",
+      "trial_budget": {
+        "allocated": "N/A",
+        "unit": "N/A",
+        "used": "N/A"
+      },
+      "validation_split": "N/A",
+      "verdict": "PENDING \u2014 accepted as research reference; proposed operational gates NOT adopted (per ChatGPT 6046384583)"
     },
     {
-     "description": "Consolidated patch: partial-bin OHLCV, midnight limiter, corrupt-ledger fail-closed; 50/50",
-     "result": "ACCEPTED as isolated prerequisite",
-     "variation_id": "v6",
-     "verdict_ref": "6044057762"
+      "acceptance_criteria": "UNKNOWN \u2014 pending spec clearance",
+      "attempted_variations": [],
+      "baseline_design": "UNKNOWN \u2014 pending spec clearance",
+      "code_pin": "fd03906 (harness prerequisite)",
+      "costs": "Free tier only \u2014 8 credits/min, 800/day. No spending authorized.",
+      "created_at": "2026-10-07T10:00:00Z",
+      "dataset_pin": "UNKNOWN \u2014 no vendor calls made",
+      "decision_refs": [
+        "Mike: 'Just run if chat says' (standing authorization, gated)"
+      ],
+      "dependencies": [
+        "EXP-20261007-HARNESS-V56 (PASS)",
+        "ChatGPT spec clearance"
+      ],
+      "experiment_id": "EXP-20261007-TD-PILOT",
+      "failure_data_source": "Twelve Data (proposed)",
+      "failure_market": "N/A",
+      "failure_reason": "N/A",
+      "failure_strategy_family": "N/A",
+      "failure_timeframe": "N/A",
+      "hypothesis": "Twelve Data free tier can supply the history, coverage, and retention scope required for pilot qualification through the repaired offline harness.",
+      "limitations": [
+        "C4 retention + endpoint-credit entitlements MISSING",
+        "No vendor calls until ChatGPT clears exact pilot packet"
+      ],
+      "literature_intake": "UNKNOWN",
+      "next_action": "Await ChatGPT pilot-packet clearance per Mike's 'Just run if chat says'",
+      "output_pin": "UNKNOWN",
+      "owner": "Muse",
+      "primary_sources": [
+        "DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md",
+        "PILOT_EXECUTION_PLAN v6"
+      ],
+      "repair_budget": {
+        "allocated_rounds": "UNKNOWN",
+        "used_rounds": 0
+      },
+      "robustness_diagnostics": [],
+      "rule_spec_version": "UNKNOWN \u2014 awaiting ChatGPT spec clearance",
+      "state": "QUEUED",
+      "title": "Twelve Data free-tier pilot (gated)",
+      "trial_budget": {
+        "allocated": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "used": 0
+      },
+      "validation_split": "UNKNOWN",
+      "verdict": "PENDING \u2014 queued, gated on ChatGPT clearance"
+    },
+    {
+      "acceptance_criteria": "ChatGPT independent fixture reproduction + scoped acceptance (6048657174)",
+      "attempted_variations": [
+        {
+          "code_pin": "39f5a8f",
+          "description": "Contract v1: registry schema + seed, state machine, cycle procedure, failure memory",
+          "result": "8/8 gate fixtures passing",
+          "variation_id": "v1",
+          "verdict_ref": "ChatGPT 6047556037 (bounded corrections requested)"
+        },
+        {
+          "code_pin": "65e75ca",
+          "description": "Shared gate + authorship meta-correction per ChatGPT 6047556037",
+          "result": "21/21 fixtures passing; 3 exact probes held open (absent dependency ID, negative budgets, empty dispatch pin)",
+          "variation_id": "v1.1",
+          "verdict_ref": "ChatGPT 6048255893 (acceptance scope; 3 probes \u2192 final micro-patch)"
+        },
+        {
+          "code_pin": "6f9595a",
+          "description": "Final micro-patch per ChatGPT 6048255893: reject absent dependency IDs unless typed external prerequisites with verified evidence; validate budgets (nonnegative, used<=allocated); require nonempty immutable pin at dispatch; atomic write + lock or single-process-only documented",
+          "result": "28/28 fixtures passing; all three prior counterexamples reproduced as rejections",
+          "variation_id": "v1.2",
+          "verdict_ref": "ChatGPT 6048657174 (scoped PASS)"
+        }
+      ],
+      "baseline_design": "ChatGPT independent fixture reproduction + three pinned counterexamples (absent dependency ID, negative/inconsistent budgets, empty dispatch pin)",
+      "code_pin": "6f9595a (final)",
+      "costs": "N/A \u2014 design/record only",
+      "created_at": "2026-10-07T21:10:00Z",
+      "dataset_pin": "N/A \u2014 synthetic fixtures only",
+      "decision_refs": [
+        "6048657174 (ChatGPT scoped PASS)",
+        "6f9595a (commit)"
+      ],
+      "dependencies": [],
+      "experiment_id": "EXP-20261007-LOOP-SCAFFOLD",
+      "failure_data_source": "N/A",
+      "failure_market": "N/A",
+      "failure_reason": "N/A \u2014 passed (scoped)",
+      "failure_strategy_family": "N/A",
+      "failure_timeframe": "N/A",
+      "hypothesis": "A JSON registry + state machine + cycle procedure can coordinate bounded research-loop bookkeeping without executing runs, scheduling agents, or invoking external reviewers.",
+      "limitations": [
+        "Single-process only \u2014 no concurrency safety claimed",
+        "A nonempty evidence string does not authenticate evidence or establish entitlement \u2014 reviewer must independently check external prerequisites",
+        "Does not schedule Muse, invoke Claude, or deploy an execution service \u2014 the existing watch remains the coordinator",
+        "Seed registry is an inventory, not live state synchronized with decisions"
+      ],
+      "literature_intake": "UNKNOWN",
+      "next_action": "NONE \u2014 scaffold allocation closed per 6048657174. No further iterative scaffold repair authorized.",
+      "output_pin": "28/28 fixtures passing (research_notes/research_loop/fixtures/fixture_output.txt in 6f9595a)",
+      "owner": "Muse",
+      "primary_sources": [
+        "Issue #1 comments 6044381696, 6044453166 (loop contract, relayed)",
+        "Issue #1 comment 6046569258 (authorization clarification, relayed; Mike confirmed 'Yes do what chat says' in chat 2026-10-07)"
+      ],
+      "repair_budget": {
+        "allocated_rounds": "final allocation only \u2014 no further iterative repair authorized",
+        "used_rounds": 3
+      },
+      "robustness_diagnostics": [
+        "28/28 synthetic fixtures",
+        "3 counterexample re-reproductions (absent dep, negative budgets, empty pin)"
+      ],
+      "rule_spec_version": "research_notes/research_loop/ (README, registry_schema.md, state_machine.md, cycle_procedure.md, failure_memory.md)",
+      "state": "PASS",
+      "title": "Research-loop registry/state-machine scaffold (v1 \u2192 v1.1 \u2192 v1.2)",
+      "trial_budget": {
+        "allocated": "scoped: final micro-patch only",
+        "unit": "scaffold versions",
+        "used": "3 versions"
+      },
+      "validation_split": "N/A \u2014 scaffold, not a strategy test",
+      "verdict": "PASS \u2014 narrowly scoped to final requested synthetic/reference scaffold corrections (ChatGPT 6048657174). Close scaffold allocation; no further iterative scaffold repair authorized. NOT acceptance of: deployed execution runner, vendor acquisition, crash-recovery guarantees, Muse scheduling, automatic Claude invocation, CP2, or performance."
+    },
+    {
+      "acceptance_criteria": "Full-universe (831-ticker) WORK RESULT -> ChatGPT adversarial review BEFORE any Phase 1B. Gate: 1A or preregistered 1B VCP variant shows persistent separation; failed 1A alone does not reject VCP; both dead -> park lane.",
+      "attempted_variations": [
+        {
+          "description": "12-ticker pilot (AAPL MSFT ATVI GE F BAC T KMI WMT DIS INTC IBM)",
+          "result": "PASS - pipeline smoke test; Tiingo fund pulls proven dead (DOW-30 gate)",
+          "variation_id": "pilot-12-tickers",
+          "verdict_ref": "CHECKPOINT.md 2026-10-01"
+        },
+        {
+          "description": "October Tiingo EOD batch, 444/445 tickers",
+          "result": "HOLD - both variants below persistence bar (interim, 54% universe); adverse evidence preserved",
+          "variation_id": "oct-batch-444",
+          "verdict_ref": "results_phase1a.json; brief 2026-10-04"
+        },
+        {
+          "description": "pull.py hard-stop after 3 consecutive 429s at 9/445",
+          "result": "RECOVERED - window reset, resumed at --pace 150, PULL COMPLETE same day",
+          "variation_id": "tiingo-429-incident",
+          "verdict_ref": "CHECKPOINT.md 2026-10-01"
+        }
+      ],
+      "baseline_design": "Fama-MacBeth d_m (qualifier mean - control mean per month); block bootstrap 9,999 resamples, block 12, seed 42, p recentered at 0; persistence gate >=5/8 2Y subperiods + mean>0 + p<0.05 per horizon (63/126/252-day windows)",
+      "code_pin": "goals/vcp-fundamental-momentum-probe-v0-1/hidden_files/phase1a/{pull.py,universe.py,build_panels.py,analyze.py,make_calendar.py}; commit TBD (see inventory artifact)",
+      "costs": "N/A - selection study, no trades modeled",
+      "created_at": "2026-10-08T00:27:22Z",
+      "dataset_pin": "Tiingo EOD (444/831 tickers Oct batch; Nov 379 deferred to 2026-11-01); EDGAR XBRL shares (684 tickers); S&P500 membership sp500_ticker_start_end.csv sha256 b2f4fe2f2e4dce8e...; month_ends.json 192 months 2010-01-29..2025-12-31",
+      "decision_refs": [
+        "6049455862 (ChatGPT adjudication, QF-VCP-1A-INVENTORY-20261007-01)",
+        "goal_briefing_4f4adf4adae8 (interim Letter 2026-10-04)"
+      ],
+      "dependencies": [],
+      "experiment_id": "EXP-20261007-VCP-1A-INVENTORY",
+      "failure_data_source": "Tiingo EOD + SEC EDGAR XBRL",
+      "failure_market": "S&P 500 historical constituents",
+      "failure_reason": null,
+      "failure_strategy_family": "fundamental-momentum-selection",
+      "failure_timeframe": "monthly, Jan 2010-Dec 2025",
+      "hypothesis": "A mechanically defined VCP pattern plus fundamental-quality screens improve forward returns vs ordinary trend/momentum selection (Phase 1 = selection study; no invented exits/sizing).",
+      "inventory_artifact": "research_notes/vcp_1a_inventory/VCP_PHASE1A_INVENTORY_20261007.md",
+      "limitations": [
+        "Interim covers 54% of universe - WORK RESULT requires full 831",
+        "S&P 500 historical constituents only (large-cap tilt); midcaps never in S&P 500 uncovered",
+        "EDGAR shares: pre-2010 XBRL gaps; multi-class filers use us-gaap/weighted-average fallback",
+        "~61 EFTS tickers pending CIK validation (excluded from mcap filter, logged)",
+        "EDGAR-vs-Tiingo shares cross-check open",
+        "Tiingo delisted coverage quality unvalidated",
+        "Per-trade ledger N/A (selection study)"
+      ],
+      "literature_intake": "UNKNOWN - bridge technique survey referenced but not landed on VCP lane as of 2026-10-06",
+      "next_action": "November 379-ticker EOD batch, earliest 2026-11-01 00:00 UTC (Tiingo 500-symbol/month cap); then companyfacts backfill -> rebuild edgar_shares.json -> make_calendar.py -> build_panels.py -> analyze.py -> WORK RESULT -> ChatGPT adversarial review",
+      "output_pin": "panels/panel.jsonl 39,672 rows; results_phase1a.json (interim, 444-ticker subset)",
+      "owner": "Muse",
+      "primary_sources": [
+        "quality-flow-scanner-v5/research_notes/vcp_probe_v01_SPEC_FREEZE_20260930.md"
+      ],
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "robustness_diagnostics": [
+        "Two trend variants (V1, V2)",
+        "Three forward horizons (3M/6M/12M)",
+        "8 non-overlapping 2Y subperiods",
+        "vs primary control AND vs SPY"
+      ],
+      "rule_spec_version": "vcp_probe_v01_SPEC_FREEZE_20260930.md, sha256 c8f103c58a38ab09d80da631572df6b6bd191f9ec6940a85aa5db9a83d08a2bc; RUN_PLAN_FROZEN_20261001.md (operationalization only)",
+      "state": "HOLD",
+      "title": "VCP Phase 1A artifact inventory & status (QF-VCP-1A-INVENTORY-20261007-01)",
+      "trial_budget": {
+        "allocated": "1 full-universe run",
+        "unit": "panel+analyze runs",
+        "used": "0 (interim only)"
+      },
+      "validation_split": "192 monthly observations Jan 2010-Dec 2025; no sealed holdout touched; interim = 54% of universe",
+      "verdict": "HOLD - parked pending Nov 1 batch. Interim below-bar is adverse evidence, not a verdict."
+    },
+    {
+      "amendments": [
+        {
+          "date": "2026-10-08",
+          "note": "Interim figures in key_findings (annualized magnitudes, 3/8 subperiod counts) INVALIDATED by codefix: x12 annualization bug + 23-month subperiod bug. See evidence report ADDENDUM 2026-10-07. EFTS figures corrected: 87 dropped (not 89), 39 error tickers / 128 records (not 128 pending).",
+          "ref": "QF-VCP-1A-CODEFIX-20261007-03 / adjudication 6051281109"
+        }
+      ],
+      "created": "2026-10-08T01:30:00Z",
+      "effort_actual_minutes": 40,
+      "experiment_id": "EXP-20261007-VCP-1A-EVIDENCE",
+      "key_findings": {
+        "edgar_crosscheck": "EDGAR shares vs Tiingo shareswa: AAPL 0.30%, MSFT 0.01%, WMT 0.05% mean abs diff (<1% all quarters). Source validated.",
+        "efts_validations": "HOLD: 128 pending require vendor API calls (zero permitted this task).",
+        "interim_result": "ADVERSE: both variants FAIL persistence rule at all 3 horizons (negative mean, 3/8 subperiods, p>>0.05). 12M annualized excess: V1 -14.92%, V2 -17.35%.",
+        "november_batch": "HOLD until >=2026-11-01 (Tiingo 500-symbol/month cap).",
+        "variant2_reconciliation": "Run plan \u00a74 (frozen 2026-10-01, pre-result): V2 = V1 AND adjClose > 250DMA, documented as judgment-call operationalization of spec's '12-month trend condition'. No post-result reinterpretation."
+      },
+      "next_eligible_step": "ChatGPT adversarial review of this evidence package; then November full-universe run (one preregistered run).",
+      "pins": {
+        "analyze_py": "80315ceff4fd7a962e7e9ad3cd1b96636271d71f6b61eee578527ebb84297fbb",
+        "evidence_report": "research_notes/vcp_1a_evidence/VCP_PHASE1A_EVIDENCE_20261007.md",
+        "results_phase1a": "c6b0f98a4a5baaba7d1ebd19a171c55bf8d918fd7832af4eb905bab5ba78a05d",
+        "run_plan": "367bddea6d5184d5831d08bcd5b66b05ce935f44895182a35a5891207c38a869"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "source_adjudication": "Issue #1 comment 6050055081 (2026-10-07)",
+      "state": "HOLD",
+      "state_reason": "Evidence package published; pending ChatGPT adversarial review per adjudication 6050055081. Phase 1A statistical verdicts remain HOLD.",
+      "stop_condition": "1A (full) and preregistered 1B both dead -> park lane.",
+      "title": "VCP Phase 1A proof-of-evidence package (QF-VCP-1A-EVIDENCE-20261007-02)",
+      "trial_budget": {
+        "allocated": 0,
+        "unit": "evidence-collection pass",
+        "used": 0
+      }
+    },
+    {
+      "actual_effort_minutes": 55,
+      "batch_selection": "October = 5 pilot + 440 alphabetical (A->LEG); November = 379 alphabetical (LEN->ZTS). Nonrandom -> interim descriptive only.",
+      "created": "2026-10-08T01:45:00Z",
+      "defects_fixed": [
+        "D1 annualization: d_m already a horizon return; old code x12 for all horizons. Now raw per-window primary + horizon-aware linear equiv x4/x2/x1 secondary.",
+        "D2 lexical date boundary: subperiod bounds YYYY-MM vs full dates dropped every ending-December (23 vs frozen 24 months). Now month-period comparison.",
+        "D3 hardcoded r12 cutoff replaced by data-derived last_complete_month (>=95% panel-active tickers, actual trading-day counts). r12 cutoff = 2025-08-29 (Sep genuinely 1d short); r3/r6 = 2025-12-31. build_panels.py emits fwd_complete_r3/r6/r12 flags; no silent truncation."
+      ],
+      "efts_reconciliation": "127 in scope: 24 validated / 87 dropped (name mismatch) / 39 error tickers (128 records); 0 unaccounted",
+      "experiment_id": "EXP-20261007-VCP-1A-CODEFIX",
+      "invalidated": [
+        "All mean_ann magnitudes in VCP_PHASE1A_EVIDENCE_20261007.md (e.g. V1 r12 -14.92%)",
+        "All vs_spy annualized values",
+        "All n_positive_subperiods counts (computed on 23-month subperiods)",
+        "r12 'through 2025-09' month-count rationale (string-comparison artifact)"
+      ],
+      "next_eligible": "ChatGPT adversarial review of this package; then ONE full-universe November run (>=2026-11-01)",
+      "pins": {
+        "analyze_py": "998b3b79325856b02389154e0d4900ecf307bbeff9a197807fd3cc9aebb92520",
+        "build_panels_py": "be7128c7507354c53f2b838df1a36e05e7c60275b33b89ceaefb4",
+        "codefix_report": "b6a9aca0d8d093db474f30d77e24fb01ca178e471e9eb9bdc156840a7f837a31",
+        "test_vcp_phase1a_codefix_py": "3c7021aa2a20793fdd89a5cb3889779649581797e6b6114ebe4c4e417ca8ac91"
+      },
+      "repair_budget": {
+        "allocated_rounds": 1,
+        "unit": "rounds",
+        "used_rounds": 1
+      },
+      "source_adjudication": "Issue #1 comment 6051281109 (2026-10-07)",
+      "state": "HOLD",
+      "state_reason": "Code correction published; pending ChatGPT adversarial review of this package. No performance rerun in this task.",
+      "stop_condition": "If review rejects the correction, record HOLD and do not open another repair cycle",
+      "synthetic_tests": "22/22 PASS (synthetic data only; T3 uses on-disk raw EOD calendars)",
+      "title": "VCP Phase 1A codefix (QF-VCP-1A-CODEFIX-20261007-03)",
+      "trial_budget": {
+        "allocated": 0,
+        "note": "no performance reruns in this task",
+        "unit": "runs",
+        "used": 0
+      }
+    },
+    {
+      "actual_effort_min": "~30",
+      "artifacts": "research_notes/vcp_1a_codefix/{analyze.py,build_panels.py,test_vcp_phase1a_codedelta.py} (commit pending)",
+      "budget_min": 35,
+      "created": "2026-10-08T03:45:00Z",
+      "defects_fixed": [
+        "D4 delist/censoring conflation: truncated windows on closed-series (delisted/acquired) were marked incomplete and excluded, reintroducing survivor/attrition bias against frozen RUN_PLAN section 5 flat-hold rule. Now forward_window() returns complete/delisted_flat/censored; delisted_flat counts COMPLETE.",
+        "D5 fail-open flags: missing/mixed forward-status fields defaulted True. Now resolve_horizon_filter() raises hard errors on mixed schema, missing fields, unknown status values, empty panels. Legacy panels require explicit --legacy-repro + --cutoff-override, stamped NON-ACCEPTANCE.",
+        "95% data-derived cutoff removed from accepted-run path (not an accepted-run parameter); last_complete_month retained only as labeled local non-performance probe."
+      ],
+      "experiment_id": "EXP-20261007-VCP-1A-CODEFIX-DELTA",
+      "source_adjudication": "Issue #1 comment 6051509411 (2026-10-07)",
+      "state": "HOLD",
+      "state_reason": "Load-bearing delist/censoring correction published; pending ChatGPT adversarial review. November full-universe run is the next real performance computation.",
+      "supersedes_invalid": "2026-10-07 flag-based interim exclusion (undercounted legitimate closed-series outcomes); fail-open flag defaults; 95% cutoff as accepted parameter.",
+      "synthetic_tests": "31/31 pass (test_vcp_phase1a_codedelta.py), calling production functions: exact returns for full 63/126/252 windows, closed-series flat-hold, open-series censoring, boundary exactness, fail-closed error paths, downside on observed bars.",
+      "title": "VCP Phase 1A codefix delta (QF-VCP-1A-CODEFIX-DELTA-20261008-04)"
+    },
+    {
+      "artifacts": "research_notes/vcp_1a_codefix/VCP_PHASE1A_INTERVAL_AUDIT_20261008.md; research_notes/vcp_1a_codefix/preflight_invariant_check.py",
+      "code_pin": null,
+      "correction_proposal": "Admit Class B as OPEN series (censor at dataset boundary only); admit Class A as closed with flat-hold and widen guard window to +/-30d; keep Class C quarantined; add preflight invariant gate before November run; invalidate series_closed=(me!=2200-01-01) assumption for Class-B-type intervals. No code changed in this task.",
+      "created": "2026-10-08T04:30:00Z",
+      "dependencies": null,
+      "effort_minutes": 35,
+      "experiment_id": "EXP-20261008-VCP-1A-INTERVAL-AUDIT",
+      "findings": [
+        "Class A (4): series terminates within +/-30d of membership end \u2014 genuine acquisitions (ABMD, BXLT, CTXS, HOT); eligible for frozen section-5 flat-hold; guard's +/-9d calendar window too tight for settlement lag.",
+        "Class B (101): series continues median 1956d past membership end; 73 with exactly 1 CIK (stable identity), 28 absent from CIK file (spot-checked same-company). Ordinary index removals; 8,071 membership-months of valid history dropped \u2014 MATERIAL.",
+        "Class C (26): series starts after interval end (ticker reuse, e.g. ADT/APC) or trivially short series (BK 5 bars, pull deficiency); quarantine correct.",
+        "408 no-EOD rows: 379 = November batch not yet pulled (expected); 29 = October-batch Tiingo 404 pull failures; 6 WARN rows were admitted (kept, clamped), not quarantined.",
+        "Preflight invariant fwd_complete_<h> == (fwd_status_<h> in {complete,delisted_flat}) verified on 4 producer-built synthetic scenarios (0 violations); adversarial corrupted row caught; missing-flag schema hard-errors."
+      ],
+      "method": "Parsed all 545 quarantine.log rows; classified 131 END_MISMATCH closed intervals by (series_end - membership_end) calendar-day geometry + CIK-count identity evidence; counted panel-month overlap; verified flag/status invariant on synthetic panel via production functions.",
+      "output_pin": null,
+      "pins": {
+        "quarantine.log": "5e6ebb8100f1226e3351a66add63d71a8739286168f3135e4e264edc5df240b7",
+        "sp500_ticker_start_end.csv": "b2f4fe2f2e4dce8eaf0eb4fbd3946a32a20c1ddfe69687dfca3b6b59a0b71f9f",
+        "universe.json": "1c651a624fa2aabbe9433e8d898be12ff4083cd0974341d5f6c6109d1665d254"
+      },
+      "question": "Does reuse_guard's END_MISMATCH quarantine wrongly exclude valid historical constituents (ordinary index removals that keep trading)?",
+      "repair_budget": null,
+      "source_adjudication": "Issue #1 comment 6052011174 (2026-10-08)",
+      "state": "HOLD",
+      "state_reason": "Audit complete; correction proposal only. Pending ChatGPT adjudication of the proposal (esp. whether Class B forward windows may extend past membership-end). November execution / Phase 1B / Claude checkpoint remain HOLD.",
+      "title": "VCP Phase 1A interval audit (QF-VCP-1A-INTERVAL-AUDIT-20261008-05)",
+      "trial_budget": null,
+      "unresolved": "28 Class B tickers lack CIK records (admit-with-flag vs manual review?); CTXS +30d tail staleness; BK pull deficiency; whether Class B forward windows may extend past membership-end needs adjudication.",
+      "verdict": null
+    },
+    {
+      "artifacts": "research_notes/FEED_GATES_EVIDENCE_20261007.md; research_notes/PILOT_EXECUTION_PLAN.md (v7); research_notes/TD_PILOT_PREREQUISITE_CHECK_20261008.md",
+      "code_pin": null,
+      "correction_proposal": null,
+      "created": "2026-10-08T04:59:03Z",
+      "dependencies": null,
+      "effort_minutes": 25,
+      "experiment_id": "EXP-20261008-TD-RETENTION-UPDATE",
+      "findings": [
+        "P3 RESOLVED (bounded): Basic (free) permits personal/internal backtesting storage while account active; all downloaded data deleted within 30 days of cancellation/termination.",
+        "PROVENANCE: Mike-supplied Twelve Data Dooz AI-support transcript \u2014 user-supplied, NOT independently authenticated; not a license amendment; no perpetual rights claimed.",
+        "P1 RESOLVED at public-plan level: /time_series = 1 credit/symbol; Basic 8 credits/min, 800/day (ChatGPT 6049455862).",
+        "P2 resolves during execution (coverage proof); P4 spec clearance PENDING \u2014 the single remaining gate.",
+        "Corporate-action endpoint weights still TBD with entitlement evidence before execution.",
+        "No manufactured HOLD: packet v7 pin returned; acquisition awaits P4 clearance."
+      ],
+      "method": "Updated FEED_GATES_EVIDENCE_20261007.md (P1 public-plan resolution, P3 bounded resolution with provenance note); amended PILOT_EXECUTION_PLAN.md to v7 (retention amendment); wrote TD_PILOT_PREREQUISITE_CHECK_20261008.md checking all packet preconditions. Zero vendor calls.",
+      "output_pin": null,
+      "pins": {
+        "FEED_GATES_EVIDENCE_20261007.md": "ebc883d485c527a4bb9e8f7d5f05f0fdfb25534304f3780229081dab34afe557",
+        "PILOT_EXECUTION_PLAN.md (v7)": "977da55ad6a636c641fac401ac3f28dea26855a313bd2c9d9d518d4f63ccf788",
+        "TD_PILOT_PREREQUISITE_CHECK_20261008.md": "642b8a935993aee93c6b47562e46df7a5478c6633d5f87b0de0280ce1d8d3595"
+      },
+      "question": "Does Mike-supplied Twelve Data support clarification resolve the P3/C4 retention gate for a bounded personal/internal pilot?",
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "source_adjudication": "Issue #1 comment 6052566220; Slack 1791435244.782769 (2026-10-08)",
+      "state": "HOLD",
+      "state_reason": "Packet updated to v7 with retention terms; prerequisite check complete. P4 (ChatGPT spec clearance) still PENDING \u2014 no vendor call until cleared. No acquisition executed.",
+      "title": "Twelve Data retention clarification \u2014 P3/C4 bounded resolution (QF follow-up)",
+      "trial_budget": {
+        "allocated": 1,
+        "unit": "bounded free personal/internal pilot run",
+        "used": 0
+      },
+      "unresolved": "Human/official-document corroboration of support-agent statement (pursued in parallel, not claimed); corporate-action endpoint weights; ChatGPT spec clearance (P4).",
+      "verdict": null
     }
-   ],
-   "baseline_design": "Synthetic fixtures with pinned expected outputs; ChatGPT independent probes as adversarial baseline",
-   "code_pin": "fd03906",
-   "costs": "N/A \u2014 offline synthetic",
-   "created_at": "2026-10-07T14:00:00Z",
-   "dataset_pin": "synthetic only \u2014 no vendor data",
-   "decision_refs": [
-    "6044057762 (ChatGPT acceptance)",
-    "fd03906 (commit)"
-   ],
-   "dependencies": [],
-   "experiment_id": "EXP-20261007-HARNESS-V56",
-   "failure_data_source": "N/A",
-   "failure_market": "N/A",
-   "failure_reason": "N/A \u2014 passed",
-   "failure_strategy_family": "N/A",
-   "failure_timeframe": "N/A",
-   "hypothesis": "An isolated offline synthetic harness can validate Twelve Data pilot input construction, rate limiting, and source verification without vendor calls.",
-   "limitations": [
-    "C4 retention + endpoint-credit entitlements remain MISSING",
-    "Synthetic only \u2014 no vendor behavior validated"
-   ],
-   "literature_intake": "UNKNOWN",
-   "next_action": "NONE \u2014 PASS scoped to isolated offline prerequisite only",
-   "output_pin": "50/50 tests passing (tests/synthetic_test_output.txt in fd03906)",
-   "owner": "Muse",
-   "primary_sources": [
-    "Issue #1 comments 6039806101 (v5 spec), 6043633584 (v6 spec)"
-   ],
-   "repair_budget": {
-    "allocated_rounds": 6,
-    "used_rounds": 6
-   },
-   "robustness_diagnostics": [
-    "10:00/10:30/13:30/16:00/early-close boundaries",
-    "restart-at-7.5s",
-    "two-instance concurrency",
-    "UTC rollover",
-    "4-process contention",
-    "ledger corruption"
-   ],
-   "rule_spec_version": "PILOT_EXECUTION_PLAN v6",
-   "state": "PASS",
-   "title": "Twelve Data pilot offline harness repairs (v5 + v6)",
-   "trial_budget": {
-    "allocated": "UNKNOWN",
-    "unit": "rounds",
-    "used": "6 repair rounds"
-   },
-   "validation_split": "N/A \u2014 prerequisite harness, not a strategy test",
-   "verdict": "PASS \u2014 scoped to isolated offline/synthetic harness prerequisite ONLY. Never grants deployment, CP2, or performance clearance."
-  },
-  {
-   "acceptance_criteria": "UNKNOWN \u2014 not preregistered (exploratory diagnostic)",
-   "attempted_variations": [
-    {
-     "description": "ORB v1 vs 1000 random variants each on QQQ/SPY",
-     "result": "HOLD \u2014 null mismatch, overstated claims",
-     "variation_id": "base",
-     "verdict_ref": "6046384583"
-    }
-   ],
-   "baseline_design": "1000 random-entry variants per symbol: same nominal risk unit, 2R target, random bar + random direction. NOTE (ChatGPT): risk distance mismatch \u2014 ORB realized risk differs from random nominal risk. Null does not match estimand.",
-   "code_pin": "838bb89 (research_notes/orb_15m_random_benchmark_20261007/artifacts/orb_test.py, SHA256 01416fb9...)",
-   "costs": "1bp/3bp/5bp per-side SCENARIOS (not measured fills)",
-   "created_at": "2026-10-07T18:20:00Z",
-   "dataset_pin": "Tiingo IEX 15m, QQQ+SPY, 2024-10-01 to 2026-10-07, 527 days each \u2014 hashes in ARTIFACTS_MANIFEST.md",
-   "decision_refs": [
-    "6046384583 (ChatGPT evidence review)",
-    "838bb89 (artifacts + corrections)"
-   ],
-   "dependencies": [],
-   "experiment_id": "EXP-20261007-ORB-15M",
-   "failure_data_source": "Tiingo IEX",
-   "failure_market": "QQQ, SPY",
-   "failure_reason": "null_mismatch",
-   "failure_strategy_family": "orb",
-   "failure_timeframe": "15m intraday",
-   "hypothesis": "A 15-minute opening range breakout (first 15m high/low, entry on close outside, stop at opposite side, 2R target) has timing edge beyond random entries on QQQ/SPY.",
-   "limitations": [
-    "Null mismatch: ORB entry at breakout close vs random at range width \u2014 risk distances differ",
-    "Tiingo IEX prints only, not consolidated tape",
-    "No preregistration \u2014 exploratory",
-    "Per-trade ledger unavailable (aggregates only)",
-    "2026 weakness is descriptive, not causal"
-   ],
-   "literature_intake": "UNKNOWN",
-   "next_action": "Fix null design (matched risk distance) before any rerun \u2014 per ChatGPT 6046384583",
-   "output_pin": "838bb89 (report + corrections)",
-   "owner": "Muse",
-   "primary_sources": [
-    "QuantLab video transcript (Mike-provided 2026-10-07)"
-   ],
-   "repair_budget": {
-    "allocated_rounds": 1,
-    "used_rounds": 1
-   },
-   "robustness_diagnostics": [
-    "Two symbols (correlated)",
-    "Per-year breakdown",
-    "Cost scenarios 1/3/5bp"
-   ],
-   "rule_spec_version": "ORB-v1: 09:30-09:45 ET range, first close outside = entry, stop at other side, 2R target, stop-wins-ties, EOD exit, 1 trade/day max",
-   "state": "HOLD",
-   "title": "15-minute Opening Range Breakout vs random-entry benchmark (QQQ/SPY)",
-   "trial_budget": {
-    "allocated": 1000,
-    "unit": "random_variants_per_symbol",
-    "used": 1000
-   },
-   "validation_split": "Single 2-year window; no held-out. QQQ/SPY correlated, not independent.",
-   "verdict": "HOLD \u2014 exploratory diagnostic. No genuine-edge or universal nontradeability verdict accepted. Do not rerun until null design is fixed."
-  },
-  {
-   "acceptance_criteria": "ChatGPT adjudication",
-   "attempted_variations": [
-    {
-     "variation_id": "v1",
-     "description": "Initial decision memo (Mike-confirmed 'Yes brainstorm')",
-     "result": "Delivered; ChatGPT 6047556037 requested bounded corrections",
-     "code_pin": "1440a3b",
-     "output_blob": "f4ee2b9609e8 (verified byte-identical)",
-     "verdict_ref": "6047556037"
-    },
-    {
-     "variation_id": "v2",
-     "description": "Bounded corrections per ChatGPT 6047556037: vendor-scoped Route 3, prerequisite/stop table, C1 map placeholder, authorship correction",
-     "result": "ACCEPTED as planning decision record (planning acceptance only)",
-     "code_pin": "65e75ca",
-     "output_blob": "07021db349101feea7f21fd4754bd0c954200dbe (verified)",
-     "verdict_ref": "ChatGPT 6048255893"
-    }
-   ],
-   "baseline_design": "N/A \u2014 planning document",
-   "code_pin": "65e75ca",
-   "costs": "Effort estimates with evidence-vs-assumption separation; Route 1 bounded to 2 weeks (to 2026-10-21)",
-   "created_at": "2026-10-07T17:30:00Z",
-   "dataset_pin": "N/A",
-   "decision_refs": [
-    "1440a3b (v1 commit, history)",
-    "65e75ca (v2 commit)",
-    "6048255893 (ChatGPT acceptance scope)",
-    "6048657174 (scaffold adjudication references v2 pin)"
-   ],
-   "dependencies": [],
-   "experiment_id": "EXP-20261007-RECOVERY-MEMO",
-   "failure_data_source": "N/A",
-   "failure_market": "N/A",
-   "failure_reason": "N/A",
-   "failure_strategy_family": "N/A",
-   "failure_timeframe": "N/A",
-   "hypothesis": "N/A \u2014 decision memo, not a strategy test. Recommends Route 3 (narrow prospective capture) primary, Route 1 (Twelve Data pilot) bounded parallel, Route 2 historical not recommended.",
-   "limitations": [
-    "Planning only \u2014 no acquisition, spending, performance, or frozen-system authorization"
-   ],
-   "literature_intake": "UNKNOWN",
-   "next_action": "Feed gates evidence table (this handoff item 3); Route 1 bounded evidence-gathering ceiling to 2026-10-21",
-   "output_pin": "65e75ca (blob 07021db349101feea7f21fd4754bd0c954200dbe, verified)",
-   "owner": "Muse",
-   "primary_sources": [
-    "Issue #1 comments 6043456992, 6043557374 (brainstorm request + addendum)",
-    "Six repair rounds as maintenance evidence"
-   ],
-   "repair_budget": {
-    "allocated_rounds": "N/A",
-    "used_rounds": "N/A"
-   },
-   "robustness_diagnostics": [],
-   "rule_spec_version": "RECOVERY_PATH_DECISION_MEMO_20261007.md v2",
-   "state": "REVIEW",
-   "title": "Recovery-path decision memo: Twelve Data vs Yahoo vs prospective capture",
-   "trial_budget": {
-    "allocated": "N/A",
-    "unit": "N/A",
-    "used": "N/A"
-   },
-   "validation_split": "N/A",
-   "verdict": "ACCEPTED as planning decision record per ChatGPT 6048255893. Planning acceptance ONLY. Twelve Data and any prospective vendor remain HOLD until the prerequisite table resolves (P1 entitlements, P3 retention, P4 spec clearance, P6 vendor-terms). Route ranking: Route 3 (prospective, conditional) primary; Route 1 (TD pilot) bounded parallel; Route 2 historical requires case-specific qualification. Prior v1 pin 1440a3b/blob f4ee2b9609e8 preserved in attempted_variations history."
-  },
-  {
-   "acceptance_criteria": "ChatGPT review",
-   "attempted_variations": [],
-   "baseline_design": "N/A \u2014 survey",
-   "code_pin": "N/A",
-   "costs": "N/A",
-   "created_at": "2026-10-07T18:00:00Z",
-   "dataset_pin": "N/A",
-   "decision_refs": [
-    "6046384583 (ChatGPT: reference accepted, gates not adopted)"
-   ],
-   "dependencies": [],
-   "experiment_id": "EXP-20261007-METHODS-SURVEY",
-   "failure_data_source": "N/A",
-   "failure_market": "N/A",
-   "failure_reason": "N/A",
-   "failure_strategy_family": "N/A",
-   "failure_timeframe": "N/A",
-   "hypothesis": "N/A \u2014 literature survey. Maps professional quant validation methods (DSR, PBO/CSCV, permutation nulls, Harvey-Liu haircuts) for adoption consideration.",
-   "limitations": [
-    "Secondary/community examples separated from primary findings in corrections table"
-   ],
-   "literature_intake": {
-    "finding": "Professional null-hypothesis and multiple-testing apparatus",
-    "hypothesis_derived": "Adopt DSR/PBO/permutation nulls as standing diagnostics",
-    "source": "Multiple primary"
-   },
-   "next_action": "Await ChatGPT review of correction table",
-   "output_pin": "e827500 (report, blob 61ae428ce958) + 838bb89 (corrections)",
-   "owner": "Muse",
-   "primary_sources": [
-    "Lopez de Prado (2018, 2020)",
-    "Chan (2008, 2013, 2017)",
-    "Bailey & Lopez de Prado (2014) DSR",
-    "Harvey & Liu (2015)",
-    "Zuckerman (2019)"
-   ],
-   "repair_budget": {
-    "allocated_rounds": "N/A",
-    "used_rounds": "N/A"
-   },
-   "robustness_diagnostics": [],
-   "rule_spec_version": "report.md v1 + METHODS_SURVEY_CORRECTIONS_20261007.md",
-   "state": "REVIEW",
-   "title": "Top-quant research & testing methods survey",
-   "trial_budget": {
-    "allocated": "N/A",
-    "unit": "N/A",
-    "used": "N/A"
-   },
-   "validation_split": "N/A",
-   "verdict": "PENDING \u2014 accepted as research reference; proposed operational gates NOT adopted (per ChatGPT 6046384583)"
-  },
-  {
-   "acceptance_criteria": "UNKNOWN \u2014 pending spec clearance",
-   "attempted_variations": [],
-   "baseline_design": "UNKNOWN \u2014 pending spec clearance",
-   "code_pin": "fd03906 (harness prerequisite)",
-   "costs": "Free tier only \u2014 8 credits/min, 800/day. No spending authorized.",
-   "created_at": "2026-10-07T10:00:00Z",
-   "dataset_pin": "UNKNOWN \u2014 no vendor calls made",
-   "decision_refs": [
-    "Mike: 'Just run if chat says' (standing authorization, gated)"
-   ],
-   "dependencies": [
-    "EXP-20261007-HARNESS-V56 (PASS)",
-    "ChatGPT spec clearance"
-   ],
-   "experiment_id": "EXP-20261007-TD-PILOT",
-   "failure_data_source": "Twelve Data (proposed)",
-   "failure_market": "N/A",
-   "failure_reason": "N/A",
-   "failure_strategy_family": "N/A",
-   "failure_timeframe": "N/A",
-   "hypothesis": "Twelve Data free tier can supply the history, coverage, and retention scope required for pilot qualification through the repaired offline harness.",
-   "limitations": [
-    "C4 retention + endpoint-credit entitlements MISSING",
-    "No vendor calls until ChatGPT clears exact pilot packet"
-   ],
-   "literature_intake": "UNKNOWN",
-   "next_action": "Await ChatGPT pilot-packet clearance per Mike's 'Just run if chat says'",
-   "output_pin": "UNKNOWN",
-   "owner": "Muse",
-   "primary_sources": [
-    "DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md",
-    "PILOT_EXECUTION_PLAN v6"
-   ],
-   "repair_budget": {
-    "allocated_rounds": "UNKNOWN",
-    "used_rounds": 0
-   },
-   "robustness_diagnostics": [],
-   "rule_spec_version": "UNKNOWN \u2014 awaiting ChatGPT spec clearance",
-   "state": "QUEUED",
-   "title": "Twelve Data free-tier pilot (gated)",
-   "trial_budget": {
-    "allocated": "UNKNOWN",
-    "unit": "UNKNOWN",
-    "used": 0
-   },
-   "validation_split": "UNKNOWN",
-   "verdict": "PENDING \u2014 queued, gated on ChatGPT clearance"
-  },
-  {
-   "experiment_id": "EXP-20261007-LOOP-SCAFFOLD",
-   "title": "Research-loop registry/state-machine scaffold (v1 \u2192 v1.1 \u2192 v1.2)",
-   "hypothesis": "A JSON registry + state machine + cycle procedure can coordinate bounded research-loop bookkeeping without executing runs, scheduling agents, or invoking external reviewers.",
-   "owner": "Muse",
-   "created_at": "2026-10-07T21:10:00Z",
-   "primary_sources": [
-    "Issue #1 comments 6044381696, 6044453166 (loop contract, relayed)",
-    "Issue #1 comment 6046569258 (authorization clarification, relayed; Mike confirmed 'Yes do what chat says' in chat 2026-10-07)"
-   ],
-   "rule_spec_version": "research_notes/research_loop/ (README, registry_schema.md, state_machine.md, cycle_procedure.md, failure_memory.md)",
-   "code_pin": "6f9595a (final)",
-   "dataset_pin": "N/A \u2014 synthetic fixtures only",
-   "output_pin": "28/28 fixtures passing (research_notes/research_loop/fixtures/fixture_output.txt in 6f9595a)",
-   "baseline_design": "ChatGPT independent fixture reproduction + three pinned counterexamples (absent dependency ID, negative/inconsistent budgets, empty dispatch pin)",
-   "attempted_variations": [
-    {
-     "variation_id": "v1",
-     "description": "Contract v1: registry schema + seed, state machine, cycle procedure, failure memory",
-     "result": "8/8 gate fixtures passing",
-     "code_pin": "39f5a8f",
-     "verdict_ref": "ChatGPT 6047556037 (bounded corrections requested)"
-    },
-    {
-     "variation_id": "v1.1",
-     "description": "Shared gate + authorship meta-correction per ChatGPT 6047556037",
-     "result": "21/21 fixtures passing; 3 exact probes held open (absent dependency ID, negative budgets, empty dispatch pin)",
-     "code_pin": "65e75ca",
-     "verdict_ref": "ChatGPT 6048255893 (acceptance scope; 3 probes \u2192 final micro-patch)"
-    },
-    {
-     "variation_id": "v1.2",
-     "description": "Final micro-patch per ChatGPT 6048255893: reject absent dependency IDs unless typed external prerequisites with verified evidence; validate budgets (nonnegative, used<=allocated); require nonempty immutable pin at dispatch; atomic write + lock or single-process-only documented",
-     "result": "28/28 fixtures passing; all three prior counterexamples reproduced as rejections",
-     "code_pin": "6f9595a",
-     "verdict_ref": "ChatGPT 6048657174 (scoped PASS)"
-    }
-   ],
-   "robustness_diagnostics": [
-    "28/28 synthetic fixtures",
-    "3 counterexample re-reproductions (absent dep, negative budgets, empty pin)"
-   ],
-   "trial_budget": {
-    "allocated": "scoped: final micro-patch only",
-    "used": "3 versions",
-    "unit": "scaffold versions"
-   },
-   "repair_budget": {
-    "allocated_rounds": "final allocation only \u2014 no further iterative repair authorized",
-    "used_rounds": 3
-   },
-   "costs": "N/A \u2014 design/record only",
-   "validation_split": "N/A \u2014 scaffold, not a strategy test",
-   "acceptance_criteria": "ChatGPT independent fixture reproduction + scoped acceptance (6048657174)",
-   "limitations": [
-    "Single-process only \u2014 no concurrency safety claimed",
-    "A nonempty evidence string does not authenticate evidence or establish entitlement \u2014 reviewer must independently check external prerequisites",
-    "Does not schedule Muse, invoke Claude, or deploy an execution service \u2014 the existing watch remains the coordinator",
-    "Seed registry is an inventory, not live state synchronized with decisions"
-   ],
-   "dependencies": [],
-   "next_action": "NONE \u2014 scaffold allocation closed per 6048657174. No further iterative scaffold repair authorized.",
-   "state": "PASS",
-   "verdict": "PASS \u2014 narrowly scoped to final requested synthetic/reference scaffold corrections (ChatGPT 6048657174). Close scaffold allocation; no further iterative scaffold repair authorized. NOT acceptance of: deployed execution runner, vendor acquisition, crash-recovery guarantees, Muse scheduling, automatic Claude invocation, CP2, or performance.",
-   "decision_refs": [
-    "6048657174 (ChatGPT scoped PASS)",
-    "6f9595a (commit)"
-   ],
-   "failure_reason": "N/A \u2014 passed (scoped)",
-   "failure_strategy_family": "N/A",
-   "failure_market": "N/A",
-   "failure_timeframe": "N/A",
-   "failure_data_source": "N/A",
-   "literature_intake": "UNKNOWN"
-  },
-  {
-   "experiment_id": "EXP-20261007-VCP-1A-INVENTORY",
-   "title": "VCP Phase 1A artifact inventory & status (QF-VCP-1A-INVENTORY-20261007-01)",
-   "owner": "Muse",
-   "created_at": "2026-10-08T00:27:22Z",
-   "state": "HOLD",
-   "hypothesis": "A mechanically defined VCP pattern plus fundamental-quality screens improve forward returns vs ordinary trend/momentum selection (Phase 1 = selection study; no invented exits/sizing).",
-   "primary_sources": [
-    "quality-flow-scanner-v5/research_notes/vcp_probe_v01_SPEC_FREEZE_20260930.md"
-   ],
-   "rule_spec_version": "vcp_probe_v01_SPEC_FREEZE_20260930.md, sha256 c8f103c58a38ab09d80da631572df6b6bd191f9ec6940a85aa5db9a83d08a2bc; RUN_PLAN_FROZEN_20261001.md (operationalization only)",
-   "dataset_pin": "Tiingo EOD (444/831 tickers Oct batch; Nov 379 deferred to 2026-11-01); EDGAR XBRL shares (684 tickers); S&P500 membership sp500_ticker_start_end.csv sha256 b2f4fe2f2e4dce8e...; month_ends.json 192 months 2010-01-29..2025-12-31",
-   "code_pin": "goals/vcp-fundamental-momentum-probe-v0-1/hidden_files/phase1a/{pull.py,universe.py,build_panels.py,analyze.py,make_calendar.py}; commit TBD (see inventory artifact)",
-   "output_pin": "panels/panel.jsonl 39,672 rows; results_phase1a.json (interim, 444-ticker subset)",
-   "baseline_design": "Fama-MacBeth d_m (qualifier mean - control mean per month); block bootstrap 9,999 resamples, block 12, seed 42, p recentered at 0; persistence gate >=5/8 2Y subperiods + mean>0 + p<0.05 per horizon (63/126/252-day windows)",
-   "costs": "N/A - selection study, no trades modeled",
-   "validation_split": "192 monthly observations Jan 2010-Dec 2025; no sealed holdout touched; interim = 54% of universe",
-   "robustness_diagnostics": [
-    "Two trend variants (V1, V2)",
-    "Three forward horizons (3M/6M/12M)",
-    "8 non-overlapping 2Y subperiods",
-    "vs primary control AND vs SPY"
-   ],
-   "attempted_variations": [
-    {
-     "variation_id": "pilot-12-tickers",
-     "description": "12-ticker pilot (AAPL MSFT ATVI GE F BAC T KMI WMT DIS INTC IBM)",
-     "result": "PASS - pipeline smoke test; Tiingo fund pulls proven dead (DOW-30 gate)",
-     "verdict_ref": "CHECKPOINT.md 2026-10-01"
-    },
-    {
-     "variation_id": "oct-batch-444",
-     "description": "October Tiingo EOD batch, 444/445 tickers",
-     "result": "HOLD - both variants below persistence bar (interim, 54% universe); adverse evidence preserved",
-     "verdict_ref": "results_phase1a.json; brief 2026-10-04"
-    },
-    {
-     "variation_id": "tiingo-429-incident",
-     "description": "pull.py hard-stop after 3 consecutive 429s at 9/445",
-     "result": "RECOVERED - window reset, resumed at --pace 150, PULL COMPLETE same day",
-     "verdict_ref": "CHECKPOINT.md 2026-10-01"
-    }
-   ],
-   "limitations": [
-    "Interim covers 54% of universe - WORK RESULT requires full 831",
-    "S&P 500 historical constituents only (large-cap tilt); midcaps never in S&P 500 uncovered",
-    "EDGAR shares: pre-2010 XBRL gaps; multi-class filers use us-gaap/weighted-average fallback",
-    "~61 EFTS tickers pending CIK validation (excluded from mcap filter, logged)",
-    "EDGAR-vs-Tiingo shares cross-check open",
-    "Tiingo delisted coverage quality unvalidated",
-    "Per-trade ledger N/A (selection study)"
-   ],
-   "failure_reason": null,
-   "failure_market": "S&P 500 historical constituents",
-   "failure_timeframe": "monthly, Jan 2010-Dec 2025",
-   "failure_strategy_family": "fundamental-momentum-selection",
-   "failure_data_source": "Tiingo EOD + SEC EDGAR XBRL",
-   "literature_intake": "UNKNOWN - bridge technique survey referenced but not landed on VCP lane as of 2026-10-06",
-   "dependencies": [],
-   "acceptance_criteria": "Full-universe (831-ticker) WORK RESULT -> ChatGPT adversarial review BEFORE any Phase 1B. Gate: 1A or preregistered 1B VCP variant shows persistent separation; failed 1A alone does not reject VCP; both dead -> park lane.",
-   "next_action": "November 379-ticker EOD batch, earliest 2026-11-01 00:00 UTC (Tiingo 500-symbol/month cap); then companyfacts backfill -> rebuild edgar_shares.json -> make_calendar.py -> build_panels.py -> analyze.py -> WORK RESULT -> ChatGPT adversarial review",
-   "trial_budget": {
-    "allocated": "1 full-universe run",
-    "used": "0 (interim only)",
-    "unit": "panel+analyze runs"
-   },
-   "repair_budget": {
-    "allocated_rounds": 0,
-    "used_rounds": 0
-   },
-   "verdict": "HOLD - parked pending Nov 1 batch. Interim below-bar is adverse evidence, not a verdict.",
-   "decision_refs": [
-    "6049455862 (ChatGPT adjudication, QF-VCP-1A-INVENTORY-20261007-01)",
-    "goal_briefing_4f4adf4adae8 (interim Letter 2026-10-04)"
-   ],
-   "inventory_artifact": "research_notes/vcp_1a_inventory/VCP_PHASE1A_INVENTORY_20261007.md"
-  },
-  {
-   "experiment_id": "EXP-20261007-VCP-1A-EVIDENCE",
-   "title": "VCP Phase 1A proof-of-evidence package (QF-VCP-1A-EVIDENCE-20261007-02)",
-   "state": "HOLD",
-   "state_reason": "Evidence package published; pending ChatGPT adversarial review per adjudication 6050055081. Phase 1A statistical verdicts remain HOLD.",
-   "created": "2026-10-08T01:30:00Z",
-   "source_adjudication": "Issue #1 comment 6050055081 (2026-10-07)",
-   "pins": {
-    "run_plan": "367bddea6d5184d5831d08bcd5b66b05ce935f44895182a35a5891207c38a869",
-    "analyze_py": "80315ceff4fd7a962e7e9ad3cd1b96636271d71f6b61eee578527ebb84297fbb",
-    "results_phase1a": "c6b0f98a4a5baaba7d1ebd19a171c55bf8d918fd7832af4eb905bab5ba78a05d",
-    "evidence_report": "research_notes/vcp_1a_evidence/VCP_PHASE1A_EVIDENCE_20261007.md"
-   },
-   "key_findings": {
-    "variant2_reconciliation": "Run plan \u00a74 (frozen 2026-10-01, pre-result): V2 = V1 AND adjClose > 250DMA, documented as judgment-call operationalization of spec's '12-month trend condition'. No post-result reinterpretation.",
-    "interim_result": "ADVERSE: both variants FAIL persistence rule at all 3 horizons (negative mean, 3/8 subperiods, p>>0.05). 12M annualized excess: V1 -14.92%, V2 -17.35%.",
-    "edgar_crosscheck": "EDGAR shares vs Tiingo shareswa: AAPL 0.30%, MSFT 0.01%, WMT 0.05% mean abs diff (<1% all quarters). Source validated.",
-    "efts_validations": "HOLD: 128 pending require vendor API calls (zero permitted this task).",
-    "november_batch": "HOLD until >=2026-11-01 (Tiingo 500-symbol/month cap)."
-   },
-   "trial_budget": {
-    "allocated": 0,
-    "used": 0,
-    "unit": "evidence-collection pass"
-   },
-   "repair_budget": {
-    "allocated_rounds": 0,
-    "used_rounds": 0
-   },
-   "effort_actual_minutes": 40,
-   "next_eligible_step": "ChatGPT adversarial review of this evidence package; then November full-universe run (one preregistered run).",
-   "stop_condition": "1A (full) and preregistered 1B both dead -> park lane.",
-   "amendments": [
-    {
-     "date": "2026-10-08",
-     "ref": "QF-VCP-1A-CODEFIX-20261007-03 / adjudication 6051281109",
-     "note": "Interim figures in key_findings (annualized magnitudes, 3/8 subperiod counts) INVALIDATED by codefix: x12 annualization bug + 23-month subperiod bug. See evidence report ADDENDUM 2026-10-07. EFTS figures corrected: 87 dropped (not 89), 39 error tickers / 128 records (not 128 pending)."
-    }
-   ]
-  },
-  {
-   "experiment_id": "EXP-20261007-VCP-1A-CODEFIX",
-   "title": "VCP Phase 1A codefix (QF-VCP-1A-CODEFIX-20261007-03)",
-   "state": "HOLD",
-   "state_reason": "Code correction published; pending ChatGPT adversarial review of this package. No performance rerun in this task.",
-   "created": "2026-10-08T01:45:00Z",
-   "source_adjudication": "Issue #1 comment 6051281109 (2026-10-07)",
-   "defects_fixed": [
-    "D1 annualization: d_m already a horizon return; old code x12 for all horizons. Now raw per-window primary + horizon-aware linear equiv x4/x2/x1 secondary.",
-    "D2 lexical date boundary: subperiod bounds YYYY-MM vs full dates dropped every ending-December (23 vs frozen 24 months). Now month-period comparison.",
-    "D3 hardcoded r12 cutoff replaced by data-derived last_complete_month (>=95% panel-active tickers, actual trading-day counts). r12 cutoff = 2025-08-29 (Sep genuinely 1d short); r3/r6 = 2025-12-31. build_panels.py emits fwd_complete_r3/r6/r12 flags; no silent truncation."
-   ],
-   "invalidated": [
-    "All mean_ann magnitudes in VCP_PHASE1A_EVIDENCE_20261007.md (e.g. V1 r12 -14.92%)",
-    "All vs_spy annualized values",
-    "All n_positive_subperiods counts (computed on 23-month subperiods)",
-    "r12 'through 2025-09' month-count rationale (string-comparison artifact)"
-   ],
-   "pins": {
-    "analyze_py": "998b3b79325856b02389154e0d4900ecf307bbeff9a197807fd3cc9aebb92520",
-    "build_panels_py": "be7128c7507354c53f2b838df1a36e05e7c60275b33b89ceaefb4",
-    "test_vcp_phase1a_codefix_py": "3c7021aa2a20793fdd89a5cb3889779649581797e6b6114ebe4c4e417ca8ac91",
-    "codefix_report": "b6a9aca0d8d093db474f30d77e24fb01ca178e471e9eb9bdc156840a7f837a31"
-   },
-   "synthetic_tests": "22/22 PASS (synthetic data only; T3 uses on-disk raw EOD calendars)",
-   "efts_reconciliation": "127 in scope: 24 validated / 87 dropped (name mismatch) / 39 error tickers (128 records); 0 unaccounted",
-   "batch_selection": "October = 5 pilot + 440 alphabetical (A->LEG); November = 379 alphabetical (LEN->ZTS). Nonrandom -> interim descriptive only.",
-   "trial_budget": {
-    "allocated": 0,
-    "used": 0,
-    "unit": "runs",
-    "note": "no performance reruns in this task"
-   },
-   "repair_budget": {
-    "allocated_rounds": 1,
-    "used_rounds": 1,
-    "unit": "rounds"
-   },
-   "next_eligible": "ChatGPT adversarial review of this package; then ONE full-universe November run (>=2026-11-01)",
-   "stop_condition": "If review rejects the correction, record HOLD and do not open another repair cycle",
-   "actual_effort_minutes": 55
-  },
-  {
-   "experiment_id": "EXP-20261007-VCP-1A-CODEFIX-DELTA",
-   "title": "VCP Phase 1A codefix delta (QF-VCP-1A-CODEFIX-DELTA-20261008-04)",
-   "state": "HOLD",
-   "state_reason": "Load-bearing delist/censoring correction published; pending ChatGPT adversarial review. November full-universe run is the next real performance computation.",
-   "created": "2026-10-08T03:45:00Z",
-   "source_adjudication": "Issue #1 comment 6051509411 (2026-10-07)",
-   "defects_fixed": [
-    "D4 delist/censoring conflation: truncated windows on closed-series (delisted/acquired) were marked incomplete and excluded, reintroducing survivor/attrition bias against frozen RUN_PLAN section 5 flat-hold rule. Now forward_window() returns complete/delisted_flat/censored; delisted_flat counts COMPLETE.",
-    "D5 fail-open flags: missing/mixed forward-status fields defaulted True. Now resolve_horizon_filter() raises hard errors on mixed schema, missing fields, unknown status values, empty panels. Legacy panels require explicit --legacy-repro + --cutoff-override, stamped NON-ACCEPTANCE.",
-    "95% data-derived cutoff removed from accepted-run path (not an accepted-run parameter); last_complete_month retained only as labeled local non-performance probe."
-   ],
-   "synthetic_tests": "31/31 pass (test_vcp_phase1a_codedelta.py), calling production functions: exact returns for full 63/126/252 windows, closed-series flat-hold, open-series censoring, boundary exactness, fail-closed error paths, downside on observed bars.",
-   "artifacts": "research_notes/vcp_1a_codefix/{analyze.py,build_panels.py,test_vcp_phase1a_codedelta.py} (commit pending)",
-   "supersedes_invalid": "2026-10-07 flag-based interim exclusion (undercounted legitimate closed-series outcomes); fail-open flag defaults; 95% cutoff as accepted parameter.",
-   "actual_effort_min": "~30",
-   "budget_min": 35
-  },
-  {
-   "experiment_id": "EXP-20261008-VCP-1A-INTERVAL-AUDIT",
-   "title": "VCP Phase 1A interval audit (QF-VCP-1A-INTERVAL-AUDIT-20261008-05)",
-   "state": "HOLD",
-   "state_reason": "Audit complete; correction proposal only. Pending ChatGPT adjudication of the proposal (esp. whether Class B forward windows may extend past membership-end). November execution / Phase 1B / Claude checkpoint remain HOLD.",
-   "created": "2026-10-08T04:30:00Z",
-   "source_adjudication": "Issue #1 comment 6052011174 (2026-10-08)",
-   "question": "Does reuse_guard's END_MISMATCH quarantine wrongly exclude valid historical constituents (ordinary index removals that keep trading)?",
-   "method": "Parsed all 545 quarantine.log rows; classified 131 END_MISMATCH closed intervals by (series_end - membership_end) calendar-day geometry + CIK-count identity evidence; counted panel-month overlap; verified flag/status invariant on synthetic panel via production functions.",
-   "findings": [
-    "Class A (4): series terminates within +/-30d of membership end \u2014 genuine acquisitions (ABMD, BXLT, CTXS, HOT); eligible for frozen section-5 flat-hold; guard's +/-9d calendar window too tight for settlement lag.",
-    "Class B (101): series continues median 1956d past membership end; 73 with exactly 1 CIK (stable identity), 28 absent from CIK file (spot-checked same-company). Ordinary index removals; 8,071 membership-months of valid history dropped \u2014 MATERIAL.",
-    "Class C (26): series starts after interval end (ticker reuse, e.g. ADT/APC) or trivially short series (BK 5 bars, pull deficiency); quarantine correct.",
-    "408 no-EOD rows: 379 = November batch not yet pulled (expected); 29 = October-batch Tiingo 404 pull failures; 6 WARN rows were admitted (kept, clamped), not quarantined.",
-    "Preflight invariant fwd_complete_<h> == (fwd_status_<h> in {complete,delisted_flat}) verified on 4 producer-built synthetic scenarios (0 violations); adversarial corrupted row caught; missing-flag schema hard-errors."
-   ],
-   "correction_proposal": "Admit Class B as OPEN series (censor at dataset boundary only); admit Class A as closed with flat-hold and widen guard window to +/-30d; keep Class C quarantined; add preflight invariant gate before November run; invalidate series_closed=(me!=2200-01-01) assumption for Class-B-type intervals. No code changed in this task.",
-   "unresolved": "28 Class B tickers lack CIK records (admit-with-flag vs manual review?); CTXS +30d tail staleness; BK pull deficiency; whether Class B forward windows may extend past membership-end needs adjudication.",
-   "artifacts": "research_notes/vcp_1a_codefix/VCP_PHASE1A_INTERVAL_AUDIT_20261008.md; research_notes/vcp_1a_codefix/preflight_invariant_check.py",
-   "pins": {
-    "quarantine.log": "5e6ebb8100f1226e3351a66add63d71a8739286168f3135e4e264edc5df240b7",
-    "sp500_ticker_start_end.csv": "b2f4fe2f2e4dce8eaf0eb4fbd3946a32a20c1ddfe69687dfca3b6b59a0b71f9f",
-    "universe.json": "1c651a624fa2aabbe9433e8d898be12ff4083cd0974341d5f6c6109d1665d254"
-   },
-   "trial_budget": null,
-   "repair_budget": null,
-   "dependencies": null,
-   "code_pin": null,
-   "output_pin": null,
-   "verdict": null,
-   "effort_minutes": 35
-  }
- ],
- "message_ledger": [],
- "registry_version": "1",
- "task_log": []
+  ],
+  "message_ledger": [],
+  "registry_version": "1",
+  "task_log": []
 }
