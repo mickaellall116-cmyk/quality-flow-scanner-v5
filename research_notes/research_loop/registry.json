@@ -12,19 +12,19 @@
     },
     {
      "description": "Isolated offline harness, 15/15 tests",
-     "result": "HOLD by ChatGPT 6037842097 — 4 gaps",
+     "result": "HOLD by ChatGPT 6037842097 \u2014 4 gaps",
      "variation_id": "v3",
      "verdict_ref": "6037842097"
     },
     {
      "description": "Bounded repair, 25/25 tests",
-     "result": "HOLD by ChatGPT 6039806101 — 3 load-bearing issues",
+     "result": "HOLD by ChatGPT 6039806101 \u2014 3 load-bearing issues",
      "variation_id": "v4",
      "verdict_ref": "6039806101"
     },
     {
      "description": "Mandatory as-of, persistent limiter, unconditional verification; 35/35",
-     "result": "HOLD by ChatGPT 6043633584 — 3 defects",
+     "result": "HOLD by ChatGPT 6043633584 \u2014 3 defects",
      "variation_id": "v5",
      "verdict_ref": "6043633584"
     },
@@ -37,9 +37,9 @@
    ],
    "baseline_design": "Synthetic fixtures with pinned expected outputs; ChatGPT independent probes as adversarial baseline",
    "code_pin": "fd03906",
-   "costs": "N/A — offline synthetic",
+   "costs": "N/A \u2014 offline synthetic",
    "created_at": "2026-10-07T14:00:00Z",
-   "dataset_pin": "synthetic only — no vendor data",
+   "dataset_pin": "synthetic only \u2014 no vendor data",
    "decision_refs": [
     "6044057762 (ChatGPT acceptance)",
     "fd03906 (commit)"
@@ -48,16 +48,16 @@
    "experiment_id": "EXP-20261007-HARNESS-V56",
    "failure_data_source": "N/A",
    "failure_market": "N/A",
-   "failure_reason": "N/A — passed",
+   "failure_reason": "N/A \u2014 passed",
    "failure_strategy_family": "N/A",
    "failure_timeframe": "N/A",
    "hypothesis": "An isolated offline synthetic harness can validate Twelve Data pilot input construction, rate limiting, and source verification without vendor calls.",
    "limitations": [
     "C4 retention + endpoint-credit entitlements remain MISSING",
-    "Synthetic only — no vendor behavior validated"
+    "Synthetic only \u2014 no vendor behavior validated"
    ],
    "literature_intake": "UNKNOWN",
-   "next_action": "NONE — PASS scoped to isolated offline prerequisite only",
+   "next_action": "NONE \u2014 PASS scoped to isolated offline prerequisite only",
    "output_pin": "50/50 tests passing (tests/synthetic_test_output.txt in fd03906)",
    "owner": "Muse",
    "primary_sources": [
@@ -83,24 +83,24 @@
     "unit": "rounds",
     "used": "6 repair rounds"
    },
-   "validation_split": "N/A — prerequisite harness, not a strategy test",
-   "verdict": "PASS — scoped to isolated offline/synthetic harness prerequisite ONLY. Never grants deployment, CP2, or performance clearance."
+   "validation_split": "N/A \u2014 prerequisite harness, not a strategy test",
+   "verdict": "PASS \u2014 scoped to isolated offline/synthetic harness prerequisite ONLY. Never grants deployment, CP2, or performance clearance."
   },
   {
-   "acceptance_criteria": "UNKNOWN — not preregistered (exploratory diagnostic)",
+   "acceptance_criteria": "UNKNOWN \u2014 not preregistered (exploratory diagnostic)",
    "attempted_variations": [
     {
      "description": "ORB v1 vs 1000 random variants each on QQQ/SPY",
-     "result": "HOLD — null mismatch, overstated claims",
+     "result": "HOLD \u2014 null mismatch, overstated claims",
      "variation_id": "base",
      "verdict_ref": "6046384583"
     }
    ],
-   "baseline_design": "1000 random-entry variants per symbol: same nominal risk unit, 2R target, random bar + random direction. NOTE (ChatGPT): risk distance mismatch — ORB realized risk differs from random nominal risk. Null does not match estimand.",
+   "baseline_design": "1000 random-entry variants per symbol: same nominal risk unit, 2R target, random bar + random direction. NOTE (ChatGPT): risk distance mismatch \u2014 ORB realized risk differs from random nominal risk. Null does not match estimand.",
    "code_pin": "838bb89 (research_notes/orb_15m_random_benchmark_20261007/artifacts/orb_test.py, SHA256 01416fb9...)",
    "costs": "1bp/3bp/5bp per-side SCENARIOS (not measured fills)",
    "created_at": "2026-10-07T18:20:00Z",
-   "dataset_pin": "Tiingo IEX 15m, QQQ+SPY, 2024-10-01 to 2026-10-07, 527 days each — hashes in ARTIFACTS_MANIFEST.md",
+   "dataset_pin": "Tiingo IEX 15m, QQQ+SPY, 2024-10-01 to 2026-10-07, 527 days each \u2014 hashes in ARTIFACTS_MANIFEST.md",
    "decision_refs": [
     "6046384583 (ChatGPT evidence review)",
     "838bb89 (artifacts + corrections)"
@@ -114,14 +114,14 @@
    "failure_timeframe": "15m intraday",
    "hypothesis": "A 15-minute opening range breakout (first 15m high/low, entry on close outside, stop at opposite side, 2R target) has timing edge beyond random entries on QQQ/SPY.",
    "limitations": [
-    "Null mismatch: ORB entry at breakout close vs random at range width — risk distances differ",
+    "Null mismatch: ORB entry at breakout close vs random at range width \u2014 risk distances differ",
     "Tiingo IEX prints only, not consolidated tape",
-    "No preregistration — exploratory",
+    "No preregistration \u2014 exploratory",
     "Per-trade ledger unavailable (aggregates only)",
     "2026 weakness is descriptive, not causal"
    ],
    "literature_intake": "UNKNOWN",
-   "next_action": "Fix null design (matched risk distance) before any rerun — per ChatGPT 6046384583",
+   "next_action": "Fix null design (matched risk distance) before any rerun \u2014 per ChatGPT 6046384583",
    "output_pin": "838bb89 (report + corrections)",
    "owner": "Muse",
    "primary_sources": [
@@ -145,7 +145,7 @@
     "used": 1000
    },
    "validation_split": "Single 2-year window; no held-out. QQQ/SPY correlated, not independent.",
-   "verdict": "HOLD — exploratory diagnostic. No genuine-edge or universal nontradeability verdict accepted. Do not rerun until null design is fixed."
+   "verdict": "HOLD \u2014 exploratory diagnostic. No genuine-edge or universal nontradeability verdict accepted. Do not rerun until null design is fixed."
   },
   {
    "acceptance_criteria": "ChatGPT adjudication",
@@ -167,7 +167,7 @@
      "verdict_ref": "ChatGPT 6048255893"
     }
    ],
-   "baseline_design": "N/A — planning document",
+   "baseline_design": "N/A \u2014 planning document",
    "code_pin": "65e75ca",
    "costs": "Effort estimates with evidence-vs-assumption separation; Route 1 bounded to 2 weeks (to 2026-10-21)",
    "created_at": "2026-10-07T17:30:00Z",
@@ -185,9 +185,9 @@
    "failure_reason": "N/A",
    "failure_strategy_family": "N/A",
    "failure_timeframe": "N/A",
-   "hypothesis": "N/A — decision memo, not a strategy test. Recommends Route 3 (narrow prospective capture) primary, Route 1 (Twelve Data pilot) bounded parallel, Route 2 historical not recommended.",
+   "hypothesis": "N/A \u2014 decision memo, not a strategy test. Recommends Route 3 (narrow prospective capture) primary, Route 1 (Twelve Data pilot) bounded parallel, Route 2 historical not recommended.",
    "limitations": [
-    "Planning only — no acquisition, spending, performance, or frozen-system authorization"
+    "Planning only \u2014 no acquisition, spending, performance, or frozen-system authorization"
    ],
    "literature_intake": "UNKNOWN",
    "next_action": "Feed gates evidence table (this handoff item 3); Route 1 bounded evidence-gathering ceiling to 2026-10-21",
@@ -216,7 +216,7 @@
   {
    "acceptance_criteria": "ChatGPT review",
    "attempted_variations": [],
-   "baseline_design": "N/A — survey",
+   "baseline_design": "N/A \u2014 survey",
    "code_pin": "N/A",
    "costs": "N/A",
    "created_at": "2026-10-07T18:00:00Z",
@@ -231,7 +231,7 @@
    "failure_reason": "N/A",
    "failure_strategy_family": "N/A",
    "failure_timeframe": "N/A",
-   "hypothesis": "N/A — literature survey. Maps professional quant validation methods (DSR, PBO/CSCV, permutation nulls, Harvey-Liu haircuts) for adoption consideration.",
+   "hypothesis": "N/A \u2014 literature survey. Maps professional quant validation methods (DSR, PBO/CSCV, permutation nulls, Harvey-Liu haircuts) for adoption consideration.",
    "limitations": [
     "Secondary/community examples separated from primary findings in corrections table"
    ],
@@ -264,16 +264,16 @@
     "used": "N/A"
    },
    "validation_split": "N/A",
-   "verdict": "PENDING — accepted as research reference; proposed operational gates NOT adopted (per ChatGPT 6046384583)"
+   "verdict": "PENDING \u2014 accepted as research reference; proposed operational gates NOT adopted (per ChatGPT 6046384583)"
   },
   {
-   "acceptance_criteria": "UNKNOWN — pending spec clearance",
+   "acceptance_criteria": "UNKNOWN \u2014 pending spec clearance",
    "attempted_variations": [],
-   "baseline_design": "UNKNOWN — pending spec clearance",
+   "baseline_design": "UNKNOWN \u2014 pending spec clearance",
    "code_pin": "fd03906 (harness prerequisite)",
-   "costs": "Free tier only — 8 credits/min, 800/day. No spending authorized.",
+   "costs": "Free tier only \u2014 8 credits/min, 800/day. No spending authorized.",
    "created_at": "2026-10-07T10:00:00Z",
-   "dataset_pin": "UNKNOWN — no vendor calls made",
+   "dataset_pin": "UNKNOWN \u2014 no vendor calls made",
    "decision_refs": [
     "Mike: 'Just run if chat says' (standing authorization, gated)"
    ],
@@ -305,7 +305,7 @@
     "used_rounds": 0
    },
    "robustness_diagnostics": [],
-   "rule_spec_version": "UNKNOWN — awaiting ChatGPT spec clearance",
+   "rule_spec_version": "UNKNOWN \u2014 awaiting ChatGPT spec clearance",
    "state": "QUEUED",
    "title": "Twelve Data free-tier pilot (gated)",
    "trial_budget": {
@@ -314,11 +314,11 @@
     "used": 0
    },
    "validation_split": "UNKNOWN",
-   "verdict": "PENDING — queued, gated on ChatGPT clearance"
+   "verdict": "PENDING \u2014 queued, gated on ChatGPT clearance"
   },
   {
    "experiment_id": "EXP-20261007-LOOP-SCAFFOLD",
-   "title": "Research-loop registry/state-machine scaffold (v1 → v1.1 → v1.2)",
+   "title": "Research-loop registry/state-machine scaffold (v1 \u2192 v1.1 \u2192 v1.2)",
    "hypothesis": "A JSON registry + state machine + cycle procedure can coordinate bounded research-loop bookkeeping without executing runs, scheduling agents, or invoking external reviewers.",
    "owner": "Muse",
    "created_at": "2026-10-07T21:10:00Z",
@@ -328,7 +328,7 @@
    ],
    "rule_spec_version": "research_notes/research_loop/ (README, registry_schema.md, state_machine.md, cycle_procedure.md, failure_memory.md)",
    "code_pin": "6f9595a (final)",
-   "dataset_pin": "N/A — synthetic fixtures only",
+   "dataset_pin": "N/A \u2014 synthetic fixtures only",
    "output_pin": "28/28 fixtures passing (research_notes/research_loop/fixtures/fixture_output.txt in 6f9595a)",
    "baseline_design": "ChatGPT independent fixture reproduction + three pinned counterexamples (absent dependency ID, negative/inconsistent budgets, empty dispatch pin)",
    "attempted_variations": [
@@ -344,7 +344,7 @@
      "description": "Shared gate + authorship meta-correction per ChatGPT 6047556037",
      "result": "21/21 fixtures passing; 3 exact probes held open (absent dependency ID, negative budgets, empty dispatch pin)",
      "code_pin": "65e75ca",
-     "verdict_ref": "ChatGPT 6048255893 (acceptance scope; 3 probes → final micro-patch)"
+     "verdict_ref": "ChatGPT 6048255893 (acceptance scope; 3 probes \u2192 final micro-patch)"
     },
     {
      "variation_id": "v1.2",
@@ -364,27 +364,27 @@
     "unit": "scaffold versions"
    },
    "repair_budget": {
-    "allocated_rounds": "final allocation only — no further iterative repair authorized",
+    "allocated_rounds": "final allocation only \u2014 no further iterative repair authorized",
     "used_rounds": 3
    },
-   "costs": "N/A — design/record only",
-   "validation_split": "N/A — scaffold, not a strategy test",
+   "costs": "N/A \u2014 design/record only",
+   "validation_split": "N/A \u2014 scaffold, not a strategy test",
    "acceptance_criteria": "ChatGPT independent fixture reproduction + scoped acceptance (6048657174)",
    "limitations": [
-    "Single-process only — no concurrency safety claimed",
-    "A nonempty evidence string does not authenticate evidence or establish entitlement — reviewer must independently check external prerequisites",
-    "Does not schedule Muse, invoke Claude, or deploy an execution service — the existing watch remains the coordinator",
+    "Single-process only \u2014 no concurrency safety claimed",
+    "A nonempty evidence string does not authenticate evidence or establish entitlement \u2014 reviewer must independently check external prerequisites",
+    "Does not schedule Muse, invoke Claude, or deploy an execution service \u2014 the existing watch remains the coordinator",
     "Seed registry is an inventory, not live state synchronized with decisions"
    ],
    "dependencies": [],
-   "next_action": "NONE — scaffold allocation closed per 6048657174. No further iterative scaffold repair authorized.",
+   "next_action": "NONE \u2014 scaffold allocation closed per 6048657174. No further iterative scaffold repair authorized.",
    "state": "PASS",
-   "verdict": "PASS — narrowly scoped to final requested synthetic/reference scaffold corrections (ChatGPT 6048657174). Close scaffold allocation; no further iterative scaffold repair authorized. NOT acceptance of: deployed execution runner, vendor acquisition, crash-recovery guarantees, Muse scheduling, automatic Claude invocation, CP2, or performance.",
+   "verdict": "PASS \u2014 narrowly scoped to final requested synthetic/reference scaffold corrections (ChatGPT 6048657174). Close scaffold allocation; no further iterative scaffold repair authorized. NOT acceptance of: deployed execution runner, vendor acquisition, crash-recovery guarantees, Muse scheduling, automatic Claude invocation, CP2, or performance.",
    "decision_refs": [
     "6048657174 (ChatGPT scoped PASS)",
     "6f9595a (commit)"
    ],
-   "failure_reason": "N/A — passed (scoped)",
+   "failure_reason": "N/A \u2014 passed (scoped)",
    "failure_strategy_family": "N/A",
    "failure_market": "N/A",
    "failure_timeframe": "N/A",
@@ -467,6 +467,39 @@
     "goal_briefing_4f4adf4adae8 (interim Letter 2026-10-04)"
    ],
    "inventory_artifact": "research_notes/vcp_1a_inventory/VCP_PHASE1A_INVENTORY_20261007.md"
+  },
+  {
+   "experiment_id": "EXP-20261007-VCP-1A-EVIDENCE",
+   "title": "VCP Phase 1A proof-of-evidence package (QF-VCP-1A-EVIDENCE-20261007-02)",
+   "state": "HOLD",
+   "state_reason": "Evidence package published; pending ChatGPT adversarial review per adjudication 6050055081. Phase 1A statistical verdicts remain HOLD.",
+   "created": "2026-10-08T01:30:00Z",
+   "source_adjudication": "Issue #1 comment 6050055081 (2026-10-07)",
+   "pins": {
+    "run_plan": "367bddea6d5184d5831d08bcd5b66b05ce935f44895182a35a5891207c38a869",
+    "analyze_py": "80315ceff4fd7a962e7e9ad3cd1b96636271d71f6b61eee578527ebb84297fbb",
+    "results_phase1a": "c6b0f98a4a5baaba7d1ebd19a171c55bf8d918fd7832af4eb905bab5ba78a05d",
+    "evidence_report": "research_notes/vcp_1a_evidence/VCP_PHASE1A_EVIDENCE_20261007.md"
+   },
+   "key_findings": {
+    "variant2_reconciliation": "Run plan \u00a74 (frozen 2026-10-01, pre-result): V2 = V1 AND adjClose > 250DMA, documented as judgment-call operationalization of spec's '12-month trend condition'. No post-result reinterpretation.",
+    "interim_result": "ADVERSE: both variants FAIL persistence rule at all 3 horizons (negative mean, 3/8 subperiods, p>>0.05). 12M annualized excess: V1 -14.92%, V2 -17.35%.",
+    "edgar_crosscheck": "EDGAR shares vs Tiingo shareswa: AAPL 0.30%, MSFT 0.01%, WMT 0.05% mean abs diff (<1% all quarters). Source validated.",
+    "efts_validations": "HOLD: 128 pending require vendor API calls (zero permitted this task).",
+    "november_batch": "HOLD until >=2026-11-01 (Tiingo 500-symbol/month cap)."
+   },
+   "trial_budget": {
+    "allocated": 0,
+    "used": 0,
+    "unit": "evidence-collection pass"
+   },
+   "repair_budget": {
+    "allocated_rounds": 0,
+    "used_rounds": 0
+   },
+   "effort_actual_minutes": 40,
+   "next_eligible_step": "ChatGPT adversarial review of this evidence package; then November full-universe run (one preregistered run).",
+   "stop_condition": "1A (full) and preregistered 1B both dead -> park lane."
   }
  ],
  "message_ledger": [],

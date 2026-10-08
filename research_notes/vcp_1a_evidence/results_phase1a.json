@@ -1,0 +1,488 @@
+{
+ "n_panel_rows": 39672,
+ "n_filtered_rows": 30826,
+ "months": [
+  "2010-01-29",
+  "2025-12-31"
+ ],
+ "variants": {
+  "v1": {
+   "horizons": {
+    "r3": {
+     "n_months": 192,
+     "mean_m": -0.003557,
+     "mean_ann": -0.042679,
+     "ci95": [
+      -0.009687,
+      0.00121
+     ],
+     "p_two_sided": 0.211321,
+     "n_months_used": 192,
+     "n_qual_obs": 19249,
+     "n_ctrl_obs": 11577,
+     "mean_qual_ret": 0.03156,
+     "mean_ctrl_ret": 0.046302,
+     "subperiods": [
+      {
+       "period": "2010-2011",
+       "n_months": 23,
+       "mean_excess_m": 0.000566
+      },
+      {
+       "period": "2012-2013",
+       "n_months": 23,
+       "mean_excess_m": -0.008763
+      },
+      {
+       "period": "2014-2015",
+       "n_months": 23,
+       "mean_excess_m": 0.000323
+      },
+      {
+       "period": "2016-2017",
+       "n_months": 23,
+       "mean_excess_m": -0.005057
+      },
+      {
+       "period": "2018-2019",
+       "n_months": 23,
+       "mean_excess_m": 0.002177
+      },
+      {
+       "period": "2020-2021",
+       "n_months": 23,
+       "mean_excess_m": -0.006041
+      },
+      {
+       "period": "2022-2023",
+       "n_months": 23,
+       "mean_excess_m": -0.006982
+      },
+      {
+       "period": "2024-2025",
+       "n_months": 23,
+       "mean_excess_m": -0.001599
+      }
+     ],
+     "n_positive_subperiods": 3,
+     "vs_spy": {
+      "n_months": 192,
+      "mean_excess_m": -0.001146,
+      "mean_excess_ann": -0.013747
+     }
+    },
+    "r6": {
+     "n_months": 192,
+     "mean_m": -0.005406,
+     "mean_ann": -0.064875,
+     "ci95": [
+      -0.017421,
+      0.004161
+     ],
+     "p_two_sided": 0.328233,
+     "n_months_used": 192,
+     "n_qual_obs": 19249,
+     "n_ctrl_obs": 11577,
+     "mean_qual_ret": 0.066465,
+     "mean_ctrl_ret": 0.08507,
+     "subperiods": [
+      {
+       "period": "2010-2011",
+       "n_months": 23,
+       "mean_excess_m": -0.000242
+      },
+      {
+       "period": "2012-2013",
+       "n_months": 23,
+       "mean_excess_m": -0.006133
+      },
+      {
+       "period": "2014-2015",
+       "n_months": 23,
+       "mean_excess_m": 0.006139
+      },
+      {
+       "period": "2016-2017",
+       "n_months": 23,
+       "mean_excess_m": -0.021685
+      },
+      {
+       "period": "2018-2019",
+       "n_months": 23,
+       "mean_excess_m": 0.013294
+      },
+      {
+       "period": "2020-2021",
+       "n_months": 23,
+       "mean_excess_m": -0.039659
+      },
+      {
+       "period": "2022-2023",
+       "n_months": 23,
+       "mean_excess_m": -0.0074
+      },
+      {
+       "period": "2024-2025",
+       "n_months": 23,
+       "mean_excess_m": 0.013134
+      }
+     ],
+     "n_positive_subperiods": 3,
+     "vs_spy": {
+      "n_months": 192,
+      "mean_excess_m": -0.003215,
+      "mean_excess_ann": -0.038575
+     }
+    },
+    "r12": {
+     "n_months": 188,
+     "mean_m": -0.012434,
+     "mean_ann": -0.149203,
+     "ci95": [
+      -0.038359,
+      0.010889
+     ],
+     "p_two_sided": 0.318732,
+     "n_months_used": 188,
+     "n_qual_obs": 18815,
+     "n_ctrl_obs": 11214,
+     "mean_qual_ret": 0.133312,
+     "mean_ctrl_ret": 0.173346,
+     "subperiods": [
+      {
+       "period": "2010-2011",
+       "n_months": 23,
+       "mean_excess_m": 0.027126
+      },
+      {
+       "period": "2012-2013",
+       "n_months": 23,
+       "mean_excess_m": -0.019316
+      },
+      {
+       "period": "2014-2015",
+       "n_months": 23,
+       "mean_excess_m": 0.005602
+      },
+      {
+       "period": "2016-2017",
+       "n_months": 23,
+       "mean_excess_m": -0.029545
+      },
+      {
+       "period": "2018-2019",
+       "n_months": 23,
+       "mean_excess_m": 0.015267
+      },
+      {
+       "period": "2020-2021",
+       "n_months": 23,
+       "mean_excess_m": -0.079701
+      },
+      {
+       "period": "2022-2023",
+       "n_months": 23,
+       "mean_excess_m": -0.002652
+      },
+      {
+       "period": "2024-2025",
+       "n_months": 20,
+       "mean_excess_m": -0.006987
+      }
+     ],
+     "n_positive_subperiods": 3,
+     "vs_spy": {
+      "n_months": 188,
+      "mean_excess_m": -0.011918,
+      "mean_excess_ann": -0.143021
+     }
+    }
+   },
+   "breadth": {
+    "mean": 100.3,
+    "min": 16,
+    "max": 174
+   },
+   "turnover": 0.1661,
+   "hit_rate": {
+    "r3": {
+     "qual": 0.6173,
+     "ctrl": 0.6343
+    },
+    "r6": {
+     "qual": 0.6596,
+     "ctrl": 0.6599
+    },
+    "r12": {
+     "qual": 0.7057,
+     "ctrl": 0.7059
+    }
+   },
+   "downside": {
+    "r3": {
+     "n": 19249,
+     "mean_max_adv_exc": -0.071786,
+     "median_max_adv_exc": -0.0513
+    },
+    "r6": {
+     "n": 19249,
+     "mean_max_adv_exc": -0.100338,
+     "median_max_adv_exc": -0.0714
+    },
+    "r12": {
+     "n": 18815,
+     "mean_max_adv_exc": -0.134558,
+     "median_max_adv_exc": -0.0986
+    }
+   }
+  },
+  "v2": {
+   "horizons": {
+    "r3": {
+     "n_months": 192,
+     "mean_m": -0.003845,
+     "mean_ann": -0.046141,
+     "ci95": [
+      -0.010131,
+      0.001341
+     ],
+     "p_two_sided": 0.20302,
+     "n_months_used": 192,
+     "n_qual_obs": 18786,
+     "n_ctrl_obs": 12040,
+     "mean_qual_ret": 0.031179,
+     "mean_ctrl_ret": 0.04633,
+     "subperiods": [
+      {
+       "period": "2010-2011",
+       "n_months": 23,
+       "mean_excess_m": 0.000478
+      },
+      {
+       "period": "2012-2013",
+       "n_months": 23,
+       "mean_excess_m": -0.004537
+      },
+      {
+       "period": "2014-2015",
+       "n_months": 23,
+       "mean_excess_m": 0.000693
+      },
+      {
+       "period": "2016-2017",
+       "n_months": 23,
+       "mean_excess_m": -0.007073
+      },
+      {
+       "period": "2018-2019",
+       "n_months": 23,
+       "mean_excess_m": 0.003356
+      },
+      {
+       "period": "2020-2021",
+       "n_months": 23,
+       "mean_excess_m": -0.011652
+      },
+      {
+       "period": "2022-2023",
+       "n_months": 23,
+       "mean_excess_m": -0.009887
+      },
+      {
+       "period": "2024-2025",
+       "n_months": 23,
+       "mean_excess_m": -0.001389
+      }
+     ],
+     "n_positive_subperiods": 3,
+     "vs_spy": {
+      "n_months": 192,
+      "mean_excess_m": -0.001461,
+      "mean_excess_ann": -0.017531
+     }
+    },
+    "r6": {
+     "n_months": 192,
+     "mean_m": -0.006573,
+     "mean_ann": -0.078878,
+     "ci95": [
+      -0.020225,
+      0.004324
+     ],
+     "p_two_sided": 0.30303,
+     "n_months_used": 192,
+     "n_qual_obs": 18786,
+     "n_ctrl_obs": 12040,
+     "mean_qual_ret": 0.065856,
+     "mean_ctrl_ret": 0.085305,
+     "subperiods": [
+      {
+       "period": "2010-2011",
+       "n_months": 23,
+       "mean_excess_m": -0.000312
+      },
+      {
+       "period": "2012-2013",
+       "n_months": 23,
+       "mean_excess_m": -0.004703
+      },
+      {
+       "period": "2014-2015",
+       "n_months": 23,
+       "mean_excess_m": 0.005212
+      },
+      {
+       "period": "2016-2017",
+       "n_months": 23,
+       "mean_excess_m": -0.02279
+      },
+      {
+       "period": "2018-2019",
+       "n_months": 23,
+       "mean_excess_m": 0.012918
+      },
+      {
+       "period": "2020-2021",
+       "n_months": 23,
+       "mean_excess_m": -0.049239
+      },
+      {
+       "period": "2022-2023",
+       "n_months": 23,
+       "mean_excess_m": -0.010655
+      },
+      {
+       "period": "2024-2025",
+       "n_months": 23,
+       "mean_excess_m": 0.016194
+      }
+     ],
+     "n_positive_subperiods": 3,
+     "vs_spy": {
+      "n_months": 192,
+      "mean_excess_m": -0.003709,
+      "mean_excess_ann": -0.044508
+     }
+    },
+    "r12": {
+     "n_months": 188,
+     "mean_m": -0.014455,
+     "mean_ann": -0.173458,
+     "ci95": [
+      -0.041291,
+      0.010281
+     ],
+     "p_two_sided": 0.274527,
+     "n_months_used": 188,
+     "n_qual_obs": 18368,
+     "n_ctrl_obs": 11661,
+     "mean_qual_ret": 0.132384,
+     "mean_ctrl_ret": 0.173273,
+     "subperiods": [
+      {
+       "period": "2010-2011",
+       "n_months": 23,
+       "mean_excess_m": 0.026807
+      },
+      {
+       "period": "2012-2013",
+       "n_months": 23,
+       "mean_excess_m": -0.022615
+      },
+      {
+       "period": "2014-2015",
+       "n_months": 23,
+       "mean_excess_m": 0.00351
+      },
+      {
+       "period": "2016-2017",
+       "n_months": 23,
+       "mean_excess_m": -0.031144
+      },
+      {
+       "period": "2018-2019",
+       "n_months": 23,
+       "mean_excess_m": 0.015389
+      },
+      {
+       "period": "2020-2021",
+       "n_months": 23,
+       "mean_excess_m": -0.087801
+      },
+      {
+       "period": "2022-2023",
+       "n_months": 23,
+       "mean_excess_m": -0.006659
+      },
+      {
+       "period": "2024-2025",
+       "n_months": 20,
+       "mean_excess_m": -0.004584
+      }
+     ],
+     "n_positive_subperiods": 3,
+     "vs_spy": {
+      "n_months": 188,
+      "mean_excess_m": -0.012759,
+      "mean_excess_ann": -0.153109
+     }
+    }
+   },
+   "breadth": {
+    "mean": 97.8,
+    "min": 15,
+    "max": 168
+   },
+   "turnover": 0.1668,
+   "hit_rate": {
+    "r3": {
+     "qual": 0.6173,
+     "ctrl": 0.6336
+    },
+    "r6": {
+     "qual": 0.6594,
+     "ctrl": 0.6602
+    },
+    "r12": {
+     "qual": 0.7057,
+     "ctrl": 0.7059
+    }
+   },
+   "downside": {
+    "r3": {
+     "n": 18786,
+     "mean_max_adv_exc": -0.071464,
+     "median_max_adv_exc": -0.051
+    },
+    "r6": {
+     "n": 18786,
+     "mean_max_adv_exc": -0.099997,
+     "median_max_adv_exc": -0.0713
+    },
+    "r12": {
+     "n": 18368,
+     "mean_max_adv_exc": -0.134124,
+     "median_max_adv_exc": -0.0983
+    }
+   }
+  }
+ },
+ "persistence_rule": {
+  "v1": {
+   "per_horizon": {
+    "r3": false,
+    "r6": false,
+    "r12": false
+   },
+   "pass_all_three": false
+  },
+  "v2": {
+   "per_horizon": {
+    "r3": false,
+    "r6": false,
+    "r12": false
+   },
+   "pass_all_three": false
+  }
+ }
+}
