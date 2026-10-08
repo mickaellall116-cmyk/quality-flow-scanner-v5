@@ -103,3 +103,49 @@ Compared EDGAR `dei:EntityCommonStockSharesOutstanding` (point-in-time, quarter-
 4. **Phase 1B** — remains unpreregistered, cannot run.
 5. **November full-universe run** — remains one preregistered run, pending evidence review + Nov 1 credit window.
 6. **ChatGPT adversarial review** of this evidence package — pending.
+
+---
+
+## ADDENDUM 2026-10-07 — CODEFIX QF-VCP-1A-CODEFIX-20261007-03 (adjudication 6051281109)
+
+This addendum INVALIDATES specific fields in the interim table above. The
+original sections are preserved unchanged (history, not rewritten). Corrected
+code is published at `research_notes/vcp_1a_codefix/` (report:
+`VCP_PHASE1A_CODEFIX_20261007.md`); corrected magnitudes and subperiod counts
+will come from the ONE full-universe November run (≥2026-11-01), not from a
+rerun in this task.
+
+### INVALIDATED
+
+1. **All `mean_ann` magnitudes** (e.g. V1 r12 −14.92%, V2 r12 −17.35%): the
+   analysis multiplied every horizon's per-window effect by 12. `d_m` is
+   already a 3M/6M/12M forward-return difference. Source of the bug: frozen
+   RUN_PLAN §7 line "Effect size annualized (×12)". Corrected reporting is
+   raw per-window effect (primary) + horizon-aware linear equivalent ×4/×2/×1
+   labeled secondary. Do not cite the old annualized figures.
+2. **All `vs_spy` annualized values**: same ×12 error. Invalidated.
+3. **All `n_positive_subperiods` counts** (e.g. 3/8): computed on 23-month
+   subperiods (lexical date-boundary bug dropped every ending-December).
+   Corrected code uses month-period comparison → 24 months per subperiod.
+4. **The r12 "through 2025-09" month count**: the old code excluded
+   2025-09-30 via string comparison (`"2025-09-30" > "2025-09"`). The
+   data-derived cutoff (actual trading-day counts) is **2025-08-29**:
+   September 2025's r12 window is genuinely 1 trading day short
+   (251 < 252). r12 still uses 188 months, now for a principled reason.
+
+### EFTS counts — corrected reconciliation (supersedes §5 and §7.1 above)
+
+Ground truth from the files: 127 EFTS tickers in October-batch scope →
+**24 validated** (`cik_validated.json`), **87 unique tickers dropped**
+(name mismatch, `cik_dropped.json` "dropped"), **39 unique tickers with
+fetch errors** (128 error records = retries, mostly Tiingo 404). Union = 127,
+zero unaccounted. The "89 dropped / 128 pending" figures in §5/§7 above were
+wrong (87 drops, not 89; errors are 39 tickers / 128 records, not 128
+pending tickers).
+
+### October batch selection rule
+
+`batch_oct.txt` = 5 pilot tickers (SPY, WMT, DIS, INTC, IBM) + 440 tickers in
+strict alphabetical order (A → LEG). `batch_nov.txt` = 379 tickers
+alphabetical (LEN → ZTS). **Selection is alphabetical, not random — the
+October interim is descriptive only even after code correction.**

@@ -499,7 +499,56 @@
    },
    "effort_actual_minutes": 40,
    "next_eligible_step": "ChatGPT adversarial review of this evidence package; then November full-universe run (one preregistered run).",
-   "stop_condition": "1A (full) and preregistered 1B both dead -> park lane."
+   "stop_condition": "1A (full) and preregistered 1B both dead -> park lane.",
+   "amendments": [
+    {
+     "date": "2026-10-08",
+     "ref": "QF-VCP-1A-CODEFIX-20261007-03 / adjudication 6051281109",
+     "note": "Interim figures in key_findings (annualized magnitudes, 3/8 subperiod counts) INVALIDATED by codefix: x12 annualization bug + 23-month subperiod bug. See evidence report ADDENDUM 2026-10-07. EFTS figures corrected: 87 dropped (not 89), 39 error tickers / 128 records (not 128 pending)."
+    }
+   ]
+  },
+  {
+   "experiment_id": "EXP-20261007-VCP-1A-CODEFIX",
+   "title": "VCP Phase 1A codefix (QF-VCP-1A-CODEFIX-20261007-03)",
+   "state": "HOLD",
+   "state_reason": "Code correction published; pending ChatGPT adversarial review of this package. No performance rerun in this task.",
+   "created": "2026-10-08T01:45:00Z",
+   "source_adjudication": "Issue #1 comment 6051281109 (2026-10-07)",
+   "defects_fixed": [
+    "D1 annualization: d_m already a horizon return; old code x12 for all horizons. Now raw per-window primary + horizon-aware linear equiv x4/x2/x1 secondary.",
+    "D2 lexical date boundary: subperiod bounds YYYY-MM vs full dates dropped every ending-December (23 vs frozen 24 months). Now month-period comparison.",
+    "D3 hardcoded r12 cutoff replaced by data-derived last_complete_month (>=95% panel-active tickers, actual trading-day counts). r12 cutoff = 2025-08-29 (Sep genuinely 1d short); r3/r6 = 2025-12-31. build_panels.py emits fwd_complete_r3/r6/r12 flags; no silent truncation."
+   ],
+   "invalidated": [
+    "All mean_ann magnitudes in VCP_PHASE1A_EVIDENCE_20261007.md (e.g. V1 r12 -14.92%)",
+    "All vs_spy annualized values",
+    "All n_positive_subperiods counts (computed on 23-month subperiods)",
+    "r12 'through 2025-09' month-count rationale (string-comparison artifact)"
+   ],
+   "pins": {
+    "analyze_py": "998b3b79325856b02389154e0d4900ecf307bbeff9a197807fd3cc9aebb92520",
+    "build_panels_py": "be7128c7507354c53f2b838df1a36e05e7c60275b33b89ceaefb4",
+    "test_vcp_phase1a_codefix_py": "3c7021aa2a20793fdd89a5cb3889779649581797e6b6114ebe4c4e417ca8ac91",
+    "codefix_report": "b6a9aca0d8d093db474f30d77e24fb01ca178e471e9eb9bdc156840a7f837a31"
+   },
+   "synthetic_tests": "22/22 PASS (synthetic data only; T3 uses on-disk raw EOD calendars)",
+   "efts_reconciliation": "127 in scope: 24 validated / 87 dropped (name mismatch) / 39 error tickers (128 records); 0 unaccounted",
+   "batch_selection": "October = 5 pilot + 440 alphabetical (A->LEG); November = 379 alphabetical (LEN->ZTS). Nonrandom -> interim descriptive only.",
+   "trial_budget": {
+    "allocated": 0,
+    "used": 0,
+    "unit": "runs",
+    "note": "no performance reruns in this task"
+   },
+   "repair_budget": {
+    "allocated_rounds": 1,
+    "used_rounds": 1,
+    "unit": "rounds"
+   },
+   "next_eligible": "ChatGPT adversarial review of this package; then ONE full-universe November run (>=2026-11-01)",
+   "stop_condition": "If review rejects the correction, record HOLD and do not open another repair cycle",
+   "actual_effort_minutes": 55
   }
  ],
  "message_ledger": [],
