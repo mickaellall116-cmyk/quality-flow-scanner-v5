@@ -1,0 +1,1355 @@
+{
+ "counts": {
+  "ambiguous/quarantine": 54,
+  "continuing/open": 73,
+  "total": 131,
+  "verified_terminal/flat-hold": 4
+ },
+ "dispositions": [
+  "continuing/open",
+  "verified_terminal/flat-hold",
+  "ambiguous/quarantine"
+ ],
+ "intervals": {
+  "AABA|2010-01-01|2017-06-19": {
+   "d_end_days": 870,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001464343",
+   "me": "2017-06-19",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2019-11-06",
+   "series_start": "2009-01-02",
+   "ticker": "AABA"
+  },
+  "AAL|2015-03-23|2024-09-23": {
+   "d_end_days": 737,
+   "disposition": "continuing/open",
+   "me": "2024-09-23",
+   "ms": "2015-03-23",
+   "reason": "ordinary index removal; single stable CIK {'0000006201': ['20240105', 'current']}; series continues 737d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "AAL"
+  },
+  "AAP|2015-07-09|2023-08-25": {
+   "d_end_days": 1132,
+   "disposition": "continuing/open",
+   "me": "2023-08-25",
+   "ms": "2015-07-09",
+   "reason": "ordinary index removal; single stable CIK {'0001158449': ['20240105', 'current']}; series continues 1132d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "AAP"
+  },
+  "ABMD|2018-05-31|2022-12-22": {
+   "d_end_days": 12,
+   "disposition": "verified_terminal/flat-hold",
+   "me": "2022-12-22",
+   "ms": "2018-05-31",
+   "reason": "exact pinned verified acquisition exception per adjudication 6053282451; frozen RUN_PLAN \u00a75 last-close flat-hold",
+   "series_end": "2023-01-03",
+   "series_start": "2009-01-02",
+   "ticker": "ABMD"
+  },
+  "ACS|2010-01-01|2010-02-08": {
+   "d_end_days": 371,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001137587",
+   "me": "2010-02-08",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2011-02-14",
+   "series_start": "2010-02-05",
+   "ticker": "ACS"
+  },
+  "ADT|2012-10-02|2016-05-02": {
+   "d_end_days": 3803,
+   "disposition": "ambiguous/quarantine",
+   "me": "2016-05-02",
+   "ms": "2012-10-02",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2018-01-19",
+   "ticker": "ADT"
+  },
+  "AIV|2010-01-01|2020-12-21": {
+   "d_end_days": 2109,
+   "disposition": "continuing/open",
+   "me": "2020-12-21",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000922864': ['20240105', 'current']}; series continues 2109d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "AIV"
+  },
+  "AKS|2010-01-01|2011-12-19": {
+   "d_end_days": 3007,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000902600",
+   "me": "2011-12-19",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2020-03-13",
+   "series_start": "2009-01-02",
+   "ticker": "AKS"
+  },
+  "ALK|2016-05-13|2023-12-18": {
+   "d_end_days": 1017,
+   "disposition": "continuing/open",
+   "me": "2023-12-18",
+   "ms": "2016-05-13",
+   "reason": "ordinary index removal; single stable CIK {'0000766421': ['20240105', 'current']}; series continues 1017d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "ALK"
+  },
+  "ALTR|2010-01-01|2015-12-28": {
+   "d_end_days": 3376,
+   "disposition": "ambiguous/quarantine",
+   "me": "2015-12-28",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2025-03-26",
+   "series_start": "2017-11-01",
+   "ticker": "ALTR"
+  },
+  "AMD|2010-01-01|2013-09-23": {
+   "d_end_days": 4755,
+   "disposition": "continuing/open",
+   "me": "2013-09-23",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000002488': ['20240105', 'current']}; series continues 4755d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "AMD"
+  },
+  "AMG|2014-07-01|2019-12-23": {
+   "d_end_days": 2473,
+   "disposition": "continuing/open",
+   "me": "2019-12-23",
+   "ms": "2014-07-01",
+   "reason": "ordinary index removal; single stable CIK {'0001004434': ['20240105', 'current']}; series continues 2473d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "AMG"
+  },
+  "AMTM|2024-09-30|2024-12-23": {
+   "d_end_days": 646,
+   "disposition": "continuing/open",
+   "me": "2024-12-23",
+   "ms": "2024-09-30",
+   "reason": "ordinary index removal; single stable CIK {'0002011286': ['current']}; series continues 646d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2024-09-24",
+   "ticker": "AMTM"
+  },
+  "ANF|2010-01-01|2013-12-23": {
+   "d_end_days": 4664,
+   "disposition": "continuing/open",
+   "me": "2013-12-23",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001018840': ['20240105', 'current']}; series continues 4664d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "ANF"
+  },
+  "ANRZQ|2011-06-02|2012-10-02": {
+   "d_end_days": 1394,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001615905",
+   "me": "2012-10-02",
+   "ms": "2011-06-02",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2016-07-27",
+   "series_start": "2009-01-02",
+   "ticker": "ANRZQ"
+  },
+  "ANSS|2017-06-19|2025-07-18": {
+   "d_end_days": 439,
+   "disposition": "continuing/open",
+   "me": "2025-07-18",
+   "ms": "2017-06-19",
+   "reason": "ordinary index removal; single stable CIK {'0001013462': ['20240105']}; series continues 439d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "ANSS"
+  },
+  "AN|2010-01-01|2017-08-08": {
+   "d_end_days": 3340,
+   "disposition": "continuing/open",
+   "me": "2017-08-08",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000350698': ['20240105', 'current']}; series continues 3340d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "AN"
+  },
+  "APC|2010-01-01|2019-08-09": {
+   "d_end_days": 2609,
+   "disposition": "ambiguous/quarantine",
+   "me": "2019-08-09",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2026-02-12",
+   "ticker": "APC"
+  },
+  "APOL|2010-01-01|2013-07-01": {
+   "d_end_days": 1319,
+   "disposition": "ambiguous/quarantine",
+   "me": "2013-07-01",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2017-02-09",
+   "series_start": "2016-01-04",
+   "ticker": "APOL"
+  },
+  "ARNC|2010-01-01|2020-04-06": {
+   "d_end_days": 1228,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001790982",
+   "me": "2020-04-06",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2023-08-17",
+   "series_start": "2020-04-01",
+   "ticker": "ARNC"
+  },
+  "ATI|2010-01-01|2015-07-02": {
+   "d_end_days": 4108,
+   "disposition": "continuing/open",
+   "me": "2015-07-02",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001018963': ['20240105', 'current']}; series continues 4108d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "ATI"
+  },
+  "AVB|2010-01-01|2025-12-31": {
+   "d_end_days": 229,
+   "disposition": "continuing/open",
+   "me": "2025-12-31",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000915912': ['20240105']}; series continues 229d past membership end",
+   "series_end": "2026-08-17",
+   "series_start": "2009-01-02",
+   "ticker": "AVB"
+  },
+  "AVP|2010-01-01|2015-03-23": {
+   "d_end_days": 1747,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000819050",
+   "me": "2015-03-23",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2020-01-03",
+   "series_start": "2009-01-02",
+   "ticker": "AVP"
+  },
+  "AYE|2010-01-01|2011-02-28": {
+   "d_end_days": 275,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001438660",
+   "me": "2011-02-28",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2011-11-30",
+   "series_start": "2009-01-02",
+   "ticker": "AYE"
+  },
+  "AYI|2016-05-03|2018-06-18": {
+   "d_end_days": 3026,
+   "disposition": "continuing/open",
+   "me": "2018-06-18",
+   "ms": "2016-05-03",
+   "reason": "ordinary index removal; single stable CIK {'0001144215': ['20240105', 'current']}; series continues 3026d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "AYI"
+  },
+  "BBT|2010-01-01|2019-12-09": {
+   "d_end_days": 2487,
+   "disposition": "continuing/open",
+   "me": "2019-12-09",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001108134': ['current']}; series continues 2487d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "BBT"
+  },
+  "BBWI|2021-08-03|2024-10-01": {
+   "d_end_days": 729,
+   "disposition": "continuing/open",
+   "me": "2024-10-01",
+   "ms": "2021-08-03",
+   "reason": "ordinary index removal; single stable CIK {'0000701985': ['20240105', 'current']}; series continues 729d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "BBWI"
+  },
+  "BEAM|2010-01-01|2014-05-01": {
+   "d_end_days": 4535,
+   "disposition": "ambiguous/quarantine",
+   "me": "2014-05-01",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2020-02-06",
+   "ticker": "BEAM"
+  },
+  "BHF|2017-08-07|2019-04-02": {
+   "d_end_days": 2738,
+   "disposition": "continuing/open",
+   "me": "2019-04-02",
+   "ms": "2017-08-07",
+   "reason": "ordinary index removal; single stable CIK {'0001685040': ['20240105', 'current']}; series continues 2738d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2017-07-17",
+   "ticker": "BHF"
+  },
+  "BHGE|2010-01-01|2019-10-18": {
+   "d_end_days": 2539,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000808362",
+   "me": "2019-10-18",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2026-09-30",
+   "series_start": "2017-07-05",
+   "ticker": "BHGE"
+  },
+  "BIO|2020-06-22|2024-09-23": {
+   "d_end_days": 737,
+   "disposition": "continuing/open",
+   "me": "2024-09-23",
+   "ms": "2020-06-22",
+   "reason": "ordinary index removal; single stable CIK {'0000012208': ['20240105', 'current']}; series continues 737d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "BIO"
+  },
+  "BJS|2010-01-01|2010-04-29": {
+   "d_end_days": 375,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001013488",
+   "me": "2010-04-29",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2011-05-09",
+   "series_start": "2009-01-02",
+   "ticker": "BJS"
+  },
+  "BK|2010-01-01|2025-12-31": {
+   "d_end_days": 161,
+   "disposition": "ambiguous/quarantine",
+   "me": "2025-12-31",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-06-10",
+   "series_start": "2026-06-04",
+   "ticker": "BK"
+  },
+  "BMS|2010-01-01|2014-12-05": {
+   "d_end_days": 1666,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000939767",
+   "me": "2014-12-05",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2019-06-28",
+   "series_start": "2009-01-02",
+   "ticker": "BMS"
+  },
+  "BTUUQ|2010-01-01|2014-09-22": {
+   "d_end_days": 932,
+   "disposition": "ambiguous/quarantine",
+   "me": "2014-09-22",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2017-04-11",
+   "series_start": "2016-01-04",
+   "ticker": "BTUUQ"
+  },
+  "BWA|2011-12-19|2025-03-24": {
+   "d_end_days": 555,
+   "disposition": "continuing/open",
+   "me": "2025-03-24",
+   "ms": "2011-12-19",
+   "reason": "ordinary index removal; single stable CIK {'0000908255': ['20240105', 'current']}; series continues 555d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "BWA"
+  },
+  "BXLT|2015-07-01|2016-06-03": {
+   "d_end_days": 13,
+   "disposition": "verified_terminal/flat-hold",
+   "me": "2016-06-03",
+   "ms": "2015-07-01",
+   "reason": "exact pinned verified acquisition exception per adjudication 6053282451; frozen RUN_PLAN \u00a75 last-close flat-hold",
+   "series_end": "2016-06-16",
+   "series_start": "2015-06-30",
+   "ticker": "BXLT"
+  },
+  "CAG|2010-01-01|2025-12-31": {
+   "d_end_days": 273,
+   "disposition": "continuing/open",
+   "me": "2025-12-31",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000023217': ['20240105', 'current']}; series continues 273d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "CAG"
+  },
+  "CAM|2010-01-01|2016-04-04": {
+   "d_end_days": 3831,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000819334",
+   "me": "2016-04-04",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "CAM"
+  },
+  "CA|2010-01-01|2018-11-06": {
+   "d_end_days": 2885,
+   "disposition": "ambiguous/quarantine",
+   "me": "2018-11-06",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2023-12-14",
+   "ticker": "CA"
+  },
+  "CCEP|2016-01-04|2016-05-31": {
+   "d_end_days": 3774,
+   "disposition": "continuing/open",
+   "me": "2016-05-31",
+   "ms": "2016-01-04",
+   "reason": "ordinary index removal; single stable CIK {'0001650107': ['20240105', 'current']}; series continues 3774d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "CCEP"
+  },
+  "CDAY|2021-09-20|2024-02-01": {
+   "d_end_days": 860,
+   "disposition": "ambiguous/quarantine",
+   "me": "2024-02-01",
+   "ms": "2021-09-20",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-06-10",
+   "series_start": "2026-06-08",
+   "ticker": "CDAY"
+  },
+  "CEG|2010-01-01|2012-03-13": {
+   "d_end_days": 5314,
+   "disposition": "ambiguous/quarantine",
+   "me": "2012-03-13",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2022-02-02",
+   "ticker": "CEG"
+  },
+  "CERN|2010-04-30|2022-06-08": {
+   "d_end_days": 92,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000804753",
+   "me": "2022-06-08",
+   "ms": "2010-04-30",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2022-09-08",
+   "series_start": "2009-01-02",
+   "ticker": "CERN"
+  },
+  "CE|2018-12-24|2025-03-24": {
+   "d_end_days": 555,
+   "disposition": "continuing/open",
+   "me": "2025-03-24",
+   "ms": "2018-12-24",
+   "reason": "ordinary index removal; single stable CIK {'0001306830': ['20240105', 'current']}; series continues 555d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "CE"
+  },
+  "CHK|2010-01-01|2018-03-19": {
+   "d_end_days": 2391,
+   "disposition": "continuing/open",
+   "me": "2018-03-19",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000895126': ['20240105']}; series continues 2391d past membership end",
+   "series_end": "2024-10-04",
+   "series_start": "2009-01-02",
+   "ticker": "CHK"
+  },
+  "CLF|2010-01-01|2014-04-02": {
+   "d_end_days": 4564,
+   "disposition": "continuing/open",
+   "me": "2014-04-02",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000764065': ['20240105', 'current']}; series continues 4564d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "CLF"
+  },
+  "CMA|2010-01-01|2024-06-24": {
+   "d_end_days": 585,
+   "disposition": "continuing/open",
+   "me": "2024-06-24",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000028412': ['20240105']}; series continues 585d past membership end",
+   "series_end": "2026-01-30",
+   "series_start": "2009-01-02",
+   "ticker": "CMA"
+  },
+  "CNX|2010-01-01|2016-03-04": {
+   "d_end_days": 3862,
+   "disposition": "continuing/open",
+   "me": "2016-03-04",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001070412': ['20240105', 'current']}; series continues 3862d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "CNX"
+  },
+  "COTY|2016-10-03|2020-09-21": {
+   "d_end_days": 2200,
+   "disposition": "continuing/open",
+   "me": "2020-09-21",
+   "ms": "2016-10-03",
+   "reason": "ordinary index removal; single stable CIK {'0001024305': ['20240105', 'current']}; series continues 2200d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2013-06-13",
+   "ticker": "COTY"
+  },
+  "CPB|2010-01-01|2025-12-31": {
+   "d_end_days": 273,
+   "disposition": "continuing/open",
+   "me": "2025-12-31",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000016732': ['20240105', 'current']}; series continues 273d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "CPB"
+  },
+  "CPRI|2016-01-04|2020-05-12": {
+   "d_end_days": 2332,
+   "disposition": "continuing/open",
+   "me": "2020-05-12",
+   "ms": "2016-01-04",
+   "reason": "ordinary index removal; single stable CIK {'0001530721': ['20240105', 'current']}; series continues 2332d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2011-12-15",
+   "ticker": "CPRI"
+  },
+  "CPWR|2010-01-01|2012-01-03": {
+   "d_end_days": 5384,
+   "disposition": "continuing/open",
+   "me": "2012-01-03",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000827099': ['20240105', 'current']}; series continues 5384d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "CPWR"
+  },
+  "CSRA|2015-11-30|2018-04-04": {
+   "d_end_days": 3101,
+   "disposition": "ambiguous/quarantine",
+   "me": "2018-04-04",
+   "ms": "2015-11-30",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2026-08-12",
+   "ticker": "CSRA"
+  },
+  "CTRA|2021-10-04|2025-12-31": {
+   "d_end_days": 126,
+   "disposition": "continuing/open",
+   "me": "2025-12-31",
+   "ms": "2021-10-04",
+   "reason": "ordinary index removal; single stable CIK {'0000858470': ['20240105']}; series continues 126d past membership end",
+   "series_end": "2026-05-06",
+   "series_start": "2009-01-02",
+   "ticker": "CTRA"
+  },
+  "CTXS|2010-01-01|2022-10-03": {
+   "d_end_days": 30,
+   "disposition": "verified_terminal/flat-hold",
+   "me": "2022-10-03",
+   "ms": "2010-01-01",
+   "reason": "exact pinned verified acquisition exception per adjudication 6053282451; frozen RUN_PLAN \u00a75 last-close flat-hold",
+   "series_end": "2022-11-02",
+   "series_start": "2009-01-02",
+   "ticker": "CTXS"
+  },
+  "CVH|2010-01-01|2013-05-07": {
+   "d_end_days": 163,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000860730",
+   "me": "2013-05-07",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2013-10-17",
+   "series_start": "2009-01-02",
+   "ticker": "CVH"
+  },
+  "CZR|2021-03-22|2025-09-22": {
+   "d_end_days": 373,
+   "disposition": "continuing/open",
+   "me": "2025-09-22",
+   "ms": "2021-03-22",
+   "reason": "ordinary index removal; single stable CIK {'0001590895': ['20240105', 'current']}; series continues 373d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2014-09-22",
+   "ticker": "CZR"
+  },
+  "DAY|2024-02-01|2025-12-31": {
+   "d_end_days": 34,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000946991",
+   "me": "2025-12-31",
+   "ms": "2024-02-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2026-02-03",
+   "series_start": "2018-04-26",
+   "ticker": "DAY"
+  },
+  "DD|2010-01-01|2017-09-01": {
+   "d_end_days": 3316,
+   "disposition": "continuing/open",
+   "me": "2017-09-01",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001666700': ['20240105', 'current']}; series continues 3316d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "DD"
+  },
+  "DELL|2010-01-01|2013-10-29": {
+   "d_end_days": 4719,
+   "disposition": "ambiguous/quarantine",
+   "me": "2013-10-29",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2018-12-21",
+   "ticker": "DELL"
+  },
+  "DF|2010-01-01|2013-05-24": {
+   "d_end_days": 4765,
+   "disposition": "ambiguous/quarantine",
+   "me": "2013-05-24",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-06-10",
+   "series_start": "2026-06-04",
+   "ticker": "DF"
+  },
+  "DISCA|2010-03-01|2022-04-11": {
+   "d_end_days": 158,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001437107",
+   "me": "2022-04-11",
+   "ms": "2010-03-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2022-09-16",
+   "series_start": "2022-04-08",
+   "ticker": "DISCA"
+  },
+  "DISCK|2014-08-07|2022-04-11": {
+   "d_end_days": 158,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001437107",
+   "me": "2022-04-11",
+   "ms": "2014-08-07",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2022-09-16",
+   "series_start": "2009-01-02",
+   "ticker": "DISCK"
+  },
+  "DISH|2017-03-13|2023-06-20": {
+   "d_end_days": 203,
+   "disposition": "continuing/open",
+   "me": "2023-06-20",
+   "ms": "2017-03-13",
+   "reason": "ordinary index removal; single stable CIK {'0001001082': ['20240105']}; series continues 203d past membership end",
+   "series_end": "2024-01-09",
+   "series_start": "2009-01-02",
+   "ticker": "DISH"
+  },
+  "DNB|2010-01-01|2017-04-05": {
+   "d_end_days": 3064,
+   "disposition": "ambiguous/quarantine",
+   "me": "2017-04-05",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2025-08-25",
+   "series_start": "2020-07-01",
+   "ticker": "DNB"
+  },
+  "DNR|2010-01-01|2015-03-23": {
+   "d_end_days": 1956,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001604464",
+   "me": "2015-03-23",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2020-07-30",
+   "series_start": "2009-01-02",
+   "ticker": "DNR"
+  },
+  "DOW|2010-01-01|2017-09-01": {
+   "d_end_days": 3316,
+   "disposition": "ambiguous/quarantine",
+   "me": "2017-09-01",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2019-03-20",
+   "ticker": "DOW"
+  },
+  "DO|2010-01-01|2016-10-03": {
+   "d_end_days": 2893,
+   "disposition": "ambiguous/quarantine",
+   "me": "2016-10-03",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2024-09-04",
+   "series_start": "2022-03-30",
+   "ticker": "DO"
+  },
+  "DTV|2010-01-01|2015-07-27": {
+   "d_end_days": 1526,
+   "disposition": "ambiguous/quarantine",
+   "me": "2015-07-27",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2019-09-30",
+   "series_start": "2016-09-30",
+   "ticker": "DTV"
+  },
+  "DXC|2010-01-01|2015-12-01": {
+   "d_end_days": 3956,
+   "disposition": "ambiguous/quarantine",
+   "me": "2015-12-01",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2017-02-01",
+   "ticker": "DXC"
+  },
+  "DXC|2017-04-04|2023-10-02": {
+   "d_end_days": 1094,
+   "disposition": "continuing/open",
+   "me": "2023-10-02",
+   "ms": "2017-04-04",
+   "reason": "ordinary index removal; single stable CIK {'0001688568': ['20240105', 'current']}; series continues 1094d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2017-02-01",
+   "ticker": "DXC"
+  },
+  "EA|2010-01-01|2025-12-31": {
+   "d_end_days": 216,
+   "disposition": "continuing/open",
+   "me": "2025-12-31",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000712515': ['20240105']}; series continues 216d past membership end",
+   "series_end": "2026-08-04",
+   "series_start": "2009-01-02",
+   "ticker": "EA"
+  },
+  "EMC|2010-01-01|2016-09-07": {
+   "d_end_days": 3675,
+   "disposition": "ambiguous/quarantine",
+   "me": "2016-09-07",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2023-05-15",
+   "ticker": "EMC"
+  },
+  "EMN|2010-01-01|2025-11-04": {
+   "d_end_days": 330,
+   "disposition": "continuing/open",
+   "me": "2025-11-04",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000915389': ['20240105', 'current']}; series continues 330d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "EMN"
+  },
+  "ENPH|2021-01-07|2025-09-22": {
+   "d_end_days": 373,
+   "disposition": "continuing/open",
+   "me": "2025-09-22",
+   "ms": "2021-01-07",
+   "reason": "ordinary index removal; single stable CIK {'0001463101': ['20240105', 'current']}; series continues 373d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2012-03-30",
+   "ticker": "ENPH"
+  },
+  "EPAM|2021-12-14|2025-12-31": {
+   "d_end_days": 273,
+   "disposition": "continuing/open",
+   "me": "2025-12-31",
+   "ms": "2021-12-14",
+   "reason": "ordinary index removal; single stable CIK {'0001352010': ['20240105', 'current']}; series continues 273d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2012-02-08",
+   "ticker": "EPAM"
+  },
+  "EP|2010-01-01|2012-05-25": {
+   "d_end_days": 5241,
+   "disposition": "continuing/open",
+   "me": "2012-05-25",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000887396': ['20240105', 'current']}; series continues 5241d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2011-02-23",
+   "ticker": "EP"
+  },
+  "EQT|2010-01-01|2018-11-13": {
+   "d_end_days": 2878,
+   "disposition": "continuing/open",
+   "me": "2018-11-13",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000033213': ['20240105', 'current']}; series continues 2878d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "EQT"
+  },
+  "ETSY|2020-09-21|2024-09-23": {
+   "d_end_days": 737,
+   "disposition": "continuing/open",
+   "me": "2024-09-23",
+   "ms": "2020-09-21",
+   "reason": "ordinary index removal; single stable CIK {'0001370637': ['20240105', 'current']}; series continues 737d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2015-04-16",
+   "ticker": "ETSY"
+  },
+  "EVHC|2016-12-02|2018-10-11": {
+   "d_end_days": 64,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001578318",
+   "me": "2018-10-11",
+   "ms": "2016-12-02",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2018-12-14",
+   "series_start": "2013-08-14",
+   "ticker": "EVHC"
+  },
+  "FB|2013-12-23|2022-06-09": {
+   "d_end_days": 1574,
+   "disposition": "ambiguous/quarantine",
+   "me": "2022-06-09",
+   "ms": "2013-12-23",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2025-06-26",
+   "ticker": "FB"
+  },
+  "FCPT|2015-11-10|2015-11-17": {
+   "d_end_days": 3970,
+   "disposition": "continuing/open",
+   "me": "2015-11-17",
+   "ms": "2015-11-10",
+   "reason": "ordinary index removal; single stable CIK {'0001650132': ['20240105', 'current']}; series continues 3970d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2015-11-10",
+   "ticker": "FCPT"
+  },
+  "FHN|2010-01-01|2013-06-24": {
+   "d_end_days": 4846,
+   "disposition": "continuing/open",
+   "me": "2013-06-24",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000036966': ['20240105', 'current']}; series continues 4846d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FHN"
+  },
+  "FII|2010-01-01|2013-01-02": {
+   "d_end_days": 5019,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001179651",
+   "me": "2013-01-02",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FII"
+  },
+  "FISV|2010-01-01|2023-06-07": {
+   "d_end_days": 1211,
+   "disposition": "continuing/open",
+   "me": "2023-06-07",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000798354': ['current']}; series continues 1211d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FISV"
+  },
+  "FI|2023-06-07|2025-11-11": {
+   "d_end_days": 323,
+   "disposition": "continuing/open",
+   "me": "2025-11-11",
+   "ms": "2023-06-07",
+   "reason": "ordinary index removal; single stable CIK {'0000798354': ['20240105']}; series continues 323d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FI"
+  },
+  "FLR|2010-01-01|2019-06-03": {
+   "d_end_days": 2676,
+   "disposition": "continuing/open",
+   "me": "2019-06-03",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001124198': ['20240105', 'current']}; series continues 2676d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FLR"
+  },
+  "FLS|2010-01-01|2021-03-22": {
+   "d_end_days": 2018,
+   "disposition": "continuing/open",
+   "me": "2021-03-22",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000030625': ['20240105', 'current']}; series continues 2018d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FLS"
+  },
+  "FLT|2018-06-20|2024-03-25": {
+   "d_end_days": 919,
+   "disposition": "continuing/open",
+   "me": "2024-03-25",
+   "ms": "2018-06-20",
+   "reason": "ordinary index removal; single stable CIK {'0001175454': ['20240105']}; series continues 919d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2010-12-15",
+   "ticker": "FLT"
+  },
+  "FL|2016-04-04|2019-08-09": {
+   "d_end_days": 2609,
+   "disposition": "continuing/open",
+   "me": "2019-08-09",
+   "ms": "2016-04-04",
+   "reason": "ordinary index removal; single stable CIK {'0000850209': ['20240105']}; series continues 2609d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FL"
+  },
+  "FMC|2010-01-01|2025-03-24": {
+   "d_end_days": 555,
+   "disposition": "continuing/open",
+   "me": "2025-03-24",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000037785': ['20240105', 'current']}; series continues 555d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FMC"
+  },
+  "FOSL|2012-04-04|2016-01-05": {
+   "d_end_days": 3921,
+   "disposition": "continuing/open",
+   "me": "2016-01-05",
+   "ms": "2012-04-04",
+   "reason": "ordinary index removal; single stable CIK {'0000883569': ['20240105', 'current']}; series continues 3921d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FOSL"
+  },
+  "FSLR|2010-01-01|2017-03-20": {
+   "d_end_days": 3481,
+   "disposition": "continuing/open",
+   "me": "2017-03-20",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001274494': ['20240105', 'current']}; series continues 3481d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FSLR"
+  },
+  "FTI|2010-01-01|2021-02-12": {
+   "d_end_days": 2056,
+   "disposition": "continuing/open",
+   "me": "2021-02-12",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001681459': ['20240105', 'current']}; series continues 2056d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "FTI"
+  },
+  "FTR|2010-01-01|2017-03-20": {
+   "d_end_days": 1534,
+   "disposition": "ambiguous/quarantine",
+   "me": "2017-03-20",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2021-06-01",
+   "series_start": "2020-04-23",
+   "ticker": "FTR"
+  },
+  "GAS|2010-01-01|2011-12-12": {
+   "d_end_days": 1663,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000043350",
+   "me": "2011-12-12",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2016-07-01",
+   "series_start": "2009-01-02",
+   "ticker": "GAS"
+  },
+  "GENZ|2010-01-01|2011-04-04": {
+   "d_end_days": 5658,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000732485",
+   "me": "2011-04-04",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "GENZ"
+  },
+  "GHC|2010-01-01|2014-09-22": {
+   "d_end_days": 4391,
+   "disposition": "continuing/open",
+   "me": "2014-09-22",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000104889': ['20240105', 'current']}; series continues 4391d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "GHC"
+  },
+  "GME|2010-01-01|2016-04-25": {
+   "d_end_days": 3810,
+   "disposition": "continuing/open",
+   "me": "2016-04-25",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001326380': ['20240105', 'current']}; series continues 3810d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "GME"
+  },
+  "GNW|2010-01-01|2015-11-18": {
+   "d_end_days": 3969,
+   "disposition": "continuing/open",
+   "me": "2015-11-18",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001276520': ['20240105', 'current']}; series continues 3969d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "GNW"
+  },
+  "GT|2010-01-01|2019-02-27": {
+   "d_end_days": 2772,
+   "disposition": "continuing/open",
+   "me": "2019-02-27",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000042582': ['20240105', 'current']}; series continues 2772d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "GT"
+  },
+  "HBI|2015-03-23|2021-12-20": {
+   "d_end_days": 1745,
+   "disposition": "continuing/open",
+   "me": "2021-12-20",
+   "ms": "2015-03-23",
+   "reason": "ordinary index removal; single stable CIK {'0001359841': ['20240105']}; series continues 1745d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "HBI"
+  },
+  "HCP|2010-01-01|2019-11-05": {
+   "d_end_days": 1941,
+   "disposition": "ambiguous/quarantine",
+   "me": "2019-11-05",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2025-02-27",
+   "series_start": "2021-12-09",
+   "ticker": "HCP"
+  },
+  "HNZ|2010-01-01|2013-06-07": {
+   "d_end_days": 132,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000350403",
+   "me": "2013-06-07",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2013-10-17",
+   "series_start": "2009-01-02",
+   "ticker": "HNZ"
+  },
+  "HOG|2010-01-01|2020-06-22": {
+   "d_end_days": 2291,
+   "disposition": "continuing/open",
+   "me": "2020-06-22",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000793952': ['20240105', 'current']}; series continues 2291d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "HOG"
+  },
+  "HOLX|2016-03-30|2025-12-31": {
+   "d_end_days": 97,
+   "disposition": "continuing/open",
+   "me": "2025-12-31",
+   "ms": "2016-03-30",
+   "reason": "ordinary index removal; single stable CIK {'0000859737': ['20240105']}; series continues 97d past membership end",
+   "series_end": "2026-04-07",
+   "series_start": "2009-01-02",
+   "ticker": "HOLX"
+  },
+  "HOT|2010-01-01|2016-09-23": {
+   "d_end_days": 10,
+   "disposition": "verified_terminal/flat-hold",
+   "me": "2016-09-23",
+   "ms": "2010-01-01",
+   "reason": "exact pinned verified acquisition exception per adjudication 6053282451; frozen RUN_PLAN \u00a75 last-close flat-hold",
+   "series_end": "2016-10-03",
+   "series_start": "2016-01-04",
+   "ticker": "HOT"
+  },
+  "HP|2010-03-01|2020-05-22": {
+   "d_end_days": 2322,
+   "disposition": "continuing/open",
+   "me": "2020-05-22",
+   "ms": "2010-03-01",
+   "reason": "ordinary index removal; single stable CIK {'0000046765': ['20240105', 'current']}; series continues 2322d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "HP"
+  },
+  "HRB|2010-01-01|2020-09-21": {
+   "d_end_days": 2200,
+   "disposition": "continuing/open",
+   "me": "2020-09-21",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000012659': ['20240105', 'current']}; series continues 2200d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "HRB"
+  },
+  "HRS|2010-01-01|2019-06-01": {
+   "d_end_days": 2678,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001134386",
+   "me": "2019-06-01",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "HRS"
+  },
+  "HSH|2010-01-01|2012-06-29": {
+   "d_end_days": 791,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001418115",
+   "me": "2012-06-29",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2014-08-29",
+   "series_start": "2009-01-02",
+   "ticker": "HSH"
+  },
+  "ILMN|2015-11-19|2024-06-24": {
+   "d_end_days": 828,
+   "disposition": "continuing/open",
+   "me": "2024-06-24",
+   "ms": "2015-11-19",
+   "reason": "ordinary index removal; single stable CIK {'0001110803': ['20240105', 'current']}; series continues 828d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "ILMN"
+  },
+  "INFO|2017-06-02|2022-03-02": {
+   "d_end_days": 1673,
+   "disposition": "ambiguous/quarantine",
+   "me": "2022-03-02",
+   "ms": "2017-06-02",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2024-10-10",
+   "ticker": "INFO"
+  },
+  "IPGP|2018-03-07|2022-06-21": {
+   "d_end_days": 1562,
+   "disposition": "continuing/open",
+   "me": "2022-06-21",
+   "ms": "2018-03-07",
+   "reason": "ordinary index removal; single stable CIK {'0001111928': ['20240105', 'current']}; series continues 1562d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "IPGP"
+  },
+  "ITT|2010-01-01|2011-11-01": {
+   "d_end_days": 5447,
+   "disposition": "continuing/open",
+   "me": "2011-11-01",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000216228': ['20240105', 'current']}; series continues 5447d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "ITT"
+  },
+  "JAVA|2010-01-01|2010-01-27": {
+   "d_end_days": 6090,
+   "disposition": "ambiguous/quarantine",
+   "me": "2010-01-27",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2021-10-05",
+   "ticker": "JAVA"
+  },
+  "JBL|2010-01-01|2014-11-05": {
+   "d_end_days": 4347,
+   "disposition": "continuing/open",
+   "me": "2014-11-05",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000898293': ['20240105', 'current']}; series continues 4347d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "JBL"
+  },
+  "JEC|2010-01-01|2019-12-10": {
+   "d_end_days": 2486,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001724521",
+   "me": "2019-12-10",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "JEC"
+  },
+  "JEF|2010-01-01|2019-09-26": {
+   "d_end_days": 2561,
+   "disposition": "continuing/open",
+   "me": "2019-09-26",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000096223': ['20240105', 'current']}; series continues 2561d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "JEF"
+  },
+  "JNS|2010-01-01|2011-11-23": {
+   "d_end_days": 2015,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000743758",
+   "me": "2011-11-23",
+   "ms": "2010-01-01",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2017-05-30",
+   "series_start": "2009-01-02",
+   "ticker": "JNS"
+  },
+  "JOY|2011-02-28|2015-10-08": {
+   "d_end_days": 553,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0000801898",
+   "me": "2015-10-08",
+   "ms": "2011-02-28",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2017-04-13",
+   "series_start": "2009-01-02",
+   "ticker": "JOY"
+  },
+  "JWN|2010-01-01|2020-06-22": {
+   "d_end_days": 1793,
+   "disposition": "continuing/open",
+   "me": "2020-06-22",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000072333': ['20240105']}; series continues 1793d past membership end",
+   "series_end": "2025-05-20",
+   "series_start": "2009-01-02",
+   "ticker": "JWN"
+  },
+  "KDP|2010-01-01|2018-07-02": {
+   "d_end_days": 3012,
+   "disposition": "continuing/open",
+   "me": "2018-07-02",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001418135': ['20240105', 'current']}; series continues 3012d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "KDP"
+  },
+  "KG|2010-01-01|2010-12-20": {
+   "d_end_days": 5763,
+   "disposition": "ambiguous/quarantine",
+   "me": "2010-12-20",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2025-05-28",
+   "ticker": "KG"
+  },
+  "KMX|2010-06-28|2025-10-31": {
+   "d_end_days": 334,
+   "disposition": "continuing/open",
+   "me": "2025-10-31",
+   "ms": "2010-06-28",
+   "reason": "ordinary index removal; single stable CIK {'0001170010': ['20240105', 'current']}; series continues 334d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "KMX"
+  },
+  "KORS|2013-11-13|2018-09-19": {
+   "d_end_days": 2933,
+   "disposition": "ambiguous/quarantine",
+   "efts_cik_point_in_time": "0001755237",
+   "me": "2018-09-19",
+   "ms": "2013-11-13",
+   "reason": "no local CIK history evidence; point-in-time EFTS CIK available but not deterministic historical identity \u2014 AMBIGUOUS/HOLD per adjudication",
+   "series_end": "2026-09-30",
+   "series_start": "2011-12-15",
+   "ticker": "KORS"
+  },
+  "KSS|2010-01-01|2020-09-21": {
+   "d_end_days": 2200,
+   "disposition": "continuing/open",
+   "me": "2020-09-21",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000885639': ['20240105', 'current']}; series continues 2200d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "KSS"
+  },
+  "LB|2010-01-01|2021-08-03": {
+   "d_end_days": 1884,
+   "disposition": "ambiguous/quarantine",
+   "me": "2021-08-03",
+   "ms": "2010-01-01",
+   "reason": "series starts after interval end (ticker reuse) \u2014 quarantine correct",
+   "series_end": "2026-09-30",
+   "series_start": "2024-06-28",
+   "ticker": "LB"
+  },
+  "LDOS|2010-01-01|2013-09-23": {
+   "d_end_days": 4755,
+   "disposition": "continuing/open",
+   "me": "2013-09-23",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0001336920': ['20240105', 'current']}; series continues 4755d past membership end",
+   "series_end": "2026-09-30",
+   "series_start": "2009-01-02",
+   "ticker": "LDOS"
+  },
+  "LEG|2010-01-01|2021-12-20": {
+   "d_end_days": 1711,
+   "disposition": "continuing/open",
+   "me": "2021-12-20",
+   "ms": "2010-01-01",
+   "reason": "ordinary index removal; single stable CIK {'0000058492': ['20240105']}; series continues 1711d past membership end",
+   "series_end": "2026-08-27",
+   "series_start": "2009-01-02",
+   "ticker": "LEG"
+  }
+ },
+ "manifest_id": "VCP-1A-INTERVAL-DISPOSITION-20261008",
+ "per": "ChatGPT adjudication 6053282451 (QF-VCP-1A-INTERVAL-FIX-20261008-06)"
+}

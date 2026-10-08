@@ -107,6 +107,29 @@ def resolve_horizon_filter(rows, legacy_repro=False, cutoff_override=None):
                 if not isinstance(r[k], bool):
                     raise RuntimeError(
                         f"non-boolean {k}={r[k]!r}; fail closed.")
+        # INTERVAL-FIX 2026-10-08 (QF-VCP-1A-INTERVAL-FIX-20261008-06, per
+        # adjudication 6053282451): cross-field invariant as hard
+        # accepted-run preflight. The producer emits both fields
+        # consistently, but resolve_horizon_filter must assert it rather
+        # than trust it.
+        horiz = (("r3", "fwd_complete_r3", "fwd_status_r3"),
+                 ("r6", "fwd_complete_r6", "fwd_status_r6"),
+                 ("r12", "fwd_complete_r12", "fwd_status_r12"))
+        viol = []
+        for r in rows:
+            for h, fk, sk in horiz:
+                expect = r[sk] in STATUS_OK
+                if r[fk] != expect:
+                    viol.append((r.get("t"), r.get("m"), h, r[fk], r[sk]))
+                    if len(viol) >= 5:
+                        break
+            if len(viol) >= 5:
+                break
+        if viol:
+            raise RuntimeError(
+                f"cross-field invariant violated: fwd_complete_<h> != "
+                f"(fwd_status_<h> in {STATUS_OK}); {len(viol)}+ rows; "
+                f"first: {viol[:5]}; fail closed.")
         return {"mode": "flags"}
     if n_full > 0:
         raise RuntimeError(

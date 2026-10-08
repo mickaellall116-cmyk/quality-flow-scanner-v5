@@ -20,9 +20,23 @@ CODEFIX-DELTA 2026-10-08 (QF-VCP-1A-CODEFIX-DELTA-20261008-04, per
   delist outcomes (COMPLETE under frozen RUN_PLAN §5 last-close-held-flat)
   with right-censored open-series observations (must be EXCLUDED). Each row
   now carries fwd_status_r3/r6/r12 in {'complete','delisted_flat','censored'}.
-  fwd_complete_<h> is True for 'complete' and 'delisted_flat'. Membership
-  interval end (2200-01-01 = open) determines closed vs open; reuse_guard
-  already verified closed-interval series end within ±9d of interval end.
+  fwd_complete_<h> is True for 'complete' and 'delisted_flat'.
+
+INTERVAL-FIX 2026-10-08 (QF-VCP-1A-INTERVAL-FIX-20261008-06, per
+  adjudication 6053282451): membership-end no longer implies delisting.
+  Interval admission/disposition is driven by the pinned manifest
+  interval_disposition_manifest.json (131 audited intervals):
+    continuing/open            — ordinary index removal, same company keeps
+                                 trading; forward windows extend past
+                                 membership end using actual bars; censor
+                                 only at the dataset boundary.
+    verified_terminal/flat-hold — exact pinned acquisition exceptions
+                                 (ABMD, BXLT, CTXS, HOT); frozen RUN_PLAN §5
+                                 last-close flat-hold; counted COMPLETE.
+    ambiguous/quarantine       — no deterministic identity evidence or
+                                 ticker reuse; interval excluded (fail closed).
+  Intervals absent from the manifest keep the legacy reuse_guard path.
+  The manifest file is REQUIRED; a missing manifest is a hard error.
   No strategy-rule changes.
 """
 import argparse, json, os, sys
@@ -30,6 +44,56 @@ from datetime import date, timedelta
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "raw")
+MANIFEST_PATH = os.path.join(HERE, "interval_disposition_manifest.json")
+
+
+def load_disposition_manifest():
+    """Pinned interval disposition manifest (INTERVAL-FIX 2026-10-08).
+
+    Fail closed: a missing or unreadable manifest refuses to run rather
+    than silently reverting to membership-end-as-delist logic.
+    Returns dict: "TICKER|ms|me" -> disposition string.
+    """
+    if not os.path.exists(MANIFEST_PATH):
+        raise RuntimeError(
+            f"interval disposition manifest missing: {MANIFEST_PATH}. "
+            "Refusing to build panel without pinned dispositions.")
+    m = json.load(open(MANIFEST_PATH))
+    return {k: v["disposition"] for k, v in m["intervals"].items()}
+
+
+DISP_CONTINUING = "continuing/open"
+DISP_TERMINAL = "verified_terminal/flat-hold"
+DISP_AMBIGUOUS = "ambiguous/quarantine"
+
+
+def admit_interval(t, ms, me, s0, s1, disp_manifest):
+    """Production interval-admission decision (INTERVAL-FIX 2026-10-08).
+
+    Returns (admit: bool, disposition: str|None, log_line: str).
+    disposition is one of DISP_CONTINUING / DISP_TERMINAL / None (legacy
+    guard path admitted). A manifest-listed ambiguous/quarantine interval
+    is never admitted (fail closed). Intervals absent from the manifest
+    use the legacy reuse_guard.
+    """
+    mkey = f"{t}|{ms}|{me}"
+    disp = disp_manifest.get(mkey)
+    if disp == DISP_AMBIGUOUS:
+        return (False, DISP_AMBIGUOUS,
+                f"{t}: interval {ms}..{me} disposition=ambiguous/quarantine "
+                f"(manifest) QUARANTINED")
+    if disp in (DISP_CONTINUING, DISP_TERMINAL):
+        return (True, disp,
+                f"{t}: interval {ms}..{me} disposition={disp} "
+                f"(manifest) ADMITTED")
+    ok, why = reuse_guard(ms, me, s0, s1)
+    if not ok:
+        return (False, None,
+                f"{t}: interval {ms}..{me} {why} "
+                f"(series {s0}..{s1}) QUARANTINED")
+    if why.startswith("WARN"):
+        return (True, None, f"{t}: interval {ms}..{me} {why} (kept, clamped)")
+    return (True, None, "")
 
 WIN = {"r3": 63, "r6": 126, "r12": 252}
 MA_REQ = {150: 140, 200: 185, 250: 230}
@@ -161,6 +225,9 @@ def main():
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     n_rows = 0
     quar_log = []
+    # INTERVAL-FIX: pinned dispositions override guard quarantine for the
+    # 131 audited intervals. Missing manifest = hard error (fail closed).
+    disp_manifest = load_disposition_manifest()
     with open(args.out, "w") as fo:
         for t in todo:
             bars = load_bars(t)
@@ -171,31 +238,38 @@ def main():
             adj = {d: ac for d, (ac, _) in bars}
             unadj = {d: c for d, (_, c) in bars}
             shares = load_edgar(t)
-            # per-interval ticker-reuse guard (ihsieh31 finding)
+            # per-interval ticker-reuse guard (ihsieh31 finding) +
+            # INTERVAL-FIX disposition manifest override
             valid_intervals = []
             for (ms, me) in universe.get(t, []):
-                ok, why = reuse_guard(ms, me, dates[0], dates[-1])
-                if not ok:
-                    quar_log.append(f"{t}: interval {ms}..{me} {why} "
-                                    f"(series {dates[0]}..{dates[-1]}) QUARANTINED")
+                admit, disp, logline = admit_interval(
+                    t, ms, me, dates[0], dates[-1], disp_manifest)
+                if logline:
+                    quar_log.append(logline)
+                if not admit:
                     continue
-                if why.startswith("WARN"):
-                    quar_log.append(f"{t}: interval {ms}..{me} {why} (kept, clamped)")
-                valid_intervals.append((ms, me))
+                valid_intervals.append((ms, me, disp))
             if not valid_intervals:
                 continue
             # month loop
             for m in months:
-                iv = next(((ms, me) for ms, me in valid_intervals
+                iv = next(((ms, me, disp) for ms, me, disp in valid_intervals
                            if ms <= m <= me), None)
                 if iv is None:
                     continue
-                # CODEFIX-DELTA: a CLOSED membership interval (me != 2200-01-01)
-                # means the series end is a delisting/acquisition/bankruptcy —
-                # windows running past it are complete under frozen §5
-                # flat-hold. An OPEN interval means series end is the dataset
-                # boundary → right-censored.
-                series_closed = (iv[1] != "2200-01-01")
+                ms_i, me_i, disp_i = iv
+                # INTERVAL-FIX 2026-10-08: forward-window closed/open derives
+                # from the pinned disposition, NOT from membership-end alone.
+                # continuing/open  -> series is open; windows extend past me
+                #                    using actual bars; censor at dataset edge.
+                # verified_terminal -> closed delisting; frozen §5 flat-hold.
+                # legacy (None)     -> prior rule: closed iff me != 2200-01-01.
+                if disp_i == DISP_TERMINAL:
+                    series_closed = True
+                elif disp_i == DISP_CONTINUING:
+                    series_closed = False
+                else:
+                    series_closed = (me_i != "2200-01-01")
                 # observation bar: latest trading day <= m (must be within ~5 trading days)
                 import bisect
                 pos = bisect.bisect_right(dates, m) - 1
