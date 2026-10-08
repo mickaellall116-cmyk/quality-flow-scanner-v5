@@ -12,10 +12,17 @@ CODEFIX 2026-10-07 (QF-VCP-1A-CODEFIX-20261007-03, per adjudication 6051281109):
   Forward windows were silently truncated at the series end via
   end_i = min(pos + w, len(dates) - 1): a 251-day window was reported in the
   r12 field with no marker. Each row now carries fwd_complete_r3/r6/r12
-  booleans (True iff pos + w <= len(dates) - 1, i.e. the full w-trading-day
-  window is present). Truncated values are RETAINED for provenance but must be
-  EXCLUDED from analysis — corrected analyze.py filters on these flags
-  (falling back to a data-derived month cutoff on legacy panels without them).
+  booleans. Truncated values are RETAINED for provenance but must be
+  EXCLUDED from analysis unless the series is closed.
+
+CODEFIX-DELTA 2026-10-08 (QF-VCP-1A-CODEFIX-DELTA-20261008-04, per
+  adjudication 6051509411): the 2026-10-07 flags conflated closed-series
+  delist outcomes (COMPLETE under frozen RUN_PLAN §5 last-close-held-flat)
+  with right-censored open-series observations (must be EXCLUDED). Each row
+  now carries fwd_status_r3/r6/r12 in {'complete','delisted_flat','censored'}.
+  fwd_complete_<h> is True for 'complete' and 'delisted_flat'. Membership
+  interval end (2200-01-01 = open) determines closed vs open; reuse_guard
+  already verified closed-interval series end within ±9d of interval end.
   No strategy-rule changes.
 """
 import argparse, json, os, sys
@@ -77,6 +84,42 @@ def add_days(d, n):
 
 DATA_FLOOR = "2009-01-01"      # pull.py startDate; earlier membership months unobservable
 SERIES_CURRENT = "2026-09-21"  # series must be this fresh for open-ended intervals
+
+
+def forward_window(dates, pos, w, series_closed):
+    """Production forward-window status per frozen RUN_PLAN §5.
+
+    dates: sorted ISO date strings (the ticker's full bar series).
+    pos:   index of the observation bar.
+    w:     forward window in trading days (63/126/252).
+    series_closed: True iff the ticker's membership interval for this
+        observation month is CLOSED (delisting/acquisition/bankruptcy ended
+        membership; reuse_guard already verified the series ends within ±9d
+        of the interval end). A window that runs past such a series end is
+        COMPLETE under the frozen last-close-held-flat rule — excluding it
+        would reintroduce survivor/attrition bias.
+
+    Returns (status, end_index) where status is one of:
+      'complete'      — full w-trading-day window observed after the obs bar.
+      'delisted_flat' — closed series; window runs past series end; last
+                        available adjusted close held flat (frozen §5).
+                        COMPLETE for analysis.
+      'censored'      — open/current series truncated by the dataset
+                        boundary; right-censored. EXCLUDE from analysis.
+
+    The returned value for 'delisted_flat'/'censored' is computed to the last
+    available close (flat-hold); only the status differs, so analysis
+    inclusion is explicit, never silent.
+    """
+    n = len(dates)
+    if pos + w <= n - 1:
+        return "complete", pos + w
+    if series_closed:
+        return "delisted_flat", n - 1
+    return "censored", n - 1
+
+
+FWD_STATUS_OK = ("complete", "delisted_flat")  # statuses counted COMPLETE
 
 
 def reuse_guard(ms, me, s0, s1):
@@ -143,8 +186,16 @@ def main():
                 continue
             # month loop
             for m in months:
-                if not any(ms <= m <= me for ms, me in valid_intervals):
+                iv = next(((ms, me) for ms, me in valid_intervals
+                           if ms <= m <= me), None)
+                if iv is None:
                     continue
+                # CODEFIX-DELTA: a CLOSED membership interval (me != 2200-01-01)
+                # means the series end is a delisting/acquisition/bankruptcy —
+                # windows running past it are complete under frozen §5
+                # flat-hold. An OPEN interval means series end is the dataset
+                # boundary → right-censored.
+                series_closed = (iv[1] != "2200-01-01")
                 # observation bar: latest trading day <= m (must be within ~5 trading days)
                 import bisect
                 pos = bisect.bisect_right(dates, m) - 1
@@ -178,14 +229,15 @@ def main():
                 sh = shares_at(shares, m)
                 mcap = obs_px * sh if sh is not None else None
                 # forward returns + downside excursion (adjClose: split-continuous)
-                # CODEFIX D3: record window completeness explicitly; a truncated
-                # window's value is retained for provenance but flagged so the
-                # analysis excludes it instead of silently shortening the window.
+                # CODEFIX-DELTA 2026-10-08 (QF-VCP-1A-CODEFIX-DELTA-20261008-04,
+                # per adjudication 6051509411): distinguish closed-series
+                # delist outcomes (COMPLETE under frozen §5 flat-hold) from
+                # right-censored open series (EXCLUDE). See forward_window().
                 rets, dds, fwc = {}, {}, {}
                 for key, w in WIN.items():
-                    complete = (pos + w <= len(dates) - 1)
-                    fwc[key] = complete
-                    end_i = pos + w if complete else len(dates) - 1
+                    status, end_i = forward_window(dates, pos, w,
+                                                   series_closed)
+                    fwc[key] = status
                     end_px = closes[end_i]
                     rets[key] = end_px / obs_adj - 1.0
                     segmin = min(closes[pos + 1: end_i + 1]) if end_i > pos else obs_adj
@@ -197,8 +249,11 @@ def main():
                        "shares": sh, "mcap": mcap,
                        "v1": bool(obs_adj > mas[150] and obs_adj > mas[200]),
                        "v2": bool(obs_adj > mas[150] and obs_adj > mas[200] and obs_adj > mas[250]),
-                       "fwd_complete_r3": fwc["r3"], "fwd_complete_r6": fwc["r6"],
-                       "fwd_complete_r12": fwc["r12"]}
+                       "fwd_complete_r3": fwc["r3"] in FWD_STATUS_OK,
+                       "fwd_complete_r6": fwc["r6"] in FWD_STATUS_OK,
+                       "fwd_complete_r12": fwc["r12"] in FWD_STATUS_OK,
+                       "fwd_status_r3": fwc["r3"], "fwd_status_r6": fwc["r6"],
+                       "fwd_status_r12": fwc["r12"]}
                 for key in WIN:
                     row[key] = round(rets[key], 6)
                     row["dd_" + key] = round(dds[key], 6)

@@ -549,6 +549,24 @@
    "next_eligible": "ChatGPT adversarial review of this package; then ONE full-universe November run (>=2026-11-01)",
    "stop_condition": "If review rejects the correction, record HOLD and do not open another repair cycle",
    "actual_effort_minutes": 55
+  },
+  {
+   "experiment_id": "EXP-20261007-VCP-1A-CODEFIX-DELTA",
+   "title": "VCP Phase 1A codefix delta (QF-VCP-1A-CODEFIX-DELTA-20261008-04)",
+   "state": "HOLD",
+   "state_reason": "Load-bearing delist/censoring correction published; pending ChatGPT adversarial review. November full-universe run is the next real performance computation.",
+   "created": "2026-10-08T03:45:00Z",
+   "source_adjudication": "Issue #1 comment 6051509411 (2026-10-07)",
+   "defects_fixed": [
+    "D4 delist/censoring conflation: truncated windows on closed-series (delisted/acquired) were marked incomplete and excluded, reintroducing survivor/attrition bias against frozen RUN_PLAN section 5 flat-hold rule. Now forward_window() returns complete/delisted_flat/censored; delisted_flat counts COMPLETE.",
+    "D5 fail-open flags: missing/mixed forward-status fields defaulted True. Now resolve_horizon_filter() raises hard errors on mixed schema, missing fields, unknown status values, empty panels. Legacy panels require explicit --legacy-repro + --cutoff-override, stamped NON-ACCEPTANCE.",
+    "95% data-derived cutoff removed from accepted-run path (not an accepted-run parameter); last_complete_month retained only as labeled local non-performance probe."
+   ],
+   "synthetic_tests": "31/31 pass (test_vcp_phase1a_codedelta.py), calling production functions: exact returns for full 63/126/252 windows, closed-series flat-hold, open-series censoring, boundary exactness, fail-closed error paths, downside on observed bars.",
+   "artifacts": "research_notes/vcp_1a_codefix/{analyze.py,build_panels.py,test_vcp_phase1a_codedelta.py} (commit pending)",
+   "supersedes_invalid": "2026-10-07 flag-based interim exclusion (undercounted legitimate closed-series outcomes); fail-open flag defaults; 95% cutoff as accepted parameter.",
+   "actual_effort_min": "~30",
+   "budget_min": 35
   }
  ],
  "message_ledger": [],

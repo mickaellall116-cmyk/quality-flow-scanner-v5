@@ -149,3 +149,48 @@ pending tickers).
 strict alphabetical order (A → LEG). `batch_nov.txt` = 379 tickers
 alphabetical (LEN → ZTS). **Selection is alphabetical, not random — the
 October interim is descriptive only even after code correction.**
+
+---
+
+## Addendum 2026-10-08 — CODEFIX-DELTA (QF-VCP-1A-CODEFIX-DELTA-20261008-04, adjudication 6051509411)
+
+**INVALIDATED (supersedes the §D3 correction above):** the 2026-10-07 codefix
+marked every truncated forward window incomplete and excluded it. That
+conflated closed-series delisting/acquisition/bankruptcy outcomes — which are
+COMPLETE under frozen RUN_PLAN §5 (last available close held flat) — with
+right-censored open-series observations near the dataset boundary (which must
+be excluded). Excluding delisted series reintroduces survivor/attrition bias
+and changes the frozen estimand. The interim numbers derived from the
+2026-10-07 flags are therefore invalid for a different reason than the
+annualization/date bugs: they undercount legitimate closed-series outcomes.
+
+**Also invalidated:** any analysis that ran with missing/mixed forward-status
+flags defaulting to True (fail-open), and any use of the 95% data-derived
+cutoff as an accepted-run parameter (it is retained only as a labeled local
+non-performance probe).
+
+**Corrected code** (`research_notes/vcp_1a_codefix/`, commit pending):
+- `build_panels.forward_window()` (production function) returns
+  `('complete'|'delisted_flat'|'censored', end_index)`. Closed membership
+  interval (delisting) + window past series end → `'delisted_flat'`, last
+  close held flat, COMPLETE. Open interval + truncated window → `'censored'`,
+  EXCLUDED.
+- Rows carry `fwd_status_r3/r6/r12` plus `fwd_complete_<h>` booleans
+  (True for complete and delisted_flat).
+- `analyze.resolve_horizon_filter()` fails closed: every analyzed row must
+  carry explicit boolean flags and in-enum status values; mixed schema,
+  missing fields, unknown statuses, and empty panels raise hard errors.
+  Legacy panels require explicit `--legacy-repro` + `--cutoff-override` and
+  are stamped NON-ACCEPTANCE.
+- 31/31 synthetic tests pass (`test_vcp_phase1a_codedelta.py`), calling
+  production functions: exact returns for full 63/126/252-bar windows,
+  closed-series flat-hold return, open-series censoring, boundary exactness,
+  all fail-closed error paths, downside on observed bars only.
+
+**Material note:** the adjudication assumed September 2025's r12 window was
+complete and wrongly excluded; the data-derived calendar check showed
+September is genuinely 1 trading day short (251 < 252), so the 2025-08-29
+cutoff stands on the calendar, not on the lexical bug.
+
+Original artifacts above are preserved unchanged. Corrected magnitudes come
+only from the November full-universe run after review.

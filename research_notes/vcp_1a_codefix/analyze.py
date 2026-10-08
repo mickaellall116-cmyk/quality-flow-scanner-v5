@@ -15,18 +15,28 @@ CODEFIX 2026-10-07 (QF-VCP-1A-CODEFIX-20261007-03, per adjudication 6051281109):
       ending-December (23 months per subperiod instead of the frozen 24) and
       dropping 2025-09 from r12 ("2025-09-30" > "2025-09"). All month
       comparisons now use month periods (YYYY-MM).
-  D3. Horizon cutoff: the hardcoded r12 string cutoff is replaced by a
-      DATA-DERIVED cutoff — the latest month where >=95% of panel tickers have
-      a complete forward window by actual trading-day count. On the frozen
-      panel this yields 2025-08 for r12 (September's window is genuinely
-      1 trading day short: 251 < 252 — the adjudication assumed September was
-      complete; the calendar says otherwise), and 2025-12 for r3/r6.
-      Corrected build_panels.py additionally emits per-row fwd_complete_<h>
-      flags; when present, rows are filtered on flags instead of the month
-      cutoff. No silent truncation: incomplete windows are excluded, never
-      silently shortened.
+  D3. Horizon cutoff: the hardcoded r12 string cutoff is replaced by
+      per-row fwd_complete_<h>/fwd_status_<h> fields (see build_panels.py).
+      (The 95% data-derived cutoff was an interim step; per adjudication
+      6051509411 it is NOT an accepted-run parameter and is removed from
+      the accepted path — last_complete_month is retained only as a labeled
+      local non-performance probe.)
 No strategy-rule changes: d_m estimand, bootstrap, persistence rule logic,
 mcap filter, and qualifier definitions are untouched.
+
+CODEFIX-DELTA 2026-10-08 (QF-VCP-1A-CODEFIX-DELTA-20261008-04, per
+  adjudication 6051509411):
+  D4. Delist/censoring conflation: rows whose series ends by
+      delisting/acquisition/bankruptcy (closed membership interval) were
+      marked incomplete and excluded — reintroducing survivor/attrition bias
+      against the frozen §5 flat-hold rule. build_panels.py now emits
+      fwd_status_<h> in {'complete','delisted_flat','censored'}; analysis
+      counts 'complete' and 'delisted_flat' as complete, excludes 'censored'.
+  D5. Fail closed: analysis raises a hard error unless EVERY analyzed row
+      carries explicit boolean fwd_complete_<h> and fwd_status_<h> fields
+      with in-enum values. Missing/mixed flags never default True. Legacy
+      panels require explicit --legacy-repro + --cutoff-override and are
+      stamped NON-ACCEPTANCE.
 """
 import argparse, bisect, glob, json, os, sys
 import numpy as np
@@ -48,7 +58,75 @@ MIN_SIDE = 5
 # window for the month to be included (data-derived cutoff; see
 # last_complete_month). 1.00 is infeasible: delisted/sparse names never have
 # complete late windows; 0.95 is a documented judgment call.
+#
+# CODEFIX-DELTA 2026-10-08 (per adjudication 6051509411): the 95% threshold
+# is NOT an accepted-run parameter. last_complete_month is retained ONLY as
+# a labeled local non-performance probe; the accepted analysis path never
+# calls it. Legacy-panel reproduction requires explicit --legacy-repro.
 CUTOFF_MIN_FRAC = 0.95
+
+# Required explicit forward-status fields (CODEFIX-DELTA). Every analyzed row
+# must carry all of these; anything less is a hard error (fail closed).
+FLAG_KEYS = ["fwd_complete_r3", "fwd_complete_r6", "fwd_complete_r12"]
+STATUS_KEYS = ["fwd_status_r3", "fwd_status_r6", "fwd_status_r12"]
+STATUS_OK = ("complete", "delisted_flat")  # counted COMPLETE per frozen §5
+STATUS_ENUM = ("complete", "delisted_flat", "censored")
+
+
+def resolve_horizon_filter(rows, legacy_repro=False, cutoff_override=None):
+    """Fail-closed horizon-filter resolution (production function).
+
+    Accepted path: EVERY row carries explicit fwd_complete_<h> booleans and
+    fwd_status_<h> fields with values in STATUS_ENUM. Returns
+    {"mode": "flags"}. Analysis filters on the flags; 'delisted_flat'
+    counts as complete per frozen RUN_PLAN §5.
+
+    Any deviation is a hard RuntimeError:
+      - mixed schema (some rows with fields, some without),
+      - any row missing any required field,
+      - any fwd_status_<h> value outside STATUS_ENUM,
+      - legacy panel (no fields at all) without legacy_repro=True.
+    Legacy reproduction (--legacy-repro) additionally REQUIRES
+    cutoff_override with explicit per-horizon cutoffs and stamps output
+    NON-ACCEPTANCE. The 95% data-derived cutoff is not usable here.
+    """
+    n = len(rows)
+    if n == 0:
+        raise RuntimeError("empty panel: nothing to analyze")
+    need = FLAG_KEYS + STATUS_KEYS
+    n_full = sum(1 for r in rows if all(k in r for k in need))
+    if n_full == n:
+        bad = [r for r in rows
+               if any(r[k] not in STATUS_ENUM for k in STATUS_KEYS)]
+        if bad:
+            raise RuntimeError(
+                f"{len(bad)} rows carry fwd_status values outside "
+                f"{STATUS_ENUM}; fail closed.")
+        for r in rows:
+            for k in FLAG_KEYS:
+                if not isinstance(r[k], bool):
+                    raise RuntimeError(
+                        f"non-boolean {k}={r[k]!r}; fail closed.")
+        return {"mode": "flags"}
+    if n_full > 0:
+        raise RuntimeError(
+            f"mixed panel schema: {n_full}/{n} rows carry explicit "
+            f"forward-status fields; fail closed. Rebuild the panel with "
+            f"the corrected build_panels.py.")
+    if not legacy_repro:
+        raise RuntimeError(
+            "legacy panel without explicit forward-status fields; refusing "
+            "to guess completeness. Rebuild with corrected build_panels.py, "
+            "or pass --legacy-repro (explicit non-acceptance reproduction "
+            "mode).")
+    if not cutoff_override:
+        raise RuntimeError(
+            "--legacy-repro requires --cutoff-override with explicit "
+            "per-horizon month cutoffs (the 95% data-derived cutoff is not "
+            "an accepted-run parameter).")
+    cutoff = dict(kv.split("=") for kv in cutoff_override.split(","))
+    return {"mode": "legacy", "cutoff": cutoff,
+            "acceptance": "NON-ACCEPTANCE (legacy reproduction)"}
 
 
 def load_panel(path):
@@ -188,8 +266,13 @@ def main():
                  help="raw EOD dir for the data-derived horizon cutoff")
     a.add_argument("--cutoff-override", default=None,
                  help="YYYY-MM-DD month-end cutoff per horizon as "
-                      "'r3=..,r6=..,r12=..'; for reproducing the frozen-panel "
-                      "derivation only — the November run must derive")
+                      "'r3=..,r6=..,r12=..'; REQUIRES --legacy-repro; for "
+                      "reproducing the frozen-panel derivation only — the "
+                      "November run must use explicit flags")
+    a.add_argument("--legacy-repro", action="store_true",
+                 help="explicit non-acceptance mode: analyze a legacy panel "
+                      "without forward-status fields using --cutoff-override "
+                      "cutoffs. Output is stamped NON-ACCEPTANCE.")
     args = a.parse_args()
     rows = load_panel(args.panel)
     spy_ref = load_spy_ref(os.path.join(HERE, "month_ends.json"), args.spy) if args.spy else {}
@@ -202,27 +285,27 @@ def main():
         print("no rows after mcap filter; nothing to analyze")
         return 0
 
-    # --- horizon completeness: per-row flags (new schema) or data-derived
-    # month cutoff (legacy frozen panel). Never a hardcoded date string.
+    # --- horizon completeness: fail-closed explicit flags (accepted path),
+    # or explicit legacy-reproduction mode. Never a hardcoded date string,
+    # never a silent 95% fallback. (CODEFIX-DELTA, adjudication 6051509411)
     flag_key = {"r3": "fwd_complete_r3", "r6": "fwd_complete_r6",
                 "r12": "fwd_complete_r12"}
-    has_flags = any(any(k in r for r in rows) for k in flag_key.values())
+    filt_mode = resolve_horizon_filter(rows, args.legacy_repro,
+                                       args.cutoff_override)
+    has_flags = (filt_mode["mode"] == "flags")
     if has_flags:
-        print("using per-row fwd_complete_<h> flags (new panel schema)")
+        print("using per-row fwd_complete_<h>/fwd_status_<h> fields "
+              "(fail-closed; delisted_flat counts complete per frozen §5)")
         cutoff = {}
     else:
-        if args.cutoff_override:
-            cutoff = dict(kv.split("=") for kv in
-                          args.cutoff_override.split(","))
-            print(f"cutoff override (reproduction only): {cutoff}")
-        else:
-            cutoff = {h: last_complete_month(filt, months, WIN[h], args.eod_dir)
-                      for h in HORIZONS}
-            print(f"data-derived horizon cutoffs: {cutoff}")
+        cutoff = filt_mode["cutoff"]
+        print(f"LEGACY REPRODUCTION MODE — {filt_mode['acceptance']}: "
+              f"cutoffs {cutoff}")
 
     out = {"n_panel_rows": len(rows), "n_filtered_rows": len(filt),
            "months": [months[0], months[-1]], "variants": {},
-           "codefix": "QF-VCP-1A-CODEFIX-20261007-03",
+           "codefix": "QF-VCP-1A-CODEFIX-20261007-03+DELTA-20261008-04",
+           "horizon_filter": filt_mode,
            "horizon_cutoffs": cutoff if not has_flags else "per-row-flags",
            "annualization": "raw per-window primary; "
                             "mean_ann_linear_equiv_SECONDARY = raw * "
@@ -234,7 +317,9 @@ def main():
         for h in HORIZONS:
             if has_flags:
                 used = months
-                row_ok = lambda r: r.get(flag_key[h], True)
+                # Fail closed: resolve_horizon_filter already guaranteed every
+                # row carries an explicit boolean; no .get() default.
+                row_ok = lambda r: bool(r[flag_key[h]])
             else:
                 used = [mm for mm in months if mm <= cutoff[h]]
                 row_ok = lambda r: True
@@ -277,7 +362,7 @@ def main():
                 "qual": round(float(np.mean(np.array(qrets) > 0)), 4) if qrets else None,
                 "ctrl": round(float(np.mean(np.array(crets) > 0)), 4) if crets else None}
             if has_flags:
-                dds = [r["dd_" + h] for r in filt if r[v] and r.get(flag_key[h], True)]
+                dds = [r["dd_" + h] for r in filt if r[v] and bool(r[flag_key[h]])]
             else:
                 dds = [r["dd_" + h] for r in filt if r[v] and r["m"] <= cutoff[h]]
             vres["downside"][h] = {"n": len(dds),
