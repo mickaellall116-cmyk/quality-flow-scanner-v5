@@ -567,6 +567,38 @@
    "supersedes_invalid": "2026-10-07 flag-based interim exclusion (undercounted legitimate closed-series outcomes); fail-open flag defaults; 95% cutoff as accepted parameter.",
    "actual_effort_min": "~30",
    "budget_min": 35
+  },
+  {
+   "experiment_id": "EXP-20261008-VCP-1A-INTERVAL-AUDIT",
+   "title": "VCP Phase 1A interval audit (QF-VCP-1A-INTERVAL-AUDIT-20261008-05)",
+   "state": "HOLD",
+   "state_reason": "Audit complete; correction proposal only. Pending ChatGPT adjudication of the proposal (esp. whether Class B forward windows may extend past membership-end). November execution / Phase 1B / Claude checkpoint remain HOLD.",
+   "created": "2026-10-08T04:30:00Z",
+   "source_adjudication": "Issue #1 comment 6052011174 (2026-10-08)",
+   "question": "Does reuse_guard's END_MISMATCH quarantine wrongly exclude valid historical constituents (ordinary index removals that keep trading)?",
+   "method": "Parsed all 545 quarantine.log rows; classified 131 END_MISMATCH closed intervals by (series_end - membership_end) calendar-day geometry + CIK-count identity evidence; counted panel-month overlap; verified flag/status invariant on synthetic panel via production functions.",
+   "findings": [
+    "Class A (4): series terminates within +/-30d of membership end \u2014 genuine acquisitions (ABMD, BXLT, CTXS, HOT); eligible for frozen section-5 flat-hold; guard's +/-9d calendar window too tight for settlement lag.",
+    "Class B (101): series continues median 1956d past membership end; 73 with exactly 1 CIK (stable identity), 28 absent from CIK file (spot-checked same-company). Ordinary index removals; 8,071 membership-months of valid history dropped \u2014 MATERIAL.",
+    "Class C (26): series starts after interval end (ticker reuse, e.g. ADT/APC) or trivially short series (BK 5 bars, pull deficiency); quarantine correct.",
+    "408 no-EOD rows: 379 = November batch not yet pulled (expected); 29 = October-batch Tiingo 404 pull failures; 6 WARN rows were admitted (kept, clamped), not quarantined.",
+    "Preflight invariant fwd_complete_<h> == (fwd_status_<h> in {complete,delisted_flat}) verified on 4 producer-built synthetic scenarios (0 violations); adversarial corrupted row caught; missing-flag schema hard-errors."
+   ],
+   "correction_proposal": "Admit Class B as OPEN series (censor at dataset boundary only); admit Class A as closed with flat-hold and widen guard window to +/-30d; keep Class C quarantined; add preflight invariant gate before November run; invalidate series_closed=(me!=2200-01-01) assumption for Class-B-type intervals. No code changed in this task.",
+   "unresolved": "28 Class B tickers lack CIK records (admit-with-flag vs manual review?); CTXS +30d tail staleness; BK pull deficiency; whether Class B forward windows may extend past membership-end needs adjudication.",
+   "artifacts": "research_notes/vcp_1a_codefix/VCP_PHASE1A_INTERVAL_AUDIT_20261008.md; research_notes/vcp_1a_codefix/preflight_invariant_check.py",
+   "pins": {
+    "quarantine.log": "5e6ebb8100f1226e3351a66add63d71a8739286168f3135e4e264edc5df240b7",
+    "sp500_ticker_start_end.csv": "b2f4fe2f2e4dce8eaf0eb4fbd3946a32a20c1ddfe69687dfca3b6b59a0b71f9f",
+    "universe.json": "1c651a624fa2aabbe9433e8d898be12ff4083cd0974341d5f6c6109d1665d254"
+   },
+   "trial_budget": null,
+   "repair_budget": null,
+   "dependencies": null,
+   "code_pin": null,
+   "output_pin": null,
+   "verdict": null,
+   "effort_minutes": 35
   }
  ],
  "message_ledger": [],
