@@ -7,3 +7,7 @@ __pycache__/
 signal_log/v37_signals.jsonl
 signal_log/v37_signals.json
 signal_log/watermark.json
+
+# Twelve Data Stage-0: raw licensed snapshots are NEVER published.
+# Only the manifest (hashes, sanitized params, counts) is committed.
+research_notes/twelve_data_stage0/snapshots/

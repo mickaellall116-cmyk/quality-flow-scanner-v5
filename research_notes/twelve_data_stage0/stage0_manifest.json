@@ -1,0 +1,53 @@
+{
+  "stage": "STAGE-0",
+  "frozen_scope": {
+    "symbol": "AAPL",
+    "intervals": [
+      "1h",
+      "4h"
+    ],
+    "window_start": "2026-09-08",
+    "window_end": "2026-10-06",
+    "timezone": "America/New_York",
+    "max_credits": 2,
+    "retries": 0
+  },
+  "authorization": "Mike 2026-10-10 direct (Slack: 'Ok so run it')",
+  "executed_at_utc": "2026-10-10T12:36:08.052290+00:00",
+  "requests": [
+    {
+      "interval": "1h",
+      "http_status": 200,
+      "bytes": 18187,
+      "sha256": "c9c19656afaa8d624934ce6eacf0173876109ed367beb4f5186079e8bd1e18dc",
+      "bar_count": 140,
+      "snapshot": "aapl_1h_2026-09-08_2026-10-06.json",
+      "params": {
+        "symbol": "AAPL",
+        "interval": "1h",
+        "start_date": "2026-09-08",
+        "end_date": "2026-10-06",
+        "timezone": "America/New_York",
+        "outputsize": "5000",
+        "order": "ASC"
+      }
+    },
+    {
+      "interval": "4h",
+      "http_status": 200,
+      "bytes": 5350,
+      "sha256": "3bea69e28dc8af14ec6ee296041a8989735dd0e637d2b0a613b3d9089b85210b",
+      "bar_count": 40,
+      "snapshot": "aapl_4h_2026-09-08_2026-10-06.json",
+      "params": {
+        "symbol": "AAPL",
+        "interval": "4h",
+        "start_date": "2026-09-08",
+        "end_date": "2026-10-06",
+        "timezone": "America/New_York",
+        "outputsize": "5000",
+        "order": "ASC"
+      }
+    }
+  ]
+}
