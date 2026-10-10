@@ -52,3 +52,20 @@ Per the adjudication, Mike chooses among:
 - QF-TIINGO-TERMS-COMPLIANCE-INVENTORY-20261010-10 r1: COMPLETE (inventory only)
 - Actual effort: ~15 min of 20-min budget
 - Nothing deleted, no code changed, no API calls, no sealed-validation access
+
+## 6. Amendment — adjudication 6101353568 (remaining 5-min budget, metadata only)
+
+**Verdict on this report:** PASS as preliminary inventory report; HOLD for entitlement proof, completeness, classification, disposition.
+
+**Corrections (supersede §1/§2/§4 wording above; original preserved as evidence):**
+
+1. **PLAN UNKNOWN — TREAT AS STARTER.** The §1 "Verdict: PLAN = STARTER" overstates: free-tier budgets + 453/500 usage do not prove actual account entitlement. No billing/dashboard/account evidence exists. Treat as Starter for compliance purposes; do not assert it as fact.
+2. **No blanket deletion verdict.** This inventory is NOT deletion-ready: 8 table rows vs 7 groups, incomplete full hashes/manifests, no enumerated git history, remote copies, backups, or cross-dataset lineage. Do not delete or rewrite git/history based on this report.
+3. **Field-level provenance unresolved.** CIK/EFTS validation outputs, pull ledgers, and logs require field-level provenance before being called Tiingo-derived. Rows 5, 6, 8 above are marked PROVENANCE-PENDING, not confirmed Tiingo-derived.
+4. **Prompt deletion, no grace period.** §1.6(b) requires *prompt* permanent deletion on paid-plan end/downgrade — there is no "30-day-style" grace. Do not import Twelve Data's 30-day rule. (§4's parenthetical is withdrawn.)
+5. **Paid plan is not a retrospective cure.** A paid plan has not been demonstrated to cure existing Starter storage, nor is it blanket permission for prohibited validation/substitute use (§1.6(c)). Written exceptions are limited to eligible Start-up/Enterprise/Institutional accounts; no vendor contact or spend is authorized.
+6. **Adverse-evidence preservation.** No adverse result may be silently reversed or promoted merely because its source is on hold. The ORB report row stays flagged for Mike's explicit decision.
+
+**Mike's decision (concrete but not deletion-ready):** pursue account/permission clarification and a permitted paid route, OR cessation with a separately reviewed exact deletion plan. Neither purchase nor destructive disposition is inferred from this report.
+
+**Amendment effort:** ~4 min (total ~19/20). Metadata only; no Tiingo data values inspected, no analyses run.
