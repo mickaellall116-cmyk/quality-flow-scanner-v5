@@ -810,6 +810,25 @@
     "Scoped acceptance per Issue #1 comment 6053708114",
     "November preflight gate QF-VCP-1A-NOV-INTERVAL-PREFLIGHT-20261101-07 preserved"
    ]
+  },
+  {
+   "id": "EXP-20261010-FEED-ROUTE-OFFICIAL-EVIDENCE",
+   "state": "APPENDIX-DELIVERED",
+   "created": "2026-10-10T17:58:00Z",
+   "task": "QF-FEED-ROUTE-OFFICIAL-EVIDENCE-20261010-09",
+   "per": "ChatGPT adjudication 6100384345 (planning PASS, route qualification HOLD)",
+   "scope": "read-only appendix; zero vendor calls/credits/spend/performance/code changes",
+   "deliverables": [
+    "research_notes/FEED_ROUTE_OFFICIAL_EVIDENCE_20261010.md"
+   ],
+   "findings": [
+    "Tiingo ToS (app.tiingo.com/tos/, v1, eff 2022-01-16, updated 2026-10-06): free Starter/Trial = NO persistent Tiingo Data or Derived Product storage (transient volatile only); paid = persist-while-active then full deletion incl. backups/compliance retention; derived aggregate stats retainable on paid plans only",
+    "Yahoo official terms: UNKNOWN (legal.yahoo.com fetch blocked by policy); all Yahoo entitlement/depth/revision facts UNKNOWN",
+    "Tiingo historical depth + revision/backfill policy: UNKNOWN",
+    "PROSPECTIVE RAW CAPTURE NOT IMPLEMENTED: harness evaluates and discards Yahoo bars; no raw OHLCV persistence in v54_forward_harness.py",
+    "Realized forward-test signals: 30 (A7/B21/C2) over 2026-09-15..2026-10-10, ~8.4/wk \u2014 separate from ~10/wk assumption"
+   ],
+   "limitations": "Route qualification HOLD; Yahoo entitlement unknown; Tiingo Starter retention prohibition; no versioned raw-bar capture"
   }
  ],
  "message_ledger": [
@@ -878,6 +897,16 @@
    "status": "DELIVERED/VERIFIED",
    "at": "2026-10-10T15:50:16Z",
    "summary": "r3 delivery ledger: Slack mirror 1791647400.170119 VERIFIED; r3 ACK + WORK RESULT pending"
+  },
+  {
+   "kind": "ACK",
+   "task": "QF-FEED-ROUTE-OFFICIAL-EVIDENCE-20261010-09",
+   "note": "r1 accepted as read-only 15-min appendix"
+  },
+  {
+   "kind": "WORK-RESULT",
+   "task": "QF-FEED-ROUTE-OFFICIAL-EVIDENCE-20261010-09",
+   "note": "appendix delivered; verdict 6100384345 recorded; route qualification HOLD preserved"
   }
  ],
  "registry_version": "1",
@@ -938,6 +967,15 @@
    "revision": "r1",
    "state": "COMPLETE \u2014 schema-corrected ledger, variations/budget/pins reconciled",
    "budget_min": 15
+  },
+  {
+   "task_id": "QF-FEED-ROUTE-OFFICIAL-EVIDENCE-20261010-09",
+   "revision": "r1",
+   "state": "WORK-RESULT-DELIVERED",
+   "evidence_pin": "research_notes/FEED_ROUTE_OFFICIAL_EVIDENCE_20261010.md",
+   "budget": "15 min read-only",
+   "scope": "zero vendor calls/credits/spend/performance/code changes",
+   "decision": "ChatGPT 6100384345"
   }
  ]
 }
