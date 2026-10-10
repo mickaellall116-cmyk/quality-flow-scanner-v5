@@ -267,13 +267,56 @@
    "verdict": "PENDING \u2014 accepted as research reference; proposed operational gates NOT adopted (per ChatGPT 6046384583)"
   },
   {
-   "acceptance_criteria": "UNKNOWN \u2014 pending spec clearance",
-   "attempted_variations": [],
-   "baseline_design": "UNKNOWN \u2014 pending spec clearance",
+   "acceptance_criteria": "ChatGPT P4 spec clearance of the readiness packet; no pilot execution before P4 passes",
+   "attempted_variations": [
+    {
+     "variation_id": "stage0",
+     "description": "Stage-0 bounded screen: 2x AAPL /time_series (1h 140 bars, 4h 40 bars), HTTP 200, 2 credits, zero retries",
+     "result": "Scoped PASS (plumbing/integrity only) per 6098718465; construction INSUFFICIENT; two-call budget closed",
+     "verdict_ref": "6098718465",
+     "evidence_pin": "4a4680e"
+    },
+    {
+     "variation_id": "r1-offline",
+     "description": "QF-TD-STAGE0-OFFLINE-20261010-01: offline integrity/coverage analysis, zero new calls",
+     "result": "Scoped PASS per 6098718465 (hashes verified; interval semantics UNKNOWN; end_date observed exclusive)",
+     "verdict_ref": "6098718465",
+     "evidence_pin": "35e4063"
+    },
+    {
+     "variation_id": "r1-packet",
+     "description": "QF-TD-PILOT-PACKET-20261010-02: pilot packet amendment (document pass)",
+     "result": "HOLD per 6098718465 \u2014 8 load-bearing defects; P4 not cleared",
+     "verdict_ref": "6098718465",
+     "evidence_pin": "35e4063"
+    },
+    {
+     "variation_id": "r1-registry",
+     "description": "QF-REGISTRY-RECONCILE-20261010-03: registry bookkeeping",
+     "result": "HOLD per 6098718465 \u2014 task_log empty, ledger gaps, stale pilot fields",
+     "verdict_ref": "6098718465",
+     "evidence_pin": "35e4063"
+    },
+    {
+     "variation_id": "r2-readiness",
+     "description": "QF-TD-PILOT-READINESS-R2-20261010-04: readiness packet + pinned wrapper + 10/10 fixtures",
+     "result": "HOLD per 6099318779 \u2014 interval contract PASS but wrapper/manifest not execution-ready (11 code-level defects)",
+     "verdict_ref": "6099318779",
+     "evidence_pin": "c56dd48"
+    },
+    {
+     "variation_id": "r2-registry",
+     "description": "QF-REGISTRY-RECONCILE-R2-20261010-05: registry bookkeeping",
+     "result": "HOLD per 6099318779 \u2014 incomplete synchronization (schema correction required)",
+     "verdict_ref": "6099318779",
+     "evidence_pin": "c56dd48"
+    }
+   ],
+   "baseline_design": "Synthetic fixtures with pinned expected outputs (W01-W19, 19/19 PASS); ChatGPT independent adjudication as adversarial baseline",
    "code_pin": "fd03906 (harness prerequisite)",
    "costs": "Free tier only \u2014 8 credits/min, 800/day. No spending authorized.",
    "created_at": "2026-10-07T10:00:00Z",
-   "dataset_pin": "private Stage-0 snapshots (git-ignored, local only): aapl_1h sha256 c9c19656afaa8d624934ce6eacf0173876109ed367beb4f5186079e8bd1e18dc (140 bars); aapl_4h sha256 3bea69e28dc8af14ec6ee296041a8989735dd0e637d2b0a613b3d9089b85210b (40 bars); manifest committed",
+   "dataset_pin": "Stage-0 private snapshots: aapl_1h sha c9c19656afaa\u2026, aapl_4h sha 3bea69e28dc\u2026 (private, git-ignored)",
    "decision_refs": [
     "Mike: 'Just run if chat says' (standing authorization, gated)",
     "Stage-0 executed on Mike's direct 2026-10-10 authorization (not relayed clearance)",
@@ -296,8 +339,8 @@
     "No vendor calls until ChatGPT P4 clears the R2 readiness packet"
    ],
    "literature_intake": "UNKNOWN",
-   "next_action": "Await ChatGPT P4 clearance of TD_PILOT_READINESS_R2_20261010.md; then name corporate-action endpoint weights with entitlement evidence; execution on standing v7 section 8 conditional authorization (no redundant approval)",
-   "output_pin": "UNKNOWN",
+   "next_action": "P4 HOLD \u2014 await ChatGPT independent review of r3 packet; no pilot execution until P4 passes",
+   "output_pin": "TD-PILOT-READINESS-R3-20261010.md + request_manifest.json + pilot_acquire.py (r3, pending commit)",
    "owner": "Muse",
    "primary_sources": [
     "DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md",
@@ -306,10 +349,31 @@
     "TD_PILOT_READINESS_R2_20261010.md (r2 readiness packet, for review)"
    ],
    "repair_budget": {
-    "allocated_rounds": "UNKNOWN",
-    "used_rounds": 0
+    "allocated_rounds": 3,
+    "used_rounds": 3,
+    "rounds": [
+     {
+      "round": "r1",
+      "budget_min": 60,
+      "used_min": 46,
+      "ref": "6097910497"
+     },
+     {
+      "round": "r2",
+      "budget_min": 60,
+      "used_min": 50,
+      "ref": "6098718465"
+     },
+     {
+      "round": "r3",
+      "budget_min": 60,
+      "used_min": null,
+      "ref": "6099318779",
+      "note": "in progress at write time"
+     }
+    ]
    },
-   "robustness_diagnostics": [],
+   "robustness_diagnostics": "INSUFFICIENT \u2014 no vendor-behavior robustness data; synthetic fixtures only; corporate-action leg excluded",
    "rule_spec_version": "v7 + 20261010 amendment + R2 readiness packet; P4 PENDING",
    "state": "HOLD \u2014 P4 (ChatGPT spec clearance)",
    "title": "Twelve Data free-tier pilot (gated)",
@@ -324,8 +388,7 @@
     {
      "subtrial_id": "EXP-20261007-TD-PILOT/STAGE-0",
      "tasks": [
-      "QF-TD-STAGE0-OFFLINE-20261010-01",
-      "QF-TD-PILOT-READINESS-R2-20261010-04"
+      "QF-TD-STAGE0-OFFLINE-20261010-01"
      ],
      "authorization": "Mike 2026-10-10 direct (Slack, in response to his own status escalation): 'Ok so run it'. Supersedes relayed-clearance dispute (6052603402/6055070076).",
      "execution_commit": "4a4680e",
@@ -343,7 +406,7 @@
      ],
      "credits_spent": 2,
      "offline_report": "research_notes/twelve_data_stage0/STAGE0_OFFLINE_REPORT_20261010.md",
-     "verdict": "Plumbing/integrity result (NOT unqualified SMOKE PASS): 2/2 HTTP 200, local snapshot hashes match committed manifest, 2 credits spent. Interval-label contract RESOLVED in r2 (interval-start, official Twelve Data API reference). 1H->4H construction on Twelve Data bars remains INSUFFICIENT (not yet exercised through the cleared chain); feed qualification INSUFFICIENT.",
+     "verdict": "Scoped PASS (plumbing/integrity only); construction INSUFFICIENT; two-call budget closed",
      "effort_minutes": 14,
      "decision_refs": [
       "Issue #1 comments 6097910497, 6097915716",
@@ -362,6 +425,15 @@
      "decision_refs": [
       "Issue #1 comments 6097910497, 6097915716"
      ]
+    },
+    {
+     "subtrial_id": "EXP-20261007-TD-PILOT/READINESS-R2-20261010",
+     "tasks": [
+      "QF-TD-PILOT-READINESS-R2-20261010-04"
+     ],
+     "artifact": "research_notes/TD_PILOT_READINESS_R2_20261010.md + pilot_acquire.py + 10/10 fixtures",
+     "verdict": "HOLD per 6099318779 \u2014 11 code-level defects; interval contract PASS",
+     "evidence_pin": "c56dd48"
     }
    ],
    "readiness_r2": {
@@ -742,55 +814,70 @@
  ],
  "message_ledger": [
   {
-   "type": "delivery",
+   "message_id": "slack-1791445072",
+   "status": "DELIVERED/VERIFIED",
    "at": "2026-10-10T12:28:00Z",
-   "summary": "Mike-requested status escalation delivered on Slack #qualityflowscaner (ChatGPT-authored, Mike-confirmed as his request). Asked for 5-point status incl. Stage-0.",
-   "refs": [
-    "Issue #1 comment 6097490811",
-    "Slack ts 1791635279.540879"
-   ]
+   "summary": "Mike-requested status escalation delivered on Slack #qualityflowscaner (Issue #1 6097490811)"
   },
   {
-   "type": "ack",
+   "message_id": "slack-mike-authz",
+   "status": "ACKNOWLEDGED",
    "at": "2026-10-10T12:35:00Z",
-   "summary": "Mike direct authorization in chat: 'Ok so run it' \u2014 Stage-0 cleared on his word, superseding the relayed-clearance dispute.",
-   "refs": [
-    "Slack chat 2026-10-10"
-   ]
+   "summary": "Mike direct authorization in chat: 'Ok so run it' \u2014 Stage-0 cleared"
   },
   {
-   "type": "work-result",
+   "message_id": "slack-stage0-result",
+   "status": "WORK_RESULT",
    "at": "2026-10-10T12:37:00Z",
-   "summary": "Stage-0 executed: 2x AAPL /time_series (1h 140 bars, 4h 40 bars), HTTP 200, 2 credits, zero retries. Commit 4a4680e. Result posted to Slack.",
-   "refs": [
-    "commit 4a4680e",
-    "Slack ts 1791635811.433479"
-   ]
+   "summary": "Stage-0 executed: 2x AAPL /time_series (1h 140 bars, 4h 40 bars), HTTP 200, 2 credits; commit 4a4680e"
   },
   {
-   "type": "handoff",
+   "message_id": "gh-6097910497",
+   "status": "DELIVERED/VERIFIED",
    "at": "2026-10-10T13:18:25Z",
-   "summary": "r1 handoff: Issue #1 comment 6097910497 (Oct 10 Stage-0 adjudication + bounded next actions); Slack mirror 1791638321.211689 \u2014 DELIVERED/VERIFIED"
+   "summary": "r1 handoff: Oct 10 Stage-0 adjudication + 3 bounded tasks (60-min budget)"
   },
   {
-   "type": "ack",
+   "message_id": "slack-1791638693",
+   "status": "ACKNOWLEDGED",
    "at": "2026-10-10T13:38:00Z",
-   "summary": "Muse ACK of r1 tasks (Slack 1791638693.551269): QF-TD-STAGE0-OFFLINE-20261010-01, QF-TD-PILOT-PACKET-20261010-02, QF-REGISTRY-RECONCILE-20261010-03"
+   "summary": "Muse ACK of r1 tasks (Slack 1791638693.551269)"
   },
   {
-   "type": "work-result",
+   "message_id": "slack-1791639002",
+   "status": "WORK_RESULT",
    "at": "2026-10-10T13:50:00Z",
-   "summary": "r1 WORK RESULT (Slack 1791639002.607399): commit 35e4063 \u2014 offline report + packet amendment + registry reconcile"
+   "summary": "r1 WORK RESULT (Slack 1791639002.607399): commit 35e4063 \u2014 offline report, packet amendment, registry reconcile"
   },
   {
-   "type": "adjudication",
+   "message_id": "gh-6098718465",
+   "status": "DELIVERED/VERIFIED",
    "at": "2026-10-10T14:48:05Z",
-   "summary": "r2 adjudication: Issue #1 comment 6098718465 (Stage-0 offline PASS scoped; packet + registry HOLD with 8 defects each) + delivery ledger 6098722040; Slack mirror 1791643696.455639 \u2014 DELIVERED/VERIFIED"
+   "summary": "r2 adjudication: Stage-0 offline scoped PASS; packet + registry HOLD; 2 bounded r2 tasks (60-min budget)"
   },
   {
-   "type": "ack",
+   "message_id": "slack-1791644140",
+   "status": "ACKNOWLEDGED",
    "at": "2026-10-10T14:56:00Z",
-   "summary": "r2 ACK: QF-TD-PILOT-READINESS-R2-20261010-04 + QF-REGISTRY-RECONCILE-R2-20261010-05 acknowledged; execution started (subagent)"
+   "summary": "Muse ACK of r2 tasks (Slack 1791644140.458609): QF-TD-PILOT-READINESS-R2-20261010-04 + QF-REGISTRY-RECONCILE-R2-20261010-05"
+  },
+  {
+   "message_id": "slack-1791644835",
+   "status": "WORK_RESULT",
+   "at": "2026-10-10T15:06:58Z",
+   "summary": "r2 WORK RESULT (Slack 1791644835.145729): commit c56dd48 \u2014 ARTIFACT DELIVERY ONLY; ChatGPT acceptance pending (not acceptance)"
+  },
+  {
+   "message_id": "gh-6099318779",
+   "status": "DELIVERED/VERIFIED",
+   "at": "2026-10-10T15:49:46Z",
+   "summary": "r3 adjudication: interval contract PASS; wrapper/manifest HOLD (11 defects); 2 bounded r3 tasks (60-min budget)"
+  },
+  {
+   "message_id": "gh-6099324387",
+   "status": "DELIVERED/VERIFIED",
+   "at": "2026-10-10T15:50:16Z",
+   "summary": "r3 delivery ledger: Slack mirror 1791647400.170119 VERIFIED; r3 ACK + WORK RESULT pending"
   }
  ],
  "registry_version": "1",
@@ -839,6 +926,18 @@
    "budget_minutes": 15,
    "actual_minutes": 10,
    "state": "COMPLETE"
+  },
+  {
+   "task_id": "QF-TD-PILOT-READINESS-R3-20261010-06",
+   "revision": "r1",
+   "state": "COMPLETE \u2014 19/19 fixtures (W01-W19), manifest enforced, R3 packet delivered; P4 still the gate",
+   "budget_min": 45
+  },
+  {
+   "task_id": "QF-REGISTRY-RECONCILE-R3-20261010-07",
+   "revision": "r1",
+   "state": "COMPLETE \u2014 schema-corrected ledger, variations/budget/pins reconciled",
+   "budget_min": 15
   }
  ]
 }

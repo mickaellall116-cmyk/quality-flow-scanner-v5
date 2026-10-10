@@ -60,13 +60,13 @@ def make_spec(rid, symbol="AAPL", **kw):
     d = dict(request_id=rid, symbol=symbol, interval="1h",
              start_date="2026-09-08T00:00:00", end_date="2026-10-06T23:59:59",
              timezone="America/New_York", outputsize=5000, order="ASC",
-             adjust="splits", leg="PAR", day_offset=0,
+             adjust="splits", leg="PAR", day="D0",
              output_name=f"{rid}.json")
     d.update(kw)
     return RequestSpec(**d)
 
 
-def make_wrapper(store, transport, clock=None):
+def make_wrapper(store, transport, clock=None, retry_budget=None):
     ledger = RollingCreditLimiter(8, 800,
                                   state_path=store / "ledger.json",
                                   clock=clock)
@@ -74,7 +74,8 @@ def make_wrapper(store, transport, clock=None):
     w = AcquisitionWrapper(store, ledger, transport,
                            clock=(clock or (lambda: 1000.0)),
                            sleeper=sleeps.append,
-                           preflight=lambda: [])
+                           preflight=lambda: [],
+                           retry_budget=retry_budget)
     return w, sleeps, ledger
 
 
@@ -98,29 +99,33 @@ with tempfile.TemporaryDirectory() as td:
                          calls1 == 2 and len(t.calls) == 2 and
                          all(o.outcome == "SKIPPED_RESUMED" for o in o2)))
 
-    # W02 no-overwrite: pre-existing snapshot refused, untouched
+    # W02 orphan snapshot (no receipt): quarantined + refetched, never
+    # silently SKIPPED_RESUMED (r3 defect 6)
     s = td / "w02"; s.mkdir()
     (s / "REQ-W02-01.json").write_bytes(b'{"orig": true}')
     t = FakeTransport([("ok",)])
     w, _, _ = make_wrapper(s, t)
     o = w.run([make_spec("REQ-W02-01")])
-    results.append(check("W02-no-overwrite",
-                         o[0].outcome == "SKIPPED_RESUMED" and
-                         len(t.calls) == 0 and
-                         (s / "REQ-W02-01.json").read_bytes() == b'{"orig": true}'))
+    orphans = list(s.glob("REQ-W02-01.json.orphan.*"))
+    results.append(check("W02-orphan-quarantine-refetch",
+                         o[0].outcome == "OK" and len(t.calls) == 1 and
+                         len(orphans) == 1 and
+                         orphans[0].read_bytes() == b'{"orig": true}' and
+                         (s / "REQ-W02-01.receipt.json").exists()))
 
-    # W03 resume partial: only missing requests fetched
+    # W03 orphans refetched, then clean resume skips all via markers
     s = td / "w03"; s.mkdir()
     (s / "REQ-W03-01.json").write_bytes(b"x")
     (s / "REQ-W03-03.json").write_bytes(b"x")
-    t = FakeTransport([("ok",), ("ok",)])
+    t = FakeTransport([("ok",)] * 4)
     w, _, _ = make_wrapper(s, t)
-    o = w.run([make_spec(f"REQ-W03-0{i}") for i in (1, 2, 3, 4)])
-    results.append(check("W03-resume-partial",
-                         len(t.calls) == 2 and
-                         [x.outcome for x in o] ==
-                         ["SKIPPED_RESUMED", "OK",
-                          "SKIPPED_RESUMED", "OK"]))
+    specs3 = [make_spec(f"REQ-W03-0{i}") for i in (1, 2, 3, 4)]
+    o = w.run(specs3)
+    o2 = w.run(specs3)
+    results.append(check("W03-orphan-refetch-then-clean-resume",
+                         len(t.calls) == 4 and
+                         all(x.outcome == "OK" for x in o) and
+                         all(x.outcome == "SKIPPED_RESUMED" for x in o2)))
 
     # W04 retry-then-success: 503 once, then 200
     s = td / "w04"
