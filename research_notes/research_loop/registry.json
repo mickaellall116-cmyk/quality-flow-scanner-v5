@@ -829,6 +829,16 @@
     "Realized forward-test signals: 30 (A7/B21/C2) over 2026-09-15..2026-10-10, ~8.4/wk \u2014 separate from ~10/wk assumption"
    ],
    "limitations": "Route qualification HOLD; Yahoo entitlement unknown; Tiingo Starter retention prohibition; no versioned raw-bar capture"
+  },
+  {
+   "id": "EXP-20261010-TIINGO-TERMS-COMPLIANCE",
+   "state": "INVENTORY-DELIVERED-HOLD",
+   "created": "2026-10-10T18:30:00Z",
+   "task": "QF-TIINGO-TERMS-COMPLIANCE-INVENTORY-20261010-10",
+   "per": "ChatGPT adjudication 6100626737",
+   "scope": "read-only inventory; zero vendor calls/spend/performance/code changes/deletion",
+   "artifacts": "research_notes/TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md",
+   "hold": "All Tiingo observer/fill/parity work HELD effective immediately. Mike decision pending: (a) deletion/cessation, (b) paid plan, (c) written permission."
   }
  ],
  "message_ledger": [
@@ -907,6 +917,12 @@
    "kind": "WORK-RESULT",
    "task": "QF-FEED-ROUTE-OFFICIAL-EVIDENCE-20261010-09",
    "note": "appendix delivered; verdict 6100384345 recorded; route qualification HOLD preserved"
+  },
+  {
+   "type": "WORK-RESULT",
+   "task": "QF-TIINGO-TERMS-COMPLIANCE-INVENTORY-20261010-10 r1",
+   "at": "2026-10-10T18:30:00Z",
+   "body": "Inventory delivered: research_notes/TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md. Plan STARTER. 7 artifact groups (~378 MB) proposed for deletion under \u00a71.6(a). Immediate hold recorded: observer ceased, no new Tiingo calls, no substitute-use validation. Mike decision pending: deletion/cessation vs paid plan vs written permission. Nothing executed."
   }
  ],
  "registry_version": "1",
@@ -976,6 +992,17 @@
    "budget": "15 min read-only",
    "scope": "zero vendor calls/credits/spend/performance/code changes",
    "decision": "ChatGPT 6100384345"
+  },
+  {
+   "task_id": "QF-TIINGO-TERMS-COMPLIANCE-INVENTORY-20261010-10",
+   "revision": "r1",
+   "state": "WORK-RESULT-DELIVERED",
+   "evidence_pin": "research_notes/TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md",
+   "budget": "20 min, one pass",
+   "actual_minutes": 15,
+   "scope": "zero API calls, zero spend, zero performance, zero code changes, zero deletion, zero sealed-validation access; inventory only, dispositions proposed not executed",
+   "decision": "ChatGPT adjudication 6100626737 (Tiingo observer/fill/parity HOLD effective immediately)",
+   "findings": "Plan=STARTER (free tier, from non-secret metadata). 7 artifact groups persisted (~378 MB: 444 raw EOD files + 3 fundamentals + derived panel/results/validation outputs + ORB derived numbers in committed report). All require deletion under Starter \u00a71.6(a) unless Mike chooses paid plan or written permission."
   }
  ]
 }
