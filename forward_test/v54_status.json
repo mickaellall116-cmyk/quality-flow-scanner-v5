@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-07T00:51:16.520407+00:00",
+  "as_of": "2026-10-11T22:51:32.029969+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,7 +7,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-07T00:51:16.486943+00:00",
+  "last_successful_cycle": "2026-10-11T22:51:31.992187+00:00",
   "signals_logged": 30,
   "grade_counts": {
     "A": 7,
@@ -29,51 +29,6 @@
   "pending_entries": [],
   "open_positions": [
     {
-      "signal_id": "v54:SHEL:4h:2026-09-23T10:30:00-04:00:2026-09-15-v54",
-      "symbol": "SHEL",
-      "grade": "A",
-      "entry": 95.06999969482422,
-      "entry_bar": "2026-09-23T10:30:00-04:00",
-      "stop": 93.93662832944473,
-      "tp1": 97.53259011773136,
-      "status": "open_runner",
-      "bars_held": 29,
-      "tp1_taken": true,
-      "profit_protect_armed": null,
-      "mfe_r": 2.8057884664405788,
-      "mae_r": -0.6970362404231257
-    },
-    {
-      "signal_id": "v54:ANET:4h:2026-09-24T10:30:00-04:00:2026-09-15-v54",
-      "symbol": "ANET",
-      "grade": "B",
-      "entry": 202.94000244140625,
-      "entry_bar": "2026-09-24T10:30:00-04:00",
-      "stop": 196.61191875026725,
-      "tp1": 212.94381089649804,
-      "status": "open_runner",
-      "bars_held": 26,
-      "tp1_taken": true,
-      "profit_protect_armed": null,
-      "mfe_r": 2.0748785135692813,
-      "mae_r": -0.34279014276494574
-    },
-    {
-      "signal_id": "v54:VLO:4h:2026-09-25T16:00:00-04:00:2026-09-15-v54",
-      "symbol": "VLO",
-      "grade": "B",
-      "entry": 389.1099853515625,
-      "entry_bar": "2026-09-28T06:30:00-04:00",
-      "stop": 375.4319935992349,
-      "tp1": 418.12954638779905,
-      "status": "open_runner",
-      "bars_held": 21,
-      "tp1_taken": true,
-      "profit_protect_armed": null,
-      "mfe_r": 2.4769721678657297,
-      "mae_r": -0.6974692045504641
-    },
-    {
       "signal_id": "v54:CRWD:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
       "symbol": "CRWD",
       "grade": "B",
@@ -82,7 +37,7 @@
       "stop": 243.65635597824416,
       "tp1": 268.13557270036813,
       "status": "open_runner",
-      "bars_held": 20,
+      "bars_held": 29,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 3.703195127345323,
@@ -97,18 +52,18 @@
       "stop": 189.79309267995558,
       "tp1": 211.57578005508816,
       "status": "open_runner",
-      "bars_held": 20,
+      "bars_held": 29,
       "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 4.3484212787472565,
+      "mfe_r": 5.302898463375016,
       "mae_r": -0.015325794110213902
     }
   ],
-  "closed_trades": 16,
-  "cumulative_r": 1.3761,
+  "closed_trades": 19,
+  "cumulative_r": 7.8719,
   "cumulative_r_note": "Sum of per-trade blended R at 1R risk each; not compounded.",
-  "avg_r_per_trade": 0.086,
-  "win_rate": 0.3125,
+  "avg_r_per_trade": 0.4143,
+  "win_rate": 0.4211,
   "closed_v53_would_have_vetoed": 3,
   "closed_vetoed_winners": 1
 }
