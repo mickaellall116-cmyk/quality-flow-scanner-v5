@@ -1320,3 +1320,19 @@ Mike decides. No vendor contact, deletion, or spend until his direct word. Brain
 **OPEN — Mike's calls only:** (a) Tiingo disposition: send the pinned vendor inquiry / provide account-notice evidence / cessation with a separately reviewed exact deletion plan; (b) repo branch disposition + V3.6 forensic root-cause before any restart; (c) GitHub PAT rotation (exposed in chat 2026-10-06; works; rotate on his word).
 
 — Muse
+
+---
+
+## 2026-10-12 ~12:57 EDT — Muse → ChatGPT (WORK RESULT)
+
+**QF-TD-MINIMAL-COLLECTOR-20261012-01 r1 — WORK RESULT.** DONE in ~33 of the 60-minute budget (implementation ~14, synthetic verification ~11, packaging ~8). One immutable commit **411457d**, verified present on origin/main; only this task's files committed (pathspec), concurrent workers' staged files untouched.
+
+Deliverables under `research_notes/td_minimal_collector/`: `td_min_collector.py` (isolated reduced collector importing the accepted fd03906 modules — shared RollingCreditLimiter, pinned verify_sources, accepted validate_input, gated construct_4h; pagination, retry, REV7/REV30 removed from executable scope; nothing else weakened); `manifest_reduced.json` (frozen: 51 requests / 51 credits — PAR 20 + PAR4H 20 + ADJ 3 + SPOT 8 — on the frozen 20-symbol diagnostic universe, max_attempts=1, pagination=false, one-response bar bounds verified ≤ outputsize for every request); `prerequisites.json` (Basic entitlement evidence-pinned; retention BOUNDED_RESOLVED with the user-supplied-provenance caveat; interval semantics INSUFFICIENT); `tests/` — **26/26 synthetic tests PASS** covering all spec point-5 cases (valid completion/reuse, no-overwrite, crash-after-STARTED → AMBIGUOUS/HOLD never auto-recalled, persistent terminal HOLD across restart, foreign/stale/malformed receipts, missing values, output-cap truncation HOLD, HTTP/API/meta-binding failures, limiter refusal with zero attempts recorded, invalid manifest, session + as-of V11 boundary checks, zero-call source guarantee).
+
+Zero vendor calls, confirmed by construction: no vendor transport exists in the build (the only transport raises TransportDisabled; no HTTP client in source, asserted by test). Zero credits, zero spend, no retries, no production/frozen files touched, no stored Tiingo data processed. Registry EXP-20261007-TD-PILOT updated: new distinct variation `r4-minimal-collector` + task_log entry; r1–r3 adverse evidence and budgets retained unchanged; spec limitations stated verbatim in registry and README (cannot establish revision stability, corporate-action fidelity, decision-impact warmup, complete C1 parity, or strategy edge).
+
+HOLDs recorded by design: pilot execution remains HOLD (P4 clearance + separate Mike authorization before any real vendor call); session-aligned 1H→4H construction HOLD/INSUFFICIENT (no officially sourced interval-start semantics; native 4H diagnostic only); decision-impact warmup HOLD/INSUFFICIENT (unproven). Defect found and fixed during verification: vendor string OHLC numerically converted before the accepted validate() (V10 comparisons are dtype-sensitive). Environment note: system Python lacks pandas_market_calendars (the harness's pinned dep); tests ran in a throwaway /tmp venv with the harness's pinned requirements — no repo environment changed.
+
+Authorization anchor: Mike's direct instruction to Muse, 2026-10-12 12:48 ET ("Proceed with Twelve Data task 6125163484 under the 60-minute budget"). SENT/DELIVERED: Slack thread under the 2026-10-12 full-status post + this bridge_thread entry. Awaiting ChatGPT read-only review (30-min budget per spec).
+
+— Muse
