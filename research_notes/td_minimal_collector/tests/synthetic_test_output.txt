@@ -1,0 +1,42 @@
+QF-TD-MINIMAL-COLLECTOR-20261012-01 r1 — synthetic test output
+Interpreter: /tmp/tdvenv (throwaway) with pilot_harness pinned requirements (pandas==2.2.3, pandas_market_calendars==4.5.1) — system python lacks pandas_market_calendars; no repo env changed.
+Zero vendor calls; all transports synthetic.
+
+{
+ "manifest_errors": [],
+ "requests": 51
+}
+{
+ "manifest_errors": [],
+ "prerequisite_failures": [],
+ "dispatch": "BLOCKED (zero-call build: no vendor transport)"
+}
+
+PASS  valid completion  {'dispatched': 1, 'reused': 0, 'completed': 1, 'outcome': 'COMPLETE'}
+PASS  reuse after restart: no new dispatch, no new credit  {'dispatched': 0, 'reused': 1, 'completed': 1, 'outcome': 'COMPLETE'}
+PASS  construction gate: CONSTRUCTION_HOLD recorded (semantics INSUFFICIENT)  CREDIT_RESERVED,STARTED,RECEIVED,CONSTRUCTION_HOLD,COMPLETED
+PASS  foreign receipt (no RECEIVED record) -> HOLD, zero dispatch  HOLD: receipt file present but no RECEIVED record (foreign)
+PASS  foreign receipt bytes untouched (no overwrite)  
+PASS  stale/corrupt receipt (hash mismatch) -> HOLD, no re-dispatch  HOLD: receipt hash mismatch vs lifecycle record (stale/corrupt)
+PASS  malformed receipt (unparseable) -> HOLD  HOLD: receipt unparseable (malformed)
+PASS  started-without-receipt after crash -> AMBIGUOUS/HOLD, never auto-recalled  HOLD (persistent): AMBIGUOUS: REQ-TST-01 started without receipt; never auto-recalled
+PASS  HTTP 500 -> terminal HOLD  HOLD: HTTP 500 for REQ-TST-01
+PASS  HOLD persists across restart, no second attempt  HOLD (persistent): HTTP 500 for REQ-TST-01
+PASS  rejected payload preserved (bytes + hash)  
+PASS  API status=error payload -> HOLD  HOLD: API status 'error' for REQ-TST-01: limit
+PASS  meta symbol mismatch -> HOLD (identity binding)  HOLD: meta binding mismatch for REQ-TST-01 (symbol/interval)
+PASS  missing values -> HOLD (incomplete coverage)  HOLD: missing/empty values for REQ-TST-01
+PASS  rows == outputsize -> HOLD (output-cap uncertainty, no pagination)  HOLD: output-cap uncertainty for REQ-TST-01: 7 rows at outputsize=7 (possible truncation; no pagination in scope)
+PASS  limiter refusal -> REFUSED, zero attempts recorded  REFUSED: shared rolling limiter refused credit reservation
+PASS  invalid manifest: retry present rejected  
+PASS  invalid manifest: REV7 leg rejected  
+PASS  invalid manifest: bound/outputsize violation rejected  
+PASS  shipped reduced manifest validates clean  []
+PASS  shipped manifest: 51 requests, no REV/pagination/retry  
+PASS  prerequisites pass on shipped evidence (sources pinned + entitlement/retention)  
+PASS  missing prerequisites file -> dispatch blocked  
+PASS  session boundary: complete regular session validates (accepted path)  
+PASS  as-of boundary: bars after as_of rejected (V11, never silently dropped)  
+PASS  zero-call build: no HTTP client usage in collector source  
+
+26/26 synthetic tests passed

@@ -310,6 +310,13 @@
           "result": "HOLD per 6099318779 — incomplete synchronization (schema correction required)",
           "verdict_ref": "6099318779",
           "evidence_pin": "c56dd48"
+        },
+        {
+          "variation_id": "r4-minimal-collector",
+          "description": "QF-TD-MINIMAL-COLLECTOR-20261012-01 r1 (Issue #1 comment 6125163484; Mike direct authorization 2026-10-12 12:48 ET, 60-min budget): isolated reduced collector reusing accepted fd03906 modules; pagination/retry/REV7/REV30 removed from executable scope; frozen no-pagination/no-retry manifest (51 requests, 51 credits, frozen 20-symbol diagnostic universe); zero-call build (no vendor transport); 26/26 synthetic tests. Distinct reduced-scope revision — r1–r3 variations and their adverse evidence/budgets above are retained unchanged.",
+          "result": "BUILT + synthetic verification PASS (26/26). Pilot execution remains HOLD (P4 clearance + separate Mike authorization required for any vendor call; none made). Limitations: passing this collector cannot establish revision stability, corporate-action fidelity, decision-impact warmup, complete C1 parity, or strategy edge; interval semantics INSUFFICIENT (construction HOLD, native 4H diagnostic only); decision-impact warmup HOLD/INSUFFICIENT.",
+          "verdict_ref": "6125163484",
+          "evidence_pin": "research_notes/td_minimal_collector/"
         }
       ],
       "baseline_design": "Synthetic fixtures with pinned expected outputs (W01-W19, 19/19 PASS); ChatGPT independent adjudication as adversarial baseline",
@@ -1181,6 +1188,17 @@
       "decision": "ChatGPT adjudication 6100626737 (Tiingo observer/fill/parity HOLD effective immediately)",
       "findings": "PLAN UNKNOWN — TREAT AS STARTER (adjudication 6101353568 correction: free-tier metadata does not prove entitlement). 7 artifact groups (~378 MB) inventoried; NOT deletion-ready (incomplete hashes, no backup/lineage enumeration). CIK/EFTS/ledger/log rows PROVENANCE-PENDING. §1.6(b) = prompt deletion, no grace period. Paid plan not a demonstrated retrospective cure. Adjudication: PASS as preliminary report; HOLD for entitlement/classification/disposition.",
       "amendment": "research_notes/TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md §6"
+    },
+    {
+      "task_id": "QF-TD-MINIMAL-COLLECTOR-20261012-01",
+      "revision": "r1",
+      "state": "WORK-RESULT-DELIVERED",
+      "evidence_pin": "research_notes/td_minimal_collector/",
+      "budget": "60 min total (implementation + synthetic verification + packaging); no second repair allocation",
+      "actual_minutes": 33,
+      "effort_breakdown": "implementation ~14 min; synthetic verification ~11 min (incl. one defect fixed: string-OHLC numeric conversion before accepted validation path; throwaway pinned-deps venv — system python lacks pandas_market_calendars); packaging ~8 min",
+      "scope": "zero vendor calls, zero credits, zero spend, zero retries, no performance runs, no production/frozen-system edits, no sealed-validation access; isolated collector only",
+      "decision": "Spec: Issue #1 comment 6125163484. Authorization: Mike direct, main chat 2026-10-12 12:48 ET (relayed claims held 4x prior; direct word only)."
     }
   ]
 }
