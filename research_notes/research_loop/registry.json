@@ -12,19 +12,19 @@
         },
         {
           "description": "Isolated offline harness, 15/15 tests",
-          "result": "HOLD by ChatGPT 6037842097 \u2014 4 gaps",
+          "result": "HOLD by ChatGPT 6037842097 — 4 gaps",
           "variation_id": "v3",
           "verdict_ref": "6037842097"
         },
         {
           "description": "Bounded repair, 25/25 tests",
-          "result": "HOLD by ChatGPT 6039806101 \u2014 3 load-bearing issues",
+          "result": "HOLD by ChatGPT 6039806101 — 3 load-bearing issues",
           "variation_id": "v4",
           "verdict_ref": "6039806101"
         },
         {
           "description": "Mandatory as-of, persistent limiter, unconditional verification; 35/35",
-          "result": "HOLD by ChatGPT 6043633584 \u2014 3 defects",
+          "result": "HOLD by ChatGPT 6043633584 — 3 defects",
           "variation_id": "v5",
           "verdict_ref": "6043633584"
         },
@@ -37,9 +37,9 @@
       ],
       "baseline_design": "Synthetic fixtures with pinned expected outputs; ChatGPT independent probes as adversarial baseline",
       "code_pin": "fd03906",
-      "costs": "N/A \u2014 offline synthetic",
+      "costs": "N/A — offline synthetic",
       "created_at": "2026-10-07T14:00:00Z",
-      "dataset_pin": "synthetic only \u2014 no vendor data",
+      "dataset_pin": "synthetic only — no vendor data",
       "decision_refs": [
         "6044057762 (ChatGPT acceptance)",
         "fd03906 (commit)"
@@ -48,16 +48,16 @@
       "experiment_id": "EXP-20261007-HARNESS-V56",
       "failure_data_source": "N/A",
       "failure_market": "N/A",
-      "failure_reason": "N/A \u2014 passed",
+      "failure_reason": "N/A — passed",
       "failure_strategy_family": "N/A",
       "failure_timeframe": "N/A",
       "hypothesis": "An isolated offline synthetic harness can validate Twelve Data pilot input construction, rate limiting, and source verification without vendor calls.",
       "limitations": [
         "C4 retention + endpoint-credit entitlements remain MISSING",
-        "Synthetic only \u2014 no vendor behavior validated"
+        "Synthetic only — no vendor behavior validated"
       ],
       "literature_intake": "UNKNOWN",
-      "next_action": "NONE \u2014 PASS scoped to isolated offline prerequisite only",
+      "next_action": "NONE — PASS scoped to isolated offline prerequisite only",
       "output_pin": "50/50 tests passing (tests/synthetic_test_output.txt in fd03906)",
       "owner": "Muse",
       "primary_sources": [
@@ -83,24 +83,24 @@
         "unit": "rounds",
         "used": "6 repair rounds"
       },
-      "validation_split": "N/A \u2014 prerequisite harness, not a strategy test",
-      "verdict": "PASS \u2014 scoped to isolated offline/synthetic harness prerequisite ONLY. Never grants deployment, CP2, or performance clearance."
+      "validation_split": "N/A — prerequisite harness, not a strategy test",
+      "verdict": "PASS — scoped to isolated offline/synthetic harness prerequisite ONLY. Never grants deployment, CP2, or performance clearance."
     },
     {
-      "acceptance_criteria": "UNKNOWN \u2014 not preregistered (exploratory diagnostic)",
+      "acceptance_criteria": "UNKNOWN — not preregistered (exploratory diagnostic)",
       "attempted_variations": [
         {
           "description": "ORB v1 vs 1000 random variants each on QQQ/SPY",
-          "result": "HOLD \u2014 null mismatch, overstated claims",
+          "result": "HOLD — null mismatch, overstated claims",
           "variation_id": "base",
           "verdict_ref": "6046384583"
         }
       ],
-      "baseline_design": "1000 random-entry variants per symbol: same nominal risk unit, 2R target, random bar + random direction. NOTE (ChatGPT): risk distance mismatch \u2014 ORB realized risk differs from random nominal risk. Null does not match estimand.",
+      "baseline_design": "1000 random-entry variants per symbol: same nominal risk unit, 2R target, random bar + random direction. NOTE (ChatGPT): risk distance mismatch — ORB realized risk differs from random nominal risk. Null does not match estimand.",
       "code_pin": "838bb89 (research_notes/orb_15m_random_benchmark_20261007/artifacts/orb_test.py, SHA256 01416fb9...)",
       "costs": "1bp/3bp/5bp per-side SCENARIOS (not measured fills)",
       "created_at": "2026-10-07T18:20:00Z",
-      "dataset_pin": "Tiingo IEX 15m, QQQ+SPY, 2024-10-01 to 2026-10-07, 527 days each \u2014 hashes in ARTIFACTS_MANIFEST.md",
+      "dataset_pin": "Tiingo IEX 15m, QQQ+SPY, 2024-10-01 to 2026-10-07, 527 days each — hashes in ARTIFACTS_MANIFEST.md",
       "decision_refs": [
         "6046384583 (ChatGPT evidence review)",
         "838bb89 (artifacts + corrections)"
@@ -114,14 +114,14 @@
       "failure_timeframe": "15m intraday",
       "hypothesis": "A 15-minute opening range breakout (first 15m high/low, entry on close outside, stop at opposite side, 2R target) has timing edge beyond random entries on QQQ/SPY.",
       "limitations": [
-        "Null mismatch: ORB entry at breakout close vs random at range width \u2014 risk distances differ",
+        "Null mismatch: ORB entry at breakout close vs random at range width — risk distances differ",
         "Tiingo IEX prints only, not consolidated tape",
-        "No preregistration \u2014 exploratory",
+        "No preregistration — exploratory",
         "Per-trade ledger unavailable (aggregates only)",
         "2026 weakness is descriptive, not causal"
       ],
       "literature_intake": "UNKNOWN",
-      "next_action": "Fix null design (matched risk distance) before any rerun \u2014 per ChatGPT 6046384583",
+      "next_action": "Fix null design (matched risk distance) before any rerun — per ChatGPT 6046384583",
       "output_pin": "838bb89 (report + corrections)",
       "owner": "Muse",
       "primary_sources": [
@@ -145,7 +145,7 @@
         "used": 1000
       },
       "validation_split": "Single 2-year window; no held-out. QQQ/SPY correlated, not independent.",
-      "verdict": "HOLD \u2014 exploratory diagnostic. No genuine-edge or universal nontradeability verdict accepted. Do not rerun until null design is fixed."
+      "verdict": "HOLD — exploratory diagnostic. No genuine-edge or universal nontradeability verdict accepted. Do not rerun until null design is fixed."
     },
     {
       "acceptance_criteria": "ChatGPT adjudication",
@@ -167,7 +167,7 @@
           "verdict_ref": "ChatGPT 6048255893"
         }
       ],
-      "baseline_design": "N/A \u2014 planning document",
+      "baseline_design": "N/A — planning document",
       "code_pin": "65e75ca",
       "costs": "Effort estimates with evidence-vs-assumption separation; Route 1 bounded to 2 weeks (to 2026-10-21)",
       "created_at": "2026-10-07T17:30:00Z",
@@ -185,9 +185,9 @@
       "failure_reason": "N/A",
       "failure_strategy_family": "N/A",
       "failure_timeframe": "N/A",
-      "hypothesis": "N/A \u2014 decision memo, not a strategy test. Recommends Route 3 (narrow prospective capture) primary, Route 1 (Twelve Data pilot) bounded parallel, Route 2 historical not recommended.",
+      "hypothesis": "N/A — decision memo, not a strategy test. Recommends Route 3 (narrow prospective capture) primary, Route 1 (Twelve Data pilot) bounded parallel, Route 2 historical not recommended.",
       "limitations": [
-        "Planning only \u2014 no acquisition, spending, performance, or frozen-system authorization"
+        "Planning only — no acquisition, spending, performance, or frozen-system authorization"
       ],
       "literature_intake": "UNKNOWN",
       "next_action": "Feed gates evidence table (this handoff item 3); Route 1 bounded evidence-gathering ceiling to 2026-10-21",
@@ -216,7 +216,7 @@
     {
       "acceptance_criteria": "ChatGPT review",
       "attempted_variations": [],
-      "baseline_design": "N/A \u2014 survey",
+      "baseline_design": "N/A — survey",
       "code_pin": "N/A",
       "costs": "N/A",
       "created_at": "2026-10-07T18:00:00Z",
@@ -231,7 +231,7 @@
       "failure_reason": "N/A",
       "failure_strategy_family": "N/A",
       "failure_timeframe": "N/A",
-      "hypothesis": "N/A \u2014 literature survey. Maps professional quant validation methods (DSR, PBO/CSCV, permutation nulls, Harvey-Liu haircuts) for adoption consideration.",
+      "hypothesis": "N/A — literature survey. Maps professional quant validation methods (DSR, PBO/CSCV, permutation nulls, Harvey-Liu haircuts) for adoption consideration.",
       "limitations": [
         "Secondary/community examples separated from primary findings in corrections table"
       ],
@@ -264,7 +264,7 @@
         "used": "N/A"
       },
       "validation_split": "N/A",
-      "verdict": "PENDING \u2014 accepted as research reference; proposed operational gates NOT adopted (per ChatGPT 6046384583)"
+      "verdict": "PENDING — accepted as research reference; proposed operational gates NOT adopted (per ChatGPT 6046384583)"
     },
     {
       "acceptance_criteria": "ChatGPT P4 spec clearance of the readiness packet; no pilot execution before P4 passes",
@@ -286,37 +286,37 @@
         {
           "variation_id": "r1-packet",
           "description": "QF-TD-PILOT-PACKET-20261010-02: pilot packet amendment (document pass)",
-          "result": "HOLD per 6098718465 \u2014 8 load-bearing defects; P4 not cleared",
+          "result": "HOLD per 6098718465 — 8 load-bearing defects; P4 not cleared",
           "verdict_ref": "6098718465",
           "evidence_pin": "35e4063"
         },
         {
           "variation_id": "r1-registry",
           "description": "QF-REGISTRY-RECONCILE-20261010-03: registry bookkeeping",
-          "result": "HOLD per 6098718465 \u2014 task_log empty, ledger gaps, stale pilot fields",
+          "result": "HOLD per 6098718465 — task_log empty, ledger gaps, stale pilot fields",
           "verdict_ref": "6098718465",
           "evidence_pin": "35e4063"
         },
         {
           "variation_id": "r2-readiness",
           "description": "QF-TD-PILOT-READINESS-R2-20261010-04: readiness packet + pinned wrapper + 10/10 fixtures",
-          "result": "HOLD per 6099318779 \u2014 interval contract PASS but wrapper/manifest not execution-ready (11 code-level defects)",
+          "result": "HOLD per 6099318779 — interval contract PASS but wrapper/manifest not execution-ready (11 code-level defects)",
           "verdict_ref": "6099318779",
           "evidence_pin": "c56dd48"
         },
         {
           "variation_id": "r2-registry",
           "description": "QF-REGISTRY-RECONCILE-R2-20261010-05: registry bookkeeping",
-          "result": "HOLD per 6099318779 \u2014 incomplete synchronization (schema correction required)",
+          "result": "HOLD per 6099318779 — incomplete synchronization (schema correction required)",
           "verdict_ref": "6099318779",
           "evidence_pin": "c56dd48"
         }
       ],
       "baseline_design": "Synthetic fixtures with pinned expected outputs (W01-W19, 19/19 PASS); ChatGPT independent adjudication as adversarial baseline",
       "code_pin": "fd03906 (harness prerequisite)",
-      "costs": "Free tier only \u2014 8 credits/min, 800/day. No spending authorized.",
+      "costs": "Free tier only — 8 credits/min, 800/day. No spending authorized.",
       "created_at": "2026-10-07T10:00:00Z",
-      "dataset_pin": "Stage-0 private snapshots: aapl_1h sha c9c19656afaa\u2026, aapl_4h sha 3bea69e28dc\u2026 (private, git-ignored)",
+      "dataset_pin": "Stage-0 private snapshots: aapl_1h sha c9c19656afaa…, aapl_4h sha 3bea69e28dc… (private, git-ignored)",
       "decision_refs": [
         "Mike: 'Just run if chat says' (standing authorization, gated)",
         "Stage-0 executed on Mike's direct 2026-10-10 authorization (not relayed clearance)",
@@ -335,11 +335,11 @@
       "hypothesis": "Twelve Data free tier can supply the history, coverage, and retention scope required for pilot qualification through the repaired offline harness.",
       "limitations": [
         "C4 retention BOUNDED RESOLVED (v7): active-account personal/internal retention; 30-day deletion after termination. Provenance: Mike-supplied Dooz AI-support transcript, user-supplied, NOT independently authenticated.",
-        "Corporate-action endpoint leg INSUFFICIENT (endpoint unnamed, weight unevidenced) \u2014 no corporate-action requests in manifest",
+        "Corporate-action endpoint leg INSUFFICIENT (endpoint unnamed, weight unevidenced) — no corporate-action requests in manifest",
         "No vendor calls until ChatGPT P4 clears the R2 readiness packet"
       ],
       "literature_intake": "UNKNOWN",
-      "next_action": "P4 HOLD \u2014 await ChatGPT independent review of r3 packet; no pilot execution until P4 passes",
+      "next_action": "P4 HOLD — await ChatGPT independent review of r3 packet; no pilot execution until P4 passes",
       "output_pin": "TD-PILOT-READINESS-R3-20261010.md + request_manifest.json + pilot_acquire.py (r3, pending commit)",
       "owner": "Muse",
       "primary_sources": [
@@ -373,9 +373,9 @@
           }
         ]
       },
-      "robustness_diagnostics": "INSUFFICIENT \u2014 no vendor-behavior robustness data; synthetic fixtures only; corporate-action leg excluded",
+      "robustness_diagnostics": "INSUFFICIENT — no vendor-behavior robustness data; synthetic fixtures only; corporate-action leg excluded",
       "rule_spec_version": "v7 + 20261010 amendment + R2 readiness packet; P4 PENDING",
-      "state": "HOLD \u2014 P4 (ChatGPT spec clearance)",
+      "state": "HOLD — P4 (ChatGPT spec clearance)",
       "title": "Twelve Data free-tier pilot (gated)",
       "trial_budget": {
         "allocated": "free tier 800/day; pilot expected 91, max 333 (+2 spent)",
@@ -383,7 +383,7 @@
         "used": 2
       },
       "validation_split": "UNKNOWN",
-      "verdict": "PENDING \u2014 pilot gated on P4",
+      "verdict": "PENDING — pilot gated on P4",
       "subtrials": [
         {
           "subtrial_id": "EXP-20261007-TD-PILOT/STAGE-0",
@@ -432,7 +432,7 @@
             "QF-TD-PILOT-READINESS-R2-20261010-04"
           ],
           "artifact": "research_notes/TD_PILOT_READINESS_R2_20261010.md + pilot_acquire.py + 10/10 fixtures",
-          "verdict": "HOLD per 6099318779 \u2014 11 code-level defects; interval contract PASS",
+          "verdict": "HOLD per 6099318779 — 11 code-level defects; interval contract PASS",
           "evidence_pin": "c56dd48"
         }
       ],
@@ -440,13 +440,13 @@
         "packet": "research_notes/TD_PILOT_READINESS_R2_20261010.md",
         "wrapper": "research_notes/pilot_harness/pilot_acquire.py",
         "wrapper_sha256": "7739aec8a2bb3017e4373a2055aaf177dca998dad52cbcdac01b42ef74af37e9",
-        "wrapper_fixtures": "research_notes/pilot_harness/tests/test_acquisition_wrapper.py \u2014 10/10 PASS",
+        "wrapper_fixtures": "research_notes/pilot_harness/tests/test_acquisition_wrapper.py — 10/10 PASS",
         "defects_addressed": 8,
         "window": "21 NYSE sessions 2026-09-08..2026-10-06; datetime-precision bounds",
         "budget_expected_credits": 91,
         "budget_max_credits": 333,
         "interval_contract": "interval-start (official Twelve Data API reference)",
-        "status": "FOR REVIEW \u2014 no execution authorized"
+        "status": "FOR REVIEW — no execution authorized"
       }
     },
     {
@@ -464,7 +464,7 @@
           "description": "Shared gate + authorship meta-correction per ChatGPT 6047556037",
           "result": "21/21 fixtures passing; 3 exact probes held open (absent dependency ID, negative budgets, empty dispatch pin)",
           "variation_id": "v1.1",
-          "verdict_ref": "ChatGPT 6048255893 (acceptance scope; 3 probes \u2192 final micro-patch)"
+          "verdict_ref": "ChatGPT 6048255893 (acceptance scope; 3 probes → final micro-patch)"
         },
         {
           "code_pin": "6f9595a",
@@ -476,9 +476,9 @@
       ],
       "baseline_design": "ChatGPT independent fixture reproduction + three pinned counterexamples (absent dependency ID, negative/inconsistent budgets, empty dispatch pin)",
       "code_pin": "6f9595a (final)",
-      "costs": "N/A \u2014 design/record only",
+      "costs": "N/A — design/record only",
       "created_at": "2026-10-07T21:10:00Z",
-      "dataset_pin": "N/A \u2014 synthetic fixtures only",
+      "dataset_pin": "N/A — synthetic fixtures only",
       "decision_refs": [
         "6048657174 (ChatGPT scoped PASS)",
         "6f9595a (commit)"
@@ -487,18 +487,18 @@
       "experiment_id": "EXP-20261007-LOOP-SCAFFOLD",
       "failure_data_source": "N/A",
       "failure_market": "N/A",
-      "failure_reason": "N/A \u2014 passed (scoped)",
+      "failure_reason": "N/A — passed (scoped)",
       "failure_strategy_family": "N/A",
       "failure_timeframe": "N/A",
       "hypothesis": "A JSON registry + state machine + cycle procedure can coordinate bounded research-loop bookkeeping without executing runs, scheduling agents, or invoking external reviewers.",
       "limitations": [
-        "Single-process only \u2014 no concurrency safety claimed",
-        "A nonempty evidence string does not authenticate evidence or establish entitlement \u2014 reviewer must independently check external prerequisites",
-        "Does not schedule Muse, invoke Claude, or deploy an execution service \u2014 the existing watch remains the coordinator",
+        "Single-process only — no concurrency safety claimed",
+        "A nonempty evidence string does not authenticate evidence or establish entitlement — reviewer must independently check external prerequisites",
+        "Does not schedule Muse, invoke Claude, or deploy an execution service — the existing watch remains the coordinator",
         "Seed registry is an inventory, not live state synchronized with decisions"
       ],
       "literature_intake": "UNKNOWN",
-      "next_action": "NONE \u2014 scaffold allocation closed per 6048657174. No further iterative scaffold repair authorized.",
+      "next_action": "NONE — scaffold allocation closed per 6048657174. No further iterative scaffold repair authorized.",
       "output_pin": "28/28 fixtures passing (research_notes/research_loop/fixtures/fixture_output.txt in 6f9595a)",
       "owner": "Muse",
       "primary_sources": [
@@ -506,7 +506,7 @@
         "Issue #1 comment 6046569258 (authorization clarification, relayed; Mike confirmed 'Yes do what chat says' in chat 2026-10-07)"
       ],
       "repair_budget": {
-        "allocated_rounds": "final allocation only \u2014 no further iterative repair authorized",
+        "allocated_rounds": "final allocation only — no further iterative repair authorized",
         "used_rounds": 3
       },
       "robustness_diagnostics": [
@@ -515,14 +515,14 @@
       ],
       "rule_spec_version": "research_notes/research_loop/ (README, registry_schema.md, state_machine.md, cycle_procedure.md, failure_memory.md)",
       "state": "PASS",
-      "title": "Research-loop registry/state-machine scaffold (v1 \u2192 v1.1 \u2192 v1.2)",
+      "title": "Research-loop registry/state-machine scaffold (v1 → v1.1 → v1.2)",
       "trial_budget": {
         "allocated": "scoped: final micro-patch only",
         "unit": "scaffold versions",
         "used": "3 versions"
       },
-      "validation_split": "N/A \u2014 scaffold, not a strategy test",
-      "verdict": "PASS \u2014 narrowly scoped to final requested synthetic/reference scaffold corrections (ChatGPT 6048657174). Close scaffold allocation; no further iterative scaffold repair authorized. NOT acceptance of: deployed execution runner, vendor acquisition, crash-recovery guarantees, Muse scheduling, automatic Claude invocation, CP2, or performance."
+      "validation_split": "N/A — scaffold, not a strategy test",
+      "verdict": "PASS — narrowly scoped to final requested synthetic/reference scaffold corrections (ChatGPT 6048657174). Close scaffold allocation; no further iterative scaffold repair authorized. NOT acceptance of: deployed execution runner, vendor acquisition, crash-recovery guarantees, Muse scheduling, automatic Claude invocation, CP2, or performance."
     },
     {
       "acceptance_criteria": "Full-universe (831-ticker) WORK RESULT -> ChatGPT adversarial review BEFORE any Phase 1B. Gate: 1A or preregistered 1B VCP variant shows persistent separation; failed 1A alone does not reject VCP; both dead -> park lane.",
@@ -617,7 +617,7 @@
         "efts_validations": "HOLD: 128 pending require vendor API calls (zero permitted this task).",
         "interim_result": "ADVERSE: both variants FAIL persistence rule at all 3 horizons (negative mean, 3/8 subperiods, p>>0.05). 12M annualized excess: V1 -14.92%, V2 -17.35%.",
         "november_batch": "HOLD until >=2026-11-01 (Tiingo 500-symbol/month cap).",
-        "variant2_reconciliation": "Run plan \u00a74 (frozen 2026-10-01, pre-result): V2 = V1 AND adjClose > 250DMA, documented as judgment-call operationalization of spec's '12-month trend condition'. No post-result reinterpretation."
+        "variant2_reconciliation": "Run plan §4 (frozen 2026-10-01, pre-result): V2 = V1 AND adjClose > 250DMA, documented as judgment-call operationalization of spec's '12-month trend condition'. No post-result reinterpretation."
       },
       "next_eligible_step": "ChatGPT adversarial review of this evidence package; then November full-universe run (one preregistered run).",
       "pins": {
@@ -710,8 +710,8 @@
       "effort_minutes": 35,
       "experiment_id": "EXP-20261008-VCP-1A-INTERVAL-AUDIT",
       "findings": [
-        "Class A (4): series terminates within +/-30d of membership end \u2014 genuine acquisitions (ABMD, BXLT, CTXS, HOT); eligible for frozen section-5 flat-hold; guard's +/-9d calendar window too tight for settlement lag.",
-        "Class B (101): series continues median 1956d past membership end; 73 with exactly 1 CIK (stable identity), 28 absent from CIK file (spot-checked same-company). Ordinary index removals; 8,071 membership-months of valid history dropped \u2014 MATERIAL.",
+        "Class A (4): series terminates within +/-30d of membership end — genuine acquisitions (ABMD, BXLT, CTXS, HOT); eligible for frozen section-5 flat-hold; guard's +/-9d calendar window too tight for settlement lag.",
+        "Class B (101): series continues median 1956d past membership end; 73 with exactly 1 CIK (stable identity), 28 absent from CIK file (spot-checked same-company). Ordinary index removals; 8,071 membership-months of valid history dropped — MATERIAL.",
         "Class C (26): series starts after interval end (ticker reuse, e.g. ADT/APC) or trivially short series (BK 5 bars, pull deficiency); quarantine correct.",
         "408 no-EOD rows: 379 = November batch not yet pulled (expected); 29 = October-batch Tiingo 404 pull failures; 6 WARN rows were admitted (kept, clamped), not quarantined.",
         "Preflight invariant fwd_complete_<h> == (fwd_status_<h> in {complete,delisted_flat}) verified on 4 producer-built synthetic scenarios (0 violations); adversarial corrupted row caught; missing-flag schema hard-errors."
@@ -743,9 +743,9 @@
       "experiment_id": "EXP-20261008-TD-RETENTION-UPDATE",
       "findings": [
         "P3 RESOLVED (bounded): Basic (free) permits personal/internal backtesting storage while account active; all downloaded data deleted within 30 days of cancellation/termination.",
-        "PROVENANCE: Mike-supplied Twelve Data Dooz AI-support transcript \u2014 user-supplied, NOT independently authenticated; not a license amendment; no perpetual rights claimed.",
+        "PROVENANCE: Mike-supplied Twelve Data Dooz AI-support transcript — user-supplied, NOT independently authenticated; not a license amendment; no perpetual rights claimed.",
         "P1 RESOLVED at public-plan level: /time_series = 1 credit/symbol; Basic 8 credits/min, 800/day (ChatGPT 6049455862).",
-        "P2 resolves during execution (coverage proof); P4 spec clearance PENDING \u2014 the single remaining gate.",
+        "P2 resolves during execution (coverage proof); P4 spec clearance PENDING — the single remaining gate.",
         "Corporate-action endpoint weights still TBD with entitlement evidence before execution.",
         "No manufactured HOLD: packet v7 pin returned; acquisition awaits P4 clearance."
       ],
@@ -763,8 +763,8 @@
       },
       "source_adjudication": "Issue #1 comment 6052566220; Slack 1791435244.782769 (2026-10-08)",
       "state": "HOLD",
-      "state_reason": "Packet updated to v7 with retention terms; prerequisite check complete. P4 (ChatGPT spec clearance) still PENDING \u2014 no vendor call until cleared. No acquisition executed.",
-      "title": "Twelve Data retention clarification \u2014 P3/C4 bounded resolution (QF follow-up)",
+      "state_reason": "Packet updated to v7 with retention terms; prerequisite check complete. P4 (ChatGPT spec clearance) still PENDING — no vendor call until cleared. No acquisition executed.",
+      "title": "Twelve Data retention clarification — P3/C4 bounded resolution (QF follow-up)",
       "trial_budget": {
         "allocated": 1,
         "unit": "bounded free personal/internal pilot run",
@@ -791,7 +791,7 @@
       "unresolved": [
         "28 no-CIK tickers remain AMBIGUOUS/HOLD",
         "CTXS tail staleness",
-        "QF-VCP-1A-NOV-INTERVAL-PREFLIGHT-20261101-07: November preflight gate PRESERVED \u2014 classify new END_MISMATCH intervals, pin superseding manifest, run preflights, then STOP for ChatGPT review before panel construction. Phase 1B / Claude checkpoint remain HOLD."
+        "QF-VCP-1A-NOV-INTERVAL-PREFLIGHT-20261101-07: November preflight gate PRESERVED — classify new END_MISMATCH intervals, pin superseding manifest, run preflights, then STOP for ChatGPT review before panel construction. Phase 1B / Claude checkpoint remain HOLD."
       ],
       "history_preserved": true,
       "state_history": [
@@ -826,7 +826,7 @@
         "Yahoo official terms: UNKNOWN (legal.yahoo.com fetch blocked by policy); all Yahoo entitlement/depth/revision facts UNKNOWN",
         "Tiingo historical depth + revision/backfill policy: UNKNOWN",
         "PROSPECTIVE RAW CAPTURE NOT IMPLEMENTED: harness evaluates and discards Yahoo bars; no raw OHLCV persistence in v54_forward_harness.py",
-        "Realized forward-test signals: 30 (A7/B21/C2) over 2026-09-15..2026-10-10, ~8.4/wk \u2014 separate from ~10/wk assumption"
+        "Realized forward-test signals: 30 (A7/B21/C2) over 2026-09-15..2026-10-10, ~8.4/wk — separate from ~10/wk assumption"
       ],
       "limitations": "Route qualification HOLD; Yahoo entitlement unknown; Tiingo Starter retention prohibition; no versioned raw-bar capture"
     },
@@ -839,6 +839,93 @@
       "scope": "read-only inventory; zero vendor calls/spend/performance/code changes/deletion",
       "artifacts": "research_notes/TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md",
       "hold": "All Tiingo observer/fill/parity work HELD effective immediately. Mike decision pending: (a) deletion/cessation, (b) paid plan, (c) written permission."
+    },
+    {
+      "experiment_id": "EXP-20261012-CRT-4H",
+      "title": "Candle Range Theory outside-claim report",
+      "owner": "Muse",
+      "created_at": "2026-10-12T13:12:03Z",
+      "state": "HOLD",
+      "hypothesis": "Reported claim: 4H sweep of prior candle extreme and close back inside predicts a move toward its far extreme; exact tested hypothesis UNKNOWN.",
+      "primary_sources": [
+        "UNKNOWN"
+      ],
+      "literature_intake": {
+        "source": "Reported @think_ict; primary post URL UNKNOWN",
+        "finding": "Muse reports FAIL; unreviewed",
+        "hypothesis_derived": "UNKNOWN"
+      },
+      "rule_spec_version": "UNKNOWN",
+      "code_pin": "UNKNOWN",
+      "dataset_pin": "UNKNOWN",
+      "output_pin": "UNKNOWN",
+      "dependencies": [
+        "EXTERNAL: immutable preregistration, authorization/budget and code/data/output evidence required",
+        "EXTERNAL: data permissions/provenance gate; retained Tiingo processing HOLD"
+      ],
+      "next_action": "Review existing artifacts requested in Issue #1 comment 6125000616 once Muse delivers; no rerun.",
+      "attempted_variations": [
+        {
+          "variation_id": "reported-long",
+          "description": "811 long trades, 14 watchlist names, 4H Oct2023-Sep2026; exact rules UNKNOWN",
+          "result": "Reported -0.358R; not independently accepted",
+          "verdict_ref": "Slack 1791810723.802559"
+        },
+        {
+          "variation_id": "reported-stricter-sweep",
+          "description": "Stricter sweep definition UNKNOWN",
+          "result": "Reported -0.261R; not independently accepted",
+          "verdict_ref": "Slack 1791810723.802559"
+        },
+        {
+          "variation_id": "reported-short",
+          "description": "Short leg; exact rules and trial count UNKNOWN",
+          "result": "Reported +0.165R; HOOD dominates; not independently accepted",
+          "verdict_ref": "Slack 1791810723.802559"
+        },
+        {
+          "variation_id": "reported-combined",
+          "description": "Combination rule UNKNOWN",
+          "result": "Reported +0.001R; not independently accepted",
+          "verdict_ref": "Slack 1791810723.802559"
+        }
+      ],
+      "trial_budget": {
+        "allocated": "UNKNOWN",
+        "used": "UNKNOWN",
+        "unit": "UNKNOWN"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "Reported Mode B +0.239R / 237 trades; immutable lineage and clearance UNKNOWN",
+      "costs": "Reported 25bps; exact cost/execution model UNKNOWN",
+      "validation_split": "UNKNOWN; no sealed validation authorized",
+      "acceptance_criteria": "Claimed predeclared gate; actual preregistration UNKNOWN",
+      "robustness_diagnostics": [
+        "UNKNOWN; reported splits and stricter sweep not preregistration-verified"
+      ],
+      "limitations": [
+        "Immutable artifacts absent from report; named repository path 404, search no match; private artifact existence unresolved",
+        "All variations/trials, actual effort, stop geometry and portfolio accounting unverified",
+        "Data source and entitlement UNKNOWN; no permission to process retained Tiingo",
+        "Historical registry is inventory, not live execution runner"
+      ],
+      "verdict": "HOLD for independent adjudication; Muse-reported FAIL preserved",
+      "decision_refs": [
+        "Issue #1 6125000616",
+        "Slack 1791810723.802559",
+        "Slack verified reply 1791810832.556529"
+      ],
+      "failure_reason": "reported_negative_expectancy; reported_single_symbol_concentration; reported_stop_geometry; evidence_missing (all scientific findings unverified)",
+      "failure_market": "Reported 14 watchlist equities; exact universe UNKNOWN",
+      "failure_timeframe": "Reported 4H",
+      "failure_data_source": "UNKNOWN",
+      "failure_strategy_family": "crt_sweep_return",
+      "task_revision": "intake-r1",
+      "evidence_pin": "slack:1791810723.802559",
+      "authorization": "Read-only intake under 6044381696; user Continue work 2026-10-12. No execution authorization inferred."
     }
   ],
   "message_ledger": [
@@ -852,7 +939,7 @@
       "message_id": "slack-mike-authz",
       "status": "ACKNOWLEDGED",
       "at": "2026-10-10T12:35:00Z",
-      "summary": "Mike direct authorization in chat: 'Ok so run it' \u2014 Stage-0 cleared"
+      "summary": "Mike direct authorization in chat: 'Ok so run it' — Stage-0 cleared"
     },
     {
       "message_id": "slack-stage0-result",
@@ -876,7 +963,7 @@
       "message_id": "slack-1791639002",
       "status": "WORK_RESULT",
       "at": "2026-10-10T13:50:00Z",
-      "summary": "r1 WORK RESULT (Slack 1791639002.607399): commit 35e4063 \u2014 offline report, packet amendment, registry reconcile"
+      "summary": "r1 WORK RESULT (Slack 1791639002.607399): commit 35e4063 — offline report, packet amendment, registry reconcile"
     },
     {
       "message_id": "gh-6098718465",
@@ -894,7 +981,7 @@
       "message_id": "slack-1791644835",
       "status": "WORK_RESULT",
       "at": "2026-10-10T15:06:58Z",
-      "summary": "r2 WORK RESULT (Slack 1791644835.145729): commit c56dd48 \u2014 ARTIFACT DELIVERY ONLY; ChatGPT acceptance pending (not acceptance)"
+      "summary": "r2 WORK RESULT (Slack 1791644835.145729): commit c56dd48 — ARTIFACT DELIVERY ONLY; ChatGPT acceptance pending (not acceptance)"
     },
     {
       "message_id": "gh-6099318779",
@@ -922,7 +1009,7 @@
       "type": "WORK-RESULT",
       "task": "QF-TIINGO-TERMS-COMPLIANCE-INVENTORY-20261010-10 r1",
       "at": "2026-10-10T18:30:00Z",
-      "body": "Inventory delivered: research_notes/TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md. Plan STARTER. 7 artifact groups (~378 MB) proposed for deletion under \u00a71.6(a). Immediate hold recorded: observer ceased, no new Tiingo calls, no substitute-use validation. Mike decision pending: deletion/cessation vs paid plan vs written permission. Nothing executed."
+      "body": "Inventory delivered: research_notes/TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md. Plan STARTER. 7 artifact groups (~378 MB) proposed for deletion under §1.6(a). Immediate hold recorded: observer ceased, no new Tiingo calls, no substitute-use validation. Mike decision pending: deletion/cessation vs paid plan vs written permission. Nothing executed."
     },
     {
       "message_id": "6101353568",
@@ -933,6 +1020,18 @@
       "message_id": "6101357884",
       "status": "DELIVERED/VERIFIED",
       "kind": "Delivery ledger for 6101353568"
+    },
+    {
+      "message_id": "6125000616",
+      "status": "DELIVERED/VERIFIED",
+      "evidence": "Independent GitHub comment read-back 2026-10-12",
+      "experiment_id": "EXP-20261012-CRT-4H"
+    },
+    {
+      "message_id": "1791810832.556529",
+      "status": "DELIVERED/VERIFIED",
+      "evidence": "Independent Slack thread read-back 2026-10-12; Muse ACK pending",
+      "experiment_id": "EXP-20261012-CRT-4H"
     }
   ],
   "registry_version": "1",
@@ -944,7 +1043,7 @@
       "evidence_pin": "commit 35e4063; report research_notes/twelve_data_stage0/STAGE0_OFFLINE_REPORT_20261010.md",
       "budget_minutes": 20,
       "actual_minutes": 14,
-      "state": "COMPLETE \u2014 scoped PASS per 6098718465 (plumbing/integrity only; construction INSUFFICIENT)"
+      "state": "COMPLETE — scoped PASS per 6098718465 (plumbing/integrity only; construction INSUFFICIENT)"
     },
     {
       "task_id": "QF-TD-PILOT-PACKET-20261010-02",
@@ -953,7 +1052,7 @@
       "evidence_pin": "commit 35e4063; research_notes/TD_PILOT_PACKET_AMENDMENT_20261010.md",
       "budget_minutes": 30,
       "actual_minutes": 24,
-      "state": "COMPLETE \u2014 document delivered; HOLD per 6098718465 (8 load-bearing defects, P4 not cleared)"
+      "state": "COMPLETE — document delivered; HOLD per 6098718465 (8 load-bearing defects, P4 not cleared)"
     },
     {
       "task_id": "QF-REGISTRY-RECONCILE-20261010-03",
@@ -962,7 +1061,7 @@
       "evidence_pin": "commit 35e4063; registry blob 42c5a8efd49053b97815066ef9cfd5c0eeafff2d",
       "budget_minutes": 10,
       "actual_minutes": 8,
-      "state": "COMPLETE \u2014 HOLD per 6098718465 (task_log empty, ledger gaps, stale pilot fields)"
+      "state": "COMPLETE — HOLD per 6098718465 (task_log empty, ledger gaps, stale pilot fields)"
     },
     {
       "task_id": "QF-TD-PILOT-READINESS-R2-20261010-04",
@@ -971,7 +1070,7 @@
       "evidence_pin": "research_notes/TD_PILOT_READINESS_R2_20261010.md; wrapper research_notes/pilot_harness/pilot_acquire.py sha256 7739aec8a2bb3017e4373a2055aaf177dca998dad52cbcdac01b42ef74af37e9; fixtures tests/test_acquisition_wrapper.py 10/10 PASS",
       "budget_minutes": 45,
       "actual_minutes": 40,
-      "state": "COMPLETE \u2014 readiness packet returned; P4 clearance still the gate; no execution"
+      "state": "COMPLETE — readiness packet returned; P4 clearance still the gate; no execution"
     },
     {
       "task_id": "QF-REGISTRY-RECONCILE-R2-20261010-05",
@@ -985,13 +1084,13 @@
     {
       "task_id": "QF-TD-PILOT-READINESS-R3-20261010-06",
       "revision": "r1",
-      "state": "COMPLETE \u2014 19/19 fixtures (W01-W19), manifest enforced, R3 packet delivered; P4 still the gate",
+      "state": "COMPLETE — 19/19 fixtures (W01-W19), manifest enforced, R3 packet delivered; P4 still the gate",
       "budget_min": 45
     },
     {
       "task_id": "QF-REGISTRY-RECONCILE-R3-20261010-07",
       "revision": "r1",
-      "state": "COMPLETE \u2014 schema-corrected ledger, variations/budget/pins reconciled",
+      "state": "COMPLETE — schema-corrected ledger, variations/budget/pins reconciled",
       "budget_min": 15
     },
     {
@@ -1012,8 +1111,8 @@
       "actual_minutes": 19,
       "scope": "zero API calls, zero spend, zero performance, zero code changes, zero deletion, zero sealed-validation access; inventory only, dispositions proposed not executed",
       "decision": "ChatGPT adjudication 6100626737 (Tiingo observer/fill/parity HOLD effective immediately)",
-      "findings": "PLAN UNKNOWN \u2014 TREAT AS STARTER (adjudication 6101353568 correction: free-tier metadata does not prove entitlement). 7 artifact groups (~378 MB) inventoried; NOT deletion-ready (incomplete hashes, no backup/lineage enumeration). CIK/EFTS/ledger/log rows PROVENANCE-PENDING. \u00a71.6(b) = prompt deletion, no grace period. Paid plan not a demonstrated retrospective cure. Adjudication: PASS as preliminary report; HOLD for entitlement/classification/disposition.",
-      "amendment": "research_notes/TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md \u00a76"
+      "findings": "PLAN UNKNOWN — TREAT AS STARTER (adjudication 6101353568 correction: free-tier metadata does not prove entitlement). 7 artifact groups (~378 MB) inventoried; NOT deletion-ready (incomplete hashes, no backup/lineage enumeration). CIK/EFTS/ledger/log rows PROVENANCE-PENDING. §1.6(b) = prompt deletion, no grace period. Paid plan not a demonstrated retrospective cure. Adjudication: PASS as preliminary report; HOLD for entitlement/classification/disposition.",
+      "amendment": "research_notes/TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md §6"
     }
   ]
 }
