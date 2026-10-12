@@ -926,6 +926,74 @@
       "task_revision": "intake-r1",
       "evidence_pin": "slack:1791810723.802559",
       "authorization": "Read-only intake under 6044381696; user Continue work 2026-10-12. No execution authorization inferred."
+    },
+    {
+      "experiment_id": "EXP-20261012-TIINGO-APPLICABILITY-PREP",
+      "title": "Tiingo account applicability and permission-prep evidence",
+      "owner": "Muse",
+      "created_at": "2026-10-12T13:49:27Z",
+      "state": "SCOPED-PASS-HOLD",
+      "task": "QF-TIINGO-APPLICABILITY-PERMISSION-PREP-20261011-01 r1",
+      "hypothesis": "Read-only public and non-secret metadata review can establish the current Tiingo retention boundary, identify account-specific unknowns, and prepare a no-send vendor inquiry without processing retained Tiingo data.",
+      "rule_spec_version": "Issue #1 comment 6109330945",
+      "code_pin": "N/A — read-only evidence-prep task",
+      "dataset_pin": "N/A — retained Tiingo data not opened or processed",
+      "output_pin": "blob:723183405ce3492f570843b83ff16262ca7384c3",
+      "evidence_pin": "commit:f87b836c36b9b4222495358ba153d54e148b9f69",
+      "artifacts": [
+        "research_notes/TIINGO_APPLICABILITY_EVIDENCE_NOTE_20261012.md"
+      ],
+      "trial_budget": {
+        "allocated": 1,
+        "used": 1,
+        "unit": "read-only evidence-prep pass"
+      },
+      "effort_budget": {
+        "allocated_minutes": 20,
+        "used_minutes": 16
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "prerequisites": [
+        "No vendor contact",
+        "No spending",
+        "No deletion",
+        "No API calls",
+        "No restart",
+        "No retained Tiingo input processing"
+      ],
+      "findings": [
+        "Current official Tiingo Terms (version 1; updated 2026-10-06) prohibit persistent Tiingo Data and Derived Product storage on Starter/Trial plans.",
+        "Two pre-2026-10-06 secondary GitHub audits independently record materially similar Starter no-retention language and a 2026-08-05 terms date; this supports, but does not officially prove, that the restriction predated the October downloads.",
+        "Account plan, creation date, accepted terms version/date and amendment-notice date remain UNKNOWN; treat account as Starter for safety.",
+        "Vendor inquiry draft asks account-specific applicability, disposition, upgrade, aggregate-output and cross-feed questions; it was not sent."
+      ],
+      "verification": [
+        "Exact artifact read from default branch",
+        "Commit f87b836c36b9b4222495358ba153d54e148b9f69 inspected",
+        "Current official Tiingo ToS independently opened 2026-10-12",
+        "Both cited secondary GitHub files independently read"
+      ],
+      "limitations": [
+        "No official archived pre-2026-10-06 Tiingo terms text recovered.",
+        "No account dashboard, billing, creation, accepted-terms or email-notice evidence.",
+        "Secondary audits cannot determine this account's governing terms or cure/disposition path."
+      ],
+      "verdict": "SCOPED PASS for the bounded evidence-prep deliverable only; Tiingo entitlement, retained-data disposition, all processing and route qualification remain HOLD.",
+      "next_action": "Mike-only decision: provide account/notice evidence and/or explicitly authorize sending the pinned vendor inquiry. Until then no Tiingo calls, processing, deletion, purchase or crossover.",
+      "failure_reason": "account_applicability_unknown; official_prior_terms_missing; disposition_requires_vendor_or_account_evidence",
+      "failure_market": "Tiingo-supported markets; no market data inspected",
+      "failure_timeframe": "N/A",
+      "failure_data_source": "Official current Tiingo ToS plus two secondary pre-update audits",
+      "failure_strategy_family": "data_governance",
+      "task_revision": "r1",
+      "authorization": "Recorded as Mike direct instruction in artifact and commit; no authority inferred for vendor contact, deletion, purchase, API calls or retained-data processing.",
+      "decision_refs": [
+        "Issue #1 comment 6109330945",
+        "Slack 1791813010.191479"
+      ]
     }
   ],
   "message_ledger": [
