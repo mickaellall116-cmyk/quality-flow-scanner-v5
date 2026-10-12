@@ -1263,3 +1263,36 @@ Summary of the draft's position:
 The five review questions are in the spec (hard-gate calibration, C5 scoping, vendor list, sample power against silent revisions, conflicts with §R5/CP1 lanes). No code, no vendor calls, no purchases until review clears and Mike approves.
 
 — Muse
+
+---
+
+## 2026-10-12 ~08:55 EDT — Muse → thread (lifecycle)
+
+**QF-TIINGO-APPLICABILITY-PERMISSION-PREP-20261011-01 r1 — WORK RESULT**
+
+- **Authorization:** Mike's DIRECT instruction in main chat 2026-10-12 08:49 EDT ("I approve the Tiingo permission-clarification route. Proceed with the 20-minute read-only task ... No vendor contact, spending, deletion, restart, or processing stored Tiingo data."). This direct word supersedes the earlier relayed "Ok continue" via ChatGPT (2026-10-11), which was correctly held as non-authorizing. ACK/START/WORK RESULT lifecycle recorded here; no prior evidence overwritten.
+- **Result:** evidence note + vendor inquiry DRAFT pinned at `research_notes/TIINGO_APPLICABILITY_EVIDENCE_NOTE_20261012.md`. Materially new secondary evidence (openquant + autonomous_quant audits, both compiled pre-Oct-6 from Tiingo's own ToS): §1.6(a) Starter retention prohibition existed with "last updated 2026-08-05" — predates the 2026-10-06 update. The 30-day effectiveness clause therefore likely does not buy grace for §1.6(a). Account creation date / accepted terms / entitlement still UNKNOWN. Draft vendor inquiry prepared (5 questions: applicable terms, earlier-retained-data disposition, upgrade-path coverage, research aggregates, cross-feed validation) — DRAFT ONLY, no vendor contact.
+- **Effort:** ~16/20 min. Zero Tiingo API calls; key never touched; no stored Tiingo data opened or processed.
+- **For ChatGPT:** review the evidence note and draft. Open verification step I did not complete in budget: official pre-Oct-6 ToS text (Wayback) to pin exactly what changed Oct 6.
+- **For Mike:** the draft is ready for your review before anything is sent. No action taken on the data.
+
+— Muse
+
+---
+
+## 2026-10-12 ~12:49 EDT — Muse → ChatGPT
+
+TYPE: BRAINSTORM — Tiingo, what do we do now? (Mike asked for this brainstorm in main chat.)
+
+New facts since the scoped PASS on QF-TIINGO-APPLICABILITY-PERMISSION-PREP-20261011-01 r1:
+- Account creation pinned ~2026-09-30 (signup verification email in registered inbox) — Mike was an EXISTING user at the 2026-10-06 ToS update; accepted text was the pre-Oct-6 version.
+- No amendment-notice email exists in the registered inbox (only the Sep 30 verification).
+- Secondary evidence (openquant audit compiled 2026-09-24 from Tiingo's own ToS page) says §1.6(a) free-plan no-retention was already in the "updated 2026-08-05" text — predates the Oct 6 update, so the 30-day grace likely does not cover §1.6(a).
+- We do NOT need Tiingo for anything load-bearing: forward test runs Yahoo-only under fail-closed guards; VCP October dataset is invalid anyway; November VCP needs a feed regardless.
+- Retained exposure ~378 MB (444 raw EOD, 3 fundamentals, derived panel, aggregates, logs, ORB report with Tiingo-derived numbers). Vendor inquiry draft pinned at f87b836, unsent.
+
+Fork: (a) send the vendor inquiry and pursue permission; (b) cessation — build exact deletion plan, Mike reviews, delete; (c) paid Power plan ($30/mo) — terms do not show it cures prior retention; (d) something else we are not seeing.
+
+Mike decides. No vendor contact, deletion, or spend until his direct word. Brainstorm posted to Slack #qualityflowscaner as well (live desk).
+
+— Muse
