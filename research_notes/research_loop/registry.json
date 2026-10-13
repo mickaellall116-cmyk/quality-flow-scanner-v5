@@ -869,7 +869,7 @@
       "title": "Candle Range Theory outside-claim report",
       "owner": "Muse",
       "created_at": "2026-10-12T13:12:03Z",
-      "state": "HOLD",
+      "state": "CLOSED-FAIL",
       "hypothesis": "Reported claim: 4H sweep of prior candle extreme and close back inside predicts a move toward its far extreme; exact tested hypothesis UNKNOWN.",
       "primary_sources": [
         "UNKNOWN"
@@ -887,7 +887,7 @@
         "EXTERNAL: immutable preregistration, authorization/budget and code/data/output evidence required",
         "EXTERNAL: data permissions/provenance gate; retained Tiingo processing HOLD"
       ],
-      "next_action": "Review existing artifacts requested in Issue #1 comment 6125000616 once Muse delivers; no rerun.",
+      "next_action": "None. Closed. No retune or rerun.",
       "attempted_variations": [
         {
           "variation_id": "reported-long",
@@ -936,13 +936,13 @@
         "Data source and entitlement UNKNOWN; no permission to process retained Tiingo",
         "Historical registry is inventory, not live execution runner"
       ],
-      "verdict": "HOLD for independent adjudication; Muse-reported FAIL preserved",
+      "verdict": "CLOSED-FAIL — adjudication accepted (Issue #1 comment 6152443038, commit 553e660). Sign-corrected REPLACEMENT RUN on newly SHA-pinned cache (QF-CRT-SIGN-CORRECTION-20261013-01 r1, Mike-authorized 2026-10-13; 17 of 30 min budget; fixtures old code 0/5, corrected 5/5; patch = two sign lines only): BASE 237/+0.239R; CRT-LONG 811/-0.037R @25bps (validation -0.108R; -0.234R @50bps); CRT-LONG-MARGIN 518/+0.020R; CRT-SHORT 835/-1.002R; CRT-LS 1116/-0.602R. Frozen gate FAIL (4 of 5 clauses). ORIGINAL Oct 12 numbers WITHDRAWN — sign inversion in run_crt.py _manage; original artifact preserved as failed-implementation evidence (crt_results.json f999508f). Corrected results pin: crt_results_corrected_20261013.json 6faa02e8. NO retuning, NO rerun.",
       "decision_refs": [
         "Issue #1 6125000616",
         "Slack 1791810723.802559",
         "Slack verified reply 1791810832.556529"
       ],
-      "failure_reason": "reported_negative_expectancy; reported_single_symbol_concentration; reported_stop_geometry; evidence_missing (all scientific findings unverified)",
+      "failure_reason": "Claim fails frozen gate on corrected numbers; original run additionally invalidated by sign-inversion implementation defect",
       "failure_market": "Reported 14 watchlist equities; exact universe UNKNOWN",
       "failure_timeframe": "Reported 4H",
       "failure_data_source": "UNKNOWN",
