@@ -1018,6 +1018,221 @@
         "Issue #1 comment 6109330945",
         "Slack 1791813010.191479"
       ]
+    },
+    {
+      "experiment_id": "EXP-20261012-TD-LIFECYCLE-REPAIR",
+      "title": "Twelve Data collector lifecycle repair candidate (PR #8) + independent integration review",
+      "owner": "ChatGPT (repair candidate) / Muse (independent integration review)",
+      "created_at": "2026-10-13T02:11:00Z",
+      "state": "SCOPED-PASS-REPRODUCIBILITY-HOLD",
+      "task": "QF-TD-MINIMAL-COLLECTOR-20261012-01 r1 follow-on — PR #8 repair candidate (Issue #1 comment 6135204234) + independent integration review (6135218247)",
+      "hypothesis": "The af49bf4 candidate closes the five adjudicated 411457d lifecycle defects when exercised against the actual pinned dependencies rather than stubs.",
+      "primary_sources": [
+        "411457d (failed original collector, P4 FAIL per 6129566895)",
+        "fd03906 accepted dependency blobs"
+      ],
+      "rule_spec_version": "Issue #1 comments 6135204234 / 6135218247",
+      "code_pin": "candidate commit af49bf4a65acca08876a4bd9823a945ca8aa3d17 (PR #8); dependencies at fd03906 blobs 0732b1f4/74424d2a/bf8a7db1/fe76c48a — all SHA-verified MATCH",
+      "dataset_pin": "Synthetic only — zero vendor data, zero calls, zero credits; scratch /tmp/tdreview",
+      "output_pin": "blob:6ac362b9007f54e2900494dcb02684a37c415413",
+      "evidence_pin": "research_notes/td_integration_review_evidence_20261012/ — verbatim copy of the full scratch tree (208 files, diff -r verified), packaged 2026-10-13 per intake 6136948813",
+      "artifacts": [
+        "research_notes/TD_INTEGRATION_REVIEW_20261012.md",
+        "research_notes/td_integration_review_evidence_20261012/"
+      ],
+      "dependencies": [
+        "EXP-20261007-TD-PILOT",
+        "EXP-20261007-HARNESS-V56"
+      ],
+      "next_action": "ChatGPT rerun from the packaged evidence to close the reproducibility HOLD; XNYS 1H calendar rerun needs an environment with pandas_market_calendars installed. No merge, no vendor calls, no acquisition step inferred.",
+      "attempted_variations": [
+        {
+          "variation_id": "a-crash-after-received",
+          "description": "Crash after RECEIVED before validation, then restart with real validator",
+          "result": "PASS — terminal HOLD (AMBIGUOUS, no redispatch), never COMPLETE",
+          "verdict_ref": "TD_INTEGRATION_REVIEW_20261012.md"
+        },
+        {
+          "variation_id": "b1-manifest-binding",
+          "description": "Changed start_date/adjust/order/outputsize/venue against completed state",
+          "result": "PASS — all five refused at manifest binding",
+          "verdict_ref": "TD_INTEGRATION_REVIEW_20261012.md"
+        },
+        {
+          "variation_id": "b2-receipt-digest",
+          "description": "Binding file pre-swapped so only receipt digest check could catch the change",
+          "result": "PASS — HOLD: receipt request/manifest binding mismatch, reused 0",
+          "verdict_ref": "TD_INTEGRATION_REVIEW_20261012.md"
+        },
+        {
+          "variation_id": "c-concurrent-process",
+          "description": "Second process holding flock on state directory",
+          "result": "PASS — run refused, zero STARTED events, no limiter dispatch",
+          "verdict_ref": "TD_INTEGRATION_REVIEW_20261012.md"
+        },
+        {
+          "variation_id": "d-malformed-payload",
+          "description": "JSON list instead of object as response payload",
+          "result": "PASS — HOLD with reason, raw payload preserved as rejected evidence",
+          "verdict_ref": "TD_INTEGRATION_REVIEW_20261012.md"
+        },
+        {
+          "variation_id": "e-native-4h-routing",
+          "description": "Native 4H request with 1H validator bombed to raise if called",
+          "result": "PASS — completed via native_4h_structural_diagnostic path, validator never invoked",
+          "verdict_ref": "TD_INTEGRATION_REVIEW_20261012.md"
+        },
+        {
+          "variation_id": "g-receipt-byte-tamper",
+          "description": "One-byte same-length tamper of a completed receipt",
+          "result": "PASS — HOLD on hash mismatch, reused 0",
+          "verdict_ref": "TD_INTEGRATION_REVIEW_20261012.md"
+        },
+        {
+          "variation_id": "h-pinned-source-tamper",
+          "description": "One byte appended to pinned archival scanner_rules.py",
+          "result": "PASS — actual verify_sources fails preflight closed before any dispatch",
+          "verdict_ref": "TD_INTEGRATION_REVIEW_20261012.md"
+        },
+        {
+          "variation_id": "f-1h-calendar",
+          "description": "Actual 1H XNYS calendar-completeness validation",
+          "result": "UNTESTED — pandas_market_calendars absent in review environment; 1H request fails closed (HOLD), no stub substituted",
+          "verdict_ref": "6136948813"
+        }
+      ],
+      "trial_budget": {
+        "allocated": 1,
+        "used": 1,
+        "unit": "independent integration review pass (30 min allocation)"
+      },
+      "effort_budget": {
+        "allocated_minutes": 30,
+        "used_minutes": "~4 as reported (spawn ~22:07 EDT, completion reported ~22:11 EDT 2026-10-12; not independently instrumented); evidence packaging performed inside the remaining allocation"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "prerequisites": [
+        "Zero vendor calls/credits/spend",
+        "No merge",
+        "No production or frozen-code changes",
+        "Candidate and original files unmodified"
+      ],
+      "findings": [
+        "All five adjudicated 411457d lifecycle defects closed under the ACTUAL pinned dependencies (candidate's own 19 tests had stubbed them).",
+        "Legitimate reuse still works (S0/S0b control: COMPLETE, then reused 1 on identical restart).",
+        "Two additional review-found counterexamples (receipt byte tamper; pinned-source tamper) fail closed."
+      ],
+      "limitations": [
+        "XNYS 1H calendar completeness UNTESTED — pandas_market_calendars not installed; the seven-constituent session check has never run.",
+        "Venue identities not verified against provider documentation (venue mapping remains an open gate).",
+        "Transport is a separate unresolved gate — candidate has no HTTP client by construction; no HTTP behavior, vendor response shapes, or real-account credit accounting tested.",
+        "Driver stdout (final RESULTS JSON) was not persisted to a file in the scratch tree; packaged outputs are the per-scenario state artifacts plus test_output files.",
+        "Reproducibility HOLD per 6136948813 until ChatGPT can rerun from the packaged evidence."
+      ],
+      "verdict": "PASS (scoped) for lifecycle-defect closure only; reproducibility HOLD; NO P4 clearance, NO acquisition-readiness upgrade, acquisition/feed qualification remain HOLD.",
+      "failure_reason": "open_gates: calendar_untested; venue_mapping_unverified; transport_unresolved; reproducibility_hold",
+      "failure_market": "N/A — infrastructure review, no market data",
+      "failure_timeframe": "1H/4H request lifecycle",
+      "failure_data_source": "Twelve Data (candidate only; no vendor data accessed)",
+      "failure_strategy_family": "data_feed_infrastructure",
+      "task_revision": "r1",
+      "authorization": "Mike direct, main chat 2026-10-12 22:07 EDT (review); evidence packaging per ChatGPT intake 6136948813 within the remaining review allocation.",
+      "decision_refs": [
+        "Issue #1 comment 6129566895",
+        "Issue #1 comment 6135204234",
+        "Issue #1 comment 6135218247",
+        "Issue #1 comment 6136948813",
+        "Slack 1791857521.077029"
+      ]
+    },
+    {
+      "experiment_id": "EXP-20261012-V54-LEDGER-RECONCILIATION",
+      "title": "V5.4 forward-test flat-book claim — ledger pins & independent recomputation (evidence intake)",
+      "owner": "Muse",
+      "created_at": "2026-10-13T02:10:00Z",
+      "state": "RECONCILED-CLAUDE-REPORTED",
+      "task": "Evidence intake from ChatGPT's standing request for immutable ledger/state/cohort/grid pins (reaffirmed in 6136948813)",
+      "hypothesis": "The reported flat-book figures are exactly the figures recorded in the append-only ledger, state, and config artifacts.",
+      "rule_spec_version": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
+      "code_pin": "v54_forward_harness.py SHA-256 11829353123b611818c9eafd36260f95cfd24d3b78157dd09e606a5cb4d1b380 (working-tree running version; committed to main in 2787f70); v54_rules.py 1b55dedc…, v54_engine.py bde32883…, v54_exit_tracker.py 3ee92864…",
+      "dataset_pin": "v54_forward/forward_test.jsonl SHA-256 7af698450bbd3f319d7a4320abf7b5a2d4c4bdd368a28ae5f57b627839728624 (177,507 B, 458 lines)",
+      "output_pin": "blob:4d28f5cb2977f0a54faff9af45ba3819887ba8f0",
+      "evidence_pin": "research_notes/v54_ledger_evidence_20261012/ — byte-identical copies of ledger/state/rules/engine/exit_tracker/harness with per-file SHA-256 verification (packaged 2026-10-13 per intake 6136948813)",
+      "artifacts": [
+        "research_notes/V54_LEDGER_PINS_RECONCILIATION_20261012.md",
+        "research_notes/v54_ledger_evidence_20261012/"
+      ],
+      "findings": [
+        "EXACT MATCH on every claim element: 21 closed trades, +13.0547R cumulative, CRWD +1.6305R, OKTA +3.5523R (both exit_bar 2026-10-12T06:30:00-04:00, 30 bars, runner-time), 0 open; harness published snapshot independently agrees.",
+        "Running-harness diff explained: the former uncommitted working-tree changes were confined to publish_snapshot() — Contents-API publish replaced by native git temp-index push (publishing transport only; no signal/entry/exit/ledger logic). Committed to main in 2787f70; git diff HEAD is now empty and HEAD equals the pinned running version.",
+        "state.json copy in the evidence package drifted exactly one observation cycle from the 02:10Z pin (runs 519→520, last_run 2026-10-13T02:51:52Z) — flagged in the package README with both hashes; trade record unchanged (21 closed, pending {}), ledger hash still matches its pin exactly."
+      ],
+      "limitations": [
+        "Reconciliation is Claude-reported; independent acceptance is a separate reviewer step using the packaged evidence.",
+        "Ledger, universe files, and several v54 modules are working-tree-only (untracked) on main; the stack's branch home is recovery-4h-20261004.",
+        "state.json is live and will keep drifting with observation cycles; the append-only ledger is the stable record."
+      ],
+      "verdict": "EXACT MATCH (operational reporting reconciliation only). NOT a performance verdict and NOT corrected-grid validation: the corrected-grid −15.23R adverse evidence and the V5.4 standing FAIL (closed 2026-10-03, entries paused) remain.",
+      "next_action": "Independent acceptance is ChatGPT's separate step from the packaged evidence. No rerun, restart, or frozen-code edits.",
+      "failure_reason": "not_a_reconciliation_failure — standing strategy verdict FAIL recorded 2026-10-03 (corrected-grid −15.23R) is unchanged by this record",
+      "failure_market": "250-symbol forward universe (UX51 51 + X2 199)",
+      "failure_timeframe": "4H",
+      "failure_data_source": "Yahoo (forward observation under fail-closed guards)",
+      "failure_strategy_family": "trend_4h (V5.4)",
+      "task_revision": "intake-r1",
+      "authorization": "Mike direct package approval, main chat 2026-10-12 22:07 EDT; read-only intake, no rerun.",
+      "decision_refs": [
+        "Issue #1 comment 6136948813",
+        "Slack 1791857521.077029"
+      ]
+    },
+    {
+      "experiment_id": "EXP-20261012-TIINGO-DISPOSITION-PROPOSAL",
+      "title": "Tiingo retained-data disposition proposal (built from existing inventory + metadata only)",
+      "owner": "Muse",
+      "created_at": "2026-10-13T02:12:00Z",
+      "state": "PROPOSAL-DELIVERED-HOLD",
+      "task": "Follow-on to QF-TIINGO-TERMS-COMPLIANCE-INVENTORY-20261010-10 and QF-TIINGO-APPLICABILITY-PERMISSION-PREP-20261011-01 r1",
+      "hypothesis": "The existing inventory and filesystem metadata suffice to classify retained Tiingo artifacts into a decision-ready disposition proposal without opening retained contents.",
+      "rule_spec_version": "Tiingo Terms version 1 (updated 2026-10-06), §1.6",
+      "code_pin": "N/A — read-only proposal, no code",
+      "dataset_pin": "N/A — retained Tiingo contents not opened or processed; inventory + metadata only",
+      "output_pin": "blob:94ca19553f7ec755fbbe13778552c9ec05e2528e",
+      "evidence_pin": "research_notes/TIINGO_DISPOSITION_PROPOSAL_20261012.md; correction appended to research_notes/bridge_thread.md 2026-10-13",
+      "artifacts": [
+        "research_notes/TIINGO_DISPOSITION_PROPOSAL_20261012.md"
+      ],
+      "dependencies": [
+        "EXP-20261010-TIINGO-TERMS-COMPLIANCE",
+        "EXP-20261012-TIINGO-APPLICABILITY-PREP"
+      ],
+      "findings": [
+        "Highest-confidence disposition candidates: 444 raw EOD files / 365 MB + 3 fundamentals files / 152 KB + derived panel/results ~13 MB.",
+        "EDGAR SEC-sourced material presumptive keep (separate provenance); CIK/ledger/pull-log group PROVENANCE-PENDING.",
+        "Inventory discrepancy found: CIK file group ~645 KB, not the ~40 KB the inventory stated.",
+        "ORB report (Tiingo-derived numbers, in git history) disposition options presented undecided: redact / delete+rewrite / retain pending vendor answer / retain annotated — adverse-evidence preservation tension recorded, not resolved."
+      ],
+      "limitations": [
+        "CORRECTION (6136948813, bridge_thread 2026-10-13): the proposal's 'single copy' statement is NARROWED — local metadata rules out identified workspace/git copies only; off-machine backups remain UNKNOWN.",
+        "10 named gaps stand, incl. plan entitlement unknown, accepted terms version unknown, notice dispatch unproven either way, retrospective paid-plan cure unproven, aggregate-statistics treatment unresolved, field-level provenance of the CIK/ledger/log group."
+      ],
+      "verdict": "Proposal intake complete per 6136948813; disposition and execution remain HOLD pending Mike's choice.",
+      "next_action": "Mike-only decision: A approve plan as-is / B approve with amendments / C send the pinned vendor inquiry first / D neither. No deletion, history rewrite, vendor contact, retained-data processing, or purchase authorized.",
+      "failure_reason": "disposition_pending_mike_decision; provenance_gaps_open; off_machine_backups_unknown",
+      "failure_market": "Tiingo-supported markets; no market data inspected",
+      "failure_timeframe": "N/A",
+      "failure_data_source": "Tiingo (retained artifacts; contents not opened)",
+      "failure_strategy_family": "data_governance",
+      "task_revision": "r1",
+      "authorization": "Mike direct package approval, main chat 2026-10-12 22:07 EDT (proposal preparation only).",
+      "decision_refs": [
+        "Issue #1 comment 6101353568",
+        "Issue #1 comment 6126686014",
+        "Issue #1 comment 6136948813"
+      ]
     }
   ],
   "message_ledger": [
@@ -1124,6 +1339,12 @@
       "status": "DELIVERED/VERIFIED",
       "evidence": "Independent Slack thread read-back 2026-10-12; Muse ACK pending",
       "experiment_id": "EXP-20261012-CRT-4H"
+    },
+    {
+      "message_id": "6136948813",
+      "status": "DELIVERED/VERIFIED",
+      "kind": "ChatGPT evidence intake: TD scoped PASS noted, reproducibility HOLD + evidence-packaging request; V5.4 reconciliation Claude-reported, immutable evidence package + harness-diff explanation requested; Tiingo proposal intake complete, single-copy statement narrowed, disposition HOLD",
+      "evidence": "Independent GitHub comment read-back 2026-10-13 (public API)"
     }
   ],
   "registry_version": "1",
@@ -1217,6 +1438,16 @@
       "scope": "zero vendor calls, zero credits, zero spend, zero retries, no performance runs, no production/frozen-system edits, no sealed-validation access; isolated collector only",
       "decision": "6129566895",
       "allocation_status": "one-pass closed; no new repair allocation"
+    },
+    {
+      "task_id": "QF-EVIDENCE-PACKAGE-20261013-01",
+      "revision": "r1",
+      "state": "COMPLETE — packaging only: TD scratch evidence copied verbatim (208 files, diff -r verified) + package README; V5.4 evidence copies packaged (5/6 SHA-256 MATCH vs pins; state.json one-cycle drift flagged with both hashes); running-harness diff explained from git (publish-transport only, committed 2787f70, diff now empty); Tiingo single-copy correction appended to bridge_thread; registry updated with the three records below",
+      "evidence_pin": "research_notes/td_integration_review_evidence_20261012/ + research_notes/v54_ledger_evidence_20261012/",
+      "budget": "25 min packaging cap",
+      "scope": "copies and documents only; no reruns, no collector/candidate modification, no frozen-code edits, no vendor calls, no deletion",
+      "decision": "6136948813",
+      "allocation_status": "TD packaging inside the remaining original 30-min review allocation per 6136948813"
     }
   ]
 }

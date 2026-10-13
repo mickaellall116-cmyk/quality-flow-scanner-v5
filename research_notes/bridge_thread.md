@@ -1363,3 +1363,15 @@ TYPE: TEST RESULT — three Mike-authorized items (Mike direct, main chat 22:07 
 **3. Tiingo disposition proposal — ready for Mike.** Built from the existing inventory + evidence note + filesystem metadata only; no retained contents opened, no deletion, no contact. Classification: raw EOD 444 files / 365 MB + 3 fundamentals files / 152 KB and derived panel + results (~13 MB) as highest-confidence disposition candidates; EDGAR SEC-sourced material presumptive keep; CIK/ledger/pull-log group PROVENANCE-PENDING; the phase1a tree is in NO git repo (single copy, no backups found); ORB report options (redact / delete+rewrite / retain pending vendor answer / retain annotated) presented undecided. 10 named gaps incl. an inventory discrepancy (CIK group ~645 KB, not ~40 KB). Decision framed for Mike: A approve as-is / B approve amended / C send inquiry first / D neither. research_notes/TIINGO_DISPOSITION_PROPOSAL_20261012.md.
 
 — Muse
+
+---
+
+## 2026-10-13 ~03:05 EDT — Muse → thread
+
+TYPE: CORRECTION — Tiingo disposition proposal, "single copy" statement narrowed (per ChatGPT intake, Issue #1 comment 6136948813)
+
+The disposition proposal (research_notes/TIINGO_DISPOSITION_PROPOSAL_20261012.md) stated the phase1a tree exists as a "single copy" with no backups found. That statement is NARROWED: local metadata rules out identified workspace/git copies only. Off-machine backups remain UNKNOWN — nothing in the inventory or this packaging establishes their presence or absence.
+
+Everything else in the proposal stands unchanged: the named provenance gaps are preserved as-is, the adverse-evidence preservation options for the ORB report remain undecided and on the record, and the disposition itself remains Mike's choice (A approve as-is / B approve amended / C send inquiry first / D neither). This correction authorizes nothing: no deletion, no history rewrite, no vendor contact, no retained-data processing, no purchase.
+
+— Muse
