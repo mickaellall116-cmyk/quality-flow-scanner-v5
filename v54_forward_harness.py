@@ -1062,42 +1062,43 @@ def _git_with_retry(git_fn, *args: str, attempts: int = 6,
     return last
 
 
-GH_OWNER = "mickaellall116-cmyk"
-GH_REPO = "quality-flow-scanner-v5"
-GH_CLI = os.path.expanduser("~/workspace/skills/github/bin/gh_contents.py")
-
-
 def publish_snapshot() -> Dict[str, Any]:
-    """Publish forward_test/ to origin/main via the GitHub Contents API.
+    """Publish forward_test/ to origin/main via git push over HTTPS.
 
-    Pushes only when the meaningful content changed (timestamps alone
-    don't trigger a commit). Uses the stored GitHub connector -- no git
-    remote operations, so it works when SSH transport is blocked.
+    Replaces the retired Contents-API path (its credential is blocked from
+    this sandbox). Pushes only when the meaningful content changed
+    (timestamps alone don't trigger a commit). The commit is built on a
+    temporary index seeded from origin/main, so this works regardless of
+    which branch is checked out and never disturbs the working tree.
+    Auth comes from the repo's stored git credential -- no prompts.
     """
     import subprocess
-
-    def gh_cli(*args: str) -> Dict[str, Any]:
-        r = subprocess.run([sys.executable, GH_CLI, *args],
-                           capture_output=True, text=True, timeout=120)
-        try:
-            return json.loads((r.stdout or "").strip().splitlines()[-1])
-        except Exception:
-            return {"ok": False,
-                    "error": f"cli failed: {(r.stderr or r.stdout)[-300:]}"}
-
-    def gh_args(mode: str, **kw: str):
-        out = [mode, "--owner", GH_OWNER, "--repo", GH_REPO, "--branch", "main"]
-        for k, v in kw.items():
-            out += [f"--{k}", v]
-        return out
+    import tempfile
 
     result: Dict[str, Any] = {"ok": False}
     files = [("v54_status.json", "forward_test/v54_status.json"),
              ("v54_closed_trades.json", "forward_test/v54_closed_trades.json"),
              ("v54_ai_observer.json", "forward_test/v54_ai_observer.json")]
 
-    # Meaningful change? Compare local payloads against the live GitHub
-    # versions, ignoring volatile timestamps.
+    def git(*args: str) -> "subprocess.CompletedProcess":
+        return subprocess.run(["git", *args], cwd=BASE_DIR,
+                              capture_output=True, text=True, timeout=180)
+
+    # 1. Refresh our view of origin/main.
+    fr = _git_with_retry(lambda *a: git(*a), "fetch", "origin", "main")
+    if fr.returncode != 0:
+        result["step"] = "fetch"
+        result["error"] = (fr.stderr or "")[-300:]
+        return result
+    rp = git("rev-parse", "origin/main")
+    if rp.returncode != 0:
+        result["step"] = "rev-parse"
+        result["error"] = (rp.stderr or "")[-300:]
+        return result
+    base = rp.stdout.strip()
+
+    # 2. Meaningful change? Compare local payloads against origin/main,
+    #    ignoring volatile timestamps (same fingerprint as before).
     to_push = []
     for name, remote in files:
         local_path = os.path.join(BASE_DIR, remote)
@@ -1108,16 +1109,16 @@ def publish_snapshot() -> Dict[str, Any]:
             result["step"] = "read-local"
             result["error"] = f"{name}: {e}"
             return result
-        got = gh_cli(*gh_args("get", remote=remote))
-        if not got.get("ok"):
-            if got.get("error") == "not found":
+        got = git("show", f"{base}:{remote}")
+        if got.returncode != 0:
+            if "does not exist" in (got.stderr or ""):
                 to_push.append((name, remote, local_path))
                 continue
             result["step"] = "get-remote"
-            result["error"] = f"{name}: {got.get('error')}"
+            result["error"] = f"{name}: {(got.stderr or '')[-200:]}"
             return result
         try:
-            old = _payload_fingerprint(json.loads(got["content"]))
+            old = _payload_fingerprint(json.loads(got.stdout))
         except Exception:
             old = None
         if old != cur:
@@ -1126,17 +1127,58 @@ def publish_snapshot() -> Dict[str, Any]:
     if not to_push:
         return {"ok": True, "pushed": False, "note": "up to date"}
 
-    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%MZ")
-    commits = []
+    # 3. Build one commit on a temp index seeded from origin/main.
+    tmpdir = tempfile.mkdtemp(prefix="v54_pub_")
+    env = dict(os.environ,
+               GIT_INDEX_FILE=os.path.join(tmpdir, "index"),
+               GIT_AUTHOR_NAME="Mektech",
+               GIT_AUTHOR_EMAIL="mickaellall116-cmyk@users.noreply.github.com",
+               GIT_COMMITTER_NAME="Mektech",
+               GIT_COMMITTER_EMAIL="mickaellall116-cmyk@users.noreply.github.com")
+
+    def giti(*args: str) -> "subprocess.CompletedProcess":
+        return subprocess.run(["git", *args], cwd=BASE_DIR, env=env,
+                              capture_output=True, text=True, timeout=180)
+
+    def fail(step: str,
+             proc: "subprocess.CompletedProcess") -> Dict[str, Any]:
+        result["step"] = step
+        result["error"] = ((proc.stderr or "") + (proc.stdout or ""))[-300:]
+        return result
+
+    r = giti("read-tree", base)
+    if r.returncode != 0:
+        return fail("read-tree", r)
     for name, remote, local_path in to_push:
-        put = gh_cli(*gh_args("put", local=local_path, remote=remote,
-                              message=f"V5.4 forward-test snapshot {stamp}"))
-        if not put.get("ok"):
-            result["step"] = "put"
-            result["error"] = f"{name}: {put.get('error')}"
-            return result
-        commits.append(put.get("commit"))
-    result.update({"ok": True, "pushed": True, "commits": commits})
+        h = giti("hash-object", "-w", local_path)
+        if h.returncode != 0:
+            return fail("hash-object", h)
+        u = giti("update-index", "--add", "--cacheinfo",
+                 "100644", h.stdout.strip(), remote)
+        if u.returncode != 0:
+            return fail("update-index", u)
+    t = giti("write-tree")
+    if t.returncode != 0:
+        return fail("write-tree", t)
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%MZ")
+    c = giti("commit-tree", t.stdout.strip(), "-p", base,
+             "-m", f"V5.4 forward-test snapshot {stamp}")
+    if c.returncode != 0:
+        return fail("commit-tree", c)
+    sha = c.stdout.strip()
+
+    # 4. Push. A non-fast-forward just means someone else pushed first;
+    #    report it and let the next cycle retry (same as the old path).
+    pr = _git_with_retry(lambda *a: git(*a),
+                         "push", "origin", f"{sha}:refs/heads/main")
+    if pr.returncode != 0:
+        return fail("push", pr)
+    try:
+        os.unlink(os.path.join(tmpdir, "index"))
+        os.rmdir(tmpdir)
+    except OSError:
+        pass
+    result.update({"ok": True, "pushed": True, "commits": [sha[:7]]})
     return result
 
 

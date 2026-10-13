@@ -63,13 +63,13 @@ def main():
               "--format", "json")
     try:
         data = json.loads(raw) if raw else []
+        msgs = data.get("messages", []) if isinstance(data, dict) else data
+        if not isinstance(msgs, list):
+            msgs = []
     except json.JSONDecodeError:
-        print("NO_NEW")
-        return
-    msgs = data.get("messages", []) if isinstance(data, dict) else data
-    if not isinstance(msgs, list):
-        print("NO_NEW")
-        return
+        # e.g. "No messages found matching query: ..." plain-text reply;
+        # Gmail leg is empty but the GitHub leg below must still run.
+        msgs = []
 
     new = []
     for m in msgs:

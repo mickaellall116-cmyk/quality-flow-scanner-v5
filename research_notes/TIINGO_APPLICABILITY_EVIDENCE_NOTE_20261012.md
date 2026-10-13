@@ -11,9 +11,9 @@
 | Fact | Status | Source |
 |---|---|---|
 | Account plan | TREAT AS STARTER (entitlement UNKNOWN) | Free-tier budgets in `~/workspace/skills/tiingo/SKILL.md` (50 req/hr, 1000 req/day, 500 symbols/mo); memory logs show active 500-symbol cap management, 453/500 used. No billing records, no dashboard screenshot. Do not assert Starter as fact. |
-| Account creation date | UNKNOWN | No record found in memory/logs. |
+| Account creation date | ~2026-09-30 (email-verified) | Gmail (registered address) holds exactly one Tiingo message: "Verify your email address for Tiingo" from noreply@verify.tiingo.com, 2026-09-30 16:46 ET. Signup verification implies account creation at/just before this date — BEFORE the 2026-10-06 ToS update, so Mike was an existing user at the update. |
 | Accepted terms version/date | UNKNOWN | No record found. |
-| Amendment notice date (email/dispatch) | UNKNOWN | No email-notice record found. |
+| Amendment notice date (email/dispatch) | NONE FOUND in registered inbox | The registered Gmail inbox contains no Tiingo amendment/terms-update notice (only the 2026-09-30 verification email; searched 2026-10-12). If Tiingo emailed the registered address about the Oct 6 update, it is not in this inbox. |
 | Download date ranges | ESTABLISHED (dates) | October EOD pull COMPLETE 2026-10-03 04:04 UTC (453/453 ledger, 444 OK + 9 fail-closed 404s); fundamentals pilot (AAPL/MSFT/WMT) Oct 2026; ORB 15m QQQ/SPY pull 2026-10-07; Tiingo observer gap-fills transient in-memory only (nothing persisted). |
 | Data values/contents | NOT INSPECTED | Per HOLD; only dates, counts, sizes from metadata. |
 
@@ -38,7 +38,7 @@ Two independent third-party terms audits, each compiled from Tiingo's own ToS pa
 
 ## 4. Unresolved facts
 
-- Account creation date; accepted terms version/date; whether Mike received/dispatched amendment email notices.
+- Accepted terms version/date (account was created ~2026-09-30, so accepted version was the pre-Oct-6 text, likely "updated 2026-08-05" per the secondary audits — not directly confirmed from account records).
 - Official prior ToS text (pre-Oct-6) and exactly what the Oct 6 update changed.
 - Whether a Power-plan upgrade would cover data retained before upgrade (terms do not state retrospective cure; §1.6(b) exception requires separate written agreement not available to Power).
 - Whether aggregate research findings (e.g. ORB benchmark numbers) qualify as retainable §1.6(c) aggregates on a paid plan — numbers are aggregate P&L-style outputs, but they were produced on Starter where §1.6(a) also bars retaining Derived Products.
