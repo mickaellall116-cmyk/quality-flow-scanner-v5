@@ -1,0 +1,4 @@
+{"credit_weight": 1, "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-01", "ts_utc": "2026-10-13T02:10:44Z"}
+{"attempt": 1, "event": "STARTED", "request_id": "REQ-P4H-01", "ts_utc": "2026-10-13T02:10:44Z"}
+{"bytes": 21, "event": "ERROR_EVIDENCE", "request_id": "REQ-P4H-01", "sha256": "da4030d94d7e021763a73475c7e0f434f7ce361882886e3c02ca576b275047d5", "ts_utc": "2026-10-13T02:10:44Z"}
+{"event": "HOLD", "reason": "malformed response object/meta for REQ-P4H-01", "request_id": "REQ-P4H-01", "ts_utc": "2026-10-13T02:10:44Z"}

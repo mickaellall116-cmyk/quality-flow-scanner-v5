@@ -1,0 +1,7 @@
+{
+ "attempts": 1,
+ "completed": [],
+ "credit_reservations": 1,
+ "hold_reason": "AMBIGUOUS: REQ-P4H-01 dispatched without durable validation completion; no redispatch",
+ "status": "HOLD"
+}

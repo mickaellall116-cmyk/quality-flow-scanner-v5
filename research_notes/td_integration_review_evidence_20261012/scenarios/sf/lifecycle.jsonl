@@ -1,0 +1,4 @@
+{"credit_weight": 1, "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-01", "ts_utc": "2026-10-13T02:10:44Z"}
+{"attempt": 1, "event": "STARTED", "request_id": "REQ-P1H-01", "ts_utc": "2026-10-13T02:10:44Z"}
+{"bytes": 913, "event": "RECEIVED", "manifest_digest": "173ed4cf67a111bdd0a530ac9de3c19000b02a72d7e714af31fdeb3f21e2a33a", "request_digest": "69c42e5a30062afb0219f4a1d3d667c3245c41306d80259315a471e2bb6b9756", "request_id": "REQ-P1H-01", "rows": 7, "sha256": "ff818f4e05c55f1d3c5b9503c836c4a49d52ec237b41b36c679fc0225dcfe96d", "ts_utc": "2026-10-13T02:10:44Z"}
+{"event": "HOLD", "reason": "validation failed for REQ-P1H-01: No module named 'pandas_market_calendars'", "request_id": "REQ-P1H-01", "ts_utc": "2026-10-13T02:10:44Z"}

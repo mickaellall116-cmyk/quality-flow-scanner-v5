@@ -1,0 +1,7 @@
+{
+ "attempts": 1,
+ "completed": [],
+ "credit_reservations": 1,
+ "hold_reason": "validation failed for REQ-P1H-01: No module named 'pandas_market_calendars'",
+ "status": "HOLD"
+}

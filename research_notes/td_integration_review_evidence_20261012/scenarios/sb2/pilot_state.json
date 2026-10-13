@@ -1,0 +1,9 @@
+{
+ "attempts": 1,
+ "completed": [
+  "REQ-P4H-01"
+ ],
+ "credit_reservations": 1,
+ "hold_reason": "receipt verification failed for REQ-P4H-01: receipt request/manifest binding mismatch",
+ "status": "HOLD"
+}

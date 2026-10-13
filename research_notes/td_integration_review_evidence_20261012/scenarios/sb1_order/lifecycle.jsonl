@@ -1,0 +1,4 @@
+{"credit_weight": 1, "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-01", "ts_utc": "2026-10-13T02:10:44Z"}
+{"attempt": 1, "event": "STARTED", "request_id": "REQ-P4H-01", "ts_utc": "2026-10-13T02:10:44Z"}
+{"bytes": 457, "event": "RECEIVED", "manifest_digest": "2bddaf048998f44575395b5e8b518bc7bf3e6603d0407962f35d393f8229f7c4", "request_digest": "b21990f7f9c9c520e97d857da14071c485e510026cddae9d4e7a23e6cfd82d3d", "request_id": "REQ-P4H-01", "rows": 3, "sha256": "e9e477b8a08bd9591c878420637163ac08f8911b9c996d13d02d6cd0c044015c", "ts_utc": "2026-10-13T02:10:44Z"}
+{"event": "COMPLETED", "manifest_digest": "2bddaf048998f44575395b5e8b518bc7bf3e6603d0407962f35d393f8229f7c4", "request_digest": "b21990f7f9c9c520e97d857da14071c485e510026cddae9d4e7a23e6cfd82d3d", "request_id": "REQ-P4H-01", "sha256": "e9e477b8a08bd9591c878420637163ac08f8911b9c996d13d02d6cd0c044015c", "ts_utc": "2026-10-13T02:10:44Z", "validation_scope": "native_4h_structural_diagnostic"}

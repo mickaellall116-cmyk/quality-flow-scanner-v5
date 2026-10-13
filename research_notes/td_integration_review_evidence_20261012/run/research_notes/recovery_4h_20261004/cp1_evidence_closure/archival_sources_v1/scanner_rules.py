@@ -1,0 +1,559 @@
+"""Canonical bar construction and signal validation for MasterScanner V5.2."""
+
+from __future__ import annotations
+
+from collections.abc import Iterable, Mapping
+from typing import Any, Optional
+
+import pandas as pd
+
+
+SCANNER_VERSION = "5.3"
+RULE_VERSION = "2026-09-14-v3"
+BUY_NOW_STATES = frozenset({"BUY", "PULLBACK BUY"})
+MIN_ADX = 20.0
+MIN_RELATIVE_VOLUME = 0.80
+MIN_RISK_REWARD = 2.0
+STOP_ZONE_ATR_BUFFER = 0.65
+TP_ZONE_ATR_EXTENSION = 2.50
+
+
+def _now_for_index(index: pd.DatetimeIndex, now: Optional[pd.Timestamp]) -> pd.Timestamp:
+    if now is None:
+        return pd.Timestamp.now(tz=index.tz) if index.tz is not None else pd.Timestamp.now()
+    current = pd.Timestamp(now)
+    if index.tz is None:
+        return current.tz_localize(None) if current.tzinfo is not None else current
+    if current.tzinfo is None:
+        return current.tz_localize(index.tz)
+    return current.tz_convert(index.tz)
+
+
+def bar_close_at(
+    bar_start: pd.Timestamp,
+    symbol: str,
+    session_close: Optional[pd.Timestamp] = None,
+) -> pd.Timestamp:
+    """Return the actual close time for a session-aligned scanner bar.
+
+    ``session_close`` optionally overrides the regular 16:00 ET session end
+    (e.g. 13:00 ET early-close days from the exchange calendar). When omitted
+    the legacy 16:00 assumption applies (unchanged behavior for existing
+    callers, including the frozen ``resample_closed_4h`` cohort path).
+    """
+    start = pd.Timestamp(bar_start)
+    if symbol.upper().endswith("-USD"):
+        return start + pd.Timedelta(hours=4)
+    close = (
+        pd.Timestamp(session_close)
+        if session_close is not None
+        else start.normalize() + pd.Timedelta(hours=16)
+    )
+    return min(start + pd.Timedelta(hours=4), close)
+
+
+_NYSE_CALENDAR = None
+
+
+def _nyse_calendar():
+    """Cached XNYS exchange calendar (pandas_market_calendars).
+
+    Imported lazily so modules that never touch early-close logic pay no
+    import cost and get a clear error naming the dependency if absent.
+    """
+    global _NYSE_CALENDAR
+    if _NYSE_CALENDAR is None:
+        try:
+            import pandas_market_calendars as mcal
+        except ImportError as exc:
+            raise ImportError(
+                "pandas_market_calendars is required for exchange-calendar "
+                "session-close handling (pip install pandas_market_calendars)"
+            ) from exc
+        _NYSE_CALENDAR = mcal.get_calendar("XNYS")
+    return _NYSE_CALENDAR
+
+
+def session_close_et(day: pd.Timestamp) -> Optional[pd.Timestamp]:
+    """ET session close for a calendar day, or None if not a trading day."""
+    cal = _nyse_calendar()
+    d = day.date() if hasattr(day, "date") else day
+    sched = cal.schedule(start_date=d, end_date=d)
+    if sched.empty:
+        return None
+    return pd.Timestamp(sched.iloc[0]["market_close"]).tz_convert("America/New_York")
+
+
+def resample_closed_4h(
+    df: pd.DataFrame,
+    symbol: str,
+    now: Optional[pd.Timestamp] = None,
+) -> pd.DataFrame:
+    """Build session 4-hour bars and exclude the actively forming bar.
+
+    US symbols produce 09:30-13:30 and 13:30-16:00 ET bars. The latter is a
+    shortened closing-session bar. A cumulative regular-session VWAP is retained
+    as ``SessionVWAP`` so it cannot be confused with rolling VWAP.
+
+    RETAINED FOR THE AFFECTED FORWARD-TEST COHORT (entered 2026-09-15..10-03
+    on this function's grid). Known defect: the pandas ``origin='start_day'``
+    anchor is UTC-anchored to midnight of the first download day, so the
+    resulting grid shifts with DST and download-window length (live produced
+    06:30/10:30/14:30 instead of the intended 09:30/13:30). New work must use
+    ``resample_closed_4h_session_anchored``. Do not change this function's
+    behavior while the affected cohort has open positions.
+    """
+    if df.empty:
+        return df.copy()
+    if not isinstance(df.index, pd.DatetimeIndex):
+        raise TypeError("Market data must use a DatetimeIndex")
+
+    data = df.copy().sort_index()
+    is_crypto = symbol.upper().endswith("-USD")
+    if not is_crypto:
+        local = data.index.tz_convert("America/New_York") if data.index.tz is not None else data.index
+        minutes = local.hour * 60 + local.minute
+        regular = (minutes >= 570) & (minutes < 960)
+        data = data[regular]
+        local = local[regular]
+        if data.empty:
+            return data
+        typical = (data["High"] + data["Low"] + data["Close"]) / 3.0
+        session_key = local.normalize()
+        pv = typical * data["Volume"]
+        cumulative_pv = pv.groupby(session_key).cumsum()
+        cumulative_volume = data["Volume"].groupby(session_key).cumsum().replace(0, pd.NA)
+        data["SessionVWAP"] = cumulative_pv / cumulative_volume
+
+    kwargs: dict[str, Any] = {"origin": "start_day", "label": "left", "closed": "left"}
+    if not is_crypto:
+        kwargs["offset"] = "9h30min"
+    aggregations: dict[str, str] = {
+        "Open": "first", "High": "max", "Low": "min", "Close": "last", "Volume": "sum"
+    }
+    if "SessionVWAP" in data:
+        aggregations["SessionVWAP"] = "last"
+    bars = data.resample("4h", **kwargs).agg(aggregations).dropna(subset=["Open", "High", "Low", "Close"])
+    if bars.empty:
+        return bars
+
+    current = _now_for_index(bars.index, now)
+    if current < bar_close_at(bars.index[-1], symbol):
+        bars = bars.iloc[:-1]
+    if not bars.empty:
+        bars.attrs["last_bar_start_at"] = bars.index[-1].isoformat()
+        bars.attrs["last_bar_close_at"] = bar_close_at(bars.index[-1], symbol).isoformat()
+    return bars
+
+
+def resample_closed_4h_session_anchored(
+    df: pd.DataFrame,
+    symbol: str,
+    now: Optional[pd.Timestamp] = None,
+) -> pd.DataFrame:
+    """Session-anchored 4h bars, invariant to DST and download-window length.
+
+    US symbols produce 09:30-13:30 and 13:30-16:00 America/New_York bars
+    (the latter a shortened closing-session bar), matching the grid in
+    ``backtest_cache/h4_*.pkl``. Bins are assigned explicitly from local
+    session time — never via pandas ``origin='start_day'``, whose anchor is
+    UTC-anchored to midnight of the first download day and shifts the grid
+    with DST and window length (the defect that put the live forward test
+    on 06:30/10:30/14:30 candles).
+
+    Crypto ("-USD") symbols produce 00:00/04:00/.../20:00 UTC-anchored bars.
+
+    Same output schema as ``resample_closed_4h`` (tz-aware DatetimeIndex,
+    Open/High/Low/Close/Volume[/SessionVWAP], last_bar_* attrs) and the
+    same forming-bar exclusion via ``bar_close_at``. Intended for the
+    separately versioned corrected forward test — NOT wired into the live
+    harness while the affected cohort is still managed on the old grid.
+
+    Causal input guarantee (fail-closed): rows dated after ``now`` are dropped
+    before binning, so no bar can contain future data regardless of what the
+    caller passes. Session close is read from the XNYS exchange calendar, so
+    early-close days (e.g. 13:00) produce correctly completed bars.
+    """
+    if df.empty:
+        return df.copy()
+    if not isinstance(df.index, pd.DatetimeIndex):
+        raise TypeError("Market data must use a DatetimeIndex")
+
+    data = df.copy().sort_index()
+    is_crypto = symbol.upper().endswith("-USD")
+
+    # Fail-closed causal cutoff: nothing dated after `now` may contribute to
+    # any bar. Without this, a full-day frame passed with an earlier `now`
+    # would let future rows contaminate putatively closed bars.
+    cutoff = _now_for_index(data.index, now)
+    data = data[data.index <= cutoff]
+    if data.empty:
+        return data
+
+    if is_crypto:
+        # Anchor explicitly to UTC midnight: bins at 00/04/08/12/16/20 UTC
+        # regardless of which day the download window starts on.
+        if data.index.tz is None:
+            utc_idx = data.index.tz_localize("UTC")
+        else:
+            utc_idx = data.index.tz_convert("UTC")
+        day = utc_idx.normalize()
+        mins = utc_idx.hour * 60 + utc_idx.minute
+        bin_start_min = (mins // 240) * 240
+        labels = day + pd.to_timedelta(bin_start_min, unit="m")
+        data = data.copy()
+        data["_bin"] = pd.DatetimeIndex(labels).tz_convert("UTC")
+        grouped = data.groupby("_bin")
+        session_closes: dict = {}
+    else:
+        if data.index.tz is None:
+            raise TypeError("US equity data must be tz-aware")
+        local = data.index.tz_convert("America/New_York")
+        minutes = local.hour * 60 + local.minute
+        day_key = local.normalize()
+        # Per-date session close from the exchange calendar (16:00 regular,
+        # 13:00 early-close days). Unknown dates fall back to 16:00.
+        session_closes = {}
+        for d in pd.DatetimeIndex(day_key.unique()):
+            sc = session_close_et(d)
+            session_closes[d] = sc if sc is not None else d + pd.Timedelta(hours=16)
+        close_minutes = day_key.map(
+            lambda d: int((session_closes[d] - d).total_seconds() // 60)
+        )
+        regular = (minutes >= 570) & (minutes < close_minutes)
+        data = data[regular].copy()
+        local = local[regular]
+        if data.empty:
+            return data.drop(columns=[c for c in data.columns
+                                     if c not in df.columns])
+        typical = (data["High"] + data["Low"] + data["Close"]) / 3.0
+        session_key = local.normalize()
+        pv = typical * data["Volume"]
+        cumulative_pv = pv.groupby(session_key).cumsum()
+        cumulative_volume = data["Volume"].groupby(session_key).cumsum().replace(0, pd.NA)
+        data["SessionVWAP"] = cumulative_pv / cumulative_volume
+        # Explicit session bins: [09:30,13:30) -> 09:30, [13:30,close) -> 13:30.
+        # On early-close days the second bin has no rows by construction.
+        bin_start_min = [570 if m < 810 else 810 for m in minutes]
+        labels = session_key + pd.to_timedelta(bin_start_min, unit="m")
+        data["_bin"] = pd.DatetimeIndex(labels)
+        grouped = data.groupby("_bin")
+
+    aggregations: dict[str, str] = {
+        "Open": "first", "High": "max", "Low": "min", "Close": "last",
+        "Volume": "sum",
+    }
+    if "SessionVWAP" in data.columns:
+        aggregations["SessionVWAP"] = "last"
+    bars = grouped.agg(aggregations).dropna(subset=["Open", "High", "Low", "Close"])
+    bars.index.name = None
+    if bars.empty:
+        return bars
+
+    def _close_at(bar_start: pd.Timestamp) -> pd.Timestamp:
+        if is_crypto or not session_closes:
+            return bar_close_at(bar_start, symbol)
+        day = pd.Timestamp(bar_start).tz_convert("America/New_York").normalize()
+        return bar_close_at(bar_start, symbol, session_close=session_closes.get(day))
+
+    current = _now_for_index(bars.index, now)
+    if current < _close_at(bars.index[-1]):
+        bars = bars.iloc[:-1]
+    if not bars.empty:
+        bars.attrs["last_bar_start_at"] = bars.index[-1].isoformat()
+        bars.attrs["last_bar_close_at"] = _close_at(bars.index[-1]).isoformat()
+    return bars
+
+
+def _inside_buy_zone(row: Mapping[str, Any]) -> bool:
+    try:
+        low, high = map(float, str(row["buy_zone"]).split("-", 1))
+        price = float(row["price"])
+    except (KeyError, TypeError, ValueError):
+        return False
+    return low <= price <= high
+
+
+def risk_reward(row: Mapping[str, Any]) -> float:
+    try:
+        price, stop, target = float(row["price"]), float(row["stop"]), float(row["tp1"])
+    except (KeyError, TypeError, ValueError):
+        return 0.0
+    risk = price - stop
+    return max(0.0, (target - price) / risk) if risk > 0 else 0.0
+
+
+def trade_levels(zone_low: float, zone_high: float, atr_value: float) -> tuple[float, float]:
+    """Return structure-anchored invalidation and first target levels."""
+    return (
+        max(0.0, zone_low - atr_value * STOP_ZONE_ATR_BUFFER),
+        zone_high + atr_value * TP_ZONE_ATR_EXTENSION,
+    )
+
+
+def is_structural_candidate(row: Mapping[str, Any]) -> bool:
+    """The stable 4-hour candidate contract, before confirmation gates."""
+    return (
+        row.get("entry") == "YES"
+        and row.get("protection") == "SAFE"
+        and row.get("state") in BUY_NOW_STATES
+        and row.get("above_vwap") is True
+        and _inside_buy_zone(row)
+    )
+
+
+def validation_reasons(row: Mapping[str, Any]) -> list[str]:
+    """Return every reason a candidate is not an actionable BUY NOW signal."""
+    reasons: list[str] = []
+    if not is_structural_candidate(row):
+        reasons.append("4h setup is not a valid in-zone SAFE candidate")
+        return reasons
+    if str(row.get("market_gate", "UNKNOWN")) != "CONFIRM":
+        reasons.append(f"market gate is {row.get('market_gate', 'UNKNOWN')}")
+    if float(row.get("adx", 0) or 0) < MIN_ADX:
+        reasons.append(f"ADX below {MIN_ADX:g}")
+    if float(row.get("rel_vol", 0) or 0) < MIN_RELATIVE_VOLUME:
+        reasons.append(f"relative volume below {MIN_RELATIVE_VOLUME:.2f}x")
+    rr = float(row.get("risk_reward", risk_reward(row)) or 0)
+    if rr < MIN_RISK_REWARD:
+        reasons.append(f"reward/risk below {MIN_RISK_REWARD:.1f}:1")
+    if row.get("mtf_confirmed") is not True:
+        reasons.append("weekly/daily/4h alignment not confirmed")
+    if row.get("confirmation_15m") is not True:
+        reasons.append("completed 15-minute confirmation missing")
+    return reasons
+
+
+def annotate_validation(row: Mapping[str, Any]) -> dict[str, Any]:
+    enriched = dict(row)
+    enriched["risk_reward"] = round(risk_reward(enriched), 3)
+    reasons = validation_reasons(enriched)
+    enriched["validation_status"] = "BUY NOW VALID" if not reasons else "WATCH/WAIT"
+    enriched["validation_reasons"] = reasons
+    return enriched
+
+
+def is_buy_now_result(row: Mapping[str, Any]) -> bool:
+    return not validation_reasons(row)
+
+
+def filter_buy_now(rows: Iterable[Mapping[str, Any]], limit: Optional[int] = None) -> list[Mapping[str, Any]]:
+    valid = [annotate_validation(row) for row in rows if is_buy_now_result(row)]
+    valid.sort(key=lambda row: (float(row.get("risk_reward", 0)), int(row.get("rank_score", 0))), reverse=True)
+    return valid if limit is None else valid[:limit]
+
+
+def completed_15m_confirmation(df: pd.DataFrame, now: Optional[pd.Timestamp] = None) -> dict[str, Any]:
+    """Validate the latest completed regular-session 15-minute bar."""
+    result = {"confirmed": False, "bar_close_at": None, "session_vwap": None, "relative_volume": 0.0}
+    if df.empty or not isinstance(df.index, pd.DatetimeIndex):
+        return result
+    data = df.copy().sort_index()
+    current = _now_for_index(data.index, now)
+    data = data[data.index + pd.Timedelta(minutes=15) <= current]
+    if data.empty:
+        return result
+    local = data.index.tz_convert("America/New_York") if data.index.tz is not None else data.index
+    minutes = local.hour * 60 + local.minute
+    regular = (minutes >= 570) & (minutes < 960)
+    data = data[regular]
+    local = local[regular]
+    if data.empty:
+        return result
+    latest_session = local.normalize()[-1]
+    session = data[local.normalize() == latest_session].copy()
+    if len(session) < 2:
+        return result
+    typical = (session["High"] + session["Low"] + session["Close"]) / 3.0
+    volume = session["Volume"].astype(float)
+    session_vwap = float((typical * volume).sum() / volume.sum()) if volume.sum() > 0 else float("nan")
+    ema9 = session["Close"].ewm(span=9, adjust=False).mean()
+    baseline = volume.rolling(20, min_periods=4).mean().iloc[-1]
+    relative_volume = float(volume.iloc[-1] / baseline) if baseline and not pd.isna(baseline) else 0.0
+    last, previous = session.iloc[-1], session.iloc[-2]
+    price_action = float(last["Close"]) >= float(last["Open"]) or float(last["Close"]) >= float(previous["Close"])
+    confirmed = (
+        float(last["Close"]) >= session_vwap
+        and float(last["Close"]) >= float(ema9.iloc[-1])
+        and price_action
+        and relative_volume >= MIN_RELATIVE_VOLUME
+    )
+    result.update(
+        confirmed=bool(confirmed),
+        bar_close_at=(session.index[-1] + pd.Timedelta(minutes=15)).isoformat(),
+        session_vwap=round(session_vwap, 4),
+        relative_volume=round(relative_volume, 3),
+    )
+    return result
+
+
+def closed_higher_timeframe(
+    df: pd.DataFrame,
+    timeframe: str,
+    now: Optional[pd.Timestamp] = None,
+) -> pd.DataFrame:
+    """Remove an unfinished daily or weekly bar before MTF validation."""
+    if df.empty or not isinstance(df.index, pd.DatetimeIndex):
+        return df.copy()
+    data = df.copy().sort_index()
+    current = pd.Timestamp.now(tz="America/New_York") if now is None else pd.Timestamp(now)
+    if current.tzinfo is None:
+        current = current.tz_localize("America/New_York")
+    else:
+        current = current.tz_convert("America/New_York")
+    last = pd.Timestamp(data.index[-1])
+    if last.tzinfo is None:
+        last_date = last.date()
+    else:
+        last_date = last.tz_convert("America/New_York").date()
+    if timeframe == "1d" and last_date == current.date() and current.time() < pd.Timestamp("16:00").time():
+        data = data.iloc[:-1]
+    elif timeframe == "1wk":
+        current_week_start = (current - pd.Timedelta(days=current.weekday())).date()
+        last_week_start = last_date - pd.Timedelta(days=last_date.weekday())
+        week_finished = current.weekday() > 4 or (current.weekday() == 4 and current.time() >= pd.Timestamp("16:00").time())
+        if last_week_start == current_week_start and not week_finished:
+            data = data.iloc[:-1]
+    return data
+
+
+def timeframe_trend_confirmed(
+    df: pd.DataFrame,
+    timeframe: str = "1d",
+    now: Optional[pd.Timestamp] = None,
+) -> bool:
+    """Approximate TradingView BUY/HOLD using completed higher-timeframe bars."""
+    df = closed_higher_timeframe(df, timeframe, now)
+    if df.empty or len(df) < 205:
+        return False
+    close = df["Close"].astype(float)
+    ema21 = close.ewm(span=21, adjust=False).mean()
+    ema55 = close.ewm(span=55, adjust=False).mean()
+    ema200 = close.ewm(span=200, adjust=False).mean()
+    return bool(close.iloc[-1] > ema200.iloc[-1] and ema21.iloc[-1] > ema55.iloc[-1] and ema21.iloc[-1] >= ema21.iloc[-2])
+
+# ============================================================
+# PREMARKET SESSION SNAPSHOT
+# ============================================================
+# US premarket runs 04:00-09:30 ET. yfinance only returns those
+# bars when the download uses prepost=True. Crypto ("-USD")
+# trades 24/7 so it has no premarket session.
+
+PREMARKET_START_MIN = 4 * 60
+PREMARKET_END_MIN = 9 * 60 + 30
+PREMARKET_STRONG_GAP_PCT = 2.0
+PREMARKET_CHASE_GAP_PCT = 5.0
+
+
+def _premarket_na() -> dict[str, Any]:
+    return {
+        "pm_high": None,
+        "pm_low": None,
+        "pm_volume": None,
+        "pm_vwap": None,
+        "pm_last": None,
+        "pm_gap_pct": None,
+        "pm_range_pct": None,
+        "pm_read": "N/A",
+    }
+
+
+def previous_regular_close(
+    daily_df: pd.DataFrame,
+    now: Optional[pd.Timestamp] = None,
+) -> Optional[float]:
+    """Return the last completed regular-session daily close before today ET.
+
+    Yahoo can expose an in-progress daily bar for the current session. Excluding
+    today's date prevents premarket gap math from accidentally using today's
+    4-hour/daily price as the baseline.
+    """
+    try:
+        if daily_df is None or daily_df.empty or "Close" not in daily_df:
+            return None
+        data = daily_df.copy().sort_index().dropna(subset=["Close"])
+        if data.empty or not isinstance(data.index, pd.DatetimeIndex):
+            return None
+
+        current = pd.Timestamp.now(tz="America/New_York") if now is None else pd.Timestamp(now)
+        if current.tzinfo is None:
+            current = current.tz_localize("America/New_York")
+        else:
+            current = current.tz_convert("America/New_York")
+
+        if data.index.tz is None:
+            dates = data.index.date
+        else:
+            dates = data.index.tz_convert("America/New_York").date
+        completed = data[dates < current.date()]
+        if completed.empty:
+            return None
+        return float(completed["Close"].iloc[-1])
+    except Exception:
+        return None
+
+
+def premarket_snapshot(
+    df: pd.DataFrame,
+    symbol: str,
+    prev_close: Optional[float] = None,
+    now: Optional[pd.Timestamp] = None,
+) -> dict[str, Any]:
+    """Summarize today's 04:00-09:30 ET premarket session.
+
+    ``df`` should be 1m/5m/15m bars fetched with ``prepost=True``. ``prev_close``
+    must be the previous completed regular-session close. Yahoo premarket volume
+    can be absent or incomplete, so BULLISH/BEARISH reads use gap size plus where
+    the latest premarket price sits inside the premarket range.
+    """
+    try:
+        if df is None or df.empty or not isinstance(df.index, pd.DatetimeIndex):
+            return _premarket_na()
+        if str(symbol).upper().endswith("-USD"):
+            return _premarket_na()
+
+        data = df.copy().sort_index()
+        local = data.index.tz_convert("America/New_York") if data.index.tz is not None else data.index
+        current = _now_for_index(data.index, now)
+        today = current.tz_convert("America/New_York").date() if current.tzinfo is not None else current.date()
+
+        minutes = local.hour * 60 + local.minute
+        session = data[(local.date == today) & (minutes >= PREMARKET_START_MIN) & (minutes < PREMARKET_END_MIN)]
+        if session.empty:
+            return _premarket_na()
+
+        high = float(session["High"].max())
+        low = float(session["Low"].min())
+        volume = float(session["Volume"].sum()) if "Volume" in session else 0.0
+        typical = (session["High"] + session["Low"] + session["Close"]) / 3.0
+        vwap = float((typical * session["Volume"]).sum() / volume) if "Volume" in session and volume > 0 else None
+        last = float(session["Close"].iloc[-1])
+
+        gap_pct = None
+        range_pct = None
+        if prev_close is not None and float(prev_close) > 0:
+            baseline = float(prev_close)
+            gap_pct = round((last / baseline - 1.0) * 100.0, 2)
+            range_pct = round((high - low) / baseline * 100.0, 2)
+
+        read = "NEUTRAL"
+        if gap_pct is not None and high > low:
+            position = (last - low) / (high - low)
+            if gap_pct >= PREMARKET_STRONG_GAP_PCT and position >= 0.75:
+                read = "BULLISH"
+            elif gap_pct <= -PREMARKET_STRONG_GAP_PCT and position <= 0.25:
+                read = "BEARISH"
+
+        return {
+            "pm_high": round(high, 2),
+            "pm_low": round(low, 2),
+            "pm_volume": int(volume),
+            "pm_vwap": round(vwap, 2) if vwap is not None else None,
+            "pm_last": round(last, 2),
+            "pm_gap_pct": gap_pct,
+            "pm_range_pct": range_pct,
+            "pm_read": read,
+        }
+    except Exception:
+        return _premarket_na()
+
