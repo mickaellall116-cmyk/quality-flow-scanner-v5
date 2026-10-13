@@ -1,0 +1,19 @@
+=== FIXTURES vs OLD code (original 3c7ddb8) — expected FAIL ===
+module under test: /tmp/crt_old/run_crt.py
+FAIL  long +1R: implied_R=-1.000000 expected=+1.000000 tp1_hit=False
+FAIL  long -1R: implied_R=+1.000000 expected=-1.000000 tp1_hit=False
+FAIL  short +1R: implied_R=-1.000000 expected=+1.000000 tp1_hit=False
+FAIL  short -1R: implied_R=+1.000000 expected=-1.000000 tp1_hit=False
+FAIL  long TP1 blend: implied_R=-0.866667 expected=+0.866667 tp1_hit=True
+0/5 fixtures passed
+exit=1
+
+=== FIXTURES vs CORRECTED code (QF-CRT-SIGN-CORRECTION-20261013-01 r1) — expected PASS ===
+module under test: /home/hatch/workspace/quality-flow-scanner-v5/pine_claims_crt/run_crt.py
+PASS  long +1R: implied_R=+1.000000 expected=+1.000000 tp1_hit=False
+PASS  long -1R: implied_R=-1.000000 expected=-1.000000 tp1_hit=False
+PASS  short +1R: implied_R=+1.000000 expected=+1.000000 tp1_hit=False
+PASS  short -1R: implied_R=-1.000000 expected=-1.000000 tp1_hit=False
+PASS  long TP1 blend: implied_R=+0.866667 expected=+0.866667 tp1_hit=True
+5/5 fixtures passed
+exit=0

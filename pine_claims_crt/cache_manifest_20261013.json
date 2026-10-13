@@ -1,0 +1,63 @@
+{
+ "run_label": "REPLACEMENT RUN on newly pinned current cache \u2014 NOT a reproduction of the Oct 12 run (original input bytes were never pinned and may have drifted)",
+ "work_order": "QF-CRT-SIGN-CORRECTION-20261013-01 r1",
+ "pinned_at_epoch": 1791915265,
+ "files": {
+  "pine_entry_timing_backtest/cache/h4_QQQ.pkl": {
+   "sha256": "8ed86a95aabbcf474e8e4920167d45797662d72a45cb51d2e0a10d34902a4959",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_SMCI.pkl": {
+   "sha256": "80b23fbc60430c0e0067ea9a78df6da70dc2e48f8f3f04a68e1df1becbbfff04",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_PLTR.pkl": {
+   "sha256": "5a099edce43b06f851d182eb383189a2785139333ccc8c6d4a52ac93323ab308",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_ANET.pkl": {
+   "sha256": "2bbb6cf9c8646c833feb6d32619942d4aebe144ea082315f0c97d97777c286a4",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_SOFI.pkl": {
+   "sha256": "94423d0f2e7a5e3c41af06c8b903e27946dce69d92015919e5b02636088564a8",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_RKLB.pkl": {
+   "sha256": "96e341625e86d7498960bcaa5c7e04ccb9d04ce01ab851dfe74e2d6a20d7d902",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_ONDS.pkl": {
+   "sha256": "5c221a5099d2ebce69dba95af2795b063d91af8369412138e8803d6c1c22fbac",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_DRAM.pkl": {
+   "sha256": "bf7571a260d0f815a21941e784d63937bea1777423d999ae9a0a2bc64ffc88d6",
+   "bytes": 12669
+  },
+  "pine_entry_timing_backtest/cache/h4_SPCX.pkl": {
+   "sha256": "6b0004d8ef2b61b9344acb7a55b875d4134bfb131e1a61f4641083b23e1793d8",
+   "bytes": 7965
+  },
+  "pine_entry_timing_backtest/cache/h4_ASTX.pkl": {
+   "sha256": "b54c5d3409454f5b4ca457fed78aeae26ee969312a85e064a2ce5e77304b0c3f",
+   "bytes": 30144
+  },
+  "pine_entry_timing_backtest/cache/h4_BBAI.pkl": {
+   "sha256": "4b8d613d2ceb8394d1f66323b07d64eedd9b62ca5566d2fb607bb02a7f439a18",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_NIO.pkl": {
+   "sha256": "d719575455016b0d6f1a04d5012febd7290110cfb0ddd7a8ab90ac16b234d979",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_HOOD.pkl": {
+   "sha256": "0ae9ca4c4e804a7b166e6c87cec1868a07e5ca109c22a04e8e5114f3c38c0763",
+   "bytes": 70905
+  },
+  "pine_entry_timing_backtest/cache/h4_AMD.pkl": {
+   "sha256": "10caf02a378b2a52eee7578a65ca061dc49722fc0d76759be02363d4f40e3de9",
+   "bytes": 70905
+  }
+ }
+}

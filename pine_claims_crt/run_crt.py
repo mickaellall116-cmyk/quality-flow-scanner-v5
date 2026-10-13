@@ -183,9 +183,9 @@ def _manage(pos, df, i, n, sym):
             exit_px, exit_time = close, df.index[i]
             exit_idx = i
         risk_frac = (pos["entry"] - pos["stop"]) / pos["entry"] * d
-        r1 = ((pos["entry"] - pos["tp1"]) / pos["entry"] * d / risk_frac
+        r1 = ((pos["tp1"] - pos["entry"]) / pos["entry"] * d / risk_frac
               if pos["tp_hit"] else None)
-        r2 = (pos["entry"] - exit_px) / pos["entry"] * d / risk_frac
+        r2 = (exit_px - pos["entry"]) / pos["entry"] * d / risk_frac
         r_blend = (0.5 * r1 + 0.5 * r2) if r1 is not None else r2
         net_ret_blend = r_blend * risk_frac
         exit_synth = pos["entry"] * (1 + net_ret_blend * d)

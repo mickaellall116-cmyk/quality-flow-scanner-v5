@@ -1,0 +1,31 @@
+loaded 14 tickers; dropped: []
+BASE [4bps]: n=237 win=50.6% exp=0.29R PF=1.49 maxDD=20.14%
+BASE [25bps]: n=237 win=50.6% exp=0.239R PF=1.38 maxDD=21.63%
+BASE [50bps]: n=237 win=50.6% exp=0.178R PF=1.27 maxDD=22.77%
+BASE [75bps]: n=237 win=50.2% exp=0.117R PF=1.17 maxDD=27.17%
+BASE [100bps]: n=237 win=50.2% exp=0.056R PF=1.08 maxDD=30.67%
+CRT-LONG [4bps]: n=811 win=50.1% exp=0.129R PF=1.16 maxDD=125.61% | bull=1438 bear=1359 amb=495
+CRT-LONG [25bps]: n=811 win=46.7% exp=-0.037R PF=0.96 maxDD=120.34% | bull=1438 bear=1359 amb=495
+CRT-LONG [50bps]: n=811 win=42.3% exp=-0.234R PF=0.77 maxDD=116.18% | bull=1438 bear=1359 amb=495
+CRT-LONG [75bps]: n=811 win=38.6% exp=-0.431R PF=0.63 maxDD=112.17% | bull=1438 bear=1359 amb=495
+CRT-LONG [100bps]: n=811 win=34.6% exp=-0.628R PF=0.52 maxDD=110.87% | bull=1438 bear=1359 amb=495
+CRT-LONG-MARGIN [4bps]: n=518 win=49.0% exp=0.121R PF=1.21 maxDD=42.21% | bull=643 bear=662 amb=108
+CRT-LONG-MARGIN [25bps]: n=518 win=45.4% exp=0.02R PF=1.03 maxDD=47.28% | bull=643 bear=662 amb=108
+CRT-LONG-MARGIN [50bps]: n=518 win=41.7% exp=-0.1R PF=0.86 maxDD=58.19% | bull=643 bear=662 amb=108
+CRT-LONG-MARGIN [75bps]: n=518 win=39.0% exp=-0.22R PF=0.72 maxDD=70.44% | bull=643 bear=662 amb=108
+CRT-LONG-MARGIN [100bps]: n=518 win=34.0% exp=-0.34R PF=0.61 maxDD=83.31% | bull=643 bear=662 amb=108
+CRT-SHORT [4bps]: n=835 win=46.3% exp=-0.65R PF=0.57 maxDD=294.58% | bull=1428 bear=1579 amb=540
+CRT-SHORT [25bps]: n=835 win=41.8% exp=-1.002R PF=0.43 maxDD=141.79% | bull=1428 bear=1579 amb=540
+CRT-SHORT [50bps]: n=835 win=37.4% exp=-1.42R PF=0.31 maxDD=101.61% | bull=1428 bear=1579 amb=540
+CRT-SHORT [75bps]: n=835 win=34.3% exp=-1.839R PF=0.23 maxDD=100.14% | bull=1428 bear=1579 amb=540
+CRT-SHORT [100bps]: n=835 win=30.7% exp=-2.257R PF=0.17 maxDD=100.02% | bull=1428 bear=1579 amb=540
+CRT-LS [4bps]: n=1116 win=46.3% exp=-0.349R PF=0.74 maxDD=167.69% | bull=1020 bear=1016 amb=351
+CRT-LS [25bps]: n=1116 win=42.7% exp=-0.602R PF=0.61 maxDD=203.44% | bull=1020 bear=1016 amb=351
+CRT-LS [50bps]: n=1116 win=39.2% exp=-0.902R PF=0.48 maxDD=110.97% | bull=1020 bear=1016 amb=351
+CRT-LS [75bps]: n=1116 win=36.5% exp=-1.202R PF=0.38 maxDD=103.45% | bull=1020 bear=1016 amb=351
+CRT-LS [100bps]: n=1116 win=33.2% exp=-1.502R PF=0.31 maxDD=100.46% | bull=1020 bear=1016 amb=351
+wrote /home/hatch/workspace/quality-flow-scanner-v5/pine_claims_crt/crt_results.json
+
+real	0m5.653s
+user	0m5.394s
+sys	0m0.122s
