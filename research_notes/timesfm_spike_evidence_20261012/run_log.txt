@@ -1,0 +1,50 @@
+Fetching bars (yfinance, Yahoo only)...
+TimesFM v1.2.0. See https://github.com/google-research/timesfm/blob/master/README.md for updated APIs.
+Loaded Jax TimesFM.
+Loaded PyTorch TimesFM.
+Loading google/timesfm-2.0-500m-pytorch from /home/hatch/workspace/timesfm_spike/hf_cache/hub/models--google--timesfm-2.0-500m-pytorch/snapshots/dc2443792ce5516872b89b37cf1bc058c3bf0c10/torch_model.ckpt ...
+Model loaded in 13.6s
+  QQQ: 133 origins forecast
+  SMCI: 133 origins forecast
+  PLTR: 133 origins forecast
+  ANET: 133 origins forecast
+  SOFI: 133 origins forecast
+  RKLB: 133 origins forecast
+  ONDS: 133 origins forecast
+  DRAM: NO valid origins
+  SPCX: 54 origins forecast
+  ASTX: 60 origins forecast
+  BBAI: 133 origins forecast
+  NIO: 133 origins forecast
+  HOOD: 133 origins forecast
+  AMD: 133 origins forecast
+{
+ "pooled": {
+  "n": 1577,
+  "timesfm_rmse": 8.003638943472637,
+  "timesfm_mae": 3.927083452063871,
+  "nochange_rmse": 7.609450315608055,
+  "nochange_mae": 3.7096006524056366,
+  "drift_rmse": 7.817800868436619,
+  "drift_mae": 3.8564912743666855,
+  "timesfm_dir_acc": 0.5025608194622279,
+  "dir_n": 1562,
+  "drift_dir_acc": 0.48655569782330343
+ },
+ "tradable": {
+  "n_trades": 670,
+  "mean_return_after_costs": 0.002067027679226088,
+  "total_return_sum": 1.384908545081479,
+  "win_rate": 0.46567164179104475
+ },
+ "gate": {
+  "leg1_rmse_5pct_better": false,
+  "leg1_rmse_improvement_frac": -0.051802510235995136,
+  "leg2_dir_acc_53pct": false,
+  "leg2_dir_acc": 0.5025608194622279,
+  "leg3_tradable_positive": true,
+  "leg3_mean_return_after_costs": 0.002067027679226088,
+  "PASS": false
+ }
+}
+Wrote /home/hatch/workspace/timesfm_spike/timesfm_spike_raw_results.json
