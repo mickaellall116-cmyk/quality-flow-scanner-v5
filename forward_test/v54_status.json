@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-11T22:51:32.029969+00:00",
+  "as_of": "2026-10-13T14:51:44.105704+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,7 +7,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-11T22:51:31.992187+00:00",
+  "last_successful_cycle": "2026-10-13T14:51:44.054929+00:00",
   "signals_logged": 30,
   "grade_counts": {
     "A": 7,
@@ -27,43 +27,12 @@
     }
   },
   "pending_entries": [],
-  "open_positions": [
-    {
-      "signal_id": "v54:CRWD:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
-      "symbol": "CRWD",
-      "grade": "B",
-      "entry": 252.8699951171875,
-      "entry_bar": "2026-09-28T10:30:00-04:00",
-      "stop": 243.65635597824416,
-      "tp1": 268.13557270036813,
-      "status": "open_runner",
-      "bars_held": 29,
-      "tp1_taken": true,
-      "profit_protect_armed": null,
-      "mfe_r": 3.703195127345323,
-      "mae_r": -0.13675318599252625
-    },
-    {
-      "signal_id": "v54:OKTA:4h:2026-09-28T10:30:00-04:00:2026-09-15-v54",
-      "symbol": "OKTA",
-      "grade": "B",
-      "entry": 196.64500427246094,
-      "entry_bar": "2026-09-28T10:30:00-04:00",
-      "stop": 189.79309267995558,
-      "tp1": 211.57578005508816,
-      "status": "open_runner",
-      "bars_held": 29,
-      "tp1_taken": true,
-      "profit_protect_armed": null,
-      "mfe_r": 5.302898463375016,
-      "mae_r": -0.015325794110213902
-    }
-  ],
-  "closed_trades": 19,
-  "cumulative_r": 7.8719,
+  "open_positions": [],
+  "closed_trades": 21,
+  "cumulative_r": 13.0547,
   "cumulative_r_note": "Sum of per-trade blended R at 1R risk each; not compounded.",
-  "avg_r_per_trade": 0.4143,
-  "win_rate": 0.4211,
+  "avg_r_per_trade": 0.6217,
+  "win_rate": 0.4762,
   "closed_v53_would_have_vetoed": 3,
   "closed_vetoed_winners": 1
 }
