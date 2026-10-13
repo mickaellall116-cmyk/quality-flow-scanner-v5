@@ -1,6 +1,6 @@
 {
   "protocol": "KAMA_SHADOW_PROTOCOL.md",
-  "updated_at": "2026-10-13T09:04:23+00:00",
+  "updated_at": "2026-10-13T17:04:18+00:00",
   "start_at": "2026-09-28T13:46:00+00:00",
   "review_target_signals": 100,
   "data_quality_checkpoint": 50,
@@ -38,7 +38,14 @@
         "gap_pct_of_kama40": 6.459362277064629
       },
       "outcome": {
-        "resolved": false
+        "resolved": true,
+        "blended_r": 1.6305,
+        "exit_reason": "runner-time",
+        "exit_bar": "2026-10-12T06:30:00-04:00",
+        "bars_held": 30,
+        "tp1_taken": true,
+        "mfe_r": 3.7032,
+        "mae_r": -0.1368
       },
       "signal_record_sha256": "5e4bb56e292d6ed3997917c9aff7d042296e6d5ce4b09c24e78a783db52c858e"
     },
@@ -96,7 +103,14 @@
         "gap_pct_of_kama40": 2.236897232452928
       },
       "outcome": {
-        "resolved": false
+        "resolved": true,
+        "blended_r": 3.5523,
+        "exit_reason": "runner-time",
+        "exit_bar": "2026-10-12T06:30:00-04:00",
+        "bars_held": 30,
+        "tp1_taken": true,
+        "mfe_r": 5.5977,
+        "mae_r": -0.0153
       },
       "signal_record_sha256": "186b938ddd15900db29e3c28dc72d7d19c4fcc2a85aa70ba467c044d5404658e"
     },
