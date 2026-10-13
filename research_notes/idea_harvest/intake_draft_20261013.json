@@ -1,0 +1,346 @@
+{
+  "draft": true,
+  "status": "DRAFT — NOT MERGED INTO registry.json",
+  "generated": "2026-10-13",
+  "generator": "Idea harvest run #1 per IDEA_HARVEST_SPEC_v1.md",
+  "source_report": "research_notes/idea_harvest/HARVEST_20261013.md",
+  "merge_instruction": "Do NOT merge automatically. A draft becomes a registry experiment only after Mike selects it and a preregistration is approved; merge then via python json (indent=2, ensure_ascii=False) in a separate approved bookkeeping step.",
+  "experiments": [
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261013-IH01-OVERNIGHT-INTRADAY-DECOMPOSITION",
+      "title": "Overnight vs intraday return decomposition (tug of war)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-10-13",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Recent overnight (close-to-open) and intraday (open-to-close) return components carry opposite persistent premia: high-overnight-return names continue overnight and reverse intraday.",
+      "primary_sources": [
+        "https://researchonline.lse.ac.uk/id/eprint/87481/"
+      ],
+      "literature_intake": {
+        "source": "Lou, Polk & Skouras, JFE 134 (2019) 192-213",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Recent overnight (close-to-open) and intraday (open-to-close) return components carry opposite persistent premia: high-overnight-return names continue overnight and reverse intraday."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261013.md",
+      "dependencies": [
+        "Daily OHLC for the frozen 250-symbol universe (already handled)"
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Long-only legs reported separately; intraday-reversal leg as avoid/underweight (short-side daily is a known structural loser here).",
+        "Dedupe PASS: no registry experiment tests return-component decomposition."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #1, 2026-10-13; Mike GO on reduced v1 pipeline 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Daily formation (~1-month trailing components), monthly hold",
+      "failure_data_source": "PIT: yes — daily OHLC only",
+      "failure_strategy_family": "overnight_intraday_decomposition",
+      "task_revision": "intake-draft-20261013",
+      "evidence_pin": "https://researchonline.lse.ac.uk/id/eprint/87481/",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261013-IH02-LOTTERY-MAX",
+      "title": "MAX effect — avoid lottery-like stocks",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-10-13",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks with the highest maximum daily return over the past month underperform the following month (lottery-demand overpricing).",
+      "primary_sources": [
+        "https://paperswithbacktest.com/api/paper/maxing-out-stocks-as-lotteries-and-the-cross-section-of-expected/pdf"
+      ],
+      "literature_intake": {
+        "source": "Bali, Cakici & Whitelaw, JFE 99 (2011) 427-446; SSRN 1262416",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks with the highest maximum daily return over the past month underperform the following month (lottery-demand overpricing)."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261013.md",
+      "dependencies": [
+        "Daily closes for a broad cross-section (250-symbol universe)"
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Implemented long-only as an exclusion/underweight filter, judged at portfolio level inside the stack per standing rules.",
+        "Dedupe PASS: no registry entry covers lottery/skewness characteristics; distinct from killed TOP/composite filters."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #1, 2026-10-13; Mike GO on reduced v1 pipeline 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Daily returns; 1-month MAX formation, 1-month hold",
+      "failure_data_source": "PIT: yes — daily closes only",
+      "failure_strategy_family": "lottery_max",
+      "task_revision": "intake-draft-20261013",
+      "evidence_pin": "https://paperswithbacktest.com/api/paper/maxing-out-stocks-as-lotteries-and-the-cross-section-of-expected/pdf",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261013-IH03-VOLUME-PREMIUM",
+      "title": "High-volume return premium",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-10-13",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks with unusually high trading volume over a day/week appreciate over the following month; unusually low volume precedes depreciation (visibility mechanism).",
+      "primary_sources": [
+        "https://sites.duke.edu/sgervais/research/gervais-kaniel-mingelgrin-2001/"
+      ],
+      "literature_intake": {
+        "source": "Gervais, Kaniel & Mingelgrin, Journal of Finance 56 (2001) 877-919",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks with unusually high trading volume over a day/week appreciate over the following month; unusually low volume precedes depreciation (visibility mechanism)."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261013.md",
+      "dependencies": [
+        "Daily OHLCV with pinned volume conventions"
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Volume is a genuinely new input family for the stack; gate would compare high-abnormal-volume group forward returns vs universe baseline at 25 bps.",
+        "Dedupe PASS: no registry experiment uses a volume-formation signal."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #1, 2026-10-13; Mike GO on reduced v1 pipeline 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Daily OHLCV; day/week abnormal-volume formation, ~1-month forward window",
+      "failure_data_source": "PIT: yes with caveat — vendor volume conventions must be pinned in prereg",
+      "failure_strategy_family": "volume_premium",
+      "task_revision": "intake-draft-20261013",
+      "evidence_pin": "https://sites.duke.edu/sgervais/research/gervais-kaniel-mingelgrin-2001/",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261013-IH04-ANCHORING-MOMENTUM",
+      "title": "Nearness to the 52-week high (anchoring momentum)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-10-13",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Price nearness to the trailing 52-week high positively predicts subsequent returns (anchoring/underreaction), reportedly subsuming return momentum.",
+      "primary_sources": [
+        "https://blankcapitalresearch.com/learn/george-hwang-52-week-high"
+      ],
+      "literature_intake": {
+        "source": "George & Hwang, Journal of Finance 59 (2004) 2145-2176",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Price nearness to the trailing 52-week high positively predicts subsequent returns (anchoring/underreaction), reportedly subsuming return momentum."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261013.md",
+      "dependencies": [
+        "Daily highs/closes (already handled)"
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Cheapest possible test on existing data.",
+        "Dedupe PASS with adjacency flag: momentum-family adjacent (V5.4 trend_4h FAIL) but different statistic (price/rolling-max) and mechanism; novelty discounted in ranking."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #1, 2026-10-13; Mike GO on reduced v1 pipeline 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Daily closes; monthly formation/hold",
+      "failure_data_source": "PIT: yes — daily highs/closes only",
+      "failure_strategy_family": "anchoring_momentum",
+      "task_revision": "intake-draft-20261013",
+      "evidence_pin": "https://blankcapitalresearch.com/learn/george-hwang-52-week-high",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261013-IH05-INTRADAY-MOMENTUM",
+      "title": "Market intraday momentum (first half-hour predicts last half-hour)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-10-13",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "The market index's first half-hour return positively predicts its last half-hour return the same day.",
+      "primary_sources": [
+        "https://paperswithbacktest.com/api/paper/intraday-momentum-the-first-half-hour-return-predicts-the-last-half-hour-return/pdf"
+      ],
+      "literature_intake": {
+        "source": "Gao, Han, Li & Zhou, JFE (2018); SSRN 2552752",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "The market index's first half-hour return positively predicts its last half-hour return the same day."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261013.md",
+      "dependencies": [
+        "BLOCKED: qualified 30-minute bar history (intraday data route decision)"
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Ranked 5th solely on the data prerequisite; one trade/day is the most cost-survivable intraday shape.",
+        "Dedupe PASS: distinct from ORB EXP-20261007-ORB-15M (different signal, window, claim)."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #1, 2026-10-13; Mike GO on reduced v1 pipeline 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Intraday 30-minute windows; one trade/day, flat overnight",
+      "failure_data_source": "PIT: partial/unknown — long 30-minute history not currently sourceable at qualified standard",
+      "failure_strategy_family": "intraday_momentum",
+      "task_revision": "intake-draft-20261013",
+      "evidence_pin": "https://paperswithbacktest.com/api/paper/intraday-momentum-the-first-half-hour-return-predicts-the-last-half-hour-return/pdf",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261013-IH06-VOLATILITY-FORECAST",
+      "title": "Overnight volatility predicts next-day intraday volatility (asymmetry)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-10-13",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Absolute overnight returns strongly predict the following day's intraday volatility, with little reverse predictability — a one-way volatility forecast usable for sizing/stops.",
+      "primary_sources": [
+        "https://arxiv.org/pdf/1509.08079"
+      ],
+      "literature_intake": {
+        "source": "Zadourian & Grassberger, arXiv:1509.08079 (2015)",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Absolute overnight returns strongly predict the following day's intraday volatility, with little reverse predictability — a one-way volatility forecast usable for sizing/stops."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261013.md",
+      "dependencies": [
+        "BLOCKED: intraday bar history at length (same route decision as IH05)"
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Not a directional edge; candidate input to position sizing / stop placement, which are currently static.",
+        "Dedupe PASS: no registry experiment covers volatility forecasting or sizing overlays."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #1, 2026-10-13; Mike GO on reduced v1 pipeline 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Daily forecast of intraday volatility",
+      "failure_data_source": "PIT: partial — realized intraday volatility target needs intraday history",
+      "failure_strategy_family": "volatility_forecast",
+      "task_revision": "intake-draft-20261013",
+      "evidence_pin": "https://arxiv.org/pdf/1509.08079",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    }
+  ]
+}
