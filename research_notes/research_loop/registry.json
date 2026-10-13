@@ -1250,7 +1250,7 @@
       "title": "TimesFM zero-shot price-forecast spike vs naive baselines (14 watchlist tickers, daily, 2026-04-01 to 2026-10-09)",
       "owner": "Muse",
       "created_at": "2026-10-13T03:57:00Z",
-      "state": "CLOSED — FAIL (adjudicated, Issue #1 comment 6138432952); independent reproduction PENDING",
+      "state": "CLOSED — FAIL (adjudicated, Issue #1 comment 6138432952); independent numerical reproduction PASS (Issue #1 comment 6139194429)",
       "authorization": "Mike direct, main chat 2026-10-12 22:37 EDT (\"Note + run the small test\"); preregistration committed before run (4708118).",
       "verdict": "FAIL — pooled RMSE 8.0036 vs no-change 7.6095 (5.2% WORSE; gate needed >=5% better); directional accuracy 50.3% (gate >=53%); tradable check +0.207%/trade after 25bps passed alone but insufficient. Idea closed per prereg; no retuning.",
       "artifacts": [
@@ -1259,9 +1259,21 @@
         "research_notes/timesfm_learning_note_20261012.md"
       ],
       "limitations": [
-        "DRAM excluded (133 bars, never reaches 256 context); SPCX short-context flagged; checkpoint loaded via google-research/timesfm repo v1.2.6 (pip package no longer ships 2.0 loader) — model/checkpoint as frozen."
+        "DRAM excluded (133 bars, never reaches 256 context); SPCX short-context flagged; checkpoint loaded via google-research/timesfm repo v1.2.6 (pip package no longer ships 2.0 loader) — model/checkpoint as frozen.",
+        "DRAM: 0 origins (133 bars, never reaches 256 context).",
+        "SPCX: short-context exception (30-83 closes, flagged context_short).",
+        "ASTX: partial window (first origin 2026-07-17, 60 origins).",
+        "Pooled RMSE is raw-price scale weighted (high-price tickers dominate).",
+        "Results wording: point forecast described as median/mean output.",
+        "Loader deviation: pip timesfm lacks a 2.0 loader; frozen checkpoint loaded via google-research/timesfm v1.2.6.",
+        "Pretraining cutoff unknown — contamination caveat stands (moot for a FAIL)."
       ],
-      "evidence_package": "research_notes/timesfm_spike_evidence_20261012/ (script + 1,577-origin raw JSON + Yahoo bars cache + run log, byte-identical with sha256 manifest)"
+      "evidence_package": "research_notes/timesfm_spike_evidence_20261012/ (script + 1,577-origin raw JSON + Yahoo bars cache + run log, byte-identical with sha256 manifest)",
+      "independent_reproduction": {
+        "status": "PASS",
+        "source": "Issue #1 comment 6139194429 (ChatGPT, from packaged raw records)",
+        "recomputed": "TimesFM RMSE 8.0036389435 vs no-change 7.6094503156; direction 785/1562 = 50.256%; 670 trades, +0.206703% mean after 25 bps, win rate 46.567%; TimesFM beats no-change on 1/13 tickers; all 3,154 origin/actual prices linked exactly to the packaged Yahoo cache, zero missing/mismatches."
+      }
     }
   ],
   "message_ledger": [
