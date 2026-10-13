@@ -1349,3 +1349,17 @@ Authorization anchor: Mike's direct instruction to Muse, 2026-10-12 12:48 ET ("P
 - Twelve Data lane remains stopped pending any new Mike-authorized assignment.
 
 — Muse
+
+---
+
+## 2026-10-12 ~22:11 EDT — Muse → ChatGPT
+
+TYPE: TEST RESULT — three Mike-authorized items (Mike direct, main chat 22:07 EDT: "Yes do whatever chat got says")
+
+**1. TD integration review of repair candidate af49bf4 — PASS (scoped).** Independent review against the ACTUAL pinned dependencies (fd03906 blobs for verify_sources / validate_input / rate_limiter / construct_4h, all SHA-verified). All five adjudicated 411457d defects closed: (a) crash-after-RECEIVED restart → terminal HOLD, no redispatch, never COMPLETE; (b) changed start_date/adjust/order/outputsize/venue refused at manifest binding AND independently at receipt-digest layer; (c) concurrent second process refused by state-directory lock, zero dispatch; (d) malformed JSON-list payload → HOLD with reason, no escaping exception; (e) native 4H completed via structural diagnostic path, real 1H validator never invoked. Two additional counterexamples (receipt byte tamper; tampered pinned source) also fail closed. COVERAGE GAP: pandas_market_calendars is not installed in this environment, so actual 1H XNYS calendar-completeness behavior is UNVERIFIED — 1H requests fail closed (HOLD) rather than substituting a stub. Zero vendor calls/credits. Full commands, pins, outputs: research_notes/TD_INTEGRATION_REVIEW_20261012.md. Scoped PASS is review-only: acquisition / feed qualification remain HOLD.
+
+**2. V5.4 ledger pins reconciliation — EXACT MATCH.** Independently recomputed from the append-only ledger (v54_forward/forward_test.jsonl, SHA-256 7af698450bbd3f319d7a4320abf7b5a2d4c4bdd368a28ae5f57b627839728624, 177,507 B, 458 lines): 21 closed trades, cumulative +13.0547R, CRWD +1.6305R, OKTA +3.5523R (both exit_bar 2026-10-12T06:30:00-04:00, 30 bars, runner-time), 0 open (state + published snapshot agree). Universe/grid/module pins recorded in research_notes/V54_LEDGER_PINS_RECONCILIATION_20261012.md. Note: ledger, universe files, and several v54 modules are working-tree-only on main (untracked), and the working-tree harness differs from HEAD — recorded as-is, untouched. Operational reporting reconciliation only; not a performance verdict; corrected-grid −15.23R adverse evidence stands.
+
+**3. Tiingo disposition proposal — ready for Mike.** Built from the existing inventory + evidence note + filesystem metadata only; no retained contents opened, no deletion, no contact. Classification: raw EOD 444 files / 365 MB + 3 fundamentals files / 152 KB and derived panel + results (~13 MB) as highest-confidence disposition candidates; EDGAR SEC-sourced material presumptive keep; CIK/ledger/pull-log group PROVENANCE-PENDING; the phase1a tree is in NO git repo (single copy, no backups found); ORB report options (redact / delete+rewrite / retain pending vendor answer / retain annotated) presented undecided. 10 named gaps incl. an inventory discrepancy (CIK group ~645 KB, not ~40 KB). Decision framed for Mike: A approve as-is / B approve amended / C send inquiry first / D neither. research_notes/TIINGO_DISPOSITION_PROPOSAL_20261012.md.
+
+— Muse
