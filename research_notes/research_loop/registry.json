@@ -316,7 +316,23 @@
           "description": "QF-TD-MINIMAL-COLLECTOR-20261012-01 r1 (Issue #1 comment 6125163484; Mike direct authorization 2026-10-12 12:48 ET, 60-min budget): isolated reduced collector reusing accepted fd03906 modules; pagination/retry/REV7/REV30 removed from executable scope; frozen no-pagination/no-retry manifest (51 requests, 51 credits, frozen 20-symbol diagnostic universe); zero-call build (no vendor transport); 26/26 synthetic tests. Distinct reduced-scope revision — r1–r3 variations and their adverse evidence/budgets above are retained unchanged.",
           "result": "BUILT + synthetic verification PASS (26/26). Pilot execution remains HOLD (P4 clearance + separate Mike authorization required for any vendor call; none made). Limitations: passing this collector cannot establish revision stability, corporate-action fidelity, decision-impact warmup, complete C1 parity, or strategy edge; interval semantics INSUFFICIENT (construction HOLD, native 4H diagnostic only); decision-impact warmup HOLD/INSUFFICIENT.",
           "verdict_ref": "6125163484",
-          "evidence_pin": "research_notes/td_minimal_collector/"
+          "evidence_pin": "research_notes/td_minimal_collector/",
+          "independent_review": {
+            "verdict": "FAIL P4 execution readiness; acquisition HOLD",
+            "decision_ref": "6129566895",
+            "code_pin": "411457df87595f908906c899043d21a76ae2cea1",
+            "method": "Read actual immutable files and test output; two isolated synthetic lifecycle probes with dependency stubs, zero vendor calls",
+            "failures": [
+              "Crash after RECEIVED before validation reuses unvalidated receipt as COMPLETE",
+              "Changed request date/adjust parameters reuse stale receipt as COMPLETE",
+              "Native 4H responses run through 1H-only completeness validator",
+              "Dispatch interface does not enforce manifest/prerequisite gate or single-writer lifecycle",
+              "Manifest domains/venue binding and malformed structural-payload HOLD incomplete"
+            ],
+            "reported_effort_minutes": 33,
+            "allocated_minutes": 60,
+            "allocation_status": "one-pass submission closed; no automatic repair round"
+          }
         }
       ],
       "baseline_design": "Synthetic fixtures with pinned expected outputs (W01-W19, 19/19 PASS); ChatGPT independent adjudication as adversarial baseline",
@@ -327,7 +343,8 @@
       "decision_refs": [
         "Mike: 'Just run if chat says' (standing authorization, gated)",
         "Stage-0 executed on Mike's direct 2026-10-10 authorization (not relayed clearance)",
-        "r2 readiness packet returned 2026-10-10 (Issue #1 6098718465/6098722040); P4 still the gate"
+        "r2 readiness packet returned 2026-10-10 (Issue #1 6098718465/6098722040); P4 still the gate",
+        "6129566895"
       ],
       "dependencies": [
         "EXP-20261007-HARNESS-V56 (PASS)",
@@ -346,7 +363,7 @@
         "No vendor calls until ChatGPT P4 clears the R2 readiness packet"
       ],
       "literature_intake": "UNKNOWN",
-      "next_action": "P4 HOLD — await ChatGPT independent review of r3 packet; no pilot execution until P4 passes",
+      "next_action": "Await explicitly bounded next decision after 6129566895; no API calls or automatic repair.",
       "output_pin": "TD-PILOT-READINESS-R3-20261010.md + request_manifest.json + pilot_acquire.py (r3, pending commit)",
       "owner": "Muse",
       "primary_sources": [
@@ -382,7 +399,7 @@
       },
       "robustness_diagnostics": "INSUFFICIENT — no vendor-behavior robustness data; synthetic fixtures only; corporate-action leg excluded",
       "rule_spec_version": "v7 + 20261010 amendment + R2 readiness packet; P4 PENDING",
-      "state": "HOLD — P4 (ChatGPT spec clearance)",
+      "state": "HOLD",
       "title": "Twelve Data free-tier pilot (gated)",
       "trial_budget": {
         "allocated": "free tier 800/day; pilot expected 91, max 333 (+2 spent)",
@@ -390,7 +407,7 @@
         "used": 2
       },
       "validation_split": "UNKNOWN",
-      "verdict": "PENDING — pilot gated on P4",
+      "verdict": "P4 FAIL for r4 minimal collector execution readiness; no feed or strategy verdict",
       "subtrials": [
         {
           "subtrial_id": "EXP-20261007-TD-PILOT/STAGE-0",
@@ -1192,13 +1209,14 @@
     {
       "task_id": "QF-TD-MINIMAL-COLLECTOR-20261012-01",
       "revision": "r1",
-      "state": "WORK-RESULT-DELIVERED",
+      "state": "REVIEWED-FAIL-HOLD",
       "evidence_pin": "research_notes/td_minimal_collector/",
       "budget": "60 min total (implementation + synthetic verification + packaging); no second repair allocation",
       "actual_minutes": 33,
       "effort_breakdown": "implementation ~14 min; synthetic verification ~11 min (incl. one defect fixed: string-OHLC numeric conversion before accepted validation path; throwaway pinned-deps venv — system python lacks pandas_market_calendars); packaging ~8 min",
       "scope": "zero vendor calls, zero credits, zero spend, zero retries, no performance runs, no production/frozen-system edits, no sealed-validation access; isolated collector only",
-      "decision": "Spec: Issue #1 comment 6125163484. Authorization: Mike direct, main chat 2026-10-12 12:48 ET (relayed claims held 4x prior; direct word only)."
+      "decision": "6129566895",
+      "allocation_status": "one-pass closed; no new repair allocation"
     }
   ]
 }
