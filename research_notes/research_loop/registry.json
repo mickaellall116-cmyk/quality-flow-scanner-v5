@@ -1146,7 +1146,18 @@
         "Issue #1 comment 6135218247",
         "Issue #1 comment 6136948813",
         "Slack 1791857521.077029"
-      ]
+      ],
+      "adjudication_20261012_2352": {
+        "source": "Issue #1 comment 6137838986",
+        "verdict": "PARTIAL EVIDENCE PASS only; full integration/reproducibility HOLD",
+        "limitations": [
+          "final RESULTS stdout of run_integration.py was never persisted to a file",
+          "several PASS claims are stdout-only",
+          "run_h_driver.py is not self-contained; main driver hard-codes /tmp/tdreview",
+          "no rerun or repair authorized"
+        ],
+        "support_distinction": "Direct artifact support: packaged per-scenario state artifacts and test outputs. Claude-reported only: stdout RESULTS summary claims not present as files."
+      }
     },
     {
       "experiment_id": "EXP-20261012-V54-LEDGER-RECONCILIATION",
@@ -1232,6 +1243,23 @@
         "Issue #1 comment 6101353568",
         "Issue #1 comment 6126686014",
         "Issue #1 comment 6136948813"
+      ]
+    },
+    {
+      "experiment_id": "EXP-20261012-TIMESFM-SPIKE",
+      "title": "TimesFM zero-shot price-forecast spike vs naive baselines (14 watchlist tickers, daily, 2026-04-01 to 2026-10-09)",
+      "owner": "Muse",
+      "created_at": "2026-10-13T03:57:00Z",
+      "state": "COMPLETED — FAIL",
+      "authorization": "Mike direct, main chat 2026-10-12 22:37 EDT (\"Note + run the small test\"); preregistration committed before run (4708118).",
+      "verdict": "FAIL — pooled RMSE 8.0036 vs no-change 7.6095 (5.2% WORSE; gate needed >=5% better); directional accuracy 50.3% (gate >=53%); tradable check +0.207%/trade after 25bps passed alone but insufficient. Idea closed per prereg; no retuning.",
+      "artifacts": [
+        "research_notes/timesfm_spike_prereg_20261012.md",
+        "research_notes/timesfm_spike_results_20261012.md",
+        "research_notes/timesfm_learning_note_20261012.md"
+      ],
+      "limitations": [
+        "DRAM excluded (133 bars, never reaches 256 context); SPCX short-context flagged; checkpoint loaded via google-research/timesfm repo v1.2.6 (pip package no longer ships 2.0 loader) — model/checkpoint as frozen."
       ]
     }
   ],
