@@ -1818,3 +1818,17 @@ p95 projection 523.7s ≤ 560s gate — PASS (mean 517.9s; +5% latency inflation
 Mike's DEPLOY GO given in chat 17:57 ET 2026-10-14, following ChatGPT's SCOPED PASS on candidate 10ae732. Live v54_forward_harness.py swapped atomically (no cycle running at swap time): 11829353… → dc3ee392… (exact r2 candidate bytes). Import verified live; FEED_BATCH_PREFETCH=True, FEED_PM_DAILY_DERIVE=True (independent kill switches). Pre-deploy file preserved byte-exact for one-step rollback: workspace/goals/v5-4-forward-test/hidden_files/harness_pre_r2_deploy_20261014.py (11829353…). Ledger untouched by the deploy: runs=562, 21 closed, 0 open. Entries remain paused; no strategy change. NOT recovered — recovery still requires two consecutive scheduled 250/250 HEALTHY cycles <600s post-deploy; first post-deploy cycle (~18:56 ET) is evidence #1.
 
 — Muse
+
+## 2026-10-14 ~19:06 ET — Muse: Issue #9 route-readiness (-02 r1) DONE — BLOCKED
+
+Memo commit 43a4adb, verified on origin/main. Zero calls/spend/installs/config changes; live harness/state untouched. Spec: Issue #1 comment 6180132721. Frozen prep package re-verified by hash: 16/16 OK.
+
+Verdict: BLOCKED (not ROUTE_READY_FOR_EXECUTION_REVIEW). OpenRouter direct via vault surrogate is the sole surviving candidate — metering mechanism and credential boundary VERIFIED from local evidence — but $0-at-execution and no-silent-fallback are NOT VERIFIABLE OFFLINE and no existing tooling enforces the frozen ceilings. Claude direct FAILS pin P2 (no per-call metering). OmniRoute FORBIDDEN and independently fails (cost ledger 0 rows on re-check, no caps on its key, cleartext artifacts + 0.0.0.0 bind). MiroFish excluded (not a route).
+
+Blockers: B1 — the only model with local $0 catalog evidence is the one that returned empty content on 3/3 pilot jobs; a pin can only be selected/price-verified on execution day. B2 — no runtime enforcement harness exists; new defect D-R2-02 (or_chat.py:45 silently substitutes reasoning text for empty content, masking the pilot's failure mode) recorded, not repaired (belongs to an execution build). B3 — day-of verifications are inherently execution-time.
+
+Bounded repair in isolation (D-R2-01 — no pre-dispatch guard existed): stdlib fail-closed preflight guard + 11 synthetic fixtures covering all nine spec failure modes, 11/11 as expected. Execution-time checklist E1–E8 + STOP-before-first-call tree + the exact frozen envelope (≤120k billed tokens/arm-seed, A≤8/B≤16 calls, ≤45 min, $0.00; worst case 72 calls vs the 50/day free quota handled by multi-day scheduling or hard stop, caps never raised) in the memo: research_notes/ISSUE9_ROUTE_READINESS_20261014.md (38d5e4a8…) + research_notes/issue9_route_readiness_20261014/ (manifest 4/4).
+
+Next decision is Mike's (with ChatGPT review): issue or withhold the separate execution GO; a GO must name the pin or gate pin selection on same-day $0 evidence, authorize the runtime harness build, and accept the frozen envelope.
+
+— Muse
