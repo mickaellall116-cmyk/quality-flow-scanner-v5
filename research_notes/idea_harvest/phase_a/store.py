@@ -7,8 +7,17 @@ Phase A review fixes (Issue #1 comment 6155160682):
 - immutable idea cards with `access_basis` (never an inferred `license`),
   canonical-text content hash + extractor version recorded;
 - append-only, hash-chained JSONL event log with crash-safe writes
-  (single line append + flush + fsync);
-- safe atomic lease (O_CREAT|O_EXCL lockfile; stale break is logged);
+  (single line append + flush + fsync; an unterminated final line is
+  terminated before appending, never merged into the new record);
+- safe atomic lease (O_CREAT|O_EXCL lockfile; stale break is logged) with a
+  fencing token: every mutation re-reads the lockfile and refuses to write
+  unless the caller still owns the lease, so a displaced owner whose stale
+  lock was broken can no longer write;
+- startup reconciliation under the lease: a card left orphaned by a crash
+  between its (fsynced) write and its INGESTED/MIGRATED event is adopted
+  deterministically (INGESTED event marked recovered_orphan) or quarantined;
+- UUID-based run/event IDs (unique per attempt without coordination);
+  the run association of every event is recorded in its `run_id` field;
 - deterministic draft + family-ledger materializers (pure functions of the
   log + a pinned registry read; byte-stable for identical inputs);
 - NO automated semantic verdict — dedupe produces matches or ADJACENCY_FLAGs
@@ -28,10 +37,11 @@ import json
 import os
 import re
 import unicodedata
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-STORE_VERSION = "phase-a-store/1.0.0"
+STORE_VERSION = "phase-a-store/1.1.0"
 EXTRACTOR_VERSION = "canon-extract/1.0.0"
 GENESIS_HASH = "sha256:" + "0" * 64
 STALE_LOCK_SECONDS = 2 * 3600
@@ -83,6 +93,10 @@ class ScopeViolation(StoreError):
 
 class LeaseHeldError(StoreError):
     pass
+
+
+class FencingError(StoreError):
+    """A mutation was attempted without currently owning the lease."""
 
 
 class ChainVerificationError(StoreError):
@@ -278,7 +292,7 @@ class Store:
         self.root = Path(root)
         self.phase_a_dir = Path(phase_a_dir) if phase_a_dir else Path(__file__).parent
         self.clock = clock or utc_now_iso
-        self._lease = None  # (run_id, lock_path)
+        self._lease = None  # (run_id, lock_path, fence_token)
         seed_path = self.phase_a_dir / "killed_ideas_seed.json"
         src_path = self.phase_a_dir / "sources.json"
         self.seed = _load_json(seed_path) if seed_path.exists() else {"entries": []}
@@ -324,10 +338,17 @@ class Store:
             return []
         events = []
         with open(self.log_path, "r", encoding="utf-8") as fh:
-            for line in fh:
+            for n, line in enumerate(fh, start=1):
                 line = line.strip()
-                if line:
+                if not line:
+                    continue
+                try:
                     events.append(json.loads(line))
+                except json.JSONDecodeError as exc:
+                    raise ChainVerificationError(
+                        f"queue log line {n}: unparsable JSON ({exc}); "
+                        "the log is corrupt (e.g. a torn write) and is "
+                        "never silently repaired")
         return events
 
     def verify_chain(self, events=None):
@@ -355,25 +376,41 @@ class Store:
         return events[-1]["event_hash"], len(events)
 
     # -- lease ---------------------------------------------------------------
+    def _create_lock(self, payload):
+        fd = os.open(self.lock_path,
+                     os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o644)
+        with os.fdopen(fd, "w", encoding="utf-8") as fh:
+            json.dump(payload, fh)
+            fh.flush()
+            os.fsync(fh.fileno())
+
     def acquire_lease(self, run_id, *, break_stale=True):
         """Take the single-writer lease atomically (O_CREAT|O_EXCL).
 
-        Returns ("fresh", None) or ("broke-stale", broken_lock_info).
-        Raises LeaseHeldError if a live lease exists. A stale lease (older
-        than STALE_LOCK_SECONDS, or its PID is gone) may be broken; the
-        caller must log LOCK_BROKEN as the first event of the new run.
+        The lock payload carries a random fencing token. Every mutation
+        re-reads the lockfile and writes only while the token still matches
+        (see _require_lease), so when a stale lease is broken and replaced,
+        the displaced owner is fenced out of all further writes.
+
+        Returns ("fresh", info) or ("broke-stale", info); info records any
+        orphan cards reconciled at startup (see reconcile_orphans) — the
+        caller must still log LOCK_BROKEN as the new run's first own event
+        when a stale lease was broken. Raises LeaseHeldError if a live
+        lease exists. A stale lease (older than STALE_LOCK_SECONDS, or its
+        PID is gone) may be broken.
         """
         self.init_layout()
         payload = {"pid": os.getpid(), "run_id": run_id,
                    "acquired_at": self.clock(),
+                   "fence_token": uuid.uuid4().hex,
                    "store_version": STORE_VERSION}
+        broken = None
         try:
-            fd = os.open(self.lock_path,
-                         os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o644)
+            self._create_lock(payload)
         except FileExistsError:
-            existing = {}
+            raw_before = self.lock_path.read_bytes()
             try:
-                existing = _load_json(self.lock_path)
+                existing = json.loads(raw_before.decode("utf-8"))
             except Exception:
                 existing = {}
             age = None
@@ -389,55 +426,171 @@ class Store:
                 raise LeaseHeldError(
                     f"pipeline.lock held by pid={existing.get('pid')} "
                     f"run={existing.get('run_id')} age={age}")
+            # Takeover race guard: break only the exact lock observed —
+            # if it changed since the read, someone else got there first.
+            if self.lock_path.read_bytes() != raw_before:
+                raise LeaseHeldError(
+                    "pipeline.lock changed during stale-break attempt; "
+                    "refusing to displace a lock that was not observed")
             aside = self.root / f"pipeline.lock.stale-{run_id}"
             os.replace(self.lock_path, aside)
-            fd = os.open(self.lock_path,
-                         os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o644)
-            with os.fdopen(fd, "w", encoding="utf-8") as fh:
-                json.dump(payload, fh)
-                fh.flush()
-                os.fsync(fh.fileno())
-            self._lease = (run_id, self.lock_path)
-            return "broke-stale", {"broken": existing,
-                                   "moved_aside": aside.name}
-        with os.fdopen(fd, "w", encoding="utf-8") as fh:
-            json.dump(payload, fh)
-            fh.flush()
-            os.fsync(fh.fileno())
-        self._lease = (run_id, self.lock_path)
-        return "fresh", None
+            self._create_lock(payload)
+            broken = {"broken": existing, "moved_aside": aside.name}
+        self._lease = (run_id, self.lock_path, payload["fence_token"])
+        reconciled = self.reconcile_orphans(run_id)
+        info = {"reconciled": reconciled}
+        if broken is not None:
+            info.update(broken)
+            return "broke-stale", info
+        return "fresh", info
 
     def release_lease(self):
         if self._lease is None:
             return
-        run_id, path = self._lease
+        run_id, path, token = self._lease
         try:
             current = _load_json(path)
-            if current.get("run_id") == run_id:
+            if current.get("run_id") == run_id and \
+                    current.get("fence_token") == token:
                 path.unlink()
         except FileNotFoundError:
             pass
         self._lease = None
 
+    def _require_lease(self):
+        """Fencing check, run before EVERY store mutation.
+
+        The caller must hold the lease AND the lockfile on disk must still
+        carry this instance's fencing token. A displaced owner (its stale
+        lock broken and replaced, or its lock released/taken over) fails
+        here and cannot write.
+        """
+        if self._lease is None:
+            raise FencingError(
+                "mutation attempted without holding the pipeline lease")
+        run_id, path, token = self._lease
+        try:
+            current = _load_json(path)
+        except FileNotFoundError:
+            raise FencingError(
+                f"lease lockfile missing for run {run_id}: this writer "
+                "has been displaced and is fenced out")
+        except Exception as exc:
+            raise FencingError(f"lease lockfile unreadable: {exc}")
+        if current.get("run_id") != run_id or \
+                current.get("fence_token") != token:
+            raise FencingError(
+                f"lease now owned by run={current.get('run_id')}; "
+                f"run {run_id} has been displaced and is fenced out")
+
+    # -- orphan reconciliation -------------------------------------------------
+    def reconcile_orphans(self, run_id):
+        """Resolve cards orphaned by a crash mid-ingest. Runs under the
+        caller's lease (invoked automatically by acquire_lease).
+
+        Write ordering makes this recoverable: a card file is fsynced and
+        atomically renamed BEFORE its INGESTED/MIGRATED event is appended,
+        so the only crash window leaves a durable card with no event.
+        Deterministic resolution, in idea_id order: a card that still
+        re-validates and whose dedup_key recomputes is ADOPTED — the lost
+        INGESTED event is appended now, marked recovered_orphan with the
+        card's sha256. A card that fails re-validation is QUARANTINED to
+        ideas/orphaned/ and an ERROR event records the quarantine. Leftover
+        write_card temp files are removed (they are never valid cards).
+        Returns the list of actions taken.
+        """
+        actions = []
+        if self.ideas_dir.exists():
+            for tmp in sorted(self.ideas_dir.glob("IDEA-*.json.tmp")):
+                tmp.unlink()
+                actions.append({"action": "removed-temp",
+                                "path": tmp.name})
+        events = self.read_events()
+        known = {ev.get("idea_id") for ev in events
+                 if ev.get("event_type") in ("INGESTED", "MIGRATED")
+                 and ev.get("idea_id")}
+        for idea_id in sorted(self.all_cards()):
+            if idea_id in known:
+                continue
+            card = self.read_card(idea_id)
+            raw = self.card_path(idea_id).read_bytes()
+            digest = "sha256:" + hashlib.sha256(raw).hexdigest()
+            recomputed = dedup_key(card.get("claim_normalized", ""),
+                                   card.get("source") or {})
+            errors = validate_card(card, self.sources_idx,
+                                   new_intake=False)
+            if not errors and recomputed == card.get("dedup_key"):
+                self.append_event(
+                    "INGESTED", run_id, idea_id=idea_id,
+                    from_state="DISCOVERED", to_state="INGESTED",
+                    reason="startup reconciliation: card was durable but "
+                           "its INGESTED event was lost to a crash; "
+                           "adopted deterministically",
+                    extra={"recovered_orphan": True, "card_sha256": digest})
+                actions.append({"action": "adopted", "idea_id": idea_id,
+                                "card_sha256": digest})
+            else:
+                orphan_dir = self.ideas_dir / "orphaned"
+                orphan_dir.mkdir(parents=True, exist_ok=True)
+                os.replace(self.card_path(idea_id),
+                           orphan_dir / self.card_path(idea_id).name)
+                detail = "; ".join(errors) if errors else \
+                    "dedup_key does not recompute"
+                self.append_event(
+                    "ERROR", run_id, idea_id=idea_id,
+                    reason="startup reconciliation: orphan card failed "
+                           f"re-validation ({detail}) and was quarantined "
+                           f"to ideas/orphaned/ (card {digest})",
+                    extra={"quarantined_orphan": True,
+                           "card_sha256": digest})
+                actions.append({"action": "quarantined",
+                                "idea_id": idea_id, "card_sha256": digest})
+        return actions
+
     # -- appending events ------------------------------------------------------
+    def _terminate_tail_if_needed(self):
+        """If the log's final line lacks a trailing newline, terminate it
+        before appending. Without this, the next record would merge into
+        the unterminated line and corrupt both. Called only AFTER the
+        chain verifies, so the unterminated line is known to be a complete
+        valid event that is merely missing its newline; a torn (invalid)
+        tail aborts in read_events/verify_chain before any write."""
+        if not self.log_path.exists():
+            return
+        with open(self.log_path, "rb") as fh:
+            fh.seek(0, os.SEEK_END)
+            if fh.tell() == 0:
+                return
+            fh.seek(-1, os.SEEK_END)
+            if fh.read(1) == b"\n":
+                return
+        with open(self.log_path, "a", encoding="utf-8") as fh:
+            fh.write("\n")
+            fh.flush()
+            os.fsync(fh.fileno())
+
     def append_event(self, event_type, run_id, *, idea_id=None,
                      from_state=None, to_state=None, reason=None, rank=None,
                      score_breakdown=None, actor="idea-harvest-weekly",
                      extra=None, at=None):
         """Append one hash-chained event. Crash-safe: one line, fsync.
 
-        Verifies the chain tail before appending — a corrupt log aborts the
-        run; it is never silently repaired.
+        Requires the lease (fencing-checked against the lockfile on disk).
+        Verifies the chain tail before appending — a corrupt log aborts
+        the run; it is never silently repaired. Event IDs are UUIDs
+        (unique per attempt without coordination); the event's run
+        association is recorded in its run_id field.
         """
+        self._require_lease()
         if event_type not in EVENT_TYPES:
             raise StoreError(f"unknown event_type: {event_type}")
         events = self.read_events()
-        prev_hash, count = self._tail(events)
+        prev_hash, _count = self._tail(events)
         self.verify_chain(events)  # abort on corruption, never repair
+        self._terminate_tail_if_needed()
         stamp = at or self.clock()
-        date = stamp[:10].replace("-", "")
         core = {
-            "event_id": f"EVT-{date}-{count + 1:05d}",
+            "event_id": "EVT-" + uuid.uuid4().hex,
             "run_id": run_id,
             "event_type": event_type,
             "idea_id": idea_id,
@@ -482,11 +635,12 @@ class Store:
         return (max(seqs) + 1) if seqs else 1
 
     def new_run_id(self, events=None):
-        """Unique per-attempt run ID, sequenced from the log (never reused)."""
-        events = self.read_events() if events is None else events
-        n = sum(1 for e in events if e.get("event_type") == "RUN_START")
+        """Unique per-attempt run ID. UUID-based: two attempts starting
+        from the same log state can never collide (the r1 sequenced form
+        could). The UTC date prefix is retained for readability and for
+        _run_date(); uniqueness comes from the UUID fragment."""
         date = self.clock()[:10].replace("-", "")
-        return f"RUN-{date}-{n + 1:03d}"
+        return f"RUN-{date}-{uuid.uuid4().hex[:12]}"
 
     # -- cards -------------------------------------------------------------------
     def card_path(self, idea_id):
@@ -507,7 +661,12 @@ class Store:
         return cards
 
     def write_card(self, card):
-        """Write a card exactly once. Immutable: any second write raises."""
+        """Write a card exactly once. Immutable: any second write raises.
+        Requires the lease (fencing-checked). The card is fsynced and
+        atomically renamed into place BEFORE its log event is appended —
+        that ordering is what makes a mid-ingest crash recoverable by
+        reconcile_orphans."""
+        self._require_lease()
         self.init_layout()
         path = self.card_path(card["idea_id"])
         if path.exists():
@@ -687,7 +846,9 @@ def materialize_drafts(store: Store, run_id: str, out_path=None):
 
     Only ideas whose SHORTLISTED transition happened in `run_id` appear.
     Byte-stable for the same log: every value derives from cards + events.
+    Writing the draft is a store mutation: the caller must hold the lease.
     """
+    store._require_lease()
     events = store.read_events()
     store.verify_chain(events)
     cards = store.all_cards()
@@ -819,8 +980,10 @@ def materialize_ledger(store: Store, registry_path, attributions=None,
 
     Counters are DERIVED from (queue log + pinned registry read) — never
     hand-incremented. `updated_at` is the last queue event's timestamp, so
-    the output is byte-stable for identical inputs.
+    the output is byte-stable for identical inputs. Writing the ledger is
+    a store mutation: the caller must hold the lease.
     """
+    store._require_lease()
     events = store.read_events()
     store.verify_chain(events)
     cards = store.all_cards()

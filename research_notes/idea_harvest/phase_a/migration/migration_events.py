@@ -379,12 +379,13 @@ def build_migration_store(backfill):
                          "KILLED-TREND-MOMENTUM-REPARAM.")
 
     st.append_event("RUN_END", run)
-    st.release_lease()
     st.verify_chain()
+    # Materializers are lease-fenced mutations: run them BEFORE releasing.
     drafts_path = S.materialize_drafts(st, run)
     ledger_path = S.materialize_ledger(
         st, REGISTRY, attributions=ATTRIBUTIONS,
         out_path=store_root / "ledger" / "family_ledger.json")
+    st.release_lease()
     return run, drafts_path, ledger_path
 
 

@@ -1,0 +1,15 @@
+test_kill9_during_ingest_loop_keeps_invariant (__main__.TestOrphanRecovery.test_kill9_during_ingest_loop_keeps_invariant) ... ok
+test_kill9_orphan_card_adopted (__main__.TestOrphanRecovery.test_kill9_orphan_card_adopted) ... ok
+test_torn_tail_aborts_loudly_and_writes_nothing (__main__.TestTailTermination.test_torn_tail_aborts_loudly_and_writes_nothing) ... ok
+test_unterminated_valid_tail_is_terminated_not_merged (__main__.TestTailTermination.test_unterminated_valid_tail_is_terminated_not_merged) ... ok
+test_displaced_owner_release_cannot_delete_new_lock (__main__.TestTakeoverFencing.test_displaced_owner_release_cannot_delete_new_lock) ... ok
+test_stale_takeover_fences_displaced_owner (__main__.TestTakeoverFencing.test_stale_takeover_fences_displaced_owner) ... ok
+test_mutations_require_lease_in_process (__main__.TestUnlockedWrites.test_mutations_require_lease_in_process) ... ok
+test_unleased_process_cannot_write_while_holder_active (__main__.TestUnlockedWrites.test_unleased_process_cannot_write_while_holder_active) ... ok
+test_event_ids_are_uuids_and_record_their_run (__main__.TestUuidIds.test_event_ids_are_uuids_and_record_their_run) ... ok
+test_run_ids_unique_across_processes_same_log_state (__main__.TestUuidIds.test_run_ids_unique_across_processes_same_log_state) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 2.014s
+
+OK
