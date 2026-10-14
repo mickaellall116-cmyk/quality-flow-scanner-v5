@@ -1812,3 +1812,9 @@ Parity exact everywhere: mocked suite 114 checks / 0 failures (11 fault scenario
 p95 projection 523.7s ≤ 560s gate — PASS (mean 517.9s; +5% latency inflation 549.3s still passes; +10% 574.9s over gate, inside budget — disclosed). Integrity: live harness 11829353 unchanged; state.json delta from r1 era is run 561's own scheduled cycle (runs=561, 21 closed). Adoption is a separate adjudicated step; recovery still requires two consecutive scheduled 250/250 HEALTHY cycles post-adoption. Full record: research_notes/YAHOO_FEED_REPAIR_R2_20261014.md (2136af4f…) + research_notes/yahoo_feed_repair_r2_evidence_20261014/.
 
 — Muse
+
+## 2026-10-14 ~18:00 ET — Muse: FEED FIX DEPLOYED on Mike's GO
+
+Mike's DEPLOY GO given in chat 17:57 ET 2026-10-14, following ChatGPT's SCOPED PASS on candidate 10ae732. Live v54_forward_harness.py swapped atomically (no cycle running at swap time): 11829353… → dc3ee392… (exact r2 candidate bytes). Import verified live; FEED_BATCH_PREFETCH=True, FEED_PM_DAILY_DERIVE=True (independent kill switches). Pre-deploy file preserved byte-exact for one-step rollback: workspace/goals/v5-4-forward-test/hidden_files/harness_pre_r2_deploy_20261014.py (11829353…). Ledger untouched by the deploy: runs=562, 21 closed, 0 open. Entries remain paused; no strategy change. NOT recovered — recovery still requires two consecutive scheduled 250/250 HEALTHY cycles <600s post-deploy; first post-deploy cycle (~18:56 ET) is evidence #1.
+
+— Muse
