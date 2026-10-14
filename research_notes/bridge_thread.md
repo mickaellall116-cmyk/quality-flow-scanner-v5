@@ -1617,3 +1617,15 @@ Recommendation: Manifest V2 venue pin amendment (the collector's frozen correcti
 Full record: research_notes/TD_VENUE_IDENTITY_ADJUDICATION_20261014.md + research_notes/td_venue_identity_adjudication_evidence_20261014/ (secret-isolation scan clean).
 
 — Muse
+
+## 2026-10-14 ~11:14 ET — Muse: Manifest V2 + offline replay COMPLETE (QF-TD-MANIFEST-V2-OFFLINE-REPLAY-20261014-11 r1)
+
+Commit 9d87b1c, verified on origin/main. Zero vendor calls/credits/spend; V1, collector, live state, live ledger byte-identical before/after.
+
+Part 1 — Manifest V2 (sha256 4a6e3a55…) supersedes V1 (66a31e10…, preserved byte-identical). Segment MICs resolved 14/14, 0 unresolved, all evidence-backed, none guessed. Sources archived + hashed: Nasdaq Trader official symbol directory nasdaqlisted.txt (per-symbol Market Category, file dated 2026-10-14), Nasdaq specification PDF (Q=Global Select, G=Global Market, S=Capital Market), ISO 10383 registry CSV (XNGS/XNMS/XNCM are segment MICs of operating MIC XNAS). XNGS ×12: AAPL (also proven by the live receipt), AMD, GOOGL, HOOD, META, MSFT, NVDA, PLTR, SMCI, SOFI, SPCX, TSLA. XNMS ×1: QQQ (directory lists Category G — flagged for the adjudicator, not rounded up). XNCM ×1: ONDS (Category S). Exact diff PASS: 45 fields = 6 provenance + 39 mic_code (XNAS→XNGS ×31, →XNMS ×6, →XNCM ×2); NYSE/BZX requests deep-equal to V1; 0 disallowed differences. Pinned collector validate-manifest on V2: 0 errors (51 requests); preflight 0 prerequisite failures.
+
+Part 2 — Offline replay. Receipt hash verified (c47bf899…). Drove the pinned collector's production validation path (Collector.run() → _handle_response → _validate_bars) in a disposable /tmp state with a local stub transport returning the preserved bytes (the pinned build contains no vendor transport). Two-layer isolation: unshare -n network namespace + in-process socket guard; zero socket connect attempts recorded. Terminal classification: COMPLETE — venue gate binds under V2 (NASDAQ/XNGS/USD); all 910 bars pass full session validation (first 2026-04-01 09:30:00, last 2026-10-06 15:30:00; within the 1323 bound and 5000 cap). Disclosures: _verify_receipt cannot accept rejected evidence directly (no RECEIVED/COMPLETED pair exists by design), so the stub-driven run is the closest faithful equivalent; cross-check — a fresh collector revalidated the replay-produced receipt under V2 → (True, "ok"), byte-identical to the preserved payload. The designed CONSTRUCTION_HOLD (interval semantics INSUFFICIENT) was still emitted — the 1H→4H construction leg remains held; this replay validates the 1H receipt only. Bar validation took ~7.6 min wall (documented so a rerun is not mistaken for a hang). Live HOLD state deliberately NOT reconciled — awaits a V2-bound candidate + fresh Mike authorization.
+
+Full record: research_notes/TD_MANIFEST_V2_OFFLINE_REPLAY_20261014.md + research_notes/td_manifest_v2_offline_replay_evidence_20261014/ (secret-isolation scan clean; counts/timestamps only, no bar data). Ready for adjudication.
+
+— Muse
