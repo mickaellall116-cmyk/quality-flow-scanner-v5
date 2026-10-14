@@ -1,0 +1,28 @@
+We are given a claim about a backtest and we are to critique it. We must list every methodological flaw, explain why each inflates the result, and state what evidence would be required to make the claim credible. We are not to invent facts beyond the text.
+
+Let's break down the claim:
+
+- Strategy: 4-hour momentum strategy.
+- Performance: 38% CAGR, Sharpe ratio of 2.1 over 2019-2024.
+- Universe: 250 stocks.
+- Methodology:
+  1. Normalized each stock's features using the mean and standard deviation computed over the full 2019-2024 sample.
+  2. Grid-searched 240 parameter combinations and selected the best performer on the same 2019-2024 period.
+  3. Used today's index constituent list backfilled to 2019.
+  4. Report returns gross of commissions and slippage.
+
+Now, we list the flaws:
+
+1. **Look-ahead bias (or information leakage) in normalization**: The normalization uses the mean and standard deviation computed over the full 2019-2024 sample. This means that for each data point (say, a 4-hour bar), the normalization uses statistics that include future data. This can inflate the backtest performance because the normalized features are adjusted using information that would not have been available at the time of the trade.
+
+   Why it inflates: The normalization can make the features more predictable and may lead to overfitting. For example, if a stock had a mean reversion in the future, the normalization might make the current feature look more extreme than it would have been with only past data.
+
+   Evidence required: To make it credible, the normalization should be done using only past data (e.g., expanding window or rolling window with a fixed lookback period) or using a method that does not use future data.
+
+2. **Overfitting (or data snooping) due to grid search on the same period**: The strategy grid-searched 240 parameter combinations and selected the best performer on the same 2019-2024 period. This is a classic overfitting problem. With 240 combinations, the probability of finding a combination that performs well by chance is high.
+
+   Why it inflates: The selected parameters are optimized for the specific historical data and are likely to overfit to noise. The reported performance is the best of many trials, which is an upward-biased estimate of the true out-of-sample performance.
+
+   Evidence required: To make it credible, the strategy should be validated on an out-of-sample period that was not used for parameter selection. Alternatively, use techniques like walk-forward analysis, cross-validation, or at least a separate validation set (e.g., use data from 2019-2021 for parameter selection and 2022-2024 for testing).
+
+3. **Survivorship bias (or look-ahead bias in universe selection)**: The strategy uses today's index constituent list backfilled to 2019. This means that the universe of 250 stocks is determined by the current index composition, and then historical data for these stocks is used. However, some of these stocks might not have been in

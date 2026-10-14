@@ -1,0 +1,3 @@
+[FABRICATED FIXTURE - authored for this pilot; not a real result]
+
+Our 4-hour momentum strategy generated a 38% CAGR with a Sharpe ratio of 2.1 over 2019-2024 across 250 stocks. We normalized each stock's features using the mean and standard deviation computed over the full 2019-2024 sample, grid-searched 240 parameter combinations and selected the best performer on the same 2019-2024 period, used today's index constituent list backfilled to 2019, and report returns gross of commissions and slippage. We are confident the strategy will deliver similar results in live trading.

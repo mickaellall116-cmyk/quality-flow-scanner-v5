@@ -1,0 +1,6 @@
+Below is a research abstract. Extract exactly two falsifiable research questions implied by the abstract. For each question state: (1) the question, (2) its null hypothesis, (3) the data required to test it (series, frequency, sample period). Do not add facts that are not present in the abstract.
+
+ABSTRACT:
+[SYNTHETIC FIXTURE - authored for this pilot in the style of a public abstract; no abstract was supplied with the task]
+
+We study short-horizon return continuation in large-cap U.S. equities. Using 4-hour bars for the 214 current constituents of a large-cap index from January 2015 to December 2024, we form portfolios sorted on the prior 4-hour return. The top-minus-bottom quintile spread earns an average next-4-hour return of 11.2 basis points (t-statistic 3.4). The effect is concentrated in the first hour after portfolio formation and is absent in a matched small-cap sample. A zero-cost implementation earns a monthly Sharpe ratio of 0.8 before transaction costs.

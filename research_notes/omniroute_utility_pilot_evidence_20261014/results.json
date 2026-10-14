@@ -1,0 +1,51 @@
+{
+  "task": "QF-OMNIROUTE-UTILITY-PILOT-20261014-16 r1",
+  "executed_utc": "2026-10-14T19:03:12Z/19:03:23Z/19:03:34Z (3 routed calls)",
+  "budget": {"max_routed_requests": 6, "used": 3, "retries": 0, "fallback_events": 0,
+             "active_request_time_s": 32.9, "unused_budget_reason": "No second working OmniRoute route exists; re-running the same items at a larger token cap would be a retry of the measurement, which the task forbids."},
+  "route_omniroute": {
+    "gateway": "OmniRoute 3.8.51, http://localhost:20128/v1 (local test key 'claude-test')",
+    "requested_model": "openrouter/dots-studio/dots-3-note-preview:free",
+    "actual_provider_model_per_gateway_log": "openrouter / dots-studio/dots-3-note-preview:free (all 3 calls, no substitution, resilience_actions empty)",
+    "params": {"temperature": 0, "max_tokens": 700},
+    "cost": {"catalog_pricing_usd_per_token": {"prompt": "0", "completion": "0"},
+             "source": "OpenRouter public /api/v1/models entry for the pinned model id, fetched 2026-10-14",
+             "actual_charge": "0 by construction (zero-priced catalog model); OmniRoute request_cost_ledger contains 0 rows and meters nothing for this route"},
+    "attempts": [
+      {"item": "a", "http": 200, "latency_s_client": 11.146, "gateway_duration_ms": 10993, "tokens_in": 244, "tokens_out": 700, "tokens_reasoning": 817, "finish_reason": "length", "content_chars": 0},
+      {"item": "b", "http": 200, "latency_s_client": 10.197, "gateway_duration_ms": 10097, "tokens_in": 115, "tokens_out": 700, "tokens_reasoning": 721, "finish_reason": "length", "content_chars": 0},
+      {"item": "c", "http": 200, "latency_s_client": 11.448, "gateway_duration_ms": 11374, "tokens_in": 226, "tokens_out": 700, "tokens_reasoning": 758, "finish_reason": "length", "content_chars": 0}
+    ],
+    "failure_mode": "Pinned model is a reasoning model. On all 3 jobs it spent the entire 700-token completion cap on internal reasoning (721-817 reasoning tokens), finish_reason='length', and choices[0].message.content was null/empty. Reasoning traces (saved) show the model was on track (item b names the fixed-offset bug and drafts the zoneinfo fix; item c reaches survivorship bias) but no final answer was ever emitted in the content channel an OpenAI-compatible consumer reads."
+  },
+  "route_claude_baseline": {
+    "description": "Executing agent answering the identical prompts directly (the current single-model route); no API requests consumed. Outputs written and hashed BEFORE the routed calls (fixtures+baseline sha256 at 19:02:42Z).",
+    "outputs": ["outputs/claude_a.md", "outputs/claude_b.md", "outputs/claude_c.md"]
+  },
+  "scores": {
+    "method": "Executing agent vs pre-written fixture ground truth (ground_truth.md, hashed pre-call). NOT model self-grading. Limitation: scorer not blinded to route.",
+    "claude": {
+      "a": {"two_questions": true, "falsifiable": true, "nulls": true, "data_spec": true, "invented_facts": 0, "verdict": "PASS"},
+      "b": {"bug_identified": true, "example_correct": true, "example_verified_mechanically": "toy returns 09:00 for 2026-07-01T14:00Z; correct EDT wall time 10:00; winter case correct", "fix_zoneinfo": true, "fabricated_bugs": 0, "verdict": "PASS"},
+      "c": {"leakage": true, "multiple_testing": true, "survivorship": true, "costs": true, "in_sample_as_live": true, "evidence_required_actionable": true, "invented_facts": 0, "verdict": "PASS"}
+    },
+    "omniroute_as_delivered": {
+      "a": {"verdict": "FAIL", "reason": "empty content; no questions/nulls/data spec delivered"},
+      "b": {"verdict": "FAIL", "reason": "empty content; no review delivered"},
+      "c": {"verdict": "FAIL", "reason": "empty content; no critique delivered"},
+      "invented_facts_in_delivered_content": 0,
+      "secret_hygiene": "PASS (no credential-like content in any output or trace; fixtures contained no secrets)",
+      "reasoning_trace_diagnostic": "Traces (not deliverables) show partial competence on all 3 items before truncation; diagnostic only, not scored as output."
+    }
+  },
+  "prior_setup_evidence_reused_not_repeated": {
+    "source": "OmniRoute call_logs, setup session 2026-10-14T18:06-18:10Z (canonical step 5: reuse, do not repeat)",
+    "attempts": [
+      {"model": "opencode/big-pickle via auto/best-free", "status": 403, "note": "OpenCode free tier client-locked - CONFIRMS catalog caveat"},
+      {"model": "cloudflare-playground/meta-llama/llama-3.3-70b-instruct-fp8-fast", "status": 502, "count": 2, "note": "browser binary missing - CONFIRMS caveat"},
+      {"model": "uncloseai/Lorbus/Qwen3.6-27B-int4-AutoRound", "status": 499, "note": "aborted at 90s"},
+      {"model": "zcode/glm-4.7-flash", "status": 502, "count": 2, "note": "zcode binary not installed (ENOENT)"},
+      {"model": "openrouter/dots-studio/dots-3-note-preview:free", "status": 200, "tokens": "22 in / 46 out", "note": "the only working zero-config/keyed route; basis for this pilot's pin"}
+    ]
+  }
+}

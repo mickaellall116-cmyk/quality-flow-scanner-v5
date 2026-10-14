@@ -1,0 +1,78 @@
+First, I need to extract exactly two falsifiable research questions from the abstract. A falsifiable question is one that can be tested and potentially proven false through empirical research. The abstract describes a study on short-horizon return continuation in large-cap U.S. equities.
+
+Key elements from the abstract:
+
+- They use 4-hour bars for 214 large-cap stocks from Jan 2015 to Dec 2024.
+
+- They form portfolios based on prior 4-hour returns.
+
+- The top-minus-bottom quintile spread earns an average next-4-hour return of 11.2 basis points with a t-statistic of 3.4.
+
+- The effect is concentrated in the first hour after portfolio formation.
+
+- The effect is absent in a matched small-cap sample.
+
+- A zero-cost implementation has a monthly Sharpe ratio of 0.8 before transaction costs.
+
+I need to come up with two research questions that are implied by this abstract. Since the abstract is about return continuation, the questions should relate to testing whether this continuation exists or under what conditions it holds.
+
+Possible research questions:
+
+1. Does short-horizon return continuation exist in large-cap U.S. equities?
+
+2. Is the return continuation effect present in small-cap equities?
+
+3. Does the return continuation effect persist after the first hour?
+
+4. What is the performance of a zero-cost strategy implementing this effect?
+
+I need to choose exactly two that are directly implied and falsifiable.
+
+The abstract mentions that the effect is concentrated in the first hour and absent in small-cap, so these are key points.
+
+Let me formulate two questions:
+
+Question 1: Is there significant short-horizon return continuation in large-cap U.S. equities?
+
+- This is directly tested in the abstract with the top-minus-bottom quintile spread.
+
+Question 2: Is the return continuation effect present in small-cap equities?
+
+- The abstract says it is absent in a matched small-cap sample, so this is a testable question.
+
+I should ensure that each question has a null hypothesis, data required, etc.
+
+For each question, I need to state:
+
+(1) The question
+
+(2) Its null hypothesis
+
+(3) The data required to test it (series, frequency, sample period)
+
+The data should be based on what's in the abstract. I cannot add facts not present.
+
+From the abstract:
+
+- Series: Returns, probably for large-cap and small-cap stocks.
+
+- Frequency: 4-hour bars.
+
+- Sample period: January 2015 to December 2024.
+
+- Sample: 214 current constituents of a large-cap index, and a matched small-cap sample.
+
+So for each question, I need to specify the data accordingly.
+
+Let me define the questions.
+
+First question: About return continuation in large-cap.
+
+Question: Does short-horizon return continuation exist in large-cap U.S. equities?
+
+Null hypothesis: There is no significant return continuation; i.e., the average next-4-hour return for the top-minus-bottom quintile spread is zero.
+
+Data required: We need return series for large-cap stocks. Specifically, 4-hour bar returns for the 214 constituents from January 2015 to December 2024. We would form portfolios based on prior 4-hour returns and measure the next-4-hour returns.
+
+Second question: About the effect in small-cap.
+
