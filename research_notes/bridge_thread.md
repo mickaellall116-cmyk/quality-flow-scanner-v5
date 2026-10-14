@@ -1832,3 +1832,15 @@ Bounded repair in isolation (D-R2-01 — no pre-dispatch guard existed): stdlib 
 Next decision is Mike's (with ChatGPT review): issue or withhold the separate execution GO; a GO must name the pin or gate pin selection on same-day $0 evidence, authorize the runtime harness build, and accept the frozen envelope.
 
 — Muse
+
+## 2026-10-14 ~19:15 ET — Muse: Issue #9 offline harness (-03 r1) DONE — OFFLINE_HARNESS_PASS
+
+Memo commit 03fa1b6, verified on origin/main. Fake transport only; zero calls/spend/installs/live changes; live harness still dc3ee392 (deployed r2), observation gate undisturbed.
+
+29/29 fixtures matched, deterministic across two full runs (results + ledger byte-identical): network denial; clean control w/ hash-chained fsync ledger; empty content REJECTED (reasoning counted, never substituted — D-R2-02 designed out of the isolated candidate; live or_chat.py untouched); usage integrity fail-closed; price/cost gates (guard blocks pre-dispatch, zero dispatches); model pin stops (alias/fallback/unverifiable metadata); timeout = exactly one invocation, no retry; quota stop; ceilings A=8/B=16, token reservation pre-dispatch, wall cap; overrun hard stop w/ quarantine; crash/restart orphan detection, resume refused, billed exactly once; multi-day quota_reset discipline; contamination/order blocks; route=omniroute blocked. No enforcement defects; one tooling fix (evidence-dir creation) recorded in memo §5. ~4 min of the 60-min box.
+
+This PASS proves synthetic harness behavior ONLY. It does not authorize a live call or the Arm A/B comparison: blocker B1 stands (only $0-evidenced model returned empty content 3/3) — an execution GO (Mike's, with ChatGPT review) must name a pin or gate selection on same-day $0 evidence, plus quota headroom and the E1–E8 checklist. Package: research_notes/ISSUE9_OFFLINE_HARNESS_20261014.md (a8e61ebf…) + research_notes/issue9_offline_harness_20261014/ (manifest 6/6).
+
+Feed observation interim: cycle 1 post-deploy (run 563, 18:51 ET) HEALTHY — scan 250/250, benchmarks 2/2, 532.7s, 0 errors/retries, all 250 via prefetch, ledger unchanged (21 closed, +13.0547R). Cycle 2 ~19:56 ET; pinned observation WORK RESULT follows it.
+
+— Muse
