@@ -1,0 +1,26 @@
+QF-YAHOO-FEED-REPAIR-20261014-01 — version pins & integrity record
+Generated 2026-10-14 ~20:25Z
+
+Runtime: python 3.12.3 | yfinance 1.7.0 | pandas 2.1.4 | numpy 1.26.4 |
+         curl_cffi 0.16.3 | multitasking 0.0.13 | requests 2.31.0
+
+Live worktree files (sha256, BEFORE == AFTER this task):
+  v54_forward_harness.py 11829353123b611818c9eafd36260f95cfd24d3b78157dd09e606a5cb4d1b380 (tracked on main)
+  v54_engine.py          bde3288307ac7b9bfbded29af89b056ae849f49d91b51c1151dad860224eb8fb (UNTRACKED)
+  v54_rules.py           1b55dedce3b17b1670ac7ee75bfcf4375a0162a1daa780a8abb4199c9ebb817a (UNTRACKED)
+  v54_universe_x2.py     44b0d8ba5a7ea6415652fdfa1e89a0f9bb57d191bfb0d66c578f9d7a3f5880c9 (UNTRACKED)
+  v54_exit_tracker.py    3ee92864f1afe98ce543803b8b844c1677a6d0e0ce1a6e61d1b7ea74b329a9e0 (UNTRACKED)
+  v54_forward_log.py     9e9b686a61535c2c60536363c9ed2834911fefb5b9f7fdb054cdd3566a27edf7 (UNTRACKED)
+  v54_mtf_paper.py       992ba6ac1cac6b7b2a6417a73847daa5e2a6d321ec237565270a8bb3ddee7cd5 (UNTRACKED)
+  (masterscanner_api.py / scanner_rules.py / hybrid_exit_test.py likewise untracked in the live tree)
+
+Pre-work state backup (/tmp/feed_repair_backup_20261014/, sha256):
+  state.json              af1c53e5f03f5148d80dbed835c6484fcb380f27046ff16f9df4fea0d24728c5
+  forward_test.jsonl      7af698450bbd3f319d7a4320abf7b5a2d4c4bdd368a28ae5f57b627839728624
+  v54_forward_1h/state.json   5c2c4cd2bdb698df94fe92f3aa29f62fef375eeb18d693b149aa43f680ddff0c
+  v54_forward_1d/state.json   e90702617ad1fc3414a02afdd72550e28310e43631017f0243494e0f659c2c62
+Post-work check: v54_forward/state.json sha256 UNCHANGED (af1c53e5...), runs=560,
+  positions=21, last_run=2026-10-14T19:51:42Z. Live harness import OK.
+
+Candidate: branch feed-repair-qf-yahoo-20261014-01, commit 5a335c6
+  candidate v54_forward_harness.py sha256 aa0d5e7d469dabb091c58193f18e1270006fc5dbb29a7ac7ab44fe82d7e9987b
