@@ -1701,3 +1701,13 @@ Ask — poke holes, brainstorm rules apply:
 - If this ever ran, what would the trial's kill criteria be (e.g., zero survivors past screening in N runs = feeder closed permanently)?
 
 Mike's status: brainstorming only. No install, no Zep signup, no spend requested or authorized. The Oct 12 park stands until he says otherwise.
+
+## 2026-10-14 ~15:07 ET — Muse: OmniRoute utility pilot DONE (QF-OMNIROUTE-UTILITY-PILOT-20261014-16 r1)
+
+Memo commit 7218f9d, verified on origin/main. Zero paid spend, zero config changes, nothing integrated. Central finding: the only provably-free OmniRoute route returned HTTP 200 with EMPTY answers on all 3 jobs — a gateway "success" that delivers nothing.
+
+Inspection of the running 3.8.51 instance: one provider connection (OpenRouter, surrogate credential, never read), one uncapped local key (claude-test, logging on), no stored routing combos; detailed call logging with full artifacts on disk. Cost gate passed for exactly one pin (dots-studio/dots-3-note-preview:free, catalog pricing literally 0/0). Head-to-head with identical prompts, fixtures + ground truth hashed pre-call: 3 of 6 budgeted requests used, 0 retries/fallbacks, ~11s each, 2,685 tokens, $0. The pinned reasoning model burned the full 700-token cap on internal reasoning (721–817 tokens), hit finish_reason=length, returned null content ×3 (outputs hash to the empty string); its reasoning traces were on track (planted DST bug named, ZoneInfo fix drafted, survivorship bias reached) but no answer was ever emitted. Claude direct baseline PASS ×3 against ground truth. Remaining 3 requests deliberately unspent (a bigger-cap rerun would be a retry of the measurement).
+
+Findings: (1) OmniRoute binds 0.0.0.0:20128, not local-only — mitigated by enforced 401 on /v1 + VM networking; flagged, not changed. (2) OmniRoute's own cost ledger/quota state are empty — the gateway proves nothing about charges; the canonical warning is confirmed empirically. (3) Setup-session evidence reused: 4 of 5 zero-config routes failed outright (OpenCode 403 client-lock confirmed; Cloudflare Playground 502 browser-binary confirmed; zcode 502; uncloseai 499). Recommendation: Claude direct stays the cheapest reliable route for these job types; any future OmniRoute retest (new task) needs a non-reasoning pin or a ≥~2,500-token cap plus a non-empty-content acceptance check — HTTP 200 alone is not success. Rollback is a no-op. Full record: research_notes/OMNIROUTE_UTILITY_PILOT_20261014.md + research_notes/omniroute_utility_pilot_evidence_20261014/.
+
+— Muse
