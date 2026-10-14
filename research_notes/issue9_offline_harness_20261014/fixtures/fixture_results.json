@@ -1,7 +1,7 @@
 {
- "task": "QF-ISSUE9-OFFLINE-HARNESS-20261014-03 r1",
- "fixtures_total": 29,
- "fixtures_matched": 29,
+ "task": "QF-ISSUE9-OFFLINE-HARNESS-CORRECTNESS-20261014-04 r1",
+ "fixtures_total": 36,
+ "fixtures_matched": 36,
  "all_match": true,
  "results": [
   {
@@ -221,11 +221,13 @@
   },
   {
    "id": "F18-wall-time-boundary",
-   "mode": "elapsed 46 min > 45 min cap at call 2",
+   "mode": "call 1 responds at 46 min: cap fires at acceptance (-04), call 2 never dispatched",
    "expect": "CEILING_WALL",
    "got": "CEILING_WALL",
    "checks": {
-    "invocations_1": true
+    "invocations_1": true,
+    "accepted_0": true,
+    "recorded_0": true
    },
    "match": true
   },
@@ -318,6 +320,96 @@
    "got": "NONZERO_COST",
    "checks": {
     "accepted_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F27-version-substitution",
+   "mode": "response model_version '2026-06-15' != pinned '2026-01-01'",
+   "expect": "MODEL_VERSION_MISMATCH",
+   "got": "MODEL_VERSION_MISMATCH",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true,
+    "versions_recorded": true
+   },
+   "match": true
+  },
+  {
+   "id": "F28-cost-missing",
+   "mode": "response carries no cost_usd at all",
+   "expect": "COST_EVIDENCE_MISSING",
+   "got": "COST_EVIDENCE_MISSING",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true,
+    "recorded_unknown": true
+   },
+   "match": true
+  },
+  {
+   "id": "F29-cost-nan",
+   "mode": "response cost_usd = NaN",
+   "expect": "COST_EVIDENCE_INVALID",
+   "got": "COST_EVIDENCE_INVALID",
+   "checks": {
+    "accepted_0": true,
+    "recorded_unknown": true
+   },
+   "match": true
+  },
+  {
+   "id": "F30-cost-string",
+   "mode": "response cost_usd = '0' (string)",
+   "expect": "COST_EVIDENCE_INVALID",
+   "got": "COST_EVIDENCE_INVALID",
+   "checks": {
+    "accepted_0": true,
+    "recorded_unknown": true
+   },
+   "match": true
+  },
+  {
+   "id": "F31-wall-final-call-overrun",
+   "mode": "the only call responds after 46 min elapsed",
+   "expect": "CEILING_WALL",
+   "got": "CEILING_WALL",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true,
+    "recorded_0": true,
+    "status_wall_overrun": true,
+    "quarantined": true,
+    "usage_counted": true
+   },
+   "match": true
+  },
+  {
+   "id": "F32-tampered-ledger-no-dispatch",
+   "mode": "historical outcome rewritten on disk; reopen + resume attempted",
+   "expect": "CORRUPT",
+   "got": "CORRUPT",
+   "checks": {
+    "setup_complete": true,
+    "run_blocked": true,
+    "invocations_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F33-crash-unknown-cost",
+   "mode": "crash after response, before outcome append; restart refuses",
+   "expect": "ORPHANED",
+   "got": "ORPHANED",
+   "checks": {
+    "crashed": true,
+    "resume_blocked": true,
+    "no_resend": true,
+    "unknown_state": true,
+    "stop_records_unknown": true,
+    "reconciliation_required": true,
+    "interrupted_listed": true,
+    "nothing_zero_filled": true
    },
    "match": true
   }

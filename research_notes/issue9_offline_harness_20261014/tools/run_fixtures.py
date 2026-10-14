@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Deterministic adversarial fixture suite for the Issue #9 offline harness
-candidate (QF-ISSUE9-OFFLINE-HARNESS-20261014-03 r1).
+candidate (QF-ISSUE9-OFFLINE-HARNESS-CORRECTNESS-20261014-04 r1; the -03
+fixtures F00-F26 are retained unchanged in expectation, F18 gains the
+acceptance-side checks its boundary always implied, and F27-F33 are the
+adversarial fixtures for the five -04 correctness gaps).
 
 FAKE TRANSPORT ONLY. The socket layer is patched to raise before anything
 runs; the harness receives scripted in-memory transports. No provider/model
@@ -443,8 +446,13 @@ def main():
                             ("respond", good_response(), 1)], sc.clock)
     rn = sc.runner(tr, plan_calls=calls)
     status, code = rn.run(calls)
-    report("F18-wall-time-boundary", "elapsed 46 min > 45 min cap at call 2",
-           "CEILING_WALL", code, {"invocations_1": tr.invocations == 1})
+    report("F18-wall-time-boundary",
+           "call 1 responds at 46 min: cap fires at acceptance (-04), "
+           "call 2 never dispatched",
+           "CEILING_WALL", code,
+           {"invocations_1": tr.invocations == 1,
+            "accepted_0": rn.accepted == [],
+            "recorded_0": len(sc.ledger.recorded_calls("A", "S1")) == 0})
     sc.ledger.close()
 
     # F19 — response larger than reservation: hard stop, content quarantined
@@ -592,8 +600,172 @@ def main():
            "NONZERO_COST", code, {"accepted_0": rn.accepted == []})
     sc.ledger.close()
 
+    # ------------------------------------------------------------------
+    # -04 adversarial fixtures (F27-F33): one or more per correctness gap
+    # from ChatGPT's HOLD (Issue #1 comment 6180610281)
+    # ------------------------------------------------------------------
+    # F27 — gap 1: version SUBSTITUTION (nonempty, != pin) must fail.
+    # -03 checked only absence (F13); a substituted version passed.
+    sc = Scenario(tmp, "f27")
+    tr = ScriptedTransport([("respond", good_response(
+        model_version="2026-06-15"), 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=[call()])
+    status, code = rn.run([call()])
+    out = sc.ledger.outcomes("A", "S1")[0]
+    report("F27-version-substitution",
+           "response model_version '2026-06-15' != pinned '2026-01-01'",
+           "MODEL_VERSION_MISMATCH", code,
+           {"invocations_1": tr.invocations == 1,
+            "accepted_0": rn.accepted == [],
+            "versions_recorded":
+                out.get("response_version") == "2026-06-15"
+                and out.get("pinned_version") == PIN["model_version"]})
+    sc.ledger.close()
+
+    # F28 — gap 2: cost evidence MISSING (key absent) must stop and stay
+    # unknown; -03 normalized it to $0 and claimed verified-zero.
+    sc = Scenario(tmp, "f28")
+    resp = good_response()
+    del resp["cost_usd"]
+    tr = ScriptedTransport([("respond", resp, 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=[call()])
+    status, code = rn.run([call()])
+    out = sc.ledger.outcomes("A", "S1")[0]
+    report("F28-cost-missing", "response carries no cost_usd at all",
+           "COST_EVIDENCE_MISSING", code,
+           {"invocations_1": tr.invocations == 1,
+            "accepted_0": rn.accepted == [],
+            "recorded_unknown": out.get("cost_usd") is None
+            and out.get("cost_evidence_status") == "MISSING"})
+    sc.ledger.close()
+
+    # F29 — gap 2: NaN cost is not numeric-finite evidence
+    sc = Scenario(tmp, "f29")
+    tr = ScriptedTransport([("respond", good_response(
+        cost_usd=float("nan")), 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=[call()])
+    status, code = rn.run([call()])
+    out = sc.ledger.outcomes("A", "S1")[0]
+    report("F29-cost-nan", "response cost_usd = NaN",
+           "COST_EVIDENCE_INVALID", code,
+           {"accepted_0": rn.accepted == [],
+            "recorded_unknown": out.get("cost_usd") is None
+            and out.get("cost_evidence_status") == "NON_FINITE"})
+    sc.ledger.close()
+
+    # F30 — gap 2: string cost "0" is not numeric evidence
+    sc = Scenario(tmp, "f30")
+    tr = ScriptedTransport([("respond", good_response(cost_usd="0"), 1)],
+                            sc.clock)
+    rn = sc.runner(tr, plan_calls=[call()])
+    status, code = rn.run([call()])
+    out = sc.ledger.outcomes("A", "S1")[0]
+    report("F30-cost-string", "response cost_usd = '0' (string)",
+           "COST_EVIDENCE_INVALID", code,
+           {"accepted_0": rn.accepted == [],
+            "recorded_unknown": out.get("cost_usd") is None
+            and out.get("cost_evidence_status") == "NON_NUMERIC"})
+    sc.ledger.close()
+
+    # F31 — gap 3: SINGLE/FINAL call arriving at 46 min must be
+    # quarantined, never accepted (-03 accepted it; F18 only proved a
+    # SECOND call was blocked pre-dispatch)
+    sc = Scenario(tmp, "f31")
+    calls = [call()]
+    tr = ScriptedTransport([("respond", good_response(), 46 * 60)], sc.clock)
+    rn = sc.runner(tr, plan_calls=calls)
+    status, code = rn.run(calls)
+    out = sc.ledger.outcomes("A", "S1")[0]
+    report("F31-wall-final-call-overrun",
+           "the only call responds after 46 min elapsed",
+           "CEILING_WALL", code,
+           {"invocations_1": tr.invocations == 1,
+            "accepted_0": rn.accepted == [],
+            "recorded_0": len(sc.ledger.recorded_calls("A", "S1")) == 0,
+            "status_wall_overrun": out.get("status")
+            == "FAILED_WALL_OVERRUN",
+            "quarantined": out.get("content_quarantined") is True,
+            "usage_counted": out.get("billed_tokens") == 1250})
+    sc.ledger.close()
+
+    # F32 — gap 4: TAMPERED historical ledger reopened: chain verification
+    # gates BEFORE dispatch; zero transport invocations
+    sc = Scenario(tmp, "f32")
+    calls = [call()]
+    tr = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=calls)
+    status1, code1 = rn.run(calls)
+    path = sc.ledger.path
+    sc.ledger.close()
+    with open(path, encoding="utf-8") as fh:
+        recs = [json.loads(line) for line in fh if line.strip()]
+    for r in recs:
+        if r["type"] == "call_outcome":
+            r["billed_tokens"] = 999999   # history rewritten, hashes stale
+    with open(path, "w", encoding="utf-8") as fh:
+        for r in recs:
+            fh.write(json.dumps(r, sort_keys=True) + "\n")
+    led2 = H.Ledger(path)
+    state, why = H.resume_state(led2)
+    tr2 = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn2 = H.ArmSeedRunner(led2, sc.clock, tr2, run_id="FX-RUN", arm="A",
+                          seed="S1", pin=PIN, price_evidence=sc.ev,
+                          registered_prompt_hashes=[H.sha256_text(
+                              calls[0]["prompt"])])
+    status2, code2 = rn2.run([call()], start_index=1)
+    report("F32-tampered-ledger-no-dispatch",
+           "historical outcome rewritten on disk; reopen + resume attempted",
+           "CORRUPT", state,
+           {"setup_complete": status1 == "COMPLETE",
+            "run_blocked": code2 == "LEDGER_CORRUPT",
+            "invocations_0": tr2.invocations == 0})
+    led2.close()
+
+    # F33 — gap 5 (claim correction): crash after the response on the
+    # ONLY call. The interrupted call's true cost is UNKNOWN — preserved
+    # as UNKNOWN_INTERRUPTED_CALL_COST + reconciliation-required in the
+    # ledger, never silently zero, never silently exact; no resend.
+    sc = Scenario(tmp, "f33")
+    calls = [call()]
+    tr = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=calls, crash_after_response=True)
+    crashed = False
+    try:
+        rn.run(calls)
+    except H.SimulatedCrash:
+        crashed = True
+    sc.ledger.close()
+    led2 = H.Ledger(sc.ledger.path)
+    state, why = H.resume_state(led2)
+    tr2 = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn2 = H.ArmSeedRunner(led2, sc.clock, tr2, run_id="FX-RUN", arm="A",
+                          seed="S1", pin=PIN, price_evidence=sc.ev,
+                          registered_prompt_hashes=[H.sha256_text(
+                              calls[0]["prompt"])])
+    status2, code2 = rn2.run([call()], start_index=1)
+    stops = [r for r in led2.records if r["type"] == "run_stop"]
+    last_stop = stops[-1] if stops else {}
+    report("F33-crash-unknown-cost",
+           "crash after response, before outcome append; restart refuses",
+           "ORPHANED", state,
+           {"crashed": crashed,
+            "resume_blocked": code2 == "ORPHANED_LEDGER",
+            "no_resend": tr.invocations == 1 and tr2.invocations == 0,
+            "unknown_state": led2.interrupted_cost_state()
+            == H.UNKNOWN_INTERRUPTED_CALL_COST,
+            "stop_records_unknown": last_stop.get("interrupted_call_cost")
+            == "UNKNOWN_INTERRUPTED_CALL_COST",
+            "reconciliation_required":
+                last_stop.get("reconciliation_required") is True,
+            "interrupted_listed":
+                last_stop.get("interrupted_calls") == [
+                    {"arm": "A", "seed": "S1", "call_index": 0}],
+            "nothing_zero_filled": led2.billed_total("A", "S1") == 0
+            and len(led2.outcomes("A", "S1")) == 0})
+    led2.close()
+
     ok = all(r["match"] for r in RESULTS)
-    summary = {"task": "QF-ISSUE9-OFFLINE-HARNESS-20261014-03 r1",
+    summary = {"task": "QF-ISSUE9-OFFLINE-HARNESS-CORRECTNESS-20261014-04 r1",
                "fixtures_total": len(RESULTS),
                "fixtures_matched": sum(1 for r in RESULTS if r["match"]),
                "all_match": ok, "results": RESULTS}
