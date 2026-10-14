@@ -1,0 +1,17 @@
+== offline preflight validation, 2026-10-13 ==
+code under test: td_min_collector.py from f64d12f (sha256 bd003c3c...) extracted to /tmp/td_f64
+
+-- validate-manifest --
+{
+ "manifest_errors": [],
+ "requests": 51
+}
+exit=0
+
+-- preflight (manifest + prerequisites + pinned archival source verification) --
+{
+ "manifest_errors": [],
+ "prerequisite_failures": [],
+ "dispatch": "BLOCKED (zero-call build: no vendor transport)"
+}
+exit=0
