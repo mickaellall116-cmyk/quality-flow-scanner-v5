@@ -488,6 +488,56 @@ def hardened_call(symbol: str, kind: str, fn: Callable, *args,
         raise DataUnavailable(symbol, reason, str(exc)[:200])
 
 
+# ---------------------------------------------------------------------------
+# Batched prefetch (infrastructure only — QF-YAHOO-FEED-REPAIR-20261014-01).
+#
+# Measured diagnosis (2026-10-14): one cycle issues ~6 serial yf.download
+# calls per symbol (~1500 total); per-call latency is ~0.6s of fixed
+# overhead (proxy/TLS/crumb) regardless of payload, so 250 symbols x ~3.9s
+# cannot fit the frozen 600s budget (run 560: 154/250 fresh, DEGRADED).
+# A multi-ticker yf.download shares that fixed overhead across a chunk.
+# Equivalence vs the single-symbol path was MEASURED before adopting:
+#   * 1h/180d primary, 15m/5d, 5m/2d-prepost: byte-identical frames
+#     (same index, max abs diff 0.0) across all probed symbols.
+#   * 1d/2y and 1wk/5y: REJECTED — the batch path rounds adjusted prices
+#     at float32 ulp (~6e-05) for dividend payers. Those shapes stay on
+#     the existing serial path, untouched.
+# Prefetch is a pure accelerator: it only fills the cycle caches with
+# frames that pass the SAME post-processing and validators as the serial
+# path. Every cache miss, empty frame, invalid frame, batch timeout or
+# batch exception falls through to the existing hardened single-symbol
+# call with identical failure accounting. Guards are unchanged: prefetch
+# never runs when the cycle is rate-limited or the remaining budget is
+# low, and it is itself deadline-bounded.
+# ---------------------------------------------------------------------------
+
+FEED_BATCH_PREFETCH = True
+BATCH_CHUNK_SYMBOLS = 25
+BATCH_DEADLINE_S = 45.0
+BATCH_MIN_REMAINING_BUDGET_S = 90.0
+_BATCH_PRIMARY_SHAPE = ("4h", "180d")     # (interval, period) at the m53 API
+_BATCH_CONF_SHAPES = {("15m", "5d")}
+_MIN_CLASSIFY_BARS = 205  # v54_classify: max(TREND_EMA,50,50,50)+5 (frozen)
+
+
+def _flatten_dropna(df: pd.DataFrame) -> pd.DataFrame:
+    """The exact post-processing m53 applies to a raw yf.download frame."""
+    if isinstance(df.columns, pd.MultiIndex):
+        df = df.copy()
+        df.columns = [c[0] for c in df.columns]
+    return df.dropna()
+
+
+def _batch_chunks(order: List[str], anchor: str,
+                  skip: set) -> List[str]:
+    """Next chunk of symbols (scan order) starting at the anchor."""
+    if anchor not in order:
+        return []
+    i = order.index(anchor)
+    chunk = [s for s in order[i:] if s not in skip]
+    return chunk[:BATCH_CHUNK_SYMBOLS]
+
+
 @contextlib.contextmanager
 def hardened_downloads(health: ProviderHealth,
                        primary_cache: Optional[Dict[tuple, pd.DataFrame]] = None):
@@ -503,12 +553,107 @@ def hardened_downloads(health: ProviderHealth,
     orig_download = m53.download_data
     orig_conf = m53.download_confirmation_data
     orig_premarket = m53.premarket_fields
+    orig_premarket_data = m53.download_premarket_data
 
     cache = primary_cache if primary_cache is not None else {}
+    conf_cache: Dict[tuple, pd.DataFrame] = {}
+    pm5_cache: Dict[str, pd.DataFrame] = {}
+    batch_attempted: Dict[str, set] = {"primary": set(), "conf": set(),
+                                       "pm5": set()}
+    scan_order = list(health.expected_symbols)
+
+    def _prefetch(shape: str, anchor_symbol: str) -> None:
+        """Best-effort chunk fill of one shape's cache. Never raises; any
+        failure leaves the serial hardened path fully in charge."""
+        if not FEED_BATCH_PREFETCH:
+            return
+        if health.global_rate_limited:
+            return
+        if health.remaining_budget_s() < BATCH_MIN_REMAINING_BUDGET_S:
+            return
+        if shape == "primary":
+            skip = {k[0] for k in cache} | batch_attempted["primary"]
+            chunk = _batch_chunks(scan_order, anchor_symbol, skip)
+            if len(chunk) < 2:
+                return
+            batch_attempted["primary"].update(chunk)
+            ok, raw = _call_with_deadline(
+                m53.yf.download, (chunk,), dict(
+                    interval="1h", period="180d", progress=False,
+                    auto_adjust=True, threads=False, group_by="ticker"),
+                BATCH_DEADLINE_S)
+            if not ok or raw is None:
+                return
+            for sym in chunk:
+                try:
+                    sub = raw[sym]
+                    frame = sr.resample_closed_4h(_flatten_dropna(sub), sym)
+                    validate_primary_frame(sym, frame)
+                except Exception:
+                    continue  # serial path owns this symbol's accounting
+                cache[(sym, INTERVAL, PERIOD)] = frame
+        elif shape == "conf":
+            skip = {k[0] for k in conf_cache} | batch_attempted["conf"]
+            chunk = _batch_chunks(scan_order, anchor_symbol, skip)
+            # Symbols already known thin can never consume aux data.
+            chunk = [s for s in chunk if not _thin_primary(s)]
+            if len(chunk) < 2:
+                return
+            batch_attempted["conf"].update(chunk)
+            ok, raw = _call_with_deadline(
+                m53.yf.download, (chunk,), dict(
+                    interval="15m", period="5d", progress=False,
+                    auto_adjust=True, threads=False, group_by="ticker"),
+                BATCH_DEADLINE_S)
+            if not ok or raw is None:
+                return
+            for sym in chunk:
+                try:
+                    frame = _flatten_dropna(raw[sym])
+                except Exception:
+                    continue
+                if isinstance(frame, pd.DataFrame) and not frame.empty:
+                    conf_cache[(sym, "15m", "5d")] = frame
+        elif shape == "pm5":
+            skip = set(pm5_cache) | batch_attempted["pm5"]
+            chunk = _batch_chunks(scan_order, anchor_symbol, skip)
+            chunk = [s for s in chunk if not _thin_primary(s)]
+            if len(chunk) < 2:
+                return
+            batch_attempted["pm5"].update(chunk)
+            ok, raw = _call_with_deadline(
+                m53.yf.download, (chunk,), dict(
+                    interval="5m", period="2d", prepost=True, progress=False,
+                    auto_adjust=True, threads=False, group_by="ticker"),
+                BATCH_DEADLINE_S)
+            if not ok or raw is None:
+                return
+            for sym in chunk:
+                try:
+                    frame = _flatten_dropna(raw[sym])
+                except Exception:
+                    continue
+                if isinstance(frame, pd.DataFrame) and not frame.empty:
+                    pm5_cache[sym] = frame
+
+    def _thin_primary(symbol: str) -> bool:
+        """True when this cycle's validated primary frame is too short for
+        v54_classify to ever reach the auxiliary inputs (it returns None
+        first). Skipping the aux fetch then reproduces today's outputs
+        exactly: no row is produced for such a symbol either way."""
+        frame = cache.get((symbol, INTERVAL, PERIOD))
+        return frame is not None and len(frame) < _MIN_CLASSIFY_BARS
 
     def _primary(symbol, interval, period):
         key = (symbol, interval, period)
+        if key not in cache and (interval, period) == _BATCH_PRIMARY_SHAPE:
+            _prefetch("primary", symbol)
         if key in cache:
+            # A prefetched frame passed validate_primary_frame when it
+            # entered the cache, so it earns the same freshness mark the
+            # serial hardened_call would have recorded. (Serial-populated
+            # entries were already marked; re-marking is idempotent.)
+            health.mark_fresh(symbol)
             return cache[key]
         frame = hardened_call(symbol, "primary", orig_download,
                               symbol, interval, period, health=health,
@@ -518,6 +663,15 @@ def hardened_downloads(health: ProviderHealth,
 
     def _conf(symbol, interval, period):
         # Frozen behavior: exceptions -> None (best-effort confirmation).
+        if _thin_primary(symbol):
+            return None
+        key = (symbol, interval, period)
+        if key in conf_cache:
+            return conf_cache[key]
+        if (interval, period) in _BATCH_CONF_SHAPES:
+            _prefetch("conf", symbol)
+            if key in conf_cache:
+                return conf_cache[key]
         try:
             return hardened_call(symbol, "auxiliary", orig_conf,
                                  symbol, interval, period, health=health,
@@ -525,8 +679,21 @@ def hardened_downloads(health: ProviderHealth,
         except DataUnavailable:
             return None
 
+    def _premarket_data(symbol):
+        # Only the 5m leg is batched; the daily-close leg keeps the
+        # original serial function (batch daily frames are not identical
+        # for dividend payers — see header note).
+        if symbol in pm5_cache:
+            return pm5_cache[symbol]
+        _prefetch("pm5", symbol)
+        if symbol in pm5_cache:
+            return pm5_cache[symbol]
+        return orig_premarket_data(symbol)
+
     def _premarket(symbol):
         # Frozen behavior: exceptions -> PM_EMPTY (best-effort premarket).
+        if _thin_primary(symbol):
+            return dict(m53.PM_EMPTY)
         try:
             return hardened_call(symbol, "auxiliary", orig_premarket,
                                  symbol, health=health,
@@ -537,12 +704,14 @@ def hardened_downloads(health: ProviderHealth,
     m53.download_data = _primary
     m53.download_confirmation_data = _conf
     m53.premarket_fields = _premarket
+    m53.download_premarket_data = _premarket_data
     try:
         yield health
     finally:
         m53.download_data = orig_download
         m53.download_confirmation_data = orig_conf
         m53.premarket_fields = orig_premarket
+        m53.download_premarket_data = orig_premarket_data
 
 
 def _atomic_write_json(path: str, payload: Dict[str, Any]) -> None:
