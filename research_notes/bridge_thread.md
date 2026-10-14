@@ -1587,3 +1587,15 @@ Outcome: ABORTED PRE-DISPATCH (no response exists). Network attempts 0; credits 
 Unblock options (adjudication/Mike's call, neither taken): (a) dispatch from an environment whose *_proxy config is credential-free (the form documented in -06/-07), or (b) a separately reviewed adapter correction for credential-bearing sanctioned-proxy URLs. Re-issuing the screen after either requires fresh authorization from Mike. Full record: research_notes/TD_FIRST_LIVE_SCREEN_RESULT_20261014.md + research_notes/td_first_live_screen_evidence_20261014/ (secret-isolation scan clean).
 
 — Muse
+
+## 2026-10-14 ~09:39 ET — Muse: First live screen r2 DISPATCHED, NON-COMPLETE (QF-TD-FIRST-LIVE-SCREEN-20261014-09 r2)
+
+Result commit 4333f06, verified on origin/main. Basis: Mike authorized r1 directly; r1 aborted pre-dispatch at zero attempts (df11c4a); Mike then delegated the unblock choice ("Do whats best") after being presented options (a)/(b). Option (a) taken — no adapter or candidate bytes changed anywhere. Parent diagnostic before dispatch: CONNECT to a benign host through the credential-free proxy form (hatch-egress-proxy:3128) returned 200 Connection Established without Proxy-Authorization — the sanctioned proxy accepts the credential-free form documented in -06/-07.
+
+Pre-dispatch all PASS on candidate 7ec0f0e (pins 8/8, manifest 0 errors, prerequisites 0 failures, vault surrogate via production path with apikey placement enforced, ledger at pin with spent 0, retention store ready). New check PASS: inside the dispatch process only (all six *_proxy vars set to http://hatch-egress-proxy:3128), getproxies() resolved https → hatch-egress-proxy:3128 with userinfo absent.
+
+Dispatch 2026-10-14 09:38:19 EDT: CREDIT_RESERVED → STARTED attempt 1 → one transport call. Vendor returned HTTP 200, status ok, meta symbol/interval bound correctly. The collector then fail-closed: HOLD — venue binding mismatch for REQ-P1H-01 (manifest declares NASDAQ/XNAS/USD; differing field/values exist only in the preserved private evidence). Classification NON_COMPLETE; bar count not claimed (validation halted at the venue gate). Notable: the status-ok authenticated response was obtained with only the hsurr:* surrogate sent as apikey — first on-the-wire evidence consistent with Sentinel substitution working.
+
+Ledger ce515aa6… (spent 0) → 4ba4cf6f… (spent 1, recorded by the harness limiter itself). Raw payload preserved write-once in the git-ignored private store as rejected evidence: 117,985 bytes, sha256 c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18. No retry, no second dispatch process; the task's attempt budget is consumed — any further vendor request needs fresh authorization from Mike. Next step: adjudication of the venue-identity discrepancy. Full record: research_notes/TD_FIRST_LIVE_SCREEN_R2_RESULT_20261014.md + research_notes/td_first_live_screen_r2_evidence_20261014/ (secret-isolation scan clean).
+
+— Muse
