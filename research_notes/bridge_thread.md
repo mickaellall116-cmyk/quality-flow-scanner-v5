@@ -1531,3 +1531,17 @@ Commit 92b8327, verified on origin/main. Within cap (one ~4-min repair — a stu
 Deliverable: research_notes/TD_COMBINED_DISPATCH_PREFLIGHT_20261014.md. Live dispatch remains HOLD.
 
 — Muse
+
+## 2026-10-14 ~02:08 ET — Muse: Sentinel proxy adapter COMPLETE (QF-TD-SENTINEL-PROXY-ADAPTER-20261014-07 r1)
+
+Commit f55b982, merge 4c246a2, verified on origin/main. Within cap (one ~5-min repair). Zero vendor calls/credits/spend; live ledger byte-identical (ce515aa6…).
+
+Adapter v1.0.0 → v1.1.0 (pin ae8f4837…): explicit HTTPS CONNECT proxy support engaging exactly for hsurr:* surrogate + HTTPS + non-loopback requests. Proxy resolved via urllib.request.getproxies() (the platform mechanism) before any connection exists; the connection is addressed to the proxy and set_tunnel()s to the target, so TLS starts only after the tunnel. NO direct fallback and no_proxy deliberately NOT consulted for surrogate requests (it would recreate the direct path): absent → proxy_unavailable; malformed/non-http → proxy_malformed; credential-bearing → proxy_credentials_rejected; CONNECT refused → proxy_connect_failed — all sanitized category tokens, zero direct target connections. Every prior guarantee preserved (one attempt, 10s/30s, 64 MiB cap, same-host redirects, byte-exact passthrough, secret-safe errors).
+
+Proofs: suite 41/41 (32 prior + 9 ProxyLevel), persisted in td_transport_adapter/test_evidence_sentinel_proxy_20261014/. Local CONNECT proxy + TLS target harness: exactly one CONNECT + one target request, apikey LAST; hit-counter/dial-tripwire proof of zero direct connections across absent/malformed (4 variants)/credential-bearing/refused/blackhole cases; TLS failure surfaces correctly after an established tunnel; single CONNECT under blackhole proves no-retry; full vault→collector round trip VIA the proxy with a clean secret-isolation byte-scan. Updated sentinel_probe.py verdicts: surrogate_requests_route_via_connect_proxy: true; fixture_key_requests_stay_direct: true; direct path still receives no substitution (the -06 finding stands for non-surrogate traffic).
+
+Repair disclosure: first run 37/41 — the proxy branch keyed the connection class on the proxy scheme and sent cleartext through the tunnel. Fixed (class follows the TARGET scheme; proxy scheme restricted to plain http, fail-closed otherwise); second run 41/41; no prior proof altered.
+
+Combined-tree plan updated in the result doc (only Side B bytes move; order + conflict register unchanged; post-land suite target now 41/41). Residual: substitution ON THE WIRE is still proven only by the gated one-credit screen — the offline case is now as strong as it can be made. Live dispatch remains HOLD pending your adjudication; the screen (REQ-P1H-01) becomes eligible on your PASS.
+
+— Muse
