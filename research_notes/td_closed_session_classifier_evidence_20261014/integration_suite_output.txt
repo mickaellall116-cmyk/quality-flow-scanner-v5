@@ -1,0 +1,94 @@
+test_actual_corrupt_limiter_blocks_transport (__main__.Integration.test_actual_corrupt_limiter_blocks_transport) ... ok
+test_actual_limiter_restart_window_refuses (__main__.Integration.test_actual_limiter_restart_window_refuses) ... ok
+test_actual_prerequisite_missing_blocks_transport (__main__.Integration.test_actual_prerequisite_missing_blocks_transport) ... ok
+test_actual_sources_verify (__main__.Integration.test_actual_sources_verify) ... ok
+test_changed_request_real_preflight_refusal (__main__.Integration.test_changed_request_real_preflight_refusal) ... ok
+test_crash_received_before_real_validation (__main__.Integration.test_crash_received_before_real_validation) ... FAIL
+test_holiday_validator_empty_is_closed (__main__.Integration.test_holiday_validator_empty_is_closed) ... ERROR
+test_malformed_payload_real_dependencies (__main__.Integration.test_malformed_payload_real_dependencies) ... ok
+test_missing_constituent_hold (__main__.Integration.test_missing_constituent_hold) ... ok
+test_native_4h_actual_structural_path (__main__.Integration.test_native_4h_actual_structural_path) ... FAIL
+test_partial_bin_exact_ohlcv_real_validation_and_construction (__main__.Integration.test_partial_bin_exact_ohlcv_real_validation_and_construction) ... ERROR
+test_real_early_close (__main__.Integration.test_real_early_close) ... FAIL
+test_real_regular_1h_completion_and_reuse (__main__.Integration.test_real_regular_1h_completion_and_reuse) ... FAIL
+test_real_spring_and_fall_dst (__main__.Integration.test_real_spring_and_fall_dst) ... ERROR
+test_second_process_lock_blocks_transport (__main__.Integration.test_second_process_lock_blocks_transport) ... ok
+test_source_tamper_isolated_copy (__main__.Integration.test_source_tamper_isolated_copy) ... ok
+
+======================================================================
+ERROR: test_holiday_validator_empty_is_closed (__main__.Integration.test_holiday_validator_empty_is_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_pinned_integration.py", line 98, in test_holiday_validator_empty_is_closed
+    report=validate(df,'AAPL',day,day,as_of=pd.Timestamp(day+'T23:59:59',tz='America/New_York'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/td17_wt/research_notes/pilot_harness/validate_input.py", line 228, in validate
+    sched = xnys_schedule(day)
+            ^^^^^^^^^^^^^^^^^^
+  File "/tmp/td17_wt/research_notes/pilot_harness/validate_input.py", line 56, in xnys_schedule
+    import pandas_market_calendars as mcal
+ModuleNotFoundError: No module named 'pandas_market_calendars'
+
+======================================================================
+ERROR: test_partial_bin_exact_ohlcv_real_validation_and_construction (__main__.Integration.test_partial_bin_exact_ohlcv_real_validation_and_construction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_pinned_integration.py", line 149, in test_partial_bin_exact_ohlcv_real_validation_and_construction
+    day='2026-09-08';values=json.loads(make_body())['values'][:4]
+                                       ^^^^^^^^^^^
+  File "test_pinned_integration.py", line 40, in make_body
+    schedule=xnys_schedule(pd.Timestamp(day,tz='America/New_York'))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/td17_wt/research_notes/pilot_harness/validate_input.py", line 56, in xnys_schedule
+    import pandas_market_calendars as mcal
+ModuleNotFoundError: No module named 'pandas_market_calendars'
+
+======================================================================
+ERROR: test_real_spring_and_fall_dst (__main__.Integration.test_real_spring_and_fall_dst)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_pinned_integration.py", line 90, in test_real_spring_and_fall_dst
+    starts=expected_1h_starts(*xnys_schedule(pd.Timestamp(day,tz='America/New_York')))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/td17_wt/research_notes/pilot_harness/validate_input.py", line 56, in xnys_schedule
+    import pandas_market_calendars as mcal
+ModuleNotFoundError: No module named 'pandas_market_calendars'
+
+======================================================================
+FAIL: test_crash_received_before_real_validation (__main__.Integration.test_crash_received_before_real_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_pinned_integration.py", line 107, in test_crash_received_before_real_validation
+    with self.assertRaises(KeyboardInterrupt):obj.run()
+AssertionError: KeyboardInterrupt not raised
+
+======================================================================
+FAIL: test_native_4h_actual_structural_path (__main__.Integration.test_native_4h_actual_structural_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_pinned_integration.py", line 101, in test_native_4h_actual_structural_path
+    obj=self.collector(make_manifest(interval='4h'));self.assertEqual(obj.run()['completed'],1)
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_real_early_close (__main__.Integration.test_real_early_close)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_pinned_integration.py", line 87, in test_real_early_close
+    self.assertEqual(self.collector(make_manifest('2025-11-28')).run()['completed'],1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_real_regular_1h_completion_and_reuse (__main__.Integration.test_real_regular_1h_completion_and_reuse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_pinned_integration.py", line 82, in test_real_regular_1h_completion_and_reuse
+    result=self.collector().run();self.assertEqual(result['completed'],1)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.103s
+
+FAILED (failures=4, errors=3)

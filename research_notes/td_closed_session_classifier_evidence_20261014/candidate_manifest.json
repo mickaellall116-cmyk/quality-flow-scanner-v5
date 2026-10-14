@@ -1,0 +1,23 @@
+{
+ "task": "QF-TD-CLOSED-SESSION-CLASSIFIER-OFFLINE-20261014-17 r1",
+ "candidate_commit": "ab254c3458697dd450356146abcf4ad4f75ecef4",
+ "candidate_tree": "fe3c8b34e65153ceece66533c313ea3b62baedf8",
+ "candidate_ref": "refs/heads/td-closed-session-classifier-20261014",
+ "candidate_parent": "b18db3ce25f3014d11847ba1ac92f488a994022e",
+ "ref_verified": "git ls-remote ab254c3458697dd450356146abcf4ad4f75ecef4",
+ "diff_vs_base": "3 files, +548/-5: td_min_collector.py (modified), p2_spot_supplement_v2.json (new), test_closed_session_classifier.py (new)",
+ "file_sha256": {
+  "td_min_collector.py": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c",
+  "p2_spot_supplement_v2.json": "cccd52260b2c80a7110559ed100111cf3634e7901daef2f883c6517b68255b31",
+  "test_closed_session_classifier.py": "3122bdfc5df432932395948216e4ec6cc50e438abe2518cd0a5984154c4d71d0"
+ },
+ "base_pins": {
+  "collector_base_sha256": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+  "manifest_v2": "4a6e3a55ba6cacf80d60c26870817a272534d62cd73eb09d1dfc889d571c547d",
+  "manifest_spot8_file": "ddff040fa654303cf4289f4c39c2a5b5af998bd4065ceddd4e4f5d52fcb8c28d",
+  "spot8_manifest_canonical_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+  "calendar_mechanism_module_sha256": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+  "expected_library_version": "5.5.0 (pandas_market_calendars; in-repo recorded mechanism run, CP1 audit 2026-10-04)",
+  "spt07_preserved_payload_sha256": "3339c34154648c0ea4ddb9bd553e5274d390f953552518ad957d79704b7d5d50"
+ }
+}

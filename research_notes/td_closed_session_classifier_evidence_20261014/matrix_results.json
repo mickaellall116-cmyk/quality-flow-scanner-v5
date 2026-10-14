@@ -1,0 +1,108 @@
+{
+ "task": "QF-TD-CLOSED-SESSION-CLASSIFIER-OFFLINE-20261014-17 r1",
+ "required_matrix": {
+  "F1": {
+   "case": "preserved SPT-07 payload + preregistered single closed-day window + XNYS closed proof -> class assigned, run continues",
+   "result": "PASS"
+  },
+  "F2": {
+   "case": "same payload + preregistered multi-day all-closed window (2026-07-03..05) -> class assigned, run continues",
+   "result": "PASS"
+  },
+  "N1": {
+   "case": "mixed window (contains open session 2026-07-06) -> HOLD, batch terminates",
+   "result": "PASS"
+  },
+  "N2": {
+   "case": "message mutated by one character -> HOLD",
+   "result": "PASS"
+  },
+  "N3": {
+   "case": "code/status missing, retyped, or altered (4 variants) -> HOLD",
+   "result": "PASS"
+  },
+  "N4": {
+   "case": "HTTP 200 + ok + values [] on closed window -> HOLD (silent-acceptance exclusion)",
+   "result": "PASS"
+  },
+  "N5": {
+   "case": "HTTP 200 + status error + exact message -> HOLD",
+   "result": "PASS"
+  },
+  "N6": {
+   "case": "HTTP 400 with auth-style message -> HOLD",
+   "result": "PASS"
+  },
+  "N7": {
+   "case": "HTTP 401/403/429/500 with exact body (4 variants) -> HOLD",
+   "result": "PASS"
+  },
+  "N8": {
+   "case": "HTTP 400 unparseable body -> HOLD",
+   "result": "PASS"
+  },
+  "N9": {
+   "case": "closed window but not preregistered expected_bars==0 (entry absent; nonzero variants) -> HOLD",
+   "result": "PASS"
+  },
+  "N10": {
+   "case": "calendar unavailable / version-mismatched at classification time (mechanism raises; version 9.9.9; library absent variants) -> HOLD, classification disabled",
+   "result": "PASS"
+  },
+  "N11": {
+   "case": "error payload also containing a values field -> HOLD",
+   "result": "PASS"
+  },
+  "N12": {
+   "case": "manifest digest / request digest mismatch vs pinned supplement (2 variants) -> HOLD",
+   "result": "PASS"
+  }
+ },
+ "required_total": "14/14 PASS (100%)",
+ "suite": "test_closed_session_classifier.py: 18 tests run, OK (14 required cases incl. subtests + provenance + 3 supplementary)",
+ "supplementary": {
+  "S1": {
+   "case": "meta symbol mismatched to request -> HOLD",
+   "result": "PASS"
+  },
+  "S2": {
+   "case": "no supplement supplied -> pre-existing HOLD behavior byte-identical",
+   "result": "PASS"
+  },
+  "S3": {
+   "case": "restart after evidence: evidenced request never redispatched, never AMBIGUOUS, receipt reuse intact",
+   "result": "PASS"
+  },
+  "provenance": {
+   "case": "fixture body is byte-identical to preserved REQ-SPT-07 evidence (180 bytes, sha256 3339c34154648c0ea4ddb9bd553e5274d390f953552518ad957d79704b7d5d50)",
+   "result": "PASS"
+  }
+ },
+ "run_loop_proof": "Every positive asserts the following stubbed request IS dispatched and completed; every negative asserts it is NOT dispatched (transport call count == 1) and the batch ends HOLD.",
+ "explicit_assertions": [
+  "no receipt file for the classified request",
+  "no RECEIVED/COMPLETED event for the classified request",
+  "bar validation never invoked for the classified request",
+  "credit reservation stands (2 reservations incl. the classified request)",
+  "raw body preserved write-once as <rid>.closed_day.bin with sha in the CLOSED_DAY_EVIDENCED event"
+ ],
+ "regression_suites": {
+  "collector_lifecycle (test_lifecycle_repair.py)": {
+   "base_candidate": "19 run, OK (baselines from -12; re-verified this task in-line)",
+   "this_candidate": "19 run, OK",
+   "delta": "none"
+  },
+  "pinned_integration (test_pinned_integration.py)": {
+   "base_candidate": "16 run, FAILED (failures=4, errors=3) + post-run PackageNotFoundError for pandas_market_calendars in results writer",
+   "this_candidate": "16 run, FAILED (failures=4, errors=3) + identical post-run writer error",
+   "delta": "failure sets IDENTICAL (diff-verified); failures are pre-existing standing-environment gaps (missing calendar library for real-validation tests)"
+  },
+  "adapter (test_transport_adapter.py)": {
+   "base_candidate": "41 run, FAILED (failures=4, errors=1) + post-run PackageNotFoundError in results writer",
+   "this_candidate": "41 run, FAILED (failures=4, errors=1) + identical post-run writer error",
+   "delta": "failure sets IDENTICAL (diff-verified); adapter suite does not import the collector; failures are sandbox transport-isolation limits, pre-existing"
+  }
+ },
+ "real_environment_probe": "FAIL-CLOSED CONFIRMED (see real_env_probe_output.json): with zero stubs, xnys_schedule raises ModuleNotFoundError (pandas_market_calendars absent); the exact SPT-07 payload takes the pre-existing HOLD path (rejected.bin preserved, no closed_day.bin, no CLOSED_DAY_EVIDENCED event); REQ-SPT-08 never dispatched.",
+ "network_guard": "All suites + probe ran under the loopback-only socket guard; the only blocked attempt logged is the adapter suite's own RFC-5737 (192.0.2.1) blackhole probe, which the suite handles fail-closed by design. Zero vendor/auth calls; zero credits."
+}

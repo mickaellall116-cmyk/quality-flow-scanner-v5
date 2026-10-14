@@ -1,0 +1,114 @@
+test_429_passthrough_exactly_one_attempt (__main__.AdapterLevel.test_429_passthrough_exactly_one_attempt) ... ok
+test_500_passthrough_exactly_one_attempt (__main__.AdapterLevel.test_500_passthrough_exactly_one_attempt) ... ok
+test_api_error_payload_passthrough (__main__.AdapterLevel.test_api_error_payload_passthrough) ... ok
+test_body_cap (__main__.AdapterLevel.test_body_cap) ... ok
+test_connect_refused_sanitized (__main__.AdapterLevel.test_connect_refused_sanitized) ... ok
+test_connect_timeout_fail_closed (__main__.AdapterLevel.test_connect_timeout_fail_closed) ... ERROR
+test_defaults_pinned (__main__.AdapterLevel.test_defaults_pinned) ... ok
+test_exception_text_never_leaks (__main__.AdapterLevel.test_exception_text_never_leaks) ... ok
+test_http_non_loopback_rejected (__main__.AdapterLevel.test_http_non_loopback_rejected) ... ok
+test_malformed_request_no_network (__main__.AdapterLevel.test_malformed_request_no_network) ... ok
+test_param_order_values_and_success_passthrough (__main__.AdapterLevel.test_param_order_values_and_success_passthrough) ... ok
+test_read_timeout_enforced_and_sanitized (__main__.AdapterLevel.test_read_timeout_enforced_and_sanitized) ... ok
+test_redirect_cross_host_rejected (__main__.AdapterLevel.test_redirect_cross_host_rejected) ... ok
+test_redirect_same_host_followed (__main__.AdapterLevel.test_redirect_same_host_followed) ... ok
+test_tls_verification_on (__main__.AdapterLevel.test_tls_verification_on) ... ok
+test_fixture_source_explicit_and_separate (__main__.BindingLevel.test_fixture_source_explicit_and_separate) ... ok
+test_vault_binding_failure_sanitized_no_env_fallback (__main__.BindingLevel.test_vault_binding_failure_sanitized_no_env_fallback) ... ok
+test_vault_binding_non_surrogate_fails_closed (__main__.BindingLevel.test_vault_binding_non_surrogate_fails_closed) ... ok
+test_vault_binding_returns_surrogate_despite_poisoned_env (__main__.BindingLevel.test_vault_binding_returns_surrogate_despite_poisoned_env) ... ok
+test_vault_binding_sends_surrogate_as_apikey_last (__main__.BindingLevel.test_vault_binding_sends_surrogate_as_apikey_last) ... ok
+test_vault_binding_wrong_placement_fails_closed (__main__.BindingLevel.test_vault_binding_wrong_placement_fails_closed) ... ok
+test_vault_sourced_round_trip_and_secret_isolation (__main__.BindingLevel.test_vault_sourced_round_trip_and_secret_isolation) ... FAIL
+test_collector_429_hold_with_evidence_one_attempt (__main__.CollectorLevel.test_collector_429_hold_with_evidence_one_attempt) ... ok
+test_driver_pin_enforced (__main__.CollectorLevel.test_driver_pin_enforced) ... ok
+test_full_synthetic_round_trip_success (__main__.CollectorLevel.test_full_synthetic_round_trip_success) ... FAIL
+test_limiter_refusal_zero_dispatch_and_restart_persistence (__main__.CollectorLevel.test_limiter_refusal_zero_dispatch_and_restart_persistence) ... ok
+test_secret_isolation_sweep (__main__.CollectorLevel.test_secret_isolation_sweep) ... FAIL
+test_invocation_order_vault_adapter_collector (__main__.DispatchGateLevel.test_invocation_order_vault_adapter_collector) ... ok
+test_non_surrogate_refused_at_build_level (__main__.DispatchGateLevel.test_non_surrogate_refused_at_build_level) ... ok
+test_raw_key_as_key_source_refused_before_transport (__main__.DispatchGateLevel.test_raw_key_as_key_source_refused_before_transport) ... ok
+test_raw_key_kwarg_refused_before_transport (__main__.DispatchGateLevel.test_raw_key_kwarg_refused_before_transport) ... ok
+test_vault_failure_refused_before_transport (__main__.DispatchGateLevel.test_vault_failure_refused_before_transport) ... ok
+test_proxy_absent_fails_closed_zero_dials (__main__.ProxyLevel.test_proxy_absent_fails_closed_zero_dials) ... ok
+test_proxy_blackhole_connect_timeout_no_retry (__main__.ProxyLevel.test_proxy_blackhole_connect_timeout_no_retry) ... ok
+test_proxy_connect_refused_zero_direct_target_connections (__main__.ProxyLevel.test_proxy_connect_refused_zero_direct_target_connections) ... ok
+test_proxy_credentials_rejected_sanitized_zero_dials (__main__.ProxyLevel.test_proxy_credentials_rejected_sanitized_zero_dials) ... ok
+test_proxy_happy_path_one_connect_one_request_apikey_last (__main__.ProxyLevel.test_proxy_happy_path_one_connect_one_request_apikey_last) ... ok
+test_proxy_malformed_fails_closed_zero_dials (__main__.ProxyLevel.test_proxy_malformed_fails_closed_zero_dials) ... ok
+test_proxy_read_timeout_after_tunnel (__main__.ProxyLevel.test_proxy_read_timeout_after_tunnel) ... ok
+test_proxy_tls_failure_after_tunnel_established (__main__.ProxyLevel.test_proxy_tls_failure_after_tunnel_established) ... ok
+test_vault_surrogate_collector_round_trip_via_proxy_isolation (__main__.ProxyLevel.test_vault_surrogate_collector_round_trip_via_proxy_isolation) ... FAIL
+
+======================================================================
+ERROR: test_connect_timeout_fail_closed (__main__.AdapterLevel.test_connect_timeout_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_transport_adapter.py", line 273, in test_connect_timeout_fail_closed
+    a.transport(dict(REQ))
+  File "/tmp/td17_wt/research_notes/td_transport_adapter/td_http_transport_adapter.py", line 289, in transport
+    status, headers, body = self._exchange(scheme, host, port, path)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/td17_wt/research_notes/td_transport_adapter/td_http_transport_adapter.py", line 249, in _exchange
+    conn.connect()  # connect (+ CONNECT tunnel) + TLS, 10s budget
+    ^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/http/client.py", line 1499, in connect
+    super().connect()
+  File "/usr/lib/python3.12/http/client.py", line 1030, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 828, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/td17_ev/netguard_run.py", line 28, in gai
+    raise RuntimeError(f'netguard: DNS blocked: {host!r}')
+RuntimeError: netguard: DNS blocked: '192.0.2.1'
+
+======================================================================
+FAIL: test_vault_sourced_round_trip_and_secret_isolation (__main__.BindingLevel.test_vault_sourced_round_trip_and_secret_isolation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_transport_adapter.py", line 634, in test_vault_sourced_round_trip_and_secret_isolation
+    self.assertEqual(collector.run()["outcome"], "COMPLETE")
+AssertionError: 'HOLD: transport error (details omitted to protect credentials)' != 'COMPLETE'
+- HOLD: transport error (details omitted to protect credentials)
++ COMPLETE
+
+
+======================================================================
+FAIL: test_full_synthetic_round_trip_success (__main__.CollectorLevel.test_full_synthetic_round_trip_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_transport_adapter.py", line 405, in test_full_synthetic_round_trip_success
+    self.assertEqual(result["outcome"], "COMPLETE")
+AssertionError: 'HOLD: transport error (details omitted to protect credentials)' != 'COMPLETE'
+- HOLD: transport error (details omitted to protect credentials)
++ COMPLETE
+
+
+======================================================================
+FAIL: test_secret_isolation_sweep (__main__.CollectorLevel.test_secret_isolation_sweep)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_transport_adapter.py", line 475, in test_secret_isolation_sweep
+    self.assertEqual(collector.run()["outcome"], "COMPLETE")
+AssertionError: 'HOLD: transport error (details omitted to protect credentials)' != 'COMPLETE'
+- HOLD: transport error (details omitted to protect credentials)
++ COMPLETE
+
+
+======================================================================
+FAIL: test_vault_surrogate_collector_round_trip_via_proxy_isolation (__main__.ProxyLevel.test_vault_surrogate_collector_round_trip_via_proxy_isolation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_transport_adapter.py", line 1214, in test_vault_surrogate_collector_round_trip_via_proxy_isolation
+    self.assertEqual(result["outcome"], "COMPLETE")
+AssertionError: 'HOLD: transport error (details omitted to protect credentials)' != 'COMPLETE'
+- HOLD: transport error (details omitted to protect credentials)
++ COMPLETE
+
+
+----------------------------------------------------------------------
+Ran 41 tests in 9.136s
+
+FAILED (failures=4, errors=1)

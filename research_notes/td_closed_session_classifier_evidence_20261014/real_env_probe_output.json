@@ -1,0 +1,13 @@
+{
+ "mechanism_probe": "ModuleNotFoundError: No module named 'pandas_market_calendars'",
+ "outcome": "HOLD: HTTP 400 for REQ-SPT-07",
+ "transport_calls": [
+  "REQ-SPT-07"
+ ],
+ "closed_day_evidenced_summary": 0,
+ "closed_day_bin_exists": false,
+ "rejected_bin_exists": true,
+ "closed_day_events": 0,
+ "state_status": "HOLD",
+ "verdict": "FAIL-CLOSED CONFIRMED"
+}

@@ -1,0 +1,23 @@
+test_F1_single_closed_day (__main__.Matrix.test_F1_single_closed_day) ... ok
+test_F2_multiday_all_closed (__main__.Matrix.test_F2_multiday_all_closed) ... ok
+test_N10_calendar_unavailable_or_version_mismatch (__main__.Matrix.test_N10_calendar_unavailable_or_version_mismatch) ... ok
+test_N11_values_field_present (__main__.Matrix.test_N11_values_field_present) ... ok
+test_N12_digest_mismatch (__main__.Matrix.test_N12_digest_mismatch) ... ok
+test_N1_mixed_window (__main__.Matrix.test_N1_mixed_window) ... ok
+test_N2_message_mutated_one_char (__main__.Matrix.test_N2_message_mutated_one_char) ... ok
+test_N3_code_status_altered (__main__.Matrix.test_N3_code_status_altered) ... ok
+test_N4_http200_ok_empty_values (__main__.Matrix.test_N4_http200_ok_empty_values) ... ok
+test_N5_http200_error_exact_message (__main__.Matrix.test_N5_http200_error_exact_message) ... ok
+test_N6_http400_auth_message (__main__.Matrix.test_N6_http400_auth_message) ... ok
+test_N7_auth_rate_server_statuses (__main__.Matrix.test_N7_auth_rate_server_statuses) ... ok
+test_N8_http400_unparseable_body (__main__.Matrix.test_N8_http400_unparseable_body) ... ok
+test_N9_not_preregistered_expected_bars (__main__.Matrix.test_N9_not_preregistered_expected_bars) ... ok
+test_S1_meta_symbol_mismatch (__main__.Matrix.test_S1_meta_symbol_mismatch) ... ok
+test_S2_no_supplement_existing_behavior (__main__.Matrix.test_S2_no_supplement_existing_behavior) ... ok
+test_S3_restart_never_redispatches_evidenced (__main__.Matrix.test_S3_restart_never_redispatches_evidenced) ... ok
+test_fixture_provenance (__main__.Matrix.test_fixture_provenance) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.413s
+
+OK

@@ -1,0 +1,4 @@
+BLOCKED getaddrinfo '192.0.2.1'
+BLOCKED getaddrinfo '192.0.2.1'
+BLOCKED getaddrinfo '192.0.2.1'
+BLOCKED getaddrinfo '192.0.2.1'
