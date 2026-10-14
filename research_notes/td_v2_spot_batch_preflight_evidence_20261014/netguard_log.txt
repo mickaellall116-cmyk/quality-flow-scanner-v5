@@ -1,0 +1,17 @@
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+BLOCKED create_connection -> ('192.0.2.1', 8443)
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=28 blocked=1
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0
+GUARD-SUMMARY allowed_loopback=0 blocked=0

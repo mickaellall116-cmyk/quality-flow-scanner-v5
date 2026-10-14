@@ -1,0 +1,188 @@
+{
+ "collector_pin_sha256": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+ "limiter_pin_sha256": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+ "adapter_pin_sha256": "ae8f4837b3d11a53990cfd56f207d5ec96c40b8fe4c1280f15fb08452cc43343",
+ "driver_pin_sha256": "671f4d0ce25a76bc4967f1ca8cbb16fcda037f0e0ce71529c2aa385dce33fed1",
+ "contract_binding": {
+  "path": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/acquisition_manifest_v2.json",
+  "manifest_id": "TD-ACQUISITION-MANIFEST-V2-20261014",
+  "contract_canonical_sha256": "4d5b7a560d9d222d8012cd674fc065de3ef014c2adeb4034e39f8efb99aed646",
+  "bound_file_exists_in_export": true,
+  "bound_file_sha256": "4a6e3a55ba6cacf80d60c26870817a272534d62cd73eb09d1dfc889d571c547d",
+  "bound_file_canonical_digest": "4d5b7a560d9d222d8012cd674fc065de3ef014c2adeb4034e39f8efb99aed646",
+  "pin_file_has_v2_line": true,
+  "pin_file_has_subset_line": true
+ },
+ "subset": {
+  "file_sha256": "ddff040fa654303cf4289f4c39c2a5b5af998bd4065ceddd4e4f5d52fcb8c28d",
+  "canonical_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+  "requests": 8,
+  "ids_in_v2_order": true,
+  "all_deep_equal_and_digest_equal": true,
+  "per_request": {
+   "REQ-SPT-01": {
+    "deep_equal_to_v2": true,
+    "canonical_digest": "1eb44f701f3cebe7beb8ece9723c4c1ef31bbb4959de4d6bb2eb25577efca9da",
+    "digest_matches_v2_counterpart": true
+   },
+   "REQ-SPT-02": {
+    "deep_equal_to_v2": true,
+    "canonical_digest": "209d798ce8de2940dcdbe053fc31df1857a001e2993f4f34b4c71d062599905c",
+    "digest_matches_v2_counterpart": true
+   },
+   "REQ-SPT-03": {
+    "deep_equal_to_v2": true,
+    "canonical_digest": "3b37c06da5d14e08a035e77079de9df885c2a8f32806e973a4eea71005eaef59",
+    "digest_matches_v2_counterpart": true
+   },
+   "REQ-SPT-04": {
+    "deep_equal_to_v2": true,
+    "canonical_digest": "bf4a4a4125a96d393317cf5f37967b38627e2d468d67f1db48bb9dbb5351203e",
+    "digest_matches_v2_counterpart": true
+   },
+   "REQ-SPT-05": {
+    "deep_equal_to_v2": true,
+    "canonical_digest": "4f4f9aa0724248ae69df323cf2c2c1394b421c1363919206a37fc378b9965f08",
+    "digest_matches_v2_counterpart": true
+   },
+   "REQ-SPT-06": {
+    "deep_equal_to_v2": true,
+    "canonical_digest": "d327d0dc67abca48c46ef7f747f6713fad2ad126411967c29796802f931af4bc",
+    "digest_matches_v2_counterpart": true
+   },
+   "REQ-SPT-07": {
+    "deep_equal_to_v2": true,
+    "canonical_digest": "a259901ec57a8556228c2a6b95299c360102cc98edc62204ae539dc53a4c5edb",
+    "digest_matches_v2_counterpart": true
+   },
+   "REQ-SPT-08": {
+    "deep_equal_to_v2": true,
+    "canonical_digest": "f547d8fec7882fa121feb966b33fde000b25c4ae0eb822a6b5a503f4a3651a97",
+    "digest_matches_v2_counterpart": true
+   }
+  },
+  "budget": {
+   "total_requests": 8,
+   "expected_credits": 8,
+   "max_credits": 8,
+   "budget_rule": "expected == max: max_attempts=1, no pagination, no retries; every dispatch consumes exactly 1 credit reserved in advance via the shared persisted limiter",
+   "plan_caps": {
+    "credits_per_minute": 8,
+    "credits_per_day": 800,
+    "plan": "Basic"
+   }
+  },
+  "sum_credit_weight": 8,
+  "sum_expected_credits": 8,
+  "max_attempts_all_1": true,
+  "validate_manifest_errors": [],
+  "validate_manifest_errors_v2_full": []
+ },
+ "driver_default_path": {
+  "collector_path_resolved": "/tmp/td12_export/research_notes/td_lifecycle_repair_candidate/td_min_collector.py",
+  "collector_path_inside_export": true,
+  "collector_sha256_verified_by_loader": true,
+  "module_loaded": true
+ },
+ "fresh_state_fail_closed_run": {
+  "state_dir_fresh": true,
+  "state_files": [
+   "collector.lock",
+   "lifecycle.jsonl",
+   "manifest_binding.json",
+   "pilot_state.json"
+  ],
+  "manifest_digest_bound": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+  "manifest_digest_is_subset_canonical": true,
+  "run_summary": {
+   "dispatched": 1,
+   "reused": 0,
+   "completed": 0,
+   "outcome": "HOLD: transport disabled (zero-call build)"
+  },
+  "pilot_state_terminal": {
+   "attempts": 1,
+   "completed": [],
+   "credit_reservations": 1,
+   "hold_reason": "transport disabled: vendor transport disabled in QF-TD-MINIMAL-COLLECTOR r1 (zero-call build)",
+   "status": "HOLD"
+  },
+  "disposable_ledger_after": {
+   "day": "2026-10-14",
+   "spent": 1,
+   "window": [
+    [
+     1791994201.095197,
+     1
+    ]
+   ]
+  }
+ },
+ "limiter_ceiling_disposable": {
+  "eight_acquisitions": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ninth_within_minute_refused": true,
+  "ledger_b_after": {
+   "day": "2026-10-14",
+   "spent": 8,
+   "window": [
+    [
+     1791994201.096337,
+     1
+    ],
+    [
+     1791994201.096583,
+     1
+    ],
+    [
+     1791994201.0969179,
+     1
+    ],
+    [
+     1791994201.0971057,
+     1
+    ],
+    [
+     1791994201.097254,
+     1
+    ],
+    [
+     1791994201.0973935,
+     1
+    ],
+    [
+     1791994201.097547,
+     1
+    ],
+    [
+     1791994201.0976875,
+     1
+    ]
+   ]
+  }
+ },
+ "venue_fail_closed_spot_check": {
+  "request": "REQ-SPT-01 with synthetic meta mic_code XNYS (pin XNGS)",
+  "run_summary": {
+   "dispatched": 1,
+   "reused": 0,
+   "completed": 0,
+   "outcome": "HOLD: venue binding mismatch for REQ-SPT-01"
+  },
+  "pilot_state_terminal": {
+   "attempts": 1,
+   "completed": [],
+   "credit_reservations": 1,
+   "hold_reason": "venue binding mismatch for REQ-SPT-01",
+   "status": "HOLD"
+  }
+ }
+}

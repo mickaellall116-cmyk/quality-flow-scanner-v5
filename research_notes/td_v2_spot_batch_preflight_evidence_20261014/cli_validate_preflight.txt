@@ -1,0 +1,26 @@
+== validate-manifest subset
+{
+ "manifest_errors": [],
+ "requests": 8
+}
+exit 0
+== preflight subset
+{
+ "manifest_errors": [],
+ "prerequisite_failures": [],
+ "dispatch": "BLOCKED (zero-call build: no vendor transport)"
+}
+exit 0
+== validate-manifest v2full
+{
+ "manifest_errors": [],
+ "requests": 51
+}
+exit 0
+== preflight v2full
+{
+ "manifest_errors": [],
+ "prerequisite_failures": [],
+ "dispatch": "BLOCKED (zero-call build: no vendor transport)"
+}
+exit 0
