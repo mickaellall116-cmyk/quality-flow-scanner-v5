@@ -41,6 +41,25 @@ FROZEN_UNIVERSE = ["AAPL", "MSFT", "NVDA", "AMD", "TSLA", "META", "GOOGL",
 IN_SCOPE_LEGS = {"PAR", "PAR4H", "ADJ", "SPOT"}
 BARS_PER_DAY = {"1h": 7, "4h": 2}  # conservative calendar bound (see manifest)
 
+# --- Closed-session classification (QF-TD-CLOSED-SESSION-CLASSIFIER-20261014-17) ---
+# Narrow conjunctive exception designed in TD_CLOSED_SESSION_SEMANTICS_20261014
+# (-15) and adjudicated in Issue #1 comment 6176337687. Active ONLY when a
+# pinned P2-SPOT v2 supplement is supplied to the constructor; with no
+# supplement, behavior is byte-identical to the base candidate. Any
+# uncertainty or mismatch falls through to the existing HOLD path unchanged.
+CLOSED_SESSION_CLASS = "EXPECTED_EMPTY_CLOSED_SESSION"
+CLOSED_SESSION_MESSAGE = ("No data is available on the specified dates. "
+                          "Try setting different start/end dates.")
+
+
+class _ClosedSessionEvidenced:
+    """Sentinel returned by _handle_response when the closed-session class
+    fires: not a success (no receipt/completion), not a HOLD (run continues)."""
+    pass
+
+
+CLOSED_SESSION = _ClosedSessionEvidenced()
+
 
 class CollectorError(Exception):
     pass
@@ -176,7 +195,8 @@ def check_prerequisites(man: dict, prereq_path: Path) -> list[str]:
 class Collector:
     def __init__(self, state_dir: Path, manifest: dict, limiter: RollingCreditLimiter,
                  transport=None, semantics_status: str = "INSUFFICIENT",
-                 prereq_path: Path | None = None):
+                 prereq_path: Path | None = None,
+                 closed_session_supplement: dict | None = None):
         self.state_dir = Path(state_dir)
         self.receipts = self.state_dir / "receipts"
         self.receipts.mkdir(parents=True, exist_ok=True)
@@ -191,6 +211,13 @@ class Collector:
         # Default transport is the disabled one: zero vendor calls, always.
         self.transport = transport or self._disabled_transport
         self.semantics_status = semantics_status
+        # Closed-session supplement (P2-SPOT v2): stored verbatim; every
+        # conjunct is re-validated per response by _classify_closed_session,
+        # which fails closed on any anomaly (including a malformed supplement).
+        self.closed_session_supplement = (copy.deepcopy(closed_session_supplement)
+                                          if closed_session_supplement is not None else None)
+        self.supplement_digest = (canonical_digest(self.closed_session_supplement)
+                                  if self.closed_session_supplement is not None else None)
         self.lifecycle_path = self.state_dir / "lifecycle.jsonl"
         self.pilot_state_path = self.state_dir / "pilot_state.json"
         self._state = self._load_pilot_state()
@@ -264,6 +291,10 @@ class Collector:
         if self._state["status"] == "HOLD":
             return
         completed = {e["request_id"] for e in self._events if e["event"] == "COMPLETED"}
+        # A durably evidenced closed-session request is accounted for: it was
+        # dispatched, classified, and its credit stands spent. It is never
+        # AMBIGUOUS and never redispatched.
+        completed |= {e["request_id"] for e in self._events if e["event"] == "CLOSED_DAY_EVIDENCED"}
         started = {e["request_id"] for e in self._events if e["event"] == "STARTED"}
         for rid in started - completed:
             self._hold(f"AMBIGUOUS: {rid} dispatched without durable validation completion; no redispatch", rid)
@@ -326,7 +357,8 @@ class Collector:
             return self._run_locked()
 
     def _run_locked(self) -> dict:
-        summary = {"dispatched": 0, "reused": 0, "completed": 0, "outcome": None}
+        summary = {"dispatched": 0, "reused": 0, "completed": 0,
+                   "closed_day_evidenced": 0, "outcome": None}
         if self._state["status"] == "HOLD":
             summary["outcome"] = f"HOLD (persistent): {self._state['hold_reason']}"
             return summary
@@ -342,6 +374,18 @@ class Collector:
                 if rid not in self._state["completed"]:
                     self._state["completed"].append(rid)
                 summary["completed"] += 1
+                continue
+            # Durably evidenced closed-session request from an earlier run:
+            # accounted for (credit spent, evidence preserved); never
+            # redispatched, never receipt-verified, never completed.
+            evidenced = [e for e in self._events
+                         if e["event"] == "CLOSED_DAY_EVIDENCED" and e["request_id"] == rid]
+            if (evidenced and evidenced[-1].get("request_digest") == canonical_digest(req)
+                    and evidenced[-1].get("manifest_digest") == self.manifest_digest):
+                if rid not in self._state.setdefault("closed_day_evidenced", []):
+                    self._state["closed_day_evidenced"].append(rid)
+                summary["closed_day_evidenced"] += 1
+                self._save_pilot_state()
                 continue
             # Credit reservation: recorded separately from attempt count.
             try:
@@ -372,6 +416,15 @@ class Collector:
                 summary["outcome"] = "HOLD: transport error (details omitted to protect credentials)"
                 return summary
             problem = self._handle_response(req, status, body)
+            if problem is CLOSED_SESSION:
+                # Distinct evidence class only: no receipt was written, the
+                # request is NOT completed, bar validation never ran. The
+                # credit reservation stands spent. The run continues.
+                if rid not in self._state.setdefault("closed_day_evidenced", []):
+                    self._state["closed_day_evidenced"].append(rid)
+                summary["closed_day_evidenced"] += 1
+                self._save_pilot_state()
+                continue
             if problem is not None:
                 self._hold(problem, rid)
                 summary["outcome"] = f"HOLD: {problem}"
@@ -379,7 +432,8 @@ class Collector:
             self._state["completed"].append(rid)
             summary["completed"] += 1
             self._save_pilot_state()
-        summary["outcome"] = "COMPLETE"
+        summary["outcome"] = ("COMPLETE_WITH_CLOSED_DAY_EVIDENCED"
+                              if summary["closed_day_evidenced"] else "COMPLETE")
         self._save_pilot_state()
         return summary
 
@@ -392,11 +446,131 @@ class Collector:
                 f.write(raw)
         self._emit("ERROR_EVIDENCE", rid, sha256=sha256_bytes(raw), bytes=len(raw))
 
-    def _handle_response(self, req: dict, status: int, body: bytes) -> str | None:
-        """Returns None on success, else the HOLD reason. Every failure
+    def _preserve_closed_day(self, rid: str, raw: bytes) -> None:
+        """Closed-session raw evidence preserved write-once (bytes + hash in
+        the CLOSED_DAY_EVIDENCED event), same retention class as rejected
+        evidence. Never a receipt: distinct filename, never values-bearing."""
+        p = self.receipts / f"{rid}.closed_day.bin"
+        if not p.exists():
+            with open(p, "xb") as f:
+                f.write(raw)
+                f.flush()
+                os.fsync(f.fileno())
+
+    def _classify_closed_session(self, req: dict, status: int, body: bytes) -> dict | None:
+        """EXPECTED_EMPTY_CLOSED_SESSION classifier (design: -15 memo S5;
+        adjudication: Issue #1 comment 6176337687). Returns a calendar-proof
+        record iff EVERY conjunct holds; returns None on ANY mismatch or
+        uncertainty, in which case the caller falls through to the existing
+        HOLD path byte-for-byte. Purely observational: writes nothing.
+
+        Conjuncts: (1) a pinned P2-SPOT v2 supplement is present, bound to
+        this manifest digest, and preregisters this request (by exact request
+        digest) with expected_bars == 0; (2) exact wire match: HTTP 400, JSON
+        object with keys exactly {code, message, status, meta}, code the
+        integer 400, status "error", message byte-equal to the observed
+        vendor no-data string, NO values field, and meta exactly
+        {symbol: <request symbol>, interval: <request interval>,
+        exchange: ""} (the exact schema of the one preserved observation,
+        REQ-SPT-07, sha 3339c341...; the meta carries no venue assertion and
+        is never identity evidence); (3) every date in the request window is
+        exchange-closed under the pinned XNYS mechanism
+        (pilot_harness/validate_input.xnys_schedule -> None), with the
+        mechanism module bytes and the calendar library version both equal
+        to the supplement pins. Calendar unavailable or version/module
+        mismatched -> None (classification disabled, fail-closed)."""
+        sup = self.closed_session_supplement
+        if not isinstance(sup, dict) or status != 400:
+            return None
+        # (2) exact wire match
+        try:
+            payload = json.loads(body)
+        except Exception:
+            return None
+        if not isinstance(payload, dict):
+            return None
+        if set(payload.keys()) != {"code", "message", "status", "meta"}:
+            return None
+        if type(payload["code"]) is not int or payload["code"] != 400:
+            return None
+        if payload["status"] != "error" or payload["message"] != CLOSED_SESSION_MESSAGE:
+            return None
+        meta = payload["meta"]
+        if not isinstance(meta, dict) or set(meta.keys()) != {"symbol", "interval", "exchange"}:
+            return None
+        if (meta["symbol"] != req["symbol"] or meta["interval"] != req["interval"]
+                or meta["exchange"] != ""):
+            return None
+        # (1) supplement binding + preregistration
+        if sup.get("supplement_id") != "P2-SPOT" or sup.get("version") != "v2":
+            return None
+        if sup.get("base_manifest_digest") != self.manifest_digest:
+            return None
+        entries = sup.get("entries")
+        if not isinstance(entries, dict):
+            return None
+        entry = entries.get(req["request_id"])
+        if not isinstance(entry, dict):
+            return None
+        if type(entry.get("expected_bars")) is not int or entry["expected_bars"] != 0:
+            return None
+        if entry.get("request_digest") != canonical_digest(req):
+            return None
+        # (3) pinned-calendar proof over the entire window
+        cal = sup.get("calendar")
+        if not isinstance(cal, dict):
+            return None
+        try:
+            from datetime import date, timedelta
+            import pandas as pd
+            import pandas_market_calendars as mcal
+            if str(getattr(mcal, "__version__", "")) != str(cal.get("expected_library_version")):
+                return None
+            import validate_input
+            module_path = Path(validate_input.__file__).resolve()
+            if sha256_bytes(module_path.read_bytes()) != cal.get("mechanism_module_sha256"):
+                return None
+            d0 = date.fromisoformat(req["start_date"][:10])
+            d1 = date.fromisoformat(req["end_date"][:10])
+            if (d1 - d0).days > 366:
+                return None
+            per_date = {}
+            cur = d0
+            while cur <= d1:
+                sched = validate_input.xnys_schedule(pd.Timestamp(cur.isoformat()))
+                per_date[cur.isoformat()] = "closed" if sched is None else "open"
+                cur += timedelta(days=1)
+        except Exception:
+            return None  # calendar unavailable/unresolvable: fail closed
+        if not per_date or any(v != "closed" for v in per_date.values()):
+            return None
+        proof = {"mechanism": cal.get("mechanism"),
+                 "library_version": str(mcal.__version__),
+                 "mechanism_module_sha256": cal.get("mechanism_module_sha256"),
+                 "per_date": per_date}
+        proof["proof_digest"] = canonical_digest(proof)
+        return proof
+
+    def _handle_response(self, req: dict, status: int, body: bytes):
+        """Returns None on success, the CLOSED_SESSION sentinel when the
+        closed-session class fires, else the HOLD reason. Every failure
         path preserves the raw payload first."""
         rid = req["request_id"]
         if status != 200:
+            proof = self._classify_closed_session(req, status, body)
+            if proof is not None:
+                self._preserve_closed_day(rid, body)
+                self._emit("CLOSED_DAY_EVIDENCED", rid,
+                           sha256=sha256_bytes(body), bytes=len(body),
+                           request_digest=canonical_digest(req),
+                           manifest_digest=self.manifest_digest,
+                           supplement_digest=self.supplement_digest,
+                           calendar_proof_digest=proof["proof_digest"],
+                           calendar_library_version=proof["library_version"],
+                           lifecycle_class=CLOSED_SESSION_CLASS)
+                return CLOSED_SESSION
+            self._preserve_rejected(rid, body)
+            return f"HTTP {status} for {rid}"
             self._preserve_rejected(rid, body)
             return f"HTTP {status} for {rid}"
         try:
