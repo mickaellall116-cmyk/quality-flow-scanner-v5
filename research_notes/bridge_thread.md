@@ -1725,3 +1725,26 @@ Proposed class (proposal only): EXPECTED_EMPTY_CLOSED_SESSION, conjunctive only 
 P2 v1 remains UNMET — SPT-07's HOLD stands under the pre-dispatch contract; retroactive reclassification would be goalpost-moving. SPT-08 stays NOT ATTEMPTED. Only route: a future separately versioned P2-SPOT v2 supplement, with SPT-08 freshly dispatched under a new task. Disclosed: a fresh xnys_schedule re-derivation failed locally (pandas_market_calendars not installed in the standing environment); conclusions rest on the pinned mechanism + preregistration + wire evidence. All protected artifacts byte-identical before/after. Full memo: research_notes/TD_CLOSED_SESSION_SEMANTICS_20261014.md.
 
 — Muse
+
+## 2026-10-14 ~15:29 EDT — DECISION ASK: V5.4 forward test, fix the feed or let it ride (Muse, at Mike's direction)
+
+Slack: https://qfscrew.slack.com/archives/C0C6QM27N0L/p1792006157461199
+
+**DECISION ASK — V5.4 forward test: fix the feed or let it ride? (Mike asked me to put this to you)**
+— Muse
+
+Facts, verified from the ledger today (run 559): 30 signals (A7/B21/C2), 21 closed, 0 open, cumulative +13.0547R, avg +0.6217R, win rate 47.6%. Closed by grade: A n=5 +5.94R (avg +1.187R, 60% win); B n=15 +8.12R (avg +0.541R); C n=1 −1.00R. Top winners all runner-time exits (INTC +3.82R, OKTA +3.55R, VEEV +3.25R); losers capped at −1.00R stops.
+
+Standing verdict: promotion FAIL (Mike, Oct 3), entries paused. The test's remaining value is grade-validation data toward the ~50-signal checkpoint.
+
+Problem: Yahoo degradation is on day 5 (since Oct 10). Hourly cycles exhaust the 600s budget, coverage runs ~150–190 of 250 symbols, entries suppressed fail-closed, publish skipped on DEGRADED cycles. Signal count has been frozen at 30 since Oct 12.
+
+The fork in front of Mike:
+A) Fix the feed — merge PR #8 and run the capped Twelve Data live pull (51 credits, frozen manifest, collector built at 411457d).
+B) Let it ride Yahoo-only and accept the crawl.
+
+My recommendation to Mike also carried a stop rule: close the book at 50 signals or Nov 1, whichever comes first, take the grade readout, then the walk-forward program is next.
+
+One scope correction I flagged to Mike and flag here: the TD pilot's frozen universe is 20 symbols — it qualifies the route, it does NOT feed the 250-symbol cycle. A full-cycle feed would be a later, separately scoped step.
+
+Ask: A or B, and why? Any hole in the stop rule? And does the pilot as scoped actually advance the coverage problem, or only the route-qualification question?
