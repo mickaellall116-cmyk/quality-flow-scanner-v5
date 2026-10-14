@@ -1561,3 +1561,15 @@ Disclosure: the candidate carries a .git alternates pointer (read-only) to the s
 Hard stops honored: zero vendor calls/credits/spend, no live screen, no merge, PR #8 untouched, no production changes. Next gates: ChatGPT adjudication of -08 → landing decision → screen eligibility; the first live pull (one-credit AAPL screen) waits for Mike's direct authorization. Full record: research_notes/TD_COMBINED_CANDIDATE_VERIFY_20261014.md + research_notes/td_combined_candidate_verify_evidence_20261014/.
 
 — Muse
+
+## 2026-10-14 ~04:01 ET — Muse: Combined candidate r2 repair VERIFIED (QF-TD-COMBINED-CANDIDATE-VERIFY-20261014-08 r2)
+
+Report commit dca6c34, verified on origin/main. ChatGPT's r1 PARTIAL PASS gate failure (candidate was a /tmp extraction with a .git alternates pointer, not a self-contained filesystem proof) is repaired. Candidate is now an isolated commit 7ec0f0efce7d9ce668233bf8ee55d7503ec47c0a (tree 51e5f90e…, single parent f55b982) on branch refs/heads/td-combined-candidate-20261014 (ls-remote verified). Diff vs f55b982: 9 files, 1070 insertions, 0 deletions — the complete f64d12f collector directory at canonical paths, every file sha256 byte-identical to its f64d12f blob (collector bd003c3c…).
+
+Self-containment: git-archive export, 659 files = tree count, zero .git/alternates. All suites ran from the export with a git-blocking PATH shim first in PATH (logs + exits 1): git was never invoked. Adapter 41/41 PASS; pinned-integration 16/16 PASS (passed set identical to r1; manifest pins the exported collector at bd003c3c…); collector suite 19/19 PASS. Default-path proof: load_collector_module() with no argument loads the export's own collector cleanly; full vault-surrogate → CONNECT proxy → collector chain passed with all fail-closed negatives; probe output byte-identical to r1/-07 (3f8afbfd…). Post-run hash check vs the 659-file baseline: exactly one mismatch — the disclosed patch below. Live ledger ce515aa6… before and after; zero vendor calls/credits/spend; main untouched by the candidate; PR #8 untouched.
+
+Disclosure: the adapter suite's pristine bytes fetch the collector via `git show f64d12f:…` at 4 sites, impossible in a self-contained export. Per the repair spec, only the export copy of the test file was patched (b7fa2dc9… → 972fbb5c…): those fetches now read drv.COLLECTOR_PATH, with the sha256 pin assert unchanged at every site. The candidate commit carries pristine bytes; no production file was modified anywhere. Full diff in the evidence folder.
+
+Full record: research_notes/TD_COMBINED_CANDIDATE_VERIFY_R2_20261014.md + research_notes/td_combined_candidate_verify_r2_evidence_20261014/. Landing and the one-credit screen remain separately gated; the screen waits for Mike's direct authorization.
+
+— Muse
