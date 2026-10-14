@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 """
 Synthetic proof suite for td-http-transport-adapter + driver binding
-(QF-TD-TRANSPORT-ADAPTER-IMPLEMENT-20261013-03 r1).
+(QF-TD-TRANSPORT-ADAPTER-IMPLEMENT-20261013-03 r1; vault-binding
+correction QF-TD-VAULT-BINDING-CORRECTION-20261014-05 r1).
 
 EVERYTHING here is local: test HTTP/HTTPS servers on 127.0.0.1 that this
 suite starts and stops itself. ZERO vendor calls, zero credits, zero
 spend. The collector under test is the accepted pinned bytes
 (bd003c3c..., extracted from f64d12f and sha-verified before use); the
 limiter is the real pilot_harness/rate_limiter.py (06ad383d...).
+
+Key sourcing under test: the collector proofs run through the driver's
+explicitly-named TEST FIXTURE source (TWELVEDATA_TEST_FIXTURE_API_KEY);
+the BindingLevel proofs exercise the production vault binding
+(custom.twelvedata via authd surrogate) with the authd fetch stubbed —
+no real credential or surrogate is ever fetched by this suite.
 
 Run with the pinned-dependency venv python:
   python3 test_transport_adapter.py --output-dir <NEW DIRECTORY>
@@ -38,6 +45,7 @@ from td_http_transport_adapter import (  # noqa: E402
 import driver as drv  # noqa: E402
 
 FAKE_KEY = "TESTKEY-FAKE-DO-NOT-USE-7f3a9c"
+FAKE_SURROGATE = "hsurr:TEST-SURROGATE-DO-NOT-USE-0000"
 COLLECTOR_COMMIT = "f64d12f885339e9e2ab4fa38b4a55df78db39b9f"
 COLLECTOR_GIT_PATH = "research_notes/td_lifecycle_repair_candidate/td_min_collector.py"
 PREREQ = (REPO / "research_notes" /
@@ -55,7 +63,8 @@ REQ = {"symbol": "OK200", "interval": "1h",
 # Local test servers
 # --------------------------------------------------------------------------
 class Recorder:
-    def __init__(self):
+    def __init__(self, expected_key=FAKE_KEY):
+        self.expected_key = expected_key
         self.hits = []  # (symbol, [param names in order], apikey_matches)
 
     def record(self, query: str):
@@ -63,7 +72,7 @@ class Recorder:
         names = [k for k, _ in pairs]
         vals = dict(pairs)
         self.hits.append((vals.get("symbol", ""), names,
-                          vals.get("apikey") == FAKE_KEY))
+                          vals.get("apikey") == self.expected_key))
         return vals
 
 
@@ -348,15 +357,17 @@ class CollectorLevel(unittest.TestCase):
         os.symlink(REAL_HARNESS, rn / "pilot_harness")
         self.state = root / "state"
         self.ledger = root / "credit_ledger.json"
-        os.environ[drv.API_KEY_ENV] = FAKE_KEY
+        os.environ[drv.TEST_FIXTURE_KEY_ENV] = FAKE_KEY
 
     def tearDown(self):
-        os.environ.pop(drv.API_KEY_ENV, None)
+        os.environ.pop(drv.TEST_FIXTURE_KEY_ENV, None)
         self.tmp.cleanup()
 
     def build(self, base, manifest=None):
         return drv.build_collector(self.state, manifest or fixture_manifest(),
-                                   PREREQ, api_key=None, base_url=base,
+                                   PREREQ, api_key=None,
+                                   key_source=drv.get_test_fixture_key,
+                                   base_url=base,
                                    ledger_path=self.ledger,
                                    collector_path=self.collector_path)
 
@@ -381,7 +392,7 @@ class CollectorLevel(unittest.TestCase):
         server = start_server(behavior, rec)
         base = f"http://127.0.0.1:{server.server_address[1]}"
         try:
-            collector, _ = self.build(base)  # key from env (vault-style)
+            collector, _ = self.build(base)  # key via test fixture source
             result = collector.run()
             self.assertEqual(result["outcome"], "COMPLETE")
             self.assertEqual(result["completed"], 1)
@@ -471,6 +482,168 @@ class CollectorLevel(unittest.TestCase):
         self.assertGreater(scanned, 3)
 
 
+# --------------------------------------------------------------------------
+class BindingLevel(unittest.TestCase):
+    """Vault-binding proofs (QF-TD-VAULT-BINDING-CORRECTION-20261014-05 r1).
+
+    The driver's production key source is the Secure Vault credential
+    custom.twelvedata, fetched as an hsurr:* surrogate via authd. Here
+    the authd fetch (drv._vault_entry) is stubbed with canned entries —
+    the suite never fetches a real credential or surrogate. The local
+    servers remain loopback-only; zero vendor calls."""
+
+    GOOD_ENTRY = {"name": "access_token", "surrogate": FAKE_SURROGATE,
+                  "placement": {"query_param": "apikey"}}
+
+    def setUp(self):
+        self._orig_vault_entry = drv._vault_entry
+        self._saved_env = {k: os.environ.get(k) for k in
+                           (drv.TEST_FIXTURE_KEY_ENV, "TWELVEDATA_API_KEY")}
+        # Poison BOTH environment variables: the production binding must
+        # never read key material from either of them.
+        os.environ[drv.TEST_FIXTURE_KEY_ENV] = FAKE_KEY
+        os.environ["TWELVEDATA_API_KEY"] = FAKE_KEY
+
+    def tearDown(self):
+        drv._vault_entry = self._orig_vault_entry
+        for k, v in self._saved_env.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+
+    def stub_entry(self, entry):
+        drv._vault_entry = lambda: entry
+
+    def test_vault_binding_returns_surrogate_despite_poisoned_env(self):
+        self.stub_entry(dict(self.GOOD_ENTRY))
+        self.assertEqual(drv.get_api_key(), FAKE_SURROGATE)
+
+    def test_vault_binding_sends_surrogate_as_apikey_last(self):
+        self.stub_entry(dict(self.GOOD_ENTRY))
+        rec = Recorder(expected_key=FAKE_SURROGATE)
+        server = start_server(lambda v, p: (200, {}, b'{"status":"ok"}'), rec)
+        base = f"http://127.0.0.1:{server.server_address[1]}"
+        try:
+            a = TDHttpTransportAdapter(drv.get_api_key(), base_url=base)
+            status, _ = a.transport(dict(REQ))
+            self.assertEqual(status, 200)
+        finally:
+            server.shutdown()
+        self.assertEqual(len(rec.hits), 1)
+        _, names, key_ok = rec.hits[0]
+        self.assertEqual(names, list(PARAMETER_ORDER))
+        self.assertEqual(names[-1], "apikey")
+        self.assertTrue(key_ok)
+
+    def test_vault_binding_failure_sanitized_no_env_fallback(self):
+        # Seed a fake dynamic_credentials helper whose fetch raises with
+        # sensitive text embedded. The driver's real _vault_entry must
+        # convert it to a bare category token, and get_api_key must NOT
+        # fall back to the poisoned environment.
+        import types
+        fake = types.ModuleType("dynamic_credentials")
+
+        def fetch(name, entry):
+            raise RuntimeError("authd response mentioning " + FAKE_KEY)
+        fake.dynamic_credential_entry = fetch
+        saved_mod = sys.modules.get("dynamic_credentials")
+        sys.modules["dynamic_credentials"] = fake
+        try:
+            with self.assertRaises(drv.DriverError) as cm:
+                drv.get_api_key()  # real _vault_entry, fake helper
+        finally:
+            if saved_mod is None:
+                sys.modules.pop("dynamic_credentials", None)
+            else:
+                sys.modules["dynamic_credentials"] = saved_mod
+        blob = f"{cm.exception}|{cm.exception!r}"
+        self.assertEqual(str(cm.exception), "vault_credential_unavailable")
+        self.assertNotIn(FAKE_KEY, blob)
+        self.assertNotIn("authd response", blob)
+        self.assertNotIn("hsurr", blob)
+
+    def test_vault_binding_wrong_placement_fails_closed(self):
+        self.stub_entry({"name": "access_token", "surrogate": FAKE_SURROGATE,
+                         "placement": "bearer_header"})
+        with self.assertRaises(drv.DriverError) as cm:
+            drv.get_api_key()
+        self.assertEqual(str(cm.exception), "vault_placement_mismatch")
+
+    def test_vault_binding_non_surrogate_fails_closed(self):
+        self.stub_entry({"name": "access_token", "surrogate": FAKE_KEY,
+                         "placement": {"query_param": "apikey"}})
+        with self.assertRaises(drv.DriverError) as cm:
+            drv.get_api_key()
+        self.assertEqual(str(cm.exception), "vault_non_surrogate_value")
+
+    def test_fixture_source_explicit_and_separate(self):
+        # The fixture source reads ONLY its explicitly-named variable.
+        self.assertEqual(drv.get_test_fixture_key(), FAKE_KEY)
+        saved = os.environ.pop(drv.TEST_FIXTURE_KEY_ENV)
+        try:
+            with self.assertRaises(drv.DriverError):
+                drv.get_test_fixture_key()
+        finally:
+            os.environ[drv.TEST_FIXTURE_KEY_ENV] = saved
+        # The old production env-var name is gone from the driver source:
+        # no silent env fallback can reappear under the old spelling.
+        src = (HERE / "driver.py").read_text()
+        self.assertNotIn("TWELVEDATA_API_KEY", src.replace(
+            "TWELVEDATA_TEST_FIXTURE_API_KEY", ""))
+        self.assertFalse(hasattr(drv, "API_KEY_ENV"))
+
+    def test_vault_sourced_round_trip_and_secret_isolation(self):
+        # Full collector round trip with the key produced by the
+        # PRODUCTION binding (authd fetch stubbed to a fake surrogate),
+        # then the same byte-scan as the fixture-key sweep: neither the
+        # surrogate nor the credential parameter name may appear in any
+        # runtime artifact.
+        self.stub_entry(dict(self.GOOD_ENTRY))
+        tmp = tempfile.TemporaryDirectory()
+        root = pathlib.Path(tmp.name)
+        rn = root / "research_notes"
+        cand = rn / "td_lifecycle_repair_candidate"
+        cand.mkdir(parents=True)
+        raw = subprocess.run(
+            ["git", "-C", str(REPO), "show",
+             f"{COLLECTOR_COMMIT}:{COLLECTOR_GIT_PATH}"],
+            check=True, capture_output=True).stdout
+        assert hashlib.sha256(raw).hexdigest() == drv.COLLECTOR_SHA256
+        collector_path = cand / "td_min_collector.py"
+        collector_path.write_bytes(raw)
+        os.symlink(REAL_HARNESS, rn / "pilot_harness")
+        state = root / "state"
+        ledger = root / "credit_ledger.json"
+        rec = Recorder(expected_key=FAKE_SURROGATE)
+        server = start_server(lambda v, p: (200, {}, ok_body()), rec)
+        base = f"http://127.0.0.1:{server.server_address[1]}"
+        try:
+            collector, _ = drv.build_collector(
+                state, fixture_manifest(), PREREQ,
+                base_url=base, ledger_path=ledger,
+                collector_path=collector_path)  # default source = vault
+            self.assertEqual(collector.run()["outcome"], "COMPLETE")
+            self.assertEqual(len(rec.hits), 1)
+            self.assertTrue(rec.hits[0][2])  # server saw the surrogate
+        finally:
+            server.shutdown()
+        scanned = 0
+        for path in root.rglob("*"):
+            if path.is_symlink() or not path.is_file():
+                continue
+            data = path.read_bytes()
+            scanned += 1
+            self.assertNotIn(FAKE_SURROGATE.encode(), data,
+                             f"surrogate leaked into {path}")
+            self.assertNotIn(FAKE_KEY.encode(), data,
+                             f"fixture key leaked into {path}")
+            if path.suffix in (".jsonl", ".json"):
+                self.assertNotIn(b"apikey", data, f"apikey string in {path}")
+        self.assertGreater(scanned, 3)
+        tmp.cleanup()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--output-dir", required=True)
@@ -504,6 +677,10 @@ def main():
                                  for p in files},
                "collector_pin": drv.COLLECTOR_SHA256,
                "limiter_pin": drv.LIMITER_SHA256,
+               "key_binding": ("production: Secure Vault custom.twelvedata "
+                               "hsurr:* surrogate via authd "
+                               "(dynamic_credentials); suite: stubbed "
+                               "fetch + test fixture source only"),
                "vendor_calls": 0, "credits": 0,
                "transport": "local synthetic servers only (127.0.0.1)"}
     (out / "results.json").write_text(json.dumps(summary, indent=2) + "\n")
