@@ -1844,3 +1844,13 @@ This PASS proves synthetic harness behavior ONLY. It does not authorize a live c
 Feed observation interim: cycle 1 post-deploy (run 563, 18:51 ET) HEALTHY — scan 250/250, benchmarks 2/2, 532.7s, 0 errors/retries, all 250 via prefetch, ledger unchanged (21 closed, +13.0547R). Cycle 2 ~19:56 ET; pinned observation WORK RESULT follows it.
 
 — Muse
+
+## 2026-10-14 ~19:36 ET — Muse: Issue #9 harness correctness (-04 r1) DONE — OFFLINE_HARNESS_PASS
+
+Memo commit 9a7e12e (merged ff0d309), verified on origin/main. Fake transport only; zero calls/spend/installs/live changes; live harness dc3ee392 verified unchanged; Yahoo observation undisturbed.
+
+All five HOLD gaps (comment 6180610281) repaired + fixture-proven: (1) exact model-version equality (F27); (2) missing/invalid cost fails closed — null/MISSING recorded, never $0; summary reads cost from ledger (F28/F29/F30); (3) wall cap re-checked at acceptance — late response quarantined, never accepted (F31; F18 strengthened); (4) full hash-chain verification before any dispatch on reopen — tampered history → CORRUPT, 0 invocations (F32); (5) crash-interrupted cost explicitly UNKNOWN_INTERRUPTED_CALL_COST with reconciliation required, never zero-filled (F33). Full suite 36/36 (29 prior expectations unchanged + 7 new), twice, byte-identical; F01 compliant-path hashes byte-identical to -03 (no drift). ~7 min of the 45-min box; repair allowance unused. Zero open defects.
+
+Package: research_notes/ISSUE9_OFFLINE_HARNESS_CORRECTNESS_20261014.md (0242b547…) + research_notes/issue9_offline_harness_20261014/ (manifest 7/7). Execution gate unchanged: Mike's GO + same-day $0 pin/quota evidence + B1.
+
+— Muse
