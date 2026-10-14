@@ -178,11 +178,22 @@ class ProviderHealth:
     """Per-cycle vendor/data health accumulator (Guard 5)."""
 
     def __init__(self, expected_symbols: List[str],
-                 cycle_deadline_s: float = HARD_CYCLE_DEADLINE_S):
+                 cycle_deadline_s: float = HARD_CYCLE_DEADLINE_S,
+                 benchmark_symbols=()):
         self.t0 = time.monotonic()
         self.cycle_deadline_s = cycle_deadline_s
         self.expected_symbols = list(expected_symbols)
+        # Benchmark symbols (regime inputs, e.g. QQQ/SPY) are reported
+        # against their OWN denominator in coverage_block — never inside
+        # the scan numerator. (r2 fix: the r1 subset artifact reported
+        # fresh=42 vs expected=40 because regime fetches marked benchmark
+        # symbols fresh while the denominator counted scan symbols only.)
+        self.benchmark_symbols = list(dict.fromkeys(benchmark_symbols))
         self.symbols: Dict[str, SymbolHealth] = {}
+        # Provenance of each fresh mark: "serial" (hardened single-symbol
+        # call) or "prefetch" (validated batch frame). Serial overwrites
+        # prefetch; prefetch never overwrites serial.
+        self.fresh_via: Dict[str, str] = {}
         self.global_rate_limited = False
         self.rate_limit_detail = ""
         self.total_retries = 0
@@ -198,11 +209,13 @@ class ProviderHealth:
             h = self.symbols[symbol] = SymbolHealth(symbol)
         return h
 
-    def mark_fresh(self, symbol: str) -> None:
+    def mark_fresh(self, symbol: str, via: str = "serial") -> None:
         h = self._get(symbol)
         h.status = "fresh"
         h.reason = ""
         h.detail = ""
+        if via == "serial" or symbol not in self.fresh_via:
+            self.fresh_via[symbol] = via
 
     def note(self, symbol: str, reason: str, detail: str = "") -> None:
         h = self._get(symbol)
@@ -262,11 +275,27 @@ class ProviderHealth:
         degraded = [{"symbol": s, "reason": h.reason, "detail": h.detail}
                     for s, h in sorted(self.symbols.items())
                     if h.status == "degraded" and not h.auxiliary]
-        fresh = sorted(s for s, h in self.symbols.items()
-                       if h.status == "fresh")
+        fresh_all = {s for s, h in self.symbols.items()
+                     if h.status == "fresh"}
+        expected_set = set(self.expected_symbols)
+        benchmark_set = set(self.benchmark_symbols)
+        # Scan coverage: numerator is a subset of the denominator BY
+        # CONSTRUCTION (fresh counted only over expected scan symbols).
+        fresh = sorted(fresh_all & expected_set)
         return {
             "expected_symbols": len(self.expected_symbols),
             "fresh_symbols": len(fresh),
+            # r2 separated accounting (adjudication 2026-10-14): scan and
+            # benchmark freshness carry explicit, non-overlapping
+            # denominators; no numerator can exceed its denominator.
+            "benchmark_expected_symbols": len(self.benchmark_symbols),
+            "benchmark_fresh_symbols": len(fresh_all & benchmark_set),
+            "fresh_via_serial": sum(
+                1 for s in fresh if self.fresh_via.get(s) != "prefetch"),
+            "fresh_via_prefetch": sum(
+                1 for s in fresh if self.fresh_via.get(s) == "prefetch"),
+            "non_scan_fresh_symbols": sorted(
+                fresh_all - expected_set - benchmark_set),
             "degraded_symbols": degraded,
             "unresolved_security_events": [
                 d["symbol"] for d in degraded
@@ -512,12 +541,31 @@ def hardened_call(symbol: str, kind: str, fn: Callable, *args,
 # ---------------------------------------------------------------------------
 
 FEED_BATCH_PREFETCH = True
+# r2 (P1, adjudicated 2026-10-14): serve premarket_fields' daily-close
+# input from this cycle's valid SERIAL 1d/2y confirmation frame instead
+# of the redundant 1d/10d download. previous_regular_close is a tail-only
+# read; parity vs the independent 1d/10d call is proven in the r2
+# evidence (exact, incl. dividend/corporate-action and holiday/early-
+# close boundaries). Daily data is never batched. If the 2y frame is
+# absent/invalid the original 1d/10d serial fallback runs unchanged.
+# Independent kill switch: FEED_PM_DAILY_DERIVE = False restores r1.
+FEED_PM_DAILY_DERIVE = True
 BATCH_CHUNK_SYMBOLS = 25
 BATCH_DEADLINE_S = 45.0
 BATCH_MIN_REMAINING_BUDGET_S = 90.0
 _BATCH_PRIMARY_SHAPE = ("4h", "180d")     # (interval, period) at the m53 API
 _BATCH_CONF_SHAPES = {("15m", "5d")}
 _MIN_CLASSIFY_BARS = 205  # v54_classify: max(TREND_EMA,50,50,50)+5 (frozen)
+
+
+def _valid_daily_frame(frame) -> bool:
+    """Minimum validity for the P1 previous-close derivation: a real,
+    non-empty daily frame with a Close column and a DatetimeIndex —
+    the same inputs previous_regular_close itself guards on. Anything
+    else leaves the original 1d/10d serial fallback in charge."""
+    return (isinstance(frame, pd.DataFrame) and not frame.empty
+            and "Close" in frame.columns
+            and isinstance(frame.index, pd.DatetimeIndex))
 
 
 def _flatten_dropna(df: pd.DataFrame) -> pd.DataFrame:
@@ -545,19 +593,26 @@ def hardened_downloads(health: ProviderHealth,
     cycle. Restored in `finally`. Strategy code is untouched.
 
     `primary_cache` is cycle-scoped and stores only frames that passed the
-    existing primary validator. Cached frames are returned even if a later
-    request exhausts the cycle budget or trips the global 429 guard, so
-    already-validated open-position bars remain usable for exit processing.
+    existing primary validator. Serial-populated cached frames are
+    returned even if a later request exhausts the cycle budget or trips
+    the global 429 guard, so already-validated open-position bars remain
+    usable for exit processing. (r2 narrows the r1 behavior for
+    prefetch-only frames after a 429 trip — see _primary.)
     """
     m53 = eng.m53
     orig_download = m53.download_data
     orig_conf = m53.download_confirmation_data
     orig_premarket = m53.premarket_fields
     orig_premarket_data = m53.download_premarket_data
+    orig_daily_close = m53.download_daily_close_data
 
     cache = primary_cache if primary_cache is not None else {}
     conf_cache: Dict[tuple, pd.DataFrame] = {}
     pm5_cache: Dict[str, pd.DataFrame] = {}
+    daily_cache: Dict[str, pd.DataFrame] = {}
+    serial_keys: set = set()
+    feed_stats = {"pm_daily_derived": 0, "pm_daily_fallback": 0}
+    health.feed_stats = feed_stats
     batch_attempted: Dict[str, set] = {"primary": set(), "conf": set(),
                                        "pm5": set()}
     scan_order = list(health.expected_symbols)
@@ -648,17 +703,28 @@ def hardened_downloads(health: ProviderHealth,
         key = (symbol, interval, period)
         if key not in cache and (interval, period) == _BATCH_PRIMARY_SHAPE:
             _prefetch("primary", symbol)
-        if key in cache:
+        if key in cache and not (health.global_rate_limited
+                                 and key not in serial_keys):
             # A prefetched frame passed validate_primary_frame when it
             # entered the cache, so it earns the same freshness mark the
             # serial hardened_call would have recorded. (Serial-populated
             # entries were already marked; re-marking is idempotent.)
-            health.mark_fresh(symbol)
+            # r2 429 accounting: after the global rate-limit trip, a
+            # frame that entered the cache ONLY via prefetch is NOT
+            # served — the original system was never serially attempted
+            # for that symbol and has no result for it, so the candidate
+            # must not silently gain one. Such symbols fall through to
+            # hardened_call below, which raises RateLimited with the
+            # original accounting. Serial-populated frames (incl. the
+            # priority/exit pass) remain servable, as in the original.
+            health.mark_fresh(
+                symbol, via="serial" if key in serial_keys else "prefetch")
             return cache[key]
         frame = hardened_call(symbol, "primary", orig_download,
                               symbol, interval, period, health=health,
                               frame_validator=validate_primary_frame)
         cache[key] = frame
+        serial_keys.add(key)
         return frame
 
     def _conf(symbol, interval, period):
@@ -673,22 +739,43 @@ def hardened_downloads(health: ProviderHealth,
             if key in conf_cache:
                 return conf_cache[key]
         try:
-            return hardened_call(symbol, "auxiliary", orig_conf,
-                                 symbol, interval, period, health=health,
-                                 allow_retry=False, frame_validator=None)
+            frame = hardened_call(symbol, "auxiliary", orig_conf,
+                                  symbol, interval, period, health=health,
+                                  allow_retry=False, frame_validator=None)
         except DataUnavailable:
             return None
+        if (interval, period) == ("1d", "2y") and _valid_daily_frame(frame):
+            # Stash for the P1 previous-close derivation. The frame is
+            # returned to the caller exactly as the original path would;
+            # the stash is a reference, never a substitute result.
+            daily_cache[symbol] = frame
+        return frame
 
     def _premarket_data(symbol):
-        # Only the 5m leg is batched; the daily-close leg keeps the
-        # original serial function (batch daily frames are not identical
-        # for dividend payers — see header note).
+        # Only the 5m leg is batched; the daily-close leg is served by
+        # _daily_close below (serial 1d/2y tail reuse, never batched —
+        # batch daily frames are not identical for dividend payers).
         if symbol in pm5_cache:
             return pm5_cache[symbol]
         _prefetch("pm5", symbol)
         if symbol in pm5_cache:
             return pm5_cache[symbol]
         return orig_premarket_data(symbol)
+
+    def _daily_close(symbol):
+        # P1 (r2): premarket_fields' only daily input is
+        # previous_regular_close, a tail-only read of the daily frame.
+        # When this cycle's serial 1d/2y confirmation frame is valid,
+        # serve it instead of the redundant 1d/10d download. Absent or
+        # invalid 2y frame -> the original independent 1d/10d serial
+        # fallback runs unchanged (never silently N/A).
+        if FEED_PM_DAILY_DERIVE:
+            frame = daily_cache.get(symbol)
+            if _valid_daily_frame(frame):
+                feed_stats["pm_daily_derived"] += 1
+                return frame
+            feed_stats["pm_daily_fallback"] += 1
+        return orig_daily_close(symbol)
 
     def _premarket(symbol):
         # Frozen behavior: exceptions -> PM_EMPTY (best-effort premarket).
@@ -705,6 +792,7 @@ def hardened_downloads(health: ProviderHealth,
     m53.download_confirmation_data = _conf
     m53.premarket_fields = _premarket
     m53.download_premarket_data = _premarket_data
+    m53.download_daily_close_data = _daily_close
     try:
         yield health
     finally:
@@ -712,6 +800,7 @@ def hardened_downloads(health: ProviderHealth,
         m53.download_confirmation_data = orig_conf
         m53.premarket_fields = orig_premarket
         m53.download_premarket_data = orig_premarket_data
+        m53.download_daily_close_data = orig_daily_close
 
 
 def _atomic_write_json(path: str, payload: Dict[str, Any]) -> None:
@@ -1566,7 +1655,8 @@ def run_once(publish: bool = False) -> Dict[str, Any]:
     market_sym = eng.m53.MARKET_SYMBOL
     health = ProviderHealth(
         expected_symbols=list(dict.fromkeys(
-            list(FORWARD_UNIVERSE) + [market_sym, "QQQ", "SPY"])))
+            list(FORWARD_UNIVERSE) + [market_sym, "QQQ", "SPY"])),
+        benchmark_symbols=[market_sym, "QQQ", "SPY"])
     summary: Dict[str, Any] = {
         "new_signals": 0, "new_signal_ids": [], "opened": 0, "closed": [],
         "errors": [], "data_deferred": [], "entries_suppressed": True,
