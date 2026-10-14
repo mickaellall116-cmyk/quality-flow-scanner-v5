@@ -1748,3 +1748,19 @@ My recommendation to Mike also carried a stop rule: close the book at 50 signals
 One scope correction I flagged to Mike and flag here: the TD pilot's frozen universe is 20 symbols — it qualifies the route, it does NOT feed the 250-symbol cycle. A full-cycle feed would be a later, separately scoped step.
 
 Ask: A or B, and why? Any hole in the stop rule? And does the pilot as scoped actually advance the coverage problem, or only the route-qualification question?
+
+## 2026-10-14 ~15:49 ET — Muse: Closed-session classifier implemented offline (QF-TD-CLOSED-SESSION-CLASSIFIER-OFFLINE-20261014-17 r1)
+
+Report commit b14570a, verified on origin/main. Verdict: HOLD (scoped to offline classifier correctness). Zero vendor/auth/network calls, zero credits/spend, no merge, no live-state mutation, no SPT08.
+
+Candidate ab254c3458697dd450356146abcf4ad4f75ecef4 (tree fe3c8b34…, parent b18db3ce) on refs/heads/td-closed-session-classifier-20261014. Diff = 3 files +548/−5: collector b683d277…, new p2_spot_supplement_v2.json (cccd5226…), new test suite (3122bdfc…). Material discrepancy disclosed first: the -15 memo described the preserved SPT-07 body as {code,status,message} with "no meta" — the raw bytes (180 B, 3339c341…) in fact end with a meta object {symbol, interval, exchange:""}. The classifier is keyed to the exact observed schema including meta (stricter than the sketch; any meta deviation → HOLD); the memo's key-set description is superseded by the bytes.
+
+Conjunctive implementation (all additive; no supplement → byte-identical behavior, proven): exact wire match (HTTP 400; keys exactly {code,message,status,meta}; integer code 400; status "error"; byte-equal message; meta bound to request, exchange==""); preregistration binding (supplement id/version, manifest digest, expected_bars==0 strict int, request_digest match); pinned-calendar proof (runtime library version == pin, validate_input module hash == pin, xnys_schedule None for every window date, ≤366d; any exception → classification disabled, fail-closed). On classification: write-once .closed_day.bin + CLOSED_DAY_EVIDENCED event with proof digests; no receipt, no COMPLETED, credit stays spent. Run loop: CLOSED_SESSION sentinel continues the batch (the single behavioral change); restart safety proven (evidenced requests digest-checked, never redispatched — S3).
+
+Matrix (network-disabled, socket guard): 18/18 — F1 (preserved payload, provenance asserted; run continued) + F2 (multi-day all-closed) PASS; N1–N12 all PASS (each asserts the next request was NOT dispatched, batch HOLD); S1–S3 supplementary PASS. Disclosure: unit harness stubs the mechanism at its interface (established pattern; module identity is the real pinned validate_input bytes, hash-verified). Real-env probe (zero stubs): ModuleNotFoundError in the standing environment → SPT-07 takes the pre-existing HOLD path end-to-end, transport called once, SPT-08 never dispatched — FAIL-CLOSED CONFIRMED, and the reason the verdict is HOLD not PASS.
+
+Correction recorded in report §5: an ephemeral /tmp/td14_venv holds pandas_market_calendars 4.5.1 (leftover from -14); not the standing environment, and differs from the pin. Open pin question for adjudication: lineage runs used 4.5.1; the supplement pins 5.5.0 (CP1-audit basis; -11/-12 runtime version never recorded). Switching the pin is a one-line supplement change + matrix re-run + real-mechanism positive test, as a follow-up.
+
+Regression: collector 19/19 OK. Integration/adapter failures in this environment are diff-verified identical between base and candidate (pre-existing environment gaps; both suites were fully green in the -12 disposable environment). Unchanged: P2 v1 UNMET, SPT-08 NOT ATTEMPTED, SPOT8 HOLD, CONSTRUCTION_HOLD, PR #8; all protected artifacts byte-identical. Full record: research_notes/TD_CLOSED_SESSION_CLASSIFIER_OFFLINE_20261014.md + research_notes/td_closed_session_classifier_evidence_20261014/.
+
+— Muse
