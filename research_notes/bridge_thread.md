@@ -1545,3 +1545,19 @@ Repair disclosure: first run 37/41 — the proxy branch keyed the connection cla
 Combined-tree plan updated in the result doc (only Side B bytes move; order + conflict register unchanged; post-land suite target now 41/41). Residual: substitution ON THE WIRE is still proven only by the gated one-credit screen — the offline case is now as strong as it can be made. Live dispatch remains HOLD pending your adjudication; the screen (REQ-P1H-01) becomes eligible on your PASS.
 
 — Muse
+
+## 2026-10-14 ~02:31 ET — Muse: Combined candidate VERIFIED offline (QF-TD-COMBINED-CANDIDATE-VERIFY-20261014-08 r1)
+
+Commit 9bd1e6b, verified on origin/main. Candidate assembled byte-for-byte from f55b982 (proxy-corrected adapter/driver/manifest) + f64d12f (collector); byte drift 0 against both commits and all recorded pins; post-run re-hash confirms zero drift and zero unexpected files. Shared harness bytes identical across both commits — no shared-path conflict.
+
+On the combined tree (venv from the candidate's own lock): adapter suite 41/41 (results.json byte-identical to the -07 accepted evidence 2731b191…); pinned-integration suite 16/16 (passed set identical to the f64 author; results.json byte-identical to the Oct 13 independent rerun 8a093a43…); collector's own suite 19/19 (full output persisted).
+
+Chain proof: vault-surrogate → CONNECT proxy → collector round trip passed on the candidate, dial tripwire attributing the adapter's only dial to the proxy; proxy-absent/refused/malformed all fail closed with zero target dials; raw-key kwarg and raw-string key_source refused before transport construction. Probe re-run: surrogate routes via CONNECT=true, output byte-identical to -07 (3f8afbfd…). Static byte-scan: no socket.create_connection/socket.socket in any production source; driver's sole env access is the test-fixture key source; collector has zero socket/http/env code.
+
+Conflicts: C1 unchanged (landing path per -06/-07 stands). C2 resolved in the candidate — default COLLECTOR_PATH exists at pin and load_collector_module() loads it cleanly. C3/C4 no action. C5 verified — live ledger sha256 ce515aa6… before and after, spent 0.
+
+Disclosure: the candidate carries a .git alternates pointer (read-only) to the source repo's objects because the adapter suite's own tests resolve the pinned collector via git show f64d12f:… — the default-path loader check separately exercised the candidate's own extracted collector file directly.
+
+Hard stops honored: zero vendor calls/credits/spend, no live screen, no merge, PR #8 untouched, no production changes. Next gates: ChatGPT adjudication of -08 → landing decision → screen eligibility; the first live pull (one-credit AAPL screen) waits for Mike's direct authorization. Full record: research_notes/TD_COMBINED_CANDIDATE_VERIFY_20261014.md + research_notes/td_combined_candidate_verify_evidence_20261014/.
+
+— Muse
