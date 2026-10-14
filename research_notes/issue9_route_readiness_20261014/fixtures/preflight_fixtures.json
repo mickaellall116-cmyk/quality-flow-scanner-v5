@@ -1,0 +1,1420 @@
+[
+ {
+  "id": "F0-clean-control",
+  "mode": "control: fully compliant plan",
+  "expect": "PASS",
+  "expect_reasons_contains": [],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F1-missing-usage",
+  "mode": "missing usage",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "METERING_MISSING"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F2-nonzero-price",
+  "mode": "nonzero price",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "PRICE_NONZERO"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0.000002"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F2b-unknown-price",
+  "mode": "unknown price",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "PRICE_UNKNOWN"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": null,
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F3-model-alias-substitution",
+  "mode": "model alias substitution",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "PIN_ARM_MISMATCH"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "auto/best-free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F4-fallback",
+  "mode": "fallback",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "FALLBACK_ALLOWED"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": true,
+    "fallback_models": [
+     "vendor/other:free"
+    ],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F5-token-cap-overrun",
+  "mode": "token-cap overrun",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "CEILING_TOKENS"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120001
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F6-ledger-discontinuity",
+  "mode": "ledger discontinuity",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "LEDGER_DISCONTINUITY"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 3,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F7-unmetered-reasoning",
+  "mode": "unmetered reasoning",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "REASONING_UNMETERED"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": false
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F8-prompt-contamination",
+  "mode": "prompt contamination",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "PROMPT_CONTAMINATION"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "contains_cross_arm_material": true
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "non-grader-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ },
+ {
+  "id": "F9-blinding-failure",
+  "mode": "blinding failure",
+  "expect": "BLOCK",
+  "expect_reasons_contains": [
+   "BLINDING_FAILURE"
+  ],
+  "packet": {
+   "route": "openrouter_direct",
+   "pin": {
+    "provider": "openrouter",
+    "model": "vendor/example-model:free",
+    "model_version": "2026-01-01"
+   },
+   "arm_pins": {
+    "A": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    },
+    "B": {
+     "provider": "openrouter",
+     "model": "vendor/example-model:free",
+     "model_version": "2026-01-01"
+    }
+   },
+   "metering": {
+    "usage_fields": [
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens"
+    ],
+    "reasoning_tokens_exposed": true
+   },
+   "cost": {
+    "verified_zero_incremental": true,
+    "evidence_ref": "run-manifest:catalog-fetch-<execution-day>",
+    "catalog_pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   "routing": {
+    "allow_fallback": false,
+    "fallback_models": [],
+    "via_gateway": null
+   },
+   "plan": {
+    "calls": [
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "propose",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "A",
+      "seed": "S1",
+      "role": "self_critique",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "skeptic",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "feasibility",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "proposer_revision",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     },
+     {
+      "arm": "B",
+      "seed": "S1",
+      "role": "synthesis",
+      "prompt_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487"
+     }
+    ],
+    "worst_case_billed_tokens_per_arm_seed": {
+     "A/S1": 120000,
+     "B/S1": 120000
+    },
+    "wall_min_per_arm_seed": 45
+   },
+   "ledger_sample": {
+    "lines": [
+     {
+      "call_index": 0,
+      "billed_tokens": 1000,
+      "cost_usd": 0
+     },
+     {
+      "call_index": 1,
+      "billed_tokens": 2000,
+      "cost_usd": 0
+     }
+    ],
+    "totals": {
+     "billed_tokens": 3000,
+     "cost_usd": 0
+    }
+   },
+   "blinding": {
+    "key_holder": "auditor-agent",
+    "grader": "auditor-agent",
+    "shuffle_seed_recorded": true,
+    "seed_order_coin_sha256": "coin-hash-placeholder"
+   },
+   "registered_prompt_hashes": [
+    "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+    "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202"
+   ]
+  }
+ }
+]

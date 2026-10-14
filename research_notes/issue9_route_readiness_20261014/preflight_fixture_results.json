@@ -1,0 +1,110 @@
+[
+ {
+  "id": "F0-clean-control",
+  "mode": "control: fully compliant plan",
+  "expect": "PASS",
+  "got": "PASS",
+  "reasons": [],
+  "match": true
+ },
+ {
+  "id": "F1-missing-usage",
+  "mode": "missing usage",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "METERING_MISSING"
+  ],
+  "match": true
+ },
+ {
+  "id": "F2-nonzero-price",
+  "mode": "nonzero price",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "PRICE_NONZERO"
+  ],
+  "match": true
+ },
+ {
+  "id": "F2b-unknown-price",
+  "mode": "unknown price",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "PRICE_UNKNOWN"
+  ],
+  "match": true
+ },
+ {
+  "id": "F3-model-alias-substitution",
+  "mode": "model alias substitution",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "PIN_ARM_MISMATCH"
+  ],
+  "match": true
+ },
+ {
+  "id": "F4-fallback",
+  "mode": "fallback",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "FALLBACK_ALLOWED"
+  ],
+  "match": true
+ },
+ {
+  "id": "F5-token-cap-overrun",
+  "mode": "token-cap overrun",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "CEILING_TOKENS"
+  ],
+  "match": true
+ },
+ {
+  "id": "F6-ledger-discontinuity",
+  "mode": "ledger discontinuity",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "LEDGER_DISCONTINUITY"
+  ],
+  "match": true
+ },
+ {
+  "id": "F7-unmetered-reasoning",
+  "mode": "unmetered reasoning",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "REASONING_UNMETERED"
+  ],
+  "match": true
+ },
+ {
+  "id": "F8-prompt-contamination",
+  "mode": "prompt contamination",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "PROMPT_CONTAMINATION"
+  ],
+  "match": true
+ },
+ {
+  "id": "F9-blinding-failure",
+  "mode": "blinding failure",
+  "expect": "BLOCK",
+  "got": "BLOCK",
+  "reasons": [
+   "BLINDING_FAILURE"
+  ],
+  "match": true
+ }
+]
