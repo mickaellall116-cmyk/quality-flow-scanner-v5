@@ -1,0 +1,198 @@
+{
+ "export_id": "ISSUE9-KILLED-FAMILY-REGISTRY-EXPORT-20261014",
+ "exported_at_utc": "2026-10-14T20:33:04Z",
+ "purpose": "Duplicate screening input for GitHub Issue #9 (single-model vs role-swarm prep). Frozen at prep; any change requires a new export version and a spec amendment BEFORE any run.",
+ "semantics": "A new candidate whose strategy_family matches an entry's families[] is rejected at dedupe (DEDUPE_REJECT) unless its card carries a materially_different_mechanism justification, in which case it is ADJACENCY_FLAGGED and proceeds for human confirmation. No automated semantic verdict is ever produced (Phase A review fix).",
+ "sources": [
+  {
+   "path": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json",
+   "sha256": "a314f16e8586bcee1bdc7f1a1ae415b45f56c178ea07923bb8545d09dcc05625",
+   "seed_version": "killed-seed/1.0.0",
+   "seeded_at": "2026-10-13"
+  },
+  {
+   "path": "research_notes/research_loop/registry.json",
+   "sha256": "86600c0775bccb9d6429a76e5527db3e4dbac50e3cb9f757ecf1c3fb5c98bdac",
+   "registry_version": "1"
+  }
+ ],
+ "entries": [
+  {
+   "entry_id": "KILLED-TOP-COMPOSITE-FILTERS",
+   "families": [
+    "ranking_filters"
+   ],
+   "names": [
+    "TOP-50 filter",
+    "quarterly ranking filter",
+    "composite ranking filter"
+   ],
+   "disposition": "reject",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "Research audit record (MEMORY 2026-10-04): TOP \u2248 zero expectancy, KILLED by Mike 2026-10-04; no retuning cutoff/interval/weights.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  },
+  {
+   "entry_id": "KILLED-LAGGARD-VETO",
+   "families": [
+    "laggard_veto"
+   ],
+   "names": [
+    "laggard veto"
+   ],
+   "disposition": "reject",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "Execution audit inventory 2026-10-10: laggard veto failed; do-not-repeat list.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  },
+  {
+   "entry_id": "KILLED-MA-VARIANT-PROBES",
+   "families": [
+    "ma_variant_probes",
+    "dema",
+    "tema",
+    "alma",
+    "vidya",
+    "frama"
+   ],
+   "names": [
+    "DEMA probe",
+    "TEMA probe",
+    "ALMA probe",
+    "VIDYA probe",
+    "FRAMA probe"
+   ],
+   "disposition": "reject",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "Execution audit inventory 2026-10-10: DEMA/TEMA/ALMA/VIDYA/FRAMA probes failed.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  },
+  {
+   "entry_id": "KILLED-SHORT-SIDE-DAILY",
+   "families": [
+    "short_side_daily"
+   ],
+   "names": [
+    "short-side daily systems"
+   ],
+   "disposition": "reject",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "Execution audit inventory 2026-10-10: short-side daily systems are a structural loser.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  },
+  {
+   "entry_id": "KILLED-PATH-SIGNATURE",
+   "families": [
+    "path_signature"
+   ],
+   "names": [
+    "path-signature spike"
+   ],
+   "disposition": "reject",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "Path-signature spike (commit 12910b6): negative-to-inconclusive; no follow-up.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  },
+  {
+   "entry_id": "KILLED-CRT-SWEEP-RETURN",
+   "families": [
+    "crt_sweep_return",
+    "candle_range_sweep_return_intraday"
+   ],
+   "names": [
+    "Candle Range Theory sweep-and-return (CRT)"
+   ],
+   "disposition": "reject",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "EXP-20261012-CRT-4H, CLOSED-FAIL (sign-corrected replacement run 2026-10-13; gate FAIL 4/5 clauses). NOTE (Phase A build finding): the registry records this family as 'candle_range_sweep_return_intraday' while v1 documents use the shorthand 'crt_sweep_return' \u2014 both strings are seeded so the mechanical match fires under either vocabulary.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  },
+  {
+   "entry_id": "KILLED-ML-PRICE-FORECASTING",
+   "families": [
+    "ml_price_forecasting"
+   ],
+   "names": [
+    "TimesFM zero-shot forecasting",
+    "supervised ML price/trend forecasting"
+   ],
+   "disposition": "reject",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "EXP-20261012-TIMESFM-SPIKE, CLOSED-FAIL, independently reproduced (Issue #1 comment 6139194429). A different model class on the same forecasting claim is a variation, not a new mechanism.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  },
+  {
+   "entry_id": "KILLED-TREND-MOMENTUM-REPARAM",
+   "families": [
+    "trend_momentum",
+    "trend_4h (V5.4)"
+   ],
+   "names": [
+    "plain return momentum (12-1, TSMOM) as a new claim"
+   ],
+   "disposition": "reject",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "Harvest #1 dedupe rejection 2026-10-13: trend/momentum is the most-tested family (V5.4 trend_4h standing FAIL; corrected-grid -15.23R adverse evidence preserved). Generic momentum on a new lookback/universe is a retune.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  },
+  {
+   "entry_id": "HELD-ORB-BEYOND-RECORD",
+   "families": [
+    "orb"
+   ],
+   "names": [
+    "ORB timing-edge claims beyond the existing HOLD record"
+   ],
+   "disposition": "reject-new-claims",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "EXP-20261007-ORB-15M, HOLD (exploratory; timing-edge and robustness claims withdrawn). New ORB claims are rejected; the HOLD record itself is the only live ORB item.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  },
+  {
+   "entry_id": "HELD-VCP-BEYOND-1A",
+   "families": [
+    "fundamental-momentum-selection"
+   ],
+   "names": [
+    "VCP fundamental-momentum selection beyond the Phase 1A record"
+   ],
+   "disposition": "reject-new-claims",
+   "screening_effect": "DEDUPE_REJECT unless the candidate card carries a materially_different_mechanism justification (then ADJACENCY_FLAGGED for human confirmation). No automated semantic verdict.",
+   "record_ref": "EXP-20261007-VCP-1A-* records, HOLD. November preflight is the only sanctioned VCP continuation; new VCP selection claims are rejected at intake.",
+   "source": "research_notes/idea_harvest/phase_a/killed_ideas_seed.json"
+  }
+ ],
+ "registry_supplements": [
+  {
+   "entry_id": "REGISTRY-EXP-20261012-TIINGO-APPLICABILITY-PREP",
+   "families": [
+    "data_governance"
+   ],
+   "names": [
+    "Tiingo account applicability and permission-prep evidence"
+   ],
+   "disposition": "state:SCOPED-PASS-HOLD",
+   "screening_effect": "Context entry from the experiment registry (not a Phase A seed entry): family has a non-terminal/held registry state; candidates in this family require human confirmation against the registry record before screening proceeds.",
+   "record_ref": "research_notes/research_loop/registry.json experiment EXP-20261012-TIINGO-APPLICABILITY-PREP state SCOPED-PASS-HOLD",
+   "source": "research_notes/research_loop/registry.json"
+  },
+  {
+   "entry_id": "REGISTRY-EXP-20261012-TD-LIFECYCLE-REPAIR",
+   "families": [
+    "data_feed_infrastructure"
+   ],
+   "names": [
+    "Twelve Data collector lifecycle repair candidate (PR #8) + independent integration review"
+   ],
+   "disposition": "state:SCOPED-PASS-REPRODUCIBILITY-HOLD",
+   "screening_effect": "Context entry from the experiment registry (not a Phase A seed entry): family has a non-terminal/held registry state; candidates in this family require human confirmation against the registry record before screening proceeds.",
+   "record_ref": "research_notes/research_loop/registry.json experiment EXP-20261012-TD-LIFECYCLE-REPAIR state SCOPED-PASS-REPRODUCIBILITY-HOLD",
+   "source": "research_notes/research_loop/registry.json"
+  }
+ ],
+ "notes": [
+  "Seed entries are the mechanical dedupe authority (Phase A semantics: family-string match; no automated semantic verdict).",
+  "Registry supplements are context only: they surface held/non-terminal families (e.g. orb, fundamental-momentum-selection are already seed entries; this section catches any registry family the seed has not absorbed).",
+  "Additional standing verdicts recorded outside these two files (BOSWaves long-only daily provisional FAIL held for a November re-run; SA-VWAP long-only daily weak/secondary) are listed in the prep memo's fact sheet as human-screening context; they are NOT part of this mechanical export because they have no entry in either source file. Adding them is a reviewed diff to the seed file, per its own basis rule."
+ ]
+}

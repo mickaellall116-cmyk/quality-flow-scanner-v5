@@ -1,0 +1,115 @@
+{
+ "protocol_id": "ISSUE9-SINGLE-VS-SWARM-PROTOCOL",
+ "version": "1.0.0",
+ "frozen_at_utc": "2026-10-14T20:33:04Z",
+ "status": "FROZEN AT PREP \u2014 PREP_READY only. NOT an execution authorization.",
+ "source_spec": "GitHub Issue #9 (mickaellall116-cmyk/quality-flow-scanner-v5), opened 2026-10-14T20:01:11Z; dispatch Issue #1 comment 6177187528; prior analysis Issue #1 comment 6175664023.",
+ "question": "Does structured multi-role ideation (Arm B: proposer / skeptic / feasibility / synthesis, same underlying model) add unique, falsifiable, nonduplicate Quality Flow strategy hypotheses versus one strong-model adversarial brainstorm (Arm A), at equal total inference + review budget?",
+ "explicitly_not": "Not a profitability study. No returns, Sharpe, drawdown, backtest, or paper-trading claims. Output is candidate test specifications only.",
+ "inputs_frozen": {
+  "fact_sheet_md_sha256": "0b8b9e7f061d378825835924253ec7f16d8e0303cd9dda72ef4ef3108b658202",
+  "seed_prompts_md_sha256": "6b48da92bceee837923d9443b8757f6be3a95bc16dc893a8039eaa79d6319487",
+  "killed_family_registry_export_sha256": "9e06c27cd6bdfab9b979bd1239807990eb97b9f779ec0d21ce1c69ce4b97a728",
+  "hypothesis_schema_version": "issue9-hypothesis-schema/1.0.0",
+  "resource_ledger_schema_version": "issue9-resource-ledger/1.0.0"
+ },
+ "seeds": {
+  "S1": "4H equities breakout / relative-strength entries",
+  "S2": "Exits that retain trend runners while controlling adverse excursion",
+  "S3": "Cross-sectional selection / market-regime filters",
+  "selection_note": "Frozen in Issue #9; chosen without consulting outcome/holdout performance."
+ },
+ "arms": {
+  "A_control": "One capable model: phase 1 proposes (seed prompt), phase 2 adversarially self-critiques under one fixed prompt and emits the final card set. Same model/provider/version as Arm B.",
+  "B_treatment": "Same underlying model/provider: four segregated roles (proposer, skeptic, feasibility specialist, synthesis/deduplicator). Round 1: proposer; skeptic + feasibility review independently. Round 2: one proposer revision; synthesis emits final set. Max 2 rounds. Role diversity is NOT model independence and must never be reported as independent votes.",
+  "isolation": "Per seed, processing order randomized by a coin recorded and hashed in the run manifest BEFORE any call. Arm outputs sealed (hashed) before the other arm starts; no cross-arm material before blind screening."
+ },
+ "budgets_per_arm_per_seed": {
+  "max_billed_tokens_total": 120000,
+  "billed_tokens_definition": "input + output + reasoning tokens, as reported by the provider per call and summed in the resource ledger. Reasoning tokens count in full (OmniRoute pilot finding).",
+  "max_calls": {
+   "A": 8,
+   "B": 16
+  },
+  "call_cap_note": "Call caps differ structurally (B has 4 roles); fairness is anchored on identical billed-token, cost, and wall-time caps. The asymmetry is disclosed, not hidden.",
+  "max_wall_time_min": 45,
+  "max_cost_usd_incremental": 0.0,
+  "cost_rule": "Hard zero: no call at all unless the pinned route's incremental cost is verified $0 BEFORE the run (provider catalog/account evidence in the run manifest). If the pinned model is not verifiably zero-incremental, execution is unauthorized under this protocol.",
+  "max_candidate_cards_emitted": 8,
+  "auditor_review_minutes_cap_per_seed_pair": 120,
+  "budget_mismatch_tolerance": "If billed tokens for a seed pair diverge between arms by more than 5% of the cap (6,000 tokens), the pair is flagged BUDGET_MISMATCH and its comparison is inconclusive (reported, not silently compared)."
+ },
+ "model_pin_requirements_at_execution": [
+  "ONE model/provider/version pinned identically for both arms, recorded in the run manifest before any call.",
+  "Provider must expose per-call token usage including reasoning tokens (the ledger cannot be reconstructed otherwise).",
+  "Route must be verifiably zero incremental cost (see cost_rule).",
+  "OmniRoute is FORBIDDEN as the route: adjudicated FAIL/PARK 2026-10-14 (utility pilot: HTTP 200 with empty outputs; its cost ledger is empty and proves nothing about charges).",
+  "No mid-run model substitution or silent fallback; any provider-side fallback detected in logs voids the affected arm-seed and stops the run for adjudication."
+ ],
+ "rubric_blinded_acceptance": {
+  "rule": "A candidate PASSES only if ALL five gates pass (Issue #9 rubric). Grading is blind: arm labels stripped, packet order shuffled under a recorded seed, blinding key held by a non-grader until scores are locked.",
+  "gates": {
+   "G1_testable": "Machine-testable rule AND measurable outcome with an explicit null/control.",
+   "G2_no_leakage": "No obvious timing/lookahead or survivorship violation, OR a precisely specified feasible PIT route for every flagged input.",
+   "G3_data_available": "Source/data requirements available and suitable for 4H signal timing; otherwise the candidate is parked DATA_BLOCKED (not passed, not failed).",
+   "G4_not_killed_family": "Not equivalent to a previously killed/tested family (registry export match), unless a materially_different_mechanism justification survives human confirmation (ADJACENCY_FLAGGED path).",
+   "G5_execution_realistic": "Realistic observable execution with stated costs/slippage and unambiguous timestamps."
+  },
+  "verdicts": [
+   "PASS",
+   "FAIL",
+   "DEDUPE_REJECT",
+   "DUPLICATE_OF",
+   "DATA_BLOCKED",
+   "SCHEMA_INVALID"
+  ],
+  "verdict_precedence": [
+   "SCHEMA_INVALID",
+   "FAIL (G2 leakage)",
+   "DEDUPE_REJECT (G4)",
+   "DATA_BLOCKED (G3)",
+   "DUPLICATE_OF (cross-candidate)",
+   "FAIL (G1/G5)",
+   "PASS"
+  ],
+  "synonym_rule": "Synonyms/rewordings of one mechanism count once: duplicates are detected on family_id + rule signature and recorded as DUPLICATE_OF the first accepted instance; never counted as independent ideas.",
+  "auditor_duties": "Score anonymous candidates; record per-gate failures, duplicate decisions, provenance/factual errors, leakage flags, review minutes per candidate, and any adjudicator disagreement (unresolved disagreement = candidate not passed).",
+  "duplicate_cluster_accounting": "If the same mechanism is accepted from both arms (a cross-arm duplicate cluster), the blind grader keeps exactly one surviving copy (packet order decides which physical copy; the choice is arm-blind and arbitrary) and marks the other DUPLICATE_OF. For metrics, the idea belongs to BOTH arms' accepted sets, so it is incremental for neither arm. Within one arm, duplicates collapse to one accepted unique specification."
+ },
+ "metrics": {
+  "primary": "Incremental accepted unique test specifications per total inference resource + auditor review time, on paired seeds. Report the absolute numerator AND the complete budgets separately; no ratios against zero dollars.",
+  "secondary": [
+   "accepted count per arm",
+   "novelty/duplication counts",
+   "factual/provenance errors",
+   "leakage flags",
+   "cost USD",
+   "billed tokens",
+   "wall time",
+   "auditor review minutes",
+   "blinded adjudicator disagreement count"
+  ],
+  "statistics_warning": "3 seeds support no statistical generalization. Results are an engineering readout for this version only."
+ },
+ "stop_conditions": {
+  "park_fail": [
+   "Arm B yields ZERO incremental accepted unique specifications across all 3 seed pairs.",
+   "Arm B does not strictly improve the primary metric versus Arm A.",
+   "More than 20% of all candidate cards are untestable after screening (threshold from Issue #1 comment 6175664023, preregistered as an engineering heuristic)."
+  ],
+  "immediate_stop": [
+   "Credential or private-data leakage into any prompt/output.",
+   "Unverified spend or any nonzero incremental charge.",
+   "Unauthorized network/provider calls.",
+   "Any attempt to trigger a backtest, promotion, or production change from generated output.",
+   "Blinding breach before scores are locked (affected pair restarts only under a new authorization, or is reported inconclusive)."
+  ],
+  "no_prompt_optimization": "Prompts are frozen for this version. Do not tune prompts after inspecting outcomes; a changed prompt set is a new version requiring new prep."
+ },
+ "decisive_vs_inconclusive": {
+  "decisive": "All 3 seed pairs complete inside frozen budgets with blind scoring, dedupe, and complete ledgers; a park/fail rule fires, or Arm B strictly improves the primary metric with budgets inside tolerance.",
+  "inconclusive": "Any seed pair BUDGET_MISMATCH; model substitution/fallback; blinding breach; fewer than 3 pairs completed; unresolved adjudicator disagreement on the deciding candidates; cost verification impossible for the pinned route."
+ },
+ "preservation_requirements": "Provider/model/version, prompts (by hash), parameters, seed order coin, all raw outputs, token/cost ledger, anonymized packet + blinding key (sealed until scoring locks), per-gate scores, rejected/duplicate reasons \u2014 all hashed into the run manifest.",
+ "authorization_boundary": "This protocol authorizes NOTHING beyond the offline prep that produced it. A run requires: (1) Mike's explicit execution authorization; (2) ChatGPT review of this prep packet; (3) an execution-time model pin satisfying every requirement above, with zero-incremental-cost verification evidence; (4) a fresh run manifest. Any later backtest of surviving specifications requires separate approval and the independently qualified historical feed, clean bar grid, untouched holdouts, cost model, multiple-testing accounting, and portfolio replay (Issue #9)."
+}

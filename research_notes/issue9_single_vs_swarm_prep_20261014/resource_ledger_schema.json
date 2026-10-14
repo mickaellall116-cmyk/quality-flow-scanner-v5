@@ -1,0 +1,138 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "QF Issue #9 resource ledger (one record per arm-seed, with per-call lines)",
+ "version": "issue9-resource-ledger/1.0.0",
+ "type": "object",
+ "required": [
+  "run_id",
+  "arm",
+  "seed",
+  "provider",
+  "model",
+  "model_version",
+  "calls",
+  "totals",
+  "budget_ref",
+  "cost_verified_zero_incremental"
+ ],
+ "properties": {
+  "run_id": {
+   "type": "string"
+  },
+  "arm": {
+   "type": "string",
+   "enum": [
+    "A",
+    "B"
+   ]
+  },
+  "seed": {
+   "type": "string",
+   "enum": [
+    "S1",
+    "S2",
+    "S3"
+   ]
+  },
+  "provider": {
+   "type": "string"
+  },
+  "model": {
+   "type": "string"
+  },
+  "model_version": {
+   "type": "string"
+  },
+  "budget_ref": {
+   "type": "string",
+   "description": "Protocol version + budget block id these caps come from."
+  },
+  "cost_verified_zero_incremental": {
+   "type": "boolean",
+   "description": "Must be true before any call is made; verification evidence referenced in the run manifest."
+  },
+  "calls": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "call_index",
+     "role",
+     "prompt_sha256",
+     "input_tokens",
+     "output_tokens",
+     "reasoning_tokens",
+     "billed_tokens",
+     "wall_time_s",
+     "cost_usd",
+     "started_at_utc"
+    ],
+    "properties": {
+     "call_index": {
+      "type": "integer"
+     },
+     "role": {
+      "type": "string",
+      "description": "A: propose|self_critique. B: proposer|skeptic|feasibility|synthesis."
+     },
+     "prompt_sha256": {
+      "type": "string"
+     },
+     "input_tokens": {
+      "type": "integer"
+     },
+     "output_tokens": {
+      "type": "integer"
+     },
+     "reasoning_tokens": {
+      "type": "integer",
+      "description": "Counted in billed totals (OmniRoute pilot lesson: reasoning tokens can consume the whole budget)."
+     },
+     "billed_tokens": {
+      "type": "integer"
+     },
+     "wall_time_s": {
+      "type": "number"
+     },
+     "cost_usd": {
+      "type": "number"
+     },
+     "started_at_utc": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "totals": {
+   "type": "object",
+   "required": [
+    "calls",
+    "billed_tokens",
+    "wall_time_s",
+    "cost_usd",
+    "candidate_cards_emitted",
+    "auditor_review_minutes"
+   ],
+   "properties": {
+    "calls": {
+     "type": "integer"
+    },
+    "billed_tokens": {
+     "type": "integer"
+    },
+    "wall_time_s": {
+     "type": "number"
+    },
+    "cost_usd": {
+     "type": "number"
+    },
+    "candidate_cards_emitted": {
+     "type": "integer"
+    },
+    "auditor_review_minutes": {
+     "type": "number"
+    }
+   }
+  }
+ }
+}

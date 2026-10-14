@@ -1,0 +1,43 @@
+{
+ "note": "Blinding key + expected verdicts for the SYNTHETIC dry-run only. In a real run the key maps anon ids to arms and is sealed until scores lock; expected verdicts exist only because these fixtures were authored to exercise each verdict path.",
+ "expected_verdicts": {
+  "SYN-A-01": {
+   "verdict": "CLUSTER_SURVIVOR_OR_DUPLICATE",
+   "cluster": [
+    "SYN-A-01",
+    "SYN-B-04"
+   ],
+   "reason": "A-01 and B-04 are the same mechanism in different words (same family_id + rule signature). Under blind packet order exactly one survives as PASS and the other is DUPLICATE_OF the survivor; which copy survives is packet-order arbitrary and must not decide arm credit."
+  },
+  "SYN-A-02": {
+   "verdict": "DEDUPE_REJECT",
+   "gate": "G4",
+   "registry_entry": "KILLED-TOP-COMPOSITE-FILTERS"
+  },
+  "SYN-A-03": {
+   "verdict": "FAIL",
+   "gate": "G2",
+   "reason": "same-bar-close decision using reported EPS not knowable at decision time; no PIT route"
+  },
+  "SYN-B-01": {
+   "verdict": "PASS"
+  },
+  "SYN-B-02": {
+   "verdict": "SCHEMA_INVALID",
+   "reason": "missing required fields: null_control_comparator, preregistered_falsification_test"
+  },
+  "SYN-B-03": {
+   "verdict": "DATA_BLOCKED",
+   "gate": "G3",
+   "missing": "level2_order_book_imbalance_snapshots"
+  },
+  "SYN-B-04": {
+   "verdict": "CLUSTER_SURVIVOR_OR_DUPLICATE",
+   "cluster": [
+    "SYN-A-01",
+    "SYN-B-04"
+   ],
+   "reason": "See SYN-A-01. Set-based metric accounting: an idea accepted from BOTH arms is in both accepted sets, hence incremental for neither."
+  }
+ }
+}

@@ -1,0 +1,100 @@
+{
+ "arm": "A",
+ "seed": "S1",
+ "synthetic": true,
+ "cards": [
+  {
+   "hypothesis_id": "SYN-A-01",
+   "family_id": "vol_compression_breakout_4h",
+   "origin_arm": "A",
+   "seed": "S1",
+   "mechanism": "When the trailing 7-bar (4H) true-range sum compresses into its lowest quintile of the trailing 120 bars, the next directional range expansion is more likely to persist, because compressed ranges reflect balanced positioning that resolves into one-sided flow.",
+   "measurable_observable": "Forward 10-bar (4H) return following compression-breakout entries vs the null comparator, net of 25 bps.",
+   "universe": "UX51 frozen symbols",
+   "bar_definition": "4H bars, America/New_York, 09:30 anchor; decision at bar close; fill at next bar open.",
+   "entry_exit_rules": "Entry: completed 4H bar closes above the high of the prior 7-bar compressed range AND the 7-bar range sum is in its lowest trailing-120-bar quintile. Exit: frozen system exit stack (structural stop, TP1, 30-bar cap).",
+   "null_control_comparator": "Identical breakout entries WITHOUT the compression condition, same universe and window.",
+   "preregistered_falsification_test": "If compression-conditioned entries do not beat the unconditioned breakout null by at least +0.10R expectancy at 25 bps on the preregistered window, the hypothesis is falsified.",
+   "required_pit_data": [
+    {
+     "name": "yahoo_1h_ohlcv_resampled_4h",
+     "available_now": true,
+     "pit_route": "Bars are final at bar close; decision uses completed bars only."
+    }
+   ],
+   "execution_cost_assumptions": "Next-bar-open fills; 4 bps baseline and 25 bps stress; no slippage beyond the cost bar.",
+   "disqualifying_leakage_risks": "Compression quintile must be computed on completed bars only; using the breakout bar's own range in the quintile window would be leakage and is excluded.",
+   "overlap_with_previous_family": "none",
+   "available_data_gate": "AVAILABLE",
+   "provenance": "IDEA_ONLY; SYNTHETIC FIXTURE for the Issue #9 prep dry-run; SIMULATED content, not a real arm output.",
+   "critique_summary": "SYNTHETIC fixture card (prep dry-run).",
+   "declarations": {
+    "decision_timing": "next_bar_after_completed_bar",
+    "uses_unavailable_at_decision_data": false,
+    "materially_different_mechanism": false
+   }
+  },
+  {
+   "hypothesis_id": "SYN-A-02",
+   "family_id": "ranking_filters",
+   "origin_arm": "A",
+   "seed": "S1",
+   "mechanism": "Restricting entries to a quarterly re-ranked top-50 universe by a 50/50 liquidity and relative-strength composite concentrates flow in names with persistent sponsorship.",
+   "measurable_observable": "Portfolio expectancy of the frozen entry stack on the filtered universe vs the broad universe at 25 bps.",
+   "universe": "TOP-50 quarterly composite-ranked subset of the broad universe",
+   "bar_definition": "4H bars, America/New_York, 09:30 anchor; ranking on completed daily bars at quarter end.",
+   "entry_exit_rules": "Entry: frozen entry stack, but only for symbols inside the current quarterly top-50 composite ranking. Exit: frozen exit stack.",
+   "null_control_comparator": "Same entry stack on the unfiltered broad universe.",
+   "preregistered_falsification_test": "If the filtered universe does not beat the broad universe by +0.10R at 25 bps, the filter hypothesis is falsified.",
+   "required_pit_data": [
+    {
+     "name": "yahoo_1h_ohlcv_resampled_4h",
+     "available_now": true,
+     "pit_route": "Bars are final at bar close; decision uses completed bars only."
+    }
+   ],
+   "execution_cost_assumptions": "Next-bar-open fills; 25 bps primary cost.",
+   "disqualifying_leakage_risks": "Ranking must use only data available at the rebalance timestamp.",
+   "overlap_with_previous_family": "KILLED-TOP-COMPOSITE-FILTERS (composite ranking filter) \u2014 no materially different mechanism claimed.",
+   "available_data_gate": "AVAILABLE",
+   "provenance": "IDEA_ONLY; SYNTHETIC FIXTURE for the Issue #9 prep dry-run; SIMULATED content, not a real arm output.",
+   "critique_summary": "SYNTHETIC fixture card (prep dry-run).",
+   "declarations": {
+    "decision_timing": "next_bar_after_completed_bar",
+    "uses_unavailable_at_decision_data": false,
+    "materially_different_mechanism": false
+   }
+  },
+  {
+   "hypothesis_id": "SYN-A-03",
+   "family_id": "earnings_samebar_momentum_4h",
+   "origin_arm": "A",
+   "seed": "S1",
+   "mechanism": "Stocks that beat EPS expectations gap with institutional follow-through; entering on the announcement bar's close captures the drift.",
+   "measurable_observable": "Forward 10-bar return after announcement-bar entries vs non-announcement breakouts.",
+   "universe": "UX51 frozen symbols",
+   "bar_definition": "4H bars, America/New_York; decision and fill at the close of the bar containing the earnings release, conditioned on the reported EPS surprise.",
+   "entry_exit_rules": "Entry at the signal bar's close when reported EPS exceeds consensus and price breaks the prior bar high. Exit: frozen exit stack.",
+   "null_control_comparator": "Breakout entries on non-announcement days.",
+   "preregistered_falsification_test": "If announcement-conditioned entries do not beat the null at 25 bps, falsified.",
+   "required_pit_data": [
+    {
+     "name": "reported_eps_actual_with_announcement_timestamp",
+     "available_now": false,
+     "pit_route": ""
+    }
+   ],
+   "execution_cost_assumptions": "Same-bar-close fills at 25 bps.",
+   "disqualifying_leakage_risks": "Uses the reported EPS figure and the signal bar's own close at decision time.",
+   "overlap_with_previous_family": "none",
+   "available_data_gate": "UNKNOWN",
+   "provenance": "IDEA_ONLY; SYNTHETIC FIXTURE for the Issue #9 prep dry-run; SIMULATED content, not a real arm output.",
+   "critique_summary": "SYNTHETIC fixture card (prep dry-run).",
+   "declarations": {
+    "decision_timing": "same_bar_close",
+    "uses_unavailable_at_decision_data": true,
+    "materially_different_mechanism": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "dry_run_id": "ISSUE9-DRY-RUN-20261014",
+ "synthetic": true,
+ "meaning": "Pipeline exercise only: proves the validator, blinding, dedupe screen, rubric skeleton and ledger schema work end-to-end on prewritten cards. It is NOT evidence about single-model vs swarm performance; the cards were authored to hit each verdict path.",
+ "shuffle_seed": 9,
+ "cards_graded": 7,
+ "verdict_counts": {
+  "DATA_BLOCKED": 1,
+  "DEDUPE_REJECT": 1,
+  "DUPLICATE_OF": 1,
+  "FAIL": 1,
+  "PASS": 2,
+  "SCHEMA_INVALID": 1
+ },
+ "all_expected_matched": true,
+ "results": [
+  {
+   "anon_id": "CAND-001",
+   "hypothesis_id": "SYN-A-02",
+   "origin_arm": "A",
+   "verdict": "DEDUPE_REJECT",
+   "detail": "G4: family matches registry entry KILLED-TOP-COMPOSITE-FILTERS",
+   "gates": {
+    "G4": "fail"
+   },
+   "expected_verdict": "DEDUPE_REJECT",
+   "matches_expected": true
+  },
+  {
+   "anon_id": "CAND-002",
+   "hypothesis_id": "SYN-B-04",
+   "origin_arm": "B",
+   "verdict": "PASS",
+   "detail": "all gates pass (machine skeleton; real run adds auditor judgment)",
+   "gates": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass",
+    "G4": "pass",
+    "G5": "pass"
+   },
+   "expected_verdict": "CLUSTER: one PASS + one DUPLICATE_OF",
+   "matches_expected": true
+  },
+  {
+   "anon_id": "CAND-003",
+   "hypothesis_id": "SYN-A-01",
+   "origin_arm": "A",
+   "verdict": "DUPLICATE_OF",
+   "detail": "same family_id + rule signature as CAND-002",
+   "gates": {},
+   "expected_verdict": "CLUSTER: one PASS + one DUPLICATE_OF",
+   "matches_expected": true
+  },
+  {
+   "anon_id": "CAND-004",
+   "hypothesis_id": "SYN-B-03",
+   "origin_arm": "B",
+   "verdict": "DATA_BLOCKED",
+   "detail": "G3: unavailable data with no PIT route: ['level2_order_book_imbalance_snapshots']",
+   "gates": {
+    "G3": "blocked"
+   },
+   "expected_verdict": "DATA_BLOCKED",
+   "matches_expected": true
+  },
+  {
+   "anon_id": "CAND-005",
+   "hypothesis_id": "SYN-A-03",
+   "origin_arm": "A",
+   "verdict": "FAIL",
+   "detail": "G2 leakage: same-bar/unavailable-at-decision data declared",
+   "gates": {
+    "G2": "fail"
+   },
+   "expected_verdict": "FAIL",
+   "matches_expected": true
+  },
+  {
+   "anon_id": "CAND-006",
+   "hypothesis_id": "SYN-B-02",
+   "origin_arm": "B",
+   "verdict": "SCHEMA_INVALID",
+   "detail": [
+    "missing required field: null_control_comparator",
+    "missing required field: preregistered_falsification_test"
+   ],
+   "gates": {},
+   "expected_verdict": "SCHEMA_INVALID",
+   "matches_expected": true
+  },
+  {
+   "anon_id": "CAND-007",
+   "hypothesis_id": "SYN-B-01",
+   "origin_arm": "B",
+   "verdict": "PASS",
+   "detail": "all gates pass (machine skeleton; real run adds auditor judgment)",
+   "gates": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass",
+    "G4": "pass",
+    "G5": "pass"
+   },
+   "expected_verdict": "PASS",
+   "matches_expected": true
+  }
+ ],
+ "fail_closed_checks": {
+  "non_synthetic_fixtures_refused": true,
+  "idea_only_tag_required": true,
+  "ledger_required_fields_present": true
+ }
+}

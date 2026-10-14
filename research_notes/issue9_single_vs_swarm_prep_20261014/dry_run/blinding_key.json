@@ -1,0 +1,30 @@
+{
+ "CAND-001": {
+  "hypothesis_id": "SYN-A-02",
+  "origin_arm": "A"
+ },
+ "CAND-002": {
+  "hypothesis_id": "SYN-B-04",
+  "origin_arm": "B"
+ },
+ "CAND-003": {
+  "hypothesis_id": "SYN-A-01",
+  "origin_arm": "A"
+ },
+ "CAND-004": {
+  "hypothesis_id": "SYN-B-03",
+  "origin_arm": "B"
+ },
+ "CAND-005": {
+  "hypothesis_id": "SYN-A-03",
+  "origin_arm": "A"
+ },
+ "CAND-006": {
+  "hypothesis_id": "SYN-B-02",
+  "origin_arm": "B"
+ },
+ "CAND-007": {
+  "hypothesis_id": "SYN-B-01",
+  "origin_arm": "B"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "run_id": "DRY-RUN-SYNTHETIC-20261014",
+ "arm": "A",
+ "seed": "S1",
+ "provider": "NONE (offline prep dry-run)",
+ "model": "NONE",
+ "model_version": "NONE",
+ "budget_ref": "ISSUE9-SINGLE-VS-SWARM-PROTOCOL 1.0.0 budgets_per_arm_per_seed",
+ "cost_verified_zero_incremental": true,
+ "calls": [],
+ "totals": {
+  "calls": 0,
+  "billed_tokens": 0,
+  "wall_time_s": 0,
+  "cost_usd": 0.0,
+  "candidate_cards_emitted": 0,
+  "auditor_review_minutes": 0
+ },
+ "note": "Structure example validated against resource_ledger_schema.json required fields. A real run ledger carries one record per arm-seed with per-call lines; this dry run made no calls."
+}

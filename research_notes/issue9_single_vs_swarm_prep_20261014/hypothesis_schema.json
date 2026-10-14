@@ -1,0 +1,157 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "QF Issue #9 hypothesis card",
+ "version": "issue9-hypothesis-schema/1.0.0",
+ "source": "GitHub Issue #9 'Required hypothesis schema' (verbatim field list), plus the study's screening declarations block.",
+ "type": "object",
+ "required": [
+  "hypothesis_id",
+  "family_id",
+  "origin_arm",
+  "seed",
+  "mechanism",
+  "measurable_observable",
+  "universe",
+  "bar_definition",
+  "entry_exit_rules",
+  "null_control_comparator",
+  "preregistered_falsification_test",
+  "required_pit_data",
+  "execution_cost_assumptions",
+  "disqualifying_leakage_risks",
+  "overlap_with_previous_family",
+  "available_data_gate",
+  "provenance",
+  "declarations"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "hypothesis_id": {
+   "type": "string",
+   "description": "Unique within the run; assigned by the producing arm."
+  },
+  "family_id": {
+   "type": "string",
+   "description": "Strategy-family identifier used for registry dedupe (family-string match)."
+  },
+  "origin_arm": {
+   "type": "string",
+   "enum": [
+    "A",
+    "B"
+   ],
+   "description": "Stripped before blind grading; restored from the blinding key after scoring."
+  },
+  "seed": {
+   "type": "string",
+   "enum": [
+    "S1",
+    "S2",
+    "S3"
+   ]
+  },
+  "mechanism": {
+   "type": "string",
+   "minLength": 20
+  },
+  "measurable_observable": {
+   "type": "string",
+   "minLength": 10
+  },
+  "universe": {
+   "type": "string"
+  },
+  "bar_definition": {
+   "type": "string",
+   "description": "Must carry timeframe, timezone and decision_time, e.g. '4H bars, America/New_York, 09:30 anchor; decision at bar close; fill next bar open'."
+  },
+  "entry_exit_rules": {
+   "type": "string",
+   "minLength": 20,
+   "description": "Machine-testable rule text."
+  },
+  "null_control_comparator": {
+   "type": "string",
+   "minLength": 10
+  },
+  "preregistered_falsification_test": {
+   "type": "string",
+   "minLength": 20
+  },
+  "required_pit_data": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "name",
+     "available_now",
+     "pit_route"
+    ],
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "available_now": {
+      "type": "boolean"
+     },
+     "pit_route": {
+      "type": "string",
+      "description": "Empty string if none; otherwise the precisely specified feasible point-in-time route."
+     }
+    }
+   }
+  },
+  "execution_cost_assumptions": {
+   "type": "string",
+   "minLength": 10
+  },
+  "disqualifying_leakage_risks": {
+   "type": "string"
+  },
+  "overlap_with_previous_family": {
+   "type": "string",
+   "description": "'none' or the registry entry overlapped, with justification."
+  },
+  "available_data_gate": {
+   "type": "string",
+   "enum": [
+    "AVAILABLE",
+    "DATA_BLOCKED",
+    "UNKNOWN"
+   ]
+  },
+  "provenance": {
+   "type": "string",
+   "description": "Must contain IDEA_ONLY; model-generated content is tagged SIMULATED per Issue #9."
+  },
+  "critique_summary": {
+   "type": "string",
+   "description": "Optional during generation; required on final cards (Arm A phase 2 / Arm B synthesis)."
+  },
+  "declarations": {
+   "type": "object",
+   "required": [
+    "decision_timing",
+    "uses_unavailable_at_decision_data",
+    "materially_different_mechanism"
+   ],
+   "description": "Structured screening declarations the blind grader's machine gates consume; the human auditor may override with a recorded reason.",
+   "properties": {
+    "decision_timing": {
+     "type": "string",
+     "enum": [
+      "next_bar_after_completed_bar",
+      "same_bar_close",
+      "other_declared"
+     ]
+    },
+    "uses_unavailable_at_decision_data": {
+     "type": "boolean"
+    },
+    "materially_different_mechanism": {
+     "type": "boolean"
+    }
+   }
+  }
+ }
+}
