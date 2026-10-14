@@ -1,0 +1,43 @@
+{
+  "tests_run": 20,
+  "passed": [
+    "__main__.AdapterLevel.test_429_passthrough_exactly_one_attempt",
+    "__main__.AdapterLevel.test_500_passthrough_exactly_one_attempt",
+    "__main__.AdapterLevel.test_api_error_payload_passthrough",
+    "__main__.AdapterLevel.test_body_cap",
+    "__main__.AdapterLevel.test_connect_refused_sanitized",
+    "__main__.AdapterLevel.test_connect_timeout_fail_closed",
+    "__main__.AdapterLevel.test_defaults_pinned",
+    "__main__.AdapterLevel.test_exception_text_never_leaks",
+    "__main__.AdapterLevel.test_http_non_loopback_rejected",
+    "__main__.AdapterLevel.test_malformed_request_no_network",
+    "__main__.AdapterLevel.test_param_order_values_and_success_passthrough",
+    "__main__.AdapterLevel.test_read_timeout_enforced_and_sanitized",
+    "__main__.AdapterLevel.test_redirect_cross_host_rejected",
+    "__main__.AdapterLevel.test_redirect_same_host_followed",
+    "__main__.AdapterLevel.test_tls_verification_on",
+    "__main__.CollectorLevel.test_collector_429_hold_with_evidence_one_attempt",
+    "__main__.CollectorLevel.test_driver_pin_enforced",
+    "__main__.CollectorLevel.test_full_synthetic_round_trip_success",
+    "__main__.CollectorLevel.test_limiter_refusal_zero_dispatch_and_restart_persistence",
+    "__main__.CollectorLevel.test_secret_isolation_sweep"
+  ],
+  "failures": [],
+  "errors": [],
+  "success": true,
+  "python": "3.12.3",
+  "dependencies": {
+    "pandas": "2.2.3",
+    "pandas_market_calendars": "4.5.1"
+  },
+  "source_sha256": {
+    "td_http_transport_adapter.py": "85c67977d176e36135751e588cc81d1bb1f21e56821189796cf87bdaab389d31",
+    "driver.py": "198b733bb3f4cdc389057303e543a63e25aab7bce813a825133c621c7387cf24",
+    "test_transport_adapter.py": "4085b28615fb56802066ca08ed7ec816e8e2f8c5a67760f3b6aabafef1b0a44d"
+  },
+  "collector_pin": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+  "limiter_pin": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+  "vendor_calls": 0,
+  "credits": 0,
+  "transport": "local synthetic servers only (127.0.0.1)"
+}

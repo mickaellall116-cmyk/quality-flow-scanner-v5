@@ -1,0 +1,25 @@
+test_429_passthrough_exactly_one_attempt (__main__.AdapterLevel.test_429_passthrough_exactly_one_attempt) ... ok
+test_500_passthrough_exactly_one_attempt (__main__.AdapterLevel.test_500_passthrough_exactly_one_attempt) ... ok
+test_api_error_payload_passthrough (__main__.AdapterLevel.test_api_error_payload_passthrough) ... ok
+test_body_cap (__main__.AdapterLevel.test_body_cap) ... ok
+test_connect_refused_sanitized (__main__.AdapterLevel.test_connect_refused_sanitized) ... ok
+test_connect_timeout_fail_closed (__main__.AdapterLevel.test_connect_timeout_fail_closed) ... ok
+test_defaults_pinned (__main__.AdapterLevel.test_defaults_pinned) ... ok
+test_exception_text_never_leaks (__main__.AdapterLevel.test_exception_text_never_leaks) ... ok
+test_http_non_loopback_rejected (__main__.AdapterLevel.test_http_non_loopback_rejected) ... ok
+test_malformed_request_no_network (__main__.AdapterLevel.test_malformed_request_no_network) ... ok
+test_param_order_values_and_success_passthrough (__main__.AdapterLevel.test_param_order_values_and_success_passthrough) ... ok
+test_read_timeout_enforced_and_sanitized (__main__.AdapterLevel.test_read_timeout_enforced_and_sanitized) ... ok
+test_redirect_cross_host_rejected (__main__.AdapterLevel.test_redirect_cross_host_rejected) ... ok
+test_redirect_same_host_followed (__main__.AdapterLevel.test_redirect_same_host_followed) ... ok
+test_tls_verification_on (__main__.AdapterLevel.test_tls_verification_on) ... ok
+test_collector_429_hold_with_evidence_one_attempt (__main__.CollectorLevel.test_collector_429_hold_with_evidence_one_attempt) ... ok
+test_driver_pin_enforced (__main__.CollectorLevel.test_driver_pin_enforced) ... ok
+test_full_synthetic_round_trip_success (__main__.CollectorLevel.test_full_synthetic_round_trip_success) ... ok
+test_limiter_refusal_zero_dispatch_and_restart_persistence (__main__.CollectorLevel.test_limiter_refusal_zero_dispatch_and_restart_persistence) ... ok
+test_secret_isolation_sweep (__main__.CollectorLevel.test_secret_isolation_sweep) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 9.241s
+
+OK
