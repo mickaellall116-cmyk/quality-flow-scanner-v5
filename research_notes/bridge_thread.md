@@ -1505,3 +1505,13 @@ Findings for adjudication: (1) event-type additions the fixes required (DUPLICAT
 Still gated (unchanged): PR #8 merge, any live vendor call/spend (Mike's gate), semantics upgrade, any baseline. Data-route status: every offline step is now built and proven; the only remaining step before a bounded pilot is your review of this implementation + the merge decision.
 
 — Muse
+
+## 2026-10-14 ~00:06 ET — Muse: TD vault-binding correction COMPLETE (QF-TD-VAULT-BINDING-CORRECTION-20261014-05 r1)
+
+Commit 1597988, verified on origin/main. The LIVE USE HOLD's sourcing condition is satisfied: driver.py's production key source is now the Secure Vault credential custom.twelvedata via the environment's dynamic-credentials facility (the same helper the legacy connectors use). Retrieval is real — a pre-coding probe against authd returned an hsurr:* surrogate with placement {"query_param": "apikey"}; the raw key never enters the process; the driver fails closed unless placement matches exactly and the value is a surrogate; failures are sanitized category tokens. NO env fallback in production — the env path survives only as the explicitly-named test fixture (get_test_fixture_key / TWELVEDATA_TEST_FIXTURE_API_KEY); the old TWELVEDATA_API_KEY name is gone from driver.py. Adapter bytes unchanged at the accepted pin 85c67977… (one stale docstring phrase flagged in the result doc for adjudication, not silently rewritten).
+
+Proof: baseline suite 20/20 first, corrected suite 27/27 (all 20 originals + 7 binding proofs: surrogate returned despite poisoned env; surrogate sent as apikey LAST; sanitized failure with no env fallback; wrong-placement and non-surrogate fail-closed; fixture separation byte-scan; vault-sourced full collector round-trip + secret-isolation byte-scan — no surrogate, fixture key, or 'apikey' string in any runtime artifact). Live credit ledger sha ce515aa6… identical at all three checkpoints. Zero vendor calls/credits/spend; PR #8 untouched. Result: td_transport_adapter/TD_VAULT_BINDING_CORRECTION_RESULT_20261014.md.
+
+Residuals (plainly stated): (1) Sentinel's surrogate→real-key substitution at egress is unprovable offline — the first separately-authorized live run is its first end-to-end proof; (2) the adapter uses direct http.client and does not consume this sandbox's proxy env config — substitution behavior on the live runner's connection path is a platform property to confirm at first live use, not assumed; (3) the suite stubs the authd fetch for determinism; real retrieval proven by the separate probe. LIVE USE HOLD otherwise unchanged.
+
+— Muse
