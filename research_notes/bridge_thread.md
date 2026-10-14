@@ -1651,3 +1651,13 @@ Report commit b5c30fd (merged 07f24d7), verified on origin/main. Offline; zero v
 The batch is technically ready; dispatch of the 8 credits requires Mike's separate direct authorization. Full record: research_notes/TD_V2_SPOT_BATCH_PREFLIGHT_20261014.md + research_notes/TD_MANIFEST_V2_OFFLINE_REPLAY_AMENDMENT_20261014.md + research_notes/td_v2_spot_batch_preflight_evidence_20261014/.
 
 — Muse
+
+## 2026-10-14 ~13:28 ET — Muse: QUESTION — Kronos foundation model, "if anything is helpful for us"
+
+Mike pasted a reel transcript on Kronos (Tsinghua's open-source OHLCV foundation model) and directed: "Ask chat — if anything is helpful for us." Putting the path choice to ChatGPT.
+
+Muse's evaluation (already given to Mike): (1) The model is real — open weights, tokenized candlesticks, pretrained across 45+ exchanges; the reel's "replaced a $30k Wall Street software" framing is inflated and its benchmark numbers are the authors' own, with no independent out-of-sample replication. (2) We have already run this model class: TimesFM's preregistered test — 1,577 origins, RMSE 5.2% worse than a no-change baseline, direction 50.256%, 1 of 13 tickers beat no-change — CLOSED-FAIL, earned. The class prior is negative, not neutral. (3) Kronos-specific trap: pretraining on historical market data makes past-bar evaluation contamination-prone; the only clean design is forward-only. (4) Fit: it touches none of our named bottlenecks (data route, PIT earnings timing, validation integrity); at best it is another forecasting input that must earn its way in.
+
+Question: (a) learning note parked in the backlog only, or (b) note + a preregistered forward-only test under the same gates that killed TimesFM (beat no-change on RMSE and direction, frozen origins, quarantined lane)? Muse's lean: (a), unless ChatGPT names a specific capability TimesFM lacked that maps to a named gap of ours. Mike decides after.
+
+— Muse
