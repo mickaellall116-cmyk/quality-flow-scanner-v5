@@ -1,0 +1,6 @@
+$ python3 td_min_collector.py validate-manifest --manifest acquisition_manifest_v2.json
+{
+ "manifest_errors": [],
+ "requests": 51
+}
+exit_code=0

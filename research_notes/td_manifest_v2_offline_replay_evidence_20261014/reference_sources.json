@@ -1,0 +1,31 @@
+{
+ "task": "QF-TD-MANIFEST-V2-OFFLINE-REPLAY-20261014-11 r1",
+ "fetched_utc": "2026-10-14T15:01-15:02Z",
+ "sources": [
+  {
+   "file": "nasdaqlisted.txt",
+   "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt",
+   "publisher": "Nasdaq Trader (Nasdaq, Inc.) \u2014 official NASDAQ-listed symbol directory",
+   "file_creation_time_footer": "File Creation Time: 1014202610:01 (2026-10-14 10:01 ET)",
+   "role": "per-symbol Market Category (listing tier) for the 14 NASDAQ symbols",
+   "bytes": 349417,
+   "sha256": "53fcf0248ce87effe40ad1910df48eefd4833bc4efe18d3d3a59b3dc4ccf7302"
+  },
+  {
+   "file": "nasdaq_symdir_definitions.pdf",
+   "url": "https://m.nasdaqtrader.com/content/technicalSupport/specifications/dataproducts/dlcompletespec.pdf",
+   "publisher": "Nasdaq Trader \u2014 Nasdaq Daily List / Enhanced Nasdaq Symbol Directory specification",
+   "role": "Market Category legend (Definitions & Data Fields, p.19): Q = Nasdaq Global Select Market, G = Nasdaq Global Market, S = Nasdaq Capital Market",
+   "bytes": 1018374,
+   "sha256": "188df57ec53b5515c0d5fa6413516bdff2d9e97fa35edfbd9d8915c887a9ea84"
+  },
+  {
+   "file": "ISO10383_MIC.csv",
+   "url": "https://www.iso20022.org/sites/default/files/ISO10383_MIC/ISO10383_MIC.csv",
+   "publisher": "ISO 20022 Registration Authority \u2014 ISO 10383 MIC registry",
+   "role": "segment MIC mapping under operating MIC XNAS: XNGS = NASDAQ GLOBAL SELECT MARKET (SGMT), XNMS = NASDAQ GLOBAL MARKET (SGMT), XNCM = NASDAQ CAPITAL MARKET (SGMT); XNAS itself OPRT 'NASDAQ - ALL MARKETS'",
+   "bytes": 590760,
+   "sha256": "09a0d07b7b8348147453a2d8b18bc6638e3c5b16f749462582c9b1edf0fd0e38"
+  }
+ ]
+}

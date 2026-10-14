@@ -1,0 +1,95 @@
+{
+ "collector_pin_sha256": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+ "receipt_sha256_verified": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+ "v2_manifest_sha256": "4a6e3a55ba6cacf80d60c26870817a272534d62cd73eb09d1dfc889d571c547d",
+ "replay_manifest": "V2 reduced to the single request REQ-P1H-01 (same single-request reduction the -09 live screen used); canonical digest in lifecycle events",
+ "venue_identity_under_test": {
+  "exchange": "NASDAQ",
+  "mic_code": "XNGS",
+  "currency": "USD"
+ },
+ "bar_facts_counts_and_timestamps_only": {
+  "values_count": 910,
+  "first_bar_datetime": "2026-04-01 09:30:00",
+  "last_bar_datetime": "2026-10-06 15:30:00",
+  "meta": {
+   "symbol": "AAPL",
+   "interval": "1h",
+   "currency": "USD",
+   "exchange": "NASDAQ",
+   "mic_code": "XNGS",
+   "exchange_timezone": "America/New_York",
+   "type": "Common Stock"
+  }
+ },
+ "transport_calls": [
+  "REQ-P1H-01"
+ ],
+ "run_summary": {
+  "dispatched": 1,
+  "reused": 0,
+  "completed": 1,
+  "outcome": "COMPLETE"
+ },
+ "pilot_state_terminal": {
+  "attempts": 1,
+  "completed": [
+   "REQ-P1H-01"
+  ],
+  "credit_reservations": 1,
+  "hold_reason": null,
+  "status": "ACTIVE"
+ },
+ "lifecycle_events": [
+  {
+   "credit_weight": 1,
+   "event": "CREDIT_RESERVED",
+   "request_id": "REQ-P1H-01",
+   "ts_utc": "2026-10-14T15:05:21Z"
+  },
+  {
+   "attempt": 1,
+   "event": "STARTED",
+   "request_id": "REQ-P1H-01",
+   "ts_utc": "2026-10-14T15:05:21Z"
+  },
+  {
+   "bytes": 117985,
+   "event": "RECEIVED",
+   "manifest_digest": "12467e86a4f46e90330e75df4f5887f0bab7c2d9926daec745ef7534ed11e32f",
+   "request_digest": "82e82ff8fbc62ed7f9cc2c967fe8c7a055c64916e20b1ef71f37f7136fd76c02",
+   "request_id": "REQ-P1H-01",
+   "rows": 910,
+   "sha256": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+   "ts_utc": "2026-10-14T15:05:21Z"
+  },
+  {
+   "event": "CONSTRUCTION_HOLD",
+   "reason": "interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only",
+   "request_id": "REQ-P1H-01",
+   "ts_utc": "2026-10-14T15:09:09Z"
+  },
+  {
+   "event": "COMPLETED",
+   "manifest_digest": "12467e86a4f46e90330e75df4f5887f0bab7c2d9926daec745ef7534ed11e32f",
+   "request_digest": "82e82ff8fbc62ed7f9cc2c967fe8c7a055c64916e20b1ef71f37f7136fd76c02",
+   "request_id": "REQ-P1H-01",
+   "sha256": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+   "ts_utc": "2026-10-14T15:09:09Z",
+   "validation_scope": "session_1h"
+  },
+  {
+   "event": "CONSTRUCTION_HOLD",
+   "reason": "interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only",
+   "request_id": "REQ-P1H-01",
+   "ts_utc": "2026-10-14T15:12:59Z"
+  }
+ ],
+ "receipt_revalidation_under_v2": {
+  "ok": true,
+  "why": "ok",
+  "receipt_sha256": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+  "receipt_byte_identical_to_preserved": true
+ },
+ "socket_connect_attempts": []
+}

@@ -1,0 +1,182 @@
+{
+ "task": "QF-TD-MANIFEST-V2-OFFLINE-REPLAY-20261014-11 r1",
+ "legend_source": "nasdaq_symdir_definitions.pdf p.19 (Nasdaq Trader specification): Q = Nasdaq Global Select Market, G = Nasdaq Global Market, S = Nasdaq Capital Market",
+ "iso_registry_rows": {
+  "XNMS": {
+   "mic": "XNMS",
+   "operating_mic": "XNAS",
+   "oprt_sgmt": "SGMT",
+   "market_name": "NASDAQ GLOBAL MARKET",
+   "acronym": "NGM",
+   "status": "ACTIVE"
+  },
+  "XNAS": {
+   "mic": "XNAS",
+   "operating_mic": "XNAS",
+   "oprt_sgmt": "OPRT",
+   "market_name": "NASDAQ - ALL MARKETS",
+   "acronym": "NASDAQ",
+   "status": "ACTIVE"
+  },
+  "XNGS": {
+   "mic": "XNGS",
+   "operating_mic": "XNAS",
+   "oprt_sgmt": "SGMT",
+   "market_name": "NASDAQ GLOBAL SELECT MARKET",
+   "acronym": "NGS",
+   "status": "ACTIVE"
+  },
+  "XNCM": {
+   "mic": "XNCM",
+   "operating_mic": "XNAS",
+   "oprt_sgmt": "SGMT",
+   "market_name": "NASDAQ CAPITAL MARKET",
+   "acronym": "NCM",
+   "status": "ACTIVE"
+  }
+ },
+ "per_symbol": {
+  "AAPL": {
+   "symbol": "AAPL",
+   "security_name": "Apple Inc. - Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "AAPL|Apple Inc. - Common Stock|Q|N|N|40|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "AMD": {
+   "symbol": "AMD",
+   "security_name": "Advanced Micro Devices, Inc. - Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "AMD|Advanced Micro Devices, Inc. - Common Stock|Q|N|N|100|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "GOOGL": {
+   "symbol": "GOOGL",
+   "security_name": "Alphabet Inc. - Class A Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "GOOGL|Alphabet Inc. - Class A Common Stock|Q|N|N|40|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "HOOD": {
+   "symbol": "HOOD",
+   "security_name": "Robinhood Markets, Inc. - Class A Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "HOOD|Robinhood Markets, Inc. - Class A Common Stock|Q|N|N|100|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "META": {
+   "symbol": "META",
+   "security_name": "Meta Platforms, Inc. - Class A Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "META|Meta Platforms, Inc. - Class A Common Stock|Q|N|N|40|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "MSFT": {
+   "symbol": "MSFT",
+   "security_name": "Microsoft Corporation - Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "MSFT|Microsoft Corporation - Common Stock|Q|N|N|40|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "NVDA": {
+   "symbol": "NVDA",
+   "security_name": "NVIDIA Corporation - Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "NVDA|NVIDIA Corporation - Common Stock|Q|N|N|100|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "ONDS": {
+   "symbol": "ONDS",
+   "security_name": "Ondas Inc - Common Stock",
+   "market_category": "S",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "ONDS|Ondas Inc - Common Stock|S|N|N|100|N|N",
+   "listing_tier": "Nasdaq Capital Market",
+   "segment_mic": "XNCM"
+  },
+  "PLTR": {
+   "symbol": "PLTR",
+   "security_name": "Palantir Technologies Inc. - Class A Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "PLTR|Palantir Technologies Inc. - Class A Common Stock|Q|N|N|100|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "QQQ": {
+   "symbol": "QQQ",
+   "security_name": "Invesco QQQ Trust, Series 1",
+   "market_category": "G",
+   "test_issue": "N",
+   "etf": "Y",
+   "raw_row": "QQQ|Invesco QQQ Trust, Series 1|G|N|N|40|Y|N",
+   "listing_tier": "Nasdaq Global Market",
+   "segment_mic": "XNMS"
+  },
+  "SMCI": {
+   "symbol": "SMCI",
+   "security_name": "Super Micro Computer, Inc. - Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "SMCI|Super Micro Computer, Inc. - Common Stock|Q|N|N|100|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "SOFI": {
+   "symbol": "SOFI",
+   "security_name": "SoFi Technologies, Inc.  - Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "SOFI|SoFi Technologies, Inc.  - Common Stock|Q|N|N|100|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "SPCX": {
+   "symbol": "SPCX",
+   "security_name": "Space Exploration Technologies Corp. - Class A Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "SPCX|Space Exploration Technologies Corp. - Class A Common Stock|Q|N|N|100|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  },
+  "TSLA": {
+   "symbol": "TSLA",
+   "security_name": "Tesla, Inc.  - Common Stock",
+   "market_category": "Q",
+   "test_issue": "N",
+   "etf": "N",
+   "raw_row": "TSLA|Tesla, Inc.  - Common Stock|Q|N|N|40|N|N",
+   "listing_tier": "Nasdaq Global Select Market",
+   "segment_mic": "XNGS"
+  }
+ },
+ "resolved": 14,
+ "unresolved": 0
+}

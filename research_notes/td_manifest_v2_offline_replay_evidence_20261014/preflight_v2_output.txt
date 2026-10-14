@@ -1,0 +1,7 @@
+$ python3 td_min_collector.py preflight --manifest acquisition_manifest_v2.json --prereq td_minimal_collector/prerequisites.json
+{
+ "manifest_errors": [],
+ "prerequisite_failures": [],
+ "dispatch": "BLOCKED (zero-call build: no vendor transport)"
+}
+exit_code=0
