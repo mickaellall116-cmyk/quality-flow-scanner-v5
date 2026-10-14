@@ -1,0 +1,68 @@
+{
+  "task": "QF-TD-FIRST-LIVE-SCREEN-20261014-09 r1",
+  "authorization_anchor": "Mike, main chat, 2026-10-14 ~09:25 EDT: authorized exactly as specified",
+  "executed_by": "Muse (subagent)",
+  "abort_declared_et": "2026-10-14 09:28:49 EDT",
+  "abort_declared_utc": "2026-10-14T13:28:49Z",
+  "outcome_classification": "ABORTED_PRE_DISPATCH",
+  "failure_gate": "proxy",
+  "failure_detail": {
+    "mechanism": "urllib.request.getproxies() key 'https', resolved in the execution environment",
+    "scheme": "http",
+    "host_present": true,
+    "port_present": true,
+    "credentials_present": true,
+    "adapter_category": "proxy_credentials_rejected",
+    "adapter_confirmation": "candidate adapter _resolve_proxy() invoked locally with a dummy in-memory surrogate probe string; raised TransportError category proxy_credentials_rejected before any connection object existed",
+    "note": "credential values were never printed, logged, or written to any artifact"
+  },
+  "candidate": {
+    "commit": "7ec0f0efce7d9ce668233bf8ee55d7503ec47c0a",
+    "branch": "td-combined-candidate-20261014",
+    "export_method": "git archive into isolated directory (no .git, no alternates)"
+  },
+  "component_pins_sha256": {
+    "td_http_transport_adapter.py": "ae8f4837b3d11a53990cfd56f207d5ec96c40b8fe4c1280f15fb08452cc43343",
+    "driver.py": "671f4d0ce25a76bc4967f1ca8cbb16fcda037f0e0ce71529c2aa385dce33fed1",
+    "td_min_collector.py": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+    "rate_limiter.py": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+    "validate_input.py": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+    "verify_sources.py": "a0bd2e4cdce44be5d9fcc1d7c21046391d36c9bd366a959df03bf5d19c9a79e0",
+    "acquisition_manifest_v1.json": "66a31e10aca1ca5f8af66139c4ff30a68cfef1c1138156eae103d8cf77e44f12",
+    "adapter_contract.json": "db6c44a2c95254fcc46d3c2717b682e00b33aa70fc563f8e86557dbca852a1f5"
+  },
+  "pre_dispatch_checks": {
+    "component_pins": "PASS (8/8)",
+    "manifest_validation_REQ-P1H-01_only": "PASS (0 errors)",
+    "collector_prerequisites": "PASS (0 failures)",
+    "vault_surrogate": "PASS (hsurr surrogate retrieved via production driver path; placement query_param=apikey enforced by driver; value never recorded)",
+    "proxy_route": "FAIL (credentials present in resolved proxy URL; adapter rejects by design)",
+    "live_ledger": "PASS (sha256 pin match; harness daily_spent for 2026-10-14 = 0; read-only check non-mutating)",
+    "retention_destination": "PASS (state dir inside git-ignored store per .gitignore rule for research_notes/twelve_data_stage0/snapshots/; fresh; not created)"
+  },
+  "request": {
+    "request_id": "REQ-P1H-01",
+    "dispatched": false,
+    "dispatch_timestamp_et": null,
+    "http_status": null,
+    "network_attempts": 0,
+    "vendor_contact": false,
+    "params": {
+      "symbol": "AAPL", "interval": "1h",
+      "start_date": "2026-04-01T00:00:00", "end_date": "2026-10-06T23:59:59",
+      "timezone": "America/New_York", "outputsize": 5000,
+      "order": "asc", "adjust": "splits", "format": "JSON", "apikey": "LAST (vault surrogate, not recorded)"
+    }
+  },
+  "ledger": {
+    "path": "research_notes/pilot_harness/credit_ledger.json",
+    "sha256_before": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+    "sha256_after": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+    "byte_identical": true,
+    "daily_spent_before": 0,
+    "daily_spent_after": 0,
+    "credits_spent_by_this_task": 0
+  },
+  "raw_payload": {"received": false, "stored": false, "sha256": null, "bytes": null},
+  "collector_state_dir_created": false
+}
