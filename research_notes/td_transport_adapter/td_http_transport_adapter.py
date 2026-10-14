@@ -22,6 +22,18 @@ Contract properties implemented here:
     Cross-host (or scheme-downgrading) redirects fail closed; same-host
     redirects are followed at most MAX_REDIRECTS times within the single
     attempt.
+  - Vault-surrogate requests (API key is an hsurr:* surrogate, HTTPS,
+    non-loopback host) MUST egress via the sanctioned proxy: the proxy
+    is resolved from the environment's *_proxy configuration the way
+    the platform resolves it (urllib.request.getproxies), and the
+    connection is an HTTP CONNECT tunnel to that proxy, established
+    before TLS. This is the only channel on which Sentinel substitutes
+    the real key for the surrogate. There is NO direct fallback: if
+    the proxy is absent, malformed, or credential-bearing, refuses or
+    fails the CONNECT, or is otherwise unusable, the request fails
+    closed with a sanitized category error and zero direct target
+    connections are made. Non-surrogate requests (and loopback test
+    targets) keep the direct path unchanged.
   - Connect timeout 10s / read timeout 30s (separately enforced).
     Response body cap 64 MiB; exceeding it is a transport failure.
   - Sanitized failures: TransportError's message is a category token ONLY
@@ -37,9 +49,10 @@ import http.client
 import socket
 import ssl
 from urllib.parse import urlencode, urlsplit
+from urllib.request import getproxies
 
 ADAPTER_NAME = "td-http-transport-adapter"
-ADAPTER_VERSION = "1.0.0"
+ADAPTER_VERSION = "1.1.0"
 VENDOR_BASE_URL = "https://api.twelvedata.com"
 ENDPOINT_PATH = "/time_series"
 PARAMETER_ORDER = ("symbol", "interval", "start_date", "end_date",
@@ -94,6 +107,10 @@ class TDHttpTransportAdapter:
         self._max_redirects = int(max_redirects)
         # Memory only: never written to disk, argv, logs, or exceptions.
         self.__api_key = api_key
+        # Vault-surrogate binding: an hsurr:* value is not a usable
+        # credential by itself — it is substituted by Sentinel only on
+        # the sanctioned proxied egress (see _resolve_proxy/_exchange).
+        self._surrogate_bound = api_key.startswith("hsurr:")
 
     # -- contract-visible pinned defaults (tests assert these) ---------
     @property
@@ -156,19 +173,80 @@ class TDHttpTransportAdapter:
             path += "?" + target.query
         return target.scheme, t_host, t_port, path
 
+    # -- sanctioned-proxy resolution (surrogate requests) -----------------
+    def _proxy_required(self, scheme: str, host: str) -> bool:
+        """Proxy egress is mandatory exactly where Sentinel substitution
+        can occur: a vault-surrogate credential on an HTTPS request to
+        a non-loopback host. Fixture keys, plain-HTTP loopback tests,
+        and direct requests keep the historical direct path."""
+        return (self._surrogate_bound and scheme == "https"
+                and host not in _LOOPBACK_HOSTS)
+
+    def _resolve_proxy(self) -> tuple[str, int]:
+        """Resolve the sanctioned https proxy from the environment's
+        *_proxy configuration, the way the platform resolves it
+        (urllib.request.getproxies — the same discovery the Sentinel
+        egress contract is defined against).
+
+        Fail-closed and sanitized: this runs BEFORE any connection
+        object exists, and every defect raises a category-only
+        TransportError — absent proxy, malformed proxy URL, or a
+        credential-bearing proxy URL (proxy credentials are never
+        used, never propagated, never recorded). The proxy host/port
+        themselves never appear in any error, log, or artifact."""
+        try:
+            proxies = getproxies()
+        except Exception:
+            raise TransportError("proxy_unavailable") from None
+        raw = proxies.get("https") if isinstance(proxies, dict) else None
+        if not raw or not isinstance(raw, str):
+            raise TransportError("proxy_unavailable")
+        if "://" not in raw:
+            raw = "http://" + raw
+        try:
+            parts = urlsplit(raw)
+            host = parts.hostname
+            port = parts.port  # ValueError on an invalid port
+            has_credentials = bool(parts.username or parts.password)
+        except ValueError:
+            raise TransportError("proxy_malformed") from None
+        if has_credentials:
+            raise TransportError("proxy_credentials_rejected")
+        if parts.scheme != "http" or not host:
+            # http.client can CONNECT through a plain-HTTP proxy only;
+            # the sanctioned egress proxy is one. Any other scheme
+            # (https/socks/...) is unusable by this transport and fails
+            # closed here rather than downgrading or improvising.
+            raise TransportError("proxy_malformed")
+        if port is None:
+            port = 80
+        return host, port
+
     # -- one HTTP exchange ------------------------------------------------
     def _exchange(self, scheme: str, host: str, port: int,
                   path: str) -> tuple[int, dict, bytes]:
-        conn_cls = (http.client.HTTPSConnection if scheme == "https"
-                    else http.client.HTTPConnection)
+        proxy = (self._resolve_proxy()
+                 if self._proxy_required(scheme, host) else None)
         kwargs: dict = {"timeout": self._connect_timeout}
         if scheme == "https":
             # Default context: certificate verification ON, hostname checked.
             kwargs["context"] = ssl.create_default_context()
-        conn = conn_cls(host, port, **kwargs)
+        if proxy is not None:
+            # CONNECT tunnel: an HTTPSConnection addressed to the
+            # PROXY; connect() dials the proxy, issues CONNECT to the
+            # target, and only then starts the TLS handshake with the
+            # target through the tunnel. The client never dials the
+            # target directly on this path.
+            p_host, p_port = proxy
+            conn = http.client.HTTPSConnection(p_host, p_port, **kwargs)
+            conn.set_tunnel(host, port)
+        else:
+            conn_cls = (http.client.HTTPSConnection if scheme == "https"
+                        else http.client.HTTPConnection)
+            conn = conn_cls(host, port, **kwargs)
         phase = "connect"
         try:
-            conn.connect()  # connect + (for https) TLS handshake, 10s budget
+            conn.connect()  # connect (+ CONNECT tunnel) + TLS, 10s budget
             if conn.sock is not None:
                 conn.sock.settimeout(self._read_timeout)
             phase = "read"
@@ -187,7 +265,12 @@ class TDHttpTransportAdapter:
             raise TransportError(f"{phase}_timeout") from None
         except http.client.HTTPException:
             raise TransportError("protocol_error") from None
-        except OSError:
+        except OSError as e:
+            # A refused CONNECT surfaces from http.client as an OSError
+            # whose text names the tunnel failure. The text is used
+            # ONLY to select the category token; it is never propagated.
+            if proxy is not None and "Tunnel connection failed" in str(e):
+                raise TransportError("proxy_connect_failed") from None
             raise TransportError("connection_error") from None
         finally:
             try:

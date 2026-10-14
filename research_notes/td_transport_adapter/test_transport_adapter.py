@@ -15,6 +15,11 @@ explicitly-named TEST FIXTURE source (TWELVEDATA_TEST_FIXTURE_API_KEY);
 the BindingLevel proofs exercise the production vault binding
 (custom.twelvedata via authd surrogate) with the authd fetch stubbed —
 no real credential or surrogate is ever fetched by this suite.
+ProxyLevel adds the local CONNECT-proxy + local TLS-target proofs for
+the Sentinel proxy correction
+(QF-TD-SENTINEL-PROXY-ADAPTER-20261014-07 r1): surrogate requests must
+egress via the environment-configured proxy or fail closed, with zero
+direct target connections on every failure mode.
 
 Run with the pinned-dependency venv python:
   python3 test_transport_adapter.py --output-dir <NEW DIRECTORY>
@@ -25,6 +30,7 @@ import hashlib
 import json
 import os
 import pathlib
+import socket
 import subprocess
 import sys
 import tempfile
@@ -793,6 +799,445 @@ class DispatchGateLevel(unittest.TestCase):
         self.assertEqual(seen["api_key"], FAKE_SURROGATE)
 
 
+# --------------------------------------------------------------------------
+# Proxy harness (QF-TD-SENTINEL-PROXY-ADAPTER-20261014-07 r1)
+# --------------------------------------------------------------------------
+PROXY_ENV_KEYS = ("http_proxy", "https_proxy", "HTTP_PROXY", "HTTPS_PROXY",
+                  "ALL_PROXY", "all_proxy", "no_proxy", "NO_PROXY")
+
+
+class EnvGuard:
+    """Save/set/restore environment variables (proxy config, CA file)."""
+
+    def __init__(self):
+        self.saved = {}
+
+    def set(self, mapping):
+        for k, v in mapping.items():
+            if k not in self.saved:
+                self.saved[k] = os.environ.get(k)
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+
+    def restore(self):
+        for k, v in self.saved.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+        self.saved = {}
+
+
+class DialRecorder:
+    """Records every TCP dial the adapter initiates. http.client dials
+    via socket.create_connection; the test proxy dials its upstream
+    with a raw socket, so recorded dials are the adapter's alone. A
+    direct-to-target fallback would appear here (or as a DNS failure
+    changing the error category) — either way it cannot pass silently."""
+
+    def __init__(self):
+        self.dials = []
+        self._orig = socket.create_connection
+
+    def __enter__(self):
+        orig, rec = self._orig, self.dials
+
+        def recording(address, *a, **k):
+            rec.append((address[0], address[1]))
+            return orig(address, *a, **k)
+        socket.create_connection = recording
+        return self
+
+    def __exit__(self, *exc):
+        socket.create_connection = self._orig
+        return False
+
+
+class CountingServer(ThreadingHTTPServer):
+    def __init__(self, *a, **k):
+        super().__init__(*a, **k)
+        self.accepts = 0
+
+    def get_request(self):
+        self.accepts += 1
+        return super().get_request()
+
+
+def start_tls_target(behavior, recorder, cert, key):
+    import ssl as _ssl
+    ctx = _ssl.SSLContext(_ssl.PROTOCOL_TLS_SERVER)
+    ctx.load_cert_chain(cert, key)
+    server = CountingServer(("127.0.0.1", 0), make_handler(behavior, recorder))
+    server.daemon_threads = True
+    server.socket = ctx.wrap_socket(server.socket, server_side=True)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    return server
+
+
+def generate_certs(root: pathlib.Path):
+    """A test CA, a vendor.test server cert signed by it, and a
+    self-signed vendor.test cert trusted by nobody (TLS-failure case)."""
+    def run(*args):
+        subprocess.run(["openssl", *args], check=True, capture_output=True)
+    ca_crt, ca_key = root / "ca.crt", root / "ca.key"
+    run("req", "-x509", "-newkey", "rsa:2048", "-keyout", str(ca_key),
+        "-out", str(ca_crt), "-days", "1", "-nodes", "-subj", "/CN=TD Test CA",
+        "-addext", "basicConstraints=critical,CA:TRUE")
+    srv_crt, srv_key, srv_csr = root / "srv.crt", root / "srv.key", root / "srv.csr"
+    ext = root / "srv_ext.cnf"
+    ext.write_text("subjectAltName=DNS:vendor.test\n")
+    run("req", "-newkey", "rsa:2048", "-keyout", str(srv_key),
+        "-out", str(srv_csr), "-nodes", "-subj", "/CN=vendor.test")
+    run("x509", "-req", "-in", str(srv_csr), "-CA", str(ca_crt),
+        "-CAkey", str(ca_key), "-CAcreateserial", "-out", str(srv_crt),
+        "-days", "1", "-extfile", str(ext))
+    bad_crt, bad_key = root / "bad.crt", root / "bad.key"
+    run("req", "-x509", "-newkey", "rsa:2048", "-keyout", str(bad_key),
+        "-out", str(bad_crt), "-days", "1", "-nodes", "-subj", "/CN=vendor.test",
+        "-addext", "subjectAltName=DNS:vendor.test")
+    return {"ca": ca_crt, "srv_crt": srv_crt, "srv_key": srv_key,
+            "bad_crt": bad_crt, "bad_key": bad_key}
+
+
+class ConnectProxy:
+    """Minimal recording HTTP CONNECT proxy on 127.0.0.1 (test-only).
+
+    Modes: "tunnel" (CONNECT -> dial upstream, reply 200, byte-pipe),
+    "refuse" (CONNECT -> 403), "blackhole" (CONNECT never answered).
+    The upstream dial uses a raw socket so DialRecorder attributes
+    dials to the adapter alone."""
+
+    def __init__(self, upstream_port, mode="tunnel"):
+        self.mode = mode
+        self.upstream_port = upstream_port
+        self.connect_lines = []
+        self.upstream_dials = 0
+        self._listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self._listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self._listener.bind(("127.0.0.1", 0))
+        self._listener.listen(8)
+        self.port = self._listener.getsockname()[1]
+        self._closed = False
+        threading.Thread(target=self._accept_loop, daemon=True).start()
+
+    def _accept_loop(self):
+        while not self._closed:
+            try:
+                client, _ = self._listener.accept()
+            except OSError:
+                return
+            threading.Thread(target=self._handle, args=(client,),
+                             daemon=True).start()
+
+    def _handle(self, client):
+        try:
+            buf = b""
+            while b"\r\n\r\n" not in buf and len(buf) < 65536:
+                chunk = client.recv(4096)
+                if not chunk:
+                    break
+                buf += chunk
+            line = buf.split(b"\r\n", 1)[0].decode("latin-1") if buf else ""
+            self.connect_lines.append(line)
+            if not line.startswith("CONNECT"):
+                client.sendall(b"HTTP/1.1 405 Method Not Allowed\r\n"
+                               b"Content-Length: 0\r\n\r\n")
+                return
+            if self.mode == "refuse":
+                client.sendall(b"HTTP/1.1 403 Forbidden\r\n"
+                               b"Content-Length: 0\r\n\r\n")
+                return
+            if self.mode == "blackhole":
+                time.sleep(15)  # never answer; the client must time out
+                return
+            upstream = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            upstream.connect(("127.0.0.1", self.upstream_port))
+            self.upstream_dials += 1
+            client.sendall(b"HTTP/1.1 200 Connection Established\r\n\r\n")
+
+            def pipe(src, dst):
+                try:
+                    while True:
+                        data = src.recv(65536)
+                        if not data:
+                            break
+                        dst.sendall(data)
+                except OSError:
+                    pass
+                finally:
+                    try:
+                        dst.shutdown(socket.SHUT_WR)
+                    except OSError:
+                        pass
+            t = threading.Thread(target=pipe, args=(client, upstream),
+                                 daemon=True)
+            t.start()
+            pipe(upstream, client)
+            t.join(timeout=2)
+        except OSError:
+            pass
+        finally:
+            try:
+                client.close()
+            except OSError:
+                pass
+
+    def close(self):
+        self._closed = True
+        try:
+            self._listener.close()
+        except OSError:
+            pass
+
+
+class ProxyLevel(unittest.TestCase):
+    """CONNECT-proxy proofs for vault-surrogate requests
+    (QF-TD-SENTINEL-PROXY-ADAPTER-20261014-07 r1).
+
+    Surrogate (hsurr:*) HTTPS requests to a non-loopback host must
+    egress via the environment-configured proxy — exactly one CONNECT,
+    tunnel before TLS, apikey LAST at the target — or fail closed with
+    a sanitized category and ZERO direct target connections. All
+    servers are local: a recording CONNECT proxy and TLS targets whose
+    CA reaches the adapter only through SSL_CERT_FILE, the same
+    platform mechanism the production egress bundle uses."""
+
+    TARGET_HOST = "vendor.test"
+
+    @classmethod
+    def setUpClass(cls):
+        cls._tmp = tempfile.TemporaryDirectory()
+        cls.certs = generate_certs(pathlib.Path(cls._tmp.name))
+        cls.good_rec = Recorder(expected_key=FAKE_SURROGATE)
+        cls.good = start_tls_target(
+            lambda v, p: (200, {}, b'{"status":"ok","via":"proxy"}'),
+            cls.good_rec, cls.certs["srv_crt"], cls.certs["srv_key"])
+        cls.good_port = cls.good.server_address[1]
+        cls.bad_rec = Recorder(expected_key=FAKE_SURROGATE)
+        cls.bad = start_tls_target(lambda v, p: (200, {}, b"{}"),
+                                   cls.bad_rec, cls.certs["bad_crt"],
+                                   cls.certs["bad_key"])
+        cls.bad_port = cls.bad.server_address[1]
+        cls.slow_rec = Recorder(expected_key=FAKE_SURROGATE)
+
+        def slow(vals, parts):
+            time.sleep(3)
+            return 200, {}, b"{}"
+        cls.slow = start_tls_target(slow, cls.slow_rec, cls.certs["srv_crt"],
+                                    cls.certs["srv_key"])
+        cls.slow_port = cls.slow.server_address[1]
+        cls.live_rec = Recorder(expected_key=FAKE_SURROGATE)
+        cls.live = start_tls_target(
+            lambda v, p: (200, {}, ok_body(v.get("start_date",
+                                               "2026-09-08")[:10])),
+            cls.live_rec, cls.certs["srv_crt"], cls.certs["srv_key"])
+        cls.live_port = cls.live.server_address[1]
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.good.shutdown(); cls.bad.shutdown(); cls.slow.shutdown()
+        cls.live.shutdown()
+        cls._tmp.cleanup()
+
+    def setUp(self):
+        self.env = EnvGuard()
+        self.env.set({k: None for k in PROXY_ENV_KEYS})
+        self.env.set({"SSL_CERT_FILE": str(self.certs["ca"])})
+        self.proxies = []
+
+    def tearDown(self):
+        for p in self.proxies:
+            p.close()
+        self.env.restore()
+
+    def make_proxy(self, upstream_port, mode="tunnel"):
+        p = ConnectProxy(upstream_port, mode)
+        self.proxies.append(p)
+        self.env.set({"https_proxy": f"http://127.0.0.1:{p.port}"})
+        return p
+
+    def adapter(self, port, **kw):
+        return TDHttpTransportAdapter(
+            FAKE_SURROGATE,
+            base_url=f"https://{self.TARGET_HOST}:{port}", **kw)
+
+    def assert_clean_error(self, cm, category):
+        e = cm.exception
+        self.assertEqual(e.category, category)
+        self.assertEqual(str(e), category)
+        blob = f"{e}|{e!r}"
+        for secret in (FAKE_SURROGATE, FAKE_KEY, "apikey", "proxypass",
+                       "proxyuser", "127.0.0.1", "vendor.test", "http"):
+            self.assertNotIn(secret, blob)
+
+    def test_proxy_happy_path_one_connect_one_request_apikey_last(self):
+        proxy = self.make_proxy(self.good_port)
+        before = len(self.good_rec.hits)
+        with DialRecorder() as dials:
+            status, body = self.adapter(self.good_port).transport(dict(REQ))
+        self.assertEqual(status, 200)
+        self.assertEqual(body, b'{"status":"ok","via":"proxy"}')
+        # Exactly one CONNECT, for the target authority, then exactly
+        # one request at the target; the adapter dialed ONLY the proxy.
+        self.assertEqual(proxy.connect_lines,
+                         [f"CONNECT {self.TARGET_HOST}:{self.good_port} "
+                          "HTTP/1.1"])
+        self.assertEqual(proxy.upstream_dials, 1)
+        self.assertEqual(dials.dials, [("127.0.0.1", proxy.port)])
+        hits = self.good_rec.hits[before:]
+        self.assertEqual(len(hits), 1)
+        _, names, key_ok = hits[0]
+        self.assertEqual(names, list(PARAMETER_ORDER))
+        self.assertEqual(names[-1], "apikey")
+        self.assertTrue(key_ok)
+
+    def test_proxy_absent_fails_closed_zero_dials(self):
+        before = len(self.good_rec.hits)
+        with DialRecorder() as dials:
+            with self.assertRaises(TransportError) as cm:
+                self.adapter(self.good_port).transport(dict(REQ))
+        self.assert_clean_error(cm, "proxy_unavailable")
+        self.assertEqual(dials.dials, [])  # no dial of any kind
+        self.assertEqual(len(self.good_rec.hits), before)
+
+    def test_proxy_malformed_fails_closed_zero_dials(self):
+        for raw in ("http://:3128", "socks5://127.0.0.1:1080",
+                    "https://127.0.0.1:3128", "http://127.0.0.1:notaport"):
+            with self.subTest(raw=raw):
+                self.env.set({"https_proxy": raw})
+                before = len(self.good_rec.hits)
+                with DialRecorder() as dials:
+                    with self.assertRaises(TransportError) as cm:
+                        self.adapter(self.good_port).transport(dict(REQ))
+                self.assert_clean_error(cm, "proxy_malformed")
+                self.assertEqual(dials.dials, [])
+                self.assertEqual(len(self.good_rec.hits), before)
+                self.env.set({"https_proxy": None})
+
+    def test_proxy_credentials_rejected_sanitized_zero_dials(self):
+        self.env.set({"https_proxy":
+                      "http://proxyuser:proxypass@127.0.0.1:9"})
+        with DialRecorder() as dials:
+            with self.assertRaises(TransportError) as cm:
+                self.adapter(self.good_port).transport(dict(REQ))
+        self.assert_clean_error(cm, "proxy_credentials_rejected")
+        self.assertEqual(dials.dials, [])
+
+    def test_proxy_connect_refused_zero_direct_target_connections(self):
+        proxy = self.make_proxy(self.good_port, mode="refuse")
+        before_hits = len(self.good_rec.hits)
+        before_accepts = self.good.accepts
+        with DialRecorder() as dials:
+            with self.assertRaises(TransportError) as cm:
+                self.adapter(self.good_port).transport(dict(REQ))
+        self.assert_clean_error(cm, "proxy_connect_failed")
+        # One dial only — to the proxy. The proxy never dialed the
+        # target, and the target saw no connection and no request.
+        self.assertEqual(dials.dials, [("127.0.0.1", proxy.port)])
+        self.assertEqual(len(proxy.connect_lines), 1)
+        self.assertEqual(proxy.upstream_dials, 0)
+        self.assertEqual(self.good.accepts, before_accepts)
+        self.assertEqual(len(self.good_rec.hits), before_hits)
+
+    def test_proxy_tls_failure_after_tunnel_established(self):
+        proxy = self.make_proxy(self.bad_port)
+        before = len(self.bad_rec.hits)
+        with DialRecorder() as dials:
+            with self.assertRaises(TransportError) as cm:
+                self.adapter(self.bad_port).transport(dict(REQ))
+        # The tunnel WAS established (proxy dialed upstream once); the
+        # failure is the target's untrusted cert — verification stays ON
+        # through the tunnel, and no HTTP request reached the target.
+        self.assert_clean_error(cm, "tls_failure")
+        self.assertEqual(proxy.upstream_dials, 1)
+        self.assertEqual(dials.dials, [("127.0.0.1", proxy.port)])
+        self.assertEqual(len(self.bad_rec.hits), before)
+
+    def test_proxy_blackhole_connect_timeout_no_retry(self):
+        proxy = self.make_proxy(self.good_port, mode="blackhole")
+        a = self.adapter(self.good_port, connect_timeout=0.5,
+                         read_timeout=0.5)
+        t0 = time.time()
+        with DialRecorder() as dials:
+            with self.assertRaises(TransportError) as cm:
+                a.transport(dict(REQ))
+        self.assertLess(time.time() - t0, 3.0)
+        self.assert_clean_error(cm, "connect_timeout")
+        self.assertEqual(dials.dials, [("127.0.0.1", proxy.port)])
+        self.assertEqual(len(proxy.connect_lines), 1)  # exactly one attempt
+
+    def test_proxy_read_timeout_after_tunnel(self):
+        proxy = self.make_proxy(self.slow_port)
+        a = self.adapter(self.slow_port, read_timeout=0.5)
+        with DialRecorder() as dials:
+            with self.assertRaises(TransportError) as cm:
+                a.transport(dict(REQ))
+        self.assert_clean_error(cm, "read_timeout")
+        self.assertEqual(proxy.upstream_dials, 1)
+        self.assertEqual(dials.dials, [("127.0.0.1", proxy.port)])
+
+    def test_vault_surrogate_collector_round_trip_via_proxy_isolation(self):
+        # Full collector round trip: production vault binding (authd
+        # fetch stubbed to a fake surrogate) -> adapter -> CONNECT proxy
+        # -> local TLS target, then the artifact byte-scan: neither the
+        # surrogate, nor the fixture key, nor the credential parameter
+        # name may appear in any runtime artifact.
+        orig_vault = drv._vault_entry
+        drv._vault_entry = lambda: {
+            "name": "access_token", "surrogate": FAKE_SURROGATE,
+            "placement": {"query_param": "apikey"}}
+        tmp = tempfile.TemporaryDirectory()
+        root = pathlib.Path(tmp.name)
+        try:
+            rn = root / "research_notes"
+            cand = rn / "td_lifecycle_repair_candidate"
+            cand.mkdir(parents=True)
+            raw = subprocess.run(
+                ["git", "-C", str(REPO), "show",
+                 f"{COLLECTOR_COMMIT}:{COLLECTOR_GIT_PATH}"],
+                check=True, capture_output=True).stdout
+            assert hashlib.sha256(raw).hexdigest() == drv.COLLECTOR_SHA256
+            collector_path = cand / "td_min_collector.py"
+            collector_path.write_bytes(raw)
+            os.symlink(REAL_HARNESS, rn / "pilot_harness")
+            proxy = self.make_proxy(self.live_port)
+            before = len(self.live_rec.hits)
+            collector, _ = drv.build_collector(
+                root / "state", fixture_manifest(), PREREQ,
+                base_url=f"https://{self.TARGET_HOST}:{self.live_port}",
+                ledger_path=root / "credit_ledger.json",
+                collector_path=collector_path)  # default source = vault
+            with DialRecorder() as dials:
+                result = collector.run()
+            self.assertEqual(result["outcome"], "COMPLETE")
+            self.assertEqual(proxy.connect_lines,
+                             [f"CONNECT {self.TARGET_HOST}:{self.live_port} "
+                              "HTTP/1.1"])
+            self.assertEqual(proxy.upstream_dials, 1)
+            self.assertEqual(dials.dials, [("127.0.0.1", proxy.port)])
+            hits = self.live_rec.hits[before:]
+            self.assertEqual(len(hits), 1)
+            self.assertTrue(hits[0][2])  # target saw the surrogate, LAST
+        finally:
+            drv._vault_entry = orig_vault
+        scanned = 0
+        for path in root.rglob("*"):
+            if path.is_symlink() or not path.is_file():
+                continue
+            data = path.read_bytes()
+            scanned += 1
+            self.assertNotIn(FAKE_SURROGATE.encode(), data,
+                             f"surrogate leaked into {path}")
+            self.assertNotIn(FAKE_KEY.encode(), data,
+                             f"fixture key leaked into {path}")
+            if path.suffix in (".jsonl", ".json"):
+                self.assertNotIn(b"apikey", data, f"apikey string in {path}")
+        self.assertGreater(scanned, 3)
+        tmp.cleanup()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--output-dir", required=True)
@@ -831,7 +1276,9 @@ def main():
                                "(dynamic_credentials); suite: stubbed "
                                "fetch + test fixture source only"),
                "vendor_calls": 0, "credits": 0,
-               "transport": "local synthetic servers only (127.0.0.1)"}
+               "transport": "local synthetic servers only (127.0.0.1); "
+                            "surrogate proofs via a local CONNECT proxy "
+                            "and local TLS targets"}
     (out / "results.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(json.dumps({"output_dir": str(out), "tests_run": result.testsRun,
                       "success": result.wasSuccessful()}))
