@@ -1,0 +1,52 @@
+{
+ "task": "QF-TD-FIRST-LIVE-SCREEN-20261014-09 r2",
+ "phase": "pre_dispatch_checks_ambient",
+ "checks": {
+  "component_pins": {
+   "driver.py": true,
+   "td_http_transport_adapter.py": true,
+   "td_min_collector.py": true,
+   "rate_limiter.py": true,
+   "validate_input.py": true,
+   "verify_sources.py": true,
+   "acquisition_manifest_v1.json": true,
+   "adapter_contract.json": true
+  },
+  "component_pin_hashes": {
+   "driver.py": "671f4d0ce25a76bc4967f1ca8cbb16fcda037f0e0ce71529c2aa385dce33fed1",
+   "td_http_transport_adapter.py": "ae8f4837b3d11a53990cfd56f207d5ec96c40b8fe4c1280f15fb08452cc43343",
+   "td_min_collector.py": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+   "rate_limiter.py": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+   "validate_input.py": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+   "verify_sources.py": "a0bd2e4cdce44be5d9fcc1d7c21046391d36c9bd366a959df03bf5d19c9a79e0",
+   "acquisition_manifest_v1.json": "66a31e10aca1ca5f8af66139c4ff30a68cfef1c1138156eae103d8cf77e44f12",
+   "adapter_contract.json": "db6c44a2c95254fcc46d3c2717b682e00b33aa70fc563f8e86557dbca852a1f5"
+  },
+  "req_p1h_01_found": true,
+  "manifest_validation_errors": [],
+  "collector_prerequisite_failures": [],
+  "request_params": {
+   "request_id": "REQ-P1H-01",
+   "symbol": "AAPL",
+   "interval": "1h",
+   "start_date": "2026-04-01T00:00:00",
+   "end_date": "2026-10-06T23:59:59",
+   "timezone": "America/New_York",
+   "outputsize": 5000,
+   "order": "asc",
+   "adjust": "splits",
+   "max_attempts": 1,
+   "credit_weight": 1
+  },
+  "vault_surrogate": {
+   "retrieved": true,
+   "is_hsurr_surrogate": true
+  },
+  "ledger_sha256_matches_pin": true,
+  "ledger_daily_spent_today": 0,
+  "ledger_sha256_after_read": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+  "state_dir_already_exists": false
+ },
+ "failures": [],
+ "verdict": "PASS"
+}

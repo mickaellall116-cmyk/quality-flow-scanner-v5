@@ -1,0 +1,70 @@
+{
+ "task": "QF-TD-FIRST-LIVE-SCREEN-20261014-09 r2",
+ "phase": "dispatch",
+ "dispatch_context_proxy": {
+  "resolved": true,
+  "scheme": "http",
+  "host": "hatch-egress-proxy",
+  "port": 3128,
+  "userinfo_present": false
+ },
+ "dispatch_context_proxy_ok": true,
+ "ledger_sha256_before": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+ "collector_built": true,
+ "run_started_et": "2026-10-14T09:38:19.073594-04:00",
+ "run_started_utc": "2026-10-14T13:38:19.073615+00:00",
+ "run_finished_et": "2026-10-14T09:38:19.788112-04:00",
+ "run_finished_utc": "2026-10-14T13:38:19.788138+00:00",
+ "run_summary": {
+  "dispatched": 1,
+  "reused": 0,
+  "completed": 0,
+  "outcome": "HOLD: venue binding mismatch for REQ-P1H-01"
+ },
+ "run_error": null,
+ "pilot_state": {
+  "status": "HOLD",
+  "hold_reason": "venue binding mismatch for REQ-P1H-01",
+  "attempts": 1,
+  "credit_reservations": 1,
+  "completed": []
+ },
+ "lifecycle_events": [
+  {
+   "ts_utc": "2026-10-14T13:38:19Z",
+   "event": "CREDIT_RESERVED",
+   "request_id": "REQ-P1H-01",
+   "credit_weight": 1
+  },
+  {
+   "ts_utc": "2026-10-14T13:38:19Z",
+   "event": "STARTED",
+   "request_id": "REQ-P1H-01",
+   "attempt": 1
+  },
+  {
+   "ts_utc": "2026-10-14T13:38:19Z",
+   "event": "ERROR_EVIDENCE",
+   "request_id": "REQ-P1H-01",
+   "sha256": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+   "bytes": 117985
+  },
+  {
+   "ts_utc": "2026-10-14T13:38:19Z",
+   "event": "HOLD",
+   "request_id": "REQ-P1H-01",
+   "reason": "venue binding mismatch for REQ-P1H-01"
+  }
+ ],
+ "raw_payload": {
+  "stored": false
+ },
+ "rejected_evidence": {
+  "sha256": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+  "bytes": 117985
+ },
+ "ledger_sha256_after": "4ba4cf6ff91caabab09e60604e8682a3869f7805b83d9a6d4b40c98aebebf494",
+ "ledger_daily_spent_after": 1,
+ "dispatched": true,
+ "outcome_classification": "NON_COMPLETE"
+}
