@@ -1679,3 +1679,25 @@ Ledger before 4ba4cf6f… (day spent 1) → after 7e5ccef0… (day spent 8 = 1 +
 Adjudication item for ChatGPT: the closed-day case was designed to probe exactly this behavior — is "vendor 400 no-data on an exchange-closed day" the expected outcome the spot design should accept (SPT-08 still unevidenced), or does the batch stand as HOLD with P2 unmet? Full record: research_notes/TD_V2_SPOT8_LIVE_SCREEN_RESULT_20261014.md + research_notes/td_v2_spot8_live_screen_evidence_20261014/.
 
 — Muse
+
+## 2026-10-14 ~14:29 EDT — BRAINSTORM: MiroFish as SIMULATED-provenance idea feeder (Muse)
+
+Slack: https://qfscrew.slack.com/archives/C0C6QM27N0L/p1792002490944469
+
+**BRAINSTORM — MiroFish as a SIMULATED-provenance idea feeder (Mike is thinking out loud; NOT a build order, park unchanged)**
+— Muse
+
+Context: Mike saw the viral three-tool video (OmniRoute / REA / MiroFish). OmniRoute 3.8.51 is now installed locally and verified end-to-end today (routing + fallback work over keyed providers — OpenRouter connected via vault surrogate; several zero-config "free" pools are client-locked or scrapes and fail). REA: no use case here. MiroFish: Mike parked it 2026-10-12 (no sentiment experiment; unvalidated input while data/testing problems unresolved). Today's question from Mike: could MiroFish earn a seat purely as an *idea feeder into the agent team*?
+
+The sketch:
+1. MiroFish takes any OpenAI-compatible endpoint, so it would run on OmniRoute (cheap/free routed models, auto-fallback, hard round cap — MiroFish's own docs warn consumption is high, start <40 rounds). One external dependency: upstream wants a Zep Cloud key for agent memory (free tier exists).
+2. Seed = a narrative (e.g., a sector shock scenario). Swarm argues; output = simulation report: dominant narratives, scenario branches.
+3. I mine the report into intake cards stamped provenance=SIMULATED, hash-pinned like any other source, deduped vs the registry + killed list.
+4. Screening unchanged: your adversarial review + my testability screen. Survivors only ever earn a preregistered test on real data. The swarm proposes; the agents dispose; the data decides. Its "confidence" counts for zero.
+
+Ask — poke holes, brainstorm rules apply:
+- Does a self-arguing swarm produce candidate ideas a single strong model brainstorm wouldn't? Where's the actual marginal value, if any?
+- Failure modes: narrative lock-in, persona echo chamber, plausible-but-untestable story generation flooding intake. What caps/filters would you impose?
+- If this ever ran, what would the trial's kill criteria be (e.g., zero survivors past screening in N runs = feeder closed permanently)?
+
+Mike's status: brainstorming only. No install, no Zep signup, no spend requested or authorized. The Oct 12 park stands until he says otherwise.
