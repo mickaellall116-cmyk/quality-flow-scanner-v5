@@ -1,0 +1,157 @@
+{
+  "candidate_files_rechecked": 33,
+  "post_run_drift": [],
+  "unexpected_new_files_in_candidate": [],
+  "live_ledger_sha256_after": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+  "byte_scan": {
+    "research_notes/td_transport_adapter/driver.py": {
+      "socket_module": 0,
+      "socket_create_connection": 0,
+      "raw_socket_ctor": 0,
+      "http_client": 0,
+      "set_tunnel": 0,
+      "getproxies": 0,
+      "env_access": 1,
+      "raw_key_env_name": 0,
+      "fixture_key_env_name": 1,
+      "api_key_param_in_signature": 0,
+      "surrogate_guard": 5,
+      "urllib_urlopen": 0,
+      "matching_lines": {
+        "env_access": [
+          150
+        ],
+        "fixture_key_env_name": [
+          62
+        ],
+        "surrogate_guard": [
+          20,
+          118,
+          137,
+          168,
+          187
+        ]
+      }
+    },
+    "research_notes/td_transport_adapter/td_http_transport_adapter.py": {
+      "socket_module": 2,
+      "socket_create_connection": 0,
+      "raw_socket_ctor": 0,
+      "http_client": 12,
+      "set_tunnel": 1,
+      "getproxies": 4,
+      "env_access": 0,
+      "raw_key_env_name": 0,
+      "fixture_key_env_name": 0,
+      "api_key_param_in_signature": 0,
+      "surrogate_guard": 3,
+      "urllib_urlopen": 0,
+      "matching_lines": {
+        "socket_module": [
+          49,
+          264
+        ],
+        "http_client": [
+          8,
+          48,
+          216,
+          235,
+          241,
+          244,
+          245,
+          266,
+          269
+        ],
+        "set_tunnel": [
+          242
+        ],
+        "getproxies": [
+          28,
+          52,
+          188,
+          198
+        ],
+        "surrogate_guard": [
+          25,
+          110,
+          113
+        ]
+      }
+    },
+    "research_notes/td_lifecycle_repair_candidate/td_min_collector.py": {
+      "socket_module": 0,
+      "socket_create_connection": 0,
+      "raw_socket_ctor": 0,
+      "http_client": 0,
+      "set_tunnel": 0,
+      "getproxies": 0,
+      "env_access": 0,
+      "raw_key_env_name": 0,
+      "fixture_key_env_name": 0,
+      "api_key_param_in_signature": 0,
+      "surrogate_guard": 0,
+      "urllib_urlopen": 0,
+      "matching_lines": {}
+    },
+    "research_notes/pilot_harness/rate_limiter.py": {
+      "socket_module": 0,
+      "socket_create_connection": 0,
+      "raw_socket_ctor": 0,
+      "http_client": 0,
+      "set_tunnel": 0,
+      "getproxies": 0,
+      "env_access": 0,
+      "raw_key_env_name": 0,
+      "fixture_key_env_name": 0,
+      "api_key_param_in_signature": 0,
+      "surrogate_guard": 0,
+      "urllib_urlopen": 0,
+      "matching_lines": {}
+    },
+    "research_notes/pilot_harness/validate_input.py": {
+      "socket_module": 0,
+      "socket_create_connection": 0,
+      "raw_socket_ctor": 0,
+      "http_client": 0,
+      "set_tunnel": 0,
+      "getproxies": 0,
+      "env_access": 0,
+      "raw_key_env_name": 0,
+      "fixture_key_env_name": 0,
+      "api_key_param_in_signature": 0,
+      "surrogate_guard": 0,
+      "urllib_urlopen": 0,
+      "matching_lines": {}
+    },
+    "research_notes/pilot_harness/verify_sources.py": {
+      "socket_module": 0,
+      "socket_create_connection": 0,
+      "raw_socket_ctor": 0,
+      "http_client": 0,
+      "set_tunnel": 0,
+      "getproxies": 0,
+      "env_access": 0,
+      "raw_key_env_name": 0,
+      "fixture_key_env_name": 0,
+      "api_key_param_in_signature": 0,
+      "surrogate_guard": 0,
+      "urllib_urlopen": 0,
+      "matching_lines": {}
+    },
+    "research_notes/pilot_harness/construct_4h.py": {
+      "socket_module": 0,
+      "socket_create_connection": 0,
+      "raw_socket_ctor": 0,
+      "http_client": 0,
+      "set_tunnel": 0,
+      "getproxies": 0,
+      "env_access": 0,
+      "raw_key_env_name": 0,
+      "fixture_key_env_name": 0,
+      "api_key_param_in_signature": 0,
+      "surrogate_guard": 0,
+      "urllib_urlopen": 0,
+      "matching_lines": {}
+    }
+  }
+}

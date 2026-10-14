@@ -1,0 +1,24 @@
+test_changed_date_binding (__main__.RepairTests.test_changed_date_binding) ... ok
+test_changed_request_binding (__main__.RepairTests.test_changed_request_binding) ... ok
+test_completed_event_crash_before_state_save_revalidates (__main__.RepairTests.test_completed_event_crash_before_state_save_revalidates) ... ok
+test_concurrent_process_refused_before_dispatch (__main__.RepairTests.test_concurrent_process_refused_before_dispatch) ... ok
+test_corrupt_state_errors_without_dispatch (__main__.RepairTests.test_corrupt_state_errors_without_dispatch) ... ok
+test_disabled_default_transport_preserved (__main__.RepairTests.test_disabled_default_transport_preserved) ... ok
+test_invalid_native4h_geometry_hold (__main__.RepairTests.test_invalid_native4h_geometry_hold) ... ok
+test_legacy_unbound_evidence_refused (__main__.RepairTests.test_legacy_unbound_evidence_refused) ... ok
+test_malformed_list_response_hold (__main__.RepairTests.test_malformed_list_response_hold) ... ok
+test_manifest_malformed_domains (__main__.RepairTests.test_manifest_malformed_domains) ... ok
+test_native4h_is_structural_not_1h_validator (__main__.RepairTests.test_native4h_is_structural_not_1h_validator) ... ok
+test_prerequisite_gate_is_in_run (__main__.RepairTests.test_prerequisite_gate_is_in_run) ... ok
+test_receipt_tamper_stays_hold (__main__.RepairTests.test_receipt_tamper_stays_hold) ... ok
+test_received_crash_before_validation_stays_hold (__main__.RepairTests.test_received_crash_before_validation_stays_hold) ... ok
+test_revalidation_required_for_reuse (__main__.RepairTests.test_revalidation_required_for_reuse) ... ok
+test_source_gate_is_in_run (__main__.RepairTests.test_source_gate_is_in_run) ... ok
+test_started_crash_no_redispatch (__main__.RepairTests.test_started_crash_no_redispatch) ... ok
+test_validated_restart_reuses_without_dispatch (__main__.RepairTests.test_validated_restart_reuses_without_dispatch) ... ok
+test_venue_mismatch_hold (__main__.RepairTests.test_venue_mismatch_hold) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.819s
+
+OK

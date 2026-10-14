@@ -1,0 +1,338 @@
+{
+  "candidate_root": "/tmp/td_combined_candidate_20261014",
+  "side_b_commit": "f55b982",
+  "side_a_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+  "files": [
+    {
+      "path": "research_notes/td_transport_adapter/driver.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "671f4d0ce25a76bc4967f1ca8cbb16fcda037f0e0ce71529c2aa385dce33fed1",
+      "bytes": 9308,
+      "matches_commit_blob": true,
+      "expected_pin": "671f4d0ce25a76bc4967f1ca8cbb16fcda037f0e0ce71529c2aa385dce33fed1",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_transport_adapter/td_http_transport_adapter.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "ae8f4837b3d11a53990cfd56f207d5ec96c40b8fe4c1280f15fb08452cc43343",
+      "bytes": 14226,
+      "matches_commit_blob": true,
+      "expected_pin": "ae8f4837b3d11a53990cfd56f207d5ec96c40b8fe4c1280f15fb08452cc43343",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_transport_adapter/test_transport_adapter.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "b7fa2dc922ac0395171bb25a033d2c78d1a53ea0d962f169eee142bf0cf8e1c9",
+      "bytes": 56672,
+      "matches_commit_blob": true,
+      "expected_pin": "b7fa2dc922ac0395171bb25a033d2c78d1a53ea0d962f169eee142bf0cf8e1c9",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_transport_adapter/sentinel_probe.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "8464124554662ad14860c8d540dd3d04d0024456ba6f965dc1b98701f4a24d02",
+      "bytes": 13614,
+      "matches_commit_blob": true,
+      "expected_pin": "8464124554662ad14860c8d540dd3d04d0024456ba6f965dc1b98701f4a24d02",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/construct_4h.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+      "bytes": 11316,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/pilot_acquire.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "acf39bbd98f7174a4205019e754fc714ca420b4a7df43c815ea158a6fad67c59",
+      "bytes": 27636,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/pilot_build.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "257d5bb99bcbae50442491b71429abb6b37b8c5cbcd1e4bf93b6010ad9e5a508",
+      "bytes": 6312,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/rate_limiter.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+      "bytes": 14459,
+      "matches_commit_blob": true,
+      "expected_pin": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/synthetic_data.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "b269db87fa444f343ec4ac09041540e5171ba3d330b53f422bcc5b84af2b15a7",
+      "bytes": 7633,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/validate_input.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+      "bytes": 20217,
+      "matches_commit_blob": true,
+      "expected_pin": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/verify_sources.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "a0bd2e4cdce44be5d9fcc1d7c21046391d36c9bd366a959df03bf5d19c9a79e0",
+      "bytes": 2670,
+      "matches_commit_blob": true,
+      "expected_pin": "a0bd2e4cdce44be5d9fcc1d7c21046391d36c9bd366a959df03bf5d19c9a79e0",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/warmup_math.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "df2219df8256ee859600d7bd34596caa55cfe0e925b8b2569bdd04adad38bf3e",
+      "bytes": 2822,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/credit_ledger.json",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+      "bytes": 95,
+      "matches_commit_blob": true,
+      "expected_pin": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/request_manifest.json",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "a0a001b7458993ffb21c33a92a0fa9aec7a7126691e749a1a3dfb06afbb8b9f0",
+      "bytes": 40632,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/pilot_harness/requirements.txt",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "812c526fc0392dd81a4c6224e004eab169e973ec48a3103939f2f61b2ff85066",
+      "bytes": 212,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/acquisition_manifest_v1.json",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "66a31e10aca1ca5f8af66139c4ff30a68cfef1c1138156eae103d8cf77e44f12",
+      "bytes": 34013,
+      "matches_commit_blob": true,
+      "expected_pin": "66a31e10aca1ca5f8af66139c4ff30a68cfef1c1138156eae103d8cf77e44f12",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/adapter_contract.json",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "db6c44a2c95254fcc46d3c2717b682e00b33aa70fc563f8e86557dbca852a1f5",
+      "bytes": 5683,
+      "matches_commit_blob": true,
+      "expected_pin": "db6c44a2c95254fcc46d3c2717b682e00b33aa70fc563f8e86557dbca852a1f5",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/prerequisites.json",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "038ccaf33547d6dae1f12ace073726300d92333184a0ba5de0dbab94cc0b5349",
+      "bytes": 2533,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/SHA256_MANIFEST.txt",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "d465ef78bf02e2411f82d48a7467ffe292d8f9cf3bb86ad501faf1895bb773be",
+      "bytes": 1330,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/ARCHIVAL_INDEX.md",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "5d47c3a57e2cfaf1061c2c3bee184e9f47e0b4a46feb1db24a4036f68ad4f60f",
+      "bytes": 2900,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+      "bytes": 16996,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/scanner_rules.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac",
+      "bytes": 22892,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_execution/c1_corrected_baseline_20261003.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "4568823cb8fe645a820c64bb4fac112fa7c90ac860bf626611467f7d94ea8f2b",
+      "bytes": 16548,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_stack/pine_stack.py",
+      "side": "B (f55b982, main)",
+      "source_commit": "f55b982",
+      "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+      "bytes": 19161,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_lifecycle_repair_candidate/td_min_collector.py",
+      "side": "A (f64d12f, PR #8)",
+      "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+      "sha256": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+      "bytes": 26443,
+      "matches_commit_blob": true,
+      "expected_pin": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_lifecycle_repair_candidate/test_lifecycle_repair.py",
+      "side": "A (f64d12f, PR #8)",
+      "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+      "sha256": "1421f52ee5bfb11b5f53128c59269e1bf114228046aaf0b3676c1636652a03c4",
+      "bytes": 9788,
+      "matches_commit_blob": true,
+      "expected_pin": "1421f52ee5bfb11b5f53128c59269e1bf114228046aaf0b3676c1636652a03c4",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_lifecycle_repair_candidate/test_pinned_integration.py",
+      "side": "A (f64d12f, PR #8)",
+      "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+      "sha256": "f1f195170edc1c070d5ca682fe48ad4cd32bc54f5053072f1b3511a396865386",
+      "bytes": 10724,
+      "matches_commit_blob": true,
+      "expected_pin": "f1f195170edc1c070d5ca682fe48ad4cd32bc54f5053072f1b3511a396865386",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_lifecycle_repair_candidate/integration_requirements.lock",
+      "side": "A (f64d12f, PR #8)",
+      "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+      "sha256": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+      "bytes": 206,
+      "matches_commit_blob": true,
+      "expected_pin": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_lifecycle_repair_candidate/integration_results.json",
+      "side": "A (f64d12f, PR #8)",
+      "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+      "sha256": "ba8000ec79354992882baf5bf346bb58d8af9da25bbb8993b9ddcd2c32d96f3c",
+      "bytes": 2661,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_lifecycle_repair_candidate/integration_test_output.txt",
+      "side": "A (f64d12f, PR #8)",
+      "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+      "sha256": "1b6693859f10b44f5d6b9a0684e6a4c5bb7c9c138b2eb26af6deb208ff5b3836",
+      "bytes": 1841,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_lifecycle_repair_candidate/test_output.txt",
+      "side": "A (f64d12f, PR #8)",
+      "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+      "sha256": "2ad14c15539015f607667753d973a904189977d59dc4ec385cb64bebe07bc370",
+      "bytes": 2091,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_lifecycle_repair_candidate/README.md",
+      "side": "A (f64d12f, PR #8)",
+      "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+      "sha256": "f441a0387c58961a446fe7e6367f24fd67697aa23b183730abcfc717dc50dbcb",
+      "bytes": 4027,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    },
+    {
+      "path": "research_notes/td_lifecycle_repair_candidate/INTEGRATION_REVIEW_20261013.md",
+      "side": "A (f64d12f, PR #8)",
+      "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f",
+      "sha256": "701809292a05151a36ca1f284de9ecaf982bfe14b0ff00e0eb4df2b277a34ce8",
+      "bytes": 3885,
+      "matches_commit_blob": true,
+      "expected_pin": null,
+      "matches_expected_pin": true
+    }
+  ],
+  "drift": []
+}

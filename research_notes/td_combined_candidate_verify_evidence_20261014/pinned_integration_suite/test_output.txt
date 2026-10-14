@@ -1,0 +1,21 @@
+test_actual_corrupt_limiter_blocks_transport (__main__.Integration.test_actual_corrupt_limiter_blocks_transport) ... ok
+test_actual_limiter_restart_window_refuses (__main__.Integration.test_actual_limiter_restart_window_refuses) ... ok
+test_actual_prerequisite_missing_blocks_transport (__main__.Integration.test_actual_prerequisite_missing_blocks_transport) ... ok
+test_actual_sources_verify (__main__.Integration.test_actual_sources_verify) ... ok
+test_changed_request_real_preflight_refusal (__main__.Integration.test_changed_request_real_preflight_refusal) ... ok
+test_crash_received_before_real_validation (__main__.Integration.test_crash_received_before_real_validation) ... ok
+test_holiday_validator_empty_is_closed (__main__.Integration.test_holiday_validator_empty_is_closed) ... ok
+test_malformed_payload_real_dependencies (__main__.Integration.test_malformed_payload_real_dependencies) ... ok
+test_missing_constituent_hold (__main__.Integration.test_missing_constituent_hold) ... ok
+test_native_4h_actual_structural_path (__main__.Integration.test_native_4h_actual_structural_path) ... ok
+test_partial_bin_exact_ohlcv_real_validation_and_construction (__main__.Integration.test_partial_bin_exact_ohlcv_real_validation_and_construction) ... ok
+test_real_early_close (__main__.Integration.test_real_early_close) ... ok
+test_real_regular_1h_completion_and_reuse (__main__.Integration.test_real_regular_1h_completion_and_reuse) ... ok
+test_real_spring_and_fall_dst (__main__.Integration.test_real_spring_and_fall_dst) ... ok
+test_second_process_lock_blocks_transport (__main__.Integration.test_second_process_lock_blocks_transport) ... ok
+test_source_tamper_isolated_copy (__main__.Integration.test_source_tamper_isolated_copy) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 9.294s
+
+OK
