@@ -1,0 +1,22 @@
+{
+ "serial_pair_mean_s": 1.201,
+ "serial_pair_sd_s": 0.144,
+ "chunk25_mean_s": {
+  "1h": 7.93,
+  "15m": 6.16,
+  "5m": 6.58
+ },
+ "overhead_250_s": 11.1,
+ "projection_mean_s": 517.9,
+ "projection_sd_s": 3.5,
+ "bootstrap_p95_s": 523.7,
+ "analytic_p95_s": 523.7,
+ "conservative_p95_s": 523.7,
+ "sensitivity": {
+  "+5%": 549.3,
+  "+10%": 574.9,
+  "+14%": 600.7
+ },
+ "budget_s": 600,
+ "gate_s": 560
+}

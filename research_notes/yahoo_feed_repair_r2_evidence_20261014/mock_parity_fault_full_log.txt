@@ -1,0 +1,148 @@
+== healthy ==
+ORIG healthy: rows=31 calls=194 fresh=34/34 global=ok
+CAND healthy: rows=31 calls=69 fresh=34/34 global=ok
+  [OK] rows identical (orig 31 vs cand 31)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[retries] identical (orig 0 vs cand 0)
+  [OK] coverage[global_provider_status] identical (orig ok vs cand ok)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (0+34 vs 34)
+  [OK] cand zero 1d/10d wire calls (all derived) (cand 0, orig 32)
+  [OK] cand pm_daily_derived > 0 ({'pm_daily_derived': 31, 'pm_daily_fallback': 0})
+  [OK] cand pm_daily_fallback == 0 
+  [OK] THIN zero aux single calls (cand) 
+== batch_empty_one ==
+ORIG batch_empty_one: rows=31 calls=194 fresh=34/34 global=ok
+CAND batch_empty_one: rows=31 calls=70 fresh=34/34 global=ok
+  [OK] rows identical (orig 31 vs cand 31)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[retries] identical (orig 0 vs cand 0)
+  [OK] coverage[global_provider_status] identical (orig ok vs cand ok)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (1+33 vs 34)
+== batch_raises ==
+ORIG batch_raises: rows=31 calls=194 fresh=34/34 global=ok
+CAND batch_raises: rows=31 calls=165 fresh=34/34 global=ok
+  [OK] rows identical (orig 31 vs cand 31)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[retries] identical (orig 0 vs cand 0)
+  [OK] coverage[global_provider_status] identical (orig ok vs cand ok)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (34+0 vs 34)
+== single_429 ==
+ORIG single_429: rows=32 calls=63 fresh=12/34 global=rate_limited
+CAND single_429: rows=32 calls=26 fresh=12/34 global=rate_limited
+  [OK] rows identical (orig 32 vs cand 32)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 12 vs cand 12)
+  [OK] coverage[retries] identical (orig 0 vs cand 0)
+  [OK] coverage[global_provider_status] identical (orig rate_limited vs cand rate_limited)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (0+12 vs 12)
+  [OK] global guard trips in both 
+== timeout_primary ==
+ORIG timeout_primary: rows=31 calls=190 fresh=33/34 global=degraded
+CAND timeout_primary: rows=31 calls=69 fresh=33/34 global=degraded
+  [OK] rows identical (orig 31 vs cand 31)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 33 vs cand 33)
+  [OK] coverage[retries] identical (orig 1 vs cand 1)
+  [OK] coverage[global_provider_status] identical (orig degraded vs cand degraded)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (0+33 vs 33)
+== empty_primary ==
+ORIG empty_primary: rows=31 calls=189 fresh=33/34 global=degraded
+CAND empty_primary: rows=31 calls=68 fresh=33/34 global=degraded
+  [OK] rows identical (orig 31 vs cand 31)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 33 vs cand 33)
+  [OK] coverage[retries] identical (orig 0 vs cand 0)
+  [OK] coverage[global_provider_status] identical (orig degraded vs cand degraded)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (0+33 vs 33)
+== missing_in_batch ==
+ORIG missing_in_batch: rows=31 calls=194 fresh=34/34 global=ok
+CAND missing_in_batch: rows=31 calls=72 fresh=34/34 global=ok
+  [OK] rows identical (orig 31 vs cand 31)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[retries] identical (orig 0 vs cand 0)
+  [OK] coverage[global_provider_status] identical (orig ok vs cand ok)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (1+33 vs 34)
+  [OK] cand serial fallback used for batch-missing symbol (1 single 1h calls)
+== stale_primary ==
+ORIG stale_primary: rows=31 calls=194 fresh=34/34 global=ok
+CAND stale_primary: rows=31 calls=69 fresh=34/34 global=ok
+  [OK] rows identical (orig 31 vs cand 31)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[retries] identical (orig 0 vs cand 0)
+  [OK] coverage[global_provider_status] identical (orig ok vs cand ok)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (0+34 vs 34)
+== failed_daily_conf ==
+ORIG failed_daily_conf: rows=31 calls=194 fresh=34/34 global=ok
+CAND failed_daily_conf: rows=31 calls=70 fresh=34/34 global=ok
+  [OK] rows identical (orig 31 vs cand 31)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[retries] identical (orig 0 vs cand 0)
+  [OK] coverage[global_provider_status] identical (orig ok vs cand ok)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (0+34 vs 34)
+  [OK] cand fell back to serial 1d/10d on failed 2y (1 calls)
+  [OK] cand feed_stats records fallback ({'pm_daily_derived': 30, 'pm_daily_fallback': 1})
+== budget_edge ==
+ORIG budget_edge: rows=31 calls=194 fresh=34/34 global=ok
+CAND budget_edge: rows=31 calls=158 fresh=34/34 global=ok
+  [OK] rows identical (orig 31 vs cand 31)
+  [OK] qualified identical 
+  [OK] regime identical 
+  [OK] coverage[expected_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[fresh_symbols] identical (orig 34 vs cand 34)
+  [OK] coverage[retries] identical (orig 0 vs cand 0)
+  [OK] coverage[global_provider_status] identical (orig ok vs cand ok)
+  [OK] degraded sets identical 
+  [OK] cand numerator <= denominator 
+  [OK] cand via split sums to fresh (34+0 vs 34)
+  [OK] cand zero batch calls under budget edge (0)
+== denominator regression ==
+ORIG denom: expected=6 fresh=8 cov={}
+CAND denom: expected=6 fresh=6 cov={'benchmark_expected_symbols': 2, 'benchmark_fresh_symbols': 2, 'non_scan_fresh_symbols': []}
+  [OK] orig accounting reproduces the anomaly (fresh > expected) (orig fresh=8 expected=6)
+  [OK] cand scan fresh <= expected (cand fresh=6 expected=6)
+  [OK] cand scan fresh == scanned universe 
+  [OK] cand benchmark block separated (2/2)
+  [OK] cand non_scan_fresh empty 
+ALL OK

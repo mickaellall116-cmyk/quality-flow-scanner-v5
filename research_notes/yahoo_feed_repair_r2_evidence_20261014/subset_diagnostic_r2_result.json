@@ -1,0 +1,855 @@
+{
+ "subset_size": 40,
+ "wall_s": 85.2,
+ "per_symbol_s": 2.131,
+ "rows": 40,
+ "error_rows": 0,
+ "coverage": {
+  "expected_symbols": 40,
+  "fresh_symbols": 40,
+  "benchmark_expected_symbols": 2,
+  "benchmark_fresh_symbols": 2,
+  "fresh_via_serial": 0,
+  "fresh_via_prefetch": 40,
+  "non_scan_fresh_symbols": [],
+  "global_provider_status": "ok",
+  "retries": 0
+ },
+ "feed_stats": {
+  "pm_daily_derived": 40,
+  "pm_daily_fallback": 0
+ },
+ "upstream_calls": 88,
+ "calls": [
+  {
+   "tickers": "QQQ",
+   "n": 1,
+   "interval": "1h",
+   "period": "180d",
+   "prepost": false,
+   "dur_s": 1.269
+  },
+  {
+   "tickers": "SPY",
+   "n": 1,
+   "interval": "1h",
+   "period": "180d",
+   "prepost": false,
+   "dur_s": 0.819
+  },
+  {
+   "tickers": [
+    "NVDA",
+    "PLTR",
+    "TSLA",
+    "SOFI",
+    "SMCI",
+    "AMD",
+    "AAPL",
+    "MSFT",
+    "META",
+    "COIN",
+    "MSTR",
+    "AVGO",
+    "BTC-USD",
+    "ETH-USD",
+    "SOL-USD",
+    "GOOGL",
+    "AMZN",
+    "NFLX",
+    "CRM",
+    "MU",
+    "INTC",
+    "LRCX",
+    "AMAT",
+    "QCOM",
+    "ARM"
+   ],
+   "n": 25,
+   "interval": "1h",
+   "period": "180d",
+   "prepost": false,
+   "dur_s": 8.74
+  },
+  {
+   "tickers": "NVDA",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.574
+  },
+  {
+   "tickers": "NVDA",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.579
+  },
+  {
+   "tickers": [
+    "NVDA",
+    "PLTR",
+    "TSLA",
+    "SOFI",
+    "SMCI",
+    "AMD",
+    "AAPL",
+    "MSFT",
+    "META",
+    "COIN",
+    "MSTR",
+    "AVGO",
+    "BTC-USD",
+    "ETH-USD",
+    "SOL-USD",
+    "GOOGL",
+    "AMZN",
+    "NFLX",
+    "CRM",
+    "MU",
+    "INTC",
+    "LRCX",
+    "AMAT",
+    "QCOM",
+    "ARM"
+   ],
+   "n": 25,
+   "interval": "15m",
+   "period": "5d",
+   "prepost": false,
+   "dur_s": 6.212
+  },
+  {
+   "tickers": [
+    "NVDA",
+    "PLTR",
+    "TSLA",
+    "SOFI",
+    "SMCI",
+    "AMD",
+    "AAPL",
+    "MSFT",
+    "META",
+    "COIN",
+    "MSTR",
+    "AVGO",
+    "BTC-USD",
+    "ETH-USD",
+    "SOL-USD",
+    "GOOGL",
+    "AMZN",
+    "NFLX",
+    "CRM",
+    "MU",
+    "INTC",
+    "LRCX",
+    "AMAT",
+    "QCOM",
+    "ARM"
+   ],
+   "n": 25,
+   "interval": "5m",
+   "period": "2d",
+   "prepost": true,
+   "dur_s": 6.332
+  },
+  {
+   "tickers": "PLTR",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.595
+  },
+  {
+   "tickers": "PLTR",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.602
+  },
+  {
+   "tickers": "TSLA",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.464
+  },
+  {
+   "tickers": "TSLA",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.542
+  },
+  {
+   "tickers": "SOFI",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.427
+  },
+  {
+   "tickers": "SOFI",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.514
+  },
+  {
+   "tickers": "SMCI",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.501
+  },
+  {
+   "tickers": "SMCI",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.627
+  },
+  {
+   "tickers": "AMD",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.49
+  },
+  {
+   "tickers": "AMD",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.648
+  },
+  {
+   "tickers": "AAPL",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.641
+  },
+  {
+   "tickers": "AAPL",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.576
+  },
+  {
+   "tickers": "MSFT",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.866
+  },
+  {
+   "tickers": "MSFT",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.515
+  },
+  {
+   "tickers": "META",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.555
+  },
+  {
+   "tickers": "META",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.615
+  },
+  {
+   "tickers": "COIN",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.668
+  },
+  {
+   "tickers": "COIN",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.629
+  },
+  {
+   "tickers": "MSTR",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.554
+  },
+  {
+   "tickers": "MSTR",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.546
+  },
+  {
+   "tickers": "AVGO",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.63
+  },
+  {
+   "tickers": "AVGO",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.635
+  },
+  {
+   "tickers": "BTC-USD",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.588
+  },
+  {
+   "tickers": "BTC-USD",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.576
+  },
+  {
+   "tickers": "ETH-USD",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.627
+  },
+  {
+   "tickers": "ETH-USD",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.519
+  },
+  {
+   "tickers": "SOL-USD",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.547
+  },
+  {
+   "tickers": "SOL-USD",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.419
+  },
+  {
+   "tickers": "GOOGL",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.717
+  },
+  {
+   "tickers": "GOOGL",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.875
+  },
+  {
+   "tickers": "AMZN",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.655
+  },
+  {
+   "tickers": "AMZN",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.553
+  },
+  {
+   "tickers": "NFLX",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.722
+  },
+  {
+   "tickers": "NFLX",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.492
+  },
+  {
+   "tickers": "CRM",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.562
+  },
+  {
+   "tickers": "CRM",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.557
+  },
+  {
+   "tickers": "MU",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.666
+  },
+  {
+   "tickers": "MU",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.585
+  },
+  {
+   "tickers": "INTC",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.569
+  },
+  {
+   "tickers": "INTC",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.645
+  },
+  {
+   "tickers": "LRCX",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.583
+  },
+  {
+   "tickers": "LRCX",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.713
+  },
+  {
+   "tickers": "AMAT",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.733
+  },
+  {
+   "tickers": "AMAT",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.512
+  },
+  {
+   "tickers": "QCOM",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.612
+  },
+  {
+   "tickers": "QCOM",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.645
+  },
+  {
+   "tickers": "ARM",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.529
+  },
+  {
+   "tickers": "ARM",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.431
+  },
+  {
+   "tickers": [
+    "MS",
+    "WFC",
+    "SCHW",
+    "WMT",
+    "COST",
+    "HD",
+    "NKE",
+    "SBUX",
+    "MCD",
+    "CAT",
+    "DE",
+    "BA",
+    "GE",
+    "HON",
+    "LMT"
+   ],
+   "n": 15,
+   "interval": "1h",
+   "period": "180d",
+   "prepost": false,
+   "dur_s": 4.268
+  },
+  {
+   "tickers": "MS",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.634
+  },
+  {
+   "tickers": "MS",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.548
+  },
+  {
+   "tickers": [
+    "MS",
+    "WFC",
+    "SCHW",
+    "WMT",
+    "COST",
+    "HD",
+    "NKE",
+    "SBUX",
+    "MCD",
+    "CAT",
+    "DE",
+    "BA",
+    "GE",
+    "HON",
+    "LMT"
+   ],
+   "n": 15,
+   "interval": "15m",
+   "period": "5d",
+   "prepost": false,
+   "dur_s": 3.67
+  },
+  {
+   "tickers": [
+    "MS",
+    "WFC",
+    "SCHW",
+    "WMT",
+    "COST",
+    "HD",
+    "NKE",
+    "SBUX",
+    "MCD",
+    "CAT",
+    "DE",
+    "BA",
+    "GE",
+    "HON",
+    "LMT"
+   ],
+   "n": 15,
+   "interval": "5m",
+   "period": "2d",
+   "prepost": true,
+   "dur_s": 4.091
+  },
+  {
+   "tickers": "WFC",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.451
+  },
+  {
+   "tickers": "WFC",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.755
+  },
+  {
+   "tickers": "SCHW",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.762
+  },
+  {
+   "tickers": "SCHW",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.375
+  },
+  {
+   "tickers": "WMT",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 1.021
+  },
+  {
+   "tickers": "WMT",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.527
+  },
+  {
+   "tickers": "COST",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.543
+  },
+  {
+   "tickers": "COST",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.433
+  },
+  {
+   "tickers": "HD",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.431
+  },
+  {
+   "tickers": "HD",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.62
+  },
+  {
+   "tickers": "NKE",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.813
+  },
+  {
+   "tickers": "NKE",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.564
+  },
+  {
+   "tickers": "SBUX",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.609
+  },
+  {
+   "tickers": "SBUX",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.53
+  },
+  {
+   "tickers": "MCD",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.745
+  },
+  {
+   "tickers": "MCD",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.752
+  },
+  {
+   "tickers": "CAT",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.437
+  },
+  {
+   "tickers": "CAT",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.763
+  },
+  {
+   "tickers": "DE",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.895
+  },
+  {
+   "tickers": "DE",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.414
+  },
+  {
+   "tickers": "BA",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.531
+  },
+  {
+   "tickers": "BA",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.589
+  },
+  {
+   "tickers": "GE",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.5
+  },
+  {
+   "tickers": "GE",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.784
+  },
+  {
+   "tickers": "HON",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.482
+  },
+  {
+   "tickers": "HON",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.795
+  },
+  {
+   "tickers": "LMT",
+   "n": 1,
+   "interval": "1d",
+   "period": "2y",
+   "prepost": false,
+   "dur_s": 0.505
+  },
+  {
+   "tickers": "LMT",
+   "n": 1,
+   "interval": "1wk",
+   "period": "5y",
+   "prepost": false,
+   "dur_s": 0.593
+  }
+ ]
+}

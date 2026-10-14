@@ -1,0 +1,1016 @@
+{
+ "all_overlap_exact_zero": true,
+ "all_prev_close_exact": true,
+ "all_pm_fields_exact": true,
+ "all_boundaries_exact": true,
+ "results": [
+  {
+   "symbol": "NVDA",
+   "t_1d2y_s": 1.38,
+   "t_1d10d_s": 0.569,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 228.52000427246094,
+   "prev_close_fetched": 228.52000427246094,
+   "prev_close_exact": true,
+   "t_5m_s": 0.819,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 194.61224365234375,
+     "tail10": 194.61224365234375,
+     "tail3": 194.61224365234375,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 176.57696533203125,
+     "tail10": 176.57696533203125,
+     "tail3": 176.57696533203125,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 186.06460571289062,
+     "tail10": 186.06460571289062,
+     "tail3": 186.06460571289062,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 202.0060272216797,
+     "tail10": 202.0060272216797,
+     "tail3": 202.0060272216797,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 177.40489196777344,
+     "tail10": 177.40489196777344,
+     "tail3": 177.40489196777344,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 228.52000427246094,
+     "tail10": 228.52000427246094,
+     "tail3": 228.52000427246094,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "AAPL",
+   "t_1d2y_s": 0.835,
+   "t_1d10d_s": 0.591,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 341.2699890136719,
+   "prev_close_fetched": 341.2699890136719,
+   "prev_close_exact": true,
+   "t_5m_s": 0.469,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 308.3640441894531,
+     "tail10": 308.3640441894531,
+     "tail3": 308.3640441894531,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 278.0930480957031,
+     "tail10": 278.0930480957031,
+     "tail3": 278.0930480957031,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 271.12200927734375,
+     "tail10": 271.12200927734375,
+     "tail3": 271.12200927734375,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 269.37493896484375,
+     "tail10": 269.37493896484375,
+     "tail3": 269.37493896484375,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 257.0013427734375,
+     "tail10": 257.0013427734375,
+     "tail3": 257.0013427734375,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 341.2699890136719,
+     "tail10": 341.2699890136719,
+     "tail3": 341.2699890136719,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "MSFT",
+   "t_1d2y_s": 0.5,
+   "t_1d10d_s": 0.608,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 543.4500122070312,
+   "prev_close_fetched": 543.4500122070312,
+   "prev_close_exact": true,
+   "t_5m_s": 0.599,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 389.7562561035156,
+     "tail10": 389.7562561035156,
+     "tail3": 389.7562561035156,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 488.9082946777344,
+     "tail10": 488.9082946777344,
+     "tail3": 488.9082946777344,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 480.5711669921875,
+     "tail10": 480.5711669921875,
+     "tail3": 480.5711669921875,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 513.5843505859375,
+     "tail10": 513.5843505859375,
+     "tail3": 513.5843505859375,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 407.30938720703125,
+     "tail10": 407.30938720703125,
+     "tail3": 407.30938720703125,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 543.4500122070312,
+     "tail10": 543.4500122070312,
+     "tail3": 543.4500122070312,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "COST",
+   "t_1d2y_s": 0.8,
+   "t_1d10d_s": 0.476,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 954.6300048828125,
+   "prev_close_fetched": 954.6300048828125,
+   "prev_close_exact": true,
+   "t_5m_s": 0.719,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 950.1593017578125,
+     "tail10": 950.1593017578125,
+     "tail3": 950.1593017578125,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 909.5755615234375,
+     "tail10": 909.5755615234375,
+     "tail3": 909.5755615234375,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 858.5507202148438,
+     "tail10": 858.5507202148438,
+     "tail3": 858.5507202148438,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 907.4449462890625,
+     "tail10": 907.4449462890625,
+     "tail3": 907.4449462890625,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 995.0717163085938,
+     "tail10": 995.0717163085938,
+     "tail3": 995.0717163085938,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 954.6300048828125,
+     "tail10": 954.6300048828125,
+     "tail3": 954.6300048828125,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "WMT",
+   "t_1d2y_s": 0.482,
+   "t_1d10d_s": 0.791,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 112.27999877929688,
+   "prev_close_fetched": 112.27999877929688,
+   "prev_close_exact": true,
+   "t_5m_s": 0.779,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 111.57289123535156,
+     "tail10": 111.57289123535156,
+     "tail3": 111.57289123535156,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 109.58732604980469,
+     "tail10": 109.58732604980469,
+     "tail3": 109.58732604980469,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 110.70502471923828,
+     "tail10": 110.70502471923828,
+     "tail3": 110.70502471923828,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 100.3352279663086,
+     "tail10": 100.3352279663086,
+     "tail3": 100.3352279663086,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 123.01661682128906,
+     "tail10": 123.01661682128906,
+     "tail3": 123.01661682128906,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 112.27999877929688,
+     "tail10": 112.27999877929688,
+     "tail3": 112.27999877929688,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "XOM",
+   "t_1d2y_s": 0.743,
+   "t_1d10d_s": 0.745,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 174.0800018310547,
+   "prev_close_fetched": 174.0800018310547,
+   "prev_close_exact": true,
+   "t_5m_s": 0.412,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 136.20802307128906,
+     "tail10": 136.20802307128906,
+     "tail3": 136.20802307128906,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 113.64030456542969,
+     "tail10": 113.64030456542969,
+     "tail3": 113.64030456542969,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 117.97338104248047,
+     "tail10": 117.97338104248047,
+     "tail3": 117.97338104248047,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 111.13890075683594,
+     "tail10": 111.13890075683594,
+     "tail3": 111.13890075683594,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 149.22434997558594,
+     "tail10": 149.22434997558594,
+     "tail3": 149.22434997558594,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 174.0800018310547,
+     "tail10": 174.0800018310547,
+     "tail3": 174.0800018310547,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "KO",
+   "t_1d2y_s": 0.808,
+   "t_1d10d_s": 0.769,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 90.11000061035156,
+   "prev_close_fetched": 90.11000061035156,
+   "prev_close_exact": true,
+   "t_5m_s": 0.503,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 83.64089965820312,
+     "tail10": 83.64089965820312,
+     "tail3": 83.64089965820312,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 71.22653198242188,
+     "tail10": 71.22653198242188,
+     "tail3": 71.22653198242188,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 68.57797241210938,
+     "tail10": 68.57797241210938,
+     "tail3": 68.57797241210938,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 67.11580657958984,
+     "tail10": 67.11580657958984,
+     "tail3": 67.11580657958984,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 75.5721206665039,
+     "tail10": 75.5721206665039,
+     "tail3": 75.5721206665039,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 90.11000061035156,
+     "tail10": 90.11000061035156,
+     "tail3": 90.11000061035156,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "JNJ",
+   "t_1d2y_s": 0.713,
+   "t_1d10d_s": 0.645,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 248.61000061035156,
+   "prev_close_fetched": 248.61000061035156,
+   "prev_close_exact": true,
+   "t_5m_s": 0.491,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 261.74908447265625,
+     "tail10": 261.74908447265625,
+     "tail3": 261.74908447265625,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 203.64450073242188,
+     "tail10": 203.64450073242188,
+     "tail3": 203.64450073242188,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 203.6740264892578,
+     "tail10": 203.6740264892578,
+     "tail3": 203.6740264892578,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 184.7074737548828,
+     "tail10": 184.7074737548828,
+     "tail3": 184.7074737548828,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 237.85227966308594,
+     "tail10": 237.85227966308594,
+     "tail3": 237.85227966308594,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 248.61000061035156,
+     "tail10": 248.61000061035156,
+     "tail3": 248.61000061035156,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "PG",
+   "t_1d2y_s": 0.599,
+   "t_1d10d_s": 0.49,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 153.0399932861328,
+   "prev_close_fetched": 153.0399932861328,
+   "prev_close_exact": true,
+   "t_5m_s": 0.469,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 150.28810119628906,
+     "tail10": 150.28810119628906,
+     "tail3": 150.28810119628906,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 144.9340362548828,
+     "tail10": 144.9340362548828,
+     "tail3": 144.9340362548828,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 140.18963623046875,
+     "tail10": 140.18963623046875,
+     "tail3": 140.18963623046875,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 147.09591674804688,
+     "tail10": 147.09591674804688,
+     "tail3": 147.09591674804688,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 151.3519744873047,
+     "tail10": 151.3519744873047,
+     "tail3": 151.3519744873047,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 153.0399932861328,
+     "tail10": 153.0399932861328,
+     "tail3": 153.0399932861328,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "JPM",
+   "t_1d2y_s": 0.664,
+   "t_1d10d_s": 0.555,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 331.42999267578125,
+   "prev_close_fetched": 331.42999267578125,
+   "prev_close_exact": true,
+   "t_5m_s": 0.698,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 331.31707763671875,
+     "tail10": 331.31707763671875,
+     "tail3": 331.31707763671875,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 307.1640930175781,
+     "tail10": 307.1640930175781,
+     "tail3": 307.1640930175781,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 316.1313781738281,
+     "tail10": 316.1313781738281,
+     "tail3": 316.1313781738281,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 305.2411193847656,
+     "tail10": 305.2411193847656,
+     "tail3": 305.2411193847656,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 285.2911376953125,
+     "tail10": 285.2911376953125,
+     "tail3": 285.2911376953125,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 331.42999267578125,
+     "tail10": 331.42999267578125,
+     "tail3": 331.42999267578125,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "HD",
+   "t_1d2y_s": 0.535,
+   "t_1d10d_s": 0.86,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 293.9200134277344,
+   "prev_close_fetched": 293.9200134277344,
+   "prev_close_exact": true,
+   "t_5m_s": 0.565,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 355.2818298339844,
+     "tail10": 355.2818298339844,
+     "tail3": 355.2818298339844,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 347.0908203125,
+     "tail10": 347.0908203125,
+     "tail3": 347.0908203125,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 336.7881164550781,
+     "tail10": 336.7881164550781,
+     "tail3": 336.7881164550781,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 369.13653564453125,
+     "tail10": 369.13653564453125,
+     "tail3": 369.13653564453125,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 350.3144836425781,
+     "tail10": 350.3144836425781,
+     "tail3": 350.3144836425781,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 293.9200134277344,
+     "tail10": 293.9200134277344,
+     "tail3": 293.9200134277344,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "AVGO",
+   "t_1d2y_s": 0.574,
+   "t_1d10d_s": 0.554,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 357.30999755859375,
+   "prev_close_fetched": 357.30999755859375,
+   "prev_close_exact": true,
+   "t_5m_s": 0.552,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 359.7948303222656,
+     "tail10": 359.7948303222656,
+     "tail3": 359.7948303222656,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 399.9859619140625,
+     "tail10": 399.9859619140625,
+     "tail3": 399.9859619140625,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 344.2030029296875,
+     "tail10": 344.2030029296875,
+     "tail3": 344.2030029296875,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 366.9019775390625,
+     "tail10": 366.9019775390625,
+     "tail3": 366.9019775390625,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 328.6686096191406,
+     "tail10": 328.6686096191406,
+     "tail3": 328.6686096191406,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 357.30999755859375,
+     "tail10": 357.30999755859375,
+     "tail3": 357.30999755859375,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "BRK-B",
+   "t_1d2y_s": 0.467,
+   "t_1d10d_s": 0.531,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 520.5900268554688,
+   "prev_close_fetched": 520.5900268554688,
+   "prev_close_exact": true,
+   "t_5m_s": 0.592,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 507.7799987792969,
+     "tail10": 507.7799987792969,
+     "tail3": 507.7799987792969,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 513.8099975585938,
+     "tail10": 513.8099975585938,
+     "tail3": 513.8099975585938,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 502.6499938964844,
+     "tail10": 502.6499938964844,
+     "tail3": 502.6499938964844,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 477.5400085449219,
+     "tail10": 477.5400085449219,
+     "tail3": 477.5400085449219,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 498.9800109863281,
+     "tail10": 498.9800109863281,
+     "tail3": 498.9800109863281,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 520.5900268554688,
+     "tail10": 520.5900268554688,
+     "tail3": 520.5900268554688,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  },
+  {
+   "symbol": "TSLA",
+   "t_1d2y_s": 0.618,
+   "t_1d10d_s": 0.605,
+   "rows_2y": 501,
+   "rows_10d": 10,
+   "overlap_rows": 10,
+   "overlap_max_abs_diff": 0.0,
+   "prev_close_derived": 375.2300109863281,
+   "prev_close_fetched": 375.2300109863281,
+   "prev_close_exact": true,
+   "t_5m_s": 0.527,
+   "pm_fields_exact": true,
+   "pm_read": "NEUTRAL",
+   "boundaries": [
+    {
+     "now": "2026-07-06",
+     "label": "Mon after Fri 2026-07-03 Independence-Day-observed holiday",
+     "bar_used_date": "2026-07-02",
+     "full": 393.45001220703125,
+     "tail10": 393.45001220703125,
+     "tail3": 393.45001220703125,
+     "exact": true
+    },
+    {
+     "now": "2025-12-01",
+     "label": "Mon after Fri 2025-11-28 early close (13:00 ET)",
+     "bar_used_date": "2025-11-28",
+     "full": 430.1700134277344,
+     "tail10": 430.1700134277344,
+     "tail3": 430.1700134277344,
+     "exact": true
+    },
+    {
+     "now": "2026-01-02",
+     "label": "Fri after Thu 2026-01-01 New Year holiday",
+     "bar_used_date": "2025-12-31",
+     "full": 449.7200012207031,
+     "tail10": 449.7200012207031,
+     "tail3": 449.7200012207031,
+     "exact": true
+    },
+    {
+     "now": "2025-11-03",
+     "label": "Mon after Sun 2025-11-02 DST fall-back",
+     "bar_used_date": "2025-10-31",
+     "full": 456.55999755859375,
+     "tail10": 456.55999755859375,
+     "tail3": 456.55999755859375,
+     "exact": true
+    },
+    {
+     "now": "2026-03-09",
+     "label": "Mon after Sun 2026-03-08 DST spring-forward",
+     "bar_used_date": "2026-03-06",
+     "full": 396.7300109863281,
+     "tail10": 396.7300109863281,
+     "tail3": 396.7300109863281,
+     "exact": true
+    },
+    {
+     "now": "2026-10-14",
+     "label": "today (regular session day)",
+     "bar_used_date": "2026-10-13",
+     "full": 375.2300109863281,
+     "tail10": 375.2300109863281,
+     "tail3": 375.2300109863281,
+     "exact": true
+    }
+   ],
+   "boundaries_all_exact": true
+  }
+ ]
+}
