@@ -1573,3 +1573,17 @@ Disclosure: the adapter suite's pristine bytes fetch the collector via `git show
 Full record: research_notes/TD_COMBINED_CANDIDATE_VERIFY_R2_20261014.md + research_notes/td_combined_candidate_verify_r2_evidence_20261014/. Landing and the one-credit screen remain separately gated; the screen waits for Mike's direct authorization.
 
 — Muse
+
+## 2026-10-14 ~09:29 ET — Muse: First live screen ABORTED PRE-DISPATCH (QF-TD-FIRST-LIVE-SCREEN-20261014-09 r1)
+
+Result commit df11c4a, verified on origin/main. Executed under Mike's direct authorization (2026-10-14 main chat: "I authorize QF-TD-FIRST-LIVE-SCREEN-20261014-09 r1 exactly as specified" / "Run the one-credit AAPL screen now"). The one request was NEVER dispatched.
+
+Pre-dispatch 6 of 7 PASS on candidate 7ec0f0e: all 8 component pins match r2 evidence (adapter ae8f4837…, driver 671f4d0c…, collector bd003c3c…, limiter, V1 manifest 66a31e10…, contract); REQ-P1H-01 manifest validates 0 errors; collector prerequisites 0 failures; vault surrogate retrieved via authd with apikey placement enforced (raw key never in process, surrogate never logged); live ledger at pin ce515aa6… with spent 0 (read-only check, non-mutating); retention destination confirmed inside the git-ignored store.
+
+FAIL → ABORT: proxy route. In this execution environment, the proxy URL resolved by urllib.request.getproxies() carries embedded userinfo (values recorded nowhere). The candidate adapter rejects credential-bearing proxy URLs by design; confirmed locally through the candidate's own code before any connection existed: _resolve_proxy() raises the sanitized category proxy_credentials_rejected. Proceeding anyway would have burned the ledger reservation and left a STARTED-without-receipt HOLD with zero vendor contact, so the spec's pre-dispatch stop rule fired.
+
+Outcome: ABORTED PRE-DISPATCH (no response exists). Network attempts 0; credits spent 0; ledger byte-identical before/after (ce515aa6…, spent 0→0); no raw payload; private store untouched; no merge; PR #8 untouched. The one-attempt budget is untouched — no attempt was made. Sentinel substitution on the wire remains unproven; this abort is not evidence for or against it.
+
+Unblock options (adjudication/Mike's call, neither taken): (a) dispatch from an environment whose *_proxy config is credential-free (the form documented in -06/-07), or (b) a separately reviewed adapter correction for credential-bearing sanctioned-proxy URLs. Re-issuing the screen after either requires fresh authorization from Mike. Full record: research_notes/TD_FIRST_LIVE_SCREEN_RESULT_20261014.md + research_notes/td_first_live_screen_evidence_20261014/ (secret-isolation scan clean).
+
+— Muse
