@@ -1764,3 +1764,19 @@ Correction recorded in report §5: an ephemeral /tmp/td14_venv holds pandas_mark
 Regression: collector 19/19 OK. Integration/adapter failures in this environment are diff-verified identical between base and candidate (pre-existing environment gaps; both suites were fully green in the -12 disposable environment). Unchanged: P2 v1 UNMET, SPT-08 NOT ATTEMPTED, SPOT8 HOLD, CONSTRUCTION_HOLD, PR #8; all protected artifacts byte-identical. Full record: research_notes/TD_CLOSED_SESSION_CLASSIFIER_OFFLINE_20261014.md + research_notes/td_closed_session_classifier_evidence_20261014/.
 
 — Muse
+
+## 2026-10-14 ~16:30 ET — Muse: Yahoo feed repair diagnostic DONE (QF-YAHOO-FEED-REPAIR-20261014-01 r1)
+
+Report commit fef1db4 (merged bb3e3b9), verified on origin/main. Verdict: repair-ready candidate delivered; NOT recovered; candidate alone honestly projected insufficient — one adjudicated follow-on needed.
+
+Measurements: Run 560 (2026-10-14T19:51:42Z) DEGRADED at 600.3s, 154/250 fresh, all 96 misses not_attempted (zero 429s/timeouts/retries) — dies in order at index 154 (COST). Run 559's artifact doesn't survive hourly overwrite (bounded by series + watchdog alert). Two weeks worsening: 203→193→184→183→172→154 fresh; 3.2s→3.90s per symbol. Ledger safe (runs=560, 21 closed).
+
+Bottleneck (measured): 6 serial yf.download calls/symbol ≈ 1500/cycle; per-call latency flat ~0.5–0.85s regardless of payload (fixed proxy/TLS/crumb overhead). CPU ~35ms/symbol. Negative controls: no amortization; batched threads=True no faster than serial; shared session no reliable gain. Fastest serial total 3.34s × 250 = 835s > 600s budget — structurally over budget.
+
+Equivalence gate (decisive): batch ≡ single byte-identical (diff 0.0, 12 symbols) for 1h/180d, 15m/5d, 5m/2d-prepost; NOT for 1d/2y and 1wk/5y (batch quantizes adjusted prices at float32 ulp ~6e-05 for dividend payers; raw values quantized, reconstruction impossible). Daily/weekly feed grades → those legs stay serial. Runtime modules (engine/m53/rules/universe) are untracked in the live worktree; only the harness is tracked.
+
+Candidate: branch feed-repair-qf-yahoo-20261014-01, commit 5a335c6 (harness only, aa0d5e7d…; kill switch FEED_BATCH_PREFETCH). Chunk prefetch for the three identical shapes + provably-identical thin-history aux skip; all misses fall through to the existing serial path with identical accounting; guards/constants untouched. Offline tests caught a real bug pre-delivery (prefetch bypassed mark_fresh). Mocked: rows/regime identical (healthy/batch-hole/batch-raises); wire calls 194→100; 429 trips the global guard identically (disclosed post-trip snapshot difference for prefetched symbols = genuinely validated in-cycle data). Live bounded diagnostic: 40 symbols, 2.77s/symbol, 40/40 rows, 0 errors.
+
+Recovery NOT MET: candidate-only projection ~691s → ~205–215/250. Follow-on proposals: P1 subset-dedup premarket 1d/10d from the 1d/2y frame (→~545s; degraded-case behavior change), P2 defer observational fetches for non-qualified rows (→~407s; record-semantics change), P3 schedule de-overlap (unproven), P4 retest daily/weekly batching on a yfinance upgrade. "Recovered" still requires two consecutive scheduled HEALTHY cycles after adoption. State integrity: state.json sha unchanged (af1c53e5…), live harness untouched, no cycle disturbed. For adjudication: (a) adopt candidate as-is, (b) adopt + authorize P1/P2 follow-on, or (c) hold. Full record: research_notes/YAHOO_FEED_REPAIR_20261014.md + research_notes/yahoo_feed_repair_evidence_20261014/.
+
+— Muse
