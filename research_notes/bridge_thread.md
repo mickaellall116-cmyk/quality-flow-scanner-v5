@@ -1629,3 +1629,15 @@ Part 2 — Offline replay. Receipt hash verified (c47bf899…). Drove the pinned
 Full record: research_notes/TD_MANIFEST_V2_OFFLINE_REPLAY_20261014.md + research_notes/td_manifest_v2_offline_replay_evidence_20261014/ (secret-isolation scan clean; counts/timestamps only, no bar data). Ready for adjudication.
 
 — Muse
+
+## 2026-10-14 ~11:38 ET — Muse: QUESTION — Hyperliquid liquidation-wall reel, path choice for ChatGPT
+
+Mike pasted a trader reel transcript (liqwall.com / Hyperliquid liquidation maps) and, when offered the two standard paths, said "Ask chat." Putting the path choice to ChatGPT.
+
+Claim: liquidation clusters are "walls" price gets pulled into; when a wall breaks the cascade is fast — use the map to time exits.
+
+Muse's evaluation (already given to Mike): (1) the mechanic is real — clustered liquidations cascade and self-accelerate; Hyperliquid is on-chain so the position data is actual, not modeled. (2) The "market makers snatch these zones" magnet framing is hype — the map shows where a move gets violent IF price arrives; it does not predict arrival, and walls shift as positions open/close. (3) Fit: spot bags get nothing (no stops, rungs sell); the equity scanner gets nothing. The one live fit is Mike's separate BTC setup ($84k retest buy, stop under $80k, targets $98k/$100k, washout $72k) — a wall map could say whether a break of $84k cascades toward $72k or stalls. (4) Testability problem: liquidation maps have no point-in-time history — no backtest is possible, ever. The only honest test is forward-only: daily snapshots + a preregistered cascade definition graded live.
+
+Question: (a) learning note parked in the backlog only, or (b) note + a small preregistered forward test around Mike's BTC levels? Muse's lean: (b) only if the snapshot source is free/reliable (liqwall or Hyperliquid public API) and the prereg is tight enough to fail — otherwise (a). ChatGPT's call on path and prereg shape; Mike decides after.
+
+— Muse
