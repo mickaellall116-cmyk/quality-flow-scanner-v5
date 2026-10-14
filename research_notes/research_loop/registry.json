@@ -880,9 +880,9 @@
         "hypothesis_derived": "UNKNOWN"
       },
       "rule_spec_version": "UNKNOWN",
-      "code_pin": "UNKNOWN",
-      "dataset_pin": "UNKNOWN",
-      "output_pin": "UNKNOWN",
+      "code_pin": "pine_claims_crt/run_crt.py (sign-corrected) sha256 1cbf4c4c0d1f1635bfec5ec40182627a4c30d69c30512879de122098ff499451; original Oct 12 file sha256 bf587693 (pre-correction, commit 3c7ddb8); patch = two sign lines only (pine_claims_crt/sign_fix_patch_20261013.diff)",
+      "dataset_pin": "pine_claims_crt/cache_manifest_20261013.json sha256 2e5e7c2339843a36de6f28c61b357d2eaa586649e64be9df2d3ad9b7715bd73e — manifest of the 14 SHA-256-pinned cache files (pine_entry_timing_backtest/cache/h4_<SYM>.pkl) pinned BEFORE the correction run; replacement run on newly pinned cache, NOT a reproduction of the Oct 12 run",
+      "output_pin": "pine_claims_crt/crt_results_corrected_20261013.json sha256 6faa02e8029823344a5e465c9138811381bb0fe7e8c0549bb33d86a267de3f96",
       "dependencies": [
         "EXTERNAL: immutable preregistration, authorization/budget and code/data/output evidence required",
         "EXTERNAL: data permissions/provenance gate; retained Tiingo processing HOLD"
@@ -890,38 +890,44 @@
       "next_action": "None. Closed. No retune or rerun.",
       "attempted_variations": [
         {
-          "variation_id": "reported-long",
-          "description": "811 long trades, 14 watchlist names, 4H Oct2023-Sep2026; exact rules UNKNOWN",
-          "result": "Reported -0.358R; not independently accepted",
-          "verdict_ref": "Slack 1791810723.802559"
+          "variation_id": "BASE",
+          "description": "Frozen baseline (Mode B), 14 watchlist names, 4H, corrected run",
+          "result": "237 trades / +0.239R @25bps (re-ran exactly)",
+          "verdict_ref": "commit 553e660; CRT_SIGN_CORRECTION_RESULT_20261013.md"
         },
         {
-          "variation_id": "reported-stricter-sweep",
-          "description": "Stricter sweep definition UNKNOWN",
-          "result": "Reported -0.261R; not independently accepted",
-          "verdict_ref": "Slack 1791810723.802559"
+          "variation_id": "CRT-LONG",
+          "description": "Candle Range Theory long leg, corrected signs",
+          "result": "811 trades / -0.037R @25bps; validation half -0.108R; -0.234R @50bps",
+          "verdict_ref": "commit 553e660"
         },
         {
-          "variation_id": "reported-short",
-          "description": "Short leg; exact rules and trial count UNKNOWN",
-          "result": "Reported +0.165R; HOOD dominates; not independently accepted",
-          "verdict_ref": "Slack 1791810723.802559"
+          "variation_id": "CRT-LONG-MARGIN",
+          "description": "CRT long with stricter (margin) sweep definition, corrected signs",
+          "result": "518 trades / +0.020R @25bps",
+          "verdict_ref": "commit 553e660"
         },
         {
-          "variation_id": "reported-combined",
-          "description": "Combination rule UNKNOWN",
-          "result": "Reported +0.001R; not independently accepted",
-          "verdict_ref": "Slack 1791810723.802559"
+          "variation_id": "CRT-SHORT",
+          "description": "CRT short leg, corrected signs (original +0.165R was the sign-inversion artifact)",
+          "result": "835 trades / -1.002R @25bps",
+          "verdict_ref": "commit 553e660"
+        },
+        {
+          "variation_id": "CRT-LS",
+          "description": "CRT long+short pooled, corrected signs",
+          "result": "1116 trades / -0.602R @25bps",
+          "verdict_ref": "commit 553e660"
         }
       ],
       "trial_budget": {
-        "allocated": "UNKNOWN",
-        "used": "UNKNOWN",
-        "unit": "UNKNOWN"
+        "allocated": "30 min (sign-correction work order QF-CRT-SIGN-CORRECTION-20261013-01 r1)",
+        "used": "17 min, one pass; fixtures old code 0/5, corrected code 5/5",
+        "unit": "minutes"
       },
       "repair_budget": {
-        "allocated_rounds": 0,
-        "used_rounds": 0
+        "allocated_rounds": 1,
+        "used_rounds": 1
       },
       "baseline_design": "Reported Mode B +0.239R / 237 trades; immutable lineage and clearance UNKNOWN",
       "costs": "Reported 25bps; exact cost/execution model UNKNOWN",
@@ -944,11 +950,11 @@
       ],
       "failure_reason": "Claim fails frozen gate on corrected numbers; original run additionally invalidated by sign-inversion implementation defect",
       "failure_market": "Reported 14 watchlist equities; exact universe UNKNOWN",
-      "failure_timeframe": "Reported 4H",
-      "failure_data_source": "UNKNOWN",
-      "failure_strategy_family": "crt_sweep_return",
+      "failure_timeframe": "4H",
+      "failure_data_source": "yfinance-derived corrected 4H cache (pine_entry_timing_backtest/cache/h4_<SYM>.pkl; documented yfinance 1H resampled to 09:30/13:30 ET bins; NOT backtest_cache/v3; no Tiingo input)",
+      "failure_strategy_family": "candle_range_sweep_return_intraday",
       "task_revision": "intake-r1",
-      "evidence_pin": "slack:1791810723.802559",
+      "evidence_pin": "research_notes/CRT_SIGN_CORRECTION_RESULT_20261013.md (sha256 f0a4354603cdf99d2785c273706b921061fc482400b845f2f7cdf17ba9fa9206) + research_notes/CRT_EVIDENCE_PACKAGE_20261013.md (sha256 cfc9ea9165673b05d32ee2b78edbaea1e2d0919f02a71d1f8b110fc4c3bb4765); commit 553e660",
       "authorization": "Read-only intake under 6044381696; user Continue work 2026-10-12. No execution authorization inferred."
     },
     {
@@ -1489,6 +1495,16 @@
       "scope": "copies and documents only; no reruns, no collector/candidate modification, no frozen-code edits, no vendor calls, no deletion",
       "decision": "6136948813",
       "allocation_status": "TD packaging inside the remaining original 30-min review allocation per 6136948813"
+    },
+    {
+      "task_id": "QF-CRT-REGISTRY-CLOSE-20261013-02",
+      "revision": "r1",
+      "state": "COMPLETE — structured bookkeeping finished in place on EXP-20261012-CRT-4H: code_pin/output_pin/evidence_pin/dataset_pin set from hashed artifacts, trial/repair budget actuals recorded (17 of 30 min, one pass; fixtures 0/5 -> 5/5), attempted_variations replaced with corrected-run variants, failure tags set (family candle_range_sweep_return_intraday; timeframe 4H; data source yfinance-derived corrected 4H cache). State/verdict NOT changed (CLOSED-FAIL, blob bd2fd37f lineage); no duplicate entry created.",
+      "evidence_pin": "research_notes/CRT_SIGN_CORRECTION_RESULT_20261013.md + pine_claims_crt/cache_manifest_20261013.json; commit 553e660",
+      "budget": "10 min bookkeeping cap",
+      "scope": "registry.json structured fields only; no rerun, no code/data changes, no vendor calls, no state/verdict change",
+      "decision": "6155160682",
+      "allocation_status": "Bookkeeping remainder of QF-CRT-REGISTRY-CLOSE-20261013-02 r1; closed"
     }
   ]
 }
