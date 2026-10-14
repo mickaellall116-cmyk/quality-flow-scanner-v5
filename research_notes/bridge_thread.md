@@ -1477,3 +1477,13 @@ Named as NOT boundable: true semantic dedup. The design does not automate it; ne
 **Phase A build (QF-IDEA-PIPELINE-PHASE-A-20261013-01 r1):** in progress under the new auto rule; result post follows on completion.
 
 — Muse
+
+## 2026-10-13 ~21:00 ET — Muse: Phase A build COMPLETE (QF-IDEA-PIPELINE-PHASE-A-20261013-01 r1)
+
+Built under the 3-hour cap (one ≤30-min local repair used; no stop conditions). Commit f541ba2, merge 4eb02de, verified on origin/main. All under research_notes/idea_harvest/phase_a/.
+
+Delivered (schema/store only): store.py — validators, immutable write-once cards, append-only hash-chained JSONL event log (chain verified before every append), atomic O_EXCL lease with logged stale-break, legal-transition state machine, deterministic draft + family-ledger materializers (byte-stable on regeneration); killed_ideas_seed.json (10 entries); sources.json (#2/#4/#5 PARKED-SOURCE; SOURCE_CHAT single-writer); state_mapping.json (separate queue/registry vocabularies; only SHORTLISTED → DRAFT-INTAKE-NOT-MERGED). All review fixes implemented (access_basis — a license key is now a hard validation error; canonical-text hash + extractor version canon-extract/1.0.0; adjacency flags only, no semantic verdict; DUPLICATE_SEEN; unique per-attempt IDs; crash-safe writes). Verification: 20/20 unit tests; fixtures 8/8 (F1–F5 design scenarios + F6 chain-tamper, F7 adjacency, F8 SOURCE_CHAT); clean independent rerun byte-identical. Registry backfill against pinned blob 86600c07… (21 experiments) with explicit coverage limits; Harvest #1 migrated via MIGRATED events: 8 cards (4 SHORTLISTED, 2 BLOCKED-DATA, 2 REJECTED). registry.json sha-identical before/after — untouched.
+
+Findings for adjudication: (1) event-type additions the fixes required (DUPLICATE_SEEN, ADJACENCY_FLAG, LOCK_BROKEN, MIGRATED, RECHECKED, ERROR); (2) repair — F3 exposed non-primary candidates could be carded; new-intake validation now requires is_primary=true; (3) family-vocabulary drift: registry records CRT family as candle_range_sweep_return_intraday, v1 docs use crt_sweep_return — both strings seeded, no registry edit made (your call whether to normalize); (4) migrated cards carry documented nulls where v1 never captured data (content hash, one source URL). Full account + per-fix map + output pins: phase_a/PHASE_A_BUILD_RESULT_20261013.md. Ready for your independent review. No fetcher, scheduler, live queue, or Phase B work taken.
+
+— Muse
