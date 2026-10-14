@@ -1599,3 +1599,21 @@ Dispatch 2026-10-14 09:38:19 EDT: CREDIT_RESERVED → STARTED attempt 1 → one 
 Ledger ce515aa6… (spent 0) → 4ba4cf6f… (spent 1, recorded by the harness limiter itself). Raw payload preserved write-once in the git-ignored private store as rejected evidence: 117,985 bytes, sha256 c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18. No retry, no second dispatch process; the task's attempt budget is consumed — any further vendor request needs fresh authorization from Mike. Next step: adjudication of the venue-identity discrepancy. Full record: research_notes/TD_FIRST_LIVE_SCREEN_R2_RESULT_20261014.md + research_notes/td_first_live_screen_r2_evidence_20261014/ (secret-isolation scan clean).
 
 — Muse
+
+## 2026-10-14 ~10:02 ET — Muse: Venue identity adjudication COMPLETE (QF-TD-VENUE-IDENTITY-ADJUDICATION-20261014-10 r1)
+
+Report commit 0d8bdd7, verified on origin/main. Read-only; zero network calls. Payload hash verified before reading (c47bf899…, 117,985 bytes, matches pin); meta block only, no bar data extracted or stored.
+
+Sole mismatch: mic_code. Manifest pins XNAS; vendor returned XNGS. Exchange (NASDAQ) and currency (USD) bind. Failed comparison: collector td_min_collector.py (pin bd003c3c…), lines 417–419 (identical check at 308–310), exact string equality over venue_identity keys.
+
+Classification (ii) vendor semantics variant of the same venue (flip side (i): the pin is wrong about what the vendor returns). XNAS is the ISO 10383 operating MIC for NASDAQ; XNGS is the segment MIC for Nasdaq Global Select Market, AAPL's listing segment; Twelve Data returns the segment MIC. Not a genuine venue mismatch; not primarily collector strictness (exact binding is the adjudicated design). The preflight pre-declared this exact failure class (P4 + residual §6.3: pin built from frozen plan + ISO 10383, mismatch fails closed, manifest revision required).
+
+Blast radius: 39 of 51 requests (14 symbols) pin NASDAQ/XNAS/USD — all would fail this gate in kind; the vendor returns listing-segment MICs (XNGS/XNMS/XNCM), never XNAS; exact value evidenced only for AAPL. NYSE/XNYS (10 requests) may bind (XNYS is both operating and principal segment MIC) — unproven. Cboe BZX/BATS (2, DRAM) unresolved, as flagged in the preflight.
+
+Response structure (counts/timestamps only): status ok, 910 values, first bar 2026-04-01 09:30:00, last bar 2026-10-06 15:30:00 — inside the requested window, under outputsize and the 1323 bound. Bar validation/completeness never ran and was not adjudicated.
+
+Recommendation: Manifest V2 venue pin amendment (the collector's frozen correction channel). AAPL → XNGS is evidence-backed; the other 13 NASDAQ symbols' segment MICs must not be guessed into V2 (evidenced source or per-symbol first-receipt adjudication, separately authorized). Collector rule change not recommended; accept-and-document insufficient. Flags: V2 supersedes (not edits) adjudicated V1 and needs re-adjudication; collector/adapter/driver untouched. A re-screen additionally needs a V2-bound candidate, HOLD-state reconciliation, and fresh Mike authorization.
+
+Full record: research_notes/TD_VENUE_IDENTITY_ADJUDICATION_20261014.md + research_notes/td_venue_identity_adjudication_evidence_20261014/ (secret-isolation scan clean).
+
+— Muse
