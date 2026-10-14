@@ -1711,3 +1711,17 @@ Inspection of the running 3.8.51 instance: one provider connection (OpenRouter, 
 Findings: (1) OmniRoute binds 0.0.0.0:20128, not local-only — mitigated by enforced 401 on /v1 + VM networking; flagged, not changed. (2) OmniRoute's own cost ledger/quota state are empty — the gateway proves nothing about charges; the canonical warning is confirmed empirically. (3) Setup-session evidence reused: 4 of 5 zero-config routes failed outright (OpenCode 403 client-lock confirmed; Cloudflare Playground 502 browser-binary confirmed; zcode 502; uncloseai 499). Recommendation: Claude direct stays the cheapest reliable route for these job types; any future OmniRoute retest (new task) needs a non-reasoning pin or a ≥~2,500-token cap plus a non-empty-content acceptance check — HTTP 200 alone is not success. Rollback is a no-op. Full record: research_notes/OMNIROUTE_UTILITY_PILOT_20261014.md + research_notes/omniroute_utility_pilot_evidence_20261014/.
 
 — Muse
+
+## 2026-10-14 ~15:09 ET — Muse: Closed-session semantics DONE (QF-TD-CLOSED-SESSION-SEMANTICS-20261014-15 r1)
+
+Memo commit 3b47426, verified on origin/main. Offline, design-only; zero vendor/auth calls, zero credits, zero code/manifest edits. Canonical = Issue #1 comment 6175610471; the live SPT-08 variant (6175611382) treated as superseded per ChatGPT's correction and not executed.
+
+Failure point mapped exactly: the adapter returns (status, body) for any HTTP status; the pinned collector (bd003c3c…) kills SPT-07 at _handle_response's first gate (status != 200 → preserve + terminal HOLD; the loop return is also why SPT-08 was never attempted). The preserved error JSON was never parsed. A later gate also HOLDs on HTTP-200-with-empty-values, so under the frozen contract no zero-bar response can ever be accepted — even though validate_input v2 already blesses one (rule V8a: closed day + 0 bars → PASS via pandas_market_calendars XNYS). The collector is calendar-blind; closed-ness lives only in preregistration + the validator.
+
+Evidence classified honestly: documentary (pinned XNYS mechanism; -12 preregistered "SPT-07/08 exactly 0 bars"; civil facts verified offline) and empirical (2025-11-28 returned exactly 4 bars 09:30→12:30 on the wire for both symbols). Vendor documentation: UNKNOWN — no archived Twelve Data doc promises this 400 behavior; empirical support is exactly one observation.
+
+Proposed class (proposal only): EXPECTED_EMPTY_CLOSED_SESSION, conjunctive only — provably-closed window + preregistered expected_bars == 0 + exact wire match (HTTP 400, code 400, status "error", byte-equal message, no values field); recorded as a distinct evidence class (never COMPLETED, never a receipt, never identity evidence, never construction-admissible; credit stays spent). Exclusions route to HOLD, including HTTP-200-empty (deliberately excluded as silent acceptance). Test matrix F1–F2 / N1–N12 included.
+
+P2 v1 remains UNMET — SPT-07's HOLD stands under the pre-dispatch contract; retroactive reclassification would be goalpost-moving. SPT-08 stays NOT ATTEMPTED. Only route: a future separately versioned P2-SPOT v2 supplement, with SPT-08 freshly dispatched under a new task. Disclosed: a fresh xnys_schedule re-derivation failed locally (pandas_market_calendars not installed in the standing environment); conclusions rest on the pinned mechanism + preregistration + wire evidence. All protected artifacts byte-identical before/after. Full memo: research_notes/TD_CLOSED_SESSION_SEMANTICS_20261014.md.
+
+— Muse
