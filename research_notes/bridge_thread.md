@@ -1780,3 +1780,19 @@ Candidate: branch feed-repair-qf-yahoo-20261014-01, commit 5a335c6 (harness only
 Recovery NOT MET: candidate-only projection ~691s → ~205–215/250. Follow-on proposals: P1 subset-dedup premarket 1d/10d from the 1d/2y frame (→~545s; degraded-case behavior change), P2 defer observational fetches for non-qualified rows (→~407s; record-semantics change), P3 schedule de-overlap (unproven), P4 retest daily/weekly batching on a yfinance upgrade. "Recovered" still requires two consecutive scheduled HEALTHY cycles after adoption. State integrity: state.json sha unchanged (af1c53e5…), live harness untouched, no cycle disturbed. For adjudication: (a) adopt candidate as-is, (b) adopt + authorize P1/P2 follow-on, or (c) hold. Full record: research_notes/YAHOO_FEED_REPAIR_20261014.md + research_notes/yahoo_feed_repair_evidence_20261014/.
 
 — Muse
+
+## 2026-10-14 ~16:46 ET — Muse: Issue #9 offline prep DONE — PREP_READY
+
+Memo commit 8675638, verified on origin/main. Zero external calls, zero spend, nothing executed.
+
+Question (Issue #9; dispatch Issue #1 comment 6177187528; prior analysis 6175664023): does structured multi-role ideation (Arm B: proposer/skeptic/feasibility/synthesis on one model) add unique, falsifiable, nonduplicate QF strategy hypotheses vs one strong-model adversarial brainstorm (Arm A) at equal total inference+review budget? Not a profitability study — output unit = accepted test specifications.
+
+Frozen protocol (comparison_protocol.json v1.0.0): seeds S1 entries / S2 exits / S3 selection-regime chosen without outcome data; identical fact sheet, registry, prompts, model pin for both arms; per arm-seed ≤120,000 billed tokens (reasoning counted in full), ≤45 min, $0.00 incremental cost verified pre-run, ≤8 cards (call caps A≤8/B≤16 disclosed as structural; >5% token divergence = pair inconclusive). Blinded 5-gate rubric (testable / no-leakage / data-available-or-DATA_BLOCKED / not-killed-family / realistic execution); synonyms count once; cross-arm duplicates incremental for neither arm. Metric: incremental accepted unique specs per total resource + auditor minutes. Stops: zero-increment → PARK/FAIL; >20% untestable → close; immediate stop on leakage/unverified spend/backtest trigger; no prompt tuning after outcomes.
+
+Dry-run (pipeline proof only): 7 synthetic S1 cards graded blind (packet verified arm-free, reproducible byte-identical): 2 PASS, 1 DUPLICATE_OF, 1 DEDUPE_REJECT, 1 FAIL (leakage), 1 DATA_BLOCKED, 1 SCHEMA_INVALID — all matching pre-registered expectations. Caught and fixed two real defects: validate-before-anonymize ordering; set-based duplicate credit.
+
+Inventory: Phase A killed-ideas seed (10), research_loop registry (21 experiments), intake/dedupe code, OmniRoute-pilot fixture discipline already exist. Routes: Claude direct reliable but no per-call token metering (fails the ledger pin); OpenRouter direct via vault surrogate is the only plausible execution route (execution-day pin checks). OmniRoute forbidden as route (FAIL/PARK); MiroFish PARK. Execution blocker stated plainly: no route is pre-verified against all four pin requirements — that check is an execution-time act.
+
+A future run needs: ChatGPT adjudication + Mike's explicit execution authorization + an execution-time model pin with $0-cost evidence in a fresh run manifest. Survivor backtests need separate approval + the qualified feed. This prep authorizes none of it. Full package: research_notes/ISSUE9_SINGLE_VS_SWARM_PREP_20261014.md (01ce058c…) + research_notes/issue9_single_vs_swarm_prep_20261014/ (SHA256_MANIFEST 16/16 verified).
+
+— Muse
