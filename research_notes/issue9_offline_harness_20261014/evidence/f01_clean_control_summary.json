@@ -1,0 +1,56 @@
+{
+ "run_id": "FX-RUN",
+ "arm": "A",
+ "seed": "S1",
+ "provider": "openrouter",
+ "model": "vendor/example-model:free",
+ "model_version": "2026-01-01",
+ "calls": [
+  {
+   "call_index": 0,
+   "role": null,
+   "prompt_sha256": null,
+   "input_tokens": 1000,
+   "output_tokens": 200,
+   "reasoning_tokens": 50,
+   "billed_tokens": 1250,
+   "wall_time_s": 5.0,
+   "cost_usd": 0,
+   "started_at_utc": "2026-11-02T00:00:05Z+0m"
+  },
+  {
+   "call_index": 1,
+   "role": null,
+   "prompt_sha256": null,
+   "input_tokens": 1000,
+   "output_tokens": 200,
+   "reasoning_tokens": 50,
+   "billed_tokens": 1250,
+   "wall_time_s": 5.0,
+   "cost_usd": 0,
+   "started_at_utc": "2026-11-02T00:00:10Z+0m"
+  },
+  {
+   "call_index": 2,
+   "role": null,
+   "prompt_sha256": null,
+   "input_tokens": 1000,
+   "output_tokens": 200,
+   "reasoning_tokens": 50,
+   "billed_tokens": 1250,
+   "wall_time_s": 5.0,
+   "cost_usd": 0,
+   "started_at_utc": "2026-11-02T00:00:15Z+0m"
+  }
+ ],
+ "totals": {
+  "calls": 3,
+  "billed_tokens": 3750,
+  "wall_time_s": 15.0,
+  "cost_usd": 0,
+  "candidate_cards_emitted": 0,
+  "auditor_review_minutes": 0
+ },
+ "budget_ref": "ISSUE9-SINGLE-VS-SWARM-PROTOCOL v1.0.0",
+ "cost_verified_zero_incremental": true
+}

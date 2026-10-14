@@ -1,0 +1,325 @@
+{
+ "task": "QF-ISSUE9-OFFLINE-HARNESS-20261014-03 r1",
+ "fixtures_total": 29,
+ "fixtures_matched": 29,
+ "all_match": true,
+ "results": [
+  {
+   "id": "F00-network-denial",
+   "mode": "socket layer patched before any dispatch",
+   "expect": "NETWORK_DENIED",
+   "got": "NETWORK_DENIED",
+   "checks": {
+    "socket_raises": true
+   },
+   "match": true
+  },
+  {
+   "id": "F01-clean-control",
+   "mode": "3 compliant calls, guard PASS first",
+   "expect": "COMPLETE",
+   "got": "COMPLETE",
+   "checks": {
+    "guard_pass": true,
+    "invocations_3": true,
+    "accepted_3": true,
+    "chain_ok": true,
+    "billed_3750": true,
+    "schema_keys": true
+   },
+   "match": true
+  },
+  {
+   "id": "F02-empty-content-reasoning",
+   "mode": "HTTP200, content empty, reasoning populated (pilot failure mode)",
+   "expect": "EMPTY_CONTENT",
+   "got": "EMPTY_CONTENT",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true,
+    "reasoning_counted": true,
+    "content_not_substituted": true
+   },
+   "match": true
+  },
+  {
+   "id": "F03-http200-empty",
+   "mode": "HTTP200, content null",
+   "expect": "EMPTY_CONTENT",
+   "got": "EMPTY_CONTENT",
+   "checks": {
+    "accepted_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F04-unmetered-reasoning",
+   "mode": "usage lacks reasoning_tokens",
+   "expect": "UNMETERED_REASONING",
+   "got": "UNMETERED_REASONING",
+   "checks": {
+    "accepted_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F05-missing-usage",
+   "mode": "response carries no usage object",
+   "expect": "MISSING_USAGE",
+   "got": "MISSING_USAGE",
+   "checks": {
+    "accepted_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F06-inconsistent-usage",
+   "mode": "billed 165 != computed 160",
+   "expect": "INCONSISTENT_USAGE",
+   "got": "INCONSISTENT_USAGE",
+   "checks": {
+    "accepted_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F07-negative-usage",
+   "mode": "input_tokens = -5",
+   "expect": "NEGATIVE_USAGE",
+   "got": "NEGATIVE_USAGE",
+   "checks": {
+    "accepted_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F08-nonzero-price",
+   "mode": "catalog prompt price 0.0001 (guard, plan-level)",
+   "expect": "BLOCK:PRICE_NONZERO",
+   "got": "BLOCK:PRICE_NONZERO",
+   "checks": {
+    "reason_present": true
+   },
+   "match": true
+  },
+  {
+   "id": "F09-unknown-price",
+   "mode": "catalog prompt price null (guard)",
+   "expect": "BLOCK:PRICE_UNKNOWN",
+   "got": "BLOCK:PRICE_UNKNOWN",
+   "checks": {
+    "reason_present": true
+   },
+   "match": true
+  },
+  {
+   "id": "F10-price-evidence-expired",
+   "mode": "evidence expired before run day",
+   "expect": "PRICE_EVIDENCE_EXPIRED",
+   "got": "PRICE_EVIDENCE_EXPIRED",
+   "checks": {
+    "invocations_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F10b-price-evidence-missing",
+   "mode": "no evidence_ref (guard)",
+   "expect": "BLOCK:COST_NOT_VERIFIED",
+   "got": "BLOCK:COST_NOT_VERIFIED",
+   "checks": {
+    "reason_present": true
+   },
+   "match": true
+  },
+  {
+   "id": "F11-model-alias-swap",
+   "mode": "response model differs from pin",
+   "expect": "MODEL_MISMATCH",
+   "got": "MODEL_MISMATCH",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F12-silent-fallback",
+   "mode": "response reports fallback_used",
+   "expect": "FALLBACK_DETECTED",
+   "got": "FALLBACK_DETECTED",
+   "checks": {
+    "accepted_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F13-model-version-unverifiable",
+   "mode": "no provider version metadata",
+   "expect": "MODEL_VERSION_UNVERIFIABLE",
+   "got": "MODEL_VERSION_UNVERIFIABLE",
+   "checks": {
+    "accepted_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F14-timeout-no-retry",
+   "mode": "transport times out; spare response unused",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "invocations_1": true,
+    "one_outcome": true,
+    "billed_0": true
+   },
+   "match": true
+  },
+  {
+   "id": "F15-quota-exhaustion",
+   "mode": "daily quota cap 3 (injected), 5 planned",
+   "expect": "QUOTA_EXHAUSTED",
+   "got": "QUOTA_EXHAUSTED",
+   "checks": {
+    "invocations_3": true,
+    "recorded_3": true
+   },
+   "match": true
+  },
+  {
+   "id": "F16a-call-cap-A",
+   "mode": "arm A cap 8, runtime fed 9 calls",
+   "expect": "CEILING_CALLS",
+   "got": "CEILING_CALLS",
+   "checks": {
+    "invocations_at_cap": true,
+    "recorded_at_cap": true
+   },
+   "match": true
+  },
+  {
+   "id": "F16b-call-cap-B",
+   "mode": "arm B cap 16, runtime fed 17 calls",
+   "expect": "CEILING_CALLS",
+   "got": "CEILING_CALLS",
+   "checks": {
+    "invocations_at_cap": true,
+    "recorded_at_cap": true
+   },
+   "match": true
+  },
+  {
+   "id": "F17-token-cap-boundary",
+   "mode": "119,500 billed; next reservation 600 -> 120,100 > 120,000",
+   "expect": "CEILING_TOKENS",
+   "got": "CEILING_TOKENS",
+   "checks": {
+    "invocations_1": true,
+    "billed_119500": true
+   },
+   "match": true
+  },
+  {
+   "id": "F18-wall-time-boundary",
+   "mode": "elapsed 46 min > 45 min cap at call 2",
+   "expect": "CEILING_WALL",
+   "got": "CEILING_WALL",
+   "checks": {
+    "invocations_1": true
+   },
+   "match": true
+  },
+  {
+   "id": "F19-response-overrun",
+   "mode": "output 5000 > reserved 100",
+   "expect": "OVERRUN",
+   "got": "OVERRUN",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true,
+    "quarantined": true,
+    "usage_counted": true
+   },
+   "match": true
+  },
+  {
+   "id": "F20-crash-restart-orphan",
+   "mode": "crash after response, before outcome append; restart refuses",
+   "expect": "ORPHANED",
+   "got": "ORPHANED",
+   "checks": {
+    "crashed": true,
+    "resume_blocked": true,
+    "invocations_2_total": true,
+    "recorded_1": true,
+    "billed_counted_once": true
+   },
+   "match": true
+  },
+  {
+   "id": "F21-multiday-no-evidence",
+   "mode": "day1 quota exhausted; day2 resume without reset evidence",
+   "expect": "QUOTA_RESET_UNVERIFIED",
+   "got": "QUOTA_RESET_UNVERIFIED",
+   "checks": {
+    "day1_quota_stop": true,
+    "day2_dispatches": true,
+    "reset_recorded": true
+   },
+   "match": true
+  },
+  {
+   "id": "F22-multiday-with-evidence",
+   "mode": "day1 quota exhausted; day2 resume with reset evidence",
+   "expect": "COMPLETE",
+   "got": "COMPLETE",
+   "checks": {
+    "day1_quota_stop": true,
+    "day2_dispatches": true,
+    "reset_recorded": true
+   },
+   "match": true
+  },
+  {
+   "id": "F23-prompt-contamination",
+   "mode": "call 2 prompt unregistered/cross-arm",
+   "expect": "PROMPT_CONTAMINATION",
+   "got": "PROMPT_CONTAMINATION",
+   "checks": {
+    "invocations_1": true,
+    "recorded_1": true
+   },
+   "match": true
+  },
+  {
+   "id": "F24-preflight-forbidden-route",
+   "mode": "route=omniroute (guard)",
+   "expect": "BLOCK:ROUTE_FORBIDDEN",
+   "got": "BLOCK:ROUTE_FORBIDDEN",
+   "checks": {
+    "reason_present": true
+   },
+   "match": true
+  },
+  {
+   "id": "F25-seed-order",
+   "mode": "S2 first blocked; S1,S2,S3 accepted in order",
+   "expect": "SEED_ORDER_VIOLATION",
+   "got": "SEED_ORDER_VIOLATION",
+   "checks": {
+    "order_ok": true
+   },
+   "match": true
+  },
+  {
+   "id": "F26-nonzero-cost-response",
+   "mode": "response cost_usd = 0.01",
+   "expect": "NONZERO_COST",
+   "got": "NONZERO_COST",
+   "checks": {
+    "accepted_0": true
+   },
+   "match": true
+  }
+ ]
+}
