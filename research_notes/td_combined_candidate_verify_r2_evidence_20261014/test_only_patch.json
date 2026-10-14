@@ -1,0 +1,9 @@
+{
+  "scope": "TEST-ONLY, applied ONLY to the git-archive export copy. The candidate commit 7ec0f0e and both source commits carry the pristine bytes.",
+  "file": "research_notes/td_transport_adapter/test_transport_adapter.py (export copy)",
+  "sha256_before": "b7fa2dc922ac0395171bb25a033d2c78d1a53ea0d962f169eee142bf0cf8e1c9",
+  "sha256_after": "972fbb5c04e9694096b9465eb63efaae832a7c19b0d43eb70f6604337c4e7a9d",
+  "change": "4 fetch sites (CollectorLevel.setUp, BindingLevel vault round-trip, DispatchGateLevel.setUp, ProxyLevel vault round-trip) replaced `raw = subprocess.run(['git','-C',str(REPO),'show', f'{COLLECTOR_COMMIT}:{COLLECTOR_GIT_PATH}'], ...).stdout` with `raw = drv.COLLECTOR_PATH.read_bytes()`. The following assert hashlib.sha256(raw).hexdigest() == drv.COLLECTOR_SHA256 is UNCHANGED at all 4 sites, so the pin check still gates every use. No production file (driver.py, td_http_transport_adapter.py, td_min_collector.py, harness) was modified anywhere.",
+  "diff_file": "test_only_patch.diff",
+  "consequence": "The adapter suite's results.json source_sha256 for the test file is 972fbb5c\u2026 instead of r1's b7fa2dc9\u2026; production source hashes in results.json are identical to r1 (adapter ae8f4837\u2026, driver 671f4d0c\u2026)."
+}

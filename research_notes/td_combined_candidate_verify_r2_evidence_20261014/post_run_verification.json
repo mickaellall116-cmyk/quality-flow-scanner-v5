@@ -1,0 +1,11 @@
+{
+  "export_post_run_hash_check": "sha256sum -c against the 659-file pre-run baseline: exactly ONE mismatch \u2014 research_notes/td_transport_adapter/test_transport_adapter.py, i.e. the disclosed test-only patch (baseline was snapshotted before patching). All other 658 files byte-identical; export file count unchanged at 659; zero new files in the export (all suite outputs directed to /tmp/td_r2_run/out).",
+  "live_ledger_before": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+  "live_ledger_after": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+  "live_ledger_unchanged": true,
+  "vendor_calls": 0,
+  "credits": 0,
+  "spend": 0,
+  "main_branch": "untouched (HEAD 60cc5f7 before and after; candidate lives only on refs/heads/td-combined-candidate-20261014)",
+  "pr8": "untouched"
+}

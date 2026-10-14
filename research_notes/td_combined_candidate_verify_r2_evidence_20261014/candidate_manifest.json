@@ -1,0 +1,31 @@
+{
+  "task": "QF-TD-COMBINED-CANDIDATE-VERIFY-20261014-08 r2 (repair 1 of 1)",
+  "candidate": {
+    "commit": "7ec0f0efce7d9ce668233bf8ee55d7503ec47c0a",
+    "tree": "51e5f90e9d1f50dd874bb6f0450e961747cb6962",
+    "parents": [
+      "f55b982a51ad683020099259c105841345b2f3e5"
+    ],
+    "ref": "refs/heads/td-combined-candidate-20261014 (origin, ls-remote verified)",
+    "base": "f55b982 (Side B: proxy-corrected adapter/driver/manifest, main)",
+    "added_from": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f (Side A: PR #8 collector)",
+    "diff_vs_base": "9 files changed, 1070 insertions(+), 0 deletions \u2014 all additions under research_notes/td_lifecycle_repair_candidate/"
+  },
+  "added_files_sha256": {
+    "research_notes/td_lifecycle_repair_candidate/INTEGRATION_REVIEW_20261013.md": "701809292a05151a36ca1f284de9ecaf982bfe14b0ff00e0eb4df2b277a34ce8",
+    "research_notes/td_lifecycle_repair_candidate/README.md": "f441a0387c58961a446fe7e6367f24fd67697aa23b183730abcfc717dc50dbcb",
+    "research_notes/td_lifecycle_repair_candidate/integration_requirements.lock": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+    "research_notes/td_lifecycle_repair_candidate/integration_results.json": "ba8000ec79354992882baf5bf346bb58d8af9da25bbb8993b9ddcd2c32d96f3c",
+    "research_notes/td_lifecycle_repair_candidate/integration_test_output.txt": "1b6693859f10b44f5d6b9a0684e6a4c5bb7c9c138b2eb26af6deb208ff5b3836",
+    "research_notes/td_lifecycle_repair_candidate/td_min_collector.py": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+    "research_notes/td_lifecycle_repair_candidate/test_lifecycle_repair.py": "1421f52ee5bfb11b5f53128c59269e1bf114228046aaf0b3676c1636652a03c4",
+    "research_notes/td_lifecycle_repair_candidate/test_output.txt": "2ad14c15539015f607667753d973a904189977d59dc4ec385cb64bebe07bc370",
+    "research_notes/td_lifecycle_repair_candidate/test_pinned_integration.py": "f1f195170edc1c070d5ca682fe48ad4cd32bc54f5053072f1b3511a396865386"
+  },
+  "added_files_note": "Every added file's sha256 equals its f64d12f blob sha256 exactly (verified in the candidate worktree before commit and again in the git-archive export for td_min_collector.py).",
+  "side_b_production_pins_in_candidate": {
+    "research_notes/td_transport_adapter/driver.py": "671f4d0ce25a76bc4967f1ca8cbb16fcda037f0e0ce71529c2aa385dce33fed1",
+    "research_notes/td_transport_adapter/td_http_transport_adapter.py": "ae8f4837b3d11a53990cfd56f207d5ec96c40b8fe4c1280f15fb08452cc43343",
+    "research_notes/td_transport_adapter/test_transport_adapter.py": "b7fa2dc922ac0395171bb25a033d2c78d1a53ea0d962f169eee142bf0cf8e1c9 (candidate commit bytes; export copy test-only-patched, see test_only_patch.json)"
+  }
+}

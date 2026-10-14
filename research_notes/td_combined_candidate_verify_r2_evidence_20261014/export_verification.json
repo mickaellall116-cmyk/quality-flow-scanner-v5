@@ -1,0 +1,11 @@
+{
+  "method": "git archive 7ec0f0efce7d9ce668233bf8ee55d7503ec47c0a | tar -x -C /tmp/td_combined_candidate_r2_export",
+  "export_file_count": 659,
+  "commit_tree_entry_count": 659,
+  "dot_git_entries_found": 0,
+  "alternates_files_found": 0,
+  "exported_collector_sha256": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+  "exported_ledger_copy_sha256": "ce515aa6fd53b297b693762e4236b2ea203874641ce745e482ba76daf1a67c59",
+  "git_access_during_runs": "All export runs (default-path proof, 3 suites, probe) executed with a PATH shim 'git' that logs and exits 1 placed first in PATH. Log after all runs: EMPTY \u2014 git was never invoked. PYTHONDONTWRITEBYTECODE=1.",
+  "self_contained": true
+}

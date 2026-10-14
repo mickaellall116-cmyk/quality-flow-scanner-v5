@@ -1,0 +1,27 @@
+359,361c359
+<         raw = subprocess.run(
+<             ["git", "-C", str(REPO), "show", f"{COLLECTOR_COMMIT}:{COLLECTOR_GIT_PATH}"],
+<             check=True, capture_output=True).stdout
+---
+>         raw = drv.COLLECTOR_PATH.read_bytes()  # r2 TEST-ONLY PATCH (export copy only): replaces `git show f64d12f:...` fetch; sha256 pin assert below unchanged
+616,619c614
+<         raw = subprocess.run(
+<             ["git", "-C", str(REPO), "show",
+<              f"{COLLECTOR_COMMIT}:{COLLECTOR_GIT_PATH}"],
+<             check=True, capture_output=True).stdout
+---
+>         raw = drv.COLLECTOR_PATH.read_bytes()  # r2 TEST-ONLY PATCH (export copy only): replaces `git show f64d12f:...` fetch; sha256 pin assert below unchanged
+697,700c692
+<         raw = subprocess.run(
+<             ["git", "-C", str(REPO), "show",
+<              f"{COLLECTOR_COMMIT}:{COLLECTOR_GIT_PATH}"],
+<             check=True, capture_output=True).stdout
+---
+>         raw = drv.COLLECTOR_PATH.read_bytes()  # r2 TEST-ONLY PATCH (export copy only): replaces `git show f64d12f:...` fetch; sha256 pin assert below unchanged
+1197,1200c1189
+<             raw = subprocess.run(
+<                 ["git", "-C", str(REPO), "show",
+<                  f"{COLLECTOR_COMMIT}:{COLLECTOR_GIT_PATH}"],
+<                 check=True, capture_output=True).stdout
+---
+>             raw = drv.COLLECTOR_PATH.read_bytes()  # r2 TEST-ONLY PATCH (export copy only): replaces `git show f64d12f:...` fetch; sha256 pin assert below unchanged

@@ -1,0 +1,88 @@
+{
+  "probe": "sentinel-compatibility",
+  "task": "QF-TD-COMBINED-DISPATCH-PREFLIGHT-20261014-06 r1; updated QF-TD-SENTINEL-PROXY-ADAPTER-20261014-07 r1",
+  "environment": {
+    "http_proxy": "http://hatch-egress-proxy:3128",
+    "https_proxy": "http://hatch-egress-proxy:3128",
+    "HTTP_PROXY": "http://hatch-egress-proxy:3128",
+    "HTTPS_PROXY": "http://hatch-egress-proxy:3128",
+    "ALL_PROXY": "http://hatch-egress-proxy:3128",
+    "all_proxy": "http://hatch-egress-proxy:3128",
+    "SSL_CERT_FILE": "/run/hatch/egress-tls/ca-bundle.pem",
+    "NODE_EXTRA_CA_CERTS": "/run/hatch/egress-tls/ca-bundle.pem",
+    "REQUESTS_CA_BUNDLE": "/run/hatch/egress-tls/ca-bundle.pem",
+    "no_proxy_includes_loopback": true,
+    "urllib_getproxies": {
+      "no": "://None:None",
+      "node_use_env": "://None:None",
+      "https": "http://hatch-egress-proxy:3128",
+      "http": "http://hatch-egress-proxy:3128",
+      "all": "http://hatch-egress-proxy:3128"
+    }
+  },
+  "static": {
+    "adapter_file": "td_http_transport_adapter.py",
+    "mentions_of_proxy": 33,
+    "calls_set_tunnel": true,
+    "resolves_proxy_via_getproxies": true,
+    "http_client_has_set_tunnel_method": true,
+    "note": "http.client only tunnels when set_tunnel() is called explicitly; it never consults *_proxy environment variables (that behavior lives in urllib.request). The -07 adapter resolves the sanctioned proxy via urllib.request.getproxies for surrogate requests only, and fails closed with no direct fallback."
+  },
+  "dynamic": {
+    "control_urllib_reached": "proxy",
+    "control_proxy_hits": 1,
+    "adapter_status": 200,
+    "adapter_proxy_hits_delta": 0,
+    "adapter_target_hits_delta": 1,
+    "https_construction_fixture_key": {
+      "constructions": [
+        [
+          "api.twelvedata.com",
+          443
+        ]
+      ],
+      "tunnel": null,
+      "transport_outcome": "RuntimeError"
+    },
+    "https_construction_surrogate": {
+      "constructions": [
+        [
+          "proxy.invalid",
+          3128
+        ]
+      ],
+      "tunnel": [
+        "api.twelvedata.com",
+        443
+      ],
+      "transport_outcome": "RuntimeError"
+    }
+  },
+  "tls": {
+    "default_verify_cafile": "/run/hatch/egress-tls/ca-bundle.pem",
+    "ssl_cert_file_env": "/run/hatch/egress-tls/ca-bundle.pem",
+    "context_verify_mode": "2",
+    "context_check_hostname": true,
+    "matches_platform_egress_bundle": true
+  },
+  "verdict": {
+    "direct_path_receives_substitution_in_this_environment": false,
+    "surrogate_requests_route_via_connect_proxy": true,
+    "fixture_key_requests_stay_direct": true,
+    "basis": "Approved egress/substitution in this sandbox is the explicit proxy configured via the *_proxy environment variables (hatch-egress-proxy:3128). The -06 finding stands for the direct path: it never passes the substitution point. The -07 correction routes vault-surrogate requests through that proxy by construction: with https_proxy set, the surrogate transport constructs its connection to the PROXY and set_tunnel()s to the vendor host before TLS (see https_construction_surrogate), while non-surrogate requests keep the direct construction (see https_construction_fixture_key, and the loopback dynamic proof: proxy hits delta 0 for the direct path). Fail-closed behavior with zero direct fallback is proven by the adapter suite's ProxyLevel tests. End-to-end substitution on the wire remains proven only by the first live screen (-06 section 4 one-step check).",
+    "dynamic_summary": {
+      "adapter_proxy_hits_delta": 0,
+      "adapter_target_hits_delta": 1,
+      "surrogate_constructions": [
+        [
+          "proxy.invalid",
+          3128
+        ]
+      ],
+      "surrogate_tunnel": [
+        "api.twelvedata.com",
+        443
+      ]
+    }
+  }
+}

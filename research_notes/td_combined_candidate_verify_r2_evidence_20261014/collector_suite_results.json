@@ -1,0 +1,9 @@
+{
+  "suite": "test_lifecycle_repair.py (f64d12f bytes, unmodified)",
+  "command": "python -m unittest test_lifecycle_repair (cwd = exported td_lifecycle_repair_candidate)",
+  "tests_run": 19,
+  "passed": 19,
+  "success": true,
+  "stderr_tail": "Ran 19 tests in 0.399s \u2014 OK",
+  "note": "Deps stubbed by the suite's own design (lifecycle isolation), same as r1; counted as the third suite as tasked, not as integration proof."
+}

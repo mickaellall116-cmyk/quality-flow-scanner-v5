@@ -1,0 +1,9 @@
+{
+  "collector_path_default": "/tmp/td_combined_candidate_r2_export/research_notes/td_lifecycle_repair_candidate/td_min_collector.py",
+  "collector_path_exists": true,
+  "collector_sha256": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+  "collector_pin": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+  "load_collector_module_default": "OK",
+  "module_file": "/tmp/td_combined_candidate_r2_export/research_notes/td_lifecycle_repair_candidate/td_min_collector.py",
+  "module_name": "td_min_collector"
+}
