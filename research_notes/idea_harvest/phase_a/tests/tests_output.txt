@@ -1,0 +1,26 @@
+=== UNIT TESTS (tests/test_store.py) ===
+test_canonical_text_stable (__main__.TestCanonicalAndKeys.test_canonical_text_stable) ... ok
+test_content_hash_changes_with_text (__main__.TestCanonicalAndKeys.test_content_hash_changes_with_text) ... ok
+test_dedup_key_normalization (__main__.TestCanonicalAndKeys.test_dedup_key_normalization) ... ok
+test_card_immutability (__main__.TestIngestAndTransitions.test_card_immutability) ... ok
+test_duplicate_seen_no_new_id (__main__.TestIngestAndTransitions.test_duplicate_seen_no_new_id) ... ok
+test_forbidden_targets_refused (__main__.TestIngestAndTransitions.test_forbidden_targets_refused) ... ok
+test_ingest_rank_shortlist_flow (__main__.TestIngestAndTransitions.test_ingest_rank_shortlist_flow) ... ok
+test_registry_write_refused (__main__.TestIngestAndTransitions.test_registry_write_refused) ... ok
+test_seed_family_with_justification_flags_not_verdicts (__main__.TestIngestAndTransitions.test_seed_family_with_justification_flags_not_verdicts) ... ok
+test_seed_reject_and_terminal (__main__.TestIngestAndTransitions.test_seed_reject_and_terminal) ... ok
+test_transition_requires_reason (__main__.TestIngestAndTransitions.test_transition_requires_reason) ... ok
+test_chain_tamper_detected (__main__.TestLeaseAndChain.test_chain_tamper_detected) ... ok
+test_second_writer_refused_live_lease (__main__.TestLeaseAndChain.test_second_writer_refused_live_lease) ... ok
+test_draft_materialization_deterministic (__main__.TestMaterializers.test_draft_materialization_deterministic) ... ok
+test_ledger_materialization_deterministic (__main__.TestMaterializers.test_ledger_materialization_deterministic) ... ok
+test_empty_limitations_fail (__main__.TestValidation.test_empty_limitations_fail) ... ok
+test_license_key_forbidden (__main__.TestValidation.test_license_key_forbidden) ... ok
+test_parked_source_refused_for_new_intake (__main__.TestValidation.test_parked_source_refused_for_new_intake) ... ok
+test_secondary_cannot_be_primary (__main__.TestValidation.test_secondary_cannot_be_primary) ... ok
+test_unspecified_timeframe_fails (__main__.TestValidation.test_unspecified_timeframe_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.028s
+
+OK

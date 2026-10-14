@@ -1,0 +1,9 @@
+[F1] PASS — Duplicate ingestion: 1 card (IDEA-2026-0001), 2 DUPLICATE_SEEN events, no extra IDs allocated, chain verifies
+[F2] PASS — Restart idempotency: stale lease broken + logged, chain verified, crashed idea IDEA-2026-0001 kept once, next ID is 0002, log append-only
+[F3] PASS — Source failure: run completed; SOURCE_DOWN logged; parked-source and unverifiable/secondary-primary candidates dropped; 1 healthy card only
+[F4] PASS — Rejected idea (failure memory): identical claim -> DUPLICATE_SEEN of the rejected record; variant -> DEDUPE_REJECT citing KILLED-ML-PRICE-FORECASTING; original rejection event byte-identical; nothing shortlisted
+[F5] PASS — Blocked gate (scope enforcement): PREREGISTERED + ELIGIBLE transitions refused and logged as ERROR events; registry write refused (ScopeViolation); idea remains SHORTLISTED; scratch registry hash unchanged
+[F6] PASS — Chain tamper refusal: edited log line detected by hash chain; writer aborts instead of repairing silently
+[F7] PASS — Adjacency flag (no automated semantic verdict): known-family candidate ingested with ADJACENCY_FLAG; mechanism difference left to a human, never verdicted
+[F8] PASS — SOURCE_CHAT enters only through the single writer: SOURCE_CHAT is a channel record (not a scraped source); store has exactly one ingest path and zero network code
+FIXTURES: 8/8 PASS

@@ -1,0 +1,41 @@
+{
+  "claim": "Recent overnight (close-to-open) and intraday (open-to-close) return components carry opposite persistent premia: high-overnight-return names continue overnight and reverse intraday.",
+  "short_title": "Overnight vs intraday return decomposition (tug of war)",
+  "hypothesis": "Recent overnight (close-to-open) and intraday (open-to-close) return components carry opposite persistent premia: high-overnight-return names continue overnight and reverse intraday.",
+  "strategy_family": "overnight_intraday_decomposition",
+  "timeframe": "Daily formation (~1-month trailing components), monthly hold",
+  "mechanically_definable": true,
+  "pit_data": "yes",
+  "pit_inputs": [
+    "Daily OHLC for the frozen 250-symbol universe (already handled)"
+  ],
+  "source": {
+    "authors": "Lou, Polk & Skouras",
+    "title": "A Tug of War: Overnight versus Intraday Expected Returns",
+    "venue": "Journal of Financial Economics 134 (2019), 192–213",
+    "url": "https://researchonline.lse.ac.uk/id/eprint/87481/",
+    "accessed_at": "2026-10-13T15:06:00-04:00",
+    "access_basis": "open-access author manuscript (LSE Research Online)",
+    "evidence": "Working-paper record and abstract state the overnight/intraday expected-return decomposition and its persistence.",
+    "content_hash": null,
+    "content_hash_note": "not captured in v1; canonical-text hashing begins with Phase A intake",
+    "extractor_version": "none-v1",
+    "is_primary": true,
+    "source_class": "SRC-OA-REPOSITORIES",
+    "doi": "",
+    "parked_primary_source": true
+  },
+  "limitations": [
+    "Long-only legs reported separately; intraday-reversal leg as avoid/underweight (short-side daily is a known structural loser here).",
+    "Dedupe PASS: no registry experiment tests return-component decomposition.",
+    "Primary source class is PARKED-SOURCE under Phase A rules (sources #2/#4/#5): a primary source of record must replace the summary/mirror before this card can be newly shortlisted on that primary alone."
+  ],
+  "lane_fit": "daily",
+  "created_at": "2026-10-13T15:06:00-04:00",
+  "created_by": "idea-harvest-weekly",
+  "card_origin": "v1-migration",
+  "v1_draft_id": "DRAFT-20261013-IH01-OVERNIGHT-INTRADAY-DECOMPOSITION",
+  "idea_id": "IDEA-2026-0001",
+  "claim_normalized": "recent overnight close to open and intraday open to close return components carry opposite persistent premia high overnight return names continue overnight and reverse intraday",
+  "dedup_key": "sha256:6129bf85eac7179fe1856e0fc60d0e2e13ee19189e35f4aaff7964332766fed5"
+}

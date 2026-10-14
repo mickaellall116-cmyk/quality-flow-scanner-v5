@@ -1,0 +1,41 @@
+{
+  "claim": "Stocks with the highest maximum daily return over the past month underperform the following month (lottery-demand overpricing).",
+  "short_title": "MAX effect — avoid lottery-like stocks",
+  "hypothesis": "Stocks with the highest maximum daily return over the past month underperform the following month (lottery-demand overpricing).",
+  "strategy_family": "lottery_max",
+  "timeframe": "Daily returns; 1-month MAX formation, 1-month hold",
+  "mechanically_definable": true,
+  "pit_data": "yes",
+  "pit_inputs": [
+    "Daily closes for a broad cross-section (250-symbol universe)"
+  ],
+  "source": {
+    "authors": "Bali, Cakici & Whitelaw",
+    "title": "Maxing Out: Stocks as Lotteries and the Cross-Section of Expected Returns",
+    "venue": "Journal of Financial Economics 99 (2011), 427–446",
+    "url": "https://paperswithbacktest.com/api/paper/maxing-out-stocks-as-lotteries-and-the-cross-section-of-expected/pdf",
+    "accessed_at": "2026-10-13T15:06:00-04:00",
+    "access_basis": "secondary replication summary PDF (Papers With Backtest) — v1 fetched the paper PDF via this mirror",
+    "evidence": "Harvest #1: claim as published (MAX effect); working paper also at SSRN abstract 1262416.",
+    "content_hash": null,
+    "content_hash_note": "not captured in v1; canonical-text hashing begins with Phase A intake",
+    "extractor_version": "none-v1",
+    "is_primary": true,
+    "source_class": "SRC-PAPERS-WITH-BACKTEST",
+    "doi": "",
+    "parked_primary_source": true
+  },
+  "limitations": [
+    "Implemented long-only as an exclusion/underweight filter, judged at portfolio level inside the stack per standing rules.",
+    "Dedupe PASS: no registry entry covers lottery/skewness characteristics; distinct from killed TOP/composite filters.",
+    "Primary source class is PARKED-SOURCE under Phase A rules (sources #2/#4/#5): a primary source of record must replace the summary/mirror before this card can be newly shortlisted on that primary alone."
+  ],
+  "lane_fit": "daily",
+  "created_at": "2026-10-13T15:06:00-04:00",
+  "created_by": "idea-harvest-weekly",
+  "card_origin": "v1-migration",
+  "v1_draft_id": "DRAFT-20261013-IH02-LOTTERY-MAX",
+  "idea_id": "IDEA-2026-0002",
+  "claim_normalized": "stocks with the highest maximum daily return over the past month underperform the following month lottery demand overpricing",
+  "dedup_key": "sha256:647a50fd4af2150d24a3f5545dd17409708f149134029e964b4ee1a50b18d9cb"
+}

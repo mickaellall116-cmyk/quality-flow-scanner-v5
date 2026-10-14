@@ -1,0 +1,41 @@
+{
+  "claim": "The market index's first half-hour return positively predicts its last half-hour return the same day.",
+  "short_title": "Market intraday momentum (first half-hour predicts last half-hour)",
+  "hypothesis": "The market index's first half-hour return positively predicts its last half-hour return the same day.",
+  "strategy_family": "intraday_momentum",
+  "timeframe": "Intraday 30-minute windows; one trade/day, flat overnight",
+  "mechanically_definable": true,
+  "pit_data": "yes",
+  "pit_inputs": [
+    "BLOCKED: qualified 30-minute bar history (intraday data route decision)"
+  ],
+  "source": {
+    "authors": "Gao, Han, Li & Zhou",
+    "title": "Market Intraday Momentum",
+    "venue": "Journal of Financial Economics (2018); SSRN 2552752",
+    "url": "https://paperswithbacktest.com/api/paper/intraday-momentum-the-first-half-hour-return-predicts-the-last-half-hour-return/pdf",
+    "accessed_at": "2026-10-13T15:06:00-04:00",
+    "access_basis": "secondary replication summary PDF (Papers With Backtest) — v1 fetched the paper PDF via this mirror",
+    "evidence": "Harvest #1: first half-hour return predicts the last half-hour return.",
+    "content_hash": null,
+    "content_hash_note": "not captured in v1; canonical-text hashing begins with Phase A intake",
+    "extractor_version": "none-v1",
+    "is_primary": true,
+    "source_class": "SRC-PAPERS-WITH-BACKTEST",
+    "doi": "",
+    "parked_primary_source": true
+  },
+  "limitations": [
+    "Ranked 5th solely on the data prerequisite; one trade/day is the most cost-survivable intraday shape.",
+    "Dedupe PASS: distinct from ORB EXP-20261007-ORB-15M (different signal, window, claim).",
+    "Primary source class is PARKED-SOURCE under Phase A rules (sources #2/#4/#5): a primary source of record must replace the summary/mirror before this card can be newly shortlisted on that primary alone."
+  ],
+  "lane_fit": "daily",
+  "created_at": "2026-10-13T15:06:00-04:00",
+  "created_by": "idea-harvest-weekly",
+  "card_origin": "v1-migration",
+  "v1_draft_id": "DRAFT-20261013-IH05-INTRADAY-MOMENTUM",
+  "idea_id": "IDEA-2026-0005",
+  "claim_normalized": "the market index s first half hour return positively predicts its last half hour return the same day",
+  "dedup_key": "sha256:cdec442628e72920369ff7489f38bbc435556f472f69e93933a86495b196d060"
+}

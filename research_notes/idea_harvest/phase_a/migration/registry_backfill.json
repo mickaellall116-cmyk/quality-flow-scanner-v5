@@ -1,0 +1,67 @@
+{
+  "artifact": "registry-backfill/1.0.0",
+  "closed_families": [
+    "candle_range_sweep_return_intraday",
+    "ml_price_forecasting"
+  ],
+  "coverage_limits": [
+    "Backfill covers ONLY the pinned blob above (21 experiments). Later registry edits are invisible to this artifact until the ledger is re-materialized against a new pin.",
+    "3 registry entries have experiment_id=null; they cannot serve as last_test_ref and carry no family attribution.",
+    "failure_strategy_family is populated for 7 of 21 entries (5 are the string 'N/A', 9 are null). Families below are therefore a LOWER BOUND on the tested-family record.",
+    "Family attribution overrides applied: {\"EXP-20261012-TIMESFM-SPIKE\": {\"family\": \"ml_price_forecasting\", \"basis\": \"Registry failure_strategy_family is null for this entry; family attributed from the design package §2.3 worked example and the Harvest #1 dedupe record, both of which treat EXP-20261012-TIMESFM-SPIKE as the ml_price_forecasting family test.\"}}",
+    "Registry state is free-text: one entry's state field contains a full verdict sentence (EXP-20261012-TIMESFM-SPIKE). Test counting uses the documented substring rules in store._registry_test_counts (FAIL in state, or verdict starting with FAIL; PASS in state and not failed).",
+    "HOLD/REVIEW/proposal states count toward tests_run for their family but toward neither tests_failed nor tests_passed."
+  ],
+  "family_test_counts": {
+    "candle_range_sweep_return_intraday": {
+      "last_test_ref": "EXP-20261012-CRT-4H",
+      "tests_failed": 1,
+      "tests_passed": 0,
+      "tests_run": 1
+    },
+    "data_feed_infrastructure": {
+      "last_test_ref": "EXP-20261012-TD-LIFECYCLE-REPAIR",
+      "tests_failed": 0,
+      "tests_passed": 1,
+      "tests_run": 1
+    },
+    "data_governance": {
+      "last_test_ref": "EXP-20261012-TIINGO-DISPOSITION-PROPOSAL",
+      "tests_failed": 0,
+      "tests_passed": 1,
+      "tests_run": 2
+    },
+    "fundamental-momentum-selection": {
+      "last_test_ref": "EXP-20261007-VCP-1A-INVENTORY",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 1
+    },
+    "ml_price_forecasting": {
+      "last_test_ref": "EXP-20261012-TIMESFM-SPIKE",
+      "tests_failed": 1,
+      "tests_passed": 0,
+      "tests_run": 1
+    },
+    "orb": {
+      "last_test_ref": "EXP-20261007-ORB-15M",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 1
+    },
+    "trend_4h (V5.4)": {
+      "last_test_ref": "EXP-20261012-V54-LEDGER-RECONCILIATION",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 1
+    }
+  },
+  "generated_at": "2026-10-13T20:55:24-04:00",
+  "generator": "phase-a-store/1.0.0",
+  "registry_pin": {
+    "blob_sha256": "sha256:86600c0775bccb9d6429a76e5527db3e4dbac50e3cb9f757ecf1c3fb5c98bdac",
+    "byte_size": 90606,
+    "experiment_count": 21,
+    "path": "research_notes/research_loop/registry.json"
+  }
+}

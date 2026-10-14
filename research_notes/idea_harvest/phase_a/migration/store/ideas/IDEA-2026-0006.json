@@ -1,0 +1,39 @@
+{
+  "claim": "Absolute overnight returns strongly predict the following day's intraday volatility, with little reverse predictability — a one-way volatility forecast usable for sizing/stops.",
+  "short_title": "Overnight volatility predicts next-day intraday volatility (asymmetry)",
+  "hypothesis": "Absolute overnight returns strongly predict the following day's intraday volatility, with little reverse predictability — a one-way volatility forecast usable for sizing/stops.",
+  "strategy_family": "volatility_forecast",
+  "timeframe": "Daily forecast of intraday volatility",
+  "mechanically_definable": true,
+  "pit_data": "yes",
+  "pit_inputs": [
+    "BLOCKED: intraday bar history at length (same route decision as IH05)"
+  ],
+  "source": {
+    "authors": "Zadourian & Grassberger",
+    "title": "Asymmetry of Cross Correlations Between Intraday and Overnight Volatilities",
+    "venue": "arXiv:1509.08079 (2015)",
+    "url": "https://arxiv.org/pdf/1509.08079",
+    "accessed_at": "2026-10-13T15:06:00-04:00",
+    "access_basis": "arXiv full-text PDF",
+    "evidence": "Paper states the one-way overnight->intraday volatility predictability.",
+    "content_hash": null,
+    "content_hash_note": "not captured in v1; canonical-text hashing begins with Phase A intake",
+    "extractor_version": "none-v1",
+    "is_primary": true,
+    "source_class": "SRC-ARXIV-QFIN",
+    "doi": ""
+  },
+  "limitations": [
+    "Not a directional edge; candidate input to position sizing / stop placement, which are currently static.",
+    "Dedupe PASS: no registry experiment covers volatility forecasting or sizing overlays."
+  ],
+  "lane_fit": "daily",
+  "created_at": "2026-10-13T15:06:00-04:00",
+  "created_by": "idea-harvest-weekly",
+  "card_origin": "v1-migration",
+  "v1_draft_id": "DRAFT-20261013-IH06-VOLATILITY-FORECAST",
+  "idea_id": "IDEA-2026-0006",
+  "claim_normalized": "absolute overnight returns strongly predict the following day s intraday volatility with little reverse predictability a one way volatility forecast usable for sizing stops",
+  "dedup_key": "sha256:ecf01af2169f8342fcb4b3f6a21d00c37e5f5b98c8faa7a0579be1d0eab6afcf"
+}

@@ -1,0 +1,179 @@
+{
+  "families": [
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 1,
+      "last_test_ref": null,
+      "shortlisted_count": 1,
+      "strategy_family": "anchoring_momentum",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 0,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "closed",
+      "intake_count": 0,
+      "last_test_ref": "EXP-20261012-CRT-4H",
+      "shortlisted_count": 0,
+      "strategy_family": "candle_range_sweep_return_intraday",
+      "tests_failed": 1,
+      "tests_passed": 0,
+      "tests_run": 1,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 0,
+      "last_test_ref": "EXP-20261012-TD-LIFECYCLE-REPAIR",
+      "shortlisted_count": 0,
+      "strategy_family": "data_feed_infrastructure",
+      "tests_failed": 0,
+      "tests_passed": 1,
+      "tests_run": 1,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 0,
+      "last_test_ref": "EXP-20261012-TIINGO-DISPOSITION-PROPOSAL",
+      "shortlisted_count": 0,
+      "strategy_family": "data_governance",
+      "tests_failed": 0,
+      "tests_passed": 1,
+      "tests_run": 2,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 0,
+      "last_test_ref": "EXP-20261007-VCP-1A-INVENTORY",
+      "shortlisted_count": 0,
+      "strategy_family": "fundamental-momentum-selection",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 1,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 1,
+      "last_test_ref": null,
+      "shortlisted_count": 0,
+      "strategy_family": "intraday_momentum",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 0,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 1,
+      "last_test_ref": null,
+      "shortlisted_count": 1,
+      "strategy_family": "lottery_max",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 0,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 1,
+      "family_state": "closed",
+      "intake_count": 1,
+      "last_test_ref": "EXP-20261012-TIMESFM-SPIKE",
+      "shortlisted_count": 0,
+      "strategy_family": "ml_price_forecasting",
+      "tests_failed": 1,
+      "tests_passed": 0,
+      "tests_run": 1,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 0,
+      "last_test_ref": "EXP-20261007-ORB-15M",
+      "shortlisted_count": 0,
+      "strategy_family": "orb",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 1,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 1,
+      "last_test_ref": null,
+      "shortlisted_count": 1,
+      "strategy_family": "overnight_intraday_decomposition",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 0,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 0,
+      "last_test_ref": "EXP-20261012-V54-LEDGER-RECONCILIATION",
+      "shortlisted_count": 0,
+      "strategy_family": "trend_4h (V5.4)",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 1,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 1,
+      "family_state": "open",
+      "intake_count": 1,
+      "last_test_ref": null,
+      "shortlisted_count": 0,
+      "strategy_family": "trend_momentum",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 0,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 1,
+      "last_test_ref": null,
+      "shortlisted_count": 0,
+      "strategy_family": "volatility_forecast",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 0,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    },
+    {
+      "dedupe_reject_count": 0,
+      "family_state": "open",
+      "intake_count": 1,
+      "last_test_ref": null,
+      "shortlisted_count": 1,
+      "strategy_family": "volume_premium",
+      "tests_failed": 0,
+      "tests_passed": 0,
+      "tests_run": 0,
+      "updated_at": "2026-10-13T20:55:24-04:00"
+    }
+  ],
+  "generated_from": {
+    "generator": "phase-a-store/1.0.0",
+    "queue_log_events": 25,
+    "registry_blob_sha256": "sha256:86600c0775bccb9d6429a76e5527db3e4dbac50e3cb9f757ecf1c3fb5c98bdac",
+    "registry_experiments": 21
+  },
+  "ledger_version": "family-ledger/1.0.0"
+}

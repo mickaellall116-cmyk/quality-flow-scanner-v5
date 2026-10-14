@@ -1,0 +1,38 @@
+{
+  "claim": "Plain cross-sectional / time-series return momentum (12-1 momentum, TSMOM) earns a tradable premium.",
+  "short_title": "Plain return momentum (v1 dedupe reject)",
+  "hypothesis": "Plain cross-sectional / time-series return momentum (12-1 momentum, TSMOM) earns a tradable premium.",
+  "strategy_family": "trend_momentum",
+  "timeframe": "Daily/weekly momentum formation",
+  "mechanically_definable": true,
+  "pit_data": "yes",
+  "pit_inputs": [],
+  "source": {
+    "authors": "not recorded in v1",
+    "title": "Plain return momentum (generic claim class)",
+    "venue": "generic — no single source recorded in v1",
+    "url": null,
+    "accessed_at": "2026-10-13T15:06:00-04:00",
+    "access_basis": "not captured — no source URL recorded in v1 harvest",
+    "evidence": "Harvest #1 record: generic momentum on a new lookback or universe is a retune of the most-tested family.",
+    "content_hash": null,
+    "content_hash_note": "not captured in v1; canonical-text hashing begins with Phase A intake",
+    "extractor_version": "none-v1",
+    "is_primary": false,
+    "source_class": null,
+    "doi": "",
+    "url_note": "source.url is null: v1 recorded no URL for this rejected generic claim class"
+  },
+  "limitations": [
+    "Rejected at dedupe in Harvest #1; migrated for failure memory only.",
+    "No source URL was recorded in the v1 harvest for this generic claim class."
+  ],
+  "lane_fit": "none",
+  "created_at": "2026-10-13T15:06:00-04:00",
+  "created_by": "idea-harvest-weekly",
+  "card_origin": "v1-migration",
+  "v1_draft_id": "V1-REJECTED-PLAIN-MOMENTUM",
+  "idea_id": "IDEA-2026-0008",
+  "claim_normalized": "plain cross sectional time series return momentum 12 1 momentum tsmom earns a tradable premium",
+  "dedup_key": "sha256:957fad92b6b6edb3445d2739baabe1bb7a9e7f29df8ed2b876bce3fe8acbe7ed"
+}

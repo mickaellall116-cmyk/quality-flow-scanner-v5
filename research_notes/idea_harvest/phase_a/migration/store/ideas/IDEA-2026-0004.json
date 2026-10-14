@@ -1,0 +1,40 @@
+{
+  "claim": "Price nearness to the trailing 52-week high positively predicts subsequent returns (anchoring/underreaction), reportedly subsuming return momentum.",
+  "short_title": "Nearness to the 52-week high (anchoring momentum)",
+  "hypothesis": "Price nearness to the trailing 52-week high positively predicts subsequent returns (anchoring/underreaction), reportedly subsuming return momentum.",
+  "strategy_family": "anchoring_momentum",
+  "timeframe": "Daily closes; monthly formation/hold",
+  "mechanically_definable": true,
+  "pit_data": "yes",
+  "pit_inputs": [
+    "Daily highs/closes (already handled)"
+  ],
+  "source": {
+    "authors": "George & Hwang",
+    "title": "The 52-Week High and Momentum Investing",
+    "venue": "Journal of Finance 59 (2004), 2145–2176",
+    "url": "https://blankcapitalresearch.com/learn/george-hwang-52-week-high",
+    "accessed_at": "2026-10-13T15:06:00-04:00",
+    "access_basis": "secondary research summary — the v1 run fetched the summary, not the primary paper",
+    "evidence": "Summary states the nearness-to-52-week-high claim and that it reportedly subsumes return momentum.",
+    "content_hash": null,
+    "content_hash_note": "not captured in v1; canonical-text hashing begins with Phase A intake",
+    "extractor_version": "none-v1",
+    "is_primary": false,
+    "source_class": "SRC-FACTOR-SUMMARIES",
+    "doi": ""
+  },
+  "limitations": [
+    "Cheapest possible test on existing data.",
+    "Dedupe PASS with adjacency flag: momentum-family adjacent (V5.4 trend_4h FAIL) but different statistic (price/rolling-max) and mechanism; novelty discounted in ranking.",
+    "Primary of record (George & Hwang, JF 2004) was not itself fetched in v1; this card rests on a secondary summary — recorded, not hidden."
+  ],
+  "lane_fit": "daily",
+  "created_at": "2026-10-13T15:06:00-04:00",
+  "created_by": "idea-harvest-weekly",
+  "card_origin": "v1-migration",
+  "v1_draft_id": "DRAFT-20261013-IH04-ANCHORING-MOMENTUM",
+  "idea_id": "IDEA-2026-0004",
+  "claim_normalized": "price nearness to the trailing 52 week high positively predicts subsequent returns anchoring underreaction reportedly subsuming return momentum",
+  "dedup_key": "sha256:c28ac68b12145b55bea9883aeae7f4d1951dad7a50ce95209898644b62c4b2f1"
+}

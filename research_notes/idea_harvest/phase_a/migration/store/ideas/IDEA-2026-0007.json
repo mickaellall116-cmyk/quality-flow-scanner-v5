@@ -1,0 +1,36 @@
+{
+  "claim": "Supervised ML models (e.g. LSTM feature stacks on SMA/volatility/RSI/MACD) forecast price/trend well enough to trade.",
+  "short_title": "Supervised ML trend forecasting (v1 dedupe reject)",
+  "hypothesis": "Supervised ML models (e.g. LSTM feature stacks on SMA/volatility/RSI/MACD) forecast price/trend well enough to trade.",
+  "strategy_family": "ml_price_forecasting",
+  "timeframe": "Model-dependent; evaluated as daily forecasting claim",
+  "mechanically_definable": true,
+  "pit_data": "yes",
+  "pit_inputs": [],
+  "source": {
+    "authors": "E-TRENDS authors (as cited in Harvest #1)",
+    "title": "E-TRENDS (LSTM forecasting paper, arXiv HTML)",
+    "venue": "arXiv (as fetched in Harvest #1)",
+    "url": "https://arxiv.org/html/2603.14453v1",
+    "accessed_at": "2026-10-13T15:06:00-04:00",
+    "access_basis": "arXiv HTML full text",
+    "evidence": "Harvest #1 record: ML model forecasts price/trend from engineered price features.",
+    "content_hash": null,
+    "content_hash_note": "not captured in v1; canonical-text hashing begins with Phase A intake",
+    "extractor_version": "none-v1",
+    "is_primary": true,
+    "source_class": "SRC-ARXIV-QFIN",
+    "doi": ""
+  },
+  "limitations": [
+    "Rejected at dedupe in Harvest #1; migrated for failure memory only."
+  ],
+  "lane_fit": "none",
+  "created_at": "2026-10-13T15:06:00-04:00",
+  "created_by": "idea-harvest-weekly",
+  "card_origin": "v1-migration",
+  "v1_draft_id": "V1-REJECTED-ML-FORECASTING",
+  "idea_id": "IDEA-2026-0007",
+  "claim_normalized": "supervised ml models e g lstm feature stacks on sma volatility rsi macd forecast price trend well enough to trade",
+  "dedup_key": "sha256:6cf3df30c6427e45b09ab88696221ba4446a97dc01f48c621a591c7ab974ca4b"
+}

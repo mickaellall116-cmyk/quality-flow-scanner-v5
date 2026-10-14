@@ -1,0 +1,246 @@
+{
+  "draft": true,
+  "experiments": [
+    {
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "attempted_variations": [],
+      "authorization": "Intake authorized under the approved idea pipeline. NO test execution authorized.",
+      "baseline_design": "TBD at preregistration",
+      "code_pin": "NONE — no code written",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "created_at": "2026-10-13",
+      "dataset_pin": "NONE — no data pulled",
+      "decision_refs": [
+        "RUN-20261013-001"
+      ],
+      "dependencies": [
+        "Daily OHLC for the frozen 250-symbol universe (already handled)"
+      ],
+      "draft": true,
+      "evidence_pin": "https://researchonline.lse.ac.uk/id/eprint/87481/",
+      "experiment_id": "DRAFT-20261013-PA0001-OVERNIGHT-INTRADAY-DECOMPOSITION",
+      "failure_data_source": "PIT: yes",
+      "failure_market": null,
+      "failure_reason": null,
+      "failure_strategy_family": "overnight_intraday_decomposition",
+      "failure_timeframe": "Daily formation (~1-month trailing components), monthly hold",
+      "hypothesis": "Recent overnight (close-to-open) and intraday (open-to-close) return components carry opposite persistent premia: high-overnight-return names continue overnight and reverse intraday.",
+      "idea_id": "IDEA-2026-0001",
+      "limitations": [
+        "Long-only legs reported separately; intraday-reversal leg as avoid/underweight (short-side daily is a known structural loser here).",
+        "Dedupe PASS: no registry experiment tests return-component decomposition.",
+        "Primary source class is PARKED-SOURCE under Phase A rules (sources #2/#4/#5): a primary source of record must replace the summary/mirror before this card can be newly shortlisted on that primary alone."
+      ],
+      "literature_intake": {
+        "finding": "Working-paper record and abstract state the overnight/intraday expected-return decomposition and its persistence.",
+        "hypothesis_derived": "Recent overnight (close-to-open) and intraday (open-to-close) return components carry opposite persistent premia: high-overnight-return names continue overnight and reverse intraday.",
+        "source": "Lou, Polk & Skouras, Journal of Financial Economics 134 (2019), 192–213"
+      },
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "output_pin": "phase_a queue_log (idea_id IDEA-2026-0001)",
+      "owner": "Muse (idea harvest intake)",
+      "primary_sources": [
+        "https://researchonline.lse.ac.uk/id/eprint/87481/"
+      ],
+      "queue_run_id": "RUN-20261013-001",
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "robustness_diagnostics": [],
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "task_revision": "RUN-20261013-001",
+      "title": "Overnight vs intraday return decomposition (tug of war)",
+      "trial_budget": {
+        "allocated": "NONE",
+        "unit": "no test authorized",
+        "used": "0"
+      },
+      "validation_split": "TBD at preregistration",
+      "verdict": "NOT TESTED — intake draft only"
+    },
+    {
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "attempted_variations": [],
+      "authorization": "Intake authorized under the approved idea pipeline. NO test execution authorized.",
+      "baseline_design": "TBD at preregistration",
+      "code_pin": "NONE — no code written",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "created_at": "2026-10-13",
+      "dataset_pin": "NONE — no data pulled",
+      "decision_refs": [
+        "RUN-20261013-001"
+      ],
+      "dependencies": [
+        "Daily closes for a broad cross-section (250-symbol universe)"
+      ],
+      "draft": true,
+      "evidence_pin": "https://paperswithbacktest.com/api/paper/maxing-out-stocks-as-lotteries-and-the-cross-section-of-expected/pdf",
+      "experiment_id": "DRAFT-20261013-PA0002-LOTTERY-MAX",
+      "failure_data_source": "PIT: yes",
+      "failure_market": null,
+      "failure_reason": null,
+      "failure_strategy_family": "lottery_max",
+      "failure_timeframe": "Daily returns; 1-month MAX formation, 1-month hold",
+      "hypothesis": "Stocks with the highest maximum daily return over the past month underperform the following month (lottery-demand overpricing).",
+      "idea_id": "IDEA-2026-0002",
+      "limitations": [
+        "Implemented long-only as an exclusion/underweight filter, judged at portfolio level inside the stack per standing rules.",
+        "Dedupe PASS: no registry entry covers lottery/skewness characteristics; distinct from killed TOP/composite filters.",
+        "Primary source class is PARKED-SOURCE under Phase A rules (sources #2/#4/#5): a primary source of record must replace the summary/mirror before this card can be newly shortlisted on that primary alone."
+      ],
+      "literature_intake": {
+        "finding": "Harvest #1: claim as published (MAX effect); working paper also at SSRN abstract 1262416.",
+        "hypothesis_derived": "Stocks with the highest maximum daily return over the past month underperform the following month (lottery-demand overpricing).",
+        "source": "Bali, Cakici & Whitelaw, Journal of Financial Economics 99 (2011), 427–446"
+      },
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "output_pin": "phase_a queue_log (idea_id IDEA-2026-0002)",
+      "owner": "Muse (idea harvest intake)",
+      "primary_sources": [
+        "https://paperswithbacktest.com/api/paper/maxing-out-stocks-as-lotteries-and-the-cross-section-of-expected/pdf"
+      ],
+      "queue_run_id": "RUN-20261013-001",
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "robustness_diagnostics": [],
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "task_revision": "RUN-20261013-001",
+      "title": "MAX effect — avoid lottery-like stocks",
+      "trial_budget": {
+        "allocated": "NONE",
+        "unit": "no test authorized",
+        "used": "0"
+      },
+      "validation_split": "TBD at preregistration",
+      "verdict": "NOT TESTED — intake draft only"
+    },
+    {
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "attempted_variations": [],
+      "authorization": "Intake authorized under the approved idea pipeline. NO test execution authorized.",
+      "baseline_design": "TBD at preregistration",
+      "code_pin": "NONE — no code written",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "created_at": "2026-10-13",
+      "dataset_pin": "NONE — no data pulled",
+      "decision_refs": [
+        "RUN-20261013-001"
+      ],
+      "dependencies": [
+        "Daily OHLCV with pinned volume conventions"
+      ],
+      "draft": true,
+      "evidence_pin": "https://sites.duke.edu/sgervais/research/gervais-kaniel-mingelgrin-2001/",
+      "experiment_id": "DRAFT-20261013-PA0003-VOLUME-PREMIUM",
+      "failure_data_source": "PIT: yes",
+      "failure_market": null,
+      "failure_reason": null,
+      "failure_strategy_family": "volume_premium",
+      "failure_timeframe": "Daily OHLCV; day/week abnormal-volume formation, ~1-month forward window",
+      "hypothesis": "Stocks with unusually high trading volume over a day/week appreciate over the following month; unusually low volume precedes depreciation (visibility mechanism).",
+      "idea_id": "IDEA-2026-0003",
+      "limitations": [
+        "Volume is a genuinely new input family for the stack; gate would compare high-abnormal-volume group forward returns vs universe baseline at 25 bps.",
+        "Dedupe PASS: no registry experiment uses a volume-formation signal.",
+        "Primary source class is PARKED-SOURCE under Phase A rules (sources #2/#4/#5): a primary source of record must replace the summary/mirror before this card can be newly shortlisted on that primary alone."
+      ],
+      "literature_intake": {
+        "finding": "Author page carries the paper reference and abstract stating the high-volume return premium.",
+        "hypothesis_derived": "Stocks with unusually high trading volume over a day/week appreciate over the following month; unusually low volume precedes depreciation (visibility mechanism).",
+        "source": "Gervais, Kaniel & Mingelgrin, Journal of Finance 56 (2001), 877–919"
+      },
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "output_pin": "phase_a queue_log (idea_id IDEA-2026-0003)",
+      "owner": "Muse (idea harvest intake)",
+      "primary_sources": [
+        "https://sites.duke.edu/sgervais/research/gervais-kaniel-mingelgrin-2001/"
+      ],
+      "queue_run_id": "RUN-20261013-001",
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "robustness_diagnostics": [],
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "task_revision": "RUN-20261013-001",
+      "title": "High-volume return premium",
+      "trial_budget": {
+        "allocated": "NONE",
+        "unit": "no test authorized",
+        "used": "0"
+      },
+      "validation_split": "TBD at preregistration",
+      "verdict": "NOT TESTED — intake draft only"
+    },
+    {
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "attempted_variations": [],
+      "authorization": "Intake authorized under the approved idea pipeline. NO test execution authorized.",
+      "baseline_design": "TBD at preregistration",
+      "code_pin": "NONE — no code written",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "created_at": "2026-10-13",
+      "dataset_pin": "NONE — no data pulled",
+      "decision_refs": [
+        "RUN-20261013-001"
+      ],
+      "dependencies": [
+        "Daily highs/closes (already handled)"
+      ],
+      "draft": true,
+      "evidence_pin": "https://blankcapitalresearch.com/learn/george-hwang-52-week-high",
+      "experiment_id": "DRAFT-20261013-PA0004-ANCHORING-MOMENTUM",
+      "failure_data_source": "PIT: yes",
+      "failure_market": null,
+      "failure_reason": null,
+      "failure_strategy_family": "anchoring_momentum",
+      "failure_timeframe": "Daily closes; monthly formation/hold",
+      "hypothesis": "Price nearness to the trailing 52-week high positively predicts subsequent returns (anchoring/underreaction), reportedly subsuming return momentum.",
+      "idea_id": "IDEA-2026-0004",
+      "limitations": [
+        "Cheapest possible test on existing data.",
+        "Dedupe PASS with adjacency flag: momentum-family adjacent (V5.4 trend_4h FAIL) but different statistic (price/rolling-max) and mechanism; novelty discounted in ranking.",
+        "Primary of record (George & Hwang, JF 2004) was not itself fetched in v1; this card rests on a secondary summary — recorded, not hidden."
+      ],
+      "literature_intake": {
+        "finding": "Summary states the nearness-to-52-week-high claim and that it reportedly subsumes return momentum.",
+        "hypothesis_derived": "Price nearness to the trailing 52-week high positively predicts subsequent returns (anchoring/underreaction), reportedly subsuming return momentum.",
+        "source": "George & Hwang, Journal of Finance 59 (2004), 2145–2176"
+      },
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "output_pin": "phase_a queue_log (idea_id IDEA-2026-0004)",
+      "owner": "Muse (idea harvest intake)",
+      "primary_sources": [
+        "https://blankcapitalresearch.com/learn/george-hwang-52-week-high"
+      ],
+      "queue_run_id": "RUN-20261013-001",
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "robustness_diagnostics": [],
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "task_revision": "RUN-20261013-001",
+      "title": "Nearness to the 52-week high (anchoring momentum)",
+      "trial_budget": {
+        "allocated": "NONE",
+        "unit": "no test authorized",
+        "used": "0"
+      },
+      "validation_split": "TBD at preregistration",
+      "verdict": "NOT TESTED — intake draft only"
+    }
+  ],
+  "generated_from": "phase_a queue log, run RUN-20261013-001",
+  "generator": "phase-a-store/1.0.0",
+  "merge_instruction": "Do NOT merge automatically. A draft becomes a registry experiment only after Mike selects it and a preregistration is approved; merge then via python json (indent=2, ensure_ascii=False) in a separate approved bookkeeping step.",
+  "source_report": "phase_a/queue/queue_log.jsonl",
+  "status": "DRAFT — NOT MERGED INTO registry.json"
+}

@@ -1,0 +1,41 @@
+{
+  "claim": "Stocks with unusually high trading volume over a day/week appreciate over the following month; unusually low volume precedes depreciation (visibility mechanism).",
+  "short_title": "High-volume return premium",
+  "hypothesis": "Stocks with unusually high trading volume over a day/week appreciate over the following month; unusually low volume precedes depreciation (visibility mechanism).",
+  "strategy_family": "volume_premium",
+  "timeframe": "Daily OHLCV; day/week abnormal-volume formation, ~1-month forward window",
+  "mechanically_definable": true,
+  "pit_data": "yes",
+  "pit_inputs": [
+    "Daily OHLCV with pinned volume conventions"
+  ],
+  "source": {
+    "authors": "Gervais, Kaniel & Mingelgrin",
+    "title": "The High-Volume Return Premium",
+    "venue": "Journal of Finance 56 (2001), 877–919",
+    "url": "https://sites.duke.edu/sgervais/research/gervais-kaniel-mingelgrin-2001/",
+    "accessed_at": "2026-10-13T15:06:00-04:00",
+    "access_basis": "author research page — reference and abstract",
+    "evidence": "Author page carries the paper reference and abstract stating the high-volume return premium.",
+    "content_hash": null,
+    "content_hash_note": "not captured in v1; canonical-text hashing begins with Phase A intake",
+    "extractor_version": "none-v1",
+    "is_primary": true,
+    "source_class": "SRC-OA-REPOSITORIES",
+    "doi": "",
+    "parked_primary_source": true
+  },
+  "limitations": [
+    "Volume is a genuinely new input family for the stack; gate would compare high-abnormal-volume group forward returns vs universe baseline at 25 bps.",
+    "Dedupe PASS: no registry experiment uses a volume-formation signal.",
+    "Primary source class is PARKED-SOURCE under Phase A rules (sources #2/#4/#5): a primary source of record must replace the summary/mirror before this card can be newly shortlisted on that primary alone."
+  ],
+  "lane_fit": "daily",
+  "created_at": "2026-10-13T15:06:00-04:00",
+  "created_by": "idea-harvest-weekly",
+  "card_origin": "v1-migration",
+  "v1_draft_id": "DRAFT-20261013-IH03-VOLUME-PREMIUM",
+  "idea_id": "IDEA-2026-0003",
+  "claim_normalized": "stocks with unusually high trading volume over a day week appreciate over the following month unusually low volume precedes depreciation visibility mechanism",
+  "dedup_key": "sha256:4ace1468040a5f81401123a95bfd0fc6c50fc3dad98b6b4c7bdc03b291c77b4f"
+}
