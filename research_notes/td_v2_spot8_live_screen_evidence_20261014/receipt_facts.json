@@ -1,0 +1,136 @@
+{
+ "REQ-SPT-01.json": {
+  "status": "ok",
+  "meta": {
+   "symbol": "AAPL",
+   "interval": "1h",
+   "exchange": "NASDAQ",
+   "mic_code": "XNGS",
+   "currency": "USD",
+   "exchange_timezone": "America/New_York",
+   "type": "Common Stock"
+  },
+  "rows": 35,
+  "first_bar": "2026-03-09 09:30:00",
+  "last_bar": "2026-03-13 15:30:00",
+  "bar_dates": [
+   "2026-03-09",
+   "2026-03-10",
+   "2026-03-11",
+   "2026-03-12",
+   "2026-03-13"
+  ]
+ },
+ "REQ-SPT-02.json": {
+  "status": "ok",
+  "meta": {
+   "symbol": "QQQ",
+   "interval": "1h",
+   "exchange": "NASDAQ",
+   "mic_code": "XNMS",
+   "currency": "USD",
+   "exchange_timezone": "America/New_York",
+   "type": "ETF"
+  },
+  "rows": 35,
+  "first_bar": "2026-03-09 09:30:00",
+  "last_bar": "2026-03-13 15:30:00",
+  "bar_dates": [
+   "2026-03-09",
+   "2026-03-10",
+   "2026-03-11",
+   "2026-03-12",
+   "2026-03-13"
+  ]
+ },
+ "REQ-SPT-03.json": {
+  "status": "ok",
+  "meta": {
+   "symbol": "AAPL",
+   "interval": "1h",
+   "exchange": "NASDAQ",
+   "mic_code": "XNGS",
+   "currency": "USD",
+   "exchange_timezone": "America/New_York",
+   "type": "Common Stock"
+  },
+  "rows": 35,
+  "first_bar": "2025-11-03 09:30:00",
+  "last_bar": "2025-11-07 15:30:00",
+  "bar_dates": [
+   "2025-11-03",
+   "2025-11-04",
+   "2025-11-05",
+   "2025-11-06",
+   "2025-11-07"
+  ]
+ },
+ "REQ-SPT-04.json": {
+  "status": "ok",
+  "meta": {
+   "symbol": "QQQ",
+   "interval": "1h",
+   "exchange": "NASDAQ",
+   "mic_code": "XNMS",
+   "currency": "USD",
+   "exchange_timezone": "America/New_York",
+   "type": "ETF"
+  },
+  "rows": 35,
+  "first_bar": "2025-11-03 09:30:00",
+  "last_bar": "2025-11-07 15:30:00",
+  "bar_dates": [
+   "2025-11-03",
+   "2025-11-04",
+   "2025-11-05",
+   "2025-11-06",
+   "2025-11-07"
+  ]
+ },
+ "REQ-SPT-05.json": {
+  "status": "ok",
+  "meta": {
+   "symbol": "AAPL",
+   "interval": "1h",
+   "exchange": "NASDAQ",
+   "mic_code": "XNGS",
+   "currency": "USD",
+   "exchange_timezone": "America/New_York",
+   "type": "Common Stock"
+  },
+  "rows": 4,
+  "first_bar": "2025-11-28 09:30:00",
+  "last_bar": "2025-11-28 12:30:00",
+  "bar_dates": [
+   "2025-11-28"
+  ]
+ },
+ "REQ-SPT-06.json": {
+  "status": "ok",
+  "meta": {
+   "symbol": "QQQ",
+   "interval": "1h",
+   "exchange": "NASDAQ",
+   "mic_code": "XNMS",
+   "currency": "USD",
+   "exchange_timezone": "America/New_York",
+   "type": "ETF"
+  },
+  "rows": 4,
+  "first_bar": "2025-11-28 09:30:00",
+  "last_bar": "2025-11-28 12:30:00",
+  "bar_dates": [
+   "2025-11-28"
+  ]
+ },
+ "REQ-SPT-07.rejected.bin": {
+  "bytes": 180,
+  "contains_hsurr": false,
+  "contains_apikey_word": false,
+  "vendor_error": {
+   "code": 400,
+   "status": "error",
+   "message": "No data is available on the specified dates. Try setting different start/end dates."
+  }
+ }
+}

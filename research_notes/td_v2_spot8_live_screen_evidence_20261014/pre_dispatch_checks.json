@@ -1,0 +1,102 @@
+{
+ "candidate": {
+  "commit": "b18db3ce25f3014d11847ba1ac92f488a994022e",
+  "export_method": "git archive into isolated directory (no .git, no alternates)",
+  "tree": "06b12f82977447934921d82701763251f9373af1",
+  "tree_matches": true
+ },
+ "component_pin_hashes": {
+  "acquisition_manifest_v2.json": "4a6e3a55ba6cacf80d60c26870817a272534d62cd73eb09d1dfc889d571c547d",
+  "acquisition_manifest_v2_spot8.json": "ddff040fa654303cf4289f4c39c2a5b5af998bd4065ceddd4e4f5d52fcb8c28d",
+  "adapter_contract.json": "ec877a04d12e6b0c69378dba245be07ab60279a15c9eb78cc50e8b0c705e166b",
+  "driver.py": "671f4d0ce25a76bc4967f1ca8cbb16fcda037f0e0ce71529c2aa385dce33fed1",
+  "rate_limiter.py": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+  "td_http_transport_adapter.py": "ae8f4837b3d11a53990cfd56f207d5ec96c40b8fe4c1280f15fb08452cc43343",
+  "td_min_collector.py": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+  "validate_input.py": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+  "verify_sources.py": "a0bd2e4cdce44be5d9fcc1d7c21046391d36c9bd366a959df03bf5d19c9a79e0"
+ },
+ "component_pins": {
+  "acquisition_manifest_v2.json": true,
+  "acquisition_manifest_v2_spot8.json": true,
+  "adapter_contract.json": true,
+  "driver.py": true,
+  "rate_limiter.py": true,
+  "td_http_transport_adapter.py": true,
+  "td_min_collector.py": true,
+  "validate_input.py": true,
+  "verify_sources.py": true
+ },
+ "duplicate_check": {
+  "spot8_state_dir_preexists": false,
+  "spt_ids_in_live_lifecycle": []
+ },
+ "failures": [],
+ "ledger": {
+  "day": "2026-10-14",
+  "path": "research_notes/pilot_harness/credit_ledger.json",
+  "pin_matches_expectation": true,
+  "sha256_after_read": "4ba4cf6ff91caabab09e60604e8682a3869f7805b83d9a6d4b40c98aebebf494",
+  "sha256_before": "4ba4cf6ff91caabab09e60604e8682a3869f7805b83d9a6d4b40c98aebebf494",
+  "spent": 1,
+  "window_entries": 1
+ },
+ "live_p1h_receipt_sha256": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+ "live_p1h_state_before": {
+  "REQ-P1H-01.rejected.bin": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+  "collector.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "lifecycle.jsonl": "fbdbd1c306b3fe434d0d221fce8f3b6e69b819e4897719cbee91120cb264b986",
+  "manifest_binding.json": "324a69ba692a65fe1a2ca48e0e38802ced2cdc75a33bcd84e0487c0139a51ad6",
+  "pilot_state.json": "8c59a56c951f2351b73b4b7b4660c79f4c914900798fee4eb45350888c6f329c"
+ },
+ "phase": "pre_dispatch_checks_ambient",
+ "prereq_chosen": "package (pinned in candidate SHA256_MANIFEST.txt)",
+ "prereq_chosen_path": "/tmp/td14_export/research_notes/td_acquisition_adapter_preflight_evidence_20261013/prerequisites.json",
+ "prerequisites": {
+  "minimal_collector": {
+   "failures": [],
+   "path": "research_notes/td_minimal_collector/prerequisites.json",
+   "sha256": "0786dc41322404acbc482d85cf2e451d057fb58d1589460db7df006fa031651e"
+  },
+  "package": {
+   "failures": [],
+   "path": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/prerequisites.json",
+   "sha256": "038ccaf33547d6dae1f12ace073726300d92333184a0ba5de0dbab94cc0b5349"
+  }
+ },
+ "subset": {
+  "all_byte_copies_of_v2": true,
+  "budget": {
+   "budget_rule": "expected == max: max_attempts=1, no pagination, no retries; every dispatch consumes exactly 1 credit reserved in advance via the shared persisted limiter",
+   "expected_credits": 8,
+   "max_credits": 8,
+   "plan_caps": {
+    "credits_per_day": 800,
+    "credits_per_minute": 8,
+    "plan": "Basic"
+   },
+   "total_requests": 8
+  },
+  "canonical_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+  "canonical_digest_matches": true,
+  "ids_in_order": [
+   "REQ-SPT-01",
+   "REQ-SPT-02",
+   "REQ-SPT-03",
+   "REQ-SPT-04",
+   "REQ-SPT-05",
+   "REQ-SPT-06",
+   "REQ-SPT-07",
+   "REQ-SPT-08"
+  ],
+  "max_attempts_all_1": true,
+  "sum_credit_weight": 8,
+  "validate_manifest_errors": []
+ },
+ "task": "QF-TD-V2-SPOT8-LIVE-SCREEN-20261014-14 r1",
+ "vault_surrogate": {
+  "is_hsurr_surrogate": true,
+  "retrieved": true
+ },
+ "verdict": "PASS"
+}

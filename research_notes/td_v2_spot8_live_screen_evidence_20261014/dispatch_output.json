@@ -1,0 +1,356 @@
+{
+ "collector_built": true,
+ "connect_probe": {
+  "ok": true,
+  "proxy_authorization_sent": false,
+  "status_line": "HTTP/1.1 200 Connection Established",
+  "target": "example.com:443",
+  "via": "hatch-egress-proxy:3128"
+ },
+ "credits_reserved": 7,
+ "dispatch_context_proxy": {
+  "host": "hatch-egress-proxy",
+  "port": 3128,
+  "resolved": true,
+  "scheme": "http",
+  "userinfo_present": false
+ },
+ "dispatch_context_proxy_ok": true,
+ "dispatched_requests": [
+  "REQ-SPT-01",
+  "REQ-SPT-02",
+  "REQ-SPT-03",
+  "REQ-SPT-04",
+  "REQ-SPT-05",
+  "REQ-SPT-06",
+  "REQ-SPT-07"
+ ],
+ "elapsed_seconds": 36.46,
+ "ledger_after": {
+  "day": "2026-10-14",
+  "spent": 8,
+  "window_entries": 7
+ },
+ "ledger_sha256_after": "7e5ccef0e5fd7e2faa744c8fe7ee646c3162fa4f72fc4a9a85317d52b5d890ed",
+ "ledger_sha256_before": "4ba4cf6ff91caabab09e60604e8682a3869f7805b83d9a6d4b40c98aebebf494",
+ "lifecycle_events": [
+  {
+   "credit_weight": 1,
+   "event": "CREDIT_RESERVED",
+   "request_id": "REQ-SPT-01",
+   "ts_utc": "2026-10-14T18:11:22Z"
+  },
+  {
+   "attempt": 1,
+   "event": "STARTED",
+   "request_id": "REQ-SPT-01",
+   "ts_utc": "2026-10-14T18:11:22Z"
+  },
+  {
+   "bytes": 4715,
+   "event": "RECEIVED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "1eb44f701f3cebe7beb8ece9723c4c1ef31bbb4959de4d6bb2eb25577efca9da",
+   "request_id": "REQ-SPT-01",
+   "rows": 35,
+   "sha256": "56b8531f831fbc60bc681b7707f9264b278e99edac43eba07a4df29d4cd45ed4",
+   "ts_utc": "2026-10-14T18:11:23Z"
+  },
+  {
+   "event": "CONSTRUCTION_HOLD",
+   "reason": "interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only",
+   "request_id": "REQ-SPT-01",
+   "ts_utc": "2026-10-14T18:11:31Z"
+  },
+  {
+   "event": "COMPLETED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "1eb44f701f3cebe7beb8ece9723c4c1ef31bbb4959de4d6bb2eb25577efca9da",
+   "request_id": "REQ-SPT-01",
+   "sha256": "56b8531f831fbc60bc681b7707f9264b278e99edac43eba07a4df29d4cd45ed4",
+   "ts_utc": "2026-10-14T18:11:31Z",
+   "validation_scope": "session_1h"
+  },
+  {
+   "credit_weight": 1,
+   "event": "CREDIT_RESERVED",
+   "request_id": "REQ-SPT-02",
+   "ts_utc": "2026-10-14T18:11:31Z"
+  },
+  {
+   "attempt": 1,
+   "event": "STARTED",
+   "request_id": "REQ-SPT-02",
+   "ts_utc": "2026-10-14T18:11:31Z"
+  },
+  {
+   "bytes": 4721,
+   "event": "RECEIVED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "209d798ce8de2940dcdbe053fc31df1857a001e2993f4f34b4c71d062599905c",
+   "request_id": "REQ-SPT-02",
+   "rows": 35,
+   "sha256": "58c92a5fe52055f9b286a9786c3030db40f59dfe051a0cd642e375546220b059",
+   "ts_utc": "2026-10-14T18:11:32Z"
+  },
+  {
+   "event": "CONSTRUCTION_HOLD",
+   "reason": "interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only",
+   "request_id": "REQ-SPT-02",
+   "ts_utc": "2026-10-14T18:11:39Z"
+  },
+  {
+   "event": "COMPLETED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "209d798ce8de2940dcdbe053fc31df1857a001e2993f4f34b4c71d062599905c",
+   "request_id": "REQ-SPT-02",
+   "sha256": "58c92a5fe52055f9b286a9786c3030db40f59dfe051a0cd642e375546220b059",
+   "ts_utc": "2026-10-14T18:11:39Z",
+   "validation_scope": "session_1h"
+  },
+  {
+   "credit_weight": 1,
+   "event": "CREDIT_RESERVED",
+   "request_id": "REQ-SPT-03",
+   "ts_utc": "2026-10-14T18:11:39Z"
+  },
+  {
+   "attempt": 1,
+   "event": "STARTED",
+   "request_id": "REQ-SPT-03",
+   "ts_utc": "2026-10-14T18:11:39Z"
+  },
+  {
+   "bytes": 4708,
+   "event": "RECEIVED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "3b37c06da5d14e08a035e77079de9df885c2a8f32806e973a4eea71005eaef59",
+   "request_id": "REQ-SPT-03",
+   "rows": 35,
+   "sha256": "b0adc3ec6ca63e49fec2b3231c6f9d47d68a60361acb14c00e1f57f4503b871f",
+   "ts_utc": "2026-10-14T18:11:39Z"
+  },
+  {
+   "event": "CONSTRUCTION_HOLD",
+   "reason": "interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only",
+   "request_id": "REQ-SPT-03",
+   "ts_utc": "2026-10-14T18:11:48Z"
+  },
+  {
+   "event": "COMPLETED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "3b37c06da5d14e08a035e77079de9df885c2a8f32806e973a4eea71005eaef59",
+   "request_id": "REQ-SPT-03",
+   "sha256": "b0adc3ec6ca63e49fec2b3231c6f9d47d68a60361acb14c00e1f57f4503b871f",
+   "ts_utc": "2026-10-14T18:11:48Z",
+   "validation_scope": "session_1h"
+  },
+  {
+   "credit_weight": 1,
+   "event": "CREDIT_RESERVED",
+   "request_id": "REQ-SPT-04",
+   "ts_utc": "2026-10-14T18:11:48Z"
+  },
+  {
+   "attempt": 1,
+   "event": "STARTED",
+   "request_id": "REQ-SPT-04",
+   "ts_utc": "2026-10-14T18:11:48Z"
+  },
+  {
+   "bytes": 4745,
+   "event": "RECEIVED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "bf4a4a4125a96d393317cf5f37967b38627e2d468d67f1db48bb9dbb5351203e",
+   "request_id": "REQ-SPT-04",
+   "rows": 35,
+   "sha256": "860e55ed9f7599dfbd44897c369c8b869203a43565f707d186b70af4fc64d4cb",
+   "ts_utc": "2026-10-14T18:11:49Z"
+  },
+  {
+   "event": "CONSTRUCTION_HOLD",
+   "reason": "interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only",
+   "request_id": "REQ-SPT-04",
+   "ts_utc": "2026-10-14T18:11:55Z"
+  },
+  {
+   "event": "COMPLETED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "bf4a4a4125a96d393317cf5f37967b38627e2d468d67f1db48bb9dbb5351203e",
+   "request_id": "REQ-SPT-04",
+   "sha256": "860e55ed9f7599dfbd44897c369c8b869203a43565f707d186b70af4fc64d4cb",
+   "ts_utc": "2026-10-14T18:11:55Z",
+   "validation_scope": "session_1h"
+  },
+  {
+   "credit_weight": 1,
+   "event": "CREDIT_RESERVED",
+   "request_id": "REQ-SPT-05",
+   "ts_utc": "2026-10-14T18:11:55Z"
+  },
+  {
+   "attempt": 1,
+   "event": "STARTED",
+   "request_id": "REQ-SPT-05",
+   "ts_utc": "2026-10-14T18:11:55Z"
+  },
+  {
+   "bytes": 697,
+   "event": "RECEIVED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "4f4f9aa0724248ae69df323cf2c2c1394b421c1363919206a37fc378b9965f08",
+   "request_id": "REQ-SPT-05",
+   "rows": 4,
+   "sha256": "3746d373d0fe0d6637d0d21bc1e474d2029d490efee06c3af76d3b40c0c02719",
+   "ts_utc": "2026-10-14T18:11:56Z"
+  },
+  {
+   "event": "CONSTRUCTION_HOLD",
+   "reason": "interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only",
+   "request_id": "REQ-SPT-05",
+   "ts_utc": "2026-10-14T18:11:57Z"
+  },
+  {
+   "event": "COMPLETED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "4f4f9aa0724248ae69df323cf2c2c1394b421c1363919206a37fc378b9965f08",
+   "request_id": "REQ-SPT-05",
+   "sha256": "3746d373d0fe0d6637d0d21bc1e474d2029d490efee06c3af76d3b40c0c02719",
+   "ts_utc": "2026-10-14T18:11:57Z",
+   "validation_scope": "session_1h"
+  },
+  {
+   "credit_weight": 1,
+   "event": "CREDIT_RESERVED",
+   "request_id": "REQ-SPT-06",
+   "ts_utc": "2026-10-14T18:11:57Z"
+  },
+  {
+   "attempt": 1,
+   "event": "STARTED",
+   "request_id": "REQ-SPT-06",
+   "ts_utc": "2026-10-14T18:11:57Z"
+  },
+  {
+   "bytes": 688,
+   "event": "RECEIVED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "d327d0dc67abca48c46ef7f747f6713fad2ad126411967c29796802f931af4bc",
+   "request_id": "REQ-SPT-06",
+   "rows": 4,
+   "sha256": "7c845cb7c25d4fd2b3e14981b312ab48f72d9b8e259d279a1c32c2dd4463c5b1",
+   "ts_utc": "2026-10-14T18:11:57Z"
+  },
+  {
+   "event": "CONSTRUCTION_HOLD",
+   "reason": "interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only",
+   "request_id": "REQ-SPT-06",
+   "ts_utc": "2026-10-14T18:11:58Z"
+  },
+  {
+   "event": "COMPLETED",
+   "manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+   "request_digest": "d327d0dc67abca48c46ef7f747f6713fad2ad126411967c29796802f931af4bc",
+   "request_id": "REQ-SPT-06",
+   "sha256": "7c845cb7c25d4fd2b3e14981b312ab48f72d9b8e259d279a1c32c2dd4463c5b1",
+   "ts_utc": "2026-10-14T18:11:58Z",
+   "validation_scope": "session_1h"
+  },
+  {
+   "credit_weight": 1,
+   "event": "CREDIT_RESERVED",
+   "request_id": "REQ-SPT-07",
+   "ts_utc": "2026-10-14T18:11:58Z"
+  },
+  {
+   "attempt": 1,
+   "event": "STARTED",
+   "request_id": "REQ-SPT-07",
+   "ts_utc": "2026-10-14T18:11:58Z"
+  },
+  {
+   "bytes": 180,
+   "event": "ERROR_EVIDENCE",
+   "request_id": "REQ-SPT-07",
+   "sha256": "3339c34154648c0ea4ddb9bd553e5274d390f953552518ad957d79704b7d5d50",
+   "ts_utc": "2026-10-14T18:11:59Z"
+  },
+  {
+   "event": "HOLD",
+   "reason": "HTTP 400 for REQ-SPT-07",
+   "request_id": "REQ-SPT-07",
+   "ts_utc": "2026-10-14T18:11:59Z"
+  }
+ ],
+ "live_p1h_state_after": {
+  "REQ-P1H-01.rejected.bin": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+  "collector.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "lifecycle.jsonl": "fbdbd1c306b3fe434d0d221fce8f3b6e69b819e4897719cbee91120cb264b986",
+  "manifest_binding.json": "324a69ba692a65fe1a2ca48e0e38802ced2cdc75a33bcd84e0487c0139a51ad6",
+  "pilot_state.json": "8c59a56c951f2351b73b4b7b4660c79f4c914900798fee4eb45350888c6f329c"
+ },
+ "phase": "dispatch",
+ "pilot_state": {
+  "attempts": 7,
+  "completed": [
+   "REQ-SPT-01",
+   "REQ-SPT-02",
+   "REQ-SPT-03",
+   "REQ-SPT-04",
+   "REQ-SPT-05",
+   "REQ-SPT-06"
+  ],
+  "credit_reservations": 7,
+  "hold_reason": "HTTP 400 for REQ-SPT-07",
+  "status": "HOLD"
+ },
+ "receipts_inventory": [
+  {
+   "bytes": 4715,
+   "name": "REQ-SPT-01.json",
+   "sha256": "56b8531f831fbc60bc681b7707f9264b278e99edac43eba07a4df29d4cd45ed4"
+  },
+  {
+   "bytes": 4721,
+   "name": "REQ-SPT-02.json",
+   "sha256": "58c92a5fe52055f9b286a9786c3030db40f59dfe051a0cd642e375546220b059"
+  },
+  {
+   "bytes": 4708,
+   "name": "REQ-SPT-03.json",
+   "sha256": "b0adc3ec6ca63e49fec2b3231c6f9d47d68a60361acb14c00e1f57f4503b871f"
+  },
+  {
+   "bytes": 4745,
+   "name": "REQ-SPT-04.json",
+   "sha256": "860e55ed9f7599dfbd44897c369c8b869203a43565f707d186b70af4fc64d4cb"
+  },
+  {
+   "bytes": 697,
+   "name": "REQ-SPT-05.json",
+   "sha256": "3746d373d0fe0d6637d0d21bc1e474d2029d490efee06c3af76d3b40c0c02719"
+  },
+  {
+   "bytes": 688,
+   "name": "REQ-SPT-06.json",
+   "sha256": "7c845cb7c25d4fd2b3e14981b312ab48f72d9b8e259d279a1c32c2dd4463c5b1"
+  },
+  {
+   "bytes": 180,
+   "name": "REQ-SPT-07.rejected.bin",
+   "sha256": "3339c34154648c0ea4ddb9bd553e5274d390f953552518ad957d79704b7d5d50"
+  }
+ ],
+ "run_error": null,
+ "run_finished_local": "2026-10-14 18:11:59 UTC",
+ "run_finished_utc": "2026-10-14T18:11:59.198401+00:00",
+ "run_started_local": "2026-10-14 18:11:22 UTC",
+ "run_started_utc": "2026-10-14T18:11:22.738431+00:00",
+ "run_summary": {
+  "completed": 6,
+  "dispatched": 7,
+  "outcome": "HOLD: HTTP 400 for REQ-SPT-07",
+  "reused": 0
+ },
+ "task": "QF-TD-V2-SPOT8-LIVE-SCREEN-20261014-14 r1"
+}
