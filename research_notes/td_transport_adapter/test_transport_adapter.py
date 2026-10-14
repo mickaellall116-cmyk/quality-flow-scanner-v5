@@ -38,6 +38,8 @@ HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 sys.path.insert(0, str(HERE))
 
+import http.client  # noqa: E402
+import td_http_transport_adapter as adapter_mod  # noqa: E402
 from td_http_transport_adapter import (  # noqa: E402
     TDHttpTransportAdapter, TransportError, PARAMETER_ORDER,
     CONNECT_TIMEOUT_SECONDS, READ_TIMEOUT_SECONDS, MAX_BODY_BYTES,
@@ -365,7 +367,7 @@ class CollectorLevel(unittest.TestCase):
 
     def build(self, base, manifest=None):
         return drv.build_collector(self.state, manifest or fixture_manifest(),
-                                   PREREQ, api_key=None,
+                                   PREREQ,
                                    key_source=drv.get_test_fixture_key,
                                    base_url=base,
                                    ledger_path=self.ledger,
@@ -642,6 +644,153 @@ class BindingLevel(unittest.TestCase):
                 self.assertNotIn(b"apikey", data, f"apikey string in {path}")
         self.assertGreater(scanned, 3)
         tmp.cleanup()
+
+
+class DispatchGateLevel(unittest.TestCase):
+    """Combined-dispatch gate proofs
+    (QF-TD-COMBINED-DISPATCH-PREFLIGHT-20261014-06 r1).
+
+    The raw-key bypass is removed: build_collector has no api_key
+    parameter, and the production default is the vault surrogate flow
+    only. Every refusal below must occur BEFORE any transport object
+    exists — proven by counting fakes patched over the adapter class
+    and over http.client's connection classes (zero constructions,
+    zero sockets)."""
+
+    GOOD_ENTRY = {"name": "access_token", "surrogate": FAKE_SURROGATE,
+                  "placement": {"query_param": "apikey"}}
+
+    def setUp(self):
+        self._orig_vault_entry = drv._vault_entry
+        self._orig_adapter_cls = adapter_mod.TDHttpTransportAdapter
+        self._orig_http = http.client.HTTPConnection
+        self._orig_https = http.client.HTTPSConnection
+        self.counts = {"adapter": 0, "http_conn": 0, "https_conn": 0}
+        counts = self.counts
+
+        class CountingAdapter:
+            def __init__(self, *a, **k):
+                counts["adapter"] += 1
+                self.transport = lambda req: (200, b"{}")
+        adapter_mod.TDHttpTransportAdapter = CountingAdapter
+
+        class CountingHTTP:
+            def __init__(self, *a, **k):
+                counts["http_conn"] += 1
+        class CountingHTTPS:
+            def __init__(self, *a, **k):
+                counts["https_conn"] += 1
+        http.client.HTTPConnection = CountingHTTP
+        http.client.HTTPSConnection = CountingHTTPS
+
+        self.tmp = tempfile.TemporaryDirectory()
+        root = pathlib.Path(self.tmp.name)
+        rn = root / "research_notes"
+        cand = rn / "td_lifecycle_repair_candidate"
+        cand.mkdir(parents=True)
+        raw = subprocess.run(
+            ["git", "-C", str(REPO), "show",
+             f"{COLLECTOR_COMMIT}:{COLLECTOR_GIT_PATH}"],
+            check=True, capture_output=True).stdout
+        assert hashlib.sha256(raw).hexdigest() == drv.COLLECTOR_SHA256
+        self.collector_path = cand / "td_min_collector.py"
+        self.collector_path.write_bytes(raw)
+        os.symlink(REAL_HARNESS, rn / "pilot_harness")
+        self.state = root / "state"
+        self.ledger = root / "credit_ledger.json"
+
+    def tearDown(self):
+        drv._vault_entry = self._orig_vault_entry
+        adapter_mod.TDHttpTransportAdapter = self._orig_adapter_cls
+        http.client.HTTPConnection = self._orig_http
+        http.client.HTTPSConnection = self._orig_https
+        self.tmp.cleanup()
+
+    def assert_no_transport(self):
+        self.assertEqual(self.counts,
+                         {"adapter": 0, "http_conn": 0, "https_conn": 0})
+
+    def build(self, **kw):
+        kw.setdefault("ledger_path", self.ledger)
+        kw.setdefault("collector_path", self.collector_path)
+        return drv.build_collector(self.state, fixture_manifest(), PREREQ, **kw)
+
+    def test_raw_key_kwarg_refused_before_transport(self):
+        with self.assertRaises(TypeError):
+            self.build(api_key="RAW-KEY-DO-NOT-USE-1234")
+        self.assert_no_transport()
+
+    def test_raw_key_as_key_source_refused_before_transport(self):
+        with self.assertRaises(drv.DriverError) as cm:
+            self.build(key_source="RAW-KEY-DO-NOT-USE-1234")
+        self.assertEqual(str(cm.exception), "key_source_not_callable")
+        self.assert_no_transport()
+
+    def test_vault_failure_refused_before_transport(self):
+        # Fake the authd HELPER (not _vault_entry): the real
+        # _vault_entry sanitizes its failure into the bare token, and
+        # the refusal must precede any transport construction.
+        import types
+        fake = types.ModuleType("dynamic_credentials")
+
+        def fetch(name, entry):
+            raise RuntimeError("sensitive helper text KEY=RAW-KEY-9999")
+        fake.dynamic_credential_entry = fetch
+        saved_mod = sys.modules.get("dynamic_credentials")
+        sys.modules["dynamic_credentials"] = fake
+        try:
+            with self.assertRaises(drv.DriverError) as cm:
+                self.build()  # default source = production vault binding
+        finally:
+            if saved_mod is None:
+                sys.modules.pop("dynamic_credentials", None)
+            else:
+                sys.modules["dynamic_credentials"] = saved_mod
+        self.assertEqual(str(cm.exception), "vault_credential_unavailable")
+        self.assertNotIn("RAW-KEY", str(cm.exception))
+        self.assert_no_transport()
+
+    def test_non_surrogate_refused_at_build_level(self):
+        drv._vault_entry = lambda: {
+            "name": "access_token", "surrogate": "RAW-KEY-DO-NOT-USE-1234",
+            "placement": {"query_param": "apikey"}}
+        with self.assertRaises(drv.DriverError) as cm:
+            self.build()
+        self.assertEqual(str(cm.exception), "vault_non_surrogate_value")
+        self.assert_no_transport()
+
+    def test_invocation_order_vault_adapter_collector(self):
+        order = []
+        seen = {}
+        drv._vault_entry = lambda: (order.append("vault_fetch"),
+                                    dict(self.GOOD_ENTRY))[1]
+
+        class RecordingAdapter:
+            def __init__(self, api_key=None, base_url=None, **k):
+                order.append("adapter_construct")
+                seen["api_key"] = api_key
+                self.transport = lambda req: (200, b"{}")
+        adapter_mod.TDHttpTransportAdapter = RecordingAdapter
+
+        orig_load = drv.load_collector_module
+
+        def wrapped_load(path):
+            mod = orig_load(path)
+
+            class RecordingCollector:
+                def __init__(self, *a, **k):
+                    order.append("collector_construct")
+            mod.Collector = RecordingCollector
+            return mod
+        drv.load_collector_module = wrapped_load
+        try:
+            collector, adapter = self.build()
+        finally:
+            drv.load_collector_module = orig_load
+        self.assertEqual(order,
+                         ["vault_fetch", "adapter_construct",
+                          "collector_construct"])
+        self.assertEqual(seen["api_key"], FAKE_SURROGATE)
 
 
 def main():

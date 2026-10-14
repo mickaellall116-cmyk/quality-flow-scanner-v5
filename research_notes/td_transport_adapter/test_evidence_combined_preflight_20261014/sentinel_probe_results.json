@@ -1,0 +1,60 @@
+{
+  "probe": "sentinel-compatibility",
+  "task": "QF-TD-COMBINED-DISPATCH-PREFLIGHT-20261014-06 r1",
+  "environment": {
+    "http_proxy": "http://hatch-egress-proxy:3128",
+    "https_proxy": "http://hatch-egress-proxy:3128",
+    "HTTP_PROXY": "http://hatch-egress-proxy:3128",
+    "HTTPS_PROXY": "http://hatch-egress-proxy:3128",
+    "ALL_PROXY": "http://hatch-egress-proxy:3128",
+    "all_proxy": "http://hatch-egress-proxy:3128",
+    "SSL_CERT_FILE": "/run/hatch/egress-tls/ca-bundle.pem",
+    "NODE_EXTRA_CA_CERTS": "/run/hatch/egress-tls/ca-bundle.pem",
+    "REQUESTS_CA_BUNDLE": "/run/hatch/egress-tls/ca-bundle.pem",
+    "no_proxy_includes_loopback": true,
+    "urllib_getproxies": {
+      "no": "://None:None",
+      "node_use_env": "://None:None",
+      "https": "http://hatch-egress-proxy:3128",
+      "http": "http://hatch-egress-proxy:3128",
+      "all": "http://hatch-egress-proxy:3128"
+    }
+  },
+  "static": {
+    "adapter_file": "td_http_transport_adapter.py",
+    "mentions_of_proxy": 0,
+    "calls_set_tunnel": false,
+    "reads_environ": true,
+    "http_client_has_set_tunnel_method": true,
+    "note": "http.client only tunnels when set_tunnel() is called explicitly; it never consults *_proxy environment variables (that behavior lives in urllib.request)."
+  },
+  "dynamic": {
+    "control_urllib_reached": "proxy",
+    "control_proxy_hits": 1,
+    "adapter_status": 200,
+    "adapter_proxy_hits_delta": 0,
+    "adapter_target_hits_delta": 1,
+    "https_construction_for_vendor_host": {
+      "host": "api.twelvedata.com",
+      "port": 443,
+      "has_tls_context": true,
+      "set_tunnel_called": false,
+      "transport_outcome": "RuntimeError"
+    }
+  },
+  "tls": {
+    "default_verify_cafile": "/run/hatch/egress-tls/ca-bundle.pem",
+    "ssl_cert_file_env": "/run/hatch/egress-tls/ca-bundle.pem",
+    "context_verify_mode": "2",
+    "context_check_hostname": true,
+    "matches_platform_egress_bundle": true
+  },
+  "verdict": {
+    "direct_path_receives_substitution_in_this_environment": false,
+    "basis": "Approved egress/substitution in this sandbox is the explicit proxy configured via the *_proxy environment variables (hatch-egress-proxy:3128). The adapter's http.client path never consults that configuration and connects directly (dynamic proof: proxy hits delta 0, target hits delta 1; HTTPS construction for the vendor host is direct, no tunnel). A direct connection therefore cannot pass through the substitution point: the vendor would receive the hsurr:* surrogate verbatim as apikey (or the connection fails closed if direct egress is unavailable).",
+    "dynamic_summary": {
+      "adapter_proxy_hits_delta": 0,
+      "adapter_target_hits_delta": 1
+    }
+  }
+}

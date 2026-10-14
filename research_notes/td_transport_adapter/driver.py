@@ -153,28 +153,39 @@ def get_test_fixture_key() -> str:
     return key
 
 
-def build_collector(state_dir, manifest, prereq_path, api_key=None,
+def build_collector(state_dir, manifest, prereq_path,
                     key_source=None,
                     base_url=None, ledger_path: Path = DEFAULT_LEDGER_PATH,
                     collector_path: Path = COLLECTOR_PATH):
     """Construct (Collector, adapter) exactly as a live run would, minus
     any dispatch decision — constructing this object makes no vendor
     requests (the default key source makes one local authd surrogate
-    fetch). Key material resolution order: an explicit api_key wins;
-    else an explicit key_source callable; else the production vault
-    binding get_api_key(). Tests pass key_source=get_test_fixture_key.
-    base_url defaults to the vendor origin; tests pass a loopback URL."""
+    fetch).
+
+    KEY PATH (QF-TD-COMBINED-DISPATCH-PREFLIGHT-20261014-06 r1): there
+    is NO raw-key parameter. The only key paths are (a) the production
+    default — the vault surrogate binding get_api_key(), whose result
+    is re-asserted here to be an hsurr:* surrogate — and (b) an
+    explicit key_source callable, which exists solely so the proof
+    suite can inject the named test fixture source
+    (get_test_fixture_key). Handing this function a raw key — as a
+    keyword (no such parameter: TypeError) or as a non-callable
+    key_source (DriverError) — refuses construction BEFORE any
+    transport object exists. base_url defaults to the vendor origin;
+    tests pass a loopback URL."""
     from td_http_transport_adapter import TDHttpTransportAdapter, VENDOR_BASE_URL
+    if key_source is not None and not callable(key_source):
+        raise DriverError("key_source_not_callable")
     mod = load_collector_module(collector_path)
     limiter = mod.RollingCreditLimiter(credits_per_minute=CREDITS_PER_MINUTE,
                                        daily_cap=DAILY_CAP,
                                        state_path=Path(ledger_path))
-    if api_key is not None:
-        key = api_key
-    elif key_source is not None:
+    if key_source is not None:
         key = key_source()
     else:
         key = get_api_key()
+        if not (isinstance(key, str) and key.startswith("hsurr:")):
+            raise DriverError("vault_non_surrogate_value")
     adapter = TDHttpTransportAdapter(
         api_key=key,
         base_url=base_url if base_url is not None else VENDOR_BASE_URL)
