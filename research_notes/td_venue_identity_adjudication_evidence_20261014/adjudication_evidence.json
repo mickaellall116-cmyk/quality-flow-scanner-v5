@@ -1,0 +1,150 @@
+{
+  "task": "QF-TD-VENUE-IDENTITY-ADJUDICATION-20261014-10 r1",
+  "mode": "READ-ONLY adjudication support; zero network calls; no code or manifest changes",
+  "subject_hold": "QF-TD-FIRST-LIVE-SCREEN-20261014-09 r2: HOLD - venue binding mismatch for REQ-P1H-01",
+  "payload_verification": {
+    "path": "research_notes/twelve_data_stage0/snapshots/acquisition_state/receipts/REQ-P1H-01.rejected.bin (git-ignored private store)",
+    "expected_sha256": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+    "actual_sha256": "c47bf899422e4585bcd37055c0e9788c96697b6b47482133e4675bf5cb8dbc18",
+    "bytes": 117985,
+    "hash_match": true,
+    "read_only_access": true
+  },
+  "pins_verified": {
+    "collector_td_min_collector.py_sha256": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+    "collector_source": "candidate 7ec0f0e: research_notes/td_lifecycle_repair_candidate/td_min_collector.py",
+    "manifest_acquisition_manifest_v1.json_sha256": "66a31e10aca1ca5f8af66139c4ff30a68cfef1c1138156eae103d8cf77e44f12"
+  },
+  "response_meta_actual": {
+    "symbol": "AAPL",
+    "interval": "1h",
+    "currency": "USD",
+    "exchange": "NASDAQ",
+    "exchange_timezone": "America/New_York",
+    "mic_code": "XNGS",
+    "type": "Common Stock"
+  },
+  "manifest_venue_identity_expected_REQ-P1H-01": {
+    "exchange": "NASDAQ",
+    "mic_code": "XNAS",
+    "currency": "USD"
+  },
+  "field_comparison": [
+    {
+      "field": "exchange",
+      "expected": "NASDAQ",
+      "actual": "NASDAQ",
+      "match": true
+    },
+    {
+      "field": "currency",
+      "expected": "USD",
+      "actual": "USD",
+      "match": true
+    },
+    {
+      "field": "mic_code",
+      "expected": "XNAS",
+      "actual": "XNGS",
+      "match": false
+    }
+  ],
+  "failed_comparison": {
+    "file": "research_notes/td_lifecycle_repair_candidate/td_min_collector.py (pin bd003c3c)",
+    "live_receive_path_lines": "417-419: if any(meta.get(k) != v for k, v in req[\"venue_identity\"].items()): ... return f\"venue binding mismatch for {rid}\"",
+    "receipt_revalidation_path_lines": "308-310: venue = req[\"venue_identity\"]; if any(meta.get(k) != v for k, v in venue.items()): return False, \"receipt venue binding mismatch\"",
+    "semantics": "exact string equality over every key in the request's venue_identity dict; a single differing field fails the binding",
+    "sole_failing_field": "mic_code",
+    "expected": "XNAS",
+    "actual": "XNGS"
+  },
+  "classification": {
+    "primary": "(ii) vendor naming/semantics variant of the same venue",
+    "secondary": "(i) manifest pin wrong about what the vendor returns",
+    "detail": "XNAS is the ISO 10383 operating (parent) MIC for the NASDAQ Stock Market; XNGS is the ISO 10383 segment MIC for the Nasdaq Global Select Market, AAPL's listing segment. Twelve Data returns the segment MIC in meta.mic_code. The exchange field (NASDAQ), currency (USD), exchange_timezone (America/New_York), symbol and interval all bind. The data is from the same venue the manifest declares; only the MIC granularity differs.",
+    "not_genuine_mismatch": "(iv) excluded: exchange, timezone, symbol, interval, currency all agree; no evidence of a different venue.",
+    "not_primarily_collector_strictness": "(iii) not primary: exact-equality binding over the declared triple is the collector's designed, adjudicated contract; its frozen doctrine routes identity corrections through a revised manifest, never in-run continuation."
+  },
+  "response_structure_counts_only": {
+    "status": "ok",
+    "values_count": 910,
+    "first_bar_datetime": "2026-04-01 09:30:00",
+    "last_bar_datetime": "2026-10-06 15:30:00",
+    "bar_fields": [
+      "datetime",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "note": "Counts and timestamps only; no bar values extracted or stored. Bar validation/completeness never ran (venue gate precedes it) and is NOT adjudicated here. 910 < outputsize 5000 and within the manifest's one_response_bound_bars 1323."
+  },
+  "blast_radius": {
+    "manifest_requests_total": 51,
+    "venue_triples": [
+      {
+        "exchange": "NASDAQ",
+        "mic_code": "XNAS",
+        "currency": "USD",
+        "requests": 39,
+        "symbols": [
+          "AAPL",
+          "AMD",
+          "GOOGL",
+          "HOOD",
+          "META",
+          "MSFT",
+          "NVDA",
+          "ONDS",
+          "PLTR",
+          "QQQ",
+          "SMCI",
+          "SOFI",
+          "SPCX",
+          "TSLA"
+        ]
+      },
+      {
+        "exchange": "NYSE",
+        "mic_code": "XNYS",
+        "currency": "USD",
+        "requests": 10,
+        "symbols": [
+          "ANET",
+          "BBAI",
+          "NIO",
+          "RKLB",
+          "TWTR"
+        ]
+      },
+      {
+        "exchange": "Cboe BZX",
+        "mic_code": "BATS",
+        "currency": "USD",
+        "requests": 2,
+        "symbols": [
+          "DRAM"
+        ]
+      }
+    ],
+    "assessment": "All 39 NASDAQ-pinned requests would fail the same gate in kind: the vendor returns each symbol's listing-segment MIC (XNGS/XNMS/XNCM), never the operating MIC XNAS; the exact returned value varies by listing tier and is empirically established only for AAPL (XNGS). The 10 NYSE requests pin XNYS, which is both the operating and the principal segment MIC for NYSE, so they may bind - unproven, no NYSE receipt exists. The 2 Cboe BZX/DRAM requests are unresolved by this evidence; the preflight (TD_ACQUISITION_ADAPTER_PREFLIGHT_20261013.md residual 3) already flagged DRAM vendor venue strings as unverifiable from public docs with the same fail-closed/manifest-revision consequence."
+  },
+  "recommendation": {
+    "path": "Manifest V2 venue pin amendment (the collector's frozen correction channel). No collector change. Accept-and-document alone is insufficient because the gate is mechanical: documentation does not stop the HOLD on every NASDAQ receipt.",
+    "detail": [
+      "V2 corrects mic_code per symbol to the vendor-returned segment MIC. Evidence directly supports AAPL -> XNGS.",
+      "The other 13 NASDAQ symbols' segment MICs are NOT established by any in-repo evidence and must not be guessed into V2; they need an evidenced source (separately authorized scope) or per-symbol first-receipt adjudication under the same fail-closed rule.",
+      "Collector binding-rule correction (accept a MIC family/set) is NOT recommended as the primary path: it edits the pinned, adjudicated collector (f64d12f / candidate 7ec0f0e, SCOPED PASS) and weakens a deliberately exact identity gate.",
+      "A corrected re-screen requires: manifest V2 with a new pin + re-adjudication, a candidate bound to V2, reconciliation of the existing HOLD state dir under the collector's started-state rules, and fresh authorization from Mike (new credit). None of that is authorized by this task."
+    ],
+    "frozen_or_adjudicated_touch_flags": [
+      "Manifest V1 (pin 66a31e10) is superseded, not edited in place, if V2 proceeds - V1 was adjudicated as part of the accepted preflight; supersession is the documented path (V1 itself superseded R3 the same way).",
+      "The recommendation does NOT touch the collector, adapter, or driver (all pinned and adjudicated).",
+      "Correcting the pin changes no frozen strategy artifact; venue identity is an acquisition-manifest declaration, and the preflight protocol P4 + residual 3 pre-declared exactly this failure mode and remedy (manifest revision)."
+    ]
+  },
+  "secret_isolation_scan": "CLEAN - no credential, surrogate, apikey value, or bar data present in either deliverable (pattern scan for hsurr:, apikey assignments, Bearer tokens, and bar-value keys returned zero hits)",
+  "network_calls": 0,
+  "files_changed": "none outside the two deliverables of this task"
+}
