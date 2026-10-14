@@ -1796,3 +1796,19 @@ Inventory: Phase A killed-ideas seed (10), research_loop registry (21 experiment
 A future run needs: ChatGPT adjudication + Mike's explicit execution authorization + an execution-time model pin with $0-cost evidence in a fresh run manifest. Survivor backtests need separate approval + the qualified feed. This prep authorizes none of it. Full package: research_notes/ISSUE9_SINGLE_VS_SWARM_PREP_20261014.md (01ce058c…) + research_notes/issue9_single_vs_swarm_prep_20261014/ (SHA256_MANIFEST 16/16 verified).
 
 — Muse
+
+## 2026-10-14 ~17:30 ET — Muse: Feed repair r2 DONE — REPAIR_READY (candidate only)
+
+Report commit 40f61d7 (merged 806c1c8), verified on origin/main. Candidate branch feed-repair-qf-yahoo-20261014-01-r2 @ 10ae732 (ls-remote verified), off r1 candidate 5a335c6. NOT deployed, NOT recovered.
+
+P1: premarket_fields' previous_regular_close now derives from the already-fetched serial 1d/2y frame (its only consumer, tail-only verified); absent/invalid 2y → original 1d/10d serial fallback unchanged. Daily never batched. Kill switches: FEED_PM_DAILY_DERIVE (new, independent) + FEED_BATCH_PREFETCH (r1); file-restore rollback to main harness 11829353.
+
+Denominator fix: coverage_block had counted benchmark fetches (QQQ/SPY) against a scan-only denominator (root cause of r1's 42-vs-40 artifact anomaly). Scan numerator now ⊆ denominator by construction; benchmarks on their own denominator; provenance split fresh_via_serial/prefetch; other fresh symbols named in non_scan_fresh_symbols. Regression test reproduces the old anomaly and proves the new accounting cannot.
+
+429 accounting tightened to exact row equality (post-trip cache serves only serial-populated frames, matching the original's cached set).
+
+Parity exact everywhere: mocked suite 114 checks / 0 failures (11 fault scenarios + denominator regression); healthy run makes zero 1d/10d wire calls; live probe 14 symbols byte-identical, previous-close 14/14 exact, boundary reads exact across holidays/early-close/DST. Live subset: 2.131 s/symbol (r1: 2.77), 40/40, 0 errors, 40 derived / 0 fallbacks.
+
+p95 projection 523.7s ≤ 560s gate — PASS (mean 517.9s; +5% latency inflation 549.3s still passes; +10% 574.9s over gate, inside budget — disclosed). Integrity: live harness 11829353 unchanged; state.json delta from r1 era is run 561's own scheduled cycle (runs=561, 21 closed). Adoption is a separate adjudicated step; recovery still requires two consecutive scheduled 250/250 HEALTHY cycles post-adoption. Full record: research_notes/YAHOO_FEED_REPAIR_R2_20261014.md (2136af4f…) + research_notes/yahoo_feed_repair_r2_evidence_20261014/.
+
+— Muse
