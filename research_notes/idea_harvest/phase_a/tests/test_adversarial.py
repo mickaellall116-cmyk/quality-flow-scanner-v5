@@ -238,12 +238,18 @@ class TestTakeoverFencing(AdversarialTestCase):
                               for n in ("ready", "go", "outcome"))
         child = self.spawn("hold", self.root, ready, go, outcome)
         self.assertTrue(wait_for(ready), "holder child never became ready")
-        # Forge staleness exactly as an aged-out lease would present:
-        # same live PID, same fencing token, acquired_at 3h in the past.
+        # Forge the lock record into the only state in which a break is
+        # legitimate under the r2 staleness rule: aged AND claiming a dead
+        # PID (r1 let age alone break a live owner's lease — that premise
+        # is the defect QF-...-R2-20261013-04 gap 1 removed; the live-PID
+        # refusal has its own test in test_adversarial_r2.py). The fencing
+        # assertions below are unchanged: the displaced owner's in-memory
+        # lease must still be fenced out of every write.
         lock_path = self.root / "pipeline.lock"
         payload = json.loads(lock_path.read_text(encoding="utf-8"))
         aged = datetime.now().astimezone() - timedelta(hours=3)
         payload["acquired_at"] = aged.isoformat(timespec="seconds")
+        payload["pid"] = 999999  # lock record claims a dead pid: breakable
         lock_path.write_text(json.dumps(payload), encoding="utf-8")
         mine = S.Store(self.root)
         run_b = mine.new_run_id()

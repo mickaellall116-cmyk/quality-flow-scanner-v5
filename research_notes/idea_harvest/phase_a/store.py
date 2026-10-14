@@ -13,9 +13,12 @@ Phase A review fixes (Issue #1 comment 6155160682):
   fencing token: every mutation re-reads the lockfile and refuses to write
   unless the caller still owns the lease, so a displaced owner whose stale
   lock was broken can no longer write;
-- startup reconciliation under the lease: a card left orphaned by a crash
-  between its (fsynced) write and its INGESTED/MIGRATED event is adopted
-  deterministically (INGESTED event marked recovered_orphan) or quarantined;
+- startup reconciliation under the lease, fenced like every other
+  mutation (lease verified before any reconciliation write or file move;
+  a quarantine is logged before the card is moved, so the order survives
+  crashes): a card left orphaned by a crash between its (fsynced) write
+  and its INGESTED/MIGRATED event is adopted deterministically (INGESTED
+  event marked recovered_orphan) or quarantined;
 - UUID-based run/event IDs (unique per attempt without coordination);
   the run association of every event is recorded in its `run_id` field;
 - deterministic draft + family-ledger materializers (pure functions of the
@@ -36,12 +39,13 @@ import hashlib
 import json
 import os
 import re
+import time
 import unicodedata
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-STORE_VERSION = "phase-a-store/1.1.0"
+STORE_VERSION = "phase-a-store/1.2.0"
 EXTRACTOR_VERSION = "canon-extract/1.0.0"
 GENESIS_HASH = "sha256:" + "0" * 64
 STALE_LOCK_SECONDS = 2 * 3600
@@ -329,8 +333,15 @@ class Store:
         for d in (self.ideas_dir, self.queue_dir, self.drafts_dir,
                   self.ledger_dir):
             d.mkdir(parents=True, exist_ok=True)
-        if not self.log_path.exists():
-            self.log_path.write_text("", encoding="utf-8")
+        # Create-if-absent, NEVER truncating: O_CREAT without O_TRUNC is
+        # a no-op when the log already exists, so concurrent init_layout
+        # calls (which run pre-lease, in every process) adopt the existing
+        # log instead of racing a check-then-create that could reset it —
+        # including the interleave where one process checks while another
+        # has already created the log and begun appending.
+        fd = os.open(self.log_path,
+                     os.O_CREAT | os.O_WRONLY | os.O_APPEND, 0o644)
+        os.close(fd)
 
     # -- log reading / chain ------------------------------------------------
     def read_events(self):
@@ -396,8 +407,12 @@ class Store:
         orphan cards reconciled at startup (see reconcile_orphans) — the
         caller must still log LOCK_BROKEN as the new run's first own event
         when a stale lease was broken. Raises LeaseHeldError if a live
-        lease exists. A stale lease (older than STALE_LOCK_SECONDS, or its
-        PID is gone) may be broken.
+        lease exists. Staleness rule (r2): a lock whose recorded PID is
+        ALIVE is never displaced, however old it is — age alone never
+        breaks a lease. A lock is breakable only when its recorded PID is
+        dead/gone, or, when no usable PID is recorded, when the lockfile
+        itself is older than STALE_LOCK_SECONDS (mtime — the non-PID
+        abandonment test).
         """
         self.init_layout()
         payload = {"pid": os.getpid(), "run_id": run_id,
@@ -420,8 +435,30 @@ class Store:
                 age = (t1 - t0).total_seconds()
             except Exception:
                 age = None
-            stale = (age is not None and age > STALE_LOCK_SECONDS) or \
-                not _pid_alive(existing.get("pid"))
+            # Staleness (r2): the recorded PID decides. A LIVE pid means a
+            # live owner — never stale, regardless of lock age (the r1 rule
+            # let age alone break a live owner's lease). A dead/gone pid
+            # means abandoned. Only a lock with no usable pid falls back to
+            # the non-PID abandonment test: lockfile mtime older than
+            # STALE_LOCK_SECONDS.
+            raw_pid = existing.get("pid")
+            pid_known = False
+            if raw_pid is not None:
+                try:
+                    int(raw_pid)
+                    pid_known = True
+                except (TypeError, ValueError):
+                    pid_known = False
+            if pid_known:
+                stale = not _pid_alive(raw_pid)
+            else:
+                try:
+                    mtime_age = time.time() - \
+                        self.lock_path.stat().st_mtime
+                except OSError:
+                    mtime_age = None
+                stale = mtime_age is not None and \
+                    mtime_age > STALE_LOCK_SECONDS
             if not (break_stale and stale):
                 raise LeaseHeldError(
                     f"pipeline.lock held by pid={existing.get('pid')} "
@@ -434,6 +471,16 @@ class Store:
                     "refusing to displace a lock that was not observed")
             aside = self.root / f"pipeline.lock.stale-{run_id}"
             os.replace(self.lock_path, aside)
+            if aside.read_bytes() != raw_before:
+                # The move displaced a lock that was NOT the one observed
+                # (a fresh owner slipped in between the check and the
+                # move). Put it back and refuse — a takeover must never
+                # displace an unobserved lock.
+                if not self.lock_path.exists():
+                    os.replace(aside, self.lock_path)
+                raise LeaseHeldError(
+                    "stale-break displaced an unobserved lock; restored "
+                    "it and refusing to take over")
             self._create_lock(payload)
             broken = {"broken": existing, "moved_aside": aside.name}
         self._lease = (run_id, self.lock_path, payload["fence_token"])
@@ -488,6 +535,11 @@ class Store:
         """Resolve cards orphaned by a crash mid-ingest. Runs under the
         caller's lease (invoked automatically by acquire_lease).
 
+        FENCED (r2): the lease is verified before ANY mutation and again
+        immediately before each filesystem move, under the same discipline
+        as every other store mutation — an unfenced or displaced caller is
+        refused before touching anything.
+
         Write ordering makes this recoverable: a card file is fsynced and
         atomically renamed BEFORE its INGESTED/MIGRATED event is appended,
         so the only crash window leaves a durable card with no event.
@@ -495,10 +547,15 @@ class Store:
         re-validates and whose dedup_key recomputes is ADOPTED — the lost
         INGESTED event is appended now, marked recovered_orphan with the
         card's sha256. A card that fails re-validation is QUARANTINED to
-        ideas/orphaned/ and an ERROR event records the quarantine. Leftover
-        write_card temp files are removed (they are never valid cards).
+        ideas/orphaned/: its ERROR event is appended FIRST and the file
+        moved only after, so the log always records the quarantine before
+        the card leaves ideas/ — if a crash lands between the event and
+        the move, the next reconciliation completes the pending move
+        without appending a duplicate event. Leftover write_card temp
+        files are removed (they are never valid cards).
         Returns the list of actions taken.
         """
+        self._require_lease()  # fence before ANY mutation
         actions = []
         if self.ideas_dir.exists():
             for tmp in sorted(self.ideas_dir.glob("IDEA-*.json.tmp")):
@@ -509,12 +566,28 @@ class Store:
         known = {ev.get("idea_id") for ev in events
                  if ev.get("event_type") in ("INGESTED", "MIGRATED")
                  and ev.get("idea_id")}
+        quarantine_recorded = {ev.get("idea_id") for ev in events
+                               if ev.get("event_type") == "ERROR"
+                               and ev.get("quarantined_orphan")
+                               and ev.get("idea_id")}
         for idea_id in sorted(self.all_cards()):
             if idea_id in known:
                 continue
             card = self.read_card(idea_id)
             raw = self.card_path(idea_id).read_bytes()
             digest = "sha256:" + hashlib.sha256(raw).hexdigest()
+            if idea_id in quarantine_recorded:
+                # A previous reconciliation recorded the quarantine in the
+                # log but crashed before moving the file. Complete the
+                # pending move — no duplicate event.
+                self._require_lease()
+                orphan_dir = self.ideas_dir / "orphaned"
+                orphan_dir.mkdir(parents=True, exist_ok=True)
+                os.replace(self.card_path(idea_id),
+                           orphan_dir / self.card_path(idea_id).name)
+                actions.append({"action": "quarantine-completed",
+                                "idea_id": idea_id, "card_sha256": digest})
+                continue
             recomputed = dedup_key(card.get("claim_normalized", ""),
                                    card.get("source") or {})
             errors = validate_card(card, self.sources_idx,
@@ -530,12 +603,11 @@ class Store:
                 actions.append({"action": "adopted", "idea_id": idea_id,
                                 "card_sha256": digest})
             else:
-                orphan_dir = self.ideas_dir / "orphaned"
-                orphan_dir.mkdir(parents=True, exist_ok=True)
-                os.replace(self.card_path(idea_id),
-                           orphan_dir / self.card_path(idea_id).name)
                 detail = "; ".join(errors) if errors else \
                     "dedup_key does not recompute"
+                # Log FIRST, move SECOND: the quarantine is recorded in
+                # the chain before the card leaves ideas/, so the order
+                # survives a crash in between (see docstring).
                 self.append_event(
                     "ERROR", run_id, idea_id=idea_id,
                     reason="startup reconciliation: orphan card failed "
@@ -543,6 +615,11 @@ class Store:
                            f"to ideas/orphaned/ (card {digest})",
                     extra={"quarantined_orphan": True,
                            "card_sha256": digest})
+                self._require_lease()
+                orphan_dir = self.ideas_dir / "orphaned"
+                orphan_dir.mkdir(parents=True, exist_ok=True)
+                os.replace(self.card_path(idea_id),
+                           orphan_dir / self.card_path(idea_id).name)
                 actions.append({"action": "quarantined",
                                 "idea_id": idea_id, "card_sha256": digest})
         return actions

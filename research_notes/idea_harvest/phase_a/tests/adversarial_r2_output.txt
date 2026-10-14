@@ -1,0 +1,12 @@
+test_concurrent_init_fresh_root_single_intact_log (__main__.TestInitRace.test_concurrent_init_fresh_root_single_intact_log) ... ok
+test_concurrent_init_never_truncates_seeded_log (__main__.TestInitRace.test_concurrent_init_never_truncates_seeded_log) ... ok
+test_live_pid_aged_lock_takeover_refused (__main__.TestLivePidNeverDisplaced.test_live_pid_aged_lock_takeover_refused) ... ok
+test_pidless_lock_uses_mtime_abandonment_test (__main__.TestLivePidNeverDisplaced.test_pidless_lock_uses_mtime_abandonment_test) ... ok
+test_quarantine_crash_order_completes_without_duplicate (__main__.TestReconcileFencing.test_quarantine_crash_order_completes_without_duplicate) ... ok
+test_reconcile_refused_with_stale_fencing (__main__.TestReconcileFencing.test_reconcile_refused_with_stale_fencing) ... ok
+test_reconcile_refused_without_lease (__main__.TestReconcileFencing.test_reconcile_refused_without_lease) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.985s
+
+OK
