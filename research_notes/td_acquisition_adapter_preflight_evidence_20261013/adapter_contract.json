@@ -12,9 +12,9 @@
    "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f (PR #8, unmerged)"
   },
   "manifest": {
-   "path": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/acquisition_manifest_v1.json",
-   "manifest_id": "TD-ACQUISITION-MANIFEST-V1-20261013",
-   "canonical_sha256": "e1cb648d648e0c5942ab3d0c3a072bd8cc8024aa81ac384fb3d7074c22539fc0"
+   "path": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/acquisition_manifest_v2.json",
+   "manifest_id": "TD-ACQUISITION-MANIFEST-V2-20261014",
+   "canonical_sha256": "4d5b7a560d9d222d8012cd674fc065de3ef014c2adeb4034e39f8efb99aed646"
   },
   "transport_interface": "callable(req: dict) -> tuple[int, bytes]; raises on transport-level failure. Exactly the interface td_min_collector.Collector already consumes; the adapter replaces only the disabled built-in transport."
  },
