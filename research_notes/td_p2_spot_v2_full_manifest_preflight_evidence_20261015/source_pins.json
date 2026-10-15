@@ -1,0 +1,44 @@
+{
+ "base_manifest": {
+  "canonical_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+  "file_sha256": "ddff040fa654303cf4289f4c39c2a5b5af998bd4065ceddd4e4f5d52fcb8c28d",
+  "requests": 8
+ },
+ "collector": {
+  "commit": "ab254c3458697dd450356146abcf4ad4f75ecef4",
+  "path": "research_notes/td_lifecycle_repair_candidate/td_min_collector.py",
+  "sha256": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c"
+ },
+ "environment": {
+  "interpreter": "CPython 3.12.3",
+  "lock_sha256": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+  "mechanism_sha256": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+  "pandas_market_calendars": "4.5.1",
+  "rate_limiter_sha256": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+  "rebuild": "disclosed exact rebuild; 11 wheel hashes and freeze identical to qualified records"
+ },
+ "nl_supplement": {
+  "base_manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+  "sha256": "9c71233003771d66cf81e99ae01a410ba8943aedfcce8a8c6411dfb51edacd32",
+  "status": "OFFLINE_CANDIDATE_NOT_ADOPTED"
+ },
+ "original_spot8_state": {
+  "lifecycle_sha256": "04b26958d2e30fcd19ee940d536afd4c307aa5ee2e945bc61a55d34e1eae9b6a",
+  "manifest_binding_sha256": "10f0c43e80ca6f1e7ac425a30664a2b80cda609b3b72d3f6cf40a6eaf2641c59",
+  "path": "research_notes/twelve_data_stage0/snapshots/acquisition_state_spot8",
+  "pilot_state_sha256": "80950fcb6b60fc38787ade1d3c365b538ff035175b458e87d8e412cf6fdd9dac",
+  "preserved_spt07_body_sha256": "3339c34154648c0ea4ddb9bd553e5274d390f953552518ad957d79704b7d5d50",
+  "status": "HOLD (v1 record, read-only throughout; hashes unchanged after the preflight)"
+ },
+ "prior_results_referenced": {
+  "nlqual_commit": "080a6ba82d8c286bdc7d07ff52a43eebcf6c6ccc",
+  "preflight_04_commit": "0e3a260ae16e0f0664ec088055270409c4e22319",
+  "qualification_commit": "7de795032d17ca88bf49f3a2c1ca5185672bb088"
+ },
+ "requests": {
+  "REQ-SPT-07": "a259901ec57a8556228c2a6b95299c360102cc98edc62204ae539dc53a4c5edb",
+  "REQ-SPT-08": "f547d8fec7882fa121feb966b33fde000b25c4ae0eb822a6b5a503f4a3651a97"
+ },
+ "spec": "GitHub Issue #1 comment 6186050845",
+ "task": "QF-TD-P2-SPOT-V2-FULL-MANIFEST-STATE-PREFLIGHT-20261015-05 r1"
+}

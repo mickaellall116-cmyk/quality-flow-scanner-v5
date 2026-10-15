@@ -1,0 +1,9 @@
+{
+ "library_version": "4.5.1",
+ "mechanism": "pandas_market_calendars:XNYS via pilot_harness/validate_input.py::xnys_schedule",
+ "mechanism_module_sha256": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+ "per_date": {
+  "2026-07-03": "closed"
+ },
+ "proof_digest": "92621e938c3e3f5726a8837dc93308e17ffb88caa20bee817fe469873e2877d6"
+}

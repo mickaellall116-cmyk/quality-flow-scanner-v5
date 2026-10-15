@@ -1,0 +1,127 @@
+{
+ "all_checks_pass": true,
+ "mode": "main",
+ "results": [
+  {
+   "case": "freeze_candidate_set",
+   "checks": {
+    "collector_sha": true,
+    "eight_requests": true,
+    "manifest_digest": true,
+    "manifest_file_sha": true,
+    "mechanism_sha": true,
+    "pmc_version": true,
+    "spot8_manifest_valid": true,
+    "spt07_digest": true,
+    "spt08_digest": true,
+    "supplement_binds_base": true,
+    "supplement_sha": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "original_state_inventory",
+   "checks": {
+    "binding_is_spot8_digest": true,
+    "error_evidence_sha_is_preserved_body": true,
+    "file_set_exact": true,
+    "hold_event_reason": true,
+    "lifecycle_34_events": true,
+    "lifecycle_counts": true,
+    "no_spt07_receipt": true,
+    "no_spt08_anything": true,
+    "pilot_completed_01_06": true,
+    "pilot_counts": true,
+    "pilot_hold": true,
+    "preserved_body_pin": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "copy_fidelity",
+   "checks": {
+    "copy_hashes_equal_original": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "receipts_revalidate_in_copy",
+   "checks": {
+    "all_six_ok": true,
+    "reasons_ok": true,
+    "side_effect_exactly_6_construction_hold_appends": true,
+    "side_effect_no_other_file_changed": true,
+    "side_effect_pilot_state_unchanged": true
+   },
+   "note": "driver-level use of the candidate's own _verify_receipt against a SEPARATE probe copy: SPT01-06 durable receipts are intact and manifest-bound. FINDING: _verify_receipt is not read-only -- _validate_bars emits one CONSTRUCTION_HOLD lifecycle event per 1h receipt (append-only; pilot state and receipts untouched). Any derivation design must account for verification-time lifecycle appends (duplicates accumulate on re-verify).",
+   "pass": true
+  },
+  {
+   "case": "transition_attempt_full_manifest",
+   "checks": {
+    "lifecycle_bytes_unchanged": true,
+    "no_closed_day_bin": true,
+    "no_spt08_artifacts": true,
+    "outcome_is_persistent_hold": true,
+    "pilot_state_bytes_unchanged": true,
+    "state_bytes_unchanged": true,
+    "zero_dispatched": true,
+    "zero_evidenced_counted": true,
+    "zero_reused_counted": true,
+    "zero_transport_calls": true
+   },
+   "note": "DESIGN GAP (empirical): _run_locked returns HOLD (persistent) before any receipt reuse, evidence derivation, or dispatch; the unchanged candidate has no entry point that re-classifies durable rejected evidence",
+   "pass": true
+  },
+  {
+   "case": "transition_restart_again",
+   "checks": {
+    "outcome_is_persistent_hold": true,
+    "state_bytes_still_unchanged": true,
+    "zero_transport_calls": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "classifier_direct_proof_on_preserved_evidence",
+   "checks": {
+    "classifier_wrote_nothing": true,
+    "negative_no_supplement_none": true,
+    "negative_tampered_body_none": true,
+    "negative_wrong_status_none": true,
+    "proof_all_dates_closed": true,
+    "proof_digest_recomputes": true,
+    "proof_library_pin": true,
+    "proof_mechanism_pin": true,
+    "proof_returned": true
+   },
+   "note": "the accepted NL classifier, applied directly to the preserved 180-byte body + actual REQ-SPT-07 object, returns a full calendar proof; the gap is NOT classification -- it is the missing state-transition entry point",
+   "pass": true
+  },
+  {
+   "case": "synthetic_control_downstream_machinery",
+   "checks": {
+    "fresh_calls_in_order": true,
+    "fresh_outcome": true,
+    "restart_outcome": true,
+    "restart_reused_6_evidenced_2": true,
+    "restart_zero_calls": true
+   },
+   "note": "SYNTHETIC state only (fresh fake run, -04 SS2c/2d pattern): once a CLOSED_DAY_EVIDENCED event exists, reuse/restart machinery is complete; no equivalent event can be produced from the v1 HOLD state's durable rejected evidence by any candidate entry point",
+   "pass": true
+  },
+  {
+   "case": "original_state_untouched_final",
+   "checks": {
+    "original_hashes_unchanged": true
+   },
+   "note": "",
+   "pass": true
+  }
+ ],
+ "transition_supported": false
+}

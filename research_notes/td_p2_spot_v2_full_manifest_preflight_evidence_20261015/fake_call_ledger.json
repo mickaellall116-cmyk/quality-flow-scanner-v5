@@ -1,0 +1,35 @@
+{
+ "credits_spent": 0,
+ "entries": [
+  {
+   "calls": [],
+   "case": "transition_attempt_full_manifest"
+  },
+  {
+   "calls": [],
+   "case": "transition_restart_again"
+  },
+  {
+   "calls": [
+    "REQ-SPT-01",
+    "REQ-SPT-02",
+    "REQ-SPT-03",
+    "REQ-SPT-04",
+    "REQ-SPT-05",
+    "REQ-SPT-06",
+    "REQ-SPT-07",
+    "REQ-SPT-08"
+   ],
+   "case": "synthetic_control_fresh_run"
+  },
+  {
+   "calls": [],
+   "case": "synthetic_control_restart"
+  }
+ ],
+ "model_calls": 0,
+ "real_transport_calls": 0,
+ "total_fake_dispatches": 8,
+ "twelve_data_calls": 0,
+ "vendor_calls": 0
+}

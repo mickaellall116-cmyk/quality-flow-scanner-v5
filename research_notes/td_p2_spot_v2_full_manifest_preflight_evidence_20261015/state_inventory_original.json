@@ -1,0 +1,46 @@
+{
+ "collector.lock": {
+  "bytes": 0,
+  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ "lifecycle.jsonl": {
+  "bytes": 7211,
+  "sha256": "04b26958d2e30fcd19ee940d536afd4c307aa5ee2e945bc61a55d34e1eae9b6a"
+ },
+ "manifest_binding.json": {
+  "bytes": 78,
+  "sha256": "10f0c43e80ca6f1e7ac425a30664a2b80cda609b3b72d3f6cf40a6eaf2641c59"
+ },
+ "pilot_state.json": {
+  "bytes": 222,
+  "sha256": "80950fcb6b60fc38787ade1d3c365b538ff035175b458e87d8e412cf6fdd9dac"
+ },
+ "receipts/REQ-SPT-01.json": {
+  "bytes": 4715,
+  "sha256": "56b8531f831fbc60bc681b7707f9264b278e99edac43eba07a4df29d4cd45ed4"
+ },
+ "receipts/REQ-SPT-02.json": {
+  "bytes": 4721,
+  "sha256": "58c92a5fe52055f9b286a9786c3030db40f59dfe051a0cd642e375546220b059"
+ },
+ "receipts/REQ-SPT-03.json": {
+  "bytes": 4708,
+  "sha256": "b0adc3ec6ca63e49fec2b3231c6f9d47d68a60361acb14c00e1f57f4503b871f"
+ },
+ "receipts/REQ-SPT-04.json": {
+  "bytes": 4745,
+  "sha256": "860e55ed9f7599dfbd44897c369c8b869203a43565f707d186b70af4fc64d4cb"
+ },
+ "receipts/REQ-SPT-05.json": {
+  "bytes": 697,
+  "sha256": "3746d373d0fe0d6637d0d21bc1e474d2029d490efee06c3af76d3b40c0c02719"
+ },
+ "receipts/REQ-SPT-06.json": {
+  "bytes": 688,
+  "sha256": "7c845cb7c25d4fd2b3e14981b312ab48f72d9b8e259d279a1c32c2dd4463c5b1"
+ },
+ "receipts/REQ-SPT-07.rejected.bin": {
+  "bytes": 180,
+  "sha256": "3339c34154648c0ea4ddb9bd553e5274d390f953552518ad957d79704b7d5d50"
+ }
+}

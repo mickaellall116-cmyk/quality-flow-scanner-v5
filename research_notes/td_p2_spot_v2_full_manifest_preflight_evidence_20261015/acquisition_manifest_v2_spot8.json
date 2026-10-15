@@ -1,0 +1,204 @@
+{
+ "manifest_id": "TD-ACQUISITION-MANIFEST-V2-SPOT8-20261014",
+ "task": "QF-TD-V2-SPOT-BATCH-PREFLIGHT-20261014-12 r1",
+ "status": "SPEC ONLY \u2014 not executed; exact SPOT-only subset of TD-ACQUISITION-MANIFEST-V2-20261014; dispatch requires separate authorization",
+ "derived_from": "TD-ACQUISITION-MANIFEST-V2-20261014 (research_notes/td_acquisition_adapter_preflight_evidence_20261013/acquisition_manifest_v2.json, sha256 4a6e3a55ba6cacf80d60c26870817a272534d62cd73eb09d1dfc889d571c547d, canonical digest 4d5b7a560d9d222d8012cd674fc065de3ef014c2adeb4034e39f8efb99aed646); subset rule: leg == 'SPOT' (8 of 51 requests), V2 order preserved, every request object copied byte-for-byte",
+ "endpoint": "https://api.twelvedata.com/time_series",
+ "budget": {
+  "total_requests": 8,
+  "expected_credits": 8,
+  "max_credits": 8,
+  "budget_rule": "expected == max: max_attempts=1, no pagination, no retries; every dispatch consumes exactly 1 credit reserved in advance via the shared persisted limiter",
+  "plan_caps": {
+   "credits_per_minute": 8,
+   "credits_per_day": 800,
+   "plan": "Basic"
+  }
+ },
+ "requests": [
+  {
+   "request_id": "REQ-SPT-01",
+   "symbol": "AAPL",
+   "interval": "1h",
+   "start_date": "2026-03-09T00:00:00",
+   "end_date": "2026-03-13T23:59:59",
+   "timezone": "America/New_York",
+   "outputsize": 5000,
+   "order": "asc",
+   "adjust": "splits",
+   "leg": "SPOT",
+   "output_name": "REQ-SPT-01.json",
+   "max_attempts": 1,
+   "credit_weight": 1,
+   "expected_credits": 1,
+   "one_response_bound_bars": 35,
+   "venue_identity": {
+    "exchange": "NASDAQ",
+    "mic_code": "XNGS",
+    "currency": "USD"
+   },
+   "identity": "AAPL|/time_series|1h|2026-03-09T00:00:00|2026-03-13T23:59:59|America/New_York|adjust=splits"
+  },
+  {
+   "request_id": "REQ-SPT-02",
+   "symbol": "QQQ",
+   "interval": "1h",
+   "start_date": "2026-03-09T00:00:00",
+   "end_date": "2026-03-13T23:59:59",
+   "timezone": "America/New_York",
+   "outputsize": 5000,
+   "order": "asc",
+   "adjust": "splits",
+   "leg": "SPOT",
+   "output_name": "REQ-SPT-02.json",
+   "max_attempts": 1,
+   "credit_weight": 1,
+   "expected_credits": 1,
+   "one_response_bound_bars": 35,
+   "venue_identity": {
+    "exchange": "NASDAQ",
+    "mic_code": "XNMS",
+    "currency": "USD"
+   },
+   "identity": "QQQ|/time_series|1h|2026-03-09T00:00:00|2026-03-13T23:59:59|America/New_York|adjust=splits"
+  },
+  {
+   "request_id": "REQ-SPT-03",
+   "symbol": "AAPL",
+   "interval": "1h",
+   "start_date": "2025-11-03T00:00:00",
+   "end_date": "2025-11-07T23:59:59",
+   "timezone": "America/New_York",
+   "outputsize": 5000,
+   "order": "asc",
+   "adjust": "splits",
+   "leg": "SPOT",
+   "output_name": "REQ-SPT-03.json",
+   "max_attempts": 1,
+   "credit_weight": 1,
+   "expected_credits": 1,
+   "one_response_bound_bars": 35,
+   "venue_identity": {
+    "exchange": "NASDAQ",
+    "mic_code": "XNGS",
+    "currency": "USD"
+   },
+   "identity": "AAPL|/time_series|1h|2025-11-03T00:00:00|2025-11-07T23:59:59|America/New_York|adjust=splits"
+  },
+  {
+   "request_id": "REQ-SPT-04",
+   "symbol": "QQQ",
+   "interval": "1h",
+   "start_date": "2025-11-03T00:00:00",
+   "end_date": "2025-11-07T23:59:59",
+   "timezone": "America/New_York",
+   "outputsize": 5000,
+   "order": "asc",
+   "adjust": "splits",
+   "leg": "SPOT",
+   "output_name": "REQ-SPT-04.json",
+   "max_attempts": 1,
+   "credit_weight": 1,
+   "expected_credits": 1,
+   "one_response_bound_bars": 35,
+   "venue_identity": {
+    "exchange": "NASDAQ",
+    "mic_code": "XNMS",
+    "currency": "USD"
+   },
+   "identity": "QQQ|/time_series|1h|2025-11-03T00:00:00|2025-11-07T23:59:59|America/New_York|adjust=splits"
+  },
+  {
+   "request_id": "REQ-SPT-05",
+   "symbol": "AAPL",
+   "interval": "1h",
+   "start_date": "2025-11-28T00:00:00",
+   "end_date": "2025-11-28T23:59:59",
+   "timezone": "America/New_York",
+   "outputsize": 5000,
+   "order": "asc",
+   "adjust": "splits",
+   "leg": "SPOT",
+   "output_name": "REQ-SPT-05.json",
+   "max_attempts": 1,
+   "credit_weight": 1,
+   "expected_credits": 1,
+   "one_response_bound_bars": 7,
+   "venue_identity": {
+    "exchange": "NASDAQ",
+    "mic_code": "XNGS",
+    "currency": "USD"
+   },
+   "identity": "AAPL|/time_series|1h|2025-11-28T00:00:00|2025-11-28T23:59:59|America/New_York|adjust=splits"
+  },
+  {
+   "request_id": "REQ-SPT-06",
+   "symbol": "QQQ",
+   "interval": "1h",
+   "start_date": "2025-11-28T00:00:00",
+   "end_date": "2025-11-28T23:59:59",
+   "timezone": "America/New_York",
+   "outputsize": 5000,
+   "order": "asc",
+   "adjust": "splits",
+   "leg": "SPOT",
+   "output_name": "REQ-SPT-06.json",
+   "max_attempts": 1,
+   "credit_weight": 1,
+   "expected_credits": 1,
+   "one_response_bound_bars": 7,
+   "venue_identity": {
+    "exchange": "NASDAQ",
+    "mic_code": "XNMS",
+    "currency": "USD"
+   },
+   "identity": "QQQ|/time_series|1h|2025-11-28T00:00:00|2025-11-28T23:59:59|America/New_York|adjust=splits"
+  },
+  {
+   "request_id": "REQ-SPT-07",
+   "symbol": "AAPL",
+   "interval": "1h",
+   "start_date": "2026-07-03T00:00:00",
+   "end_date": "2026-07-03T23:59:59",
+   "timezone": "America/New_York",
+   "outputsize": 5000,
+   "order": "asc",
+   "adjust": "splits",
+   "leg": "SPOT",
+   "output_name": "REQ-SPT-07.json",
+   "max_attempts": 1,
+   "credit_weight": 1,
+   "expected_credits": 1,
+   "one_response_bound_bars": 7,
+   "venue_identity": {
+    "exchange": "NASDAQ",
+    "mic_code": "XNGS",
+    "currency": "USD"
+   },
+   "identity": "AAPL|/time_series|1h|2026-07-03T00:00:00|2026-07-03T23:59:59|America/New_York|adjust=splits"
+  },
+  {
+   "request_id": "REQ-SPT-08",
+   "symbol": "QQQ",
+   "interval": "1h",
+   "start_date": "2026-07-03T00:00:00",
+   "end_date": "2026-07-03T23:59:59",
+   "timezone": "America/New_York",
+   "outputsize": 5000,
+   "order": "asc",
+   "adjust": "splits",
+   "leg": "SPOT",
+   "output_name": "REQ-SPT-08.json",
+   "max_attempts": 1,
+   "credit_weight": 1,
+   "expected_credits": 1,
+   "one_response_bound_bars": 7,
+   "venue_identity": {
+    "exchange": "NASDAQ",
+    "mic_code": "XNMS",
+    "currency": "USD"
+   },
+   "identity": "QQQ|/time_series|1h|2026-07-03T00:00:00|2026-07-03T23:59:59|America/New_York|adjust=splits"
+  }
+ ]
+}
