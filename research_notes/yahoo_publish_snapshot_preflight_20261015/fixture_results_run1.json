@@ -1,0 +1,245 @@
+{
+ "API-AUDIT": {
+  "environ_reads": false,
+  "module_sha256": "1b50db565ab55e9fdc76b9da5a1aa79940800e032926dcaa04fc31ae4dece4ce",
+  "public_classes": [
+   "HoldError"
+  ],
+  "public_functions": [
+   "publish"
+  ],
+  "public_mutable_module_state": [],
+  "publish_signature": [
+   "cap_dir",
+   "capture_id",
+   "remote"
+  ]
+ },
+ "BASELINE": {
+  "bundle_sha256": "5ab579f10991716cbc6f111cd238c8d895b4d824ecdb42a7a6d1053cb39da888",
+  "commit_sha": "69d44204224d299e3d6196e6eb55d99924057ec0db87d3e52c9d2197c1778d44",
+  "objects": 158,
+  "puts": 158,
+  "remote_matches": true,
+  "verdict": "PUBLISHED",
+  "verified": 158
+ },
+ "CAPTURE-ID": {
+  "invalid_ids": [
+   {
+    "id": "qf-yahoo1h-20261016-001",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF-YAHOO/20261016",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "../QF-20261016-XX",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF..20261016",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF%2D20261016X",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF-YAHOO1H-20261016-00\u0410",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF-YAHOO\n20261016",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF-2026",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "-QF-YAHOO1H-2026",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF-YAHOO1H-2026-",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF--YAHOO1H-2026",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF YAHOO1H 2026",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   },
+   {
+    "id": "QF-YAHOO\\20261016",
+    "remote_calls": 0,
+    "verdict": "HOLD:CAPTURE_ID_INVALID"
+   }
+  ]
+ },
+ "T-01": {
+  "entries_kwarg": "TypeError",
+  "env_bundle_matches_baseline": true,
+  "env_variation": "PUBLISHED",
+  "expected_repo_kwarg": "TypeError",
+  "monkeypatched_pin": "HOLD:MANIFEST_DRIFT",
+  "monkeypatched_pin_puts": 0
+ },
+ "T-02": {
+  "bundle_matches_baseline": true,
+  "remote_matches_original": true,
+  "verdict": "PUBLISHED"
+ },
+ "T-03": {
+  "bundle_matches_baseline": true,
+  "remote_matches_original": true,
+  "verdict": "PUBLISHED"
+ },
+ "T-04": {
+  "fstat_drift_during_read": "HOLD:READ_DRIFT",
+  "fstat_drift_puts": 0,
+  "symlink_to_archive_file": "HOLD:PATH_TYPE_DRIFT",
+  "symlink_to_archive_file_puts": 0,
+  "symlink_to_outside": "HOLD:PATH_TYPE_DRIFT",
+  "symlink_to_outside_puts": 0,
+  "symlinked_directory": "HOLD:PATH_TYPE_DRIFT",
+  "symlinked_directory_puts": 0
+ },
+ "T-05": {
+  "bit_flip": "HOLD:REFETCH_MISMATCH",
+  "bit_flip_puts": 158,
+  "cross_object_substitution": "HOLD:REFETCH_MISMATCH",
+  "foreign_capture_substitution": "HOLD:REFETCH_MISMATCH"
+ },
+ "T-06": {
+  "fail_put": {
+   "1": {
+    "manifest_present": false,
+    "puts_attempted": 1,
+    "sums_present": false,
+    "verdict": "HOLD:PARTIAL_UPLOAD"
+   },
+   "157": {
+    "manifest_present": false,
+    "puts_attempted": 157,
+    "sums_present": false,
+    "verdict": "HOLD:PARTIAL_UPLOAD"
+   },
+   "158": {
+    "manifest_present": false,
+    "puts_attempted": 158,
+    "sums_present": true,
+    "verdict": "HOLD:PARTIAL_UPLOAD"
+   },
+   "2": {
+    "manifest_present": false,
+    "puts_attempted": 2,
+    "sums_present": false,
+    "verdict": "HOLD:PARTIAL_UPLOAD"
+   },
+   "79": {
+    "manifest_present": false,
+    "puts_attempted": 79,
+    "sums_present": false,
+    "verdict": "HOLD:PARTIAL_UPLOAD"
+   }
+  },
+  "silent_drop": {
+   "puts": 158,
+   "verdict": "HOLD:REFETCH_MISMATCH"
+  }
+ },
+ "T-07": {
+  "case_variant_prefix": "HOLD:CAPTURE_EXISTS",
+  "case_variant_prefix_puts": 0,
+  "full_older_capture": "HOLD:CAPTURE_EXISTS",
+  "full_older_capture_puts": 0,
+  "one_file_stub": "HOLD:CAPTURE_EXISTS",
+  "one_file_stub_puts": 0,
+  "remote_unchanged": true
+ },
+ "T-08": {
+  "static_audit": {
+   "cap_dir_in_publish_phase": false,
+   "open_in_publish_phase": false,
+   "read_once_in_publish_phase": false
+  },
+  "trap_hits": 0,
+  "verdict": "PUBLISHED"
+ },
+ "T-09": {
+  "case_variant_duplicate": "HOLD:OBJECT_SET",
+  "case_variant_duplicate_puts": 0,
+  "extra_in_subdir": "HOLD:OBJECT_SET",
+  "extra_in_subdir_puts": 0,
+  "fifty_third_symbol": "HOLD:OBJECT_SET",
+  "fifty_third_symbol_puts": 0,
+  "missing_object": "HOLD:OBJECT_SET",
+  "missing_object_puts": 0,
+  "temp_top_level": "HOLD:OBJECT_SET",
+  "temp_top_level_puts": 0
+ },
+ "T-10": {
+  "internal": "HOLD:VISIBILITY_REFUSAL",
+  "internal_puts": 0,
+  "public": "HOLD:VISIBILITY_REFUSAL",
+  "public_puts": 0,
+  "wrong_name": "HOLD:TARGET_NAME_DRIFT",
+  "wrong_name_puts": 0
+ },
+ "T-11": {
+  "puts": 158,
+  "verdict": "HOLD:BUNDLE_MUTATED"
+ },
+ "T-12": {
+  "k0": {
+   "crashed": true,
+   "restart_same_id": "PUBLISHED"
+  },
+  "k1": {
+   "crashed": true,
+   "restart_same_id": "HOLD:CAPTURE_EXISTS"
+  },
+  "k157": {
+   "crashed": true,
+   "restart_same_id": "HOLD:CAPTURE_EXISTS"
+  },
+  "k50": {
+   "crashed": true,
+   "restart_same_id": "HOLD:CAPTURE_EXISTS"
+  },
+  "new_capture_id": "PUBLISHED"
+ },
+ "T-13": {
+  "single_object_over_32mib": "HOLD:CEILING",
+  "single_object_puts": 0,
+  "total_over_64mib": "HOLD:CEILING",
+  "total_puts": 0
+ }
+}

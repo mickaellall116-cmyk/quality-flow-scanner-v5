@@ -1,0 +1,6 @@
+{
+ "bundle_ceiling_bytes": 67108864,
+ "peak_rss_kib": 124652,
+ "peak_rss_mib": 121.73,
+ "scope": "fixture driver process (publisher + harness), Linux ru_maxrss"
+}

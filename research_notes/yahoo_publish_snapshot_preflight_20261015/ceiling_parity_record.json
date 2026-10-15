@@ -1,0 +1,11 @@
+{
+ "ceilings_equal": false,
+ "consequence": "A capture valid under the frozen 512 MiB total ceiling could exceed the publisher 64 MiB bundle ceiling and be unpublishable (HOLD:CEILING) after vendor calls were consumed. No acquisition GO until a separately reviewed unified capture manifest/executor packet sets one shared total-byte ceiling.",
+ "frozen_capture_per_symbol_ceiling_bytes": 33554432,
+ "frozen_capture_total_ceiling_bytes": 536870912,
+ "frozen_manifest_sha256": "634c4541a8b30ade50e45898e80ee65806fa323c953020edc149530642d9bef3",
+ "publisher_bundle_ceiling_bytes": 67108864,
+ "publisher_single_object_ceiling_bytes": 33554432,
+ "record": "CEILING_PARITY_REQUIRED",
+ "status": "UNRESOLVED"
+}

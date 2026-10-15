@@ -1,0 +1,16 @@
+{
+ "environ_reads": false,
+ "module_sha256": "1b50db565ab55e9fdc76b9da5a1aa79940800e032926dcaa04fc31ae4dece4ce",
+ "public_classes": [
+  "HoldError"
+ ],
+ "public_functions": [
+  "publish"
+ ],
+ "public_mutable_module_state": [],
+ "publish_signature": [
+  "cap_dir",
+  "capture_id",
+  "remote"
+ ]
+}
