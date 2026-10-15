@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-15T14:50:19.772950+00:00",
+  "as_of": "2026-10-15T18:50:15.034172+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,16 +7,16 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-15T14:50:19.727564+00:00",
-  "signals_logged": 32,
+  "last_successful_cycle": "2026-10-15T18:50:14.991398+00:00",
+  "signals_logged": 33,
   "grade_counts": {
-    "A": 7,
+    "A": 8,
     "B": 23,
     "C": 2
   },
   "grade_counts_by_cohort": {
     "Forward-UX51": {
-      "A": 2,
+      "A": 3,
       "B": 8,
       "C": 0
     },
@@ -28,19 +28,44 @@
   },
   "pending_entries": [
     {
+      "signal_id": "v54:MELI:4h:2026-10-15T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "MELI",
+      "grade": "A",
+      "signal_bar": "2026-10-15T10:30:00-04:00"
+    }
+  ],
+  "open_positions": [
+    {
       "signal_id": "v54:GOOGL:4h:2026-10-15T10:30:00-04:00:2026-09-15-v54",
       "symbol": "GOOGL",
       "grade": "B",
-      "signal_bar": "2026-10-15T06:30:00-04:00"
+      "entry": 350.32000732421875,
+      "entry_bar": "2026-10-15T10:30:00-04:00",
+      "stop": 344.73292439270114,
+      "tp1": 364.75812463849513,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.1002307582432177,
+      "mae_r": -0.6201798649424077
     },
     {
       "signal_id": "v54:SHOP:4h:2026-10-15T10:30:00-04:00:2026-09-15-v54",
       "symbol": "SHOP",
       "grade": "B",
-      "signal_bar": "2026-10-15T06:30:00-04:00"
+      "entry": 171.4499969482422,
+      "entry_bar": "2026-10-15T10:30:00-04:00",
+      "stop": 165.33922118980624,
+      "tp1": 181.76957291674927,
+      "status": "open_full",
+      "bars_held": 1,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.7740417771032239,
+      "mae_r": -0.18982919811907445
     }
   ],
-  "open_positions": [],
   "closed_trades": 21,
   "cumulative_r": 13.0547,
   "cumulative_r_note": "Sum of per-trade blended R at 1R risk each; not compounded.",
