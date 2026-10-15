@@ -1,0 +1,400 @@
+{
+ "all_match": true,
+ "checks_matched": 32,
+ "checks_total": 32,
+ "executor_sha256": "f76e30fa12dd7f7eef2627fd6b5fb2c249d5ca48cb2fecc67d9d2692e827ec3a",
+ "manifest_sha256": "634c4541a8b30ade50e45898e80ee65806fa323c953020edc149530642d9bef3",
+ "results": [
+  {
+   "checks": {
+    "attempts_recorded": true,
+    "no_banned_imports": true,
+    "socket_raises": true,
+    "yfinance_not_loaded": true
+   },
+   "desc": "sockets denied; no vendor/net imports",
+   "expect": "CLEAN",
+   "got": "CLEAN",
+   "id": "E0-network-and-hygiene",
+   "match": true
+  },
+  {
+   "checks": {
+    "drift_refused": true,
+    "real_manifest_hash_pinned": true
+   },
+   "desc": "1-byte manifest flip -> HOLD pre-transport",
+   "expect": "HOLD:MANIFEST_DRIFT",
+   "got": "HOLD:MANIFEST_DRIFT",
+   "id": "E1-manifest-drift",
+   "match": true
+  },
+  {
+   "checks": {
+    "filehash_drift": true,
+    "live_probe_matches_pins": true,
+    "missing_client": true,
+    "version_drift": true
+   },
+   "desc": "live probe passes; doctored probes HOLD",
+   "expect": "HOLD:RUNTIME_DRIFT",
+   "got": "HOLD:RUNTIME_DRIFT",
+   "id": "E2-runtime-drift",
+   "match": true
+  },
+  {
+   "checks": {
+    "case_count_51": true,
+    "case_dup_index": true,
+    "case_dup_symbol": true
+   },
+   "desc": "dup index / 51 count / dup symbol HOLD",
+   "expect": "HOLD:ORDER_DRIFT",
+   "got": "HOLD:ORDER_DRIFT",
+   "id": "E3-order-count-drift",
+   "match": true
+  },
+  {
+   "checks": {
+    "files_52x3_plus_2": true,
+    "journal_before_every_request": true,
+    "limiter_spacing_exact": true,
+    "marker_absent": true,
+    "order_exact": true,
+    "requests_52": true,
+    "sha256sums_verify": true
+   },
+   "desc": "fake transport: full capture completes",
+   "expect": "COMPLETE",
+   "got": "COMPLETE",
+   "id": "E4-complete-52",
+   "match": true
+  },
+  {
+   "checks": {
+    "files_verified_156": true,
+    "zero_transport_calls": true
+   },
+   "desc": "completed capture re-run: no re-request",
+   "expect": "ALREADY_COMPLETE",
+   "got": "ALREADY_COMPLETE",
+   "id": "E5-restart-complete",
+   "match": true
+  },
+  {
+   "checks": {
+    "code_ambiguous": true,
+    "crash_converted_to_hold": true,
+    "marker_written": true,
+    "run1_calls_3": true,
+    "run2_zero_calls": true,
+    "symbol_attempted_once_total": true
+   },
+   "desc": "consumed attempt never re-requested",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E6-crash-second-attempt",
+   "match": true
+  },
+  {
+   "checks": {
+    "calls_stopped": true,
+    "code": true,
+    "marker_code": true,
+    "marker_status": true,
+    "partial_archive_retained": true
+   },
+   "desc": "abort case HOLD:THROTTLED",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E7-throttle",
+   "match": true
+  },
+  {
+   "checks": {
+    "calls_stopped": true,
+    "code": true,
+    "marker_code": true,
+    "marker_status": true,
+    "partial_archive_retained": true
+   },
+   "desc": "abort case HOLD:PARTIAL",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E8-partial",
+   "match": true
+  },
+  {
+   "checks": {
+    "calls_stopped": true,
+    "code": true,
+    "marker_code": true,
+    "marker_status": true,
+    "partial_archive_retained": true
+   },
+   "desc": "abort case HOLD:SCHEMA_DRIFT",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E9-schema-drift",
+   "match": true
+  },
+  {
+   "checks": {
+    "calls_stopped": true,
+    "code": true,
+    "marker_code": true,
+    "marker_status": true,
+    "partial_archive_retained": true
+   },
+   "desc": "abort case HOLD:META_DRIFT",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E10a-meta-drift",
+   "match": true
+  },
+  {
+   "checks": {
+    "calls_stopped": true,
+    "code": true,
+    "marker_code": true,
+    "marker_status": true,
+    "partial_archive_retained": true
+   },
+   "desc": "abort case HOLD:SCHEMA_DRIFT",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E10b-symbol-mismatch",
+   "match": true
+  },
+  {
+   "checks": {
+    "calls_stopped": true,
+    "code": true,
+    "marker_code": true,
+    "marker_status": true,
+    "partial_archive_retained": true
+   },
+   "desc": "abort case HOLD:CEILING",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E11-ceiling",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "direct_link_collision": true,
+    "foreign_bytes_unchanged": true,
+    "zero_transport_calls": true
+   },
+   "desc": "foreign final file: pre-scan HOLD + os.link refuses overwrite",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E12-collision-no-overwrite",
+   "match": true
+  },
+  {
+   "checks": {
+    "commit_sha_64hex": true,
+    "objects_158": true,
+    "under_captures_prefix": true
+   },
+   "desc": "fake remote: upload + re-fetch verify",
+   "expect": "PUBLISHED_FAKE",
+   "got": "PUBLISHED_FAKE",
+   "id": "E13-publish-happy",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_puts": true
+   },
+   "desc": "wrong repo full name refused",
+   "expect": "HOLD:TARGET_NAME_DRIFT",
+   "got": "HOLD:TARGET_NAME_DRIFT",
+   "id": "E14-target-name-drift",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_puts": true
+   },
+   "desc": "public target refused",
+   "expect": "HOLD:VISIBILITY_REFUSAL",
+   "got": "HOLD:VISIBILITY_REFUSAL",
+   "id": "E15-public-visibility",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_puts": true
+   },
+   "desc": "existing captures/<id> refused",
+   "expect": "HOLD:CAPTURE_EXISTS",
+   "got": "HOLD:CAPTURE_EXISTS",
+   "id": "E16-existing-capture",
+   "match": true
+  },
+  {
+   "checks": {
+    "uploads_happened": true
+   },
+   "desc": "corrupted re-fetch detected",
+   "expect": "HOLD:REFETCH_MISMATCH",
+   "got": "HOLD:REFETCH_MISMATCH",
+   "id": "E17-refetch-mismatch",
+   "match": true
+  },
+  {
+   "checks": {
+    "same_code": true
+   },
+   "desc": "missing object on re-fetch detected",
+   "expect": "HOLD:REFETCH_MISMATCH",
+   "got": "HOLD:REFETCH_MISMATCH",
+   "id": "E17b-refetch-missing",
+   "match": true
+  },
+  {
+   "checks": {},
+   "desc": "non-fake remote refused outright",
+   "expect": "HOLD:REAL_REMOTE_FORBIDDEN",
+   "got": "HOLD:REAL_REMOTE_FORBIDDEN",
+   "id": "E18-real-remote-forbidden",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "zero_transport_calls": true
+   },
+   "desc": "missing actions companion blocks restart",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E19a-restart-actions-deleted",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "zero_transport_calls": true
+   },
+   "desc": "altered meta companion blocks restart",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E19b-restart-meta-altered",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "zero_transport_calls": true
+   },
+   "desc": "altered raw blocks restart",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E19c-restart-raw-altered",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "marker_written": true,
+    "no_exception_escaped": true,
+    "zero_transport_calls": true
+   },
+   "desc": "truncated journal tail fails closed",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E20-torn-journal",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "zero_transport_calls": true
+   },
+   "desc": "truncated completion record fails closed",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E21a-torn-ledger",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "zero_transport_calls": true
+   },
+   "desc": "duplicate/conflicting completion record fails closed",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E21b-conflicting-ledger",
+   "match": true
+  },
+  {
+   "checks": {
+    "calls_stop_at_slow": true,
+    "code": true,
+    "marker_written": true,
+    "slow_symbol_not_published": true
+   },
+   "desc": "post-return wall check aborts before publication",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E22-slow-middle-request",
+   "match": true
+  },
+  {
+   "checks": {
+    "all_52_attempted": true,
+    "code": true,
+    "final_symbol_not_published": true,
+    "no_finalization": true
+   },
+   "desc": "final request crossing the cap is never finalized",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E23-slow-final-request",
+   "match": true
+  },
+  {
+   "checks": {
+    "calls_stopped_no_retry": true,
+    "code": true,
+    "marker_code": true
+   },
+   "desc": "unexpected exception converts to retained INCOMPLETE_HOLD",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E24-unexpected-transport-error",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "no_finalization": true,
+    "zero_transport_calls": true
+   },
+   "desc": "extra object fails finalization gate",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E25a-object-set-extra",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "no_finalization": true,
+    "zero_transport_calls": true
+   },
+   "desc": "temp leftover fails finalization gate",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "E25b-object-set-temp",
+   "match": true
+  }
+ ],
+ "socket_attempts_after_denial_check": 1,
+ "task": "QF-YAHOO-CAPTURE-EXECUTOR-PREFLIGHT-20261015-09 r2",
+ "verdict": "CAPTURE_EXECUTOR_PREFLIGHT_PASS"
+}

@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
-"""QF-YAHOO-CAPTURE-EXECUTOR-PREFLIGHT-20261015-09 r1 — capture executor.
+"""QF-YAHOO-CAPTURE-EXECUTOR-PREFLIGHT-20261015-09 r2 — capture executor.
+
+r2 repair (bounded, per ChatGPT HOLD on r1): per-symbol completion
+records bind all three artifacts (raw + actions + request metadata);
+restart SKIP_VERIFIED requires all three present and hash-matching;
+JSONL journal/ledger parsing fails closed with named HOLD codes on
+torn/duplicate/conflicting records; wall time is enforced before each
+request, immediately after transport returns, after publication work
+and before finalization; unexpected transport exceptions convert to a
+retained INCOMPLETE_HOLD; finalization requires the exact 156-object
+set bound by SHA256SUMS.
+
+Original r1 header follows.
+QF-YAHOO-CAPTURE-EXECUTOR-PREFLIGHT-20261015-09 r1 — capture executor.
 
 Built against the frozen packet of QF-YAHOO-CLEAN-CAPTURE-PREFLIGHT-08 r2
 (commit 0d7ccfb): the executor is bound to the capture manifest by exact
@@ -114,37 +127,120 @@ def journal_attempt(root, symbol, index):
                   {"event": "ATTEMPT", "symbol": symbol, "i": index})
 
 
-def _read_jsonl(root, rel):
+def _read_jsonl(root, rel, corrupt_code):
+    """Strict JSONL parse (r2): a malformed, truncated or non-object line
+    fails closed with a named HOLD code — never an uncontrolled exception
+    and never a forgiving parse of a torn tail."""
     path = os.path.join(root, rel)
     if not os.path.exists(path):
         return []
+    records = []
     with open(path, encoding="utf-8") as fh:
-        return [json.loads(line) for line in fh if line.strip()]
+        for line in fh:
+            if not line.strip():
+                continue
+            try:
+                rec = json.loads(line)
+            except json.JSONDecodeError:
+                raise HoldError(corrupt_code)
+            if not isinstance(rec, dict):
+                raise HoldError(corrupt_code)
+            records.append(rec)
+    return records
 
 
 def journaled_symbols(root):
-    return {r["symbol"] for r in _read_jsonl(root, JOURNAL_REL)
-            if r.get("event") == "ATTEMPT"}
-
-
-def file_ledger(root):
-    out = {}
-    for r in _read_jsonl(root, LEDGER_REL):
-        out[r["rel"]] = r["sha256"]
+    out = set()
+    for r in _read_jsonl(root, JOURNAL_REL, "HOLD:JOURNAL_CORRUPT"):
+        if r.get("event") == "ATTEMPT":
+            sym = r.get("symbol")
+            if not isinstance(sym, str) or sym in out:
+                raise HoldError("HOLD:JOURNAL_CORRUPT")
+            out.add(sym)
     return out
 
 
-def reconcile(root, rel, symbol, ledger):
-    """Restart state for one symbol (r2 semantics, ledger-backed hashes)."""
-    final = os.path.join(root, rel)
-    if os.path.exists(final):
-        expected = ledger.get(rel)
-        if expected is not None and sha256_file(final) == expected:
-            return "SKIP_VERIFIED"
+def completion_records(root):
+    """Per-symbol completion records (r2): each binds the exact three
+    artifact paths + SHA256 values. Duplicate, conflicting or malformed
+    records fail closed before any transport."""
+    out = {}
+    for r in _read_jsonl(root, LEDGER_REL, "HOLD:LEDGER_CORRUPT"):
+        if r.get("event") != "COMPLETE":
+            raise HoldError("HOLD:LEDGER_CORRUPT")
+        sym = r.get("symbol")
+        files = r.get("files")
+        expected = {f"raw/{sym}.csv", f"actions/{sym}.actions.csv",
+                    f"meta/{sym}.request.json"} if isinstance(sym, str) \
+            else set()
+        if not isinstance(sym, str) or not isinstance(files, dict) \
+                or set(files) != expected \
+                or any(not isinstance(v, str) or len(v) != 64
+                       for v in files.values()):
+            raise HoldError("HOLD:LEDGER_CORRUPT")
+        if sym in out:
+            raise HoldError("HOLD:LEDGER_CONFLICT")
+        out[sym] = files
+    return out
+
+
+def symbol_state(root, entry, completions, attempted):
+    """Restart state for one symbol (r2): SKIP_VERIFIED only when a
+    completion record exists AND all three bound artifacts exist with
+    matching hashes. Any partial artifact set without a completion
+    record is a mismatch; a journaled attempt with no artifacts is a
+    consumed ambiguous attempt."""
+    symbol = entry["symbol"]
+    rels = (f"raw/{symbol}.csv", f"actions/{symbol}.actions.csv",
+            f"meta/{symbol}.request.json")
+    bound = completions.get(symbol)
+    if bound is not None:
+        for rel in rels:
+            p = os.path.join(root, rel)
+            if not os.path.exists(p):
+                return "HOLD:COMPLETION_INCOMPLETE"
+            if sha256_file(p) != bound[rel]:
+                return "HOLD:FINAL_MISMATCH"
+        return "SKIP_VERIFIED"
+    if any(os.path.exists(os.path.join(root, rel)) for rel in rels):
         return "HOLD:FINAL_MISMATCH"
-    if symbol in journaled_symbols(root):
+    if symbol in attempted:
         return "ATTEMPT_CONSUMED_AMBIGUOUS"
     return "ELIGIBLE"
+
+
+def expected_object_rels(entries):
+    out = set()
+    for e in entries:
+        s = e["symbol"]
+        out.add(f"raw/{s}.csv")
+        out.add(f"actions/{s}.actions.csv")
+        out.add(f"meta/{s}.request.json")
+    return out
+
+
+def verify_object_set(cap_dir, entries):
+    """Finalization gate (r2): the archive must contain EXACTLY the
+    expected 156 objects under raw/actions/meta and no temp or
+    unexpected file anywhere in the capture directory."""
+    expected = expected_object_rels(entries)
+    actual = set()
+    for sub in ("raw", "actions", "meta"):
+        d = os.path.join(cap_dir, sub)
+        if os.path.isdir(d):
+            for name in os.listdir(d):
+                actual.add(f"{sub}/{name}")
+    allowed_top = expected | {JOURNAL_REL, LEDGER_REL, "SHA256SUMS",
+                              "manifest.json"}
+    for dirpath, _dirs, names in os.walk(cap_dir):
+        for name in names:
+            rel = os.path.relpath(os.path.join(dirpath, name), cap_dir)
+            if rel not in allowed_top:
+                raise HoldError("HOLD:OBJECT_SET")
+    if actual != expected:
+        raise HoldError("HOLD:OBJECT_SET")
+    return {rel: sha256_file(os.path.join(cap_dir, rel))
+            for rel in sorted(expected)}
 
 
 # ---------------------------------------------------------------------------
@@ -305,17 +401,27 @@ def run_capture(man, archive_root, capture_id, transport, calendar,
                           {"event": "ABORT_AGAIN", "code": code})
         return {"status": "INCOMPLETE_HOLD", "code": code, **stats}
 
-    # Completed capture: verify and report; never re-request.
+    def check_wall():
+        if now_fn() - t0 > float(ceilings["wall_seconds_total"]):
+            raise HoldError("HOLD:CEILING")
+
+    # Completed capture: verify and report; never re-request. The sums
+    # file must bind EXACTLY the expected 156 objects (r2).
     if os.path.exists(os.path.join(cap_dir, "manifest.json")):
         sums = {}
         sums_path = os.path.join(cap_dir, "SHA256SUMS")
         if not os.path.exists(sums_path):
             return abort("HOLD:FINAL_MISMATCH")
-        with open(sums_path, encoding="utf-8") as fh:
-            for line in fh:
-                if line.strip():
-                    h, rel = line.split(None, 1)
-                    sums[rel.strip()] = h
+        try:
+            with open(sums_path, encoding="utf-8") as fh:
+                for line in fh:
+                    if line.strip():
+                        h, rel = line.split(None, 1)
+                        sums[rel.strip()] = h
+        except (ValueError, UnicodeDecodeError):
+            return abort("HOLD:FINAL_MISMATCH")
+        if set(sums) != expected_object_rels(entries):
+            return abort("HOLD:FINAL_MISMATCH")
         for rel, h in sums.items():
             p = os.path.join(cap_dir, rel)
             if not os.path.exists(p) or sha256_file(p) != h:
@@ -323,76 +429,92 @@ def run_capture(man, archive_root, capture_id, transport, calendar,
         return {"status": "ALREADY_COMPLETE",
                 "files_verified": len(sums), **stats}
 
-    # Restart pre-scan: a consumed-but-unfulfilled attempt, or a final file
-    # whose bytes do not match the ledger, blocks the whole capture before
-    # any new request is made (no second attempt is ever issued).
-    ledger = file_ledger(cap_dir)
-    for entry in entries:
-        state = reconcile(cap_dir, f"raw/{entry['symbol']}.csv",
-                          entry["symbol"], ledger)
-        if state == "ATTEMPT_CONSUMED_AMBIGUOUS":
-            return abort("ATTEMPT_CONSUMED_AMBIGUOUS")
-        if state == "HOLD:FINAL_MISMATCH":
-            return abort("HOLD:FINAL_MISMATCH")
-        if state == "SKIP_VERIFIED":
-            stats["skipped_verified"] += 1
+    try:
+        # Restart pre-scan: strict journal/ledger parse, then per-symbol
+        # state over ALL THREE bound artifacts. Any consumed attempt,
+        # partial artifact set, altered companion or corrupt record
+        # blocks the capture before any new request (no second attempt).
+        completions = completion_records(cap_dir)
+        attempted = journaled_symbols(cap_dir)
+        verified = set()
+        for entry in entries:
+            state = symbol_state(cap_dir, entry, completions, attempted)
+            if state == "ATTEMPT_CONSUMED_AMBIGUOUS":
+                return abort("ATTEMPT_CONSUMED_AMBIGUOUS")
+            if state.startswith("HOLD:"):
+                return abort(state)
+            if state == "SKIP_VERIFIED":
+                verified.add(entry["symbol"])
+                stats["skipped_verified"] += 1
 
-    params = man["request_params"]
-    for entry in entries:
-        symbol = entry["symbol"]
-        rel = f"raw/{symbol}.csv"
-        if reconcile(cap_dir, rel, symbol, file_ledger(cap_dir)) \
-                == "SKIP_VERIFIED":
-            continue
-        if stats["requests"] >= int(budget["max_requests_total"]):
-            return abort("HOLD:CEILING")
-        if now_fn() - t0 > float(ceilings["wall_seconds_total"]):
-            return abort("HOLD:CEILING")
-        # Journal commits BEFORE the request; exactly one attempt.
-        journal_attempt(cap_dir, symbol, entry["i"])
-        limiter.wait()
-        stats["requests"] += 1
-        try:
-            resp = transport(symbol, entry, params)
-        except ThrottleError:
-            return abort("HOLD:THROTTLED")
-        frame, meta = resp["frame"], resp["meta"]
-        try:
-            validate_response(entry, frame, meta, calendar, man)
-            raw_bytes = _serialize(frame)
-            if len(raw_bytes) > int(ceilings["bytes_per_symbol"]):
-                raise HoldError("HOLD:CEILING")
-            if stats["bytes_total"] + len(raw_bytes) \
-                    > int(ceilings["bytes_total"]):
-                raise HoldError("HOLD:CEILING")
-            h = archive_write(cap_dir, rel, raw_bytes)
-            archive_write(cap_dir, f"actions/{symbol}.actions.csv",
-                          _actions_bytes(frame))
-            meta_doc = {"symbol": symbol, "i": entry["i"],
-                        "class": entry["class"],
-                        "params": {k: params[k] for k in
-                                   ("interval", "auto_adjust", "prepost",
-                                    "actions")},
-                        "source": "yahoo/yfinance",
-                        "acquisition_utc": stamp_fn(),
-                        "raw_sha256": h}
-            archive_write(cap_dir, f"meta/{symbol}.request.json",
-                          json.dumps(meta_doc, sort_keys=True).encode())
-        except WriteOnceCollision:
-            return abort("HOLD:WRITE_ONCE_COLLISION")
-        except HoldError as exc:
-            return abort(exc.code)
-        _append_jsonl(cap_dir, LEDGER_REL,
-                      {"rel": rel, "sha256": h, "symbol": symbol})
-        stats["bytes_total"] += len(raw_bytes)
+        params = man["request_params"]
+        for entry in entries:
+            symbol = entry["symbol"]
+            rel = f"raw/{symbol}.csv"
+            arel = f"actions/{symbol}.actions.csv"
+            mrel = f"meta/{symbol}.request.json"
+            if symbol in verified:
+                continue
+            if stats["requests"] >= int(budget["max_requests_total"]):
+                return abort("HOLD:CEILING")
+            check_wall()
+            # Journal commits BEFORE the request; exactly one attempt.
+            journal_attempt(cap_dir, symbol, entry["i"])
+            limiter.wait()
+            stats["requests"] += 1
+            try:
+                resp = transport(symbol, entry, params)
+                frame, meta = resp["frame"], resp["meta"]
+            except ThrottleError:
+                return abort("HOLD:THROTTLED")
+            except HoldError as exc:
+                return abort(exc.code)
+            except Exception:
+                return abort("HOLD:TRANSPORT_ERROR")
+            try:
+                check_wall()  # immediately after transport returns
+                validate_response(entry, frame, meta, calendar, man)
+                raw_bytes = _serialize(frame)
+                if len(raw_bytes) > int(ceilings["bytes_per_symbol"]):
+                    raise HoldError("HOLD:CEILING")
+                if stats["bytes_total"] + len(raw_bytes) \
+                        > int(ceilings["bytes_total"]):
+                    raise HoldError("HOLD:CEILING")
+                h = archive_write(cap_dir, rel, raw_bytes)
+                ha = archive_write(cap_dir, arel, _actions_bytes(frame))
+                meta_doc = {"symbol": symbol, "i": entry["i"],
+                            "class": entry["class"],
+                            "params": {k: params[k] for k in
+                                       ("interval", "auto_adjust",
+                                        "prepost", "actions")},
+                            "source": "yahoo/yfinance",
+                            "acquisition_utc": stamp_fn(),
+                            "raw_sha256": h}
+                hm = archive_write(
+                    cap_dir, mrel,
+                    json.dumps(meta_doc, sort_keys=True).encode())
+            except WriteOnceCollision:
+                return abort("HOLD:WRITE_ONCE_COLLISION")
+            except HoldError as exc:
+                return abort(exc.code)
+            except Exception:
+                return abort("HOLD:RESPONSE_SHAPE")
+            bound = {rel: h, arel: ha, mrel: hm}
+            _append_jsonl(cap_dir, LEDGER_REL,
+                          {"event": "COMPLETE", "symbol": symbol,
+                           "files": bound})
+            completions[symbol] = bound
+            verified.add(symbol)
+            stats["bytes_total"] += len(raw_bytes)
+            try:
+                check_wall()  # after validation/publication work
+            except HoldError as exc:
+                return abort(exc.code)
 
-    # Completion: pin every file, then the archive manifest.
-    files = {}
-    for sub in ("raw", "actions", "meta"):
-        d = os.path.join(cap_dir, sub)
-        for name in sorted(os.listdir(d)):
-            rel = f"{sub}/{name}"
-            files[rel] = sha256_file(os.path.join(cap_dir, rel))
+        check_wall()  # before finalization
+        files = verify_object_set(cap_dir, entries)
+    except HoldError as exc:
+        return abort(exc.code)
     sums_text = "".join(f"{files[rel]}  {rel}\n" for rel in sorted(files))
     archive_write(cap_dir, "SHA256SUMS", sums_text.encode())
     archive_doc = {"capture_id": capture_id, "status": "COMPLETE",
