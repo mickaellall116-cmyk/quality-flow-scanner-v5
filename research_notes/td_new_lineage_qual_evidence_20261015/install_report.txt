@@ -1,0 +1,14 @@
+Looking in links: wheels
+Processing ./wheels/exchange_calendars-4.13.2-py3-none-any.whl (from -r lock.txt (line 1))
+Processing ./wheels/korean_lunar_calendar-0.4.0-py3-none-any.whl (from -r lock.txt (line 2))
+Processing ./wheels/numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r lock.txt (line 3))
+Processing ./wheels/pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r lock.txt (line 4))
+Processing ./wheels/pandas_market_calendars-4.5.1-py3-none-any.whl (from -r lock.txt (line 5))
+Processing ./wheels/pyluach-2.3.0-py3-none-any.whl (from -r lock.txt (line 6))
+Processing ./wheels/python_dateutil-2.9.0-py2.py3-none-any.whl (from -r lock.txt (line 7))
+Processing ./wheels/pytz-2024.2-py2.py3-none-any.whl (from -r lock.txt (line 8))
+Processing ./wheels/six-1.17.0-py2.py3-none-any.whl (from -r lock.txt (line 9))
+Processing ./wheels/toolz-1.2.0-py3-none-any.whl (from -r lock.txt (line 10))
+Processing ./wheels/tzdata-2026.5-py2.py3-none-any.whl (from -r lock.txt (line 11))
+Installing collected packages: pytz, tzdata, toolz, six, pyluach, numpy, korean_lunar_calendar, python-dateutil, pandas, exchange_calendars, pandas_market_calendars
+Successfully installed exchange_calendars-4.13.2 korean_lunar_calendar-0.4.0 numpy-1.26.4 pandas-2.2.3 pandas_market_calendars-4.5.1 pyluach-2.3.0 python-dateutil-2.9.0 pytz-2024.2 six-1.17.0 toolz-1.2.0 tzdata-2026.5

@@ -1,0 +1,3 @@
+/tmp/tdqual/tree_f64d12f/research_notes/pilot_harness/construct_4h.py:171: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  data = data[keep].copy()
+{"output_dir": "/tmp/tdqual/integration_out", "tests_run": 16, "success": true}

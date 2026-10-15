@@ -1,0 +1,30 @@
+{
+  "additional_files_match_rerun_record": {
+    "research_notes/pilot_harness/pilot_acquire.py": true,
+    "research_notes/pilot_harness/pilot_build.py": true,
+    "research_notes/pilot_harness/synthetic_data.py": true,
+    "research_notes/pilot_harness/warmup_math.py": true
+  },
+  "author_pinned_source_hashes_reproduced": {
+    "research_notes/pilot_harness/construct_4h.py": true,
+    "research_notes/pilot_harness/rate_limiter.py": true,
+    "research_notes/pilot_harness/validate_input.py": true,
+    "research_notes/pilot_harness/verify_sources.py": true,
+    "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py": true,
+    "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/scanner_rules.py": true,
+    "research_notes/td_lifecycle_repair_candidate/td_min_collector.py": true,
+    "research_notes/td_lifecycle_repair_candidate/test_pinned_integration.py": true
+  },
+  "credits": 0,
+  "dependencies_equal_author": true,
+  "dependency_stubs": false,
+  "passed_set_equals_author_f64d12f": true,
+  "passed_set_equals_independent_rerun": true,
+  "python_author": "3.12.14",
+  "python_rerun": "3.12.3",
+  "python_this_run": "3.12.3",
+  "success": true,
+  "suite": "f64d12f test_pinned_integration.py reproduction",
+  "tests_run": 16,
+  "vendor_calls": 0
+}

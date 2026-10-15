@@ -1,0 +1,15 @@
+executable: /tmp/tdqual/venv/bin/python
+python: 3.12.3 3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]
+TZPATH: ('/usr/share/zoneinfo', '/usr/lib/zoneinfo', '/usr/share/lib/zoneinfo', '/etc/zoneinfo')
+pip tzdata pkg: /tmp/tdqual/venv/lib/python3.12/site-packages/tzdata | has zoneinfo dir: True
+zoneinfo NY offset @2025-03-10T13:30Z: -1 day, 20:00:00
+version pandas: 2.2.3
+version numpy: 1.26.4
+version pandas_market_calendars: 4.5.1
+version pytz: 2024.2
+version python-dateutil: 2.9.0
+version exchange-calendars: 4.13.2
+version tzdata: 2026.5
+mcal file: /tmp/tdqual/venv/lib/python3.12/site-packages/pandas_market_calendars/__init__.py
+calendar: XNYS | tz: America/New_York
+validate_input.py sha256 (f64d12f tree): 1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58
