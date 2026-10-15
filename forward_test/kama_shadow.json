@@ -1,10 +1,10 @@
 {
   "protocol": "KAMA_SHADOW_PROTOCOL.md",
-  "updated_at": "2026-10-15T18:52:51+00:00",
+  "updated_at": "2026-10-15T21:00:14+00:00",
   "start_at": "2026-09-28T13:46:00+00:00",
   "review_target_signals": 100,
   "data_quality_checkpoint": 50,
-  "signal_count": 7,
+  "signal_count": 9,
   "checkpoint_50_reached": false,
   "primary_cohort_signal_ids": null,
   "primary_cohort_frozen_at": null,
@@ -219,6 +219,54 @@
         "resolved": false
       },
       "signal_record_sha256": "44c16d2391f5033ed4e9a61cb6a4530cba77305b0a78880bc685719ee050f513"
+    },
+    {
+      "signal_id": "v54:RBRK:4h:2026-10-15T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "RBRK",
+      "signal_time": "2026-10-15T14:30:00-04:00",
+      "first_logged_at": "2026-10-15T20:50:10+00:00",
+      "source": "v54_status_pending",
+      "tested_session_state": {
+        "valid": false,
+        "reason": "download"
+      },
+      "live_grid_state": {
+        "valid": false,
+        "reason": "download"
+      },
+      "outcome": {
+        "resolved": false
+      },
+      "signal_record_sha256": "b0b7168a08cbca086b6d2d2be07ea7b811765c242009be357f8b0802f5fa92b2"
+    },
+    {
+      "signal_id": "v54:MELI:4h:2026-10-15T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "MELI",
+      "signal_time": "2026-10-15T16:00:00-04:00",
+      "first_logged_at": "2026-10-15T20:51:27+00:00",
+      "source": "v54_ai_observer",
+      "tested_session_state": {
+        "valid": true,
+        "bars": 1445,
+        "bar_start": "2026-10-15T13:30:00-04:00",
+        "kama20": 1826.735533724975,
+        "kama40": 1768.5258423887976,
+        "bull": true,
+        "gap_pct_of_kama40": 3.2914244135416215
+      },
+      "live_grid_state": {
+        "valid": true,
+        "bars": 1926,
+        "bar_start": "2026-10-15T14:30:00-04:00",
+        "kama20": 1870.431947155261,
+        "kama40": 1793.2351373065178,
+        "bull": true,
+        "gap_pct_of_kama40": 4.3048905435064455
+      },
+      "outcome": {
+        "resolved": false
+      },
+      "signal_record_sha256": "70985054fd90582ab9ccef594b04930ce1edbd5c2d8c862452cdcdbb3f2293b9"
     }
   ]
 }
