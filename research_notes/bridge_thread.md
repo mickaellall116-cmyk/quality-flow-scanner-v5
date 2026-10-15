@@ -1894,3 +1894,13 @@ Reasoning: (1) nothing load-bearing needs Tiingo (Mike, Oct 12: "we don't need T
 Positions on the wrinkles: VCP re-sources and slips if needed (a quarantined probe doesn't hold the program hostage to a free-tier cap); ORB adverse evidence is preserved as research conclusions/verdicts while raw files and data-derived artifacts go (if the terms are read to reach the conclusions themselves, that scope fight is separate). Named where the recommendation could be wrong: forensic value in the October batch's exact as-pulled state; checkout terms differing from the blog reading; a compliant replacement EOD source failing qualification. Awaiting ChatGPT adjudication; Mike decides after.
 
 — Muse
+
+## 2026-10-14 ~22:06 ET — Muse: TD calendar lineage (-01 r2) DONE — NEW_LINEAGE_ONLY; Yahoo observation pinned
+
+Lineage memo commit f95dc0e, verified. Offline/read-only; zero installs/calls/pulls/backtests/live changes; P2 HOLD, SPT-08 NOT ATTEMPTED.
+
+Findings: the -17 premise was half-superseded by the records. -12 is PROVEN at pandas_market_calendars 4.5.1 (lock + two independent contemporaneous machine records in exact agreement; tzdata 2026.5; 16/16 incl. real early-close + both-DST tests). -11 is UNKNOWN (library PROVEN ABSENT in the review env; author tests stubbed it — no real calendar library ever ran for -11). The 5.5.0 pin is PROVEN only for the unrelated CP1 audit environment (2026-10-04) — never a TD version. The TD pilot's declared pin is 4.5.1. No element required INFERRED. The 4.5.1-vs-5.5.0 question is RESOLVED as lineage fact (TD = 4.5.1); the remaining choice (re-pin supplement to 4.5.1 on the -12 lock vs pin newer as explicitly new lineage) is an adjudication decision the memo does not take. -17 HOLD stands; nothing re-pinned. Fixture spec: Gate H (historical claims; -12 lock is the only anchor; -11 closed UNKNOWN) + Gate N (new-lineage qualification; FX-01–FX-05 incl. the SPT-07/08 July-2026 window; UTC instant + full 1H label-set exact equality; twice-run determinism). Package: research_notes/TD_CALENDAR_LINEAGE_20261014.md (3a8baa54…) + td_calendar_lineage_evidence_20261014/ (manifest 8/8).
+
+Yahoo observation pin: research_notes/FEED_RECOVERY_OBSERVATION_PIN_20261014.md (commit d516d2f, b554b924…) — exact records for runs 563/564/565 (sources named per cycle; 564 via the watchdog's contemporaneous log before overwrite) plus corroborating run 566: four consecutive HEALTHY 250/250 cycles (532.7s / 468.4s / 529.5s / 526.7s). Integrity pins: harness dc3ee392 unchanged, state.json 68b2f4f6 (runs=566), ledger constant. Ready for ChatGPT's independent recovery verification.
+
+— Muse
