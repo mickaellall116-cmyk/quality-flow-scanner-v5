@@ -1,0 +1,664 @@
+{
+ "all_pass": false,
+ "cases": [
+  {
+   "case": "pins",
+   "checks": {
+    "base_collector_sha": true,
+    "candidate_differs_from_base": true,
+    "diff_single_file": true,
+    "manifest_digest": true,
+    "mechanism_sha": true,
+    "pmc_version": true,
+    "spt07_digest": true,
+    "spt08_digest": true,
+    "supplement_sha": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "readonly_verification_candidate",
+   "checks": {
+    "all_six_verify_ok": true,
+    "explicit_action_emits_six": true,
+    "inventory_byte_identical_after_recheck": true,
+    "lifecycle_grew_only_via_explicit_action": true,
+    "six_structured_findings": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "readonly_verification_base_control",
+   "checks": {
+    "base_all_six_verify_ok": true,
+    "base_appends_six_construction_hold": true
+   },
+   "note": "control: documents the -05 secondary finding on unchanged base bytes",
+   "pass": true
+  },
+  {
+   "case": "derive_happy_path",
+   "checks": {
+    "closed_day_copy_equals_preserved_body": true,
+    "event_pins": true,
+    "exactly_one_derived_event": true,
+    "no_receipt_or_completion_for_spt07": true,
+    "outcome_derived": true,
+    "proof_digest_matches_nlqual": true,
+    "state_v2": true,
+    "v1_history_byte_prefix": true,
+    "v1_hold_event_retained": true,
+    "zero_transport": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "derived_run_spt08_closed_session",
+   "checks": {
+    "call_list_exactly_spt08": true,
+    "credit_8_reserved_once": true,
+    "evidenced_two": true,
+    "outcome": true,
+    "restart_bytes_stable": true,
+    "restart_outcome_durable": true,
+    "restart_zero_calls": true,
+    "reused_six_dispatched_one": true,
+    "spt08_closed_day_event": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "derived_run_without_supplement_fails_closed",
+   "checks": {
+    "hold_outcome": true,
+    "no_new_started": true,
+    "zero_calls": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_valid200_values",
+   "checks": {
+    "exactly_one_call": true,
+    "one_started_spt08": true,
+    "reservations_8": true,
+    "restart_zero_redispatch": true,
+    "terminal_recorded": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_valid200_empty",
+   "checks": {
+    "exactly_one_call": true,
+    "hold_outcome": true,
+    "no_receipt": true,
+    "rejected_preserved": true,
+    "reservations_8": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_auth401",
+   "checks": {
+    "exactly_one_call": true,
+    "hold_outcome": true,
+    "rejected_preserved": true,
+    "reservations_8": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_rate429",
+   "checks": {
+    "exactly_one_call": true,
+    "hold_outcome": true,
+    "reservations_8": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_server500",
+   "checks": {
+    "exactly_one_call": true,
+    "hold_outcome": true,
+    "reservations_8": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_timeout",
+   "checks": {
+    "exactly_one_call": true,
+    "hold_outcome": true,
+    "no_rejected_file": true,
+    "reservations_8": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_schema_no_meta",
+   "checks": {
+    "exactly_one_call": true,
+    "hold_outcome": true,
+    "reservations_8": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_meta_drift",
+   "checks": {
+    "exactly_one_call": true,
+    "hold_outcome": true,
+    "reservations_8": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_calendar_drift",
+   "checks": {
+    "exactly_one_call": false,
+    "hold_outcome": true,
+    "no_closed_day_event_spt08": true,
+    "rejected_preserved": false
+   },
+   "note": "",
+   "pass": false
+  },
+  {
+   "case": "spt08_matrix_receipt_digest_drift",
+   "checks": {
+    "hold_outcome": true,
+    "reason_names_verification": false,
+    "zero_calls": true
+   },
+   "note": "",
+   "pass": false
+  },
+  {
+   "case": "spt08_matrix_write_once_foreign_receipt",
+   "checks": {
+    "foreign_bytes_untouched": true,
+    "hold_outcome": true,
+    "zero_calls": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_matrix_crash_at_dispatch",
+   "checks": {
+    "crashed_at_dispatch": true,
+    "restart_ambiguous_hold": true,
+    "restart_zero_redispatch": true,
+    "started_durable": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_wrong_hold_reason",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_wrong_status",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_missing_error_evidence",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_altered_started_attempt",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_altered_hold_event",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_altered_body",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_altered_binding_file",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_missing_receipt",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_corrupt_receipt",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_credit_drift",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_foreign_state_file",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_foreign_receipt_file",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_spt08_already_attempted",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_altered_supplement_bars",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_altered_supplement_calendar",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_altered_supplement_mechanism",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_altered_supplement_binding",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_no_supplement",
+   "checks": {
+    "refused": true,
+    "zero_transport": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_duplicate_derivation",
+   "checks": {
+    "refused": true,
+    "still_exactly_one_derived_event": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "crash_before_append",
+   "checks": {
+    "child_killed_at_stage": true,
+    "no_spt07_dispatch_ever": true,
+    "restart_exactly_one_derivation": true,
+    "restart_outcome_valid": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "crash_after_evidence_file",
+   "checks": {
+    "child_killed_at_stage": true,
+    "no_spt07_dispatch_ever": true,
+    "restart_exactly_one_derivation": true,
+    "restart_outcome_valid": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "crash_after_event",
+   "checks": {
+    "child_killed_at_stage": true,
+    "no_spt07_dispatch_ever": true,
+    "restart_exactly_one_derivation": true,
+    "restart_outcome_valid": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "crash_after_state",
+   "checks": {
+    "child_killed_at_stage": true,
+    "no_spt07_dispatch_ever": true,
+    "restart_exactly_one_derivation": true,
+    "restart_outcome_valid": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "crash_after_event_no_unlock_then_reconcile",
+   "checks": {
+    "exactly_one_derived_event": true,
+    "reconcile_outcome": true,
+    "run_stays_persistent_hold": true,
+    "run_zero_calls": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "adversarial_library_absent",
+   "checks": {
+    "refused": true,
+    "zero_writes": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "concurrency_second_process",
+   "checks": {
+    "exactly_one_derived_event": true,
+    "first_derives": true,
+    "second_refused_by_lock": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "original_state_untouched",
+   "checks": {
+    "inventory_identical": true
+   },
+   "note": "",
+   "pass": true
+  }
+ ],
+ "crash_state_mapping": {
+  "after_event": {
+   "derived_events": 1,
+   "exit_code": 3,
+   "files": [
+    "collector.lock",
+    "lifecycle.jsonl",
+    "manifest_binding.json",
+    "pilot_state.json",
+    "receipts/REQ-SPT-01.json",
+    "receipts/REQ-SPT-02.json",
+    "receipts/REQ-SPT-03.json",
+    "receipts/REQ-SPT-04.json",
+    "receipts/REQ-SPT-05.json",
+    "receipts/REQ-SPT-06.json",
+    "receipts/REQ-SPT-07.closed_day.bin",
+    "receipts/REQ-SPT-07.rejected.bin"
+   ],
+   "final_derived_events": 1,
+   "restart_outcome": "DERIVED_RECONCILED",
+   "state_status": "HOLD"
+  },
+  "after_evidence_file": {
+   "derived_events": 0,
+   "exit_code": 3,
+   "files": [
+    "collector.lock",
+    "lifecycle.jsonl",
+    "manifest_binding.json",
+    "pilot_state.json",
+    "receipts/REQ-SPT-01.json",
+    "receipts/REQ-SPT-02.json",
+    "receipts/REQ-SPT-03.json",
+    "receipts/REQ-SPT-04.json",
+    "receipts/REQ-SPT-05.json",
+    "receipts/REQ-SPT-06.json",
+    "receipts/REQ-SPT-07.closed_day.bin",
+    "receipts/REQ-SPT-07.rejected.bin"
+   ],
+   "final_derived_events": 1,
+   "restart_outcome": "DERIVED",
+   "state_status": "HOLD"
+  },
+  "after_state": {
+   "derived_events": 1,
+   "exit_code": 3,
+   "files": [
+    "collector.lock",
+    "lifecycle.jsonl",
+    "manifest_binding.json",
+    "pilot_state.json",
+    "receipts/REQ-SPT-01.json",
+    "receipts/REQ-SPT-02.json",
+    "receipts/REQ-SPT-03.json",
+    "receipts/REQ-SPT-04.json",
+    "receipts/REQ-SPT-05.json",
+    "receipts/REQ-SPT-06.json",
+    "receipts/REQ-SPT-07.closed_day.bin",
+    "receipts/REQ-SPT-07.rejected.bin"
+   ],
+   "final_derived_events": 1,
+   "restart_outcome": "REFUSED: already derived (duplicate derivation refused)",
+   "state_status": "ACTIVE"
+  },
+  "before_append": {
+   "derived_events": 0,
+   "exit_code": 3,
+   "files": [
+    "collector.lock",
+    "lifecycle.jsonl",
+    "manifest_binding.json",
+    "pilot_state.json",
+    "receipts/REQ-SPT-01.json",
+    "receipts/REQ-SPT-02.json",
+    "receipts/REQ-SPT-03.json",
+    "receipts/REQ-SPT-04.json",
+    "receipts/REQ-SPT-05.json",
+    "receipts/REQ-SPT-06.json",
+    "receipts/REQ-SPT-07.rejected.bin"
+   ],
+   "final_derived_events": 1,
+   "restart_outcome": "DERIVED",
+   "state_status": "HOLD"
+  }
+ },
+ "ledger": {
+  "derivations": [
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state",
+   "state"
+  ],
+  "fake_dispatches": [
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "derive_run_closed"
+   },
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "mx_valid200_values"
+   },
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "mx_valid200_empty"
+   },
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "mx_auth401"
+   },
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "mx_rate429"
+   },
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "mx_server500"
+   },
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "mx_timeout"
+   },
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "mx_schema_no_meta"
+   },
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "mx_meta_drift"
+   },
+   {
+    "calls": [],
+    "case": "mx_caldrift"
+   },
+   {
+    "calls": [
+     "REQ-SPT-08"
+    ],
+    "case": "mx_crash_at_dispatch"
+   }
+  ]
+ },
+ "task": "QF-TD-P2-SPOT-V2-DERIVATION-CANDIDATE-20261015-06 r1",
+ "transport_accounting": {
+  "credits_spent": 0,
+  "method": "network stubbed to raise in-process; all transports injected fakes with asserted call lists",
+  "model_calls": 0,
+  "real_transport_calls": 0,
+  "twelve_data_calls": 0,
+  "vendor_calls": 0
+ }
+}

@@ -1,0 +1,85 @@
+{
+ "derivations": [
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state",
+  "state"
+ ],
+ "fake_dispatches": [
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "derive_run_closed"
+  },
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "mx_valid200_values"
+  },
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "mx_valid200_empty"
+  },
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "mx_auth401"
+  },
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "mx_rate429"
+  },
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "mx_server500"
+  },
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "mx_timeout"
+  },
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "mx_schema_no_meta"
+  },
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "mx_meta_drift"
+  },
+  {
+   "calls": [],
+   "case": "mx_caldrift"
+  },
+  {
+   "calls": [
+    "REQ-SPT-08"
+   ],
+   "case": "mx_crash_at_dispatch"
+  }
+ ]
+}

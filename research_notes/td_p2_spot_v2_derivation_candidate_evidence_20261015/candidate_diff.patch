@@ -1,0 +1,353 @@
+diff --git a/research_notes/td_lifecycle_repair_candidate/td_min_collector.py b/research_notes/td_lifecycle_repair_candidate/td_min_collector.py
+index c5184d3..38df79a 100644
+--- a/research_notes/td_lifecycle_repair_candidate/td_min_collector.py
++++ b/research_notes/td_lifecycle_repair_candidate/td_min_collector.py
+@@ -60,6 +60,34 @@ class _ClosedSessionEvidenced:
+ 
+ CLOSED_SESSION = _ClosedSessionEvidenced()
+ 
++# --- v1 -> v2 derivation (QF-TD-P2-SPOT-V2-DERIVATION-CANDIDATE-20261015-06) ---
++# Explicit opt-in entry point (Collector.derive_closed_session), separate from
++# run(). It converts ONLY the exact pinned terminal SPOT8 v1 HOLD state --
++# REQ-SPT-07's preserved HTTP-400 closed-session evidence under the
++# NL-20261015 supplement -- into a versioned v2 state by APPENDING a distinct
++# DERIVED_CLOSED_DAY_EVIDENCED event. The v1 HOLD event and all v1 history are
++# retained unchanged; no receipt/RECEIVED/COMPLETED is ever created for the
++# derived request; derivation reserves no credit. Any pin/prerequisite
++# mismatch refuses with zero writes and zero transport. Crash-reconcilable:
++# the write protocol is (1) write-once closed-day evidence copy, (2) fsync'd
++# derivation event append, (3) atomic state publication; a restart either
++# finds no derivation, completes publication from the durable event, or
++# refuses a duplicate -- never two derivations, never an unlock on partial
++# evidence, and run() never dispatches the derived request.
++DERIVED_EVENT = "DERIVED_CLOSED_DAY_EVIDENCED"
++DERIVATION_MANIFEST_DIGEST = "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb"
++DERIVATION_REQUEST_ID = "REQ-SPT-07"
++DERIVATION_REQUEST_DIGEST = "a259901ec57a8556228c2a6b95299c360102cc98edc62204ae539dc53a4c5edb"
++DERIVATION_BODY_SHA256 = "3339c34154648c0ea4ddb9bd553e5274d390f953552518ad957d79704b7d5d50"
++DERIVATION_BODY_BYTES = 180
++DERIVATION_PRIOR_HOLD_REASON = "HTTP 400 for REQ-SPT-07"
++DERIVATION_MECHANISM_SHA256 = "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58"
++DERIVATION_LIBRARY_VERSION = "4.5.1"
++DERIVATION_COMPLETED_PRIOR = ["REQ-SPT-01", "REQ-SPT-02", "REQ-SPT-03",
++                              "REQ-SPT-04", "REQ-SPT-05", "REQ-SPT-06"]
++DERIVATION_PRIOR_ATTEMPTS = 7
++DERIVATION_PRIOR_RESERVATIONS = 7
++
+ 
+ class CollectorError(Exception):
+     pass
+@@ -220,6 +248,11 @@ class Collector:
+                                   if self.closed_session_supplement is not None else None)
+         self.lifecycle_path = self.state_dir / "lifecycle.jsonl"
+         self.pilot_state_path = self.state_dir / "pilot_state.json"
++        # Structured findings recorded by observational (read-only)
++        # validation; published only via the explicit emit action below.
++        self._observed_findings: list[dict] = []
++        self.last_verification_findings: list[dict] = []
++        self._observational_validation = False
+         self._state = self._load_pilot_state()
+         self._events = self._load_events()
+         # Reconciliation happens under the exclusive run lock, never in constructor.
+@@ -295,6 +328,8 @@ class Collector:
+         # dispatched, classified, and its credit stands spent. It is never
+         # AMBIGUOUS and never redispatched.
+         completed |= {e["request_id"] for e in self._events if e["event"] == "CLOSED_DAY_EVIDENCED"}
++        # A derived closed-session request is likewise accounted for.
++        completed |= {e["request_id"] for e in self._events if e["event"] == DERIVED_EVENT}
+         started = {e["request_id"] for e in self._events if e["event"] == "STARTED"}
+         for rid in started - completed:
+             self._hold(f"AMBIGUOUS: {rid} dispatched without durable validation completion; no redispatch", rid)
+@@ -339,9 +374,31 @@ class Collector:
+         venue = req["venue_identity"]
+         if any(meta.get(k) != v for k, v in venue.items()):
+             return False, "receipt venue binding mismatch"
+-        failure = self._validate_bars(req, payload.get("values"))
++        # Receipt reuse verification is observationally read-only (spec -06
++        # point 6): validation records structured findings instead of
++        # appending lifecycle events; publication is a separate explicit
++        # action (emit_observed_findings), never a verification side effect.
++        _mark = len(self._observed_findings)
++        self._observational_validation = True
++        try:
++            failure = self._validate_bars(req, payload.get("values"))
++        finally:
++            self._observational_validation = False
++        self.last_verification_findings = list(self._observed_findings[_mark:])
+         return (False, "receipt revalidation failed: " + failure) if failure else (True, "ok")
+ 
++    def emit_observed_findings(self) -> int:
++        """Explicit separate action: publish findings recorded by
++        observational validation as lifecycle events. Verification itself
++        never calls this; a caller must deliberately invoke it."""
++        n = 0
++        for f in self._observed_findings:
++            if f.get("finding") == "CONSTRUCTION_HOLD":
++                self._emit("CONSTRUCTION_HOLD", f["request_id"], reason=f["reason"])
++                n += 1
++        self._observed_findings = []
++        return n
++
+     # -- main entry --------------------------------------------------------
+     def run(self) -> dict:
+         with self._exclusive_run():
+@@ -379,14 +436,26 @@ class Collector:
+             # accounted for (credit spent, evidence preserved); never
+             # redispatched, never receipt-verified, never completed.
+             evidenced = [e for e in self._events
+-                         if e["event"] == "CLOSED_DAY_EVIDENCED" and e["request_id"] == rid]
+-            if (evidenced and evidenced[-1].get("request_digest") == canonical_digest(req)
+-                    and evidenced[-1].get("manifest_digest") == self.manifest_digest):
++                         if e["event"] in ("CLOSED_DAY_EVIDENCED", DERIVED_EVENT)
++                         and e["request_id"] == rid]
++            last_ev = evidenced[-1] if evidenced else None
++            if (last_ev and last_ev.get("request_digest") == canonical_digest(req)
++                    and last_ev.get("manifest_digest") == self.manifest_digest
++                    and (last_ev["event"] != DERIVED_EVENT
++                         or last_ev.get("supplement_digest") == self.supplement_digest)):
+                 if rid not in self._state.setdefault("closed_day_evidenced", []):
+                     self._state["closed_day_evidenced"].append(rid)
+                 summary["closed_day_evidenced"] += 1
+                 self._save_pilot_state()
+                 continue
++            if last_ev and last_ev["event"] == DERIVED_EVENT:
++                # Derived evidence is supplement-bound: if it cannot be
++                # revalidated under the current configuration, fail closed.
++                # The derived request is NEVER redispatched.
++                self._hold(f"derived closed-session evidence for {rid} cannot be "
++                           f"revalidated under current supplement; refusing redispatch", rid)
++                summary["outcome"] = "HOLD: derived evidence unbound under current supplement"
++                return summary
+             # Credit reservation: recorded separately from attempt count.
+             try:
+                 granted = self.limiter.try_acquire(req["credit_weight"], label=rid)
+@@ -457,6 +526,209 @@ class Collector:
+                 f.flush()
+                 os.fsync(f.fileno())
+ 
++    # -- v1 -> v2 derivation (opt-in; separate from run()) ------------------
++    def derive_closed_session(self, hook=None) -> dict:
++        """Explicit opt-in derivation of the pinned terminal SPT07 HOLD
++        state into a versioned v2 state. Never called by run(). Refusals
++        return {"outcome": "REFUSED: ..."} having made zero writes and zero
++        transport calls. `hook(stage)` is an optional test seam invoked at
++        "before_append", "after_evidence_file", "after_event", "after_state"
++        so crash points can be injected; production callers pass None."""
++        with self._exclusive_run():
++            self._state = self._load_pilot_state()
++            self._events = self._load_events()
++            return self._derive_locked(hook)
++
++    @staticmethod
++    def _refuse(reason: str) -> dict:
++        return {"outcome": f"REFUSED: {reason}", "derived": False,
++                "reconciled": False, "transport_calls": 0}
++
++    def _derive_locked(self, hook) -> dict:
++        rid = DERIVATION_REQUEST_ID
++        req = self.requests.get(rid)
++        sup = self.closed_session_supplement
++        # --- static pins (zero writes on any mismatch) ---
++        if req is None or canonical_digest(req) != DERIVATION_REQUEST_DIGEST:
++            return self._refuse("REQ-SPT-07 request digest pin mismatch")
++        if self.manifest_digest != DERIVATION_MANIFEST_DIGEST:
++            return self._refuse("manifest digest is not the pinned SPOT8 binding")
++        binding_path = self.state_dir / "manifest_binding.json"
++        if not binding_path.exists():
++            return self._refuse("manifest binding file missing (unbound state)")
++        if json.loads(binding_path.read_text()) != {"sha256": self.manifest_digest}:
++            return self._refuse("manifest binding file mismatch")
++        if not isinstance(sup, dict):
++            return self._refuse("no closed-session supplement supplied")
++        if sup.get("supplement_id") != "P2-SPOT" or sup.get("version") != "v2":
++            return self._refuse("supplement identity mismatch")
++        if sup.get("base_manifest_digest") != self.manifest_digest:
++            return self._refuse("supplement base manifest binding mismatch")
++        cal = sup.get("calendar") or {}
++        if cal.get("mechanism_module_sha256") != DERIVATION_MECHANISM_SHA256:
++            return self._refuse("supplement mechanism pin mismatch")
++        if str(cal.get("expected_library_version")) != DERIVATION_LIBRARY_VERSION:
++            return self._refuse("supplement calendar library pin mismatch")
++        # --- file inventory: no foreign/unbound files ---
++        top = {p.name for p in self.state_dir.iterdir()}
++        if top != {"collector.lock", "lifecycle.jsonl", "manifest_binding.json",
++                   "pilot_state.json", "receipts"}:
++            return self._refuse(f"foreign/unbound state files: {sorted(top)}")
++        closed_day_path = self.receipts / f"{rid}.closed_day.bin"
++        receipt_names = {p.name for p in self.receipts.iterdir()}
++        v1_receipts = {f"{r}.json" for r in DERIVATION_COMPLETED_PRIOR} | {f"{rid}.rejected.bin"}
++        if receipt_names == v1_receipts:
++            partial_file = False
++        elif receipt_names == v1_receipts | {f"{rid}.closed_day.bin"}:
++            partial_file = True
++        else:
++            return self._refuse(f"foreign/unbound receipt files: {sorted(receipt_names)}")
++        # --- preserved body binding ---
++        body_path = self.receipts / f"{rid}.rejected.bin"
++        body = body_path.read_bytes()
++        if len(body) != DERIVATION_BODY_BYTES or sha256_bytes(body) != DERIVATION_BODY_SHA256:
++            return self._refuse("preserved rejected body pin mismatch")
++        if partial_file and closed_day_path.read_bytes() != body:
++            return self._refuse("orphan closed-day evidence copy bytes differ from preserved body")
++        # --- lifecycle shape ---
++        ev = self._events
++        def _of(event, r=None):
++            return [e for e in ev if e["event"] == event and (r is None or e.get("request_id") == r)]
++        derived_evs = _of(DERIVED_EVENT, rid)
++        if len(derived_evs) > 1:
++            return self._refuse("multiple derivation events (unbound state)")
++        if _of("STARTED", "REQ-SPT-08") or _of("CREDIT_RESERVED", "REQ-SPT-08") \
++                or (self.receipts / "REQ-SPT-08.json").exists():
++            return self._refuse("REQ-SPT-08 already attempted")
++        started07 = _of("STARTED", rid)
++        if len(started07) != 1 or started07[0].get("attempt") != 1:
++            return self._refuse("prior STARTED record for REQ-SPT-07 missing/altered")
++        err07 = _of("ERROR_EVIDENCE", rid)
++        if len(err07) != 1 or err07[0].get("sha256") != DERIVATION_BODY_SHA256 \
++                or err07[0].get("bytes") != DERIVATION_BODY_BYTES:
++            return self._refuse("prior ERROR_EVIDENCE record missing/altered")
++        holds = _of("HOLD", rid)
++        if len(holds) != 1 or holds[0].get("reason") != DERIVATION_PRIOR_HOLD_REASON:
++            return self._refuse("terminal HOLD record is not the pinned SPT07 HTTP-400 state")
++        if _of("RECEIVED", rid) or _of("COMPLETED", rid) or _of("CLOSED_DAY_EVIDENCED", rid):
++            return self._refuse("REQ-SPT-07 already has a receipt/completion/closed-day record")
++        if len(_of("CREDIT_RESERVED")) != DERIVATION_PRIOR_RESERVATIONS:
++            return self._refuse("credit reservation count drift")
++        # --- calendar proof under the pinned NL lineage (pure, no writes) ---
++        proof = self._classify_closed_session(req, 400, body)
++        if proof is None:
++            return self._refuse("closed-session classification failed under pinned calendar")
++        # --- duplicate / crash-reconciliation branch ---
++        if derived_evs:
++            dev = derived_evs[0]
++            pins_ok = (dev.get("source_body_sha256") == DERIVATION_BODY_SHA256
++                       and dev.get("source_error_event_sha256") == DERIVATION_BODY_SHA256
++                       and dev.get("request_digest") == DERIVATION_REQUEST_DIGEST
++                       and dev.get("manifest_digest") == self.manifest_digest
++                       and dev.get("supplement_digest") == self.supplement_digest
++                       and dev.get("calendar_proof_digest") == proof["proof_digest"]
++                       and dev.get("credit_reservations_after") == DERIVATION_PRIOR_RESERVATIONS)
++            if not pins_ok:
++                return self._refuse("existing derivation event fails pin validation")
++            if not partial_file or closed_day_path.read_bytes() != body:
++                return self._refuse("derivation event present but evidence copy missing/altered")
++            st = self._state
++            reflected = (st.get("status") == "ACTIVE" and st.get("state_version") == 2
++                         and rid in st.get("closed_day_evidenced", [])
++                         and (st.get("derived") or {}).get(rid, {}).get("source_body_sha256")
++                         == DERIVATION_BODY_SHA256)
++            if reflected:
++                return self._refuse("already derived (duplicate derivation refused)")
++            untouched = (st.get("status") == "HOLD"
++                         and st.get("hold_reason") == DERIVATION_PRIOR_HOLD_REASON
++                         and "derived" not in st and "state_version" not in st)
++            if not untouched:
++                return self._refuse("partial/unbound derived state (manual review required)")
++            # Crash reconciliation: the durable event exists; complete ONLY
++            # the state publication. Exactly one derivation, no new event.
++            self._publish_derived_state(dev)
++            if hook:
++                hook("after_state")
++            return {"outcome": "DERIVED_RECONCILED", "derived": True,
++                    "reconciled": True, "transport_calls": 0,
++                    "calendar_proof_digest": proof["proof_digest"]}
++        # --- fresh derivation: v1 state shape must be exact ---
++        st = self._state
++        if st.get("status") != "HOLD" or st.get("hold_reason") != DERIVATION_PRIOR_HOLD_REASON:
++            return self._refuse("pilot state is not the pinned terminal HOLD")
++        if ev[-1] is not holds[0]:
++            return self._refuse("HOLD is not the terminal lifecycle event")
++        if st.get("attempts") != DERIVATION_PRIOR_ATTEMPTS \
++                or st.get("credit_reservations") != DERIVATION_PRIOR_RESERVATIONS:
++            return self._refuse("attempt/reservation count drift")
++        if st.get("completed") != DERIVATION_COMPLETED_PRIOR:
++            return self._refuse("prior completion set drift")
++        if "closed_day_evidenced" in st or "derived" in st or "state_version" in st:
++            return self._refuse("state already carries derivation fields")
++        # SPT01-06 durable completions, revalidated observationally
++        # (read-only: this loop must not append a single lifecycle byte).
++        for prior in DERIVATION_COMPLETED_PRIOR:
++            preq = self.requests[prior]
++            ok, why = self._verify_receipt(preq, self._receipt_path(preq))
++            if not ok:
++                return self._refuse(f"prior receipt revalidation failed for {prior}: {why}")
++        # --- crash-reconcilable write protocol ---
++        if hook:
++            hook("before_append")
++        self._preserve_closed_day(rid, body)  # (1) write-once evidence copy
++        if hook:
++            hook("after_evidence_file")
++        self._emit(DERIVED_EVENT, rid,  # (2) fsync'd derivation event
++                   derivation_version="v2-derivation-1",
++                   source="preserved_rejected_evidence",
++                   source_error_event_sha256=err07[0]["sha256"],
++                   source_body_sha256=sha256_bytes(body), source_body_bytes=len(body),
++                   request_digest=DERIVATION_REQUEST_DIGEST,
++                   manifest_digest=self.manifest_digest,
++                   supplement_digest=self.supplement_digest,
++                   calendar_lineage=cal.get("lineage"),
++                   calendar_mechanism=cal.get("mechanism"),
++                   calendar_mechanism_module_sha256=cal.get("mechanism_module_sha256"),
++                   calendar_library_version=proof["library_version"],
++                   calendar_proof_digest=proof["proof_digest"],
++                   lifecycle_class=CLOSED_SESSION_CLASS,
++                   prior_hold_reason=DERIVATION_PRIOR_HOLD_REASON,
++                   credit_reservations_before=DERIVATION_PRIOR_RESERVATIONS,
++                   credit_reservations_after=DERIVATION_PRIOR_RESERVATIONS,
++                   attempts_before=DERIVATION_PRIOR_ATTEMPTS,
++                   attempts_after=DERIVATION_PRIOR_ATTEMPTS)
++        dev = self._events[-1]
++        if hook:
++            hook("after_event")
++        self._publish_derived_state(dev)  # (3) atomic state publication
++        if hook:
++            hook("after_state")
++        return {"outcome": "DERIVED", "derived": True, "reconciled": False,
++                "transport_calls": 0,
++                "calendar_proof_digest": proof["proof_digest"]}
++
++    def _publish_derived_state(self, dev: dict) -> None:
++        """Terminal publication step of the derivation protocol (also the
++        reconciliation completion): flips the copy to versioned v2 ACTIVE.
++        The v1 HOLD lifecycle event and hold history are never rewritten;
++        the prior reason is carried into the derived record."""
++        rid = DERIVATION_REQUEST_ID
++        st = self._state
++        st["status"] = "ACTIVE"
++        st["hold_reason"] = None
++        st["state_version"] = 2
++        cde = st.setdefault("closed_day_evidenced", [])
++        if rid not in cde:
++            cde.append(rid)
++        st["derived"] = {rid: {
++            "event": DERIVED_EVENT,
++            "event_ts_utc": dev.get("ts_utc"),
++            "source_body_sha256": dev.get("source_body_sha256"),
++            "calendar_proof_digest": dev.get("calendar_proof_digest"),
++            "prior_status": "HOLD",
++            "prior_hold_reason": DERIVATION_PRIOR_HOLD_REASON}}
++        self._save_pilot_state()
++
+     def _classify_closed_session(self, req: dict, status: int, body: bytes) -> dict | None:
+         """EXPECTED_EMPTY_CLOSED_SESSION classifier (design: -15 memo S5;
+         adjudication: Issue #1 comment 6176337687). Returns a calendar-proof
+@@ -672,9 +944,17 @@ class Collector:
+             return str(e)[:200]
+         # Construction gate (spec point 4): semantics INSUFFICIENT -> the
+         # 1H->4H construction leg is a named HOLD, recorded, never run.
++        # In observational mode (receipt reuse verification) the finding is
++        # returned as structured data and NOT appended; publication is the
++        # explicit separate action emit_observed_findings().
+         if req["interval"] == "1h" and self.semantics_status != "SOURCED":
+-            self._emit("CONSTRUCTION_HOLD", req["request_id"],
+-                       reason="interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only")
++            if getattr(self, "_observational_validation", False):
++                self._observed_findings.append(
++                    {"finding": "CONSTRUCTION_HOLD", "request_id": req["request_id"],
++                     "reason": "interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only"})
++            else:
++                self._emit("CONSTRUCTION_HOLD", req["request_id"],
++                           reason="interval-start semantics INSUFFICIENT (A6.1); native 4H diagnostic only")
+         return None
+ 
+ 

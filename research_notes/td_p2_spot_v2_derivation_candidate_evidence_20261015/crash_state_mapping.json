@@ -1,0 +1,85 @@
+{
+ "after_event": {
+  "derived_events": 1,
+  "exit_code": 3,
+  "files": [
+   "collector.lock",
+   "lifecycle.jsonl",
+   "manifest_binding.json",
+   "pilot_state.json",
+   "receipts/REQ-SPT-01.json",
+   "receipts/REQ-SPT-02.json",
+   "receipts/REQ-SPT-03.json",
+   "receipts/REQ-SPT-04.json",
+   "receipts/REQ-SPT-05.json",
+   "receipts/REQ-SPT-06.json",
+   "receipts/REQ-SPT-07.closed_day.bin",
+   "receipts/REQ-SPT-07.rejected.bin"
+  ],
+  "final_derived_events": 1,
+  "restart_outcome": "DERIVED_RECONCILED",
+  "state_status": "HOLD"
+ },
+ "after_evidence_file": {
+  "derived_events": 0,
+  "exit_code": 3,
+  "files": [
+   "collector.lock",
+   "lifecycle.jsonl",
+   "manifest_binding.json",
+   "pilot_state.json",
+   "receipts/REQ-SPT-01.json",
+   "receipts/REQ-SPT-02.json",
+   "receipts/REQ-SPT-03.json",
+   "receipts/REQ-SPT-04.json",
+   "receipts/REQ-SPT-05.json",
+   "receipts/REQ-SPT-06.json",
+   "receipts/REQ-SPT-07.closed_day.bin",
+   "receipts/REQ-SPT-07.rejected.bin"
+  ],
+  "final_derived_events": 1,
+  "restart_outcome": "DERIVED",
+  "state_status": "HOLD"
+ },
+ "after_state": {
+  "derived_events": 1,
+  "exit_code": 3,
+  "files": [
+   "collector.lock",
+   "lifecycle.jsonl",
+   "manifest_binding.json",
+   "pilot_state.json",
+   "receipts/REQ-SPT-01.json",
+   "receipts/REQ-SPT-02.json",
+   "receipts/REQ-SPT-03.json",
+   "receipts/REQ-SPT-04.json",
+   "receipts/REQ-SPT-05.json",
+   "receipts/REQ-SPT-06.json",
+   "receipts/REQ-SPT-07.closed_day.bin",
+   "receipts/REQ-SPT-07.rejected.bin"
+  ],
+  "final_derived_events": 1,
+  "restart_outcome": "REFUSED: already derived (duplicate derivation refused)",
+  "state_status": "ACTIVE"
+ },
+ "before_append": {
+  "derived_events": 0,
+  "exit_code": 3,
+  "files": [
+   "collector.lock",
+   "lifecycle.jsonl",
+   "manifest_binding.json",
+   "pilot_state.json",
+   "receipts/REQ-SPT-01.json",
+   "receipts/REQ-SPT-02.json",
+   "receipts/REQ-SPT-03.json",
+   "receipts/REQ-SPT-04.json",
+   "receipts/REQ-SPT-05.json",
+   "receipts/REQ-SPT-06.json",
+   "receipts/REQ-SPT-07.rejected.bin"
+  ],
+  "final_derived_events": 1,
+  "restart_outcome": "DERIVED",
+  "state_status": "HOLD"
+ }
+}
