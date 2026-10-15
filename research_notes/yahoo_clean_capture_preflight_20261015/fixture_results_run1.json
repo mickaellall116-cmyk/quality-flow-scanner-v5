@@ -1,0 +1,109 @@
+{
+ "all_match": true,
+ "checks_matched": 8,
+ "checks_total": 8,
+ "results": [
+  {
+   "checks": {
+    "attempts_recorded": true,
+    "socket_raises": true
+   },
+   "desc": "socket layer patched before anything runs",
+   "expect": "NETWORK_DENIED",
+   "got": "NETWORK_DENIED",
+   "id": "C0-network-denial",
+   "match": true
+  },
+  {
+   "checks": {
+    "budget_caps": true,
+    "count_52": true,
+    "policy_pins": true,
+    "qqq_dependency_last": true,
+    "universe_51_exact": true
+   },
+   "desc": "52 requests: UNIVERSE_X order + QQQ dep",
+   "expect": "EXACT",
+   "got": "EXACT",
+   "id": "C1-manifest-order",
+   "match": true
+  },
+  {
+   "checks": {
+    "four_bars": true,
+    "labels": true,
+    "offsets_est_edt": true
+   },
+   "desc": "spring-forward week: labels stay 09:30/13:30 ET",
+   "expect": "PASS",
+   "got": "PASS",
+   "id": "C2-dst-labels",
+   "match": true
+  },
+  {
+   "checks": {
+    "label_0930": true,
+    "one_bar": true,
+    "volume_conserved": true
+   },
+   "desc": "early-close day emits exactly the 09:30 bar",
+   "expect": "PASS",
+   "got": "PASS",
+   "id": "C3-early-close",
+   "match": true
+  },
+  {
+   "checks": {
+    "parity_overlap_4": true,
+    "volume_conservation": true
+   },
+   "desc": "short-window bars == full-window bars",
+   "expect": "PASS",
+   "got": "PASS",
+   "id": "C4-parity-conservation",
+   "match": true
+  },
+  {
+   "checks": {
+    "collision_refused": true,
+    "hash_matches": true,
+    "no_tmp_left": true,
+    "restart_bytes_identical": true
+   },
+   "desc": "atomic publish, restart verify, collision",
+   "expect": "PASS",
+   "got": "PASS",
+   "id": "C5-write-once-archive",
+   "match": true
+  },
+  {
+   "checks": {
+    "case_duplicate": true,
+    "case_impossible_ohlcv": true,
+    "case_missing": true,
+    "case_missing_sessions": true,
+    "case_partial": true,
+    "case_schema_drift": true,
+    "case_throttled": true,
+    "good_qualifies": true
+   },
+   "desc": "7 synthetic defect cases all HOLD",
+   "expect": "ALL_HOLD",
+   "got": "ALL_HOLD",
+   "id": "C6-gates-fail-closed",
+   "match": true
+  },
+  {
+   "checks": {
+    "modules_absent": true
+   },
+   "desc": "no strategy/backtest/client module imported",
+   "expect": "CLEAN",
+   "got": "CLEAN",
+   "id": "C7-no-engine",
+   "match": true
+  }
+ ],
+ "socket_attempts_after_denial_check": 1,
+ "task": "QF-YAHOO-CLEAN-CAPTURE-PREFLIGHT-20261015-08 r1"
+}
