@@ -1,0 +1,168 @@
+{
+ "task": "QF-CORRECTED-BASELINE-DATA-READINESS-MAP-20261015-07 r1",
+ "generated_utc": "2026-10-15",
+ "verdict": "BASELINE_DATA_HOLD",
+ "datasets": [
+  {
+   "id": "D1-backtest-cache-v3",
+   "provider": "Yahoo Finance (yfinance 1H, auto_adjust=False, prepost=False; 4H study-grid construction)",
+   "location": "backtest_cache/v3/h4_*.pkl (52 files)",
+   "status": "ABSENT_DESTROYED",
+   "evidence": "CP1 bundle research_notes/recovery_4h_20261004/cp1_bundle/01_cache_grid/{h4_cache_hashes.json (52 per-file sha256), bar_timestamps_raw.json}; 05_data_tier/data_tier_metadata.md",
+   "symbols": 52,
+   "rows_total": 75311,
+   "span": [
+    "2024-09-15",
+    "2026-09-15"
+   ],
+   "interval": "4h (from 1h)",
+   "tz_session": "MIXED index tz across files: 45 America/New_York + 7 UTC (crypto AVAX/BTC/DOGE/ETH/LINK/SOL/XRP); grid defective fixed-UTC per CP1 (332 EST bars mislabeled, CP1 forensic record)",
+   "adjustment": "raw OHLCV (auto_adjust=False) + frozen split-exclusion protocol; tier LIMITED (not PIT-clean): survivorship-limited, retroactive split adjustment unrecoverable",
+   "raw_vs_derived": "derived (1H->4H); raw 1H inputs transient, never preserved (manifest rev2)",
+   "notes": "The ONLY dataset that ever satisfied the C1 input contract's shape. Bytes destroyed (VM replacement; git-ignored, never committed). Every C1/corrected figure derives from these bytes or their grid derivatives."
+  },
+  {
+   "id": "D2-entry-timing-watchlist-4h",
+   "provider": "Yahoo Finance (fetched 2026-10-12 for pine_entry_timing_backtest)",
+   "location": "pine_entry_timing_backtest/cache/h4_*.pkl (14 files)",
+   "status": "PRESENT_DIAGNOSTIC_ONLY",
+   "symbols": 14,
+   "span": [
+    "2023-10-25",
+    "2026-09-23"
+   ],
+   "interval": "4h",
+   "tz_session": "America/New_York, session-anchored 09:30/13:30 ET only (verified in diagnostics)",
+   "adjustment": "yfinance defaults at fetch time; not pinned to the prereg rev2 policy (auto_adjust not evidenced)",
+   "raw_vs_derived": "derived cache",
+   "notes": "Correct ET session grid; diagnostics clean (0 dup, monotonic, 0 OHLC violations). Watchlist universe (Mike's 14), NOT the C1 UNIVERSE_X 51. Short spans for late listings: ASTX 2025-07-11 (604 bars), DRAM 2026-04-02 (240), SPCX 2026-06-12 (142)."
+  },
+  {
+   "id": "D3-tiingo-vcp-phase1a",
+   "provider": "Tiingo EOD + EDGAR fundamentals (VCP probe pull, 2026-10-01..10 incl. October batch)",
+   "location": "~/workspace/goals/vcp-fundamental-momentum-probe-v0-1/hidden_files/phase1a/raw/{eod,fund} + panels/panel.jsonl",
+   "status": "PRESENT_TERMS_HOLD_INTERVAL_MISMATCH",
+   "symbols": 444,
+   "rows_total": 1543997,
+   "span": [
+    "2009-01-02",
+    "2026-09-30"
+   ],
+   "interval": "1d ONLY",
+   "tz_session": "daily bars, exchange dates",
+   "adjustment": "BOTH raw and vendor-adjusted fields present (adjClose/adjHigh/adjLow/adjOpen/adjVolume + divCash + splitFactor): policy-ambiguous vs C1's auto_adjust=False + split-exclusion freeze",
+   "raw_vs_derived": "raw vendor JSON per symbol; panel.jsonl (39,672 lines) is derived",
+   "notes": "Diagnostics clean (0 dup dates, 0 nonmonotonic in 444 files). Cannot serve a 1h->4h contract at any terms status; additionally terms-encumbered on Starter (persistence barred) - TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md; disposition undecided."
+  },
+  {
+   "id": "D4-twelvedata-spot-artifacts",
+   "provider": "Twelve Data",
+   "location": "research_notes/twelve_data_stage0/snapshots (AAPL 1h+4h, 2026-09-08..2026-10-06) + SPOT8 receipts preserved across TD evidence packages",
+   "status": "PRESENT_SPOT_ONLY_ROUTE_PARKED",
+   "symbols": 2,
+   "span": [
+    "2026-09-08",
+    "2026-10-06"
+   ],
+   "interval": "1h/4h spot windows",
+   "tz_session": "America/New_York",
+   "adjustment": "vendor default; not a baseline policy",
+   "raw_vs_derived": "raw vendor responses (preserved)",
+   "notes": "Smoke/spot evidence only (single-symbol, 28 days). TD derivation route PARKED 2026-10-15 (comment 6189292645); P2 v1 UNMET; SPT-08 NOT ATTEMPTED."
+  },
+  {
+   "id": "D5-forward-live-artifacts",
+   "provider": "Yahoo Finance (live harness)",
+   "location": "v54_forward/ (forward_test.jsonl signal ledger; lonewolf_cache/d_{SPY,XLK,ANET}.pkl daily closes 62-63 rows, 2026-06-25..2026-09-23) + yahoo_feed_recovery_raw_20261014 coverage snapshots",
+   "status": "PRESENT_NOT_PRICE_HISTORY",
+   "symbols": 3,
+   "span": [
+    "2026-06-25",
+    "2026-09-23"
+   ],
+   "interval": "1d closes (sidecar only)",
+   "tz_session": "America/New_York",
+   "adjustment": "n/a",
+   "raw_vs_derived": "derived operational artifacts",
+   "notes": "The live feed is operational (7+ consecutive HEALTHY 250/250 cycles) but the harness retains NO historical bar archive usable for a baseline build; coverage snapshots are metadata, not bars."
+  },
+  {
+   "id": "D6-canonical-baseline-20260924",
+   "provider": "Yahoo Finance (yfinance 1H runtime downloads, 730-day limit; 4H data from 2023-10-26)",
+   "location": "canonical_baseline/ (docs + __pycache__ only on disk; engine/universe code not in git, .pyc remnants only)",
+   "status": "ABSENT_RUNTIME_ONLY",
+   "symbols": 131,
+   "span": [
+    "2023-10-26",
+    "2026-09"
+   ],
+   "interval": "1h->4h",
+   "tz_session": "session-anchored per REBASELINE.md",
+   "adjustment": "per PIT_FEATURES.md contract",
+   "raw_vs_derived": "derived at runtime; no data bytes preserved",
+   "notes": "The Sep-2026 honest re-baseline (-0.0013R @50bps) is a documented RESULT; its input bytes were never archived and cannot be re-audited or reused."
+  },
+  {
+   "id": "D7-sealed-holdout",
+   "provider": "designation over D1-era caches (11-month holdout; UX51 provenance limited)",
+   "location": "identity only - no holdout-named files exist on this VM",
+   "status": "SEALED_IDENTITY_ONLY_NOT_OPENED",
+   "symbols": null,
+   "span": null,
+   "interval": null,
+   "tz_session": null,
+   "adjustment": null,
+   "raw_vs_derived": null,
+   "notes": "Inventoried by identity per spec: the sealed window is a date/designation record in the research memos; the underlying bytes were part of the destroyed cache store. Nothing was opened (nothing exists to open); the seal designation itself is preserved in MEMORY/research records."
+  }
+ ],
+ "contamination_register": {
+  "known_contaminated": "D1 grid: defective fixed-UTC anchoring; CP1 forensic record: 332 EST bars mislabeled; 7 of 52 files carry UTC index (crypto). Derivatives depending on D1: the original 240-trade C1 baseline (DISQUALIFIED), the 143-trade trendScore-buggy figure (DISQUALIFIED), corrected-grid replay -15.23R (valid as adverse evidence ABOUT the corrected grid, computed from D1 bytes), C1 corrected 240 trades +0.178R @4bps (computed from D1 bytes on the documented study grid with DST caveat). All are results ABOUT lost bytes: none can be recomputed or extended today.",
+  "unknown_provenance_or_policy_ambiguous": [
+   "D3 adjustment policy (raw vs adj* fields both present; C1 freeze is auto_adjust=False + split-exclusion)",
+   "D2 adjustment policy not evidenced to prereg rev2",
+   "D6 inputs never archived"
+  ],
+  "qualified_reusable_bytes_for_c1_contract": []
+ },
+ "c1_input_contract": {
+  "source": "pine_execution/c1_corrected_baseline_20261003.py (archival copy in cp1_evidence_closure) + preregistration rev2 SS2 + STACK_SPEC",
+  "symbols": "pine_backtest.UNIVERSE_X = 51 symbols; benchmarks via pine_signal_quality.load_benchmarks (SPY/QQQ class); sector map pine_exposure.SECTOR",
+  "bars": "4H candles built from Yahoo 1H (auto_adjust=False, prepost=False); as-run study grid UTC-anchored 13:30/17:30 UTC bins with documented DST caveat; honest contract per standing parity gate = session-anchored 09:30 ET with DST-correct labels",
+  "span": "prereg target start 2023-01-01 or earliest available per symbol; as-run cache span 2024-09-15..2026-09-15; coverage rule: <80% of target history = COVERAGE-LIMITED",
+  "corporate_actions": "frozen split-exclusion protocol; tier LIMITED (not PIT-clean)",
+  "signals_portfolio": "pine_buy_signal with int() trendScore casts; rs_top2 ranking; sector cap >=2; 5% portfolio-risk check; 4bps one-way cost (C1 corrected run)",
+  "qualified_coverage_today": "0 of 51 symbols; 0 days of contract-conformant 4H bars on disk"
+ },
+ "route_comparison": [
+  {
+   "route": "Existing Yahoo history/recovery artifacts",
+   "state": "Feed OPERATIONALLY RECOVERED (live); historical bytes LOST (D1 destroyed, D6 unarchived). D2 is a 14-symbol diagnostic subset on a correct grid, wrong universe + unpinned adjustment policy."
+  },
+  {
+   "route": "Prospective clean capture (Yahoo 1H per prereg rev2 policy)",
+   "state": "NOT YET CAPTURED. Would be a new acquisition task (downloads were out of scope here). Known limits from evidence: ~730-day 1H reachback, tier LIMITED (survivorship, retroactive split adjustment unrecoverable), no PIT-clean 1H source at zero cost (prereg rev2)."
+  },
+  {
+   "route": "Twelve Data",
+   "state": "PARKED (adjudication 2026-10-15, comment 6189292645). Spot artifacts only; P2 UNMET; no baseline-scale history held."
+  },
+  {
+   "route": "Tiingo",
+   "state": "HOLD. Daily-only bytes held (D3); intraday never acquired at scale; Starter terms bar persistence; disposition is Mike's open decision."
+  }
+ ],
+ "max_contiguous_qualified_window": {
+  "window": null,
+  "reason": "No qualified nonsealed bytes satisfy the C1 contract for any contiguous window: the contract universe's 4H bars exist nowhere on disk. D2's window (2023-10-25..2026-09-23, 14 watchlist symbols, correct ET grid) is DIAGNOSTIC-ONLY and does not satisfy the frozen baseline design (wrong universe, unpinned adjustment policy); using it would redefine the experiment, which this task forbids."
+ },
+ "failure_ledger": [
+  "F-01 D1 bytes absent: cannot verify file/hash stability against CP1 pins (hashes survive, bytes do not) - logged, not silently excluded.",
+  "F-02 D1 raw 1H inputs were transient by design (manifest rev2): the 4H grid defect can never be re-derived from raws.",
+  "F-03 D6 inputs unarchived + engine code absent from git (.pyc only): Sep-2026 re-baseline not reproducible from held artifacts.",
+  "F-04 D2 adjustment policy unpinned: fails the contract's policy-evidence requirement despite a correct grid.",
+  "F-05 D3 interval mismatch (1d vs required 1h->4h) independent of its terms HOLD.",
+  "F-06 Session-grid/DST diagnostics on D1 impossible (bytes gone); CP1 record stands as the diagnostic of record."
+ ],
+ "minimal_next_evidence_action": " ONE scoped clean-capture + qualification task: pull Yahoo 1H for the frozen UNIVERSE_X 51 symbols under prereg rev2 SS2 policy (auto_adjust=False, prepost=False, split-exclusion protocol), build session-anchored 09:30 ET 4H bars, gate them through the recovery-4h parity fixtures (DST + window-length), and pin bytes + per-file SHA256 + coverage matrix BEFORE any baseline build is tasked."
+}
