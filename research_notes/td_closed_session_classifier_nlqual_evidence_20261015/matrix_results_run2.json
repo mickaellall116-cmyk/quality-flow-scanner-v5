@@ -1,0 +1,429 @@
+{
+  "cases": [
+    {
+      "case": "provenance",
+      "checks": {
+        "len_180": true,
+        "sha_matches": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "calendar_sanity",
+      "checks": {
+        "jul03_closed": true,
+        "jul04_closed": true,
+        "jul05_closed": true,
+        "jul06_open": true,
+        "mechanism_sha": true,
+        "pmc_real_version": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "F1_single_closed_day",
+      "checks": {
+        "continued": true,
+        "counts": true,
+        "credit_spent": true,
+        "event_class": true,
+        "event_sha": true,
+        "follow_receipt": true,
+        "no_receipt": true,
+        "no_receipt_events": true,
+        "no_rejected_bin": true,
+        "outcome": true,
+        "proof_digest": true,
+        "raw_preserved": true,
+        "state_active": true,
+        "supp_digest": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "F2_multiday_all_closed",
+      "checks": {
+        "continued": true,
+        "counts": true,
+        "credit_spent": true,
+        "event_class": true,
+        "event_sha": true,
+        "follow_receipt": true,
+        "no_receipt": true,
+        "no_receipt_events": true,
+        "no_rejected_bin": true,
+        "outcome": true,
+        "proof_digest": true,
+        "raw_preserved": true,
+        "state_active": true,
+        "supp_digest": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N1_mixed_window",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N2_message_mutated",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N3_variant0",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N3_variant1",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N3_variant2",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N3_variant3",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N4_http200_empty_values",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N5_http200_exact_body",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N6_auth_message",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N7_status401",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N7_status403",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N7_status429",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N7_status500",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N8_unparseable",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N9_entry_absent",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N9_expected_bars_nonzero",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N11_values_present",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N12_manifest_digest",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "N12_request_digest",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "S1_meta_symbol_mismatch",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "S2_no_supplement",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "S3_restart_no_redispatch",
+      "checks": {
+        "evidenced_again": true,
+        "first_classified": true,
+        "no_calls": true,
+        "no_hold": true,
+        "reused": true
+      },
+      "note": "",
+      "pass": true
+    },
+    {
+      "case": "REAL07_preserved_request_and_body",
+      "checks": {
+        "continued": true,
+        "counts": true,
+        "credit_spent": true,
+        "event_class": true,
+        "event_sha": true,
+        "follow_receipt": true,
+        "no_receipt": true,
+        "no_receipt_events": true,
+        "no_rejected_bin": true,
+        "outcome": true,
+        "proof_digest": true,
+        "raw_preserved": true,
+        "req_digest_is_preregistered": true,
+        "state_active": true,
+        "supp_digest": true
+      },
+      "note": "real REQ-SPT-07 request object + preserved 180-byte live body, real calendar",
+      "pass": true
+    },
+    {
+      "case": "ELIG08_spt08_eligible_no_dispatch",
+      "checks": {
+        "candidate_entry_identical": true,
+        "classifier_proof": true,
+        "full_manifest_digest": true,
+        "manifest_file_sha": true,
+        "meta_mismatch_control": true,
+        "no_dispatch": true,
+        "proof_library": true,
+        "proof_mechanism": true,
+        "proof_window_closed": true,
+        "shipped_entry": true,
+        "spt08_digest": true
+      },
+      "note": "direct classifier precondition evaluation on preserved inputs only; SPT-08 NOT dispatched, NOT attempted",
+      "pass": true
+    }
+  ],
+  "counts": {
+    "passed": 28,
+    "total": 28
+  },
+  "environment": {
+    "collector_sha256": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c",
+    "lock_sha256": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+    "mechanism_module_sha256": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+    "network": "disabled in-process (socket connect/getaddrinfo raise)",
+    "pandas_market_calendars": "4.5.1",
+    "python": "3.12.3",
+    "supplement_candidate_sha256": "9c71233003771d66cf81e99ae01a410ba8943aedfcce8a8c6411dfb51edacd32"
+  },
+  "mode": "pristine",
+  "task": "QF-TD-CLOSED-SESSION-CLASSIFIER-NLQUAL-20261015-02 r1"
+}
