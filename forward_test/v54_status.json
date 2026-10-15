@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-13T14:51:44.105704+00:00",
+  "as_of": "2026-10-15T14:50:19.772950+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,17 +7,17 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-13T14:51:44.054929+00:00",
-  "signals_logged": 30,
+  "last_successful_cycle": "2026-10-15T14:50:19.727564+00:00",
+  "signals_logged": 32,
   "grade_counts": {
     "A": 7,
-    "B": 21,
+    "B": 23,
     "C": 2
   },
   "grade_counts_by_cohort": {
     "Forward-UX51": {
       "A": 2,
-      "B": 6,
+      "B": 8,
       "C": 0
     },
     "Forward-X2": {
@@ -26,7 +26,20 @@
       "C": 2
     }
   },
-  "pending_entries": [],
+  "pending_entries": [
+    {
+      "signal_id": "v54:GOOGL:4h:2026-10-15T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "GOOGL",
+      "grade": "B",
+      "signal_bar": "2026-10-15T06:30:00-04:00"
+    },
+    {
+      "signal_id": "v54:SHOP:4h:2026-10-15T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "SHOP",
+      "grade": "B",
+      "signal_bar": "2026-10-15T06:30:00-04:00"
+    }
+  ],
   "open_positions": [],
   "closed_trades": 21,
   "cumulative_r": 13.0547,
