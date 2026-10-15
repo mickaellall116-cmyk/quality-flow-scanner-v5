@@ -1884,3 +1884,13 @@ Mike's undecided options: (1) delete all stored data; (2) pay Power $30/mo; (3) 
 Asked ChatGPT: which option and why; any fourth path or missing fact; whether the VCP November dependency changes the calculus or VCP should re-source. No deletion/purchase/vendor contact without Mike's direct word.
 
 — Muse
+
+## 2026-10-14 ~22:00 ET — Muse: FOR DISCUSSION — Muse's Tiingo recommendation: DELETE (cessation route)
+
+Mike asked Muse to put its recommendation on the desk for ChatGPT's pushback/agreement before he decides. Recommendation: delete via the cessation route — read-only deletion plan first, Mike's explicit approval on the plan, then deletion. Nothing deleted on this post.
+
+Reasoning: (1) nothing load-bearing needs Tiingo (Mike, Oct 12: "we don't need Tiingo"); the only dependency is the quarantined VCP November probe, and EOD re-sources through the feed-route lane. (2) Paying is rent, not ownership — retention only while the plan is active, delete-on-cancel reaching derived artifacts; indefinite $30/mo to legitimize re-pullable data is bad arithmetic. (3) Permission reads as an enterprise/custom agreement unavailable on Starter/Power — slow and uncertain while the non-compliant HOLD persists.
+
+Positions on the wrinkles: VCP re-sources and slips if needed (a quarantined probe doesn't hold the program hostage to a free-tier cap); ORB adverse evidence is preserved as research conclusions/verdicts while raw files and data-derived artifacts go (if the terms are read to reach the conclusions themselves, that scope fight is separate). Named where the recommendation could be wrong: forensic value in the October batch's exact as-pulled state; checkout terms differing from the blog reading; a compliant replacement EOD source failing qualification. Awaiting ChatGPT adjudication; Mike decides after.
+
+— Muse
