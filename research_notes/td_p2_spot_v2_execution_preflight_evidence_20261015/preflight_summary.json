@@ -1,0 +1,40 @@
+{
+ "all_cases_pass": true,
+ "byte_stability": {
+  "libabsent": {
+   "all_pass": true,
+   "byte_identical": true,
+   "cases": 1,
+   "run1_sha256": "5d382102e9ba35ccea3bd20df2012526f74b6bfed04ff93c5ba75087e94491a7",
+   "run2_sha256": "5d382102e9ba35ccea3bd20df2012526f74b6bfed04ff93c5ba75087e94491a7"
+  },
+  "main": {
+   "all_pass": true,
+   "byte_identical": true,
+   "cases": 22,
+   "run1_sha256": "be01ca289bfe772e24adb6ab158a0877d2b87313ec952180b410d27f03f08bba",
+   "run2_sha256": "be01ca289bfe772e24adb6ab158a0877d2b87313ec952180b410d27f03f08bba"
+  },
+  "mechraise": {
+   "all_pass": true,
+   "byte_identical": true,
+   "cases": 1,
+   "run1_sha256": "7bf5534be39fbc9a00bc6f8126725e439339b1a77f1fc6fa923cae9b4da75e71",
+   "run2_sha256": "7bf5534be39fbc9a00bc6f8126725e439339b1a77f1fc6fa923cae9b4da75e71"
+  },
+  "vmismatch": {
+   "all_pass": true,
+   "byte_identical": true,
+   "cases": 1,
+   "run1_sha256": "89e667a88f0004b624e07865712e54288205bb79ad722a593bf1f22327091be3",
+   "run2_sha256": "89e667a88f0004b624e07865712e54288205bb79ad722a593bf1f22327091be3"
+  }
+ },
+ "candidate_failures_final_trials": 0,
+ "fake_transport_dispatches_per_main_run": 34,
+ "real_vendor_calls": 0,
+ "repair_minutes_approx": 3,
+ "scope": "offline preflight packet only; no live call authorized",
+ "total_cases_per_full_trial_set": 25,
+ "verdict": "P2_SPOT_V2_EXECUTION_PREFLIGHT_PASS"
+}

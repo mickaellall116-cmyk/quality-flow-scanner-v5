@@ -1,0 +1,250 @@
+{
+ "all_pass": true,
+ "mode": "main",
+ "results": [
+  {
+   "case": "freeze_candidate_set",
+   "checks": {
+    "collector_sha": true,
+    "manifest_digest": true,
+    "mechanism_sha": true,
+    "pmc_version": true,
+    "preserved_body_sha": true,
+    "spot8_manifest_valid": true,
+    "spt07_digest": true,
+    "spt08_digest": true,
+    "supplement_binds_base": true,
+    "supplement_sha": true,
+    "supplement_spt08_entry": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "spt08_one_request_manifest",
+   "checks": {
+    "canonical_bytes_sha": true,
+    "credit_weight_1": true,
+    "exactly_one_request": true,
+    "max_attempts_1": true,
+    "one_req_digest_differs_from_base": true,
+    "output_name": true,
+    "pagination_disabled": true,
+    "request_object_identical": true,
+    "validates": true
+   },
+   "note": "one-request manifest digest != supplement-bound base digest 748ca957...: classification binding consequence proven in the next case",
+   "pass": true
+  },
+  {
+   "case": "spt08_single_manifest_supplement_unbound_fails_closed",
+   "checks": {
+    "exactly_one_call": true,
+    "no_classification": true,
+    "no_receipt": true,
+    "outcome_hold": true,
+    "rejected_preserved": true
+   },
+   "note": "supplement binds base digest 748ca957 only; a one-request manifest cannot carry the closed-session classification (fail-closed by construction)",
+   "pass": true
+  },
+  {
+   "case": "full_spot8_end_to_end",
+   "checks": {
+    "calls_exactly_once_each_in_order": true,
+    "class_events_2": true,
+    "closed_bins_byte_equal": true,
+    "completed_6": true,
+    "credits_reserved_8": true,
+    "evidenced_07_08": true,
+    "no_completed_events_07_08": true,
+    "no_receipts_07_08": true,
+    "outcome": true,
+    "receipts_01_06": true,
+    "spt08_event_digest": true,
+    "state_active": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "restart_idempotent_zero_redispatch",
+   "checks": {
+    "evidenced_again_2": true,
+    "outcome": true,
+    "reused_6": true,
+    "state_unchanged_counts": true,
+    "zero_calls": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "single_manifest_against_bound_state_refused",
+   "checks": {
+    "collector_error": true,
+    "zero_calls": true
+   },
+   "note": "manifest binding mismatch refuses receipt/state reuse; no dispatch",
+   "pass": true
+  },
+  {
+   "case": "prereq_wrong_plan",
+   "checks": {
+    "collector_error": true,
+    "no_started": true,
+    "zero_calls": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "prereq_missing",
+   "checks": {
+    "collector_error": true,
+    "zero_calls": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "limiter_exhaustion",
+   "checks": {
+    "refused_outcome": true,
+    "zero_calls": true,
+    "zero_dispatched": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "resp_valid_200",
+   "checks": {
+    "exactly_one_call": true,
+    "outcome_complete": true,
+    "receipt_written": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "resp_auth_401",
+   "checks": {
+    "exactly_one_call": true,
+    "outcome_hold": true,
+    "rejected_preserved": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "resp_rate_429",
+   "checks": {
+    "exactly_one_call": true,
+    "outcome_hold": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "resp_server_500",
+   "checks": {
+    "exactly_one_call": true,
+    "outcome_hold": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "resp_transport_timeout",
+   "checks": {
+    "exactly_one_call": true,
+    "no_rejected_bin": true,
+    "outcome_hold": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "resp_unparseable_200",
+   "checks": {
+    "exactly_one_call": true,
+    "outcome_hold": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "resp_meta_mismatch_200",
+   "checks": {
+    "exactly_one_call": true,
+    "outcome_hold": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "resp_api_status_error_200",
+   "checks": {
+    "exactly_one_call": true,
+    "outcome_hold": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "unknown_billed_credit_no_redispatch",
+   "checks": {
+    "first_hold": true,
+    "reservation_stands": true,
+    "restart_still_hold": true,
+    "restart_zero_calls": true
+   },
+   "note": "credit outcome unknown after dispatch failure; reservation stands spent; persistent HOLD blocks any redispatch (reconciliation required)",
+   "pass": true
+  },
+  {
+   "case": "crash_after_started_ambiguous",
+   "checks": {
+    "attempts_1": true,
+    "crash_propagated": true,
+    "restart_hold_ambiguous": true,
+    "restart_zero_calls": true
+   },
+   "note": "STARTED with no RECEIVED/completion -> AMBIGUOUS terminal HOLD, never recalled",
+   "pass": true
+  },
+  {
+   "case": "write_once_collision_foreign_receipt",
+   "checks": {
+    "foreign_bytes_untouched": true,
+    "refused": true,
+    "zero_calls": true
+   },
+   "note": "refusal path: collector_error_unbound_evidence",
+   "pass": true
+  },
+  {
+   "case": "tampered_supplement_expected_bars",
+   "checks": {
+    "calls_stop_at_spt08": true,
+    "outcome_hold": true,
+    "spt07_still_classified": true,
+    "spt08_not_classified": true,
+    "spt08_rejected_preserved": true
+   },
+   "note": "",
+   "pass": true
+  },
+  {
+   "case": "tampered_manifest_request_drift",
+   "checks": {
+    "digest_differs": true,
+    "fails_closed": true,
+    "spt08_not_classified": true
+   },
+   "note": "",
+   "pass": true
+  }
+ ]
+}

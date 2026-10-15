@@ -1,0 +1,16 @@
+{
+ "mode": "libabsent",
+ "results": [
+  {
+   "case": "N10_libabsent",
+   "checks": {
+    "no_class_event": true,
+    "none_evidenced": true,
+    "one_call_only": true,
+    "outcome_hold": true
+   },
+   "note": "perturbed throwaway process; expect HOLD, no classification",
+   "pass": true
+  }
+ ]
+}

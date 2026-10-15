@@ -1,0 +1,38 @@
+{
+ "execution_manifest": {
+  "endpoint": "https://api.twelvedata.com/time_series",
+  "manifest_id": "TD-P2-SPOT-V2-SPT08-EXECUTION-20261015",
+  "requests": [
+   {
+    "adjust": "splits",
+    "credit_weight": 1,
+    "end_date": "2026-07-03T23:59:59",
+    "expected_credits": 1,
+    "identity": "QQQ|/time_series|1h|2026-07-03T00:00:00|2026-07-03T23:59:59|America/New_York|adjust=splits",
+    "interval": "1h",
+    "leg": "SPOT",
+    "max_attempts": 1,
+    "one_response_bound_bars": 7,
+    "order": "asc",
+    "output_name": "REQ-SPT-08.json",
+    "outputsize": 5000,
+    "request_id": "REQ-SPT-08",
+    "start_date": "2026-07-03T00:00:00",
+    "symbol": "QQQ",
+    "timezone": "America/New_York",
+    "venue_identity": {
+     "currency": "USD",
+     "exchange": "NASDAQ",
+     "mic_code": "XNMS"
+    }
+   }
+  ],
+  "status": "PREFLIGHT ARTIFACT \u2014 not adopted, not authorized for dispatch"
+ },
+ "preflight_annotations": {
+  "binding_note": "canonical_manifest_digest != supplement-bound base digest 748ca957...; see memo section 2",
+  "canonical_manifest_digest": "c31c756ad1f06f51676f2bb3c90fc0b2b790a7f953c949a45f500077d888c3fb",
+  "canonical_request_bytes_sha256": "f547d8fec7882fa121feb966b33fde000b25c4ae0eb822a6b5a503f4a3651a97",
+  "canonical_request_digest": "f547d8fec7882fa121feb966b33fde000b25c4ae0eb822a6b5a503f4a3651a97"
+ }
+}

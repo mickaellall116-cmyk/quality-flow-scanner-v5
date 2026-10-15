@@ -1,0 +1,11 @@
+executable: /tmp/tdqual/venv/bin/python
+python: 3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]
+TZPATH: ('/usr/share/zoneinfo', '/usr/lib/zoneinfo', '/usr/share/lib/zoneinfo', '/etc/zoneinfo')
+version pandas: 2.2.3
+version numpy: 1.26.4
+version pandas_market_calendars: 4.5.1
+version pytz: 2024.2
+version python-dateutil: 2.9.0
+version exchange-calendars: 4.13.2
+version tzdata: 2026.5
+mcal file: /tmp/tdqual/venv/lib/python3.12/site-packages/pandas_market_calendars/__init__.py

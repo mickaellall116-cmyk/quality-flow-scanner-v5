@@ -1,0 +1,16 @@
+{
+ "mode": "mechraise",
+ "results": [
+  {
+   "case": "N10_mechraise",
+   "checks": {
+    "no_class_event": true,
+    "none_evidenced": true,
+    "one_call_only": true,
+    "outcome_hold": true
+   },
+   "note": "perturbed throwaway process; expect HOLD, no classification",
+   "pass": true
+  }
+ ]
+}

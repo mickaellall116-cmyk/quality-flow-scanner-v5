@@ -1,0 +1,57 @@
+{
+ "method": "GET",
+ "url": "https://api.twelvedata.com/time_series",
+ "parameters_fixed_order": [
+  {
+   "name": "symbol",
+   "value": "QQQ"
+  },
+  {
+   "name": "interval",
+   "value": "1h"
+  },
+  {
+   "name": "start_date",
+   "value": "2026-07-03T00:00:00"
+  },
+  {
+   "name": "end_date",
+   "value": "2026-07-03T23:59:59"
+  },
+  {
+   "name": "timezone",
+   "value": "America/New_York"
+  },
+  {
+   "name": "outputsize",
+   "value": 5000
+  },
+  {
+   "name": "order",
+   "value": "asc"
+  },
+  {
+   "name": "adjust",
+   "value": "splits"
+  },
+  {
+   "name": "format",
+   "value": "JSON"
+  },
+  {
+   "name": "apikey",
+   "value": "SECURE_VAULT_AT_RUNTIME_NOT_RECORDED"
+  }
+ ],
+ "not_sent": [
+  "exchange",
+  "mic_code",
+  "prepost",
+  "dp",
+  "previous_close"
+ ],
+ "notes": [
+  "Values copied verbatim from the frozen manifest request, per adapter contract.",
+  "apikey is not part of the manifest request or its canonical digest; it is obtained only in a separately authorized live process from Secure Vault custom.twelvedata and held in memory only."
+ ]
+}

@@ -1,0 +1,21 @@
+{
+ "plan": "Basic",
+ "plan_evidence": {
+  "source": "https://twelvedata.com/pricing (vendor pricing page, accessed 2026-10-13)",
+  "facts": "Individual Basic: $0/mo, 8 API credits/min with 800/day cap, US markets, internal non-display usage only. The account in use is recorded as Basic (Stage-0, 2026-10-10: 2 AAPL requests, HTTP 200)."
+ },
+ "endpoint_weight": {
+  "endpoint": "/time_series",
+  "credits_per_request": 1,
+  "evidence": "Vendor API documentation for /time_series (twelvedata.com/docs, accessed 2026-10-13) states the endpoint's API credits cost as 1 per symbol. One symbol per request in this manifest, so 1 credit per request."
+ },
+ "retention": {
+  "status": "BOUNDED_RESOLVED",
+  "condition": "Retain downloaded Data only while the subscription remains active (Terms of Use, last updated January 1, 2026, as read 2026-10-13: retention limited to the duration permitted by the subscription, sec. 16.1; internal-use storage granted, sec. 2.2(a)); upon termination or expiration ALL Data must be deleted within 30 days (sec. 16.2) \u2014 the 30-day post-termination deletion condition. No indefinite or post-termination retention is claimed. Raw payloads are private, never published.",
+  "evidence": "Twelve Data Terms of Use, twelvedata.com/terms (accessed 2026-10-13): sec. 2.2(a) store Data solely for Internal Use; sec. 2.3(g) no storage beyond timeframes specified in the Documentation (the Basic-plan Documentation specifies none \u2014 bounded reading adopted: subscription duration per sec. 16.1); sec. 16.1/16.2 retention limits and 30-day deletion. Consistent with the user-supplied Dooz AI-support transcript recorded 2026-10-08 (unauthenticated; corroborated in substance by sec. 16 as read today)."
+ },
+ "interval_semantics": {
+  "status": "INSUFFICIENT",
+  "evidence": "Vendor /time_series documentation (accessed 2026-10-13) describes the values datetime as the local exchange time at which the bar opened, i.e. a start-label statement at documentation level only. That statement is recorded but does NOT upgrade the status: it is a documentation claim, not yet verified against returned bytes for the 1h interval across regular/early-close/DST/closed sessions. Status upgrades to SOURCED only after the frozen qualification protocol's boundary checks pass on acquired receipts (QF-TD-ACQUISITION-ADAPTER-PREFLIGHT-20261013-01, protocol section P2). Until then the collector is constructed with semantics_status=INSUFFICIENT and 1H-to-4H construction for decision use remains CONSTRUCTION_HOLD."
+ }
+}
