@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Issue #9 OFFLINE enforcement-harness candidate
-(QF-ISSUE9-OFFLINE-HARNESS-CORRECTNESS-20261014-04 r1; amends the -03 r1
-candidate after ChatGPT's adversarial HOLD, Issue #1 comment 6180610281).
+(QF-ISSUE9-OFFLINE-HARNESS-ACCOUNTING-20261014-05 r1; amends the -04 r1
+candidate after ChatGPT's accounting HOLD, Issue #1 comment 6181708698).
 
 ISOLATED, OFFLINE-ONLY candidate. Dependency-injected FAKE transport only; this
 module imports no HTTP client and the fixture runner patches the socket layer to
@@ -23,6 +23,17 @@ enforcement the route-readiness memo (-02 r1) found missing:
     UNKNOWN — it is neither counted nor treated as zero — and the ledger
     preserves an UNKNOWN_INTERRUPTED_CALL_COST / reconciliation-required
     state; post-run provider/account reconciliation remains mandatory;
+  * complete post-dispatch accounting (-05): any valid usage a response
+    reports is captured and counted BEFORE any semantic rejection
+    (HTTP/fallback/model/version/cost) consumes the response, with the
+    rejection reason preserved on the same record; if usage or cost
+    cannot be authoritatively determined after a dispatch (invalid or
+    absent usage, unverifiable cost, timeout, connection failure) the
+    outcome records UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST with
+    reconciliation_required=true and NEVER a zero by assumption; resume
+    and any new dispatch stay BLOCKED while a reconciliation is
+    outstanding, and only an explicit evidence-backed reconciliation
+    ledger record (Ledger.append_reconciliation) clears that call;
   * frozen protocol v1.0.0 caps enforced per arm-seed: A<=8 / B<=16 calls,
     <=120,000 billed tokens (input+output+reasoning), <=45 min wall, $0.00
     incremental cost, provider free-quota headroom per day;
@@ -62,6 +73,8 @@ BUDGET_REF = "ISSUE9-SINGLE-VS-SWARM-PROTOCOL v1.0.0"
 # Crash-interrupted call accounting (-04 claim correction): a dispatch with
 # no outcome has UNKNOWN true billed usage/cost — never counted, never zero.
 UNKNOWN_INTERRUPTED_CALL_COST = "UNKNOWN_INTERRUPTED_CALL_COST"
+UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST = \
+    "UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST"
 SEED_ORDER = ["S1", "S2", "S3"]
 ROLES = {"A": {"propose", "self_critique"},
          "B": {"proposer", "skeptic", "feasibility", "synthesis"}}
@@ -175,8 +188,12 @@ class Ledger:
         # (UNKNOWN_INTERRUPTED_CALL_COST) and unknowable locally; totals over
         # a ledger with dangling intents are provisional until provider/
         # account reconciliation. Orphaned ledgers refuse dispatch anyway.
+        # Only authoritatively-known integer usage sums. A null
+        # billed_tokens (UNKNOWN accounting, -05) contributes nothing —
+        # not because it was zero, but because it is unknowable locally.
         return sum(r["billed_tokens"] for r in self.outcomes(arm, seed)
-                   if "billed_tokens" in r)
+                   if isinstance(r.get("billed_tokens"), int)
+                   and not isinstance(r.get("billed_tokens"), bool))
 
     def interrupted_cost_state(self):
         """UNKNOWN_INTERRUPTED_CALL_COST if any dispatch lacks an outcome
@@ -184,6 +201,38 @@ class Ledger:
         required); otherwise None."""
         return UNKNOWN_INTERRUPTED_CALL_COST if self.dangling_intents() \
             else None
+
+    def reconciliation_outstanding(self):
+        """call_outcome records flagged reconciliation_required with no
+        later reconciliation record resolving the same (arm, seed,
+        call_index). While this is nonempty, resume/new dispatch is
+        BLOCKED (RECONCILIATION_REQUIRED)."""
+        resolved = {(r["arm"], r["seed"], r["call_index"])
+                    for r in self.records if r["type"] == "reconciliation"}
+        return [r for r in self.records if r["type"] == "call_outcome"
+                and r.get("reconciliation_required") is True
+                and (r["arm"], r["seed"], r["call_index"]) not in resolved]
+
+    def append_reconciliation(self, *, arm, seed, call_index, evidence_ref,
+                              resolved_billed_tokens=None,
+                              resolved_cost_usd=None,
+                              resolution="PROVIDER_EVIDENCE"):
+        """Explicit evidence-backed reconciliation of ONE interrupted /
+        accounting-unknown call. This record ALONE clears that call's
+        resume block; without an evidence_ref nothing is recorded. The
+        resolved figures live on this record only — the original outcome
+        is immutable and is never rewritten or zero-filled retroactively."""
+        if not evidence_ref:
+            raise HarnessStop("RECONCILIATION_EVIDENCE_MISSING",
+                              "no evidence_ref")
+        ok, why = self.verify_chain()
+        if not ok:
+            raise HarnessStop("LEDGER_CORRUPT", why)
+        return self.append("reconciliation", arm=arm, seed=seed,
+                           call_index=call_index, evidence_ref=evidence_ref,
+                           resolved_billed_tokens=resolved_billed_tokens,
+                           resolved_cost_usd=resolved_cost_usd,
+                           resolution=resolution)
 
     def quota_reset_days(self):
         return {r["day"] for r in self.records if r["type"] == "quota_reset"}
@@ -274,6 +323,14 @@ class ArmSeedRunner:
                     "reconciliation required")
                 stop.interrupted = dangling
                 raise stop
+            outstanding = self.ledger.reconciliation_outstanding()
+            if outstanding:
+                raise HarnessStop(
+                    "RECONCILIATION_REQUIRED",
+                    "unresolved interrupted/unknown-accounting call(s) "
+                    f"{[(r['arm'], r['seed'], r['call_index']) for r in outstanding]}"
+                    "; explicit evidence-backed reconciliation required "
+                    "before any new dispatch")
             self._check_price_evidence()
             for i, call in enumerate(calls):
                 self._dispatch(start_index + i, call)
@@ -356,140 +413,202 @@ class ArmSeedRunner:
         try:
             resp = self.transport(call, idx)
         except TimeoutError:
+            # (-05) A timeout proves NOTHING about provider consumption:
+            # usage and cost are UNKNOWN (null, never zero-filled),
+            # reconciliation is required, and the call is recorded exactly
+            # once — no retry, no silent re-dispatch.
             led.append("call_outcome", run_id=self.run_id, arm=arm, seed=seed,
                        call_index=idx, status="FAILED_TIMEOUT",
-                       error="TIMEOUT", billed_tokens=0,
+                       error="TIMEOUT", billed_tokens=None,
+                       usage_or_cost_status=
+                       UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST,
+                       cost_usd=None, cost_evidence_status="UNKNOWN",
+                       reconciliation_required=True,
                        wall_time_s=self.clock.now_s() - t0,
                        started_at=self.clock.iso())
-            raise HarnessStop("TIMEOUT", "no retry; fail-closed stop")
+            raise HarnessStop("TIMEOUT", "no retry; usage/cost UNKNOWN; "
+                              "reconciliation required; fail-closed stop")
+        except (ConnectionError, OSError) as exc:
+            # (-05) Connection interruption after dispatch: identical
+            # UNKNOWN accounting — the provider may have consumed
+            # tokens/cost before the connection failed.
+            led.append("call_outcome", run_id=self.run_id, arm=arm, seed=seed,
+                       call_index=idx,
+                       status="FAILED_TRANSPORT_EXCEPTION",
+                       error="TRANSPORT_EXCEPTION",
+                       exception_type=type(exc).__name__,
+                       billed_tokens=None,
+                       usage_or_cost_status=
+                       UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST,
+                       cost_usd=None, cost_evidence_status="UNKNOWN",
+                       reconciliation_required=True,
+                       wall_time_s=self.clock.now_s() - t0,
+                       started_at=self.clock.iso())
+            raise HarnessStop("TRANSPORT_EXCEPTION",
+                              f"{type(exc).__name__}: usage/cost UNKNOWN; "
+                              "reconciliation required; fail-closed stop")
         if self.crash_after_response:
             raise SimulatedCrash("process died after response, before append")
         wall = self.clock.now_s() - t0
         self._validate_and_record(idx, call, resp, reserved, wall)
 
     # -- response validation: fail closed, reasoning NEVER used as content --
+    # (-05) ACCOUNTING ORDER: usage is parsed and captured FIRST, cost
+    # evidence is classified second, and only then is the first failing
+    # semantic check (HTTP / fallback / model / version / cost / usage /
+    # empty / overrun / wall) chosen as the rejection. The single outcome
+    # record carries whatever accounting was authoritatively reported —
+    # a rejected call's tokens are counted exactly once — and anything
+    # that cannot be authoritatively determined is recorded as
+    # UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST + reconciliation_required,
+    # never as zero.
     def _validate_and_record(self, idx, call, resp, reserved, wall):
         arm, seed, led = self.arm, self.seed, self.ledger
         base = dict(run_id=self.run_id, arm=arm, seed=seed, call_index=idx,
                     started_at=self.clock.iso(), wall_time_s=wall)
+        is_dict = isinstance(resp, dict)
 
-        def fail(status, code, **extra):
-            led.append("call_outcome", status=status, error=code, **base, **extra)
-            raise HarnessStop(code, status)
+        # ---- 1) usage captured BEFORE any rejection consumes the response
+        usage = resp.get("usage") if is_dict else None
+        vals, billed, usage_problem = None, None, None
+        if not isinstance(usage, dict):
+            usage_problem = "MISSING_USAGE"
+        elif "reasoning_tokens" not in usage:
+            usage_problem = "UNMETERED_REASONING"
+        else:
+            tmp = {}
+            for k in ("input_tokens", "output_tokens", "reasoning_tokens"):
+                v = usage.get(k)
+                if not isinstance(v, int) or isinstance(v, bool):
+                    usage_problem = "MISSING_USAGE"
+                    break
+                if v < 0:
+                    usage_problem = "NEGATIVE_USAGE"
+                    break
+                tmp[k] = v
+            if usage_problem is None:
+                computed = tmp["input_tokens"] + tmp["output_tokens"] \
+                    + tmp["reasoning_tokens"]
+                if "billed_tokens" in usage \
+                        and usage["billed_tokens"] != computed:
+                    usage_problem = "INCONSISTENT_USAGE"
+                else:
+                    vals, billed = tmp, computed
+        usage_fields = {}
+        if vals is not None:
+            usage_fields = dict(input_tokens=vals["input_tokens"],
+                                output_tokens=vals["output_tokens"],
+                                reasoning_tokens=vals["reasoning_tokens"],
+                                billed_tokens=billed)
 
-        if not isinstance(resp, dict) or resp.get("http_status") != 200:
-            fail("FAILED_HTTP", "HTTP_NOT_200")
+        # ---- 2) cost evidence classified (never normalized to $0)
+        cost = resp.get("cost_usd") if is_dict else None
+        cost_state, cost_evidence_status = None, None
+        if cost is None:
+            cost_state, cost_evidence_status = "UNKNOWN", "MISSING"
+        elif isinstance(cost, bool) or not isinstance(cost, (int, float)):
+            cost_state, cost_evidence_status = "UNKNOWN", "NON_NUMERIC"
+        elif isinstance(cost, float) and not math.isfinite(cost):
+            cost_state, cost_evidence_status = "UNKNOWN", "NON_FINITE"
+        elif cost != 0:
+            cost_state, cost_evidence_status = "NONZERO", "NONZERO"
+        else:
+            cost_state = "VERIFIED_ZERO"
+
+        # ---- 3) accounting fields shared by every outcome of this call
+        acct = dict(**usage_fields)
+        if cost_state == "VERIFIED_ZERO":
+            acct["cost_usd"] = 0
+        elif cost_state == "NONZERO":
+            acct["cost_usd"] = cost
+            acct["cost_evidence_status"] = "NONZERO"
+        else:
+            acct["cost_usd"] = None
+            acct["cost_evidence_status"] = cost_evidence_status
+        if vals is None or cost_state == "UNKNOWN":
+            # Usage and/or cost cannot be authoritatively determined for
+            # a call that WAS dispatched: explicit UNKNOWN + reconciliation
+            # required, never zero by assumption. (Valid usage captured
+            # above still counts, exactly once.)
+            acct["usage_or_cost_status"] = \
+                UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST
+            acct["reconciliation_required"] = True
+
+        resp_fields = {}
+        if is_dict:
+            resp_fields["response_model"] = resp.get("model")
+            if resp.get("model_version") is not None:
+                resp_fields["model_version"] = resp.get("model_version")
+
+        def reject(status, code, detail="", **extra):
+            led.append("call_outcome", status=status, error=code,
+                       **base, **acct, **extra)
+            raise HarnessStop(code, detail or status)
+
+        # ---- 4) first failing check wins; the rejection reason is
+        # preserved on the same record that carries the accounting.
+        if not is_dict or resp.get("http_status") != 200:
+            reject("FAILED_HTTP", "HTTP_NOT_200", **resp_fields)
         if resp.get("fallback_used"):
-            fail("FAILED_FALLBACK", "FALLBACK_DETECTED")
+            reject("FAILED_FALLBACK", "FALLBACK_DETECTED", **resp_fields)
         if resp.get("model") != self.pin["model"]:
-            fail("FAILED_MODEL", "MODEL_MISMATCH",
-                 response_model=resp.get("model"))
+            reject("FAILED_MODEL", "MODEL_MISMATCH", **resp_fields)
         if not resp.get("model_version"):
-            fail("FAILED_MODEL", "MODEL_VERSION_UNVERIFIABLE",
-                 response_model=resp.get("model"))
-        # (a) Exact version equality: a nonempty SUBSTITUTED version is
-        # alias drift, exactly as an absent one is unverifiable. Only an
-        # exact match with the frozen pin is accepted.
+            reject("FAILED_MODEL", "MODEL_VERSION_UNVERIFIABLE",
+                   **resp_fields)
+        # Exact version equality: a nonempty SUBSTITUTED version is alias
+        # drift, exactly as an absent one is unverifiable. Only an exact
+        # match with the frozen pin is accepted.
         pinned_version = self.pin.get("model_version")
         if not pinned_version:
-            fail("FAILED_MODEL", "MODEL_VERSION_UNVERIFIABLE",
-                 response_model=resp.get("model"),
-                 detail="pin carries no model_version to verify against")
+            reject("FAILED_MODEL", "MODEL_VERSION_UNVERIFIABLE",
+                   detail="pin carries no model_version to verify against",
+                   **resp_fields)
         if resp.get("model_version") != pinned_version:
-            fail("FAILED_MODEL", "MODEL_VERSION_MISMATCH",
-                 response_model=resp.get("model"),
-                 response_version=resp.get("model_version"),
-                 pinned_version=pinned_version)
-        # (b) Per-response cost evidence: must be PRESENT, numeric, finite
-        # and exactly zero. Missing/unknown is recorded as unknown and stops
-        # the run — it is never normalized or rewritten to $0. (The $0
-        # values written by later branches are evidence-backed: they are
-        # reachable only after this gate has verified an exact-zero cost.)
-        cost = resp.get("cost_usd")
-        if cost is None:
-            fail("FAILED_COST", "COST_EVIDENCE_MISSING", cost_usd=None,
-                 cost_evidence_status="MISSING")
-        if isinstance(cost, bool) or not isinstance(cost, (int, float)):
-            fail("FAILED_COST", "COST_EVIDENCE_INVALID", cost_usd=None,
-                 cost_evidence_status="NON_NUMERIC")
-        if isinstance(cost, float) and not math.isfinite(cost):
-            fail("FAILED_COST", "COST_EVIDENCE_INVALID", cost_usd=None,
-                 cost_evidence_status="NON_FINITE")
-        if cost != 0:
-            fail("FAILED_COST", "NONZERO_COST", cost_usd=cost,
-                 cost_evidence_status="NONZERO")
-        usage = resp.get("usage")
-        if not isinstance(usage, dict):
-            fail("FAILED_USAGE", "MISSING_USAGE")
-        if "reasoning_tokens" not in usage:
-            fail("FAILED_USAGE", "UNMETERED_REASONING")
-        vals = {}
-        for k in ("input_tokens", "output_tokens", "reasoning_tokens"):
-            v = usage.get(k)
-            if not isinstance(v, int) or isinstance(v, bool):
-                fail("FAILED_USAGE", "MISSING_USAGE", field=k)
-            if v < 0:
-                fail("FAILED_USAGE", "NEGATIVE_USAGE", field=k)
-            vals[k] = v
-        billed = vals["input_tokens"] + vals["output_tokens"] \
-            + vals["reasoning_tokens"]
-        if "billed_tokens" in usage and usage["billed_tokens"] != billed:
-            fail("FAILED_USAGE", "INCONSISTENT_USAGE",
-                 reported=usage["billed_tokens"], computed=billed)
+            reject("FAILED_MODEL", "MODEL_VERSION_MISMATCH",
+                   response_version=resp.get("model_version"),
+                   pinned_version=pinned_version, **resp_fields)
+        if cost_state == "UNKNOWN":
+            if cost_evidence_status == "MISSING":
+                reject("FAILED_COST", "COST_EVIDENCE_MISSING", **resp_fields)
+            reject("FAILED_COST", "COST_EVIDENCE_INVALID", **resp_fields)
+        if cost_state == "NONZERO":
+            reject("FAILED_COST", "NONZERO_COST", **resp_fields)
+        if usage_problem is not None:
+            reject("FAILED_USAGE", usage_problem, **resp_fields)
+        # From here usage is valid AND cost is verified exact-zero, so the
+        # counted usage and $0 on these records are evidence-backed.
         content = resp.get("content")
         if content is None or not str(content).strip():
             # EMPTY_CONTENT: reasoning tokens are COUNTED, never substituted.
             led.append("call_outcome", status="FAILED_EMPTY_CONTENT",
-                       error="EMPTY_CONTENT",
-                       input_tokens=vals["input_tokens"],
-                       output_tokens=vals["output_tokens"],
-                       reasoning_tokens=vals["reasoning_tokens"],
-                       billed_tokens=billed, cost_usd=0,
-                       response_model=resp.get("model"),
-                       model_version=resp.get("model_version"),
-                       content_sha256=None, **base)
+                       error="EMPTY_CONTENT", content_sha256=None,
+                       **base, **acct, **resp_fields)
             raise HarnessStop("EMPTY_CONTENT",
                               "content empty; reasoning counted, not used")
         if vals["output_tokens"] > int(call["max_output_tokens"]) or \
                 led.billed_total(arm, seed) + billed > TOKEN_CAP_PER_ARM_SEED:
             led.append("call_outcome", status="FAILED_OVERRUN",
-                       error="OVERRUN",
-                       input_tokens=vals["input_tokens"],
-                       output_tokens=vals["output_tokens"],
-                       reasoning_tokens=vals["reasoning_tokens"],
-                       billed_tokens=billed, cost_usd=0,
-                       response_model=resp.get("model"),
-                       model_version=resp.get("model_version"),
+                       error="OVERRUN", content_quarantined=True,
                        content_sha256=sha256_text(str(content)),
-                       content_quarantined=True, **base)
+                       **base, **acct, **resp_fields)
             raise HarnessStop("OVERRUN",
                               "actual usage exceeded reservation; quarantined")
-        # (c) Wall cap enforced AT ACCEPTANCE, not only before dispatch:
-        # a response that arrives after the 45-minute cap is quarantined
+        # Wall cap enforced AT ACCEPTANCE, not only before dispatch: a
+        # response that arrives after the 45-minute cap is quarantined
         # and never accepted, however compliant its payload. Usage is
         # counted (the provider really consumed those tokens).
         if self.clock.now_s() - self.started_s > WALL_CAP_S:
             led.append("call_outcome", status="FAILED_WALL_OVERRUN",
-                       error="CEILING_WALL",
-                       input_tokens=vals["input_tokens"],
-                       output_tokens=vals["output_tokens"],
-                       reasoning_tokens=vals["reasoning_tokens"],
-                       billed_tokens=billed, cost_usd=0,
-                       response_model=resp.get("model"),
-                       model_version=resp.get("model_version"),
+                       error="CEILING_WALL", content_quarantined=True,
                        content_sha256=sha256_text(str(content)),
-                       content_quarantined=True, **base)
+                       **base, **acct, **resp_fields)
             raise HarnessStop(
                 "CEILING_WALL",
                 "response arrived after the 45 min wall cap; quarantined")
         led.append("call_outcome", status="RECORDED", error=None,
-                   input_tokens=vals["input_tokens"],
-                   output_tokens=vals["output_tokens"],
-                   reasoning_tokens=vals["reasoning_tokens"],
-                   billed_tokens=billed, cost_usd=0,
-                   response_model=resp.get("model"),
-                   model_version=resp.get("model_version"),
-                   content_sha256=sha256_text(str(content)), **base)
+                   content_sha256=sha256_text(str(content)),
+                   **base, **acct, **resp_fields)
         self.accepted.append(str(content))
 
     # -- summaries ------------------------------------------------------------
@@ -537,6 +656,13 @@ def resume_state(ledger):
             f"{len(dangling)} dispatch(es) without outcome; interrupted "
             f"call cost {UNKNOWN_INTERRUPTED_CALL_COST}; "
             "reconciliation required")
+    outstanding = ledger.reconciliation_outstanding()
+    if outstanding:
+        return "RECONCILIATION_REQUIRED", (
+            f"{len(outstanding)} call outcome(s) with UNKNOWN usage/cost "
+            f"accounting ({UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST}); "
+            "explicit evidence-backed reconciliation required before "
+            "resume or any new dispatch")
     return "CLEAN", "chain verified, no dangling dispatch"
 
 

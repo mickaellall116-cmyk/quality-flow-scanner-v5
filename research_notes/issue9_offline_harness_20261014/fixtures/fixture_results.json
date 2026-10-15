@@ -1,7 +1,7 @@
 {
- "task": "QF-ISSUE9-OFFLINE-HARNESS-CORRECTNESS-20261014-04 r1",
- "fixtures_total": 36,
- "fixtures_matched": 36,
+ "task": "QF-ISSUE9-OFFLINE-HARNESS-ACCOUNTING-20261014-05 r1",
+ "fixtures_total": 42,
+ "fixtures_matched": 42,
  "all_match": true,
  "results": [
   {
@@ -171,7 +171,8 @@
    "checks": {
     "invocations_1": true,
     "one_outcome": true,
-    "billed_0": true
+    "billed_0": true,
+    "timeout_unknown_accounting": true
    },
    "match": true
   },
@@ -410,6 +411,101 @@
     "reconciliation_required": true,
     "interrupted_listed": true,
     "nothing_zero_filled": true
+   },
+   "match": true
+  },
+  {
+   "id": "F34-mismatch-usage-counted",
+   "mode": "version substitution + fully valid usage/cost",
+   "expect": "MODEL_VERSION_MISMATCH",
+   "got": "MODEL_VERSION_MISMATCH",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true,
+    "tokens_counted_once": true,
+    "usage_fields_exact": true,
+    "versions_recorded": true,
+    "cost_known_zero": true,
+    "no_reconciliation_owed": true
+   },
+   "match": true
+  },
+  {
+   "id": "F35-cost-unknown-reconciliation",
+   "mode": "cost key absent + valid usage; resume gated on reconciliation",
+   "expect": "COST_EVIDENCE_MISSING",
+   "got": "COST_EVIDENCE_MISSING",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true,
+    "tokens_counted": true,
+    "cost_unknown": true,
+    "resume_state_blocked": true,
+    "resume_refused": true,
+    "recon_needs_evidence": true,
+    "wrong_call_recon_no_clear": true,
+    "recon_clears": true,
+    "resume_completes": true,
+    "total_counted_once_each": true
+   },
+   "match": true
+  },
+  {
+   "id": "F36-http-rejection-usage-counted",
+   "mode": "HTTP 500 + fully valid usage/cost in the response body",
+   "expect": "HTTP_NOT_200",
+   "got": "HTTP_NOT_200",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true,
+    "status_failed_http": true,
+    "tokens_counted_once": true
+   },
+   "match": true
+  },
+  {
+   "id": "F37-fallback-rejection-usage-counted",
+   "mode": "fallback_used + fully valid usage/cost",
+   "expect": "FALLBACK_DETECTED",
+   "got": "FALLBACK_DETECTED",
+   "checks": {
+    "invocations_1": true,
+    "accepted_0": true,
+    "status_failed_fallback": true,
+    "tokens_counted_once": true
+   },
+   "match": true
+  },
+  {
+   "id": "F38-timeout-unknown-accounting",
+   "mode": "timeout: UNKNOWN accounting, no resend, resume blocked",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "invocations_1": true,
+    "one_outcome": true,
+    "usage_unknown_not_zero": true,
+    "cost_unknown": true,
+    "reconciliation_required": true,
+    "resume_blocked": true,
+    "nothing_counted": true
+   },
+   "match": true
+  },
+  {
+   "id": "F39-connfail-unknown-accounting",
+   "mode": "ConnectionError post-dispatch: UNKNOWN accounting, resume blocked",
+   "expect": "TRANSPORT_EXCEPTION",
+   "got": "TRANSPORT_EXCEPTION",
+   "checks": {
+    "invocations_1": true,
+    "one_outcome": true,
+    "exception_recorded": true,
+    "usage_unknown_not_zero": true,
+    "cost_unknown": true,
+    "reconciliation_required": true,
+    "resume_blocked": true,
+    "nothing_counted": true
    },
    "match": true
   }

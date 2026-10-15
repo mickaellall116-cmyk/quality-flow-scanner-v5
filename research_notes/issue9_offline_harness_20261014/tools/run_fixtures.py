@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """Deterministic adversarial fixture suite for the Issue #9 offline harness
-candidate (QF-ISSUE9-OFFLINE-HARNESS-CORRECTNESS-20261014-04 r1; the -03
-fixtures F00-F26 are retained unchanged in expectation, F18 gains the
-acceptance-side checks its boundary always implied, and F27-F33 are the
-adversarial fixtures for the five -04 correctness gaps).
+candidate (QF-ISSUE9-OFFLINE-HARNESS-ACCOUNTING-20261014-05 r1; the -03
+fixtures F00-F26 are retained in expectation, F18 gained the
+acceptance-side checks its boundary always implied, F27-F33 are the
+adversarial fixtures for the five -04 correctness gaps, and F34-F39 are
+the -05 accounting fixtures: usage captured BEFORE rejection, timeout /
+connection failure as UNKNOWN + reconciliation-required (never zero),
+and resume blocked until an evidence-backed reconciliation record.
+F14's checks gain the timeout-accounting assertions; its stop code,
+single-dispatch and single-outcome expectations are unchanged).
 
 FAKE TRANSPORT ONLY. The socket layer is patched to raise before anything
 runs; the harness receives scripted in-memory transports. No provider/model
@@ -386,7 +391,13 @@ def main():
            {"invocations_1": tr.invocations == 1,
             "one_outcome": len(outs) == 1
             and outs[0]["status"] == "FAILED_TIMEOUT",
-            "billed_0": sc.ledger.billed_total("A", "S1") == 0})
+            "billed_0": sc.ledger.billed_total("A", "S1") == 0,
+            "timeout_unknown_accounting":
+            outs[0].get("billed_tokens") is None
+            and outs[0].get("usage_or_cost_status")
+            == H.UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST
+            and outs[0].get("cost_usd") is None
+            and outs[0].get("reconciliation_required") is True})
     sc.ledger.close()
 
     # F15 — provider free-quota exhaustion (test cap 3, same code path as 50)
@@ -764,8 +775,212 @@ def main():
             and len(led2.outcomes("A", "S1")) == 0})
     led2.close()
 
+
+    # ------------------------------------------------------------------
+    # -05 accounting fixtures (F34-F39): usage captured BEFORE rejection;
+    # timeout/connection failure = UNKNOWN + reconciliation-required,
+    # never zero; resume blocked until evidence-backed reconciliation.
+    # Spec: Issue #1 comment 6181708698, fixtures (a)-(d).
+    # ------------------------------------------------------------------
+    # F34 — (a) model-version mismatch + valid usage => rejected with the
+    # reason preserved, tokens captured and counted exactly once. Cost
+    # was authoritatively reported ($0), so no reconciliation is owed.
+    sc = Scenario(tmp, "f34")
+    tr = ScriptedTransport([("respond", good_response(
+        model_version="2026-06-15"), 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=[call()])
+    status, code = rn.run([call()])
+    out = sc.ledger.outcomes("A", "S1")[0]
+    report("F34-mismatch-usage-counted",
+           "version substitution + fully valid usage/cost",
+           "MODEL_VERSION_MISMATCH", code,
+           {"invocations_1": tr.invocations == 1,
+            "accepted_0": rn.accepted == [],
+            "tokens_counted_once": out.get("billed_tokens") == 1250
+            and sc.ledger.billed_total("A", "S1") == 1250,
+            "usage_fields_exact": out.get("input_tokens") == 1000
+            and out.get("output_tokens") == 200
+            and out.get("reasoning_tokens") == 50,
+            "versions_recorded": out.get("response_version") == "2026-06-15"
+            and out.get("pinned_version") == PIN["model_version"],
+            "cost_known_zero": out.get("cost_usd") == 0,
+            "no_reconciliation_owed":
+                out.get("reconciliation_required") is not True})
+    sc.ledger.close()
+
+    # F35 — (b) missing cost + valid usage => rejected, tokens counted,
+    # cost UNKNOWN + reconciliation-required; resume stays BLOCKED until
+    # an explicit evidence-backed reconciliation record resolves THIS
+    # call — no-evidence and wrong-call reconciliations do not clear it.
+    sc = Scenario(tmp, "f35")
+    resp = good_response()
+    del resp["cost_usd"]
+    calls = [call(), call("self_critique")]
+    tr = ScriptedTransport([("respond", resp, 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=calls)
+    status, code = rn.run(calls)
+    out = sc.ledger.outcomes("A", "S1")[0]
+    state1, _ = H.resume_state(sc.ledger)
+    tr_b = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn_b = sc.runner(tr_b, plan_calls=calls)
+    status_b, code_b = rn_b.run([calls[1]], start_index=1)
+    recon_refused = False
+    try:
+        sc.ledger.append_reconciliation(
+            arm="A", seed="S1", call_index=0, evidence_ref=None)
+    except H.HarnessStop as stop:
+        recon_refused = stop.code == "RECONCILIATION_EVIDENCE_MISSING"
+    sc.ledger.append_reconciliation(
+        arm="A", seed="S1", call_index=99,
+        evidence_ref="synthetic:provider-usage-report-2026-11-02")
+    state2, _ = H.resume_state(sc.ledger)
+    sc.ledger.append_reconciliation(
+        arm="A", seed="S1", call_index=0,
+        evidence_ref="synthetic:provider-usage-report-2026-11-02",
+        resolved_billed_tokens=1250, resolved_cost_usd=0)
+    state3, _ = H.resume_state(sc.ledger)
+    tr_c = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn_c = sc.runner(tr_c, plan_calls=calls)
+    status_c, code_c = rn_c.run([calls[1]], start_index=1)
+    report("F35-cost-unknown-reconciliation",
+           "cost key absent + valid usage; resume gated on reconciliation",
+           "COST_EVIDENCE_MISSING", code,
+           {"invocations_1": tr.invocations == 1,
+            "accepted_0": rn.accepted == [],
+            "tokens_counted": out.get("billed_tokens") == 1250,
+            "cost_unknown": out.get("cost_usd") is None
+            and out.get("usage_or_cost_status")
+            == H.UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST
+            and out.get("reconciliation_required") is True,
+            "resume_state_blocked": state1 == "RECONCILIATION_REQUIRED",
+            "resume_refused": code_b == "RECONCILIATION_REQUIRED"
+            and tr_b.invocations == 0,
+            "recon_needs_evidence": recon_refused,
+            "wrong_call_recon_no_clear":
+                state2 == "RECONCILIATION_REQUIRED",
+            "recon_clears": state3 == "CLEAN",
+            "resume_completes": status_c == "COMPLETE"
+            and tr_c.invocations == 1,
+            "total_counted_once_each":
+                sc.ledger.billed_total("A", "S1") == 2500})
+    sc.ledger.close()
+
+    # F36 — (c) HTTP rejection + valid usage in the error body =>
+    # rejected, tokens captured and counted exactly once.
+    sc = Scenario(tmp, "f36")
+    tr = ScriptedTransport([("respond", good_response(http_status=500), 1)],
+                            sc.clock)
+    rn = sc.runner(tr, plan_calls=[call()])
+    status, code = rn.run([call()])
+    out = sc.ledger.outcomes("A", "S1")[0]
+    report("F36-http-rejection-usage-counted",
+           "HTTP 500 + fully valid usage/cost in the response body",
+           "HTTP_NOT_200", code,
+           {"invocations_1": tr.invocations == 1,
+            "accepted_0": rn.accepted == [],
+            "status_failed_http": out.get("status") == "FAILED_HTTP",
+            "tokens_counted_once": out.get("billed_tokens") == 1250
+            and sc.ledger.billed_total("A", "S1") == 1250})
+    sc.ledger.close()
+
+    # F37 — (c) fallback rejection + valid usage => rejected, tokens
+    # captured and counted exactly once.
+    sc = Scenario(tmp, "f37")
+    tr = ScriptedTransport([("respond", good_response(fallback_used=True),
+                             1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=[call()])
+    status, code = rn.run([call()])
+    out = sc.ledger.outcomes("A", "S1")[0]
+    report("F37-fallback-rejection-usage-counted",
+           "fallback_used + fully valid usage/cost",
+           "FALLBACK_DETECTED", code,
+           {"invocations_1": tr.invocations == 1,
+            "accepted_0": rn.accepted == [],
+            "status_failed_fallback": out.get("status") == "FAILED_FALLBACK",
+            "tokens_counted_once": out.get("billed_tokens") == 1250
+            and sc.ledger.billed_total("A", "S1") == 1250})
+    sc.ledger.close()
+
+    # F38 — (d) timeout => usage and cost UNKNOWN, reconciliation
+    # required, zero resends, no zero-filled accounting, resume BLOCKED.
+    sc = Scenario(tmp, "f38")
+    calls = [call(), call("self_critique")]
+    tr = ScriptedTransport([("timeout", 3), ("respond", good_response(), 1)],
+                            sc.clock)
+    rn = sc.runner(tr, plan_calls=calls)
+    status, code = rn.run(calls)
+    outs = sc.ledger.outcomes("A", "S1")
+    out = outs[0]
+    state, _ = H.resume_state(sc.ledger)
+    tr2 = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn2 = sc.runner(tr2, plan_calls=calls)
+    status2, code2 = rn2.run([calls[1]], start_index=1)
+    report("F38-timeout-unknown-accounting",
+           "timeout: UNKNOWN accounting, no resend, resume blocked",
+           "TIMEOUT", code,
+           {"invocations_1": tr.invocations == 1,
+            "one_outcome": len(outs) == 1
+            and out["status"] == "FAILED_TIMEOUT",
+            "usage_unknown_not_zero": out.get("billed_tokens") is None
+            and out.get("usage_or_cost_status")
+            == H.UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST,
+            "cost_unknown": out.get("cost_usd") is None
+            and out.get("cost_evidence_status") == "UNKNOWN",
+            "reconciliation_required":
+                out.get("reconciliation_required") is True,
+            "resume_blocked": state == "RECONCILIATION_REQUIRED"
+            and code2 == "RECONCILIATION_REQUIRED"
+            and tr2.invocations == 0,
+            "nothing_counted": sc.ledger.billed_total("A", "S1") == 0})
+    sc.ledger.close()
+
+    # F39 — (d) connection failure after dispatch => identical UNKNOWN
+    # treatment (a non-timeout transport exception zero-filled nothing).
+    sc = Scenario(tmp, "f39")
+
+    class ConnFailTransport:
+        def __init__(self, clock):
+            self.clock = clock
+            self.invocations = 0
+
+        def __call__(self, spec, idx):
+            self.invocations += 1
+            self.clock.advance(2)
+            raise ConnectionError("scripted connection reset post-dispatch")
+
+    calls = [call(), call("self_critique")]
+    tr = ConnFailTransport(sc.clock)
+    rn = sc.runner(tr, plan_calls=calls)
+    status, code = rn.run(calls)
+    outs = sc.ledger.outcomes("A", "S1")
+    out = outs[0]
+    state, _ = H.resume_state(sc.ledger)
+    tr2 = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn2 = sc.runner(tr2, plan_calls=calls)
+    status2, code2 = rn2.run([calls[1]], start_index=1)
+    report("F39-connfail-unknown-accounting",
+           "ConnectionError post-dispatch: UNKNOWN accounting, resume blocked",
+           "TRANSPORT_EXCEPTION", code,
+           {"invocations_1": tr.invocations == 1,
+            "one_outcome": len(outs) == 1
+            and out["status"] == "FAILED_TRANSPORT_EXCEPTION",
+            "exception_recorded": out.get("exception_type")
+            == "ConnectionError",
+            "usage_unknown_not_zero": out.get("billed_tokens") is None
+            and out.get("usage_or_cost_status")
+            == H.UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST,
+            "cost_unknown": out.get("cost_usd") is None
+            and out.get("cost_evidence_status") == "UNKNOWN",
+            "reconciliation_required":
+                out.get("reconciliation_required") is True,
+            "resume_blocked": state == "RECONCILIATION_REQUIRED"
+            and code2 == "RECONCILIATION_REQUIRED"
+            and tr2.invocations == 0,
+            "nothing_counted": sc.ledger.billed_total("A", "S1") == 0})
+    sc.ledger.close()
+
     ok = all(r["match"] for r in RESULTS)
-    summary = {"task": "QF-ISSUE9-OFFLINE-HARNESS-CORRECTNESS-20261014-04 r1",
+    summary = {"task": "QF-ISSUE9-OFFLINE-HARNESS-ACCOUNTING-20261014-05 r1",
                "fixtures_total": len(RESULTS),
                "fixtures_matched": sum(1 for r in RESULTS if r["match"]),
                "all_match": ok, "results": RESULTS}
