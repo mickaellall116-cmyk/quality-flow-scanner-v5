@@ -1,0 +1,42 @@
+{
+  "new_signals": 0,
+  "new_signal_ids": [],
+  "opened": 0,
+  "closed": [],
+  "errors": [],
+  "data_deferred": [],
+  "entries_unexecutable": [],
+  "entries_suppressed": false,
+  "suppression_reason": "",
+  "cycle_status": "HEALTHY",
+  "coverage": {
+    "expected_symbols": 250,
+    "fresh_symbols": 250,
+    "benchmark_expected_symbols": 2,
+    "benchmark_fresh_symbols": 2,
+    "fresh_via_serial": 0,
+    "fresh_via_prefetch": 250,
+    "non_scan_fresh_symbols": [],
+    "degraded_symbols": [],
+    "unresolved_security_events": [],
+    "open_position_data_gaps": [],
+    "global_provider_status": "ok",
+    "market_data_gap": "",
+    "retries": 0,
+    "cycle_duration_s": 508.8,
+    "entries_suppressed": false,
+    "auxiliary_failures": []
+  },
+  "cycle_duration_s": 510.4,
+  "output": "/home/hatch/workspace/quality-flow-scanner-v5/latest_v54_signals.json",
+  "snapshot_files": {
+    "v54_status.json": "/home/hatch/workspace/quality-flow-scanner-v5/forward_test/v54_status.json",
+    "v54_closed_trades.json": "/home/hatch/workspace/quality-flow-scanner-v5/forward_test/v54_closed_trades.json",
+    "v54_ai_observer.json": "/home/hatch/workspace/quality-flow-scanner-v5/forward_test/v54_ai_observer.json"
+  },
+  "publish": {
+    "ok": true,
+    "pushed": false,
+    "note": "up to date"
+  }
+}
