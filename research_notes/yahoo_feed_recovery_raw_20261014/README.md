@@ -11,3 +11,10 @@ Preserved per ChatGPT's remedy (Issue #1 comment 6183159994): raw snapshots, not
   record for run 564, whose artifact was overwritten hourly).
 
 Summary/pin: research_notes/FEED_RECOVERY_OBSERVATION_PIN_20261014.md (d516d2f).
+- run569_last_cycle.json / run569_last_cycle_summary.json — byte-exact copies for
+  run 569 (finished 2026-10-15T04:49:02Z, HEALTHY, 250/250, 466.6s), preserved
+  2026-10-15 ~01:05 ET. state.json at preservation: sha256 3deb15fb… (runs=569);
+  live harness unchanged dc3ee392….
+- watchdog_excerpt_run568.txt — watchdog log lines for run 568 (23:41 ET cycle,
+  HEALTHY, publish ok); its raw artifact was overwritten by run 569 before
+  preservation, same known limitation as run 564.
