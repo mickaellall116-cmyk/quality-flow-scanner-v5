@@ -1,0 +1,13 @@
+# archive root mount/persistence evidence — captured 2026-10-15 (r2 fixture run)
+# absolute archive root: /home/hatch/workspace/data_archive/yahoo_1h_clean/<capture_id>/
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/mapper/rv  100G   17G   83G  17% /home/hatch
+overlay         7.5G  148M  7.4G   2% /
+tmpfs           512M  1.4M  511M   1% /tmp
+
+overlay / overlay rw,relatime,lowerdir=/sysroot,upperdir=/run/hatch/overlay/upper,workdir=/run/hatch/overlay/work,redirect_dir=on,uuid=on,xino=on,metacopy=on,fsync=volatile,nouserxattr 0 0
+tmpfs /tmp tmpfs rw,nosuid,nodev,size=812560k,nr_inodes=409600,uid=131072,gid=131072,inode64 0 0
+tmpfs /tmp tmpfs rw,nosuid,nodev,size=524288k,uid=131072,gid=131072,inode64 0 0
+overlay /home/hatch overlay rw,relatime,lowerdir=/sysroot,upperdir=/run/hatch/overlay/upper,workdir=/run/hatch/overlay/work,redirect_dir=on,uuid=on,xino=on,metacopy=on,fsync=volatile,nouserxattr 0 0
+/dev/mapper/rv /home/hatch btrfs rw,nosuid,nodev,noatime,compress-force=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/ 0 0
+/dev/mapper/rv /home/hatch btrfs rw,nosuid,nodev,noatime,compress-force=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/ 0 0
