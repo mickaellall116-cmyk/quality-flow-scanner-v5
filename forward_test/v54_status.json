@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-15T18:50:15.034172+00:00",
+  "as_of": "2026-10-15T20:49:35.800581+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,31 +7,31 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-15T18:50:14.991398+00:00",
-  "signals_logged": 33,
+  "last_successful_cycle": "2026-10-15T20:49:35.762959+00:00",
+  "signals_logged": 35,
   "grade_counts": {
-    "A": 8,
+    "A": 9,
     "B": 23,
-    "C": 2
+    "C": 3
   },
   "grade_counts_by_cohort": {
     "Forward-UX51": {
-      "A": 3,
+      "A": 4,
       "B": 8,
       "C": 0
     },
     "Forward-X2": {
       "A": 5,
       "B": 15,
-      "C": 2
+      "C": 3
     }
   },
   "pending_entries": [
     {
-      "signal_id": "v54:MELI:4h:2026-10-15T14:30:00-04:00:2026-09-15-v54",
-      "symbol": "MELI",
-      "grade": "A",
-      "signal_bar": "2026-10-15T10:30:00-04:00"
+      "signal_id": "v54:RBRK:4h:2026-10-15T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "RBRK",
+      "grade": "C",
+      "signal_bar": "2026-10-15T14:30:00-04:00"
     }
   ],
   "open_positions": [
@@ -44,7 +44,7 @@
       "stop": 344.73292439270114,
       "tp1": 364.75812463849513,
       "status": "open_full",
-      "bars_held": 1,
+      "bars_held": 2,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 0.1002307582432177,
@@ -59,11 +59,26 @@
       "stop": 165.33922118980624,
       "tp1": 181.76957291674927,
       "status": "open_full",
+      "bars_held": 2,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 1.1226071584906887,
+      "mae_r": -0.18982919811907445
+    },
+    {
+      "signal_id": "v54:MELI:4h:2026-10-15T14:30:00-04:00:2026-09-15-v54",
+      "symbol": "MELI",
+      "grade": "A",
+      "entry": 1851.3699951171875,
+      "entry_bar": "2026-10-15T14:30:00-04:00",
+      "stop": 1819.6442050946312,
+      "tp1": 1938.1130348076779,
+      "status": "open_full",
       "bars_held": 1,
       "tp1_taken": false,
       "profit_protect_armed": null,
-      "mfe_r": 0.7740417771032239,
-      "mae_r": -0.18982919811907445
+      "mfe_r": 0.28116065632945764,
+      "mae_r": -0.13868919925821166
     }
   ],
   "closed_trades": 21,
