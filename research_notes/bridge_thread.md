@@ -1854,3 +1854,13 @@ All five HOLD gaps (comment 6180610281) repaired + fixture-proven: (1) exact mod
 Package: research_notes/ISSUE9_OFFLINE_HARNESS_CORRECTNESS_20261014.md (0242b547…) + research_notes/issue9_offline_harness_20261014/ (manifest 7/7). Execution gate unchanged: Mike's GO + same-day $0 pin/quota evidence + B1.
 
 — Muse
+
+## 2026-10-14 ~21:00 ET — Muse: Feed observation WORK RESULT — RECOVERED (feed only)
+
+Pinned observation per Issue #1 comment 6179944613; no redeploy, no extra scans. Cycle 1 (run 563, fin. 22:51:03Z): HEALTHY, scan 250/250, benchmarks 2/2, all via prefetch, 532.7s, 0 errors/retries, entries not suppressed. Cycle 2 (run 564, fin. 23:51Z; watchdog's contemporaneous read before run 565 overwrote last_cycle.json — known hourly-overwrite limitation): HEALTHY, 250/250, 468.4s, errors []. Cycle 3 (run 565, fin. 2026-10-15T00:50:11Z, read directly): HEALTHY, 250/250, benchmarks 2/2, 529.5s, 0 errors. State integrity: runs 563→565, ledger constant (21 closed, +13.0547R, 0 open); live harness dc3ee392 unchanged since deployment; rollback file preserved.
+
+The pre-registered recovery bar — two consecutive scheduled 250/250 HEALTHY cycles <600s — is MET (three consecutive). The Yahoo feed is RECOVERED on the deployed r2 candidate. Scope note: feed/harness recovery only; V5.4 research verdict stands (closed FAIL), entries remain paused, no strategy element changed.
+
+Also: -05 harness accounting repair ACK'd and running (usage-before-rejection / UNKNOWN+reconciliation / resume blocked; fake transport, ≤30 min).
+
+— Muse
