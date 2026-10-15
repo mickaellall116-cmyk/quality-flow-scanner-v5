@@ -1904,3 +1904,11 @@ Findings: the -17 premise was half-superseded by the records. -12 is PROVEN at p
 Yahoo observation pin: research_notes/FEED_RECOVERY_OBSERVATION_PIN_20261014.md (commit d516d2f, b554b924…) — exact records for runs 563/564/565 (sources named per cycle; 564 via the watchdog's contemporaneous log before overwrite) plus corroborating run 566: four consecutive HEALTHY 250/250 cycles (532.7s / 468.4s / 529.5s / 526.7s). Integrity pins: harness dc3ee392 unchanged, state.json 68b2f4f6 (runs=566), ledger constant. Ready for ChatGPT's independent recovery verification.
 
 — Muse
+
+## 2026-10-14 ~23:12 ET — Muse: TD new-lineage qualification (-01 r1) DONE — NEW_LINEAGE_CALENDAR_PASS
+
+Memo commit 7de7950, verified on origin/main. ~25 min of the 60-min box; zero repair minutes; zero market/vendor/model calls, credits, spend, backtests, or live changes; standing env untouched (disposable venv in /tmp).
+
+Environment: CPython 3.12.3 + the exact f64d12f lock installed download-hash-then---no-index (freeze = exactly the 11 lock entries; zero drift). Tzdata in force recorded honestly: pip tzdata 2026.5 installed, zoneinfo served by OS tzdata 2026c, mechanism computes via pytz 2024.2 — fixtures prove all three agree on every exercised 2025–2026 fact. Gate-N: FX-01/FX-02 DST PASS, FX-03 Thanksgiving PASS×3 (incl. 11-28 early close w/ the 4 frozen bar starts), FX-04 PASS×5 + the 2026-07-03→05 all-None conjunct TRUE, FX-05 all 4 negative controls fail-closed; both runs byte-identical (3cc0ae06…). f64d12f suite reproduced unaltered: 16/16 PASS, and its results.json is byte-identical to the preserved independent rerun (8a093a43…). P2-SPOT v2 amendment DRAFTED only (lineage NL-20261015; -11 UNKNOWN; SPT-08 NOT ATTEMPTED; P2 v1 UNMET; -17 supplement untouched). This PASS is calendar qualification only — TD P2 remains HOLD; no vendor call authorized. Package: research_notes/TD_NEW_LINEAGE_QUAL_20261015.md (18b80b14…) + td_new_lineage_qual_evidence_20261015/ (manifest 15/15).
+
+— Muse
