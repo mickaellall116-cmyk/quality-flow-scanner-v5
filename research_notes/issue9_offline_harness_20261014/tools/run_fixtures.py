@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Deterministic adversarial fixture suite for the Issue #9 offline harness
-candidate (QF-ISSUE9-OFFLINE-HARNESS-ACCOUNTING-20261014-05 r1; the -03
+candidate (QF-ISSUE9-RECONCILIATION-INTEGRITY-20261015-06 r1; the -03
 fixtures F00-F26 are retained in expectation, F18 gained the
 acceptance-side checks its boundary always implied, F27-F33 are the
 adversarial fixtures for the five -04 correctness gaps, and F34-F39 are
@@ -8,7 +8,15 @@ the -05 accounting fixtures: usage captured BEFORE rejection, timeout /
 connection failure as UNKNOWN + reconciliation-required (never zero),
 and resume blocked until an evidence-backed reconciliation record.
 F14's checks gain the timeout-accounting assertions; its stop code,
-single-dispatch and single-outcome expectations are unchanged).
+single-dispatch and single-outcome expectations are unchanged. F40-F57
+are the -06 reconciliation-integrity fixtures: exact-one-target
+refusals, the injected evidence-verification boundary, strict resolved
+field validation, cap accounting of reconciled usage exactly once,
+nonzero-resolved-cost terminal state, evidence reuse, and restart
+persistence. F35 is amended ONLY where the -06 spec changes the
+mechanism it exercises (structured verified evidence replaces the bare
+string; a wrong-target append now refuses instead of polluting) — its
+semantic expectations and the exactly-once total are unchanged).
 
 FAKE TRANSPORT ONLY. The socket layer is patched to raise before anything
 runs; the harness receives scripted in-memory transports. No provider/model
@@ -152,10 +160,11 @@ class Scenario:
     """One arm-seed runtime scenario on a fresh temp ledger."""
 
     def __init__(self, tmp, name, *, arm="A", seed="S1", day=DAY1,
-                 ev=None, quota=H.DAILY_QUOTA_CAP_DEFAULT, ledger_name=None):
+                 ev=None, quota=H.DAILY_QUOTA_CAP_DEFAULT, ledger_name=None,
+                 evidence_verifier=None):
         self.clock = H.FakeClock(day=day)
         path = os.path.join(tmp, ledger_name or f"{name}.jsonl")
-        self.ledger = H.Ledger(path)
+        self.ledger = H.Ledger(path, evidence_verifier=evidence_verifier)
         self.ev = ev if ev is not None else price_evidence()
         self.arm, self.seed, self.quota = arm, seed, quota
         self.transport = None
@@ -167,6 +176,65 @@ class Scenario:
             self.ledger, self.clock, transport, run_id="FX-RUN", arm=self.arm,
             seed=self.seed, pin=PIN, price_evidence=self.ev,
             registered_prompt_hashes=reg, daily_quota_cap=self.quota, **kw)
+
+
+# ---------------------------------------------------------------------------
+# -06 reconciliation evidence helpers: structured bundles + an explicit
+# FAKE verifier (authenticity = issued ref, not expired; the harness
+# itself enforces binding/digest integrity before the verifier runs).
+# ---------------------------------------------------------------------------
+ISSUED_REF = "synthetic:provider-usage-report-2026-11-02"
+
+
+def make_evidence(target, *, day=DAY1, ref=ISSUED_REF,
+                  provider="openrouter", account_id="acct-fixture-1",
+                  expires_day=None):
+    ev = {"provider": provider, "account_id": account_id, "day": day,
+          "evidence_ref": ref,
+          "target_outcome_hash": target["record_hash"]}
+    if expires_day is not None:
+        ev["expires_day"] = expires_day
+    ev["digest"] = H.evidence_digest(ev)
+    return ev
+
+
+class FakeEvidenceVerifier:
+    def __init__(self, issued=(ISSUED_REF,), today=DAY1):
+        self.issued = set(issued)
+        self.today = today
+
+    def __call__(self, evidence, target):
+        if evidence.get("evidence_ref") not in self.issued:
+            return False
+        exp = evidence.get("expires_day")
+        if exp and self.today > exp:
+            return False
+        return True
+
+
+VERIFIER = FakeEvidenceVerifier()
+
+
+def recon_attempt(ledger, **kw):
+    """append_reconciliation wrapper: returns (stop_code_or_None,
+    records_delta). A refusal must have delta 0 — zero append."""
+    before = len(ledger.records)
+    try:
+        ledger.append_reconciliation(**kw)
+    except H.HarnessStop as stop:
+        return stop.code, len(ledger.records) - before
+    return None, len(ledger.records) - before
+
+
+def timeout_scenario(tmp, name, *, verifier=VERIFIER):
+    """Fresh scenario whose only call times out: one UNKNOWN outcome
+    (usage + cost), reconciliation_required, run stopped TIMEOUT."""
+    sc = Scenario(tmp, name, evidence_verifier=verifier)
+    calls = [call(), call("self_critique")]
+    tr = ScriptedTransport([("timeout", 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=calls)
+    status, code = rn.run(calls)
+    return sc, tr, calls, code
 
 
 RESULTS = []
@@ -812,7 +880,7 @@ def main():
     # cost UNKNOWN + reconciliation-required; resume stays BLOCKED until
     # an explicit evidence-backed reconciliation record resolves THIS
     # call — no-evidence and wrong-call reconciliations do not clear it.
-    sc = Scenario(tmp, "f35")
+    sc = Scenario(tmp, "f35", evidence_verifier=VERIFIER)
     resp = good_response()
     del resp["cost_usd"]
     calls = [call(), call("self_critique")]
@@ -824,19 +892,23 @@ def main():
     tr_b = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
     rn_b = sc.runner(tr_b, plan_calls=calls)
     status_b, code_b = rn_b.run([calls[1]], start_index=1)
-    recon_refused = False
-    try:
-        sc.ledger.append_reconciliation(
-            arm="A", seed="S1", call_index=0, evidence_ref=None)
-    except H.HarnessStop as stop:
-        recon_refused = stop.code == "RECONCILIATION_EVIDENCE_MISSING"
-    sc.ledger.append_reconciliation(
-        arm="A", seed="S1", call_index=99,
-        evidence_ref="synthetic:provider-usage-report-2026-11-02")
+    miss_code, miss_delta = recon_attempt(
+        sc.ledger, arm="A", seed="S1", call_index=0, evidence=None)
+    recon_refused = miss_code == "RECONCILIATION_EVIDENCE_MISSING" \
+        and miss_delta == 0
+    # -06: a wrong-target reconciliation now REFUSES before append
+    # (RECONCILIATION_TARGET_UNKNOWN, zero ledger change) instead of
+    # being appended as pollution that merely fails to clear — the
+    # semantic expectation (block NOT cleared) is unchanged.
+    wrong_code, wrong_delta = recon_attempt(
+        sc.ledger, arm="A", seed="S1", call_index=99,
+        evidence=make_evidence(out))
+    wrong_refused = wrong_code == "RECONCILIATION_TARGET_UNKNOWN" \
+        and wrong_delta == 0
     state2, _ = H.resume_state(sc.ledger)
     sc.ledger.append_reconciliation(
         arm="A", seed="S1", call_index=0,
-        evidence_ref="synthetic:provider-usage-report-2026-11-02",
+        evidence=make_evidence(out),
         resolved_billed_tokens=1250, resolved_cost_usd=0)
     state3, _ = H.resume_state(sc.ledger)
     tr_c = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
@@ -856,6 +928,7 @@ def main():
             "resume_refused": code_b == "RECONCILIATION_REQUIRED"
             and tr_b.invocations == 0,
             "recon_needs_evidence": recon_refused,
+            "wrong_call_recon_refused": wrong_refused,
             "wrong_call_recon_no_clear":
                 state2 == "RECONCILIATION_REQUIRED",
             "recon_clears": state3 == "CLEAN",
@@ -979,8 +1052,453 @@ def main():
             "nothing_counted": sc.ledger.billed_total("A", "S1") == 0})
     sc.ledger.close()
 
+    # ------------------------------------------------------------------
+    # -06 reconciliation-integrity fixtures (F40-F58): spec Issue #1
+    # comment 6187987162 points 1-6. Every negative must produce ZERO
+    # append and ZERO dispatch; the block it guards must remain in force.
+    # ------------------------------------------------------------------
+    # F40 — arbitrary string evidence (the pre--06 gate) refuses: both
+    # as the evidence argument and via the legacy evidence_ref kwarg.
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f40")
+    out = sc.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence="arbitrary string, trust me",
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    c2, d2 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence_ref="arbitrary string, trust me",
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    state, _ = H.resume_state(sc.ledger)
+    report("F40-arbitrary-string-evidence",
+           "bare-string evidence (old nonempty gate) must not clear",
+           "TIMEOUT", code0,
+           {"string_evidence_refused":
+                c1 == "RECONCILIATION_EVIDENCE_MALFORMED" and d1 == 0,
+            "legacy_ref_refused":
+                c2 == "RECONCILIATION_EVIDENCE_MALFORMED" and d2 == 0,
+            "still_blocked": state == "RECONCILIATION_REQUIRED"})
+    sc.ledger.close()
+
+    # F41 — verifier rejects: unissued ref, then expired evidence.
+    sc, tr, calls, code0 = timeout_scenario(
+        tmp, "f41", verifier=FakeEvidenceVerifier(issued=()))
+    out = sc.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out),
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    sc.ledger.evidence_verifier = VERIFIER
+    c2, d2 = recon_attempt(
+        sc.ledger, arm="A", seed="S1", call_index=0,
+        evidence=make_evidence(out, expires_day="2026-11-01"),
+        resolved_billed_tokens=1250, resolved_cost_usd=0)
+    state, _ = H.resume_state(sc.ledger)
+    report("F41-verifier-rejects-evidence",
+           "unissued ref and expired evidence both fail verification",
+           "TIMEOUT", code0,
+           {"unissued_refused": c1 == "RECONCILIATION_EVIDENCE_UNVERIFIED"
+            and d1 == 0,
+            "expired_refused": c2 == "RECONCILIATION_EVIDENCE_UNVERIFIED"
+            and d2 == 0,
+            "still_blocked": state == "RECONCILIATION_REQUIRED"})
+    sc.ledger.close()
+
+    # F42 — verifier raises: refusal, never an exception escape.
+    def boom_verifier(evidence, target):
+        raise RuntimeError("verifier exploded")
+
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f42",
+                                            verifier=boom_verifier)
+    out = sc.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out),
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    report("F42-verifier-exception",
+           "verifier raising must refuse fail-closed, zero append",
+           "TIMEOUT", code0,
+           {"verifier_error_refused":
+            c1 == "RECONCILIATION_EVIDENCE_VERIFIER_ERROR" and d1 == 0})
+    sc.ledger.close()
+
+    # F43 — no verifier injected: even a well-formed bundle cannot clear.
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f43", verifier=None)
+    out = sc.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out),
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    report("F43-no-verifier-configured",
+           "no injected verifier -> evidence unverifiable, fail closed",
+           "TIMEOUT", code0,
+           {"unverifiable_refused":
+            c1 == "RECONCILIATION_EVIDENCE_UNVERIFIABLE" and d1 == 0})
+    sc.ledger.close()
+
+    # F44 — wrong target: no outcome exists at the named call.
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f44")
+    out = sc.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=7,
+                           evidence=make_evidence(out),
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    report("F44-wrong-target-refused",
+           "reconciliation naming a nonexistent call refuses pre-append",
+           "TIMEOUT", code0,
+           {"target_unknown_refused":
+            c1 == "RECONCILIATION_TARGET_UNKNOWN" and d1 == 0})
+    sc.ledger.close()
+
+    # F45 — target exists but is NOT outstanding (clean recorded call).
+    sc = Scenario(tmp, "f45", evidence_verifier=VERIFIER)
+    tr = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=[call()])
+    status, code = rn.run([call()])
+    out = sc.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out),
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    report("F45-target-not-outstanding",
+           "reconciling a clean RECORDED call refuses pre-append",
+           "COMPLETE", status,
+           {"not_outstanding_refused":
+            c1 == "RECONCILIATION_TARGET_NOT_OUTSTANDING" and d1 == 0})
+    sc.ledger.close()
+
+    # F46 — duplicate reconciliation of an already-resolved call refuses.
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f46")
+    out = sc.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out),
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    total_after_first = sc.ledger.billed_total("A", "S1")
+    c2, d2 = recon_attempt(
+        sc.ledger, arm="A", seed="S1", call_index=0,
+        evidence=make_evidence(out, ref=ISSUED_REF + "-second-report"),
+        resolved_billed_tokens=1250, resolved_cost_usd=0)
+    report("F46-duplicate-reconciliation",
+           "second resolution of the same call refuses; totals unchanged",
+           "TIMEOUT", code0,
+           {"first_accepted": c1 is None and d1 == 1,
+            "duplicate_refused": c2 == "RECONCILIATION_DUPLICATE"
+            and d2 == 0,
+            "total_unchanged": total_after_first == 1250
+            and sc.ledger.billed_total("A", "S1") == 1250})
+    sc.ledger.close()
+
+    # F47 — evidence honestly issued for a DIFFERENT call's outcome.
+    # (The foreign scenario needs a distinct prompt: the suite is fully
+    # deterministic, so an identical scenario would produce a byte-
+    # identical ledger and the "foreign" outcome hash would coincide.)
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f47")
+    sc2 = Scenario(tmp, "f47b", evidence_verifier=VERIFIER)
+    calls2 = [call(prompt="frozen prompt for propose (foreign f47)"),
+              call("self_critique")]
+    tr2 = ScriptedTransport([("timeout", 1)], sc2.clock)
+    rn2f = sc2.runner(tr2, plan_calls=calls2)
+    rn2f.run(calls2)
+    out = sc.ledger.outcomes("A", "S1")[0]
+    foreign = sc2.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(foreign),
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    report("F47-evidence-target-mismatch",
+           "evidence binds another outcome's hash; refuses pre-append",
+           "TIMEOUT", code0,
+           {"foreign_hash_distinct":
+            foreign["record_hash"] != out["record_hash"],
+            "target_mismatch_refused":
+            c1 == "RECONCILIATION_EVIDENCE_TARGET_MISMATCH" and d1 == 0})
+    sc.ledger.close()
+    sc2.ledger.close()
+
+    # F48 — bundle digest tampered after issuance.
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f48")
+    out = sc.ledger.outcomes("A", "S1")[0]
+    ev = make_evidence(out)
+    ev["digest"] = "0" * 64
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=ev, resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    report("F48-evidence-digest-mismatch",
+           "digest not recomputing over the bundle refuses pre-append",
+           "TIMEOUT", code0,
+           {"digest_mismatch_refused":
+            c1 == "RECONCILIATION_EVIDENCE_DIGEST_MISMATCH" and d1 == 0})
+    sc.ledger.close()
+
+    # F49 — evidence issued for the wrong day (self-consistent digest).
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f49")
+    out = sc.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out, day=DAY2),
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    report("F49-evidence-day-mismatch",
+           "evidence day != dispatch day refuses pre-append",
+           "TIMEOUT", code0,
+           {"day_mismatch_refused":
+            c1 == "RECONCILIATION_EVIDENCE_DAY_MISMATCH" and d1 == 0})
+    sc.ledger.close()
+
+    # F50 — partial resolution: each single-dimension attempt refuses;
+    # the target's usage AND cost were both UNKNOWN (timeout).
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f50")
+    out = sc.ledger.outcomes("A", "S1")[0]
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out),
+                           resolved_cost_usd=0)
+    c2, d2 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out),
+                           resolved_billed_tokens=100)
+    state, _ = H.resume_state(sc.ledger)
+    report("F50-partial-resolution-refused",
+           "resolving only one of two unknown dimensions refuses",
+           "TIMEOUT", code0,
+           {"cost_only_refused":
+            c1 == "RECONCILIATION_RESOLUTION_INCOMPLETE" and d1 == 0,
+            "tokens_only_refused":
+            c2 == "RECONCILIATION_RESOLUTION_INCOMPLETE" and d2 == 0,
+            "still_blocked": state == "RECONCILIATION_REQUIRED"})
+    sc.ledger.close()
+
+    # F51 — strictly invalid resolved field values all refuse.
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f51")
+    out = sc.ledger.outcomes("A", "S1")[0]
+    bad_tokens = ["1250", True, -5, 1250.5]
+    bad_costs = [float("nan"), float("inf"), -0.01, "0", True]
+    tok_codes = [recon_attempt(
+        sc.ledger, arm="A", seed="S1", call_index=0,
+        evidence=make_evidence(out), resolved_billed_tokens=v,
+        resolved_cost_usd=0) for v in bad_tokens]
+    cost_codes = [recon_attempt(
+        sc.ledger, arm="A", seed="S1", call_index=0,
+        evidence=make_evidence(out), resolved_billed_tokens=1250,
+        resolved_cost_usd=v) for v in bad_costs]
+    state, _ = H.resume_state(sc.ledger)
+    report("F51-invalid-resolved-fields",
+           "string/bool/negative/float tokens; NaN/inf/negative/string/"
+           "bool cost — all refuse with zero append",
+           "TIMEOUT", code0,
+           {"tokens_all_refused": all(
+               c == "RECONCILIATION_TOKENS_INVALID" and d == 0
+               for c, d in tok_codes),
+            "costs_all_refused": all(
+                c == "RECONCILIATION_COST_INVALID" and d == 0
+                for c, d in cost_codes),
+            "still_blocked": state == "RECONCILIATION_REQUIRED"})
+    sc.ledger.close()
+
+    # F52 — resolved value contradicting an originally KNOWN dimension
+    # is a conflict: (i) tokens vs known usage, (ii) cost vs known cost.
+    sc = Scenario(tmp, "f52", evidence_verifier=VERIFIER)
+    resp = good_response()
+    del resp["cost_usd"]
+    tr = ScriptedTransport([("respond", resp, 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=[call()])
+    rn.run([call()])
+    out = sc.ledger.outcomes("A", "S1")[0]      # usage 1250 KNOWN
+    c1, d1 = recon_attempt(sc.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out),
+                           resolved_billed_tokens=9999,
+                           resolved_cost_usd=0)
+    sc_b = Scenario(tmp, "f52b", evidence_verifier=VERIFIER)
+    tr_b = ScriptedTransport([("respond", good_response(usage=None), 1)],
+                             sc_b.clock)
+    rn_b = sc_b.runner(tr_b, plan_calls=[call()])
+    rn_b.run([call()])
+    out_b = sc_b.ledger.outcomes("A", "S1")[0]  # cost 0 KNOWN, usage unknown
+    c2, d2 = recon_attempt(sc_b.ledger, arm="A", seed="S1", call_index=0,
+                           evidence=make_evidence(out_b),
+                           resolved_billed_tokens=1250,
+                           resolved_cost_usd=5)
+    report("F52-conflicting-resolution",
+           "resolved values contradicting known dimensions refuse",
+           "COST_EVIDENCE_MISSING", rn.stopped[0] if rn.stopped else None,
+           {"tokens_conflict_refused":
+            c1 == "RECONCILIATION_RESOLUTION_CONFLICT" and d1 == 0,
+            "cost_conflict_refused":
+            c2 == "RECONCILIATION_RESOLUTION_CONFLICT" and d2 == 0,
+            "setup_dims": out.get("billed_tokens") == 1250
+            and out_b.get("cost_usd") == 0})
+    sc.ledger.close()
+    sc_b.ledger.close()
+
+    # F53 — unknown usage reconciled NEAR the cap: the effective total
+    # governs the next reservation; resume stops at CEILING_TOKENS.
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f53")
+    out = sc.ledger.outcomes("A", "S1")[0]
+    sc.ledger.append_reconciliation(
+        arm="A", seed="S1", call_index=0, evidence=make_evidence(out),
+        resolved_billed_tokens=119500, resolved_cost_usd=0)
+    state, _ = H.resume_state(sc.ledger)
+    tr2 = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn2 = sc.runner(tr2, plan_calls=calls)
+    status2, code2 = rn2.run([calls[1]], start_index=1)
+    report("F53-reconciled-near-cap",
+           "resolved 119,500 + next reservation 600 > 120,000 ceiling",
+           "TIMEOUT", code0,
+           {"recon_clears_block": state == "CLEAN",
+            "effective_total": sc.ledger.billed_total("A", "S1") == 119500,
+            "resume_ceiling": code2 == "CEILING_TOKENS",
+            "zero_dispatch": tr2.invocations == 0})
+    sc.ledger.close()
+
+    # F54 — unknown usage reconciled OVER the cap: recorded truthfully,
+    # resume can never dispatch again under the ceiling.
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f54")
+    out = sc.ledger.outcomes("A", "S1")[0]
+    sc.ledger.append_reconciliation(
+        arm="A", seed="S1", call_index=0, evidence=make_evidence(out),
+        resolved_billed_tokens=120001, resolved_cost_usd=0)
+    tr2 = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn2 = sc.runner(tr2, plan_calls=calls)
+    status2, code2 = rn2.run([calls[1]], start_index=1)
+    report("F54-reconciled-over-cap",
+           "resolved 120,001 already exceeds the 120,000 ceiling",
+           "TIMEOUT", code0,
+           {"effective_total": sc.ledger.billed_total("A", "S1") == 120001,
+            "resume_ceiling": code2 == "CEILING_TOKENS",
+            "zero_dispatch": tr2.invocations == 0})
+    sc.ledger.close()
+
+    # F55 — known usage + unknown cost: reconciling cost alone must NOT
+    # double-count the already-known 1,250 tokens.
+    sc = Scenario(tmp, "f55", evidence_verifier=VERIFIER)
+    resp = good_response()
+    del resp["cost_usd"]
+    calls = [call(), call("self_critique")]
+    tr = ScriptedTransport([("respond", resp, 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=calls)
+    status, code = rn.run(calls)
+    out = sc.ledger.outcomes("A", "S1")[0]
+    sc.ledger.append_reconciliation(
+        arm="A", seed="S1", call_index=0, evidence=make_evidence(out),
+        resolved_cost_usd=0)
+    mid_total = sc.ledger.billed_total("A", "S1")
+    tr2 = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn2 = sc.runner(tr2, plan_calls=calls)
+    status2, code2 = rn2.run([calls[1]], start_index=1)
+    report("F55-known-usage-not-double-counted",
+           "cost-only reconciliation; known usage counted exactly once",
+           "COST_EVIDENCE_MISSING", code,
+           {"mid_total_once": mid_total == 1250,
+            "resume_completes": status2 == "COMPLETE",
+            "final_total": sc.ledger.billed_total("A", "S1") == 2500})
+    sc.ledger.close()
+
+    # F56 — nonzero resolved cost: recorded authoritatively, terminal
+    # NONZERO_COST — never a clean resume under the $0 protocol.
+    sc = Scenario(tmp, "f56", evidence_verifier=VERIFIER)
+    resp = good_response()
+    del resp["cost_usd"]
+    calls = [call(), call("self_critique")]
+    tr = ScriptedTransport([("respond", resp, 1)], sc.clock)
+    rn = sc.runner(tr, plan_calls=calls)
+    status, code = rn.run(calls)
+    out = sc.ledger.outcomes("A", "S1")[0]
+    sc.ledger.append_reconciliation(
+        arm="A", seed="S1", call_index=0, evidence=make_evidence(out),
+        resolved_cost_usd=0.02)
+    rec = [r for r in sc.ledger.records
+           if r["type"] == "reconciliation"][0]
+    state, _ = H.resume_state(sc.ledger)
+    tr2 = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn2 = sc.runner(tr2, plan_calls=calls)
+    status2, code2 = rn2.run([calls[1]], start_index=1)
+    report("F56-nonzero-resolved-cost",
+           "authoritative nonzero cost resolves the unknown but is "
+           "terminal, never a clean resume",
+           "COST_EVIDENCE_MISSING", code,
+           {"recorded_terminal": rec.get("resolution_status")
+            == "NONZERO_COST",
+            "state_nonzero": state == "NONZERO_COST",
+            "run_refused": code2 == "NONZERO_COST",
+            "zero_dispatch": tr2.invocations == 0,
+            "usage_counted_once": sc.ledger.billed_total("A", "S1")
+            == 1250})
+    sc.ledger.close()
+
+    # F57 — restart persistence: a valid reconciliation survives close /
+    # reopen twice; the resolved value is counted exactly once after
+    # every restart, and the resumed run completes.
+    sc, tr, calls, code0 = timeout_scenario(tmp, "f57")
+    path = sc.ledger.path
+    sc.ledger.close()
+    led2 = H.Ledger(path, evidence_verifier=VERIFIER)
+    state1, _ = H.resume_state(led2)
+    out = led2.outcomes("A", "S1")[0]
+    led2.append_reconciliation(
+        arm="A", seed="S1", call_index=0, evidence=make_evidence(out),
+        resolved_billed_tokens=1250, resolved_cost_usd=0)
+    state2, _ = H.resume_state(led2)
+    led2.close()
+    led3 = H.Ledger(path, evidence_verifier=VERIFIER)
+    state3, _ = H.resume_state(led3)
+    total3 = led3.billed_total("A", "S1")
+    tr3 = ScriptedTransport([("respond", good_response(), 1)], sc.clock)
+    rn3 = H.ArmSeedRunner(led3, sc.clock, tr3, run_id="FX-RUN", arm="A",
+                          seed="S1", pin=PIN, price_evidence=sc.ev,
+                          registered_prompt_hashes=[H.sha256_text(
+                              c["prompt"]) for c in calls])
+    status3, code3 = rn3.run([calls[1]], start_index=1)
+    report("F57-restart-after-reconciliation",
+           "reopen: blocked -> reconcile -> reopen: clean, counted once, "
+           "resume completes",
+           "TIMEOUT", code0,
+           {"blocked_before": state1 == "RECONCILIATION_REQUIRED",
+            "clean_after": state2 == "CLEAN" and state3 == "CLEAN",
+            "counted_once_after_restart": total3 == 1250,
+            "resume_completes": status3 == "COMPLETE",
+            "final_total": led3.billed_total("A", "S1") == 2500})
+    led3.close()
+
+    # F58 — evidence reuse across calls: arm A's exact evidence bundle
+    # presented for arm B's outstanding call refuses (identity already
+    # used); B stays blocked. One shared ledger, sequential runs.
+    clock58 = H.FakeClock(day=DAY1)
+    led58 = H.Ledger(os.path.join(tmp, "f58.jsonl"),
+                     evidence_verifier=VERIFIER)
+
+    def run_timeout58(arm, role):
+        c58 = [call(role)]
+        tr58 = ScriptedTransport([("timeout", 1)], clock58)
+        rn58 = H.ArmSeedRunner(led58, clock58, tr58, run_id="FX-RUN",
+                               arm=arm, seed="S1", pin=PIN,
+                               price_evidence=price_evidence(),
+                               registered_prompt_hashes=[H.sha256_text(
+                                   c58[0]["prompt"])])
+        rn58.run(c58)
+        return tr58
+
+    trA = run_timeout58("A", "propose")
+    outA = led58.outcomes("A", "S1")[0]
+    evA = make_evidence(outA)
+    cA, dA = recon_attempt(led58, arm="A", seed="S1", call_index=0,
+                           evidence=evA, resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    trB = run_timeout58("B", "proposer")
+    cB, dB = recon_attempt(led58, arm="B", seed="S1", call_index=0,
+                           evidence=evA, resolved_billed_tokens=1250,
+                           resolved_cost_usd=0)
+    state58, _ = H.resume_state(led58)
+    report("F58-evidence-reuse-across-calls",
+           "identical evidence identity presented for a second call",
+           "RECONCILIATION_EVIDENCE_REUSED", cB,
+           {"first_accepted": cA is None and dA == 1,
+            "b_dispatched": trB.invocations == 1,
+            "reuse_zero_append": dB == 0,
+            "b_still_blocked": state58 == "RECONCILIATION_REQUIRED",
+            "totals": led58.billed_total("A", "S1") == 1250
+            and led58.billed_total("B", "S1") == 0})
+    led58.close()
+
     ok = all(r["match"] for r in RESULTS)
-    summary = {"task": "QF-ISSUE9-OFFLINE-HARNESS-ACCOUNTING-20261014-05 r1",
+    summary = {"task": "QF-ISSUE9-RECONCILIATION-INTEGRITY-20261015-06 r1",
                "fixtures_total": len(RESULTS),
                "fixtures_matched": sum(1 for r in RESULTS if r["match"]),
                "all_match": ok, "results": RESULTS}

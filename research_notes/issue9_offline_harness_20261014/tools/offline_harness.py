@@ -1,7 +1,40 @@
 #!/usr/bin/env python3
 """Issue #9 OFFLINE enforcement-harness candidate
-(QF-ISSUE9-OFFLINE-HARNESS-ACCOUNTING-20261014-05 r1; amends the -04 r1
-candidate after ChatGPT's accounting HOLD, Issue #1 comment 6181708698).
+(QF-ISSUE9-RECONCILIATION-INTEGRITY-20261015-06 r1; amends the -05 r1
+candidate after ChatGPT's reconciliation-integrity HOLD, Issue #1
+comment 6187987162; the -05 accounting repair itself was accepted).
+
+RECONCILIATION INTEGRITY (-06): an explicit reconciliation ledger record
+is the only way an UNKNOWN-accounting call clears its resume block, so
+the record is now admitted only under strict integrity rules, all
+enforced BEFORE append (every refusal leaves the ledger byte-unchanged):
+  * the target must be exactly one EXISTING call_outcome that is
+    actually flagged reconciliation_required and not already resolved —
+    unknown, wrong, clean, or already-resolved targets refuse;
+  * the arbitrary nonempty-string evidence gate is REPLACED by an
+    injected evidence-verification boundary: the evidence is a structured
+    bundle binding provider / account / day identity, the target
+    outcome's record hash, and a digest over the whole bundle. The
+    harness itself verifies target binding, day binding, and digest
+    integrity; authenticity (issued identity, expiry) is decided ONLY by
+    the caller-injected verifier callable. No verifier configured, a
+    verifier returning false, or a verifier raising all refuse
+    fail-closed. Evidence identity (ref + digest) may never be reused
+    across calls; duplicate or conflicting resolutions refuse;
+  * resolved fields are strictly validated: billed tokens integer /
+    not bool / >= 0; cost finite numeric / not bool / >= 0; EVERY
+    originally-unknown dimension must be resolved; a resolved value
+    that contradicts an originally-KNOWN dimension is a conflict and
+    refuses; a NONZERO resolved cost is recorded as authoritative but
+    is a terminal NONZERO_COST / execution-ineligible state — never a
+    clean resume under the $0 protocol;
+  * cap accounting uses the EFFECTIVE billed total exactly once: an
+    originally-known usage counts from the outcome alone; an
+    originally-unknown usage counts its verified resolved value once
+    it exists, and never both. Pre-dispatch token reservation after a
+    reconciliation therefore enforces the 120,000 ceiling against the
+    reconciled truth — a timed-out call can no longer evade the cap by
+    being reconciled after the fact.
 
 ISOLATED, OFFLINE-ONLY candidate. Dependency-injected FAKE transport only; this
 module imports no HTTP client and the fixture runner patches the socket layer to
@@ -84,6 +117,22 @@ def sha256_text(s):
     return hashlib.sha256(s.encode("utf-8")).hexdigest()
 
 
+def evidence_digest(evidence):
+    """Digest binding EVERY field of a reconciliation evidence bundle
+    except the digest itself (canonical JSON -> sha256 hex)."""
+    body = {k: v for k, v in evidence.items() if k != "digest"}
+    return sha256_text(canonical(body))
+
+
+def _is_int(v):
+    return isinstance(v, int) and not isinstance(v, bool)
+
+
+def _is_hex64(v):
+    return isinstance(v, str) and len(v) == 64 and \
+        all(c in "0123456789abcdef" for c in v)
+
+
 def canonical(obj):
     return json.dumps(obj, sort_keys=True, separators=(",", ":"))
 
@@ -122,7 +171,12 @@ class FakeClock:
 # Immutable hash-chained ledger (JSONL, fsync before advancing)
 # --------------------------------------------------------------------------
 class Ledger:
-    def __init__(self, path):
+    def __init__(self, path, evidence_verifier=None):
+        # evidence_verifier: injected callable (evidence, target_outcome)
+        # -> truthy/falsy, deciding AUTHENTICITY of reconciliation
+        # evidence (issued identity / expiry). None = no evidence can
+        # ever verify, so reconciliations refuse fail-closed (-06).
+        self.evidence_verifier = evidence_verifier
         self.path = path
         self.records = []
         self.last_hash = "GENESIS"
@@ -181,19 +235,33 @@ class Ledger:
                 if r["status"] == "RECORDED"]
 
     def billed_total(self, arm, seed):
-        # Every outcome whose usage is known counts toward the cap, including
-        # failed calls (the provider really consumed those tokens). A dispatch
-        # with NO outcome (crash-interrupted) contributes nothing here NOT
-        # because its cost was zero — its true billed usage/cost is UNKNOWN
-        # (UNKNOWN_INTERRUPTED_CALL_COST) and unknowable locally; totals over
-        # a ledger with dangling intents are provisional until provider/
-        # account reconciliation. Orphaned ledgers refuse dispatch anyway.
-        # Only authoritatively-known integer usage sums. A null
-        # billed_tokens (UNKNOWN accounting, -05) contributes nothing —
-        # not because it was zero, but because it is unknowable locally.
-        return sum(r["billed_tokens"] for r in self.outcomes(arm, seed)
-                   if isinstance(r.get("billed_tokens"), int)
-                   and not isinstance(r.get("billed_tokens"), bool))
+        # EFFECTIVE billed total, every call counted EXACTLY ONCE (-06):
+        # an outcome whose usage was authoritatively known counts from
+        # the outcome alone. An outcome whose usage was UNKNOWN (null
+        # billed_tokens, -05) counts its VERIFIED resolved value from the
+        # reconciliation record once one exists — never both, never
+        # zero-by-assumption. A dispatch with NO outcome (crash-
+        # interrupted) contributes nothing here NOT because its cost was
+        # zero — its true billed usage/cost is UNKNOWN
+        # (UNKNOWN_INTERRUPTED_CALL_COST) and unknowable locally; totals
+        # over a ledger with dangling intents are provisional until
+        # provider/account reconciliation. Orphaned ledgers refuse
+        # dispatch anyway. Pre-dispatch reservation uses this total, so
+        # reconciled usage enforces the 120,000 ceiling exactly like
+        # originally-known usage.
+        resolved = {}
+        for r in self.records:
+            if r["type"] == "reconciliation" and r["arm"] == arm \
+                    and r["seed"] == seed \
+                    and _is_int(r.get("resolved_billed_tokens")):
+                resolved[r["call_index"]] = r["resolved_billed_tokens"]
+        total = 0
+        for r in self.outcomes(arm, seed):
+            if _is_int(r.get("billed_tokens")):
+                total += r["billed_tokens"]
+            elif r["call_index"] in resolved:
+                total += resolved[r["call_index"]]
+        return total
 
     def interrupted_cost_state(self):
         """UNKNOWN_INTERRUPTED_CALL_COST if any dispatch lacks an outcome
@@ -213,26 +281,178 @@ class Ledger:
                 and r.get("reconciliation_required") is True
                 and (r["arm"], r["seed"], r["call_index"]) not in resolved]
 
-    def append_reconciliation(self, *, arm, seed, call_index, evidence_ref,
+    def nonzero_cost_resolutions(self):
+        """Reconciliation records whose AUTHORITATIVE resolved cost is
+        nonzero. Each is a terminal NONZERO_COST / execution-ineligible
+        state under the $0 protocol — recorded truthfully, never a
+        clean resume."""
+        return [r for r in self.records if r["type"] == "reconciliation"
+                and isinstance(r.get("resolved_cost_usd"), (int, float))
+                and not isinstance(r.get("resolved_cost_usd"), bool)
+                and r["resolved_cost_usd"] > 0]
+
+    def append_reconciliation(self, *, arm, seed, call_index, evidence=None,
+                              evidence_ref=None,
                               resolved_billed_tokens=None,
                               resolved_cost_usd=None,
                               resolution="PROVIDER_EVIDENCE"):
         """Explicit evidence-backed reconciliation of ONE interrupted /
-        accounting-unknown call. This record ALONE clears that call's
-        resume block; without an evidence_ref nothing is recorded. The
-        resolved figures live on this record only — the original outcome
-        is immutable and is never rewritten or zero-filled retroactively."""
-        if not evidence_ref:
-            raise HarnessStop("RECONCILIATION_EVIDENCE_MISSING",
-                              "no evidence_ref")
+        accounting-unknown call (-06 integrity-hardened). This record
+        ALONE clears that call's resume block. The resolved figures live
+        on this record only — the original outcome is immutable and is
+        never rewritten or zero-filled retroactively.
+
+        EVERY check below runs BEFORE append; any refusal leaves the
+        ledger byte-unchanged (zero append) and keeps the block:
+          * chain must verify (LEDGER_CORRUPT);
+          * evidence must be a structured bundle (provider, account_id,
+            day, evidence_ref, target_outcome_hash, digest). Absent
+            evidence -> RECONCILIATION_EVIDENCE_MISSING; a bare string
+            (the pre--06 gate) or malformed bundle ->
+            RECONCILIATION_EVIDENCE_MALFORMED;
+          * target must be an existing outcome (…_TARGET_UNKNOWN) that
+            is flagged reconciliation_required (…_TARGET_NOT_OUTSTANDING)
+            and not already resolved (…_DUPLICATE);
+          * the bundle digest must recompute over the whole bundle
+            (…_EVIDENCE_DIGEST_MISMATCH); evidence identity (ref +
+            digest) must not already be used for a DIFFERENT call
+            (…_EVIDENCE_REUSED); and the evidence must bind THIS
+            outcome's record hash (…_EVIDENCE_TARGET_MISMATCH) and the
+            day the call was dispatched (…_EVIDENCE_DAY_MISMATCH);
+          * authenticity is decided ONLY by the injected verifier:
+            none configured -> …_EVIDENCE_UNVERIFIABLE; exception ->
+            …_EVIDENCE_VERIFIER_ERROR; falsy -> …_EVIDENCE_UNVERIFIED;
+          * resolved fields strictly validated: tokens int/not-bool/
+            >=0 (RECONCILIATION_TOKENS_INVALID); cost numeric/not-bool/
+            finite/>=0 (RECONCILIATION_COST_INVALID); every originally
+            UNKNOWN dimension must be resolved
+            (RECONCILIATION_RESOLUTION_INCOMPLETE); a resolved value
+            contradicting an originally KNOWN dimension refuses
+            (RECONCILIATION_RESOLUTION_CONFLICT).
+        A nonzero resolved cost IS recorded (it is authoritative) but
+        marks the record NONZERO_COST: resume stays terminally blocked
+        (see nonzero_cost_resolutions / resume_state)."""
         ok, why = self.verify_chain()
         if not ok:
             raise HarnessStop("LEDGER_CORRUPT", why)
-        return self.append("reconciliation", arm=arm, seed=seed,
-                           call_index=call_index, evidence_ref=evidence_ref,
-                           resolved_billed_tokens=resolved_billed_tokens,
-                           resolved_cost_usd=resolved_cost_usd,
-                           resolution=resolution)
+        if evidence is None and evidence_ref is None:
+            raise HarnessStop("RECONCILIATION_EVIDENCE_MISSING",
+                              "no evidence bundle supplied")
+        if evidence is None:
+            evidence = evidence_ref        # legacy bare-string gate (-05)
+        if not isinstance(evidence, dict):
+            raise HarnessStop(
+                "RECONCILIATION_EVIDENCE_MALFORMED",
+                "evidence must be a structured bundle, not a bare string")
+        required = ("provider", "account_id", "day", "evidence_ref",
+                    "target_outcome_hash", "digest")
+        if any(k not in evidence for k in required) \
+                or not all(isinstance(evidence[k], str)
+                           and evidence[k] for k in
+                           ("provider", "account_id", "day", "evidence_ref")) \
+                or not _is_hex64(evidence.get("target_outcome_hash")) \
+                or not _is_hex64(evidence.get("digest")):
+            raise HarnessStop("RECONCILIATION_EVIDENCE_MALFORMED",
+                              "bundle missing/mistyped required fields")
+        key = (arm, seed, call_index)
+        targets = [r for r in self.outcomes(arm, seed)
+                   if r["call_index"] == call_index]
+        if not targets:
+            raise HarnessStop("RECONCILIATION_TARGET_UNKNOWN",
+                              f"no call_outcome at {key}")
+        target = targets[-1]
+        prior = [r for r in self.records if r["type"] == "reconciliation"
+                 and (r["arm"], r["seed"], r["call_index"]) == key]
+        if prior:
+            raise HarnessStop("RECONCILIATION_DUPLICATE",
+                              f"{key} already resolved; duplicate or "
+                              "conflicting reconciliation refused")
+        if target.get("reconciliation_required") is not True:
+            raise HarnessStop("RECONCILIATION_TARGET_NOT_OUTSTANDING",
+                              f"{key} is not flagged reconciliation_required")
+        if evidence["digest"] != evidence_digest(evidence):
+            raise HarnessStop("RECONCILIATION_EVIDENCE_DIGEST_MISMATCH",
+                              "digest does not recompute over the bundle")
+        for r in self.records:
+            if r["type"] == "reconciliation" \
+                    and r.get("evidence_digest") == evidence["digest"] \
+                    and (r["arm"], r["seed"], r["call_index"]) != key:
+                raise HarnessStop("RECONCILIATION_EVIDENCE_REUSED",
+                                  "evidence identity already used for "
+                                  "another call")
+        if evidence["target_outcome_hash"] != target["record_hash"]:
+            raise HarnessStop("RECONCILIATION_EVIDENCE_TARGET_MISMATCH",
+                              "evidence binds a different outcome")
+        dispatch_day = None
+        for r in self.records:
+            if r["type"] == "dispatch_intent" \
+                    and (r["arm"], r["seed"], r["call_index"]) == key:
+                dispatch_day = r.get("quota_day")
+        if dispatch_day is None and target.get("started_at"):
+            dispatch_day = str(target["started_at"])[:10]
+        if dispatch_day is not None and evidence["day"] != dispatch_day:
+            raise HarnessStop("RECONCILIATION_EVIDENCE_DAY_MISMATCH",
+                              f"evidence day {evidence['day']} != "
+                              f"dispatch day {dispatch_day}")
+        if self.evidence_verifier is None:
+            raise HarnessStop("RECONCILIATION_EVIDENCE_UNVERIFIABLE",
+                              "no evidence verifier injected; fail closed")
+        try:
+            verified = self.evidence_verifier(evidence, target)
+        except Exception as exc:
+            raise HarnessStop("RECONCILIATION_EVIDENCE_VERIFIER_ERROR",
+                              f"verifier raised {type(exc).__name__}")
+        if not verified:
+            raise HarnessStop("RECONCILIATION_EVIDENCE_UNVERIFIED",
+                              "verifier rejected the evidence bundle")
+        usage_unknown = not _is_int(target.get("billed_tokens"))
+        cost_unknown = target.get("cost_usd") is None
+        if resolved_billed_tokens is not None:
+            if not _is_int(resolved_billed_tokens) \
+                    or resolved_billed_tokens < 0:
+                raise HarnessStop(
+                    "RECONCILIATION_TOKENS_INVALID",
+                    "resolved_billed_tokens must be an int >= 0 (not bool)")
+            if not usage_unknown \
+                    and resolved_billed_tokens != target["billed_tokens"]:
+                raise HarnessStop(
+                    "RECONCILIATION_RESOLUTION_CONFLICT",
+                    "resolved tokens contradict originally known usage")
+        elif usage_unknown:
+            raise HarnessStop("RECONCILIATION_RESOLUTION_INCOMPLETE",
+                              "usage was UNKNOWN and remains unresolved")
+        if resolved_cost_usd is not None:
+            if isinstance(resolved_cost_usd, bool) \
+                    or not isinstance(resolved_cost_usd, (int, float)) \
+                    or not math.isfinite(resolved_cost_usd) \
+                    or resolved_cost_usd < 0:
+                raise HarnessStop(
+                    "RECONCILIATION_COST_INVALID",
+                    "resolved_cost_usd must be a finite number >= 0")
+            if not cost_unknown \
+                    and resolved_cost_usd != target["cost_usd"]:
+                raise HarnessStop(
+                    "RECONCILIATION_RESOLUTION_CONFLICT",
+                    "resolved cost contradicts originally known cost")
+        elif cost_unknown:
+            raise HarnessStop("RECONCILIATION_RESOLUTION_INCOMPLETE",
+                              "cost was UNKNOWN and remains unresolved")
+        effective_cost = resolved_cost_usd if resolved_cost_usd is not None \
+            else target.get("cost_usd")
+        return self.append(
+            "reconciliation", arm=arm, seed=seed, call_index=call_index,
+            evidence_ref=evidence["evidence_ref"],
+            evidence_provider=evidence["provider"],
+            evidence_account_id=evidence["account_id"],
+            evidence_day=evidence["day"],
+            evidence_digest=evidence["digest"],
+            target_outcome_hash=evidence["target_outcome_hash"],
+            resolved_billed_tokens=resolved_billed_tokens,
+            resolved_cost_usd=resolved_cost_usd,
+            resolution=resolution,
+            resolution_status="NONZERO_COST"
+            if isinstance(effective_cost, (int, float))
+            and effective_cost > 0 else "RESOLVED")
 
     def quota_reset_days(self):
         return {r["day"] for r in self.records if r["type"] == "quota_reset"}
@@ -331,6 +551,14 @@ class ArmSeedRunner:
                     f"{[(r['arm'], r['seed'], r['call_index']) for r in outstanding]}"
                     "; explicit evidence-backed reconciliation required "
                     "before any new dispatch")
+            nonzero = self.ledger.nonzero_cost_resolutions()
+            if nonzero:
+                raise HarnessStop(
+                    "NONZERO_COST",
+                    "authoritative reconciliation resolved nonzero cost "
+                    f"for {[(r['arm'], r['seed'], r['call_index']) for r in nonzero]}"
+                    "; terminal under the $0 protocol — execution-"
+                    "ineligible, never a clean resume")
             self._check_price_evidence()
             for i, call in enumerate(calls):
                 self._dispatch(start_index + i, call)
@@ -663,6 +891,12 @@ def resume_state(ledger):
             f"accounting ({UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST}); "
             "explicit evidence-backed reconciliation required before "
             "resume or any new dispatch")
+    nonzero = ledger.nonzero_cost_resolutions()
+    if nonzero:
+        return "NONZERO_COST", (
+            f"{len(nonzero)} reconciliation(s) resolved NONZERO cost "
+            "authoritatively; terminal under the $0 protocol — "
+            "execution-ineligible, never a clean resume")
     return "CLEAN", "chain verified, no dangling dispatch"
 
 

@@ -1,7 +1,7 @@
 {
- "task": "QF-ISSUE9-OFFLINE-HARNESS-ACCOUNTING-20261014-05 r1",
- "fixtures_total": 42,
- "fixtures_matched": 42,
+ "task": "QF-ISSUE9-RECONCILIATION-INTEGRITY-20261015-06 r1",
+ "fixtures_total": 61,
+ "fixtures_matched": 61,
  "all_match": true,
  "results": [
   {
@@ -443,6 +443,7 @@
     "resume_state_blocked": true,
     "resume_refused": true,
     "recon_needs_evidence": true,
+    "wrong_call_recon_refused": true,
     "wrong_call_recon_no_clear": true,
     "recon_clears": true,
     "resume_completes": true,
@@ -506,6 +507,228 @@
     "reconciliation_required": true,
     "resume_blocked": true,
     "nothing_counted": true
+   },
+   "match": true
+  },
+  {
+   "id": "F40-arbitrary-string-evidence",
+   "mode": "bare-string evidence (old nonempty gate) must not clear",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "string_evidence_refused": true,
+    "legacy_ref_refused": true,
+    "still_blocked": true
+   },
+   "match": true
+  },
+  {
+   "id": "F41-verifier-rejects-evidence",
+   "mode": "unissued ref and expired evidence both fail verification",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "unissued_refused": true,
+    "expired_refused": true,
+    "still_blocked": true
+   },
+   "match": true
+  },
+  {
+   "id": "F42-verifier-exception",
+   "mode": "verifier raising must refuse fail-closed, zero append",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "verifier_error_refused": true
+   },
+   "match": true
+  },
+  {
+   "id": "F43-no-verifier-configured",
+   "mode": "no injected verifier -> evidence unverifiable, fail closed",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "unverifiable_refused": true
+   },
+   "match": true
+  },
+  {
+   "id": "F44-wrong-target-refused",
+   "mode": "reconciliation naming a nonexistent call refuses pre-append",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "target_unknown_refused": true
+   },
+   "match": true
+  },
+  {
+   "id": "F45-target-not-outstanding",
+   "mode": "reconciling a clean RECORDED call refuses pre-append",
+   "expect": "COMPLETE",
+   "got": "COMPLETE",
+   "checks": {
+    "not_outstanding_refused": true
+   },
+   "match": true
+  },
+  {
+   "id": "F46-duplicate-reconciliation",
+   "mode": "second resolution of the same call refuses; totals unchanged",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "first_accepted": true,
+    "duplicate_refused": true,
+    "total_unchanged": true
+   },
+   "match": true
+  },
+  {
+   "id": "F47-evidence-target-mismatch",
+   "mode": "evidence binds another outcome's hash; refuses pre-append",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "foreign_hash_distinct": true,
+    "target_mismatch_refused": true
+   },
+   "match": true
+  },
+  {
+   "id": "F48-evidence-digest-mismatch",
+   "mode": "digest not recomputing over the bundle refuses pre-append",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "digest_mismatch_refused": true
+   },
+   "match": true
+  },
+  {
+   "id": "F49-evidence-day-mismatch",
+   "mode": "evidence day != dispatch day refuses pre-append",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "day_mismatch_refused": true
+   },
+   "match": true
+  },
+  {
+   "id": "F50-partial-resolution-refused",
+   "mode": "resolving only one of two unknown dimensions refuses",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "cost_only_refused": true,
+    "tokens_only_refused": true,
+    "still_blocked": true
+   },
+   "match": true
+  },
+  {
+   "id": "F51-invalid-resolved-fields",
+   "mode": "string/bool/negative/float tokens; NaN/inf/negative/string/bool cost \u2014 all refuse with zero append",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "tokens_all_refused": true,
+    "costs_all_refused": true,
+    "still_blocked": true
+   },
+   "match": true
+  },
+  {
+   "id": "F52-conflicting-resolution",
+   "mode": "resolved values contradicting known dimensions refuse",
+   "expect": "COST_EVIDENCE_MISSING",
+   "got": "COST_EVIDENCE_MISSING",
+   "checks": {
+    "tokens_conflict_refused": true,
+    "cost_conflict_refused": true,
+    "setup_dims": true
+   },
+   "match": true
+  },
+  {
+   "id": "F53-reconciled-near-cap",
+   "mode": "resolved 119,500 + next reservation 600 > 120,000 ceiling",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "recon_clears_block": true,
+    "effective_total": true,
+    "resume_ceiling": true,
+    "zero_dispatch": true
+   },
+   "match": true
+  },
+  {
+   "id": "F54-reconciled-over-cap",
+   "mode": "resolved 120,001 already exceeds the 120,000 ceiling",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "effective_total": true,
+    "resume_ceiling": true,
+    "zero_dispatch": true
+   },
+   "match": true
+  },
+  {
+   "id": "F55-known-usage-not-double-counted",
+   "mode": "cost-only reconciliation; known usage counted exactly once",
+   "expect": "COST_EVIDENCE_MISSING",
+   "got": "COST_EVIDENCE_MISSING",
+   "checks": {
+    "mid_total_once": true,
+    "resume_completes": true,
+    "final_total": true
+   },
+   "match": true
+  },
+  {
+   "id": "F56-nonzero-resolved-cost",
+   "mode": "authoritative nonzero cost resolves the unknown but is terminal, never a clean resume",
+   "expect": "COST_EVIDENCE_MISSING",
+   "got": "COST_EVIDENCE_MISSING",
+   "checks": {
+    "recorded_terminal": true,
+    "state_nonzero": true,
+    "run_refused": true,
+    "zero_dispatch": true,
+    "usage_counted_once": true
+   },
+   "match": true
+  },
+  {
+   "id": "F57-restart-after-reconciliation",
+   "mode": "reopen: blocked -> reconcile -> reopen: clean, counted once, resume completes",
+   "expect": "TIMEOUT",
+   "got": "TIMEOUT",
+   "checks": {
+    "blocked_before": true,
+    "clean_after": true,
+    "counted_once_after_restart": true,
+    "resume_completes": true,
+    "final_total": true
+   },
+   "match": true
+  },
+  {
+   "id": "F58-evidence-reuse-across-calls",
+   "mode": "identical evidence identity presented for a second call",
+   "expect": "RECONCILIATION_EVIDENCE_REUSED",
+   "got": "RECONCILIATION_EVIDENCE_REUSED",
+   "checks": {
+    "first_accepted": true,
+    "b_dispatched": true,
+    "reuse_zero_append": true,
+    "b_still_blocked": true,
+    "totals": true
    },
    "match": true
   }
