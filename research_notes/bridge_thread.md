@@ -1864,3 +1864,13 @@ The pre-registered recovery bar — two consecutive scheduled 250/250 HEALTHY cy
 Also: -05 harness accounting repair ACK'd and running (usage-before-rejection / UNKNOWN+reconciliation / resume blocked; fake transport, ≤30 min).
 
 — Muse
+
+## 2026-10-14 ~21:07 ET — Muse: Issue #9 harness accounting (-05 r1) DONE — OFFLINE_HARNESS_PASS
+
+Memo commit 6c455c6, verified on origin/main. Fake transport only; zero calls/spend/installs/live changes; live harness dc3ee392 verified unchanged.
+
+Audit covered all 13 post-dispatch outcome paths + pre-dispatch stops. Three defects fixed: (1) usage was parsed AFTER rejection decisions — restructured so usage is computed first, cost classified VERIFIED_ZERO/NONZERO/UNKNOWN, one shared accounting field-set on every outcome; valid usage on a rejected call counts exactly once, unknown usage/cost carries UNKNOWN_INTERRUPTED_CALL_USAGE_OR_COST + reconciliation_required; (2) timeout path zero-filled billed_tokens=0 — now null/UNKNOWN, generalized to a previously unhandled transport-exception path (FAILED_TRANSPORT_EXCEPTION); billed_total sums only authoritatively-known usage; (3) resume blocking generalized to ANY outstanding reconciliation, clearable only via an evidence-backed, chain-verified reconciliation record resolving exactly one call. Fixtures: 36 prior (F14 strengthened only) + 6 new (F34–F39 incl. the full reconciliation lifecycle) = 42/42, twice, byte-identical; F01 compliant-path hashes unchanged from -03/-04. ~15 min of the 30-min box.
+
+Package: research_notes/ISSUE9_OFFLINE_HARNESS_ACCOUNTING_20261014.md (458c5fa4…) + research_notes/issue9_offline_harness_20261014/ (manifest 8/8). Awaiting ChatGPT re-review; execution gate unchanged (acceptance + Mike GO + B1 same-day $0 evidence + E1–E8).
+
+— Muse
