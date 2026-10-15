@@ -243,6 +243,58 @@ def verify_object_set(cap_dir, entries):
             for rel in sorted(expected)}
 
 
+def validate_complete_archive(cap_dir, capture_id, entries):
+    """Strict completed-archive gate (r2 amendment): the ONE validator
+    used by both the ALREADY_COMPLETE restart branch and
+    publish_capture(). Requires the exact 156-object filesystem set,
+    a strict SHA256SUMS (exactly 156 unique well-formed entries, every
+    byte matching), a strict manifest.json (status COMPLETE, exact
+    capture ID, 52 symbols, frozen capture-manifest SHA256, files
+    mapping exactly equal to the validated sums), and no
+    INCOMPLETE_HOLD marker. Any failure raises HoldError and the
+    archive publishes nothing."""
+    if os.path.exists(os.path.join(cap_dir, MARKER_REL)):
+        raise HoldError("HOLD:INCOMPLETE_MARKER")
+    files = verify_object_set(cap_dir, entries)
+    sums_path = os.path.join(cap_dir, "SHA256SUMS")
+    if not os.path.exists(sums_path):
+        raise HoldError("HOLD:SUMS_INVALID")
+    try:
+        with open(sums_path, encoding="utf-8") as fh:
+            text = fh.read()
+    except (OSError, UnicodeDecodeError):
+        raise HoldError("HOLD:SUMS_INVALID")
+    lines = text.split("\n")
+    if lines and lines[-1] == "":
+        lines.pop()
+    sums = {}
+    for line in lines:
+        if len(line) < 67 or line[64:66] != "  ":
+            raise HoldError("HOLD:SUMS_INVALID")
+        h, rel = line[:64], line[66:]
+        if any(c not in "0123456789abcdef" for c in h):
+            raise HoldError("HOLD:SUMS_INVALID")
+        if rel in sums:
+            raise HoldError("HOLD:SUMS_INVALID")
+        sums[rel] = h
+    if sums != files:
+        raise HoldError("HOLD:SUMS_INVALID")
+    try:
+        with open(os.path.join(cap_dir, "manifest.json"),
+                  encoding="utf-8") as fh:
+            doc = json.load(fh)
+    except (OSError, ValueError, UnicodeDecodeError):
+        raise HoldError("HOLD:ARCHIVE_MANIFEST_INVALID")
+    if (doc.get("status") != "COMPLETE"
+            or doc.get("capture_id") != capture_id
+            or doc.get("symbols") != len(entries)
+            or doc.get("capture_manifest_sha256")
+            != EXPECTED_MANIFEST_SHA256
+            or doc.get("files") != sums):
+        raise HoldError("HOLD:ARCHIVE_MANIFEST_INVALID")
+    return files
+
+
 # ---------------------------------------------------------------------------
 # Binding: manifest hash, frozen order, runtime pins — checked pre-transport
 # ---------------------------------------------------------------------------
@@ -405,29 +457,17 @@ def run_capture(man, archive_root, capture_id, transport, calendar,
         if now_fn() - t0 > float(ceilings["wall_seconds_total"]):
             raise HoldError("HOLD:CEILING")
 
-    # Completed capture: verify and report; never re-request. The sums
-    # file must bind EXACTLY the expected 156 objects (r2).
+    # Completed capture: verify via the strict shared validator and
+    # report; never re-request (r2 amendment: extra/temp objects,
+    # loose sums, manifest drift and a retained HOLD marker all fail).
     if os.path.exists(os.path.join(cap_dir, "manifest.json")):
-        sums = {}
-        sums_path = os.path.join(cap_dir, "SHA256SUMS")
-        if not os.path.exists(sums_path):
-            return abort("HOLD:FINAL_MISMATCH")
         try:
-            with open(sums_path, encoding="utf-8") as fh:
-                for line in fh:
-                    if line.strip():
-                        h, rel = line.split(None, 1)
-                        sums[rel.strip()] = h
-        except (ValueError, UnicodeDecodeError):
-            return abort("HOLD:FINAL_MISMATCH")
-        if set(sums) != expected_object_rels(entries):
-            return abort("HOLD:FINAL_MISMATCH")
-        for rel, h in sums.items():
-            p = os.path.join(cap_dir, rel)
-            if not os.path.exists(p) or sha256_file(p) != h:
-                return abort("HOLD:FINAL_MISMATCH")
+            files = validate_complete_archive(cap_dir, capture_id,
+                                               entries)
+        except HoldError as exc:
+            return abort(exc.code)
         return {"status": "ALREADY_COMPLETE",
-                "files_verified": len(sums), **stats}
+                "files_verified": len(files), **stats}
 
     try:
         # Restart pre-scan: strict journal/ledger parse, then per-symbol
@@ -531,9 +571,17 @@ def run_capture(man, archive_root, capture_id, transport, calendar,
 # deliberately no real-remote implementation in this file.
 # ---------------------------------------------------------------------------
 def publish_capture(cap_dir, capture_id, remote,
-                    expected_repo=EXPECTED_REPO_FULL_NAME):
+                    expected_repo=EXPECTED_REPO_FULL_NAME, entries=None):
     if getattr(remote, "kind", None) != "FAKE_LOCAL":
         raise HoldError("HOLD:REAL_REMOTE_FORBIDDEN")
+    # r2 amendment: the strict completed-archive validator runs BEFORE
+    # the first remote operation; only the validated set is uploaded.
+    if entries is None:
+        man = load_and_verify_manifest(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "capture_manifest.json"))
+        entries = verify_order(man)
+    files = validate_complete_archive(cap_dir, capture_id, entries)
     if remote.full_name() != expected_repo:
         raise HoldError("HOLD:TARGET_NAME_DRIFT")
     if remote.visibility() != "private":
@@ -541,12 +589,7 @@ def publish_capture(cap_dir, capture_id, remote,
     base = f"captures/{capture_id}"
     if remote.has_prefix(base):
         raise HoldError("HOLD:CAPTURE_EXISTS")
-    rels = []
-    for sub in ("raw", "actions", "meta"):
-        d = os.path.join(cap_dir, sub)
-        for name in sorted(os.listdir(d)):
-            rels.append(f"{sub}/{name}")
-    rels += ["SHA256SUMS", "manifest.json"]
+    rels = sorted(files) + ["SHA256SUMS", "manifest.json"]
     uploaded = {}
     for rel in sorted(rels):
         with open(os.path.join(cap_dir, rel), "rb") as fh:

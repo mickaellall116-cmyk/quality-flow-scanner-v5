@@ -1,0 +1,170 @@
+{
+ "all_match": true,
+ "checks_matched": 15,
+ "checks_total": 15,
+ "executor_sha256": "8fe97abd0c081bf0c4269c412eb8f4e7e9f767b29a1ada362b36e4d2da16b22c",
+ "manifest_sha256": "634c4541a8b30ade50e45898e80ee65806fa323c953020edc149530642d9bef3",
+ "results": [
+  {
+   "checks": {
+    "attempts_counted": true
+   },
+   "desc": "socket denial installed first",
+   "expect": "DENIED",
+   "got": "DENIED",
+   "id": "A0-network-denial",
+   "match": true
+  },
+  {
+   "checks": {
+    "byte_identical": true,
+    "checks_32_of_32": true,
+    "exit0_both": true
+   },
+   "desc": "prior 32 checks preserved, x2 identical",
+   "expect": "PASSx2",
+   "got": "PASSx2",
+   "id": "A-prior-r2-suite-x2",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "zero_transport_calls": true
+   },
+   "desc": "post-completion extra file: restart",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "A1-restart-extra-object",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "zero_transport_calls": true
+   },
+   "desc": "post-completion temp file: restart",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "A2-restart-temp-leftover",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_uploads": true
+   },
+   "desc": "publish invalid archive (extra obj)",
+   "expect": "HOLD:OBJECT_SET",
+   "got": "HOLD:OBJECT_SET",
+   "id": "A3-publish-extra-object",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_uploads": true
+   },
+   "desc": "duplicate SHA256SUMS line: publish",
+   "expect": "HOLD:SUMS_INVALID",
+   "got": "HOLD:SUMS_INVALID",
+   "id": "A4-publish-dup-sums",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "zero_transport_calls": true
+   },
+   "desc": "duplicate SHA256SUMS line: restart",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "A4b-restart-dup-sums",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_uploads": true
+   },
+   "desc": "conflicting SHA256SUMS line",
+   "expect": "HOLD:SUMS_INVALID",
+   "got": "HOLD:SUMS_INVALID",
+   "id": "A5-publish-conflict-sums",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_uploads": true
+   },
+   "desc": "malformed SHA256SUMS line",
+   "expect": "HOLD:SUMS_INVALID",
+   "got": "HOLD:SUMS_INVALID",
+   "id": "A6-publish-malformed-sums",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_uploads": true
+   },
+   "desc": "manifest capture_id drift",
+   "expect": "HOLD:ARCHIVE_MANIFEST_INVALID",
+   "got": "HOLD:ARCHIVE_MANIFEST_INVALID",
+   "id": "A7-publish-manifest-id-drift",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_uploads": true
+   },
+   "desc": "manifest files mapping drift",
+   "expect": "HOLD:ARCHIVE_MANIFEST_INVALID",
+   "got": "HOLD:ARCHIVE_MANIFEST_INVALID",
+   "id": "A8-publish-manifest-files-drift",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_uploads": true
+   },
+   "desc": "manifest frozen-hash drift",
+   "expect": "HOLD:ARCHIVE_MANIFEST_INVALID",
+   "got": "HOLD:ARCHIVE_MANIFEST_INVALID",
+   "id": "A9-publish-manifest-hash-drift",
+   "match": true
+  },
+  {
+   "checks": {
+    "zero_uploads": true
+   },
+   "desc": "HOLD marker present: publish",
+   "expect": "HOLD:INCOMPLETE_MARKER",
+   "got": "HOLD:INCOMPLETE_MARKER",
+   "id": "A10-publish-incomplete-marker",
+   "match": true
+  },
+  {
+   "checks": {
+    "code": true,
+    "zero_transport_calls": true
+   },
+   "desc": "HOLD marker present: restart",
+   "expect": "INCOMPLETE_HOLD",
+   "got": "INCOMPLETE_HOLD",
+   "id": "A10b-restart-incomplete-marker",
+   "match": true
+  },
+  {
+   "checks": {
+    "objects_158": true,
+    "restart_already_complete": true,
+    "uploaded_set_exact": true
+   },
+   "desc": "valid archive: restart + publish",
+   "expect": "PUBLISHED_FAKE",
+   "got": "PUBLISHED_FAKE",
+   "id": "A11-happy-path-exact-set",
+   "match": true
+  }
+ ],
+ "socket_attempts_after_denial_check": 1,
+ "task": "QF-YAHOO-CAPTURE-EXECUTOR-PREFLIGHT-20261015-09 r2 final amendment",
+ "verdict": "CAPTURE_EXECUTOR_PREFLIGHT_PASS"
+}
