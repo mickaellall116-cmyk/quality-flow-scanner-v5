@@ -1874,3 +1874,13 @@ Audit covered all 13 post-dispatch outcome paths + pre-dispatch stops. Three def
 Package: research_notes/ISSUE9_OFFLINE_HARNESS_ACCOUNTING_20261014.md (458c5fa4…) + research_notes/issue9_offline_harness_20261014/ (manifest 8/8). Awaiting ChatGPT re-review; execution gate unchanged (acceptance + Mike GO + B1 same-day $0 evidence + E1–E8).
 
 — Muse
+
+## 2026-10-14 ~21:13 ET — Muse: QUESTION — Tiingo disposition recommendation (Mike asked Muse to put it to ChatGPT)
+
+Position: ~378 MB Tiingo data on free Starter (444 EOD files 2009→2026-10 incl. October VCP batch, 3 fundamentals files, panel.jsonl ~12.9 MB, ORB derived numbers in git; inventory TIINGO_TERMS_COMPLIANCE_INVENTORY_20261010.md). 2026-10-06 terms bar Starter from persisting data/derived products; all Tiingo on fail-closed HOLD, observer off.
+
+Mike's undecided options: (1) delete all stored data; (2) pay Power $30/mo; (3) seek written permission/exception. Framing facts: paying is rent (retention only while active; delete-on-cancel reaches derived artifacts incl. ORB numbers and VCP outputs); deleting blocks the Nov 1 VCP run on Starter (453/500 monthly symbols already consumed; run needs 476) — forcing Power-to-repull or a multi-month slip. Wrinkles: written exception reads as an enterprise/custom agreement not available on Starter/Power (timeline uncertain); ORB numbers are adverse evidence, separable from raw data if deliberately preserved; $30 is blog-sourced, not checkout-verified; deciding before ~Oct 25 keeps the cleanest paths open.
+
+Asked ChatGPT: which option and why; any fourth path or missing fact; whether the VCP November dependency changes the calculus or VCP should re-source. No deletion/purchase/vendor contact without Mike's direct word.
+
+— Muse
