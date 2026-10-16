@@ -1,0 +1,459 @@
+{
+ "all_pass": true,
+ "cases": [
+  {
+   "case": "A-01",
+   "expect": "identical bytes/sha/blob",
+   "got": "eq=True sha=bded294db146dc21 blob=0f6ef276972250a7",
+   "name": "determinism twin",
+   "pass": true
+  },
+  {
+   "case": "A-10",
+   "expect": "349690",
+   "got": "349690",
+   "name": "container length byte-exact vs formula",
+   "pass": true
+  },
+  {
+   "case": "A-02",
+   "expect": "HOLD:PATH_TYPE|HOLD:MEMBERSHIP",
+   "got": "HOLD:PATH_TYPE",
+   "name": "symlink raw/ before census",
+   "pass": true
+  },
+  {
+   "case": "A-02",
+   "expect": "HOLD:PATH_TYPE",
+   "got": "HOLD:PATH_TYPE",
+   "name": "symlink raw/ after census before read",
+   "pass": true
+  },
+  {
+   "case": "A-02",
+   "expect": "HOLD:READ_DRIFT",
+   "got": "HOLD:READ_DRIFT",
+   "name": "legitimate-directory swap after census",
+   "pass": true
+  },
+  {
+   "case": "A-02",
+   "expect": "HOLD:PATH_TYPE",
+   "got": "HOLD:PATH_TYPE",
+   "name": "leaf symlink swap after census",
+   "pass": true
+  },
+  {
+   "case": "A-02",
+   "expect": "HOLD:PATH_TYPE",
+   "got": "HOLD:PATH_TYPE",
+   "name": "capture-root symlink",
+   "pass": true
+  },
+  {
+   "case": "A-02",
+   "expect": "HOLD:PATH_TYPE|HOLD:MEMBERSHIP",
+   "got": "HOLD:PATH_TYPE",
+   "name": "magic-link component",
+   "pass": true
+  },
+  {
+   "case": "A-02",
+   "expect": "HOLD:PATH_TYPE|HOLD:READ_DRIFT",
+   "got": "HOLD:PATH_TYPE",
+   "name": "real-process symlink churn during reads",
+   "pass": true
+  },
+  {
+   "case": "A-03",
+   "expect": "HOLD:MEMBERSHIP",
+   "got": "HOLD:MEMBERSHIP",
+   "name": "extra non-frozen file",
+   "pass": true
+  },
+  {
+   "case": "A-03",
+   "expect": "HOLD:MEMBERSHIP",
+   "got": "HOLD:MEMBERSHIP",
+   "name": "missing frozen file",
+   "pass": true
+  },
+  {
+   "case": "A-03",
+   "expect": "HOLD:MEMBERSHIP",
+   "got": "HOLD:MEMBERSHIP",
+   "name": "case-variant rel raw/nvda.csv",
+   "pass": true
+  },
+  {
+   "case": "A-03",
+   "expect": "HOLD:MEMBERSHIP",
+   "got": "HOLD:MEMBERSHIP",
+   "name": "frozen rel + case-variant both present",
+   "pass": true
+  },
+  {
+   "case": "A-03",
+   "expect": "HOLD:ID_INVALID",
+   "got": "HOLD:ID_INVALID",
+   "name": "capture id: lowercase id",
+   "pass": true
+  },
+  {
+   "case": "A-03",
+   "expect": "HOLD:ID_INVALID",
+   "got": "HOLD:ID_INVALID",
+   "name": "capture id: double hyphen",
+   "pass": true
+  },
+  {
+   "case": "A-03",
+   "expect": "HOLD:ID_INVALID",
+   "got": "HOLD:ID_INVALID",
+   "name": "capture id: slash in id",
+   "pass": true
+  },
+  {
+   "case": "A-03",
+   "expect": "HOLD:ID_INVALID",
+   "got": "HOLD:ID_INVALID",
+   "name": "capture id: length 7",
+   "pass": true
+  },
+  {
+   "case": "A-03",
+   "expect": "HOLD:ID_INVALID",
+   "got": "HOLD:ID_INVALID",
+   "name": "capture id: length 65",
+   "pass": true
+  },
+  {
+   "case": "A-04",
+   "expect": "HOLD:MEMBER_DRIFT",
+   "got": "HOLD:MEMBER_DRIFT",
+   "name": "member bit-flip vs validation pins",
+   "pass": true
+  },
+  {
+   "case": "A-04",
+   "expect": "HOLD:*",
+   "got": "HOLD:CONTAINER_FORMAT",
+   "name": "sealed container payload flip",
+   "pass": true
+  },
+  {
+   "case": "A-04",
+   "expect": "HOLD:*",
+   "got": "HOLD:CONTAINER_FORMAT",
+   "name": "index hash flip",
+   "pass": true
+  },
+  {
+   "case": "A-04",
+   "expect": "HOLD:CONTAINER_FORMAT",
+   "got": "HOLD:CONTAINER_FORMAT",
+   "name": "trailer flip",
+   "pass": true
+  },
+  {
+   "case": "A-05",
+   "expect": "HOLD:CONTAINER_FORMAT",
+   "got": "HOLD:CONTAINER_FORMAT",
+   "name": "cut in header",
+   "pass": true
+  },
+  {
+   "case": "A-05",
+   "expect": "HOLD:CONTAINER_FORMAT",
+   "got": "HOLD:CONTAINER_FORMAT",
+   "name": "cut mid-index",
+   "pass": true
+  },
+  {
+   "case": "A-05",
+   "expect": "HOLD:CONTAINER_FORMAT",
+   "got": "HOLD:CONTAINER_FORMAT",
+   "name": "cut mid-payload",
+   "pass": true
+  },
+  {
+   "case": "A-05",
+   "expect": "HOLD:CONTAINER_FORMAT",
+   "got": "HOLD:CONTAINER_FORMAT",
+   "name": "trailer missing",
+   "pass": true
+  },
+  {
+   "case": "A-05",
+   "expect": "HOLD:CONTAINER_FORMAT",
+   "got": "HOLD:CONTAINER_FORMAT",
+   "name": "one trailing garbage byte",
+   "pass": true
+  },
+  {
+   "case": "A-05",
+   "expect": "HOLD:CONTAINER_FORMAT",
+   "got": "HOLD:CONTAINER_FORMAT",
+   "name": "index length overstates payload",
+   "pass": true
+  },
+  {
+   "case": "A-09",
+   "expect": "HOLD:VISIBILITY + 0 objects",
+   "got": "HOLD:VISIBILITY objs=0",
+   "name": "repo public",
+   "pass": true
+  },
+  {
+   "case": "A-09",
+   "expect": "HOLD:VISIBILITY + 0 objects",
+   "got": "HOLD:VISIBILITY objs=0",
+   "name": "wrong repo name",
+   "pass": true
+  },
+  {
+   "case": "A-06",
+   "expect": "PUBLISHED",
+   "got": "PUBLISHED",
+   "name": "baseline publish establishes parent",
+   "pass": true
+  },
+  {
+   "case": "A-12",
+   "expect": "ALREADY_PUBLISHED_VERIFIED",
+   "got": "ALREADY_PUBLISHED_VERIFIED",
+   "name": "duplicate publish after success",
+   "pass": true
+  },
+  {
+   "case": "A-14",
+   "expect": "HOLD:PARENT_DRIFT + 0 publisher writes",
+   "got": "HOLD:PARENT_DRIFT extra=0",
+   "name": "W1 preflight->intent drift",
+   "pass": true
+  },
+  {
+   "case": "A-14",
+   "expect": "HOLD:PARENT_DRIFT + 0 publisher writes",
+   "got": "HOLD:PARENT_DRIFT extra=0",
+   "name": "W2 intent->confirm drift",
+   "pass": true
+  },
+  {
+   "case": "A-14",
+   "expect": "HOLD:REF_RACE, winner intact",
+   "got": "HOLD:REF_RACE ref==sib:True",
+   "name": "W3 post-confirm race",
+   "pass": true
+  },
+  {
+   "case": "A-06",
+   "expect": "HOLD:REF_RACE",
+   "got": "HOLD:REF_RACE",
+   "name": "ref advanced to descendant without our blob",
+   "pass": true
+  },
+  {
+   "case": "A-06",
+   "expect": "HOLD:REF_RACE",
+   "got": "HOLD:REF_RACE",
+   "name": "ref deleted mid-protocol",
+   "pass": true
+  },
+  {
+   "case": "A-06",
+   "expect": "HOLD:REF_RACE",
+   "got": "HOLD:REF_RACE",
+   "name": "first-publication ref creation race",
+   "pass": true
+  },
+  {
+   "case": "A-07",
+   "expect": "HOLD:ID_CONSUMED",
+   "got": "crashed=True then HOLD:ID_CONSUMED",
+   "name": "crash after blob, restart",
+   "pass": true
+  },
+  {
+   "case": "A-07",
+   "expect": "HOLD:ID_CONSUMED",
+   "got": "crashed=True then HOLD:ID_CONSUMED",
+   "name": "crash after tree, restart",
+   "pass": true
+  },
+  {
+   "case": "A-07",
+   "expect": "HOLD:ID_CONSUMED",
+   "got": "crashed=True then HOLD:ID_CONSUMED",
+   "name": "crash after commit, restart",
+   "pass": true
+  },
+  {
+   "case": "A-07",
+   "expect": "HOLD:API then PUBLISHED_BY_RECORDING",
+   "got": "HOLD:API then PUBLISHED_BY_RECORDING",
+   "name": "ref update applied, response lost; restart",
+   "pass": true
+  },
+  {
+   "case": "A-08",
+   "expect": "HOLD:BLOB_SUBSTITUTION",
+   "got": "HOLD:BLOB_SUBSTITUTION",
+   "name": "create-blob wrong id",
+   "pass": true
+  },
+  {
+   "case": "A-08",
+   "expect": "HOLD:TREE_MISMATCH",
+   "got": "HOLD:TREE_MISMATCH",
+   "name": "tree entry names other blob",
+   "pass": true
+  },
+  {
+   "case": "A-08",
+   "expect": "HOLD:COMMIT_MISMATCH",
+   "got": "HOLD:COMMIT_MISMATCH",
+   "name": "commit altered message",
+   "pass": true
+  },
+  {
+   "case": "A-08",
+   "expect": "HOLD:REFETCH_CONTAINER_HASH",
+   "got": "HOLD:REFETCH_CONTAINER_HASH",
+   "name": "blob bytes altered (raw)",
+   "pass": true
+  },
+  {
+   "case": "A-08",
+   "expect": "HOLD:REFETCH_CONTAINER_HASH",
+   "got": "HOLD:REFETCH_CONTAINER_HASH",
+   "name": "blob bytes altered (json)",
+   "pass": true
+  },
+  {
+   "case": "A-08",
+   "expect": "HOLD:COMMIT_MISMATCH",
+   "got": "HOLD:COMMIT_MISMATCH",
+   "name": "commit extra parent",
+   "pass": true
+  },
+  {
+   "case": "A-11",
+   "expect": "PUBLISHED",
+   "got": "PUBLISHED",
+   "name": "base64 JSON with embedded newlines verifies",
+   "pass": true
+  },
+  {
+   "case": "A-11",
+   "expect": "HOLD:ENCODING",
+   "got": "HOLD:ENCODING",
+   "name": "encoding field lies",
+   "pass": true
+  },
+  {
+   "case": "A-11",
+   "expect": "HOLD:ENCODING",
+   "got": "HOLD:ENCODING",
+   "name": "raw route returns JSON error body",
+   "pass": true
+  },
+  {
+   "case": "A-11",
+   "expect": "HOLD:ENCODING",
+   "got": "HOLD:ENCODING",
+   "name": "base64 invalid padding",
+   "pass": true
+  },
+  {
+   "case": "A-10",
+   "expect": "total=67108864 len=67118605",
+   "got": "67108864/67118605",
+   "name": "sum physical == ceiling seals",
+   "pass": true
+  },
+  {
+   "case": "A-10",
+   "expect": "HOLD:CEILING",
+   "got": "HOLD:CEILING",
+   "name": "sum physical == ceiling+1",
+   "pass": true
+  },
+  {
+   "case": "A-10",
+   "expect": "seals",
+   "got": "sealed",
+   "name": "single member at 32MiB guard, total in range",
+   "pass": true
+  },
+  {
+   "case": "A-10",
+   "expect": "attempts=1 cut=True HOLD:CEILING",
+   "got": "attempts=1 cut=True HOLD:CEILING",
+   "name": "streaming oversized response: attempt consumed, cut off",
+   "pass": true
+  },
+  {
+   "case": "A-10",
+   "expect": "all equal",
+   "got": "reserve=32164 budget=67076700",
+   "name": "adjudicated constants asserted by derive_constants",
+   "pass": true
+  },
+  {
+   "case": "A-13",
+   "expect": "HOLD:MANIFEST_SCOPE",
+   "got": "HOLD:MANIFEST_SCOPE",
+   "name": "manifest self-entry",
+   "pass": true
+  },
+  {
+   "case": "A-13",
+   "expect": "HOLD:MANIFEST_SCOPE",
+   "got": "HOLD:MANIFEST_SCOPE",
+   "name": "manifest SHA256SUMS entry",
+   "pass": true
+  },
+  {
+   "case": "A-13",
+   "expect": "HOLD:MANIFEST_SCOPE",
+   "got": "HOLD:MANIFEST_SCOPE",
+   "name": "manifest omits a payload (scope mismatch)",
+   "pass": true
+  },
+  {
+   "case": "A-13",
+   "expect": "HOLD:SUMS_SCOPE",
+   "got": "HOLD:SUMS_SCOPE",
+   "name": "SHA256SUMS self-line (158 lines)",
+   "pass": true
+  },
+  {
+   "case": "A-13",
+   "expect": "HOLD:SUMS_SCOPE",
+   "got": "HOLD:SUMS_SCOPE",
+   "name": "SHA256SUMS missing manifest line (156)",
+   "pass": true
+  },
+  {
+   "case": "A-13",
+   "expect": "HOLD:MANIFEST_SCOPE",
+   "got": "HOLD:MANIFEST_SCOPE",
+   "name": "on-disk manifest self-entry at build",
+   "pass": true
+  }
+ ],
+ "constants": {
+  "ceiling": 67108864,
+  "index_bytes": 9693,
+  "manifest_template_max_bytes": 18598,
+  "max_base64_bytes": 89491476,
+  "max_container_bytes": 67118605,
+  "overhead_bytes": 9741,
+  "payload_budget_bytes": 67076700,
+  "reserve_bytes": 32164,
+  "sum_rel_len_158": 3057,
+  "sums_bytes": 13566
+ },
+ "task": "QF-YAHOO-QFAR1-OFFLINE-PREFLIGHT-20261015-13 r1"
+}

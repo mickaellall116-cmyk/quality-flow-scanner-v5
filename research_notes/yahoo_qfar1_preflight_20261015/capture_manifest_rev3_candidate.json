@@ -1,0 +1,452 @@
+{
+ "archive": {
+  "attempt_journal": "before each request, an fsync'd attempt record is appended to manifest ledger; a symbol with an attempt record but no final raw file is ATTEMPT_CONSUMED_AMBIGUOUS \u2014 never blindly re-requested on restart; it HOLDs for adjudication Implemented and fixture-proven in r2 (journal_attempt/reconcile in run_preflight_fixture_r2.py, check C9: journal+no-file = ATTEMPT_CONSUMED_AMBIGUOUS, final+hash match = SKIP_VERIFIED, final mismatch = HOLD:FINAL_MISMATCH).",
+  "durability": "NOT DEMONSTRATED \u2014 see r2 memo. Mount evidence pinned in archive_mount_evidence_r2.txt: root is on /dev/mapper/rv (block device, 100G) mounted at /home/hatch, distinct from the overlay root and tmpfs /tmp. However the destroyed D1 cache also lived under this same home volume (inside the repo) and did not survive a VM replacement, so presence on this volume is not demonstrated replacement-survival. Durability claim REMOVED in r2 pending the storage decision + second-copy procedure in the r2 memo.",
+  "layout": [
+   "raw/<SYMBOL>.csv (canonical raw-client output, bytes as received serialized once)",
+   "actions/<SYMBOL>.actions.csv (Dividends/Stock Splits evidence)",
+   "meta/<SYMBOL>.request.json (request params, config, runtime pins, acquisition UTC timestamp, source=yahoo/yfinance)",
+   "manifest.json (this manifest + per-file sha256 + acquisition ledger)",
+   "SHA256SUMS"
+  ],
+  "publication": "write temp in same dir -> fsync file -> os.link(tmp, final) (atomic, FileExistsError if final exists: genuine no-clobber, no check-then-act window) -> unlink temp -> fsync dir; per-file SHA256 computed on final bytes. Proven by two-process collision fixture C8 in run_preflight_fixture_r2.py. NOTE: os.rename is NOT O_EXCL and is not used for publication (r1 claim corrected in r2).",
+  "restart": "final files are hash-verified and skipped (never re-requested, never overwritten); collision on an existing final path = WRITE_ONCE_COLLISION, stop",
+  "rollback": "archive is additive and write-once; nothing in live state is touched, so rollback = abandon the capture dir (retained as evidence, marked INCOMPLETE); no deletion of prior captures ever",
+  "root": "~/workspace/data_archive/yahoo_1h_clean/<capture_id>/"
+ },
+ "call_budget": {
+  "attempts_per_symbol": 1,
+  "ceilings": {
+   "bytes_per_symbol": 33554432,
+   "bytes_total": 67108864,
+   "rows_per_symbol": 20000,
+   "wall_seconds_total": 1800,
+   "bytes_total_definition": "sum of byte lengths of all 158 physical members (156 payloads + manifest.json + SHA256SUMS)",
+   "bookkeeping_reserve_bytes": 32164,
+   "payload_budget_bytes": 67076700
+  },
+  "estimated": {
+   "requests": 52,
+   "rows_total": "~282,000 (45 XNYS symbols x ~505 sessions x 7 bars \u2248 159k; 7 crypto x 17,520 h \u2248 123k)",
+   "storage": "~20\u201330 MB canonical CSV total",
+   "wall": "~3\u20136 min at limiter spacing + observed latency"
+  },
+  "fail_closed_on": [
+   "HTTP 429 / throttle text",
+   "partial response (rows stop mid-session without end-of-window coverage)",
+   "schema drift (missing/renamed required field)",
+   "meta drift (exchange/timezone/currency mismatch)",
+   "unknown symbol mapping",
+   "ceiling breach"
+  ],
+  "limiter": "one shared limiter, >=1.0 s between request starts, process-wide",
+  "max_requests_total": 52,
+  "retry": "none \u2014 no blind retry, no fallback source, no pagination"
+ },
+ "capture_id": "YAHOO-1H-CLEAN-CAPTURE (execution instance id assigned at separate authorization)",
+ "execution_packet": {
+  "abort_rules": [
+   "any fail-closed trigger -> stop immediately, keep partial archive as evidence, mark capture INCOMPLETE_HOLD",
+   "no resume of an aborted capture except per attempt-journal rules",
+   "qualification runs only on a complete 52/52-accounted archive; baseline preflight only after qualification PASS + bytes/hashes pinned"
+  ],
+  "later_command": "python3 research_notes/yahoo_clean_capture_preflight_20261015/execute_capture.py --manifest research_notes/yahoo_clean_capture_preflight_20261015/capture_manifest.json --archive-root ~/workspace/data_archive/yahoo_1h_clean --execute",
+  "note": "execute_capture.py is written at the separately authorized execution task from this frozen packet, reusing the fixture-proven archive/construction/gate code paths in this package; it does not exist yet and this preflight creates no acquisition machinery against the live vendor"
+ },
+ "purpose": "Reacquire Yahoo 1H bytes for the frozen C1 contract (UNIVERSE_X 51) after loss of backtest_cache/v3; LIMITED data tier, not PIT-clean",
+ "qualification_gates_frozen": [
+  "G1 completeness: 52/52 symbols accounted \u2014 qualified, COVERAGE-LIMITED, or HOLD with named cause; zero silent exclusions",
+  "G2 coverage: sessions present / XNYS sessions in window per symbol; <80% of window sessions = COVERAGE-LIMITED (counted, retained, flagged \u2014 not dropped); listing-age exceptions only where first-trade date is evidenced in actions/meta",
+  "G3 integrity: duplicate timestamps = 0, nonmonotonic rows = 0 (any occurrence = HOLD)",
+  "G4 sessions: missing expected sessions/bars enumerated per symbol vs XNYS calendar; unexplained gaps = HOLD",
+  "G5 OHLCV sanity: High>=max(Open,Close), Low<=min(Open,Close), Volume>=0; any violation = HOLD",
+  "G6 timezone/DST: bar labels on DST transition weeks exactly 09:30/13:30 ET with correct UTC offsets; any UTC-anchored label = HOLD (the D1 defect class)",
+  "G7 early close: known early-close dates emit exactly one 09:30 bar aggregating the 4 morning 1H rows",
+  "G8 actions: split/dividend rows reconciled against the frozen split-exclusion protocol; unhandled split inside window = HOLD for that symbol",
+  "G9 conservation: raw->4H per-bar aggregation recomputed independently; volume sums and first/last OHLC match exactly",
+  "G10 two-window parity: bars built from a short window and from the full window are byte-identical on the overlap, across a DST boundary",
+  "G11 hash stability: re-hash of the archive equals manifest SHA256SUMS exactly; any drift = HOLD"
+ ],
+ "request_order": [
+  {
+   "class": "equity",
+   "i": 1,
+   "session": "XNYS",
+   "symbol": "NVDA"
+  },
+  {
+   "class": "equity",
+   "i": 2,
+   "session": "XNYS",
+   "symbol": "PLTR"
+  },
+  {
+   "class": "equity",
+   "i": 3,
+   "session": "XNYS",
+   "symbol": "TSLA"
+  },
+  {
+   "class": "equity",
+   "i": 4,
+   "session": "XNYS",
+   "symbol": "SOFI"
+  },
+  {
+   "class": "equity",
+   "i": 5,
+   "session": "XNYS",
+   "symbol": "SMCI"
+  },
+  {
+   "class": "equity",
+   "i": 6,
+   "session": "XNYS",
+   "symbol": "AMD"
+  },
+  {
+   "class": "equity",
+   "i": 7,
+   "session": "XNYS",
+   "symbol": "AAPL"
+  },
+  {
+   "class": "equity",
+   "i": 8,
+   "session": "XNYS",
+   "symbol": "MSFT"
+  },
+  {
+   "class": "equity",
+   "i": 9,
+   "session": "XNYS",
+   "symbol": "META"
+  },
+  {
+   "class": "equity",
+   "i": 10,
+   "session": "XNYS",
+   "symbol": "COIN"
+  },
+  {
+   "class": "equity",
+   "i": 11,
+   "session": "XNYS",
+   "symbol": "MSTR"
+  },
+  {
+   "class": "equity",
+   "i": 12,
+   "session": "XNYS",
+   "symbol": "AVGO"
+  },
+  {
+   "class": "crypto",
+   "i": 13,
+   "session": "UTC_24x7_SEGREGATED",
+   "symbol": "BTC-USD"
+  },
+  {
+   "class": "crypto",
+   "i": 14,
+   "session": "UTC_24x7_SEGREGATED",
+   "symbol": "ETH-USD"
+  },
+  {
+   "class": "crypto",
+   "i": 15,
+   "session": "UTC_24x7_SEGREGATED",
+   "symbol": "SOL-USD"
+  },
+  {
+   "class": "equity",
+   "i": 16,
+   "session": "XNYS",
+   "symbol": "GOOGL"
+  },
+  {
+   "class": "equity",
+   "i": 17,
+   "session": "XNYS",
+   "symbol": "AMZN"
+  },
+  {
+   "class": "equity",
+   "i": 18,
+   "session": "XNYS",
+   "symbol": "NFLX"
+  },
+  {
+   "class": "equity",
+   "i": 19,
+   "session": "XNYS",
+   "symbol": "CRM"
+  },
+  {
+   "class": "equity",
+   "i": 20,
+   "session": "XNYS",
+   "symbol": "MU"
+  },
+  {
+   "class": "equity",
+   "i": 21,
+   "session": "XNYS",
+   "symbol": "INTC"
+  },
+  {
+   "class": "equity",
+   "i": 22,
+   "session": "XNYS",
+   "symbol": "LRCX"
+  },
+  {
+   "class": "equity",
+   "i": 23,
+   "session": "XNYS",
+   "symbol": "AMAT"
+  },
+  {
+   "class": "equity",
+   "i": 24,
+   "session": "XNYS",
+   "symbol": "QCOM"
+  },
+  {
+   "class": "equity",
+   "i": 25,
+   "session": "XNYS",
+   "symbol": "ARM"
+  },
+  {
+   "class": "equity",
+   "i": 26,
+   "session": "XNYS",
+   "symbol": "HOOD"
+  },
+  {
+   "class": "equity",
+   "i": 27,
+   "session": "XNYS",
+   "symbol": "APP"
+  },
+  {
+   "class": "equity",
+   "i": 28,
+   "session": "XNYS",
+   "symbol": "NET"
+  },
+  {
+   "class": "equity",
+   "i": 29,
+   "session": "XNYS",
+   "symbol": "SNOW"
+  },
+  {
+   "class": "equity",
+   "i": 30,
+   "session": "XNYS",
+   "symbol": "DDOG"
+  },
+  {
+   "class": "equity",
+   "i": 31,
+   "session": "XNYS",
+   "symbol": "CRWD"
+  },
+  {
+   "class": "equity",
+   "i": 32,
+   "session": "XNYS",
+   "symbol": "SHOP"
+  },
+  {
+   "class": "equity",
+   "i": 33,
+   "session": "XNYS",
+   "symbol": "RKLB"
+  },
+  {
+   "class": "equity",
+   "i": 34,
+   "session": "XNYS",
+   "symbol": "ASTS"
+  },
+  {
+   "class": "equity",
+   "i": 35,
+   "session": "XNYS",
+   "symbol": "LUNR"
+  },
+  {
+   "class": "equity",
+   "i": 36,
+   "session": "XNYS",
+   "symbol": "PYPL"
+  },
+  {
+   "class": "equity",
+   "i": 37,
+   "session": "XNYS",
+   "symbol": "NU"
+  },
+  {
+   "class": "equity",
+   "i": 38,
+   "session": "XNYS",
+   "symbol": "MELI"
+  },
+  {
+   "class": "etf_benchmark_in_universe",
+   "i": 39,
+   "session": "XNYS",
+   "symbol": "SPY"
+  },
+  {
+   "class": "etf",
+   "i": 40,
+   "session": "XNYS",
+   "symbol": "IWM"
+  },
+  {
+   "class": "etf_sector",
+   "i": 41,
+   "session": "XNYS",
+   "symbol": "SMH"
+  },
+  {
+   "class": "etf",
+   "i": 42,
+   "session": "XNYS",
+   "symbol": "ARKK"
+  },
+  {
+   "class": "etf_sector",
+   "i": 43,
+   "session": "XNYS",
+   "symbol": "XLF"
+  },
+  {
+   "class": "crypto",
+   "i": 44,
+   "session": "UTC_24x7_SEGREGATED",
+   "symbol": "DOGE-USD"
+  },
+  {
+   "class": "crypto",
+   "i": 45,
+   "session": "UTC_24x7_SEGREGATED",
+   "symbol": "AVAX-USD"
+  },
+  {
+   "class": "crypto",
+   "i": 46,
+   "session": "UTC_24x7_SEGREGATED",
+   "symbol": "LINK-USD"
+  },
+  {
+   "class": "crypto",
+   "i": 47,
+   "session": "UTC_24x7_SEGREGATED",
+   "symbol": "XRP-USD"
+  },
+  {
+   "class": "equity",
+   "i": 48,
+   "session": "XNYS",
+   "symbol": "NIO"
+  },
+  {
+   "class": "equity",
+   "i": 49,
+   "session": "XNYS",
+   "symbol": "MRNA"
+  },
+  {
+   "class": "equity",
+   "i": 50,
+   "session": "XNYS",
+   "symbol": "PFE"
+  },
+  {
+   "class": "equity",
+   "i": 51,
+   "session": "XNYS",
+   "symbol": "F"
+  },
+  {
+   "class": "etf_benchmark_dependency",
+   "i": 52,
+   "note": "benchmark dependency via pine_signal_quality.load_benchmarks (SPY/QQQ); SPY already in universe at i=39; QQQ is the only added request",
+   "session": "XNYS",
+   "symbol": "QQQ"
+  }
+ ],
+ "request_params": {
+  "actions": true,
+  "auto_adjust": false,
+  "client_call": "yfinance.download(single symbol) \u2014 one symbol per request, threads=False, group_by not applicable",
+  "date_policy": {
+   "consequence": "Coverage vs the 2023-01-01 prereg target will mark symbols COVERAGE-LIMITED under the <80% rule; fold calendars must be re-frozen from actual pulled coverage at the later qualification step, before any performance is computed.",
+   "earliest_date_limit": "If executed 2026-10-16, earliest obtainable 1H \u2248 2024-10-17. The prereg target start 2023-01-01 is NOT reachable at 1h. The lost 2023\u2013early-2024 bytes are unrecoverable and are not implied recovered by this capture.",
+   "end": "execution_date",
+   "form": "explicit start/end (never period=), end exclusive",
+   "reachback_basis": "Yahoo 1h hard limit ~730 days, consistent with the evidenced reachback",
+   "start": "execution_date minus 729 days"
+  },
+  "interval": "1h",
+  "prepost": false,
+  "required_fields": [
+   "Open",
+   "High",
+   "Low",
+   "Close",
+   "Volume",
+   "Dividends",
+   "Stock Splits"
+  ]
+ },
+ "runtime_pins": {
+  "drift_rule": "executor must re-hash client files + versions at start; any mismatch vs these pins = RUNTIME_DRIFT HOLD before any request",
+  "numpy": "1.26.4",
+  "pandas": "2.1.4",
+  "python": "3.12.3",
+  "yfinance": "1.7.0",
+  "yfinance_files_sha256_16": {
+   "__init__.py": "d6eda141e64f87a6",
+   "multi.py": "61aa5ec181f26c13",
+   "ticker.py": "6f9a72fc35cd55da"
+  }
+ },
+ "schema": "qf.yahoo_clean_capture.manifest/1",
+ "session_construction_freeze": {
+  "rules": [
+   "retain raw 1H bytes untouched; construction is a derived, reproducible view",
+   "timestamps -> America/New_York; restrict to regular session [09:30, session_close)",
+   "4H bars: morning [09:30,13:30) labeled 09:30, afternoon [13:30, session_close) labeled 13:30; left-labeled, left-closed; OHLCV = first/max/min/last/sum",
+   "session_close from XNYS calendar (16:00 regular, 13:00 early close); early-close days emit only the morning bar; unknown dates fall back to 16:00 and are flagged",
+   "crypto (-USD) is segregated: UTC bins 00/04/08/12/16/20, never session-filtered, never mixed into the equity baseline set",
+   "no forward-fill; empty bins dropped; forming bar excluded by causal cutoff at acquisition time"
+  ],
+  "source_of_truth": "research_notes/recovery_4h_20261004/spec/canonical_4h_constructor.md (scanner_rules.resample_closed_4h_session_anchored)"
+ },
+ "status": "FROZEN_PREFLIGHT \u2014 authorizes no vendor call",
+ "symbol_mapping": "canonical Yahoo symbol == frozen symbol for all 52 (no BRK-B/class-share or FX translations in this set); any response whose returned symbol/meta does not match the requested symbol exactly = SCHEMA_DRIFT HOLD",
+ "task": "QF-YAHOO-CLEAN-CAPTURE-PREFLIGHT-20261015-08 r1",
+ "universe_source": {
+  "file": "pine_backtest.py",
+  "policy_source": "research_notes/recovery_4h_20261004/spec/walkforward_prereg_rev2.md \u00a72 (auto_adjust=False, prepost=False, frozen split-exclusion, coverage <80% = COVERAGE-LIMITED)",
+  "symbol_list": "UNIVERSE_X (= UNIVERSE_15 + 36)",
+  "universe_file_sha256": "44b0d8ba5a7ea6415652fdfa1e89a0f9bb57d191bfb0d66c578f9d7a3f5880c9 (v54_universe_x2.py, frozen cohort record)"
+ },
+ "revision": {
+  "status": "CANDIDATE ONLY - NOT ADOPTED - does not authorize any acquisition",
+  "derived_from_frozen_manifest_sha256": "634c4541a8b30ade50e45898e80ee65806fa323c953020edc149530642d9bef3",
+  "produced_by": "QF-YAHOO-QFAR1-OFFLINE-PREFLIGHT-20261015-13 r1",
+  "changes": [
+   "call_budget.ceilings.bytes_total: 536870912 -> 67108864 (QF_SHARED_TOTAL_CEILING_BYTES, 158-physical-member scope)",
+   "added bytes_total_definition, bookkeeping_reserve_bytes=32164, payload_budget_bytes=67076700"
+  ],
+  "semantics_note": "The reserve guarantees a completed 156-payload capture cannot overflow when bookkeeping is added; an oversized streaming response still consumes its attempt and is cut off/held (adjudication 6205968339)."
+ }
+}
