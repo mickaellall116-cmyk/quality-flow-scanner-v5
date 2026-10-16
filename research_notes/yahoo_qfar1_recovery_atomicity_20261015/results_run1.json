@@ -1,0 +1,163 @@
+[
+ {
+  "case": "H2",
+  "expect": "4 records, seq 0..3",
+  "got": "4 records, seq [0, 1, 2, 3]",
+  "name": "protected-frame round-trip",
+  "pass": true
+ },
+ {
+  "case": "H2",
+  "expect": "verified prefix + exactly one new record, file ends at verified end",
+  "got": "all 394 cuts ok",
+  "name": "cut-append-reopen at every byte offset",
+  "pass": true
+ },
+ {
+  "case": "H2",
+  "expect": "HOLD:JOURNAL_CORRUPT for every variant",
+  "got": "all 32 variants corrupt",
+  "name": "length/complement bit corruptions (frames 0 and 2)",
+  "pass": true
+ },
+ {
+  "case": "H2",
+  "expect": "HOLD:JOURNAL_CORRUPT",
+  "got": "HOLD:JOURNAL_CORRUPT",
+  "name": "oversized length, sole frame",
+  "pass": true
+ },
+ {
+  "case": "H2",
+  "expect": "HOLD:JOURNAL_CORRUPT",
+  "got": "HOLD:JOURNAL_CORRUPT",
+  "name": "oversized length, interior frame",
+  "pass": true
+ },
+ {
+  "case": "H2",
+  "expect": "HOLD:JOURNAL_CORRUPT",
+  "got": "HOLD:JOURNAL_CORRUPT",
+  "name": "interior payload corruption (frame 0 of 4)",
+  "pass": true
+ },
+ {
+  "case": "H2",
+  "expect": "HOLD:JOURNAL_CORRUPT",
+  "got": "HOLD:JOURNAL_CORRUPT",
+  "name": "interior tag corruption (frame 2 of 4)",
+  "pass": true
+ },
+ {
+  "case": "H2",
+  "expect": "HOLD:JOURNAL_CORRUPT",
+  "got": "HOLD:JOURNAL_CORRUPT",
+  "name": "interior sequence forgery (valid tag)",
+  "pass": true
+ },
+ {
+  "case": "H2",
+  "expect": "HOLD:JOURNAL_CORRUPT",
+  "got": "HOLD:JOURNAL_CORRUPT",
+  "name": "append onto corrupt journal",
+  "pass": true
+ },
+ {
+  "case": "H4",
+  "expect": "Crash, staging empty",
+  "got": "Crash, leftovers=[]",
+  "name": "pre-intent crash leaves no staging files",
+  "pass": true
+ },
+ {
+  "case": "H4",
+  "expect": "PUBLISHED, hash == fresh build",
+  "got": "PUBLISHED, eq=True",
+  "name": "clean retry after crash (no stale bytes)",
+  "pass": true
+ },
+ {
+  "case": "H4",
+  "expect": "HOLD:STAGING_COLLISION, staging == [pre-existing file], fd delta 0",
+  "got": "HOLD:STAGING_COLLISION, left=['container.forced.tmp'], fd_delta=0",
+  "name": "second-name collision rolls back first file",
+  "pass": true
+ },
+ {
+  "case": "H4",
+  "expect": "build ok, hash == fresh build",
+  "got": "ok, eq=True",
+  "name": "clean retry after collision",
+  "pass": true
+ },
+ {
+  "case": "H4",
+  "expect": "HOLD:STAGING_COLLISION, staging empty, fd delta 0",
+  "got": "HOLD:STAGING_COLLISION, left=[], fd_delta=0",
+  "name": "same-name collision (spool == container)",
+  "pass": true
+ },
+ {
+  "case": "H4",
+  "expect": "HOLD:STAGING_CLEANUP, leftover visible, fd delta 0",
+  "got": "HOLD:STAGING_CLEANUP, left=['container.forced.tmp', 'spool.forced.tmp'], fd_delta=0",
+  "name": "rollback cleanup failure",
+  "pass": true
+ },
+ {
+  "case": "A-07",
+  "expect": "Crash then HOLD:ID_CONSUMED",
+  "got": "Crash then HOLD:ID_CONSUMED",
+  "name": "crash after blob, restart",
+  "pass": true
+ },
+ {
+  "case": "A-07",
+  "expect": "Crash then HOLD:ID_CONSUMED",
+  "got": "Crash then HOLD:ID_CONSUMED",
+  "name": "crash after tree, restart",
+  "pass": true
+ },
+ {
+  "case": "A-07",
+  "expect": "Crash then HOLD:ID_CONSUMED",
+  "got": "Crash then HOLD:ID_CONSUMED",
+  "name": "crash after commit, restart",
+  "pass": true
+ },
+ {
+  "case": "A-07",
+  "expect": "HOLD:API then PUBLISHED_BY_RECORDING, exactly 1 commit",
+  "got": "HOLD:HOLD:API then PUBLISHED_BY_RECORDING, commits=1",
+  "name": "lost ref-update response, restart records",
+  "pass": true
+ },
+ {
+  "case": "H3",
+  "expect": "statuses [ALREADY_PUBLISHED_VERIFIED, PUBLISHED], 1 intent, 1 commit",
+  "got": "['ALREADY_PUBLISHED_VERIFIED', 'PUBLISHED'], intents=1, published=1, commits=1",
+  "name": "two-process duplicate invocation",
+  "pass": true
+ },
+ {
+  "case": "H7",
+  "expect": "exit 3, file == half the frame, read returns empty verified prefix",
+  "got": "rc=3, size=64/64, prefix=0",
+  "name": "real-process crash mid-append leaves torn final frame",
+  "pass": true
+ },
+ {
+  "case": "H7",
+  "expect": "PUBLISHED, journal == [intent, published] with no torn bytes, 1 commit",
+  "got": "PUBLISHED, types=['intent', 'published'], torn_marker=False, end=19468/19468, commits=1",
+  "name": "restart after torn intent reconciles",
+  "pass": true
+ },
+ {
+  "case": "H7",
+  "expect": "ALREADY_PUBLISHED_VERIFIED, still 1 intent / 1 published / 1 commit",
+  "got": "ALREADY_PUBLISHED_VERIFIED, records=2, commits=1",
+  "name": "second restart is a no-op verification",
+  "pass": true
+ }
+]
