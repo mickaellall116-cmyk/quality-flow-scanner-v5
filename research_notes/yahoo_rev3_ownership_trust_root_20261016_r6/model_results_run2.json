@@ -1,0 +1,382 @@
+{
+ "acceptance": {
+  "note": "Acceptance binds the RECOMMENDED design (D_ROOT_NS: privileged anchor namespace). A_CONTRACT is the r5 baseline, retained to show the trust-root defect deterministically. E_SIGNED and F_VERITY are modeled to expose exactly which traces a signature root and an fs-verity root do and do not close.",
+  "r5_baseline_fails_T9_coherent_replacement": true,
+  "recommended_design_all_traces_pass": true
+ },
+ "designs": {
+  "A_CONTRACT": {
+   "traces": [
+    {
+     "outcome": "owner S2 -> HOLD:JOURNAL_REPLACED; restart -> HOLD:JOURNAL_REPLACED",
+     "title": "journal replaced with EMPTY while owner live; owner exits; fresh restart",
+     "trace": "T1",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_RENAMED",
+     "title": "journal replaced with STALE COPY (genesis only) after S1 completed",
+     "trace": "T1b",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:PATH_TYPE; restart -> HOLD:PATH_TYPE",
+     "title": "journal replaced with SYMLINK to foreign file",
+     "trace": "T1c",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:CONTROL_REPLACED; restart -> HOLD:CONTROL_REPLACED",
+     "title": "control directory replaced between ATTEMPT fsync and transport call",
+     "trace": "T2",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "HOLD:TEMP_SUBSTITUTED; temp abandoned, foreign intact",
+     "title": "temp substitution between identity check and unlink",
+     "trace": "T3",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "pre-COMPLETE re-verify -> HOLD:FINAL_SUBSTITUTED",
+     "title": "final substitution after verification, before COMPLETE",
+     "trace": "T4",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "contender open -> HOLD:OWNER_BUSY",
+     "title": "two live owner processes contend",
+     "trace": "T5",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_REPLACED (recycled ino 1003)",
+     "title": "journal inode freed and RECYCLED by a forged genesis-only journal",
+     "trace": "T6",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> ok, holds ['HOLD:ATTEMPT_CONSUMED_AMBIGUOUS']",
+     "title": "kill after ATTEMPT fsync; benign restart",
+     "trace": "T7",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "empty: identity pathname replaced with empty; restart -> HOLD:IDENTITY_CORRUPT; byte_identical: identity pathname replaced with byte_identical; restart -> ok",
+     "title": "identity pathname replaced: EMPTY file and BYTE-IDENTICAL copy",
+     "trace": "T8",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "fresh self-consistent bundle at canonical paths; restart -> ok",
+     "title": "after owner exit, identity+control+journal coherently replaced with a fresh self-consistent bundle",
+     "trace": "T9",
+     "verdict": "FAIL",
+     "violations": [
+      "DOUBLE_CALL:S1",
+      "RESTART_IGNORED_CONSUMED:S1"
+     ]
+    },
+    {
+     "outcome": "prefix replay -> HOLD:JOURNAL_REPLACED; prior-generation replay -> ok",
+     "title": "replay: (a) journal prefix after later state; (b) prior-generation bundle after capture-id reuse + seal",
+     "trace": "T10",
+     "verdict": "FAIL",
+     "violations": [
+      "DOUBLE_CALL:S2",
+      "RESTART_IGNORED_CONSUMED:S2"
+     ]
+    }
+   ],
+   "verdict": "FAIL"
+  },
+  "D_ROOT_NS": {
+   "traces": [
+    {
+     "outcome": "owner S2 -> HOLD:JOURNAL_REPLACED; restart -> HOLD:JOURNAL_REPLACED",
+     "title": "journal replaced with EMPTY while owner live; owner exits; fresh restart",
+     "trace": "T1",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_RENAMED",
+     "title": "journal replaced with STALE COPY (genesis only) after S1 completed",
+     "trace": "T1b",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:PATH_TYPE; restart -> HOLD:PATH_TYPE",
+     "title": "journal replaced with SYMLINK to foreign file",
+     "trace": "T1c",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:CONTROL_REPLACED; restart -> HOLD:CONTROL_REPLACED",
+     "title": "control directory replaced between ATTEMPT fsync and transport call",
+     "trace": "T2",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "HOLD:TEMP_SUBSTITUTED; temp abandoned, foreign intact",
+     "title": "temp substitution between identity check and unlink",
+     "trace": "T3",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "pre-COMPLETE re-verify -> HOLD:FINAL_SUBSTITUTED",
+     "title": "final substitution after verification, before COMPLETE",
+     "trace": "T4",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "contender open -> HOLD:OWNER_BUSY",
+     "title": "two live owner processes contend",
+     "trace": "T5",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_REPLACED (recycled ino 1003)",
+     "title": "journal inode freed and RECYCLED by a forged genesis-only journal",
+     "trace": "T6",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> ok, holds ['HOLD:ATTEMPT_CONSUMED_AMBIGUOUS']",
+     "title": "kill after ATTEMPT fsync; benign restart",
+     "trace": "T7",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "empty: anchor replace attempt -> EPERM; restart -> ok; byte_identical: anchor replace attempt -> EPERM; restart -> ok",
+     "title": "identity pathname replaced: EMPTY file and BYTE-IDENTICAL copy",
+     "trace": "T8",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "fresh self-consistent bundle at canonical paths; restart -> HOLD:CONTROL_REPLACED",
+     "title": "after owner exit, identity+control+journal coherently replaced with a fresh self-consistent bundle",
+     "trace": "T9",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "prefix replay -> HOLD:JOURNAL_REPLACED; prior-generation replay -> HOLD:CONTROL_REPLACED",
+     "title": "replay: (a) journal prefix after later state; (b) prior-generation bundle after capture-id reuse + seal",
+     "trace": "T10",
+     "verdict": "PASS",
+     "violations": []
+    }
+   ],
+   "verdict": "PASS"
+  },
+  "E_SIGNED": {
+   "traces": [
+    {
+     "outcome": "owner S2 -> HOLD:JOURNAL_REPLACED; restart -> HOLD:JOURNAL_REPLACED",
+     "title": "journal replaced with EMPTY while owner live; owner exits; fresh restart",
+     "trace": "T1",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_RENAMED",
+     "title": "journal replaced with STALE COPY (genesis only) after S1 completed",
+     "trace": "T1b",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:PATH_TYPE; restart -> HOLD:PATH_TYPE",
+     "title": "journal replaced with SYMLINK to foreign file",
+     "trace": "T1c",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:CONTROL_REPLACED; restart -> HOLD:CONTROL_REPLACED",
+     "title": "control directory replaced between ATTEMPT fsync and transport call",
+     "trace": "T2",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "HOLD:TEMP_SUBSTITUTED; temp abandoned, foreign intact",
+     "title": "temp substitution between identity check and unlink",
+     "trace": "T3",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "pre-COMPLETE re-verify -> HOLD:FINAL_SUBSTITUTED",
+     "title": "final substitution after verification, before COMPLETE",
+     "trace": "T4",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "contender open -> HOLD:OWNER_BUSY",
+     "title": "two live owner processes contend",
+     "trace": "T5",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_REPLACED (recycled ino 1003)",
+     "title": "journal inode freed and RECYCLED by a forged genesis-only journal",
+     "trace": "T6",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> ok, holds ['HOLD:ATTEMPT_CONSUMED_AMBIGUOUS']",
+     "title": "kill after ATTEMPT fsync; benign restart",
+     "trace": "T7",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "empty: identity pathname replaced with empty; restart -> HOLD:IDENTITY_CORRUPT; byte_identical: identity pathname replaced with byte_identical; restart -> ok",
+     "title": "identity pathname replaced: EMPTY file and BYTE-IDENTICAL copy",
+     "trace": "T8",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "fresh self-consistent bundle at canonical paths; restart -> HOLD:IDENTITY_SIGNATURE",
+     "title": "after owner exit, identity+control+journal coherently replaced with a fresh self-consistent bundle",
+     "trace": "T9",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "prefix replay -> HOLD:JOURNAL_REPLACED; prior-generation replay -> ok",
+     "title": "replay: (a) journal prefix after later state; (b) prior-generation bundle after capture-id reuse + seal",
+     "trace": "T10",
+     "verdict": "FAIL",
+     "violations": [
+      "DOUBLE_CALL:S2",
+      "RESTART_IGNORED_CONSUMED:S2"
+     ]
+    }
+   ],
+   "verdict": "FAIL"
+  },
+  "F_VERITY": {
+   "traces": [
+    {
+     "outcome": "owner S2 -> HOLD:JOURNAL_REPLACED; restart -> HOLD:JOURNAL_REPLACED",
+     "title": "journal replaced with EMPTY while owner live; owner exits; fresh restart",
+     "trace": "T1",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_RENAMED",
+     "title": "journal replaced with STALE COPY (genesis only) after S1 completed",
+     "trace": "T1b",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:PATH_TYPE; restart -> HOLD:PATH_TYPE",
+     "title": "journal replaced with SYMLINK to foreign file",
+     "trace": "T1c",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:CONTROL_REPLACED; restart -> HOLD:CONTROL_REPLACED",
+     "title": "control directory replaced between ATTEMPT fsync and transport call",
+     "trace": "T2",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "HOLD:TEMP_SUBSTITUTED; temp abandoned, foreign intact",
+     "title": "temp substitution between identity check and unlink",
+     "trace": "T3",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "pre-COMPLETE re-verify -> HOLD:FINAL_SUBSTITUTED",
+     "title": "final substitution after verification, before COMPLETE",
+     "trace": "T4",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "contender open -> HOLD:OWNER_BUSY",
+     "title": "two live owner processes contend",
+     "trace": "T5",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_REPLACED (recycled ino 1003)",
+     "title": "journal inode freed and RECYCLED by a forged genesis-only journal",
+     "trace": "T6",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> ok, holds ['HOLD:ATTEMPT_CONSUMED_AMBIGUOUS']",
+     "title": "kill after ATTEMPT fsync; benign restart",
+     "trace": "T7",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "empty: identity pathname replaced with empty; restart -> HOLD:IDENTITY_CORRUPT; byte_identical: identity pathname replaced with byte_identical; restart -> ok",
+     "title": "identity pathname replaced: EMPTY file and BYTE-IDENTICAL copy",
+     "trace": "T8",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "fresh self-consistent bundle at canonical paths; restart -> ok",
+     "title": "after owner exit, identity+control+journal coherently replaced with a fresh self-consistent bundle",
+     "trace": "T9",
+     "verdict": "FAIL",
+     "violations": [
+      "DOUBLE_CALL:S1",
+      "RESTART_IGNORED_CONSUMED:S1"
+     ]
+    },
+    {
+     "outcome": "prefix replay -> HOLD:JOURNAL_REPLACED; prior-generation replay -> ok",
+     "title": "replay: (a) journal prefix after later state; (b) prior-generation bundle after capture-id reuse + seal",
+     "trace": "T10",
+     "verdict": "FAIL",
+     "violations": [
+      "DOUBLE_CALL:S2",
+      "RESTART_IGNORED_CONSUMED:S2"
+     ]
+    }
+   ],
+   "verdict": "FAIL"
+  }
+ },
+ "model": "QF-YAHOO-REV3-OWNERSHIP-TRUST-ROOT-20261016-19 r6",
+ "verdict": "REV3_OWNERSHIP_TRUST_ROOT_MODEL_PASS"
+}
