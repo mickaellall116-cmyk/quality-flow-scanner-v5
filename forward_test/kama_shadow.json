@@ -1,16 +1,19 @@
 {
   "protocol": "KAMA_SHADOW_PROTOCOL.md",
-  "updated_at": "2026-10-16T20:35:28+00:00",
+  "updated_at": "2026-10-16T20:50:12+00:00",
   "start_at": "2026-09-28T13:46:00+00:00",
   "review_target_signals": 100,
   "data_quality_checkpoint": 50,
-  "signal_count": 9,
+  "signal_count": 11,
   "checkpoint_50_reached": false,
   "primary_cohort_signal_ids": null,
   "primary_cohort_frozen_at": null,
   "primary_cohort_resolved": 0,
   "review_ready": false,
-  "new_signal_ids_this_run": [],
+  "new_signal_ids_this_run": [
+    "v54:MRNA:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
+    "v54:TEAM:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54"
+  ],
   "errors_this_run": [],
   "events": [
     {
@@ -288,6 +291,64 @@
         "resolved": false
       },
       "signal_record_sha256": "70985054fd90582ab9ccef594b04930ce1edbd5c2d8c862452cdcdbb3f2293b9"
+    },
+    {
+      "signal_id": "v54:MRNA:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "MRNA",
+      "signal_time": "2026-10-16T14:30:00-04:00",
+      "first_logged_at": "2026-10-16T20:50:11+00:00",
+      "source": "v54_status_pending",
+      "tested_session_state": {
+        "valid": true,
+        "bars": 1444,
+        "bar_start": "2026-10-16T09:30:00-04:00",
+        "kama20": 208.58273364412136,
+        "kama40": 210.8190353584917,
+        "bull": false,
+        "gap_pct_of_kama40": -1.0607684028947295
+      },
+      "live_grid_state": {
+        "valid": true,
+        "bars": 1926,
+        "bar_start": "2026-10-16T10:30:00-04:00",
+        "kama20": 217.1013678768179,
+        "kama40": 204.82458073353862,
+        "bull": true,
+        "gap_pct_of_kama40": 5.993805577100364
+      },
+      "outcome": {
+        "resolved": false
+      },
+      "signal_record_sha256": "42d0002b7309feffd06b03b72b18bece1b2cf028f24d30448a5ec11455583182"
+    },
+    {
+      "signal_id": "v54:TEAM:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "TEAM",
+      "signal_time": "2026-10-16T14:30:00-04:00",
+      "first_logged_at": "2026-10-16T20:50:12+00:00",
+      "source": "v54_status_pending",
+      "tested_session_state": {
+        "valid": true,
+        "bars": 1443,
+        "bar_start": "2026-10-16T09:30:00-04:00",
+        "kama20": 203.61544991246413,
+        "kama40": 194.53934930871625,
+        "bull": true,
+        "gap_pct_of_kama40": 4.665431767917005
+      },
+      "live_grid_state": {
+        "valid": true,
+        "bars": 1926,
+        "bar_start": "2026-10-16T10:30:00-04:00",
+        "kama20": 208.28458975924585,
+        "kama40": 199.3359587203334,
+        "bull": true,
+        "gap_pct_of_kama40": 4.489220658610482
+      },
+      "outcome": {
+        "resolved": false
+      },
+      "signal_record_sha256": "b8125c06424b7372ee49084f280f70d73d1bcf6858eededc16e4392775adb5f6"
     }
   ]
 }
