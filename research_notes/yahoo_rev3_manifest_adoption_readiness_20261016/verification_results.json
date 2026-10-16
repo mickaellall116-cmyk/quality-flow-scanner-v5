@@ -1,0 +1,217 @@
+{
+    "all_checks_pass": true,
+    "checks": [
+        {
+            "description": "frozen rev2 manifest sha256 matches pin 634c4541...",
+            "detail": "634c4541a8b30ade50e45898e80ee65806fa323c953020edc149530642d9bef3",
+            "id": "IN-1",
+            "result": "PASS"
+        },
+        {
+            "description": "-13 rev3 candidate sha256 matches pin 617f8610...",
+            "detail": "617f86100b2602ea642cad88fbcca01da32377f4cb2bcca712268846f6e574a3",
+            "id": "IN-2",
+            "result": "PASS"
+        },
+        {
+            "description": "-13 candidate differs from rev2 only under call_budget.ceilings and revision",
+            "detail": "call_budget.ceilings; revision",
+            "id": "IN-3",
+            "result": "PASS"
+        },
+        {
+            "description": "section request_order preserved exactly",
+            "detail": "",
+            "id": "PV-request_order",
+            "result": "PASS"
+        },
+        {
+            "description": "section request_params preserved exactly",
+            "detail": "",
+            "id": "PV-request_params",
+            "result": "PASS"
+        },
+        {
+            "description": "section runtime_pins preserved exactly",
+            "detail": "",
+            "id": "PV-runtime_pins",
+            "result": "PASS"
+        },
+        {
+            "description": "section session_construction_freeze preserved exactly",
+            "detail": "",
+            "id": "PV-session_construction_freeze",
+            "result": "PASS"
+        },
+        {
+            "description": "section qualification_gates_frozen preserved exactly",
+            "detail": "",
+            "id": "PV-qualification_gates_frozen",
+            "result": "PASS"
+        },
+        {
+            "description": "section symbol_mapping preserved exactly",
+            "detail": "",
+            "id": "PV-symbol_mapping",
+            "result": "PASS"
+        },
+        {
+            "description": "section universe_source preserved exactly",
+            "detail": "",
+            "id": "PV-universe_source",
+            "result": "PASS"
+        },
+        {
+            "description": "section capture_id preserved exactly",
+            "detail": "",
+            "id": "PV-capture_id",
+            "result": "PASS"
+        },
+        {
+            "description": "section purpose preserved exactly",
+            "detail": "",
+            "id": "PV-purpose",
+            "result": "PASS"
+        },
+        {
+            "description": "section schema preserved exactly",
+            "detail": "",
+            "id": "PV-schema",
+            "result": "PASS"
+        },
+        {
+            "description": "archive.layout preserved exactly",
+            "detail": "",
+            "id": "PV-archive.layout",
+            "result": "PASS"
+        },
+        {
+            "description": "archive.restart preserved exactly",
+            "detail": "",
+            "id": "PV-archive.restart",
+            "result": "PASS"
+        },
+        {
+            "description": "archive.rollback preserved exactly",
+            "detail": "",
+            "id": "PV-archive.rollback",
+            "result": "PASS"
+        },
+        {
+            "description": "execution_packet.abort_rules preserved exactly",
+            "detail": "",
+            "id": "PV-abort_rules",
+            "result": "PASS"
+        },
+        {
+            "description": "call_budget outside ceilings preserved exactly",
+            "detail": "",
+            "id": "PV-call_budget",
+            "result": "PASS"
+        },
+        {
+            "description": "per-symbol/rows/wall ceilings unchanged (33554432 / 20000 / 1800)",
+            "detail": "",
+            "id": "PV-ceil-kept",
+            "result": "PASS"
+        },
+        {
+            "description": "request_order is 52 entries, frozen order, QQQ benchmark at i=52",
+            "detail": "NVDA,PLTR,TSLA,SOFI,SMCI,AMD,AAPL,MSFT,META,COIN,MSTR,AVGO,BTC-USD,ETH-USD,SOL-USD,GOOGL,AMZN,NFLX,CRM,MU,INTC,LRCX,AMAT,QCOM,ARM,HOOD,APP,NET,SNOW,DDOG,CRWD,SHOP,RKLB,ASTS,LUNR,PYPL,NU,MELI,SPY,IWM,SMH,ARKK,XLF,DOGE-USD,AVAX-USD,LINK-USD,XRP-USD,NIO,MRNA,PFE,F,QQQ",
+            "id": "PV-symbols",
+            "result": "PASS"
+        },
+        {
+            "description": "bytes_total == 67,108,864",
+            "detail": "67108864",
+            "id": "CEIL-1",
+            "result": "PASS"
+        },
+        {
+            "description": "bookkeeping_reserve_bytes == 32,164",
+            "detail": "",
+            "id": "CEIL-2",
+            "result": "PASS"
+        },
+        {
+            "description": "payload_budget_bytes == 67,076,700",
+            "detail": "",
+            "id": "CEIL-3",
+            "result": "PASS"
+        },
+        {
+            "description": "total - reserve == payload budget",
+            "detail": "",
+            "id": "CEIL-4",
+            "result": "PASS"
+        },
+        {
+            "description": "ceiling values identical to -13 candidate (no new numbers introduced)",
+            "detail": "",
+            "id": "CEIL-5",
+            "result": "PASS"
+        },
+        {
+            "description": "bytes_total_definition scopes the ceiling to all 158 physical members",
+            "detail": "sum of byte lengths of all 158 physical members (156 payloads + manifest.json + SHA256SUMS)",
+            "id": "CEIL-6",
+            "result": "PASS"
+        },
+        {
+            "description": "normalized manifest contains no stale token 'NOT DEMONSTRATED'",
+            "detail": "",
+            "id": "SCAN-NOT DEMONSTR",
+            "result": "PASS"
+        },
+        {
+            "description": "normalized manifest contains no stale token 'run_preflight_fixture_r2'",
+            "detail": "",
+            "id": "SCAN-run_prefligh",
+            "result": "PASS"
+        },
+        {
+            "description": "normalized manifest contains no stale token 'FROZEN_PREFLIGHT'",
+            "detail": "",
+            "id": "SCAN-FROZEN_PREFL",
+            "result": "PASS"
+        },
+        {
+            "description": "os.link / old ceiling total appear only as supersession or provenance records",
+            "detail": "",
+            "id": "SCAN-os.link",
+            "result": "PASS"
+        },
+        {
+            "description": "execute_capture is named ONLY as a forbidden route / removal note",
+            "detail": "execution_packet.handoff_contract.forbidden_routes[0]",
+            "id": "SCAN-executor",
+            "result": "PASS"
+        },
+        {
+            "description": "publication_binding pins publisher commit 53bdc672...",
+            "detail": "",
+            "id": "BIND-1",
+            "result": "PASS"
+        },
+        {
+            "description": "publication_binding target is the designated private repo + qf-archive ref",
+            "detail": "",
+            "id": "BIND-2",
+            "result": "PASS"
+        },
+        {
+            "description": "no_branch_tip_only_trust is asserted and final verification is commit-pinned",
+            "detail": "",
+            "id": "BIND-3",
+            "result": "PASS"
+        },
+        {
+            "description": "every rev2->normalized difference is classified ceiling-revision or storage/publication/execution-reference",
+            "detail": "",
+            "id": "DIFF-1",
+            "result": "PASS"
+        }
+    ],
+    "task": "QF-YAHOO-REV3-MANIFEST-ADOPTION-READINESS-20261016-17 r1",
+    "terminal_token": "REV3_MANIFEST_ADOPTION_READY"
+}

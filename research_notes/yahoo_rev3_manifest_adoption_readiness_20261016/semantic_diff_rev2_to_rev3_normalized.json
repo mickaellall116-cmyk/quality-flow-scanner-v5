@@ -1,0 +1,294 @@
+{
+    "change_summary": {
+        "approved_ceiling_revision": 5,
+        "storage_publication_execution_reference": 11,
+        "total_leaf_changes": 16,
+        "unclassified": 0
+    },
+    "changes": [
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "value_change",
+            "path": "archive.attempt_journal",
+            "rev2": "before each request, an fsync'd attempt record is appended to manifest ledger; a symbol with an attempt record but no final raw file is ATTEMPT_CONSUMED_AMBIGUOUS — never blindly re-requested on restart; it HOLDs for adjudication Implemented and fixture-proven in r2 (journal_attempt/reconcile in run_preflight_fixture_r2.py, check C9: journal+no-file = ATTEMPT_CONSUMED_AMBIGUOUS, final+hash match = SKIP_VERIFIED, final mismatch = HOLD:FINAL_MISMATCH).",
+            "rev3": "before each request, an fsync'd attempt record is appended to the capture ledger; a symbol with an attempt record but no final raw file is ATTEMPT_CONSUMED_AMBIGUOUS — never blindly re-requested on restart; it HOLDs for adjudication. On restart: final file + hash match = SKIP_VERIFIED; final mismatch = HOLD:FINAL_MISMATCH. (Rule preserved from rev2; the -08 preflight fixture that first exercised it is provenance evidence only and is not the execution route.)"
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "value_change",
+            "path": "archive.durability",
+            "rev2": "NOT DEMONSTRATED — see r2 memo. Mount evidence pinned in archive_mount_evidence_r2.txt: root is on /dev/mapper/rv (block device, 100G) mounted at /home/hatch, distinct from the overlay root and tmpfs /tmp. However the destroyed D1 cache also lived under this same home volume (inside the repo) and did not survive a VM replacement, so presence on this volume is not demonstrated replacement-survival. Durability claim REMOVED in r2 pending the storage decision + second-copy procedure in the r2 memo.",
+            "rev3": "provided by the designated private GitHub repo mickaellall116-cmyk/qf-data-archive (Mike's storage designation, 2026-10-15): append-only, write-once captures, checksum-verified by re-fetch. The rev2-era local-volume durability question is superseded — the local staging copy is not a durability claim and its loss before publication is a failed capture, not a data-loss event."
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "value_change",
+            "path": "archive.publication",
+            "rev2": "write temp in same dir -> fsync file -> os.link(tmp, final) (atomic, FileExistsError if final exists: genuine no-clobber, no check-then-act window) -> unlink temp -> fsync dir; per-file SHA256 computed on final bytes. Proven by two-process collision fixture C8 in run_preflight_fixture_r2.py. NOTE: os.rename is NOT O_EXCL and is not used for publication (r1 claim corrected in r2).",
+            "rev3": "QFAR1 single-blob publication ONLY (see publication_binding): the 158 physical members (156 payloads + manifest.json + SHA256SUMS) are sealed into one deterministic QFAR1 container and published by the accepted publisher pin to the designated private repo as one commit at captures/<capture_id>.qfar. The rev2 per-file os.link publication narrative is superseded and forbidden. Publication is complete only after final commit/blob/container/member verification passes against the independent validation pins."
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "value_change",
+            "path": "archive.root",
+            "rev2": "~/workspace/data_archive/yahoo_1h_clean/<capture_id>/",
+            "rev3": "local staging only (transient working state, NOT the archive of record): ~/workspace/data_archive/yahoo_1h_clean/<capture_id>/ — staged members are sealed into one QFAR1 container and published to the designated private repo per publication_binding; durability comes from that repo, never from this volume."
+        },
+        {
+            "classification": "APPROVED_CEILING_REVISION",
+            "kind": "added",
+            "path": "call_budget.ceilings.bookkeeping_reserve_bytes",
+            "rev2": null,
+            "rev3": 32164
+        },
+        {
+            "classification": "APPROVED_CEILING_REVISION",
+            "kind": "value_change",
+            "path": "call_budget.ceilings.bytes_total",
+            "rev2": 536870912,
+            "rev3": 67108864
+        },
+        {
+            "classification": "APPROVED_CEILING_REVISION",
+            "kind": "added",
+            "path": "call_budget.ceilings.bytes_total_definition",
+            "rev2": null,
+            "rev3": "sum of byte lengths of all 158 physical members (156 payloads + manifest.json + SHA256SUMS)"
+        },
+        {
+            "classification": "APPROVED_CEILING_REVISION",
+            "kind": "added",
+            "path": "call_budget.ceilings.oversize_streaming_rule",
+            "rev2": null,
+            "rev3": "a streaming response that would exceed the per-symbol ceiling or the payload budget consumes its single attempt: the transfer is cut off at the ceiling, the symbol is held, and the consumed attempt is never re-requested (adjudication 6205968339; spec -17 item 2)."
+        },
+        {
+            "classification": "APPROVED_CEILING_REVISION",
+            "kind": "added",
+            "path": "call_budget.ceilings.payload_budget_bytes",
+            "rev2": null,
+            "rev3": 67076700
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "added",
+            "path": "execution_packet.handoff_contract",
+            "rev2": null,
+            "rev3": {
+                "forbidden_routes": [
+                    "the parked -08/-09 execute_capture.py lineage — not used, not a dependency",
+                    "any per-file publication path (the superseded rev2 os.link narrative)",
+                    "branch-tip-only trust at any stage"
+                ],
+                "stages": [
+                    "1) clean capture executor: a future, separately authorized executor written fresh against this manifest; it stages the 156 payloads and the capture ledger under archive.root",
+                    "2) independent validation: qualification gates G1-G11 run against the staged members and produce the independent validation pins (the per-member sha256 set) — pins originate from the validator, never from the capture process's own claims",
+                    "3) accepted publisher: publication exclusively by the accepted QFAR1 publisher (pin 53bdc672e609791dc55277023dd984cd8727f3c3) bound in publication_binding, consuming the validation pins"
+                ]
+            }
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "removed",
+            "path": "execution_packet.later_command",
+            "rev2": "python3 research_notes/yahoo_clean_capture_preflight_20261015/execute_capture.py --manifest research_notes/yahoo_clean_capture_preflight_20261015/capture_manifest.json --archive-root ~/workspace/data_archive/yahoo_1h_clean --execute",
+            "rev3": null
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "value_change",
+            "path": "execution_packet.note",
+            "rev2": "execute_capture.py is written at the separately authorized execution task from this frozen packet, reusing the fixture-proven archive/construction/gate code paths in this package; it does not exist yet and this preflight creates no acquisition machinery against the live vendor",
+            "rev3": "This candidate authorizes none of these stages; adoption of this manifest is itself a separate act that has not occurred. The rev2 later_command (parked-executor route) is removed, not replaced with another command."
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "added",
+            "path": "publication_binding",
+            "rev2": null,
+            "rev3": {
+                "architecture": "QFAR1 single-blob (design r3, accepted)",
+                "design_memo": "research_notes/YAHOO_SINGLE_BLOB_ARCHIVE_DESIGN_20261015.md",
+                "design_memo_sha256": "cd9ef36da512185781d2bf6376d1a8848ba62cbf134aec922566aec518f71470",
+                "final_verification": [
+                    "resolve the exact published commit by its pinned SHA (never a branch tip)",
+                    "fetch the blob and recompute CONTAINER_SHA256; must equal the ledger anchor",
+                    "parse the container and verify every one of the 158 members against the independent validation pins",
+                    "verify ref still resolves to the pinned commit, or fetch the commit directly by id",
+                    "record a hashes-only public ledger anchor; partial states (objects without ref update, ref update without anchor, anchor without verification transcript) are no-publication"
+                ],
+                "member_accounting": {
+                    "binding_graph": "manifest.json binds the 156 payloads only; SHA256SUMS binds exactly 157 (156 payloads + manifest.json), never itself; the QFAR1 index binds all 158; the container trailer digest + git blob id bind the whole container (acyclic, per design r3)",
+                    "bookkeeping_members": [
+                        "manifest.json",
+                        "SHA256SUMS"
+                    ],
+                    "payload_members": 156,
+                    "physical_members": 158
+                },
+                "no_branch_tip_only_trust": true,
+                "publisher_commit": "53bdc672e609791dc55277023dd984cd8727f3c3",
+                "publisher_file": "research_notes/yahoo_qfar1_journal_header_auth_20261016/qfar1_publisher_h16.py",
+                "publisher_file_sha256": "1d4c192324744c77e294c0b3190e88666dce583b14ef4412b3e31f85127fdc10",
+                "target_path": "captures/<capture_id>.qfar",
+                "target_ref": "refs/heads/qf-archive",
+                "target_repo": "mickaellall116-cmyk/qf-data-archive",
+                "target_repo_visibility": "private (designated 2026-10-15; must re-verify private at publication and at consumption — visibility drift invalidates, HOLD:VISIBILITY)"
+            }
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "added",
+            "path": "revision",
+            "rev2": null,
+            "rev3": {
+                "changes": [
+                    "call_budget.ceilings.bytes_total: 536870912 -> 67108864 (QF_SHARED_TOTAL_CEILING_BYTES, 158-physical-member scope) [from -13 candidate, unchanged]",
+                    "added call_budget.ceilings.bytes_total_definition, bookkeeping_reserve_bytes=32164, payload_budget_bytes=67076700 [from -13 candidate, unchanged]",
+                    "added call_budget.ceilings.oversize_streaming_rule: an oversized streaming response consumes its attempt before cutoff/HOLD [explicit statement of the -13 adjudicated rule]",
+                    "archive.root/durability/publication superseded: local-VM staging + per-file os.link narrative replaced by QFAR1 single-blob publication to the designated private repo (publication_binding)",
+                    "archive.attempt_journal: rule preserved; -08 fixture proof clause replaced with provenance note",
+                    "execution_packet: later_command (parked-executor route) removed; explicit handoff contract added (clean capture executor -> independent validation pins -> accepted publisher); abort_rules preserved verbatim",
+                    "added publication_binding: accepted QFAR1 architecture, design pin, publisher pin 53bdc672..., target repo/ref/path, member accounting, final commit/blob/container/member verification, no branch-tip-only trust",
+                    "status/task/revision provenance updated to this candidate"
+                ],
+                "derived_from_frozen_manifest_sha256": "634c4541a8b30ade50e45898e80ee65806fa323c953020edc149530642d9bef3",
+                "parent_candidate": {
+                    "git_blob": "c62d4daae030239344b62b06cc66710478efaac4",
+                    "path": "research_notes/yahoo_qfar1_preflight_20261015/capture_manifest_rev3_candidate.json",
+                    "produced_by": "QF-YAHOO-QFAR1-OFFLINE-PREFLIGHT-20261015-13 r1",
+                    "sha256": "617f86100b2602ea642cad88fbcca01da32377f4cb2bcca712268846f6e574a3"
+                },
+                "produced_by": "QF-YAHOO-REV3-MANIFEST-ADOPTION-READINESS-20261016-17 r1 (normalization only; no adoption)",
+                "semantics_note": "The reserve guarantees a completed 156-payload capture cannot overflow the 158-physical-member ceiling when bookkeeping is added; an oversized streaming response still consumes its attempt and is cut off/held (adjudication 6205968339).",
+                "status": "CANDIDATE ONLY - NOT ADOPTED - does not authorize any acquisition, capture, or publication"
+            }
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "value_change",
+            "path": "status",
+            "rev2": "FROZEN_PREFLIGHT — authorizes no vendor call",
+            "rev3": "CANDIDATE REV3 — NOT ADOPTED — authorizes no vendor call, no capture, no publication"
+        },
+        {
+            "classification": "STORAGE_PUBLICATION_EXECUTION_REFERENCE",
+            "kind": "value_change",
+            "path": "task",
+            "rev2": "QF-YAHOO-CLEAN-CAPTURE-PREFLIGHT-20261015-08 r1",
+            "rev3": "QF-YAHOO-REV3-MANIFEST-ADOPTION-READINESS-20261016-17 r1"
+        }
+    ],
+    "inputs": {
+        "design_r3": {
+            "path": "research_notes/YAHOO_SINGLE_BLOB_ARCHIVE_DESIGN_20261015.md",
+            "sha256": "cd9ef36da512185781d2bf6376d1a8848ba62cbf134aec922566aec518f71470"
+        },
+        "publisher_pin": {
+            "commit": "53bdc672e609791dc55277023dd984cd8727f3c3",
+            "file_sha256": "1d4c192324744c77e294c0b3190e88666dce583b14ef4412b3e31f85127fdc10"
+        },
+        "rev2_frozen": {
+            "git_blob": "0d1bc6023b5b506cd83df55d70023c086a1f7b6e",
+            "path": "research_notes/yahoo_clean_capture_preflight_20261015/capture_manifest.json",
+            "sha256": "634c4541a8b30ade50e45898e80ee65806fa323c953020edc149530642d9bef3"
+        },
+        "rev3_candidate_parent": {
+            "git_blob": "c62d4daae030239344b62b06cc66710478efaac4",
+            "path": "research_notes/yahoo_qfar1_preflight_20261015/capture_manifest_rev3_candidate.json",
+            "sha256": "617f86100b2602ea642cad88fbcca01da32377f4cb2bcca712268846f6e574a3"
+        }
+    },
+    "output": {
+        "path": "research_notes/yahoo_rev3_manifest_adoption_readiness_20261016/capture_manifest_rev3_normalized_candidate.json",
+        "sha256": "fe3611e78347806a19d9810a3c141bab5225f2b0785d38e1ba6f013c76d76c5e"
+    },
+    "preserved_sections_proofs": [
+        {
+            "canonical_sha256": "3613b318bd964c6c16bf0796b7f85a03189d5e7a7ff4a387a604ca26c7945392",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "request_order"
+        },
+        {
+            "canonical_sha256": "0d445dcc37a142d97aeae406916447d42f0f81aa1c978304d41ca48c71570bcc",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "request_params"
+        },
+        {
+            "canonical_sha256": "69536f539f601c655ed14fa3e528b1f6f57d4e92eb604052b5fff729e72b6dcd",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "runtime_pins"
+        },
+        {
+            "canonical_sha256": "dfc4f42de2e6c4f9ead3da528bfc4dffc03cd888ffe1c5b9610886de4cde6bb2",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "session_construction_freeze"
+        },
+        {
+            "canonical_sha256": "53d6d0fd4e6f540fd7246276a9dadd8c324fdb8de13d9270d305a5fab63a3b2e",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "qualification_gates_frozen"
+        },
+        {
+            "canonical_sha256": "a6c0c8167bbd4c917988de389cbdbc25f176ca2b8e5d7ffd89d2d9ca754d6db4",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "symbol_mapping"
+        },
+        {
+            "canonical_sha256": "b30b63af9853ea1eb9ef7ab1b800fd7db4d085ee0cb1160826feac950b7e13a0",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "universe_source"
+        },
+        {
+            "canonical_sha256": "07faae71f7b152910f9bc3fc2bd4e6ec38dfba64b18e9df4bc0c17809299432d",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "capture_id"
+        },
+        {
+            "canonical_sha256": "7706121b3f29b742970ec1ec1eff9b37cf16e1748eccfe9a8376936500d89a9c",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "purpose"
+        },
+        {
+            "canonical_sha256": "7a00db3fe7b79a729d415d021db03bfd8d23af6bf08bbec783cb73abfd38b767",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "schema"
+        },
+        {
+            "canonical_sha256": "0b808c4a75e2dc390ef417f1264e1405d617db9618e696ea92c82337d2098d52",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "archive.layout"
+        },
+        {
+            "canonical_sha256": "8a037ae31efd4e2bb29facf65ab0452b482a397f2c7adfb00de0660f7b77568f",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "archive.restart"
+        },
+        {
+            "canonical_sha256": "5739c55511a4f5e2ad7b3d4a333c8a3044c826a9cdef687e41bfb9aa7aa5e066",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "archive.rollback"
+        },
+        {
+            "canonical_sha256": "ba706ec1234564503f17fe9208ecf1e84e1671e444421c6b90a168407a185fe2",
+            "proof": "canonical-json deep-equal rev2 vs normalized rev3",
+            "result": "PRESERVED",
+            "section": "execution_packet.abort_rules"
+        }
+    ],
+    "task": "QF-YAHOO-REV3-MANIFEST-ADOPTION-READINESS-20261016-17 r1",
+    "terminal_token": "REV3_MANIFEST_ADOPTION_READY"
+}
