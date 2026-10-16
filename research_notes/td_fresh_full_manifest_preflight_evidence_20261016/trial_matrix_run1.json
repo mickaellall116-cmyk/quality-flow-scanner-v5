@@ -1,0 +1,296 @@
+{
+ "suite_facts": {
+  "all_passed": true,
+  "fresh_digest_differs_from_spot8_binding": true,
+  "old_spot8_state_byte_identical_after": true,
+  "old_spot8_state_files": 11,
+  "total_checks": 67,
+  "total_trials": 22
+ },
+ "trials": {
+  "T01_freeze_verify": {
+   "check_count": 4,
+   "checks": [
+    "digest_pin",
+    "shape_51_20",
+    "run_id",
+    "supplement_bound"
+   ],
+   "facts": {
+    "outcome": "FROZEN"
+   },
+   "passed": true
+  },
+  "T02_tamper_manifest_symbol": {
+   "check_count": 2,
+   "checks": [
+    "symbol:refused:MANIFEST_DIGEST_MISMATCH",
+    "symbol:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T03_tamper_order_swap": {
+   "check_count": 2,
+   "checks": [
+    "order_swap:refused:MANIFEST_DIGEST_MISMATCH",
+    "order_swap:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T04_tamper_budget": {
+   "check_count": 2,
+   "checks": [
+    "budget:refused:MANIFEST_DIGEST_MISMATCH",
+    "budget:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T05_tamper_drop_request": {
+   "check_count": 2,
+   "checks": [
+    "drop_request:refused:MANIFEST_DIGEST_MISMATCH",
+    "drop_request:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T06_tamper_supplement_binding": {
+   "check_count": 2,
+   "checks": [
+    "supp_binding:refused:SUPPLEMENT_BINDING_MISMATCH",
+    "supp_binding:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T07_tamper_supplement_expected_bars": {
+   "check_count": 2,
+   "checks": [
+    "supp_expected_bars:refused:SUPPLEMENT_ENTRY_NOT_ZERO_BARS",
+    "supp_expected_bars:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T08_full_run_success": {
+   "check_count": 13,
+   "checks": [
+    "outcome_complete",
+    "exact_ordered_calls",
+    "reservations_51",
+    "completed_49",
+    "closed_evidenced_2",
+    "no_receipt_for_closed",
+    "closed_body_is_fresh_response_REQ-SPT-07",
+    "closed_body_is_fresh_response_REQ-SPT-08",
+    "hash_binding_REQ-P1H-01",
+    "hash_binding_REQ-P4H-01",
+    "hash_binding_REQ-ADJ-01",
+    "hash_binding_REQ-SPT-01",
+    "limiter_minute_cap_never_exceeded"
+   ],
+   "facts": {
+    "calls": 51,
+    "max_reservations_any_60s": 8,
+    "outcome": "COMPLETE",
+    "pacing_waits": 6,
+    "reservations": 51
+   },
+   "passed": true
+  },
+  "T09_closed_message_mutated": {
+   "check_count": 3,
+   "checks": [
+    "mutated_message:hold",
+    "mutated_message:calls",
+    "mutated_message:spt08_not_attempted"
+   ],
+   "facts": {
+    "calls": 50,
+    "outcome": "HOLD_HTTP_400"
+   },
+   "passed": true
+  },
+  "T10_closed_200_empty_values": {
+   "check_count": 3,
+   "checks": [
+    "empty_200:hold",
+    "empty_200:calls",
+    "empty_200:spt08_not_attempted"
+   ],
+   "facts": {
+    "calls": 50,
+    "outcome": "HOLD_MISSING_EMPTY_VALUES"
+   },
+   "passed": true
+  },
+  "T11_closed_400_with_values_field": {
+   "check_count": 3,
+   "checks": [
+    "values_field:hold",
+    "values_field:calls",
+    "values_field:spt08_not_attempted"
+   ],
+   "facts": {
+    "calls": 50,
+    "outcome": "HOLD_HTTP_400"
+   },
+   "passed": true
+  },
+  "T12_closed_shape_on_unregistered_request": {
+   "check_count": 2,
+   "checks": [
+    "hold_first_request",
+    "one_call_only"
+   ],
+   "facts": {
+    "calls": 1,
+    "outcome": "HOLD_HTTP_400"
+   },
+   "passed": true
+  },
+  "T13_calendar_proof_missing": {
+   "check_count": 2,
+   "checks": [
+    "hold_without_calendar_proof",
+    "calls_50"
+   ],
+   "facts": {
+    "calls": 50,
+    "outcome": "HOLD_HTTP_400"
+   },
+   "passed": true
+  },
+  "T14_http_500_fail_closed_stop": {
+   "check_count": 2,
+   "checks": [
+    "hold_500",
+    "later_not_attempted"
+   ],
+   "facts": {
+    "calls": 5,
+    "outcome": "HOLD_HTTP_500"
+   },
+   "passed": true
+  },
+  "T15_venue_mismatch_stop": {
+   "check_count": 2,
+   "checks": [
+    "hold_venue",
+    "calls_3"
+   ],
+   "facts": {
+    "calls": 3,
+    "outcome": "HOLD_META_VENUE_MISMATCH"
+   },
+   "passed": true
+  },
+  "T16_unknown_credit_state": {
+   "check_count": 2,
+   "checks": [
+    "hold_unknown_credit",
+    "zero_calls_zero_reservations"
+   ],
+   "facts": {
+    "calls": 0,
+    "outcome": "HOLD_UNKNOWN_CREDIT_STATE",
+    "reservations": 0
+   },
+   "passed": true
+  },
+  "T17_shared_limiter_day_cap": {
+   "check_count": 3,
+   "checks": [
+    "refused_at_day_cap",
+    "only_5_calls_fit",
+    "ledger_at_800"
+   ],
+   "facts": {
+    "calls": 5,
+    "outcome": "REFUSED_LIMITER_DAY_CAP",
+    "reservations_total": 800
+   },
+   "passed": true
+  },
+  "T18_crash_restart_ambiguous": {
+   "check_count": 7,
+   "checks": [
+    "crash_propagated",
+    "phase1_calls_11",
+    "restart_hold_ambiguous",
+    "restart_zero_calls",
+    "completed_not_redispatched",
+    "ambiguous_marked",
+    "later_not_attempted"
+   ],
+   "facts": {
+    "outcome": "HOLD_AMBIGUOUS_STARTED",
+    "phase1_calls": 11,
+    "restart_calls": 0
+   },
+   "passed": true
+  },
+  "T19_restart_idempotent_after_complete": {
+   "check_count": 2,
+   "checks": [
+    "idempotent_complete",
+    "zero_redispatch"
+   ],
+   "facts": {
+    "calls": 0,
+    "outcome": "COMPLETE"
+   },
+   "passed": true
+  },
+  "T20_duplicate_owner_refused": {
+   "check_count": 2,
+   "checks": [
+    "second_owner:refused:DUPLICATE_OWNER",
+    "second_owner:zero_calls"
+   ],
+   "facts": {
+    "calls": 0,
+    "outcome": "DUPLICATE_OWNER_REFUSED"
+   },
+   "passed": true
+  },
+  "T21_foreign_file_namespace_refused": {
+   "check_count": 3,
+   "checks": [
+    "foreign_namespace:refused:NAMESPACE_NOT_CLEAN",
+    "foreign_namespace:zero_calls",
+    "foreign_bytes_untouched"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T22_limiter_ledger_corrupt": {
+   "check_count": 2,
+   "checks": [
+    "corrupt_ledger:refused:LIMITER_LEDGER_CORRUPT",
+    "corrupt_ledger:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  }
+ }
+}
