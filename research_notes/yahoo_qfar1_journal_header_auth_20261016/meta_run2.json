@@ -1,0 +1,9 @@
+{
+ "failures_each": 0,
+ "results_byte_identical": true,
+ "results_sha256_each": "aef4b0942e0fe422cd7c38bd374af83c41b7ebabcaf47d418bec6787805f50bb",
+ "runs": 2,
+ "scope": "journal cases only (spec req 5); staging/fencing/crash-reconciliation/validation-pin/ceiling evidence reused from pins 1778dba/cf929e0",
+ "suite": "QF-YAHOO-QFAR1-JOURNAL-HEADER-AUTH-20261016-16 r1",
+ "total_checks_each": 474
+}

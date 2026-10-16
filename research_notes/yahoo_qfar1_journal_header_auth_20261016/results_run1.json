@@ -1,0 +1,59 @@
+{
+ "candidate": "qfar1_publisher_h16.py",
+ "cases": [
+  {
+   "checks": 3,
+   "failures": [],
+   "id": "J-01",
+   "title": "roundtrip append/read, exact verified end",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 414,
+   "failures": [],
+   "id": "J-02",
+   "title": "exhaustive cut->append->reopen at every byte offset",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 15,
+   "failures": [],
+   "id": "J-03",
+   "title": "coherent IN-BOUND length+complement forgery -> CORRUPT, no truncate",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 32,
+   "failures": [],
+   "id": "J-04",
+   "title": "bit flip in every fixed-header field/digest class -> CORRUPT",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 6,
+   "failures": [],
+   "id": "J-05",
+   "title": "malformed available header vs genuine byte-prefix tear",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 4,
+   "failures": [],
+   "id": "J-06",
+   "title": "real-process torn append -> restart recovers exactly",
+   "verdict": "PASS"
+  }
+ ],
+ "frame": {
+  "header_bytes": 53,
+  "header_core_bytes": 21,
+  "magic": "QFJ2",
+  "max_frame_payload": 1048576,
+  "tag_bytes": 32,
+  "version": 2
+ },
+ "suite": "QF-YAHOO-QFAR1-JOURNAL-HEADER-AUTH-20261016-16 r1 (journal cases only)",
+ "total_checks": 474,
+ "total_failures": 0,
+ "verdict": "PASS"
+}
