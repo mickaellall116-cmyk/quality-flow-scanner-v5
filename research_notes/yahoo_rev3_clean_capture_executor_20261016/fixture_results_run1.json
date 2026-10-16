@@ -1,0 +1,80 @@
+{
+ "cases": [
+  {
+   "checks": 12,
+   "failures": [],
+   "id": "C-01",
+   "title": "52-call success: exact 156 payloads, journal outside root, limiter, no bookkeeping",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 4,
+   "failures": [],
+   "id": "C-02",
+   "title": "crash after ATTEMPT before finalization -> restart zero calls, AMBIGUOUS hold",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 3,
+   "failures": [],
+   "id": "C-03",
+   "title": "valid COMPLETE restart skips with zero calls",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 4,
+   "failures": [],
+   "id": "C-04",
+   "title": "missing/altered member of completed triplet -> zero-call FINAL_MISMATCH",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 10,
+   "failures": [],
+   "id": "C-05",
+   "title": "duplicate/conflicting/torn/interior-corrupt journal -> zero-call named HOLD",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 30,
+   "failures": [
+    "id 'TEST-CAPTURE' rejected",
+    "id 'TEST-CAPTURE': zero calls"
+   ],
+   "id": "C-06",
+   "title": "symlink/path/capture-ID/case adversaries fail before transport",
+   "verdict": "FAIL"
+  },
+  {
+   "checks": 22,
+   "failures": [
+    "total: OK"
+   ],
+   "id": "C-07",
+   "title": "429/exception/shape/schema/meta/partial + ceilings -> stop, named HOLD, no retry",
+   "verdict": "FAIL"
+  },
+  {
+   "checks": 8,
+   "failures": [],
+   "id": "C-08",
+   "title": "fixture validator pins -> accepted publisher seals exactly 158, journals outside",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 9,
+   "failures": [
+    "source free of 'requests'"
+   ],
+   "id": "C-09",
+   "title": "import audit: no parked-executor dependency, stdlib only, sockets denied",
+   "verdict": "FAIL"
+  }
+ ],
+ "executor": "clean_capture_executor.py",
+ "peak_rss_mb": 240.41,
+ "suite": "QF-YAHOO-REV3-CLEAN-CAPTURE-EXECUTOR-OFFLINE-20261016-19 r1",
+ "total_checks": 102,
+ "total_failures": 4,
+ "verdict": "FAIL"
+}
