@@ -1,0 +1,113 @@
+{
+  "task": "QF-HISTORICAL-DATA-MINIMUM-ACTION-PACKET-20261016-02 r1",
+  "spec": {
+    "source": "GitHub Issue #1 comment 6224195902",
+    "fetched_via": "unauthenticated public GitHub API",
+    "created_at": "2026-10-16T20:34:57Z",
+    "author": "mickaellall116-cmyk"
+  },
+  "pass": {
+    "started_utc": "2026-10-16T20:58:11Z",
+    "budget_min": 30,
+    "mode": "one read-only evidence pass; no repair/retest",
+    "network": "spec fetch only"
+  },
+  "verdict": "ROUTE_READY_FOR_USER_GO",
+  "primary": "TD fresh acquisition (fresh immutable manifest/run identity, full V2 manifest, NL env 0923db7)",
+  "fallback": "Yahoo clean capture (PARKED; crash-only + git-carried pinned-commit boundary, research-only)",
+  "rejected": {
+    "already_held": "zero qualified reusable C1 bytes (30eec2d)",
+    "tiingo": "HOLD (terms + daily-only)",
+    "intrinio_zacks": "declined by Mike"
+  },
+  "evidence_pins": [
+    {
+      "claim": "held qualified C1 bytes = zero; D1 destroyed, pins survive",
+      "pin": "commit 30eec2d; research_notes/CORRECTED_BASELINE_DATA_READINESS_MAP_20261015.md",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "NL env rebuilt and accepted; freeze == lock 08b38cfa; classifier 28/28",
+      "pin": "commit 0923db7; Issue #1 comment 6224195902",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "TD V2 manifest: 51 req, 20 sym, legs SPOT8/PAR20/PAR4H20/ADJ3, adjust=splits, windows 2022-03-07..2026-08-24, 51 credits",
+      "pin": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/acquisition_manifest_v2.json sha256 4a6e3a55ba6cacf80d60c26870817a272534d62cd73eb09d1dfc889d571c547d",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "TD plan caps Basic 8/min, 800/day",
+      "pin": "research_notes/td_v2_spot_batch_preflight_evidence_20261014/acquisition_manifest_v2_spot8.json budget.plan_caps",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "SPOT8 executed: 6 COMPLETE, SPT-07 HOLD (HTTP 400 closed day), SPT-08 NOT ATTEMPTED, 7 credits, fail-closed stop honored",
+      "pin": "research_notes/TD_V2_SPOT8_LIVE_SCREEN_RESULT_20261014.md; Issue #1 comment 6174336884",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "full-manifest preflight HOLD on the persistent SPT-07 HOLD state (no re-entry)",
+      "pin": "research_notes/TD_P2_SPOT_V2_FULL_MANIFEST_PREFLIGHT_20261015.md (P2_SPOT_V2_FULL_MANIFEST_PREFLIGHT_HOLD)",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "-04 preflight PASS; NL supplement binds the eight-request SPOT8 manifest only",
+      "pin": "research_notes/TD_P2_SPOT_V2_EXECUTION_PREFLIGHT_20261015.md",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "derivation route PARKED (cap breach), candidate local-only",
+      "pin": "local branch commit ce9c02a; research_notes/TD_P2_SPOT_V2_DERIVATION_CANDIDATE_20261015.md",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "closed-session semantics: EXPECTED_EMPTY_CLOSED_SESSION proposed; P2 v1 UNMET; classifier NL-qualification PASS",
+      "pin": "research_notes/TD_CLOSED_SESSION_SEMANTICS_20261014.md; research_notes/TD_CLOSED_SESSION_CLASSIFIER_NLQUAL_20261015.md",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "TD terms: no retention durations specified; s16.1 deletion within 30 days of termination; indefinite immutable retention NOT granted; C4 = hard gate for retained-history path",
+      "pin": "research_notes/DATA_FEED_SAMPLE_EVAL_SPEC_20261006.md [C5] finding, verified 2026-10-07",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "Yahoo frozen rev2 manifest 634c4541: 52 requests, 1h, auto_adjust=False, prepost=False, actions=True; 729d reach ~= 2024-10-17; coverage-limited vs 2023-01-01 prereg",
+      "pin": "-08 r2 preflight record (dispatch evidence base)",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "rev3 candidate READY_FOR_SEPARATE_ADOPTION, not adopted; QFAR1 publisher accepted (-16, commit 53bdc67); U-1 never probed; capture never authorized",
+      "pin": "research_notes/YAHOO_REV3_MANIFEST_ADOPTION_READINESS_20261016.md; -19 r1-r6 package chain",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "privileged trust anchor infeasible on this host (all-root, no second uid, home-only persistence); route PARKED; git-carried anchor research-only, not approved",
+      "pin": "research_notes/YAHOO_TRUST_ANCHOR_FEASIBILITY_20261016.md (483b5292); feasibility commit e0b4e9f; bridge cd6a900",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "qf-data-archive designated by Mike 2026-10-15: private, append-only, README commit b39df71",
+      "pin": "repo mickaellall116-cmyk/qf-data-archive; commit b39df71",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "Tiingo ~378 MB held, terms bar persisting data/derived products; disposition pending Mike; DELETE recommended by Muse 2026-10-14, ChatGPT adjudication outstanding",
+      "pin": "bridge commit 6f1b770; Tiingo terms read 2026-10-06",
+      "label": "VERIFIED"
+    },
+    {
+      "claim": "elapsed estimates per route; fresh-run output paths pinned at adjudication; realistic sequencing (screen first, dataset decision second)",
+      "pin": "analyst judgment over the pinned record",
+      "label": "INFERRED"
+    },
+    {
+      "claim": "TD live account plan/credit state today; TD 1h depth entitlement on Basic at dataset scale; GitHub ruleset adequacy for a git-carried anchor",
+      "pin": "no live check permitted in this task",
+      "label": "UNKNOWN"
+    }
+  ],
+  "user_decision_card": "Authorize TD fresh full-manifest acquisition: new immutable manifest/run identity, 51 requests, <=51 credits (Basic 800/day), $0 spend, one attempt each, after ChatGPT adjudicates fresh manifest + re-scoped preflight + -15 closed-session class, in NL env 0923db7, -14 fail-closed stop rule. Does not adopt TD as permanent dataset source; does not authorize dataset-scale pull, baseline, or performance work.",
+  "scope_confirmation": "Read-only. Zero vendor/Yahoo/model/API calls beyond the spec fetch; zero installs, capture, downloads, live-state writes, permission mutations, destructive git tests, baseline/backtest/performance, tuning, holdout access, production/trading changes, spend, Issue #9 execution. No existing file edited; package left uncommitted.",
+  "head_at_pass": "65f4359"
+}
