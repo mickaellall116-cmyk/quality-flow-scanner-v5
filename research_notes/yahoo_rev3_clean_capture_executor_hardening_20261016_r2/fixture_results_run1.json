@@ -1,0 +1,66 @@
+{
+ "cases": [
+  {
+   "checks": 10,
+   "failures": [],
+   "id": "R2-01",
+   "title": "two real processes: one owner calls, contender HOLD:OWNER_BUSY zero calls",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 4,
+   "failures": [],
+   "id": "R2-02",
+   "title": "owner killed after fsynced ATTEMPT: successor zero-call ATTEMPT_CONSUMED_AMBIGUOUS",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 6,
+   "failures": [],
+   "id": "R2-03",
+   "title": "pre-existing temp/final retained byte-identical, zero call, named HOLD",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 6,
+   "failures": [],
+   "id": "R2-04",
+   "title": "limiter sleep crosses 1800s wall: zero ATTEMPT/call after sleep, durable HOLD:WALL_CEILING",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 22,
+   "failures": [],
+   "id": "R2-05",
+   "title": "429/schema/partial/total-ceiling failures: one durable HOLD; restart reproduces code/detail, zero calls",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 13,
+   "failures": [],
+   "id": "R2-06",
+   "title": "malformed/conflicting/duplicate HOLD + false byte-total COMPLETE fail closed / not trusted",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 6,
+   "failures": [],
+   "id": "R2-07",
+   "title": "real-process component swap/symlink race cannot escape trusted dirfds; named HOLD",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 10,
+   "failures": [],
+   "id": "R2-08",
+   "title": "retained r1 happy-path smoke: 52 calls/156 payloads, deterministic twin, publisher compatibility",
+   "verdict": "PASS"
+  }
+ ],
+ "executor": "clean_capture_executor_h19r2.py",
+ "peak_rss_mb": 32.01,
+ "suite": "QF-YAHOO-REV3-CLEAN-CAPTURE-EXECUTOR-HARDENING-20261016-19 r2",
+ "total_checks": 77,
+ "total_failures": 0,
+ "verdict": "PASS"
+}

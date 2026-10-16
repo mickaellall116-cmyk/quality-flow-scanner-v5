@@ -1,0 +1,727 @@
+--- research_notes/yahoo_rev3_clean_capture_executor_20261016/clean_capture_executor.py	2026-10-16 10:59:59.361045416 +0000
++++ research_notes/yahoo_rev3_clean_capture_executor_hardening_20261016_r2/clean_capture_executor_h19r2.py	2026-10-16 11:59:39.729197808 +0000
+@@ -1,32 +1,59 @@
+-"""Clean capture executor for QF-YAHOO-REV3-CLEAN-CAPTURE-EXECUTOR-OFFLINE-20261016-19 r1.
++"""Hardened clean capture executor for
++QF-YAHOO-REV3-CLEAN-CAPTURE-EXECUTOR-HARDENING-20261016-19 r2.
+ 
+-Written fresh against the rev3 candidate (SHA-256 pinned below). Stages ONLY the
+-156 payload members (raw/<SYMBOL>.csv, actions/<SYMBOL>.actions.csv,
+-meta/<SYMBOL>.request.json) under a membership-pure capture root. It writes NO
+-manifest.json / SHA256SUMS (publisher bookkeeping), fabricates NO validation
+-pins, runs NO qualification gates, publishes nothing and creates no anchor.
+-Its output is staged bytes only (spec sec.6, separation of authority).
+-
+-Control state is separated: the acquisition journal lives ONLY at
+-<base>/<capture_id>.control/acquisition_attempt_journal.qfj2, never under the
+-payload root. The journal uses authenticated QFJ2-style framing (header digest
+-verified before the declared length is used); any torn/corrupt/conflicting
+-journal state is a named HOLD -- never blind repair, never a re-request.
+-
+-Transport and clock are injected. This module performs no network I/O and
+-imports nothing outside the standard library.
++Minimal delta over the r1 executor (SHA-256 1da59813...; r1 package preserved
++unchanged), closing the four adjudicated gaps plus the component-swap
++hardening named in Issue #1 comment 6214564508:
++
++1. Exclusive live-owner fence: a nonblocking flock on capture_owner.lock in
++   the sibling control directory is acquired BEFORE the acquisition journal
++   is read and held for the whole run. A live second owner stops with
++   HOLD:OWNER_BUSY before any transport call. No age-based takeover; owner
++   death releases the lock via the OS and the successor reconciles the
++   journal (consumed attempts are never repeated).
++2. Strict write-once temp handling: an existing temp or final path is NEVER
++   unlinked or overwritten. A pre-existing temp is retained byte-identical
++   and causes HOLD:TEMP_COLLISION (detected in the pre-run census or at the
++   affected write). The executor performs no cleanup deletions.
++3. Component-safe filesystem operations: base/root/control/raw/actions/meta
++   are pinned as trusted dirfds; all file operations are fd-relative with
++   O_NOFOLLOW, and directory identities are re-verified after writes. A
++   component swap/symlink race ends in HOLD:PATH_RACE / HOLD:PATH_TYPE and
++   no write can escape the pinned directories.
++4. Wall check after the limiter: immediately after limiter.wait() the
++   elapsed wall time is re-checked BEFORE the ATTEMPT record and the
++   transport call. At/over the 1,800 s ceiling: durable HOLD, zero new
++   ATTEMPT, zero new call (the forbidden start does not consume an attempt).
++5. Durable HOLD evidence: every handled post-journal failure appends+fsyncs
++   a schema-strict HOLD record to acquisition_attempt_journal.qfj2 (the
++   candidate defines exactly two control journals; no third file is added),
++   binding capture ID, symbol (or null), exact code/detail,
++   consumed-attempt flag and clock. Restart validates the HOLD record and
++   reproduces the original named state with zero calls.
++6. Strict record schema/order: ATTEMPT/COMPLETE/HOLD records are validated
++   for capture ID, symbol, exact rel set, 64-hex hashes, nonnegative exact
++   byte totals and legal transition/order against the frozen 52 plan.
++   Completed payload bytes are recomputed from the files on disk, never
++   trusted from the journal's bytes field.
++
++Separation of authority is unchanged from r1: stages ONLY the 156 payload
++members, writes NO bookkeeping, fabricates NO pins, runs NO qualification,
++publishes nothing. Transport and clock are injected; no network I/O;
++standard library only.
+ """
++import errno
++import fcntl
+ import hashlib
+ import json
+ import os
+ import re
++import stat as _stat
+ import struct
+ 
+ CANDIDATE_SHA256 = "3d3d4ef51e54f9e6d9bce6119673ddd7e41825049d13c58bead3b19bf4021248"
+-TASK_ID = "QF-YAHOO-REV3-CLEAN-CAPTURE-EXECUTOR-OFFLINE-20261016-19 r1"
++TASK_ID = "QF-YAHOO-REV3-CLEAN-CAPTURE-EXECUTOR-HARDENING-20261016-19 r2"
++R1_EXECUTOR_SHA256 = "1da598136fd133ec0433eaaf456db27203624a4ec8d97f0ff4f82d505a4003bc"
+ 
+-# Adjudicated budget literals (spec -19 sec.4); cross-checked against the
+-# candidate at load -- any disagreement is HOLD:CONSTANT_DRIFT.
+ SPEC_BYTES_PER_SYMBOL = 33554432          # 32 MiB
+ SPEC_PAYLOAD_BUDGET = 67076700
+ SPEC_ROWS_PER_SYMBOL = 20000
+@@ -36,14 +63,16 @@
+ _CAPTURE_ID_RE = re.compile(r"\A[A-Z0-9]+(?:-[A-Z0-9]+)*\Z")
+ _HEX64 = re.compile(r"\A[0-9a-f]{64}\Z")
+ 
+-# ---- journal framing (QFJ2-compatible, implemented fresh) ----
+ _FRAME_MAGIC = b"QFJ2"
+ _FRAME_VERSION = 2
+-_FRAME_CORE = 21          # magic(4) version(1) seq(8) len(4) complement(4)
+-_FRAME_HEADER = 53        # core + sha256(core)
++_FRAME_CORE = 21
++_FRAME_HEADER = 53
+ _FRAME_TAG = 32
+ _MAX_FRAME_PAYLOAD = 1048576
+ 
++JOURNAL_NAME = "acquisition_attempt_journal.qfj2"
++LOCK_NAME = "capture_owner.lock"
++
+ 
+ class HoldError(Exception):
+     def __init__(self, code, detail=""):
+@@ -89,8 +118,8 @@
+ 
+ 
+ def _journal_parse(data):
+-    """Strict parse. Returns list of records. Torn tail -> HOLD:JOURNAL_TORN;
+-    any authenticated-framing violation -> HOLD:JOURNAL_CORRUPT."""
++    """Strict parse. Torn tail -> HOLD:JOURNAL_TORN; any authenticated-framing
++    violation -> HOLD:JOURNAL_CORRUPT. (Unchanged from r1.)"""
+     records = []
+     off = 0
+     seq = 0
+@@ -128,16 +157,34 @@
+     return records
+ 
+ 
+-def _journal_read(path):
+-    if not os.path.exists(path):
++def _read_all(fd):
++    chunks = []
++    while True:
++        b = os.read(fd, 1 << 20)
++        if not b:
++            return b"".join(chunks)
++        chunks.append(b)
++
++
++def _journal_read_fd(dirfd, name):
++    try:
++        fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=dirfd)
++    except FileNotFoundError:
+         return []
+-    with open(path, "rb") as f:
+-        return _journal_parse(f.read())
++    except OSError as e:
++        if e.errno == errno.ELOOP:
++            raise HoldError("HOLD:PATH_TYPE", "journal is a symlink")
++        raise
++    try:
++        return _journal_parse(_read_all(fd))
++    finally:
++        os.close(fd)
+ 
+ 
+-def _journal_append(path, record, seq):
++def _journal_append_fd(dirfd, name, record, seq):
+     frame = _frame_bytes(record, seq)
+-    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_APPEND | os.O_NOFOLLOW, 0o600)
++    fd = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_APPEND | os.O_NOFOLLOW,
++                 0o600, dir_fd=dirfd)
+     try:
+         view = memoryview(frame)
+         while view:
+@@ -148,24 +195,81 @@
+         os.close(fd)
+ 
+ 
+-def _journal_state(records):
+-    """Per-symbol state from journal records; conflicts -> HOLD:JOURNAL_CONFLICT."""
++def _is_num(v):
++    return isinstance(v, (int, float)) and not isinstance(v, bool)
++
++
++def _validate_records(records, plan, capture_id):
++    """Strict schema/order validation (spec item 6). Returns
++    (attempts, completes, hold_record_or_None). Any violation, including
++    duplicate/conflicting/malformed HOLD records -> HOLD:JOURNAL_CONFLICT."""
++    by_sym = {p["symbol"]: p for p in plan}
+     attempts, completes = {}, {}
+-    for rec in records:
+-        kind, sym = rec.get("type"), rec.get("symbol")
++    hold = None
++    pending = None          # symbol with ATTEMPT but no COMPLETE yet
++    last_idx = -1
++    order_idx = {p["symbol"]: i for i, p in enumerate(plan)}
++
++    def conflict(msg):
++        raise HoldError("HOLD:JOURNAL_CONFLICT", msg)
++
++    for pos, rec in enumerate(records):
++        kind = rec.get("type")
++        if hold is not None:
++            conflict(f"record after terminal HOLD at {pos}")
++        if kind not in ("ATTEMPT", "COMPLETE", "HOLD"):
++            conflict(f"unknown record {kind!r} at {pos}")
++        if rec.get("capture_id") != capture_id:
++            conflict(f"record capture_id mismatch at {pos}")
++        if not _is_num(rec.get("clock")):
++            conflict(f"record clock invalid at {pos}")
++        sym = rec.get("symbol")
+         if kind == "ATTEMPT":
++            if sym not in by_sym:
++                conflict(f"ATTEMPT unknown symbol {sym!r}")
++            if pending is not None:
++                conflict(f"ATTEMPT {sym} while {pending} unresolved")
+             if sym in attempts or sym in completes:
+-                raise HoldError("HOLD:JOURNAL_CONFLICT", f"duplicate ATTEMPT {sym}")
++                conflict(f"duplicate ATTEMPT {sym}")
++            if order_idx[sym] <= last_idx:
++                conflict(f"ATTEMPT out of plan order {sym}")
++            if rec.get("rels") != by_sym[sym]["rels"]:
++                conflict(f"ATTEMPT rel set mismatch {sym}")
+             attempts[sym] = rec
++            pending = sym
++            last_idx = order_idx[sym]
+         elif kind == "COMPLETE":
+-            if sym not in attempts:
+-                raise HoldError("HOLD:JOURNAL_CONFLICT", f"COMPLETE without ATTEMPT {sym}")
+-            if sym in completes:
+-                raise HoldError("HOLD:JOURNAL_CONFLICT", f"duplicate COMPLETE {sym}")
++            if sym not in by_sym or sym not in attempts or sym in completes:
++                conflict(f"COMPLETE without pending ATTEMPT {sym!r}")
++            if pending != sym:
++                conflict(f"COMPLETE {sym} does not close pending {pending}")
++            files = rec.get("files")
++            if not isinstance(files, dict) or set(files) != set(by_sym[sym]["rels"]):
++                conflict(f"COMPLETE rel set mismatch {sym}")
++            if any(not (isinstance(v, str) and _HEX64.match(v))
++                   for v in files.values()):
++                conflict(f"COMPLETE hash not 64-hex {sym}")
++            b = rec.get("bytes")
++            if not isinstance(b, int) or isinstance(b, bool) or b < 0:
++                conflict(f"COMPLETE bytes invalid {sym}")
+             completes[sym] = rec
+-        else:
+-            raise HoldError("HOLD:JOURNAL_CONFLICT", f"unknown record {kind!r}")
+-    return attempts, completes
++            pending = None
++        else:  # HOLD
++            if sym is not None and sym not in by_sym:
++                conflict(f"HOLD unknown symbol {sym!r}")
++            if sym is not None and sym in completes:
++                conflict(f"HOLD after COMPLETE for {sym}")
++            code = rec.get("code")
++            if not isinstance(code, str) or not code.startswith("HOLD:"):
++                conflict("HOLD code invalid")
++            if not isinstance(rec.get("detail"), str):
++                conflict("HOLD detail invalid")
++            if not isinstance(rec.get("attempt_consumed"), bool):
++                conflict("HOLD attempt_consumed invalid")
++            if rec["attempt_consumed"] and sym not in attempts:
++                conflict("HOLD claims consumed attempt without ATTEMPT")
++            hold = rec
++    return attempts, completes, hold
+ 
+ 
+ # ---------------------------------------------------------------- plan
+@@ -206,25 +310,86 @@
+     return plan
+ 
+ 
+-# ---------------------------------------------------------------- fs helpers
+-def _fsync_dir(path):
+-    fd = os.open(path, os.O_RDONLY | os.O_DIRECTORY)
++# ---------------------------------------------------------------- fs (dirfd)
++def _identity(fd):
++    st = os.fstat(fd)
++    return (st.st_dev, st.st_ino)
++
++
++def _ensure_dir(parent_fd, name):
++    """Open (creating if needed) a trusted subdirectory dirfd. A pre-existing
++    symlink or non-directory component is HOLD:PATH_TYPE."""
+     try:
+-        os.fsync(fd)
++        st = os.stat(name, dir_fd=parent_fd, follow_symlinks=False)
++    except FileNotFoundError:
++        st = None
++    if st is not None:
++        if _stat.S_ISLNK(st.st_mode) or not _stat.S_ISDIR(st.st_mode):
++            raise HoldError("HOLD:PATH_TYPE", f"non-directory component {name!r}")
++    else:
++        os.mkdir(name, 0o755, dir_fd=parent_fd)
++        os.fsync(parent_fd)
++    try:
++        return os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW,
++                       dir_fd=parent_fd)
++    except OSError as e:
++        if e.errno in (errno.ELOOP, errno.ENOTDIR):
++            raise HoldError("HOLD:PATH_TYPE", f"non-directory component {name!r}")
++        raise
++
++
++def _recheck_dir(parent_fd, name, ident):
++    """Post-write identity re-verification of a pinned component."""
++    try:
++        fd = os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW,
++                     dir_fd=parent_fd)
++    except OSError:
++        raise HoldError("HOLD:PATH_RACE", f"component {name!r} swapped/vanished")
++    try:
++        if _identity(fd) != ident:
++            raise HoldError("HOLD:PATH_RACE", f"component {name!r} identity changed")
+     finally:
+         os.close(fd)
+ 
+ 
+-def _write_once(root, rel, data):
+-    """Write data to root/rel via temp + atomic rename; refuse overwrite."""
+-    final = os.path.join(root, rel)
+-    if os.path.lexists(final):
+-        raise HoldError("HOLD:FINAL_MISMATCH", f"final path exists: {rel}")
+-    tmp = os.path.join(os.path.dirname(final),
+-                       "." + os.path.basename(final) + ".tmp")
+-    if os.path.lexists(tmp):
+-        os.unlink(tmp)
+-    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
++class _OwnerLock:
++    """Nonblocking exclusive flock held for the entire run (spec item 1)."""
++
++    def __init__(self, control_fd):
++        self.fd = os.open(LOCK_NAME, os.O_RDWR | os.O_CREAT, 0o600,
++                          dir_fd=control_fd)
++        try:
++            fcntl.flock(self.fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
++        except BlockingIOError:
++            os.close(self.fd)
++            raise HoldError("HOLD:OWNER_BUSY",
++                            "a live owner holds the capture lock")
++
++    def close(self):
++        os.close(self.fd)   # closing the fd releases the flock
++
++
++def _is_temp_name(name):
++    return name.startswith(".") and name.endswith(".tmp")
++
++
++def _write_once_fd(dirfd, name, data):
++    """Write-once via temp + atomic rename, fd-relative. NEVER unlinks or
++    overwrites: existing final -> HOLD:FINAL_MISMATCH; existing temp is
++    retained and -> HOLD:TEMP_COLLISION."""
++    tmp = "." + name + ".tmp"
++    try:
++        os.stat(name, dir_fd=dirfd, follow_symlinks=False)
++        raise HoldError("HOLD:FINAL_MISMATCH", f"final path exists: {name}")
++    except FileNotFoundError:
++        pass
++    try:
++        os.stat(tmp, dir_fd=dirfd, follow_symlinks=False)
++        raise HoldError("HOLD:TEMP_COLLISION", f"pre-existing temp retained: {tmp}")
++    except FileNotFoundError:
++        pass
++    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
++                 0o600, dir_fd=dirfd)
+     try:
+         view = memoryview(data)
+         while view:
+@@ -233,25 +398,44 @@
+         os.fsync(fd)
+     finally:
+         os.close(fd)
+-    os.rename(tmp, final)
+-    _fsync_dir(os.path.dirname(final))
++    os.rename(tmp, name, src_dir_fd=dirfd, dst_dir_fd=dirfd)
++    os.fsync(dirfd)
+ 
+ 
+-def _census_root(root, plan):
+-    """Root may contain only raw/actions/meta dirs; no symlinks/non-regular."""
++def _read_file_fd(dirfd, name):
++    fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=dirfd)
++    try:
++        return _read_all(fd)
++    finally:
++        os.close(fd)
++
++
++def _census_root(root_fd, sub_fds, plan):
++    """Root may contain only the raw/actions/meta pinned dirs and journaled
++    payload files; no symlinks/non-regular entries. A stray temp artifact
++    is HOLD:TEMP_COLLISION (retained, never deleted)."""
+     allowed_dirs = {"raw", "actions", "meta"}
+     expected = {rel for p in plan for rel in p["rels"]}
+     seen = set()
+-    for entry in sorted(os.listdir(root)):
+-        p = os.path.join(root, entry)
+-        if os.path.islink(p) or not os.path.isdir(p) or entry not in allowed_dirs:
++    for entry in sorted(os.listdir(root_fd)):
++        if entry not in allowed_dirs:
++            raise HoldError("HOLD:MEMBERSHIP", f"stray capture-root entry {entry!r}")
++        st = os.stat(entry, dir_fd=root_fd, follow_symlinks=False)
++        if _stat.S_ISLNK(st.st_mode) or not _stat.S_ISDIR(st.st_mode):
+             raise HoldError("HOLD:MEMBERSHIP", f"stray capture-root entry {entry!r}")
+-        for name in sorted(os.listdir(p)):
+-            fp = os.path.join(p, name)
+-            if os.path.islink(fp) or not os.path.isfile(fp):
++        sub_fd = sub_fds[entry]
++        for name in sorted(os.listdir(sub_fd)):
++            st2 = os.stat(name, dir_fd=sub_fd, follow_symlinks=False)
++            if _stat.S_ISLNK(st2.st_mode) or not _stat.S_ISREG(st2.st_mode):
++                if _is_temp_name(name):
++                    raise HoldError("HOLD:TEMP_COLLISION",
++                                    f"pre-existing temp retained: {entry}/{name}")
+                 raise HoldError("HOLD:PATH_TYPE", f"non-regular file {entry}/{name}")
+             seen.add(f"{entry}/{name}")
+     extra = seen - expected
++    for rel in sorted(extra):
++        if _is_temp_name(rel.split("/", 1)[1]):
++            raise HoldError("HOLD:TEMP_COLLISION", f"pre-existing temp retained: {rel}")
+     if extra:
+         raise HoldError("HOLD:MEMBERSHIP", f"unjournaled/extra files {sorted(extra)}")
+     return seen
+@@ -265,7 +449,8 @@
+ 
+ 
+ def _serialize(req, resp, clock_now_iso):
+-    """Validate the injected response; return (raw_csv, actions_csv, meta_json)."""
++    """Validate the injected response; return (raw_csv, actions_csv, meta_json).
++    Unchanged from r1."""
+     if not isinstance(resp, dict):
+         raise HoldError("HOLD:SHAPE_DRIFT", "response not an object")
+     if resp.get("symbol") != req["symbol"]:
+@@ -317,7 +502,8 @@
+ 
+ # ---------------------------------------------------------------- limiter
+ class Limiter:
+-    """One process-wide limiter: >= gap seconds between request starts."""
++    """One process-wide limiter: >= gap seconds between request starts.
++    Unchanged from r1."""
+ 
+     def __init__(self, clock, gap=SPEC_MIN_START_GAP):
+         self.clock = clock
+@@ -337,138 +523,180 @@
+ 
+ # ---------------------------------------------------------------- executor
+ def run_capture(candidate_path, base_dir, capture_id, transport, clock, limiter):
+-    """Stage the 156 payloads. Returns a result dict; raises HoldError for
+-    named HOLD states that precede any staging decision (journal/path/ID).
+-    Transport failures and ceiling breaches end the run as INCOMPLETE_HOLD
+-    (returned, with the attempt consumed in the journal)."""
++    """Stage the 156 payloads under owner fence. Returns a result dict;
++    raises HoldError for named HOLD states. Every handled post-journal
++    failure also appends a durable HOLD record to the acquisition journal
++    before returning INCOMPLETE_HOLD."""
+     plan = load_plan(candidate_path)
+     validate_capture_id(capture_id)
+-    root = os.path.join(base_dir, capture_id)
+-    control = os.path.join(base_dir, capture_id + ".control")
++    root_name = capture_id
++    control_name = capture_id + ".control"
+     # case-collision: a sibling differing only by case is an alias risk
+     if os.path.isdir(base_dir):
+         for entry in os.listdir(base_dir):
+             if entry != capture_id and entry.lower() == capture_id.lower():
+                 raise HoldError("HOLD:CAPTURE_ID_INVALID", f"case collision {entry!r}")
+-            if entry != capture_id + ".control" and \
+-                    entry.lower() == (capture_id + ".control").lower():
++            if entry != control_name and entry.lower() == control_name.lower():
+                 raise HoldError("HOLD:CAPTURE_ID_INVALID", f"case collision {entry!r}")
+-    for p in (root, control):
+-        if os.path.islink(p):
+-            raise HoldError("HOLD:PATH_TYPE", f"symlink at {p}")
+-        if os.path.exists(p) and not os.path.isdir(p):
+-            raise HoldError("HOLD:PATH_TYPE", f"non-directory at {p}")
+-    os.makedirs(root, exist_ok=True)
+-    os.makedirs(control, exist_ok=True)
+-    for d in ("raw", "actions", "meta"):
+-        dp = os.path.join(root, d)
+-        if os.path.islink(dp):
+-            raise HoldError("HOLD:PATH_TYPE", f"symlink at {dp}")
+-        os.makedirs(dp, exist_ok=True)
+-    journal_path = os.path.join(control, "acquisition_attempt_journal.qfj2")
+-    if os.path.islink(journal_path):
+-        raise HoldError("HOLD:PATH_TYPE", "journal is a symlink")
+-    records = _journal_read(journal_path)          # torn/corrupt -> named HOLD
+-    attempts, completes = _journal_state(records)  # conflicts -> named HOLD
+-    on_disk = _census_root(root, plan)
+-
+-    result = {"task": TASK_ID, "capture_id": capture_id, "status": None,
+-              "code": None, "calls_this_run": 0, "states": {},
+-              "payload_bytes": 0}
+-    seq = len(records)
+-    t0 = clock.now()
+-
+-    # ---- restart reconciliation before any new attempt ----
+-    for p in plan:
+-        sym = p["symbol"]
+-        if sym in completes:
+-            rec = completes[sym]
+-            bound = rec.get("files")
+-            ok = isinstance(bound, dict) and set(bound) == set(p["rels"])
+-            if ok:
++    os.makedirs(base_dir, exist_ok=True)
++    base_fd = os.open(base_dir, os.O_RDONLY | os.O_DIRECTORY)
++    fds = [base_fd]
++    lock = None
++    try:
++        root_fd = _ensure_dir(base_fd, root_name)
++        fds.append(root_fd)
++        control_fd = _ensure_dir(base_fd, control_name)
++        fds.append(control_fd)
++        sub_fds = {}
++        for d in ("raw", "actions", "meta"):
++            sub_fds[d] = _ensure_dir(root_fd, d)
++            fds.append(sub_fds[d])
++        identities = {"root": _identity(root_fd),
++                      "control": _identity(control_fd),
++                      **{d: _identity(sub_fds[d]) for d in sub_fds}}
++
++        def recheck_all():
++            _recheck_dir(base_fd, root_name, identities["root"])
++            _recheck_dir(base_fd, control_name, identities["control"])
++            for d in ("raw", "actions", "meta"):
++                _recheck_dir(root_fd, d, identities[d])
++
++        # (1) owner fence BEFORE the journal is read; held for the whole run
++        lock = _OwnerLock(control_fd)
++
++        records = _journal_read_fd(control_fd, JOURNAL_NAME)
++        attempts, completes, hold = _validate_records(records, plan, capture_id)
++        if hold is not None:
++            # (5) restart reproduces the original named state, zero calls
++            raise HoldError(hold["code"],
++                            hold["detail"] + " [durable HOLD record]")
++        on_disk = _census_root(root_fd, sub_fds, plan)
++
++        result = {"task": TASK_ID, "capture_id": capture_id, "status": None,
++                  "code": None, "calls_this_run": 0, "states": {},
++                  "payload_bytes": 0}
++        seq = len(records)
++        t0 = clock.now()
++
++        def fail(code, detail, sym, consumed):
++            """(5) durable HOLD record, then INCOMPLETE_HOLD result."""
++            nonlocal seq
++            _journal_append_fd(control_fd, JOURNAL_NAME, {
++                "type": "HOLD", "capture_id": capture_id, "symbol": sym,
++                "code": code, "detail": detail,
++                "attempt_consumed": consumed, "clock": clock.now()}, seq)
++            seq += 1
++            result.update(status="INCOMPLETE_HOLD", code=code)
++            if sym is not None and consumed:
++                result["states"][sym] = "ATTEMPT_CONSUMED"
++            return result
++
++        # ---- restart reconciliation before any new attempt ----
++        for p in plan:
++            sym = p["symbol"]
++            if sym in completes:
++                rec = completes[sym]
++                actual = 0
++                ok = True
+                 for rel in p["rels"]:
+-                    fp = os.path.join(root, rel)
+-                    if rel not in on_disk or _sha256(open(fp, "rb").read()) != bound[rel]:
++                    d, name = rel.split("/", 1)
++                    if rel not in on_disk:
+                         ok = False
+                         break
+-            if not ok:
+-                raise HoldError("HOLD:FINAL_MISMATCH",
+-                                f"completed triplet missing/altered: {sym}")
+-            result["states"][sym] = "SKIP_VERIFIED"
+-            result["payload_bytes"] += rec.get("bytes", 0)
+-        elif sym in attempts:
+-            raise HoldError("HOLD:ATTEMPT_CONSUMED_AMBIGUOUS",
+-                            f"attempt without COMPLETE: {sym}")
+-        else:
+-            stray = [r for r in p["rels"] if r in on_disk]
+-            if stray:
+-                raise HoldError("HOLD:FINAL_MISMATCH",
+-                                f"files without journal records: {sym} {stray}")
+-            result["states"][sym] = "ELIGIBLE"
+-
+-    # ---- acquisition loop ----
+-    for p in plan:
+-        sym = p["symbol"]
+-        if result["states"][sym] != "ELIGIBLE":
+-            continue
+-        if clock.now() - t0 > SPEC_WALL_SECONDS:
+-            result.update(status="INCOMPLETE_HOLD", code="HOLD:WALL_CEILING")
+-            return result
+-        limiter.wait()
+-        _journal_append(journal_path, {
+-            "type": "ATTEMPT", "symbol": sym, "rels": p["rels"],
+-            "clock": clock.now()}, seq)
+-        seq += 1
+-        result["calls_this_run"] += 1
+-        req = {k: p[k] for k in ("symbol", "class", "session", "interval",
+-                                 "auto_adjust", "prepost", "actions",
+-                                 "required_fields")}
+-        try:
+-            resp = transport(req)
+-        except TransportFailure as e:
+-            code = "HOLD:THROTTLE_429" if e.status == 429 else "HOLD:TRANSPORT"
+-            result.update(status="INCOMPLETE_HOLD", code=code)
+-            result["states"][sym] = "ATTEMPT_CONSUMED"
+-            return result
+-        except Exception:
+-            result.update(status="INCOMPLETE_HOLD", code="HOLD:TRANSPORT")
+-            result["states"][sym] = "ATTEMPT_CONSUMED"
+-            return result
+-        if isinstance(resp, dict) and resp.get("status") not in (None, 200):
+-            code = "HOLD:THROTTLE_429" if resp.get("status") == 429 else "HOLD:TRANSPORT"
+-            result.update(status="INCOMPLETE_HOLD", code=code)
+-            result["states"][sym] = "ATTEMPT_CONSUMED"
+-            return result
+-        try:
+-            raw_b, act_b, meta_b = _serialize(p, resp, clock.iso())
+-            triplet = {p["rels"][0]: raw_b, p["rels"][1]: act_b, p["rels"][2]: meta_b}
+-            sym_bytes = sum(len(b) for b in triplet.values())
+-            if sym_bytes > SPEC_BYTES_PER_SYMBOL:
+-                raise HoldError("HOLD:SYMBOL_CEILING",
+-                                f"{sym} {sym_bytes} > {SPEC_BYTES_PER_SYMBOL}")
+-            if result["payload_bytes"] + sym_bytes > SPEC_PAYLOAD_BUDGET:
+-                raise HoldError("HOLD:TOTAL_CEILING",
+-                                f"payload budget {SPEC_PAYLOAD_BUDGET} would breach")
++                    data = _read_file_fd(sub_fds[d], name)
++                    if _sha256(data) != rec["files"][rel]:
++                        ok = False
++                        break
++                    actual += len(data)
++                if not ok:
++                    raise HoldError("HOLD:FINAL_MISMATCH",
++                                    f"completed triplet missing/altered: {sym}")
++                result["states"][sym] = "SKIP_VERIFIED"
++                # (6) bytes recomputed from files; journal bytes not trusted
++                result["payload_bytes"] += actual
++            elif sym in attempts:
++                raise HoldError("HOLD:ATTEMPT_CONSUMED_AMBIGUOUS",
++                                f"attempt without COMPLETE: {sym}")
++            else:
++                stray = [r for r in p["rels"] if r in on_disk]
++                if stray:
++                    raise HoldError("HOLD:FINAL_MISMATCH",
++                                    f"files without journal records: {sym} {stray}")
++                result["states"][sym] = "ELIGIBLE"
++
++        # ---- acquisition loop ----
++        for p in plan:
++            sym = p["symbol"]
++            if result["states"][sym] != "ELIGIBLE":
++                continue
+             if clock.now() - t0 > SPEC_WALL_SECONDS:
+-                raise HoldError("HOLD:WALL_CEILING", "wall limit before COMPLETE")
+-        except HoldError as e:
+-            result.update(status="INCOMPLETE_HOLD", code=e.code)
+-            result["states"][sym] = "ATTEMPT_CONSUMED"
+-            return result
+-        hashes = {}
+-        for rel in p["rels"]:
+-            _write_once(root, rel, triplet[rel])
+-            hashes[rel] = _sha256(triplet[rel])
+-        _journal_append(journal_path, {
+-            "type": "COMPLETE", "symbol": sym, "files": hashes,
+-            "bytes": sym_bytes, "clock": clock.now()}, seq)
+-        seq += 1
+-        result["payload_bytes"] += sym_bytes
+-        result["states"][sym] = "COMPLETE"
+-
+-    done = all(result["states"][p["symbol"]] in ("COMPLETE", "SKIP_VERIFIED")
+-               for p in plan)
+-    result["status"] = "COMPLETE" if done else "INCOMPLETE_HOLD"
+-    if done:
+-        result["code"] = "OK"
+-    return result
++                return fail("HOLD:WALL_CEILING", "wall ceiling before attempt",
++                            None, False)
++            limiter.wait()
++            # (4) wall re-check AFTER the limiter sleep, before ATTEMPT/call;
++            # the forbidden start consumes no attempt.
++            if clock.now() - t0 >= SPEC_WALL_SECONDS:
++                return fail("HOLD:WALL_CEILING",
++                            "wall ceiling reached during limiter wait",
++                            sym, False)
++            _journal_append_fd(control_fd, JOURNAL_NAME, {
++                "type": "ATTEMPT", "capture_id": capture_id, "symbol": sym,
++                "rels": p["rels"], "clock": clock.now()}, seq)
++            seq += 1
++            result["calls_this_run"] += 1
++            req = {k: p[k] for k in ("symbol", "class", "session", "interval",
++                                     "auto_adjust", "prepost", "actions",
++                                     "required_fields")}
++            try:
++                resp = transport(req)
++            except TransportFailure as e:
++                code = "HOLD:THROTTLE_429" if e.status == 429 else "HOLD:TRANSPORT"
++                return fail(code, f"transport failure status={e.status}",
++                            sym, True)
++            except Exception as e:
++                return fail("HOLD:TRANSPORT", f"transport raised {type(e).__name__}",
++                            sym, True)
++            if isinstance(resp, dict) and resp.get("status") not in (None, 200):
++                code = "HOLD:THROTTLE_429" if resp.get("status") == 429 else "HOLD:TRANSPORT"
++                return fail(code, f"transport status {resp.get('status')}",
++                            sym, True)
++            try:
++                raw_b, act_b, meta_b = _serialize(p, resp, clock.iso())
++                triplet = {p["rels"][0]: raw_b, p["rels"][1]: act_b,
++                           p["rels"][2]: meta_b}
++                sym_bytes = sum(len(b) for b in triplet.values())
++                if sym_bytes > SPEC_BYTES_PER_SYMBOL:
++                    raise HoldError("HOLD:SYMBOL_CEILING",
++                                    f"{sym} {sym_bytes} > {SPEC_BYTES_PER_SYMBOL}")
++                if result["payload_bytes"] + sym_bytes > SPEC_PAYLOAD_BUDGET:
++                    raise HoldError("HOLD:TOTAL_CEILING",
++                                    f"payload budget {SPEC_PAYLOAD_BUDGET} would breach")
++                if clock.now() - t0 > SPEC_WALL_SECONDS:
++                    raise HoldError("HOLD:WALL_CEILING", "wall limit before COMPLETE")
++            except HoldError as e:
++                return fail(e.code, e.detail, sym, True)
++            hashes = {}
++            for rel in p["rels"]:
++                d, name = rel.split("/", 1)
++                _write_once_fd(sub_fds[d], name, triplet[rel])
++                hashes[rel] = _sha256(triplet[rel])
++            recheck_all()   # (3) component identity verified before COMPLETE
++            _journal_append_fd(control_fd, JOURNAL_NAME, {
++                "type": "COMPLETE", "capture_id": capture_id, "symbol": sym,
++                "files": hashes, "bytes": sym_bytes, "clock": clock.now()}, seq)
++            seq += 1
++            result["payload_bytes"] += sym_bytes
++            result["states"][sym] = "COMPLETE"
++
++        recheck_all()
++        done = all(result["states"][p["symbol"]] in ("COMPLETE", "SKIP_VERIFIED")
++                   for p in plan)
++        result["status"] = "COMPLETE" if done else "INCOMPLETE_HOLD"
++        if done:
++            result["code"] = "OK"
++        return result
++    finally:
++        if lock is not None:
++            lock.close()
++        for fd in reversed(fds):
++            os.close(fd)
