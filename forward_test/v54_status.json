@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-16T18:57:04.758032+00:00",
+  "as_of": "2026-10-16T20:49:35.115344+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,26 +7,39 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-16T18:57:04.740620+00:00",
-  "signals_logged": 35,
+  "last_successful_cycle": "2026-10-16T20:49:35.084065+00:00",
+  "signals_logged": 37,
   "grade_counts": {
     "A": 9,
-    "B": 23,
+    "B": 25,
     "C": 3
   },
   "grade_counts_by_cohort": {
     "Forward-UX51": {
       "A": 4,
-      "B": 8,
+      "B": 9,
       "C": 0
     },
     "Forward-X2": {
       "A": 5,
-      "B": 15,
+      "B": 16,
       "C": 3
     }
   },
-  "pending_entries": [],
+  "pending_entries": [
+    {
+      "signal_id": "v54:MRNA:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "MRNA",
+      "grade": "B",
+      "signal_bar": "2026-10-16T14:30:00-04:00"
+    },
+    {
+      "signal_id": "v54:TEAM:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "TEAM",
+      "grade": "B",
+      "signal_bar": "2026-10-16T14:30:00-04:00"
+    }
+  ],
   "open_positions": [
     {
       "signal_id": "v54:SHOP:4h:2026-10-15T10:30:00-04:00:2026-09-15-v54",
@@ -37,11 +50,11 @@
       "stop": 165.33922118980624,
       "tp1": 181.76957291674927,
       "status": "open_full",
-      "bars_held": 5,
+      "bars_held": 6,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.466263379325917,
-      "mae_r": -0.33710900874572525
+      "mae_r": -0.6733989917228169
     }
   ],
   "closed_trades": 24,
