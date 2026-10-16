@@ -1,0 +1,8 @@
+# SHA256 manifest — QF-YAHOO-REV3-CLEAN-CAPTURE-EXECUTOR-FINALIZATION-20261016-19 r3
+# Entry 1 verifies from research_notes/; entries 2-5 verify from this package dir.
+
+e4a4111ba1d78e63f539265d5b234146889fbb26a3c9c5b3e475770bd88c0719  YAHOO_REV3_CLEAN_CAPTURE_EXECUTOR_FINALIZATION_20261016_R3.md
+10e6c07f2b850bc10d7b9d852ce1fc13fd9eec87ae8017e4e69fd6be7f01c242  clean_capture_executor_h19r3.py
+1d6cdc6fee15ba4c9db94deb73799f7ac3424187d219699050e3c8bcbdae6224  run_finalization_fixture.py
+0bffc54d43ecde232ac4b12908c0269f57701371333b9a6b45c4b8533944ecd2  proc_worker3.py
+2f6080286a98cbaa0bb0d56aee8cda179bf056e6f8882cff1c900edb3260e9d4  fixture_results_run2.json

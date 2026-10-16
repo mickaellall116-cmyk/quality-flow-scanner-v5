@@ -1,0 +1,59 @@
+{
+ "cases": [
+  {
+   "checks": 14,
+   "failures": [],
+   "id": "R3-01",
+   "title": "coherent false COMPLETE bytes/hash, extra/missing keys, wrong journal identity fail closed, zero calls",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 19,
+   "failures": [],
+   "id": "R3-02",
+   "title": "post-ATTEMPT temp/final collision + component race: one durable named HOLD; restart reproduces code/detail, zero calls",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 6,
+   "failures": [],
+   "id": "R3-03",
+   "title": "destination created after temp fsync, before finalization: never overwritten (HOLD:FINAL_COLLISION)",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 10,
+   "failures": [],
+   "id": "R3-04",
+   "title": "journal-fd lock contention; journal-path symlink/replacement cannot yield two owners or split records",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 9,
+   "failures": [],
+   "id": "R3-05",
+   "title": "base trust boundary: base/control/root symlink or swap fails before transport or stays confined to pinned dirfds",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 3,
+   "failures": [],
+   "id": "R3-06",
+   "title": "control dir holds exactly the acquisition journal (no lock file); journal parseable with one exact terminal HOLD",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 6,
+   "failures": [],
+   "id": "R3-07",
+   "title": "retained smoke: full capture + deterministic twin (journal modulo its identity binding), restart verifies",
+   "verdict": "PASS"
+  }
+ ],
+ "executor": "clean_capture_executor_h19r3.py",
+ "peak_rss_mb": 22.7,
+ "suite": "QF-YAHOO-REV3-CLEAN-CAPTURE-EXECUTOR-FINALIZATION-20261016-19 r3",
+ "total_checks": 67,
+ "total_failures": 0,
+ "verdict": "PASS"
+}
