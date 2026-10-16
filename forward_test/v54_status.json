@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-16T16:50:07.627006+00:00",
+  "as_of": "2026-10-16T18:57:04.758032+00:00",
   "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
   "universe": "UX51+X2 (51+199 symbols)",
   "cohort_sizes": {
@@ -7,7 +7,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-16T16:50:07.557838+00:00",
+  "last_successful_cycle": "2026-10-16T18:57:04.740620+00:00",
   "signals_logged": 35,
   "grade_counts": {
     "A": 9,
@@ -37,33 +37,18 @@
       "stop": 165.33922118980624,
       "tp1": 181.76957291674927,
       "status": "open_full",
-      "bars_held": 4,
+      "bars_held": 5,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.466263379325917,
-      "mae_r": -0.18982919811907445
-    },
-    {
-      "signal_id": "v54:MELI:4h:2026-10-15T14:30:00-04:00:2026-09-15-v54",
-      "symbol": "MELI",
-      "grade": "A",
-      "entry": 1851.3699951171875,
-      "entry_bar": "2026-10-15T14:30:00-04:00",
-      "stop": 1819.6442050946312,
-      "tp1": 1938.1130348076779,
-      "status": "open_full",
-      "bars_held": 2,
-      "tp1_taken": false,
-      "profit_protect_armed": null,
-      "mfe_r": 0.7968289924033871,
-      "mae_r": -0.3583833565406467
+      "mae_r": -0.33710900874572525
     }
   ],
-  "closed_trades": 23,
-  "cumulative_r": 11.0547,
+  "closed_trades": 24,
+  "cumulative_r": 10.0547,
   "cumulative_r_note": "Sum of per-trade blended R at 1R risk each; not compounded.",
-  "avg_r_per_trade": 0.4806,
-  "win_rate": 0.4348,
+  "avg_r_per_trade": 0.4189,
+  "win_rate": 0.4167,
   "closed_v53_would_have_vetoed": 3,
   "closed_vetoed_winners": 1
 }
