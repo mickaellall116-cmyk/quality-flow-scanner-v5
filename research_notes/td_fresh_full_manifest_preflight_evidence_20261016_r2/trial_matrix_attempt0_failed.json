@@ -1,0 +1,309 @@
+{
+ "suite_facts": {
+  "all_passed": false,
+  "fresh_digest_differs_from_spot8_binding": true,
+  "old_spot8_state_byte_identical_after": true,
+  "old_spot8_state_files": 11,
+  "total_checks": 49,
+  "total_trials": 29
+ },
+ "trials": {
+  "T01_freeze_verify": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T02_tamper_manifest_symbol": {
+   "check_count": 2,
+   "checks": [
+    "symbol:refused:MANIFEST_DIGEST_MISMATCH",
+    "symbol:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T03_tamper_order_swap": {
+   "check_count": 2,
+   "checks": [
+    "order_swap:refused:MANIFEST_DIGEST_MISMATCH",
+    "order_swap:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T04_tamper_budget": {
+   "check_count": 2,
+   "checks": [
+    "budget:refused:MANIFEST_DIGEST_MISMATCH",
+    "budget:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T05_tamper_drop_request": {
+   "check_count": 2,
+   "checks": [
+    "drop_request:refused:MANIFEST_DIGEST_MISMATCH",
+    "drop_request:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T06_tamper_supplement_binding": {
+   "check_count": 2,
+   "checks": [
+    "supp_binding:refused:SUPPLEMENT_SHA_MISMATCH",
+    "supp_binding:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T07_tamper_supplement_expected_bars": {
+   "check_count": 2,
+   "checks": [
+    "supp_expected_bars:refused:SUPPLEMENT_SHA_MISMATCH",
+    "supp_expected_bars:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T08_full_run_success": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T09_closed_message_mutated": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T10_closed_200_empty_values": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T11_closed_400_with_values_field": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T12_closed_shape_on_unregistered_request": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T13_calendar_proof_missing": {
+   "check_count": 3,
+   "checks": [
+    "proof_stripped_supplement_refused:SUPPLEMENT_SHA_MISMATCH",
+    "zero_calls",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "calls": 0,
+    "outcome": "REFUSED_PREDISPATCH"
+   },
+   "passed": true
+  },
+  "T14_http_500_fail_closed_stop": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T15_venue_mismatch_stop": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T16_unknown_credit_state": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T17_shared_limiter_day_cap": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T18_crash_restart_ambiguous": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T19_restart_idempotent_after_complete": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: 'NoneType' object is not subscriptable"
+   },
+   "passed": false
+  },
+  "T20_duplicate_owner_refused": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T21_foreign_file_namespace_refused": {
+   "check_count": 3,
+   "checks": [
+    "foreign_namespace:refused:NAMESPACE_NOT_CLEAN",
+    "foreign_namespace:zero_calls",
+    "foreign_bytes_untouched"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T22_limiter_ledger_corrupt": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T23_cross_process_minute_cap": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T24_cross_process_day_cap_race": {
+   "check_count": 1,
+   "checks": [
+    "workers_exit_0"
+   ],
+   "facts": {
+    "error": "AssertionError: workers_exit_0"
+   },
+   "passed": false
+  },
+  "T25_cross_process_crash_persistence": {
+   "check_count": 1,
+   "checks": [
+    "worker_died_hard"
+   ],
+   "facts": {
+    "error": "AssertionError: worker_died_hard"
+   },
+   "passed": false
+  },
+  "T26_shared_ledger_corrupt_never_reset": {
+   "check_count": 2,
+   "checks": [
+    "corrupt_ledger_refused:LIMITER_LEDGER_CORRUPT",
+    "corrupt_bytes_unchanged_1"
+   ],
+   "facts": {
+    "error": "TypeError: cannot unpack non-iterable NoneType object"
+   },
+   "passed": false
+  },
+  "T27_supplement_unchecked_field_mutations": {
+   "check_count": 18,
+   "checks": [
+    "classifier_pin:refused:SUPPLEMENT_SHA_MISMATCH",
+    "classifier_pin:zero_calls",
+    "classifier_pin:zero_writes",
+    "environment_lock:refused:SUPPLEMENT_SHA_MISMATCH",
+    "environment_lock:zero_calls",
+    "environment_lock:zero_writes",
+    "adapter_contract:refused:SUPPLEMENT_SHA_MISMATCH",
+    "adapter_contract:zero_calls",
+    "adapter_contract:zero_writes",
+    "class_field:refused:SUPPLEMENT_SHA_MISMATCH",
+    "class_field:zero_calls",
+    "class_field:zero_writes",
+    "lifecycle_event:refused:SUPPLEMENT_SHA_MISMATCH",
+    "lifecycle_event:zero_calls",
+    "lifecycle_event:zero_writes",
+    "status_field:refused:SUPPLEMENT_SHA_MISMATCH",
+    "status_field:zero_calls",
+    "status_field:zero_writes"
+   ],
+   "facts": {
+    "all_refused_zero_calls_zero_writes": true,
+    "mutation_cases": 6
+   },
+   "passed": true
+  },
+  "T28_supplement_noncanonical_bytes": {
+   "check_count": 6,
+   "checks": [
+    "pretty_printed:refused:SUPPLEMENT_NOT_CANONICAL_BYTES",
+    "pretty_printed:zero_calls",
+    "pretty_printed:zero_writes",
+    "garbage:refused:SUPPLEMENT_UNPARSEABLE",
+    "garbage:zero_calls",
+    "garbage:zero_writes"
+   ],
+   "facts": {
+    "outcome": "NONCANONICAL_SUPPLEMENT_REFUSED"
+   },
+   "passed": true
+  },
+  "T29_ledger_inside_namespace_refused": {
+   "check_count": 3,
+   "checks": [
+    "inside_namespace_ledger_refused:SHARED_LEDGER_INSIDE_NAMESPACE",
+    "zero_calls",
+    "nothing_written"
+   ],
+   "facts": {
+    "outcome": "LEDGER_PATH_CONTRACT_ENFORCED"
+   },
+   "passed": true
+  }
+ }
+}

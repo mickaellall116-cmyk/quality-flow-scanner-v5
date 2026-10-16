@@ -1,0 +1,407 @@
+{
+ "suite_facts": {
+  "all_passed": false,
+  "fresh_digest_differs_from_spot8_binding": true,
+  "old_spot8_state_byte_identical_after": true,
+  "old_spot8_state_files": 11,
+  "total_checks": 114,
+  "total_trials": 29
+ },
+ "trials": {
+  "T01_freeze_verify": {
+   "check_count": 6,
+   "checks": [
+    "digest_pin",
+    "shape_51_20",
+    "run_id",
+    "supplement_bound",
+    "supplement_pin_enforced",
+    "ledger_outside_namespace"
+   ],
+   "facts": {
+    "error": "AssertionError: ledger_outside_namespace"
+   },
+   "passed": false
+  },
+  "T02_tamper_manifest_symbol": {
+   "check_count": 2,
+   "checks": [
+    "symbol:refused:MANIFEST_DIGEST_MISMATCH",
+    "symbol:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T03_tamper_order_swap": {
+   "check_count": 2,
+   "checks": [
+    "order_swap:refused:MANIFEST_DIGEST_MISMATCH",
+    "order_swap:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T04_tamper_budget": {
+   "check_count": 2,
+   "checks": [
+    "budget:refused:MANIFEST_DIGEST_MISMATCH",
+    "budget:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T05_tamper_drop_request": {
+   "check_count": 2,
+   "checks": [
+    "drop_request:refused:MANIFEST_DIGEST_MISMATCH",
+    "drop_request:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T06_tamper_supplement_binding": {
+   "check_count": 2,
+   "checks": [
+    "supp_binding:refused:SUPPLEMENT_SHA_MISMATCH",
+    "supp_binding:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T07_tamper_supplement_expected_bars": {
+   "check_count": 2,
+   "checks": [
+    "supp_expected_bars:refused:SUPPLEMENT_SHA_MISMATCH",
+    "supp_expected_bars:zero_calls"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T08_full_run_success": {
+   "check_count": 13,
+   "checks": [
+    "outcome_complete",
+    "exact_ordered_calls",
+    "reservations_51",
+    "completed_49",
+    "closed_evidenced_2",
+    "no_receipt_for_closed",
+    "closed_body_is_fresh_response_REQ-SPT-07",
+    "closed_body_is_fresh_response_REQ-SPT-08",
+    "hash_binding_REQ-P1H-01",
+    "hash_binding_REQ-P4H-01",
+    "hash_binding_REQ-ADJ-01",
+    "hash_binding_REQ-SPT-01",
+    "limiter_minute_cap_never_exceeded"
+   ],
+   "facts": {
+    "calls": 51,
+    "max_reservations_any_60s": 8,
+    "outcome": "COMPLETE",
+    "pacing_waits": 6,
+    "reservations": 51
+   },
+   "passed": true
+  },
+  "T09_closed_message_mutated": {
+   "check_count": 3,
+   "checks": [
+    "mutated_message:hold",
+    "mutated_message:calls",
+    "mutated_message:spt08_not_attempted"
+   ],
+   "facts": {
+    "calls": 50,
+    "outcome": "HOLD_HTTP_400"
+   },
+   "passed": true
+  },
+  "T10_closed_200_empty_values": {
+   "check_count": 3,
+   "checks": [
+    "empty_200:hold",
+    "empty_200:calls",
+    "empty_200:spt08_not_attempted"
+   ],
+   "facts": {
+    "calls": 50,
+    "outcome": "HOLD_MISSING_EMPTY_VALUES"
+   },
+   "passed": true
+  },
+  "T11_closed_400_with_values_field": {
+   "check_count": 3,
+   "checks": [
+    "values_field:hold",
+    "values_field:calls",
+    "values_field:spt08_not_attempted"
+   ],
+   "facts": {
+    "calls": 50,
+    "outcome": "HOLD_HTTP_400"
+   },
+   "passed": true
+  },
+  "T12_closed_shape_on_unregistered_request": {
+   "check_count": 2,
+   "checks": [
+    "hold_first_request",
+    "one_call_only"
+   ],
+   "facts": {
+    "calls": 1,
+    "outcome": "HOLD_HTTP_400"
+   },
+   "passed": true
+  },
+  "T13_calendar_proof_missing": {
+   "check_count": 3,
+   "checks": [
+    "proof_stripped_supplement_refused:SUPPLEMENT_SHA_MISMATCH",
+    "zero_calls",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "calls": 0,
+    "outcome": "REFUSED_PREDISPATCH"
+   },
+   "passed": true
+  },
+  "T14_http_500_fail_closed_stop": {
+   "check_count": 2,
+   "checks": [
+    "hold_500",
+    "later_not_attempted"
+   ],
+   "facts": {
+    "calls": 5,
+    "outcome": "HOLD_HTTP_500"
+   },
+   "passed": true
+  },
+  "T15_venue_mismatch_stop": {
+   "check_count": 2,
+   "checks": [
+    "hold_venue",
+    "calls_3"
+   ],
+   "facts": {
+    "calls": 3,
+    "outcome": "HOLD_META_VENUE_MISMATCH"
+   },
+   "passed": true
+  },
+  "T16_unknown_credit_state": {
+   "check_count": 2,
+   "checks": [
+    "hold_unknown_credit",
+    "zero_calls_zero_reservations"
+   ],
+   "facts": {
+    "calls": 0,
+    "outcome": "HOLD_UNKNOWN_CREDIT_STATE",
+    "reservations": 0
+   },
+   "passed": true
+  },
+  "T17_shared_limiter_day_cap": {
+   "check_count": 0,
+   "checks": [],
+   "facts": {
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: 'trials_run1/T17_shared_limiter_day_cap/account/limiter_ledger.json'"
+   },
+   "passed": false
+  },
+  "T18_crash_restart_ambiguous": {
+   "check_count": 7,
+   "checks": [
+    "crash_propagated",
+    "phase1_calls_11",
+    "restart_hold_ambiguous",
+    "restart_zero_calls",
+    "completed_not_redispatched",
+    "ambiguous_marked",
+    "later_not_attempted"
+   ],
+   "facts": {
+    "outcome": "HOLD_AMBIGUOUS_STARTED",
+    "phase1_calls": 11,
+    "restart_calls": 0
+   },
+   "passed": true
+  },
+  "T19_restart_idempotent_after_complete": {
+   "check_count": 2,
+   "checks": [
+    "idempotent_complete",
+    "zero_redispatch"
+   ],
+   "facts": {
+    "calls": 0,
+    "outcome": "COMPLETE"
+   },
+   "passed": true
+  },
+  "T20_duplicate_owner_refused": {
+   "check_count": 2,
+   "checks": [
+    "second_owner:refused:DUPLICATE_OWNER",
+    "second_owner:zero_calls"
+   ],
+   "facts": {
+    "calls": 0,
+    "outcome": "DUPLICATE_OWNER_REFUSED"
+   },
+   "passed": true
+  },
+  "T21_foreign_file_namespace_refused": {
+   "check_count": 3,
+   "checks": [
+    "foreign_namespace:refused:NAMESPACE_NOT_CLEAN",
+    "foreign_namespace:zero_calls",
+    "foreign_bytes_untouched"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T22_limiter_ledger_corrupt": {
+   "check_count": 3,
+   "checks": [
+    "corrupt_ledger:refused:LIMITER_LEDGER_CORRUPT",
+    "corrupt_ledger:zero_calls",
+    "corrupt_ledger_never_reset"
+   ],
+   "facts": {
+    "calls": 0
+   },
+   "passed": true
+  },
+  "T23_cross_process_minute_cap": {
+   "check_count": 5,
+   "checks": [
+    "workers_exit_0",
+    "cross_process_minute_cap_total_8",
+    "remaining_attempts_waited",
+    "ledger_exactly_8",
+    "no_lost_or_duplicated_reservation"
+   ],
+   "facts": {
+    "ledger_reservations": 8,
+    "total_ok": 8
+   },
+   "passed": true
+  },
+  "T24_cross_process_day_cap_race": {
+   "check_count": 5,
+   "checks": [
+    "workers_exit_0",
+    "combined_new_ok_exactly_5",
+    "combined_refused_day",
+    "ledger_stops_exactly_at_800",
+    "no_lost_or_duplicated_reservation"
+   ],
+   "facts": {
+    "ledger_reservations": 800,
+    "new_ok": 5
+   },
+   "passed": true
+  },
+  "T25_cross_process_crash_persistence": {
+   "check_count": 5,
+   "checks": [
+    "worker_died_hard",
+    "no_clean_output_from_dead_process",
+    "reservations_survive_process_death",
+    "next_process_sees_same_count",
+    "ledger_usable_after_crash"
+   ],
+   "facts": {
+    "count_after_reuse": 4,
+    "survived_reservations": 3
+   },
+   "passed": true
+  },
+  "T26_shared_ledger_corrupt_never_reset": {
+   "check_count": 4,
+   "checks": [
+    "corrupt_ledger_refused:LIMITER_LEDGER_CORRUPT",
+    "corrupt_bytes_unchanged_1",
+    "midlife_corruption_refused:LIMITER_LEDGER_CORRUPT",
+    "corrupt_bytes_unchanged_2"
+   ],
+   "facts": {
+    "outcome": "CORRUPT_LEDGER_HOLDS_NEVER_RESET"
+   },
+   "passed": true
+  },
+  "T27_supplement_unchecked_field_mutations": {
+   "check_count": 18,
+   "checks": [
+    "classifier_pin:refused:SUPPLEMENT_SHA_MISMATCH",
+    "classifier_pin:zero_calls",
+    "classifier_pin:zero_writes",
+    "environment_lock:refused:SUPPLEMENT_SHA_MISMATCH",
+    "environment_lock:zero_calls",
+    "environment_lock:zero_writes",
+    "adapter_contract:refused:SUPPLEMENT_SHA_MISMATCH",
+    "adapter_contract:zero_calls",
+    "adapter_contract:zero_writes",
+    "class_field:refused:SUPPLEMENT_SHA_MISMATCH",
+    "class_field:zero_calls",
+    "class_field:zero_writes",
+    "lifecycle_event:refused:SUPPLEMENT_SHA_MISMATCH",
+    "lifecycle_event:zero_calls",
+    "lifecycle_event:zero_writes",
+    "status_field:refused:SUPPLEMENT_SHA_MISMATCH",
+    "status_field:zero_calls",
+    "status_field:zero_writes"
+   ],
+   "facts": {
+    "all_refused_zero_calls_zero_writes": true,
+    "mutation_cases": 6
+   },
+   "passed": true
+  },
+  "T28_supplement_noncanonical_bytes": {
+   "check_count": 6,
+   "checks": [
+    "pretty_printed:refused:SUPPLEMENT_NOT_CANONICAL_BYTES",
+    "pretty_printed:zero_calls",
+    "pretty_printed:zero_writes",
+    "garbage:refused:SUPPLEMENT_UNPARSEABLE",
+    "garbage:zero_calls",
+    "garbage:zero_writes"
+   ],
+   "facts": {
+    "outcome": "NONCANONICAL_SUPPLEMENT_REFUSED"
+   },
+   "passed": true
+  },
+  "T29_ledger_inside_namespace_refused": {
+   "check_count": 3,
+   "checks": [
+    "inside_namespace_ledger_refused:SHARED_LEDGER_INSIDE_NAMESPACE",
+    "zero_calls",
+    "nothing_written"
+   ],
+   "facts": {
+    "outcome": "LEDGER_PATH_CONTRACT_ENFORCED"
+   },
+   "passed": true
+  }
+ }
+}
