@@ -1,0 +1,373 @@
+{
+ "all_preserved_identical": true,
+ "from": {
+  "path": "research_notes/yahoo_rev3_manifest_adoption_readiness_20261016/capture_manifest_rev3_normalized_candidate.json",
+  "sha256": "fe3611e78347806a19d9810a3c141bab5225f2b0785d38e1ba6f013c76d76c5e"
+ },
+ "leaf_changes": [
+  {
+   "class": "allowed_ledger_separation",
+   "from": "before each request, an fsync'd attempt record is appended to the capture ledger; a symbol with an attempt record but no final raw file is ATTEMPT_CONSUMED_AMBIGUOUS \u2014 never blindly re-requested on restart; it HOLDs for adjudication. On restart: final file + hash match = SKIP_VERIFIED; final mismatch = HOLD:FINAL_MISMATCH. (Rule preserved from rev2; the -08 preflight fixture that first exercised it is provenance evidence only and is not the execution route.)",
+   "path": "archive.attempt_journal",
+   "to": "<ABSENT>"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.attempt_journal.location",
+   "to": "<archive.control_directory>/acquisition_attempt_journal.qfj2 (sibling control directory, OUTSIDE cap_dir/archive.root)"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.attempt_journal.name",
+   "to": "acquisition_attempt_journal"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.attempt_journal.role",
+   "to": "fsync'd, write-once (append-only framed records), restart-authoritative LOCAL control evidence for acquisition attempts. It is local control evidence only: never a QFAR1 member, never inside the capture root, never the public anchor."
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.attempt_journal.semantics",
+   "to": "before each request, an fsync'd attempt record is appended; a symbol with an attempt record but no final raw file is ATTEMPT_CONSUMED_AMBIGUOUS \u2014 never blindly re-requested on restart; it HOLDs for adjudication. On restart: final file + hash match = SKIP_VERIFIED; final mismatch = HOLD:FINAL_MISMATCH. (Rule preserved from rev2; relocated outside the capture root per -18 r2 because the accepted publisher rejects any capture-root entry outside the membership set.)"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.control_directory",
+   "to": "~/workspace/data_archive/yahoo_1h_clean/<capture_id>.control/ \u2014 a strict-capture-ID sibling of archive.root, OUTSIDE the capture root. It holds exactly the two local control journals (archive.ledger_objects.acquisition_attempt_journal and archive.ledger_objects.qfj2_publication_journal), kept as separate files. Nothing in the control directory is a QFAR1 member."
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.layout[5]",
+   "to": "membership contract: the capture root contains ONLY the entries above \u2014 raw/, actions/, meta/ plus canonical manifest.json and SHA256SUMS; any other capture-root entry fails the publisher census with HOLD:MEMBERSHIP"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.layout[6]",
+   "to": "NOT capture-root entries, NOT QFAR1 members: acquisition_attempt_journal and qfj2_publication_journal (both live in archive.control_directory), and the public_archive_anchor (created only in the public scanner repo, after final verification)"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.acquisition_attempt_journal.location",
+   "to": "<archive.control_directory>/acquisition_attempt_journal.qfj2"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.acquisition_attempt_journal.name",
+   "to": "acquisition_attempt_journal"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.acquisition_attempt_journal.role",
+   "to": "fsync'd, write-once, restart-authoritative local control evidence for acquisition attempts (see archive.attempt_journal); outside cap_dir; not a QFAR1 member"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[0]",
+   "to": "designated repo"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[1]",
+   "to": "designated ref"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[2]",
+   "to": "exact commit id"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[3]",
+   "to": "exact tree id"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[4]",
+   "to": "exact blob id"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[5]",
+   "to": "CONTAINER_SHA256"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[6]",
+   "to": "capture_id"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[7]",
+   "to": "adopted rev3 manifest pin (sha256 of the adopted rev3 manifest)"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[8]",
+   "to": "member_count = 158"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.contents[9]",
+   "to": "verification transcript hash"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.location",
+   "to": "public scanner repo mickaellall116-cmyk/quality-flow-scanner-v5: research_notes/archive_anchors/<capture_id>.json (deterministic path)"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.name",
+   "to": "public_archive_anchor"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.public_archive_anchor.role",
+   "to": "hashes/identifiers only; created ONLY after final remote verification succeeds (publication_binding.final_verification steps 1-4). Later consumers start from this anchor and independently re-verify the referenced commit/blob/container/members; no branch-tip-only trust. The anchor is an output of verification, never an input to it; not a QFAR1 member and not part of the 67,108,864-byte ceiling"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.qfj2_publication_journal.location",
+   "to": "<archive.control_directory>/qfj2_publication_journal.qfj2"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.qfj2_publication_journal.name",
+   "to": "qfj2_publication_journal"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.ledger_objects.qfj2_publication_journal.role",
+   "to": "the accepted publisher's QFJ2 intent/published journal (publisher pin 53bdc672e609791dc55277023dd984cd8727f3c3): the intent record pins parent, CONTAINER_SHA256, blob id and member pins before any remote write; the published record pins the exact commit and verification transcript. Also outside cap_dir, and a separate file from the acquisition journal; not a QFAR1 member"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "archive.membership_contract",
+   "to": "capture-root membership is exactly raw/, actions/, meta/, plus optional canonical manifest.json and SHA256SUMS; QFAR1 seals exactly 156 payloads + 2 bookkeeping members = 158. No control journal (acquisition or publication) and no public anchor is a QFAR1 member, and none is part of the 67,108,864-byte physical-member ceiling."
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "local staging only (transient working state, NOT the archive of record): ~/workspace/data_archive/yahoo_1h_clean/<capture_id>/ \u2014 staged members are sealed into one QFAR1 container and published to the designated private repo per publication_binding; durability comes from that repo, never from this volume.",
+   "path": "archive.root",
+   "to": "local staging only (transient working state, NOT the archive of record): ~/workspace/data_archive/yahoo_1h_clean/<capture_id>/ \u2014 staged members are sealed into one QFAR1 container and published to the designated private repo per publication_binding; durability comes from that repo, never from this volume. Control files never live at or under this root: the capture root contains exactly the membership set in archive.layout / archive.membership_contract, and both control journals live in the sibling control directory (archive.control_directory)."
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "1) clean capture executor: a future, separately authorized executor written fresh against this manifest; it stages the 156 payloads and the capture ledger under archive.root",
+   "path": "execution_packet.handoff_contract.stages[0]",
+   "to": "1) clean capture executor: a future, separately authorized executor written fresh against this manifest; it stages the 156 payloads under archive.root; its acquisition_attempt_journal lives in the sibling control directory (archive.control_directory), never inside the capture root"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "3) accepted publisher: publication exclusively by the accepted QFAR1 publisher (pin 53bdc672e609791dc55277023dd984cd8727f3c3) bound in publication_binding, consuming the validation pins",
+   "path": "execution_packet.handoff_contract.stages[2]",
+   "to": "3) accepted publisher: publication exclusively by the accepted QFAR1 publisher (pin 53bdc672e609791dc55277023dd984cd8727f3c3) bound in publication_binding, consuming the validation pins; the publisher's qfj2_publication_journal also lives in the control directory, outside the capture root"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "execution_packet.handoff_contract.stages[3]",
+   "to": "4) public anchor: only after the publisher's final remote verification passes, the hashes-only public_archive_anchor is recorded in the public scanner repo at research_notes/archive_anchors/<capture_id>.json; consumers start from the anchor and re-verify"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "resolve the exact published commit by its pinned SHA (never a branch tip)",
+   "path": "publication_binding.final_verification[0]",
+   "to": "resolve the exact published commit by its pinned SHA from the qfj2_publication_journal published record (never a branch tip)"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "fetch the blob and recompute CONTAINER_SHA256; must equal the ledger anchor",
+   "path": "publication_binding.final_verification[1]",
+   "to": "fetch the blob by its exact pinned blob id and recompute CONTAINER_SHA256; it must equal the sealed CONTAINER_SHA256 recorded in the QFJ2 intent record and the independent validation pins \u2014 the public anchor does not exist yet at this step and is never an input to verification"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "parse the container and verify every one of the 158 members against the independent validation pins",
+   "path": "publication_binding.final_verification[2]",
+   "to": "parse the container and verify every one of the 158 members against the sealed member pins and the independent validation pins"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "verify ref still resolves to the pinned commit, or fetch the commit directly by id",
+   "path": "publication_binding.final_verification[3]",
+   "to": "verify the ref still resolves to the pinned commit and that commit/tree/blob ids equal the intent/published records, or fetch the commit directly by id"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "record a hashes-only public ledger anchor; partial states (objects without ref update, ref update without anchor, anchor without verification transcript) are no-publication",
+   "path": "publication_binding.final_verification[4]",
+   "to": "only after steps 1-4 pass: create the public_archive_anchor (archive.ledger_objects.public_archive_anchor) in the public scanner repo at research_notes/archive_anchors/<capture_id>.json; partial states (objects without ref update, ref update without verification, verification without anchor) are no-publication"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "publication_binding.public_archive_anchor",
+   "to": "see archive.ledger_objects.public_archive_anchor \u2014 location: public scanner repo research_notes/archive_anchors/<capture_id>.json; created only after final_verification steps 1-4 pass; hash-only start-point for later consumer re-verification"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "revision.changes[10]",
+   "to": "-18 r2: publication_binding.final_verification repaired \u2014 pre-anchor verification compares against the QFJ2 intent/published records, the sealed CONTAINER_SHA256 and the independent validation pins; the public anchor is created only after verification passes (the -17 sequence compared against an anchor its own final step created)"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "revision.changes[11]",
+   "to": "-18 r2: public_archive_anchor defined with one deterministic home (public scanner repo research_notes/archive_anchors/<capture_id>.json) and hash-only contents; consumers start from the anchor and re-verify"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "revision.changes[12]",
+   "to": "-18 r2: archive.root / archive.layout / execution_packet.handoff_contract reconciled to the separated ledger locations; no unrelated content changed"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "revision.changes[8]",
+   "to": "-18 r2: archive.attempt_journal redefined as acquisition_attempt_journal and relocated to the sibling control directory outside the capture root (publisher census rejects any non-member capture-root entry, HOLD:MEMBERSHIP)"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "revision.changes[9]",
+   "to": "-18 r2: added archive.control_directory, archive.membership_contract, archive.ledger_objects \u2014 the two control journals (acquisition, QFJ2 publication) separated as distinct files outside cap_dir; neither is a QFAR1 member or part of the 67,108,864-byte ceiling"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "QF-YAHOO-REV3-MANIFEST-ADOPTION-READINESS-20261016-17 r1 (normalization only; no adoption)",
+   "path": "revision.produced_by",
+   "to": "QF-YAHOO-REV3-MANIFEST-LEDGER-SEPARATION-20261016-18 r2 (candidate only; no adoption)"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "CANDIDATE ONLY - NOT ADOPTED - does not authorize any acquisition, capture, or publication",
+   "path": "revision.status",
+   "to": "CANDIDATE ONLY - NOT ADOPTED - ledger-separated per -18 r2; does not authorize any acquisition, capture, or publication"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "revision.supersedes_candidate.path",
+   "to": "research_notes/yahoo_rev3_manifest_adoption_readiness_20261016/capture_manifest_rev3_normalized_candidate.json"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "revision.supersedes_candidate.produced_by",
+   "to": "QF-YAHOO-REV3-MANIFEST-ADOPTION-READINESS-20261016-17 r1"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "<ABSENT>",
+   "path": "revision.supersedes_candidate.sha256",
+   "to": "fe3611e78347806a19d9810a3c141bab5225f2b0785d38e1ba6f013c76d76c5e"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "CANDIDATE REV3 \u2014 NOT ADOPTED \u2014 authorizes no vendor call, no capture, no publication",
+   "path": "status",
+   "to": "CANDIDATE REV3 \u2014 NOT ADOPTED \u2014 ledger-separated per -18 r2 \u2014 authorizes no vendor call, no capture, no publication"
+  },
+  {
+   "class": "allowed_ledger_separation",
+   "from": "QF-YAHOO-REV3-MANIFEST-ADOPTION-READINESS-20261016-17 r1",
+   "path": "task",
+   "to": "QF-YAHOO-REV3-MANIFEST-LEDGER-SEPARATION-20261016-18 r2"
+  }
+ ],
+ "preservation_proofs": {
+  "archive (minus reconciled fields)": {
+   "identical": true,
+   "sha256_canonical": "64a8d8cde20e29683347d63e7b0746ce1c55a56d70c270b9083e1764fcd0b39b"
+  },
+  "call_budget": {
+   "identical": true,
+   "sha256_canonical": "1e61c03b7e518ef81bfed35dcdff5c15f65a198b06f6eef1cd3f63534edba0e4"
+  },
+  "capture_id": {
+   "identical": true,
+   "sha256_canonical": "07faae71f7b152910f9bc3fc2bd4e6ec38dfba64b18e9df4bc0c17809299432d"
+  },
+  "execution_packet (minus handoff_contract)": {
+   "identical": true,
+   "sha256_canonical": "40e2f3e0222ed668352413ba5c3aa152b097612a4e32a4b094d3a1da5969c535"
+  },
+  "publication_binding (minus final_verification/public_archive_anchor)": {
+   "identical": true,
+   "sha256_canonical": "b62876d7a49e65abc575b3c00a278eeef06415cfc35d073ad1987db85a10f323"
+  },
+  "purpose": {
+   "identical": true,
+   "sha256_canonical": "7706121b3f29b742970ec1ec1eff9b37cf16e1748eccfe9a8376936500d89a9c"
+  },
+  "qualification_gates_frozen": {
+   "identical": true,
+   "sha256_canonical": "7409e113e4424bf93f4ff1548b77b7590bd61a2abf10ba8e6018841844c2ad0a"
+  },
+  "request_order": {
+   "identical": true,
+   "sha256_canonical": "3613b318bd964c6c16bf0796b7f85a03189d5e7a7ff4a387a604ca26c7945392"
+  },
+  "request_params": {
+   "identical": true,
+   "sha256_canonical": "2ccf6a08ae725c81c70f02d39f949c608967fde26f6f1edcf2298370d444af98"
+  },
+  "runtime_pins": {
+   "identical": true,
+   "sha256_canonical": "69536f539f601c655ed14fa3e528b1f6f57d4e92eb604052b5fff729e72b6dcd"
+  },
+  "schema": {
+   "identical": true,
+   "sha256_canonical": "7a00db3fe7b79a729d415d021db03bfd8d23af6bf08bbec783cb73abfd38b767"
+  },
+  "session_construction_freeze": {
+   "identical": true,
+   "sha256_canonical": "dfc4f42de2e6c4f9ead3da528bfc4dffc03cd888ffe1c5b9610886de4cde6bb2"
+  },
+  "symbol_mapping": {
+   "identical": true,
+   "sha256_canonical": "a6c0c8167bbd4c917988de389cbdbc25f176ca2b8e5d7ffd89d2d9ca754d6db4"
+  },
+  "universe_source": {
+   "identical": true,
+   "sha256_canonical": "a1445f1231829501599dfc82185b783ab30b86c360a636a846a14e4576495094"
+  }
+ },
+ "task": "QF-YAHOO-REV3-MANIFEST-LEDGER-SEPARATION-20261016-18 r2",
+ "to": {
+  "path": "research_notes/yahoo_rev3_ledger_separation_20261016_r2/capture_manifest_rev3_ledger_separated_candidate.json",
+  "sha256": "261a75574cfcc27757ef363af6a5bb1d36f0c37c4b9bbd45740b5f5914772b49"
+ },
+ "unallowed_changes": []
+}

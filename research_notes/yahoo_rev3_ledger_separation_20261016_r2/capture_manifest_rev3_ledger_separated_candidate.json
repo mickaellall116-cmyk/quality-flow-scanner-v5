@@ -1,0 +1,555 @@
+{
+    "archive": {
+        "attempt_journal": {
+            "location": "<archive.control_directory>/acquisition_attempt_journal.qfj2 (sibling control directory, OUTSIDE cap_dir/archive.root)",
+            "name": "acquisition_attempt_journal",
+            "role": "fsync'd, write-once (append-only framed records), restart-authoritative LOCAL control evidence for acquisition attempts. It is local control evidence only: never a QFAR1 member, never inside the capture root, never the public anchor.",
+            "semantics": "before each request, an fsync'd attempt record is appended; a symbol with an attempt record but no final raw file is ATTEMPT_CONSUMED_AMBIGUOUS \u2014 never blindly re-requested on restart; it HOLDs for adjudication. On restart: final file + hash match = SKIP_VERIFIED; final mismatch = HOLD:FINAL_MISMATCH. (Rule preserved from rev2; relocated outside the capture root per -18 r2 because the accepted publisher rejects any capture-root entry outside the membership set.)"
+        },
+        "control_directory": "~/workspace/data_archive/yahoo_1h_clean/<capture_id>.control/ \u2014 a strict-capture-ID sibling of archive.root, OUTSIDE the capture root. It holds exactly the two local control journals (archive.ledger_objects.acquisition_attempt_journal and archive.ledger_objects.qfj2_publication_journal), kept as separate files. Nothing in the control directory is a QFAR1 member.",
+        "durability": "provided by the designated private GitHub repo mickaellall116-cmyk/qf-data-archive (Mike's storage designation, 2026-10-15): append-only, write-once captures, checksum-verified by re-fetch. The rev2-era local-volume durability question is superseded \u2014 the local staging copy is not a durability claim and its loss before publication is a failed capture, not a data-loss event.",
+        "layout": [
+            "raw/<SYMBOL>.csv (canonical raw-client output, bytes as received serialized once)",
+            "actions/<SYMBOL>.actions.csv (Dividends/Stock Splits evidence)",
+            "meta/<SYMBOL>.request.json (request params, config, runtime pins, acquisition UTC timestamp, source=yahoo/yfinance)",
+            "manifest.json (this manifest + per-file sha256 + acquisition ledger)",
+            "SHA256SUMS",
+            "membership contract: the capture root contains ONLY the entries above \u2014 raw/, actions/, meta/ plus canonical manifest.json and SHA256SUMS; any other capture-root entry fails the publisher census with HOLD:MEMBERSHIP",
+            "NOT capture-root entries, NOT QFAR1 members: acquisition_attempt_journal and qfj2_publication_journal (both live in archive.control_directory), and the public_archive_anchor (created only in the public scanner repo, after final verification)"
+        ],
+        "ledger_objects": {
+            "acquisition_attempt_journal": {
+                "location": "<archive.control_directory>/acquisition_attempt_journal.qfj2",
+                "name": "acquisition_attempt_journal",
+                "role": "fsync'd, write-once, restart-authoritative local control evidence for acquisition attempts (see archive.attempt_journal); outside cap_dir; not a QFAR1 member"
+            },
+            "public_archive_anchor": {
+                "contents": [
+                    "designated repo",
+                    "designated ref",
+                    "exact commit id",
+                    "exact tree id",
+                    "exact blob id",
+                    "CONTAINER_SHA256",
+                    "capture_id",
+                    "adopted rev3 manifest pin (sha256 of the adopted rev3 manifest)",
+                    "member_count = 158",
+                    "verification transcript hash"
+                ],
+                "location": "public scanner repo mickaellall116-cmyk/quality-flow-scanner-v5: research_notes/archive_anchors/<capture_id>.json (deterministic path)",
+                "name": "public_archive_anchor",
+                "role": "hashes/identifiers only; created ONLY after final remote verification succeeds (publication_binding.final_verification steps 1-4). Later consumers start from this anchor and independently re-verify the referenced commit/blob/container/members; no branch-tip-only trust. The anchor is an output of verification, never an input to it; not a QFAR1 member and not part of the 67,108,864-byte ceiling"
+            },
+            "qfj2_publication_journal": {
+                "location": "<archive.control_directory>/qfj2_publication_journal.qfj2",
+                "name": "qfj2_publication_journal",
+                "role": "the accepted publisher's QFJ2 intent/published journal (publisher pin 53bdc672e609791dc55277023dd984cd8727f3c3): the intent record pins parent, CONTAINER_SHA256, blob id and member pins before any remote write; the published record pins the exact commit and verification transcript. Also outside cap_dir, and a separate file from the acquisition journal; not a QFAR1 member"
+            }
+        },
+        "membership_contract": "capture-root membership is exactly raw/, actions/, meta/, plus optional canonical manifest.json and SHA256SUMS; QFAR1 seals exactly 156 payloads + 2 bookkeeping members = 158. No control journal (acquisition or publication) and no public anchor is a QFAR1 member, and none is part of the 67,108,864-byte physical-member ceiling.",
+        "publication": "QFAR1 single-blob publication ONLY (see publication_binding): the 158 physical members (156 payloads + manifest.json + SHA256SUMS) are sealed into one deterministic QFAR1 container and published by the accepted publisher pin to the designated private repo as one commit at captures/<capture_id>.qfar. The rev2 per-file os.link publication narrative is superseded and forbidden. Publication is complete only after final commit/blob/container/member verification passes against the independent validation pins.",
+        "restart": "final files are hash-verified and skipped (never re-requested, never overwritten); collision on an existing final path = WRITE_ONCE_COLLISION, stop",
+        "rollback": "archive is additive and write-once; nothing in live state is touched, so rollback = abandon the capture dir (retained as evidence, marked INCOMPLETE); no deletion of prior captures ever",
+        "root": "local staging only (transient working state, NOT the archive of record): ~/workspace/data_archive/yahoo_1h_clean/<capture_id>/ \u2014 staged members are sealed into one QFAR1 container and published to the designated private repo per publication_binding; durability comes from that repo, never from this volume. Control files never live at or under this root: the capture root contains exactly the membership set in archive.layout / archive.membership_contract, and both control journals live in the sibling control directory (archive.control_directory)."
+    },
+    "call_budget": {
+        "attempts_per_symbol": 1,
+        "ceilings": {
+            "bookkeeping_reserve_bytes": 32164,
+            "bytes_per_symbol": 33554432,
+            "bytes_total": 67108864,
+            "bytes_total_definition": "sum of byte lengths of all 158 physical members (156 payloads + manifest.json + SHA256SUMS)",
+            "oversize_streaming_rule": "a streaming response that would exceed the per-symbol ceiling or the payload budget consumes its single attempt: the transfer is cut off at the ceiling, the symbol is held, and the consumed attempt is never re-requested (adjudication 6205968339; spec -17 item 2).",
+            "payload_budget_bytes": 67076700,
+            "rows_per_symbol": 20000,
+            "wall_seconds_total": 1800
+        },
+        "estimated": {
+            "requests": 52,
+            "rows_total": "~282,000 (45 XNYS symbols x ~505 sessions x 7 bars \u2248 159k; 7 crypto x 17,520 h \u2248 123k)",
+            "storage": "~20\u201330 MB canonical CSV total",
+            "wall": "~3\u20136 min at limiter spacing + observed latency"
+        },
+        "fail_closed_on": [
+            "HTTP 429 / throttle text",
+            "partial response (rows stop mid-session without end-of-window coverage)",
+            "schema drift (missing/renamed required field)",
+            "meta drift (exchange/timezone/currency mismatch)",
+            "unknown symbol mapping",
+            "ceiling breach"
+        ],
+        "limiter": "one shared limiter, >=1.0 s between request starts, process-wide",
+        "max_requests_total": 52,
+        "retry": "none \u2014 no blind retry, no fallback source, no pagination"
+    },
+    "capture_id": "YAHOO-1H-CLEAN-CAPTURE (execution instance id assigned at separate authorization)",
+    "execution_packet": {
+        "abort_rules": [
+            "any fail-closed trigger -> stop immediately, keep partial archive as evidence, mark capture INCOMPLETE_HOLD",
+            "no resume of an aborted capture except per attempt-journal rules",
+            "qualification runs only on a complete 52/52-accounted archive; baseline preflight only after qualification PASS + bytes/hashes pinned"
+        ],
+        "handoff_contract": {
+            "forbidden_routes": [
+                "the parked -08/-09 execute_capture.py lineage \u2014 not used, not a dependency",
+                "any per-file publication path (the superseded rev2 os.link narrative)",
+                "branch-tip-only trust at any stage"
+            ],
+            "stages": [
+                "1) clean capture executor: a future, separately authorized executor written fresh against this manifest; it stages the 156 payloads under archive.root; its acquisition_attempt_journal lives in the sibling control directory (archive.control_directory), never inside the capture root",
+                "2) independent validation: qualification gates G1-G11 run against the staged members and produce the independent validation pins (the per-member sha256 set) \u2014 pins originate from the validator, never from the capture process's own claims",
+                "3) accepted publisher: publication exclusively by the accepted QFAR1 publisher (pin 53bdc672e609791dc55277023dd984cd8727f3c3) bound in publication_binding, consuming the validation pins; the publisher's qfj2_publication_journal also lives in the control directory, outside the capture root",
+                "4) public anchor: only after the publisher's final remote verification passes, the hashes-only public_archive_anchor is recorded in the public scanner repo at research_notes/archive_anchors/<capture_id>.json; consumers start from the anchor and re-verify"
+            ]
+        },
+        "note": "This candidate authorizes none of these stages; adoption of this manifest is itself a separate act that has not occurred. The rev2 later_command (parked-executor route) is removed, not replaced with another command."
+    },
+    "publication_binding": {
+        "architecture": "QFAR1 single-blob (design r3, accepted)",
+        "design_memo": "research_notes/YAHOO_SINGLE_BLOB_ARCHIVE_DESIGN_20261015.md",
+        "design_memo_sha256": "cd9ef36da512185781d2bf6376d1a8848ba62cbf134aec922566aec518f71470",
+        "final_verification": [
+            "resolve the exact published commit by its pinned SHA from the qfj2_publication_journal published record (never a branch tip)",
+            "fetch the blob by its exact pinned blob id and recompute CONTAINER_SHA256; it must equal the sealed CONTAINER_SHA256 recorded in the QFJ2 intent record and the independent validation pins \u2014 the public anchor does not exist yet at this step and is never an input to verification",
+            "parse the container and verify every one of the 158 members against the sealed member pins and the independent validation pins",
+            "verify the ref still resolves to the pinned commit and that commit/tree/blob ids equal the intent/published records, or fetch the commit directly by id",
+            "only after steps 1-4 pass: create the public_archive_anchor (archive.ledger_objects.public_archive_anchor) in the public scanner repo at research_notes/archive_anchors/<capture_id>.json; partial states (objects without ref update, ref update without verification, verification without anchor) are no-publication"
+        ],
+        "member_accounting": {
+            "binding_graph": "manifest.json binds the 156 payloads only; SHA256SUMS binds exactly 157 (156 payloads + manifest.json), never itself; the QFAR1 index binds all 158; the container trailer digest + git blob id bind the whole container (acyclic, per design r3)",
+            "bookkeeping_members": [
+                "manifest.json",
+                "SHA256SUMS"
+            ],
+            "payload_members": 156,
+            "physical_members": 158
+        },
+        "no_branch_tip_only_trust": true,
+        "public_archive_anchor": "see archive.ledger_objects.public_archive_anchor \u2014 location: public scanner repo research_notes/archive_anchors/<capture_id>.json; created only after final_verification steps 1-4 pass; hash-only start-point for later consumer re-verification",
+        "publisher_commit": "53bdc672e609791dc55277023dd984cd8727f3c3",
+        "publisher_file": "research_notes/yahoo_qfar1_journal_header_auth_20261016/qfar1_publisher_h16.py",
+        "publisher_file_sha256": "1d4c192324744c77e294c0b3190e88666dce583b14ef4412b3e31f85127fdc10",
+        "target_path": "captures/<capture_id>.qfar",
+        "target_ref": "refs/heads/qf-archive",
+        "target_repo": "mickaellall116-cmyk/qf-data-archive",
+        "target_repo_visibility": "private (designated 2026-10-15; must re-verify private at publication and at consumption \u2014 visibility drift invalidates, HOLD:VISIBILITY)"
+    },
+    "purpose": "Reacquire Yahoo 1H bytes for the frozen C1 contract (UNIVERSE_X 51) after loss of backtest_cache/v3; LIMITED data tier, not PIT-clean",
+    "qualification_gates_frozen": [
+        "G1 completeness: 52/52 symbols accounted \u2014 qualified, COVERAGE-LIMITED, or HOLD with named cause; zero silent exclusions",
+        "G2 coverage: sessions present / XNYS sessions in window per symbol; <80% of window sessions = COVERAGE-LIMITED (counted, retained, flagged \u2014 not dropped); listing-age exceptions only where first-trade date is evidenced in actions/meta",
+        "G3 integrity: duplicate timestamps = 0, nonmonotonic rows = 0 (any occurrence = HOLD)",
+        "G4 sessions: missing expected sessions/bars enumerated per symbol vs XNYS calendar; unexplained gaps = HOLD",
+        "G5 OHLCV sanity: High>=max(Open,Close), Low<=min(Open,Close), Volume>=0; any violation = HOLD",
+        "G6 timezone/DST: bar labels on DST transition weeks exactly 09:30/13:30 ET with correct UTC offsets; any UTC-anchored label = HOLD (the D1 defect class)",
+        "G7 early close: known early-close dates emit exactly one 09:30 bar aggregating the 4 morning 1H rows",
+        "G8 actions: split/dividend rows reconciled against the frozen split-exclusion protocol; unhandled split inside window = HOLD for that symbol",
+        "G9 conservation: raw->4H per-bar aggregation recomputed independently; volume sums and first/last OHLC match exactly",
+        "G10 two-window parity: bars built from a short window and from the full window are byte-identical on the overlap, across a DST boundary",
+        "G11 hash stability: re-hash of the archive equals manifest SHA256SUMS exactly; any drift = HOLD"
+    ],
+    "request_order": [
+        {
+            "class": "equity",
+            "i": 1,
+            "session": "XNYS",
+            "symbol": "NVDA"
+        },
+        {
+            "class": "equity",
+            "i": 2,
+            "session": "XNYS",
+            "symbol": "PLTR"
+        },
+        {
+            "class": "equity",
+            "i": 3,
+            "session": "XNYS",
+            "symbol": "TSLA"
+        },
+        {
+            "class": "equity",
+            "i": 4,
+            "session": "XNYS",
+            "symbol": "SOFI"
+        },
+        {
+            "class": "equity",
+            "i": 5,
+            "session": "XNYS",
+            "symbol": "SMCI"
+        },
+        {
+            "class": "equity",
+            "i": 6,
+            "session": "XNYS",
+            "symbol": "AMD"
+        },
+        {
+            "class": "equity",
+            "i": 7,
+            "session": "XNYS",
+            "symbol": "AAPL"
+        },
+        {
+            "class": "equity",
+            "i": 8,
+            "session": "XNYS",
+            "symbol": "MSFT"
+        },
+        {
+            "class": "equity",
+            "i": 9,
+            "session": "XNYS",
+            "symbol": "META"
+        },
+        {
+            "class": "equity",
+            "i": 10,
+            "session": "XNYS",
+            "symbol": "COIN"
+        },
+        {
+            "class": "equity",
+            "i": 11,
+            "session": "XNYS",
+            "symbol": "MSTR"
+        },
+        {
+            "class": "equity",
+            "i": 12,
+            "session": "XNYS",
+            "symbol": "AVGO"
+        },
+        {
+            "class": "crypto",
+            "i": 13,
+            "session": "UTC_24x7_SEGREGATED",
+            "symbol": "BTC-USD"
+        },
+        {
+            "class": "crypto",
+            "i": 14,
+            "session": "UTC_24x7_SEGREGATED",
+            "symbol": "ETH-USD"
+        },
+        {
+            "class": "crypto",
+            "i": 15,
+            "session": "UTC_24x7_SEGREGATED",
+            "symbol": "SOL-USD"
+        },
+        {
+            "class": "equity",
+            "i": 16,
+            "session": "XNYS",
+            "symbol": "GOOGL"
+        },
+        {
+            "class": "equity",
+            "i": 17,
+            "session": "XNYS",
+            "symbol": "AMZN"
+        },
+        {
+            "class": "equity",
+            "i": 18,
+            "session": "XNYS",
+            "symbol": "NFLX"
+        },
+        {
+            "class": "equity",
+            "i": 19,
+            "session": "XNYS",
+            "symbol": "CRM"
+        },
+        {
+            "class": "equity",
+            "i": 20,
+            "session": "XNYS",
+            "symbol": "MU"
+        },
+        {
+            "class": "equity",
+            "i": 21,
+            "session": "XNYS",
+            "symbol": "INTC"
+        },
+        {
+            "class": "equity",
+            "i": 22,
+            "session": "XNYS",
+            "symbol": "LRCX"
+        },
+        {
+            "class": "equity",
+            "i": 23,
+            "session": "XNYS",
+            "symbol": "AMAT"
+        },
+        {
+            "class": "equity",
+            "i": 24,
+            "session": "XNYS",
+            "symbol": "QCOM"
+        },
+        {
+            "class": "equity",
+            "i": 25,
+            "session": "XNYS",
+            "symbol": "ARM"
+        },
+        {
+            "class": "equity",
+            "i": 26,
+            "session": "XNYS",
+            "symbol": "HOOD"
+        },
+        {
+            "class": "equity",
+            "i": 27,
+            "session": "XNYS",
+            "symbol": "APP"
+        },
+        {
+            "class": "equity",
+            "i": 28,
+            "session": "XNYS",
+            "symbol": "NET"
+        },
+        {
+            "class": "equity",
+            "i": 29,
+            "session": "XNYS",
+            "symbol": "SNOW"
+        },
+        {
+            "class": "equity",
+            "i": 30,
+            "session": "XNYS",
+            "symbol": "DDOG"
+        },
+        {
+            "class": "equity",
+            "i": 31,
+            "session": "XNYS",
+            "symbol": "CRWD"
+        },
+        {
+            "class": "equity",
+            "i": 32,
+            "session": "XNYS",
+            "symbol": "SHOP"
+        },
+        {
+            "class": "equity",
+            "i": 33,
+            "session": "XNYS",
+            "symbol": "RKLB"
+        },
+        {
+            "class": "equity",
+            "i": 34,
+            "session": "XNYS",
+            "symbol": "ASTS"
+        },
+        {
+            "class": "equity",
+            "i": 35,
+            "session": "XNYS",
+            "symbol": "LUNR"
+        },
+        {
+            "class": "equity",
+            "i": 36,
+            "session": "XNYS",
+            "symbol": "PYPL"
+        },
+        {
+            "class": "equity",
+            "i": 37,
+            "session": "XNYS",
+            "symbol": "NU"
+        },
+        {
+            "class": "equity",
+            "i": 38,
+            "session": "XNYS",
+            "symbol": "MELI"
+        },
+        {
+            "class": "etf_benchmark_in_universe",
+            "i": 39,
+            "session": "XNYS",
+            "symbol": "SPY"
+        },
+        {
+            "class": "etf",
+            "i": 40,
+            "session": "XNYS",
+            "symbol": "IWM"
+        },
+        {
+            "class": "etf_sector",
+            "i": 41,
+            "session": "XNYS",
+            "symbol": "SMH"
+        },
+        {
+            "class": "etf",
+            "i": 42,
+            "session": "XNYS",
+            "symbol": "ARKK"
+        },
+        {
+            "class": "etf_sector",
+            "i": 43,
+            "session": "XNYS",
+            "symbol": "XLF"
+        },
+        {
+            "class": "crypto",
+            "i": 44,
+            "session": "UTC_24x7_SEGREGATED",
+            "symbol": "DOGE-USD"
+        },
+        {
+            "class": "crypto",
+            "i": 45,
+            "session": "UTC_24x7_SEGREGATED",
+            "symbol": "AVAX-USD"
+        },
+        {
+            "class": "crypto",
+            "i": 46,
+            "session": "UTC_24x7_SEGREGATED",
+            "symbol": "LINK-USD"
+        },
+        {
+            "class": "crypto",
+            "i": 47,
+            "session": "UTC_24x7_SEGREGATED",
+            "symbol": "XRP-USD"
+        },
+        {
+            "class": "equity",
+            "i": 48,
+            "session": "XNYS",
+            "symbol": "NIO"
+        },
+        {
+            "class": "equity",
+            "i": 49,
+            "session": "XNYS",
+            "symbol": "MRNA"
+        },
+        {
+            "class": "equity",
+            "i": 50,
+            "session": "XNYS",
+            "symbol": "PFE"
+        },
+        {
+            "class": "equity",
+            "i": 51,
+            "session": "XNYS",
+            "symbol": "F"
+        },
+        {
+            "class": "etf_benchmark_dependency",
+            "i": 52,
+            "note": "benchmark dependency via pine_signal_quality.load_benchmarks (SPY/QQQ); SPY already in universe at i=39; QQQ is the only added request",
+            "session": "XNYS",
+            "symbol": "QQQ"
+        }
+    ],
+    "request_params": {
+        "actions": true,
+        "auto_adjust": false,
+        "client_call": "yfinance.download(single symbol) \u2014 one symbol per request, threads=False, group_by not applicable",
+        "date_policy": {
+            "consequence": "Coverage vs the 2023-01-01 prereg target will mark symbols COVERAGE-LIMITED under the <80% rule; fold calendars must be re-frozen from actual pulled coverage at the later qualification step, before any performance is computed.",
+            "earliest_date_limit": "If executed 2026-10-16, earliest obtainable 1H \u2248 2024-10-17. The prereg target start 2023-01-01 is NOT reachable at 1h. The lost 2023\u2013early-2024 bytes are unrecoverable and are not implied recovered by this capture.",
+            "end": "execution_date",
+            "form": "explicit start/end (never period=), end exclusive",
+            "reachback_basis": "Yahoo 1h hard limit ~730 days, consistent with the evidenced reachback",
+            "start": "execution_date minus 729 days"
+        },
+        "interval": "1h",
+        "prepost": false,
+        "required_fields": [
+            "Open",
+            "High",
+            "Low",
+            "Close",
+            "Volume",
+            "Dividends",
+            "Stock Splits"
+        ]
+    },
+    "revision": {
+        "changes": [
+            "call_budget.ceilings.bytes_total: 536870912 -> 67108864 (QF_SHARED_TOTAL_CEILING_BYTES, 158-physical-member scope) [from -13 candidate, unchanged]",
+            "added call_budget.ceilings.bytes_total_definition, bookkeeping_reserve_bytes=32164, payload_budget_bytes=67076700 [from -13 candidate, unchanged]",
+            "added call_budget.ceilings.oversize_streaming_rule: an oversized streaming response consumes its attempt before cutoff/HOLD [explicit statement of the -13 adjudicated rule]",
+            "archive.root/durability/publication superseded: local-VM staging + per-file os.link narrative replaced by QFAR1 single-blob publication to the designated private repo (publication_binding)",
+            "archive.attempt_journal: rule preserved; -08 fixture proof clause replaced with provenance note",
+            "execution_packet: later_command (parked-executor route) removed; explicit handoff contract added (clean capture executor -> independent validation pins -> accepted publisher); abort_rules preserved verbatim",
+            "added publication_binding: accepted QFAR1 architecture, design pin, publisher pin 53bdc672..., target repo/ref/path, member accounting, final commit/blob/container/member verification, no branch-tip-only trust",
+            "status/task/revision provenance updated to this candidate",
+            "-18 r2: archive.attempt_journal redefined as acquisition_attempt_journal and relocated to the sibling control directory outside the capture root (publisher census rejects any non-member capture-root entry, HOLD:MEMBERSHIP)",
+            "-18 r2: added archive.control_directory, archive.membership_contract, archive.ledger_objects \u2014 the two control journals (acquisition, QFJ2 publication) separated as distinct files outside cap_dir; neither is a QFAR1 member or part of the 67,108,864-byte ceiling",
+            "-18 r2: publication_binding.final_verification repaired \u2014 pre-anchor verification compares against the QFJ2 intent/published records, the sealed CONTAINER_SHA256 and the independent validation pins; the public anchor is created only after verification passes (the -17 sequence compared against an anchor its own final step created)",
+            "-18 r2: public_archive_anchor defined with one deterministic home (public scanner repo research_notes/archive_anchors/<capture_id>.json) and hash-only contents; consumers start from the anchor and re-verify",
+            "-18 r2: archive.root / archive.layout / execution_packet.handoff_contract reconciled to the separated ledger locations; no unrelated content changed"
+        ],
+        "derived_from_frozen_manifest_sha256": "634c4541a8b30ade50e45898e80ee65806fa323c953020edc149530642d9bef3",
+        "parent_candidate": {
+            "git_blob": "c62d4daae030239344b62b06cc66710478efaac4",
+            "path": "research_notes/yahoo_qfar1_preflight_20261015/capture_manifest_rev3_candidate.json",
+            "produced_by": "QF-YAHOO-QFAR1-OFFLINE-PREFLIGHT-20261015-13 r1",
+            "sha256": "617f86100b2602ea642cad88fbcca01da32377f4cb2bcca712268846f6e574a3"
+        },
+        "produced_by": "QF-YAHOO-REV3-MANIFEST-LEDGER-SEPARATION-20261016-18 r2 (candidate only; no adoption)",
+        "semantics_note": "The reserve guarantees a completed 156-payload capture cannot overflow the 158-physical-member ceiling when bookkeeping is added; an oversized streaming response still consumes its attempt and is cut off/held (adjudication 6205968339).",
+        "status": "CANDIDATE ONLY - NOT ADOPTED - ledger-separated per -18 r2; does not authorize any acquisition, capture, or publication",
+        "supersedes_candidate": {
+            "path": "research_notes/yahoo_rev3_manifest_adoption_readiness_20261016/capture_manifest_rev3_normalized_candidate.json",
+            "produced_by": "QF-YAHOO-REV3-MANIFEST-ADOPTION-READINESS-20261016-17 r1",
+            "sha256": "fe3611e78347806a19d9810a3c141bab5225f2b0785d38e1ba6f013c76d76c5e"
+        }
+    },
+    "runtime_pins": {
+        "drift_rule": "executor must re-hash client files + versions at start; any mismatch vs these pins = RUNTIME_DRIFT HOLD before any request",
+        "numpy": "1.26.4",
+        "pandas": "2.1.4",
+        "python": "3.12.3",
+        "yfinance": "1.7.0",
+        "yfinance_files_sha256_16": {
+            "__init__.py": "d6eda141e64f87a6",
+            "multi.py": "61aa5ec181f26c13",
+            "ticker.py": "6f9a72fc35cd55da"
+        }
+    },
+    "schema": "qf.yahoo_clean_capture.manifest/1",
+    "session_construction_freeze": {
+        "rules": [
+            "retain raw 1H bytes untouched; construction is a derived, reproducible view",
+            "timestamps -> America/New_York; restrict to regular session [09:30, session_close)",
+            "4H bars: morning [09:30,13:30) labeled 09:30, afternoon [13:30, session_close) labeled 13:30; left-labeled, left-closed; OHLCV = first/max/min/last/sum",
+            "session_close from XNYS calendar (16:00 regular, 13:00 early close); early-close days emit only the morning bar; unknown dates fall back to 16:00 and are flagged",
+            "crypto (-USD) is segregated: UTC bins 00/04/08/12/16/20, never session-filtered, never mixed into the equity baseline set",
+            "no forward-fill; empty bins dropped; forming bar excluded by causal cutoff at acquisition time"
+        ],
+        "source_of_truth": "research_notes/recovery_4h_20261004/spec/canonical_4h_constructor.md (scanner_rules.resample_closed_4h_session_anchored)"
+    },
+    "status": "CANDIDATE REV3 \u2014 NOT ADOPTED \u2014 ledger-separated per -18 r2 \u2014 authorizes no vendor call, no capture, no publication",
+    "symbol_mapping": "canonical Yahoo symbol == frozen symbol for all 52 (no BRK-B/class-share or FX translations in this set); any response whose returned symbol/meta does not match the requested symbol exactly = SCHEMA_DRIFT HOLD",
+    "task": "QF-YAHOO-REV3-MANIFEST-LEDGER-SEPARATION-20261016-18 r2",
+    "universe_source": {
+        "file": "pine_backtest.py",
+        "policy_source": "research_notes/recovery_4h_20261004/spec/walkforward_prereg_rev2.md \u00a72 (auto_adjust=False, prepost=False, frozen split-exclusion, coverage <80% = COVERAGE-LIMITED)",
+        "symbol_list": "UNIVERSE_X (= UNIVERSE_15 + 36)",
+        "universe_file_sha256": "44b0d8ba5a7ea6415652fdfa1e89a0f9bb57d191bfb0d66c578f9d7a3f5880c9 (v54_universe_x2.py, frozen cohort record)"
+    }
+}

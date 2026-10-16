@@ -1,0 +1,47 @@
+{
+ "candidate_sha256": "261a75574cfcc27757ef363af6a5bb1d36f0c37c4b9bbd45740b5f5914772b49",
+ "cases": [
+  {
+   "checks": 5,
+   "failures": [],
+   "id": "L-01",
+   "title": "156-member root, both journals in sibling control dir -> publish PASS",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 1,
+   "failures": [],
+   "id": "L-02",
+   "title": "acquisition_attempt_journal inside capture root -> HOLD:MEMBERSHIP",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 1,
+   "failures": [],
+   "id": "L-03",
+   "title": "qfj2_publication_journal inside capture root -> HOLD:MEMBERSHIP",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 4,
+   "failures": [],
+   "id": "L-04",
+   "title": "pre-anchor remote verification from sealed/pinned evidence (no anchor exists)",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 6,
+   "failures": [],
+   "id": "L-05",
+   "title": "anchor emitted only after verification; consumer starts from anchor and re-verifies",
+   "verdict": "PASS"
+  }
+ ],
+ "commit": "bab13282b26ff4a35b1ee1346d02e4ccbcb88af0",
+ "container_sha256": "3a906b59c35e16418d48528c5a4a8b8785d1e3209493acace552c2b20cb7d74e",
+ "publisher": "qfar1_publisher_h16.py @ 53bdc672e609791dc55277023dd984cd8727f3c3",
+ "suite": "QF-YAHOO-REV3-MANIFEST-LEDGER-SEPARATION-20261016-18 r2 (narrow compatibility fixture)",
+ "total_checks": 17,
+ "total_failures": 0,
+ "verdict": "PASS"
+}
