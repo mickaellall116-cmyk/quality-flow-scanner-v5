@@ -1,0 +1,71 @@
+Collecting exchange_calendars==4.13.2 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 1))
+  Obtaining dependency information for exchange_calendars==4.13.2 from https://files.pythonhosted.org/packages/c8/4c/0469b40057bc9f8d9594dcc6024202626b981ae4b52dfcd304552e8e1c3a/exchange_calendars-4.13.2-py3-none-any.whl.metadata
+  Downloading exchange_calendars-4.13.2-py3-none-any.whl.metadata (26 kB)
+Collecting korean_lunar_calendar==0.4.0 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 2))
+  Obtaining dependency information for korean_lunar_calendar==0.4.0 from https://files.pythonhosted.org/packages/c1/88/f56033b09fdca5c8c5e5fc2f3513950a05cd62caa9bd8e6d2750a887c86e/korean_lunar_calendar-0.4.0-py3-none-any.whl.metadata
+  Downloading korean_lunar_calendar-0.4.0-py3-none-any.whl.metadata (6.6 kB)
+  Link requires a different Python (3.12.3 not in: '>=3.7,<3.11'): https://files.pythonhosted.org/packages/3a/be/650f9c091ef71cb01d735775d554e068752d3ff63d7943b26316dc401749/numpy-1.21.2.zip (from https://pypi.org/simple/numpy/) (requires-python:>=3.7,<3.11)
+  Link requires a different Python (3.12.3 not in: '>=3.7,<3.11'): https://files.pythonhosted.org/packages/5f/d6/ad58ded26556eaeaa8c971e08b6466f17c4ac4d786cd3d800e26ce59cc01/numpy-1.21.3.zip (from https://pypi.org/simple/numpy/) (requires-python:>=3.7,<3.11)
+  Link requires a different Python (3.12.3 not in: '>=3.7,<3.11'): https://files.pythonhosted.org/packages/fb/48/b0708ebd7718a8933f0d3937513ef8ef2f4f04529f1f66ca86d873043921/numpy-1.21.4.zip (from https://pypi.org/simple/numpy/) (requires-python:>=3.7,<3.11)
+  Link requires a different Python (3.12.3 not in: '>=3.7,<3.11'): https://files.pythonhosted.org/packages/c2/a8/a924a09492bdfee8c2ec3094d0a13f2799800b4fdc9c890738aeeb12c72e/numpy-1.21.5.zip (from https://pypi.org/simple/numpy/) (requires-python:>=3.7,<3.11)
+  Link requires a different Python (3.12.3 not in: '>=3.7,<3.11'): https://files.pythonhosted.org/packages/45/b7/de7b8e67f2232c26af57c205aaad29fe17754f793404f59c8a730c7a191a/numpy-1.21.6.zip (from https://pypi.org/simple/numpy/) (requires-python:>=3.7,<3.11)
+Collecting numpy==1.26.4 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 3))
+  Obtaining dependency information for numpy==1.26.4 from https://files.pythonhosted.org/packages/0f/50/de23fde84e45f5c4fda2488c759b69990fd4512387a8632860f3ac9cd225/numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.0/61.0 kB 2.3 MB/s eta 0:00:00
+Collecting pandas==2.2.3 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 4))
+  Obtaining dependency information for pandas==2.2.3 from https://files.pythonhosted.org/packages/38/f8/d8fddee9ed0d0c0f4a2132c1dfcf0e3e53265055da8df952a53e7eaf178c/pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (89 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 89.9/89.9 kB 2.0 MB/s eta 0:00:00
+Collecting pandas_market_calendars==4.5.1 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 5))
+  Obtaining dependency information for pandas_market_calendars==4.5.1 from https://files.pythonhosted.org/packages/78/91/5baebf9c9b019051ceb0b93bf8a93669567fa690d3672527498d211e70a2/pandas_market_calendars-4.5.1-py3-none-any.whl.metadata
+  Downloading pandas_market_calendars-4.5.1-py3-none-any.whl.metadata (9.1 kB)
+Collecting pyluach==2.3.0 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 6))
+  Obtaining dependency information for pyluach==2.3.0 from https://files.pythonhosted.org/packages/8a/c8/f96208ade3ca4c23b372497d0788bcf0f2e0ff4310e5ee693366bc33fdf0/pyluach-2.3.0-py3-none-any.whl.metadata
+  Downloading pyluach-2.3.0-py3-none-any.whl.metadata (4.3 kB)
+Collecting python-dateutil==2.9.0 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 7))
+  Obtaining dependency information for python-dateutil==2.9.0 from https://files.pythonhosted.org/packages/13/7f/98d6f9ca8b731506c85785bbb8806c01f5966a4df6d68c0d1cf3b16967e1/python_dateutil-2.9.0-py2.py3-none-any.whl.metadata
+  Downloading python_dateutil-2.9.0-py2.py3-none-any.whl.metadata (8.3 kB)
+Collecting pytz==2024.2 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 8))
+  Obtaining dependency information for pytz==2024.2 from https://files.pythonhosted.org/packages/11/c3/005fcca25ce078d2cc29fd559379817424e94885510568bc1bc53d7d5846/pytz-2024.2-py2.py3-none-any.whl.metadata
+  Downloading pytz-2024.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting six==1.17.0 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 9))
+  Obtaining dependency information for six==1.17.0 from https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl.metadata
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting toolz==1.2.0 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 10))
+  Obtaining dependency information for toolz==1.2.0 from https://files.pythonhosted.org/packages/db/17/4c8beb6c8c4176c6bf143bfd7e1e4dd6719b00ced90738c7ac471b71c1df/toolz-1.2.0-py3-none-any.whl.metadata
+  Downloading toolz-1.2.0-py3-none-any.whl.metadata (5.2 kB)
+Collecting tzdata==2026.5 (from -r research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt (line 11))
+  Obtaining dependency information for tzdata==2026.5 from https://files.pythonhosted.org/packages/94/21/1e5995a1c920cce14e4bffae20c665ec10e7ed03ab25e006cd741092b718/tzdata-2026.5-py2.py3-none-any.whl.metadata
+  Downloading tzdata-2026.5-py2.py3-none-any.whl.metadata (1.4 kB)
+Downloading exchange_calendars-4.13.2-py3-none-any.whl (213 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 213.3/213.3 kB 1.6 MB/s eta 0:00:00
+Downloading korean_lunar_calendar-0.4.0-py3-none-any.whl (11 kB)
+Downloading numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.0/18.0 MB 2.5 MB/s eta 0:00:00
+Downloading pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.7/12.7 MB 2.4 MB/s eta 0:00:00
+Downloading pandas_market_calendars-4.5.1-py3-none-any.whl (108 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 108.1/108.1 kB 4.6 MB/s eta 0:00:00
+Downloading pyluach-2.3.0-py3-none-any.whl (25 kB)
+Downloading python_dateutil-2.9.0-py2.py3-none-any.whl (230 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 230.5/230.5 kB 3.5 MB/s eta 0:00:00
+Downloading pytz-2024.2-py2.py3-none-any.whl (508 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 508.0/508.0 kB 2.5 MB/s eta 0:00:00
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading toolz-1.2.0-py3-none-any.whl (60 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.8/60.8 kB 163.7 MB/s eta 0:00:00
+Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 348.0/348.0 kB 2.7 MB/s eta 0:00:00
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/exchange_calendars-4.13.2-py3-none-any.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/korean_lunar_calendar-0.4.0-py3-none-any.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/pandas_market_calendars-4.5.1-py3-none-any.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/pyluach-2.3.0-py3-none-any.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/python_dateutil-2.9.0-py2.py3-none-any.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/pytz-2024.2-py2.py3-none-any.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/six-1.17.0-py2.py3-none-any.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/toolz-1.2.0-py3-none-any.whl
+Saved /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/tzdata-2026.5-py2.py3-none-any.whl
+Successfully downloaded exchange_calendars korean_lunar_calendar numpy pandas pandas_market_calendars pyluach python-dateutil pytz six toolz tzdata

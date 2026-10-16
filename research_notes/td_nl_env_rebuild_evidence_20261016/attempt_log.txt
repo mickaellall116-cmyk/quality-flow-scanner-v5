@@ -1,0 +1,21 @@
+QF-TD-NL-ENV-REBUILD-20261016-01 r1 — attempt log (all attempts preserved)
+Dispatch (Slack/Issue #1 comment 6222883175): 2026-10-16 19:14:47Z; ACK 15:26:55 EDT (19:26:55Z).
+Execution start (spec fetch): ~19:27Z. Final validation run complete: 19:32:15Z. Write-up after.
+Budget: <=45 min total; <=1 environment/driver repair of <=10 min.
+
+ATTEMPT 1 (driver-level, FAILED, preserved in pip_download_attempt1_stdout.txt):
+  /usr/bin/python3 -m pip download --no-cache-dir -r lock_copy.txt -d <wheelhouse>/wheels --report pip_download_report.json
+  -> exit 2: pip 24.0's download subcommand has no --report option. Zero wheels fetched, zero side effects.
+REPAIR (the single allowed repair; ~1 minute, driver invocation only):
+  dropped --report; added -v so package-index URLs/filenames are captured in pip_download_stdout.txt.
+  No environment, candidate, lock or fixture bytes were changed by the repair.
+ATTEMPT 2 (SUCCESS): pip download -v -> 11/11 wheels; sha256 verified 11/11 vs preserved wheel_hashes.txt BEFORE install.
+venv create (/usr/bin/python3 -m venv /tmp/tdqual/venv): first-try success.
+install (--no-index --find-links wheelhouse -r lock, --report pip_install_report.json): first-try success.
+pip freeze == lock: EXACT (11/11, no extras).
+VALIDATION RUNS (each exactly ONCE, network denied via unshare -n; no reruns):
+  Gate-N fixtures -> PASS (byte-identical to the -01 record).
+  f64d12f integration suite -> 16/16, success=true, exit 0 (fresh results.json JSON-equal to the -01 record).
+  080a6ba classifier matrix pristine -> 28/28 (byte-identical to the -02 run1 record).
+  N10 controls vmismatch/libabsent/mechraise -> each HOLD as designed (byte-identical to the -02 run1 records).
+Repair minutes used: ~1 of the <=10 allowance (driver invocation correction only).

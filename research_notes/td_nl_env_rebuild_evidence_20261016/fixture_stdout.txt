@@ -1,0 +1,1 @@
+{"out": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_nl_env_rebuild_evidence_20261016/fixture_results.json", "fx01_fx04_all_pass": true, "fx05_pass": true}

@@ -1,0 +1,305 @@
+{
+  "fx01_fx04_all_pass": true,
+  "fx05_negative_controls": {
+    "NC1_shifted_open_instant_detected": true,
+    "NC2_closed_day_claimed_open_detected": true,
+    "NC3_bar_start_off_by_one_minute_detected": true,
+    "NC4_unresolvable_calendar_fails_closed": true
+  },
+  "fx05_pass": true,
+  "per_date": {
+    "FX-01_spring_dst": [
+      {
+        "computed": {
+          "bar_starts_et": [
+            "09:30",
+            "10:30",
+            "11:30",
+            "12:30",
+            "13:30",
+            "14:30",
+            "15:30"
+          ],
+          "bar_starts_utc": [
+            "14:30",
+            "15:30",
+            "16:30",
+            "17:30",
+            "18:30",
+            "19:30",
+            "20:30"
+          ],
+          "close_utc": "2025-03-07T21:00:00Z",
+          "n_bars": 7,
+          "open_utc": "2025-03-07T14:30:00Z",
+          "session_open": true
+        },
+        "date": "2025-03-07",
+        "expected_session": "FULL",
+        "pass": true
+      },
+      {
+        "computed": {
+          "bar_starts_et": [
+            "09:30",
+            "10:30",
+            "11:30",
+            "12:30",
+            "13:30",
+            "14:30",
+            "15:30"
+          ],
+          "bar_starts_utc": [
+            "13:30",
+            "14:30",
+            "15:30",
+            "16:30",
+            "17:30",
+            "18:30",
+            "19:30"
+          ],
+          "close_utc": "2025-03-10T20:00:00Z",
+          "n_bars": 7,
+          "open_utc": "2025-03-10T13:30:00Z",
+          "session_open": true
+        },
+        "date": "2025-03-10",
+        "expected_session": "FULL",
+        "pass": true
+      }
+    ],
+    "FX-02_fall_dst": [
+      {
+        "computed": {
+          "bar_starts_et": [
+            "09:30",
+            "10:30",
+            "11:30",
+            "12:30",
+            "13:30",
+            "14:30",
+            "15:30"
+          ],
+          "bar_starts_utc": [
+            "13:30",
+            "14:30",
+            "15:30",
+            "16:30",
+            "17:30",
+            "18:30",
+            "19:30"
+          ],
+          "close_utc": "2025-10-31T20:00:00Z",
+          "n_bars": 7,
+          "open_utc": "2025-10-31T13:30:00Z",
+          "session_open": true
+        },
+        "date": "2025-10-31",
+        "expected_session": "FULL",
+        "pass": true
+      },
+      {
+        "computed": {
+          "bar_starts_et": [
+            "09:30",
+            "10:30",
+            "11:30",
+            "12:30",
+            "13:30",
+            "14:30",
+            "15:30"
+          ],
+          "bar_starts_utc": [
+            "14:30",
+            "15:30",
+            "16:30",
+            "17:30",
+            "18:30",
+            "19:30",
+            "20:30"
+          ],
+          "close_utc": "2025-11-03T21:00:00Z",
+          "n_bars": 7,
+          "open_utc": "2025-11-03T14:30:00Z",
+          "session_open": true
+        },
+        "date": "2025-11-03",
+        "expected_session": "FULL",
+        "pass": true
+      }
+    ],
+    "FX-03_mixed_thanksgiving_window_SPT05_06": [
+      {
+        "computed": {
+          "bar_starts_et": [
+            "09:30",
+            "10:30",
+            "11:30",
+            "12:30",
+            "13:30",
+            "14:30",
+            "15:30"
+          ],
+          "bar_starts_utc": [
+            "14:30",
+            "15:30",
+            "16:30",
+            "17:30",
+            "18:30",
+            "19:30",
+            "20:30"
+          ],
+          "close_utc": "2025-11-26T21:00:00Z",
+          "n_bars": 7,
+          "open_utc": "2025-11-26T14:30:00Z",
+          "session_open": true
+        },
+        "date": "2025-11-26",
+        "expected_session": "FULL",
+        "pass": true
+      },
+      {
+        "computed": {
+          "bar_starts_et": [],
+          "bar_starts_utc": [],
+          "close_utc": null,
+          "n_bars": 0,
+          "open_utc": null,
+          "session_open": false,
+          "xnys_schedule": null
+        },
+        "date": "2025-11-27",
+        "expected_session": "CLOSED",
+        "pass": true
+      },
+      {
+        "computed": {
+          "bar_starts_et": [
+            "09:30",
+            "10:30",
+            "11:30",
+            "12:30"
+          ],
+          "bar_starts_utc": [
+            "14:30",
+            "15:30",
+            "16:30",
+            "17:30"
+          ],
+          "close_utc": "2025-11-28T18:00:00Z",
+          "n_bars": 4,
+          "open_utc": "2025-11-28T14:30:00Z",
+          "session_open": true
+        },
+        "date": "2025-11-28",
+        "expected_session": "EARLY_CLOSE",
+        "pass": true
+      }
+    ],
+    "FX-04_all_none_conjunct_2026-07-03_to_2026-07-05": true,
+    "FX-04_closed_day_window_SPT07_08": [
+      {
+        "computed": {
+          "bar_starts_et": [
+            "09:30",
+            "10:30",
+            "11:30",
+            "12:30",
+            "13:30",
+            "14:30",
+            "15:30"
+          ],
+          "bar_starts_utc": [
+            "13:30",
+            "14:30",
+            "15:30",
+            "16:30",
+            "17:30",
+            "18:30",
+            "19:30"
+          ],
+          "close_utc": "2026-07-02T20:00:00Z",
+          "n_bars": 7,
+          "open_utc": "2026-07-02T13:30:00Z",
+          "session_open": true
+        },
+        "date": "2026-07-02",
+        "expected_session": "FULL",
+        "pass": true
+      },
+      {
+        "computed": {
+          "bar_starts_et": [],
+          "bar_starts_utc": [],
+          "close_utc": null,
+          "n_bars": 0,
+          "open_utc": null,
+          "session_open": false,
+          "xnys_schedule": null
+        },
+        "date": "2026-07-03",
+        "expected_session": "CLOSED",
+        "pass": true
+      },
+      {
+        "computed": {
+          "bar_starts_et": [],
+          "bar_starts_utc": [],
+          "close_utc": null,
+          "n_bars": 0,
+          "open_utc": null,
+          "session_open": false,
+          "xnys_schedule": null
+        },
+        "date": "2026-07-04",
+        "expected_session": "NON_SESSION_WEEKEND",
+        "pass": true
+      },
+      {
+        "computed": {
+          "bar_starts_et": [],
+          "bar_starts_utc": [],
+          "close_utc": null,
+          "n_bars": 0,
+          "open_utc": null,
+          "session_open": false,
+          "xnys_schedule": null
+        },
+        "date": "2026-07-05",
+        "expected_session": "NON_SESSION_WEEKEND",
+        "pass": true
+      },
+      {
+        "computed": {
+          "bar_starts_et": [
+            "09:30",
+            "10:30",
+            "11:30",
+            "12:30",
+            "13:30",
+            "14:30",
+            "15:30"
+          ],
+          "bar_starts_utc": [
+            "13:30",
+            "14:30",
+            "15:30",
+            "16:30",
+            "17:30",
+            "18:30",
+            "19:30"
+          ],
+          "close_utc": "2026-07-06T20:00:00Z",
+          "n_bars": 7,
+          "open_utc": "2026-07-06T13:30:00Z",
+          "session_open": true
+        },
+        "date": "2026-07-06",
+        "expected_session": "FULL",
+        "pass": true
+      }
+    ]
+  },
+  "suite": "Gate N fixtures FX-01..FX-05 (f95dc0e expectations)",
+  "verdict_inputs_pass": true
+}

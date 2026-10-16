@@ -1,0 +1,33 @@
+{
+  "cases": [
+    {
+      "case": "N10_vmismatch",
+      "checks": {
+        "no_closed_bin": true,
+        "no_event": true,
+        "no_follow_receipt": true,
+        "none_evidenced": true,
+        "outcome_hold": true,
+        "state_hold": true,
+        "terminated": true
+      },
+      "note": "negative control in perturbed throwaway process; expect HOLD",
+      "pass": true
+    }
+  ],
+  "counts": {
+    "passed": 1,
+    "total": 1
+  },
+  "environment": {
+    "collector_sha256": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c",
+    "lock_sha256": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+    "mechanism_module_sha256": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+    "network": "disabled in-process (socket connect/getaddrinfo raise)",
+    "pandas_market_calendars": "9.9.9 (drifted in-process for N10 control; installed 4.5.1)",
+    "python": "3.12.3",
+    "supplement_candidate_sha256": "9c71233003771d66cf81e99ae01a410ba8943aedfcce8a8c6411dfb51edacd32"
+  },
+  "mode": "vmismatch",
+  "task": "QF-TD-CLOSED-SESSION-CLASSIFIER-NLQUAL-20261015-02 r1"
+}

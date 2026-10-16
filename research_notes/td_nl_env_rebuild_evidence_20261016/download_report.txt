@@ -1,0 +1,37 @@
+pip download (attempt 2; the only network action of this task)
+index: https://pypi.org/simple (default; no --index-url/--extra-index-url used)
+command: /usr/bin/python3 -m pip download --no-cache-dir -v -r lock_copy.txt -d <wheelhouse>/wheels
+
+exchange_calendars-4.13.2-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c8/4c/0469b40057bc9f8d9594dcc6024202626b981ae4b52dfcd304552e8e1c3a/exchange_calendars-4.13.2-py3-none-any.whl
+  sha256: fc5a2ad0d61b5c3a6539a3061cd4cbb55c59f4a903455cec7926e4b798919996
+korean_lunar_calendar-0.4.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/c1/88/f56033b09fdca5c8c5e5fc2f3513950a05cd62caa9bd8e6d2750a887c86e/korean_lunar_calendar-0.4.0-py3-none-any.whl
+  sha256: c042e20de0bb702add6bec8d0f6da1ea8d3b170838e63846f70420cf341fe4e7
+numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/0f/50/de23fde84e45f5c4fda2488c759b69990fd4512387a8632860f3ac9cd225/numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  sha256: 675d61ffbfa78604709862923189bad94014bef562cc35cf61d3a07bba02a7ed
+pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  url: https://files.pythonhosted.org/packages/38/f8/d8fddee9ed0d0c0f4a2132c1dfcf0e3e53265055da8df952a53e7eaf178c/pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  sha256: fffb8ae78d8af97f849404f21411c95062db1496aeb3e56f146f0355c9989319
+pandas_market_calendars-4.5.1-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/78/91/5baebf9c9b019051ceb0b93bf8a93669567fa690d3672527498d211e70a2/pandas_market_calendars-4.5.1-py3-none-any.whl
+  sha256: 7b4f3478cc18f44d6ce7d62fbac847b9b7b53bd6fd9d2d06cd76551112cc0bfd
+pyluach-2.3.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/8a/c8/f96208ade3ca4c23b372497d0788bcf0f2e0ff4310e5ee693366bc33fdf0/pyluach-2.3.0-py3-none-any.whl
+  sha256: 4497b731aef59508b079dbf5f00bc5bf4329ac45090a6cd37b5a83756f0e69ab
+python_dateutil-2.9.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/13/7f/98d6f9ca8b731506c85785bbb8806c01f5966a4df6d68c0d1cf3b16967e1/python_dateutil-2.9.0-py2.py3-none-any.whl
+  sha256: cbf2f1da5e6083ac2fbfd4da39a25f34312230110440f424a14c7558bb85d82e
+pytz-2024.2-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/11/c3/005fcca25ce078d2cc29fd559379817424e94885510568bc1bc53d7d5846/pytz-2024.2-py2.py3-none-any.whl
+  sha256: 31c7c1817eb7fae7ca4b8c7ee50c72f93aa2dd863de768e1ef4245d426aa0725
+six-1.17.0-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl
+  sha256: 4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274
+toolz-1.2.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/db/17/4c8beb6c8c4176c6bf143bfd7e1e4dd6719b00ced90738c7ac471b71c1df/toolz-1.2.0-py3-none-any.whl
+  sha256: 890f820b1cb8152785aaf9386d8707770110809035800985ca65cb24ce1120ef
+tzdata-2026.5-py2.py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/94/21/1e5995a1c920cce14e4bffae20c665ec10e7ed03ab25e006cd741092b718/tzdata-2026.5-py2.py3-none-any.whl
+  sha256: b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac
