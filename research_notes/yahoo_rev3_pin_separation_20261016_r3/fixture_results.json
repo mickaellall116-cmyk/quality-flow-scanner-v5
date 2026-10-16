@@ -1,0 +1,45 @@
+{
+ "candidate": "capture_manifest_rev3_pin_separated_candidate.json",
+ "candidate_sha256": "3d3d4ef51e54f9e6d9bce6119673ddd7e41825049d13c58bead3b19bf4021248",
+ "cases": [
+  {
+   "checks": 6,
+   "failures": [],
+   "id": "P-01",
+   "title": "three pin domains disjoint/exact; separated pre-anchor verification",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 2,
+   "failures": [],
+   "id": "P-02",
+   "title": "anchor carries both pin maps; fresh consumer, journals+state denied, re-verifies",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 1,
+   "failures": [],
+   "id": "P-03",
+   "title": "altered anchor sealed member pin -> consumer HOLD",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 1,
+   "failures": [],
+   "id": "P-04",
+   "title": "missing anchor sealed member pin -> consumer HOLD",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 1,
+   "failures": [],
+   "id": "P-05",
+   "title": "altered anchor independent pin (projection) -> consumer HOLD",
+   "verdict": "PASS"
+  }
+ ],
+ "suite": "QF-YAHOO-REV3-VERIFICATION-PIN-SEPARATION-20261016-18 r3",
+ "total_checks": 11,
+ "total_failures": 0,
+ "verdict": "PASS"
+}
