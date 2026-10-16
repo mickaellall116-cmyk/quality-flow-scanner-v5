@@ -1,0 +1,105 @@
+{
+ "candidate_sha256": "3d3d4ef51e54f9e6d9bce6119673ddd7e41825049d13c58bead3b19bf4021248",
+ "cases": [
+  {
+   "checks": 7,
+   "failures": [],
+   "id": "R4-01",
+   "title": "empty journal replacement: fence + owner drift detection",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 4,
+   "failures": [],
+   "id": "R4-02-copy",
+   "title": "journal pathname replaced with copy mid-run",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 5,
+   "failures": [],
+   "id": "R4-03-link",
+   "title": "journal pathname replaced with link mid-run",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 6,
+   "failures": [],
+   "id": "R4-04",
+   "title": "temp substituted with file in the finalize window",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 7,
+   "failures": [],
+   "id": "R4-05",
+   "title": "temp substituted with symlink in the finalize window",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 3,
+   "failures": [],
+   "id": "R4-06a",
+   "title": "write OSError",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 2,
+   "failures": [],
+   "id": "R4-06b",
+   "title": "fsync OSError",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 2,
+   "failures": [],
+   "id": "R4-06c",
+   "title": "link OSError",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 2,
+   "failures": [],
+   "id": "R4-06d",
+   "title": "unlink OSError",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 4,
+   "failures": [],
+   "id": "R4-06e",
+   "title": "ATTEMPT append failure",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 4,
+   "failures": [],
+   "id": "R4-06f",
+   "title": "COMPLETE append failure",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 5,
+   "failures": [],
+   "id": "R4-06g",
+   "title": "HOLD append failure (durability)",
+   "verdict": "PASS"
+  },
+  {
+   "checks": 7,
+   "failures": [],
+   "id": "R4-07",
+   "title": "retained smoke: full run + control contents + restart",
+   "verdict": "PASS"
+  }
+ ],
+ "crash": null,
+ "elapsed_s": 0.49,
+ "executor": "clean_capture_executor_h19r4.py",
+ "executor_sha256": "39df9b934a9b15637d9b1e309c6e1a57c112ff01ddaf458390eb6a2d9b973e0b",
+ "peak_rss_mb": 20.07,
+ "task": "QF-YAHOO-REV3-CLEAN-CAPTURE-EXECUTOR-ATOMICITY-20261016-19 r4",
+ "total_checks": 58,
+ "total_failures": 0,
+ "verdict": "PASS"
+}
