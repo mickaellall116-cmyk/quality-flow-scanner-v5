@@ -1,0 +1,245 @@
+{
+ "acceptance": {
+  "contract_design_all_traces_pass": true,
+  "note": "Acceptance binds the RECOMMENDED design (A_CONTRACT). B and C are modeled to expose, deterministically, the exact traces the contract clauses exist to close."
+ },
+ "designs": {
+  "A_CONTRACT": {
+   "traces": [
+    {
+     "outcome": "owner S2 -> HOLD:JOURNAL_REPLACED; restart -> HOLD:JOURNAL_REPLACED",
+     "title": "journal replaced with EMPTY while owner live; owner exits; fresh restart",
+     "trace": "T1",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_RENAMED",
+     "title": "journal replaced with STALE COPY (genesis only) after S1 completed",
+     "trace": "T1b",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:PATH_TYPE; restart -> HOLD:PATH_TYPE",
+     "title": "journal replaced with SYMLINK to foreign file",
+     "trace": "T1c",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> HOLD:CONTROL_REPLACED; restart -> HOLD:CONTROL_REPLACED",
+     "title": "control directory replaced between ATTEMPT fsync and transport call",
+     "trace": "T2",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "HOLD:TEMP_SUBSTITUTED; temp abandoned, foreign intact",
+     "title": "temp substitution between identity check and unlink",
+     "trace": "T3",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "pre-COMPLETE re-verify -> HOLD:FINAL_SUBSTITUTED",
+     "title": "final substitution after verification, before COMPLETE",
+     "trace": "T4",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "contender open -> HOLD:OWNER_BUSY",
+     "title": "two live owner processes contend",
+     "trace": "T5",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> HOLD:JOURNAL_REPLACED (recycled ino 1002)",
+     "title": "journal inode freed and RECYCLED by a forged genesis-only journal",
+     "trace": "T6",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> ok, holds ['HOLD:ATTEMPT_CONSUMED_AMBIGUOUS']",
+     "title": "kill after ATTEMPT fsync; benign restart",
+     "trace": "T7",
+     "verdict": "PASS",
+     "violations": []
+    }
+   ],
+   "verdict": "PASS"
+  },
+  "B_CHAIN_ONLY": {
+   "traces": [
+    {
+     "outcome": "owner S2 -> ok; restart -> HOLD:JOURNAL_CORRUPT",
+     "title": "journal replaced with EMPTY while owner live; owner exits; fresh restart",
+     "trace": "T1",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> ok",
+     "title": "journal replaced with STALE COPY (genesis only) after S1 completed",
+     "trace": "T1b",
+     "verdict": "FAIL",
+     "violations": [
+      "DOUBLE_CALL:S1",
+      "RESTART_IGNORED_CONSUMED:S1"
+     ]
+    },
+    {
+     "outcome": "owner S2 -> ok; restart -> HOLD:JOURNAL_CORRUPT",
+     "title": "journal replaced with SYMLINK to foreign file",
+     "trace": "T1c",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> ok; restart -> HOLD:JOURNAL_CORRUPT",
+     "title": "control directory replaced between ATTEMPT fsync and transport call",
+     "trace": "T2",
+     "verdict": "FAIL",
+     "violations": [
+      "CALL_AFTER_CONTROL_REPLACEMENT"
+     ]
+    },
+    {
+     "outcome": "cleanup unlinked pathname after substitution",
+     "title": "temp substitution between identity check and unlink",
+     "trace": "T3",
+     "verdict": "FAIL",
+     "violations": [
+      "FOREIGN_UNLINK"
+     ]
+    },
+    {
+     "outcome": "COMPLETE appended binding verified inode",
+     "title": "final substitution after verification, before COMPLETE",
+     "trace": "T4",
+     "verdict": "FAIL",
+     "violations": [
+      "COMPLETE_BINDS_REPLACED_FINAL"
+     ]
+    },
+    {
+     "outcome": "contender open -> ACQUIRED",
+     "title": "two live owner processes contend",
+     "trace": "T5",
+     "verdict": "FAIL",
+     "violations": [
+      "RESTART_IGNORED_CONSUMED:S1"
+     ]
+    },
+    {
+     "outcome": "restart -> ok (recycled ino 1002)",
+     "title": "journal inode freed and RECYCLED by a forged genesis-only journal",
+     "trace": "T6",
+     "verdict": "FAIL",
+     "violations": [
+      "RESTART_IGNORED_CONSUMED:S1"
+     ]
+    },
+    {
+     "outcome": "restart -> ok, holds ['HOLD:ATTEMPT_CONSUMED_AMBIGUOUS']",
+     "title": "kill after ATTEMPT fsync; benign restart",
+     "trace": "T7",
+     "verdict": "PASS",
+     "violations": []
+    }
+   ],
+   "verdict": "FAIL"
+  },
+  "C_R4_LIKE": {
+   "traces": [
+    {
+     "outcome": "owner S2 -> HOLD:JOURNAL_REPLACED; restart -> ok",
+     "title": "journal replaced with EMPTY while owner live; owner exits; fresh restart",
+     "trace": "T1",
+     "verdict": "FAIL",
+     "violations": [
+      "DOUBLE_CALL:S1",
+      "RESTART_IGNORED_CONSUMED:S1"
+     ]
+    },
+    {
+     "outcome": "restart -> ok",
+     "title": "journal replaced with STALE COPY (genesis only) after S1 completed",
+     "trace": "T1b",
+     "verdict": "FAIL",
+     "violations": [
+      "DOUBLE_CALL:S1",
+      "RESTART_IGNORED_CONSUMED:S1"
+     ]
+    },
+    {
+     "outcome": "owner S2 -> HOLD:PATH_TYPE; restart -> HOLD:PATH_TYPE",
+     "title": "journal replaced with SYMLINK to foreign file",
+     "trace": "T1c",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "owner S2 -> ok; restart -> ok",
+     "title": "control directory replaced between ATTEMPT fsync and transport call",
+     "trace": "T2",
+     "verdict": "FAIL",
+     "violations": [
+      "CALL_AFTER_CONTROL_REPLACEMENT",
+      "DOUBLE_CALL:S1",
+      "DOUBLE_CALL:S2",
+      "RESTART_IGNORED_CONSUMED:S1",
+      "RESTART_IGNORED_CONSUMED:S2"
+     ]
+    },
+    {
+     "outcome": "cleanup unlinked pathname after substitution",
+     "title": "temp substitution between identity check and unlink",
+     "trace": "T3",
+     "verdict": "FAIL",
+     "violations": [
+      "FOREIGN_UNLINK"
+     ]
+    },
+    {
+     "outcome": "COMPLETE appended binding verified inode",
+     "title": "final substitution after verification, before COMPLETE",
+     "trace": "T4",
+     "verdict": "FAIL",
+     "violations": [
+      "COMPLETE_BINDS_REPLACED_FINAL"
+     ]
+    },
+    {
+     "outcome": "contender open -> HOLD:OWNER_BUSY",
+     "title": "two live owner processes contend",
+     "trace": "T5",
+     "verdict": "PASS",
+     "violations": []
+    },
+    {
+     "outcome": "restart -> ok (recycled ino 1002)",
+     "title": "journal inode freed and RECYCLED by a forged genesis-only journal",
+     "trace": "T6",
+     "verdict": "FAIL",
+     "violations": [
+      "RESTART_IGNORED_CONSUMED:S1"
+     ]
+    },
+    {
+     "outcome": "restart -> ok, holds ['HOLD:ATTEMPT_CONSUMED_AMBIGUOUS']",
+     "title": "kill after ATTEMPT fsync; benign restart",
+     "trace": "T7",
+     "verdict": "PASS",
+     "violations": []
+    }
+   ],
+   "verdict": "FAIL"
+  }
+ },
+ "model": "QF-YAHOO-REV3-OWNERSHIP-CONTRACT-20261016-19 r5",
+ "verdict": "REV3_OWNERSHIP_CONTRACT_MODEL_PASS"
+}

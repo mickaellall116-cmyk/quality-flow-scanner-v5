@@ -1,0 +1,7 @@
+# QF-YAHOO-REV3-CLEAN-CAPTURE-OWNERSHIP-CONTRACT-20261016-19 r5 — package SHA256 manifest
+# Verify from this directory: sha256sum -c SHA256_MANIFEST.txt (memo entry is ../ relative).
+1dd69dbc7fbfb9518b5a5a496168e03b68f011159e84e122bdc7ee3037682980  ../YAHOO_REV3_CLEAN_CAPTURE_OWNERSHIP_CONTRACT_20261016_R5.md
+b9d08aa5c07b410f3c16714234d32eb42beaae244a7de02a741953242e84adb2  ownership_contract.json
+0a51b91d54e3b13bd3500fdb6e5016a030233743b3bf9c9d87f831b25997c00f  attack_matrix.json
+5ddfc76c45e1958334a32dc2e312e846b047d3afe8c85ea383c797e0237a892d  run_ownership_model.py
+01f86af36f3b5b3fc552b2a1ee23c4c7b3cdde921cc7c50d12e4f728d4971d17  model_results.json
