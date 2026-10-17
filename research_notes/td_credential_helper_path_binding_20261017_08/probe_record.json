@@ -1,0 +1,31 @@
+{
+ "default_syspath_import": "NOT_IMPORTABLE:ModuleNotFoundError",
+ "other_platform_copy": {
+  "classification": "SURFACE_PASS",
+  "exists": true,
+  "identical_bytes_to_sanctioned": true,
+  "is_sanctioned_origin": false,
+  "path": "/opt/hatch/workflow-skills/custom-connector-setup/bin/dynamic_credentials.py",
+  "sha256": "8b1f42e80a76710edf0ff2abf8a51b0cde35b06474af865de108a7ca27d6728d"
+ },
+ "probe": "read_only_surface_inspection_no_invocation",
+ "resolver_against_sanctioned": {
+  "callable_present": true,
+  "origin": "/opt/hatch/skills/skill-creator/bin/dynamic_credentials.py",
+  "origin_is_sanctioned_path": true,
+  "resolved": true,
+  "reverify": true,
+  "sha256": "8b1f42e80a76710edf0ff2abf8a51b0cde35b06474af865de108a7ca27d6728d"
+ },
+ "sanctioned": {
+  "callable": "url_with_surrogate_query_param",
+  "classification": "SURFACE_PASS",
+  "exists": true,
+  "path": "/opt/hatch/skills/skill-creator/bin/dynamic_credentials.py",
+  "sha256": "8b1f42e80a76710edf0ff2abf8a51b0cde35b06474af865de108a7ca27d6728d",
+  "signature": "(url: 'str', credential_name: 'str', *, entry_name: 'str' = 'access_token', allowed_hosts: 'Iterable[str]') -> 'str'"
+ },
+ "sanctioned_dir_exists": true,
+ "sanctioned_pin_matches": true,
+ "task": "QF-TD-CREDENTIAL-HELPER-PATH-BINDING-20261017-08"
+}
