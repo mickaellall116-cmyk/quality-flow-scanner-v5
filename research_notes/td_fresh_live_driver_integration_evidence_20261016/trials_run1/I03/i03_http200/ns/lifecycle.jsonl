@@ -1,0 +1,199 @@
+{"at": "2026-10-16T06:40:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-01"}
+{"at": "2026-10-16T06:40:00Z", "event": "STARTED", "request_id": "REQ-P1H-01"}
+{"at": "2026-10-16T06:40:00Z", "event": "RECEIVED", "receipt_sha256": "c4c56a184802629954067e1158913efddfa71a637a8fc9630c61cfa872d4ecf8", "request_id": "REQ-P1H-01"}
+{"at": "2026-10-16T06:40:00Z", "event": "COMPLETED", "receipt_sha256": "c4c56a184802629954067e1158913efddfa71a637a8fc9630c61cfa872d4ecf8", "request_id": "REQ-P1H-01"}
+{"at": "2026-10-16T06:40:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-02"}
+{"at": "2026-10-16T06:40:00Z", "event": "STARTED", "request_id": "REQ-P1H-02"}
+{"at": "2026-10-16T06:40:00Z", "event": "RECEIVED", "receipt_sha256": "82650d562eaefa52bccda4d7bb441d53fc1d513686f9580d374e9e9eb2fe8466", "request_id": "REQ-P1H-02"}
+{"at": "2026-10-16T06:40:00Z", "event": "COMPLETED", "receipt_sha256": "82650d562eaefa52bccda4d7bb441d53fc1d513686f9580d374e9e9eb2fe8466", "request_id": "REQ-P1H-02"}
+{"at": "2026-10-16T06:40:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-03"}
+{"at": "2026-10-16T06:40:00Z", "event": "STARTED", "request_id": "REQ-P1H-03"}
+{"at": "2026-10-16T06:40:00Z", "event": "RECEIVED", "receipt_sha256": "bcbab497bcaba90b851a80a6cd7d3400d36a79480f7e524c1776ca0ee5d82d60", "request_id": "REQ-P1H-03"}
+{"at": "2026-10-16T06:40:00Z", "event": "COMPLETED", "receipt_sha256": "bcbab497bcaba90b851a80a6cd7d3400d36a79480f7e524c1776ca0ee5d82d60", "request_id": "REQ-P1H-03"}
+{"at": "2026-10-16T06:40:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-04"}
+{"at": "2026-10-16T06:40:00Z", "event": "STARTED", "request_id": "REQ-P1H-04"}
+{"at": "2026-10-16T06:40:00Z", "event": "RECEIVED", "receipt_sha256": "26b84efeb2adf7cfb56708e15b8b93b938eab0ca6c7d3227040547266b5e456c", "request_id": "REQ-P1H-04"}
+{"at": "2026-10-16T06:40:00Z", "event": "COMPLETED", "receipt_sha256": "26b84efeb2adf7cfb56708e15b8b93b938eab0ca6c7d3227040547266b5e456c", "request_id": "REQ-P1H-04"}
+{"at": "2026-10-16T06:40:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-05"}
+{"at": "2026-10-16T06:40:00Z", "event": "STARTED", "request_id": "REQ-P1H-05"}
+{"at": "2026-10-16T06:40:00Z", "event": "RECEIVED", "receipt_sha256": "c3d9d8c780a71fadeadfb7fb3a20717e10bba682132c7a376a7fe58a2d6a89ea", "request_id": "REQ-P1H-05"}
+{"at": "2026-10-16T06:40:00Z", "event": "COMPLETED", "receipt_sha256": "c3d9d8c780a71fadeadfb7fb3a20717e10bba682132c7a376a7fe58a2d6a89ea", "request_id": "REQ-P1H-05"}
+{"at": "2026-10-16T06:40:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-06"}
+{"at": "2026-10-16T06:40:00Z", "event": "STARTED", "request_id": "REQ-P1H-06"}
+{"at": "2026-10-16T06:40:00Z", "event": "RECEIVED", "receipt_sha256": "0b8017bea325eb8502fc360a40a9f219349259844cdb25b350251e84293c4894", "request_id": "REQ-P1H-06"}
+{"at": "2026-10-16T06:40:00Z", "event": "COMPLETED", "receipt_sha256": "0b8017bea325eb8502fc360a40a9f219349259844cdb25b350251e84293c4894", "request_id": "REQ-P1H-06"}
+{"at": "2026-10-16T06:40:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-07"}
+{"at": "2026-10-16T06:40:00Z", "event": "STARTED", "request_id": "REQ-P1H-07"}
+{"at": "2026-10-16T06:40:00Z", "event": "RECEIVED", "receipt_sha256": "b743dacd54e7640a9063184677a7470760e6c614b6e962e97605b4a8a8470c16", "request_id": "REQ-P1H-07"}
+{"at": "2026-10-16T06:40:00Z", "event": "COMPLETED", "receipt_sha256": "b743dacd54e7640a9063184677a7470760e6c614b6e962e97605b4a8a8470c16", "request_id": "REQ-P1H-07"}
+{"at": "2026-10-16T06:40:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-08"}
+{"at": "2026-10-16T06:40:00Z", "event": "STARTED", "request_id": "REQ-P1H-08"}
+{"at": "2026-10-16T06:40:00Z", "event": "RECEIVED", "receipt_sha256": "4a7ebe214c5dd707998dfc2fa07aa71840b89e37a8d537b5436eab060924b6d7", "request_id": "REQ-P1H-08"}
+{"at": "2026-10-16T06:40:00Z", "event": "COMPLETED", "receipt_sha256": "4a7ebe214c5dd707998dfc2fa07aa71840b89e37a8d537b5436eab060924b6d7", "request_id": "REQ-P1H-08"}
+{"at": "2026-10-16T06:41:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-09"}
+{"at": "2026-10-16T06:41:00Z", "event": "STARTED", "request_id": "REQ-P1H-09"}
+{"at": "2026-10-16T06:41:00Z", "event": "RECEIVED", "receipt_sha256": "ccc0038660bf2f66b0d9acaddb3ea8044e1661ebc743eed59ece7ff647f133d8", "request_id": "REQ-P1H-09"}
+{"at": "2026-10-16T06:41:00Z", "event": "COMPLETED", "receipt_sha256": "ccc0038660bf2f66b0d9acaddb3ea8044e1661ebc743eed59ece7ff647f133d8", "request_id": "REQ-P1H-09"}
+{"at": "2026-10-16T06:41:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-10"}
+{"at": "2026-10-16T06:41:00Z", "event": "STARTED", "request_id": "REQ-P1H-10"}
+{"at": "2026-10-16T06:41:00Z", "event": "RECEIVED", "receipt_sha256": "86698f7a09ac6293e9d058e0aedc80f0094a32115b151021f3508cc1e11e6876", "request_id": "REQ-P1H-10"}
+{"at": "2026-10-16T06:41:00Z", "event": "COMPLETED", "receipt_sha256": "86698f7a09ac6293e9d058e0aedc80f0094a32115b151021f3508cc1e11e6876", "request_id": "REQ-P1H-10"}
+{"at": "2026-10-16T06:41:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-11"}
+{"at": "2026-10-16T06:41:00Z", "event": "STARTED", "request_id": "REQ-P1H-11"}
+{"at": "2026-10-16T06:41:00Z", "event": "RECEIVED", "receipt_sha256": "c8ff1e5db8858dd779bbfc93e7cb6bfa9347a897adc4c7da9a53fc02dbc34345", "request_id": "REQ-P1H-11"}
+{"at": "2026-10-16T06:41:00Z", "event": "COMPLETED", "receipt_sha256": "c8ff1e5db8858dd779bbfc93e7cb6bfa9347a897adc4c7da9a53fc02dbc34345", "request_id": "REQ-P1H-11"}
+{"at": "2026-10-16T06:41:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-12"}
+{"at": "2026-10-16T06:41:00Z", "event": "STARTED", "request_id": "REQ-P1H-12"}
+{"at": "2026-10-16T06:41:00Z", "event": "RECEIVED", "receipt_sha256": "2302971203a45042c05691d91f6f16a7e68e6ecf8b9b810a39f47c0adaa5cf78", "request_id": "REQ-P1H-12"}
+{"at": "2026-10-16T06:41:00Z", "event": "COMPLETED", "receipt_sha256": "2302971203a45042c05691d91f6f16a7e68e6ecf8b9b810a39f47c0adaa5cf78", "request_id": "REQ-P1H-12"}
+{"at": "2026-10-16T06:41:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-13"}
+{"at": "2026-10-16T06:41:00Z", "event": "STARTED", "request_id": "REQ-P1H-13"}
+{"at": "2026-10-16T06:41:00Z", "event": "RECEIVED", "receipt_sha256": "41d7db8da085232f472ec277385a486d9d49ae8ad428469b1dc0a4bf0d61632e", "request_id": "REQ-P1H-13"}
+{"at": "2026-10-16T06:41:00Z", "event": "COMPLETED", "receipt_sha256": "41d7db8da085232f472ec277385a486d9d49ae8ad428469b1dc0a4bf0d61632e", "request_id": "REQ-P1H-13"}
+{"at": "2026-10-16T06:41:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-14"}
+{"at": "2026-10-16T06:41:00Z", "event": "STARTED", "request_id": "REQ-P1H-14"}
+{"at": "2026-10-16T06:41:00Z", "event": "RECEIVED", "receipt_sha256": "718eaecbd46842d31274901da61ad88f852a626de081750725c3bb9568f8f6b5", "request_id": "REQ-P1H-14"}
+{"at": "2026-10-16T06:41:00Z", "event": "COMPLETED", "receipt_sha256": "718eaecbd46842d31274901da61ad88f852a626de081750725c3bb9568f8f6b5", "request_id": "REQ-P1H-14"}
+{"at": "2026-10-16T06:41:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-15"}
+{"at": "2026-10-16T06:41:00Z", "event": "STARTED", "request_id": "REQ-P1H-15"}
+{"at": "2026-10-16T06:41:00Z", "event": "RECEIVED", "receipt_sha256": "2750b4b582d48263b6cc9f964e6b99004d7e81c41a7315bf14b9cec183d9d4fc", "request_id": "REQ-P1H-15"}
+{"at": "2026-10-16T06:41:00Z", "event": "COMPLETED", "receipt_sha256": "2750b4b582d48263b6cc9f964e6b99004d7e81c41a7315bf14b9cec183d9d4fc", "request_id": "REQ-P1H-15"}
+{"at": "2026-10-16T06:41:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-16"}
+{"at": "2026-10-16T06:41:00Z", "event": "STARTED", "request_id": "REQ-P1H-16"}
+{"at": "2026-10-16T06:41:00Z", "event": "RECEIVED", "receipt_sha256": "e81b948efb87c350e2ff541ff8aa40542c864e96b93caf3eaaf09ea1585d8861", "request_id": "REQ-P1H-16"}
+{"at": "2026-10-16T06:41:00Z", "event": "COMPLETED", "receipt_sha256": "e81b948efb87c350e2ff541ff8aa40542c864e96b93caf3eaaf09ea1585d8861", "request_id": "REQ-P1H-16"}
+{"at": "2026-10-16T06:42:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-17"}
+{"at": "2026-10-16T06:42:00Z", "event": "STARTED", "request_id": "REQ-P1H-17"}
+{"at": "2026-10-16T06:42:00Z", "event": "RECEIVED", "receipt_sha256": "0c591ca008b2208bd2a4647ef4b87be9be712d1399b1e6887d228304bacffde7", "request_id": "REQ-P1H-17"}
+{"at": "2026-10-16T06:42:00Z", "event": "COMPLETED", "receipt_sha256": "0c591ca008b2208bd2a4647ef4b87be9be712d1399b1e6887d228304bacffde7", "request_id": "REQ-P1H-17"}
+{"at": "2026-10-16T06:42:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-18"}
+{"at": "2026-10-16T06:42:00Z", "event": "STARTED", "request_id": "REQ-P1H-18"}
+{"at": "2026-10-16T06:42:00Z", "event": "RECEIVED", "receipt_sha256": "cb6eac2ddd5ae365755e94a6dc939f9c67cff5296179a62e7f794f973cd8bf30", "request_id": "REQ-P1H-18"}
+{"at": "2026-10-16T06:42:00Z", "event": "COMPLETED", "receipt_sha256": "cb6eac2ddd5ae365755e94a6dc939f9c67cff5296179a62e7f794f973cd8bf30", "request_id": "REQ-P1H-18"}
+{"at": "2026-10-16T06:42:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-19"}
+{"at": "2026-10-16T06:42:00Z", "event": "STARTED", "request_id": "REQ-P1H-19"}
+{"at": "2026-10-16T06:42:00Z", "event": "RECEIVED", "receipt_sha256": "64fda64515b56e948703ba213b0e03d17263ed0e305191adab88b9e7673040c6", "request_id": "REQ-P1H-19"}
+{"at": "2026-10-16T06:42:00Z", "event": "COMPLETED", "receipt_sha256": "64fda64515b56e948703ba213b0e03d17263ed0e305191adab88b9e7673040c6", "request_id": "REQ-P1H-19"}
+{"at": "2026-10-16T06:42:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P1H-20"}
+{"at": "2026-10-16T06:42:00Z", "event": "STARTED", "request_id": "REQ-P1H-20"}
+{"at": "2026-10-16T06:42:00Z", "event": "RECEIVED", "receipt_sha256": "3c057f66091c02773428050402894aa8f6bc716a9c1727e4fda57fe122e150c2", "request_id": "REQ-P1H-20"}
+{"at": "2026-10-16T06:42:00Z", "event": "COMPLETED", "receipt_sha256": "3c057f66091c02773428050402894aa8f6bc716a9c1727e4fda57fe122e150c2", "request_id": "REQ-P1H-20"}
+{"at": "2026-10-16T06:42:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-01"}
+{"at": "2026-10-16T06:42:00Z", "event": "STARTED", "request_id": "REQ-P4H-01"}
+{"at": "2026-10-16T06:42:00Z", "event": "RECEIVED", "receipt_sha256": "a75806f2f623f75e692dd5dd2a33a5d0316208e3ac20c8e4a3fffa297162fa45", "request_id": "REQ-P4H-01"}
+{"at": "2026-10-16T06:42:00Z", "event": "COMPLETED", "receipt_sha256": "a75806f2f623f75e692dd5dd2a33a5d0316208e3ac20c8e4a3fffa297162fa45", "request_id": "REQ-P4H-01"}
+{"at": "2026-10-16T06:42:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-02"}
+{"at": "2026-10-16T06:42:00Z", "event": "STARTED", "request_id": "REQ-P4H-02"}
+{"at": "2026-10-16T06:42:00Z", "event": "RECEIVED", "receipt_sha256": "3aeb82d327f78652615cc070904b456a99bfe666b4dd976d37e0e6140379eba8", "request_id": "REQ-P4H-02"}
+{"at": "2026-10-16T06:42:00Z", "event": "COMPLETED", "receipt_sha256": "3aeb82d327f78652615cc070904b456a99bfe666b4dd976d37e0e6140379eba8", "request_id": "REQ-P4H-02"}
+{"at": "2026-10-16T06:42:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-03"}
+{"at": "2026-10-16T06:42:00Z", "event": "STARTED", "request_id": "REQ-P4H-03"}
+{"at": "2026-10-16T06:42:00Z", "event": "RECEIVED", "receipt_sha256": "e372475d699a9c5d838029f41c1255f951a292cf852be824f4e3b26f27463361", "request_id": "REQ-P4H-03"}
+{"at": "2026-10-16T06:42:00Z", "event": "COMPLETED", "receipt_sha256": "e372475d699a9c5d838029f41c1255f951a292cf852be824f4e3b26f27463361", "request_id": "REQ-P4H-03"}
+{"at": "2026-10-16T06:42:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-04"}
+{"at": "2026-10-16T06:42:00Z", "event": "STARTED", "request_id": "REQ-P4H-04"}
+{"at": "2026-10-16T06:42:00Z", "event": "RECEIVED", "receipt_sha256": "bb9aa80adcdad7510bce96207c6b8d05fda049789f834aad1b049b84d354b528", "request_id": "REQ-P4H-04"}
+{"at": "2026-10-16T06:42:00Z", "event": "COMPLETED", "receipt_sha256": "bb9aa80adcdad7510bce96207c6b8d05fda049789f834aad1b049b84d354b528", "request_id": "REQ-P4H-04"}
+{"at": "2026-10-16T06:43:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-05"}
+{"at": "2026-10-16T06:43:00Z", "event": "STARTED", "request_id": "REQ-P4H-05"}
+{"at": "2026-10-16T06:43:00Z", "event": "RECEIVED", "receipt_sha256": "ab4e1122886e535666248bdf88ce21ad18a52ba8119ee0a35538cb17adda775e", "request_id": "REQ-P4H-05"}
+{"at": "2026-10-16T06:43:00Z", "event": "COMPLETED", "receipt_sha256": "ab4e1122886e535666248bdf88ce21ad18a52ba8119ee0a35538cb17adda775e", "request_id": "REQ-P4H-05"}
+{"at": "2026-10-16T06:43:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-06"}
+{"at": "2026-10-16T06:43:00Z", "event": "STARTED", "request_id": "REQ-P4H-06"}
+{"at": "2026-10-16T06:43:00Z", "event": "RECEIVED", "receipt_sha256": "915a347b5b6ccfcfabdf77be475c0ddcf187efb17c40f787150dcec315e08381", "request_id": "REQ-P4H-06"}
+{"at": "2026-10-16T06:43:00Z", "event": "COMPLETED", "receipt_sha256": "915a347b5b6ccfcfabdf77be475c0ddcf187efb17c40f787150dcec315e08381", "request_id": "REQ-P4H-06"}
+{"at": "2026-10-16T06:43:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-07"}
+{"at": "2026-10-16T06:43:00Z", "event": "STARTED", "request_id": "REQ-P4H-07"}
+{"at": "2026-10-16T06:43:00Z", "event": "RECEIVED", "receipt_sha256": "a71d8a84e53728707e1c3746f2a25a4386a8d0ed602fbbf752dc54d985b1d143", "request_id": "REQ-P4H-07"}
+{"at": "2026-10-16T06:43:00Z", "event": "COMPLETED", "receipt_sha256": "a71d8a84e53728707e1c3746f2a25a4386a8d0ed602fbbf752dc54d985b1d143", "request_id": "REQ-P4H-07"}
+{"at": "2026-10-16T06:43:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-08"}
+{"at": "2026-10-16T06:43:00Z", "event": "STARTED", "request_id": "REQ-P4H-08"}
+{"at": "2026-10-16T06:43:00Z", "event": "RECEIVED", "receipt_sha256": "4fa1cb05e54cbfc001c4d7b816cac68bae43799f2fed6fc8d527622b1537319a", "request_id": "REQ-P4H-08"}
+{"at": "2026-10-16T06:43:00Z", "event": "COMPLETED", "receipt_sha256": "4fa1cb05e54cbfc001c4d7b816cac68bae43799f2fed6fc8d527622b1537319a", "request_id": "REQ-P4H-08"}
+{"at": "2026-10-16T06:43:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-09"}
+{"at": "2026-10-16T06:43:00Z", "event": "STARTED", "request_id": "REQ-P4H-09"}
+{"at": "2026-10-16T06:43:00Z", "event": "RECEIVED", "receipt_sha256": "f4761217e20e66e0113ae345b1f1b0f968815f638c494dd0e82a8207f861b61c", "request_id": "REQ-P4H-09"}
+{"at": "2026-10-16T06:43:00Z", "event": "COMPLETED", "receipt_sha256": "f4761217e20e66e0113ae345b1f1b0f968815f638c494dd0e82a8207f861b61c", "request_id": "REQ-P4H-09"}
+{"at": "2026-10-16T06:43:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-10"}
+{"at": "2026-10-16T06:43:00Z", "event": "STARTED", "request_id": "REQ-P4H-10"}
+{"at": "2026-10-16T06:43:00Z", "event": "RECEIVED", "receipt_sha256": "a45beef30f2256f6cfe034611601b4467c6f590bb3e73c56880a9d3181560ddb", "request_id": "REQ-P4H-10"}
+{"at": "2026-10-16T06:43:00Z", "event": "COMPLETED", "receipt_sha256": "a45beef30f2256f6cfe034611601b4467c6f590bb3e73c56880a9d3181560ddb", "request_id": "REQ-P4H-10"}
+{"at": "2026-10-16T06:43:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-11"}
+{"at": "2026-10-16T06:43:00Z", "event": "STARTED", "request_id": "REQ-P4H-11"}
+{"at": "2026-10-16T06:43:00Z", "event": "RECEIVED", "receipt_sha256": "c8e9f72f0cb334c339d0d6aa880500c937efc85198aafeb6da159c95d2d522d1", "request_id": "REQ-P4H-11"}
+{"at": "2026-10-16T06:43:00Z", "event": "COMPLETED", "receipt_sha256": "c8e9f72f0cb334c339d0d6aa880500c937efc85198aafeb6da159c95d2d522d1", "request_id": "REQ-P4H-11"}
+{"at": "2026-10-16T06:43:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-12"}
+{"at": "2026-10-16T06:43:00Z", "event": "STARTED", "request_id": "REQ-P4H-12"}
+{"at": "2026-10-16T06:43:00Z", "event": "RECEIVED", "receipt_sha256": "4bd77b963a775fe0ae97ff933cf7ba4f0954b8046218ceeebbdbf811b2cf533e", "request_id": "REQ-P4H-12"}
+{"at": "2026-10-16T06:43:00Z", "event": "COMPLETED", "receipt_sha256": "4bd77b963a775fe0ae97ff933cf7ba4f0954b8046218ceeebbdbf811b2cf533e", "request_id": "REQ-P4H-12"}
+{"at": "2026-10-16T06:44:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-13"}
+{"at": "2026-10-16T06:44:00Z", "event": "STARTED", "request_id": "REQ-P4H-13"}
+{"at": "2026-10-16T06:44:00Z", "event": "RECEIVED", "receipt_sha256": "86ac919de1c64651aec0026addd91a890f1bb3769f23d8acb6ea65dc7231bcad", "request_id": "REQ-P4H-13"}
+{"at": "2026-10-16T06:44:00Z", "event": "COMPLETED", "receipt_sha256": "86ac919de1c64651aec0026addd91a890f1bb3769f23d8acb6ea65dc7231bcad", "request_id": "REQ-P4H-13"}
+{"at": "2026-10-16T06:44:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-14"}
+{"at": "2026-10-16T06:44:00Z", "event": "STARTED", "request_id": "REQ-P4H-14"}
+{"at": "2026-10-16T06:44:00Z", "event": "RECEIVED", "receipt_sha256": "c03e304e870414049f496ca8918353b296bfaddaae23d573269fcf25b0135424", "request_id": "REQ-P4H-14"}
+{"at": "2026-10-16T06:44:00Z", "event": "COMPLETED", "receipt_sha256": "c03e304e870414049f496ca8918353b296bfaddaae23d573269fcf25b0135424", "request_id": "REQ-P4H-14"}
+{"at": "2026-10-16T06:44:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-15"}
+{"at": "2026-10-16T06:44:00Z", "event": "STARTED", "request_id": "REQ-P4H-15"}
+{"at": "2026-10-16T06:44:00Z", "event": "RECEIVED", "receipt_sha256": "74e48c29648545c8ea7a2ed42a51dd31d826c581578924a423eabfe0a06031fe", "request_id": "REQ-P4H-15"}
+{"at": "2026-10-16T06:44:00Z", "event": "COMPLETED", "receipt_sha256": "74e48c29648545c8ea7a2ed42a51dd31d826c581578924a423eabfe0a06031fe", "request_id": "REQ-P4H-15"}
+{"at": "2026-10-16T06:44:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-16"}
+{"at": "2026-10-16T06:44:00Z", "event": "STARTED", "request_id": "REQ-P4H-16"}
+{"at": "2026-10-16T06:44:00Z", "event": "RECEIVED", "receipt_sha256": "fccfb8f4a58a3214c6ffb8a7dcbff3698566c63727950d96dce086e246b545c2", "request_id": "REQ-P4H-16"}
+{"at": "2026-10-16T06:44:00Z", "event": "COMPLETED", "receipt_sha256": "fccfb8f4a58a3214c6ffb8a7dcbff3698566c63727950d96dce086e246b545c2", "request_id": "REQ-P4H-16"}
+{"at": "2026-10-16T06:44:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-17"}
+{"at": "2026-10-16T06:44:00Z", "event": "STARTED", "request_id": "REQ-P4H-17"}
+{"at": "2026-10-16T06:44:00Z", "event": "RECEIVED", "receipt_sha256": "be9e3cb164624487406c6c610d41284665121f2b9b57ad50f9a4a9f5125f7720", "request_id": "REQ-P4H-17"}
+{"at": "2026-10-16T06:44:00Z", "event": "COMPLETED", "receipt_sha256": "be9e3cb164624487406c6c610d41284665121f2b9b57ad50f9a4a9f5125f7720", "request_id": "REQ-P4H-17"}
+{"at": "2026-10-16T06:44:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-18"}
+{"at": "2026-10-16T06:44:00Z", "event": "STARTED", "request_id": "REQ-P4H-18"}
+{"at": "2026-10-16T06:44:00Z", "event": "RECEIVED", "receipt_sha256": "41f4aa754aecb900262cac40b3f294d2cbe02a69e8341f764d31443a1f950f19", "request_id": "REQ-P4H-18"}
+{"at": "2026-10-16T06:44:00Z", "event": "COMPLETED", "receipt_sha256": "41f4aa754aecb900262cac40b3f294d2cbe02a69e8341f764d31443a1f950f19", "request_id": "REQ-P4H-18"}
+{"at": "2026-10-16T06:44:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-19"}
+{"at": "2026-10-16T06:44:00Z", "event": "STARTED", "request_id": "REQ-P4H-19"}
+{"at": "2026-10-16T06:44:00Z", "event": "RECEIVED", "receipt_sha256": "d34a16a52445d4bc393b776ca9f03e109ea76638e3e2139db96f3dc029785b99", "request_id": "REQ-P4H-19"}
+{"at": "2026-10-16T06:44:00Z", "event": "COMPLETED", "receipt_sha256": "d34a16a52445d4bc393b776ca9f03e109ea76638e3e2139db96f3dc029785b99", "request_id": "REQ-P4H-19"}
+{"at": "2026-10-16T06:44:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-P4H-20"}
+{"at": "2026-10-16T06:44:00Z", "event": "STARTED", "request_id": "REQ-P4H-20"}
+{"at": "2026-10-16T06:44:00Z", "event": "RECEIVED", "receipt_sha256": "4b932fffa78a9fd90c76db0acea728b6ce22c54a11e35f6c01c16019ad74c60b", "request_id": "REQ-P4H-20"}
+{"at": "2026-10-16T06:44:00Z", "event": "COMPLETED", "receipt_sha256": "4b932fffa78a9fd90c76db0acea728b6ce22c54a11e35f6c01c16019ad74c60b", "request_id": "REQ-P4H-20"}
+{"at": "2026-10-16T06:45:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-ADJ-01"}
+{"at": "2026-10-16T06:45:00Z", "event": "STARTED", "request_id": "REQ-ADJ-01"}
+{"at": "2026-10-16T06:45:00Z", "event": "RECEIVED", "receipt_sha256": "e66b58b328ac3094a8ed8b9ffa9ae7a5712a65d2f793cfa4e9cf605fb9c582f6", "request_id": "REQ-ADJ-01"}
+{"at": "2026-10-16T06:45:00Z", "event": "COMPLETED", "receipt_sha256": "e66b58b328ac3094a8ed8b9ffa9ae7a5712a65d2f793cfa4e9cf605fb9c582f6", "request_id": "REQ-ADJ-01"}
+{"at": "2026-10-16T06:45:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-ADJ-02"}
+{"at": "2026-10-16T06:45:00Z", "event": "STARTED", "request_id": "REQ-ADJ-02"}
+{"at": "2026-10-16T06:45:00Z", "event": "RECEIVED", "receipt_sha256": "e9743572e1bc3582521f7711f03853e597ab291939b04114d48db431ccd658ac", "request_id": "REQ-ADJ-02"}
+{"at": "2026-10-16T06:45:00Z", "event": "COMPLETED", "receipt_sha256": "e9743572e1bc3582521f7711f03853e597ab291939b04114d48db431ccd658ac", "request_id": "REQ-ADJ-02"}
+{"at": "2026-10-16T06:45:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-ADJ-03"}
+{"at": "2026-10-16T06:45:00Z", "event": "STARTED", "request_id": "REQ-ADJ-03"}
+{"at": "2026-10-16T06:45:00Z", "event": "RECEIVED", "receipt_sha256": "72f42b5e41bdee1ad11a4ef03e92f697dff3a9159395d347f9f0300e9b717405", "request_id": "REQ-ADJ-03"}
+{"at": "2026-10-16T06:45:00Z", "event": "COMPLETED", "receipt_sha256": "72f42b5e41bdee1ad11a4ef03e92f697dff3a9159395d347f9f0300e9b717405", "request_id": "REQ-ADJ-03"}
+{"at": "2026-10-16T06:45:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-SPT-01"}
+{"at": "2026-10-16T06:45:00Z", "event": "STARTED", "request_id": "REQ-SPT-01"}
+{"at": "2026-10-16T06:45:00Z", "event": "RECEIVED", "receipt_sha256": "889c380dd49ff6bf102987c44fe260e7406a71cdd9ed37d17f444434db8776ea", "request_id": "REQ-SPT-01"}
+{"at": "2026-10-16T06:45:00Z", "event": "COMPLETED", "receipt_sha256": "889c380dd49ff6bf102987c44fe260e7406a71cdd9ed37d17f444434db8776ea", "request_id": "REQ-SPT-01"}
+{"at": "2026-10-16T06:45:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-SPT-02"}
+{"at": "2026-10-16T06:45:00Z", "event": "STARTED", "request_id": "REQ-SPT-02"}
+{"at": "2026-10-16T06:45:00Z", "event": "RECEIVED", "receipt_sha256": "48e12a5d7e5e547a0898321c159ec13f416aa896f51454a999de7adcee0daba0", "request_id": "REQ-SPT-02"}
+{"at": "2026-10-16T06:45:00Z", "event": "COMPLETED", "receipt_sha256": "48e12a5d7e5e547a0898321c159ec13f416aa896f51454a999de7adcee0daba0", "request_id": "REQ-SPT-02"}
+{"at": "2026-10-16T06:45:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-SPT-03"}
+{"at": "2026-10-16T06:45:00Z", "event": "STARTED", "request_id": "REQ-SPT-03"}
+{"at": "2026-10-16T06:45:00Z", "event": "RECEIVED", "receipt_sha256": "480d6040271065beb576446dee383c6915aa8e07233a129c6e6d4bf7f927e4ac", "request_id": "REQ-SPT-03"}
+{"at": "2026-10-16T06:45:00Z", "event": "COMPLETED", "receipt_sha256": "480d6040271065beb576446dee383c6915aa8e07233a129c6e6d4bf7f927e4ac", "request_id": "REQ-SPT-03"}
+{"at": "2026-10-16T06:45:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-SPT-04"}
+{"at": "2026-10-16T06:45:00Z", "event": "STARTED", "request_id": "REQ-SPT-04"}
+{"at": "2026-10-16T06:45:00Z", "event": "RECEIVED", "receipt_sha256": "c06f70741b3d69df023eec225aa00b6d13756c09bbe7ee29ee0026fc2f1a3b4f", "request_id": "REQ-SPT-04"}
+{"at": "2026-10-16T06:45:00Z", "event": "COMPLETED", "receipt_sha256": "c06f70741b3d69df023eec225aa00b6d13756c09bbe7ee29ee0026fc2f1a3b4f", "request_id": "REQ-SPT-04"}
+{"at": "2026-10-16T06:45:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-SPT-05"}
+{"at": "2026-10-16T06:45:00Z", "event": "STARTED", "request_id": "REQ-SPT-05"}
+{"at": "2026-10-16T06:45:00Z", "event": "RECEIVED", "receipt_sha256": "436d9d253fb9467d5e8d79b19429b9a0b51f1d8e5d493323690ecd38b671ae01", "request_id": "REQ-SPT-05"}
+{"at": "2026-10-16T06:45:00Z", "event": "COMPLETED", "receipt_sha256": "436d9d253fb9467d5e8d79b19429b9a0b51f1d8e5d493323690ecd38b671ae01", "request_id": "REQ-SPT-05"}
+{"at": "2026-10-16T06:46:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-SPT-06"}
+{"at": "2026-10-16T06:46:00Z", "event": "STARTED", "request_id": "REQ-SPT-06"}
+{"at": "2026-10-16T06:46:00Z", "event": "RECEIVED", "receipt_sha256": "3d5e6012a081ba13caa297adb0f5213b7d3c43624ed02e6557f7c23091f47c60", "request_id": "REQ-SPT-06"}
+{"at": "2026-10-16T06:46:00Z", "event": "COMPLETED", "receipt_sha256": "3d5e6012a081ba13caa297adb0f5213b7d3c43624ed02e6557f7c23091f47c60", "request_id": "REQ-SPT-06"}
+{"at": "2026-10-16T06:46:00Z", "event": "CREDIT_RESERVED", "request_id": "REQ-SPT-07"}
+{"at": "2026-10-16T06:46:00Z", "event": "STARTED", "request_id": "REQ-SPT-07"}
+{"at": "2026-10-16T06:46:00Z", "event": "ERROR_EVIDENCE", "kind": "API_STATUS_NOT_OK", "request_id": "REQ-SPT-07"}

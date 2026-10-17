@@ -1,0 +1,1 @@
+{"code": 400, "message": "No data is available on the specified dates. Try setting different start/end dates.", "meta": {"exchange": "", "interval": "1h", "symbol": "AAPL"}, "status": "error", "values": []}
