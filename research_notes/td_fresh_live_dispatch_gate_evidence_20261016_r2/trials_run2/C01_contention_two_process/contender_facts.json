@@ -1,0 +1,1 @@
+{"decision": "HOLD", "factory_calls": 0, "gate8": ["FAIL", "OWNER_LEASE_HELD"], "gates_passed": 11, "lease_acquired": false, "ledger_hash": "8ae993b18f5028c4509abd27e1a177040df5d8e80d036f6c44d4a07074dc270e", "namespace_exists_after": false, "transport_constructed": false}
