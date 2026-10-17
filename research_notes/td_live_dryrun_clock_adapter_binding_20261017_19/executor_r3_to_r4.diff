@@ -1,0 +1,85 @@
+--- td_status_query_placement_20261017_17/live_readiness_executor_r3.py	2026-10-17 19:32:10.678384981 +0000
++++ td_live_dryrun_clock_adapter_binding_20261017_19/live_readiness_executor_r4.py	2026-10-17 22:38:25.152241610 +0000
+@@ -1,5 +1,25 @@
+ #!/usr/bin/env python3
+-"""QF-TD-LIVE-CLEARANCE-PATH-BINDING-20261017-15 r1 candidate.
++"""QF-TD-LIVE-DRYRUN-CLOCK-ADAPTER-BINDING-20261017-19 r1 candidate.
++
++Revision of the -17 executor (live_readiness_executor_r3.py
++8b01c6f5..., preserved unchanged) closing the -18 HOLD
++(QF_TD_READINESS_18_ACCOUNT_PASS__FAIL_CLOSED_ROLLBACK_ACCEPTED__
++LIVE_HOLD_CLOCK_AND_ADAPTER_BINDING): (1) the live dry-run no
++longer routes through the -11 trial harness or its frozen test
++clock -- a dedicated live adapter (live_dry_run_adapter.py, pinned
++below by exact path + sha256) derives its single evaluation anchor
++from the immutable executor evidence (facts.evaluated_at) and
++judges the vendor evidence at that anchor; (2) the adapter bytes
++are verified during live admission, BEFORE marker, status boundary
++or any mutation -- tamper/symlink/shadow/wrong-origin refuse the
++run; the adapter identity is transitively covered by this
++executor's source pin (the pin lives in this file) and must be
++pinned again by any future clearance. All -15/-17 behavior
++(clearance/path binding, URL boundary, lock-first, one-slot,
++rollback/recovery, prohibited scope) is preserved unchanged.
++Prior -15 docstring follows.
++
++QF-TD-LIVE-CLEARANCE-PATH-BINDING-20261017-15 r1 candidate.
+ 
+ Revision of the -14 executor (live_readiness_executor.py 689ab473...,
+ preserved unchanged) closing the -14 review identity HOLD:
+@@ -153,6 +173,32 @@
+ H = RT.H
+ canon = RT.canon
+ Refusal = RT.Refusal
++
++# --- -19: dedicated live dry-run adapter, bound by exact path+sha.
++# The pin lives in this source file, so the adapter identity is
++# transitively covered by the executor source pin in any clearance.
++ADAPTER_PATH = os.path.join(HERE, "live_dry_run_adapter.py")
++ADAPTER_SHA256 = "e8605669db902c3eb78ec4b3c13b69b3d94b7f1d8bcdac1a9c520b35ffc8c627"
++
++
++def _load_live_adapter():
++    """Load the -19 live dry-run adapter by exact path + sha256 pin
++    under a private module name. Symlink, missing/non-regular file,
++    byte drift or a foreign origin all refuse (Refusal) before any
++    marker, status boundary or mutation can use it."""
++    if os.path.islink(ADAPTER_PATH) or not os.path.isfile(ADAPTER_PATH):
++        raise Refusal("ADAPTER_PATH_REFUSED")
++    if _sha256_file(ADAPTER_PATH) != ADAPTER_SHA256:
++        raise Refusal("ADAPTER_PIN_MISMATCH")
++    spec = importlib.util.spec_from_file_location(
++        "qf19_live_dry_run_adapter", ADAPTER_PATH)
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    if os.path.abspath(mod.__file__) != os.path.abspath(ADAPTER_PATH):
++        raise Refusal("ADAPTER_ORIGIN_MISMATCH")
++    if not hasattr(mod, "make_live_dry_run_hook"):
++        raise Refusal("ADAPTER_LOAD_FAILED")
++    return mod
+ Journal = RT.Journal
+ _atomic_write = RT._atomic_write
+ 
+@@ -483,6 +529,7 @@
+             raise Refusal("GO_RECORD_MISMATCH")
+         self._verify_clearance()
+         self._verify_path_hygiene()
++        _load_live_adapter()  # -19: adapter identity proven pre-marker
+         return self._clearance
+ 
+     # -- locks ---------------------------------------------------------------
+@@ -729,11 +776,9 @@
+ 
+     def _dry_run(self):
+         if self.mode == "live":
+-            if HERE not in sys.path:
+-                sys.path.insert(0, HERE)
+-            from r4_dry_run_adapter import make_r4_dry_run_hook
+-            hook = make_r4_dry_run_hook(self.packet, self.target,
+-                                        account_raw=self._status_raw)
++            adapter = _load_live_adapter()
++            hook = adapter.make_live_dry_run_hook(self.packet,
++                                                  self.target)
+             return hook(self.evidence_path)
+         return self.hooks["dry_run"](self.evidence_path)
+ 

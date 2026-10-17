@@ -1,0 +1,302 @@
+{
+ "all_ok": true,
+ "n_checks": 113,
+ "n_checks_ok": 113,
+ "n_trials": 30,
+ "task": "QF-TD-STATUS-QUERY-PLACEMENT-20261017-17 r1",
+ "trials": [
+  {
+   "checks": {
+    "r2_accepted_assumed_shape": true,
+    "r2_refuses_placement_shape": true,
+    "r3_accepts_placement_shape": true,
+    "r3_refuses_assumed_shape": true,
+    "r3_refuses_empty_query": true
+   },
+   "ok": true,
+   "trial": "q00_regression_original_r2_vs_shapes"
+  },
+  {
+   "checks": {
+    "admission_ok": true,
+    "no_lease_or_lock": true,
+    "no_marker": true,
+    "target_untouched": true
+   },
+   "ok": true,
+   "trial": "q01_admission_canonical_passes_touches_nothing"
+  },
+  {
+   "checks": {
+    "canonical_untouched": true,
+    "decoy_untouched": true,
+    "no_marker": true,
+    "refused_binding": true
+   },
+   "ok": true,
+   "trial": "q02_decoy_target_refused"
+  },
+  {
+   "checks": {
+    "bound_workdir_not_created": true,
+    "drift_workdir_not_created": true,
+    "refused_binding": true
+   },
+   "ok": true,
+   "trial": "q03_workdir_drift_refused_before_marker"
+  },
+  {
+   "checks": {
+    "no_marker": true,
+    "repinned_edit_refused": true,
+    "stale_pin_refused": true,
+    "target_untouched": true
+   },
+   "ok": true,
+   "trial": "q04_edited_clearance_refused"
+  },
+  {
+   "checks": {
+    "no_marker": true,
+    "refused_binding": true
+   },
+   "ok": true,
+   "trial": "q05_packet_digest_drift_refused"
+  },
+  {
+   "checks": {
+    "no_marker": true,
+    "real_untouched": true,
+    "refused_hygiene": true
+   },
+   "ok": true,
+   "trial": "q06_symlink_target_refused"
+  },
+  {
+   "checks": {
+    "no_marker": true,
+    "refused_hygiene": true
+   },
+   "ok": true,
+   "trial": "q07_symlink_candidate_refused"
+  },
+  {
+   "checks": {
+    "no_marker": true,
+    "refused_hygiene": true
+   },
+   "ok": true,
+   "trial": "q08_symlink_workdir_ancestor_refused"
+  },
+  {
+   "checks": {
+    "no_marker": true,
+    "refused_hygiene": true,
+    "target_untouched": true
+   },
+   "ok": true,
+   "trial": "q09_symlink_lease_path_refused"
+  },
+  {
+   "checks": {
+    "complete": true,
+    "one_status_call": true,
+    "recovery_adopted_verified": true,
+    "recovery_zero_status_calls": true,
+    "target_is_candidate": true
+   },
+   "ok": true,
+   "trial": "q10_canonical_paths_full_run_passes_once"
+  },
+  {
+   "checks": {
+    "decoy_not_overwritten": true,
+    "hold_drift": true,
+    "journal_status_calls_zero": true,
+    "path_still_symlink": true,
+    "zero_transport": true
+   },
+   "ok": true,
+   "trial": "q11_symlink_swap_before_status"
+  },
+  {
+   "checks": {
+    "hold_drift": true,
+    "journal_status_calls_zero": true,
+    "target_bytes_intact": true,
+    "zero_transport": true
+   },
+   "ok": true,
+   "trial": "q12_inode_drift_before_status"
+  },
+  {
+   "checks": {
+    "hold_drift": true,
+    "no_adoption": true,
+    "one_transport": true
+   },
+   "ok": true,
+   "trial": "q13_inode_drift_before_mutation"
+  },
+  {
+   "checks": {
+    "decoy_not_overwritten": true,
+    "hold": true,
+    "no_adoption_through_link": true
+   },
+   "ok": true,
+   "trial": "q14_symlink_swap_before_mutation"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q15_url_boundary_host_confusion"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q16_url_boundary_alt_path"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q17_url_boundary_redirect_shaped"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q18_url_boundary_userinfo"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q19_url_boundary_port"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q20_url_boundary_extra_query"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q21_url_boundary_http_scheme"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q22_url_boundary_fragment"
+  },
+  {
+   "checks": {
+    "complete": true,
+    "one_status_slot_consumed": true,
+    "one_transport": true,
+    "target_is_candidate": true,
+    "transport_path": true
+   },
+   "ok": true,
+   "trial": "q23_url_good_placement_passes"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q24_url_boundary_old_shape_access_token"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q25_url_boundary_empty_query"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q26_url_boundary_empty_value"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q27_url_boundary_duplicate_key"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q28_url_boundary_encoded_extra_key"
+  },
+  {
+   "checks": {
+    "boundary_zero_invocations": true,
+    "hold_url_boundary": true,
+    "target_untouched": true,
+    "zero_transport_invocations": true
+   },
+   "ok": true,
+   "trial": "q29_url_boundary_wrong_case_key"
+  }
+ ]
+}

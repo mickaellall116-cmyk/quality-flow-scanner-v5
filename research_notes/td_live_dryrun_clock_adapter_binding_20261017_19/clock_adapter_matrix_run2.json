@@ -1,0 +1,172 @@
+{
+ "checks_passed": 31,
+ "checks_total": 31,
+ "summary": {
+  "all_ok": true,
+  "checks": 31,
+  "passed": 31,
+  "trials": 20
+ },
+ "trials": {
+  "anchor_missing": {
+   "checks": {
+    "refusal_ANCHOR_MALFORMED": true
+   },
+   "ok": true
+  },
+  "anchor_nan": {
+   "checks": {
+    "refusal_ANCHOR_MALFORMED": true
+   },
+   "ok": true
+  },
+  "anchor_string": {
+   "checks": {
+    "refusal_ANCHOR_MALFORMED": true
+   },
+   "ok": true
+  },
+  "audit_no_harness": {
+   "checks": {
+    "no_trial_harness_import": true,
+    "no_trial_or_base_evidence_names": true
+   },
+   "ok": true
+  },
+  "binding_ok": {
+   "checks": {
+    "adapter_pin_matches_file": true,
+    "executor_source_sha_fn": true,
+    "module_origin_is_pinned_path": true
+   },
+   "ok": true
+  },
+  "binding_shadow": {
+   "checks": {
+    "pinned_origin_despite_shadow": true
+   },
+   "ok": true
+  },
+  "binding_symlink": {
+   "checks": {
+    "refused": true
+   },
+   "ok": true
+  },
+  "binding_tamper": {
+   "checks": {
+    "refused": true
+   },
+   "ok": true
+  },
+  "boundary_age_3600": {
+   "checks": {
+    "gates_12_of_12": true
+   },
+   "ok": true
+  },
+  "boundary_skew_minus60": {
+   "checks": {
+    "gates_12_of_12": true
+   },
+   "ok": true
+  },
+  "candidate_mismatch": {
+   "checks": {
+    "refusal_EVIDENCE_CANDIDATE_MISMATCH": true
+   },
+   "ok": true
+  },
+  "epoch_conversion": {
+   "checks": {
+    "true_utc_of_1792224000": true
+   },
+   "note": "1792224000 == 2026-10-17T08:00:00Z (runner comment claims 14:00Z; wrong)",
+   "ok": true
+  },
+  "new_12of12": {
+   "checks": {
+    "decision_pass_dry_run": true,
+    "evaluated_at_is_anchor": true,
+    "gates_12_of_12": true,
+    "no_refusal": true
+   },
+   "gates": [
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "ok": true
+  },
+  "repro_old": {
+   "checks": {
+    "gate3_fail": true,
+    "gates_11_of_12": true,
+    "receipt_clock_frozen_0800": true,
+    "receipt_clock_mode_injected": true,
+    "receipt_decision_hold": true,
+    "receipt_stale_code": true
+   },
+   "gates": [
+    "PASS",
+    "PASS",
+    "FAIL",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "ok": true
+  },
+  "scope": {
+   "checks": {
+    "pilot_ledger_byte_identical": true
+   },
+   "ok": true
+  },
+  "skew_minus3600": {
+   "checks": {
+    "refusal_VENDOR_FUTURE_SKEW_BEYOND_TOLERANCE": true
+   },
+   "ok": true
+  },
+  "skew_minus61": {
+   "checks": {
+    "refusal_VENDOR_FUTURE_SKEW_BEYOND_TOLERANCE": true
+   },
+   "ok": true
+  },
+  "stale_age_7200": {
+   "checks": {
+    "refusal_EVIDENCE_STALE_BEYOND_MAX_AGE": true
+   },
+   "ok": true
+  },
+  "stale_window": {
+   "checks": {
+    "refusal_STALE_DISPATCH_WINDOW": true
+   },
+   "ok": true
+  },
+  "txn_mismatch": {
+   "checks": {
+    "refusal_EVIDENCE_TXN_MISMATCH": true
+   },
+   "ok": true
+  }
+ }
+}
