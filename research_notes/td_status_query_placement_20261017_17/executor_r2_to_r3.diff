@@ -1,0 +1,57 @@
+--- a/live_readiness_executor_r2.py
++++ b/live_readiness_executor_r3.py
+@@ -202,14 +202,30 @@
+         return self._http_get(url)
+ 
+ 
++# -17 PLACEMENT FACT (proven, not assumed): the sanctioned helper's
++# url_with_surrogate_query_param appends the surrogate under the
++# parameter named by the credential entry's placement record. For
++# custom.twelvedata the registered placement is {"query_param":
++# "apikey"} - attested in PLACEMENT_PROOF.md (committed sanitized
++# evidence: TD_VAULT_BINDING_CORRECTION_RESULT_20261014.md sha256
++# 54c92d9b...; helper source sha256 8b1f42e8...). The vault ENTRY name
++# ("access_token") is not the query parameter name; the -15 boundary
++# conflated the two and HOLDed live run -16 pre-transport.
++PLACEMENT_QUERY_PARAM = "apikey"
++
++
+ def _validate_status_url(url):
+     """Executor-side final URL boundary (spec -15 item 4). The helper
+     is pinned, but the executor independently parses its return and
+     requires: HTTPS scheme, exact host api.twelvedata.com, exact path
+-    /api_usage, no fragment, no userinfo, no alternate port, and only
+-    the expected credential query shape (no query, or exactly one
+-    access_token parameter with a single non-empty value). Anything
+-    else refuses BEFORE transport is invoked."""
++    /api_usage, no fragment, no userinfo, no alternate port, and the
++    exact credential query shape PROVEN for the credential placement
++    (-17): exactly one occurrence of the placement-declared parameter
++    PLACEMENT_QUERY_PARAM with a single non-empty value, and NO other
++    query keys. An empty query on the final credentialized URL refuses
++    (no empty-query exception). Anything else refuses BEFORE transport
++    is invoked. Diagnostics carry category tokens only - never the URL
++    or any credential value."""
+     try:
+         u = urlparse(url)
+     except Exception:
+@@ -230,12 +246,13 @@
+         raise Refusal("STATUS_URL_BOUNDARY", "path")
+     if u.fragment:
+         raise Refusal("STATUS_URL_BOUNDARY", "fragment")
+-    if u.query:
+-        qs = parse_qs(u.query)
+-        if set(qs.keys()) != {"access_token"} \
+-                or len(qs["access_token"]) != 1 \
+-                or not qs["access_token"][0]:
+-            raise Refusal("STATUS_URL_BOUNDARY", "query_shape")
++    if not u.query:
++        raise Refusal("STATUS_URL_BOUNDARY", "query_missing")
++    qs = parse_qs(u.query, keep_blank_values=True)
++    if set(qs.keys()) != {PLACEMENT_QUERY_PARAM} \
++            or len(qs[PLACEMENT_QUERY_PARAM]) != 1 \
++            or not qs[PLACEMENT_QUERY_PARAM][0]:
++        raise Refusal("STATUS_URL_BOUNDARY", "query_shape")
+     return url
+ 
+ 
