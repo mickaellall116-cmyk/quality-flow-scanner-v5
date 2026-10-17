@@ -1,0 +1,16 @@
+{
+  "candidate_path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_ledger_compat_card_binding_20261017_07/candidate_credit_ledger.json",
+  "clearance_path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261017_18/clearance.json",
+  "clearance_sha256": "5ef146227dc8dad6dbc072baf80d46874bfbbda397d504e43df7326dba500e94",
+  "dryrun_root": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261017_18/dryrun",
+  "expected_candidate_sha": "79ff48444d9f05c1272bfbeec2376b8065f4c22dc97b86f657e2ad15495e846b",
+  "expected_original_sha": "7e5ccef0e5fd7e2faa744c8fe7ee646c3162fa4f72fc4a9a85317d52b5d890ed",
+  "go_record": {
+    "comment_id": 6234434220,
+    "record_id": "QF-TD-POLICY-A-52-CREDIT-CEILING-GO-20261017"
+  },
+  "mode": "live",
+  "target_path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/credit_ledger.json",
+  "txn_id": "QF-TD-READINESS-LIVE-20261017-18",
+  "workdir": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261017_18/txn"
+}
