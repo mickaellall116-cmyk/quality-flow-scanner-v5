@@ -1,0 +1,251 @@
+{
+ "n_pass": 20,
+ "n_trials": 20,
+ "real_pilot_ledger_unchanged": true,
+ "suite": "readiness_transaction",
+ "task": "QF-TD-POLICY-A-LIVE-READINESS-PACKET-20261017-11",
+ "total_checks": 79,
+ "trials": [
+  {
+   "checks": [
+    "outcome_complete",
+    "exactly_one_status_call",
+    "adopted_candidate",
+    "backup_is_legacy",
+    "step_order",
+    "lock_order",
+    "gate3_pass",
+    "dry_run_12_of_12",
+    "terminal_record",
+    "card_verifies"
+   ],
+   "facts": {
+    "evidence_digest": "d5b31d936fabf3dacd87efff592722be158aae30d463adac1198fe4b526eb451"
+   },
+   "n_checks": 10,
+   "status": "PASS",
+   "trial": "T01_happy_path_real_dry_run"
+  },
+  {
+   "checks": [
+    "first_complete",
+    "second_refused",
+    "no_second_status_call"
+   ],
+   "facts": {},
+   "n_checks": 3,
+   "status": "PASS",
+   "trial": "T02_one_use_consumed"
+  },
+  {
+   "checks": [
+    "hold",
+    "code",
+    "zero_calls"
+   ],
+   "facts": {},
+   "n_checks": 3,
+   "status": "PASS",
+   "trial": "T03_go_record_absent"
+  },
+  {
+   "checks": [
+    "hold",
+    "refusal_code",
+    "zero_status_calls",
+    "target_unchanged",
+    "no_locks_acquired"
+   ],
+   "facts": {},
+   "n_checks": 5,
+   "status": "PASS",
+   "trial": "T04_go_record_malformed"
+  },
+  {
+   "checks": [
+    "hold",
+    "refusal_code",
+    "zero_status_calls",
+    "target_unchanged",
+    "no_locks_acquired",
+    "helper_never_verified"
+   ],
+   "facts": {},
+   "n_checks": 6,
+   "status": "PASS",
+   "trial": "T05_policy_digest_drift"
+  },
+  {
+   "checks": [
+    "hold",
+    "refusal_code",
+    "zero_status_calls",
+    "target_unchanged",
+    "no_locks_acquired"
+   ],
+   "facts": {},
+   "n_checks": 5,
+   "status": "PASS",
+   "trial": "T06_ceiling_drift"
+  },
+  {
+   "checks": [
+    "hold",
+    "refusal_code",
+    "zero_status_calls",
+    "target_unchanged",
+    "no_locks_acquired"
+   ],
+   "facts": {},
+   "n_checks": 5,
+   "status": "PASS",
+   "trial": "T07_manifest_reordered"
+  },
+  {
+   "checks": [
+    "hold",
+    "code"
+   ],
+   "facts": {},
+   "n_checks": 2,
+   "status": "PASS",
+   "trial": "T08_manifest_dropped"
+  },
+  {
+   "checks": [
+    "hold",
+    "code"
+   ],
+   "facts": {},
+   "n_checks": 2,
+   "status": "PASS",
+   "trial": "T09_pin_drift"
+  },
+  {
+   "checks": [
+    "status_before_locks",
+    "adopt_before_gate3",
+    "locks_before_preflight"
+   ],
+   "facts": {},
+   "n_checks": 3,
+   "status": "PASS",
+   "trial": "T10_order_violations"
+  },
+  {
+   "checks": [
+    "second_call_refused",
+    "hook_called_once"
+   ],
+   "facts": {},
+   "n_checks": 2,
+   "status": "PASS",
+   "trial": "T11_second_status_request"
+  },
+  {
+   "checks": [
+    "hold",
+    "call_consumed",
+    "target_unchanged",
+    "retry_impossible"
+   ],
+   "facts": {},
+   "n_checks": 4,
+   "status": "PASS",
+   "trial": "T12_status_failure_no_retry"
+  },
+  {
+   "checks": [
+    "hold",
+    "gate3_code",
+    "target_unchanged",
+    "no_backup_created",
+    "write_after_fail_refused"
+   ],
+   "facts": {},
+   "n_checks": 5,
+   "status": "PASS",
+   "trial": "T13_gate3_fail_no_ledger_write"
+  },
+  {
+   "checks": [
+    "hold",
+    "target_unchanged"
+   ],
+   "facts": {},
+   "n_checks": 2,
+   "status": "PASS",
+   "trial": "T14_backup_failure"
+  },
+  {
+   "checks": [
+    "hold",
+    "target_unchanged",
+    "backup_intact",
+    "no_temp_left"
+   ],
+   "facts": {},
+   "n_checks": 4,
+   "status": "PASS",
+   "trial": "T15_replace_failure"
+  },
+  {
+   "checks": [
+    "rolled_back",
+    "target_restored_exactly",
+    "rollback_step_logged"
+   ],
+   "facts": {},
+   "n_checks": 3,
+   "status": "PASS",
+   "trial": "T16_post_write_consumer_rollback"
+  },
+  {
+   "checks": [
+    "scope_token",
+    "scope_transport",
+    "scope_time_series"
+   ],
+   "facts": {},
+   "n_checks": 3,
+   "status": "PASS",
+   "trial": "T17_no_data_scope_boundary"
+  },
+  {
+   "checks": [
+    "complete",
+    "card_drift_refused"
+   ],
+   "facts": {},
+   "n_checks": 2,
+   "status": "PASS",
+   "trial": "T18_card_drift"
+  },
+  {
+   "checks": [
+    "real_target_refused",
+    "real_ledger_unchanged",
+    "live_mode_refused",
+    "nonfixture_hook_refused"
+   ],
+   "facts": {},
+   "n_checks": 4,
+   "status": "PASS",
+   "trial": "T19_real_target_and_mode_guards"
+  },
+  {
+   "checks": [
+    "crash_exit42_status",
+    "crash_status_target_original",
+    "crash_exit42_postwrite",
+    "crash_postwrite_atomic",
+    "crash_postwrite_backup_intact",
+    "crash_postwrite_parses"
+   ],
+   "facts": {},
+   "n_checks": 6,
+   "status": "PASS",
+   "trial": "T20_crash_atomicity"
+  }
+ ]
+}

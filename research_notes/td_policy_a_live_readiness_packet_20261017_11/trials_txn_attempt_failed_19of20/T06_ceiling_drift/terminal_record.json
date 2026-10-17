@@ -1,0 +1,1 @@
+{"evidence_digest":null,"final_state":"ABORTED","gate3":null,"outcome":"HOLD","refusal":"POLICY_CEILING_MISMATCH","refusal_detail":"","status_calls":0,"steps":[{"step":"begin","txn_id":"QF-TD-READINESS-TXN-FIXTURE-0001"}],"txn_id":"QF-TD-READINESS-TXN-FIXTURE-0001"}

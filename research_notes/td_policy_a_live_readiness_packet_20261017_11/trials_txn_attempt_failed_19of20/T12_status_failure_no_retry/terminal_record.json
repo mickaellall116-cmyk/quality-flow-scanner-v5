@@ -1,0 +1,1 @@
+{"evidence_digest":null,"final_state":"ABORTED","gate3":null,"outcome":"HOLD","refusal":"TRANSACTION_ALREADY_CONSUMED","refusal_detail":"one-use transaction id already begun","status_calls":0,"steps":[],"txn_id":"QF-TD-READINESS-TXN-FIXTURE-0001"}
