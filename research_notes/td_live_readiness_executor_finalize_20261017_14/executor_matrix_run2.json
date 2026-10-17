@@ -1,0 +1,229 @@
+{
+ "checks_passed": 82,
+ "checks_total": 82,
+ "task": "QF-TD-LIVE-READINESS-EXECUTOR-FINALIZE-20261017-14",
+ "trials": [
+  {
+   "checks": {
+    "backup_is_locked_legacy": true,
+    "complete": true,
+    "one_status_call": true,
+    "recovery_adopted_verified": true,
+    "recovery_zero_status_calls": true,
+    "status_host_path": true,
+    "target_is_candidate": true
+   },
+   "ok": true,
+   "trial": "e01_happy_real_r4_dry_run"
+  },
+  {
+   "checks": {
+    "hold_pin_mismatch": true,
+    "mutated_bytes_never_overwritten": true,
+    "zero_status_calls": true
+   },
+   "ok": true,
+   "trial": "e02_prelock_mutation_binds_locked_bytes_or_holds"
+  },
+  {
+   "checks": {
+    "blocking_attempt_waits": true,
+    "executor_completed": true,
+    "nb_attempt_blocked": true,
+    "no_overwrite_target_is_candidate": true,
+    "waiter_acquires_only_after_release": true
+   },
+   "ok": true,
+   "trial": "e03_mutation_attempt_blocks_while_lock_held"
+  },
+  {
+   "checks": {
+    "at_most_one_status_call": true,
+    "exactly_one_completes": true,
+    "loser_marker_exclusive_create": true,
+    "target_is_candidate": true
+   },
+   "ok": true,
+   "trial": "e04_two_executors_same_workdir"
+  },
+  {
+   "checks": {
+    "at_most_one_status_call": true,
+    "exactly_one_completes": true,
+    "loser_lock_contention": true,
+    "target_is_candidate": true
+   },
+   "ok": true,
+   "trial": "e05_two_executors_diff_workdirs_same_target"
+  },
+  {
+   "checks": {
+    "crash_state_post_replace": true,
+    "hold_manual": true,
+    "ledger_untouched": true,
+    "reason": true,
+    "zero_status_calls": true
+   },
+   "ok": true,
+   "trial": "e06_recovery_toctou_journal"
+  },
+  {
+   "checks": {
+    "crash_state_post_replace": true,
+    "hold_manual": true,
+    "ledger_untouched": true,
+    "reason": true,
+    "zero_status_calls": true
+   },
+   "ok": true,
+   "trial": "e06_recovery_toctou_ledger"
+  },
+  {
+   "checks": {
+    "hold": true,
+    "journal_terminal_hold": true,
+    "status_consumed_once": true,
+    "target_untouched": true
+   },
+   "ok": true,
+   "trial": "e07_gate3_fail_no_adoption"
+  },
+  {
+   "checks": {
+    "complete": true,
+    "target_is_candidate": true
+   },
+   "ok": true,
+   "trial": "e08_gate3_boundary_52_passes"
+  },
+  {
+   "checks": {
+    "exactly_one_invocation": true,
+    "hold": true,
+    "journal_status_consumed": true,
+    "target_untouched": true
+   },
+   "ok": true,
+   "trial": "e09_transport_exception_no_retry"
+  },
+  {
+   "checks": {
+    "first_call_ok": true,
+    "no_second_invocation": true,
+    "second_refused": true
+   },
+   "ok": true,
+   "trial": "e10_status_slot_one_use"
+  },
+  {
+   "checks": {
+    "exact_legacy_restored": true,
+    "rolled_back": true
+   },
+   "ok": true,
+   "trial": "e11a_evidence_fsync_fault_rolls_back"
+  },
+  {
+   "checks": {
+    "exact_legacy_restored": true,
+    "rolled_back": true
+   },
+   "ok": true,
+   "trial": "e11b_dry_run_runtime_error_rolls_back"
+  },
+  {
+   "checks": {
+    "candidate_left_in_place": true,
+    "hold_manual": true,
+    "never_claims_rolled_back": true
+   },
+   "ok": true,
+   "trial": "e11c_rollback_failure_is_hold_manual"
+  },
+  {
+   "checks": {
+    "crash_exit_42": true,
+    "exact_legacy_restored": true,
+    "post_replace_unverified": true,
+    "zero_status_calls_in_recovery": true
+   },
+   "ok": true,
+   "trial": "e12_crash_after_replace_cold_recovery"
+  },
+  {
+   "checks": {
+    "crash_exit_42": true,
+    "exact_legacy_restored": true,
+    "post_replace_unverified": true,
+    "zero_status_calls_in_recovery": true
+   },
+   "ok": true,
+   "trial": "e13_crash_during_terminal_cold_recovery"
+  },
+  {
+   "checks": {
+    "had_completed": true,
+    "hold_manual": true,
+    "ledger_untouched": true
+   },
+   "ok": true,
+   "trial": "e14_forged_receipt_hold_manual"
+  },
+  {
+   "checks": {
+    "edited_target_hold_manual": true,
+    "ledger_untouched": true,
+    "relocated_hold_manual": true
+   },
+   "ok": true,
+   "trial": "e15_journal_relocation_and_target_edit"
+  },
+  {
+   "checks": {
+    "clearance_missing": true,
+    "clearance_pin_mismatch": true,
+    "ledger_untouched": true,
+    "live_hooks_refused": true,
+    "no_marker_or_workdir_created": true
+   },
+   "ok": true,
+   "trial": "e16_live_clearance_gate"
+  },
+  {
+   "checks": {
+    "all_not_in_readiness_scope": true
+   },
+   "ok": true,
+   "trial": "e17_scope_refusals"
+  },
+  {
+   "checks": {
+    "already_consumed": true,
+    "ledger_untouched": true,
+    "no_lease_file_created": true
+   },
+   "ok": true,
+   "trial": "e18_marker_exclusive_create"
+  },
+  {
+   "checks": {
+    "ledger_untouched": true,
+    "no_marker_created": true,
+    "pin_drift_candidate": true
+   },
+   "ok": true,
+   "trial": "e19_candidate_pin_drift"
+  },
+  {
+   "checks": {
+    "bytes_untouched": true,
+    "hold_schema": true,
+    "zero_status_calls": true
+   },
+   "ok": true,
+   "trial": "e20_locked_schema_mismatch_holds"
+  }
+ ],
+ "trials_passed": 23,
+ "trials_total": 23
+}
