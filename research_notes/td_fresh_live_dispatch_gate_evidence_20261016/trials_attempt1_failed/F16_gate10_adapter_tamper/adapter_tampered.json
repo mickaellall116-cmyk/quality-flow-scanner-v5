@@ -1,0 +1,72 @@
+{
+ "adapter": {
+  "name": "td-http-transport-adapter",
+  "version": "1.0.0-preflight",
+  "status": "DESIGN ONLY \u2014 not implemented. No HTTP client exists in the candidate. Implementation is a sepasate, separately-authorized step; this contract is the pinned spec it must be built and reviewed against.",
+  "task": "QF-TD-ACQUISITION-ADAPTER-PREFLIGHT-20261013-01 r1"
+ },
+ "binds": {
+  "collector": {
+   "path": "research_notes/td_lifecycle_repair_candidate/td_min_collector.py",
+   "sha256": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+   "source_commit": "f64d12f885339e9e2ab4fa38b4a55df78db39b9f (PR #8, unmerged)"
+  },
+  "manifest": {
+   "path": "research_notes/td_acquisition_adapter_preflight_evidence_20261013/acquisition_manifest_v2.json",
+   "manifest_id": "TD-ACQUISITION-MANIFEST-V2-20261014",
+   "canonical_sha256": "4d5b7a560d9d222d8012cd674fc065de3ef014c2adeb4034e39f8efb99aed646"
+  },
+  "transport_interface": "callable(req: dict) -> tuple[int, bytes]; raises on transport-level failure. Exactly the interface td_min_collector.Collector already consumes; the adapter replaces only the disabled built-in transport."
+ },
+ "request_construction": {
+  "method": "GET",
+  "url": "https://api.twelvedata.com/time_series",
+  "parameters_fixed_order": [
+   "symbol",
+   "interval",
+   "start_date",
+   "end_date",
+   "timezone",
+   "outputsize",
+   "order",
+   "adjust",
+   "format",
+   "apikey"
+  ],
+  "parameter_values": "symbol/interval/start_date/end_date/timezone/outputsize/order/adjust copied verbatim from the manifest request; format=JSON always; order=asc always (manifest-pinned)",
+  "not_sent": [
+   "exchange",
+   "mic_code",
+   "prepost",
+   "dp",
+   "previous_close"
+  ],
+  "not_sent_rationale": "Venue is enforced on the receipt side by meta binding (collector design), not by request filters; prepost is a Pro-tier parameter and out of Basic scope; dp left at the vendor default so returned precision is the vendor's own (recorded by the protocol, never silently normalized)",
+  "auth": "apikey query parameter, as in the vendor's documented example request. The key is obtained by the driver from the Secure Vault (custom.twelvedata) at run start, held in memory only, never written to disk, argv, logs, lifecycle events, or exception text.",
+  "tls": "HTTPS only; certificate verification enabled; redirects followed only within api.twelvedata.com, otherwise fail closed; response body cap 64 MiB, exceeding = transport failure"
+ },
+ "timeout_error_contract": {
+  "connect_timeout_seconds": 10,
+  "read_timeout_seconds": 30,
+  "total_attempts_per_request": 1,
+  "retries": "NONE at any layer. max_attempts=1 is manifest-pinned and collector-enforced.",
+  "http_non_200": "Return (status, body) untouched to the collector, which preserves the raw bytes as private error evidence and HOLDs the run. Includes 429: a 429 is never retried or special-cased; it is recorded as a limiter/vendor divergence in the run report.",
+  "api_error_payload": "HTTP 200 with status != 'ok' passes through as body bytes; the collector preserves evidence and HOLDs.",
+  "transport_exception": "Raise to the collector with exception TYPE only downstream. The adapter must sanitize its own exceptions: no apikey, no request URL, no response headers, no credential material in any message, log line, or event.",
+  "sanitized_logging": "The adapter emits no logs of its own. The only run record is the collector's lifecycle/state files, which contain request identities, digests, byte counts and row counts \u2014 never URLs, keys, or payload content."
+ },
+ "limiter_binding": {
+  "class": "RollingCreditLimiter",
+  "path": "research_notes/pilot_harness/rate_limiter.py",
+  "sha256": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+  "construction": "credits_per_minute=8, daily_cap=800 (Basic plan caps, vendor pricing page accessed 2026-10-13)",
+  "state_path": "research_notes/pilot_harness/credit_ledger.json \u2014 the SAME persisted ledger the integration tests exercised and Stage-0 used (2 credits spent 2026-10-10). One ledger for every Twelve Data run; no per-run or per-adapter ledgers.",
+  "usage": "Non-blocking try_acquire(weight=credit_weight, label=request_id) before each dispatch, exactly as the collector does. Refusal ends the run as REFUSED; resumption is a fresh invocation in which completed requests are skipped via fully revalidated receipts. The blocking acquire() variant is never used. LedgerCorruptError HOLDs the run (fail-closed), never resets."
+ },
+ "identity_semantics": {
+  "request_identity": "Collector canonical string: symbol|/time_series|interval|start_date|end_date|timezone|adjust=<adjust>; bound by canonical request digest + manifest digest in every RECEIVED/COMPLETED event",
+  "ascending": "order=asc is manifest-pinned for every request; the collector rejects unordered or duplicate labels at validation, so ascending identity is verified on bytes, not assumed from the parameter",
+  "venue_identity": "Manifest venue_identity {exchange, mic_code, currency} must equal the receipt meta fields exactly (collector-enforced on both first receipt and every reuse). exchange/mic_code per frozen plan sec.1 + ISO 10383 (NASDAQ/XNAS, NYSE/XNYS, Cboe BZX/BATS). DRAM's Cboe BZX pin is the one venue value not exemplified in vendor documentation; a mismatch fails closed at that receipt (evidence preserved, run HOLDs, manifest revision required) \u2014 it cannot silently pass.",
+  "receipt_reuse": "Reuse only after full revalidation: RECEIVED+COMPLETED events with matching digests, byte length, sha256, meta binding, and a fresh pass of the accepted validation path (collector-enforced)"
+ }
+}

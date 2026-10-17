@@ -1,0 +1,645 @@
+{
+ "n_pass": 20,
+ "n_trials": 25,
+ "old_spot8_state_unchanged": true,
+ "real_pilot_ledger_unchanged": true,
+ "task": "QF-TD-FRESH-LIVE-DISPATCH-GATE-20261016-05",
+ "total_checks": 139,
+ "trials": [
+  {
+   "checks": [
+    "all_12_pass"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 11,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 1,
+   "status": "FAIL:all_12_pass",
+   "trial": "G01_green_dry_run"
+  },
+  {
+   "checks": [
+    "decision_pass"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 11,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 1,
+   "status": "FAIL:decision_pass",
+   "trial": "G02_green_dispatch_and_replay"
+  },
+  {
+   "checks": [
+    "decision_pass"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 11,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 1,
+   "status": "FAIL:decision_pass",
+   "trial": "G03_default_factory_spy_wiring"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     1,
+     7
+    ],
+    "gate_codes": [
+     "1:PACKET_INCONSISTENT",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F01_gate1_packet_digest"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     2,
+     7
+    ],
+    "gate_codes": [
+     "2:AUTHORITY_INCONSISTENT",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F02_gate2_authority"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     3,
+     7
+    ],
+    "gate_codes": [
+     "3:ACCOUNT_CAPACITY_INSUFFICIENT",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F03_gate3_capacity"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     3,
+     7
+    ],
+    "gate_codes": [
+     "3:ACCOUNT_EVIDENCE_STALE",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F04_gate3_stale"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     3,
+     7
+    ],
+    "gate_codes": [
+     "3:ACCOUNT_EVIDENCE_MISSING",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F05_gate3_partial"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     4,
+     7
+    ],
+    "gate_codes": [
+     "4:LEDGER_CORRUPT_OR_UNREADABLE",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F06_gate4_ledger_corrupt"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     4,
+     7
+    ],
+    "gate_codes": [
+     "4:DAY_CAPACITY_INSUFFICIENT",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F07_gate4_day_capacity"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     4,
+     7
+    ],
+    "gate_codes": [
+     "4:LEDGER_INSIDE_NAMESPACE",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F08_gate4_ledger_in_namespace"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     5,
+     7
+    ],
+    "gate_codes": [
+     "5:ENV_FREEZE_RECORD_MISMATCH",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F09_gate5_env_freeze_record"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     6,
+     7
+    ],
+    "gate_codes": [
+     "6:PIN_MISMATCH:manifest",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F10_gate6_manifest_tamper"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     5,
+     7
+    ],
+    "gate_codes": [
+     "5:WHEELHOUSE_HASH_MISMATCH",
+     "7:DERIVATION_WHEEL_HASH_MISMATCH"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F11_gate7_wheelhouse_tamper"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     5,
+     7
+    ],
+    "gate_codes": [
+     "5:ENV_MECHANISM_PIN_MISMATCH",
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F12_gate7_mechanism_disagreement"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7,
+     8
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE",
+     "8:NAMESPACE_FOREIGN_FILES"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F13_gate8_namespace_foreign"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7,
+     8
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE",
+     "8:NAMESPACE_IS_OLD_SPOT8"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F14_gate8_namespace_is_spot8"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7,
+     9
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE",
+     "9:CREDENTIAL_EVIDENCE_INCONSISTENT"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F15_gate9_credential_ref"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7,
+     10
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE",
+     "10:ADAPTER_PIN_MISMATCH"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F16_gate10_adapter_tamper"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7,
+     11
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE",
+     "11:STOP_RULES_NOT_ARMED"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F17_gate11_stop_rules"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "not_armed",
+    "no_transport_constructed",
+    "no_outcome",
+    "factory_never_called",
+    "ledger_unchanged",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7,
+     12
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE",
+     "12:RETENTION_NOT_ACKNOWLEDGED"
+    ],
+    "gates_passed": 10,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 7,
+   "status": "PASS",
+   "trial": "F18_gate12_retention"
+  },
+  {
+   "checks": [
+    "all_gates_pass"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 11,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 1,
+   "status": "FAIL:all_gates_pass",
+   "trial": "F19_token_mismatch"
+  },
+  {
+   "checks": [
+    "decision_hold",
+    "token_invalid"
+   ],
+   "facts": {
+    "decision": "HOLD",
+    "failed_gates": [
+     7
+    ],
+    "gate_codes": [
+     "7:DERIVATION_UNAVAILABLE"
+    ],
+    "gates_passed": 11,
+    "ledger_unchanged": true,
+    "ns_created_by_call": false
+   },
+   "n_checks": 2,
+   "status": "FAIL:token_invalid",
+   "trial": "F20_evidence_tamper_token"
+  },
+  {
+   "checks": [
+    "live_clock_seam_refused",
+    "no_receipt_written",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "refusal_code": "TEST_SEAM_IN_LIVE_MODE"
+   },
+   "n_checks": 3,
+   "status": "PASS",
+   "trial": "F21_clock_seam_live_mode"
+  },
+  {
+   "checks": [
+    "no_account_mode_param",
+    "caller_account_mode_rejected",
+    "unarmed_candidate_refuses",
+    "namespace_not_created"
+   ],
+   "facts": {
+    "boundary_codes": [
+     "TYPEERROR",
+     "TRANSPORT_NOT_ARMED"
+    ]
+   },
+   "n_checks": 4,
+   "status": "PASS",
+   "trial": "F22_direct_arm_boundary"
+  }
+ ]
+}
