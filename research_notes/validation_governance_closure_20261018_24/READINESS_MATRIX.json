@@ -1,0 +1,650 @@
+{
+ "task": "QF-VALIDATION-GOVERNANCE-CLOSURE-20261018-24 r1",
+ "spec": "GitHub Issue #1 comment 6254403898",
+ "supersedes_matrix": "research_notes/validation_contract_consolidation_20261018_21/READINESS_MATRIX.json (sha256 d913ce6a95d6fffa29f68649d9133b5680906e23b7db1f9f345f5af28acef71b)",
+ "generated_at_utc": "2026-10-18T20:04:22Z",
+ "head_commit_at_generation": "2850beea1cb8b1aac8b64195a7e03e5d481dc39e",
+ "grade_counts": {
+  "PASS": 25,
+  "PROSE_ONLY": 2
+ },
+ "contract_verdict": "HOLD (not STATICALLY_VALIDATION_READY) \u2014 remaining non-PASS fields: 4.2 PROSE_ONLY (fold dates freeze at dataset pull per prereg rule), 4.5 PROSE_ONLY (governance rule in prereg/mandate prose only)",
+ "rows": [
+  {
+   "id": "1.1",
+   "section": "baseline_input_identity",
+   "field": "UNIVERSE_X exact 51-symbol list",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_bundle/03_manifests/complete_manifest_rev2.json",
+     "sha256": "1b0535ab6ddff52cc3c530febfd96a2ae80d48585bd8051aef5b89c1bb3f4415",
+     "git_blob": "634f0ed0137510635534f676b9fdf98387eae256",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "pine_backtest.UNIVERSE_X literal (UNIVERSE_15 + 36) set-equals complete_manifest_rev2 universe.symbols (51/51, verified programmatically); manifest universe.definition_sha256=d139d7bf21165c79cb112a091cdcf7b021b86bd06f2165e07fb75932e6fa27dc.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "1.2",
+   "section": "baseline_input_identity",
+   "field": "Benchmark symbol identity (SPY)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_execution/c1_corrected_baseline_20261003.py",
+     "sha256": "4568823cb8fe645a820c64bb4fac112fa7c90ac860bf626611467f7d94ea8f2b",
+     "git_blob": "7faf7a7b709cf1524e417e301acabdace00f767e",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/spec/walkforward_prereg_rev2.md",
+     "sha256": "9e192496a4dbb058328daa422379a9424ab98be5cf3db80592b7f109aff197b2",
+     "git_blob": "bbe896361226a17511bc7d3a4d31957d382c8da8",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "pine_signal_quality/pine_signal_quality.py",
+     "sha256": "b1b39ee8d0bd4bbb1387b3ce54c7345c1f8dd622f94a5ed390c989fed1d39e69",
+     "git_blob": "dd0422f8"
+    },
+    {
+     "path": "research_notes/VALIDATION_SOURCE_ADOPTION_20261018_23.md",
+     "sha256": "cfc1102e9e65f914917ec98231b0d88ef13ebd96a9752ed17a18fee68bca2007"
+    }
+   ],
+   "detail": "SPY named as the RS/regime benchmark only in prose: corrected-baseline docstring ('20-bar return minus SPY') and prereg rev2 section 7 (SPY 200-day SMA / vol regime labels). No executable byte in the committed tree loads or designates SPY as benchmark.",
+   "action": "Recover or re-pin the benchmark designation in executable bytes alongside the loader (see 1.3).",
+   "provenance": "RECOVERED",
+   "closure_note": "Adopted byte-pinned code (via -23) hardcodes SPY: ETF_SYMS={\"SPY\",\"IWM\",\"SMH\",\"ARKK\",\"XLF\"} and RS feature vs SPY/QQQ in pine_signal_quality.py (static text; never imported in this task). Loader reads benchmark_manifest.json as external input; the identity set is pinned in the adopted bytes."
+  },
+  {
+   "id": "1.3",
+   "section": "baseline_input_identity",
+   "field": "Benchmark loader bytes (pine_signal_quality.load_benchmarks)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_stack/pine_stack.py",
+     "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+     "git_blob": "db8da1d772b37805071b33738db4490e13f2af41",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_execution/c1_corrected_baseline_20261003.py",
+     "sha256": "4568823cb8fe645a820c64bb4fac112fa7c90ac860bf626611467f7d94ea8f2b",
+     "git_blob": "7faf7a7b709cf1524e417e301acabdace00f767e",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "pine_signal_quality/pine_signal_quality.py",
+     "sha256": "b1b39ee8d0bd4bbb1387b3ce54c7345c1f8dd622f94a5ed390c989fed1d39e69",
+     "git_blob": "dd0422f8"
+    },
+    {
+     "path": "research_notes/VALIDATION_SOURCE_ADOPTION_20261018_23.md",
+     "sha256": "cfc1102e9e65f914917ec98231b0d88ef13ebd96a9752ed17a18fee68bca2007"
+    }
+   ],
+   "detail": "Both pine_stack.py and c1_corrected_baseline_20261003.py import load_benchmarks from pine_signal_quality; that module is absent from git (git ls-files: no pine_signal_quality, pine_ranking, or pine_exposure anywhere in the committed tree).",
+   "action": "Recover pine_signal_quality module bytes from archival source and commit them, or re-derive the loader under a new bounded task and pin it.",
+   "provenance": "RECOVERED",
+   "closure_note": "Exact module bytes recovered from git history (-22, blob dd0422f8, sha = C1 ledger pin) and adopted to pine_signal_quality/pine_signal_quality.py (-23); load_benchmarks present (static)."
+  },
+  {
+   "id": "1.4",
+   "section": "baseline_input_identity",
+   "field": "Frozen sector mapping (symbol->sector, all 51)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_bundle/03_manifests/complete_manifest_rev2.json",
+     "sha256": "1b0535ab6ddff52cc3c530febfd96a2ae80d48585bd8051aef5b89c1bb3f4415",
+     "git_blob": "634f0ed0137510635534f676b9fdf98387eae256",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_stack/pine_stack.py",
+     "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+     "git_blob": "db8da1d772b37805071b33738db4490e13f2af41",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "pine_exposure/pine_exposure.py",
+     "sha256": "9f646161c27f6b28febe0980d03665bc9c1502fb844d37be6fd1d72ee45102be",
+     "git_blob": "3757881f"
+    },
+    {
+     "path": "research_notes/VALIDATION_SOURCE_ADOPTION_20261018_23.md",
+     "sha256": "cfc1102e9e65f914917ec98231b0d88ef13ebd96a9752ed17a18fee68bca2007"
+    }
+   ],
+   "detail": "Manifest pins sector_map source pine_exposure.pine_exposure.SECTOR, count 51, canonical sha256=9bab23b72dcb18d04935071f2bec94955cb8fa9df96f50dc11b72990dcd7fbb9 \u2014 a digest whose preimage is not committed. pine_exposure.py bytes are absent from the repo; no committed record lists any UNIVERSE_X symbol's sector. (pine_stack.py bytes do pin the SECTOR_2022 overlay additions COST/WMT/JPM->STAPLES/BANKS, which are 2022-window symbols, not UNIVERSE_X members.) No symbol or sector was inferred.",
+   "action": "Recover pine_exposure.py bytes whose canonical SECTOR serialization hashes to 9bab23b7... and commit them; until then the sector cap cannot be executed as frozen.",
+   "provenance": "RECOVERED",
+   "closure_note": "Exact module bytes recovered (-22, blob 3757881f) and adopted (-23); SECTOR literal has exactly 51 entries; canonical sha256(json.dumps(SECTOR, sort_keys=True)) = 9bab23b72dcb18d04935071f2bec94955cb8fa9df96f50dc11b72990dcd7fbb9 = manifest pin."
+  },
+  {
+   "id": "1.5",
+   "section": "baseline_input_identity",
+   "field": "Sector-cap rule (max 2 concurrent open positions per sector)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_stack/pine_stack.py",
+     "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+     "git_blob": "db8da1d772b37805071b33738db4490e13f2af41",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "simulate_stack: sector_cap branch counts open positions with equal sector_map value and skips when n_sec>=2.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "2.1",
+   "section": "strategy_identity",
+   "field": "Signal implementation (pine_buy_signal: confirmed / breakout / ready paths)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Executable bytes: confirmed = close>EMA21 & EMA21>EMA55 & close>EMA200 & trendScore>=4 & volume & not-hot; breakout = trend_bull & ADX>20 & atr_ratio>0.85 & close>prior-10-bar High; ready = ready_prev & close>EMA21 & trendScore>=3. Evaluated on completed bar i only (point-in-time).",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "2.2",
+   "section": "strategy_identity",
+   "field": "Integer trendScore behavior",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Pinned bytes are the CORRECTED implementation: each Boolean cast to int before summing (true 0-5 count), with the defect explained in an in-code comment. The original numpy-boolean version is not the pinned byte set.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "2.3",
+   "section": "strategy_identity",
+   "field": "Indicator parameters (EMA 9/21/55/200, ATR 14, ADX 14, VOL MA 20, breakout 10 bars, ATR multiples TP 2.0 / SL 1.5 / TRAIL 2.5 / HOT 1.5)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Module-level constants in pine_backtest.py bytes.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "2.4",
+   "section": "strategy_identity",
+   "field": "RS feature computation bytes (pine_ranking.compute_features)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_stack/pine_stack.py",
+     "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+     "git_blob": "db8da1d772b37805071b33738db4490e13f2af41",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_execution/c1_corrected_baseline_20261003.py",
+     "sha256": "4568823cb8fe645a820c64bb4fac112fa7c90ac860bf626611467f7d94ea8f2b",
+     "git_blob": "7faf7a7b709cf1524e417e301acabdace00f767e",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "pine_ranking/pine_ranking.py",
+     "sha256": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+     "git_blob": "48b3408f"
+    },
+    {
+     "path": "research_notes/VALIDATION_SOURCE_ADOPTION_20261018_23.md",
+     "sha256": "cfc1102e9e65f914917ec98231b0d88ef13ebd96a9752ed17a18fee68bca2007"
+    }
+   ],
+   "detail": "Ranking consumes rs from compute_features in pine_ranking, imported by both stack and corrected-baseline bytes; pine_ranking module is absent from git. The formula (20-bar return minus SPY) survives only as a docstring in the corrected baseline.",
+   "action": "Recover pine_ranking module bytes and commit, or re-derive under a new bounded task and pin.",
+   "provenance": "RECOVERED",
+   "closure_note": "Exact module bytes recovered (-22, blob 48b3408f, sha = C1 ledger pin) and adopted to pine_ranking/pine_ranking.py (-23); compute_features present (static)."
+  },
+  {
+   "id": "2.5",
+   "section": "strategy_identity",
+   "field": "rs_top2 admission rule",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_stack/pine_stack.py",
+     "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+     "git_blob": "db8da1d772b37805071b33738db4490e13f2af41",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "simulate_stack bytes: on a contested bar, once taken_at_t >= min(2, free slots) further ranked candidates are skipped (skipped_rank). Rule bytes are pinned; the rs VALUES they consume depend on 2.4.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "2.6",
+   "section": "strategy_identity",
+   "field": "Risk sizing: 1% risk per trade (RISK_PCT=0.01)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_stack/pine_stack.py",
+     "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+     "git_blob": "db8da1d772b37805071b33738db4490e13f2af41",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "pine_backtest bytes: RISK_PCT=0.01; size = risk_dollars / risk_frac; dd_gate state halves risk to RISK_PCT/2 in pine_stack bytes.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "2.7",
+   "section": "strategy_identity",
+   "field": "Portfolio constraints: max 5 concurrent (MAX_CONCURRENT), 5% portfolio risk cap (MAX_PORTFOLIO_RISK=0.05)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_stack/pine_stack.py",
+     "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+     "git_blob": "db8da1d772b37805071b33738db4490e13f2af41",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Constants in pine_backtest bytes, enforced in both simulate_portfolio and simulate_stack bytes (skip on cap count / cap risk). Note: the separate live V5.4 forward harness uses max 6 open \u2014 a different artifact, not part of this C1 contract; no conflict inside the C1 records.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "2.8",
+   "section": "strategy_identity",
+   "field": "Exits (TP1 50% intrabar limit at entry+2.0*ATR; initial stop signal-close-1.5*ATR; post-TP1 runner trail close-2.5*ATR; EMA55-break / trend-bear close exits)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "gen_pine_trades bytes fully determine exits. The C1 bytes contain NO 30-bar max-hold and NO +1R profit-protect rule (those belong to the separate live forward-test stack semantics); within the C1 contract records there is no disagreement.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "2.9",
+   "section": "strategy_identity",
+   "field": "Warm-up: 215 4H bars, indicators only, no signals",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/spec/walkforward_prereg_rev2.md",
+     "sha256": "9e192496a4dbb058328daa422379a9424ab98be5cf3db80592b7f109aff197b2",
+     "git_blob": "bbe896361226a17511bc7d3a4d31957d382c8da8",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "WARMUP=215 in pine_backtest bytes; prereg rev2 section 3 restates 215-bar warmup inside training history.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "3.1",
+   "section": "execution_contract",
+   "field": "Cost: 4 bps one-way per trade (single subtraction via _outcome)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_execution/c1_corrected_baseline_20261003.py",
+     "sha256": "4568823cb8fe645a820c64bb4fac112fa7c90ac860bf626611467f7d94ea8f2b",
+     "git_blob": "7faf7a7b709cf1524e417e301acabdace00f767e",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "_outcome bytes: net_ret = gross_ret - cost, subtracted exactly once per completed trade; corrected-baseline header pins '4bps one-way cost via pb._outcome (net_ret = gross_ret - cost)'. COSTS dict bytes carry both legs {4bps: 0.0004, 25bps: 0.0025}.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "3.2",
+   "section": "execution_contract",
+   "field": "Cost legs / adjudication leg (4 bps reference, 25 bps primary adjudication, 30/35 bps stress)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/spec/walkforward_prereg_rev2.md",
+     "sha256": "9e192496a4dbb058328daa422379a9424ab98be5cf3db80592b7f109aff197b2",
+     "git_blob": "bbe896361226a17511bc7d3a4d31957d382c8da8",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Prereg rev2 section 6 freezes the legs and names 25 bps the primary adjudication cost; the corrected baseline's reported run used the 4 bps leg (COST_NAME='4bps') \u2014 two defined legs, not a disagreement.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "3.3",
+   "section": "execution_contract",
+   "field": "Fill timing (signal on closed bar i -> entry at next bar open; close-based exits -> next bar open; TP1 is an intrabar limit)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/spec/canonical_4h_constructor.md",
+     "sha256": "30b6973afba8bd67015c54b4064a167dd3094ab202a268e75171eb39be73fb61",
+     "git_blob": "025f21c6e6b705f38daa028a80e6729313f545cb",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "gen_pine_trades bytes: entry = Open[i+1]; close-evaluated exits fill at Open[i+1]; TP1 fills intrabar when High >= tp1. Constructor spec section 5 restates next-bar-open entry.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "3.4",
+   "section": "execution_contract",
+   "field": "Gap handling (gap-through-stop at entry)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Bytes: if next-bar open entry <= stop0 the trade is skipped and counted in skipped_gap; no other gap rule exists in the contract bytes.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "3.5",
+   "section": "execution_contract",
+   "field": "Same-bar ambiguity (stop vs TP1 on the same bar)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py",
+     "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "git_blob": "9f195dbf33aed9a2c14d0e23719126143431d946",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Fully determined by bytes: TP1 is the only intrabar order (limit, High>=tp1 fills 50%); the stop/trail and EMA55 exits are close-evaluated only \u2014 the script never passes a stop order \u2014 so no intrabar stop/TP1 race exists in the frozen semantics.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "3.6",
+   "section": "execution_contract",
+   "field": "Split / corporate-action handling",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/spec/walkforward_prereg_rev2.md",
+     "sha256": "9e192496a4dbb058328daa422379a9424ab98be5cf3db80592b7f109aff197b2",
+     "git_blob": "bbe896361226a17511bc7d3a4d31957d382c8da8",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_bundle/03_manifests/complete_manifest_rev2.json",
+     "sha256": "1b0535ab6ddff52cc3c530febfd96a2ae80d48585bd8051aef5b89c1bb3f4415",
+     "git_blob": "634f0ed0137510635534f676b9fdf98387eae256",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/VALIDATION_GOVERNANCE_CLOSURE_20261018_24.md",
+     "sha256": "dbc376187aadaf83f5c5683e786a9a8de7c4aa95a723016a1390bf36237c8c76"
+    }
+   ],
+   "detail": "Prereg rev2 section 2 freezes the data policy in prose (Yahoo 1H auto_adjust=False, prepost=False; 'frozen split-exclusion protocol'; retroactive split adjustment disclosed, LIMITED tier). The operative split-exclusion protocol definition and the fetch bytes (manifest lists canonical_baseline/scripts/fetch_4h.py) are not in the committed tree \u2014 no executable byte pins exclusion windows or adjustment behavior.",
+   "action": "Recover/pin the split-exclusion protocol definition and fetch_4h bytes, or re-specify them in a new frozen amendment before any baseline data pull.",
+   "provenance": "NEWLY_FROZEN",
+   "closure_note": "Operative split protocol is LOST (SPLIT_EXCLUSION_PROTOCOL_DEFINITION_MISSING, -22). Amendment v1 (this task, section 2) freezes a provider-neutral replacement BEFORE any data/performance: per-symbol split table + documented adjustment convention required; exclude bars and candidate entries D-1..D+1 for every split effective session D; indicators recomputed after exclusion, no imputation; deterministic price-ratio + OHLC-consistency verification; missing/ambiguous metadata or failed check => symbol DATA_UNQUALIFIED; no manual exceptions. The amendment is NOT the recovered original and embeds no data-derived thresholds."
+  },
+  {
+   "id": "3.7",
+   "section": "execution_contract",
+   "field": "Timestamp / date-end rules (causal now cutoff, forming-bar exclusion)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/scanner_rules.py",
+     "sha256": "7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac",
+     "git_blob": "087dd3a5da82e925b0fa31516763be08c2ceed8d",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/spec/canonical_4h_constructor.md",
+     "sha256": "30b6973afba8bd67015c54b4064a167dd3094ab202a268e75171eb39be73fb61",
+     "git_blob": "025f21c6e6b705f38daa028a80e6729313f545cb",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "scanner_rules.resample_closed_4h_session_anchored exists in committed bytes; constructor spec sections 3-4 pin: rows > now dropped before binning, forming bar dropped when now < bar_close_at, no forward-fill.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "3.8",
+   "section": "execution_contract",
+   "field": "Session-anchored 09:30 ET 1H->4H construction incl. DST and early closes",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/scanner_rules.py",
+     "sha256": "7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac",
+     "git_blob": "087dd3a5da82e925b0fa31516763be08c2ceed8d",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/spec/canonical_4h_constructor.md",
+     "sha256": "30b6973afba8bd67015c54b4064a167dd3094ab202a268e75171eb39be73fb61",
+     "git_blob": "025f21c6e6b705f38daa028a80e6729313f545cb",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Committed scanner_rules.py sha256 begins 7db282ddfc150c9e \u2014 exactly the pin the constructor spec cites for its source. Spec pins: bins [09:30,13:30) and [13:30, session_close) America/New_York from XNYS calendar (16:00 regular, 13:00 early close -> morning bar only), wall-clock-minute binning (DST-invariant by construction), crypto on 00/04/08/12/16/20 UTC bins, left label / left closed.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "4.1",
+   "section": "validation_boundary",
+   "field": "Development data identity (C1 baseline window)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/CORRECTED_BASELINE_DATA_READINESS_MAP_20261015.md",
+     "sha256": "980c372dc79fb7d9772a381e10960b293268057222adae1ef63a206ebd2cc293",
+     "git_blob": "c2a3d541a70952fcfc1443f2306bb24dfee5cf88",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/recovery_4h_20261004/cp1_bundle/03_manifests/complete_manifest_rev2.json",
+     "sha256": "1b0535ab6ddff52cc3c530febfd96a2ae80d48585bd8051aef5b89c1bb3f4415",
+     "git_blob": "634f0ed0137510635534f676b9fdf98387eae256",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Readiness map + CP1 bundle pins identify the development dataset D1 exactly: backtest_cache/v3, 52 files (51 universe + SPY), 75,311 bars, 2024-09-15 to 2026-09-15, per-file SHA256 pins committed in cp1_bundle/01_cache_grid/h4_cache_hashes.json. The bytes themselves are destroyed (VM replacement) \u2014 identity is pinned, availability is the known BASELINE_DATA_HOLD, which is a data-route state, not a contract gap.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "4.2",
+   "section": "validation_boundary",
+   "field": "Walk-forward fold calendar (exact OOS boundaries)",
+   "grade": "PROSE_ONLY",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/spec/walkforward_prereg_rev2.md",
+     "sha256": "9e192496a4dbb058328daa422379a9424ab98be5cf3db80592b7f109aff197b2",
+     "git_blob": "bbe896361226a17511bc7d3a4d31957d382c8da8",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Prereg rev2 section 3 defines 6-month non-overlapping OOS blocks, >=5 folds, continuous state carry, entry-timestamp attribution \u2014 but the fold calendar is an explicit TEMPLATE: exact dates are to be frozen from actual pulled data BEFORE any OOS performance is computed, and that freeze has not happened in any committed record.",
+   "action": "At the future data-pull, commit the exact fold calendar before any OOS computation, per the prereg freeze rule.",
+   "provenance": "UNCHANGED_FROM_-21"
+  },
+  {
+   "id": "4.3",
+   "section": "validation_boundary",
+   "field": "Sealed holdout designation (11-month, 4H UX51)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/README.md",
+     "sha256": "e6ecdc51776e1f7e40f20fe5406a0618e3a4b9cb7ed704f1b4c75026046981e1",
+     "git_blob": "0b68477d4c95530965355e1aa8fc55d685d32104",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/CORRECTED_BASELINE_DATA_READINESS_MAP_20261015.md",
+     "sha256": "980c372dc79fb7d9772a381e10960b293268057222adae1ef63a206ebd2cc293",
+     "git_blob": "c2a3d541a70952fcfc1443f2306bb24dfee5cf88",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/top_stocks_universe_proposal_v3_20261004.md",
+     "sha256": "f88c2b9e23fea266dd2771ed6a13b49aad22df8aa7f83b2e5b4b43389d503f6b",
+     "commit": "f054ff73631307103d64e86d73937c2b400c8dcc"
+    },
+    {
+     "path": "research_notes/top_stocks_readiness_package_20261004.md",
+     "sha256": "5c0268bcd53617958d602724d6ae256aa32bbd959e6768c86ddb81ed8f813698",
+     "commit": "2e37099"
+    },
+    {
+     "path": "research_notes/VALIDATION_GOVERNANCE_CLOSURE_20261018_24.md",
+     "sha256": "dbc376187aadaf83f5c5683e786a9a8de7c4aa95a723016a1390bf36237c8c76"
+    }
+   ],
+   "detail": "Designation survives only in committed prose: recovery README ('Sealed holdouts (4H UX51, 11-month): UNTOUCHED') and readiness map row D7 ('identity-only per spec; no holdout files exist on this VM'). Contents were not accessed, opened, hashed, or enumerated in this task.",
+   "action": null,
+   "provenance": "RECOVERED_BY_RECORD",
+   "closure_note": "Designation (sealed, 11-month, 4H, UX51) is now pinned by the contemporaneous committed record set recovered in -24 section 1 (v3 reconciliation + readiness package), superseding prose-only support."
+  },
+  {
+   "id": "4.4",
+   "section": "validation_boundary",
+   "field": "Sealed holdout exact window (start/end dates)",
+   "grade": "PASS",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/README.md",
+     "sha256": "e6ecdc51776e1f7e40f20fe5406a0618e3a4b9cb7ed704f1b4c75026046981e1",
+     "git_blob": "0b68477d4c95530965355e1aa8fc55d685d32104",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/CORRECTED_BASELINE_DATA_READINESS_MAP_20261015.md",
+     "sha256": "980c372dc79fb7d9772a381e10960b293268057222adae1ef63a206ebd2cc293",
+     "git_blob": "c2a3d541a70952fcfc1443f2306bb24dfee5cf88",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    },
+    {
+     "path": "research_notes/top_stocks_universe_proposal_v3_20261004.md",
+     "sha256": "f88c2b9e23fea266dd2771ed6a13b49aad22df8aa7f83b2e5b4b43389d503f6b",
+     "commit": "f054ff73631307103d64e86d73937c2b400c8dcc"
+    },
+    {
+     "path": "research_notes/top_stocks_readiness_package_20261004.md",
+     "sha256": "5c0268bcd53617958d602724d6ae256aa32bbd959e6768c86ddb81ed8f813698",
+     "commit": "2e37099"
+    },
+    {
+     "path": "research_notes/VALIDATION_GOVERNANCE_CLOSURE_20261018_24.md",
+     "sha256": "dbc376187aadaf83f5c5683e786a9a8de7c4aa95a723016a1390bf36237c8c76"
+    }
+   ],
+   "detail": "No committed record states the holdout's exact calendar window; the research record carries only the '11-month' duration and the 2026 reference in handoff prose. The boundary cannot be re-verified against a dataset without a pinned window.",
+   "action": "A future governance record (Mike/ChatGPT) should pin the holdout window dates without opening contents, before any baseline claims to exclude it.",
+   "provenance": "RECOVERED_BY_RECORD",
+   "closure_note": "Exact window 2023-10-19 -> 2024-09-15 pinned by: (1) contemporaneous immutable reconciliation record top_stocks_universe_proposal_v3 (commit f054ff7, 2026-10-03, states exact dates 3x, citing holdout_protocol_v2_20261003 + 2026-10-03 inventory), created before any associated result (no holdout result has ever been computed); (2) independent corroboration in top_stocks_readiness_package (commit 2e37099): sealed 4H holdout Oct 2023-Sep 2024. DISCLOSED CAVEAT: the named primary protocol file forward_test/holdout_protocol_v2_20261003.md is not committed in this repo (no *holdout* file in any branch tree); pin rests on the reconciliation record + corroboration. Holdout contents were never accessed in -21..-24. Spec section 3 contingency NOT invoked; label retained."
+  },
+  {
+   "id": "4.5",
+   "section": "validation_boundary",
+   "field": "No parameter selection on OOS / unseen data (governance rule)",
+   "grade": "PROSE_ONLY",
+   "evidence": [
+    {
+     "path": "research_notes/recovery_4h_20261004/spec/walkforward_prereg_rev2.md",
+     "sha256": "9e192496a4dbb058328daa422379a9424ab98be5cf3db80592b7f109aff197b2",
+     "git_blob": "bbe896361226a17511bc7d3a4d31957d382c8da8",
+     "commit": "220a0866c315f7a73706700eb5701ce31ff1f59a"
+    }
+   ],
+   "detail": "Prereg rev2 sections 3 and 9 freeze the rule in prose (no tuning on any OOS block or pooled OOS; universe frozen at study start; STOP on post-hoc rescue tuning). Governance prose only \u2014 enforcement is procedural.",
+   "action": null,
+   "provenance": "UNCHANGED_FROM_-21"
+  }
+ ]
+}
