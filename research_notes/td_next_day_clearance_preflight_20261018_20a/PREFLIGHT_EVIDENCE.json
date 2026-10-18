@@ -1,0 +1,284 @@
+{
+ "task": "QF-TD-NEXT-DAY-CLEARANCE-PREFLIGHT-20261018-20A r1",
+ "spec": "GitHub Issue #1 comment 6245788064 (2026-10-18T04:46:45Z)",
+ "observed_at_utc": "2026-10-18T04:59:25Z",
+ "checked_out_head": "212d378bcde41a1515569cab2be7db3721aa11b4",
+ "source_commit_for_19_package": "39329038879d055387e86de8f1f82e32c84978f9",
+ "go_record": {
+  "comment_id": 6234434220,
+  "executor_constant": "QF-TD-POLICY-A-52-CREDIT-CEILING-GO-20261017",
+  "created_at": "2026-10-17T13:27:17Z",
+  "body_sha256": "ea5a6426e998f098377529a5f1eb9e0759cb21099cf0a19ec8a8979064cd8ee9"
+ },
+ "placement_identity": {
+  "credential": "custom.twelvedata",
+  "query_param": "apikey",
+  "attestation_file": "research_notes/td_transport_adapter/TD_VAULT_BINDING_CORRECTION_RESULT_20261014.md",
+  "attestation_sha256": "54c92d9b24b8dce9c2c32d6060fc8f841191e74a31171616847e1505aa8132d4",
+  "placement_proof": "research_notes/td_status_query_placement_20261017_17/PLACEMENT_PROOF.md",
+  "placement_proof_sha256": "d2b6e190a2754660fe3f5636366150cba1dab2ae01798aa2c76cfb44876e668b",
+  "helper_invoked_or_imported": false
+ },
+ "txn_20_unused": {
+  "local_mentions": [
+   "research_notes/TD_LIVE_DRYRUN_CLOCK_ADAPTER_BINDING_20261017.md",
+   "research_notes/bridge_thread.md",
+   "research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/FUTURE_READINESS_EXECUTION_PROPOSAL_R7.md"
+  ],
+  "local_mentions_are_proposal_or_status_only": true,
+  "any_20261018_20_path_exists": false,
+  "issue1_comments_after_spec": 0,
+  "slack_recheck": "newest channel messages are the -20A dispatch (00:46:59 EDT) and Muse's ACK (00:56:46 EDT); no hold/revocation",
+  "status": "UNUSED / NOT AUTHORIZED"
+ },
+ "checks": {
+  "executor_r4": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_readiness_executor_r4.py",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 19334349,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_readiness_executor_r4.py",
+   "sha256": "e792b8b2b776adc71ce29e628c38fe258c4824bf784a690595f457b9d673c6e1",
+   "pin": "e792b8b2b776adc71ce29e628c38fe258c4824bf784a690595f457b9d673c6e1",
+   "match": true,
+   "sha_at_3932903": "e792b8b2b776adc71ce29e628c38fe258c4824bf784a690595f457b9d673c6e1",
+   "sha_at_HEAD": "e792b8b2b776adc71ce29e628c38fe258c4824bf784a690595f457b9d673c6e1",
+   "worktree_clean": true
+  },
+  "adapter": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_dry_run_adapter.py",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 19334318,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_dry_run_adapter.py",
+   "sha256": "e8605669db902c3eb78ec4b3c13b69b3d94b7f1d8bcdac1a9c520b35ffc8c627",
+   "pin": "e8605669db902c3eb78ec4b3c13b69b3d94b7f1d8bcdac1a9c520b35ffc8c627",
+   "match": true,
+   "sha_at_3932903": "e8605669db902c3eb78ec4b3c13b69b3d94b7f1d8bcdac1a9c520b35ffc8c627",
+   "sha_at_HEAD": "e8605669db902c3eb78ec4b3c13b69b3d94b7f1d8bcdac1a9c520b35ffc8c627",
+   "worktree_clean": true
+  },
+  "r4_gate": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_policy_a_live_readiness_packet_20261017_11/dispatch_gate_r4.py",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 18969017,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_policy_a_live_readiness_packet_20261017_11/dispatch_gate_r4.py",
+   "sha256": "b53996454650dafc77e647a8497eba91beb3785fb52c13d70fa81768fd370117",
+   "pin": "b53996454650dafc77e647a8497eba91beb3785fb52c13d70fa81768fd370117",
+   "match": true
+  },
+  "r4_runner": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_policy_a_live_readiness_packet_20261017_11/run_dispatch_gate_trials_r4.py",
+   "exists": true,
+   "sha256": "93b911e067eb6ff6bc7e797b08df44eb1ac17a2417ac2102f3fd347087447864",
+   "pin": "93b911e067eb6ff6bc7e797b08df44eb1ac17a2417ac2102f3fd347087447864",
+   "match": true
+  },
+  "r3_txn": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_readiness_txn_exception_binding_20261017_13/readiness_transaction_r3.py",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 19007224,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_readiness_txn_exception_binding_20261017_13/readiness_transaction_r3.py",
+   "sha256": "db93f07ee057b731528a231e836e67c791a01ab779c6893fe1bda6c258a5c79a",
+   "pin": "db93f07ee057b731528a231e836e67c791a01ab779c6893fe1bda6c258a5c79a",
+   "match": true
+  },
+  "resolver": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_credential_helper_path_binding_20261017_08/credential_resolver.py",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 18798945,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_credential_helper_path_binding_20261017_08/credential_resolver.py",
+   "sha256": "c8271193c97713f72b59af2377989362750142eda36940fa0be71cf6de8a911c",
+   "pin": "c8271193c97713f72b59af2377989362750142eda36940fa0be71cf6de8a911c",
+   "match": true
+  },
+  "gate3": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_gate3_attestation_policy_20261017_10/gate3_policy_candidate.py",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 18855094,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_gate3_attestation_policy_20261017_10/gate3_policy_candidate.py",
+   "sha256": "7e44a2e0d0a3b32dfd6fb7f93f04a224f935310a6e71dfe06ea83008595eb3f9",
+   "pin": "7e44a2e0d0a3b32dfd6fb7f93f04a224f935310a6e71dfe06ea83008595eb3f9",
+   "match": true
+  },
+  "policy_a_file": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_gate3_attestation_policy_20261017_10/policy_A.json",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 18855108,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_gate3_attestation_policy_20261017_10/policy_A.json",
+   "sha256": "728c3defc13d88c27e37d176c560aa708fc93a99730893c9d097c2ca5e9a57e5",
+   "pin": "728c3defc13d88c27e37d176c560aa708fc93a99730893c9d097c2ca5e9a57e5",
+   "match": true
+  },
+  "helper_sanctioned": {
+   "path": "/opt/hatch/skills/skill-creator/bin/dynamic_credentials.py",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 64513,
+   "st_ino": 14310,
+   "realpath": "/opt/muse/skills/custom-connector-setup/bin/dynamic_credentials.py",
+   "sha256": "8b1f42e80a76710edf0ff2abf8a51b0cde35b06474af865de108a7ca27d6728d",
+   "pin": "8b1f42e80a76710edf0ff2abf8a51b0cde35b06474af865de108a7ca27d6728d",
+   "match": true
+  },
+  "policy_a_canonical_digest": {
+   "computed": "5d9d82ca3e1c867e3f38dcb7f50cd7f372c793048d21232608f7835467d26cde",
+   "pin": "5d9d82ca3e1c867e3f38dcb7f50cd7f372c793048d21232608f7835467d26cde",
+   "match": true
+  },
+  "manifest": {
+   "pin": "71aade8bfbb1f94b25d780bdf68f08f7f127740fc745c1755432acc5f74044db",
+   "matching_paths": [
+    "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_fresh_full_manifest_preflight_evidence_20261016/fresh_manifest.json"
+   ],
+   "match": true
+  },
+  "supplement": {
+   "pin": "3cbdbf63fd49b021dc74f63727098551753949f8684967981c65f66101f95a86",
+   "matching_paths": [
+    "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_fresh_full_manifest_preflight_evidence_20261016/fresh_supplement.json"
+   ],
+   "match": true
+  },
+  "executor_in_source_adapter_pin": {
+   "pin_present": true,
+   "path_is_here_relative": true
+  },
+  "target_ledger": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/credit_ledger.json",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 19291549,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/credit_ledger.json",
+   "sha256": "7e5ccef0e5fd7e2faa744c8fe7ee646c3162fa4f72fc4a9a85317d52b5d890ed",
+   "pin": "7e5ccef0e5fd7e2faa744c8fe7ee646c3162fa4f72fc4a9a85317d52b5d890ed",
+   "match": true,
+   "schema_keys": [
+    "day",
+    "spent",
+    "window"
+   ],
+   "legacy_schema": true,
+   "day": "2026-10-14",
+   "spent": 8
+  },
+  "target.dispatch_lease": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/credit_ledger.json.dispatch_lease",
+   "exists": true,
+   "is_symlink": false,
+   "size": 0
+  },
+  "target.lock": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/credit_ledger.json.lock",
+   "exists": true,
+   "is_symlink": false,
+   "size": 0
+  },
+  "candidate": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_ledger_compat_card_binding_20261017_07/candidate_credit_ledger.json",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 18750294,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_ledger_compat_card_binding_20261017_07/candidate_credit_ledger.json",
+   "sha256": "79ff48444d9f05c1272bfbeec2376b8065f4c22dc97b86f657e2ad15495e846b",
+   "pin": "79ff48444d9f05c1272bfbeec2376b8065f4c22dc97b86f657e2ad15495e846b",
+   "match": true
+  },
+  "run_parent_dir": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261018_20",
+   "exists": false
+  },
+  "workdir": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261018_20/txn",
+   "exists": false
+  },
+  "dryrun_root": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261018_20/dryrun",
+   "exists": false
+  },
+  "clearance_path": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261018_20/clearance.json",
+   "exists": false
+  },
+  "consumed_marker": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261018_20/txn/CONSUMED.marker",
+   "exists": false
+  },
+  "ancestors_of_run_dir": [
+   {
+    "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261018_20",
+    "is_symlink": false
+   },
+   {
+    "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes",
+    "is_symlink": false
+   },
+   {
+    "path": "/home/hatch/workspace/quality-flow-scanner-v5",
+    "is_symlink": false
+   },
+   {
+    "path": "/home/hatch/workspace",
+    "is_symlink": false
+   },
+   {
+    "path": "/home/hatch",
+    "is_symlink": false
+   }
+  ],
+  "any_ancestor_symlink": false,
+  "journal_16": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261017_16/txn/journal.json",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 19228412,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261017_16/txn/journal.json",
+   "sha256": "4c01b1a0b53599aa3423439684091acd03064727e45e1ea6d43eb7510cc82d88",
+   "pin": null,
+   "pin_prefix_expected": "4c01b1a0",
+   "matches_consumed_pin_prefix": true,
+   "expected_prefix": "4c01b1a0"
+  },
+  "journal_18": {
+   "path": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261017_18/txn/journal.json",
+   "exists": true,
+   "is_symlink": false,
+   "regular": true,
+   "st_dev": 86,
+   "st_ino": 19291550,
+   "realpath": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/td_live_readiness_run_20261017_18/txn/journal.json",
+   "sha256": "2fa395f235ad6a13fa4d3f599176874764e1f9c79b9301679f01060afd956db2",
+   "pin": null,
+   "pin_prefix_expected": "2fa395f2",
+   "matches_consumed_pin_prefix": true,
+   "expected_prefix": "2fa395f2"
+  }
+ },
+ "all_pins_match": true
+}
