@@ -1,0 +1,38 @@
+{
+  "calendar_digest": "cdfd7a18547073015507b0081c57ed1a753ff0dbd2a36eb37f12e5a7d71f63f8",
+  "checks": {
+    "absent_schedule_rejected": true,
+    "bar_on_unscheduled_date_rejected": true,
+    "deterministic_two_runs_byte_identical": true,
+    "dst_anchors_unchanged": true,
+    "duplicate_timestamp_rejected": true,
+    "early_close_counts_as_one_session": true,
+    "early_close_single_anchor": true,
+    "extra_1330_early_close_rejected": true,
+    "fold_counts_deterministic": true,
+    "full_session_two_anchors": true,
+    "holdout_touch_rejected": true,
+    "holiday_absence_accepted": true,
+    "missing_1330_full_session_rejected": true,
+    "non_monotonic_rejected": true,
+    "preserved_25_materializer_b58194b4": true,
+    "preserved_26_inference_v2_81b213f6": true,
+    "preserved_amendment_v2_03f5a564": true,
+    "unpinned_schedule_rejected": true
+  },
+  "checks_passed": 18,
+  "checks_total": 18,
+  "early_close_sessions": [
+    "2024-11-29",
+    "2024-12-24",
+    "2025-07-03"
+  ],
+  "fixture_label": "SYNTHETIC_FIXTURE",
+  "fold_count": 2,
+  "input_timestamp_digest": "9da326e40c90519fa2562594223ff4db8479c70f2de8e09a8c2e5719ac14ba4a",
+  "output_digest": "4ae24ca89cfa78a0d31a063c8bee4d9ea05572c37f6def227bb43960c5bb0f60",
+  "schedule_sha256": "a7ab945a61b446fbe2e9918704f9407e8c1846ce3432e58e96d04b009e259151",
+  "session_count": 400,
+  "task": "QF-FOLD-EARLY-CLOSE-CONTRACT-20261018-27 r1",
+  "verdict_retained": "PRE_DATA_PREREG_READY__EXACT_FOLDS_PENDING_QUALIFIED_TIMESTAMPS_AND_PINNED_SCHEDULE"
+}
