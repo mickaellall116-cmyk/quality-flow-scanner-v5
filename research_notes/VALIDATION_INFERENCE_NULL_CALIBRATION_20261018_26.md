@@ -4,7 +4,7 @@
 **Spec:** GitHub Issue #1 comment `6255324442` (-25 independent review: `QF_VALIDATION_25_FOLD_GOVERNANCE_ACCEPTED__INFERENCE_HOLD`)
 **Date:** 2026-10-18
 **Package:** `research_notes/validation_inference_null_calibration_20261018_26/`
-**Elapsed:** ~8 minutes of the ≤25-minute hard cap. **Repair used:** one repair, ~1 minute (within the ≤5-minute allowance) — see Fixture proof.
+**Elapsed:** ~17 minutes total of the ≤25-minute hard cap (spec fetch, build, and fixture proof through the first full pass ≈ 8 minutes; the balance is the repair re-run, packaging, and verified delivery). **Repair used:** one repair, ~1 minute (within the ≤5-minute allowance) — see Fixture proof.
 **Offline:** synthetic fixtures only. No market data, no real outcomes, no holdout access, no vendor/helper/model/API calls (network only for the read-only public spec fetch and this delivery push), no credentials, no installs, no ledger/live writes, no strategy execution, no Issue #9 work, no prior frozen record edited. TD -20 remains UNUSED and untouched.
 
 ## Verdict
