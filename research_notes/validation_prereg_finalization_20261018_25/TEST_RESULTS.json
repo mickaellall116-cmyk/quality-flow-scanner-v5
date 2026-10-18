@@ -1,0 +1,246 @@
+{
+ "all_pass": true,
+ "fixture_label": "SYNTHETIC_FIXTURE",
+ "fixture_payload": {
+  "bootstrap": {
+   "ci95": [
+    -0.030297559344700745,
+    0.08825810765630226
+   ],
+   "p_one_sided": 0.16998300169983002,
+   "seed": 14767771057543718562
+  },
+  "descriptive": {
+   "n100": {
+    "ci95_high": 0.25608371975768257,
+    "ci95_low": 0.09091628024231747,
+    "mean_net_r": 0.17350000000000002,
+    "n": 100,
+    "sd_net_r": 0.4162030754331352,
+    "status": "DESCRIPTIVE_ONLY",
+    "t_stat": 4.16863810579587
+   },
+   "n50": {
+    "ci95_high": 0.2910205211658329,
+    "ci95_low": 0.05337947883416716,
+    "mean_net_r": 0.17220000000000002,
+    "n": 50,
+    "sd_net_r": 0.4180923147744639,
+    "status": "DESCRIPTIVE_ONLY",
+    "t_stat": 2.912366083217958
+   }
+  },
+  "fixture_label": "SYNTHETIC_FIXTURE",
+  "holm_family_adjusted": {
+   "H_cohort_UX51": 0.08,
+   "H_cohort_X2": 0.12,
+   "H_grade_A": 0.04,
+   "H_grade_B": 0.2,
+   "H_grade_C": 0.12,
+   "H_pooled": 0.006
+  },
+  "materializer_output": {
+   "calendar_digest": "740f63f7466a1bb0620397ae04706f411ed242b19c1620e54ae2bee1f7ce5832",
+   "dev_start": "2024-09-16",
+   "dropped_tail_sessions": 40,
+   "folds": [
+    {
+     "fold": 1,
+     "oos_end": "2025-12-03",
+     "oos_sessions": 63,
+     "oos_start": "2025-09-08",
+     "train_end": "2025-09-05",
+     "train_sessions": 252,
+     "train_start": "2024-09-16"
+    },
+    {
+     "fold": 2,
+     "oos_end": "2026-03-02",
+     "oos_sessions": 63,
+     "oos_start": "2025-12-04",
+     "train_end": "2025-12-03",
+     "train_sessions": 315,
+     "train_start": "2024-09-16"
+    },
+    {
+     "fold": 3,
+     "oos_end": "2026-05-28",
+     "oos_sessions": 63,
+     "oos_start": "2026-03-03",
+     "train_end": "2026-03-02",
+     "train_sessions": 378,
+     "train_start": "2024-09-16"
+    }
+   ],
+   "holdout_window_excluded": "2023-10-19..2024-09-15",
+   "input_timestamp_digest": "560444b4f81a405b1f6f08b9f3ef5862272aafd3278f437bec3d462faf765365",
+   "materializer": "fold_materializer r1 (PREREGISTRATION_20261018_25 s1)",
+   "min_train_sessions": 252,
+   "oos_block_sessions": 63,
+   "session_count": 481
+  }
+ },
+ "results": [
+  {
+   "detail": "['timestamps', 'declared_holidays']",
+   "pass": true,
+   "test": "timestamp_only_signature"
+  },
+  {
+   "detail": "['datetime', 'hashlib', 'json']",
+   "pass": true,
+   "test": "materializer_stdlib_imports_only"
+  },
+  {
+   "detail": "got MALFORMED_TIMESTAMP",
+   "pass": true,
+   "test": "rejects_non_string_timestamp"
+  },
+  {
+   "detail": "3",
+   "pass": true,
+   "test": "fold_count_3"
+  },
+  {
+   "detail": "40",
+   "pass": true,
+   "test": "dropped_tail_40"
+  },
+  {
+   "detail": "{\"fold\": 1, \"train_start\": \"2024-09-16\", \"train_end\": \"2025-09-05\", \"train_sessions\": 252, \"oos_start\": \"2025-09-08\", \"oos_end\": \"2025-12-03\", \"oos_sessions\": 63}",
+   "pass": true,
+   "test": "fold1_boundaries"
+  },
+  {
+   "detail": "{\"fold\": 3, \"train_start\": \"2024-09-16\", \"train_end\": \"2026-03-02\", \"train_sessions\": 378, \"oos_start\": \"2026-03-03\", \"oos_end\": \"2026-05-28\", \"oos_sessions\": 63}",
+   "pass": true,
+   "test": "fold3_expanding_train"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "holdout_never_in_output"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "input_digest"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "calendar_digest"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "materializer_deterministic"
+  },
+  {
+   "detail": "got BAD_GRID",
+   "pass": true,
+   "test": "bad_grid_missing_bar"
+  },
+  {
+   "detail": "got DUPLICATE_TIMESTAMP",
+   "pass": true,
+   "test": "duplicate_timestamp"
+  },
+  {
+   "detail": "got NON_MONOTONIC",
+   "pass": true,
+   "test": "non_monotonic"
+  },
+  {
+   "detail": "got UNRESOLVED_GAP",
+   "pass": true,
+   "test": "unresolved_gap"
+  },
+  {
+   "detail": "got HOLDOUT_TOUCH",
+   "pass": true,
+   "test": "holdout_touch"
+  },
+  {
+   "detail": "got INSUFFICIENT_SESSIONS",
+   "pass": true,
+   "test": "insufficient_sessions"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "descriptive_n50_mean"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "descriptive_n50_sd"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "descriptive_n50_ci_contains_mean"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "descriptive_n100_mean"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "descriptive_n100_sd"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "descriptive_n100_ci_contains_mean"
+  },
+  {
+   "detail": "2.009575",
+   "pass": true,
+   "test": "t_ppf_known_value"
+  },
+  {
+   "detail": "14767771057543718562",
+   "pass": true,
+   "test": "bootstrap_seed_from_prereg_sha"
+  },
+  {
+   "detail": "(-0.030297559344700745, 0.08825810765630226, 0.16998300169983002)",
+   "pass": true,
+   "test": "bootstrap_deterministic"
+  },
+  {
+   "detail": "(-0.030297559344700745, 0.08825810765630226, 0.16998300169983002)",
+   "pass": true,
+   "test": "bootstrap_ci_ordered"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "bootstrap_block_reps_frozen"
+  },
+  {
+   "detail": "{\"a\": 0.03, \"c\": 0.06, \"b\": 0.06}",
+   "pass": true,
+   "test": "holm_hand_example"
+  },
+  {
+   "detail": "",
+   "pass": true,
+   "test": "holm_family_size_6"
+  },
+  {
+   "detail": "{\"H_pooled\": 0.006, \"H_grade_A\": 0.04, \"H_cohort_UX51\": 0.08, \"H_cohort_X2\": 0.12, \"H_grade_C\": 0.12, \"H_grade_B\": 0.2}",
+   "pass": true,
+   "test": "holm_monotone_in_raw_order"
+  }
+ ],
+ "run_digest_1": "269ba6e9bb720c4d439d1a5c20a1bc1fb2ffb93d8c565ce0089f9b750fcc0e35",
+ "run_digest_2": "269ba6e9bb720c4d439d1a5c20a1bc1fb2ffb93d8c565ce0089f9b750fcc0e35",
+ "task": "QF-VALIDATION-PREREG-FINALIZATION-20261018-25 r1",
+ "tests_passed": 31,
+ "tests_run": 31,
+ "twice_run_byte_identical": true
+}
