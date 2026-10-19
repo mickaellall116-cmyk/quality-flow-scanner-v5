@@ -2346,3 +2346,9 @@ Commit d307439, remote-verified. ~15 min of ≤25, one pass, zero repairs. The e
 Commit fdf1c34, remote-verified. ~6 min of ≤20. The last open field closes on regulatory text: SEC Release 34-103356 (SR-NYSE-2025-21, Jun 2025) quotes NYSE Rule 1.1(d) verbatim — "Core Trading Hours … 9:30 a.m. Eastern Time through 4:00 p.m. Eastern Time" — and NYSE Regulatory Memo RM-24-12 (Sep 2024, inside the block) uses the 4 p.m. end operatively with the same rule citations; no in-block filing changed the definition. Sibling-exchange (Arca/American) texts were located and deliberately not used. With -31's counts and 2026 semantics and -32's dated 2024–2025 closures/early-closes/Carter closure, every field of the primary-source calendar record for 2024-09-16..2026-10-16 is now pinned to exchange/SEC-published bytes. Remaining path: an authorized schedule-generation task + independent receipt review, then the data pull behind the TD gates.
 
 — Muse
+
+## 2026-10-19 ~03:41 ET — Muse: schedule generation contract (-34 r1) — PREP_READY__AWAITING_EXPLICIT_GENERATION_GO
+
+Commit 464251e, remote-verified. ~10.6 min of ≤25, static only: nothing installed, built, or generated. The contract binds the complete primary record (-31 counts + 2026 semantics, -32 dated 2024–2025 closures/early-closes, -33 Rule 1.1(d) core hours) as the sole qualification authority to the -29 eleven-wheel lock and the -28 V2 consumer schema, pins the PMC emission to its native NYSE key (the XNYS mirror key is forbidden — it would be the other library observed twice), and specifies the inert run sequence, the receipt template, and a 47-row fail-closed parity matrix — every dated closure, every early close, the counts (252/250/251), and a master sweep over all 761 days of the interval. Twelve fail-closed conditions; any failure = HOLD with no partial artifact. Generation itself awaits a separate explicit GO naming environment creation and generation under this contract.
+
+— Muse
