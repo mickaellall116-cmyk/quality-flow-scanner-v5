@@ -1,0 +1,354 @@
+Regulatory Memo
+NYSE RM-24-12
+September 13, 2024
+TO:
+
+ALL MEMBERS AND MEMBER ORGANIZATIONS
+
+FROM:
+
+NYSE REGULATION
+
+SUBJECT:
+
+QUARTERLY EXPIRATION DAY – September 20, 2024
+
+I.
+
+Purpose
+
+September 20, 2024 will be a quarterly expiration day (the “Expiration Day”) for stock and index
+options and futures products for which settlement pricing is based upon opening or closing prices
+that day on the New York Stock Exchange LLC (“NYSE” or “Exchange”). This Regulatory Memo
+reminds members and member organizations of certain NYSE rules and policies regarding entry
+and cancellation of market-on-close (“MOC”), limit-on-close (“LOC”), and closing offset (“Closing IO
+Order”) orders; publication of imbalance information; printing of Closing Auctions; order entry
+requirements; and supervision. While these rules and policies are applicable every day, they are
+especially significant on expiration days.
+II.
+
+Rules and Policies Relating to the Close
+A.
+
+MOC/LOC and Closing IO Orders - Order Entry and Cancellation
+
+Members and member organizations are reminded that the provisions of NYSE Rule 7.35B
+(DMM-Facilitated Closing Auctions) apply to the Close on all days, including on the Expiration
+Day. While the Exchange expects systems to operate normally, in the unlikely event the
+Exchange is unable to conduct a Closing Auction in one or more securities due to a systems
+or technical issue leading into or at the Close, the Official Closing Prices for Auction-Eligible
+Securities (as defined in NYSE Rule 7.35(a)(2)) will be determined in accordance with NYSE
+Rule 1.1(u) (Official Closing Price).
+In the event the Exchange invokes its exemptive powers under NYSE Rule 7.35B(j)(2) (Extreme
+Order Imbalances at or Near the Close), the terms of that rule would govern the handling of orders
+at the Close. See Section II.D.
+In connection with the entry of MOC/LOC and Closing IO Orders, members should pay particular
+attention to the following:
+•
+
+1
+
+A Significant Closing Imbalance 1 will be published via dissemination to the Tape. The
+oral announcement or physical posting of imbalance information at the panel does
+not constitute publication. See Section II.B. The Exchange’s Auction Imbalance
+Information (i.e., imbalance information provided to Floor Brokers for any security in
+
+Per NYSE Rule 7.35B(d)(1), “[a]t the Closing Auction Imbalance Freeze Time, the Exchange will
+disseminate a Significant Closing Imbalance regardless of whether the security has opened or is halted or
+paused at that time if the Closing Imbalance is considered ‘Significant.’”
+
+1
+
+which a Floor Broker has entered an order or as specifically requested by a Floor
+Broker) also does not constitute a Significant Closing Imbalance.
+
+B.
+
+•
+
+Members and member organizations are reminded that, while they should enter
+orders as early in the day as possible, all MOC/LOC Orders (unless entered to offset
+a published Significant Closing Imbalance) must be entered electronically by
+3:50 p.m. 2 Entering MOC/LOC Orders early provides DMMs with the opportunity to
+identify and disseminate potential order imbalances that might exist at the Close
+more quickly. This, in turn, enables brokers and traders to more effectively identify
+potential off-setting customer interest that could mitigate any imbalance. MOC/LOC
+and Closing IO Orders entered prior to 3:50 p.m. may be cancelled or reduced prior
+to that time for any reason.
+
+•
+
+After 3:50 p.m., Exchange systems will accept only MOC and LOC Orders opposite
+to the side of the Significant Closing Imbalance. If a Significant Closing Imbalance
+has not been published, the Exchange will reject all MOC and LOC Orders after that
+time. Closing IO Orders may be entered on both sides of the market up to 4:00 p.m.
+
+•
+
+MOC/LOC and Closing IO Orders may not be cancelled or reduced in size, even to
+correct a legitimate error, 3 after 3:50 p.m. The only exception is NYSE
+Rule 7.35B(j)(2)(B), which allows for the suspension of the prohibition on canceling
+MOC/LOC Orders in certain limited circumstances. See Section II.D, below.
+
+•
+
+A Significant Closing Imbalance will be disseminated at 3:50 p.m. regardless of
+whether the security has opened or is halted or paused at that time. See NYSE
+Rule 7.35B(d)(1). Accordingly, in the event of a trading halt effective at 3:50 p.m. or
+later, MOC/LOC orders may be entered only to offset a published imbalance, while
+Closing IO Orders may be entered in any amount on either side of the market.
+Imbalance Publications 4
+
+NYSE Rule 7.35B(d) provides for the publication of order imbalances as described below. DMMs are
+reminded that erroneous imbalance publications must be corrected as soon as practicable.
+1.
+
+Publication of Manual Closing Imbalance between 3:00 p.m. and 3:50 p.m.
+
+Between 3:00 p.m. and 3:50 p.m., DMMs are encouraged to issue Manual Closing Imbalance
+Publications of any size if they believe there could be significant price dislocation at the Close.
+These publications are informational only and do not limit MOC/LOC or Closing IO Order entry or
+cancellation before 3:50 p.m. DMMs must obtain prior approval from a Trading Official (see NYSE
+Rule 7.35B(d)(2)) prior to issuing a Manual Closing Imbalance Publication. Such approvals must be
+recorded in the Floor Official Request Tracking Engine (“FORTÉ”), and the record must include the
+2
+
+“Closing Auction Imbalance Freeze Time” means 10 minutes before the scheduled end of Core Trading
+Hours. See NYSE Rule 7.35(a)(8). Specific time deadlines noted in this memorandum (e.g., the 3:50 p.m.
+deadline for entry of MOC/LOC Orders) refer to Eastern Time and are applicable to days for which the
+scheduled end of Core Trading Hours is 4 p.m. On days when the NYSE is scheduled to close at a time
+other than 4 p.m., such deadlines—tied to the scheduled end of Core Trading Hours—move accordingly.
+
+3
+
+“Legitimate Error” means an error in any term of an order, such as price, number of shares, side of the
+transaction (buy or sell), or identification of the security. See NYSE Rule 7.35(a)(13).
+
+4
+
+For more information on how imbalance volumes are calculated, see NYSE Rule 7.35(a)(4).
+
+2
+
+proposed imbalance information and note any other relevant information (e.g., average daily trading
+volume (“ADTV”), size, or degree of impact) in connection with the request.
+2.
+
+Publication of Significant Closing Imbalance at 3:50 p.m.
+
+At 3:50 p.m., the Exchange will disseminate a Significant Closing Imbalance, regardless of whether
+the security has opened or is halted or paused at that time, if the notional value of the Closing
+Imbalance is equal to or greater than $200,000 and the closing imbalance is equal to or greater than:
+(i) 30% of the 20-day Average Closing Size for securities in the S&P 500 Index, (ii) 50% of the 20-day
+Average Closing Size for securities in the S&P 400 Index and the S&P 600 Index, or (iii) 70% of the
+20-day Average Closing Size for all other securities. 5 Beginning one hour before the scheduled end
+of Core Trading Hours up to 3:50 p.m., a DMM may disseminate a Manual Closing Imbalance with
+prior Trading Official approval. 6 The Manual Closing Imbalance Publication must be recorded in
+FORTÉ and DMMs should record the proposed imbalance information and note any other relevant
+information (e.g., ADTV, size, or degree of impact) in connection with the request.
+3.
+
+Publication of Auction Imbalance Information
+
+In addition to the Manual Closing Imbalance and Significant Closing Imbalance Publications
+described above, the Exchange also makes available Auction Imbalance Information prior to the
+Close in accordance with NYSE Rule 7.35B(e). From 2:00 p.m. until 3:50 p.m., the Exchange will
+make available Total Imbalance, Side of Total Imbalance, Paired Quantity, Unpaired Quantity, Side of
+Unpaired Quantity, and if published, Manual Closing Imbalance, to Floor Brokers for any security (i) in
+which a Floor Broker has entered an order, or (ii) as specifically requested by a Floor Broker. In
+addition, beginning at 3:50 p.m., all Closing Auction Imbalance Information will be made available to
+Floor Brokers.
+C.
+
+The Closing Auction
+1.
+
+Determining an Auction Price
+
+DMMs are reminded of their obligations to (i) select an Auction Price at which all better-priced
+orders on the Side of the Imbalance can be satisfied, 7 and (ii) maintain a fair and orderly market
+pursuant to NYSE Rule 104.
+2.
+
+Floor Broker Verbal Interest at the Close
+
+Floor Broker Interest is not eligible to participate in the Closing Auction. 8
+D.
+
+Extreme Order Imbalances at or Near the Close
+
+In order to avoid significant dislocation in the closing price that may result from an order entered or
+represented at or near the Close, NYSE Rule 7.35B(j)(2) permits the Exchange, on a security-by5
+
+For more information on Significant Closing Imbalances, see NYSE Rule 7.35B(d)(1).
+
+6
+
+For more information on Manual Closing Imbalances, see NYSE Rule 7.35B(d)(2).
+
+7
+
+For more information on the Auction allocation following the determination of the Auction Price, see
+NYSE Rules 7.35B(h) and 7.37(b)(2) - (7).
+
+8
+
+See NYSE Rule 7.35B(a)(1) (providing that “Floor Broker Interest is not eligible to participate in the
+Closing Auction. Floor brokers must enter any orders for the Closing Auction, as defined in Rule 7.31,
+electronically during Core Trading Hours.”).
+
+3
+
+security basis, to temporarily suspend the requirement that all order instructions be entered by the
+end of Core Trading Hours (per NYSE Rule 7.34(a)(2)(B)) and to permit the solicitation and entry of
+orders into Exchange systems. However, NYSE Rule 7.35B(j)(2)(A)(i) requires that such orders are
+solicited solely to offset any Imbalance in a security that may exist as of the scheduled end of Core
+Trading Hours. Off-setting interest may be solicited from both on-Floor and off-Floor participants up
+to a cut-off time designated by the Exchange. Off-setting interest is solicited using Exchange Trader
+Updates as well as messages sent directly to Floor Broker hand-held devices. These Exchangeissued solicitation requests include the security symbol, the Total Imbalance, the Side of the Total
+Imbalance, and the Exchange Last Sale Price. If the side of the Total Imbalance is to buy (sell),
+during the Solicitation Period, the Exchange will accept only sell (buy) Limit Orders and Floor Broker
+Interest with a limit price equal to or higher (lower) than the Exchange Last Sale Price. The
+Exchange will reject all other orders and requests to cancel any orders, regardless of the time of
+entry of the original order. Exchange systems will accept interest entered electronically in the
+named security after 4:00 p.m. only if NYSE Rule 7.35B(j)(2) is invoked.
+NYSE Rule 7.35B(j)(2)(B) allows for the temporary suspension of the prohibition on canceling an
+MOC or LOC Order after ten minutes before the scheduled end of Core Trading Hours (i.e.,
+typically 3:50 p.m.) where there is a legitimate error in such an order and the execution of the
+order would cause significant price dislocation at the Close. Only the DMM assigned to a particular
+affected security may request relief under NYSE Rule 7.35B(j)(2). Such a request must be
+approved and supervised by a Trading Official. All Rule 7.35B(j)(2)-related approvals must be
+recorded in FORTÉ.
+E.
+
+Block-Sized Interest at the Close
+
+Although orders entered at or near the Close are eligible to be executed either prior to the Close
+or as part of the Close, members and member organizations should keep in mind that such
+orders can result in price dislocation in the stock, particularly if the size of the order is unusual in
+relation to the average daily volume of the stock or otherwise cannot easily be absorbed
+because of prevailing market conditions. As a result, members and member organizations
+should not hold back large interest until at or near the Close and are advised that, if they do,
+they may face disciplinary action for potentially affecting the Close inappropriately. Efforts to
+improperly manipulate stock prices, regardless of their size, are strictly prohibited. In addition,
+members and member organizations should be aware that their orders may execute at multiple
+prices in a series of transactions that are distinct from the Close.
+III.
+
+Record of Orders
+
+Members and member organizations are reminded that, except in limited circumstances, 9 NYSE
+Rule 123(e) requires that, immediately following the receipt of an order in an NYSE listed security on
+the Trading Floor, members and member organizations must record the details of that order
+(including the prescribed data elements) in an electronic system on the Trading Floor. This recording
+must occur before the order can be represented on the Trading Floor. All applicable order information
+should be entered into an Exchange order management system (“OMS”) such as BBSS. In order to
+be in compliance with NYSE Rule 123(e), any third-party OMS used to route to and receive orders on
+
+9
+
+Supplementary Material .21 to NYSE Rule 123 provides that “[a]ny order executed by a DMM for his or
+her own account and any orders which by their terms are incompatible for entry in an Exchange system
+relied on by a Floor member to record the details of the order in compliance with this Rule” are exempt
+from the order entry requirements of NYSE Rule 123(e). In addition, Supplementary Material .22 to that
+rule specifies unique order entry requirements that are applicable to bona fide arbitrage orders and orders
+to offset transactions made in error.
+
+4
+
+the Trading Floor must be capable of transmitting the details of the order to a designated Exchange
+database.
+Members and member organizations are further reminded that held or not held order instructions
+must be entered in the free-form field (Tag 58). Note, entry of these order instructions in the free-form
+field may be completed by, or at the instruction of, the member or member organization handling the
+order provided that the member or member organization has received documented instructions from
+its customer that specifically state whether a particular order is held or not held or a blanket
+instruction that all of a customer’s orders are to be treated as held or not held unless otherwise
+specifically instructed in writing.
+Additionally, NYSE Rule 123(f) requires that all reports of executions related to such orders be
+entered into the same database using prescribed data elements.
+IV.
+
+Adequacy of Operations and Supervisory Staff
+
+All members and member organizations, including DMMs, should ensure that both operational and
+supervisory staffing on and around the Expiration Day will be sufficient to monitor and process all
+orders, regardless of the form in which they are received, as well as to handle the anticipated
+increased workload associated with that event. All members and member organizations should also
+review their systems to ensure that they have adequate capacity to handle the expected increase in
+volume. For example, DMM firms should review their DMM Unit algorithms to ensure that they meet
+their obligations to maintain a fair and orderly market. DMMs also are reminded to seek the advice of
+a Trading Official regarding any unusual situations as quickly as possible.
+V.
+
+Supervision
+A.
+
+Review of Policies and Procedures
+
+Members and member organizations should carefully review their procedures as well as their
+supervisory systems for handling an increased volume of orders in connection with the Expiration
+Day. Specifically, members and member organizations should review their practices for handling
+orders at or near the Close, including practices applicable to manual orders and as well as those
+handled systemically, such as orders that are handled by a computer algorithm. In addition,
+members and member organizations should take all necessary steps to ensure that the relevant
+trading and back-office staffs are familiar with firm procedures for handling orders at or near the
+Close.
+In addition, members and member organizations are reminded of their obligation to have adequate
+systems and controls relating to the use of firm systems by correspondents or others. Please
+consult Information Memo 11-13 (May 16, 2011), Information Memo 18-04 (August 13, 2018), and
+Information Memo 18-05 (August 13, 2018) for more information.
+B.
+
+Compliance Program
+
+Members and member organizations are also reminded to ensure that they have a robust
+compliance program that includes adequate written policies, procedures, and supervisory controls
+to monitor for compliance with all applicable provisions of the Rule 7.35 series and the guidance
+contained in this memo.
+C.
+
+Supervision to Prevent Improperly Affecting the Close
+
+Members and member organizations have an obligation to not artificially impact the closing price.
+Members and member organizations are reminded that certain orders and order entry practices
+5
+
+may have the potential to cause price dislocation before the Close or distort the closing price due to
+prevailing market conditions at the time the order is entered. Similarly, trading at or near the Close
+is of particular concern due to the condensed timeframe for execution, and because the resultant
+closing prices are used to set benchmarks, such as index rebalancing. As a result, concerns
+regarding manipulation and disruptive trading may be heightened when trading occurs at or near
+the Close.
+Firms should review procedures utilized in connection with orders to be executed at or near the Close
+with their traders and other order-entry personnel. Firms should also review systemic order entry
+functions (e.g., algorithms or “smart servers”). Members and member organizations are also
+reminded that, when a firm has committed to purchase from or sell to a customer at a price that is
+derived from the closing price (e.g., VWAP and MOC orders) while also reserving a significant portion
+of its hedging or covering transaction to be executed at or near the Close, if the transaction is
+completed in a manner that does not effectively place the firm at market risk or if the transaction does
+not provide an opportunity for possible contra side interest to develop and/or react to the activity, it
+could raise regulatory concerns and constitute conduct inconsistent with just and equitable principles
+of trade.
+VI.
+
+Conclusion
+
+The rules described in this Regulatory Memo are applicable every day but are especially significant
+on the Expiration Day. Members and member organizations are reminded that failure to comply with
+any of these requirements may result in disciplinary action.
+VII. Staff Contacts
+Questions concerning this Regulatory Memo should be directed to nyse-regulation@nyse.com or:
+•
+
+Stephen Larson, Vice President, NYSE Regulation, at Stephen.Larson@nyse.com or at
+212.656.3830, or
+
+•
+
+John Roussel, Director, NYSE Regulation, at JohnM.Roussel@nyse.com or at
+212.656.3846.
+
+6
+
+

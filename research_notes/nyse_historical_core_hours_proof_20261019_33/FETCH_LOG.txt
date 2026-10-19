@@ -1,0 +1,13 @@
+QF-NYSE-HISTORICAL-CORE-HOURS-RULE-PROOF-20261019-33 r1 — fetch log (public unauthenticated GETs only)
+
+PINNED (200, bytes in raw/):
+- 2026-10-19T05:31:40Z GET https://www.nyse.com/publicdocs/nyse/markets/nyse/rule-interpretations/2024/Q3_-_Quarterly_Expiration_RM.pdf -> 200, 166801 B, sha256 305fab2e09c33969f1928a3d57c26a20e99496327ac6ae3bd974927b7f0eb982 (NYSE RM-24-12). An identical-bytes locator fetch via beta.nyse.com preceded it; hashes equal.
+- 2026-10-19T05:31:43Z GET https://www.nyse.com/publicdocs/nyse/markets/nyse/rule-filings/sec-approvals/2025/(SR-NYSE-2025-21)_34-103356.pdf -> 200, 270121 B, sha256 5f0263f767a7e9b387ded9e7cd4132f9dc20e6e2762196d23aaab14912034e58 (SEC Release 34-103356). A locator fetch minutes earlier returned identical SHA-256.
+
+ATTEMPTED, NO QUALIFYING BYTES (404 error body, 196 B, sha256 80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880; error bytes not retained as evidence):
+- https://beta.nyse.com/publicdocs/nyse/markets/nyse/rule-interpretations/2025/Q4_-_Quarterly_Expiration_RM.pdf -> 404
+- https://www.nyse.com/publicdocs/nyse/markets/nyse/rule-interpretations/2025/Q1_-_Quarterly_Expiration_RM.pdf -> 404
+- https://www.nyse.com/publicdocs/nyse/markets/nyse/rule-interpretations/2025/Q3_-_Quarterly_Expiration_RM.pdf -> 404
+(The 2025 quarterly-expiration memos are not published under the 2023/2024 filename pattern; no further filename guessing was done inside the one-pass cap.)
+
+LOCATORS ONLY (search indexes; never evidence): web searches located the NYSE-hosted SEC approval PDF above and the NYSE Arca / NYSE American parallel definitions (Rules 1.1 / 1.1E), which were NOT used — sibling-exchange definitions do not prove NYSE cash-equity hours. Federal Register texts of NYSE Arca's Nov 14, 2024 extended-hours filing (89 FR 90143) were likewise locator-only for the same reason.

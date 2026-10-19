@@ -1,0 +1,53 @@
+{
+  "task": "QF-NYSE-HISTORICAL-CORE-HOURS-RULE-PROOF-20261019-33 r1",
+  "spec": "GitHub Issue #1 comment 6260259437 (accepts -32 as DATED_CALENDAR_RECOVERY_ACCEPTED__HISTORICAL_CORE_HOURS_HOLD; dispatches -33)",
+  "frozen_interval": [
+    "2024-09-16",
+    "2026-10-16"
+  ],
+  "unresolved_block": [
+    "2024-09-16",
+    "2025-12-31"
+  ],
+  "field_under_proof": "NYSE cash-equity regular core hours 09:30-16:00 ET throughout the unresolved block (except the -32-pinned 13:00 early closes and closures)",
+  "verdict": "HISTORICAL_CORE_HOURS_PROVEN",
+  "captures": [
+    {
+      "id": "A",
+      "publisher": "New York Stock Exchange LLC (NYSE Regulation)",
+      "document": "Regulatory Memo NYSE RM-24-12, 'Quarterly Expiration Day - September 20, 2024'",
+      "document_date": "2024-09-13",
+      "url": "https://www.nyse.com/publicdocs/nyse/markets/nyse/rule-interpretations/2024/Q3_-_Quarterly_Expiration_RM.pdf",
+      "retrieved_utc": "2026-10-19T05:31:40Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 166801,
+      "sha256": "305fab2e09c33969f1928a3d57c26a20e99496327ac6ae3bd974927b7f0eb982",
+      "raw_file": "raw/NYSE_RM_24-12.pdf",
+      "headers_file": "raw/NYSE_RM_24-12.headers",
+      "text_file": "raw/NYSE_RM_24-12.txt",
+      "proves": "16:00 boundary operative at block start + the Core Trading Hours rule framework in force. Exact text (extracted txt lines 116-120): '\"Closing Auction Imbalance Freeze Time\" means 10 minutes before the scheduled end of Core Trading Hours. See NYSE Rule 7.35(a)(8). Specific time deadlines noted in this memorandum ... are applicable to days for which the scheduled end of Core Trading Hours is 4 p.m. On days when the NYSE is scheduled to close at a time other than 4 p.m., such deadlines - tied to the scheduled end of Core Trading Hours - move accordingly.' Memo states the cited rules 'are applicable every day' and cites NYSE Rule 7.34(a)(2)(B) for the end of Core Trading Hours."
+    },
+    {
+      "id": "B",
+      "publisher": "U.S. Securities and Exchange Commission (official copy of a New York Stock Exchange LLC rule filing, hosted on nyse.com rule-filings/sec-approvals)",
+      "document": "SEC Release No. 34-103356; File No. SR-NYSE-2025-21 - Notice of Filing and Immediate Effectiveness of Proposed Rule Change to Amend Rule 7.18 (CTA/CQ Plan amendments)",
+      "document_date": "2025-06-30 (filed by NYSE 2025-06-17; immediately effective)",
+      "url": "https://www.nyse.com/publicdocs/nyse/markets/nyse/rule-filings/sec-approvals/2025/(SR-NYSE-2025-21)_34-103356.pdf",
+      "retrieved_utc": "2026-10-19T05:31:43Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 270121,
+      "sha256": "5f0263f767a7e9b387ded9e7cd4132f9dc20e6e2762196d23aaab14912034e58",
+      "raw_file": "raw/SR-NYSE-2025-21_34-103356.pdf",
+      "headers_file": "raw/SR-NYSE-2025-21.headers",
+      "text_file": "raw/SR-NYSE-2025-21_34-103356.txt",
+      "proves": "BOTH boundaries as the in-force rule definition mid-block. Exact text (footnote 42, extracted txt lines 718-720): 'The term \"Core Trading Hours\" is defined in Rule 1.1(d) to mean the hours of 9:30 a.m. Eastern Time through 4:00 p.m. Eastern Time or such other hours as may be determined by the Exchange from time to time.' The filing states this as the current definition while amending unrelated halt rules; its only Rule 1.1 changes are conforming. Corroborating in-document usage: Trading Halt Auction 'no earlier than 9:30 a.m., at the start of the Exchange's Core Trading Session' (describing current Rule 123D(f))."
+    }
+  ],
+  "temporal_applicability": "Spec item 3, second route: two dated in-period official documents whose rule citations and unchanged terms jointly cover the block. (i) 2024-09-13 NYSE Regulation memo (rules 'applicable every day'; expiration day 2024-09-20 falls inside the block) applies the defined term 'Core Trading Hours' with its scheduled end at 4 p.m., citing Rules 7.35(a)(8) and 7.34(a)(2)(B). (ii) 2025-06-30 SEC notice of NYSE's own filing quotes the standing Rule 1.1(d) definition verbatim - 9:30 a.m. through 4:00 p.m. Eastern Time - as current rule text. The defined term, its rule identifier family, and its 4 p.m. end are identical at both in-period points; no NYSE (cash) filing in the pass proposed or effected any change to the core-hours definition during the block (the era's hours-changing proposals were NYSE Arca extended sessions, a different exchange). Definition therefore in force across 2024-09-16..2025-12-31.",
+  "exceptions_reconciliation": "Exceptions are exactly the -32-pinned set (commit d307439): dated full-day closures and 13:00 ET early closes for 2024 (Sep 16-Dec 31) and 2025, incl. the Jan 9, 2025 Carter closure. Not re-derived or altered here.",
+  "two_pass_consistency": "Both PDFs were fetched twice in this pass (locator fetch and pinned capture); SHA-256 identical across fetches.",
+  "elapsed_minutes": "~6 (cap 20)",
+  "repair_minutes": 0
+}

@@ -1,0 +1,1265 @@
+SECURITIES AND EXCHANGE COMMISSION
+[Release No. 34-103356; File No. SR-NYSE-2025-21]
+Self-Regulatory Organizations; New York Stock Exchange LLC; Notice of Filing and
+Immediate Effectiveness of Proposed Rule Change to Amend Rule 7.18 to Effectuate
+Amendments to Second Restatement of the CTA Plan and the Restated CQ Plan
+June 30, 2025.
+Pursuant to Section 19(b)(1)1 of the Securities Exchange Act of 1934 (“Act”)2 and Rule
+19b-4 thereunder,3 notice is hereby given that on June 17, 2025, New York Stock Exchange LLC
+(“NYSE” or the “Exchange”) filed with the Securities and Exchange Commission (the
+“Commission”) the proposed rule change as described in Items I, II, and III below, which Items
+have been prepared by the self-regulatory organization. The Commission is publishing this
+notice to solicit comments on the proposed rule change from interested persons.
+I.
+
+Self-Regulatory Organization’s Statement of the Terms of Substance of the Proposed
+Rule Change
+The Exchange proposes to amend Rule 7.18 (“Halts”) to effectuate amendments to
+
+Second Restatement of the CTA Plan and the Restated CQ Plan (together, the “Amended CTA
+Plan”). The Exchange proposes to merge current Rule 123D (Halts in Trading) into the proposed
+revised Rule 7.18. In addition, the Exchange proposes to make conforming changes to Rules 1.1
+and 7.11. The proposed rule change is available on the Exchange’s website at www.nyse.com, at
+the principal office of the Exchange, and at the Commission’s Public Reference Room.
+
+1
+
+15 U.S.C. 78s(b)(1).
+
+2
+
+15 U.S.C. 78a.
+
+3
+
+17 CFR 240.19b-4.
+
+II.
+
+Self-Regulatory Organization’s Statement of the Purpose of, and Statutory Basis for, the
+Proposed Rule Change
+In its filing with the Commission, the self-regulatory organization included statements
+
+concerning the purpose of, and basis for, the proposed rule change and discussed any comments
+it received on the proposed rule change. The text of those statements may be examined at the
+places specified in Item IV below. The Exchange has prepared summaries, set forth in sections
+A, B, and C below, of the most significant parts of such statements.
+A.
+
+Self-Regulatory Organization’s Statement of the Purpose of, and the Statutory
+Basis for, the Proposed Rule Change
+1.
+
+Purpose
+
+New York Stock Exchange LLC (“NYSE” or the “Exchange”) proposes to amend Rule
+7.18 (“Halts”) to effectuate amendments to Second Restatement of the CTA Plan and the
+Restated CQ Plan (together, the “Amended CTA Plan”).4 The proposed changes would amend
+the rule’s categories of regulatory and operational halts, improve the rule’s clarity, and adopt
+defined terms from the Amended CTA Plan.5 The Exchange proposes to merge current Rule
+
+4
+
+On February 3, 2021, the CTA/CQ Plan participants (“Participants”) filed Amendment 36 to the Second
+Restatement of the CTA Plan and Amendment 27 to the Restated CQ Plan, to revise provisions governing
+regulatory and operational halts. See Letter from Robert Books, Chair, CTA/CQ Operating Committee, to
+Vanessa Countryman, Secretary, Securities and Exchange Commission, dated February 3, 2021. The SEC
+approved the amendments on May 28, 2021 (the “Amended CTA Plan”). See Securities Exchange Act
+Release No. 92070 (May 28, 2021), 86 FR 29849 (June 3, 2021) (SR-CTA/CQ-2021-01). The SEC also
+approved similar amendments to the Nasdaq UTP Plan. See Securities Exchange Act Release No. 92071
+(May 28, 2021), 86 FR 29846 (June 3, 2021) (S7-24-89) (the “Amended Nasdaq UTP Plan”). The
+Amended CTA Plan and the Amended Nasdaq UTP Plan include provisions requiring Participant selfregulatory organizations (“SROs”) to honor a Regulatory Halt declared by the Primary Listing Market.
+The provisions in the Amended CTA Plan and the Amended Nasdaq UTP Plan include provisions similar
+to the changes proposed by the Exchange in this filing.
+
+5
+
+The Exchange notes that this proposed rule change is based on a similar rule change filed by the Nasdaq
+Stock Market LLC (“Nasdaq”) that was approved by the SEC in 2022. See Securities Exchange Act
+Release No. 95069 (June 8, 2022), 87 FR 36018 (June 14, 2022) (SR-NASDAQ-2022-017). In addition,
+the Exchange’s affiliate exchange, NYSE American LLC (“NYSE American”), has filed a similar rule
+change. See Securities Exchange Act Release No. 102810 (April 10, 2025), 90 FR 16041 (April 16, 2025)
+(SR-NYSEAMER-2025-19). Several exchanges that do not operate Primary Listing Markets have also
+filed similar rule changes. See Securities Exchange Act Release Nos. 96574 (December 22, 2022), 87 FR
+
+2
+
+123D (Halts in Trading) into the proposed revised Rule 7.18. In addition, the Exchange proposes
+to make conforming changes to Rules 1.1 and 7.11.
+Background
+The Exchange has been working with other SROs to establish common criteria and
+procedures for halting and resuming trading in equity securities in the event of regulatory or
+operational issues. These common standards are designed to ensure that events that might
+impact multiple exchanges are handled in a consistent manner that is transparent. The Exchange
+believes that implementation of these common standards will assist the SROs in maintaining fair
+and orderly markets. Notwithstanding the development of these common standards, the
+Exchange will retain discretion in certain instances as to whether and how to handle halts, as is
+discussed below.
+Every U.S.-listed equity security has its primary listing on a specific stock exchange (its
+“Primary Listing Market”)6 that is responsible for a number of regulatory functions. These
+include confirming that the security continues to meet the exchange’s listing standards,
+monitoring trading in that security, and taking action to halt trading in the security when
+necessary to protect investors and to ensure and fair and orderly market. While these core
+responsibilities remain with the Primary Listing Market, trading in the security can occur on
+multiple exchanges that have unlisted trading privileges for the security or in the over-thecounter market, regulated by the Financial Industry Regulatory Authority, Inc. (“FINRA”). The
+
+80213 (December 29, 2022) (SR-Phlx-2022-49); 97093 (March 9, 2023), 88 FR 16045 (March 15, 2023)
+(SR-PEARL-2023-11); and 97824 (June 29, 2023), 88 FR 43159 (July 6, 2023) (SR-MEMX-2023-11).
+6
+
+The Exchange proposes to incorporate into Rule 7.18 the same definition of “Primary Listing Market” as
+appears in Section XI(a)(i)(H) of the Amended CTA Plan: “‘Primary Listing Market’ means the national
+securities exchange on which an Eligible Security is listed. If an Eligible Security is listed on more than
+one national securities exchange, Primary Listing Market means the exchange on which the security has
+been listed the longest.”
+
+3
+
+exchanges and FINRA are responsible for monitoring activity on the markets over which they
+have oversight, but also must abide by the regulatory decisions made by the Primary Listing
+Market. For example, a venue trading a security pursuant to unlisted trading privileges must halt
+trading in that security during a Regulatory Halt, which is a defined term under the proposed
+rules,7 and may only trade the security once the Primary Listing Market has cleared the security
+to resume trading.
+All SROs have rules that require them to honor a Regulatory Halt. The Exchange, as a
+Primary Listing Market, also has rules outlining the circumstances in which it will halt trading in
+its listed securities, including situations in which such halts are for regulatory purposes – and
+therefore are applicable to all markets trading the security – or for operational purposes, which
+would not halt trading in other markets.8 However, the trading halt rules are not consistent
+across SROs. Consequently, events that might constitute a Regulatory Halt for securities listed
+on one Primary Listing Market theoretically might not be grounds for a Regulatory Halt in
+securities listed on another Primary Listing Market. Such inconsistency among exchange rules
+could lead to confusion in circumstances such as a cross-market event, including, for example,
+“Extraordinary Market Activity.”9
+While the Exchange’s existing rules generally have worked as intended to afford the
+Exchange authority to initiate a Regulatory Halt in appropriate cases, the Exchange proposes to
+amend its rules to conform to the Amended CTA Plan.
+
+7
+
+See proposed Rule 7.18(a)(11).
+
+8
+
+See generally current Rules 7.13, 7.18, and 123D.
+
+9
+
+The proposed definition of Extraordinary Market Activity encompasses a market event that affects multiple
+markets. See Amended CTA Plan, Section XI(a)(i)(A), which defines “Extraordinary Market Activity.”
+Proposed Rule 7.18(a)(1) would incorporate this definition by reference.
+
+4
+
+The complex and interconnected market structure of the United States relies on
+consolidated market data processed and disseminated by the SIPs. In certain circumstances, the
+loss of this information or issues with the accuracy or timeliness of the information might cause a
+Primary Listing Market to determine that a trading halt is appropriate. The Exchange believes
+that providing further details in its rules will assist market participants in better understanding
+how various scenarios could be handled.
+As noted above, the proposed changes that would be uniformly applied across SROs are
+those that relate to cross-market events as set forth in the Amended CTA Plan. However, there
+will still be situations where personnel at the Primary Listing Market will need to determine the
+impact of the cross-market event on the securities listed on its market and use discretion in
+deciding whether to halt trading in some or all securities during a cross-market event that affects
+securities listed on different markets. In making a determination as to whether to declare a
+Regulatory Halt, the Primary Listing Market will consider the totality of information available
+concerning the severity of the issue, its likely duration, and its potential impact on Member
+Firms10 and other market participants, and it will make a good-faith determination that the
+criteria for declaring a Regulatory Halt have been satisfied and that a Regulatory Halt is
+appropriate. Moreover, the Primary Listing Market will consult, if feasible, with the affected
+Trading Center(s), other Plan Participants, or the Processor, as applicable, regarding the scope of
+the issue and what steps are being taken to address the issue. Once a Regulatory Halt has been
+declared, the Primary Listing Market would continue to evaluate the circumstances to determine
+when trading may resume in accordance with its rules.
+
+10
+
+“Member Firm” means a member as that term is defined in Section 3(a)(3) of the Securities Exchange Act.
+See Amended CTA Plan, Section XI(a)(1)(F) and proposed Rule 7.18(a)(6).
+
+5
+
+While the Exchange and the other SROs intend to harmonize certain aspects of their
+trading halt rules, other elements of the rules will continue to be unique to each market. The
+Exchange believes that this is appropriate to reflect different products listed or traded on each
+market and the unique relationship of the Primary Listing Market to its listed companies. It is
+anticipated that these unique rules would most likely be invoked in cases where the Primary
+Listing Market’s decision on whether to institute a Regulatory Halt turns on specific information
+related to an individual security or issuer, such as the dissemination of news and the issuer’s
+ability to meet listing standards, rather than broader market issue stemming from Extraordinary
+Market Activity or the loss of consolidated market data from a SIP.
+The Exchange will implement the changes proposed herein in conjunction with other
+SROs implementing the necessary rule changes. The Exchange will publish a trader notice at
+least 30 business days before implementing the proposed changes.
+Proposed Exchange Rule Changes
+The Exchange proposes to amend Rule 7.18 to add new definitions and proposed
+categories of regulatory and operational halts that are designed to address the type of marketwide events described in the Amended CTA Plan. Amended Rule 7.18 would also crossreference the Exchange’s current halt authority, which is located in current Rules 7.18 and 123D
+and in the Listed Company Manual. The Exchange also proposes to rename Rule 7.18 from
+“Halts” to “Trading Halts.”
+
+6
+
+Definitions
+Amended Rule 7.18(a) would set forth definitions, many of which cross-reference
+definitions in the Amended CTA Plan.11 The proposed definitions would apply to both the
+proposed new halt authority as well as the Exchange’s halt authority under its current rules.
+First, the Exchange proposes to add the definition of “Primary Listing Market”12 to Rule
+7.18, which will have the same meaning as in the Amended CTA Plan, Section XI(a)(i)(H). As
+is currently the case under the Exchange’s rules and under the Amended CTA Plan, all
+Regulatory Halt decisions are made by the market on which the security has its primary listing.
+This reflects the regulatory responsibility that the Primary Listing Market has for fair and orderly
+trading in the securities that list on its market and its direct access to its listed companies, which
+are required to advise it of certain events and maintain lines of communication with the Primary
+Listing Market. The proposed definition makes clear that if a security is listed on more than one
+market (a dually-listed security), the Primary Listing Market means the exchange on which the
+security has been listed the longest. This provision matches language used in the definition of
+“Primary Listing Exchange” in the Limit Up-Limit Down Plan and will avoid conflict in the
+event of dually-listed securities.
+
+11
+
+The Exchange notes that these terms are defined identically in the Amended CTA Plan and the Amended
+Nasdaq UTP Plan, such that there will be uniformity in the meaning of the terms among such plans as well
+as among the rules of the SROs. The Exchange proposes to adopt in Rule 7.18(a) all of the definitions in
+the Amended CTA Plan Section XI(a)(i) except for definition of “Regular Trading Hours” at Section
+XI(a)(i)(I), because the Exchange uses different terminology for its trading sessions and those terms are
+already defined in the Exchange’s rules. See Rule 7.34(a) defining “Early Trading Session” and “Core
+Trading Session.”
+
+12
+
+See proposed Rule 7.18(a)(9).
+
+7
+
+Second, the Exchange proposes to add a definition for the term “Extraordinary Market
+Activity,”13 which would be a new definition for the Exchange. The Exchange proposes that this
+term would have the same meaning as in the Amended CTA Plan:
+“Extraordinary Market Activity” means a disruption or malfunction of any electronic
+quotation, communication, reporting, or execution system operated by, or linked to, the
+Processor or a Trading Center or a member of such Trading Center that has a severe and
+continuing negative impact, on a market-wide basis, on quoting, order, or trading activity
+or on the availability of market information necessary to maintain a fair and orderly
+market. For purposes of this definition, a severe and continuing negative impact on
+quoting, order, or trading activity includes (i) a series of quotes, orders, or transactions at
+prices substantially unrelated to the current market for the security or securities; (ii)
+duplicative or erroneous quoting, order, trade reporting, or other related message traffic
+between one or more Trading Centers or their members; or (iii) the unavailability of
+quoting, order, transaction information, or regulatory messages for a sustained period.14
+The Exchange notes that the three scenarios included in the proposed new definition
+would not be exhaustive. This enables the Primary Listing Market to act in the best interests of
+the market when confronted with unexpected events. However, the Exchange believes that the
+three scenarios included in the rule cover many of the events that are most likely to occur.
+Third, the Exchange proposes to add a set of new definitions that would be specific to
+events involving the SIP. While the Exchange recognizes that many events involving the SIP
+would also meet the definition of “Extraordinary Market Activity” as defined in the Amended
+
+13
+
+See proposed Rule 7.18(a)(1).
+
+14
+
+See Amended CTA Plan, Section XI(a)(i)(H).
+
+8
+
+CTA Plan, the Exchange believes that the critical role of the SIPs in market infrastructure weighs
+in favor having the Exchange’s rules specify how such events would be handled. The definitions
+of “SIP Outage,”15 “Material SIP Latency,”16 “SIP Halt,”17 and “SIP Halt Resume Time”18 are
+intended to provide specificity to address this subset of potential market issues. In addition, the
+Exchange is proposing to define terms related to SIP governance needed in order to understand
+these definitions:
+•
+
+“Processor” or “SIP”19 would have the same meaning as the term “Processor” in
+the Nasdaq UTP Plan or the CTA Plan, as applicable.20
+
+•
+
+“SIP Plan”21 would be defined as “the national market system plan governing the
+SIP, as applicable.”
+
+•
+
+“Operating Committee”22 would be defined as having the same meaning as in the
+CTA Plan, namely the committee charged with administering the CTA Plan.
+
+•
+
+“Trading Center”23 would have the same meaning as in Rule 600(b)(95) of
+Regulation NMS.
+
+15
+
+See proposed Rule 7.18(a)(14).
+
+16
+
+See proposed Rule 7.18(a)(5).
+
+17
+
+See proposed Rule 7.18(a)(12).
+
+18
+
+See proposed Rule 7.18(a)(13).
+
+19
+
+See proposed Rule 7.18(a)(10).
+
+20
+
+See, e.g., Amended CTA Plan, Section I(x), which provides: “‘Processor’ means the organization
+designated as recipient and processor of last sale price information furnished by Participants pursuant to
+this CTA Plan, as Section V describes.”
+
+21
+
+See proposed Rule 7.18(a)(15).
+
+22
+
+See proposed Rule 7.18(a)(7).
+
+23
+
+See proposed Rule 7.18(a)(16).
+
+9
+
+The Exchange proposes to adopt a category of Regulatory Halt, called a “SIP Halt,”24 that
+would have the same meaning as that term is defined in the Amended CTA Plan, namely “a
+Regulatory Halt to trading in one or more securities that a Primary Listing Market declares in the
+event of a SIP Outage or Material SIP Latency.”25 This new category of Regulatory Halt would
+address situations where the Primary Listing Market declares a Regulatory Halt in one or more
+securities as a result of a SIP Outage26 or a Material SIP Latency.27
+Fourth, the Exchange proposes to add a definition of “Regulatory Halt,”28 which would
+be a new defined term that incorporates the Exchange’s existing regulatory halt authority as well
+as the proposed new regulatory halt authority. The Exchange proposes that the term would have
+the same meaning as in the Amended CTA Plan,29 as follows:
+a halt declared by the Primary Listing Market in trading in one or more securities on all
+Trading Centers for regulatory purposes, including for the dissemination of material
+news, news pending, suspensions, or where otherwise necessary to maintain a fair and
+orderly market. A Regulatory Halt includes a trading pause triggered by Limit Up Limit
+
+24
+
+See proposed Rule 7.18(a)(12).
+
+25
+
+See Amended CTA Plan, Section XI(a)(1)(K).
+
+26
+
+“SIP Outage” means “a situation in which the Processor has ceased, or anticipates being unable, to provide
+updated and/or accurate quotation or last sale price information in one or more securities for a material
+period that exceeds the time thresholds for an orderly failover to backup facilities established by mutual
+agreement among the Processor, the Primary Listing Market for the affected securities, and the Operating
+Committee unless the Primary Listing Market, in consultation with the Processor and the Operating
+Committee, determines that resumption of accurate data is expected in the near future.” See Amended
+CTA Plan, Section XI(a)(1)(M).
+
+27
+
+“Material SIP Latency” means “a delay of quotation or last sale price information in one or more securities
+between the time data is received by the Processor and the time the Processor disseminates the data over
+the high speed line or over the “high speed line” under the CQ Plan, which delay the Primary Listing
+Market determines, in consultation with, and in accordance with, publicly disclosed guidelines established
+by the Operating Committee, to be (a) material and (b) unlikely to be resolved in the near future.” See
+Amended CTA Plan, Section XI(a)(1)(E).
+
+28
+
+See proposed Rule 7.18(a)(11).
+
+29
+
+See Amended CTA Plan, Section XI(a)(1)(J).
+
+10
+
+Down,30 a halt based on Extraordinary Market Activity, a trading halt triggered by a
+Market-Wide Circuit Breaker,31 and a SIP Halt.
+The term “Regulatory Halt” would include the various existing reasons for a Regulatory
+Halt that are currently enumerated in the Exchange’s rules and Company Guide, as well as the
+proposed new categories of Regulatory Halt from the Amended CTA Plan: (1) a SIP Halt (due
+to a SIP Outage or Material SIP Latency), (2) a halt based on Extraordinary Market Activity, and
+(3) a halt in the event of a national, regional, or localized disruption that necessitates a
+Regulatory Halt to maintain a fair and orderly market.
+Fifth, the Exchange proposes to add a definition of “Operational Halt,”32 which would be
+a new definition for the Exchange. The Exchange proposes that this term would have the same
+meaning as in the Amended CTA Plan, which is: “a halt in trading in one or more securities only
+on a Market declared by such Participant and is not a Regulatory Halt.”33 An Operational Halt is
+effective only on the Exchange; other markets are not required to halt trading in the affected
+securities. In practice, the Exchange has always had the capacity to implement operational halts
+and local trading suspensions in specified circumstances, but such halts are not currently referred
+to as “operational halts” in the Exchange’s rules.34 The proposed change would provide greater
+clarity on when an Operational Halt may be implemented and the process for halting and
+
+30
+
+The Exchange proposes to incorporate the Amended CTA Plan’s definition of “Limit Up Limit Down.”
+See proposed Rule 7.18(a)(2).
+
+31
+
+The Exchange proposes to incorporate the Amended CTA Plan’s definition of “Market-Wide Circuit
+Breaker.” See proposed Rule 7.18(a)(4).
+
+32
+
+See proposed Rule 7.18(a)(8).
+
+33
+
+See Amended CTA Plan, Section XI(a)(1)(G).
+
+34
+
+See Rule 7.13 (Trading Suspensions).
+
+11
+
+resuming trading in the event of an Operational Halt. An Operational Halt is not a Regulatory
+Halt.
+Regulatory Halts
+Proposed Rule 7.18(b) would set forth requirements relating to Regulatory Halts.
+Authority to Initiate a Regulatory Halt
+Proposed Rule 7.18(b)(1) would describe the Exchange’s authority to initiate a
+Regulatory Halt. In this subsection, the Exchange would identify all of the bases for its
+Regulatory Halt authority, including cross-referencing to current rules describing existing halt
+authority and by adding the new Regulatory Halt authority consistent with the Amended CTA
+Plan.
+Proposed Rule 7.18(b)(1)(A) would describe “Mandatory Halts,” where the Exchange
+must issue a Regulatory Halt. The proposed rule would identify five categories of mandatory
+Regulatory Halts:
+•
+
+Pursuant to Rule 7.11 concerning Limit Up Limit Down.35 (Proposed Rule
+7.18(b)(1)(A)(i)). This proposed rule would effectuate the definition of
+Regulatory Halt in proposed Rule 7.18(a)(11), which cross-references Section
+XI(a)(1)(J) of the Amended CTA Plan.
+
+•
+
+Pursuant to Rule 7.12 concerning Market-Wide Circuit Breaker.36 (Proposed
+Rule 7.18(b)(1)(A)(ii)). This proposed rule would effectuate the definition of
+Regulatory Halt in proposed Rule 7.18(a)(11), which cross-references Section
+XI(a)(1)(J) of the Amended CTA Plan.
+
+35
+
+Rule 7.11 is the Exchange’s rule governing Limit Up Limit Down.
+
+36
+
+Rule 7.12 is the Exchange’s rule governing Market-Wide Circuit Breaker.
+
+12
+
+•
+
+For a security for which the Exchange is the Primary Listing Market before the
+end of the Late Trading Session on the day immediately before the market
+effective date of a reverse stock split (“Reverse Stock Split Halt”). (Proposed
+Rule 7.18(b)(1)(A)(iii)). This proposed rule is based on current Rule 123D(f) and
+would effectuate Section XI(a)(iii)(1) of the Amended CTA Plan, which provides
+that a Primary Listing Exchange may declare a Regulatory Halt “as provided for
+in the rules of the Primary Listing Market.” The Exchange proposes to delete
+current Rule 123D(f) as duplicative of the proposed rule text.
+
+•
+
+If the Exchange becomes aware that, with respect to Derivative Securities
+Products listed on the Exchange for which a Net Asset Value (“NAV”) (and in the
+case of Managed Fund Shares under Rule 8.600 and Managed Trust Securities
+under Rule 8.700, a Disclosed Portfolio) is disseminated, such NAV or Disclosed
+Portfolio is not being disseminated to all market participants at the same time
+(“Dissemination Halt”). (Proposed Rule 7.18(b)(1)(A)(iv)). This proposed rule is
+based on current Rule 7.18(d)(2) and would effectuate Section XI(a)(iii)(1) of the
+Amended CTA Plan, which provides that a Primary Listing Exchange may
+declare a Regulatory Halt “as provided for in the rules of the Primary Listing
+Market.” The Exchange proposes to delete current Rule 7.18(d)(2) as duplicative
+of the proposed rule text.
+
+•
+
+As provided for elsewhere in the Rules of the Exchange, including but not limited
+to Rules 5.1, 5.2, 5.5, 8.3, 8.12, 8.100, 8.200, 8.202, 8.204, 8.400, 8.500, 8.600,
+8.601, 8.700, and 8.900 concerning requirements for listing, delisting, and
+maintaining listings of certain types of securities, and in Sections 202.06 and
+
+13
+
+202.07 of the Exchange’s Listed Company Manual regarding the public
+dissemination of material information. (Proposed Rule 7.18(b)(1)(A)(v)). This
+proposed rule would effectuate Section XI(a)(iii)(1) of the Amended CTA Plan,
+which provides that a Primary Listing Exchange may declare a Regulatory Halt
+“as provided for in the rules of the Primary Listing Market.”
+Proposed Rule 7.18(b)(1)(B) would describe “Discretionary Halts,” where “the Exchange
+may declare a Regulatory Halt in trading for any security for which it is the Primary Listing
+Market.” The proposed rule would list four bases for the Exchange to declare a discretionary
+Regulatory Halt:
+•
+
+For a security that is the subject of an initial pricing on the Exchange and that has
+not been listed on a national securities exchange immediately prior to initial
+pricing (an “Initial Listing Regulatory Halt”). (Proposed Rule 7.18(b)(1)(B)(i)).
+This proposed rule is based on current Rule 123D(d) and would effectuate Section
+XI(a)(iii)(1) of the Amended CTA Plan, which provides that a Primary Listing
+Exchange may declare a Regulatory Halt “as provided for in the rules of the
+Primary Listing Market.” The Exchange proposes to delete current Rule 123D(d)
+as duplicative of the proposed rule text.
+
+•
+
+If the Exchange determines that there is a SIP Outage, Material SIP Latency, or
+Extraordinary Market Activity. (Proposed Rule 7.18(b)(1)(B)(ii)). This proposed
+rule would effectuate Section XI(a)(iii)(2) of the Amended CTA Plan, which
+provides this authority.
+
+•
+
+In the event of national, regional, or localized disruption that necessitates a
+Regulatory Halt to maintain a fair and orderly market. (Proposed Rule
+
+14
+
+7.18(b)(1)(B)(iii)). This proposed rule would effectuate Section XI(a)(iii)(3) of
+the Amended CTA Plan, which provides this authority.
+•
+
+As provided for elsewhere in the Rules of the Exchange, including but not limited
+to Rules 5.1, 5.2, 5.5, 8.3, 8.12, 8.100, 8.200, 8.202, 8.204, 8.400, 8.500, 8.600,
+8.601, 8.700, and 8.900 concerning requirements for listing, delisting, and
+maintaining listings of certain types of securities, and in Sections 202.06 and
+202.07 of the Exchange’s Listed Company Manual regarding the public
+dissemination of material information. (Proposed Rule 7.18(b)(1)(B)(iv)). This
+proposed rule would effectuate Section XI(a)(iii)(1) of the Amended CTA Plan,
+which provides that a Primary Listing Exchange may declare a Regulatory Halt
+“as provided for in the rules of the Primary Listing Market.”
+
+Communications
+Proposed Rule 7.18(b)(2) would describe communications, consistent with Section
+XI(a)(viii) of the Amended CTA Plan. The proposed rule would provide that whenever, in the
+exercise of its regulatory functions, the Exchange as Primary Listing Market for an Eligible
+Security determines it is appropriate to initiate a Regulatory Halt, it will notify all other
+Participants and the Processor of such Regulatory Halt as well as provide notice that a
+Regulatory Halt has been lifted using such protocols and other emergency procedures as may be
+mutually agreed to between the Operating Committee and the Exchange. The Processor shall
+disseminate to Participants notice of the Regulatory Halt (as well as notice of the lifting of a
+Regulatory Halt) through the high speed line or through the “high speed line” under the CQ Plan,
+and any other means the Processor, in its sole discretion, considers appropriate. Each Participant
+shall be required to continuously monitor these communication protocols established by the
+
+15
+
+Operating Committee and the Processor during market hours, and the failure of a Participant to
+do so shall not prevent the Exchange from initiating a Regulatory Halt in accordance with the
+SIP Plan and the procedures specified in these rules.
+Initiating a Regulatory Halt
+Proposed Rule 7.18(b)(3) would specify how the Exchange, as a Primary Listing Market,
+would initiate a Regulatory Halt. The proposed rule is consistent with the procedures for
+initiating a Regulatory Halt as set forth in the Section XI(a)(iv) of the Amended CTA Plan.
+Proposed Rule 7.18(b)(3)(A) would provide, consistent with Section XI(a)(iv)(A) of the
+Amended CTA Plan, that the start time of a Regulatory Halt would be when the Primary Listing
+Market declares the halt, regardless of whether an issue with communications impacts the
+dissemination of the notice. This proposal would provide market participants with certainty on
+the official start time of the Regulatory Halt. Under the proposed rule, the start time is fixed by
+the Primary Listing Market; it is not dependent on whether notice is disseminated immediately.
+This will avoid possible disagreement if the Regulatory Halt time were tied to dissemination or
+receipt of notification, which may occur at different times. The Exchange recognizes that in
+situations where communication is interrupted, trades may continue to occur until news of the
+Regulatory Halt reaches all trading centers. However, a fixed “official” Regulatory Halt start
+time will allow SROs to revisit trades after the fact and determine in a consistent manner whether
+specific trades should stand.
+Second, proposed Rule 7.18(b)(3)(B) would provide, consistent with Section XI(a)(iv)(B)
+of the Amended CTA Plan, that if the SIP is unable to disseminate notice of a Regulatory Halt or
+the Exchange is not open for trading, the Exchange would take reasonable steps to provide notice
+of a Regulatory Halt in the manner set forth in the Amended CTA Plan. Currently, after
+
+16
+
+receiving notice from the Primary Listing Market, the SIP disseminates an automated, machinereadable trade halt messages to notify Trading Centers to automatically halt their order matching
+and order dissemination systems. Many Trading Centers rely solely on such SIP dissemination
+of a Regulatory Halt. Proposed Rule 7.18(b)(3)(B) would provide that the Exchange would take
+additional, reasonable steps to notify Trading Centers of a Regulatory Halt. The Amended CTA
+Plan provides that if the SIP is unable to disseminate notice of a Regulatory Halt, the other
+available means of dissemination that a Primary Listing Market could use would include:
+•
+
+Proprietary data feeds that contain the same quote and trade information that the
+Exchange also sends to the applicable SIP;
+
+•
+
+Posting on a publicly available Exchange website; or
+
+•
+
+System status messages that are disseminated to market participants who sign up
+to receive such messages.37
+
+These additional sources for notice of a Regulatory Halt would provide redundancy if
+either the SIP or the Exchange is unable to communicate via the existing automated procedures.
+Although it may take longer for market participants to react to messages received in less
+automated formats, the use of multiple forms of dissemination will increase the likelihood that
+participants receive this important information. It will also assist participants that do not
+subscribe to the Exchange’s proprietary feeds in getting regulatory notices. As noted above, in
+situations where communication is interrupted, the Exchange and other SROs would retain the
+ability to break trades that occurred after the start of the Regulatory Halt in appropriate
+circumstances, thereby lessening the potential impact on participants that were delayed in halting
+trading.
+
+37
+
+See Amended CTA Plan, Section XI(a)(iv)(B)(1) - (3).
+
+17
+
+Proposed Rule 7.18(b)(3)(C) would provide, consistent with Section XI(a)(iv)(C) of the
+Amended CTA Plan, that except in exigent circumstances, the Exchange would not declare a
+Regulatory Halt retroactive to a time earlier than the notice of such halt. Feedback from market
+participants has been that it is very disruptive to trading when the Primary Listing Market sets
+the start of a trading halt for a time earlier than the notice of the halt.38 Therefore, in almost all
+situations the trading halt will start at the time of the notice or at a point in time thereafter.
+However, the Exchange would retain the authority to implement a retroactive halt to deal with
+unexpected and significant situations that represent exigent circumstances. While it is difficult in
+advance to provide an exhaustive list of when retroactive application of a trading halt would be
+in the public interest, one situation where a halt was applied retroactively was when the Primary
+Listing Market erroneously lifted a Regulatory Halt. In that case, the Primary Listing Market
+instituted a Regulatory Halt retroactively so that it coincided with the time the original halt was
+lifted in error.
+Proposed Rule 7.18(b)(3)(D) would provide, consistent with Section XI(a)(iii)(B) of the
+Amended CTA Plan, that in making a determination to declare a Regulatory Halt in trading any
+security for which the Exchange is the Primary Listing Market, the Exchange will consider the
+totality of information available concerning the severity of the issue, its likely duration, and
+potential impact on Member Firms and other market participants and will make a good-faith
+determination that the criteria for declaring the Regulatory Halt have been satisfied and that a
+Regulatory Halt is appropriate. The Exchange will consult, if feasible, with the affected Trading
+Center(s), other SIP Plan Participants, or the Processor, as applicable, regarding the scope of the
+
+38
+
+As noted previously, this is measured as the point in time when the Primary Listing Market declares the
+halt, regardless of whether there is a delay in dissemination of the notice or in receipt of the notice by
+participants.
+
+18
+
+issue and what steps are being taken to address the issue. Once a Regulatory Halt has been
+declared, the Exchange will continue to evaluate the circumstances to determine when trading
+may resume in accordance with its Rules.
+UTP Regulatory Halt
+Proposed Rule 7.18(b)(4) would specify how the Exchange would respond to Regulatory
+Halts declared by other Primary Listing Markets, referred to by the Exchange as a “UTP
+Regulatory Halt.”39
+Proposed Rule 7.18(b)(4)(A) would provide that the Exchange would halt trading in a
+UTP Security when the Primary Listing Market declares a Regulatory Halt for any such
+securities. This proposed rule text is based on Section XI(a)(iii) of the Amended CTA Plan, as
+well as the first sentence of current Rule 7.18(a),40 which provides in part that if the UTP Listing
+Market declares a UTP Regulatory Halt, the Exchange will halt trading in that security.
+Proposed Rule 7.18(b)(4)(B)(i), (ii), and (iii) would set forth rules for trading halts in
+UTP Exchange Traded Products.41 This proposed rule text is based on current Rule
+7.18(d)(1)(A) and (B) with non-substantive differences to replace the term “UTP Derivative
+Securities Product” with the term “UTP Exchange Traded Product,” the term “Exchange’s
+
+39
+
+The term “UTP Listing Market” is defined in Rule 1.1(aa) to mean the primary listing market for a UTP
+Security. The term “UTP Security” is defined in Rule 1.1(cc) to mean a security that is listed on a UTP
+Listing Market and that trades on the Exchange pursuant to unlisted trading privileges. The term “UTP
+Regulatory Halt” is defined in Rule 1.1(bb). The Exchange proposes a non-substantive amendment to this
+definition to cross-reference the definition of “Regulatory Halt” in proposed Rule 7.18 and delete the clause
+“that requires all market centers to halt trading in that security” as duplicative of the proposed new
+definition of Regulatory Halt, described above.
+
+40
+
+As discussed below, the Exchange proposes to delete current Rule 7.18(a) in its entirety as no longer
+applicable.
+
+41
+
+The term “UTP Exchange Traded Product” is defined in Rule 1.1E(l) to mean a security that meets the
+definition of “derivative securities product” in Rule 19b-4(e) under the Securities Exchange Act of 1934
+and that trades on the Exchange pursuant to unlisted trading privileges.
+
+19
+
+Normal Trading Hours” with the term “Core Trading Session,”42 and the term “primary listing
+market” with the term “Primary Listing Market” in proposed Rule 7.18(b)(4)(B)(ii) and (iii)(a)
+and (b). The Exchange proposes to delete current Rule 7.18(d) and its sub-paragraphs as
+duplicative of the proposed rule text.
+Resumption of Trading After a Regulatory Halt
+The SROs have jointly developed processes to govern the resumption of trading in the
+event of a Regulatory Halt. While the actual process of re-launching trading will remain unique
+to each exchange (for example, trading in Exchange-listed securities resumes on the Exchange in
+most cases pursuant to Rule 7.35), the proposed rule would harmonize certain common elements
+of the reopening process that would benefit from consistency across markets. These common
+elements include the primacy of the Primary Listing Market in resumption decisions, the
+requirement that the Primary Listing Market make its determination to resume trading in good
+faith, and certain parts of the complex process for reopening trading after a SIP Halt. With
+respect to a SIP Halt, common elements of the reopening process include the interaction among
+SROs (including the Primary Listing Market with the SIP), the requirement that the Primary
+Listing Market terminate a SIP Halt with a notification that specifies a SIP Halt Resume Time,
+the minimum quoting times before resumption of trading, the cutoff time after which trading
+would not resume during Core Trading Hours, and the time when trading may resume if the
+Primary Listing Market does not open a security within the amount of time specified in its rules
+after the SIP Halt Resume Time.
+
+42
+
+The term “Core Trading Hours” is defined in Rule 1.1(d) to mean the hours of 9:30 a.m. Eastern Time
+through 4:00 p.m. Eastern Time or such other hours as may be determined by the Exchange from time to
+time.
+
+20
+
+Proposed Rule 7.18(b)(5) provides the process for resuming trading upon the conclusion
+of Regulatory Halts other than SIP Halts. This new rule would effectuate Section XI(a)(v) of the
+Amended CTA Plan.
+Proposed Rule 7.18(b)(5)(A) would make clear that the Exchange, as the Primary Listing
+Market, is responsible for declaring a resumption of trading when it makes a good-faith
+determination that trading may resume in a fair and orderly manner in accordance with its rules.
+Proposed Rule 7.18(b)(5)(B) would provide that the Exchange would resume trading
+after a Regulatory Halt other than a SIP Halt with a Trading Halt Auction pursuant to Rule 7.35,
+except in the situations enumerated in sub-paragraphs (i) through (v).
+Sub-paragraph (i) would specify that the Exchange would resume trading after a Limit
+Up Limit Down trading pause as specified in Rule 7.11.
+Sub-paragraph (ii) would specify that the Exchange would resume trading after a MarketWide Circuit Breaker halt as specified in Rule 7.12.
+Sub-paragraph (iii) would specify that the Exchange would resume trading after a
+Reverse Stock Split Halt with a Trading Halt Auction no earlier than 9:30 a.m., at the start of the
+Exchange’s Core Trading Session, on the effective date of the reverse stock split. This language
+is identical to current Rule 123D(f), except that the Exchange proposes to change the current
+rule’s provision that it would resume trading with a Trading Halt Auction “at 9:30 a.m.” to “no
+earlier than 9:30 a.m.” This reflects the fact that the Trading Halt Auction would be a DMMfacilitated auction and that the DMM would commence the auction process no earlier than 9:30
+a.m.
+
+21
+
+Sub-paragraph (iv) would specify that the Exchange would resume trading after a
+Dissemination Halt with a Trading Halt Auction when the NAV or Disclosed Portfolio is
+available to all market participants.
+Sub-paragraph (v) would specify that the Exchange would resume trading after an Initial
+Listing Regulatory Halt when the DMM opens the security.
+Sub-paragraph (vi) would provide that the Exchange would resume trading after a UTP
+Regulatory Halt other than a SIP Halt by starting to accept orders after the Exchange receives
+notification43 from the UTP Listing Market that the Regulatory Halt has been terminated,
+provided that during Core Trading Hours, the Exchange will not resume trading in any security
+that is subject to the Limit Up Limit Down Plan until the Exchange receives the first Price Band
+in that security. This proposed rule text is based on the first sentence of current Rule 7.18(a),
+and the Exchange proposes to delete the first sentence of current Rule 7.18 as duplicative of this
+new rule text.44 Sub-paragraph (vi) would further provide that the Exchange would not conduct
+a Trading Halt Auction to resume trading after a Regulatory Halt in a UTP Security.
+Proposed Rule 7.18(b)(6) would address resumption of trading after a SIP Halt. This new
+rule would effectuate Section XI(a)(vi) of the Amended CTA Plan.
+Proposed Rule 7.18(b)(6)(A) would establish rules for the resumption of trading
+following a SIP Halt initiated by the Exchange. Proposed Rule 7.18(b)(6)(A)(i), which is based
+on Section XI(a)(vi)(A) of the Amended CTA Plan, would provide that the Exchange would
+
+43
+
+The manner and timing of such notice would be determined by the UTP Listing Market.
+
+44
+
+The Exchange does not propose to include the second sentence of current Rule 7.18(a) in the proposed rule,
+as that sentence is inconsistent with the first sentence (upon which proposed Rule 7.18(b)(5)(B)(v) is
+based), and would permit the Exchange to resume trading in a security affected by a UTP Regulatory Halt
+other than a SIP Halt before the UTP Listing Market has provided notification that the halt has ended and
+before the Exchange receives the first LULD Price Bands in that security. The Exchange accordingly
+proposes to delete the second sentence of current Rule 7.18(a).
+
+22
+
+determine when a SIP Halt would end, which would be defined as the “SIP Halt Resume Time,”
+which is also defined in the Proposed Amended CTA Plan.45 As further proposed, in making this
+determination, the Exchange would make a good-faith determination and consider the totality of
+information to determine whether resuming trading would promote a fair and orderly market.
+The SROs’ experience with such events is that communication among SROs, SIPs, and
+market participants is the best way to ensure that the Primary Listing Market has access to
+available information and to coordinate the reopening of trading in an orderly manner. In
+addition, the SROs anticipate that market participants and other affected entities will have access
+to information about the issue causing the SIP Halt, the duration of the halt, and the resumption
+process through updated communications from the SIP processor, Operating Committee, and
+Primary Listing Market. Accordingly, the proposed Rule 7.18(b)(6)(A)(i) would further provide
+that when determining whether to resume trading, the Exchange would include input from the
+SIP processor, the Operating Committee, or the operator of the system in question (as well as any
+Trading Center(s) to which such system is linked), regarding operational readiness to resume
+trading. The rule would further provide that the Exchange would retain discretion to delay the
+SIP Halt Resume Time if it believes trading would not resume in a fair and orderly manner.
+Under proposed Rule 7.18(b)(6)(A)(ii), before terminating a SIP Halt, the Exchange
+would issue a notification that specifies the SIP Halt Resume Time. Section XI(a)(vi)(B) of the
+Amended CTA Plan directs the Primary Listing Market to specify in its rules (a) the minimum
+notice it will provide of a SIP Halt Resume Time, during which period market participants may
+enter quotes in the affected securities, and (b) the last SIP Halt Resume Time before the end of
+regular trading hours. In accordance with that direction, Proposed Rule 7.18(b)(6)(A)(ii) would
+
+45
+
+See Amended CTA Plan, Section XI(a)(i)(L).
+
+23
+
+state that the Exchange would provide for a minimum five-minute notice of a SIP Halt Resume
+Time, which is sufficiently in advance of resumption to permit market participants to prepare
+their systems for trading.
+In addition, proposed Rule 7.18(b)(6)(A)(ii) would establish that during Core Trading
+Hours, the last SIP Halt Resume Time would be 15 minutes before the end of Core Trading
+Hours, e.g., 3:45 p.m. ET. The Exchange believes that a SIP Halt Resume Time after 3:45 p.m.
+ET would interrupt a fair and orderly closing process. Accordingly, in such case, the Exchange
+would not run a Closing Auction and would establish Official Closing Prices for securities
+affected by the SIP Halt pursuant to Rule 1.1(u)(2) and (3), which set forth how the Exchange
+will determine the Official Closing Price if the Exchange is unable to conduct a closing
+transaction in one or more securities due to a systems or technical issue. In such case, the
+Exchange would disseminate a SIP Halt Resume Time after Core Trading Hours.
+Proposed Rule 7.18(b)(6)(A)(ii) would further provide the Exchange, as the Primary
+Listing Market, with discretion to stagger the SIP Halt Resume Times for multiple securities in
+order to reopen in a fair and orderly manner. For example, this discretion could be used to open
+trading in a small number of symbols to ensure that systems are operating normally before
+resuming trading in the remaining symbols.
+Proposed Rule 7.18(b)(6)(A)(iii) would provide that the Exchange would reopen trading
+after a SIP Halt in Exchange-listed securities with Exchange-facilitated Trading Halt Auctions
+pursuant to Rule 7.35C. The Exchange notes that Rule 7.35C(a) generally provides that the
+Exchange will conduct an Auction “[i]f a DMM cannot facilitate an Auction for one or more
+securities in which the DMM is registered under Rules 7.35A or 7.35B,” but in the case of
+resuming trading after a SIP Halt, the Exchange will facilitate all such Trading Halt Auctions in
+
+24
+
+the first instance, without waiting for DMMs to attempt to reopen the securities. A SIP Halt
+would affect all securities in a similar manner, unlike other halt events that can reflect varying
+levels of volatility in different securities. Given the uniformity of the impact of a SIP Halt, the
+Exchange believes that the Exchange-facilitated Trading Halt Auction is a reasonable way to
+resume trading after a SIP Halt.
+Proposed Rule 7.18(b)(6)(B) would address resumption of trading after a SIP Halt
+initiated by a UTP Listing Market. The proposed rule would provide that for UTP Securities
+affected by a SIP Halt, during Core Trading Hours, the Exchange may resume trading in the
+affected security after trading in the affected security has resumed on the UTP Listing Market or
+notice has been received from the UTP Listing Market that such trading may resume. The
+proposed rule would further provide that during Core Trading Hours, if the UTP Listing Market
+does not open a security within the amount of time listed by the rules of the Primary Listing
+Market, the Exchange may resume trading in that security, provided that the Exchange will not
+resume trading in any security that is subject to the Limit Up Limit Down Plan until it receives
+the first Price Band in that security.46 Outside of Core Trading Hours, the Exchange may resume
+trading in an affected UTP Security after the SIP Halt Resume Time.
+Order Processing During a Regulatory Halt, Including SIP Halts
+Proposed Rule 7.18(b)(7) would describe how the Exchange would process new and
+existing orders during a Regulatory Halt. This proposed rule text is based on current Rule
+7.18(b) and (c), with differences described below. The Exchange proposes to delete current Rule
+7.18(b) and (c) and their sub-paragraphs as duplicative of the proposed rule text.
+46
+
+The Exchange’s proposal to wait for the first Limit Up Limit Down Price Band in the affected UTP
+Security before resuming trading after a SIP Halt initiated by a UTP Listing Market is consistent with the
+Exchange’s practice for resuming trading in affected UTP Securities after other types of Regulatory Halts.
+See proposed Rule 7.18(b)(5)(B)(v) and current Rule 7.18(a).
+
+25
+
+Proposed Rule 7.18(b)(7)(A) would address how the Exchange would process new and
+existing orders during a Regulatory Halt that will reopen with a Trading Halt Auction. This
+proposed rule is based on current Rule 7.18(c) with differences to use new terminology relating
+to Regulatory Halts instead of referring to “securities listed on the Exchange during a halt,
+suspension or pause.” The Exchange also proposes to specify that the order processing described
+in this rule would only be applicable for Regulatory Halts if the Exchange reopens with a
+Trading Halt Auction. Proposed Rules 7.18(b)(7)(A)(i) - (vi) are based on current Rule
+7.18(c)(1) - (6) without any substantive differences.
+Proposed Rule 7.18(b)(7)(B) would address how the Exchange would process new and
+existing orders in a UTP Security during a UTP Regulatory Halt (including a SIP Halt initiated
+by a UTP Listing Market). This proposed rule text is based on current Rule 7.18(b) with nonsubstantive differences to use new terminology. Proposed Rule 7.18(b)(7)(B)(i) - (vi) are based
+on current Rule 7.18(b)(1) - (6) without any substantive differences.
+Operational Halts
+The Exchange proposes to address Operational Halts in proposed Rule 7.18(c). As noted
+above, an Operational Halt is non-regulatory in nature and applies only to the exchange that calls
+the halt. As described above, the Exchange has always had the capacity to implement
+operational halts and local trading suspensions in specified circumstances, but such halts are not
+currently referred to as “operational halts” in the Exchange’s rules.47 As part of the Exchange’s
+assessment with other SROs of the halting and resumption of trading, the Exchange believes that
+the markets would benefit from greater clarity regarding when an Operational Halt may be
+47
+
+See Rule 7.13E (Trading Suspensions) and Rule 123D(e) regarding ‘Equipment Changeover” halts. The
+Exchange also notes that its proposed Rule 7.18(c) regarding Operational Halts is substantially identical to
+the revised NYSE American, Nasdaq, Phlx, MIAX Pearl, and MEMX rules cited in note 4 above, and is
+therefore not novel.
+
+26
+
+appropriate. In part, the proposed change is designed to cover situations similar to those that
+might constitute a Regulatory Halt but where the impact is limited to a single market. For
+example, just as a market disruption might trigger a Regulatory Halt for Extraordinary Market
+Activity (as defined in the Amended CTA Plan) if it affects multiple markets, a disruption at the
+Exchange, such as a technical issue affecting trading in one or more securities, could impact
+trading on the Exchange so significantly that an Operational Halt is appropriate in one or more
+securities. In such an instance, it would be in the public interest to institute an Operational Halt
+to minimize the impact of a disruption that, if trading were allowed to continue, might negatively
+affect a greater number of market participants. An Operational Halt does not implicate other
+trading centers.
+Proposed Rule 7.18(c)(1) would specify the Exchange’s authority to initiate an
+Operational Halt, which is discretionary, and provide that the Exchange may declare an
+Operational Halt for any security trading on the Exchange if it is experiencing Extraordinary
+Market Activity on the Exchange (Proposed Rule 7.18(c)(1)(A)) or when otherwise necessary to
+maintain a fair and orderly market or in the public interest (Proposed Rule 7.18(c)(1)(B)).48
+Under proposed Rule 7.18(c)(2), the Exchange would notify the Processor if it has
+concerns about its ability to collect and transmit quotes, orders, or last sale prices, or where it has
+declared an Operational Halt or suspension of trading in one or more Eligible Securities (as that
+term is defined in the CTA Plan), pursuant to the procedures adopted by the Operating
+Committee.
+
+48
+
+The Exchange proposes to delete current Rule 123D(e) (Equipment Changeover), an antiquated provision
+establishing an Exchange-only halt for the purpose of physically replacing faulty equipment. That rule
+predates the Pillar trading system and is no longer used. Additionally, in light of the fact that the Exchange
+proposes to incorporate the remainder of current Rule 123D (i.e., paragraphs (d) and (f)) into the proposed
+Rule 7.18 (see proposed Rule 7.18(b)(1)(A)(iv) and (b)(1)(B)(ii)), the Exchange proposes to delete the
+entirety of current Rule 123D.
+
+27
+
+Proposed Rule 7.18(c)(3) would set out rules for order processing during an Operational
+Halt. In such case, proposed Rule 7.18(c)(3)(A) would provide that the Exchange would cancel
+all unexecuted orders resting on the Exchange Book, including Auction-Only Orders, and
+proposed Rule 7.18(c)(3)(B) would provide that the Exchange would reject all other incoming
+order instructions until the Exchange resumes trading. The Exchange currently processes new
+and existing orders in this manner when it suspends trading.49 The Exchange proposes to include
+this processing in Rule 7.18 to specify that this processing would also be applicable to when the
+Exchange resumes trading following an Operational Halt in an Exchange-listed security.
+Proposed Rule 7.18(c)(4) would specify how the Exchange resumes trading after an
+Operational Halt. Proposed Rule 7.18(c)(4)(A) would provide that the Exchange would resume
+trading following an Operational Halt when it determines that trading may resume in a fair and
+orderly manner consistent with the Exchange’s rules. Proposed Rule 7.18(c)(4)(B) would
+address “Communications,” and provide that trading in a halted security shall resume at the time
+specified by the Exchange in a notice. It would further specify that Exchange will notify all
+other Plan participants and the SIP of such Operational Halt as well as provide notice that an
+Operational Halt has been lifted using such protocols and other emergency procedures as may be
+mutually agreed to between the Operating Committee and the Exchange. If the SIP is unable to
+disseminate notice of an Operational Halt or the Exchange is not open for trading, the Exchange
+would take reasonable steps to provide notice of an Operational Halt, which shall include both
+the type and start time of the Operational Halt. Each Plan participant shall continuously monitor
+communication protocols established by the Operating Committee and the Processor during
+
+49
+
+See current Rule 7.18(c).
+
+28
+
+market hours to disseminate notice of an Operational Halt, and the failure of a participant to do
+so shall not prevent the Exchange from initiating an Operational Halt.
+Conforming Changes to Other Rules
+The Exchange also proposes non-substantive amendments of two other rules.
+First, as noted above, the Exchange proposes a non-substantive amendment to the
+definition of “UTP Regulatory Halt” in Rule 1.1E(bb) to cross-reference the definition of
+“Regulatory Halt” in proposed Rule 7.18 and delete the clauses “trade, suspension, halt, or
+pause” and “that requires all market centers to halt trading in that security” as duplicative of the
+proposed new definition of Regulatory Halt.
+Second, the Exchange proposes to amend Rule 7.11 (Limit Up-Limit Down Plan and
+Trading Pauses in Individual Securities Due to Extraordinary Market Volatility). Current Rule
+7.11(b)(2) provides that if a primary listing market other than the Exchange issues a Trading
+Pause, the Exchange will resume trading as provided for in Rule 7.18(a) regarding UTP
+Regulatory Halts. The Exchange proposes to replace the term “primary listing market” with
+“UTP Listing Market” for clarity, and proposes to change the current cross-reference to Rule
+7.18(b) to refer instead to amended Rule 7.18(b)(5)(B)(vi), which would encompass the
+provisions of current Rule 7.18(a).
+Implementation
+The Exchange will implement the changes proposed herein in conjunction with the
+Processors and the other SROs implementing the necessary rule changes and related technology
+and procedural changes. The Exchange will publish a trader notice at least 30 business days
+before implementing the proposed changes.
+
+29
+
+2.
+
+Statutory Basis
+
+The Exchange believes that its proposal is consistent with the requirements of the Act and
+the rules and regulations thereunder that are applicable to a national securities exchange, and, in
+particular, with the requirements of Section 6(b) of the Act.50 Specifically, the proposal is
+consistent with Section 6(b)(5) of the Act51 because it would promote just and equitable
+principles of trade, remove impediments to, and perfect the mechanism of, a free and open
+market and a national market system, and, in general, protect investors and the public interest.
+As described above, the Exchange and other SROs are seeking to adopt harmonized rules
+related to halting and resuming trading in U.S.-listed equity securities. The Exchange believes
+that the proposed rules will provide greater transparency and clarity with respect to the situations
+in which trading will be halted and the process through which that halt will be implemented and
+terminated. Particularly, the proposed changes seek to achieve consistent results for participants
+across U.S. equities exchanges and in the over-the-counter market while maintaining a fair and
+orderly market, protecting investors, and protecting the public interest. Based on the foregoing,
+the Exchange believes that the proposed rules are consistent with Section 6(b)(5) of the Act52
+because they will foster cooperation and coordination with persons engaged in regulating and
+facilitating transactions in securities.
+As discussed previously, the Exchange believes that the various provisions of the
+proposed rules that will apply to all SROs are focused on the type of cross-market event where a
+consistent approach will assist market participants and reduce confusion during a crisis. Because
+market participants often trade the same security across multiple venues and trade securities
+50
+
+15 U.S.C. 78f(b).
+
+51
+
+15 U.S.C. 78f(b)(5).
+
+52
+
+15 U.S.C. 78f(b)(5).
+
+30
+
+listed on different exchanges as part of a common strategy, the Exchange believes that the
+proposed rules will lessen the risk that market participants holding a basket of securities will
+have to deal with divergent outcomes depending on where the securities are listed or traded.
+Conversely, the proposed rules would still allow individual SROs to react differently to events
+that impact various securities or markets in different ways. This avoids the “brittle market” risk
+where an isolated event at a single market forces all markets trading equities securities to halt or
+halts trading in all securities where the issue affected only a subset of securities. By addressing
+both concerns, the Exchange believes that the proposed rules further the Act’s goal of
+maintaining fair and orderly markets.
+The Exchange believes that the proposed rule’s focus of responsibility on the Primary
+Listing Market for decisions related to a Regulatory Halt and the resumption of trading is
+consistent with the Act, which itself imposes obligations on exchanges with respect to issuers
+that are listed. As is currently the case, the Primary Listing Market would be responsible for the
+many regulatory functions related to its listings, including the determination of when to declare a
+Regulatory Halt. While these core responsibilities remain with the Primary Listing Market,
+trading in the security can occur on multiple exchanges that have unlisted trading privileges for
+the security or in the over-the-counter market, regulated by FINRA. These other venues are
+responsible for monitoring activity on their own markets, but also have agreed to honor a
+Regulatory Halt.
+The proposed changes relating to Regulatory Halts would ensure that all SROs handle the
+situations covered therein in a consistent manner that would prevent conflicting outcomes in
+cross-market events, and ensure that all Trading Centers recognize a Regulatory Halt declared by
+the Primary Listing Market. The changes are consistent with and implement the Amended CTA
+
+31
+
+Plan. While the proposed rules recognize one Primary Listing Market for each security, the rules
+do not prevent an issuer from switching its listing to another national securities exchange that
+would thereafter assume the responsibilities of Primary Listing Market for that security.
+Similarly, the proposed rules set forth a fair and objective standard to determine which exchange
+will be the Primary Listing Market in the case of dually-listed securities: the exchange on which
+the security has been listed the longest.
+The Exchange believes that the other definitions in the proposed rules are also consistent
+with the Act. For example, the proposed rules would define what constitutes Extraordinary
+Market Activity, consistent with the definition of that term in the Amended CTA Plan, thereby
+furthering the Act’s goal of promoting fair and orderly markets. The Exchange is also proposing
+to adopt definitions for “SIP Outage,” “Material SIP Latency” and “SIP Halt,” to explicitly
+address situations that may disrupt the markets, and these definitions are identical to the
+definitions in the Amended CTA Plan. The proposed rules specify when the Exchange should
+seek information from the Operating Committee, other SROs, and market participants as well as
+means for dissemination of important information to the market, consistent with the Amended
+CTA Plan. The Exchange believes these provisions strike the right balance in outlining a process
+to address unforeseen events without preventing SROs from taking action needed to protect the
+market.
+The Exchange believes that the proposed rules, which make halts consistent across
+exchange rules, is consistent with the Act in that it will foster cooperation and coordination with
+persons engaged in regulating the equities markets. In particular, the Exchange believes it is
+important for SROs to coordinate when there is a widespread and significant event, as multiple
+Trading Centers are affected in such an event. Further, while the Exchange recognizes that the
+
+32
+
+proposed rule will not guarantee a consistent result on every market in all situations, the
+Exchange does believe that it will assist in that outcome. While the proposed rule relating to
+Regulatory Halts focuses primarily on the kinds of cross-market events that would likely impact
+multiple markets, individual SROs will still retain flexibility to deal with unique products or
+smaller situations confined to a particular market. To that end, the Exchange has retained some
+existing elements of Rule 7.18 that focus on its unique products and the processes it has
+developed over time to interact with its issuers.
+Also consistent with the Act, and with the Amended CTA Plan, is the Exchange’s
+proposal in Rule 7.18(c) to address Operational Halts, which are non-regulatory in nature and
+apply only to the exchange that declares the halt. As noted earlier, the Exchange has always had
+the capacity to implement operational halts and local trading suspensions, but such halts are not
+currently referred to as “operational halts” in the Exchange’s rules.53 The Exchange also notes
+that its proposed Rule 7.18(c) regarding Operational Halts is substantially identical to the revised
+NYSE American, Nasdaq, Phlx, MIAX Pearl, and MEMX rules cited above,54 and is therefore
+not novel.
+The Exchange believes that the markets would benefit from greater clarity regarding
+when an Operational Halt may be appropriate. In part, the proposed change is designed to cover
+situations similar to those that might constitute a Regulatory Halt, but where the impact is limited
+to a single market. For example, just as a market disruption might trigger a Regulatory Halt for
+Extraordinary Market Activity if it affects multiple markets, so could a disruption at the
+Exchange, such as a technical issue affecting trading in one or more securities, impact trading on
+
+53
+
+See Rule 7.13 (Trading Suspensions) and Rule 123D(e) regarding “Equipment Changeover” halts.
+
+54
+
+See supra note 5.
+
+33
+
+the Exchange so significantly that an Operational Halt is appropriate in one or more securities.
+In such an instance, it would be in the public interest to institute an Operational Halt to minimize
+the impact of a disruption that, if trading were allowed to continue, might negatively affect a
+greater number of market participants. An Operational Halt does not implicate other trading
+centers.
+B.
+
+Self-Regulatory Organization’s Statement on Burden on Competition
+
+The Exchange believes the proposal is consistent with Section 6(b)(8) of the Act55 in that
+it does not impose any burden on competition that is not necessary or appropriate in furtherance
+of the purposes of the Act as explained below.
+Importantly, the Exchange believes the proposal would not impose a burden on
+intermarket competition but rather would alleviate any burden on competition because it is the
+result of a collaborative effort by all SROs to harmonize and improve the process related to the
+halting and resumption of trading in U.S.-listed equity securities. In this area, the Exchange
+believes that all SROs should have consistent rules to the extent possible in order to provide
+additional transparency and certainty to market participants and to avoid inconsistent outcomes
+that could cause confusion and erode market confidence. The proposed changes would ensure
+that all SROs handle the situations covered therein in a consistent manner and ensure that all
+Trading Centers handle a Regulatory Halt consistently. The Exchange understands that all other
+Primary Listing Markets intend to file proposals that are substantially similar to this proposed
+rule change.
+The Exchange does not believe that its proposals concerning Operational Halts impose
+and undue burden on competition. Under its existing rules, the Exchange already possesses
+
+55
+
+15 U.S.C. 78f(b)(8).
+
+34
+
+discretionary authority to impose halts and trading suspensions for various reasons. The
+proposed rule change clarifies and broadens the circumstances in which the Exchange may
+impose such Operational Halts, and specifies procedures for both imposing and lifting then. The
+Exchange does not intend for these proposals to have any competitive impact whatsoever.
+Indeed, the Exchange expects that other exchanges will adopt similar rules and procedures to
+govern operational halts, to the extent that they have not done so already.
+The Exchange does not believe that the proposed rule change imposes a burden on
+intramarket competition because the proposed rule would apply to all market participants
+equally. In addition, information regarding the halting and resumption of trading will be
+disseminated using several freely-accessible sources to ensure broad availability of information
+in addition to the SIP data and proprietary data feeds offered by the Exchange and other SROs
+that are available to subscribers.
+In addition, the proposed rule change includes several provisions related to the
+declaration and timing of trading halts and the resumption of trading designed to avoid any
+advantage to those who can react more quickly than other participants. The proposed rules gives
+the Exchanges the ability to declare the timing of a Regulatory Halt immediately. The SROs
+retain the discretion to cancel trades that occur after the time of the Regulatory Halt. The
+proposed rule change also allows for the staggered resumption of trading to assist firms in
+reentering the market after a SIP Halt affecting multiple securities, in order to reopen in a fair
+and orderly manner. In addition, the proposed rule change encourages early and frequent
+communication among the SROs, SIPs, and market participants to enable the dissemination of
+timely and accurate information concerning the market to market participants.
+
+35
+
+C.
+
+Self-Regulatory Organization’s Statement on Comments on the Proposed Rule
+Change Received from Members, Participants, or Others
+
+No written comments were solicited or received with respect to the proposed rule change.
+III.
+
+Date of Effectiveness of the Proposed Rule Change and Timing for Commission Action
+The Exchange has filed the proposed rule change pursuant to Section 19(b)(3)(A)(iii) of
+
+the Act56 and Rule 19b-4(f)(6) thereunder.57 Because the proposed rule change does not: (i)
+significantly affect the protection of investors or the public interest; (ii) impose any significant
+burden on competition; and (iii) become operative prior to 30 days from the date on which it was
+filed, or such shorter time as the Commission may designate, if consistent with the protection of
+investors and the public interest, the proposed rule change has become effective pursuant to
+Section 19(b)(3)(A) of the Act and Rule 19b-4(f)(6)(iii) thereunder.
+A proposed rule change filed under Rule 19b-4(f)(6)58 normally does not become
+operative prior to 30 days after the date of the filing. However, pursuant to Rule
+19b4(f)(6)(iii),59 the Commission may designate a shorter time if such action is consistent with
+the protection of investors and the public interest.
+At any time within 60 days of the filing of such proposed rule change, the Commission
+summarily may temporarily suspend such rule change if it appears to the Commission that such
+action is necessary or appropriate in the public interest, for the protection of investors, or
+otherwise in furtherance of the purposes of the Act. If the Commission takes such action, the
+
+56
+
+15 U.S.C. 78s(b)(3)(A)(iii).
+
+57
+
+17 CFR 240.19b-4(f)(6).
+
+58
+
+17 CFR 240.19b-4(f)(6).
+
+59
+
+17 CFR 240.19b-4(f)(6)(iii).
+
+36
+
+Commission shall institute proceedings under Section 19(b)(2)(B)60 of the Act to determine
+whether the proposed rule change should be approved or disapproved.
+IV.
+
+Solicitation of Comments
+Interested persons are invited to submit written data, views and arguments concerning the
+
+foregoing, including whether the proposed rule change is consistent with the Act. Comments
+may be submitted by any of the following methods:
+Electronic Comments:
+•
+
+Use the Commission’s internet comment form
+(https://www.sec.gov/rules/sro.shtml); or
+
+•
+
+Send an email to rule-comments@sec.gov. Please include file number
+SR-NYSE-2025-21 on the subject line.
+
+Paper Comments:
+•
+
+Send paper comments in triplicate to Secretary, Securities and Exchange
+Commission, 100 F Street NE, Washington, DC 20549-1090.
+
+All submissions should refer to file number SR-NYSE-2025-21. This file number should
+be included on the subject line if email is used. To help the Commission process and review
+your comments more efficiently, please use only one method. The Commission will post all
+comments on the Commission’s internet website (https://www.sec.gov/rules/sro.shtml). Copies
+of the submission, all subsequent amendments, all written statements with respect to the
+proposed rule change that are filed with the Commission, and all written communications
+relating to the proposed rule change between the Commission and any person, other than those
+that may be withheld from the public in accordance with the provisions of 5 U.S.C. 552, will be
+
+60
+
+15 U.S.C. 78s(b)(2)(B).
+
+37
+
+available for website viewing and printing in the Commission’s Public Reference Room, 100 F
+Street NE, Washington, DC 20549, on official business days between the hours of 10 a.m. and 3
+p.m. Copies of the filing also will be available for inspection and copying at the principal office
+of the Exchange. Do not include personal identifiable information in submissions; you should
+submit only information that you wish to make available publicly. We may redact in part or
+withhold entirely from publication submitted material that is obscene or subject to copyright
+protection. All submissions should refer to file number SR-NYSE-2025-21 and should be
+submitted on or before [INSERT DATE 21 DAYS AFTER DATE OF PUBLICATION IN THE
+FEDERAL REGISTER].
+For the Commission, by the Division of Trading and Markets, pursuant to delegated
+authority.61
+
+J. Matthew DeLesDernier,
+Deputy Secretary.
+
+61
+
+17 CFR 200.30-3(a)(12).
+
+38
+
+
