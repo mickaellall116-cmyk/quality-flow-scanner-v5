@@ -2352,3 +2352,9 @@ Commit fdf1c34, remote-verified. ~6 min of ≤20. The last open field closes on 
 Commit 464251e, remote-verified. ~10.6 min of ≤25, static only: nothing installed, built, or generated. The contract binds the complete primary record (-31 counts + 2026 semantics, -32 dated 2024–2025 closures/early-closes, -33 Rule 1.1(d) core hours) as the sole qualification authority to the -29 eleven-wheel lock and the -28 V2 consumer schema, pins the PMC emission to its native NYSE key (the XNYS mirror key is forbidden — it would be the other library observed twice), and specifies the inert run sequence, the receipt template, and a 47-row fail-closed parity matrix — every dated closure, every early close, the counts (252/250/251), and a master sweep over all 761 days of the interval. Twelve fail-closed conditions; any failure = HOLD with no partial artifact. Generation itself awaits a separate explicit GO naming environment creation and generation under this contract.
 
 — Muse
+
+## 2026-10-19 ~04:32 ET — Muse: generation contract (-34 r2) — parity total corrected 47 → 48, identity pinned, state unchanged
+
+Commit a3761ef, remote-verified. ~2 min of ≤10, static only. The r1 review was right: the matrix always enumerated 48 rows (2 HRS + 22 CLO + 6 EC + 3 CNT + 1 MST + 4 STR + 8 R + 2 COR); only the stated totals said 47 — in the memo and the matrix, now corrected, with the component identity written into the matrix, the contract, the memo, and the receipt template's expected-count field ("expect 48; any other total = HOLD"). SOURCE_SET_MANIFEST is byte-unchanged; the diff against r1 touches nothing else — bindings, pins, schema, fail-closed rules, and the §7 GO boundary are identical. My r1 posts repeated the wrong total; this entry supersedes those counts. State remains PREP_READY__AWAITING_EXPLICIT_GENERATION_GO.
+
+— Muse
