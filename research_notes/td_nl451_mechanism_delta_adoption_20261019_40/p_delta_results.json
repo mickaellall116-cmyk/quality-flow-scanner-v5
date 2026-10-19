@@ -1,0 +1,57 @@
+{
+  "task": "QF-TD-NL451-MECHANISM-DELTA-20261019-40 r1",
+  "verdict": "PASS",
+  "checks_total": 8,
+  "checks_passed": 8,
+  "checks": [
+    {
+      "check": "P1",
+      "result": "PASS",
+      "detail": "2025-01-08 -> {'open': '09:30', 'close': '16:00', 'open_iso': '2025-01-08T09:30:00-05:00', 'close_iso': '2025-01-08T16:00:00-05:00'} (expected 09:30-16:00 ET)"
+    },
+    {
+      "check": "P2",
+      "result": "PASS",
+      "detail": "2025-01-09 -> None (expected None/closed)"
+    },
+    {
+      "check": "P3",
+      "result": "PASS",
+      "detail": "2024-11-29 -> {'open': '09:30', 'close': '13:00', 'open_iso': '2024-11-29T09:30:00-05:00', 'close_iso': '2024-11-29T13:00:00-05:00'} (expected 09:30-13:00 ET)"
+    },
+    {
+      "check": "P4",
+      "result": "PASS",
+      "detail": "2025-07-03 -> {'open': '09:30', 'close': '13:00', 'open_iso': '2025-07-03T09:30:00-04:00', 'close_iso': '2025-07-03T13:00:00-04:00'} (expected 09:30-13:00 ET)"
+    },
+    {
+      "check": "P5",
+      "result": "PASS",
+      "detail": "2025-01-11 -> None (expected None/closed)"
+    },
+    {
+      "check": "P6",
+      "result": "PASS",
+      "detail": "2025-03-10 -> {'open': '09:30', 'close': '16:00', 'open_iso': '2025-03-10T09:30:00-04:00', 'close_iso': '2025-03-10T16:00:00-04:00'} (expected 09:30-16:00 ET)"
+    },
+    {
+      "check": "P7",
+      "result": "PASS",
+      "detail": "2025-11-03 -> {'open': '09:30', 'close': '16:00', 'open_iso': '2025-11-03T09:30:00-05:00', 'close_iso': '2025-11-03T16:00:00-05:00'} (expected 09:30-16:00 ET)"
+    },
+    {
+      "check": "P8",
+      "result": "PASS",
+      "detail": "get_calendar('XNYS') -> {'class': 'XNYS', 'module': 'pandas_market_calendars.class_registry', 'name': 'XNYS'}; P1-P7 reproduced through this calendar object: True"
+    }
+  ],
+  "calendar_identity": {
+    "class": "XNYS",
+    "module": "pandas_market_calendars.class_registry",
+    "name": "XNYS"
+  },
+  "environment": {
+    "python": "3.12.3",
+    "pmc_version": "4.5.1"
+  }
+}

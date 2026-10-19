@@ -1,0 +1,24 @@
+=== network probes (all must FAIL inside namespace) ===
+OSError: [Errno 101] Network is unreachable
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+curl: (7) Failed to connect to hatch-egress-proxy port 3128 after 1 ms: Couldn't connect to server
+=== build venv ===
+VENV_OK
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/tzdata-2026.5-py2.py3-none-any.whl (from -r /tmp/td40/requirements_hashes.txt (line 11))
+Installing collected packages: pytz, tzdata, toolz, six, pyluach, numpy, korean_lunar_calendar, python-dateutil, pandas, exchange_calendars, pandas_market_calendars
+Successfully installed exchange_calendars-4.13.2 korean_lunar_calendar-0.4.0 numpy-1.26.4 pandas-2.2.3 pandas_market_calendars-4.5.1 pyluach-2.3.0 python-dateutil-2.9.0 pytz-2024.2 six-1.17.0 toolz-1.2.0 tzdata-2026.5
+=== identity ===
+python 3.12.3
+pmc 4.5.1
+exchange_calendars==4.13.2
+korean_lunar_calendar==0.4.0
+numpy==1.26.4
+pandas==2.2.3
+pandas_market_calendars==4.5.1
+pyluach==2.3.0
+python-dateutil==2.9.0
+pytz==2024.2
+six==1.17.0
+toolz==1.2.0
+tzdata==2026.5
+FREEZE_EQUALS_LOCK
