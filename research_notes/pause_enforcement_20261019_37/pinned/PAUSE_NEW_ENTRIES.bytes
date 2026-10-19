@@ -1,0 +1,7 @@
+ENTRIES PAUSED — QF-V54-PAUSE-ENFORCEMENT-20261019-37
+Restored operational pause control, 2026-10-19 (USER GO, Issue #1 comment 6272648131).
+Presence of this file = new entries PAUSED (fail-closed gate in v54_forward_harness.py:
+no new signals, no pending fills, no observer assessments; open-position exit
+management continues under the frozen Mode B rules).
+Removing this file alone does NOT resume entries: the gate is default-PAUSED and
+additionally requires an explicit resume authorization (forward_test/RESUME_NEW_ENTRIES).

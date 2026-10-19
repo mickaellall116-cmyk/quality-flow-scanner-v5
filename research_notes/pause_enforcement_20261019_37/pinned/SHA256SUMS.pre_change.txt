@@ -1,0 +1,8 @@
+beeb16569b40a412a6f9af0f7532e86e82dd2cbf38c2fa8551dde27bcbf60ee9  /home/hatch/workspace/goals/v5-4-forward-test/hidden_files/pause_enforcement_20261019_37/pre_change/ai_observer.jsonl.pre
+72515b5bf6bcfe49cd06c269e2e0838c4c6ae92b0c2379f0fb7c39679015508a  /home/hatch/workspace/goals/v5-4-forward-test/hidden_files/pause_enforcement_20261019_37/pre_change/forward_test.jsonl.pre
+086cabd2b243fe87a63e15ee6ade1f2f43c93b0554224df76790817f60281b52  /home/hatch/workspace/goals/v5-4-forward-test/hidden_files/pause_enforcement_20261019_37/pre_change/last_cycle.json.pre
+abdeafe129c262748f49eb2fb87d80f20f4a31f862ee6a60c7632ac3c631769d  /home/hatch/workspace/goals/v5-4-forward-test/hidden_files/pause_enforcement_20261019_37/pre_change/state.json.pre
+9473210f8dbc547762a5df2580210e6dfcf7f669a2a1c266bfdc95c4480d5c1e  /home/hatch/workspace/goals/v5-4-forward-test/hidden_files/pause_enforcement_20261019_37/pre_change/v54_ai_observer.json.pre
+7b36d5f8fc2dc926f439e737db8d0abdb51dcac3c1c70d255abd2f46ea6a0df6  /home/hatch/workspace/goals/v5-4-forward-test/hidden_files/pause_enforcement_20261019_37/pre_change/v54_closed_trades.json.pre
+dc3ee392c808aa2e52d468cad0020d8fe85b6f2bda0adc656304193563cba0c8  /home/hatch/workspace/goals/v5-4-forward-test/hidden_files/pause_enforcement_20261019_37/pre_change/v54_forward_harness.py.pre
+bcf2eea0ccd104fb30ac5b9b85f09c37ed331a405413d4048eb4859e6d947820  /home/hatch/workspace/goals/v5-4-forward-test/hidden_files/pause_enforcement_20261019_37/pre_change/v54_status.json.pre

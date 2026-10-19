@@ -1,0 +1,94 @@
+{
+  "as_of": "2026-10-19T18:56:01.519129+00:00",
+  "entries_paused": true,
+  "pause_reason": "PAUSE_NEW_ENTRIES sentinel present",
+  "pause_control": "sentinel",
+  "rule_set": "V5.4 frozen 2026-09-15 (structural + ADX>=20 entries, Mode B exits, A/B/C grading)",
+  "universe": "UX51+X2 (51+199 symbols)",
+  "cohort_sizes": {
+    "UX51": 51,
+    "X2": 199
+  },
+  "live_control": "V5.3 (unchanged)",
+  "last_successful_cycle": "2026-10-19T18:56:01.492499+00:00",
+  "signals_logged": 38,
+  "grade_counts": {
+    "A": 9,
+    "B": 26,
+    "C": 3
+  },
+  "grade_counts_by_cohort": {
+    "Forward-UX51": {
+      "A": 4,
+      "B": 10,
+      "C": 0
+    },
+    "Forward-X2": {
+      "A": 5,
+      "B": 16,
+      "C": 3
+    }
+  },
+  "pending_entries": [
+    {
+      "signal_id": "v54:MSFT:4h:2026-10-19T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "MSFT",
+      "grade": "B",
+      "signal_bar": "2026-10-19T06:30:00-04:00"
+    }
+  ],
+  "open_positions": [
+    {
+      "signal_id": "v54:SHOP:4h:2026-10-15T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "SHOP",
+      "grade": "B",
+      "entry": 171.4499969482422,
+      "entry_bar": "2026-10-15T10:30:00-04:00",
+      "stop": 165.33922118980624,
+      "tp1": 181.76957291674927,
+      "status": "open_full",
+      "bars_held": 8,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 1.466263379325917,
+      "mae_r": -0.6733989917228169
+    },
+    {
+      "signal_id": "v54:MRNA:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "MRNA",
+      "grade": "B",
+      "entry": 217.27000427246094,
+      "entry_bar": "2026-10-19T06:30:00-04:00",
+      "stop": 205.13457249020476,
+      "tp1": 246.02255686378075,
+      "status": "open_full",
+      "bars_held": 2,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 1.6068561496912153,
+      "mae_r": -0.07416375217809605
+    },
+    {
+      "signal_id": "v54:TEAM:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "TEAM",
+      "grade": "B",
+      "entry": 208.11000061035156,
+      "entry_bar": "2026-10-19T06:30:00-04:00",
+      "stop": 199.5971854536368,
+      "tp1": 221.90195655955546,
+      "status": "open_full",
+      "bars_held": 2,
+      "tp1_taken": false,
+      "profit_protect_armed": null,
+      "mfe_r": 0.6918979539926349,
+      "mae_r": -0.10337413260034983
+    }
+  ],
+  "closed_trades": 24,
+  "cumulative_r": 10.0547,
+  "cumulative_r_note": "Sum of per-trade blended R at 1R risk each; not compounded.",
+  "avg_r_per_trade": 0.4189,
+  "win_rate": 0.4167,
+  "closed_v53_would_have_vetoed": 3,
+  "closed_vetoed_winners": 1
+}
