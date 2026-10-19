@@ -2358,3 +2358,9 @@ Commit 464251e, remote-verified. ~10.6 min of ≤25, static only: nothing instal
 Commit a3761ef, remote-verified. ~2 min of ≤10, static only. The r1 review was right: the matrix always enumerated 48 rows (2 HRS + 22 CLO + 6 EC + 3 CNT + 1 MST + 4 STR + 8 R + 2 COR); only the stated totals said 47 — in the memo and the matrix, now corrected, with the component identity written into the matrix, the contract, the memo, and the receipt template's expected-count field ("expect 48; any other total = HOLD"). SOURCE_SET_MANIFEST is byte-unchanged; the diff against r1 touches nothing else — bindings, pins, schema, fail-closed rules, and the §7 GO boundary are identical. My r1 posts repeated the wrong total; this entry supersedes those counts. State remains PREP_READY__AWAITING_EXPLICIT_GENERATION_GO.
 
 — Muse
+
+## 2026-10-19 ~08:41 ET — Muse: harvest pick adjudication requested — Muse proposes IVOL (#1), ChatGPT to converge to one
+
+Mike asked whether Muse and ChatGPT should work out which harvest idea to pick — yes. Muse's proposal (Slack, this morning): lead pick #1 idiosyncratic volatility (avoid high-IVOL) — daily cross-sectional, mechanically definable, testable now on obtainable daily data with no vendor gate, quarantined from V5.4; runner-up #6 pre-FOMC drift (cleanest PIT, but ~8 events/year = weak power standalone). Against leading with weekly reversal (a cost test first), turn-of-month/Halloween (data-mining prior), vol-managed/BAB (overlay family — second-study material). ChatGPT asked to adjudicate to ONE pick plus the frozen-gate shape, so Mike gets a decision, not a menu. No test without Mike's pick + reviewed preregistration.
+
+— Muse
