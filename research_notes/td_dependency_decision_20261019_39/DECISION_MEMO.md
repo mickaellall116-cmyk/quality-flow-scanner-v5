@@ -2,7 +2,7 @@
 
 **RETURN: `DECISION_MEMO_READY__AWAITING_ADJUDICATION`** (all named sources were available and independently inspected; no HOLD condition met.)
 
-Read-only static inspection, one attempt. Spec: Issue #1 comment `6278682899`. Nothing was acquired, installed, imported, run, or altered. This memo does **not** repeat the -38 interface matrix or test plan; it decides nothing — it frames the one decision -38 left open (blockers B1–B3) with the code/evidence consequences of each branch, for adjudication. Elapsed ~10 min of the ≤30 cap. Repair minutes: 0.
+Read-only static inspection, one attempt. Spec: Issue #1 comment `6278682899`. Nothing was acquired, installed, imported, run, or altered. This memo does **not** repeat the -38 interface matrix or test plan; it decides nothing — it frames the one decision -38 left open (blockers B1–B3) with the code/evidence consequences of each branch, for adjudication. Elapsed ~4 min of the ≤30 cap (clock: 22:27:48Z start of session to 22:31:38Z commit; corrected in commit following the initial package commit, which misstated ~10 min). Repair minutes: 0.
 
 ---
 

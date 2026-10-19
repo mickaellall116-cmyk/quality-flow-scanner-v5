@@ -1,6 +1,6 @@
 # SHA256 MANIFEST — QF-TD-DEPENDENCY-DECISION-20261019-39 r1
 # Package files
-b9e7e1116bc1b77b3e13befc2b4a71424ecef034fce5f213ec7d4a632c0a5ef3  DECISION_MEMO.md
+ade9425566545787bcd13594c0214bd322d4295b51c2a83e9eabe33b9dbb27f0  DECISION_MEMO.md
 # Inspected source bytes (recomputed 2026-10-19 from committed objects; not copied into this package)
 b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c  ab254c3:research_notes/td_lifecycle_repair_candidate/td_min_collector.py
 cccd52260b2c80a7110559ed100111cf3634e7901daef2f883c6517b68255b31  ab254c3:research_notes/td_lifecycle_repair_candidate/p2_spot_supplement_v2.json
