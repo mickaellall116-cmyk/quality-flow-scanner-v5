@@ -1,0 +1,12 @@
+# QF-TD-CALENDAR-INTEGRATION-PREFLIGHT-20261019-38 r1 — SHA-256 manifest
+# Covers the three documents of this package (this manifest does not hash itself).
+# Cited source bytes (NOT part of this package; pinned at commit ab254c3458697dd450356146abcf4ad4f75ecef4):
+#   td_min_collector.py            b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c
+#   test_closed_session_classifier.py 3122bdfc5df432932395948216e4ec6cc50e438abe2518cd0a5984154c4d71d0
+#   p2_spot_supplement_v2.json     cccd52260b2c80a7110559ed100111cf3634e7901daef2f883c6517b68255b31
+#   validate_input.py              1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58
+# Qualified artifact (cited, not consumed): XNYS_SESSION_SCHEDULE_V2.json
+#   3358f2d9cc233142f0927d3a16c3a353e935ed4310c563ac046352dcf75d2b88
+a4da7532a9d2625605d801f65e5d7e172b707af0960390301a76a17dc2f2fc8c  PREFLIGHT_MEMO.md
+dd24c1d367ed43eb5341146a77b3eb4d690eb8caf5186b735aa8caed42f14c6e  INTERFACE_DEPENDENCY_MATRIX.md
+3b005e1665a740a97511ec0cb939bb54a55df56c8dce92d352c131f4a434a0b2  INTEGRATION_PROOF_PREREGISTRATION.md
