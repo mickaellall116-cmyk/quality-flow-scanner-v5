@@ -2,7 +2,8 @@
 
 - **Return verdict: `NL451_DELTA_PROOF_PASS__ADOPTION_CANDIDATE_AWAITING_REVIEW`**
 - Spec: Issue #1 comment `6278932260` (read in full before execution). Cap ≤45 min, one clean attempt.
-- Elapsed: ~13 min (2026-10-19T22:58:40Z start → ~23:12Z package complete). **Repair minutes: 0.** Attempts: exactly ONE probe invocation; zero repairs, retries, or re-runs.
+- Elapsed: ~4.5 min (2026-10-19T22:58:40Z start → 23:03:09Z remote-verified). **Repair minutes: 0.** Attempts: exactly ONE probe invocation; zero repairs, retries, or re-runs.
+- CORRECTION (same-run follow-up commit): this receipt originally estimated elapsed as "~13 min" before the final timestamps were known; the true elapsed is ~4.5 min. Delivery-mechanics note: the first temp-worktree push attempt failed against the repo's pre-existing index state, and the package was delivered via the standard temp-index pattern instead — packaging mechanics only; the proof itself ran exactly once, unrepaired.
 
 ## Hash gates (all verified BEFORE any execution — all MATCH)
 
