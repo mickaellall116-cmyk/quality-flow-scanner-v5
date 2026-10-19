@@ -1,0 +1,66 @@
+{
+  "task": "QF-NYSE-HISTORICAL-NOTICE-RECOVERY-20261019-32 r1",
+  "frozen_interval": "[2024-09-16, 2026-10-16]",
+  "spec": "GitHub Issue #1 comment 6259589343 (accepts -31 commit 5d2060b; dispatches -32)",
+  "supersedes_by_reference": "research_notes/nyse_official_calendar_capture_20261018_31 (commit 5d2060b) \u2014 preserved unedited",
+  "fetch_method": "unauthenticated HTTP GET (curl, plain GET, browser UA); search-engine results used as locators only, never saved or classified as evidence; no login, no API keys, no vendor",
+  "retrieval_window_utc": "2026-10-19T04:29:11Z .. 2026-10-19T04:30:55Z (one pass)",
+  "verdict": "HISTORICAL_PRIMARY_RECOVERY_INCOMPLETE",
+  "unresolved_fields": [
+    "Regular core hours for 2024-09-16..2025-12-31: no captured NYSE/ICE-published artifact states the 9:30 a.m.-4:00 p.m. ET core session for those years (grep for '9:30' over all three recovered ICE releases: zero hits). The standing hours on the current hours page remain classified 2026+ per -31 and were not back-projected."
+  ],
+  "artifacts": [
+    {
+      "file": "raw/ice_cal_2024_2025_2026.html",
+      "original_url": "https://ir.theice.com/press/news-details/2023/NYSE-Group-Announces-2024-2025-and-2026-Holiday-and-Early-Closings-Calendar/default.aspx",
+      "retrieval_url": "https://ir.theice.com/press/news-details/2023/NYSE-Group-Announces-2024-2025-and-2026-Holiday-and-Early-Closings-Calendar/default.aspx",
+      "retrieval_timestamp_utc": "2026-10-19T04:30:29Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 80348,
+      "sha256": "564de593a271484e29af86b2c7054075b21c16df85c3fbc831e0ef6d3f6b8c10",
+      "classification": "PRIMARY_CURRENT",
+      "publisher": "Intercontinental Exchange, Inc. (ICE) \u2014 NYSE Group press release, dated Nov 10, 2023, published on ICE's official investor-relations site ir.theice.com",
+      "semantics": "Dated holiday table for 2024/2025/2026 with early-close footnotes. Establishes for 2024: 10 full-day closures and 13:00 ET early closes on Wed Jul 3, Fri Nov 29, Tue Dec 24, 2024 (footnotes *, **, ***). In-interval 2024 closures: Thanksgiving Thu Nov 28 and Christmas Wed Dec 25."
+    },
+    {
+      "file": "raw/ice_cal_2025_2026_2027.html",
+      "original_url": "https://ir.theice.com/press/news-details/2024/NYSE-Group-Announces-2025-2026-and-2027-Holiday-and-Early-Closings-Calendar/default.aspx",
+      "retrieval_url": "https://ir.theice.com/press/news-details/2024/NYSE-Group-Announces-2025-2026-and-2027-Holiday-and-Early-Closings-Calendar/default.aspx",
+      "retrieval_timestamp_utc": "2026-10-19T04:30:54Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 94403,
+      "sha256": "3b8a67d90f57fcaa836e1f6f047c50629fc98170465b8e88b5a7293f0b5ce7e1",
+      "classification": "PRIMARY_CURRENT",
+      "publisher": "Intercontinental Exchange, Inc. (ICE) \u2014 NYSE Group press release, dated Nov 8, 2024, published on ir.theice.com",
+      "semantics": "Dated holiday table for 2025/2026/2027 with early-close footnotes. Establishes for calendar 2025: 10 full-day closures (Jan 1, Jan 20, Feb 17, Apr 18, May 26, Jun 19, Jul 4, Sep 1, Nov 27, Dec 25) and 13:00 ET early closes on Thu Jul 3, Fri Nov 28, Wed Dec 24, 2025 (footnotes *, **, ***). Independently corroborates the 2025 column of the 2023 release."
+    },
+    {
+      "file": "raw/ice_carter_jan9_2025.html",
+      "original_url": "https://ir.theice.com/press/news-details/2024/The-New-York-Stock-Exchange-Will-Close-Markets-on-January-9-to-Honor-the-Passing-of-Former-President-Jimmy-Carter-on-National-Day-of-Mourning/default.aspx",
+      "retrieval_url": "https://ir.theice.com/press/news-details/2024/The-New-York-Stock-Exchange-Will-Close-Markets-on-January-9-to-Honor-the-Passing-of-Former-President-Jimmy-Carter-on-National-Day-of-Mourning/default.aspx",
+      "retrieval_timestamp_utc": "2026-10-19T04:30:29Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 72441,
+      "sha256": "e1cd4c1a21a9db1b05e201f03c74caac13a00b9246d3323db751da2c0eae2ee7",
+      "classification": "PRIMARY_CURRENT",
+      "publisher": "The New York Stock Exchange / Intercontinental Exchange, Inc. \u2014 official announcement dated Dec 30, 2024, published on ir.theice.com",
+      "semantics": "Official dated notice of the exceptional (ad-hoc) full-day closure: 'it will close all NYSE Group equity and options markets on Thursday, January 9, 2025, in observance of the National Day of Mourning in recognition of the passing of former President Jimmy Carter.' This is the dated exchange-published evidence for the January 2025 one-session count delta recorded in -31."
+    },
+    {
+      "file": "raw/tu_history.html",
+      "original_url": "https://www.nyse.com/trader-update/history",
+      "retrieval_url": "https://www.nyse.com/trader-update/history",
+      "retrieval_timestamp_utc": "2026-10-19T04:29:11Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 71484,
+      "sha256": "1c224cd53142432b0a17967af989511536b1334112bd86a8f820c53ca4c18331",
+      "classification": "ROUTE_EVIDENCE_NONE",
+      "publisher": "NYSE (Trader Updates history page, live origin)",
+      "semantics": "JavaScript app shell (71,484 B): no dated notice text, tables, or PDF links in raw bytes; only a generic '/api/sites/nyse/proxy' reference and static.nyse.com JS chunks. Spec item 1 route attempted; yields no qualifying bytes (same failure class as the -31 hours-page shells)."
+    }
+  ]
+}

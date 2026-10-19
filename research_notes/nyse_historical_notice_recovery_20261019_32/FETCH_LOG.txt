@@ -1,0 +1,17 @@
+QF-NYSE-HISTORICAL-NOTICE-RECOVERY-20261019-32 r1 — fetch log
+All fetches: unauthenticated plain HTTP GET via curl with a normal browser UA. No logins, no API keys, no vendor calls, no bot-wall circumvention. Search-engine results were used ONLY as locators for original NYSE/ICE URLs; no search result or third-party republication was saved or classified as evidence. One pass; repair minutes: 0.
+
+SPEC RETRIEVAL:
+- GET https://api.github.com/repos/mickaellall116-cmyk/quality-flow-scanner-v5/issues/1/comments?per_page=100&page=1..8 (public API; -32 spec = comment 6259589343)
+
+CAPTURE PASS (2026-10-19T04:29:11Z–04:30:55Z, direct into package raw/):
+- GET https://www.nyse.com/trader-update/history -> 200, 71484B text/html (JS app shell; pinned as route evidence, semantics NONE)
+- GET https://ir.theice.com/press/news-details/2024/NYSE-Group-Announces-2025-2026-and-2027-Holiday-and-Early-Closings-Calendar/default.aspx -> 200, 94403B text/html (fetched twice — locator pass + packaged pass — byte-identical length; packaged bytes hashed in receipt)
+- GET https://ir.theice.com/press/news-details/2024/The-New-York-Stock-Exchange-Will-Close-Markets-on-January-9-to-Honor-the-Passing-of-Former-President-Jimmy-Carter-on-National-Day-of-Mourning/default.aspx -> 200, 72441B text/html
+- GET https://ir.theice.com/press/news-details/2023/NYSE-Group-Announces-2024-2025-and-2026-Holiday-and-Early-Closings-Calendar/default.aspx -> 200, 80348B text/html
+
+LOCATOR / NEGATIVE PROBES (not evidence):
+- CDX http://web.archive.org/cdx/search/cdx?url=nyse.com/publicdocs/nyse/updates/*&from=20241220&to=20250120 -> no captures returned (no Trader Update PDF bytes via this route)
+- Web search (locator only): ICE IR calendar releases (2023 + 2024 vintages) and the Dec 30, 2024 Carter closure announcement on ir.theice.com; third-party copies (nasdaq.com, silicon.co.uk, financialcontent, barchart) located but NOT fetched into the package.
+
+FAILURES / BLOCKS: none (no bot walls, no non-200 among attempted origin URLs).

@@ -1,0 +1,18 @@
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Date: Mon, 19 Oct 2026 04:30:32 GMT
+Content-Type: text/html; charset=utf-8
+X-XSS-Protection: 0
+X-Permitted-Cross-Domain-Policies: none
+set-cookie: _cfuvid=ONnEr0PyRthnhgs_oO24dML9Y9LHygyzkbMdzwnt2A4-1792384231.8853621-1.0.1.1-CexRueDgDGA7DXiq5SNX27jYS5jdqxdMqSTDeB31Llk; HttpOnly; SameSite=None; Secure; Path=/; Domain=ir.theice.com
+CF-Ray: a4cd0c494823b3ad-DEN
+CF-Cache-Status: REVALIDATED
+Accept-Ranges: bytes
+Cache-Control: public, max-age=10, stale-if-error=86400, stale-while-revalidate=86400
+ETag: "735ef881ca3f901c99e539caea93d6e1"
+Server: cloudflare
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+Content-Length: 80348
+

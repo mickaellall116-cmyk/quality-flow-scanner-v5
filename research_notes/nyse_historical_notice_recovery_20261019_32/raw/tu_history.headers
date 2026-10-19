@@ -1,0 +1,17 @@
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Date: Mon, 19 Oct 2026 04:29:12 GMT
+Content-Type: text/html; charset=utf-8
+CF-RAY: a4cd0a5bba753eac-IAD
+Server: cloudflare
+Content-Security-Policy: default-src 'self';script-src 'self' 'unsafe-inline' 'unsafe-eval' *;style-src 'self' 'unsafe-inline' *;img-src 'self' data: blob: *;font-src 'self' data: *;connect-src 'self' *;media-src 'self' blob: *;frame-ancestors 'self' *.intcx.net *.paragonrels.com *.sigmacomputing.com *.bkfsconnect.com *.bkfstest.com *.opraplan.com *.theice.com *.ice.com *.nyse.com *.kcgbondpoint.com *.icedataservices.com *.appspace.com *.appspaceusercontent.com;frame-src *;worker-src 'self' blob: *;object-src 'self' *;manifest-src 'self' *;form-action 'self' https://*.theice.com https://*.intcx.net https://*.ice.com https://*.nyse.com https://*.kcgbondpoint.com https://*.icedataservices.com https://*.eloqua.com https://*.salesforce.com;upgrade-insecure-requests;base-uri 'self';script-src-attr 'none'
+Cache-Control: public, max-age=300
+set-cookie: __cf_bm=Hia390pSWfIJDztHaMcj4q9DHwaMADOvposNX69o_S4-1792384152.9187677-1.0.1.1-IgVh_iuw_3wIdgXplxs9r5JLf3mRaAHbF8QUuJ7ClaClIoLWb1vPtNfyAkoO4fcOdpE9F2ZcfjaFFchyEaO0PAiZnPuGKRGtz0a586KEA3b6IDODHvQ2hI_El7SkJ8xg; HttpOnly; SameSite=None; Secure; Path=/; Domain=nyse.com; Expires=Mon, 19 Oct 2026 04:59:12 GMT
+ICEOffice: ICE
+Vary: Accept-Encoding
+Age: 1494985
+expires: Mon, 19 Oct 2026 04:34:12 GMT
+cf-cache-status: HIT
+Transfer-Encoding: chunked
+
