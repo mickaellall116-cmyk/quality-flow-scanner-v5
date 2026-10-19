@@ -1,16 +1,18 @@
 {
   "protocol": "KAMA_SHADOW_PROTOCOL.md",
-  "updated_at": "2026-10-19T09:39:30+00:00",
+  "updated_at": "2026-10-19T14:55:20+00:00",
   "start_at": "2026-09-28T13:46:00+00:00",
   "review_target_signals": 100,
   "data_quality_checkpoint": 50,
-  "signal_count": 11,
+  "signal_count": 12,
   "checkpoint_50_reached": false,
   "primary_cohort_signal_ids": null,
   "primary_cohort_frozen_at": null,
   "primary_cohort_resolved": 0,
   "review_ready": false,
-  "new_signal_ids_this_run": [],
+  "new_signal_ids_this_run": [
+    "v54:MSFT:4h:2026-10-19T10:30:00-04:00:2026-09-15-v54"
+  ],
   "errors_this_run": [],
   "events": [
     {
@@ -346,6 +348,35 @@
         "resolved": false
       },
       "signal_record_sha256": "b8125c06424b7372ee49084f280f70d73d1bcf6858eededc16e4392775adb5f6"
+    },
+    {
+      "signal_id": "v54:MSFT:4h:2026-10-19T10:30:00-04:00:2026-09-15-v54",
+      "symbol": "MSFT",
+      "signal_time": "2026-10-19T06:30:00-04:00",
+      "first_logged_at": "2026-10-19T14:55:20+00:00",
+      "source": "v54_status_pending",
+      "tested_session_state": {
+        "valid": true,
+        "bars": 1443,
+        "bar_start": "2026-10-16T13:30:00-04:00",
+        "kama20": 530.4673800749492,
+        "kama40": 520.6407338059628,
+        "bull": true,
+        "gap_pct_of_kama40": 1.8874140325426003
+      },
+      "live_grid_state": {
+        "valid": true,
+        "bars": 1926,
+        "bar_start": "2026-10-19T06:30:00-04:00",
+        "kama20": 531.0988073637205,
+        "kama40": 527.8474155641285,
+        "bull": true,
+        "gap_pct_of_kama40": 0.6159719084950277
+      },
+      "outcome": {
+        "resolved": false
+      },
+      "signal_record_sha256": "7067c4011d01abd1b535e0cd2ab6cb5820d957ef15a40ea8ac16a6c8c094573d"
     }
   ]
 }
