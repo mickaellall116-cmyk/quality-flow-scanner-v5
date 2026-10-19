@@ -1,0 +1,200 @@
+{
+ "artifact_sha256": "3358f2d9cc233142f0927d3a16c3a353e935ed4310c563ac046352dcf75d2b88",
+ "fail": 0,
+ "pass": 48,
+ "rows": {
+  "CLO-01": {
+   "note": "no session on closure 2024-11-28",
+   "result": "PASS"
+  },
+  "CLO-02": {
+   "note": "no session on closure 2024-12-25",
+   "result": "PASS"
+  },
+  "CLO-03": {
+   "note": "no session on closure 2025-01-01",
+   "result": "PASS"
+  },
+  "CLO-04": {
+   "note": "no session on closure 2025-01-09",
+   "result": "PASS"
+  },
+  "CLO-05": {
+   "note": "no session on closure 2025-01-20",
+   "result": "PASS"
+  },
+  "CLO-06": {
+   "note": "no session on closure 2025-02-17",
+   "result": "PASS"
+  },
+  "CLO-07": {
+   "note": "no session on closure 2025-04-18",
+   "result": "PASS"
+  },
+  "CLO-08": {
+   "note": "no session on closure 2025-05-26",
+   "result": "PASS"
+  },
+  "CLO-09": {
+   "note": "no session on closure 2025-06-19",
+   "result": "PASS"
+  },
+  "CLO-10": {
+   "note": "no session on closure 2025-07-04",
+   "result": "PASS"
+  },
+  "CLO-11": {
+   "note": "no session on closure 2025-09-01",
+   "result": "PASS"
+  },
+  "CLO-12": {
+   "note": "no session on closure 2025-11-27",
+   "result": "PASS"
+  },
+  "CLO-13": {
+   "note": "no session on closure 2025-12-25",
+   "result": "PASS"
+  },
+  "CLO-14": {
+   "note": "no session on closure 2026-01-01",
+   "result": "PASS"
+  },
+  "CLO-15": {
+   "note": "no session on closure 2026-01-19",
+   "result": "PASS"
+  },
+  "CLO-16": {
+   "note": "no session on closure 2026-02-16",
+   "result": "PASS"
+  },
+  "CLO-17": {
+   "note": "no session on closure 2026-04-03",
+   "result": "PASS"
+  },
+  "CLO-18": {
+   "note": "no session on closure 2026-05-25",
+   "result": "PASS"
+  },
+  "CLO-19": {
+   "note": "no session on closure 2026-06-19",
+   "result": "PASS"
+  },
+  "CLO-20": {
+   "note": "no session on closure 2026-07-03",
+   "result": "PASS"
+  },
+  "CLO-21": {
+   "note": "no session on closure 2026-09-07",
+   "result": "PASS"
+  },
+  "CLO-22": {
+   "note": "no session after 2026-10-16; post-interval S6 closures absent",
+   "result": "PASS"
+  },
+  "CNT-2024": {
+   "note": "aux full-year 2024 = 252 (expect 252, S8)",
+   "result": "PASS"
+  },
+  "CNT-2025": {
+   "note": "artifact 2025 sessions = 250 (expect 250, S9 final vintage)",
+   "result": "PASS"
+  },
+  "CNT-2026": {
+   "note": "aux full-year 2026 = 251 (expect 251, S7; S8 corroborates)",
+   "result": "PASS"
+  },
+  "COR-01": {
+   "note": "artifact consistent with BOTH S3 and S4 2025 columns (identical per -32)",
+   "result": "PASS"
+  },
+  "COR-02": {
+   "note": "CNT-2025 binds at 250 under priority rule (S5 tier-1 notice postdates S8's 251 vintage)",
+   "result": "PASS"
+  },
+  "EC-01": {
+   "note": "session on 2024-11-29 with close 13:00",
+   "result": "PASS"
+  },
+  "EC-02": {
+   "note": "session on 2024-12-24 with close 13:00",
+   "result": "PASS"
+  },
+  "EC-03": {
+   "note": "session on 2025-07-03 with close 13:00",
+   "result": "PASS"
+  },
+  "EC-04": {
+   "note": "session on 2025-11-28 with close 13:00",
+   "result": "PASS"
+  },
+  "EC-05": {
+   "note": "session on 2025-12-24 with close 13:00",
+   "result": "PASS"
+  },
+  "EC-06": {
+   "note": "exactly the 5 dated early closes carry 13:00; zero 2026 in-interval early closes",
+   "result": "PASS"
+  },
+  "HRS-01": {
+   "note": "every session open==09:30 (S1 Rule 1.1(d))",
+   "result": "PASS"
+  },
+  "HRS-02": {
+   "note": "every close==16:00 except the 5 \u00a73 dates at 13:00; no other close value",
+   "result": "PASS"
+  },
+  "MST-01": {
+   "note": "761 calendar days swept; mismatches: none",
+   "result": "PASS"
+  },
+  "R1": {
+   "note": "all 9 primary source hashes recomputed == SOURCE_SET_MANIFEST",
+   "result": "PASS"
+  },
+  "R2": {
+   "note": "unshare -n namespace; --no-index --no-cache-dir --require-hashes --find-links; 3 probes failed to connect",
+   "result": "PASS"
+  },
+  "R3": {
+   "note": "path A key exactly 'NYSE'; mirror module never referenced for emission",
+   "result": "PASS"
+  },
+  "R4": {
+   "note": "path C key exactly 'XNYS' on exchange_calendars directly",
+   "result": "PASS"
+  },
+  "R5": {
+   "note": "A vs C byte-identical emissions; logged as CORRELATED CONSISTENCY ONLY (-30)",
+   "result": "PASS"
+  },
+  "R6": {
+   "note": "full dual emission + assembly repeated; all bytes identical",
+   "result": "PASS"
+  },
+  "R7": {
+   "note": "frozen -28 synthetic suite 25/25 in mirrored tree; consumer byte-unmodified",
+   "result": "PASS"
+  },
+  "R8": {
+   "note": "real artifact parsed with 1043 synthetic timestamps; no SCHEDULE_* error; first/last match",
+   "result": "PASS"
+  },
+  "STR-01": {
+   "note": "consumer header rules (fold_materializer_v3 e1b0dfed)",
+   "result": "PASS"
+  },
+  "STR-02": {
+   "note": "ascending unique non-empty; first=2024-09-16 last=2026-10-16 (Friday session)",
+   "result": "PASS"
+  },
+  "STR-03": {
+   "note": "canonical serialization byte-exact; sha pinned in receipt",
+   "result": "PASS"
+  },
+  "STR-04": {
+   "note": "no weekend sessions; close>open; close after 09:30 (Amendment v3)",
+   "result": "PASS"
+  }
+ },
+ "rows_total": 48
+}

@@ -1,0 +1,17 @@
+path=A window=2024-09-16..2026-10-16 sessions=524
+path=A window=2024-01-01..2024-12-31 sessions=252
+path=A window=2026-01-01..2026-12-31 sessions=251
+path=A window=2024-09-16..2026-10-16 sessions=524
+path=A window=2024-01-01..2024-12-31 sessions=252
+path=A window=2026-01-01..2026-12-31 sessions=251
+ASSEMBLE1_EXIT=1
+ASSEMBLE2_EXIT=1
+b77b32e84f99c224a27440e1185f26f47ac34cc340171f8ad8facc19413f9cbe  /home/hatch/workspace/qf35_work_20261019/out/aux2024_A_run1.json
+b77b32e84f99c224a27440e1185f26f47ac34cc340171f8ad8facc19413f9cbe  /home/hatch/workspace/qf35_work_20261019/out/aux2024_A_run2.json
+26b0ab7c53d7f5f412472151855e7ec9f522b7ab109d00491ba59f554afd6d45  /home/hatch/workspace/qf35_work_20261019/out/aux2026_A_run1.json
+26b0ab7c53d7f5f412472151855e7ec9f522b7ab109d00491ba59f554afd6d45  /home/hatch/workspace/qf35_work_20261019/out/aux2026_A_run2.json
+ac52dd41f0dcb8fda686bdbbfe6504acce07abbc047597009ae2b61e191b79d9  /home/hatch/workspace/qf35_work_20261019/out/emission_A_run1.json
+ac52dd41f0dcb8fda686bdbbfe6504acce07abbc047597009ae2b61e191b79d9  /home/hatch/workspace/qf35_work_20261019/out/emission_A_run2.json
+DET_A_IDENTICAL
+OSError: [Errno 101] Network is unreachable
+EMISSIONS_DONE

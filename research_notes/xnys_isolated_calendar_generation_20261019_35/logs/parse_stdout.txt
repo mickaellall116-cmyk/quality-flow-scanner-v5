@@ -1,0 +1,8 @@
+{
+ "materialize_ok": true,
+ "coverage_first_session": "2024-09-16",
+ "coverage_last_session": "2026-10-16",
+ "calendar_digest": "f0c346b083f563fd66d041312bef8d34da4bfd07363a23dba9ac34c01942be79",
+ "synthetic_timestamps": 1043,
+ "folds": 4
+}

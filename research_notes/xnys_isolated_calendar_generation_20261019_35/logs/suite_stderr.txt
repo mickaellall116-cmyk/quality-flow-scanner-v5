@@ -1,0 +1,4 @@
++ W=/home/hatch/workspace/qf35_work_20261019
++ cd /home/hatch/workspace/qf35_work_20261019/notes_mirror/validation_fold_coverage_boundary_20261018_28
++ python3 test_fold_coverage_boundary.py
++ echo SUITE_EXIT=0

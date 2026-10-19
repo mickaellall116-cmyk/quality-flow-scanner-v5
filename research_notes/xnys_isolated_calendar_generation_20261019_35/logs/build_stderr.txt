@@ -1,0 +1,18 @@
++ W=/home/hatch/workspace/qf35_work_20261019
++ LOCK=/home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt
++ WHEELS=/home/hatch/workspace/td_nl_wheelhouse_20261016/wheels
++ python3.12 --version
++ uname -a
++ python3.12 -m venv /home/hatch/workspace/qf35_work_20261019/venv
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python -m pip install --no-index --no-cache-dir --require-hashes -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt --find-links /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels
++ echo PIP_INSTALL_EXIT=0
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/pip freeze
++ sha256sum /home/hatch/workspace/qf35_work_20261019/freeze.txt
++ cat /home/hatch/workspace/qf35_work_20261019/freeze.txt
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python -c 'import urllib.request; urllib.request.urlopen('\''https://pypi.org/simple/'\'', timeout=5); print('\''NETWORK_PROBE_PY: CONNECTED — VIOLATION'\'')'
++ tail -1
++ curl -sS -m 5 https://example.com -o /dev/null
++ head -1
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python -c 'import socket; socket.create_connection(('\''1.1.1.1'\'', 443), timeout=5); print('\''NETWORK_PROBE_RAW: CONNECTED — VIOLATION'\'')'
++ tail -1
++ echo BUILD_PHASE_DONE

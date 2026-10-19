@@ -1,0 +1,124 @@
++ W=/home/hatch/workspace/qf35_work_20261019
++ PY=/home/hatch/workspace/qf35_work_20261019/venv/bin/python
++ for run in 1 2
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path A --start 2024-09-16 --end 2026-10-16 --out /home/hatch/workspace/qf35_work_20261019/out/emission_A_run1.json
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path C --start 2024-09-16 --end 2026-10-16 --out /home/hatch/workspace/qf35_work_20261019/out/emission_C_run1.json
+Traceback (most recent call last):
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 87, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 71, in main
+    sessions = emit_pmc(a.start, a.end) if a.path == "A" else emit_ec(a.start, a.end)
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 54, in emit_ec
+    if not (lo <= idx < hi):
+            ^^^^^^^^^^^^^^
+  File "timestamps.pyx", line 387, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
+TypeError: Cannot compare tz-naive and tz-aware timestamps
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path A --start 2024-01-01 --end 2024-12-31 --out /home/hatch/workspace/qf35_work_20261019/out/aux2024_A_run1.json
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path C --start 2024-01-01 --end 2024-12-31 --out /home/hatch/workspace/qf35_work_20261019/out/aux2024_C_run1.json
+Traceback (most recent call last):
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 87, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 71, in main
+    sessions = emit_pmc(a.start, a.end) if a.path == "A" else emit_ec(a.start, a.end)
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 54, in emit_ec
+    if not (lo <= idx < hi):
+            ^^^^^^^^^^^^^^
+  File "timestamps.pyx", line 387, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
+TypeError: Cannot compare tz-naive and tz-aware timestamps
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path A --start 2026-01-01 --end 2026-12-31 --out /home/hatch/workspace/qf35_work_20261019/out/aux2026_A_run1.json
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path C --start 2026-01-01 --end 2026-12-31 --out /home/hatch/workspace/qf35_work_20261019/out/aux2026_C_run1.json
+Traceback (most recent call last):
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 87, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 71, in main
+    sessions = emit_pmc(a.start, a.end) if a.path == "A" else emit_ec(a.start, a.end)
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 54, in emit_ec
+    if not (lo <= idx < hi):
+            ^^^^^^^^^^^^^^
+  File "timestamps.pyx", line 387, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
+TypeError: Cannot compare tz-naive and tz-aware timestamps
++ for run in 1 2
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path A --start 2024-09-16 --end 2026-10-16 --out /home/hatch/workspace/qf35_work_20261019/out/emission_A_run2.json
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path C --start 2024-09-16 --end 2026-10-16 --out /home/hatch/workspace/qf35_work_20261019/out/emission_C_run2.json
+Traceback (most recent call last):
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 87, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 71, in main
+    sessions = emit_pmc(a.start, a.end) if a.path == "A" else emit_ec(a.start, a.end)
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 54, in emit_ec
+    if not (lo <= idx < hi):
+            ^^^^^^^^^^^^^^
+  File "timestamps.pyx", line 387, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
+TypeError: Cannot compare tz-naive and tz-aware timestamps
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path A --start 2024-01-01 --end 2024-12-31 --out /home/hatch/workspace/qf35_work_20261019/out/aux2024_A_run2.json
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path C --start 2024-01-01 --end 2024-12-31 --out /home/hatch/workspace/qf35_work_20261019/out/aux2024_C_run2.json
+Traceback (most recent call last):
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 87, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 71, in main
+    sessions = emit_pmc(a.start, a.end) if a.path == "A" else emit_ec(a.start, a.end)
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 54, in emit_ec
+    if not (lo <= idx < hi):
+            ^^^^^^^^^^^^^^
+  File "timestamps.pyx", line 387, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
+TypeError: Cannot compare tz-naive and tz-aware timestamps
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path A --start 2026-01-01 --end 2026-12-31 --out /home/hatch/workspace/qf35_work_20261019/out/aux2026_A_run2.json
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/generator.py --path C --start 2026-01-01 --end 2026-12-31 --out /home/hatch/workspace/qf35_work_20261019/out/aux2026_C_run2.json
+Traceback (most recent call last):
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 87, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 71, in main
+    sessions = emit_pmc(a.start, a.end) if a.path == "A" else emit_ec(a.start, a.end)
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/generator.py", line 54, in emit_ec
+    if not (lo <= idx < hi):
+            ^^^^^^^^^^^^^^
+  File "timestamps.pyx", line 387, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
+TypeError: Cannot compare tz-naive and tz-aware timestamps
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/assemble.py /home/hatch/workspace/qf35_work_20261019/out/emission_A_run1.json /home/hatch/workspace/qf35_work_20261019/out/emission_C_run1.json /home/hatch/workspace/qf35_work_20261019/out/artifact_run1.json /home/hatch/workspace/qf35_work_20261019/out/agreement_run1.json
+Traceback (most recent call last):
+  File "/home/hatch/workspace/qf35_work_20261019/assemble.py", line 58, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/assemble.py", line 26, in main
+    C = {(s["date"], s["open"], s["close"]) for s in load(c_path)}
+                                                     ^^^^^^^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/assemble.py", line 19, in load
+    with open(path, "rb") as f:
+         ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/hatch/workspace/qf35_work_20261019/out/emission_C_run1.json'
++ echo ASSEMBLE1_EXIT=1
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python /home/hatch/workspace/qf35_work_20261019/assemble.py /home/hatch/workspace/qf35_work_20261019/out/emission_A_run2.json /home/hatch/workspace/qf35_work_20261019/out/emission_C_run2.json /home/hatch/workspace/qf35_work_20261019/out/artifact_run2.json /home/hatch/workspace/qf35_work_20261019/out/agreement_run2.json
+Traceback (most recent call last):
+  File "/home/hatch/workspace/qf35_work_20261019/assemble.py", line 58, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/assemble.py", line 26, in main
+    C = {(s["date"], s["open"], s["close"]) for s in load(c_path)}
+                                                     ^^^^^^^^^^^^
+  File "/home/hatch/workspace/qf35_work_20261019/assemble.py", line 19, in load
+    with open(path, "rb") as f:
+         ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/hatch/workspace/qf35_work_20261019/out/emission_C_run2.json'
++ echo ASSEMBLE2_EXIT=1
++ sha256sum /home/hatch/workspace/qf35_work_20261019/out/aux2024_A_run1.json /home/hatch/workspace/qf35_work_20261019/out/aux2024_A_run2.json /home/hatch/workspace/qf35_work_20261019/out/aux2026_A_run1.json /home/hatch/workspace/qf35_work_20261019/out/aux2026_A_run2.json /home/hatch/workspace/qf35_work_20261019/out/emission_A_run1.json /home/hatch/workspace/qf35_work_20261019/out/emission_A_run2.json
++ cmp /home/hatch/workspace/qf35_work_20261019/out/emission_A_run1.json /home/hatch/workspace/qf35_work_20261019/out/emission_A_run2.json
++ echo DET_A_IDENTICAL
++ cmp /home/hatch/workspace/qf35_work_20261019/out/emission_C_run1.json /home/hatch/workspace/qf35_work_20261019/out/emission_C_run2.json
+cmp: /home/hatch/workspace/qf35_work_20261019/out/emission_C_run1.json: No such file or directory
++ cmp /home/hatch/workspace/qf35_work_20261019/out/artifact_run1.json /home/hatch/workspace/qf35_work_20261019/out/artifact_run2.json
+cmp: /home/hatch/workspace/qf35_work_20261019/out/artifact_run1.json: No such file or directory
++ /home/hatch/workspace/qf35_work_20261019/venv/bin/python -c 'import socket; socket.create_connection(('\''1.1.1.1'\'', 443), timeout=5); print('\''NETWORK_PROBE: CONNECTED — VIOLATION'\'')'
++ tail -1
++ echo EMISSIONS_DONE
