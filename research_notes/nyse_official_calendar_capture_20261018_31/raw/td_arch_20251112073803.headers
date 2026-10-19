@@ -1,0 +1,43 @@
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 19 Oct 2026 04:07:48 GMT
+Content-Type: application/pdf
+X-location: _pdf
+X-sd: 0
+x-archive-orig-date: Wed, 12 Nov 2025 07:38:03 GMT
+x-archive-orig-content-length: 22382
+x-archive-orig-connection: close
+x-archive-orig-cf-ray: 99d45e1cbc9f1690-SJC
+x-archive-orig-last-modified: Mon, 30 Dec 2024 20:37:41 GMT
+x-archive-orig-etag: "576e-62a82c8b96199"
+x-archive-orig-cf-cache-status: REVALIDATED
+x-archive-orig-expires: Wed, 12 Nov 2025 07:43:03 GMT
+x-archive-orig-cache-control: public, max-age=300
+x-archive-orig-accept-ranges: bytes
+x-archive-orig-set-cookie: __cf_bm=K9.q232SsGlXIz76smGvxvLO27BXp8RHw2WoNBQZdq4-1762933083-1.0.1.1-7nd3FmLlroLEV4uaRbEnX7Pl1dOv9cq4SP36_RUo5W8h53aX7LBwh6j3SDfSzGT_nHyOB_H1yMaX7g_VspLEbHxWERmUCkNRXkIBXQoOXVw; path=/; expires=Wed, 12-Nov-25 08:08:03 GMT; domain=.nyse.com; HttpOnly; Secure; SameSite=None
+x-archive-orig-vary: Accept-Encoding
+x-archive-orig-server: cloudflare
+cache-control: max-age=1800
+cache-control: private
+accept-ranges: bytes
+memento-datetime: Wed, 12 Nov 2025 07:38:03 GMT
+link: <https://www.nyse.com/publicdocs/Trading_Days.pdf>; rel="original", <https://web.archive.org/web/timemap/link/https://www.nyse.com/publicdocs/Trading_Days.pdf>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/https://www.nyse.com/publicdocs/Trading_Days.pdf>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: GDELT-20251112065441-crawl843/GDELT-20251112072719-00006.warc.gz
+server-timing: captures_list;dur=0.355569, exclusion.robots;dur=0.038343, exclusion.robots.policy;dur=0.030498, esindex;dur=0.006347, cdx.remote;dur=66.667434, LoadShardBlock;dur=97.730712, PetaboxLoader3.datanode;dur=91.296723, PetaboxLoader3.resolve;dur=50.219093, load_resource;dur=72.309142
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=1
+Server-Timing: BYPASS
+x-app-server: wwwb-app220-dc8
+x-ts: 200
+x-tr: 249
+set-cookie: wb-p-SERVER=wwwb-app220; path=/
+X-RL: 0
+X-NA: 0
+X-Page-Cache: BYPASS
+X-NID: Sky UK Limited
+Referrer-Policy: no-referrer-when-downgrade
+Permissions-Policy: interest-cohort=()
+Content-Length: 22382
+

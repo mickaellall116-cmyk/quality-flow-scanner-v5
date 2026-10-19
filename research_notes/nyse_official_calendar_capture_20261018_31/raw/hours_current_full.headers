@@ -1,0 +1,30 @@
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 302 Found
+Date: Mon, 19 Oct 2026 04:07:36 GMT
+Content-Type: text/plain; charset=utf-8
+CF-RAY: a4cceab5cfdeb188-DEN
+Server: cloudflare
+Content-Security-Policy: default-src 'self';script-src 'self' 'unsafe-inline' 'unsafe-eval' *;style-src 'self' 'unsafe-inline' *;img-src 'self' data: blob: *;font-src 'self' data: *;connect-src 'self' *;media-src 'self' blob: *;frame-ancestors 'self' *.intcx.net *.paragonrels.com *.sigmacomputing.com *.bkfsconnect.com *.bkfstest.com *.opraplan.com *.theice.com *.ice.com *.nyse.com *.kcgbondpoint.com *.icedataservices.com *.appspace.com *.appspaceusercontent.com;frame-src *;worker-src 'self' blob: *;object-src 'self' *;manifest-src 'self' *;form-action 'self' https://*.theice.com https://*.intcx.net https://*.ice.com https://*.nyse.com https://*.kcgbondpoint.com https://*.icedataservices.com https://*.eloqua.com https://*.salesforce.com;upgrade-insecure-requests;base-uri 'self';script-src-attr 'none'
+Location: /trade/hours-calendars
+set-cookie: __cf_bm=Om.a4E41jAAA8rKZBx0eFe_E17JLYtLZ2grWTWa7HM8-1792382856.6063771-1.0.1.1-RgIFJH3LRJ0W2FIYvzfURLZYNYRf.PbX3yTwJreCWmIGqUeIQBzvSwC9N1bhIGkBZkEn_DZHT.wRq8ChGm1Udwp9OiIyrYuxMWKx10kkJOJgFO.w0WK25YYfKhsNj.te; HttpOnly; SameSite=None; Secure; Path=/; Domain=nyse.com; Expires=Mon, 19 Oct 2026 04:37:36 GMT
+Vary: Accept-Encoding
+expires: Mon, 19 Oct 2026 04:12:36 GMT
+Cache-Control: public, max-age=300
+cf-cache-status: EXPIRED
+Content-Length: 44
+
+HTTP/1.1 200 OK
+Date: Mon, 19 Oct 2026 04:07:36 GMT
+Content-Type: text/html; charset=utf-8
+CF-RAY: a4cceab81d2fb188-DEN
+Server: cloudflare
+Content-Security-Policy: default-src 'self';script-src 'self' 'unsafe-inline' 'unsafe-eval' *;style-src 'self' 'unsafe-inline' *;img-src 'self' data: blob: *;font-src 'self' data: *;connect-src 'self' *;media-src 'self' blob: *;frame-ancestors 'self' *.intcx.net *.paragonrels.com *.sigmacomputing.com *.bkfsconnect.com *.bkfstest.com *.opraplan.com *.theice.com *.ice.com *.nyse.com *.kcgbondpoint.com *.icedataservices.com *.appspace.com *.appspaceusercontent.com;frame-src *;worker-src 'self' blob: *;object-src 'self' *;manifest-src 'self' *;form-action 'self' https://*.theice.com https://*.intcx.net https://*.ice.com https://*.nyse.com https://*.kcgbondpoint.com https://*.icedataservices.com https://*.eloqua.com https://*.salesforce.com;upgrade-insecure-requests;base-uri 'self';script-src-attr 'none'
+Cache-Control: public, max-age=300
+set-cookie: __cf_bm=_icxCDYU6aUBy.YuDmo1YMUU65M3gs9xi1qr6DbHRVk-1792382856.9748874-1.0.1.1-gQ3qIk7zks93b6rXCvzRLDlVbEDpOMw0gOYczstuHDHSXWPElBQ4ijomDb8SGDiGBKZepT1fjNLpKjxqgJzA9WXinRvca1x4WLLBtd9ODJpTmGt7jmRHQ_wH676aJVVN; HttpOnly; SameSite=None; Secure; Path=/; Domain=nyse.com; Expires=Mon, 19 Oct 2026 04:37:36 GMT
+Vary: Accept-Encoding
+Age: 1493354
+expires: Mon, 19 Oct 2026 04:12:36 GMT
+cf-cache-status: HIT
+Transfer-Encoding: chunked
+

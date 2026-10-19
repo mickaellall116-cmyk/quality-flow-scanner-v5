@@ -1,0 +1,53 @@
+Trading days: 2025 Estimated
+Commodities, Other Financials (1)               US Cash Equities, US Equity Options   Interest Rates
+Jan              21                             Jan              20                   Jan              22
+Feb              19                             Feb              19                   Feb              20
+Mar              21 61                          Mar              21 60                Mar              21 63
+Apr              21                             Apr              21                   Apr              20
+May              21                             May              21                   May              22
+Jun              20 62                          Jun              20 62                Jun              21 63
+Jul              22                             Jul              22                   Jul              23
+Aug              21                             Aug              21                   Aug              21
+Sep              21 64                          Sep              21 64                Sep              22 66
+Oct              23                             Oct              23                   Oct              23
+Nov              19                             Nov              19                   Nov              20
+Dec              22 64                          Dec              22 64                Dec              22 65
+
+Total             251                           Total              250                Total            257
+
+Trading days: 2026 Estimated
+Commodities, Other Financials (1)               US Cash Equities, US Equity Options   Interest Rates
+Jan              20                             Jan              20                   Jan              21
+Feb              19                             Feb              19                   Feb              20
+Mar              22 61                          Mar              22 61                Mar              22 63
+Apr              21                             Apr              21                   Apr              20
+May              20                             May              20                   May              21
+Jun              21 62                          Jun              21 62                Jun              22 63
+Jul              23                             Jul              22                   Jul              23
+Aug              21                             Aug              21                   Aug              21
+Sep              21 65                          Sep              21 64                Sep              22 66
+Oct              22                             Oct              22                   Oct              22
+Nov              20                             Nov              20                   Nov              21
+Dec              22 64                          Dec              22 64                Dec              22 65
+
+Total             252                           Total              251                Total            257
+
+
+Trading days: 2027 Estimated
+Commodities, Other Financials (1)               US Cash Equities, US Equity Options   Interest Rates
+Jan              19                             Jan              19                   Jan              20
+Feb              19                             Feb              19                   Feb              20
+Mar              22 60                          Mar              22 60                Mar              21 61
+Apr              22                             Apr              22                   Apr              22
+May              20                             May              20                   May              21
+Jun              21 63                          Jun              21 63                Jun              22 65
+Jul              21                             Jul              21                   Jul              22
+Aug              22                             Aug              22                   Aug              22
+Sep              21 64                          Sep              21 64                Sep              22 66
+Oct              21                             Oct              21                   Oct              21
+Nov              21                             Nov              21                   Nov              22
+Dec              22 64                          Dec              22 64                Dec              22 65
+
+Total              251                            Total             251               Total            257
+(1) Includes all Energy, Agriculture, Metal, Equity Index and FX products
+

@@ -1,0 +1,39 @@
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 19 Oct 2026 04:07:47 GMT
+Content-Type: application/pdf
+X-location: _pdf
+X-sd: 0
+x-archive-orig-date: Mon, 02 Dec 2024 01:04:46 GMT
+x-archive-orig-content-length: 38718
+x-archive-orig-connection: close
+x-archive-orig-last-modified: Wed, 03 Jan 2024 15:10:59 GMT
+x-archive-orig-etag: "973e-60e0c05cac317"
+x-archive-orig-cf-cache-status: REVALIDATED
+x-archive-orig-accept-ranges: bytes
+x-archive-orig-server: cloudflare
+x-archive-orig-cf-ray: 8eb767a47e43fafc-SJC
+cache-control: max-age=1800
+cache-control: private
+accept-ranges: bytes
+memento-datetime: Mon, 02 Dec 2024 01:04:46 GMT
+link: <https://www.nyse.com/publicdocs/Trading_Days.pdf>; rel="original", <https://web.archive.org/web/timemap/link/https://www.nyse.com/publicdocs/Trading_Days.pdf>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/https://www.nyse.com/publicdocs/Trading_Days.pdf>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: ARCHIVEIT-7520-2024120511-00000/ARCHIVEIT-7520-MONTHLY-JOB2059351-SEED1132702-20241201160147781-00000-h3.warc.gz
+server-timing: captures_list;dur=0.458213, exclusion.robots;dur=0.042110, exclusion.robots.policy;dur=0.033368, esindex;dur=0.008415, cdx.remote;dur=10.757575, LoadShardBlock;dur=4026.725696, PetaboxLoader3.datanode;dur=40.102997, PetaboxLoader3.resolve;dur=259.534801, load_resource;dur=266.751564
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=0
+Server-Timing: BYPASS
+x-app-server: wwwb-app222-dc8
+x-ts: 200
+x-tr: 4317
+set-cookie: wb-p-SERVER=wwwb-app222; path=/
+X-RL: 0
+X-NA: 0
+X-Page-Cache: BYPASS
+X-NID: Sky UK Limited
+Referrer-Policy: no-referrer-when-downgrade
+Permissions-Policy: interest-cohort=()
+Content-Length: 38718
+

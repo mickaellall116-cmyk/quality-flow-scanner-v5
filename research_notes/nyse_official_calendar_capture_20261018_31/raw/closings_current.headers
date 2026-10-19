@@ -1,0 +1,15 @@
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 404 Not Found
+Date: Mon, 19 Oct 2026 04:07:37 GMT
+Content-Type: text/html; charset=utf-8
+CF-RAY: a4cceabd2bc6ea05-DFW
+Server: cloudflare
+Content-Security-Policy: default-src 'self';script-src 'self' 'unsafe-inline' 'unsafe-eval' *;style-src 'self' 'unsafe-inline' *;img-src 'self' data: blob: *;font-src 'self' data: *;connect-src 'self' *;media-src 'self' blob: *;frame-ancestors 'self' *.intcx.net *.paragonrels.com *.sigmacomputing.com *.bkfsconnect.com *.bkfstest.com *.opraplan.com *.theice.com *.ice.com *.nyse.com *.kcgbondpoint.com *.icedataservices.com *.appspace.com *.appspaceusercontent.com;frame-src *;worker-src 'self' blob: *;object-src 'self' *;manifest-src 'self' *;form-action 'self' https://*.theice.com https://*.intcx.net https://*.ice.com https://*.nyse.com https://*.kcgbondpoint.com https://*.icedataservices.com https://*.eloqua.com https://*.salesforce.com;upgrade-insecure-requests;base-uri 'self';script-src-attr 'none'
+Cache-Control: public, max-age=300
+set-cookie: __cf_bm=1L8D24DjkNt3k72Sy8SCatzwaAnfFPnHmQ.reHVD5e0-1792382857.7835767-1.0.1.1-0FXd_UrrRc6XtRBln8c90MG2LZT5wfOtmtmZ2E5ZnOtm9S_k7ISgC7Bbjz.zml6gdZ4Fdl8YQJWf7T57Xfe5XYqeblDx1yTntjXRQdTHUv7gdJWkFkknK3.zlOp6Frtt; HttpOnly; SameSite=None; Secure; Path=/; Domain=nyse.com; Expires=Mon, 19 Oct 2026 04:37:37 GMT
+Vary: Accept-Encoding
+expires: Mon, 19 Oct 2026 04:12:37 GMT
+cf-cache-status: EXPIRED
+Transfer-Encoding: chunked
+

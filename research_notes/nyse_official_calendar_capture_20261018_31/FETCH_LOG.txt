@@ -1,0 +1,20 @@
+QF-NYSE-OFFICIAL-CALENDAR-CAPTURE-20261018-31 r1 — fetch log
+All fetches: unauthenticated plain HTTP GET via curl with a normal browser UA. No logins, no API keys, no vendor calls, no bot-wall circumvention. Two passes were made (see memo incident note); every artifact was byte-identical across passes (SHA-256 verified), and only the second pass's bytes were packaged.
+
+PASS 1 (scratch, 2026-10-19T03:58:31Z–04:06Z):
+- GET https://api.github.com/repos/mickaellall116-cmyk/quality-flow-scanner-v5/issues/1/comments?per_page=100&page=1..4 (spec retrieval; spec comment 6259246088 found on page 4)
+- GET https://www.nyse.com/markets/hours-calendars -> 302 (44B stub), followed -> https://www.nyse.com/trade/hours-calendars 200, 109229B
+- GET https://www.nyse.com/pdfs/closings.pdf -> 404, 69105B text/html
+- CDX http://web.archive.org/cdx/search/cdx?url=nyse.com/pdfs/closings.pdf -> 46 captures (last 200 PDF: 2015)
+- CDX http://web.archive.org/cdx/search/cdx?url=nyse.com/markets/hours-calendars -> 512 captures
+- GET web.archive.org/web/20241217203242id_/https://www.nyse.com/markets/hours-calendars -> 200, 27575B (JS shell)
+- GET web.archive.org/web/20250109223733id_/https://www.nyse.com/markets/hours-calendars -> 200, 27724B (JS shell)
+- GET web.archive.org/web/20251230133134id_/https://www.nyse.com/markets/hours-calendars -> 200, 29573B (JS shell)
+- GET https://www.nyse.com/publicdocs/Trading_Days.pdf -> 200, 79739B application/pdf
+- CDX http://web.archive.org/cdx/search/cdx?url=nyse.com/publicdocs/Trading_Days.pdf -> captures 2016-2026, digest vintages Jan-2024 / Jan-2025 / Dec-2025
+- GET web.archive.org/web/20241202010446id_/https://www.nyse.com/publicdocs/Trading_Days.pdf -> 200, 38718B
+- GET web.archive.org/web/20251112073803id_/https://www.nyse.com/publicdocs/Trading_Days.pdf -> 200, 22382B
+
+PASS 2 (direct to package raw/, 2026-10-19T04:07:34Z–04:08Z): identical URL set for the 8 packaged artifacts; all byte lengths and SHA-256 hashes identical to pass 1 (see CAPTURE_RECEIPT.json).
+
+FAILURES / BLOCKS: none (no bot walls; the only non-200 was the expected closings.pdf 404 at the origin).

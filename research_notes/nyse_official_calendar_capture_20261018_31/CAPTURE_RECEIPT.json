@@ -1,0 +1,121 @@
+{
+  "task": "QF-NYSE-OFFICIAL-CALENDAR-CAPTURE-20261018-31 r1",
+  "frozen_interval": "[2024-09-16, 2026-10-16]",
+  "spec": "GitHub Issue #1 comment 6259246088 (fetched via public API list, page 4)",
+  "publisher": "NYSE Group, Inc. (NYSE/ICE); archive host: web.archive.org immutable captures of exact original URLs",
+  "fetch_method": "unauthenticated HTTP GET (curl, plain GET, browser UA); no login, no API keys, no vendor",
+  "retrieval_window_utc": "2026-10-19T03:58:31Z .. 2026-10-19T04:08Z (two passes; see incident note in memo \u2014 every artifact byte-identical across both passes)",
+  "verdict": "OFFICIAL_CALENDAR_SOURCE_COVERAGE_INCOMPLETE",
+  "artifacts": [
+    {
+      "file": "raw/hours_current_full.html",
+      "original_url": "https://www.nyse.com/markets/hours-calendars",
+      "retrieval_url": "https://www.nyse.com/trade/hours-calendars (origin 302 redirect, followed)",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 109229,
+      "sha256": "79602f7be5a8f1d39c2b1cac4dd02c4c07f18cf9f92d70602834069154719bad",
+      "classification": "PRIMARY_CURRENT",
+      "years_covered": [
+        2026,
+        2027,
+        2028
+      ],
+      "semantics": "NYSE 'Holidays & Trading Hours' page: regular hours (Core Trading Session 9:30 a.m. to 4:00 p.m. ET); dated full-day closure table per year; scheduled 13:00 ET early closes via table footnotes. In-interval year: 2026."
+    },
+    {
+      "file": "raw/trading_days_current.pdf",
+      "original_url": "https://www.nyse.com/publicdocs/Trading_Days.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 79739,
+      "sha256": "f90b6d08c4f3e82af53e6139837058abb7a1e7770ea6c716b1ab5dbcb413139f",
+      "classification": "PRIMARY_CURRENT",
+      "years_covered": [
+        2026,
+        2027,
+        2028
+      ],
+      "semantics": "monthly US Cash Equities trading-day COUNTS only; no dated closures, no early-close dates, no hours."
+    },
+    {
+      "file": "raw/td_arch_20241202010446.pdf",
+      "original_url": "https://www.nyse.com/publicdocs/Trading_Days.pdf",
+      "retrieval_url": "https://web.archive.org/web/20241202010446id_/https://www.nyse.com/publicdocs/Trading_Days.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 38718,
+      "sha256": "dd3491706421f635fcfc489a28146902e5056f7e75f4efef1eb6b06ea9da7803",
+      "classification": "PRIMARY_ARCHIVED",
+      "years_covered": [
+        2024,
+        2025,
+        2026
+      ],
+      "semantics": "monthly trading-day COUNTS only (US Cash Equities totals: 2024=252, 2025=251, 2026=251)."
+    },
+    {
+      "file": "raw/td_arch_20251112073803.pdf",
+      "original_url": "https://www.nyse.com/publicdocs/Trading_Days.pdf",
+      "retrieval_url": "https://web.archive.org/web/20251112073803id_/https://www.nyse.com/publicdocs/Trading_Days.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 22382,
+      "sha256": "414d2ed348c6e36fd9cb163f7d7ba6e7cb70d8d57c793db696cf1e4697f5cd87",
+      "classification": "PRIMARY_ARCHIVED",
+      "years_covered": [
+        2025,
+        2026,
+        2027
+      ],
+      "semantics": "monthly trading-day COUNTS only (2025 US Cash Equities total revised to 250 in this vintage vs 251 in the Dec-2024 vintage \u2014 January 2025 lost one session: the Jan 9, 2025 national-day-of-mourning closure, visible only as a count delta in official bytes; no dated statement captured)."
+    },
+    {
+      "file": "raw/hours_arch_20241217203242.html",
+      "original_url": "https://www.nyse.com/markets/hours-calendars",
+      "retrieval_url": "https://web.archive.org/web/20241217203242id_/https://www.nyse.com/markets/hours-calendars",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 27575,
+      "sha256": "59ca0143a07207b65c3b226f9fc9f55f0143f53f1a308be00461fdcd58adc767",
+      "classification": "PRIMARY_ARCHIVED",
+      "years_covered": [],
+      "semantics": "NONE \u2014 immutable capture is a JavaScript app shell; the holiday tables were client-rendered and are absent from the raw bytes (zero year/table content; grep for Thanksgiving/holiday = 0). Kept as route evidence."
+    },
+    {
+      "file": "raw/hours_arch_20250109223733.html",
+      "original_url": "https://www.nyse.com/markets/hours-calendars",
+      "retrieval_url": "https://web.archive.org/web/20250109223733id_/https://www.nyse.com/markets/hours-calendars",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 27724,
+      "sha256": "b0b77a2be1554c1653cd7378c4efffd876e119a420b1ba0c0ec43b14fb3dce22",
+      "classification": "PRIMARY_ARCHIVED",
+      "years_covered": [],
+      "semantics": "NONE \u2014 JS shell, same finding."
+    },
+    {
+      "file": "raw/hours_arch_20251230133134.html",
+      "original_url": "https://www.nyse.com/markets/hours-calendars",
+      "retrieval_url": "https://web.archive.org/web/20251230133134id_/https://www.nyse.com/markets/hours-calendars",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 29573,
+      "sha256": "3faf3a5b64cb940b64e466bca14062d0be3fdb5913e78ac1382729e14c540c9a",
+      "classification": "PRIMARY_ARCHIVED",
+      "years_covered": [],
+      "semantics": "NONE \u2014 JS shell, same finding."
+    },
+    {
+      "file": "raw/closings_current.bin",
+      "original_url": "https://www.nyse.com/pdfs/closings.pdf",
+      "http_status": 404,
+      "content_type": "text/html",
+      "bytes": 69105,
+      "sha256": "a16086b47be2e1ba17f5b87083a88a18ab0eec598b6bdca78c2ee2561263494d",
+      "classification": "MISSING",
+      "years_covered": [],
+      "semantics": "Legacy official closings document: origin URL retired (404). Wayback CDX lists 46 captures; the last 200-status PDF capture is from 2015, whose vintage cannot state 2024-2026 semantics. No qualifying archived capture exists; the document's functional successor (Trading_Days.pdf) carries counts only. Error-page bytes retained as the attempt record."
+    }
+  ]
+}

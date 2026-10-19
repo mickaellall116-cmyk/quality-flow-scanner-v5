@@ -1,0 +1,43 @@
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 19 Oct 2026 04:07:41 GMT
+Content-Type: text/html;charset=UTF-8
+X-sd: 0
+Permissions-Policy: interest-cohort=()
+x-archive-orig-date: Thu, 09 Jan 2025 22:37:33 GMT
+x-archive-orig-transfer-encoding: chunked
+x-archive-orig-connection: keep-alive
+x-archive-orig-vary: Accept-Encoding
+x-archive-orig-cf-cache-status: HIT
+x-archive-orig-age: 1242041
+x-archive-orig-last-modified: Thu, 26 Dec 2024 13:36:52 GMT
+x-archive-orig-expires: Thu, 09 Jan 2025 22:42:33 GMT
+x-archive-orig-cache-control: public, max-age=300
+x-archive-orig-server: cloudflare
+x-archive-orig-cf-ray: 8ff7e99baaf9250c-SJC
+content-encoding: gzip
+cache-control: max-age=1800
+cache-control: private
+accept-ranges: bytes
+memento-datetime: Thu, 09 Jan 2025 22:37:33 GMT
+link: <https://www.nyse.com/markets/hours-calendars>; rel="original", <https://web.archive.org/web/timemap/link/https://www.nyse.com/markets/hours-calendars>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/https://www.nyse.com/markets/hours-calendars>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: spn2-20250109224356/spn2-20250109214823-wwwb-spn31.us.archive.org-8005.warc.gz
+server-timing: captures_list;dur=0.540199, exclusion.robots;dur=0.058957, exclusion.robots.policy;dur=0.045472, esindex;dur=0.012184, cdx.remote;dur=35.289339, LoadShardBlock;dur=223.113021, PetaboxLoader3.datanode;dur=268.669245, PetaboxLoader3.resolve;dur=85.358766, load_resource;dur=160.892302
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=5
+Server-Timing: MISS
+x-app-server: wwwb-app262-dc8
+x-ts: 200
+x-tr: 472
+set-cookie: wb-p-SERVER=wwwb-app262; path=/
+X-location: All
+X-AS: 5607
+X-RL: 0
+X-NA: 0
+X-Page-Cache: MISS
+X-NID: Sky UK Limited
+Referrer-Policy: no-referrer-when-downgrade
+Transfer-Encoding: chunked
+

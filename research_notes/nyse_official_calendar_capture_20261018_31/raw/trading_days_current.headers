@@ -1,0 +1,16 @@
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Date: Mon, 19 Oct 2026 04:07:38 GMT
+Content-Type: application/pdf
+CF-RAY: a4cceac31ebfaded-EWR
+Server: cloudflare
+Last-Modified: Tue, 23 Dec 2025 12:58:19 GMT
+etag: "1377b-6469e190cce08"
+Accept-Ranges: bytes
+set-cookie: __cf_bm=cqyIJO1NMpGQfCtPtBtAREgmNnBNTB.5g399rPdaDSQ-1792382858.739981-1.0.1.1-E38iDC33KN9FkVS.6ju60rTiBpCXLZ0XNQGcktUe.du4Hi18.bNpDfEvxjnUpJeLZR.6U.EOMojkVZUun1CgHtkhMOMwbQ8H7v2AMv_wff1qws1ohCs8v1TdF5v2P8se; HttpOnly; SameSite=None; Secure; Path=/; Domain=nyse.com; Expires=Mon, 19 Oct 2026 04:37:38 GMT
+expires: Mon, 19 Oct 2026 04:12:38 GMT
+Cache-Control: public, max-age=300
+cf-cache-status: REVALIDATED
+Content-Length: 79739
+

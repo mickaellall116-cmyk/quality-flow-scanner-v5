@@ -1,0 +1,44 @@
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 19 Oct 2026 04:07:42 GMT
+Content-Type: text/html;charset=UTF-8
+X-sd: 0
+Permissions-Policy: interest-cohort=()
+x-archive-orig-date: Tue, 30 Dec 2025 13:31:34 GMT
+x-archive-orig-transfer-encoding: chunked
+x-archive-orig-connection: close
+content-encoding: gzip
+x-archive-orig-cache-control: public, max-age=300
+x-archive-orig-vary: Accept-Encoding
+x-archive-orig-age: 253743
+x-archive-orig-expires: Tue, 30 Dec 2025 13:36:34 GMT
+x-archive-orig-cf-cache-status: HIT
+x-archive-orig-last-modified: Sat, 27 Dec 2025 15:02:30 GMT
+x-archive-orig-set-cookie: __cf_bm=zsLjuM67Zy77ReyAcJX6hB6eNRflHSyNE56mGLsYzXs-1767101494-1.0.1.1-FW5GG3o8B5b86_Z10QLAuPAQR4vK3LkWSImlytviyxEbDcpVH8hOFDlba9TvdDLWfU459gNcfMCUmE_OT15CncxN7EGxc1ew590gtPTzOuw; path=/; expires=Tue, 30-Dec-25 14:01:34 GMT; domain=.nyse.com; HttpOnly; Secure; SameSite=None
+x-archive-orig-server: cloudflare
+x-archive-orig-cf-ray: 9b61e5f2199accb8-SJC
+cache-control: max-age=1800
+cache-control: private
+accept-ranges: bytes
+memento-datetime: Tue, 30 Dec 2025 13:31:34 GMT
+link: <https://www.nyse.com/markets/hours-calendars>; rel="original", <https://web.archive.org/web/timemap/link/https://www.nyse.com/markets/hours-calendars>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/https://www.nyse.com/markets/hours-calendars>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: SPNOUTLINKS-20251230132308424-00409-hq23/SPNOUTLINKS-20251230133033122-00442-crawl.warc.gz
+server-timing: captures_list;dur=0.411734, exclusion.robots;dur=0.042317, exclusion.robots.policy;dur=0.033751, esindex;dur=0.006792, cdx.remote;dur=14.454780, LoadShardBlock;dur=351.987700, PetaboxLoader3.datanode;dur=90.244375, PetaboxLoader3.resolve;dur=113.696978, load_resource;dur=119.737167
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=0
+Server-Timing: MISS
+x-app-server: wwwb-app265-dc8
+x-ts: 200
+x-tr: 523
+set-cookie: wb-p-SERVER=wwwb-app265; path=/
+X-location: All
+X-AS: 5607
+X-RL: 0
+X-NA: 0
+X-Page-Cache: MISS
+X-NID: Sky UK Limited
+Referrer-Policy: no-referrer-when-downgrade
+Transfer-Encoding: chunked
+
