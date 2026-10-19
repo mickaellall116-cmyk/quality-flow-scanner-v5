@@ -1,0 +1,315 @@
+--- ../validation_fold_early_close_20261018_27/fold_materializer_v2.py	2026-10-18 22:31:46.831708751 +0000
++++ fold_materializer_v3.py	2026-10-19 00:06:16.698550317 +0000
+@@ -1,44 +1,58 @@
+-"""Timestamp-only walk-forward fold-calendar materializer v2.
++"""Timestamp-only walk-forward fold-calendar materializer v3.
+ 
+-Supersedes ONLY the schedule/grid clauses of fold_materializer r1
+-(SHA-256 b58194b40b8871581af5aa1135243630b557037917ec76d300579871707c1a4e,
+-preserved unedited) per PREREGISTRATION AMENDMENT V3 (task
+-QF-FOLD-EARLY-CLOSE-CONTRACT-20261018-27 r1, Issue #1 comment 6255676888).
+-Failure key closed: FOLD_EARLY_CLOSE_GRID_CONFLICT.
+-
+-Contract change versus r1: r1 required every session to carry exactly the
+-two grid bars 09:30 and 13:30, so a legitimate XNYS 13:00 early close --
+-whose canonical resampler correctly yields only the 09:30 partial 4H bar --
+-was falsely rejected as BAD_GRID. v2 instead derives the expected bar
+-anchors MECHANICALLY from a separate PINNED exchange-schedule artifact:
+-
+-  - include anchor 09:30 when the session's regular close is after 09:30;
+-  - include anchor 13:30 only when the regular close is after 13:30;
+-  - therefore an official 13:00 close expects exactly one 09:30 bar and
+-    still counts as exactly one fold session.
+-
+-Rules that may never be violated:
+-  - a second bar is NEVER fabricated;
+-  - an early close is NEVER inferred from missing data -- it exists only
+-    because the pinned schedule declares that session's regular close;
+-  - an early-close session is NEVER treated as a holiday;
+-  - a missing or extra bar versus the pinned schedule fails closed;
+-  - an absent or unpinned (SHA-256 mismatched) schedule fails closed.
+-
+-The pinned schedule artifact is the SOLE calendar authority in v2: a
+-weekday absent from it is definitionally a non-session (holiday/closure),
+-subsuming r1's declared-holiday input and its UNRESOLVED_GAP check, while
+-any bar on an unscheduled date fails closed (SESSION_NOT_IN_SCHEDULE).
++Supersedes ONLY the calendar-span completeness clauses of
++fold_materializer v2 (SHA-256
++b969fc852c074e771a339da8bcf3ad79abd597c0b2e7c933b31fe8ae06bbc35b,
++preserved unedited), which itself superseded the schedule/grid clauses
++of fold_materializer r1 (SHA-256
++b58194b40b8871581af5aa1135243630b557037917ec76d300579871707c1a4e,
++preserved unedited), per PREREGISTRATION AMENDMENT V4 (task
++QF-FOLD-CALENDAR-COVERAGE-BOUNDARY-20261018-28 r1, Issue #1 comment
++6256681829). Failure key closed: FOLD_DEV_PREFIX_SUFFIX_NOT_BOUND.
++
++Contract change versus v2: v2 established which scheduled sessions must
++be present INSIDE the span delimited by the first and last supplied bar
++dates, but it never bound that span to the frozen development interval.
++A silently truncated input beginning after 2024-09-16 -- or ending
++before the intended as-of boundary -- could therefore pass and produce
++shifted folds. A SHA-256 pin makes the supplied schedule immutable; it
++does not prove requested-interval completeness.
++
++v3 adds the frozen coverage-boundary contract:
++
++  - the schedule artifact kind becomes XNYS_SESSION_SCHEDULE_V2 and
++    additionally carries exchange (exactly "XNYS"), timezone (exactly
++    "America/New_York"), coverage_start (frozen: exactly 2024-09-16),
++    and coverage_end (a separately supplied, pre-outcome as-of boundary
++    fixed by the artifact's own SHA-256 pin and committed before any
++    OHLC/outcome/performance field exists);
++  - the closed requested interval is [coverage_start, coverage_end];
++    the first required session is the first scheduled session on/after
++    coverage_start and the last required session is the last scheduled
++    session on/before coverage_end -- endpoints map through the pinned
++    schedule only, never inferred from bar data;
++  - supplied bars must cover EVERY scheduled session in the closed
++    interval: a missing prefix fails COVERAGE_PREFIX_MISSING, a missing
++    interior session fails COVERAGE_INTERIOR_MISSING, a missing suffix
++    fails COVERAGE_SUFFIX_MISSING, a bar past the frozen coverage_end
++    fails COVERAGE_OVERSHOOT, and a schedule artifact listing no session
++    inside its own declared coverage interval fails
++    SCHEDULE_COVERAGE_DEFICIT;
++  - all v2 early-close rules, schedule-pin checks, holdout exclusion
++    and 252/63 fold logic are retained unchanged.
++
++Scope limit: this proves consumer interval completeness relative to the
++pinned artifact only. Authenticity/completeness of a REAL exchange
++schedule remains a separate qualified-source gate; fixtures cannot
++prove it.
+ 
+ Input remains timestamp-only plus the schedule artifact bytes and their
+-expected SHA-256 pin. No parameter or code path accepts a price, quantity,
+-outcome, or performance value. Pure standard library; no
+-pandas_market_calendars dependency. Runtime generation of a real schedule
+-artifact is a later qualified-data input step; this module is only the
+-frozen artifact contract and its deterministic consumer.
++expected SHA-256 pin. No parameter or code path accepts a price,
++quantity, outcome, or performance value. Pure standard library; no
++pandas_market_calendars dependency.
+ 
+-Fail-closed: any violation raises MaterializerError with a named code and
+-no output is produced.
++Fail-closed: any violation raises MaterializerError with a named code
++and no output is produced.
+ """
+ 
+ import hashlib
+@@ -48,10 +62,13 @@
+ HOLDOUT_START = date(2023, 10, 19)
+ HOLDOUT_END = date(2024, 9, 15)
+ DEV_START = date(2024, 9, 16)
++COVERAGE_START = DEV_START
++REQUIRED_EXCHANGE = "XNYS"
++REQUIRED_TIMEZONE = "America/New_York"
+ ANCHOR_TIMES = ("09:30", "13:30")
+ MIN_TRAIN_SESSIONS = 252
+ OOS_BLOCK_SESSIONS = 63
+-SCHEDULE_ARTIFACT_KIND = "XNYS_SESSION_SCHEDULE_V1"
++SCHEDULE_ARTIFACT_KIND = "XNYS_SESSION_SCHEDULE_V2"
+ 
+ 
+ class MaterializerError(Exception):
+@@ -64,7 +81,7 @@
+     """Mechanically derive a session's expected bar anchors from its
+     regular close time ("HH:MM"): 09:30 iff close is after 09:30; 13:30
+     iff close is after 13:30. String comparison is exact for zero-padded
+-    HH:MM values."""
++    HH:MM values. (Retained unchanged from v2.)"""
+     anchors = []
+     if regular_close > "09:30":
+         anchors.append("09:30")
+@@ -83,9 +100,24 @@
+     return 0 <= h <= 23 and 0 <= m <= 59
+ 
+ 
++def _parse_date_field(value, field):
++    if not isinstance(value, str):
++        raise MaterializerError(
++            "SCHEDULE_MALFORMED", f"{field} must be an ISO date string: {value!r}"
++        )
++    try:
++        y, m, d = (int(p) for p in value.split("-"))
++        return date(y, m, d)
++    except Exception:
++        raise MaterializerError(
++            "SCHEDULE_MALFORMED", f"unparseable {field}: {value!r}"
++        )
++
++
+ def _parse_schedule(schedule_bytes, schedule_sha256):
+     """Validate the pinned schedule artifact. Returns (sessions, meta)
+-    where sessions maps date -> {"open": str, "close": str}."""
++    where sessions maps date -> {"open": str, "close": str} and meta
++    carries the V2 coverage fields."""
+     if schedule_bytes is None or schedule_sha256 is None:
+         raise MaterializerError(
+             "SCHEDULE_MISSING", "a pinned exchange-schedule artifact is required"
+@@ -108,6 +140,28 @@
+     source, version = doc.get("source"), doc.get("version")
+     if not isinstance(source, str) or not source or not isinstance(version, str) or not version:
+         raise MaterializerError("SCHEDULE_MALFORMED", "source/version must be non-empty strings")
++    if doc.get("exchange") != REQUIRED_EXCHANGE:
++        raise MaterializerError(
++            "SCHEDULE_MALFORMED",
++            f"exchange must be {REQUIRED_EXCHANGE}: {doc.get('exchange')!r}",
++        )
++    if doc.get("timezone") != REQUIRED_TIMEZONE:
++        raise MaterializerError(
++            "SCHEDULE_MALFORMED",
++            f"timezone must be {REQUIRED_TIMEZONE}: {doc.get('timezone')!r}",
++        )
++    coverage_start = _parse_date_field(doc.get("coverage_start"), "coverage_start")
++    if coverage_start != COVERAGE_START:
++        raise MaterializerError(
++            "SCHEDULE_MALFORMED",
++            f"coverage_start is frozen at {COVERAGE_START}: got {coverage_start}",
++        )
++    coverage_end = _parse_date_field(doc.get("coverage_end"), "coverage_end")
++    if coverage_end < coverage_start:
++        raise MaterializerError(
++            "SCHEDULE_MALFORMED",
++            f"coverage_end {coverage_end} before coverage_start {coverage_start}",
++        )
+     raw_sessions = doc.get("sessions")
+     if not isinstance(raw_sessions, list) or not raw_sessions:
+         raise MaterializerError("SCHEDULE_MALFORMED", "sessions must be a non-empty list")
+@@ -132,7 +186,12 @@
+         if day in sessions:
+             raise MaterializerError("SCHEDULE_MALFORMED", f"duplicate schedule session: {day}")
+         sessions[day] = {"open": open_s, "close": close_s}
+-    return sessions, {"source": source, "version": version}
++    return sessions, {
++        "source": source,
++        "version": version,
++        "coverage_start": coverage_start,
++        "coverage_end": coverage_end,
++    }
+ 
+ 
+ def _parse_ts(ts):
+@@ -153,11 +212,14 @@
+     """Materialize fold boundaries from bar timestamps + pinned schedule.
+ 
+     timestamps: list of "YYYY-MM-DDTHH:MM" strings (America/New_York local).
+-    schedule_bytes: canonical bytes of the pinned schedule artifact.
++    schedule_bytes: canonical bytes of the pinned XNYS_SESSION_SCHEDULE_V2
++    artifact (carries the frozen coverage bounds).
+     schedule_sha256: expected SHA-256 hex digest of schedule_bytes (the pin).
+     Returns a dict; serialization via canonical_json() is deterministic.
+     """
+     sessions, meta = _parse_schedule(schedule_bytes, schedule_sha256)
++    coverage_start = meta["coverage_start"]
++    coverage_end = meta["coverage_end"]
+ 
+     parsed = [_parse_ts(ts) for ts in timestamps]
+ 
+@@ -175,6 +237,20 @@
+         bars.setdefault(day, []).append(time_s)
+     days = sorted(bars)
+ 
++    # Map the closed requested interval [coverage_start, coverage_end]
++    # to required sessions through the pinned schedule ONLY, before any
++    # bar-side check: an artifact that does not cover what it declares
++    # fails closed at the artifact, not at the bars.
++    scheduled_days = sorted(sessions)
++    required = [d for d in scheduled_days if coverage_start <= d <= coverage_end]
++    if not required:
++        raise MaterializerError(
++            "SCHEDULE_COVERAGE_DEFICIT",
++            f"pinned schedule lists no session inside its declared coverage "
++            f"interval [{coverage_start}, {coverage_end}]",
++        )
++    first_required, last_required = required[0], required[-1]
++
+     for day in days:
+         if HOLDOUT_START <= day <= HOLDOUT_END:
+             raise MaterializerError("HOLDOUT_TOUCH", f"session inside sealed holdout window: {day}")
+@@ -188,6 +264,48 @@
+                 f"bar date {day} absent from pinned schedule; never infer a session, "
+                 "early close, or holiday from bar data",
+             )
++
++    # Boundary completeness against the required sessions. (The artifact
++    # side of the deficit -- an artifact listing no session inside its
++    # own declared bounds -- already failed closed above; a schedule
++    # cannot otherwise be incomplete "relative to itself", because the
++    # pinned schedule is by definition the session authority. What the
++    # frozen bounds add is completeness of the BAR side, checked here.)
++    if days:
++        if days[0] != first_required:
++            if days[0] > first_required:
++                raise MaterializerError(
++                    "COVERAGE_PREFIX_MISSING",
++                    f"first bar date {days[0]} is after the first required session "
++                    f"{first_required} (coverage_start {coverage_start}); a truncated "
++                    "prefix must never silently shift the folds",
++                )
++        if days[-1] != last_required:
++            if days[-1] < last_required:
++                raise MaterializerError(
++                    "COVERAGE_SUFFIX_MISSING",
++                    f"last bar date {days[-1]} is before the last required session "
++                    f"{last_required} (coverage_end {coverage_end}); a truncated "
++                    "suffix must never silently shift the folds",
++                )
++            if days[-1] > last_required:
++                raise MaterializerError(
++                    "COVERAGE_OVERSHOOT",
++                    f"bar date {days[-1]} is past the last required session "
++                    f"{last_required} (coverage_end {coverage_end}); the as-of "
++                    "boundary is frozen pre-outcome and may not be extended by data",
++                )
++
++    # Interior completeness + per-session anchor conformance against the
++    # pinned schedule (Amendment v3 rules retained).
++    for day in required:
++        if day not in bars:
++            raise MaterializerError(
++                "COVERAGE_INTERIOR_MISSING",
++                f"scheduled session {day} (regular close {sessions[day]['close']}) "
++                "inside the coverage interval has no bars; a missing interior "
++                "session fails closed rather than being silently dropped",
++            )
+         expected = expected_anchors(sessions[day]["close"])
+         actual = sorted(bars[day])
+         if actual != expected:
+@@ -199,19 +317,6 @@
+                 f"missing bars {missing}, extra bars {extra}; never fabricate or infer",
+             )
+ 
+-    # Every pinned schedule session inside the supplied calendar span must
+-    # be fully present; a scheduled session with no bars at all fails
+-    # closed rather than being silently dropped from the fold calendar.
+-    if days:
+-        for day in sorted(sessions):
+-            if days[0] <= day <= days[-1] and day not in bars:
+-                raise MaterializerError(
+-                    "SCHEDULE_BAR_MISMATCH",
+-                    f"scheduled session {day} (regular close {sessions[day]['close']}) "
+-                    "has no bars; missing bars [] vs expected "
+-                    f"{expected_anchors(sessions[day]['close'])}",
+-                )
+-
+     n = len(days)
+     if n < MIN_TRAIN_SESSIONS + OOS_BLOCK_SESSIONS:
+         raise MaterializerError(
+@@ -245,12 +350,16 @@
+     ]
+ 
+     return {
+-        "materializer": "fold_materializer v2 (PREREGISTRATION_20261018_25 s1 as superseded by AMENDMENT_V3_20261018_27)",
++        "materializer": "fold_materializer v3 (PREREGISTRATION_20261018_25 s1 as superseded by AMENDMENT_V3_20261018_27 and AMENDMENT_V4_20261018_28)",
+         "input_timestamp_digest": hashlib.sha256("\n".join(timestamps).encode()).hexdigest(),
+         "calendar_digest": hashlib.sha256("\n".join(d.isoformat() for d in days).encode()).hexdigest(),
+         "schedule_sha256": schedule_sha256,
+         "schedule_source": meta["source"],
+         "schedule_version": meta["version"],
++        "coverage_start": coverage_start.isoformat(),
++        "coverage_end": coverage_end.isoformat(),
++        "coverage_first_session": first_required.isoformat(),
++        "coverage_last_session": last_required.isoformat(),
+         "session_count": n,
+         "early_close_sessions": early_close_sessions,
+         "holdout_window_excluded": f"{HOLDOUT_START.isoformat()}..{HOLDOUT_END.isoformat()}",
