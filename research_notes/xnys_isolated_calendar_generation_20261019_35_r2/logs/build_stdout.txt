@@ -1,0 +1,31 @@
+== network probes (all must FAIL) ==
+urllib.error.URLError: <urlopen error [Errno -3] Temporary failure in name resolution>
+curl: (6) Could not resolve host: pypi.org
+OSError: [Errno 101] Network is unreachable
+== venv build ==
+Looking in links: /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/pandas_market_calendars-4.5.1-py3-none-any.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 11))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/exchange_calendars-4.13.2-py3-none-any.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 12))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 13))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 14))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/python_dateutil-2.9.0-py2.py3-none-any.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 15))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/pytz-2024.2-py2.py3-none-any.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 16))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/tzdata-2026.5-py2.py3-none-any.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 17))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/pyluach-2.3.0-py3-none-any.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 18))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/toolz-1.2.0-py3-none-any.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 19))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/korean_lunar_calendar-0.4.0-py3-none-any.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 20))
+Processing /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels/six-1.17.0-py2.py3-none-any.whl (from -r /home/hatch/workspace/quality-flow-scanner-v5/research_notes/qualified_calendar_env_route_preflight_20261018_29/PROPOSED_HASH_LOCK.txt (line 21))
+Installing collected packages: pytz, tzdata, toolz, six, pyluach, numpy, korean_lunar_calendar, python-dateutil, pandas, exchange_calendars, pandas_market_calendars
+Successfully installed exchange_calendars-4.13.2 korean_lunar_calendar-0.4.0 numpy-1.26.4 pandas-2.2.3 pandas_market_calendars-4.5.1 pyluach-2.3.0 python-dateutil-2.9.0 pytz-2024.2 six-1.17.0 toolz-1.2.0 tzdata-2026.5
+freeze sha256: 08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068
+== installed member pins ==
+PASS PMC calendar_registry.py pandas_market_calendars/calendar_registry.py
+PASS PMC calendars/nyse.py pandas_market_calendars/calendars/nyse.py
+PASS PMC holidays/nyse.py pandas_market_calendars/holidays/nyse.py
+PASS PMC METADATA pandas_market_calendars-4.5.1.dist-info/METADATA
+PASS EC calendar_utils.py exchange_calendars/calendar_utils.py
+PASS EC exchange_calendar_xnys.py exchange_calendars/exchange_calendar_xnys.py
+PASS EC us_holidays.py exchange_calendars/us_holidays.py
+PASS EC METADATA exchange_calendars-4.13.2.dist-info/METADATA
+members 8/8
+BUILD_OK

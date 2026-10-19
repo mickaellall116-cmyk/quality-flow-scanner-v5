@@ -1,0 +1,17 @@
+== network probe in emissions context (must FAIL) ==
+OSError: [Errno 101] Network is unreachable
+path=A window=2024-09-16..2026-10-16 sessions=524
+path=C window=2024-09-16..2026-10-16 sessions=524
+path=A window=2024-01-01..2024-12-31 sessions=252
+path=C window=2024-01-01..2024-12-31 sessions=252
+path=A window=2026-01-01..2026-12-31 sessions=251
+path=C window=2026-01-01..2026-12-31 sessions=251
+AGREE sessions=524 artifact_sha256=3358f2d9cc233142f0927d3a16c3a353e935ed4310c563ac046352dcf75d2b88 bytes=28046
+path=A window=2024-09-16..2026-10-16 sessions=524
+path=C window=2024-09-16..2026-10-16 sessions=524
+path=A window=2024-01-01..2024-12-31 sessions=252
+path=C window=2024-01-01..2024-12-31 sessions=252
+path=A window=2026-01-01..2026-12-31 sessions=251
+path=C window=2026-01-01..2026-12-31 sessions=251
+AGREE sessions=524 artifact_sha256=3358f2d9cc233142f0927d3a16c3a353e935ed4310c563ac046352dcf75d2b88 bytes=28046
+EMISSIONS_OK
