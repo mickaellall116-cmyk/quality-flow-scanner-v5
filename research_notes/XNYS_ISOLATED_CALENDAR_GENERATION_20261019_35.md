@@ -35,7 +35,7 @@ ChatGPT independently inspects the pinned bytes and adjudicates.
   timestamps — no `SCHEDULE_*` error, coverage first/last = 2024-09-16 /
   2026-10-16, 4 folds materialized.
 - **Pre-flight:** 9/9 primary-source hashes, lock hash, wheelhouse manifest
-  all exact before any install. Elapsed ~6 min of 60; repair ~2 min.
+  all exact before any install. Elapsed ~5 min of 60; repair ~2 min.
 
 ## Disclosed repairs (full detail in the receipt, §11)
 

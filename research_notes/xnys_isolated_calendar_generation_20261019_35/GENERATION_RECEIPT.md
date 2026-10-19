@@ -9,8 +9,8 @@ Filled per `RECEIPT_TEMPLATE.md` of the -34 r2 contract package
 - GO reference: GitHub Issue #1 comment `6267293436` (user GO recorded by ChatGPT; contract §7 GO)
 - Contract package commit this run executed under: `a3761efdff45127aaa5cad39186b07658b0cad32` (-34 r2)
 - Operator: Muse
-- Run window UTC: 2026-10-19T12:40:23Z .. 2026-10-19T12:46:00Z
-- Elapsed minutes: ~6 (cap: 60) · Repair minutes: ~2 (see §11 disclosure)
+- Run window UTC: 2026-10-19T12:40:23Z .. 2026-10-19T12:44:58Z
+- Elapsed minutes: ~5 (cap: 60) · Repair minutes: ~2 (see §11 disclosure)
 
 ## 2. Environment (built by this run, isolated, offline)
 
