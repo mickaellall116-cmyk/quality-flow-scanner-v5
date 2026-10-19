@@ -2,7 +2,7 @@
   "observer": "AI-OBS-v1",
   "prompt_version": "v1",
   "prompt_sha256_12": "aa2be78ff445",
-  "assessment_count": 36,
+  "assessment_count": 37,
   "assessments": [
     {
       "observer": "AI-OBS-v1",
@@ -2255,7 +2255,70 @@
         "plus1r_ref_price": 216.3028
       },
       "assessed_at": "2026-10-16T20:50:47.736019+00:00"
+    },
+    {
+      "observer": "AI-OBS-v1",
+      "prompt_version": "v1",
+      "signal_id": "v54:MSFT:4h:2026-10-19T10:30:00-04:00:2026-09-15-v54",
+      "classification": "CAUTION",
+      "confidence": 62,
+      "reasons": [
+        "Market gate is BLOCK with regime RISK-OFF, and V5.3 would veto the setup with its own entry only WATCH, a direct regime headwind despite the PULLBACK BUY structure.",
+        "15m confirmation is false with low 15m rel_vol 0.426, so there is no short-term confirmation at the signal close.",
+        "Offsetting positives: daily and weekly trends are both confirmed, price 533.97 is above VWAP and above EMA21 533.70, EMA55 524.69 and EMA200 489.58, protection is SAFE, and ADX is 23.50.",
+        "R:R is a strong 2.543 to TP1 552.33 with price inside the 530.86-536.54 buy zone and 4H rel_vol 1.255, but price is fractionally below EMA9 534.03."
+      ],
+      "primary_risk": "The BLOCK / RISK-OFF market regime could overwhelm the confirmed individual trend and drive price through the 526.76 structural stop before TP1 is reached.",
+      "invalidation": "A sustained move above EMA9 with expanding volume and improving market-gate conditions despite the risk-off regime would show the regime headwind was not decisive for this setup.",
+      "timing": "MATURE",
+      "features": {
+        "symbol": "MSFT",
+        "theme": "Forward-UX51",
+        "timeframe": "4h",
+        "signal_bar_start_at": "2026-10-19T06:30:00-04:00",
+        "signal_bar_close_at": "2026-10-19T10:30:00-04:00",
+        "state": "PULLBACK BUY",
+        "entry": "YES",
+        "protection": "SAFE",
+        "price": 533.9749755859375,
+        "stop": 526.7577215435374,
+        "tp1": 552.3276647124237,
+        "risk_reward": 2.543,
+        "buy_zone": "530.86-536.54",
+        "above_vwap": true,
+        "ema9": 534.0268126082738,
+        "ema21": 533.7026443795312,
+        "ema55": 524.6855108602167,
+        "ema200": 489.58082976667896,
+        "adx": 23.495921107216795,
+        "rel_vol": 1.255278022047895,
+        "market_gate": "BLOCK",
+        "market_regime": "RISK-OFF",
+        "daily_trend": "confirmed",
+        "weekly_trend": "confirmed",
+        "confirmation_15m": false,
+        "confirmation_15m_at": "2026-10-19T10:45:00-04:00",
+        "confirmation_15m_rel_vol": 0.426,
+        "pm_high": 534.09,
+        "pm_low": 526.08,
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "pm_last": 529.28,
+        "pm_gap_pct": 0.04,
+        "pm_range_pct": 1.51,
+        "pm_read": "NEUTRAL",
+        "v53_state": "PULLBACK BUY",
+        "v53_entry": "WATCH",
+        "v53_would_veto": true,
+        "v54_rule_version": "2026-09-15-v54",
+        "v54_scanner_version": "5.4",
+        "signal_id": "v54:MSFT:4h:2026-10-19T10:30:00-04:00:2026-09-15-v54",
+        "entry_plan": "next 4H bar open (entry price unknown at signal time)",
+        "ref_price": 533.9749755859375,
+        "plus1r_ref_price": 541.1922
+      },
+      "assessed_at": "2026-10-19T15:07:59.884043+00:00"
     }
   ],
-  "exported_at": "2026-10-16T20:51:16.552905+00:00"
+  "exported_at": "2026-10-19T15:11:09.141350+00:00"
 }
