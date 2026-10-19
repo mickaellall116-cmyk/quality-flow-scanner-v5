@@ -222,7 +222,10 @@ python3.12 -m venv <WORKDIR>/venv
 #    Assemble the §4 artifact; canonical-serialize; sha256 it.
 
 # 6. Parity review per PARITY_MATRIX.md (independent of the generator):
-#    every row PASS, else HOLD with the failing row ids in the receipt.
+#    Row-count identity: 2 HRS + 22 CLO (21 in interval + 1 boundary)
+#    + 6 EC (5 dated + 1 negative) + 3 CNT + 1 MST + 4 STR + 8 R
+#    + 2 COR = 48 rows. Every row PASS, else HOLD with the failing
+#    row ids in the receipt.
 
 # 7. Consumer checks (no market data):
 #    - re-run the frozen -28 synthetic fixture suite expectations against

@@ -73,7 +73,7 @@ generated, or any data became qualified.
   source + member verification tables, generator hash, emission counts,
   disagreement log, per-year counts, exception list, artifact SHA-256,
   consumer results, elapsed/repair minutes, verdict line.
-- `PARITY_MATRIX.md` — **47 fail-closed rows**: 21 in-interval dated
+- `PARITY_MATRIX.md` — **48 fail-closed rows**: 21 in-interval dated
   closures (+1 boundary row), 5 dated 13:00 early closes (+1 negative
   assertion: zero 2026 in-interval early closes), 2 core-hours rows,
   3 count checks (2024 = 252 auxiliary full-year, 2025 = 250 in-interval,
@@ -82,6 +82,12 @@ generated, or any data became qualified.
   8 independent-review rows (hash verification, zero-network proof, both
   key pins, consistency-log semantics, determinism, both consumer
   checks), 2 corroboration/reconciliation rows. Any FAIL = HOLD.
+  **Row-count identity:** 2 HRS + 22 CLO (21 in interval + 1 boundary)
+  + 6 EC (5 dated + 1 negative) + 3 CNT + 1 MST + 4 STR + 8 R + 2 COR
+  = **48**.
+  *(Correction, -34 r2: r1 stated 47 rows in this memo, the parity
+  matrix, and receipt guidance; the enumerated matrix always contained
+  48. Totals corrected to 48 with the identity above; no other change.)*
 
 ## The GO this contract requires (verbatim from contract §7)
 

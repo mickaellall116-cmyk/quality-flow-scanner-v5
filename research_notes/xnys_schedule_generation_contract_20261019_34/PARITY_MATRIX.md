@@ -133,5 +133,9 @@ Boundary rows (post-interval source facts — S6 lists them for full-year
   **5** dated 13:00 early closes (+1 negative assertion), **2** core-hours
   rows, **3** count checks, **1** master date sweep over all **761**
   calendar days of the interval, **4** structural rows, **8** independent
-  review rows, **2** corroboration rows — **47 rows total**, every one
+  review rows, **2** corroboration rows — **48 rows total**, every one
   fail-closed.
+
+**Row-count identity (mechanically auditable):** 2 HRS + 22 CLO
+(21 in interval + 1 boundary) + 6 EC (5 dated + 1 negative) + 3 CNT
++ 1 MST + 4 STR + 8 R + 2 COR = **48**.

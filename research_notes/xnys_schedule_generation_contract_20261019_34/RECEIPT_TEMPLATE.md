@@ -97,7 +97,7 @@ tzdata `<FILL>`.
 
 ## 8. Parity results (qualification — per PARITY_MATRIX.md)
 
-- Rows total: `<FILL>` · PASS: `<FILL>` · FAIL: `<FILL — any FAIL = HOLD, list row ids>`
+- Rows total: `<FILL — expect 48 (row-count identity: 2 HRS + 22 CLO + 6 EC + 3 CNT + 1 MST + 4 STR + 8 R + 2 COR = 48); any other total = HOLD>` · PASS: `<FILL>` · FAIL: `<FILL — any FAIL = HOLD, list row ids>`
 - Master date sweep [2024-09-16, 2026-10-16]: `<FILL PASS/FAIL>`
 - Session counts: 2024 auxiliary = `<FILL>` (expect 252) · 2025 = `<FILL>` (expect 250) · 2026 auxiliary = `<FILL>` (expect 251) · interval total = `<FILL>`
 - Exception list emitted by the artifact (must equal the matrix exactly):
