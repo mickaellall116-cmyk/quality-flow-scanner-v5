@@ -1,0 +1,217 @@
+{
+ "task": "QF-QUALIFIED-CALENDAR-ENV-ROUTE-PREFLIGHT-20261018-29 r1",
+ "spec_source": "GitHub Issue #1 comment 6257423673 (public API, read-only)",
+ "method": "static inventory only: wheel files hashed; wheel .dist-info/METADATA and RECORD read as zip members; installed distributions read from pip list output and site-packages listings; NO candidate distribution imported or executed",
+ "interpreter_platform": {
+  "python": "3.12.3 (main, Aug 31 2026) [GCC 13.3.0]",
+  "platform": "Linux-7.0.0-39-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "site_packages": [
+   "/usr/local/lib/python3.12/dist-packages",
+   "/usr/lib/python3/dist-packages",
+   "/usr/lib/python3.12/dist-packages"
+  ]
+ },
+ "wheelhouse": {
+  "path": "/home/hatch/workspace/td_nl_wheelhouse_20261016/wheels",
+  "manifest": {
+   "path": "/home/hatch/workspace/td_nl_wheelhouse_20261016/SHA256_MANIFEST.txt",
+   "sha256": "210b8273a15cc7317b4a8029198f8d6e1401c1e375acdbe7f8602167c13e815b",
+   "verify": "sha256sum -c: 11/11 OK at preflight time; identical copy committed at research_notes/td_nl_env_rebuild_evidence_20261016/wheelhouse_manifest.txt"
+  },
+  "provenance": "Downloaded 2026-10-16 under QF-TD-NL-ENV-REBUILD-20261016-01 from the package index against lock sha256 08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068; installed in an isolated env in that task and the resulting pip freeze verified byte-identical to the lock (verdict PASS)"
+ },
+ "wheels": [
+  {
+   "file": "pandas_market_calendars-4.5.1-py3-none-any.whl",
+   "name": "pandas_market_calendars",
+   "version": "4.5.1",
+   "sha256": "7b4f3478cc18f44d6ce7d62fbac847b9b7b53bd6fd9d2d06cd76551112cc0bfd",
+   "requires_runtime": [
+    "pandas>=1.1",
+    "pytz",
+    "python-dateutil",
+    "exchange-calendars>=3.3"
+   ],
+   "zip_files": 50,
+   "record_lines": 50
+  },
+  {
+   "file": "exchange_calendars-4.13.2-py3-none-any.whl",
+   "name": "exchange_calendars",
+   "version": "4.13.2",
+   "sha256": "fc5a2ad0d61b5c3a6539a3061cd4cbb55c59f4a903455cec7926e4b798919996",
+   "requires_runtime": [
+    "numpy>=1.26.4",
+    "pandas>=1.5.0",
+    "pyluach>=2.3.0",
+    "toolz>=1.0.0",
+    "tzdata>=2025.2",
+    "korean_lunar_calendar>=0.3.1"
+   ],
+   "zip_files": 99,
+   "record_lines": 99
+  },
+  {
+   "file": "pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+   "name": "pandas",
+   "version": "2.2.3",
+   "sha256": "fffb8ae78d8af97f849404f21411c95062db1496aeb3e56f146f0355c9989319",
+   "requires_runtime_py312": [
+    "numpy>=1.26.0",
+    "python-dateutil>=2.8.2",
+    "pytz>=2020.1",
+    "tzdata>=2022.7"
+   ],
+   "zip_files": 1664,
+   "record_lines": 1509
+  },
+  {
+   "file": "numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+   "name": "numpy",
+   "version": "1.26.4",
+   "sha256": "675d61ffbfa78604709862923189bad94014bef562cc35cf61d3a07bba02a7ed",
+   "requires_runtime": [],
+   "zip_files": 875,
+   "record_lines": 789
+  },
+  {
+   "file": "python_dateutil-2.9.0-py2.py3-none-any.whl",
+   "name": "python-dateutil",
+   "version": "2.9.0",
+   "sha256": "cbf2f1da5e6083ac2fbfd4da39a25f34312230110440f424a14c7558bb85d82e",
+   "requires_runtime": [
+    "six>=1.5"
+   ],
+   "zip_files": 25,
+   "record_lines": 25
+  },
+  {
+   "file": "pytz-2024.2-py2.py3-none-any.whl",
+   "name": "pytz",
+   "version": "2024.2",
+   "sha256": "31c7c1817eb7fae7ca4b8c7ee50c72f93aa2dd863de768e1ef4245d426aa0725",
+   "requires_runtime": [],
+   "zip_files": 615,
+   "record_lines": 615
+  },
+  {
+   "file": "tzdata-2026.5-py2.py3-none-any.whl",
+   "name": "tzdata",
+   "version": "2026.5",
+   "sha256": "b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac",
+   "requires_runtime": [],
+   "zip_files": 633,
+   "record_lines": 633
+  },
+  {
+   "file": "pyluach-2.3.0-py3-none-any.whl",
+   "name": "pyluach",
+   "version": "2.3.0",
+   "sha256": "4497b731aef59508b079dbf5f00bc5bf4329ac45090a6cd37b5a83756f0e69ab",
+   "requires_runtime": [],
+   "zip_files": 9,
+   "record_lines": 9
+  },
+  {
+   "file": "toolz-1.2.0-py3-none-any.whl",
+   "name": "toolz",
+   "version": "1.2.0",
+   "sha256": "890f820b1cb8152785aaf9386d8707770110809035800985ca65cb24ce1120ef",
+   "requires_runtime": [],
+   "zip_files": 38,
+   "record_lines": 38
+  },
+  {
+   "file": "korean_lunar_calendar-0.4.0-py3-none-any.whl",
+   "name": "korean_lunar_calendar",
+   "version": "0.4.0",
+   "sha256": "c042e20de0bb702add6bec8d0f6da1ea8d3b170838e63846f70420cf341fe4e7",
+   "requires_runtime": [],
+   "zip_files": 7,
+   "record_lines": 7
+  },
+  {
+   "file": "six-1.17.0-py2.py3-none-any.whl",
+   "name": "six",
+   "version": "1.17.0",
+   "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+   "requires_runtime": [],
+   "zip_files": 6,
+   "record_lines": 6
+  }
+ ],
+ "closure_check": {
+  "target": "runtime (non-extra) dependency closure of BOTH calendar entry points for CPython 3.12.3 / linux x86_64 / glibc>=2.17",
+  "edges_verified": [
+   "pandas_market_calendars 4.5.1 -> pandas 2.2.3 (>=1.1 OK), pytz 2024.2 (OK), python-dateutil 2.9.0 (OK), exchange-calendars 4.13.2 (>=3.3 OK)",
+   "exchange_calendars 4.13.2 -> numpy 1.26.4 (>=1.26.4 OK, exact floor), pandas 2.2.3 (>=1.5.0 OK), pyluach 2.3.0 (>=2.3.0 OK, exact floor), toolz 1.2.0 (>=1.0.0 OK), tzdata 2026.5 (>=2025.2 OK), korean_lunar_calendar 0.4.0 (>=0.3.1 OK)",
+   "pandas 2.2.3 (py>=3.12 markers) -> numpy 1.26.4 (>=1.26.0 OK), python-dateutil 2.9.0 (>=2.8.2 OK), pytz 2024.2 (>=2020.1 OK), tzdata 2026.5 (>=2022.7 OK)",
+   "python-dateutil 2.9.0 -> six 1.17.0 (>=1.5 OK)",
+   "pyluach/toolz/korean_lunar_calendar/numpy/pytz/tzdata/six -> no runtime requirements"
+  ],
+  "platform_tags": "numpy/pandas wheels are cp312 manylinux_2_17_x86_64 (glibc 2.39 host satisfies); all others py3/py2.py3-none-any",
+  "result": "COMPLETE hash-pinned offline closure exists: 11/11 wheels, every runtime constraint satisfied, no missing member"
+ },
+ "lock_identity": {
+  "lock_file_committed_copies": [
+   "research_notes/td_p2_spot_v2_derivation_candidate_evidence_20261015/env_rebuild_freeze.txt",
+   "research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt",
+   "research_notes/td_nl_env_rebuild_evidence_20261016/pip_freeze.txt"
+  ],
+  "lock_sha256": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+  "note": "The wheelhouse is exactly the wheel set this lock resolved to on 2026-10-16; that task's isolated install froze byte-identical to the lock."
+ },
+ "system_installed_distributions_UNQUALIFIED": {
+  "note": "Debian/system site-packages, read from metadata only; mixed provenance, unpinned, one Debian-patched build; NOT a qualified route and never proposed as one",
+  "distributions": [
+   {
+    "name": "pandas",
+    "version": "2.1.4+dfsg"
+   },
+   {
+    "name": "numpy",
+    "version": "1.26.4"
+   },
+   {
+    "name": "python-dateutil",
+    "version": "2.8.2"
+   },
+   {
+    "name": "pytz",
+    "version": "2024.1"
+   }
+  ],
+  "absent_system_wide": [
+   "pandas_market_calendars",
+   "exchange_calendars",
+   "tzdata",
+   "pyluach",
+   "toolz",
+   "korean_lunar_calendar"
+  ]
+ },
+ "real_schedule_artifact_search": {
+  "searched": [
+   "repo working tree (all research_notes/)",
+   "git history --all --name-only for xnys/nyse schedule/calendar/holiday paths",
+   "workspace wheelhouse and caches",
+   "-27/-28 packages"
+  ],
+  "found": "NO real XNYS session/holiday/early-close artifact exists. Only: (a) SYNTHETIC_FIXTURE schedules embedded in -27/-28 test files (labeled, not evidence), (b) prose evidence research_notes/recovery_4h_20261004/cp1_evidence_closure/RESAMPLER_XNYS_EVIDENCE.md (documents resampler early-close behavior; not a session artifact, no per-session bytes)",
+  "conclusion": "No Route-B snapshot exists; no schedule was created from prose in this preflight"
+ },
+ "accounting": {
+  "vendor_calls": 0,
+  "api_calls": 0,
+  "model_calls": 0,
+  "installs": 0,
+  "imports_of_candidate_distributions": 0,
+  "executions_of_calendar_code": 0,
+  "schedule_generations": 0,
+  "market_data_fetches": 0,
+  "credentials_used": 0,
+  "credits": 0,
+  "network": "read-only public GitHub API spec fetch + git push delivery only"
+ }
+}
