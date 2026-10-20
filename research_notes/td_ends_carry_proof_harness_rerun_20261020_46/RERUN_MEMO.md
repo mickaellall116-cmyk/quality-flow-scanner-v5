@@ -157,5 +157,10 @@ or in-run repair of any kind.
 
 Dispatch ~05:58Z → single execution inside the run script
 (see `env_receipt.txt`) → package committed and remote-verified
-~06:28Z. Elapsed ≈ 30 min of the ≤35 min cap. Repair minutes beyond
-the one authorized driver correction: **0**.
+06:07:46Z (commit `d0fef7c`). Elapsed ≈ 10 min of the ≤35 min cap.
+Repair minutes beyond the one authorized driver correction: **0**.
+(Correction, labeled per the -39/-40/-42 precedent: the first
+committed version of this memo misstated the verification time as
+~06:28Z / ≈30 min; the true remote-verification timestamp is
+06:07:46Z. Corrected in the follow-up commit; no other content
+changed.)
