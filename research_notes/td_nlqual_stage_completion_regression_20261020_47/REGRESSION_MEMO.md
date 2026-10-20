@@ -149,5 +149,9 @@ no in-run repair of any kind.
 
 Dispatch 2026-10-20T06:27:10Z → single offline orchestration
 2026-10-20T06:32–06:34Z (see `env_receipt.txt`) → package committed
-and remote-verified (see commit record). Elapsed ≈ 11 min of the
-≤30 min cap. Repair minutes: **0**.
+and remote-verified 2026-10-20T06:39:09Z (commit `ce1adf5`).
+Elapsed ≈ 12 min of the ≤30 min cap. Repair minutes: **0**.
+(Correction, labeled per the -39/-40/-42/-46 precedent: the first
+committed version of this memo stated ≈11 min; the true
+dispatch→remote-verified elapsed is 11m59s ≈ 12 min. No other
+content changed; SHA256_MANIFEST.txt regenerated for this file.)
