@@ -1,0 +1,36 @@
+--- pilot_harness/construct_4h.py	2026-10-20 09:10:21.720146572 +0000
++++ td_route_transaction_offline_proof_cli_closure_20261020_49/construct_4h_v3_cliguard.py	2026-10-20 09:14:01.361419588 +0000
+@@ -30,6 +30,20 @@
+ Calling construct_4h.py --input directly bypasses validation and is NOT
+ the cleared path.
+ """
++
++# --- QF-TD-ROUTE-TRANSACTION-OFFLINE-PROOF-AND-CLI-CLOSURE-20261020-49
++# --- CANDIDATE (CLI containment, REQ-CLI) ---
++# Versioned offline candidate derived from
++# research_notes/pilot_harness/construct_4h.py (sha256
++# d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd).
++# Status: OFFLINE_CANDIDATE_NOT_ADOPTED. The ONLY semantic change vs
++# the original is CLI containment: direct standalone invocation fails
++# closed BEFORE argument parsing, construction, output, or any state
++# write, with a stable nonzero exit code (3). Every importable library
++# function, signature, constant, and callable body is byte-identical
++# to the original, including main() itself (retained for the import
++# surface; unreachable from the command line). The pinned original is
++# never edited.
+ import argparse
+ import sys
+ from pathlib import Path
+@@ -260,4 +274,11 @@
+ 
+ 
+ if __name__ == "__main__":
+-    sys.exit(main())
++    # REQ-CLI containment (task -49): direct standalone invocation is
++    # NOT the cleared path and fails closed before any argument
++    # parsing, construction, output, or state write. The cleared path
++    # is the validated entrypoint (pilot_build). Stable refusal code: 3.
++    print("REFUSED: direct construct_4h CLI invocation is not the "
++          "cleared path; use the validated entrypoint (pilot_build). "
++          "No construction performed.", file=sys.stderr)
++    sys.exit(3)

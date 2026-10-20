@@ -1,0 +1,40 @@
+--- td_ends_carry_dst_repair_requalification_20261020_45/pilot_build_v6_dstfix.py	2026-10-20 09:10:22.708081099 +0000
++++ td_route_transaction_offline_proof_cli_closure_20261020_49/pilot_build_v7_clibound.py	2026-10-20 09:14:01.362245930 +0000
+@@ -39,6 +39,18 @@
+ 
+ Exit codes: 0 ok · 2 validation/construction failure · 3 source verification failure.
+ """
++
++# --- QF-TD-ROUTE-TRANSACTION-OFFLINE-PROOF-AND-CLI-CLOSURE-20261020-49
++# --- CANDIDATE v7 (constructor rebinding only) ---
++# Versioned offline candidate derived from pilot_build_v6_dstfix.py
++# (task -45 candidate, sha256
++# 442e56cc16bbbb7ba8f3a62910d92bfcd07d85d0bb88ca2346d26b0bdcd2cba6).
++# Status: OFFLINE_CANDIDATE_NOT_ADOPTED. The ONLY delta vs v6 is the
++# constructor import/binding: construct_4h is bound BY EXACT PATH to
++# the co-located CLI-refusing constructor candidate
++# construct_4h_v3_cliguard.py (task -49). The validated-ends decoder,
++# the validator binding, the CLI/API schema, and all error meanings
++# are unchanged from v6.
+ import argparse
+ import subprocess
+ import sys
+@@ -50,7 +62,17 @@
+ sys.path.insert(0, str(HERE))
+ 
+ from validate_input import validate, ValidationError
+-from construct_4h import construct_4h
++
++# v7 binding (task -49): the constructor is bound BY EXACT PATH to the
++# CLI-refusing constructor candidate co-located with this entrypoint
++# candidate. No sys.path route to any other construct_4h copy exists.
++import importlib.util as _ilu
++_CONSTRUCTOR_PATH = HERE / "construct_4h_v3_cliguard.py"
++_c4h_spec = _ilu.spec_from_file_location("construct_4h_v3_cliguard",
++                                         _CONSTRUCTOR_PATH)
++_c4h_mod = _ilu.module_from_spec(_c4h_spec)
++_c4h_spec.loader.exec_module(_c4h_mod)
++construct_4h = _c4h_mod.construct_4h
+ 
+ NY = "America/New_York"
+ 
