@@ -1,0 +1,28 @@
+STATIC PRE-RUN PROOF — QF-TD-ENDS-CARRY-PROOF-HARNESS-RERUN-20261020-46 r1 (spec comment 6284381091 point 3)
+generated: 2026-10-20T06:04:15Z
+
+== (a) No candidate/source diff: staged bytes vs frozen pins ==
+ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6  /tmp/td46_stage/candidate_validator.py
+442e56cc16bbbb7ba8f3a62910d92bfcd07d85d0bb88ca2346d26b0bdcd2cba6  /tmp/td46_stage/candidate_entrypoint.py
+d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd  /home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/construct_4h.py
+2a4994a26dbb98e244a14173a06697476835206c3d8d268ad21900dd43e0cbeb  /home/hatch/workspace/quality-flow-scanner-v5/canonical_baseline/scripts/fetch_4h.py
+257d5bb99bcbae50442491b71429abb6b37b8c5cbcd1e4bf93b6010ad9e5a508  /home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/pilot_build.py
+1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58  /home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/validate_input.py
+expected: validator ca3bafd8... / entrypoint 442e56cc... / constructor d47e8df1... / resampler 2a4994a2... / pilot_build 257d5bb9... / validate_input 1b83cdcd... — all match (see run env_receipt hash gates too).
+Staged NLQUAL runner reproduces the -45 staged bytes: 91cfa59b2677f2205ed471bb2d34f0e47814dc9ccd84bfa0fbdb0cf9c8a262e2 (repo runner + nlqual_runner.diff only).
+
+== (b) Every '.values' occurrence in the corrected driver (grep -n) ==
+8:in Family D uses .array (tz-aware DatetimeArray), never .values (which
+236:        ok_vals = _instants([pd.Timestamp(v) for v in ends_map.values()]) == \
+306:    if not all(v.startswith("ValueError") for v in rej.values()):
+435:    if not all(checks.values()):
+Classification: line 10 = docstring prose; 'ends_map.values()' = iteration over a plain dict of ISO strings (values are str, parsed by pd.Timestamp WITH their offsets — no tz-aware pandas object, no stripping); 'rej.values()' / dict .values() in result handling = plain dicts of strings/bools. NO Series.values / DataFrame.values on tz-aware data remains. The single former Series use now reads list(s.array) (line ~237).
+
+== (c) Family D comparison discipline (driver lines) ==
+220:    return sorted(pd.Timestamp(t).tz_convert("UTC") for t in ts_iter)
+231:                    and getattr(s.dtype, "tz", None) is not None
+232:                    and str(getattr(s.dtype, "tz", "")) == NY
+235:            _instants(list(s.index))
+237:            _instants(list(s.array))
+243:                pd.Timestamp(k).tz_convert("UTC").tz_convert(NY).isoformat()
+Family D compares original report instants vs candidate-output instants in UTC via _instants() while separately requiring homogeneous NY-aware index/value dtypes (ok_dtype check in check_map).

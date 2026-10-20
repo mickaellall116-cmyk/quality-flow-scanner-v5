@@ -1,0 +1,71 @@
+--- research_notes/td_ends_carry_dst_repair_requalification_20261020_45/proof_driver.py	2026-10-20 05:13:57.540887537 +0000
++++ /tmp/td46_stage/proof_driver.py	2026-10-20 06:03:55.236812383 +0000
+@@ -1,8 +1,14 @@
+ #!/usr/bin/env python3
+-"""QF-TD-ENDS-CARRY-DST-REPAIR-REQUALIFICATION-20261020-45 r1 — proof driver.
++"""QF-TD-ENDS-CARRY-PROOF-HARNESS-RERUN-20261020-46 r1 — proof driver.
+ 
+ ONE offline attempt inside the pinned NL451 env (PMC 4.5.1) under network
+-isolation. Spec: Issue #1 comment 6283646014. Families, in order:
++isolation. Spec: Issue #1 comment 6284381091. This driver is the -45
++proof driver (sha256 a20b1ec3d24ca9aa2a2bc7962e8aa91431e25b74f836d2b6dc6350bc7e442d87)
++with EXACTLY ONE semantic correction: timezone-aware Series inspection
++in Family D uses .array (tz-aware DatetimeArray), never .values (which
++strips tz under pandas 2.2.3 — the -45 first failure). Expected
++instants, fixture generation, assertions, order, bindings, and both
++candidate byte streams are unchanged. Families, in order:
+   A — structural: entrypoint candidate diff discipline (AST: only main()
+       differs + the one decoder helper added; decode call sits inside
+       main()'s existing (TypeError, ValueError) handled block); calendar
+@@ -38,7 +44,7 @@
+ REPO = Path.home() / "workspace" / "quality-flow-scanner-v5"
+ PILOT = REPO / "research_notes" / "pilot_harness"
+ FETCH4H = REPO / "canonical_baseline" / "scripts" / "fetch_4h.py"
+-STAGE = Path("/tmp/td45_stage")
++STAGE = Path("/tmp/td46_stage")
+ CAND_VAL = STAGE / "candidate_validator.py"
+ CAND_ENT = STAGE / "candidate_entrypoint.py"
+ OUTDIR = Path(sys.argv[1])
+@@ -55,7 +61,7 @@
+     "td_min_collector.py": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c",
+ }
+ 
+-results = {"task": "QF-TD-ENDS-CARRY-DST-REPAIR-REQUALIFICATION-20261020-45 r1",
++results = {"task": "QF-TD-ENDS-CARRY-PROOF-HARNESS-RERUN-20261020-46 r1",
+            "candidate_validator_sha256": CAND_VAL_SHA,
+            "candidate_entrypoint_sha256": CAND_ENT_SHA,
+            "hash_gates": {}, "family_a": None, "family_d_contract": None,
+@@ -228,7 +234,7 @@
+         ok_keys = _instants([pd.Timestamp(k) for k in ends_map]) == \
+             _instants(list(s.index))
+         ok_vals = _instants([pd.Timestamp(v) for v in ends_map.values()]) == \
+-            _instants(list(s.values))
++            _instants(list(s.array))
+         ok_wall = True
+         if expect_wallclock_truth:
+             # report strings are NY-local ISO: canonical NY isoformat
+@@ -605,7 +611,7 @@
+     run_family_b(ref_fn)
+     run_family_c()
+     results["verdict"] = \
+-        "TD_ENDS_CARRY_DST_REPAIR_PASS__ROUTE_CANDIDATE_AWAITING_REVIEW"
++        "TD_ENDS_CARRY_PROOF_PASS__ROUTE_CANDIDATE_AWAITING_REVIEW"
+ 
+ 
+ if __name__ == "__main__":
+@@ -613,13 +619,13 @@
+         main()
+     except ProofFailure as pf:
+         results["first_failure"] = {"key": pf.key, "detail": pf.detail}
+-        results["verdict"] = f"TD_ENDS_CARRY_DST_REPAIR_HOLD__{pf.key}"
++        results["verdict"] = f"TD_ENDS_CARRY_PROOF_HOLD__{pf.key}"
+     except Exception as e:
+         import traceback
+         results["first_failure"] = {"key": "UNEXPECTED_ERROR",
+                                     "detail": f"{type(e).__name__}: {e}",
+                                     "traceback": traceback.format_exc()}
+-        results["verdict"] = "TD_ENDS_CARRY_DST_REPAIR_HOLD__UNEXPECTED_ERROR"
++        results["verdict"] = "TD_ENDS_CARRY_PROOF_HOLD__UNEXPECTED_ERROR"
+     OUTDIR.mkdir(parents=True, exist_ok=True)
+     (OUTDIR / "proof_results.json").write_text(
+         json.dumps(results, indent=1, default=str))
