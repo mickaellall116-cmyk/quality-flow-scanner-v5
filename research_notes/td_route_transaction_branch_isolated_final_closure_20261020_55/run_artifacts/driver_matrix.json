@@ -1,0 +1,272 @@
+[
+ {
+  "checks": [
+   "pin_pilot_acquire",
+   "pin_rate_limiter",
+   "pin_validate_input"
+  ],
+  "facts": {
+   "pin_pilot_acquire": "acf39bbd98f7",
+   "pin_rate_limiter": "06ad383d856e"
+  },
+  "failed": "pin_validate_input",
+  "status": "FAIL",
+  "trial": "I01"
+ },
+ {
+  "checks": [
+   "outcome_complete",
+   "calls_exact_order",
+   "completed_49",
+   "closed_2",
+   "closed_are_spt0708",
+   "reservations_51",
+   "receipts_49",
+   "closed_bins_2",
+   "closed_body_real_schema",
+   "old_spot8_untouched"
+  ],
+  "facts": {},
+  "failed": null,
+  "status": "PASS",
+  "trial": "I02"
+ },
+ {
+  "checks": [
+   "positive_classified",
+   "three_key:three_key_outcome",
+   "three_key:three_key_calls",
+   "three_key:three_key_not_classified",
+   "meta_missing_exchange:meta_missing_exchange_outcome",
+   "meta_missing_exchange:meta_missing_exchange_calls",
+   "meta_missing_exchange:meta_missing_exchange_not_classified",
+   "meta_exchange_nonempty:meta_exchange_nonempty_outcome",
+   "meta_exchange_nonempty:meta_exchange_nonempty_calls",
+   "meta_exchange_nonempty:meta_exchange_nonempty_not_classified",
+   "meta_symbol_wrong:meta_symbol_wrong_outcome",
+   "meta_symbol_wrong:meta_symbol_wrong_calls",
+   "meta_symbol_wrong:meta_symbol_wrong_not_classified",
+   "meta_interval_wrong:meta_interval_wrong_outcome",
+   "meta_interval_wrong:meta_interval_wrong_calls",
+   "meta_interval_wrong:meta_interval_wrong_not_classified",
+   "extra_values_key:extra_values_key_outcome",
+   "extra_values_key:extra_values_key_calls",
+   "extra_values_key:extra_values_key_not_classified",
+   "code_as_string:code_as_string_outcome",
+   "code_as_string:code_as_string_calls",
+   "code_as_string:code_as_string_not_classified"
+  ],
+  "facts": {},
+  "failed": "FileNotFoundError:[Errno 2] No such file or directory: '/home/hatch/workspace/qf_td55_stage/out/driver_trials/I03/i03_message_mutated/ns/pilot_state.json.tmp' -> '/home/hatch/workspace/qf_td55_stage/out/driver_trials/I03/i03_message_mutated/ns/pilot_state.json'",
+  "status": "ERROR",
+  "trial": "I03"
+ },
+ {
+  "checks": [
+   "mut_base_binding:refused",
+   "mut_base_binding:zero_calls",
+   "mut_base_binding:no_namespace",
+   "mut_base_binding:no_ledger",
+   "mut_entry_bars:refused",
+   "mut_entry_bars:zero_calls",
+   "mut_entry_bars:no_namespace",
+   "mut_entry_bars:no_ledger",
+   "mut_collector_pin:refused",
+   "mut_collector_pin:zero_calls",
+   "mut_collector_pin:no_namespace",
+   "mut_collector_pin:no_ledger",
+   "mut_notes_field:refused",
+   "mut_notes_field:zero_calls",
+   "mut_notes_field:no_namespace",
+   "mut_notes_field:no_ledger",
+   "mut_status_field:refused",
+   "mut_status_field:zero_calls",
+   "mut_status_field:no_namespace",
+   "mut_status_field:no_ledger",
+   "mut_proof_closed:refused",
+   "mut_proof_closed:zero_calls",
+   "mut_proof_closed:no_namespace",
+   "mut_proof_closed:no_ledger",
+   "supp_pretty:refused",
+   "supp_pretty:zero_calls",
+   "supp_garbage:refused",
+   "supp_garbage:zero_calls",
+   "manifest_mutated:refused",
+   "manifest_mutated:zero_calls"
+  ],
+  "facts": {
+   "manifest_mutated_code": "MANIFEST_DIGEST_MISMATCH",
+   "mut_base_binding_code": "SUPPLEMENT_SHA_MISMATCH",
+   "mut_collector_pin_code": "SUPPLEMENT_SHA_MISMATCH",
+   "mut_entry_bars_code": "SUPPLEMENT_SHA_MISMATCH",
+   "mut_notes_field_code": "SUPPLEMENT_SHA_MISMATCH",
+   "mut_proof_closed_code": "SUPPLEMENT_SHA_MISMATCH",
+   "mut_status_field_code": "SUPPLEMENT_SHA_MISMATCH",
+   "supp_garbage_code": "SUPPLEMENT_UNPARSEABLE",
+   "supp_pretty_code": "SUPPLEMENT_NOT_CANONICAL_BYTES"
+  },
+  "failed": null,
+  "status": "PASS",
+  "trial": "I04"
+ },
+ {
+  "checks": [
+   "outcome",
+   "calls_stop_at_5",
+   "later_untouched"
+  ],
+  "facts": {},
+  "failed": null,
+  "status": "PASS",
+  "trial": "I05"
+ },
+ {
+  "checks": [
+   "outcome",
+   "calls_stop"
+  ],
+  "facts": {},
+  "failed": null,
+  "status": "PASS",
+  "trial": "I06"
+ },
+ {
+  "checks": [
+   "outcome",
+   "zero_calls"
+  ],
+  "facts": {},
+  "failed": null,
+  "status": "PASS",
+  "trial": "I07"
+ },
+ {
+  "checks": [
+   "outcome",
+   "five_calls_fit",
+   "ledger_exactly_800"
+  ],
+  "facts": {},
+  "failed": null,
+  "status": "PASS",
+  "trial": "I08"
+ },
+ {
+  "checks": [
+   "crash_raised",
+   "calls_before_crash",
+   "restart_outcome",
+   "restart_zero_calls",
+   "prior_receipts_intact"
+  ],
+  "facts": {},
+  "failed": null,
+  "status": "PASS",
+  "trial": "I09"
+ },
+ {
+  "checks": [
+   "first_complete",
+   "restart_complete",
+   "restart_zero_calls",
+   "reservations_unchanged"
+  ],
+  "facts": {},
+  "failed": null,
+  "status": "PASS",
+  "trial": "I10"
+ },
+ {
+  "checks": [
+   "outcome",
+   "zero_calls"
+  ],
+  "facts": {},
+  "failed": null,
+  "status": "PASS",
+  "trial": "I11"
+ },
+ {
+  "checks": [
+   "duplicate_owner:refused",
+   "duplicate_owner:zero_calls",
+   "owner_after_release_ok"
+  ],
+  "facts": {
+   "duplicate_owner_code": "DUPLICATE_OWNER"
+  },
+  "failed": null,
+  "status": "PASS",
+  "trial": "I12"
+ },
+ {
+  "checks": [
+   "foreign_namespace_file:refused",
+   "foreign_namespace_file:zero_calls",
+   "other_identity_binding:refused",
+   "other_identity_binding:zero_calls"
+  ],
+  "facts": {
+   "foreign_namespace_file_code": "NAMESPACE_NOT_CLEAN",
+   "other_identity_binding_code": "NAMESPACE_BOUND_TO_OTHER_IDENTITY"
+  },
+  "failed": null,
+  "status": "PASS",
+  "trial": "I13"
+ },
+ {
+  "checks": [],
+  "facts": {},
+  "failed": "FileNotFoundError:[Errno 2] No such file or directory: '/home/hatch/workspace/qf_td55_stage/venv/bin/python'",
+  "status": "ERROR",
+  "trial": "I14"
+ },
+ {
+  "checks": [],
+  "facts": {},
+  "failed": "FileNotFoundError:[Errno 2] No such file or directory: '/home/hatch/workspace/qf_td55_stage/venv/bin/python'",
+  "status": "ERROR",
+  "trial": "I15"
+ },
+ {
+  "checks": [
+   "ledger_inside_namespace:refused",
+   "ledger_inside_namespace:zero_calls",
+   "namespace_not_created"
+  ],
+  "facts": {
+   "ledger_inside_namespace_code": "SHARED_LEDGER_INSIDE_NAMESPACE"
+  },
+  "failed": null,
+  "status": "PASS",
+  "trial": "I16"
+ },
+ {
+  "checks": [
+   "no_apikey_in_artifacts",
+   "no_apikey_in_argv",
+   "timeout_outcome_clean"
+  ],
+  "facts": {},
+  "failed": null,
+  "status": "PASS",
+  "trial": "I17"
+ },
+ {
+  "checks": [
+   "live_transport_unarmed:refused",
+   "live_transport_unarmed:zero_calls",
+   "namespace_not_created",
+   "ledger_not_created",
+   "url_deterministic",
+   "url_endpoint",
+   "url_has_no_credential"
+  ],
+  "facts": {
+   "live_transport_unarmed_code": "TRANSPORT_NOT_ARMED"
+  },
+  "failed": null,
+  "status": "PASS",
+  "trial": "I18"
+ }
+]
