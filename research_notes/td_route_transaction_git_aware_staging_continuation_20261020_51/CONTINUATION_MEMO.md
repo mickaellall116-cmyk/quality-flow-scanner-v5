@@ -94,10 +94,12 @@ pre-run values (see `env_receipt.txt` tail).
 
 Spec issued 12:02:56Z; this execution session dispatched 12:30:05Z;
 pre-execution commit remote-verified ~12:36Z; the one attempt ran
-12:38:11Z → 12:38:35Z (24 s); results package committed immediately
-after. Elapsed from dispatch to remote-verified results ≈ 16 min;
-from spec issuance ≈ 43 min — inside the ≤45-min cap on both
-conventions, with the failure (not extra scope) consuming the run.
+12:38:11Z → 12:38:35Z (24 s); results commit `789726b…` remote-verified
+12:40:00Z. Elapsed: dispatch → remote-verified results = 9 min 55 s;
+spec issuance → remote-verified results = 37 min 04 s — inside the
+≤45-min cap on both conventions. (Correction: this paragraph's first
+version estimated ≈16 / ≈43 min before the final timestamps existed;
+the figures here are computed from the recorded timestamps.)
 
 ## Prohibitions — all honored
 
