@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-20T14:50:03.092477+00:00",
+  "as_of": "2026-10-20T18:55:56.624674+00:00",
   "entries_paused": true,
   "pause_reason": "PAUSE_NEW_ENTRIES sentinel present",
   "pause_control": "sentinel",
@@ -10,7 +10,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-20T14:50:03.046576+00:00",
+  "last_successful_cycle": "2026-10-20T18:55:56.602430+00:00",
   "signals_logged": 38,
   "grade_counts": {
     "A": 9,
@@ -47,7 +47,7 @@
       "stop": 165.33922118980624,
       "tp1": 181.76957291674927,
       "status": "open_full",
-      "bars_held": 10,
+      "bars_held": 11,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.466263379325917,
@@ -62,10 +62,10 @@
       "stop": 205.13457249020476,
       "tp1": 246.02255686378075,
       "status": "open_full",
-      "bars_held": 4,
+      "bars_held": 5,
       "tp1_taken": false,
       "profit_protect_armed": null,
-      "mfe_r": 1.6068561496912153,
+      "mfe_r": 2.1199896474808977,
       "mae_r": -0.07416375217809605
     },
     {
@@ -76,11 +76,11 @@
       "entry_bar": "2026-10-19T06:30:00-04:00",
       "stop": 199.5971854536368,
       "tp1": 221.90195655955546,
-      "status": "open_full",
-      "bars_held": 4,
-      "tp1_taken": false,
+      "status": "open_runner",
+      "bars_held": 5,
+      "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 1.5118377270339136,
+      "mfe_r": 1.629296925766417,
       "mae_r": -0.10337413260034983
     }
   ],
