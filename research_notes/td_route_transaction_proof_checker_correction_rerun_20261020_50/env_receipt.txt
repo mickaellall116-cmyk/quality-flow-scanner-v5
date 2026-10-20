@@ -1,0 +1,42 @@
+=== run start (UTC) ===
+2026-10-20T11:07:48Z
+=== network probes (all must FAIL) ===
+PROBE connect 1.1.1.1:443 -> failed as required: [Errno 101] Network is unreachable
+PROBE dns pypi.org -> failed as required: [Errno -3] Temporary failure in name resolution
+NETWORK_DENIED
+curl: (7) Failed to connect to hatch-egress-proxy port 3128 after 0 ms: Couldn't connect to server
+curl exit: 7
+=== build venv (offline, pinned wheelhouse) ===
+Looking in links: /home/hatch/workspace/td_nl_wheelhouse_20261016/wheels
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/exchange_calendars-4.13.2-py3-none-any.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 1))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/korean_lunar_calendar-0.4.0-py3-none-any.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 2))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 3))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 4))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/pandas_market_calendars-4.5.1-py3-none-any.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 5))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/pyluach-2.3.0-py3-none-any.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 6))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/python_dateutil-2.9.0-py2.py3-none-any.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 7))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/pytz-2024.2-py2.py3-none-any.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 8))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/six-1.17.0-py2.py3-none-any.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 9))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/toolz-1.2.0-py3-none-any.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 10))
+Processing ./workspace/td_nl_wheelhouse_20261016/wheels/tzdata-2026.5-py2.py3-none-any.whl (from -r /tmp/td50_stage/requirements_hashes.txt (line 11))
+Installing collected packages: pytz, tzdata, toolz, six, pyluach, numpy, korean_lunar_calendar, python-dateutil, pandas, exchange_calendars, pandas_market_calendars
+Successfully installed exchange_calendars-4.13.2 korean_lunar_calendar-0.4.0 numpy-1.26.4 pandas-2.2.3 pandas_market_calendars-4.5.1 pyluach-2.3.0 python-dateutil-2.9.0 pytz-2024.2 six-1.17.0 toolz-1.2.0 tzdata-2026.5
+=== identity ===
+python 3.12.3
+pandas 2.2.3
+pmc 4.5.1
+FREEZE_EQUALS_LOCK
+08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068  /tmp/td50_stage/integration_requirements.lock
+08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068  /tmp/td50_out/freeze.txt
+=== proof driver (ONE attempt) ===
+2026-10-20T11:08:04Z
+driver exit: 0
+2026-10-20T11:08:26Z
+=== post-run re-hash: pinned originals must be unchanged ===
+d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd  /home/hatch/workspace/td50_wt/research_notes/pilot_harness/construct_4h.py
+1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58  /home/hatch/workspace/td50_wt/research_notes/pilot_harness/validate_input.py
+257d5bb99bcbae50442491b71429abb6b37b8c5cbcd1e4bf93b6010ad9e5a508  /home/hatch/workspace/td50_wt/research_notes/pilot_harness/pilot_build.py
+a0bd2e4cdce44be5d9fcc1d7c21046391d36c9bd366a959df03bf5d19c9a79e0  /home/hatch/workspace/td50_wt/research_notes/pilot_harness/verify_sources.py
+7e5ccef0e5fd7e2faa744c8fe7ee646c3162fa4f72fc4a9a85317d52b5d890ed  /home/hatch/workspace/td50_wt/research_notes/pilot_harness/credit_ledger.json
+=== run end (UTC) ===
+2026-10-20T11:08:26Z
