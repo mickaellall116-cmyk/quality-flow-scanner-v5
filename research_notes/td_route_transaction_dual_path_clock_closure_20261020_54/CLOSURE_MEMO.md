@@ -111,7 +111,7 @@ unchanged-state proof instead from the shell receipt (below).
   CPython 3.12.3 / pandas 2.2.3 / PMC 4.5.1; FREEZE_EQUALS_LOCK
   (08b38cfa…) — run_status DRIVER_RAN proves the freeze gate held.
 - Elapsed vs ≤45 cap (start convention: spec fetch, 16:59Z):
-  dispatch→results-committed ≈ 44 min (stated in the results
+  dispatch→results-committed 43 min (16:59Z spec fetch → 17:42Z results verified; stated in the results
   commit message; verified at push). Execution stage itself:
   ~11 min. Repair minutes: 0.
 - Cleanup (driver-recorded): shadow removed (remove_rc 0);
