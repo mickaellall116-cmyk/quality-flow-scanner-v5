@@ -1,0 +1,10 @@
+{
+ "acquired_utc": "2026-10-20T20:52:06Z",
+ "anchor_worktree": "/home/hatch/workspace/td56_wt",
+ "owner": "claude-subagent-session-282e41f6 (sole -56 lane, parent-verified)",
+ "rule": "A second worker seeing this lease must emit DUPLICATE_DISPATCH_REFUSED and stop before cleanup/copy/removal/execution.",
+ "run": 1,
+ "spec": "Issue #1 comment 6300344562",
+ "stage_root": "/home/hatch/workspace/qf_td56_stage",
+ "task": "QF-TD-ROUTE-TRANSACTION-COLLISION-SAFE-REMAINDER-20261020-56"
+}

@@ -1,0 +1,386 @@
+--- proof_driver_v7.py (executed, bb375b76)
++++ proof_driver_v8.py (-56)
+@@ -1,38 +1,42 @@
+-#!/usr/bin/env python3
+-"""QF-TD-ROUTE-TRANSACTION-BRANCH-ISOLATED-FINAL-CLOSURE-20261020-55 r1
+-proof driver v7 (orchestrator). Derived from frozen proof driver v6
+-(sha256 3d02de026938c2a8f05a8ad7fee35f96b6d2bfd5eb7a6dadf9dd86090bb3bcf6)
+-under spec comment 6297990771 with ONLY: (a) task identity / stage /
+-worktree path strings; (b) added hash gate pinning driver v6 (the
+--52 proof-results gate d31e41c3469c9d8546feb04513372193273817d0864c
+-354fb061b85eade1df52 is inherited from v5 unchanged); (c) the branch-isolated clock stage:
+-stage_transition_clock() is retained unchanged for the CANDIDATE
+-branch; p1() additionally builds a second, ORIGINAL git worktree
+-(untouched committed artifacts, no candidate substitution, no
+-transition), runs the unchanged -19 suite in each branch, and
+-adjudicates scoped partitions (ORIGINAL: repro_old + its rollup
+-contribution; CANDIDATE: the other 19 trials, repro_old excluded).
+-Gate-7 spot check, P2 and P3 are the v6 code unchanged, executed
+-against the candidate branch only. The -19 runner's historical-reproduction branch
+-loads the -17 adapter, whose import-time _load_runner() pin-checks
+-the gate at the legacy PKG11 path against the ORIGINAL r4 bytes
+-(b5399645...); driver v5 staged the candidate gate at that path, so
+-the import refused with PIN_MISMATCH:r4_gate (the -53 first failure -
+-a proof-stage namespace collision, not a candidate defect). The
+-transition restores the original gate bytes at the shadow's legacy
+-PKG11 path ONLY; the candidate gate stays at its immutable -48
+-package path for the candidate adapter/executor chain, and the
+-transition proves the spec S.3 preflight simultaneously (legacy
+-path/pin, old-adapter resolution, candidate gate/adapter/executor
+-path+pin resolution, runner branch map). Comparator, canonical
+-replacements, extractor, fixtures, expectations, failure keys and
+-first-failure stop discipline are the v5 code unchanged. ONE
+-attempt, network-denied (unshare -n, enforced by the caller shell).
+-Order: hash gates -> P0 receipt -> git-aware staging + blob proof
+--> P1 (receipt + extractor + stage transition + clock suite +
+-Gate-7 spot check) -> P2 -> P3 -> post-run rehash -> shadow
+-removal. Synthetic fixtures only; candidate copies execute only
+-inside the shadow stage; no live file is executed or written.
++"""QF-TD-ROUTE-TRANSACTION-COLLISION-SAFE-REMAINDER-20261020-56 r1
++proof driver v8 (orchestrator). Derived from the EXECUTED proof
++driver v7 (sha256 bb375b76ddd49af88ebc085ec2c09cef806e67c83a3e21f
++0596d793d4b26d656; the bytes restored by reconciliation bb6fd8f -
++the parallel-staged 279db80 variant a3d39347 was NEVER executed and
++is never used) under spec comment 6300344562 with ONLY:
++(a) task/stage identity strings and single-owner lease enforcement
++(verify_lease: the atomic owner lease acquired OUTSIDE the stage
++before any stage mutation is verified before staging; a missing,
++foreign or mismatched lease fails DUPLICATE_DISPATCH_REFUSED);
++(b) the Gate-7 spot invocation fix (gate7_spot): absolute original/
++candidate mechanism paths (each gate's own P_MECHANISM resolved
++against the repo root) so both derive_calendar calls produce
++facts - v7 passed the RELATIVE P_MECHANISM from a stage-root cwd
++and the -55 execution recorded a CWD error with no facts;
++(c) P2 stages the candidate-aware runner adapter (PKG56,
++hash-gated) - the frozen -04 runner with ONLY I01's validator
++source path changed from the legacy pilot_harness path to the
++immutable candidate validator path (adjudicated deterministic
++harness-context mismatch: the frozen runner reads the original
++1b83cdcd mechanism while the staged candidate driver pins
++ca3bafd8, so pin_validate_input failed even with a correct
++candidate). The inherited proof-digest staging substitution is
++applied to the adapter text unchanged.
++The clock proof is CLOSED by the -55 branch-isolated execution
++(immutable receipts 1942b41 + bb6fd8f) and is NOT rerun: v8 does
++not invoke build_original_worktree, stage_transition_clock,
++branch_provenance or any clock suite; those v7 functions are
++retained byte-identical and uncalled. P1 in v8 = the pinned -52
++receipt reuse + corrected gate567 extractor (unchanged) + the
++Gate-7 spot. Comparator, canonical replacements, extractor, P2
++(adjudication), P3, fixtures, expectations and first-failure stop
++discipline are the v7 code unchanged. ONE attempt, network-denied
++(unshare -n, enforced by the caller shell). Order: lease verify ->
++hash gates -> P0 receipt -> git-aware staging + blob proof -> P1
++(receipt + extractor + Gate-7 spot) -> P2 -> P3 -> post-run rehash
++-> shadow removal. Synthetic fixtures only; candidate copies
++execute only inside the shadow stage; no live file is executed or
++written. REQ-S2: UNIMPLEMENTED__HARD_HOLD.
+ """
+ import ast
+ from collections import Counter
+@@ -47,20 +51,21 @@
+ from pathlib import Path
+ 
+ OUT = Path(sys.argv[1])
+-REPO = Path("/home/hatch/workspace/td55_wt")
++REPO = Path("/home/hatch/workspace/td56_wt")
+ MAINREPO = Path("/home/hatch/workspace/quality-flow-scanner-v5")
+ NOTES = REPO / "research_notes"
+-STAGE = Path("/home/hatch/workspace/qf_td55_stage")
++STAGE = Path("/home/hatch/workspace/qf_td56_stage")
+ SHADOW = STAGE / "shadow_candidate"
+ SHADOW_O = STAGE / "shadow_original"
+ SNOTES_O = SHADOW_O / "research_notes"
+ SNOTES = SHADOW / "research_notes"
++LEASE_PATH = Path("/home/hatch/workspace/qf_td56_owner_lease.json")
+ WHEELHOUSE = Path("/home/hatch/workspace/td_nl_wheelhouse_20261016")
+ 
+-TASK = "QF-TD-ROUTE-TRANSACTION-BRANCH-ISOLATED-FINAL-CLOSURE-20261020-55"
++TASK = "QF-TD-ROUTE-TRANSACTION-COLLISION-SAFE-REMAINDER-20261020-56"
+ results = {"task": TASK, "run": 1, "repair_minutes": 0,
+-           "adjudication_basis": "6297990771",
+-           "continuation_of": "QF-TD-ROUTE-TRANSACTION-DUAL-PATH-CLOCK-CLOSURE-20261020-54 87dfd68+c026fe7"}
++           "adjudication_basis": "6300344562",
++           "continuation_of": "QF-TD-ROUTE-TRANSACTION-BRANCH-ISOLATED-FINAL-CLOSURE-20261020-55 1942b41+bb6fd8f"}
+ subprocess_timeouts = []
+ 
+ 
+@@ -106,6 +111,8 @@
+ PKG52 = NOTES / "td_route_transaction_workspace_stage_continuation_20261020_52"
+ PKG53 = NOTES / "td_route_transaction_receipt_extractor_correction_closure_20261020_53"
+ PKG54 = NOTES / "td_route_transaction_dual_path_clock_closure_20261020_54"
++PKG55 = NOTES / "td_route_transaction_branch_isolated_final_closure_20261020_55"
++PKG56 = NOTES / "td_route_transaction_collision_safe_remainder_20261020_56"
+ PKG17 = NOTES / "td_status_query_placement_20261017_17"
+ PKG11 = NOTES / "td_policy_a_live_readiness_packet_20261017_11"
+ PKG19 = NOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
+@@ -140,6 +147,12 @@
+ # -55 (spec 6297990771): frozen driver v6 byte-identity (the v7 base)
+ PIN_DRIVER_V6 = ("3d02de026938c2a8f05a8ad7fee35f96b6d2bfd5eb7a6dad"
+                  "f9dd86090bb3bcf6")
++# -56 (spec 6300344562): frozen EXECUTED driver v7 byte-identity
++# (the v8 base; restored by reconciliation bb6fd8f)
++PIN_DRIVER_V7 = ("bb375b76ddd49af88ebc085ec2c09cef806e67c83a3e21f0596d793d4b"
++                 "26d656")
++# -56: candidate-aware P2 runner adapter (this package) byte pin
++PIN_ADAPTER = "e08e33c2335df756488c7c566149638792018fd3c064a48b51eec4c8bcdc0c8c"
+ # -55 SS.4: ORIGINAL branch exact pins (accepted originals)
+ PIN_ORIG_DRIVER = "5fed45242eb5ec465266c4d4c4258485f01a8c5bfdfdda2fb81295d3cf6d9c00"
+ PIN_ORIG_SUPPLEMENT = "3cbdbf63fd49b021dc74f63727098551753949f8684967981c65f66101f95a86"
+@@ -308,6 +321,18 @@
+                              "match": _dv6 == PIN_DRIVER_V6}
+     if not g["frozen_driver_v6"]["match"]:
+         fail("HASH_GATE_FROZEN_DRIVER_V6", g["frozen_driver_v6"])
++    # -56 SS A: frozen executed driver v7 byte-identity (v8 base)
++    _dv7 = HF(PKG55 / "proof_driver_v7.py")
++    g["frozen_driver_v7"] = {"expected": PIN_DRIVER_V7, "actual": _dv7,
++                             "match": _dv7 == PIN_DRIVER_V7}
++    if not g["frozen_driver_v7"]["match"]:
++        fail("HASH_GATE_FROZEN_DRIVER_V7", g["frozen_driver_v7"])
++    # -56 SS A: candidate-aware P2 runner adapter byte-identity
++    _ad = HF(PKG56 / "run_integration_trials_candidate_aware.py")
++    g["p2_runner_adapter"] = {"expected": PIN_ADAPTER, "actual": _ad,
++                              "match": _ad == PIN_ADAPTER}
++    if not g["p2_runner_adapter"]["match"]:
++        fail("HASH_GATE_P2_ADAPTER", g["p2_runner_adapter"])
+     results["hash_gates"] = g
+     results["ledger_before"] = HF(PILOT / "credit_ledger.json")
+     return m48, m2, f1["cleared_serialization"]
+@@ -606,7 +631,15 @@
+               d11 / "dispatch_gate_r4.py")
+     d04 = SNOTES / "td_fresh_live_driver_integration_evidence_20261016"
+     shutil.rmtree(d04)
+-    runner_src = (PKG04 / "run_integration_trials.py").read_text()
++    # -56 (spec 6300344562 SS.3): stage the candidate-aware P2
++    # runner ADAPTER (PKG56, hash-gated above) instead of the frozen
++    # runner text; the inherited proof-digest substitution below is
++    # then applied to the adapter text exactly as in -50..-55.
++    runner_src = (PKG56 / "run_integration_trials_candidate_aware.py"
++                  ).read_text()
++    assert runner_src.count(
++        "td_validator_dst_repair_requalification_20261019_44"
++        "/validate_input_v3_dstfix.py") == 1
+     old_key = "36bc3a89bd266b9d7478d7f6082addd7b764a824bac45afdcbe534eb1d37f21a"
+     new_key = "6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5"
+     assert runner_src.count(old_key) == 1
+@@ -630,7 +663,7 @@
+               d19 / "live_dry_run_adapter.py")
+     copy_file(PKG48 / "live_readiness_executor_r5_candidate.py",
+               d19 / "live_readiness_executor_r4.py")
+-    ps = SNOTES / "td55_pilot_stage"
++    ps = SNOTES / "td56_pilot_stage"
+     copy_file(F_CAND_ENTRY, ps / "pilot_build_v7_clibound.py")
+     copy_file(F_CAND_CONSTRUCT, ps / "construct_4h_v3_cliguard.py")
+     copy_file(F_VALIDATOR, ps / "validate_input.py")
+@@ -682,7 +715,7 @@
+         "executor_is_candidate":
+             HF(d19 / "live_readiness_executor_r4.py") == HF(PKG48 /
+             "live_readiness_executor_r5_candidate.py"),
+-        "staged_driver_runner_diff_lines": 1,
++        "staged_driver_runner_diff_lines": 2,
+     }
+     pre["staging"] = staged
+     results["staging_preflight"] = pre
+@@ -1365,6 +1398,87 @@
+     return entry
+ 
+ 
++
++# ------------------------------------------------------- owner lease
++def verify_lease():
++    """-56 (spec 6300344562 SS.1): single-owner lease, acquired
++    atomically OUTSIDE the stage before any stage mutation. The
++    driver verifies it before staging: a missing, foreign or
++    mismatched lease refuses the run (DUPLICATE_DISPATCH_REFUSED)
++    before any cleanup/copy/removal/execution."""
++    ev = {"lease_path": str(LEASE_PATH), "stage_root": str(STAGE)}
++    if not LEASE_PATH.exists():
++        ev["result"] = "MISSING"
++        results["owner_lease"] = ev
++        fail("DUPLICATE_DISPATCH_REFUSED", ev)
++    try:
++        data = json.loads(LEASE_PATH.read_text())
++    except Exception as e:
++        ev["result"] = "UNREADABLE: %s" % e
++        results["owner_lease"] = ev
++        fail("DUPLICATE_DISPATCH_REFUSED", ev)
++    ev["owner"] = data.get("owner")
++    ev["task_in_lease"] = data.get("task")
++    ev["acquired_utc"] = data.get("acquired_utc")
++    ev["stage_in_lease"] = data.get("stage_root")
++    ev["result"] = ("VERIFIED_SINGLE_OWNER"
++                    if data.get("task") == TASK
++                    and data.get("stage_root") == str(STAGE)
++                    else "MISMATCH")
++    results["owner_lease"] = ev
++    if ev["result"] != "VERIFIED_SINGLE_OWNER":
++        fail("DUPLICATE_DISPATCH_REFUSED", ev)
++
++
++# ------------------------------------------------- gate-7 spot (-56)
++def gate7_spot():
++    """-56 (spec 6300344562 SS.6): Gate-7 mechanism spot check,
++    candidate branch. The -55 execution produced NO facts here:
++    v7 passed each gate's RELATIVE P_MECHANISM to derive_calendar
++    while the process cwd was the stage root, so the mechanism path
++    did not resolve (recorded CWD error). Fix (spec-sanctioned):
++    pass ABSOLUTE mechanism paths - each gate module's own
++    P_MECHANISM resolved against the repo root - so both calls
++    produce facts from any cwd. Each mechanism's bytes are pinned
++    (original 1b83cdcd / candidate ca3bafd8). Facts must be
++    identical across the original and candidate gates and the
++    candidate's 2026-07-03 early-close fact must be True. In -56
++    this step is a primary deliverable: an exception is a first
++    failure, not a record-only adjunct."""
++    spot = {"invocation": ("derive_calendar(WHEELHOUSE, absolute "
++                           "P_MECHANISM resolved vs REPO root)"),
++            "repo_root": str(REPO), "cwd": os.getcwd()}
++    results["P1_gate7_spot_check"] = spot
++    try:
++        for label, mod_path, want_mech in [
++                ("original", PKG11 / "dispatch_gate_r4.py",
++                 PIN_ORIG_MECHANISM),
++                ("candidate", PKG48 / "dispatch_gate_r5_candidate.py",
++                 PIN_VALIDATOR_CAND)]:
++            mod = load_mod(mod_path, f"spot_gate_{label}")
++            mech_abs = str(REPO / mod.P_MECHANISM)
++            spot[f"{label}_gate_path"] = str(mod_path)
++            spot[f"{label}_gate_sha256"] = HF(mod_path)
++            spot[f"{label}_mechanism_rel"] = mod.P_MECHANISM
++            spot[f"{label}_mechanism_path"] = mech_abs
++            spot[f"{label}_mechanism_sha256"] = HF(mech_abs)
++            if spot[f"{label}_mechanism_sha256"] != want_mech:
++                fail("P1_GATE7_SPOT_CHECK", spot)
++            spot[label] = mod.derive_calendar(str(WHEELHOUSE),
++                                              mech_abs)
++    except Fail:
++        raise
++    except Exception as e:
++        spot["error"] = f"{type(e).__name__}: {e}"
++        fail("P1_GATE7_SPOT_CHECK", spot)
++    spot["facts_identical"] = spot["original"] == spot["candidate"]
++    july3 = [v for k, v in spot["candidate"].items()
++             if "2026_07_03" in k or "2026-07-03" in k]
++    spot["candidate_july3_values"] = july3
++    if not spot["facts_identical"] or True not in july3:
++        fail("P1_GATE7_SPOT_CHECK", spot)
++
++
+ # ---------------------------------------------------------------- P1
+ def p1():
+     # -53 (spec 6295378552): the 46-trial gate suite is NOT rerun.
+@@ -1388,87 +1502,12 @@
+     results["P1_gate567"] = g567 or {"extractor": "NOT_EVIDENCED"}
+     if g567 is None:
+         fail("P1_GATE567_NOT_EVIDENCED", results["P1_gate567"])
+-    # -54: post-receipt stage transition (spec 6296388979) - restore
+-    # the original gate at the legacy PKG11 path for the -17
+-    # reproduction adapter and prove the dual-path preflight.
+-    stage_transition_clock()
+-    # -55 (spec 6297990771 SS.5): branch-isolated clock proof. The
+-    # unchanged -19 suite runs in BOTH branches; adjudication is
+-    # scoped - ORIGINAL contributes repro_old + its rollup
+-    # contribution, CANDIDATE the other 19 trials (repro_old
+-    # explicitly excluded on the candidate side).
+-    branch_provenance()
+-    d19_c = SNOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
+-    d19_o = SNOTES_O / "td_live_dryrun_clock_adapter_binding_20261017_19"
+-    ro = run_suite([sys.executable,
+-                    str(d19_o / "run_clock_adapter_trials.py"),
+-                    str(OUT / "clock_matrix_original.json")], cwd=d19_o)
+-    results["P1_clock_suite_original"] = {
+-        "exit": ro.returncode, "stdout_tail": ro.stdout[-400:],
+-        "stderr_tail": ro.stderr[-800:]}
+-    if ro.returncode != 0 or not (OUT / "clock_matrix_original.json").exists():
+-        fail("P1_CLOCK_SUITE_RUN", results["P1_clock_suite_original"])
+-    rc = run_suite([sys.executable,
+-                    str(d19_c / "run_clock_adapter_trials.py"),
+-                    str(OUT / "clock_matrix_candidate.json")], cwd=d19_c)
+-    results["P1_clock_suite_candidate"] = {
+-        "exit": rc.returncode, "stdout_tail": rc.stdout[-400:],
+-        "stderr_tail": rc.stderr[-800:]}
+-    if rc.returncode != 0 or not (OUT / "clock_matrix_candidate.json").exists():
+-        fail("P1_CLOCK_SUITE_RUN", results["P1_clock_suite_candidate"])
+-    orig_matrix = json.loads(
+-        (OUT / "clock_matrix_original.json").read_bytes())
+-    cand_matrix = json.loads(
+-        (OUT / "clock_matrix_candidate.json").read_bytes())
+-    compare_clock_scoped(orig_matrix, cand_matrix)
+-    led = {"repo_ledger_sha256": HF(PILOT / "credit_ledger.json"),
+-           "original_branch_ledger_sha256": HF(
+-               SNOTES_O / "pilot_harness" / "credit_ledger.json"),
+-           "candidate_branch_ledger_sha256": HF(
+-               SNOTES / "pilot_harness" / "credit_ledger.json")}
+-    led["real_pilot_ledger_unchanged_in_both"] = (
+-        led["original_branch_ledger_sha256"] == led["repo_ledger_sha256"]
+-        and led["candidate_branch_ledger_sha256"]
+-        == led["repo_ledger_sha256"])
+-    results["P1_clock_ledgers"] = led
+-    if not led["real_pilot_ledger_unchanged_in_both"]:
+-        fail("P1_CLOCK_LEDGER", led)
+-    # combined record: scoped trials merged (repro_old from the
+-    # ORIGINAL branch, the other 19 from the CANDIDATE branch);
+-    # rollups are the accepted run-2 values the scoped comparisons
+-    # were gated against.
+-    acc_raw = json.loads(
+-        (PKG19 / "clock_adapter_matrix_run2.json").read_bytes())
+-    merged = {"checks_passed": acc_raw.get("checks_passed"),
+-              "checks_total": acc_raw.get("checks_total"),
+-              "summary": acc_raw.get("summary"),
+-              "trials": dict(cand_matrix["trials"]),
+-              "provenance": "repro_old from ORIGINAL branch; "
+-                            "other 19 trials from CANDIDATE branch"}
+-    merged["trials"]["repro_old"] = orig_matrix["trials"]["repro_old"]
+-    (OUT / "clock_matrix.json").write_text(
+-        json.dumps(merged, indent=1, sort_keys=True))
+-    # Gate-7 mechanism spot check: original vs candidate gate derivation
+-    spot = {}
+-    try:
+-        for label, mod_path in [("original", PKG11 / "dispatch_gate_r4.py"),
+-                                ("candidate", PKG48 /
+-                                 "dispatch_gate_r5_candidate.py")]:
+-            mod = load_mod(mod_path, f"spot_gate_{label}")
+-            facts = mod.derive_calendar(str(WHEELHOUSE),
+-                                        str(mod.P_MECHANISM))
+-            spot[label] = facts
+-        spot["facts_identical"] = spot["original"] == spot["candidate"]
+-        july3 = [v for k, v in spot["candidate"].items()
+-                 if "2026_07_03" in k or "2026-07-03" in k]
+-        spot["candidate_july3_values"] = july3
+-        if not spot["facts_identical"] or True not in july3:
+-            fail("P1_GATE7_SPOT_CHECK", spot)
+-    except Fail:
+-        raise
+-    except Exception as e:  # call-convention issue: record, matrix governs
+-        spot["error"] = f"{type(e).__name__}: {e}"
+-    results["P1_gate7_spot_check"] = spot
++    # -56 (spec 6300344562 SS.5/SS.6): the clock proof is CLOSED
++    # by the -55 branch-isolated execution (immutable receipts
++    # 1942b41 + bb6fd8f) and is NOT rerun - no stage transition, no
++    # original worktree, no clock suite in either branch form. The
++    # only P1 remainder is the Gate-7 mechanism spot check.
++    gate7_spot()
+ 
+ 
+ # ---------------------------------------------------------------- P2
+@@ -1512,7 +1551,7 @@
+ 
+ def p3(expected_f1):
+     import pandas as pd
+-    ps = SNOTES / "td55_pilot_stage"
++    ps = SNOTES / "td56_pilot_stage"
+     p = {}
+     # binding identity (in-process load of the staged entrypoint copy)
+     sys.path.insert(0, str(ps))
+@@ -1602,10 +1641,10 @@
+ # ---------------------------------------------------------------- main
+ def main():
+     try:
++        verify_lease()
+         m48, m2, expected_f1 = hash_gates()
+         p0_receipt()
+         build_shadow_gitaware()
+-        build_original_worktree()
+         p1()
+         p2()
+         p3(expected_f1)

@@ -1,0 +1,11 @@
+--- run_integration_trials.py (frozen, -04 accepted)
++++ run_integration_trials_candidate_aware.py (-56 adapter)
+@@ -89,7 +89,7 @@
+     files = {
+         "pilot_acquire": ("pilot_harness/pilot_acquire.py", D.PILOT_ACQUIRE_SHA256),
+         "rate_limiter": ("pilot_harness/rate_limiter.py", D.PILOT_RATE_LIMITER_SHA256),
+-        "validate_input": ("pilot_harness/validate_input.py", D.NL_MECHANISM_MODULE_SHA256),
++        "validate_input": ("td_validator_dst_repair_requalification_20261019_44/validate_input_v3_dstfix.py", D.NL_MECHANISM_MODULE_SHA256),
+         "env_lock": ("td_nl_env_rebuild_evidence_20261016/lock_copy.txt", D.NL_ENV_LOCK_SHA256),
+     }
+     for label, (rel, pin) in files.items():

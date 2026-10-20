@@ -1,0 +1,112 @@
+{
+ "task": "QF-TD-ROUTE-TRANSACTION-COLLISION-SAFE-REMAINDER-20261020-56",
+ "checks": [
+  {
+   "check": "v7_base_pin",
+   "pass": true,
+   "detail": "bb375b76ddd49af88ebc085ec2c09cef806e67c83a3e21f0596d793d4b26d656"
+  },
+  {
+   "check": "v8_new_functions_exact",
+   "pass": true,
+   "detail": "['gate7_spot', 'verify_lease']"
+  },
+  {
+   "check": "v8_no_functions_removed",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "check": "unsanctioned_functions_byte_identical",
+   "pass": true,
+   "detail": "31/31 identical"
+  },
+  {
+   "check": "critical_functions_identical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "p3_identity_token_only",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "p1_receipt_head_identical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "p1_no_clock_execution",
+   "pass": true,
+   "detail": "no clock-suite/transition/provenance calls in v8 p1"
+  },
+  {
+   "check": "main_no_original_worktree",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "main_lease_first",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "gate7_absolute_mechanism",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "adapter_same_length",
+   "pass": true,
+   "detail": "479 vs 479"
+  },
+  {
+   "check": "adapter_exactly_one_line",
+   "pass": true,
+   "detail": "[91]"
+  },
+  {
+   "check": "adapter_line_is_I01_validate_input",
+   "pass": true,
+   "detail": "line 92"
+  },
+  {
+   "check": "adapter_digest_key_count1",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "adapter_pin_in_driver",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "candidate_validator_pin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "original_mechanism_pin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "gate_mechanism_paths",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "identity_paths_td56",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "lease_present_matching",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "passed": 21,
+ "total": 21
+}

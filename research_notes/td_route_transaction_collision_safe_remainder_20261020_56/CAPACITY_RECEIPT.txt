@@ -1,0 +1,8 @@
+CAPACITY RECEIPT -56 (recorded pre-staging, 2026-10-20)
+filesystem: /home/hatch (workspace disk)
+/dev/mapper/rv 107355308032 19698384896 86064627712  19% /home/hatch
+free_bytes: 86211870720 (at anchor creation) / 86521454592 (at first pre-check)
+inodes: btrfs dynamic (df -i reports 0/0; no fixed inode cap)
+requirement: repo worktree ~506MB + shadow worktree ~506MB + venv ~174MB + margin 2GiB = ~3.3GB << free
+stage root: /home/hatch/workspace/qf_td56_stage (task-unique; no overlap with any -55 path: qf_td55_stage / td55_wt / qf-td55 untouched)
+anchor: /home/hatch/workspace/td56_wt (detached at origin/main)
