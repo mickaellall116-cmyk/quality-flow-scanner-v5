@@ -1,0 +1,58 @@
+QF-TD-ROUTE-TRANSACTION-WORKSPACE-STAGE-CONTINUATION-20261020-52 r1
+CAPACITY / INODE PREFLIGHT RECEIPT (read-only; measured 2026-10-20T14:19-14:27Z, BEFORE the attempt)
+Spec: Issue #1 comment 6292815205 section B.3.
+
+TARGET (exact task path, spec section B.2)
+/home/hatch/workspace/qf_td52_stage
+- absent before staging: VERIFIED (test -e -> absent)
+- symlink: NO (test -L -> false)
+- cleanup may target ONLY this resolved path + its exact git worktree
+  registration (the detached shadow registered from this path).
+
+TARGET FILESYSTEM IDENTITY
+device /dev/mapper/rv, type btrfs, mount /home/hatch
+stat -f: bsize=4096 blocks=26209792 bfree=21689541
+free bytes = 21689541 * 4096 = 88,838,227,968 (~82.7 GiB)
+df -h /home/hatch: 100G total, 18G used, 82G avail, 18%
+
+MEASURED REQUIREMENT
+- repo checkout (shadow source: detached worktree td52_wt @ origin/main
+  63c50029864d977cb6d15219b4d463feb487f85d): apparent 485,494,909 bytes,
+  11,607 files (du -sb / find -type f | wc -l on the full checkout the
+  shadow replicates)
+- expected environment (venv) bytes: 182,452,224 allowance (= 174 MiB,
+  the -51 run's measured built-venv size on this same wheelhouse/lock)
+- expected environment files: 10,000 allowance
+- outputs allowance (driver results, receipts, staged inputs): 67,108,864 B
+- TOTAL requirement: 735,055,997 bytes; 21,607 files
+
+SPACE GATE (spec: available >= requirement + 2 GiB)
+88,838,227,968 >= 735,055,997 + 2,147,483,648 = 2,882,539,645  -> PASS
+headroom beyond the gate: ~85.96 GB
+
+INODE GATE (spec: available inodes >= file requirement + 50,000 = 71,607)
+The target filesystem is btrfs: there is NO fixed inode pool.
+df -i /home/hatch reports Inodes 0 / IFree 0 / '-' (verbatim), and
+stat -f reports f_files=0, f_ffree=0: inode allocation is dynamic on
+btrfs, so no fixed inode ceiling exists to exhaust. The 71,607-inode
+requirement is met by filesystem construction; raw outputs recorded
+above and in the run's env receipt. -> PASS (no fixed pool)
+
+DISTINCT PATHS
+target   /home/hatch/workspace/qf_td52_stage
+run repo /home/hatch/workspace/td52_wt
+main repo /home/hatch/workspace/quality-flow-scanner-v5
+all three resolve to distinct paths -> PASS
+
+NO TRACKED REPOSITORY FILE CHANGED
+The -52 pre-execution commit adds NEW files only (this package).
+Verified via git status on td52_wt before commit: only untracked
+additions under research_notes/td_route_transaction_workspace_stage_continuation_20261020_52/.
+
+CONTRAST (the -51 failure surface, NOT used)
+/tmp is a 512M tmpfs (df -h: 512M total). No capacity-bearing component
+of -52 (stage, shadow, venv, outputs) is placed under /tmp.
+
+PREFLIGHT VERDICT: ALL GATES PASS -> the attempt may create the worktree
+at the preflighted path. Any failure above would have returned a HOLD
+without creating the worktree; no alternate path may be selected in-run.

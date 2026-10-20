@@ -1,0 +1,58 @@
+--- a/proof_driver_v3.py
++++ b/proof_driver_v4.py
+@@ -1,6 +1,11 @@
+ #!/usr/bin/env python3
+-"""QF-TD-ROUTE-TRANSACTION-GIT-AWARE-STAGING-CONTINUATION-20261020-51 r1
+-proof driver v3 (orchestrator). Derived from the -50 proof driver v2
++"""QF-TD-ROUTE-TRANSACTION-WORKSPACE-STAGE-CONTINUATION-20261020-52 r1
++proof driver v4 (orchestrator). Derived from frozen proof driver v3
++(sha256 651385415a46dbc72c080b6c8921ced0de8170d30b5932642fb2daa90877988d)
++under spec comment 6292815205 with ONLY the stage placement changed
++(workspace-filesystem stage root, run-repo worktree path, task identity
++strings, pilot-stage dir name; NO logic, gate, comparator, fixture, or
++expectation change). v3 was itself derived from the -50 proof driver v2
+ (sha256 68998a9060e5d3f5253023d94a00993e77f04588eb6aeed8da12278b176b832e,
+ itself the frozen corrected checker) under spec comment 6290393927.
+ The ONLY functional changes vs v2: (B) the shadow stage is built as a
+@@ -34,18 +39,18 @@
+ from pathlib import Path
+ 
+ OUT = Path(sys.argv[1])
+-REPO = Path("/home/hatch/workspace/td51_wt")
++REPO = Path("/home/hatch/workspace/td52_wt")
+ MAINREPO = Path("/home/hatch/workspace/quality-flow-scanner-v5")
+ NOTES = REPO / "research_notes"
+-STAGE = Path("/tmp/td51_stage")
++STAGE = Path("/home/hatch/workspace/qf_td52_stage")
+ SHADOW = STAGE / "shadow"
+ SNOTES = SHADOW / "research_notes"
+ WHEELHOUSE = Path("/home/hatch/workspace/td_nl_wheelhouse_20261016")
+ 
+-TASK = "QF-TD-ROUTE-TRANSACTION-GIT-AWARE-STAGING-CONTINUATION-20261020-51"
++TASK = "QF-TD-ROUTE-TRANSACTION-WORKSPACE-STAGE-CONTINUATION-20261020-52"
+ results = {"task": TASK, "run": 1, "repair_minutes": 0,
+-           "adjudication_basis": "6290393927",
+-           "continuation_of": "QF-TD-ROUTE-TRANSACTION-PROOF-CHECKER-CORRECTION-RERUN-20261020-50 d1f2c8c"}
++           "adjudication_basis": "6292815205",
++           "continuation_of": "QF-TD-ROUTE-TRANSACTION-GIT-AWARE-STAGING-CONTINUATION-20261020-51 789726b+058d3d7"}
+ subprocess_timeouts = []
+ 
+ 
+@@ -552,7 +557,7 @@
+               d19 / "live_dry_run_adapter.py")
+     copy_file(PKG48 / "live_readiness_executor_r5_candidate.py",
+               d19 / "live_readiness_executor_r4.py")
+-    ps = SNOTES / "td51_pilot_stage"
++    ps = SNOTES / "td52_pilot_stage"
+     copy_file(F_CAND_ENTRY, ps / "pilot_build_v7_clibound.py")
+     copy_file(F_CAND_CONSTRUCT, ps / "construct_4h_v3_cliguard.py")
+     copy_file(F_VALIDATOR, ps / "validate_input.py")
+@@ -890,7 +895,7 @@
+ 
+ def p3(expected_f1):
+     import pandas as pd
+-    ps = SNOTES / "td51_pilot_stage"
++    ps = SNOTES / "td52_pilot_stage"
+     p = {}
+     # binding identity (in-process load of the staged entrypoint copy)
+     sys.path.insert(0, str(ps))
