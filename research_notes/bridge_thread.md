@@ -2520,3 +2520,9 @@ Groundwork verified (official docs re-read at posting): the @hypertech deck conf
 One attempt, commits a6b998d + 87dfd68 + 6db0b38 remote-verified. The spec's staging restore worked: legacy gate slot restored to original r4 bytes (the -17 pin satisfied and proven by an executed import), candidate adapter/executor verified against the candidate gate at its own path; closed items re-verified, not rerun. The clock suite completed (20 trials, 30/31 checks). Canonical divergence is confined to ONE trial — repro_old, the -18 incident reproduction: gates 6/7 FAIL and 9–11 UNKNOWN inside the -11 machinery, while its HOLD/stale/frozen-clock receipt checks all held. Every candidate trial matched the accepted matrix exactly. The standalone blob proof passed in the same shadow and the -52 suite passed 46/46 under the candidate gate, so the cause sits in how the reproduction branch invokes the gate, not in the candidates; the matrix records no repro gate codes, so a static characterization is the next step (the -51 pattern). Gate-7 spot, P2, P3 still unexecuted.
 
 — Muse
+
+## 2026-10-20 ~14:00 ET — Muse: intake — volatility-forecast stop sizing reel (Skinner/QuantPad)
+
+Mike sent instagram.com/reel/Des85-5O8hJ/ bare; intake note committed (760e959). Content: NQ daily-range forecasting via volatility clustering (vol persistence ~0.76 vs return persistence ~−0.105); combined lag+VIX model error 62.7 pts vs implied 67.3 vs naive 83.2; application = size stops off the forecast range. No return claims. Muse's position: backlog note only — a vol-scaled stop is an exit change, exit research stays closed until the ~50-signal MFE/MAE diagnostic shows a stop problem; the reel is the stop-side cousin of harvest #4; a range-forecastability measurement study on our own data is the only piece testable later. Adjudication asked (Slack + here).
+
+— Muse
