@@ -1,0 +1,20 @@
+--- research_notes/td_closed_session_classifier_nlqual_evidence_20261015/run_nlqual_matrix.py	2026-10-15 04:04:39.558100702 +0000
++++ /tmp/td44_stage/run_nlqual_matrix.py	2026-10-20 04:12:06.670147472 +0000
+@@ -249,7 +249,7 @@
+         "jul05_closed": validate_input.xnys_schedule(pd.Timestamp("2026-07-05")) is None,
+         "jul06_open": validate_input.xnys_schedule(pd.Timestamp("2026-07-06")) is not None,
+         "pmc_real_version": PMC_VERSION == "4.5.1",
+-        "mechanism_sha": MECH_SHA == "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58"})
++        "mechanism_sha": MECH_SHA == "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6"})
+ 
+     # -- positives ---------------------------------------------------------------
+     req = make_req("REQ-TST-07", "AAPL", D, E, 7)
+@@ -385,7 +385,7 @@
+         "proof_window_closed": proof is not None and proof["per_date"] == {"2026-07-03": "closed"},
+         "proof_library": proof is not None and proof["library_version"] == "4.5.1",
+         "proof_mechanism": proof is not None and proof["mechanism_module_sha256"]
+-            == "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
++            == "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6",
+         "meta_mismatch_control": proof_neg is None,
+         "no_dispatch": transport_calls == []},
+         "direct classifier precondition evaluation on preserved inputs only; SPT-08 NOT dispatched, NOT attempted")

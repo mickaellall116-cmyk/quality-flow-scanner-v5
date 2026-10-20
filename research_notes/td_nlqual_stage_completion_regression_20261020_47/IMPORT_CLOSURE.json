@@ -1,0 +1,204 @@
+{
+ "task": "QF-TD-NLQUAL-STAGE-COMPLETION-REGRESSION-20261020-47 r1",
+ "spec": "Issue #1 comment 6284741482",
+ "hash_gates": {
+  "stage/run_nlqual_matrix.py": "91cfa59b2677f2205ed471bb2d34f0e47814dc9ccd84bfa0fbdb0cf9c8a262e2",
+  "stage/nlqual_supplement.json": "7fe1fd2f7c2217515f364a603e5effa6134550027bd7e95a09b239e04a755bbb",
+  "stage/integration_requirements.lock": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+  "stage/candidate_validator.py": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6",
+  "stage/candidate_entrypoint.py": "442e56cc16bbbb7ba8f3a62910d92bfcd07d85d0bb88ca2346d26b0bdcd2cba6",
+  "stage/nlqual/td_lifecycle_repair_candidate/td_min_collector.py": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c",
+  "stage/nlqual/td_lifecycle_repair_candidate/p2_spot_supplement_v2.json": "cccd52260b2c80a7110559ed100111cf3634e7901daef2f883c6517b68255b31",
+  "stage/nlqual/pilot_harness/validate_input.py": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6",
+  "stage/nlqual/pilot_harness/rate_limiter.py": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+  "stage/nlqual/pilot_harness/verify_sources.py": "a0bd2e4cdce44be5d9fcc1d7c21046391d36c9bd366a959df03bf5d19c9a79e0",
+  "stage/nlqual/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+  "stage/nlqual/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/scanner_rules.py": "7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac",
+  "repo/preserved_body_REQ-SPT-07.rejected.bin": "3339c34154648c0ea4ddb9bd553e5274d390f953552518ad957d79704b7d5d50",
+  "repo/acquisition_manifest_v2_spot8.json": "ddff040fa654303cf4289f4c39c2a5b5af998bd4065ceddd4e4f5d52fcb8c28d",
+  "repo/pilot_harness/validate_input.py": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+  "repo/pilot_harness/verify_sources.py": "a0bd2e4cdce44be5d9fcc1d7c21046391d36c9bd366a959df03bf5d19c9a79e0",
+  "repo/pilot_harness/rate_limiter.py": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+  "repo/pilot_harness/pilot_build.py": "257d5bb99bcbae50442491b71429abb6b37b8c5cbcd1e4bf93b6010ad9e5a508",
+  "repo/pilot_harness/construct_4h.py": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+  "wheelhouse/SHA256_MANIFEST.txt": "210b8273a15cc7317b4a8029198f8d6e1401c1e375acdbe7f8602167c13e815b"
+ },
+ "import_closure": {
+  "members": {
+   "td_min_collector.py": {
+    "imports_all": [
+     "__future__",
+     "argparse",
+     "contextlib",
+     "copy",
+     "datetime",
+     "fcntl",
+     "hashlib",
+     "json",
+     "numpy",
+     "os",
+     "pandas",
+     "pandas_market_calendars",
+     "pathlib",
+     "rate_limiter",
+     "sys",
+     "time",
+     "validate_input",
+     "verify_sources"
+    ],
+    "imports_local": [
+     "rate_limiter",
+     "validate_input",
+     "verify_sources"
+    ],
+    "imports_env": [
+     "numpy",
+     "pandas",
+     "pandas_market_calendars"
+    ],
+    "imports_stdlib": [
+     "__future__",
+     "argparse",
+     "contextlib",
+     "copy",
+     "datetime",
+     "fcntl",
+     "hashlib",
+     "json",
+     "os",
+     "pathlib",
+     "sys",
+     "time"
+    ],
+    "imports_other": []
+   },
+   "run_nlqual_matrix.py": {
+    "imports_all": [
+     "argparse",
+     "hashlib",
+     "importlib",
+     "json",
+     "pandas",
+     "pandas_market_calendars",
+     "pathlib",
+     "rate_limiter",
+     "socket",
+     "sys",
+     "tempfile",
+     "validate_input"
+    ],
+    "imports_local": [
+     "rate_limiter",
+     "validate_input"
+    ],
+    "imports_env": [
+     "pandas",
+     "pandas_market_calendars"
+    ],
+    "imports_stdlib": [
+     "argparse",
+     "hashlib",
+     "importlib",
+     "json",
+     "pathlib",
+     "socket",
+     "sys",
+     "tempfile"
+    ],
+    "imports_other": []
+   },
+   "validate_input.py(candidate)": {
+    "imports_all": [
+     "argparse",
+     "numpy",
+     "pandas",
+     "pandas_market_calendars",
+     "sys"
+    ],
+    "imports_local": [],
+    "imports_env": [
+     "numpy",
+     "pandas",
+     "pandas_market_calendars"
+    ],
+    "imports_stdlib": [
+     "argparse",
+     "sys"
+    ],
+    "imports_other": []
+   },
+   "rate_limiter.py": {
+    "imports_all": [
+     "argparse",
+     "calendar",
+     "contextlib",
+     "fcntl",
+     "json",
+     "math",
+     "os",
+     "pathlib",
+     "re",
+     "sys",
+     "tempfile",
+     "threading",
+     "time"
+    ],
+    "imports_local": [],
+    "imports_env": [],
+    "imports_stdlib": [
+     "argparse",
+     "calendar",
+     "contextlib",
+     "fcntl",
+     "json",
+     "math",
+     "os",
+     "pathlib",
+     "re",
+     "sys",
+     "tempfile",
+     "threading",
+     "time"
+    ],
+    "imports_other": []
+   },
+   "verify_sources.py": {
+    "imports_all": [
+     "hashlib",
+     "pathlib",
+     "sys"
+    ],
+    "imports_local": [],
+    "imports_env": [],
+    "imports_stdlib": [
+     "hashlib",
+     "pathlib",
+     "sys"
+    ],
+    "imports_other": []
+   }
+  },
+  "local_imports_required": [
+   "rate_limiter",
+   "validate_input",
+   "verify_sources"
+  ],
+  "unsatisfied_local": [],
+  "archival_resolution": {
+   "archival_dir_resolved": "/tmp/td47_stage/nlqual/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1",
+   "pinned_from_staged_verify_sources": {
+    "pine_backtest.py": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+    "scanner_rules.py": "7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac"
+   },
+   "targets": {
+    "pine_backtest.py": true,
+    "scanner_rules.py": true
+   }
+  },
+  "local_imports_exercised": [
+   "rate_limiter",
+   "validate_input",
+   "verify_sources"
+  ]
+ }
+}
