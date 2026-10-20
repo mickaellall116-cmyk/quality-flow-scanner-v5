@@ -1,13 +1,12 @@
 #!/bin/bash
-# QF-TD-ROUTE-TRANSACTION-BRANCH-ISOLATED-FINAL-CLOSURE-20261020-55 r1 -
+# QF-TD-ROUTE-TRANSACTION-WORKSPACE-STAGE-CONTINUATION-20261020-55 r1 -
 # single orchestrated offline execution. Runs ENTIRELY inside
 # `unshare -n` (invoked by caller). Steps: network probes -> offline
 # venv build from pinned wheelhouse -> freeze equality vs TD lock ->
-# proof driver v7 (hash gates -> P0 receipt -> candidate + original
-# staging -> branch provenance -> P1 -> P2 -> P3 -> both shadows
-# removed) -> post-run re-hash. Any env-stage failure stops before
-# the driver; the driver stops at its first material failure.
-# No retries anywhere in this script.
+# proof driver v7 (hash gates -> P0 receipt -> git-aware staging +
+# blob proof -> P1 -> P2 -> P3 -> shadow removal) -> post-run re-hash.
+# Any env-stage failure stops before the driver; the driver stops at
+# its first material failure. No retries anywhere in this script.
 set -u
 STAGE=/home/hatch/workspace/qf_td55_stage
 OUT=/home/hatch/workspace/qf_td55_stage/out
@@ -31,7 +30,7 @@ echo "=== build venv (offline, pinned wheelhouse) ===" >> "$RECEIPT"
 python3 -m venv /home/hatch/workspace/qf_td55_stage/venv >> "$RECEIPT" 2>&1 || {
   echo "ENV_STAGE_FAILURE: ENV_BUILD (venv)" >> "$RECEIPT"
   echo "ENV_BUILD" > "$OUT/run_status.txt"; exit 42; }
- /home/hatch/workspace/qf_td55_stage/venv/bin/pip install --no-index --find-links "$WHEELS" \
+/home/hatch/workspace/qf_td55_stage/venv/bin/pip install --no-index --find-links "$WHEELS" \
   --require-hashes -r "$STAGE/requirements_hashes.txt" >> "$RECEIPT" 2>&1 || {
   echo "ENV_STAGE_FAILURE: ENV_BUILD (pip install)" >> "$RECEIPT"
   echo "ENV_BUILD" > "$OUT/run_status.txt"; exit 42; }

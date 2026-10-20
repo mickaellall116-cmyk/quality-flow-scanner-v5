@@ -1,72 +1,35 @@
---- td_route_transaction_dual_path_clock_closure_20261020_54/proof_driver_v6.py	2026-10-20 18:28:05.738855891 +0000
-+++ td_route_transaction_branch_isolated_final_closure_20261020_55/proof_driver_v7.py	2026-10-20 18:33:16.143973024 +0000
-@@ -1,33 +1,37 @@
+--- td_route_transaction_dual_path_clock_closure_20261020_54/proof_driver_v6.py	2026-10-20 18:28:05.391468147 +0000
++++ /home/hatch/workspace/qf-td55/research_notes/td_route_transaction_branch_isolated_final_closure_20261020_55/proof_driver_v7.py	2026-10-20 18:32:21.038850699 +0000
+@@ -1,14 +1,19 @@
  #!/usr/bin/env python3
 -"""QF-TD-ROUTE-TRANSACTION-DUAL-PATH-CLOCK-CLOSURE-20261020-54 r1
 -proof driver v6 (orchestrator). Derived from frozen proof driver v5
 -(sha256 33681f79b6c859ede5568f4f5399c5ea5b2771741c8f5a6faedda95aac0ec018)
 -under spec comment 6296388979 with ONLY: (a) task identity / stage /
 -worktree path strings; (b) added hash gate pinning driver v5 (the
---52 proof-results gate d31e41c3469c9d8546feb04513372193273817d0864c
--354fb061b85eade1df52 is inherited from v5 unchanged); (c) ONE logic
--change: stage_transition_clock(), a post-receipt stage transition
--inserted in p1() between the pinned-receipt gate567 extraction and
--the -19 clock suite. The -19 runner's historical-reproduction branch
--loads the -17 adapter, whose import-time _load_runner() pin-checks
--the gate at the legacy PKG11 path against the ORIGINAL r4 bytes
--(b5399645...); driver v5 staged the candidate gate at that path, so
--the import refused with PIN_MISMATCH:r4_gate (the -53 first failure -
--a proof-stage namespace collision, not a candidate defect). The
--transition restores the original gate bytes at the shadow's legacy
--PKG11 path ONLY; the candidate gate stays at its immutable -48
--package path for the candidate adapter/executor chain, and the
--transition proves the spec S.3 preflight simultaneously (legacy
--path/pin, old-adapter resolution, candidate gate/adapter/executor
--path+pin resolution, runner branch map). Comparator, canonical
--replacements, extractor, fixtures, expectations, failure keys and
--first-failure stop discipline are the v5 code unchanged. ONE
 +"""QF-TD-ROUTE-TRANSACTION-BRANCH-ISOLATED-FINAL-CLOSURE-20261020-55 r1
 +proof driver v7 (orchestrator). Derived from frozen proof driver v6
 +(sha256 3d02de026938c2a8f05a8ad7fee35f96b6d2bfd5eb7a6dadf9dd86090bb3bcf6)
 +under spec comment 6297990771 with ONLY: (a) task identity / stage /
-+worktree path strings; (b) added hash gate pinning driver v6; (c) the
-+ONE logic change authorized by the -55 spec: the clock stage becomes
-+BRANCH-ISOLATED. The -54 adjudication (comment 6297990771) attributed
-+the sole repro_old divergence to harness-context contamination: the
-+old r4 gate pins the ORIGINAL driver/supplement/mechanism/proof
-+(5fed4524/3cbdbf63/1b83cdcd/36bc3a89), so inside the candidate
-+shadow its Gate 6/7 must fail and Gates 9-11 cascade UNKNOWN. v7
-+therefore builds TWO detached git worktrees: a PRISTINE ORIGINAL
-+branch (no candidate substitution anywhere) used only for the
-+accepted runner's repro_old historical branch, and the -54 CANDIDATE
-+branch (byte-identical staging + stage transition) used for the
-+other 19 trials and the remaining proof. Fail-closed branch
-+provenance (spec S.4 pins, runner byte-identity across branches, no
-+path overlap/symlinks, membership fixed) gates execution. The
-+unchanged runner executes in each branch; adjudication is
-+PARTITIONED - ORIGINAL contributes repro_old plus its rollup share,
-+CANDIDATE the other 19 trials cell-for-cell, repro_old explicitly
-+excluded from the candidate-side verdict - and the combined rollup
-+is reconstructed arithmetically and compared; no matrix is
-+fabricated or altered. canonicalize/token_map/first_divergence,
-+the corrected gate567 extractor, fixtures, expectations and
-+first-failure stop discipline are the v6 code unchanged. ONE
- attempt, network-denied (unshare -n, enforced by the caller shell).
--Order: hash gates -> P0 receipt -> git-aware staging + blob proof
---> P1 (receipt + extractor + stage transition + clock suite +
--Gate-7 spot check) -> P2 -> P3 -> post-run rehash -> shadow
--removal. Synthetic fixtures only; candidate copies execute only
--inside the shadow stage; no live file is executed or written.
-+Order: hash gates -> P0 receipt -> candidate + original staging ->
-+branch provenance -> P1 (receipt + extractor + branch-isolated
-+clock + Gate-7 spot check) -> P2 -> P3 -> post-run rehash -> both
-+shadows removed. Synthetic fixtures only; candidate copies execute
-+only inside the candidate shadow; no live file is executed or
-+written.
- """
- import ast
- from collections import Counter
-@@ -42,18 +46,20 @@
++worktree path strings; (b) added hash gate pinning driver v6 (the
+ -52 proof-results gate d31e41c3469c9d8546feb04513372193273817d0864c
+-354fb061b85eade1df52 is inherited from v5 unchanged); (c) ONE logic
+-change: stage_transition_clock(), a post-receipt stage transition
+-inserted in p1() between the pinned-receipt gate567 extraction and
+-the -19 clock suite. The -19 runner's historical-reproduction branch
++354fb061b85eade1df52 is inherited from v5 unchanged); (c) the branch-isolated clock stage:
++stage_transition_clock() is retained unchanged for the CANDIDATE
++branch; p1() additionally builds a second, ORIGINAL git worktree
++(untouched committed artifacts, no candidate substitution, no
++transition), runs the unchanged -19 suite in each branch, and
++adjudicates scoped partitions (ORIGINAL: repro_old + its rollup
++contribution; CANDIDATE: the other 19 trials, repro_old excluded).
++Gate-7 spot check, P2 and P3 are the v6 code unchanged, executed
++against the candidate branch only. The -19 runner's historical-reproduction branch
+ loads the -17 adapter, whose import-time _load_runner() pin-checks
+ the gate at the legacy PKG11 path against the ORIGINAL r4 bytes
+ (b5399645...); driver v5 staged the candidate gate at that path, so
+@@ -42,18 +47,20 @@
  from pathlib import Path
  
  OUT = Path(sys.argv[1])
@@ -75,11 +38,12 @@
  MAINREPO = Path("/home/hatch/workspace/quality-flow-scanner-v5")
  NOTES = REPO / "research_notes"
 -STAGE = Path("/home/hatch/workspace/qf_td54_stage")
+-SHADOW = STAGE / "shadow"
 +STAGE = Path("/home/hatch/workspace/qf_td55_stage")
- SHADOW = STAGE / "shadow"
++SHADOW = STAGE / "shadow_candidate"
++SHADOW_O = STAGE / "shadow_original"
++SNOTES_O = SHADOW_O / "research_notes"
  SNOTES = SHADOW / "research_notes"
-+SHADOWO = STAGE / "shadow_original"
-+SNOTESO = SHADOWO / "research_notes"
  WHEELHOUSE = Path("/home/hatch/workspace/td_nl_wheelhouse_20261016")
  
 -TASK = "QF-TD-ROUTE-TRANSACTION-DUAL-PATH-CLOCK-CLOSURE-20261020-54"
@@ -88,11 +52,11 @@
 -           "adjudication_basis": "6296388979",
 -           "continuation_of": "QF-TD-ROUTE-TRANSACTION-RECEIPT-EXTRACTOR-CORRECTION-CLOSURE-20261020-53 d0db7b2+a4bc8ce+ff9e7c4"}
 +           "adjudication_basis": "6297990771",
-+           "continuation_of": "QF-TD-ROUTE-TRANSACTION-DUAL-PATH-CLOCK-CLOSURE-20261020-54 a6b998d+87dfd68+6db0b38"}
++           "continuation_of": "QF-TD-ROUTE-TRANSACTION-DUAL-PATH-CLOCK-CLOSURE-20261020-54 87dfd68+c026fe7"}
  subprocess_timeouts = []
  
  
-@@ -98,6 +104,7 @@
+@@ -98,6 +105,7 @@
  PKG51 = NOTES / "td_route_transaction_git_aware_staging_continuation_20261020_51"
  PKG52 = NOTES / "td_route_transaction_workspace_stage_continuation_20261020_52"
  PKG53 = NOTES / "td_route_transaction_receipt_extractor_correction_closure_20261020_53"
@@ -100,16 +64,22 @@
  PKG17 = NOTES / "td_status_query_placement_20261017_17"
  PKG11 = NOTES / "td_policy_a_live_readiness_packet_20261017_11"
  PKG19 = NOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
-@@ -129,6 +136,8 @@
+@@ -129,6 +137,14 @@
                   "28f9f309b8")
  PIN_DRIVER_V5 = ("33681f79b6c859ede5568f4f5399c5ea5b2771741c8f5a6faed"
                   "da95aac0ec018")
-+PIN_DRIVER_V6 = ("3d02de026938c2a8f05a8ad7fee35f96b6d2bfd5eb7a6dadf9dd"
-+                 "86090bb3bcf6")
++# -55 (spec 6297990771): frozen driver v6 byte-identity (the v7 base)
++PIN_DRIVER_V6 = ("3d02de026938c2a8f05a8ad7fee35f96b6d2bfd5eb7a6dad"
++                 "f9dd86090bb3bcf6")
++# -55 SS.4: ORIGINAL branch exact pins (accepted originals)
++PIN_ORIG_DRIVER = "5fed45242eb5ec465266c4d4c4258485f01a8c5bfdfdda2fb81295d3cf6d9c00"
++PIN_ORIG_SUPPLEMENT = "3cbdbf63fd49b021dc74f63727098551753949f8684967981c65f66101f95a86"
++PIN_ORIG_MECHANISM = "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58"
++PIN_ORIG_PROOF = "36bc3a89bd266b9d7478d7f6082addd7b764a824bac45afdcbe534eb1d37f21a"
  # -54 (spec 6296388979): the ORIGINAL r4 gate bytes the -17 adapter's
  # import-time pin requires at the legacy PKG11 path.
  PIN_R4_GATE_LEGACY = ("b53996454650dafc77e647a8497eba91beb3785fb52c13"
-@@ -286,6 +295,12 @@
+@@ -286,6 +302,12 @@
                               "match": _dv5 == PIN_DRIVER_V5}
      if not g["frozen_driver_v5"]["match"]:
          fail("HASH_GATE_FROZEN_DRIVER_V5", g["frozen_driver_v5"])
@@ -122,7 +92,7 @@
      results["hash_gates"] = g
      results["ledger_before"] = HF(PILOT / "credit_ledger.json")
      return m48, m2, f1["cleared_serialization"]
-@@ -608,7 +623,7 @@
+@@ -608,7 +630,7 @@
                d19 / "live_dry_run_adapter.py")
      copy_file(PKG48 / "live_readiness_executor_r5_candidate.py",
                d19 / "live_readiness_executor_r4.py")
@@ -131,307 +101,296 @@
      copy_file(F_CAND_ENTRY, ps / "pilot_build_v7_clibound.py")
      copy_file(F_CAND_CONSTRUCT, ps / "construct_4h_v3_cliguard.py")
      copy_file(F_VALIDATOR, ps / "validate_input.py")
-@@ -691,6 +706,12 @@
-             c["remove_rc"] = rr.returncode
-             _git(["-C", str(REPO), "worktree", "prune"])
-         c["shadow_removed"] = not SHADOW.exists()
-+        if SHADOWO.is_dir():
-+            rr = _git(["-C", str(REPO), "worktree", "remove",
-+                       "--force", str(SHADOWO)])
-+            c["original_remove_rc"] = rr.returncode
+@@ -703,6 +725,17 @@
+             c["repo_head_still"] == _pre_status.get("repo_head"))
+     except Exception as e:
+         c["cleanup_error"] = "%s: %s" % (type(e).__name__, e)
++    # -55: dispose of the ORIGINAL branch worktree as well
++    try:
++        if SHADOW_O.is_dir():
++            rr2 = _git(["-C", str(REPO), "worktree", "remove",
++                        "--force", str(SHADOW_O)])
++            c["original_remove_rc"] = rr2.returncode
 +            _git(["-C", str(REPO), "worktree", "prune"])
-+        c["original_shadow_removed"] = not SHADOWO.exists()
-         ms, msl = status_hash(MAINREPO)
-         c["main_status_unchanged"] = (
-             ms == _pre_status.get("main_status"))
-@@ -1071,6 +1092,279 @@
++        c["original_shadow_removed"] = not SHADOW_O.exists()
++    except Exception as e:
++        c["original_cleanup_error"] = "%s: %s" % (
++            type(e).__name__, e)
+     results["staging_cleanup"] = c
+ 
+ 
+@@ -1071,6 +1104,267 @@
          fail("STAGE_TRANSITION_BRANCH_MAP", t)
      results["stage_transition"] = t
  
 +
 +# ------------------------------------------- -55 branch isolation
-+ORIGINAL_TRIALS = ("repro_old",)
-+
-+
-+def build_original_shadow():
-+    """Spec 6297990771 S.3: the ORIGINAL branch is a second DETACHED
-+    GIT WORKTREE of this repository, PRISTINE - no candidate
-+    substitution anywhere. The accepted runner's repro_old branch
-+    resolves only original artifacts at their accepted paths here.
-+    Preflight (worktree membership, collector blob, gate-derived
-+    REPO == shadow root, not a symlink) gates execution."""
-+    o = {"path": str(SHADOWO), "is_symlink": SHADOWO.is_symlink()}
-+    if SHADOWO.exists() or SHADOWO.is_symlink():
-+        rr = _git(["-C", str(REPO), "worktree", "remove", "--force",
-+                   str(SHADOWO)])
-+        o["stale_cleanup_rc"] = rr.returncode
-+        if SHADOWO.exists() or SHADOWO.is_symlink():
-+            if SHADOWO.is_symlink() or SHADOWO.is_file():
-+                SHADOWO.unlink()
++def build_original_worktree():
++    """-55 (spec 6297990771 SS.3): the ORIGINAL branch - a second
++    detached git worktree of this repo at the same HEAD, with NO
++    candidate substitution and NO stage transition: the committed
++    original artifacts stand at their accepted paths/hashes. Used
++    only to execute the accepted runner's repro_old branch."""
++    if SHADOW_O.exists() or SHADOW_O.is_symlink():
++        _git(["-C", str(REPO), "worktree", "remove", "--force",
++              str(SHADOW_O)])
++        if SHADOW_O.exists() or SHADOW_O.is_symlink():
++            if SHADOW_O.is_symlink() or SHADOW_O.is_file():
++                SHADOW_O.unlink()
 +            else:
-+                shutil.rmtree(SHADOWO)
++                shutil.rmtree(SHADOW_O)
 +    _git(["-C", str(REPO), "worktree", "prune"])
 +    ra = _git(["-C", str(REPO), "worktree", "add", "--detach",
-+               str(SHADOWO)])
-+    if ra.returncode != 0 or not SHADOWO.is_dir():
-+        fail("STAGING_ORIGINAL_WORKTREE_ADD",
-+             {"rc": ra.returncode, "stderr": ra.stderr[-500:]})
-+    o["head"] = _git(["-C", str(SHADOWO), "rev-parse",
-+                      "HEAD"]).stdout.strip()
-+    r1 = _git(["-C", str(SHADOWO), "rev-parse",
++               str(SHADOW_O)])
++    if ra.returncode != 0 or not SHADOW_O.is_dir():
++        fail("STAGING_WORKTREE_ADD",
++             {"branch": "original", "rc": ra.returncode,
++              "stderr": ra.stderr[-500:]})
++    _pre_status["original_shadow_created"] = True
++    _pre_status["original_shadow_head"] = _git(
++        ["-C", str(SHADOW_O), "rev-parse", "HEAD"]).stdout.strip()
++    pre = {}
++    r1 = _git(["-C", str(SHADOW_O), "rev-parse",
 +               "--is-inside-work-tree"])
-+    o["inside_work_tree"] = (r1.returncode == 0
-+                             and r1.stdout.strip() == "true")
-+    rb = subprocess.run(["git", "-C", str(SHADOWO), "show",
++    pre["b1_inside_work_tree"] = (r1.returncode == 0
++                                  and r1.stdout.strip() == "true")
++    rb = subprocess.run(["git", "-C", str(SHADOW_O), "show",
 +                         "%s:%s" % (COLLECTOR_COMMIT, COLLECTOR_PATH)],
 +                        capture_output=True, timeout=30)
-+    o["blob_exit"] = rb.returncode
-+    o["blob_sha256"] = H(rb.stdout) if rb.returncode == 0 else None
-+    o["blob_is_PIN_COLLECTOR"] = o["blob_sha256"] == PIN_COLLECTOR
-+    gate_path = SNOTESO / "td_policy_a_live_readiness_packet_20261017_11" \
-+        / "dispatch_gate_r4.py"
-+    derived = os.path.abspath(os.path.join(
-+        os.path.dirname(os.path.abspath(str(gate_path))), "..", ".."))
-+    o["derived_REPO"] = derived
-+    o["derived_REPO_is_shadow_root"] = (
-+        derived == os.path.abspath(str(SHADOWO)))
-+    results["original_shadow"] = o
-+    if o["is_symlink"] or not o["inside_work_tree"] \
-+            or not o["blob_is_PIN_COLLECTOR"] \
-+            or not o["derived_REPO_is_shadow_root"]:
-+        fail("STAGING_ORIGINAL_PREFLIGHT", o)
++    pre["b3_blob_sha256"] = (H(rb.stdout) if rb.returncode == 0
++                             else None)
++    pre["b3_blob_is_PIN_COLLECTOR"] = (
++        pre["b3_blob_sha256"] == PIN_COLLECTOR)
++    pre["head_matches_candidate_branch"] = (
++        _pre_status["original_shadow_head"]
++        == _pre_status.get("shadow_head"))
++    results["original_branch_preflight"] = pre
++    if not pre["b1_inside_work_tree"]:
++        fail("STAGING_NOT_WORKTREE", pre)
++    if not pre["b3_blob_is_PIN_COLLECTOR"]:
++        fail("STAGING_GIT_BLOB", pre)
++    if not pre["head_matches_candidate_branch"]:
++        fail("BRANCH_HEAD_MISMATCH", pre)
 +
 +
 +def branch_provenance():
-+    """Spec 6297990771 S.4: fail-closed provenance for BOTH branches
-+    before any suite executes; branch membership is fixed here."""
-+    bp = {"membership_fixed": {"ORIGINAL": list(ORIGINAL_TRIALS),
-+                               "CANDIDATE": "the other 19 trials"},
-+          "candidate_shadow": str(SHADOW),
-+          "original_shadow": str(SHADOWO)}
-+    ac, ao = os.path.abspath(str(SHADOW)), os.path.abspath(str(SHADOWO))
-+    bp["paths_distinct"] = ac != ao
-+    bp["no_containment"] = not (
-+        ac.startswith(ao + os.sep) or ao.startswith(ac + os.sep))
-+    bp["neither_symlink"] = not SHADOW.is_symlink() \
-+        and not SHADOWO.is_symlink()
-+    # ORIGINAL branch pins (in-branch files at their accepted paths)
-+    o11 = SNOTESO / "td_policy_a_live_readiness_packet_20261017_11"
-+    o04 = SNOTESO / "td_fresh_live_driver_integration_evidence_20261016"
-+    or1 = SNOTESO / "td_fresh_full_manifest_preflight_evidence_20261016"
-+    opilot = SNOTESO / "pilot_harness"
-+    supp_o = json.loads((or1 / "fresh_supplement.json").read_bytes())
-+    orig = {"gate": HF(o11 / "dispatch_gate_r4.py"),
-+            "driver": HF(o04 / "live_driver.py"),
-+            "supplement": HF(or1 / "fresh_supplement.json"),
-+            "mechanism": HF(opilot / "validate_input.py"),
-+            "proof_key": next(iter(supp_o["calendar_proofs"]))}
-+    orig_ok = (
-+        orig["gate"] == PIN_R4_GATE_LEGACY
-+        and orig["driver"].startswith("5fed4524")
-+        and orig["supplement"].startswith("3cbdbf63")
-+        and orig["mechanism"].startswith("1b83cdcd")
-+        and orig["proof_key"].startswith("36bc3a89"))
-+    orig_repo_same = (
-+        orig["gate"] == HF(PKG11 / "dispatch_gate_r4.py")
-+        and orig["driver"] == HF(PKG04 / "live_driver.py")
-+        and orig["supplement"] == HF(R1PKG / "fresh_supplement.json")
-+        and orig["mechanism"] == HF(PILOT / "validate_input.py"))
-+    bp["original_pins"] = dict(
-+        orig, expected={"gate": PIN_R4_GATE_LEGACY,
-+                        "driver_prefix": "5fed4524",
-+                        "supplement_prefix": "3cbdbf63",
-+                        "mechanism_prefix": "1b83cdcd",
-+                        "proof_prefix": "36bc3a89"},
-+        match=orig_ok, byte_identical_to_repo_copies=orig_repo_same)
-+    # CANDIDATE branch pins (the -48 artifacts in-branch)
-+    c48 = SNOTES / "td_route_adoption_transaction_prep_20261020_48"
-+    supp_n = json.loads((c48 / "fresh_supplement_v2_candidate.json")
-+                        .read_bytes())
-+    cand = {"gate": HF(c48 / "dispatch_gate_r5_candidate.py"),
-+            "driver": HF(c48 / "live_driver_r5_candidate.py"),
-+            "supplement": HF(c48 / "fresh_supplement_v2_candidate.json"),
-+            "mechanism": HF(SNOTES / PKG44.name
-+                            / "validate_input_v3_dstfix.py"),
-+            "proof_key": next(iter(supp_n["calendar_proofs"])),
-+            "adapter": HF(c48 / "live_dry_run_adapter_r5_candidate.py"),
-+            "executor": HF(c48
-+                           / "live_readiness_executor_r5_candidate.py")}
++    """-55 (spec 6297990771 SS.4): fail-closed provenance for both
++    branches, checked after staging/transition and before any suite
++    executes. Original pins at their accepted paths in the ORIGINAL
++    branch; candidate pins at the staged copies in the CANDIDATE
++    branch (gate/supplement/proof via the immutable -48 sources the
++    staged copies were byte-verified against in SS B preflight);
++    both accepted runner copies byte-identical; resolved paths
++    recorded; no overlap, no symlinks; membership fixed by HEAD."""
++    pv = {}
++    rc_ = os.path.realpath(SHADOW)
++    ro_ = os.path.realpath(SHADOW_O)
++    pv["candidate_branch_resolved_path"] = rc_
++    pv["original_branch_resolved_path"] = ro_
++    pv["paths_distinct"] = rc_ != ro_
++    pv["no_path_overlap"] = not (
++        rc_.startswith(ro_ + os.sep) or ro_.startswith(rc_ + os.sep))
++    pv["roots_not_symlinks"] = (not SHADOW.is_symlink()
++                                and not SHADOW_O.is_symlink())
++    if not (pv["paths_distinct"] and pv["no_path_overlap"]
++            and pv["roots_not_symlinks"]):
++        fail("BRANCH_PROVENANCE_PATHS", pv)
++    # ORIGINAL branch exact pins
++    o = {}
++    o["gate"] = HF(SNOTES_O / "td_policy_a_live_readiness_packet_20261017_11"
++                   / "dispatch_gate_r4.py")
++    o["driver"] = HF(SNOTES_O / "td_fresh_live_driver_integration_evidence_20261016"
++                     / "live_driver.py")
++    o_supp_path = (SNOTES_O / "td_fresh_full_manifest_preflight_evidence_20261016"
++                   / "fresh_supplement.json")
++    o["supplement"] = HF(o_supp_path)
++    o["proof"] = next(iter(json.loads(
++        o_supp_path.read_bytes())["calendar_proofs"]))
++    o["mechanism"] = HF(SNOTES_O / "pilot_harness" / "validate_input.py")
++    pv["original_pins"] = {
++        "gate": {"expected": PIN_R4_GATE_LEGACY, "actual": o["gate"],
++                 "match": o["gate"] == PIN_R4_GATE_LEGACY},
++        "driver": {"expected": PIN_ORIG_DRIVER, "actual": o["driver"],
++                   "match": o["driver"] == PIN_ORIG_DRIVER},
++        "supplement": {"expected": PIN_ORIG_SUPPLEMENT,
++                       "actual": o["supplement"],
++                       "match": o["supplement"] == PIN_ORIG_SUPPLEMENT},
++        "mechanism": {"expected": PIN_ORIG_MECHANISM,
++                      "actual": o["mechanism"],
++                      "match": o["mechanism"] == PIN_ORIG_MECHANISM},
++        "proof": {"expected": PIN_ORIG_PROOF, "actual": o["proof"],
++                  "match": o["proof"] == PIN_ORIG_PROOF}}
++    pv["original_files_not_symlinks"] = not any(
++        p.is_symlink() for p in [
++            SNOTES_O / "td_policy_a_live_readiness_packet_20261017_11"
++            / "dispatch_gate_r4.py",
++            SNOTES_O / "td_fresh_live_driver_integration_evidence_20261016"
++            / "live_driver.py", o_supp_path,
++            SNOTES_O / "pilot_harness" / "validate_input.py"])
++    if not all(v["match"] for v in pv["original_pins"].values()) \
++            or not pv["original_files_not_symlinks"]:
++        fail("BRANCH_PROVENANCE_ORIGINAL_PINS", pv)
++    # CANDIDATE branch exact pins
 +    hg = results["hash_gates"]
-+    cand_ok = (
-+        cand["gate"] == hg["candidate_gate"]
-+        and cand["driver"] == hg["candidate_driver"]
-+        and cand["supplement"] == hg["candidate_supplement"]
-+        and cand["mechanism"] == PIN_VALIDATOR_CAND
-+        and cand["adapter"] == hg["candidate_adapter"]
-+        and cand["executor"] == hg["candidate_executor"]
-+        and cand["proof_key"].startswith("6b030c62"))
-+    bp["candidate_pins"] = dict(cand, match=cand_ok)
-+    # both accepted runner copies byte-identical
-+    pkg19n = PKG19.name
-+    r_cand = HF(SNOTES / pkg19n / "run_clock_adapter_trials.py")
-+    r_orig = HF(SNOTESO / pkg19n / "run_clock_adapter_trials.py")
-+    r_acc = HF(PKG19 / "run_clock_adapter_trials.py")
-+    bp["runner_sha256"] = {"candidate_branch": r_cand,
-+                           "original_branch": r_orig,
-+                           "accepted": r_acc,
-+                           "all_identical": r_cand == r_orig == r_acc}
-+    results["branch_provenance"] = bp
-+    if not (bp["paths_distinct"] and bp["no_containment"]
-+            and bp["neither_symlink"]):
-+        fail("BRANCH_PROVENANCE_PATHS", bp)
-+    if not orig_ok or not orig_repo_same:
-+        fail("BRANCH_PROVENANCE_ORIGINAL_PINS", bp["original_pins"])
-+    if not cand_ok:
-+        fail("BRANCH_PROVENANCE_CANDIDATE_PINS", bp["candidate_pins"])
-+    if not bp["runner_sha256"]["all_identical"]:
-+        fail("BRANCH_PROVENANCE_RUNNER", bp["runner_sha256"])
++    c_supp = json.loads((PKG48 / "fresh_supplement_v2_candidate.json")
++                        .read_bytes())
++    c = {}
++    c["gate_source"] = HF(PKG48 / "dispatch_gate_r5_candidate.py")
++    c["driver_staged"] = HF(
++        SNOTES / "td_fresh_live_driver_integration_evidence_20261016"
++        / "live_driver.py")
++    c["supplement_staged"] = HF(
++        SNOTES / "td_fresh_full_manifest_preflight_evidence_20261016"
++        / "fresh_supplement.json")
++    c["adapter_staged"] = HF(
++        SNOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
++        / "live_dry_run_adapter.py")
++    c["executor_staged"] = HF(
++        SNOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
++        / "live_readiness_executor_r4.py")
++    c["mechanism_candidate"] = HF(F_VALIDATOR)
++    c["proof"] = next(iter(c_supp["calendar_proofs"]))
++    pv["candidate_pins"] = {
++        "gate": {"expected_prefix": "94ef967c",
++                 "actual": c["gate_source"],
++                 "match": c["gate_source"] == hg["candidate_gate"]
++                 and c["gate_source"].startswith("94ef967c")},
++        "driver": {"expected_prefix": "d11c6b58",
++                   "actual": c["driver_staged"],
++                   "match": c["driver_staged"] == hg["candidate_driver"]
++                   and c["driver_staged"].startswith("d11c6b58")},
++        "supplement": {"expected_prefix": "55ad6f40",
++                       "actual": c["supplement_staged"],
++                       "match": c["supplement_staged"]
++                       == hg["candidate_supplement"]
++                       and c["supplement_staged"].startswith("55ad6f40")},
++        "mechanism": {"expected": PIN_VALIDATOR_CAND,
++                      "actual": c["mechanism_candidate"],
++                      "match": c["mechanism_candidate"]
++                      == PIN_VALIDATOR_CAND
++                      and c["mechanism_candidate"].startswith("ca3bafd8")},
++        "proof": {"expected": "6b030c62fdaf3cd738001a438b6f6a562b381b93"
++                  "b29dd8b299753de6aebe4fa5",
++                  "actual": c["proof"],
++                  "match": c["proof"] == "6b030c62fdaf3cd738001a438b6"
++                  "f6a562b381b93b29dd8b299753de6aebe4fa5"},
++        "adapter": {"expected_prefix": "6980b5b3",
++                    "actual": c["adapter_staged"],
++                    "match": c["adapter_staged"] == hg["candidate_adapter"]
++                    and c["adapter_staged"].startswith("6980b5b3")},
++        "executor": {"expected_prefix": "bbc23616",
++                     "actual": c["executor_staged"],
++                     "match": c["executor_staged"]
++                     == hg["candidate_executor"]
++                     and c["executor_staged"].startswith("bbc23616")}}
++    if not all(v["match"] for v in pv["candidate_pins"].values()):
++        fail("BRANCH_PROVENANCE_CANDIDATE_PINS", pv)
++    # both accepted runner copies byte-identical (and == accepted)
++    r_c = HF(SNOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
++             / "run_clock_adapter_trials.py")
++    r_o = HF(SNOTES_O / "td_live_dryrun_clock_adapter_binding_20261017_19"
++             / "run_clock_adapter_trials.py")
++    r_a = HF(PKG19 / "run_clock_adapter_trials.py")
++    pv["runner_copies"] = {"candidate_branch": r_c,
++                           "original_branch": r_o, "accepted": r_a,
++                           "byte_identical": r_c == r_o == r_a}
++    if not pv["runner_copies"]["byte_identical"]:
++        fail("BRANCH_PROVENANCE_RUNNER", pv)
++    pv["branch_heads"] = {
++        "repo_head": _pre_status.get("repo_head"),
++        "candidate_branch": _pre_status.get("shadow_head"),
++        "original_branch": _pre_status.get("original_shadow_head"),
++        "membership_fixed": (
++            _pre_status.get("shadow_head") == _pre_status.get("repo_head")
++            and _pre_status.get("original_shadow_head")
++            == _pre_status.get("repo_head"))}
++    if not pv["branch_heads"]["membership_fixed"]:
++        fail("BRANCH_HEAD_MISMATCH", pv)
++    results["branch_provenance"] = pv
 +
 +
-+def _trial_checks(t):
-+    ch = t.get("checks") or {}
-+    return sum(1 for v in ch.values() if v is True), len(ch)
++def _trial_contrib(t):
++    ch = t.get("checks", {}) if isinstance(t, dict) else {}
++    return {"checks_true": sum(1 for v in ch.values() if v is True),
++            "checks_total": len(ch),
++            "ok": t.get("ok") if isinstance(t, dict) else None}
 +
 +
-+def adjudicate_clock_branches(acc_obj, orig_obj, cand_obj):
-+    """Pure partitioned adjudication (spec 6297990771 S.5).
-+    Canonicalizes with the unchanged v6 machinery and compares:
-+    ORIGINAL repro_old exactly; CANDIDATE other-19 exactly with
-+    repro_old excluded; exact trial-name partition; combined
-+    rollup reconstructed arithmetically and compared to accepted.
-+    Returns the evidence dict; raises Fail on first divergence.
-+    No matrix is fabricated or altered."""
++def compare_clock_scoped(orig_obj, cand_obj):
++    """-55 (spec 6297990771 SS.5): scoped adjudication of the two
++    branch matrices against accepted run-2. ORIGINAL is judged only
++    on repro_old plus its rollup contribution; CANDIDATE only on
++    the other 19 trials, with repro_old explicitly excluded. The
++    trial-name partition must be exact."""
 +    pairs, names, revs = token_map()
-+    acc = canonicalize(acc_obj, pairs, names, revs)
-+    orig_m = canonicalize(orig_obj, pairs, names, revs)
-+    cand_m = canonicalize(cand_obj, pairs, names, revs)
-+    acc_names = sorted(acc["trials"].keys())
-+    bc = {"accepted_trials": acc_names}
-+    part = {"original_matrix_trials": sorted(orig_m["trials"].keys()),
-+            "candidate_matrix_trials": sorted(cand_m["trials"].keys())}
-+    part["partition_exact"] = (
-+        part["original_matrix_trials"] == acc_names
-+        and part["candidate_matrix_trials"] == acc_names
-+        and len(acc_names) == 20
-+        and set(ORIGINAL_TRIALS) <= set(acc_names))
-+    bc["partition"] = part
-+    if not part["partition_exact"]:
-+        fail("P1_CLOCK_BRANCH_PARTITION", part)
-+    div = first_divergence(acc["trials"]["repro_old"],
-+                           orig_m["trials"]["repro_old"],
-+                           "$.trials.repro_old")
-+    bc["original_repro_old"] = {
-+        "identical_after_canonicalization": div is None,
-+        "first_divergence": div,
-+        "gates": orig_m["trials"]["repro_old"].get("gates"),
-+        "ok": orig_m["trials"]["repro_old"].get("ok")}
-+    if div is not None:
-+        fail("P1_CLOCK_ORIGINAL_REPRO", bc["original_repro_old"])
-+    cand19 = [n for n in acc_names if n not in ORIGINAL_TRIALS]
-+    bad, cells = {}, 0
-+    for n in cand19:
-+        cells += count_leaves(acc["trials"][n])
-+        d = first_divergence(acc["trials"][n], cand_m["trials"][n],
-+                             "$.trials." + n)
-+        if d is not None:
-+            bad[n] = d
-+    bc["candidate_19"] = {
-+        "trials_compared": len(cand19), "cells_compared": cells,
-+        "all_identical": not bad, "divergences": bad,
-+        "repro_old_excluded_from_candidate_verdict": True,
-+        "candidate_branch_repro_old_recorded_not_adjudicated":
-+            cand_m["trials"]["repro_old"]}
-+    if bad:
-+        fail("P1_CLOCK_ADAPTER_REGRESSION", bc["candidate_19"])
-+    op, ot = _trial_checks(orig_m["trials"]["repro_old"])
-+    cp = ct = 0
-+    all_ok = bool(orig_m["trials"]["repro_old"].get("ok"))
-+    for n in cand19:
-+        p_, t_ = _trial_checks(cand_m["trials"][n])
-+        cp += p_
-+        ct += t_
-+        all_ok = all_ok and bool(cand_m["trials"][n].get("ok"))
-+    combined = {"checks_passed": op + cp, "checks_total": ot + ct,
-+                "summary": {"all_ok": all_ok, "checks": ot + ct,
-+                            "passed": op + cp, "trials": 20}}
-+    bc["combined_rollup"] = {
-+        "reconstructed": combined,
++    acc = canonicalize(json.loads(
++        (PKG19 / "clock_adapter_matrix_run2.json").read_bytes()),
++        pairs, names, revs)
++    o = canonicalize(orig_obj, pairs, names, revs)
++    c = canonicalize(cand_obj, pairs, names, revs)
++    entry = {"accepted_source": str(
++        PKG19 / "clock_adapter_matrix_run2.json")}
++    acc_names = set(acc["trials"])
++    scoped_c = sorted(acc_names - {"repro_old"})
++    entry["trial_partition"] = {
++        "accepted_trials": sorted(acc_names),
++        "original_branch_trials": sorted(o["trials"]),
++        "candidate_branch_trials": sorted(c["trials"]),
++        "scoped_original": ["repro_old"],
++        "scoped_candidate": scoped_c,
++        "partition_exact": (
++            set(o["trials"]) == acc_names
++            and set(c["trials"]) == acc_names
++            and {"repro_old"} | set(scoped_c) == acc_names
++            and not ({"repro_old"} & set(scoped_c)))}
++    results.setdefault("comparisons", {})[
++        "clock_adapter_matrix_scoped"] = entry
++    if not entry["trial_partition"]["partition_exact"]:
++        fail("P1_CLOCK_TRIAL_PARTITION", entry)
++    div_o = first_divergence(acc["trials"]["repro_old"],
++                             o["trials"]["repro_old"],
++                             "$.trials.repro_old")
++    entry["original_repro_exact"] = div_o is None
++    entry["original_first_divergence"] = div_o
++    entry["repro_rollup_contribution"] = {
++        "accepted": _trial_contrib(acc["trials"]["repro_old"]),
++        "original": _trial_contrib(o["trials"]["repro_old"]),
++        "candidate_excluded_from_verdict": _trial_contrib(
++            c["trials"]["repro_old"])}
++    entry["rollup_contribution_match"] = (
++        entry["repro_rollup_contribution"]["accepted"]
++        == entry["repro_rollup_contribution"]["original"])
++    entry["branch_rollups"] = {
 +        "accepted": {"checks_passed": acc.get("checks_passed"),
 +                     "checks_total": acc.get("checks_total"),
 +                     "summary": acc.get("summary")},
-+        "matches_accepted": (
-+            combined["checks_passed"] == acc.get("checks_passed")
-+            and combined["checks_total"] == acc.get("checks_total")
-+            and combined["summary"] == acc.get("summary"))}
-+    if not bc["combined_rollup"]["matches_accepted"]:
-+        fail("P1_CLOCK_ROLLUP", bc["combined_rollup"])
-+    return bc
-+
-+
-+def branch_clock_proof():
-+    """Runs the unchanged -19 runner once per branch and adjudicates
-+    the partition. ORIGINAL first (pristine control), then the
-+    candidate branch after the retained -54 stage transition."""
-+    bc = {}
-+    d19o = SNOTESO / PKG19.name
-+    r = run_suite([sys.executable,
-+                   str(d19o / "run_clock_adapter_trials.py"),
-+                   str(OUT / "clock_matrix_original.json")], cwd=d19o)
-+    bc["original_run"] = {"exit": r.returncode,
-+                          "stdout_tail": r.stdout[-400:],
-+                          "stderr_tail": r.stderr[-800:]}
-+    if r.returncode != 0 or not (OUT / "clock_matrix_original.json").exists():
-+        results["branch_clock"] = bc
-+        fail("P1_CLOCK_SUITE_RUN_ORIGINAL", bc["original_run"])
-+    bc["ledger_unchanged_after_original"] = (
-+        HF(PILOT / "credit_ledger.json") == results["ledger_before"])
-+    # -54 transition retained for the candidate branch: restore the
-+    # original gate at the legacy PKG11 path + dual-path preflight.
-+    stage_transition_clock()
-+    d19 = SNOTES / PKG19.name
-+    r = run_suite([sys.executable,
-+                   str(d19 / "run_clock_adapter_trials.py"),
-+                   str(OUT / "clock_matrix_candidate.json")], cwd=d19)
-+    bc["candidate_run"] = {"exit": r.returncode,
-+                           "stdout_tail": r.stdout[-400:],
-+                           "stderr_tail": r.stderr[-800:]}
-+    if r.returncode != 0 or not (OUT / "clock_matrix_candidate.json").exists():
-+        results["branch_clock"] = bc
-+        fail("P1_CLOCK_SUITE_RUN", bc["candidate_run"])
-+    bc["ledger_unchanged_after_candidate"] = (
-+        HF(PILOT / "credit_ledger.json") == results["ledger_before"])
-+    results["branch_clock"] = bc
-+    if not (bc["ledger_unchanged_after_original"]
-+            and bc["ledger_unchanged_after_candidate"]):
-+        fail("P1_CLOCK_LEDGER", bc)
-+    ev = adjudicate_clock_branches(
-+        json.loads((PKG19 / "clock_adapter_matrix_run2.json").read_bytes()),
-+        json.loads((OUT / "clock_matrix_original.json").read_bytes()),
-+        json.loads((OUT / "clock_matrix_candidate.json").read_bytes()))
-+    bc.update(ev)
-+    results["branch_clock"] = bc
-+    results.setdefault("comparisons", {})[
-+        "clock_adapter_matrix_branch_isolated"] = {
-+        "accepted_source": str(PKG19 / "clock_adapter_matrix_run2.json"),
-+        "construction": ("ORIGINAL branch repro_old + CANDIDATE "
-+                         "branch 19 trials; combined rollup "
-+                         "reconstructed and compared; no matrix "
-+                         "fabricated or altered"),
-+        "identical_after_canonicalization": True,
-+        "first_divergence": None}
++        "original_branch": {"checks_passed": o.get("checks_passed"),
++                            "checks_total": o.get("checks_total")},
++        "candidate_branch": {"checks_passed": c.get("checks_passed"),
++                             "checks_total": c.get("checks_total")}}
++    if div_o is not None or not entry["rollup_contribution_match"]:
++        fail("P1_CLOCK_ADAPTER_REGRESSION", entry)
++    divs = {}
++    for name in scoped_c:
++        d = first_divergence(acc["trials"][name], c["trials"][name],
++                             f"$.trials.{name}")
++        if d:
++            divs[name] = d
++    entry["candidate_scoped_trials_compared"] = len(scoped_c)
++    entry["candidate_scoped_exact"] = not divs
++    entry["candidate_first_divergences"] = divs
++    if divs:
++        fail("P1_CLOCK_ADAPTER_REGRESSION", entry)
++    return entry
 +
 +
  # ---------------------------------------------------------------- P1
  def p1():
      # -53 (spec 6295378552): the 46-trial gate suite is NOT rerun.
-@@ -1094,24 +1388,12 @@
-     results["P1_gate567"] = g567 or {"extractor": "NOT_EVIDENCED"}
-     if g567 is None:
-         fail("P1_GATE567_NOT_EVIDENCED", results["P1_gate567"])
--    # -54: post-receipt stage transition (spec 6296388979) - restore
--    # the original gate at the legacy PKG11 path for the -17
--    # reproduction adapter and prove the dual-path preflight.
--    stage_transition_clock()
+@@ -1098,20 +1392,62 @@
+     # the original gate at the legacy PKG11 path for the -17
+     # reproduction adapter and prove the dual-path preflight.
+     stage_transition_clock()
 -    # adapter + executor: -19 clock/binding regression
 -    d19 = SNOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
 -    r = run_suite([sys.executable,
@@ -446,16 +405,66 @@
 -    compare_matrix("clock_adapter_matrix",
 -                   PKG19 / "clock_adapter_matrix_run2.json",
 -                   clock_matrix, "P1_CLOCK_ADAPTER_REGRESSION")
-+    # -55 (spec 6297990771): branch-isolated clock proof - the
-+    # unchanged runner executes in the pristine ORIGINAL branch
-+    # (repro_old) and in the candidate branch (other 19 trials);
-+    # partitioned adjudication replaces the single whole-matrix
-+    # comparison. See branch_clock_proof().
-+    branch_clock_proof()
++    # -55 (spec 6297990771 SS.5): branch-isolated clock proof. The
++    # unchanged -19 suite runs in BOTH branches; adjudication is
++    # scoped - ORIGINAL contributes repro_old + its rollup
++    # contribution, CANDIDATE the other 19 trials (repro_old
++    # explicitly excluded on the candidate side).
++    branch_provenance()
++    d19_c = SNOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
++    d19_o = SNOTES_O / "td_live_dryrun_clock_adapter_binding_20261017_19"
++    ro = run_suite([sys.executable,
++                    str(d19_o / "run_clock_adapter_trials.py"),
++                    str(OUT / "clock_matrix_original.json")], cwd=d19_o)
++    results["P1_clock_suite_original"] = {
++        "exit": ro.returncode, "stdout_tail": ro.stdout[-400:],
++        "stderr_tail": ro.stderr[-800:]}
++    if ro.returncode != 0 or not (OUT / "clock_matrix_original.json").exists():
++        fail("P1_CLOCK_SUITE_RUN", results["P1_clock_suite_original"])
++    rc = run_suite([sys.executable,
++                    str(d19_c / "run_clock_adapter_trials.py"),
++                    str(OUT / "clock_matrix_candidate.json")], cwd=d19_c)
++    results["P1_clock_suite_candidate"] = {
++        "exit": rc.returncode, "stdout_tail": rc.stdout[-400:],
++        "stderr_tail": rc.stderr[-800:]}
++    if rc.returncode != 0 or not (OUT / "clock_matrix_candidate.json").exists():
++        fail("P1_CLOCK_SUITE_RUN", results["P1_clock_suite_candidate"])
++    orig_matrix = json.loads(
++        (OUT / "clock_matrix_original.json").read_bytes())
++    cand_matrix = json.loads(
++        (OUT / "clock_matrix_candidate.json").read_bytes())
++    compare_clock_scoped(orig_matrix, cand_matrix)
++    led = {"repo_ledger_sha256": HF(PILOT / "credit_ledger.json"),
++           "original_branch_ledger_sha256": HF(
++               SNOTES_O / "pilot_harness" / "credit_ledger.json"),
++           "candidate_branch_ledger_sha256": HF(
++               SNOTES / "pilot_harness" / "credit_ledger.json")}
++    led["real_pilot_ledger_unchanged_in_both"] = (
++        led["original_branch_ledger_sha256"] == led["repo_ledger_sha256"]
++        and led["candidate_branch_ledger_sha256"]
++        == led["repo_ledger_sha256"])
++    results["P1_clock_ledgers"] = led
++    if not led["real_pilot_ledger_unchanged_in_both"]:
++        fail("P1_CLOCK_LEDGER", led)
++    # combined record: scoped trials merged (repro_old from the
++    # ORIGINAL branch, the other 19 from the CANDIDATE branch);
++    # rollups are the accepted run-2 values the scoped comparisons
++    # were gated against.
++    acc_raw = json.loads(
++        (PKG19 / "clock_adapter_matrix_run2.json").read_bytes())
++    merged = {"checks_passed": acc_raw.get("checks_passed"),
++              "checks_total": acc_raw.get("checks_total"),
++              "summary": acc_raw.get("summary"),
++              "trials": dict(cand_matrix["trials"]),
++              "provenance": "repro_old from ORIGINAL branch; "
++                            "other 19 trials from CANDIDATE branch"}
++    merged["trials"]["repro_old"] = orig_matrix["trials"]["repro_old"]
++    (OUT / "clock_matrix.json").write_text(
++        json.dumps(merged, indent=1, sort_keys=True))
      # Gate-7 mechanism spot check: original vs candidate gate derivation
      spot = {}
      try:
-@@ -1176,7 +1458,7 @@
+@@ -1176,7 +1512,7 @@
  
  def p3(expected_f1):
      import pandas as pd
@@ -464,12 +473,11 @@
      p = {}
      # binding identity (in-process load of the staged entrypoint copy)
      sys.path.insert(0, str(ps))
-@@ -1269,6 +1551,8 @@
+@@ -1269,6 +1605,7 @@
          m48, m2, expected_f1 = hash_gates()
          p0_receipt()
          build_shadow_gitaware()
-+        build_original_shadow()
-+        branch_provenance()
++        build_original_worktree()
          p1()
          p2()
          p3(expected_f1)
