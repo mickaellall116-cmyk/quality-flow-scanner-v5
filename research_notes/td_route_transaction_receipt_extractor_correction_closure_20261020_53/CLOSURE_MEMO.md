@@ -108,8 +108,10 @@ it exists to detect.
   wheelhouse; CPython 3.12.3 / pandas 2.2.3 / PMC 4.5.1;
   FREEZE_EQUALS_LOCK (08b38cfa…). Run window 16:42:43Z→16:43:34Z.
 - Elapsed vs ≤45 cap: execution start (first command of the run,
-  spec fetch) 2026-10-20T16:29Z → results remote-verified ≈16:50Z
-  ≈ 21 min. Repair minutes beyond the authorized extractor
+  spec fetch) 2026-10-20T16:29Z → results remote-verified
+  2026-10-20T16:45:44Z ≈ 17 min. (First version of this memo said
+  ≈21 min — an estimate written before the push completed;
+  corrected here.) Repair minutes beyond the authorized extractor
   correction: 0.
 - Post-run: driver rehash confirms pinned originals unchanged;
   pilot ledger 7e5ccef0… = pre-run value (also in env_receipt.txt).
