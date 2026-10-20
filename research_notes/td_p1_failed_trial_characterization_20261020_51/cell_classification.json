@@ -1,0 +1,4153 @@
+{
+ "cells": [
+  {
+   "path": "$.n_pass",
+   "kind": "divergent",
+   "accepted": 46,
+   "candidate": 22,
+   "class": "ii",
+   "mechanism": "DERIVED_ROLLUP",
+   "note": "top-level counter aggregating per-trial outcomes"
+  },
+  {
+   "path": "$.total_checks",
+   "kind": "divergent",
+   "accepted": 332,
+   "candidate": 184,
+   "class": "ii",
+   "mechanism": "DERIVED_ROLLUP",
+   "note": "top-level counter aggregating per-trial outcomes"
+  },
+  {
+   "path": "$.trials[0].facts.decision",
+   "kind": "divergent",
+   "accepted": "PASS_DRY_RUN",
+   "candidate": "HOLD",
+   "class": "ii",
+   "mechanism": "DECISION_FLIP",
+   "note": "any gate FAIL forces HOLD (gate contract); flip is a deterministic consequence of the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[0].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 12,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[0].n_checks",
+   "kind": "divergent",
+   "accepted": 13,
+   "candidate": 1,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:all_12_pass",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[10].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 10,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[11].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[12].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "6:PIN_MISMATCH:manifest",
+   "candidate": "6:PIN_MISMATCH:collector,manifest",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[13].facts.failed_gates[1]",
+   "kind": "divergent",
+   "accepted": 7,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[13].facts.gate_codes[1]",
+   "kind": "divergent",
+   "accepted": "7:DERIVATION_WHEEL_HASH_MISMATCH",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[13].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 10,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[14].facts.failed_gates[1]",
+   "kind": "divergent",
+   "accepted": 7,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[14].facts.gate_codes[1]",
+   "kind": "divergent",
+   "accepted": "7:DERIVATION_CALENDAR_DERIVATION_FAILED",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[14].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 10,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[15].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[15].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "8:NAMESPACE_FOREIGN_FILES",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[15].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[16].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[16].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "8:NAMESPACE_IS_OLD_SPOT8",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[16].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[17].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[17].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_EVIDENCE_INCONSISTENT",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[17].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[18].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 10,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[18].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "10:ADAPTER_PIN_MISMATCH",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[18].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[19].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[19].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "11:STOP_RULES_NOT_ARMED",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[19].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[1].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 3,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[1].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "3:ACCOUNT_COUNTERS_INCONSISTENT",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[1].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 10,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[1].n_checks",
+   "kind": "divergent",
+   "accepted": 16,
+   "candidate": 1,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:decision_pass",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[20].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 12,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[20].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "12:RETENTION_NOT_ACKNOWLEDGED",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[20].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[21].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 12,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[21].n_checks",
+   "kind": "divergent",
+   "accepted": 6,
+   "candidate": 1,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[21].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:all_gates_pass",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[22].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 12,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[22].n_checks",
+   "kind": "divergent",
+   "accepted": 4,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[22].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:token_invalid",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[25].facts.decision",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "HOLD",
+   "class": "ii",
+   "mechanism": "DECISION_FLIP",
+   "note": "any gate FAIL forces HOLD (gate contract); flip is a deterministic consequence of the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[25].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 12,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[25].facts.ledger_unchanged",
+   "kind": "divergent",
+   "accepted": false,
+   "candidate": true,
+   "class": "ii",
+   "mechanism": "STATE_CONSEQUENCE",
+   "note": "accepted PASS dispatch created namespace/wrote ledger by design; candidate HOLD performs zero access"
+  },
+  {
+   "path": "$.trials[25].facts.ns_created_by_call",
+   "kind": "divergent",
+   "accepted": true,
+   "candidate": false,
+   "class": "ii",
+   "mechanism": "STATE_CONSEQUENCE",
+   "note": "accepted PASS dispatch created namespace/wrote ledger by design; candidate HOLD performs zero access"
+  },
+  {
+   "path": "$.trials[25].n_checks",
+   "kind": "divergent",
+   "accepted": 4,
+   "candidate": 1,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[25].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:decision_pass",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[26].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[26].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_UNAVAILABLE",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[26].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[26].n_checks",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[26].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[27].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[27].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_CALLABLE_MISSING",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[27].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[27].n_checks",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[27].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[28].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[28].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_CALLABLE_MISSING",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[28].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[28].n_checks",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[28].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[29].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[29].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_BINDING_MISMATCH",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[29].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[29].n_checks",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[29].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[2].facts.decision",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "HOLD",
+   "class": "ii",
+   "mechanism": "DECISION_FLIP",
+   "note": "any gate FAIL forces HOLD (gate contract); flip is a deterministic consequence of the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[2].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 12,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[2].facts.ledger_unchanged",
+   "kind": "divergent",
+   "accepted": false,
+   "candidate": true,
+   "class": "ii",
+   "mechanism": "STATE_CONSEQUENCE",
+   "note": "accepted PASS dispatch created namespace/wrote ledger by design; candidate HOLD performs zero access"
+  },
+  {
+   "path": "$.trials[2].facts.ns_created_by_call",
+   "kind": "divergent",
+   "accepted": true,
+   "candidate": false,
+   "class": "ii",
+   "mechanism": "STATE_CONSEQUENCE",
+   "note": "accepted PASS dispatch created namespace/wrote ledger by design; candidate HOLD performs zero access"
+  },
+  {
+   "path": "$.trials[2].n_checks",
+   "kind": "divergent",
+   "accepted": 5,
+   "candidate": 1,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[2].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:decision_pass",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[30].facts.decision",
+   "kind": "divergent",
+   "accepted": "PASS_DRY_RUN",
+   "candidate": "HOLD",
+   "class": "ii",
+   "mechanism": "DECISION_FLIP",
+   "note": "any gate FAIL forces HOLD (gate contract); flip is a deterministic consequence of the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[30].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 12,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[30].n_checks",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 3,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[30].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:all_12_pass",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[31].n_checks",
+   "kind": "divergent",
+   "accepted": 15,
+   "candidate": 0,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:holder_died_or_timeout:b''",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[32].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[32].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_PATH_ABSENT",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[32].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[32].n_checks",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[32].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[33].facts.decision",
+   "kind": "divergent",
+   "accepted": "PASS_DRY_RUN",
+   "candidate": "HOLD",
+   "class": "ii",
+   "mechanism": "DECISION_FLIP",
+   "note": "any gate FAIL forces HOLD (gate contract); flip is a deterministic consequence of the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[33].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 12,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[33].n_checks",
+   "kind": "divergent",
+   "accepted": 4,
+   "candidate": 1,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[33].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:all_12_pass_via_sanctioned",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[34].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[34].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_ORIGIN_MISMATCH",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[34].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[34].n_checks",
+   "kind": "divergent",
+   "accepted": 10,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[34].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[35].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[35].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_BINDING_MISMATCH",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[35].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[35].n_checks",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[35].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[36].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[36].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_SWAPPED_POST_GATE",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[36].n_checks",
+   "kind": "divergent",
+   "accepted": 7,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[36].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[37].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[37].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_TAMPERED",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[37].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[37].n_checks",
+   "kind": "divergent",
+   "accepted": 8,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[37].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[39].facts.failed_gates[0]",
+   "kind": "divergent",
+   "accepted": 9,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[39].facts.gate_codes[0]",
+   "kind": "divergent",
+   "accepted": "9:CREDENTIAL_HELPER_SHADOW_INSTALLED",
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[39].n_checks",
+   "kind": "divergent",
+   "accepted": 7,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[39].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate9_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[3].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[40].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[40].n_checks",
+   "kind": "divergent",
+   "accepted": 7,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[40].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[41].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 10,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[42].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[42].n_checks",
+   "kind": "divergent",
+   "accepted": 7,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[42].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[43].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[43].n_checks",
+   "kind": "divergent",
+   "accepted": 7,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[43].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[44].facts.decision",
+   "kind": "divergent",
+   "accepted": "PASS_DRY_RUN",
+   "candidate": "HOLD",
+   "class": "ii",
+   "mechanism": "DECISION_FLIP",
+   "note": "any gate FAIL forces HOLD (gate contract); flip is a deterministic consequence of the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[44].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 12,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[44].n_checks",
+   "kind": "divergent",
+   "accepted": 5,
+   "candidate": 1,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[44].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:all_12_pass",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[45].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[45].n_checks",
+   "kind": "divergent",
+   "accepted": 7,
+   "candidate": 2,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[45].status",
+   "kind": "divergent",
+   "accepted": "PASS",
+   "candidate": "FAIL:only_gate_failed",
+   "class": "ii",
+   "mechanism": "STATUS_CONSEQUENCE",
+   "note": "trial status transcribes the first failed assertion, tripped by the gate-6 staging failure"
+  },
+  {
+   "path": "$.trials[4].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[5].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[6].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[7].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 11,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[8].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 10,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[9].facts.gates_passed",
+   "kind": "divergent",
+   "accepted": 10,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_COUNT",
+   "note": "one fewer PASS gate: gate 6 flipped by the staging git-blob failure"
+  },
+  {
+   "path": "$.trials[0].checks[10]",
+   "kind": "only_accepted",
+   "accepted": "lease_artifact_is_sibling",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[11]",
+   "kind": "only_accepted",
+   "accepted": "lease_released_after_dry_run",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[12]",
+   "kind": "only_accepted",
+   "accepted": "helper_never_invoked",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[1]",
+   "kind": "only_accepted",
+   "accepted": "decision_pass_dry_run",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "receipt_written",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "account_mode_derived_known",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "token_not_requested",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[8]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].checks[9]",
+   "kind": "only_accepted",
+   "accepted": "lease_acquired_for_pass",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].facts.receipt_clock_mode",
+   "kind": "only_accepted",
+   "accepted": "injected_test",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[1].checks[10]",
+   "kind": "only_accepted",
+   "accepted": "lease_released_after_dispatch",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[11]",
+   "kind": "only_accepted",
+   "accepted": "helper_never_invoked",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[12]",
+   "kind": "only_accepted",
+   "accepted": "replay_decision_hold",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[13]",
+   "kind": "only_accepted",
+   "accepted": "replay_gate8_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[14]",
+   "kind": "only_accepted",
+   "accepted": "replay_receipt_not_rewritten",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[15]",
+   "kind": "only_accepted",
+   "accepted": "replay_no_transport",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[1]",
+   "kind": "only_accepted",
+   "accepted": "token_valid",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "factory_called_once",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "factory_saw_pass_receipt",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "outcome_complete",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "calls_exact_order",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "completed_49",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "closed_2",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[8]",
+   "kind": "only_accepted",
+   "accepted": "reservations_51",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].checks[9]",
+   "kind": "only_accepted",
+   "accepted": "lease_acquired_for_dispatch",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[1].facts.failed_gates[1]",
+   "kind": "only_accepted",
+   "accepted": 8,
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[1].facts.gate_codes[1]",
+   "kind": "only_accepted",
+   "accepted": "8:PRIOR_ATTEMPTS_PRESENT",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[1].facts.lifecycle_outcome",
+   "kind": "only_accepted",
+   "accepted": "COMPLETE",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[1].facts.replay_guard",
+   "kind": "only_accepted",
+   "accepted": "RECEIPT_ALREADY_ISSUED",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[21].checks[1]",
+   "kind": "only_accepted",
+   "accepted": "decision_hold",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[21].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "token_invalid",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[21].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[21].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[21].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[22].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[22].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[25].checks[1]",
+   "kind": "only_accepted",
+   "accepted": "lease_artifact_sibling",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[25].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "lease_binding_identity",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[25].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "lease_released",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[25].facts.lease_artifact_name",
+   "kind": "only_accepted",
+   "accepted": "ns.dispatch_lease",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[26].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[26].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[26].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[26].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[26].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_artifact",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[26].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_acquired",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[27].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[27].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[27].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[27].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[27].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_artifact",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[27].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_acquired",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[28].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[28].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[28].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[28].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[28].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_artifact",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[28].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_acquired",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[29].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[29].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[29].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[29].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[29].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_artifact",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[29].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_acquired",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[2].checks[1]",
+   "kind": "only_accepted",
+   "accepted": "transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[2].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "spy_constructions",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[2].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "outcome_hold_timeout",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[2].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "exactly_one_call_attempted",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[2].facts.spy_constructions[0].armed",
+   "kind": "only_accepted",
+   "accepted": true,
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[2].facts.spy_constructions[0].receipt_pass_seen",
+   "kind": "only_accepted",
+   "accepted": true,
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[30].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "decision_pass_dry_run",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[30].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[30].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[30].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[30].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "lease_released",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[30].facts.helper_route",
+   "kind": "only_accepted",
+   "accepted": "sanctioned_path",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].checks[0]",
+   "kind": "only_accepted",
+   "accepted": "contender_exit0",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[10]",
+   "kind": "only_accepted",
+   "accepted": "holder_lease_held_at_construction",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[11]",
+   "kind": "only_accepted",
+   "accepted": "holder_receipt_durable_first",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[12]",
+   "kind": "only_accepted",
+   "accepted": "holder_calls_51",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[13]",
+   "kind": "only_accepted",
+   "accepted": "holder_helper_never_invoked",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[14]",
+   "kind": "only_accepted",
+   "accepted": "lease_released_after_holder",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[1]",
+   "kind": "only_accepted",
+   "accepted": "contender_hold",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "contender_gate8_lease",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "contender_other_gates_pass",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "contender_zero_factory",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "contender_no_lease",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "contender_no_namespace",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "contender_ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[8]",
+   "kind": "only_accepted",
+   "accepted": "holder_exit0",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].checks[9]",
+   "kind": "only_accepted",
+   "accepted": "holder_pass_complete",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[31].facts.contender.decision",
+   "kind": "only_accepted",
+   "accepted": "HOLD",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].facts.contender.factory_calls",
+   "kind": "only_accepted",
+   "accepted": 0,
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].facts.contender.gate8[0]",
+   "kind": "only_accepted",
+   "accepted": "FAIL",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].facts.contender.gate8[1]",
+   "kind": "only_accepted",
+   "accepted": "OWNER_LEASE_HELD",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].facts.contender.gates_passed",
+   "kind": "only_accepted",
+   "accepted": 11,
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].facts.holder.decision",
+   "kind": "only_accepted",
+   "accepted": "PASS",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].facts.holder.lease_held_at_construction",
+   "kind": "only_accepted",
+   "accepted": true,
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].facts.holder.outcome",
+   "kind": "only_accepted",
+   "accepted": "COMPLETE",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].facts.holder.reservations",
+   "kind": "only_accepted",
+   "accepted": 51,
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[31].facts.holder.transport_calls",
+   "kind": "only_accepted",
+   "accepted": 51,
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[32].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[32].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[32].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[32].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[32].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_artifact",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[32].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_acquired",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[33].checks[1]",
+   "kind": "only_accepted",
+   "accepted": "decision_pass_dry_run",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[33].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "shadow_never_imported",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[33].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[33].facts.shadow_imported",
+   "kind": "only_accepted",
+   "accepted": false,
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "PASS_ARTIFACT_ABSENT",
+   "note": "fact recorded only from a PASS receipt/dispatch, which the staging-held run never produced"
+  },
+  {
+   "path": "$.trials[34].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[34].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[34].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[34].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[34].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_artifact",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[34].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_acquired",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[34].checks[8]",
+   "kind": "only_accepted",
+   "accepted": "resolver_loads_exact_configured_path",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[34].checks[9]",
+   "kind": "only_accepted",
+   "accepted": "configured_origin_is_not_sanctioned",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[35].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[35].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[35].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[35].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[35].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_artifact",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[35].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_acquired",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[36].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[36].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[36].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[36].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[36].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "lease_released",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[37].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[37].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "no_transport_constructed",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[37].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[37].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[37].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_artifact",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[37].checks[7]",
+   "kind": "only_accepted",
+   "accepted": "no_lease_acquired",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[39].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate9_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[39].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[39].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[39].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[39].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "lease_released",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[40].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "policy_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[40].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[40].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[40].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[40].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "helper_never_invoked",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[42].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "policy_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[42].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[42].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[42].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[42].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "helper_never_invoked",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[43].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "policy_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[43].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[43].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[43].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[43].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "helper_never_invoked",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[44].checks[1]",
+   "kind": "only_accepted",
+   "accepted": "decision_pass_dry_run",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[44].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "gate3_policy_a_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[44].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "account_mode_derived_known",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[44].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[45].checks[2]",
+   "kind": "only_accepted",
+   "accepted": "policy_code",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[45].checks[3]",
+   "kind": "only_accepted",
+   "accepted": "factory_never_called",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[45].checks[4]",
+   "kind": "only_accepted",
+   "accepted": "namespace_not_created",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[45].checks[5]",
+   "kind": "only_accepted",
+   "accepted": "ledger_unchanged",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[45].checks[6]",
+   "kind": "only_accepted",
+   "accepted": "helper_never_invoked",
+   "candidate": null,
+   "class": "ii",
+   "mechanism": "DERIVED_EMISSION",
+   "note": "runner check() raises at first failed assertion; emitted-check list/count is a mechanical function of the trial outcome"
+  },
+  {
+   "path": "$.trials[0].facts.failed_gates[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[0].facts.gate_codes[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[10].facts.failed_gates[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[10].facts.gate_codes[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[11].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[11].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[13].facts.failed_gates[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 7,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[13].facts.gate_codes[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "7:DERIVATION_WHEEL_HASH_MISMATCH",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[14].facts.failed_gates[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 7,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[14].facts.gate_codes[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "7:DERIVATION_CALENDAR_DERIVATION_FAILED",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[15].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 8,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[15].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "8:NAMESPACE_FOREIGN_FILES",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[16].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 8,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[16].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "8:NAMESPACE_IS_OLD_SPOT8",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[17].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[17].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "9:CREDENTIAL_EVIDENCE_INCONSISTENT",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[18].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 10,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[18].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "10:ADAPTER_PIN_MISMATCH",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[19].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 11,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[19].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "11:STOP_RULES_NOT_ARMED",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[20].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 12,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[20].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "12:RETENTION_NOT_ACKNOWLEDGED",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[21].facts.failed_gates[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[21].facts.gate_codes[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[22].facts.failed_gates[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[22].facts.gate_codes[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[25].facts.failed_gates[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[25].facts.gate_codes[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[26].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[26].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "9:CREDENTIAL_HELPER_UNAVAILABLE",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[27].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[27].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "9:CREDENTIAL_HELPER_CALLABLE_MISSING",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[28].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[28].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "9:CREDENTIAL_HELPER_CALLABLE_MISSING",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[29].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[29].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "9:CREDENTIAL_HELPER_BINDING_MISMATCH",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[2].facts.failed_gates[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[2].facts.gate_codes[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[30].facts.failed_gates[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[30].facts.gate_codes[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[32].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[32].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "9:CREDENTIAL_HELPER_PATH_ABSENT",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[33].facts.failed_gates[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[33].facts.gate_codes[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[34].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[34].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "9:CREDENTIAL_HELPER_ORIGIN_MISMATCH",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[35].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[35].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "9:CREDENTIAL_HELPER_BINDING_MISMATCH",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[37].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 9,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[37].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "9:CREDENTIAL_HELPER_TAMPERED",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[3].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[3].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[40].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[40].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[41].facts.failed_gates[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[41].facts.gate_codes[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[42].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[42].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[43].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[43].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[44].facts.failed_gates[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[44].facts.gate_codes[0]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[45].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[45].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[4].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[4].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[5].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[5].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[6].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[6].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[7].facts.failed_gates[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[7].facts.gate_codes[1]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[8].facts.failed_gates[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[8].facts.gate_codes[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[9].facts.failed_gates[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": 6,
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  },
+  {
+   "path": "$.trials[9].facts.gate_codes[2]",
+   "kind": "only_candidate",
+   "accepted": null,
+   "candidate": "6:PIN_MISMATCH:collector",
+   "class": "ii",
+   "mechanism": "GATE6_ROOT",
+   "note": "gate 6 bad-set gained exactly 'collector': git-blob read (dispatch_gate_r4.py:158-163,574-578) failed in the non-git shadow stage; pin+coordinates unchanged by the r5 diff"
+  }
+ ],
+ "trials": [
+  {
+   "trial": "G01_green_dry_run",
+   "family": "green",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:all_12_pass",
+   "root_cells": 6,
+   "derived_cells": 13,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "DECISION_FLIP",
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "PASS_ARTIFACT_ABSENT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "G02_green_dispatch_and_replay",
+   "family": "green",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:decision_pass",
+   "root_cells": 8,
+   "derived_cells": 16,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "PASS_ARTIFACT_ABSENT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "G03_default_factory_spy_wiring",
+   "family": "green",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:decision_pass",
+   "root_cells": 9,
+   "derived_cells": 5,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "DECISION_FLIP",
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "PASS_ARTIFACT_ABSENT",
+    "STATE_CONSEQUENCE",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "F01_gate1_packet_digest",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F02_gate2_authority",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F03_gate3_capacity",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F04_gate3_stale",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F05_gate3_partial",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F06_gate4_ledger_corrupt",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F07_gate4_day_capacity",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F08_gate4_ledger_in_namespace",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F09_gate5_env_freeze_record",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F10_gate6_manifest_tamper",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 1,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F11_gate7_wheelhouse_tamper",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 5,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F12_gate7_mechanism_disagreement",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 5,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F13_gate8_namespace_foreign",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 5,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F14_gate8_namespace_is_spot8",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 5,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F15_gate9_credential_ref",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 5,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F16_gate10_adapter_tamper",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 5,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F17_gate11_stop_rules",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 5,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F18_gate12_retention",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 5,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "F19_token_mismatch",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:all_gates_pass",
+   "root_cells": 4,
+   "derived_cells": 6,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "F20_evidence_tamper_token",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:token_invalid",
+   "root_cells": 4,
+   "derived_cells": 3,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "F21_clock_seam_live_mode",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 0,
+   "derived_cells": 0,
+   "classes": [],
+   "mechanisms": []
+  },
+  {
+   "trial": "F22_direct_arm_boundary",
+   "family": "gate-refusal (F)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 0,
+   "derived_cells": 0,
+   "classes": [],
+   "mechanisms": []
+  },
+  {
+   "trial": "G04_lease_lifecycle",
+   "family": "green",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:decision_pass",
+   "root_cells": 8,
+   "derived_cells": 4,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "DECISION_FLIP",
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "PASS_ARTIFACT_ABSENT",
+    "STATE_CONSEQUENCE",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "H01_helper_import_fail_seam",
+   "family": "helper (H)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 6,
+   "derived_cells": 7,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "H02_helper_wrong_module",
+   "family": "helper (H)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 6,
+   "derived_cells": 7,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "H03_helper_wrong_callable",
+   "family": "helper (H)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 6,
+   "derived_cells": 7,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "H04_helper_wrong_binding",
+   "family": "helper (H)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 6,
+   "derived_cells": 7,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "H05_helper_real_sanctioned_path",
+   "family": "helper (H)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:all_12_pass",
+   "root_cells": 6,
+   "derived_cells": 6,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "DECISION_FLIP",
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "PASS_ARTIFACT_ABSENT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "C01_contention_two_process",
+   "family": "contention (C)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:holder_died_or_timeout:b''",
+   "root_cells": 11,
+   "derived_cells": 16,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "PASS_ARTIFACT_ABSENT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "P01_helper_absent_path",
+   "family": "path/pin (P)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 6,
+   "derived_cells": 7,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "P02_shadow_on_default_path",
+   "family": "path/pin (P)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:all_12_pass_via_sanctioned",
+   "root_cells": 6,
+   "derived_cells": 4,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "DECISION_FLIP",
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "PASS_ARTIFACT_ABSENT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "P03_wrong_origin_no_pin",
+   "family": "path/pin (P)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 6,
+   "derived_cells": 9,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "P04_signature_mismatch",
+   "family": "path/pin (P)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 6,
+   "derived_cells": 7,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "P05_post_gate_swap",
+   "family": "path/pin (P)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 3,
+   "derived_cells": 6,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "P06_tampered_bytes",
+   "family": "path/pin (P)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 6,
+   "derived_cells": 7,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "P07_driver_handoff",
+   "family": "path/pin (P)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 0,
+   "derived_cells": 0,
+   "classes": [],
+   "mechanisms": []
+  },
+  {
+   "trial": "P08_handoff_shadow_installed",
+   "family": "path/pin (P)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate9_failed",
+   "root_cells": 3,
+   "derived_cells": 6,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "A01_policy_digest_drift",
+   "family": "policy (A)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate_failed",
+   "root_cells": 4,
+   "derived_cells": 6,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "A02_ceiling_drift",
+   "family": "policy (A)",
+   "accepted_status": "PASS",
+   "candidate_status": "PASS",
+   "root_cells": 3,
+   "derived_cells": 0,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT"
+   ]
+  },
+  {
+   "trial": "A03_go_record_absent",
+   "family": "policy (A)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate_failed",
+   "root_cells": 4,
+   "derived_cells": 6,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "A04_go_record_malformed",
+   "family": "policy (A)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate_failed",
+   "root_cells": 4,
+   "derived_cells": 6,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "A05_gate3_remaining_exactly_52",
+   "family": "policy (A)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:all_12_pass",
+   "root_cells": 5,
+   "derived_cells": 5,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "DECISION_FLIP",
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  },
+  {
+   "trial": "A06_gate3_remaining_51",
+   "family": "policy (A)",
+   "accepted_status": "PASS",
+   "candidate_status": "FAIL:only_gate_failed",
+   "root_cells": 4,
+   "derived_cells": 6,
+   "classes": [
+    "ii"
+   ],
+   "mechanisms": [
+    "GATE6_COUNT",
+    "GATE6_ROOT",
+    "STATUS_CONSEQUENCE"
+   ]
+  }
+ ]
+}
