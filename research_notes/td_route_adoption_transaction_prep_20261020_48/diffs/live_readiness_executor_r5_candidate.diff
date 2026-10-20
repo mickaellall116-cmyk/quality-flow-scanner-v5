@@ -1,0 +1,47 @@
+--- td_live_dryrun_clock_adapter_binding_20261017_19/live_readiness_executor_r4.py
++++ td_route_adoption_transaction_prep_20261020_48/live_readiness_executor_r5_candidate.py
+@@ -99,6 +99,14 @@
+ transport spy, an injected clock); the sanctioned helper is never
+ imported on the offline path and the real network is never touched.
+ """
++
++# --- QF-TD-ROUTE-ADOPTION-TRANSACTION-PREP-20261020-48 CANDIDATE ---
++# Versioned offline candidate derived from research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_readiness_executor_r4.py (sha256 e792b8b2b776adc71ce29e628c38fe258c4824bf784a690595f457b9d673c6e1).
++# Status: OFFLINE_CANDIDATE_NOT_ADOPTED. Differences vs the original
++# are pin/path propagation ONLY (see diffs/ and PIN_DAG.md in package
++# research_notes/td_route_adoption_transaction_prep_20261020_48/);
++# no business/classification/construction logic change. This file is
++# in NO live position and authorizes nothing.
+ import datetime
+ import fcntl
+ import hashlib
+@@ -114,7 +122,7 @@
+ NOTES = os.path.dirname(HERE)
+ 
+ PIN_R3 = "db93f07ee057b731528a231e836e67c791a01ab779c6893fe1bda6c258a5c79a"
+-PIN_R4_GATE = "b53996454650dafc77e647a8497eba91beb3785fb52c13d70fa81768fd370117"
++PIN_R4_GATE = "94ef967ca832faea4a4a21c666e1a310395961b6df342e098963728ce622555b"
+ PIN_R4_RUNNER = "93b911e067eb6ff6bc7e797b08df44eb1ac17a2417ac2102f3fd347087447864"
+ PIN_RESOLVER = "c8271193c97713f72b59af2377989362750142eda36940fa0be71cf6de8a911c"
+ PIN_HELPER = "8b1f42e80a76710edf0ff2abf8a51b0cde35b06474af865de108a7ca27d6728d"
+@@ -122,7 +130,7 @@
+ PIN_POLICY_A_DIGEST = "5d9d82ca3e1c867e3f38dcb7f50cd7f372c793048d21232608f7835467d26cde"
+ PIN_POLICY_A_FILE = "728c3defc13d88c27e37d176c560aa708fc93a99730893c9d097c2ca5e9a57e5"
+ PIN_MANIFEST = "71aade8b"
+-PIN_SUPPLEMENT = "3cbdbf63"
++PIN_SUPPLEMENT = "55ad6f40"
+ GO_RECORD_ID = "QF-TD-POLICY-A-52-CREDIT-CEILING-GO-20261017"
+ GO_COMMENT_ID = 6234434220
+ 
+@@ -177,8 +185,9 @@
+ # --- -19: dedicated live dry-run adapter, bound by exact path+sha.
+ # The pin lives in this source file, so the adapter identity is
+ # transitively covered by the executor source pin in any clearance.
+-ADAPTER_PATH = os.path.join(HERE, "live_dry_run_adapter.py")
+-ADAPTER_SHA256 = "e8605669db902c3eb78ec4b3c13b69b3d94b7f1d8bcdac1a9c520b35ffc8c627"
++ADAPTER_PATH = os.path.join(NOTES, "td_route_adoption_transaction_prep_20261020_48",
++                             "live_dry_run_adapter_r5_candidate.py")
++ADAPTER_SHA256 = "6980b5b3c887ea7e7c51c98ce5f77740b909539a838258fdcc7734ffae3422a5"
+ 
+ 
+ def _load_live_adapter():

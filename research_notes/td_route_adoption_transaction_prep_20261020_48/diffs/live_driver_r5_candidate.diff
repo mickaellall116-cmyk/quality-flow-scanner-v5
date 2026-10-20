@@ -1,0 +1,33 @@
+--- td_fresh_live_driver_integration_evidence_20261016/live_driver.py
++++ td_route_adoption_transaction_prep_20261020_48/live_driver_r5_candidate.py
+@@ -51,6 +51,14 @@
+ verifies the on-disk sources equal these pins before any lifecycle proof.
+ """
+ 
++# --- QF-TD-ROUTE-ADOPTION-TRANSACTION-PREP-20261020-48 CANDIDATE ---
++# Versioned offline candidate derived from research_notes/td_fresh_live_driver_integration_evidence_20261016/live_driver.py (sha256 5fed45242eb5ec465266c4d4c4258485f01a8c5bfdfdda2fb81295d3cf6d9c00).
++# Status: OFFLINE_CANDIDATE_NOT_ADOPTED. Differences vs the original
++# are pin/path propagation ONLY (see diffs/ and PIN_DAG.md in package
++# research_notes/td_route_adoption_transaction_prep_20261020_48/);
++# no business/classification/construction logic change. This file is
++# in NO live position and authorizes nothing.
++
+ import hashlib
+ import json
+ import os
+@@ -58,13 +66,13 @@
+ 
+ CLOSED_MESSAGE = "No data is available on the specified dates. Try setting different start/end dates."
+ EXPECTED_MANIFEST_DIGEST = "71aade8bfbb1f94b25d780bdf68f08f7f127740fc745c1755432acc5f74044db"
+-EXPECTED_SUPPLEMENT_SHA256 = "3cbdbf63fd49b021dc74f63727098551753949f8684967981c65f66101f95a86"
++EXPECTED_SUPPLEMENT_SHA256 = "55ad6f40509ac77f0634b8ab4208bf39017219ae065e240af852ac581c1acca5"
+ 
+ # --- integration pins (gap 4): collector / NL environment / adapter /
+ # live transport source, all bound by SHA-256 ---
+ COLLECTOR_COMMIT = "ab254c3458697dd450356146abcf4ad4f75ecef4"
+ COLLECTOR_SHA256 = "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c"
+-NL_MECHANISM_MODULE_SHA256 = "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58"
++NL_MECHANISM_MODULE_SHA256 = "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6"
+ NL_ENV_LOCK_SHA256 = "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068"  # td_nl_env_rebuild_evidence_20261016/lock_copy.txt (NL_ENV_REBUILD_PASS, commit 0923db7)
+ ADAPTER_CONTRACT_SHA256 = "ec877a04d12e6b0c69378dba245be07ab60279a15c9eb78cc50e8b0c705e166b"
+ PILOT_ACQUIRE_SHA256 = "acf39bbd98f7174a4205019e754fc714ca420b4a7df43c815ea158a6fad67c59"

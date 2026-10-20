@@ -1,0 +1,110 @@
+{
+  "entries": [
+    {
+      "candidate_sha256": null,
+      "disposition": "UNCHANGED",
+      "node": "manifest",
+      "restore_to_path": "research_notes/td_fresh_full_manifest_preflight_evidence_20261016/fresh_manifest.json",
+      "restore_to_sha256": "71aade8bfbb1f94b25d780bdf68f08f7f127740fc745c1755432acc5f74044db"
+    },
+    {
+      "candidate_sha256": "55ad6f40509ac77f0634b8ab4208bf39017219ae065e240af852ac581c1acca5",
+      "disposition": "CANDIDATE_IN_48",
+      "node": "supplement",
+      "restore_to_path": "research_notes/td_fresh_full_manifest_preflight_evidence_20261016/fresh_supplement.json",
+      "restore_to_sha256": "3cbdbf63fd49b021dc74f63727098551753949f8684967981c65f66101f95a86"
+    },
+    {
+      "candidate_sha256": "6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5",
+      "disposition": "REKEYED_IN_CANDIDATE_SUPPLEMENT",
+      "node": "proof",
+      "restore_to_path": "fresh_supplement.json:calendar_proofs",
+      "restore_to_sha256": "36bc3a89bd266b9d7478d7f6082addd7b764a824bac45afdcbe534eb1d37f21a"
+    },
+    {
+      "candidate_sha256": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6",
+      "disposition": "EXISTING_CANDIDATE_44 (no new file in -48)",
+      "node": "validator",
+      "restore_to_path": "research_notes/pilot_harness/validate_input.py",
+      "restore_to_sha256": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58"
+    },
+    {
+      "candidate_sha256": "d11c6b587c028c26c718c44966478c4635be6073217e0deb063d1f448958df83",
+      "disposition": "CANDIDATE_IN_48",
+      "node": "driver",
+      "restore_to_path": "research_notes/td_fresh_live_driver_integration_evidence_20261016/live_driver.py",
+      "restore_to_sha256": "5fed45242eb5ec465266c4d4c4258485f01a8c5bfdfdda2fb81295d3cf6d9c00"
+    },
+    {
+      "candidate_sha256": "94ef967ca832faea4a4a21c666e1a310395961b6df342e098963728ce622555b",
+      "disposition": "CANDIDATE_IN_48",
+      "node": "gate",
+      "restore_to_path": "research_notes/td_policy_a_live_readiness_packet_20261017_11/dispatch_gate_r4.py",
+      "restore_to_sha256": "b53996454650dafc77e647a8497eba91beb3785fb52c13d70fa81768fd370117"
+    },
+    {
+      "candidate_sha256": "6980b5b3c887ea7e7c51c98ce5f77740b909539a838258fdcc7734ffae3422a5",
+      "disposition": "CANDIDATE_IN_48",
+      "node": "adapter",
+      "restore_to_path": "research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_dry_run_adapter.py",
+      "restore_to_sha256": "e8605669db902c3eb78ec4b3c13b69b3d94b7f1d8bcdac1a9c520b35ffc8c627"
+    },
+    {
+      "candidate_sha256": "bbc23616b0b8c62f0a712ea7dc04b212f56f660d8020e7b0f2b4426fd6034541",
+      "disposition": "CANDIDATE_IN_48",
+      "node": "executor",
+      "restore_to_path": "research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_readiness_executor_r4.py",
+      "restore_to_sha256": "e792b8b2b776adc71ce29e628c38fe258c4824bf784a690595f457b9d673c6e1"
+    },
+    {
+      "candidate_sha256": "442e56cc16bbbb7ba8f3a62910d92bfcd07d85d0bb88ca2346d26b0bdcd2cba6",
+      "disposition": "EXISTING_CANDIDATE_45 (no new file in -48)",
+      "node": "entrypoint",
+      "restore_to_path": "research_notes/pilot_harness/pilot_build.py",
+      "restore_to_sha256": "257d5bb99bcbae50442491b71429abb6b37b8c5cbcd1e4bf93b6010ad9e5a508"
+    },
+    {
+      "candidate_sha256": null,
+      "disposition": "UNCHANGED",
+      "node": "constructor",
+      "restore_to_path": "research_notes/pilot_harness/construct_4h.py",
+      "restore_to_sha256": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd"
+    },
+    {
+      "candidate_sha256": null,
+      "disposition": "REFERENCE_ONLY",
+      "node": "resampler",
+      "restore_to_path": "canonical_baseline/scripts/fetch_4h.py",
+      "restore_to_sha256": "2a4994a2 (prefix per -42 record)"
+    },
+    {
+      "candidate_sha256": null,
+      "disposition": "UNCHANGED (reads supplement fields at runtime)",
+      "node": "collector",
+      "restore_to_path": "research_notes/td_lifecycle_repair_candidate/td_min_collector.py (git blob @ab254c3)",
+      "restore_to_sha256": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c"
+    },
+    {
+      "candidate_sha256": null,
+      "disposition": "UNCHANGED",
+      "node": "lock",
+      "restore_to_path": "research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt",
+      "restore_to_sha256": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068"
+    },
+    {
+      "candidate_sha256": null,
+      "disposition": "UNCHANGED",
+      "node": "wheelhouse",
+      "restore_to_path": "/home/hatch/workspace/td_nl_wheelhouse_20261016/SHA256_MANIFEST.txt",
+      "restore_to_sha256": "210b8273a15cc7317b4a8029198f8d6e1401c1e375acdbe7f8602167c13e815b"
+    }
+  ],
+  "post_rollback_verification": [
+    "Recompute sha256 of every current_path in this map == restore_to_sha256 (the -41 binding matrix values).",
+    "Gate PIN set == r4 set (PIN_SUPPLEMENT 3cbdbf63..., PIN_MECHANISM 1b83cdcd..., PIN_CALENDAR_PROOF 36bc3a89..., PIN_DRIVER 5fed4524...).",
+    "Driver EXPECTED_SUPPLEMENT_SHA256 == 3cbdbf63...; executor PIN_R4_GATE == b5399645...; adapter PIN_R4_GATE == b5399645....",
+    "All standing HOLDs unchanged; no ledger/state writes occur in prep, adoption-designation, or rollback."
+  ],
+  "principle": "No candidate in this package overwrites any accepted/live file; all originals remain byte-identical in place. Adoption (a future, separately authorized transaction) designates the candidate executor as chain head. Rollback = withdraw that designation; the pre-transaction chain (executor r4 head) is intact by construction. The same table is the restore set if a future transaction instead substitutes bytes in place.",
+  "task": "QF-TD-ROUTE-ADOPTION-TRANSACTION-PREP-20261020-48 r1"
+}

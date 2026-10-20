@@ -1,0 +1,273 @@
+{
+  "edges": [
+    {
+      "enforced_at": "supplement fields base_manifest_canonical_digest / base_manifest_file_sha256 / base_manifest_id (fresh_supplement.json top level); driver reconcile live_driver.py:353",
+      "from": "supplement",
+      "to": "manifest"
+    },
+    {
+      "enforced_at": "supplement field calendar.mechanism_module_sha256 (+ calendar.mechanism / calendar.mechanism_module path strings)",
+      "from": "supplement",
+      "to": "validator"
+    },
+    {
+      "enforced_at": "supplement entries.REQ-SPT-07/08.calendar_proof_digest -> calendar_proofs key",
+      "from": "supplement",
+      "to": "proof"
+    },
+    {
+      "enforced_at": "proof record field mechanism_module_sha256; verified equal to gate PIN_MECHANISM at dispatch_gate_r4.py:597 (Gate 7)",
+      "from": "proof",
+      "to": "validator"
+    },
+    {
+      "enforced_at": "self-digest: key == H(canon(record)); checked at live_driver.py classify_closed (proof lookup) and dispatch_gate_r4.py:591",
+      "from": "proof",
+      "to": "proof"
+    },
+    {
+      "enforced_at": "supplement classifier_pins.collector_sha256 / collector_commit; driver reconcile live_driver.py:356-357",
+      "from": "supplement",
+      "to": "collector"
+    },
+    {
+      "enforced_at": "live_driver.py:61 EXPECTED_SUPPLEMENT_SHA256 (byte pin enforced pre-parse :441)",
+      "from": "driver",
+      "to": "supplement"
+    },
+    {
+      "enforced_at": "live_driver.py:60 EXPECTED_MANIFEST_DIGEST",
+      "from": "driver",
+      "to": "manifest"
+    },
+    {
+      "enforced_at": "live_driver.py:67 NL_MECHANISM_MODULE_SHA256 (declared integration pin; no operative comparison site inside the driver - operative mechanism enforcement sits in the gate)",
+      "from": "driver",
+      "to": "validator"
+    },
+    {
+      "enforced_at": "dispatch_gate_r4.py:64 PIN_DRIVER + :51 P_DRIVER path; Gate 6 recompute :561-585",
+      "from": "gate",
+      "to": "driver"
+    },
+    {
+      "enforced_at": "dispatch_gate_r4.py:95 PIN_SUPPLEMENT + :53 P_SUPPLEMENT path; Gate 6",
+      "from": "gate",
+      "to": "supplement"
+    },
+    {
+      "enforced_at": "dispatch_gate_r4.py:94 PIN_MANIFEST + Gate 6",
+      "from": "gate",
+      "to": "manifest"
+    },
+    {
+      "enforced_at": "dispatch_gate_r4.py:99 PIN_MECHANISM + :57 P_MECHANISM path; Gate 5 env check :529-543; Gate 7 derive_calendar :169 executes the file at P_MECHANISM in the pinned wheelhouse env",
+      "from": "gate",
+      "to": "validator"
+    },
+    {
+      "enforced_at": "dispatch_gate_r4.py:103 PIN_CALENDAR_PROOF; Gate 7 :588-601",
+      "from": "gate",
+      "to": "proof"
+    },
+    {
+      "enforced_at": "dispatch_gate_r4.py:100 PIN_LOCK + :540-551 (lock hash + PMC line == 4.5.1)",
+      "from": "gate",
+      "to": "lock"
+    },
+    {
+      "enforced_at": "dispatch_gate_r4.py:96 PIN_COLLECTOR + P_COLLECTOR_GIT (git blob @ab254c3)",
+      "from": "gate",
+      "to": "collector"
+    },
+    {
+      "enforced_at": "derive_calendar verifies all 11 wheel hashes vs wheelhouse SHA256_MANIFEST before use (:169-200)",
+      "from": "gate",
+      "to": "wheelhouse"
+    },
+    {
+      "enforced_at": "live_dry_run_adapter.py:65 PIN_R4_GATE + GATE_PATH (:63); loads gate by exact path+sha (_load_gate :88-99); reads gate pins G.PIN_SUPPLEMENT etc. from the loaded module (:162)",
+      "from": "adapter",
+      "to": "gate"
+    },
+    {
+      "enforced_at": "live_readiness_executor_r4.py:117 PIN_R4_GATE (recorded as gate_sha256 in the clearance record :461; operative gate loading flows through the adapter)",
+      "from": "executor",
+      "to": "gate"
+    },
+    {
+      "enforced_at": "live_readiness_executor_r4.py ADAPTER_PATH + :181 ADAPTER_SHA256; _load_live_adapter :184-200 (exact path+sha, origin check)",
+      "from": "executor",
+      "to": "adapter"
+    },
+    {
+      "enforced_at": "live_readiness_executor_r4.py:125 PIN_SUPPLEMENT (8-hex prefix; declarative identity constant - no operative comparison site in the executor)",
+      "from": "executor",
+      "to": "supplement"
+    },
+    {
+      "enforced_at": "live_readiness_executor_r4.py:124 PIN_MANIFEST (8-hex prefix; declarative)",
+      "from": "executor",
+      "to": "manifest"
+    },
+    {
+      "enforced_at": "route binding: pilot_build_v6 loads the validator candidate as its validate_input (binding identity proven -46 Family A: the loaded candidate's validate/ValidationError ARE the -44 candidate's)",
+      "from": "entrypoint",
+      "to": "validator"
+    },
+    {
+      "enforced_at": "route binding: entrypoint hands validated ends to construct_4h (unchanged d47e8df1); F3 in -46 proves the pair end-to-end",
+      "from": "entrypoint",
+      "to": "constructor"
+    },
+    {
+      "enforced_at": "td_min_collector.py @ab254c3 :527 version gate + :531 mechanism sha equality, both read FROM the supplement at runtime - the candidate supplement rebinds the collector dynamically; no collector candidate required",
+      "from": "collector",
+      "to": "validator"
+    },
+    {
+      "enforced_at": "td_min_collector.py @ab254c3 :507 base_manifest_digest equality (SPOT8 lineage supplement in the collector path; the FRESH driver builds the classifier view from the FRESH supplement - see -41 Edge 3)",
+      "from": "collector",
+      "to": "supplement"
+    }
+  ],
+  "nodes": [
+    {
+      "candidate": null,
+      "current_path": "research_notes/td_fresh_full_manifest_preflight_evidence_20261016/fresh_manifest.json",
+      "current_sha256": "71aade8bfbb1f94b25d780bdf68f08f7f127740fc745c1755432acc5f74044db",
+      "disposition": "UNCHANGED",
+      "id": "manifest",
+      "label": "FRESH manifest (51 requests)"
+    },
+    {
+      "candidate": {
+        "path": "research_notes/td_route_adoption_transaction_prep_20261020_48/fresh_supplement_v2_candidate.json",
+        "sha256": "55ad6f40509ac77f0634b8ab4208bf39017219ae065e240af852ac581c1acca5"
+      },
+      "current_path": "research_notes/td_fresh_full_manifest_preflight_evidence_20261016/fresh_supplement.json",
+      "current_sha256": "3cbdbf63fd49b021dc74f63727098551753949f8684967981c65f66101f95a86",
+      "disposition": "CANDIDATE_IN_48",
+      "id": "supplement",
+      "label": "FRESH supplement TD-FRESH-FM-SUPPLEMENT-NL-20261016"
+    },
+    {
+      "candidate": {
+        "path": "fresh_supplement_v2_candidate.json:calendar_proofs",
+        "sha256": "6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5"
+      },
+      "current_path": "fresh_supplement.json:calendar_proofs",
+      "current_sha256": "36bc3a89bd266b9d7478d7f6082addd7b764a824bac45afdcbe534eb1d37f21a",
+      "disposition": "REKEYED_IN_CANDIDATE_SUPPLEMENT",
+      "id": "proof",
+      "label": "calendar_proofs record (inside supplement; key = H(canon(record)))"
+    },
+    {
+      "candidate": {
+        "path": "research_notes/td_validator_dst_repair_requalification_20261019_44/validate_input_v3_dstfix.py",
+        "sha256": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6"
+      },
+      "current_path": "research_notes/pilot_harness/validate_input.py",
+      "current_sha256": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+      "disposition": "EXISTING_CANDIDATE_44 (no new file in -48)",
+      "id": "validator",
+      "label": "validator mechanism module (validate_input xnys_schedule)"
+    },
+    {
+      "candidate": {
+        "path": "research_notes/td_route_adoption_transaction_prep_20261020_48/live_driver_r5_candidate.py",
+        "sha256": "d11c6b587c028c26c718c44966478c4635be6073217e0deb063d1f448958df83"
+      },
+      "current_path": "research_notes/td_fresh_live_driver_integration_evidence_20261016/live_driver.py",
+      "current_sha256": "5fed45242eb5ec465266c4d4c4258485f01a8c5bfdfdda2fb81295d3cf6d9c00",
+      "disposition": "CANDIDATE_IN_48",
+      "id": "driver",
+      "label": "live driver (-04)"
+    },
+    {
+      "candidate": {
+        "path": "research_notes/td_route_adoption_transaction_prep_20261020_48/dispatch_gate_r5_candidate.py",
+        "sha256": "94ef967ca832faea4a4a21c666e1a310395961b6df342e098963728ce622555b"
+      },
+      "current_path": "research_notes/td_policy_a_live_readiness_packet_20261017_11/dispatch_gate_r4.py",
+      "current_sha256": "b53996454650dafc77e647a8497eba91beb3785fb52c13d70fa81768fd370117",
+      "disposition": "CANDIDATE_IN_48",
+      "id": "gate",
+      "label": "dispatch gate r4"
+    },
+    {
+      "candidate": {
+        "path": "research_notes/td_route_adoption_transaction_prep_20261020_48/live_dry_run_adapter_r5_candidate.py",
+        "sha256": "6980b5b3c887ea7e7c51c98ce5f77740b909539a838258fdcc7734ffae3422a5"
+      },
+      "current_path": "research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_dry_run_adapter.py",
+      "current_sha256": "e8605669db902c3eb78ec4b3c13b69b3d94b7f1d8bcdac1a9c520b35ffc8c627",
+      "disposition": "CANDIDATE_IN_48",
+      "id": "adapter",
+      "label": "live dry-run adapter (-19)"
+    },
+    {
+      "candidate": {
+        "path": "research_notes/td_route_adoption_transaction_prep_20261020_48/live_readiness_executor_r5_candidate.py",
+        "sha256": "bbc23616b0b8c62f0a712ea7dc04b212f56f660d8020e7b0f2b4426fd6034541"
+      },
+      "current_path": "research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_readiness_executor_r4.py",
+      "current_sha256": "e792b8b2b776adc71ce29e628c38fe258c4824bf784a690595f457b9d673c6e1",
+      "disposition": "CANDIDATE_IN_48",
+      "id": "executor",
+      "label": "live readiness executor r4"
+    },
+    {
+      "candidate": {
+        "path": "research_notes/td_ends_carry_dst_repair_requalification_20261020_45/pilot_build_v6_dstfix.py",
+        "sha256": "442e56cc16bbbb7ba8f3a62910d92bfcd07d85d0bb88ca2346d26b0bdcd2cba6"
+      },
+      "current_path": "research_notes/pilot_harness/pilot_build.py",
+      "current_sha256": "257d5bb99bcbae50442491b71429abb6b37b8c5cbcd1e4bf93b6010ad9e5a508",
+      "disposition": "EXISTING_CANDIDATE_45 (no new file in -48)",
+      "id": "entrypoint",
+      "label": "route entrypoint (pilot_build)"
+    },
+    {
+      "candidate": null,
+      "current_path": "research_notes/pilot_harness/construct_4h.py",
+      "current_sha256": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+      "disposition": "UNCHANGED",
+      "id": "constructor",
+      "label": "construct_4h (authoritative for TD receipts)"
+    },
+    {
+      "candidate": null,
+      "current_path": "canonical_baseline/scripts/fetch_4h.py",
+      "current_sha256": "2a4994a2 (prefix per -42 record)",
+      "disposition": "REFERENCE_ONLY",
+      "id": "resampler",
+      "label": "fetch_4h.resample_4h (convention reference ONLY, never a TD producer)"
+    },
+    {
+      "candidate": null,
+      "current_path": "research_notes/td_lifecycle_repair_candidate/td_min_collector.py (git blob @ab254c3)",
+      "current_sha256": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c",
+      "disposition": "UNCHANGED (reads supplement fields at runtime)",
+      "id": "collector",
+      "label": "classifier collector @ab254c3"
+    },
+    {
+      "candidate": null,
+      "current_path": "research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt",
+      "current_sha256": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+      "disposition": "UNCHANGED",
+      "id": "lock",
+      "label": "TD environment lock (NL-20261015)"
+    },
+    {
+      "candidate": null,
+      "current_path": "/home/hatch/workspace/td_nl_wheelhouse_20261016/SHA256_MANIFEST.txt",
+      "current_sha256": "210b8273a15cc7317b4a8029198f8d6e1401c1e375acdbe7f8602167c13e815b",
+      "disposition": "UNCHANGED",
+      "id": "wheelhouse",
+      "label": "wheelhouse manifest (11 wheels, PMC 4.5.1)"
+    }
+  ],
+  "task": "QF-TD-ROUTE-ADOPTION-TRANSACTION-PREP-20261020-48 r1"
+}

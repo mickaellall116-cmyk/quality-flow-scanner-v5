@@ -1,0 +1,29 @@
+--- td_live_dryrun_clock_adapter_binding_20261017_19/live_dry_run_adapter.py
++++ td_route_adoption_transaction_prep_20261020_48/live_dry_run_adapter_r5_candidate.py
+@@ -49,6 +49,14 @@
+ treats any refusal as a dry-run failure (HOLD / rollback), never as
+ a pass.
+ """
++
++# --- QF-TD-ROUTE-ADOPTION-TRANSACTION-PREP-20261020-48 CANDIDATE ---
++# Versioned offline candidate derived from research_notes/td_live_dryrun_clock_adapter_binding_20261017_19/live_dry_run_adapter.py (sha256 e8605669db902c3eb78ec4b3c13b69b3d94b7f1d8bcdac1a9c520b35ffc8c627).
++# Status: OFFLINE_CANDIDATE_NOT_ADOPTED. Differences vs the original
++# are pin/path propagation ONLY (see diffs/ and PIN_DAG.md in package
++# research_notes/td_route_adoption_transaction_prep_20261020_48/);
++# no business/classification/construction logic change. This file is
++# in NO live position and authorizes nothing.
+ import calendar
+ import datetime
+ import hashlib
+@@ -61,8 +69,9 @@
+ HERE = os.path.dirname(os.path.abspath(__file__))
+ NOTES = os.path.dirname(HERE)
+ PKG11 = os.path.join(NOTES, "td_policy_a_live_readiness_packet_20261017_11")
+-GATE_PATH = os.path.join(PKG11, "dispatch_gate_r4.py")
+-PIN_R4_GATE = "b53996454650dafc77e647a8497eba91beb3785fb52c13d70fa81768fd370117"
++GATE_PATH = os.path.join(NOTES, "td_route_adoption_transaction_prep_20261020_48",
++                           "dispatch_gate_r5_candidate.py")
++PIN_R4_GATE = "94ef967ca832faea4a4a21c666e1a310395961b6df342e098963728ce622555b"
+ LOCK_PATH = os.path.join(NOTES, "td_nl_env_rebuild_evidence_20261016",
+                          "lock_copy.txt")
+ STUB_PATH = os.path.join(PKG11, "helper_stub", "dynamic_credentials.py")

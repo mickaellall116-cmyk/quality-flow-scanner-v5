@@ -1,0 +1,68 @@
+--- td_policy_a_live_readiness_packet_20261017_11/dispatch_gate_r4.py
++++ td_route_adoption_transaction_prep_20261020_48/dispatch_gate_r5_candidate.py
+@@ -33,6 +33,14 @@
+ (test_mode) explicitly; the CLI entrypoint never enables them.
+ """
+ 
++# --- QF-TD-ROUTE-ADOPTION-TRANSACTION-PREP-20261020-48 CANDIDATE ---
++# Versioned offline candidate derived from research_notes/td_policy_a_live_readiness_packet_20261017_11/dispatch_gate_r4.py (sha256 b53996454650dafc77e647a8497eba91beb3785fb52c13d70fa81768fd370117).
++# Status: OFFLINE_CANDIDATE_NOT_ADOPTED. Differences vs the original
++# are pin/path propagation ONLY (see diffs/ and PIN_DAG.md in package
++# research_notes/td_route_adoption_transaction_prep_20261020_48/);
++# no business/classification/construction logic change. This file is
++# in NO live position and authorizes nothing.
++
+ import hashlib
+ import importlib.util
+ import json
+@@ -42,26 +50,26 @@
+ import time
+ 
+ TASK = "QF-TD-POLICY-A-LIVE-READINESS-PACKET-20261017-11"
+-REVISION = "r4-policyA-11"
++REVISION = "r5-route48-candidate"
+ 
+ # --- pinned artifact locations (repo-relative) and hashes: the -04
+ # checklist pin table, recomputed by the gates below ---
+ REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+-P_DRIVER = "research_notes/td_fresh_live_driver_integration_evidence_20261016/live_driver.py"
++P_DRIVER = "research_notes/td_route_adoption_transaction_prep_20261020_48/live_driver_r5_candidate.py"
+ P_MANIFEST = "research_notes/td_fresh_full_manifest_preflight_evidence_20261016/fresh_manifest.json"
+-P_SUPPLEMENT = "research_notes/td_fresh_full_manifest_preflight_evidence_20261016/fresh_supplement.json"
++P_SUPPLEMENT = "research_notes/td_route_adoption_transaction_prep_20261020_48/fresh_supplement_v2_candidate.json"
+ P_COLLECTOR_GIT = ("ab254c3458697dd450356146abcf4ad4f75ecef4",
+                    "research_notes/td_lifecycle_repair_candidate/td_min_collector.py")
+ P_PILOT_ACQUIRE = "research_notes/pilot_harness/pilot_acquire.py"
+ P_RATE_LIMITER = "research_notes/pilot_harness/rate_limiter.py"
+-P_MECHANISM = "research_notes/pilot_harness/validate_input.py"
++P_MECHANISM = "research_notes/td_validator_dst_repair_requalification_20261019_44/validate_input_v3_dstfix.py"
+ P_LOCK = "research_notes/td_nl_env_rebuild_evidence_20261016/lock_copy.txt"
+ P_ADAPTER = "research_notes/td_p2_spot_v2_execution_preflight_evidence_20261015/adapter_contract.json"
+ P_PREREQ = "research_notes/td_p2_spot_v2_execution_preflight_evidence_20261015/prerequisites_pinned.json"
+ P_OLD_SPOT8 = "research_notes/twelve_data_stage0/snapshots/acquisition_state_spot8"
+ WHEELHOUSE = "/home/hatch/workspace/td_nl_wheelhouse_20261016"
+ 
+-PIN_DRIVER = "5fed45242eb5ec465266c4d4c4258485f01a8c5bfdfdda2fb81295d3cf6d9c00"
++PIN_DRIVER = "d11c6b587c028c26c718c44966478c4635be6073217e0deb063d1f448958df83"
+ 
+ # --- -08: the single shared credential-helper resolver. Loaded from
+ # this package's own directory by exact path; both this gate and the
+@@ -92,15 +100,15 @@
+ GO_COMMENT_ID = 6234434220
+ MANIFEST_CREDITS = 51
+ PIN_MANIFEST = "71aade8bfbb1f94b25d780bdf68f08f7f127740fc745c1755432acc5f74044db"
+-PIN_SUPPLEMENT = "3cbdbf63fd49b021dc74f63727098551753949f8684967981c65f66101f95a86"
++PIN_SUPPLEMENT = "55ad6f40509ac77f0634b8ab4208bf39017219ae065e240af852ac581c1acca5"
+ PIN_COLLECTOR = "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c"
+ PIN_PILOT_ACQUIRE = "acf39bbd98f7174a4205019e754fc714ca420b4a7df43c815ea158a6fad67c59"
+ PIN_RATE_LIMITER = "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64"
+-PIN_MECHANISM = "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58"
++PIN_MECHANISM = "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6"
+ PIN_LOCK = "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068"
+ PIN_ADAPTER = "ec877a04d12e6b0c69378dba245be07ab60279a15c9eb78cc50e8b0c705e166b"
+ PIN_PREREQ = "038ccaf33547d6dae1f12ace073726300d92333184a0ba5de0dbab94cc0b5349"
+-PIN_CALENDAR_PROOF = "36bc3a89bd266b9d7478d7f6082addd7b764a824bac45afdcbe534eb1d37f21a"
++PIN_CALENDAR_PROOF = "6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5"
+ EXPECTED_RUN_ID = "TD-FRESH-FM-20261016-03-R1"
+ EXPECTED_ADJUDICATION = "FRESH_LIVE_DRIVER_INTEGRATION_PASS_OFFLINE_LIVE_HOLD_DISPATCH_GATE"
+ EXPECTED_AUTHORITY_BASIS = GO_RECORD_ID  # Mike Policy A GO, comment 6234434220
