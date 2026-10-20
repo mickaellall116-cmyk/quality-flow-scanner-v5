@@ -75,5 +75,5 @@
 - TD lock `08b38cfa…` / wheelhouse manifest `210b8273…` — as pinned in the
   -41 reconciliation (not re-derived here; no env work in scope).
 
-Elapsed: ~15 min of ≤35. Repair minutes: 0. Nothing executed, installed,
+Elapsed: ~12 min of ≤35 (corrected from an initial ~15 min estimate in the first commit). Repair minutes: 0. Nothing executed, installed,
 or edited outside this package.

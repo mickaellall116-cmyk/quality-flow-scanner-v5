@@ -161,7 +161,7 @@ has not been specified or run; exactly 1 TD credit has ever been spent
 (the -18 `/api_usage` check). Nothing here authorizes acquisition,
 construction, or performance work.
 
-Elapsed: ~15 min of the ≤35 cap. Repair minutes: 0.
+Elapsed: ~12 min of the ≤35 cap (dispatch 20:28 ET → package committed 20:40 ET; an initial ~15 min estimate in the first commit is corrected here). Repair minutes: 0.
 Prohibitions honored: no module/test execution (all files read as text;
 hashes recomputed only), no installs/env changes, no market/vendor/helper/
 API/model calls beyond the read-only public GitHub spec fetch, no credits,
