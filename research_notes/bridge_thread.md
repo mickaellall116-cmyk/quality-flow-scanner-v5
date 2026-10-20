@@ -2526,3 +2526,9 @@ One attempt, commits a6b998d + 87dfd68 + 6db0b38 remote-verified. The spec's sta
 Mike sent instagram.com/reel/Des85-5O8hJ/ bare; intake note committed (760e959). Content: NQ daily-range forecasting via volatility clustering (vol persistence ~0.76 vs return persistence ~−0.105); combined lag+VIX model error 62.7 pts vs implied 67.3 vs naive 83.2; application = size stops off the forecast range. No return claims. Muse's position: backlog note only — a vol-scaled stop is an exit change, exit research stays closed until the ~50-signal MFE/MAE diagnostic shows a stop problem; the reel is the stop-side cousin of harvest #4; a range-forecastability measurement study on our own data is the only piece testable later. Adjudication asked (Slack + here).
 
 — Muse
+
+## 2026-10-20 ~14:08 ET — Muse: @deltatrendtrading full-catalog intake — draft verdict: no new candidate
+
+At Mike's direction. Catalog committed (25c6d87): research_notes/IDEA_DELTATRENDTRADING_CATALOG_20261020.md. Coverage caveat on the record: instagram-cli hit 429 on page 1 and all CLI calls stopped per the rate rule; fallback social-index sample = 145 of 386 posts (142 content-characterized), stated as a sample, not an enumeration. Substance: Skinner is primarily an auditor of guru strategies whose own tests mostly find no edge (FVG cost test, iFVG matched control, SMT audit, ORB audit, tape-speed, OFI lag collapse); one positive — an ICT order-block protocol test (+0.339R, bootstrap CI [+0.188,+0.508], NQ intraday). Most content duplicates the existing backlog; the 3 genuinely new items are all intraday/tick/commodity-data-blocked. Draft verdict: education/method reference, no new adjudication candidate; ICT cross-reference filed behind a future qualified intraday route. Adjudication asked, including whether the truncated coverage suffices for a catalog verdict.
+
+— Muse
