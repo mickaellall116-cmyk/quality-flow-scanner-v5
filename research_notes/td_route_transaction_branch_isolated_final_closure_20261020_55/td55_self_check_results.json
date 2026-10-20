@@ -1,148 +1,76 @@
 {
- "task": "QF-TD-ROUTE-TRANSACTION-BRANCH-ISOLATED-FINAL-CLOSURE-20261020-55",
- "driver_v7_sha256": "bb375b76ddd49af88ebc085ec2c09cef806e67c83a3e21f0596d793d4b26d656",
- "n_pass": 28,
- "n_checks": 28,
  "checks": [
   {
-   "check": "v6_hash_is_frozen_pin",
-   "pass": true,
-   "detail": "3d02de026938c2a8f05a8ad7fee35f96b6d2bfd5eb7a6dadf9dd86090bb3bcf6"
+   "check": "partition_positive_accepted",
+   "detail": "PASS",
+   "pass": true
   },
   {
-   "check": "unchanged_functions_byte_identical",
-   "pass": true,
-   "detail": "[]"
+   "check": "partition_positive_real_54_candidate",
+   "detail": "PASS",
+   "pass": true
   },
   {
-   "check": "new_functions_exact_set",
-   "pass": true,
-   "detail": "['_trial_contrib', 'branch_provenance', 'build_original_worktree', 'compare_clock_scoped']"
+   "check": "partition_negative_candidate_trial",
+   "detail": "P1_CLOCK_ADAPTER_REGRESSION",
+   "pass": true
   },
   {
-   "check": "build_shadow_gitaware_only_pilot_rename",
-   "pass": true,
-   "detail": ""
+   "check": "partition_negative_original_repro",
+   "detail": "P1_CLOCK_ORIGINAL_REPRO",
+   "pass": true
   },
   {
-   "check": "frozen_stage_transition_clock",
-   "pass": true,
-   "detail": ""
+   "check": "partition_negative_missing_trial",
+   "detail": "P1_CLOCK_BRANCH_PARTITION",
+   "pass": true
   },
   {
-   "check": "frozen_p2",
-   "pass": true,
-   "detail": ""
+   "check": "partition_negative_rollup_or_regression",
+   "detail": "P1_CLOCK_ADAPTER_REGRESSION",
+   "pass": true
   },
   {
-   "check": "frozen_extract_gate567",
-   "pass": true,
-   "detail": ""
+   "check": "orig_gate_pin",
+   "detail": "",
+   "pass": true
   },
   {
-   "check": "frozen_compare_matrix",
-   "pass": true,
-   "detail": ""
+   "check": "orig_driver_prefix",
+   "detail": "",
+   "pass": true
   },
   {
-   "check": "frozen_canonicalize",
-   "pass": true,
-   "detail": ""
+   "check": "orig_supplement_prefix",
+   "detail": "",
+   "pass": true
   },
   {
-   "check": "frozen_token_map",
-   "pass": true,
-   "detail": ""
+   "check": "orig_mechanism_prefix",
+   "detail": "",
+   "pass": true
   },
   {
-   "check": "frozen_p3_modulo_pilot_rename",
-   "pass": true,
-   "detail": ""
+   "check": "orig_proof_prefix",
+   "detail": "",
+   "pass": true
   },
   {
-   "check": "pin_driver_v6_constant",
-   "pass": true,
-   "detail": ""
+   "check": "extractor_positive",
+   "detail": "",
+   "pass": true
   },
   {
-   "check": "pin_orig_driver",
-   "pass": true,
-   "detail": ""
+   "check": "extractor_negative_gates11",
+   "detail": "",
+   "pass": true
   },
   {
-   "check": "pin_orig_supplement",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "pin_orig_mechanism",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "pin_orig_proof",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "candidate_proof_constant",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "candidate_pin_gate",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "candidate_pin_driver",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "candidate_pin_supplement",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "candidate_pin_adapter",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "candidate_pin_executor",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "candidate_mechanism_pin",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "scoped_pass_exact_both",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "scoped_candidate_repro_mutation_ignored",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "scoped_candidate_other_mutation_fails",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "scoped_original_repro_mutation_fails",
-   "pass": true,
-   "detail": ""
-  },
-  {
-   "check": "scoped_partition_missing_trial_fails",
-   "pass": true,
-   "detail": ""
+   "check": "driver_v6_pin",
+   "detail": "",
+   "pass": true
   }
- ]
+ ],
+ "n": 14,
+ "n_pass": 14
 }

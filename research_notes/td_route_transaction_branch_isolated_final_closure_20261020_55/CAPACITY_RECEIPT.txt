@@ -1,0 +1,16 @@
+-55 CAPACITY PRE-CHECK (recorded pre-execution; all PASS)
+Measured: 2026-10-20T18:28Z (df) / plan time
+- Stage target /home/hatch/workspace/qf_td55_stage: ABSENT at plan
+  time (verified non-existent); stage / run-repo (td55_wt @
+  94648c8) / main-repo paths distinct; neither shadow path a
+  symlink (re-verified in-run by branch_provenance).
+- Filesystem /dev/mapper/rv (btrfs, /home/hatch): total
+  107,355,308,032 B; free 86,967,308,288 B (df -B1, 18:27:59Z).
+- Requirement (measured): TWO worktree checkouts ~= 2 x
+  485,868,960 B (td54_wt du -sb measured at -54) + venv allowance
+  174 MiB + outputs 64 MiB ~= 1.21 GB; + 2 GiB safety margin
+  ~= 3.3 GB << 86.9 GB free. PASS.
+- Inodes: btrfs dynamic pool (f_files=0 at -54 measurement);
+  required ~= 2 x 11,641 checkout files + venv/outputs, far below
+  the reported free count (21.7M at -54). PASS by filesystem
+  construction + reported free count.
