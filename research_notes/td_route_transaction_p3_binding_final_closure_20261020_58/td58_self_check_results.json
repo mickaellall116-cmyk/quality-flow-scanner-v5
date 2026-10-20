@@ -1,0 +1,97 @@
+{
+ "task": "QF-TD-ROUTE-TRANSACTION-P3-BINDING-FINAL-CLOSURE-20261020-58",
+ "checks": [
+  {
+   "check": "v9_base_pin",
+   "pass": true,
+   "detail": "c96ef6dc9c81cb718431dbbfe4688ddb8467bc844b8535bc8d638240666aacbe"
+  },
+  {
+   "check": "v10_no_new_functions",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "check": "v10_no_functions_removed",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "check": "unsanctioned_functions_byte_identical",
+   "pass": true,
+   "detail": "36/36 identical"
+  },
+  {
+   "check": "build_shadow_token_only",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "p3_sources_c4h_mod",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "p3_no_sysmodules_evidence",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "p3_guard_before_deref",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "p3_checks_pin_and_identity",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "v10_identity",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "supplement_pin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "digest_positive",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "digest_negative_rejected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "binding_positive_synthetic",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "binding_negative_absent",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "binding_negative_nonmodule",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "binding_negative_mismatch_module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "binding_negative_wrong_function",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "n_pass": 18,
+ "n_total": 18
+}

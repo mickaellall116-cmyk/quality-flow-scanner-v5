@@ -1,0 +1,212 @@
+--- td_route_transaction_digest_p3_closure_20261020_57/proof_driver_v9.py	2026-10-20 23:03:46.278737485 +0000
++++ td_route_transaction_p3_binding_final_closure_20261020_58/proof_driver_v10.py	2026-10-20 23:12:40.363899660 +0000
+@@ -1,47 +1,42 @@
+-"""QF-TD-ROUTE-TRANSACTION-DIGEST-P3-CLOSURE-20261020-57 r1
+-proof driver v9 (orchestrator). Derived from the EXECUTED proof
+-driver v8 (sha256 aad2e97c39b5ef9d59d249a0d5ca6431d27c7c257a3e5542604ce3c4f84d67ad; -56 result commit 686ac81) under spec comment
+-6302105446 with ONLY:
+-(a) task/stage identity strings and single-owner lease enforcement
+-adapted to the -57 lease (qf_td57_owner_lease.json; fields
+-task_id/stage_root_planned/owner_session; acquired atomically
+-OUTSIDE the stage before any staging; verify_lease runs first and
+-a missing/foreign/mismatched lease fails
+-DUPLICATE_DISPATCH_REFUSED before any cleanup/copy/removal);
+-(b) REPLACEMENT of the defective inherited P2 proof-digest
+-reporting check. The v8 check substring-searched the candidate
+-matrix raw text for the full 64-hex digest 6b030c62...; that check
+-is SCHEMA-INVALID and retired: the matrix format contains NO
+-64-hex strings at all (verified on both the -56 candidate matrix
+-and the accepted -04 matrix), because the full calendar_proofs
+-digest lives in the supplement JSON, not the matrix. The v9 check
+-is an exact STRUCTURED check of the hash-pinned candidate
+-supplement: the staged supplement bytes (staged from
+-fresh_supplement_v2_candidate.json, sha256 gated to the full pin
+-55ad6f40...) must parse with calendar_proofs holding EXACTLY ONE
+-key equal to the frozen expected digest
+-6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5
+-(field path: calendar_proofs.<sole key>) and every
+-entries.*.calendar_proof_digest equal to it; a NEGATIVE control
+-(the original supplement digest 36bc3a89... substituted) must be
+-REJECTED by the same check or the run fails. The accepted-matrix
+-canonical comparison is demonstrated on committed artifacts
+-(-56 executed candidate matrix vs accepted -04 run-2 matrix)
+-WITHOUT rerunning the 18-trial suite.
+-(c) main() executes ONLY: lease verify -> hash gates -> git-aware
+-staging + SS B preflight/blob proof -> corrected P2 digest check
+--> P3 (binding identity; CLI refusal AS EXECUTED full-arg + bare;
+-F1 byte identity) -> post-run rehash -> shadow removal. The
+-p0_receipt/p1 functions and all closed-family machinery are
+-retained byte-identical and UNCALLED: hash gates, P0, blob proof,
+-the P1 gate matrix + gate567, the branch-isolated clock proof and
+-the Gate-7 spot are CLOSED by the -52/-53/-55/-56 receipts and
+-are NOT rerun. Comparator, canonical replacements, extractor,
+-fixtures, expectations and first-failure stop discipline are the
+-v8 code unchanged. ONE attempt, network-denied (unshare -n,
+-enforced by the caller shell). Synthetic fixtures only; candidate
+-copies execute only inside the shadow stage; no live file is
+-executed or written. REQ-S2: UNIMPLEMENTED__HARD_HOLD.
++"""QF-TD-ROUTE-TRANSACTION-P3-BINDING-FINAL-CLOSURE-20261020-58 r1
++proof driver v10 (orchestrator). Derived from the EXECUTED proof
++driver v9 (sha256 c96ef6dc9c81cb718431dbbfe4688ddb8467bc844b8535bc8d638240666aacbe;
++-57 result commit f57ed93, correction 8b4caa5) under spec comment
++6303549678 with ONLY:
++(a) task/stage/lease identity adapted to the -58 lease
++(qf_td58_owner_lease.json; atomic O_EXCL outside the stage;
++verify_lease runs first and a missing/foreign/mismatched lease
++fails DUPLICATE_DISPATCH_REFUSED before any staging);
++(b) a frozen-driver-v9 byte-identity hash gate (PIN_DRIVER_V9);
++(c) the pilot stage dir renamed td58_pilot_stage;
++(d) THE substantive correction (spec SS.3): P3 binding evidence is
++sourced from the entrypoint module's OWN _c4h_mod global instead
++of sys.modules. The pinned entrypoint (pilot_build_v7_clibound.py)
++creates _c4h_mod via module_from_spec/exec_module and binds
++construct_4h = _c4h_mod.construct_4h WITHOUT registering it in
++sys.modules, so v9's sys.modules.get("construct_4h_v3_cliguard")
++returned None and P3 stopped on an AttributeError. v10 fails
++CLOSED (P3_BINDING) before any dereference if _c4h_mod is absent
++or not a module, then proves: _c4h_mod.__file__ resolves exactly
++to the staged pinned constructor candidate; its sha256 ==
++PIN_CONSTRUCTOR_CAND (3f432e7e...); v7.construct_4h IS
++v7._c4h_mod.construct_4h; no legacy/plain construct_4h module
++supplied the binding.
++Everything else is v9 byte-identical: the corrected P2 digest
++check is REUSED as executed in -57 (the -58 spec SS.4 freezes it;
++the 18-trial suite is NOT rerun; the accepted-matrix comparison
++is demonstrated on committed artifacts); hash gates, staging,
++blob proof, CLI refusal and F1 machinery are the v9 code
++unchanged. main() executes ONLY: lease verify -> hash gates ->
++git-aware staging + SS B preflight/blob proof -> corrected P2
++digest check (receipt reuse) -> P3 (binding identity; CLI
++refusal AS EXECUTED full-arg + bare; F1 byte identity) ->
++post-run rehash -> shadow removal. All closed families (P0, P1
++gate matrix/gate567, clock, Gate-7, NLQUAL, E1, A/D/B) are NOT
++rerun. ONE attempt, network-denied (unshare -n, enforced by the
++caller shell). Synthetic fixtures only; candidates execute only
++inside the shadow stage; no live file is executed or written.
++REQ-S2: UNIMPLEMENTED__HARD_HOLD.
+ """
+ import ast
+ from collections import Counter
+@@ -53,24 +48,25 @@
+ import subprocess
+ import sys
+ import traceback
++import types
+ from pathlib import Path
+ 
+ OUT = Path(sys.argv[1])
+-REPO = Path("/home/hatch/workspace/td57_wt")
++REPO = Path("/home/hatch/workspace/qf_td58_wt")
+ MAINREPO = Path("/home/hatch/workspace/quality-flow-scanner-v5")
+ NOTES = REPO / "research_notes"
+-STAGE = Path("/home/hatch/workspace/qf_td57_stage")
++STAGE = Path("/home/hatch/workspace/qf_td58_stage")
+ SHADOW = STAGE / "shadow_candidate"
+ SHADOW_O = STAGE / "shadow_original"
+ SNOTES_O = SHADOW_O / "research_notes"
+ SNOTES = SHADOW / "research_notes"
+-LEASE_PATH = Path("/home/hatch/workspace/qf_td57_owner_lease.json")
++LEASE_PATH = Path("/home/hatch/workspace/qf_td58_owner_lease.json")
+ WHEELHOUSE = Path("/home/hatch/workspace/td_nl_wheelhouse_20261016")
+ 
+-TASK = "QF-TD-ROUTE-TRANSACTION-DIGEST-P3-CLOSURE-20261020-57"
++TASK = "QF-TD-ROUTE-TRANSACTION-P3-BINDING-FINAL-CLOSURE-20261020-58"
+ results = {"task": TASK, "run": 1, "repair_minutes": 0,
+-           "adjudication_basis": "6302105446",
+-           "continuation_of": "QF-TD-ROUTE-TRANSACTION-COLLISION-SAFE-REMAINDER-20261020-56 16073bd+686ac81"}
++           "adjudication_basis": "6303549678",
++           "continuation_of": "QF-TD-ROUTE-TRANSACTION-DIGEST-P3-CLOSURE-20261020-57 9f86d26+f57ed93+8b4caa5"}
+ subprocess_timeouts = []
+ 
+ 
+@@ -119,6 +115,7 @@
+ PKG55 = NOTES / "td_route_transaction_branch_isolated_final_closure_20261020_55"
+ PKG56 = NOTES / "td_route_transaction_collision_safe_remainder_20261020_56"
+ PKG57 = NOTES / "td_route_transaction_digest_p3_closure_20261020_57"
++PKG58 = NOTES / "td_route_transaction_p3_binding_final_closure_20261020_58"
+ PKG17 = NOTES / "td_status_query_placement_20261017_17"
+ PKG11 = NOTES / "td_policy_a_live_readiness_packet_20261017_11"
+ PKG19 = NOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
+@@ -162,6 +159,9 @@
+ # -57 (spec 6302105446): frozen EXECUTED driver v8 byte-identity
+ # (the v9 base; -56 result commit 686ac81)
+ PIN_DRIVER_V8 = "aad2e97c39b5ef9d59d249a0d5ca6431d27c7c257a3e5542604ce3c4f84d67ad"
++# -58 (spec 6303549678): frozen EXECUTED driver v9 byte-identity
++# (the v10 base; -57 result commit f57ed93)
++PIN_DRIVER_V9 = "c96ef6dc9c81cb718431dbbfe4688ddb8467bc844b8535bc8d638240666aacbe"
+ # -57: full-length pin of the candidate supplement whose
+ # calendar_proofs key the corrected digest check verifies
+ PIN_CANDIDATE_SUPPLEMENT_FULL = ("55ad6f40509ac77f0634b8ab4208bf39017219a"
+@@ -354,6 +354,12 @@
+                              "match": _dv8 == PIN_DRIVER_V8}
+     if not g["frozen_driver_v8"]["match"]:
+         fail("HASH_GATE_FROZEN_DRIVER_V8", g["frozen_driver_v8"])
++    # -58 SS A: frozen executed driver v9 byte-identity (v10 base)
++    _dv9 = HF(PKG57 / "proof_driver_v9.py")
++    g["frozen_driver_v9"] = {"expected": PIN_DRIVER_V9, "actual": _dv9,
++                             "match": _dv9 == PIN_DRIVER_V9}
++    if not g["frozen_driver_v9"]["match"]:
++        fail("HASH_GATE_FROZEN_DRIVER_V9", g["frozen_driver_v9"])
+     # -57 SS A: candidate supplement FULL-length pin (the digest
+     # check's hash gate; strengthens the -48 prefix cross-check)
+     _sup = g["candidate_supplement"]
+@@ -693,7 +699,7 @@
+               d19 / "live_dry_run_adapter.py")
+     copy_file(PKG48 / "live_readiness_executor_r5_candidate.py",
+               d19 / "live_readiness_executor_r4.py")
+-    ps = SNOTES / "td57_pilot_stage"
++    ps = SNOTES / "td58_pilot_stage"
+     copy_file(F_CAND_ENTRY, ps / "pilot_build_v7_clibound.py")
+     copy_file(F_CAND_CONSTRUCT, ps / "construct_4h_v3_cliguard.py")
+     copy_file(F_VALIDATOR, ps / "validate_input.py")
+@@ -1643,20 +1649,46 @@
+ 
+ def p3(expected_f1):
+     import pandas as pd
+-    ps = SNOTES / "td57_pilot_stage"
++    ps = SNOTES / "td58_pilot_stage"
+     p = {}
+     # binding identity (in-process load of the staged entrypoint copy)
++    # -58 (spec 6303549678 SS.3): the loaded constructor module is
++    # sourced from the entrypoint module's OWN _c4h_mod global. The
++    # pinned entrypoint creates it via module_from_spec/exec_module
++    # and binds construct_4h = _c4h_mod.construct_4h WITHOUT
++    # registering it in sys.modules; v9's sys.modules.get(
++    # "construct_4h_v3_cliguard") therefore returned None and the
++    # run stopped at P3 with an AttributeError. v10 fails CLOSED
++    # (P3_BINDING) before any dereference if _c4h_mod is absent or
++    # is not a module object.
+     sys.path.insert(0, str(ps))
+     v7 = load_mod(ps / "pilot_build_v7_clibound.py", "qf49_v7")
+-    cmod = sys.modules.get("construct_4h_v3_cliguard")
+-    p["constructor_module_file"] = str(cmod.__file__) if cmod else None
+-    p["constructor_module_sha256"] = HF(cmod.__file__) if cmod else None
++    cmod = getattr(v7, "_c4h_mod", None)
++    p["binding_evidence_source"] = "entrypoint module global _c4h_mod"
++    p["c4h_mod_present"] = cmod is not None
++    p["c4h_mod_is_module"] = isinstance(cmod, types.ModuleType)
++    if cmod is None or not isinstance(cmod, types.ModuleType):
++        fail("P3_BINDING", p)
++    p["constructor_module_name"] = getattr(cmod, "__name__", None)
++    p["constructor_module_file"] = str(cmod.__file__)
++    p["constructor_module_file_resolved"] = str(
++        Path(cmod.__file__).resolve())
++    p["constructor_module_file_is_staged_candidate"] = (
++        Path(cmod.__file__).resolve()
++        == (ps / "construct_4h_v3_cliguard.py").resolve())
++    p["constructor_module_sha256"] = HF(cmod.__file__)
++    p["constructor_module_sha256_is_pin"] = (
++        p["constructor_module_sha256"] == PIN_CONSTRUCTOR_CAND)
+     p["validator_module_sha256"] = HF(sys.modules["validate_input"].__file__)
+     p["entrypoint_module_sha256"] = HF(ps / "pilot_build_v7_clibound.py")
+     p["plain_construct_4h_module_loaded"] = "construct_4h" in sys.modules
++    p["legacy_sys_modules_lookup_not_used_as_evidence"] = (
++        sys.modules.get("construct_4h_v3_cliguard") is None)
+     p["construct_is_candidate_function"] = (
+         v7.construct_4h is cmod.construct_4h)
+     if p["constructor_module_sha256"] != HF(F_CAND_CONSTRUCT) \
++            or not p["constructor_module_sha256_is_pin"] \
++            or not p["constructor_module_file_is_staged_candidate"] \
+             or p["validator_module_sha256"] != HF(F_VALIDATOR) \
+             or p["entrypoint_module_sha256"] != HF(F_CAND_ENTRY) \
+             or p["plain_construct_4h_module_loaded"] \
