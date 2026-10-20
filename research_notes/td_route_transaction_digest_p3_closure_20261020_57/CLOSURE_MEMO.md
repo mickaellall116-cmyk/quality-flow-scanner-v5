@@ -125,9 +125,12 @@ accurate.
   last. The -55 dirs and all other lanes untouched.
 
 ## Elapsed
-Spec fetch 21:59:15Z → run end 22:12:47Z → results
-remote-verified (see result commit). Total ≈ 26 min of the
-≤45 cap. Repair minutes: 0.
+Spec fetch 21:59:15Z → run end 22:12:47Z → result commit
+remote-verified 22:16:56Z. Total 17 min 41 s of the ≤45 cap.
+Repair minutes: 0. CORRECTION (labeled): the memo as first
+committed estimated ≈26 min before verification completed;
+the measured figure is 17m41s, corrected here and in the
+manifest by the follow-up correction commit.
 
 ## Prohibitions — all honored
 No closed family rerun (gate/clock/Gate-7/P2-suite/NLQUAL/
