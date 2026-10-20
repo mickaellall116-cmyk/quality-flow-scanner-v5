@@ -1,0 +1,13 @@
+-54 CAPACITY PRE-CHECK (recorded pre-execution; all PASS)
+Measured: 2026-10-20T17:36:56Z
+- Stage target /home/hatch/workspace/qf_td54_stage: ABSENT (verified
+  non-existent, non-symlink); stage / run-repo (td54_wt) / main-repo
+  paths distinct.
+- Filesystem /dev/mapper/rv (btrfs, /home/hatch): total
+  107,355,308,032 B; free 87,298,441,216 B (df -B1).
+- Requirement (measured): checkout 485,868,960 B / 11,641 files
+  (td54_wt du -sb + find) + venv allowance 174 MiB + outputs 64 MiB
+  ~= 735 MB; + 2 GiB safety margin ~= 2.9 GB << 87.3 GB free. PASS.
+- Inodes: stat -f f_files=0 (dynamic pool), ffree=21,707,608 vs
+  ~71,641 required (11,641 checkout files + 50k/60k margin). PASS by
+  filesystem construction + reported free count.

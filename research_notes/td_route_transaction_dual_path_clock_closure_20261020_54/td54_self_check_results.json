@@ -1,0 +1,66 @@
+{
+ "checks": [
+  {
+   "check": "old_adapter_pin_gate",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "old_adapter_pin_runner",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "legacy_gate_source_hash",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "candidate_adapter_gate_path",
+   "detail": "['td_route_adoption_transaction_prep_20261020_48', 'dispatch_gate_r5_candidate.py']",
+   "pass": true
+  },
+  {
+   "check": "candidate_adapter_gate_pin",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "candidate_executor_adapter_path",
+   "detail": "['td_route_adoption_transaction_prep_20261020_48', 'live_dry_run_adapter_r5_candidate.py']",
+   "pass": true
+  },
+  {
+   "check": "candidate_executor_adapter_pin",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "branch_repro",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "branch_new",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "branch_binding",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "extractor_positive",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "extractor_negative_gates11",
+   "detail": "",
+   "pass": true
+  }
+ ],
+ "n": 12,
+ "n_pass": 12
+}

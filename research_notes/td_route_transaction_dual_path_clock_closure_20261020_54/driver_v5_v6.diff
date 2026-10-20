@@ -1,0 +1,324 @@
+--- ../td_route_transaction_receipt_extractor_correction_closure_20261020_53/proof_driver_v5.py	2026-10-20 17:30:29.879756368 +0000
++++ proof_driver_v6.py	2026-10-20 17:36:43.854769541 +0000
+@@ -1,26 +1,33 @@
+ #!/usr/bin/env python3
+-"""QF-TD-ROUTE-TRANSACTION-RECEIPT-EXTRACTOR-CORRECTION-CLOSURE-20261020-53
+-r1 proof driver v5 (orchestrator). Derived from frozen proof driver v4
+-(sha256 d2605bb411e8cc0f474a035e14e8f0b477113f25bde6aac6df88f528f9f309b8)
+-under spec comment 6295378552 with ONLY: (a) task identity / stage /
+-worktree path strings; (b) added hash gates pinning driver v4 and the
+--52 receipt files (gate matrix b523b148...; proof results at result
+-commit a2b334fbe0e0cc973cad9dd839b6ec10659e353a); (c) P1 gate stage
+-REPLACED by pinned-receipt reuse - the 46-trial suite is NOT rerun:
+-the pinned -52 candidate matrix is canonical-compared against the
+-accepted -11 run-2 matrix and the Gate-5/6/7 evidence is read by the
+-CORRECTED extractor (extract_gate567) from the matrix's actual
+-per-trial-facts schema, replacing v4's walk for a nested 12-element
+-`gates` list the format never contained (the -52 HOLD). P1 remainder
+-(clock/adapter suite, Gate-7 spot check), P2, P3, the comparator
+-(canonicalize/first_divergence/compare_matrix), fixtures, canonical
+-replacements, failure keys, and first-failure stop discipline are the
+-v4 code unchanged. ONE attempt, network-denied (unshare -n, enforced
+-by the caller shell). Order: hash gates -> P0 receipt -> git-aware
+-staging + blob proof -> P1 (receipt + extractor + remainder) -> P2 ->
+-P3 -> post-run rehash -> shadow removal. Synthetic fixtures only;
+-candidate copies execute only inside the shadow stage; no live file
+-is executed or written.
++"""QF-TD-ROUTE-TRANSACTION-DUAL-PATH-CLOCK-CLOSURE-20261020-54 r1
++proof driver v6 (orchestrator). Derived from frozen proof driver v5
++(sha256 33681f79b6c859ede5568f4f5399c5ea5b2771741c8f5a6faedda95aac0ec018)
++under spec comment 6296388979 with ONLY: (a) task identity / stage /
++worktree path strings; (b) added hash gate pinning driver v5 (the
++-52 proof-results gate d31e41c3469c9d8546feb04513372193273817d0864c
++354fb061b85eade1df52 is inherited from v5 unchanged); (c) ONE logic
++change: stage_transition_clock(), a post-receipt stage transition
++inserted in p1() between the pinned-receipt gate567 extraction and
++the -19 clock suite. The -19 runner's historical-reproduction branch
++loads the -17 adapter, whose import-time _load_runner() pin-checks
++the gate at the legacy PKG11 path against the ORIGINAL r4 bytes
++(b5399645...); driver v5 staged the candidate gate at that path, so
++the import refused with PIN_MISMATCH:r4_gate (the -53 first failure -
++a proof-stage namespace collision, not a candidate defect). The
++transition restores the original gate bytes at the shadow's legacy
++PKG11 path ONLY; the candidate gate stays at its immutable -48
++package path for the candidate adapter/executor chain, and the
++transition proves the spec S.3 preflight simultaneously (legacy
++path/pin, old-adapter resolution, candidate gate/adapter/executor
++path+pin resolution, runner branch map). Comparator, canonical
++replacements, extractor, fixtures, expectations, failure keys and
++first-failure stop discipline are the v5 code unchanged. ONE
++attempt, network-denied (unshare -n, enforced by the caller shell).
++Order: hash gates -> P0 receipt -> git-aware staging + blob proof
++-> P1 (receipt + extractor + stage transition + clock suite +
++Gate-7 spot check) -> P2 -> P3 -> post-run rehash -> shadow
++removal. Synthetic fixtures only; candidate copies execute only
++inside the shadow stage; no live file is executed or written.
+ """
+ import ast
+ from collections import Counter
+@@ -35,18 +42,18 @@
+ from pathlib import Path
+ 
+ OUT = Path(sys.argv[1])
+-REPO = Path("/home/hatch/workspace/td53_wt")
++REPO = Path("/home/hatch/workspace/td54_wt")
+ MAINREPO = Path("/home/hatch/workspace/quality-flow-scanner-v5")
+ NOTES = REPO / "research_notes"
+-STAGE = Path("/home/hatch/workspace/qf_td53_stage")
++STAGE = Path("/home/hatch/workspace/qf_td54_stage")
+ SHADOW = STAGE / "shadow"
+ SNOTES = SHADOW / "research_notes"
+ WHEELHOUSE = Path("/home/hatch/workspace/td_nl_wheelhouse_20261016")
+ 
+-TASK = "QF-TD-ROUTE-TRANSACTION-RECEIPT-EXTRACTOR-CORRECTION-CLOSURE-20261020-53"
++TASK = "QF-TD-ROUTE-TRANSACTION-DUAL-PATH-CLOCK-CLOSURE-20261020-54"
+ results = {"task": TASK, "run": 1, "repair_minutes": 0,
+-           "adjudication_basis": "6295378552",
+-           "continuation_of": "QF-TD-ROUTE-TRANSACTION-WORKSPACE-STAGE-CONTINUATION-20261020-52 ebf8a4c+a2b334f"}
++           "adjudication_basis": "6296388979",
++           "continuation_of": "QF-TD-ROUTE-TRANSACTION-RECEIPT-EXTRACTOR-CORRECTION-CLOSURE-20261020-53 d0db7b2+a4bc8ce+ff9e7c4"}
+ subprocess_timeouts = []
+ 
+ 
+@@ -90,6 +97,8 @@
+ PKG50 = NOTES / "td_route_transaction_proof_checker_correction_rerun_20261020_50"
+ PKG51 = NOTES / "td_route_transaction_git_aware_staging_continuation_20261020_51"
+ PKG52 = NOTES / "td_route_transaction_workspace_stage_continuation_20261020_52"
++PKG53 = NOTES / "td_route_transaction_receipt_extractor_correction_closure_20261020_53"
++PKG17 = NOTES / "td_status_query_placement_20261017_17"
+ PKG11 = NOTES / "td_policy_a_live_readiness_packet_20261017_11"
+ PKG19 = NOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
+ PKG04 = NOTES / "td_fresh_live_driver_integration_evidence_20261016"
+@@ -118,6 +127,14 @@
+                  "12278b176b832e")
+ PIN_DRIVER_V4 = ("d2605bb411e8cc0f474a035e14e8f0b477113f25bde6aac6df88f5"
+                  "28f9f309b8")
++PIN_DRIVER_V5 = ("33681f79b6c859ede5568f4f5399c5ea5b2771741c8f5a6faed"
++                 "da95aac0ec018")
++# -54 (spec 6296388979): the ORIGINAL r4 gate bytes the -17 adapter's
++# import-time pin requires at the legacy PKG11 path.
++PIN_R4_GATE_LEGACY = ("b53996454650dafc77e647a8497eba91beb3785fb52c13"
++                      "d70fa81768fd370117")
++PIN_R4_RUNNER = ("93b911e067eb6ff6bc7e797b08df44eb1ac17a2417ac2102f3f"
++                 "d347087447864")
+ PIN_RECEIPT52_COMMIT = "a2b334fbe0e0cc973cad9dd839b6ec10659e353a"
+ PIN_GATE_MATRIX_52 = ("b523b148042ee4012f5eae3fe96e0e5d06d134c37c06adfa4"
+                       "47e99eb37df12ac")
+@@ -263,6 +280,12 @@
+         if got != want:
+             fail(f"HASH_GATE_RECEIPT52_{label.upper()}",
+                  g[f"receipt52_{label}"])
++    # -54 SS A: frozen driver v5 byte-identity (the v6 base)
++    _dv5 = HF(PKG53 / "proof_driver_v5.py")
++    g["frozen_driver_v5"] = {"expected": PIN_DRIVER_V5, "actual": _dv5,
++                             "match": _dv5 == PIN_DRIVER_V5}
++    if not g["frozen_driver_v5"]["match"]:
++        fail("HASH_GATE_FROZEN_DRIVER_V5", g["frozen_driver_v5"])
+     results["hash_gates"] = g
+     results["ledger_before"] = HF(PILOT / "credit_ledger.json")
+     return m48, m2, f1["cleared_serialization"]
+@@ -585,7 +608,7 @@
+               d19 / "live_dry_run_adapter.py")
+     copy_file(PKG48 / "live_readiness_executor_r5_candidate.py",
+               d19 / "live_readiness_executor_r4.py")
+-    ps = SNOTES / "td53_pilot_stage"
++    ps = SNOTES / "td54_pilot_stage"
+     copy_file(F_CAND_ENTRY, ps / "pilot_build_v7_clibound.py")
+     copy_file(F_CAND_CONSTRUCT, ps / "construct_4h_v3_cliguard.py")
+     copy_file(F_VALIDATOR, ps / "validate_input.py")
+@@ -879,6 +902,175 @@
+     return ev
+ 
+ 
++# ------------------------------------------- -54 stage transition
++def _const_str(source, name):
++    """Value of a module-level `name = <str constant>` assignment."""
++    for node in ast.parse(source).body:
++        if isinstance(node, ast.Assign) and len(node.targets) == 1 \
++                and getattr(node.targets[0], "id", "") == name \
++                and isinstance(node.value, ast.Constant) \
++                and isinstance(node.value.value, str):
++            return node.value.value
++    return None
++
++
++def _join_parts(source, name):
++    """String literals of a module-level `name = os.path.join(...)`
++    assignment, skipping the leading NOTES/HERE name argument."""
++    for node in ast.parse(source).body:
++        if isinstance(node, ast.Assign) and len(node.targets) == 1 \
++                and getattr(node.targets[0], "id", "") == name \
++                and isinstance(node.value, ast.Call):
++            return [a.value for a in node.value.args
++                    if isinstance(a, ast.Constant)
++                    and isinstance(a.value, str)]
++    return None
++
++
++def stage_transition_clock():
++    """-54 (spec 6296388979 SS.1/SS.3): post-receipt stage transition
++    before the clock suite. Restores the ORIGINAL r4 gate bytes at
++    the shadow's legacy PKG11 path (the only path the -17
++    reproduction adapter resolves); the candidate gate stays at its
++    immutable -48 package path. Then proves, simultaneously:
++    legacy gate == b5399645...; the -17 adapter resolves that path
++    and its pins match (static + executed import); candidate gate
++    == 94ef967c...; candidate adapter GATE_PATH + pin resolve the
++    candidate gate; candidate executor ADAPTER_PATH + pin resolve
++    the candidate adapter; the -19 runner branch map is unchanged
++    (reproduction -> -17 adapter; new tests -> staged candidate
++    adapter; binding tests -> staged candidate executor)."""
++    t = {}
++    d11 = SNOTES / "td_policy_a_live_readiness_packet_20261017_11"
++    legacy_path = d11 / "dispatch_gate_r4.py"
++    t["legacy_path"] = str(legacy_path)
++    t["pre_transition_sha256"] = HF(legacy_path)
++    src_gate = PKG11 / "dispatch_gate_r4.py"
++    t["source_original_sha256"] = HF(src_gate)
++    if t["source_original_sha256"] != PIN_R4_GATE_LEGACY:
++        fail("STAGE_TRANSITION_LEGACY_GATE", t)
++    copy_file(src_gate, legacy_path)
++    t["post_transition_sha256"] = HF(legacy_path)
++    t["legacy_gate_is_original"] = (
++        t["post_transition_sha256"] == PIN_R4_GATE_LEGACY)
++    if not t["legacy_gate_is_original"]:
++        fail("STAGE_TRANSITION_LEGACY_GATE", t)
++    # candidate gate stays at its immutable package path, untouched
++    cand_gate = PKG48 / "dispatch_gate_r5_candidate.py"
++    t["candidate_gate_path"] = str(cand_gate)
++    t["candidate_gate_sha256"] = HF(cand_gate)
++    t["candidate_gate_pin"] = results["hash_gates"]["candidate_gate"]
++    t["candidate_gate_untouched"] = (
++        t["candidate_gate_sha256"] == t["candidate_gate_pin"])
++    if not t["candidate_gate_untouched"]:
++        fail("STAGE_TRANSITION_CANDIDATE_GATE", t)
++    # -17 adapter: static resolution exactly as the module computes it
++    old_ad = SNOTES / "td_status_query_placement_20261017_17" \
++        / "r4_dry_run_adapter.py"
++    old_src = old_ad.read_text()
++    t["old_adapter_sha256"] = HF(old_ad)
++    t["old_adapter_pin_gate"] = _const_str(old_src, "PIN_R4_GATE")
++    t["old_adapter_pin_runner"] = _const_str(old_src, "PIN_R4_RUNNER")
++    res_pkg11 = old_ad.parent.parent \
++        / "td_policy_a_live_readiness_packet_20261017_11"
++    t["old_adapter_resolved_gate_path"] = str(
++        res_pkg11 / "dispatch_gate_r4.py")
++    t["old_adapter_resolved_gate_sha256"] = HF(
++        res_pkg11 / "dispatch_gate_r4.py")
++    t["old_adapter_resolved_runner_sha256"] = HF(
++        res_pkg11 / "run_dispatch_gate_trials_r4.py")
++    t["old_adapter_static_ok"] = (
++        t["old_adapter_resolved_gate_path"] == str(legacy_path)
++        and t["old_adapter_pin_gate"] == PIN_R4_GATE_LEGACY
++        and t["old_adapter_resolved_gate_sha256"] == PIN_R4_GATE_LEGACY
++        and t["old_adapter_pin_runner"] == PIN_R4_RUNNER
++        and t["old_adapter_resolved_runner_sha256"] == PIN_R4_RUNNER)
++    # executed proof: import the -17 adapter in a subprocess; its
++    # module-level R = _load_runner() performs both pin checks and
++    # imports the -11 runner for real.
++    code = (
++        "import importlib.util, hashlib, sys\n"
++        "spec = importlib.util.spec_from_file_location("
++        "'qf54_old_adapter', sys.argv[1])\n"
++        "m = importlib.util.module_from_spec(spec)\n"
++        "spec.loader.exec_module(m)\n"
++        "print('OLD_ADAPTER_IMPORT_OK')\n"
++        "print('runner_module', m.R.__name__)\n")
++    r = subprocess.run([sys.executable, "-c", code, str(old_ad)],
++                       capture_output=True, text=True, timeout=120)
++    t["old_adapter_import_exit"] = r.returncode
++    t["old_adapter_import_stdout_tail"] = r.stdout[-300:]
++    t["old_adapter_import_stderr_tail"] = r.stderr[-500:]
++    t["old_adapter_executed_ok"] = (
++        r.returncode == 0 and "OLD_ADAPTER_IMPORT_OK" in r.stdout)
++    if not t["old_adapter_static_ok"] or not t["old_adapter_executed_ok"]:
++        fail("STAGE_TRANSITION_OLD_ADAPTER", t)
++    # candidate adapter: GATE_PATH + pin resolve the candidate gate
++    ca_src = (PKG48 / "live_dry_run_adapter_r5_candidate.py").read_text()
++    parts = _join_parts(ca_src, "GATE_PATH")
++    t["candidate_adapter_gate_parts"] = parts
++    t["candidate_adapter_pin"] = _const_str(ca_src, "PIN_R4_GATE")
++    staged_ca_notes = SNOTES  # staged adapter: NOTES = shadow notes
++    resolved_gate = staged_ca_notes.joinpath(*(parts or []))
++    t["candidate_adapter_resolved_gate_path"] = str(resolved_gate)
++    t["candidate_adapter_resolved_gate_sha256"] = (
++        HF(resolved_gate) if resolved_gate.exists() else None)
++    t["candidate_adapter_sha256"] = HF(
++        PKG48 / "live_dry_run_adapter_r5_candidate.py")
++    t["candidate_adapter_ok"] = (
++        parts == ["td_route_adoption_transaction_prep_20261020_48",
++                  "dispatch_gate_r5_candidate.py"]
++        and t["candidate_adapter_resolved_gate_sha256"]
++        == t["candidate_adapter_pin"]
++        == t["candidate_gate_sha256"])
++    if not t["candidate_adapter_ok"]:
++        fail("STAGE_TRANSITION_CANDIDATE_ADAPTER", t)
++    # candidate executor: ADAPTER_PATH + pin resolve candidate adapter
++    ce_src = (PKG48
++              / "live_readiness_executor_r5_candidate.py").read_text()
++    parts = _join_parts(ce_src, "ADAPTER_PATH")
++    t["candidate_executor_adapter_parts"] = parts
++    t["candidate_executor_adapter_pin"] = _const_str(
++        ce_src, "ADAPTER_SHA256")
++    resolved_ad = staged_ca_notes.joinpath(*(parts or []))
++    t["candidate_executor_resolved_adapter_path"] = str(resolved_ad)
++    t["candidate_executor_resolved_adapter_sha256"] = (
++        HF(resolved_ad) if resolved_ad.exists() else None)
++    t["candidate_executor_sha256"] = HF(
++        PKG48 / "live_readiness_executor_r5_candidate.py")
++    t["candidate_executor_ok"] = (
++        parts == ["td_route_adoption_transaction_prep_20261020_48",
++                  "live_dry_run_adapter_r5_candidate.py"]
++        and t["candidate_executor_resolved_adapter_sha256"]
++        == t["candidate_executor_adapter_pin"]
++        == t["candidate_adapter_sha256"])
++    if not t["candidate_executor_ok"]:
++        fail("STAGE_TRANSITION_CANDIDATE_EXECUTOR", t)
++    # -19 runner branch map (staged copy is byte-identical to PKG19)
++    runner = SNOTES / "td_live_dryrun_clock_adapter_binding_20261017_19" \
++        / "run_clock_adapter_trials.py"
++    t["runner_staged_is_accepted"] = (
++        HF(runner) == HF(PKG19 / "run_clock_adapter_trials.py"))
++    lines = runner.read_text().splitlines()
++    pats = {
++        "reproduction_old_adapter":
++            'load(os.path.join(PKG17, "r4_dry_run_adapter.py")',
++        "new_tests_candidate_adapter":
++            'load(os.path.join(HERE, "live_dry_run_adapter.py")',
++        "binding_candidate_executor":
++            'load(os.path.join(HERE, "live_readiness_executor_r4.py")',
++    }
++    bm = {}
++    for label, pat in pats.items():
++        hits = [i + 1 for i, ln in enumerate(lines) if pat in ln]
++        bm[label] = {"pattern": pat, "lines": hits, "found": bool(hits)}
++    t["runner_branch_map"] = bm
++    t["branch_map_ok"] = (t["runner_staged_is_accepted"]
++                          and all(v["found"] for v in bm.values()))
++    if not t["branch_map_ok"]:
++        fail("STAGE_TRANSITION_BRANCH_MAP", t)
++    results["stage_transition"] = t
++
+ # ---------------------------------------------------------------- P1
+ def p1():
+     # -53 (spec 6295378552): the 46-trial gate suite is NOT rerun.
+@@ -902,6 +1094,10 @@
+     results["P1_gate567"] = g567 or {"extractor": "NOT_EVIDENCED"}
+     if g567 is None:
+         fail("P1_GATE567_NOT_EVIDENCED", results["P1_gate567"])
++    # -54: post-receipt stage transition (spec 6296388979) - restore
++    # the original gate at the legacy PKG11 path for the -17
++    # reproduction adapter and prove the dual-path preflight.
++    stage_transition_clock()
+     # adapter + executor: -19 clock/binding regression
+     d19 = SNOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
+     r = run_suite([sys.executable,
+@@ -980,7 +1176,7 @@
+ 
+ def p3(expected_f1):
+     import pandas as pd
+-    ps = SNOTES / "td53_pilot_stage"
++    ps = SNOTES / "td54_pilot_stage"
+     p = {}
+     # binding identity (in-process load of the staged entrypoint copy)
+     sys.path.insert(0, str(ps))
