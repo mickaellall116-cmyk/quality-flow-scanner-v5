@@ -1,0 +1,51 @@
+{
+  "base_manifest_digest": "748ca95789c6f16bab81fbc903fd0c60a890dd2f2e21a63d97ffdb962d70e4fb",
+  "base_manifest_file_sha256": "ddff040fa654303cf4289f4c39c2a5b5af998bd4065ceddd4e4f5d52fcb8c28d",
+  "base_manifest_id": "TD-ACQUISITION-MANIFEST-V2-SPOT8-20261014",
+  "calendar": {
+    "expected_library": "pandas_market_calendars",
+    "expected_library_version": "4.5.1",
+    "expected_library_version_basis": "NL-20261015 qualified lineage (research_notes/TD_NEW_LINEAGE_QUAL_20261015.md, commit 7de7950; adjudication Issue #1 comment 6183716994: NEW_LINEAGE_CALENDAR_PASS). The -12 runtime is PROVEN at pandas_market_calendars 4.5.1 under the exact f64d12f lock (lockfile sha256 08b38cfa...); the -11 runtime version remains UNKNOWN. This pin REPLACES the -17 candidate supplement's CP1-derived 5.5.0 pin, which was incorrect for this lineage. If the runtime library version differs from this pin, classification is disabled (fail-closed).",
+    "lineage": "NL-20261015",
+    "lineage_environment": {
+      "interpreter": "CPython 3.12.3",
+      "qualification_commit": "7de7950",
+      "qualification_memo": "research_notes/TD_NEW_LINEAGE_QUAL_20261015.md"
+    },
+    "lineage_lock": {
+      "lockfile_sha256": "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068",
+      "name": "f64d12f",
+      "packages": 11
+    },
+    "mechanism": "pandas_market_calendars:XNYS via pilot_harness/validate_input.py::xnys_schedule",
+    "mechanism_module": "research_notes/pilot_harness/validate_input.py",
+    "mechanism_module_sha256": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6"
+  },
+  "class": "EXPECTED_EMPTY_CLOSED_SESSION",
+  "entries": {
+    "REQ-SPT-07": {
+      "expected_bars": 0,
+      "request_digest": "a259901ec57a8556228c2a6b95299c360102cc98edc62204ae539dc53a4c5edb"
+    },
+    "REQ-SPT-08": {
+      "expected_bars": 0,
+      "request_digest": "f547d8fec7882fa121feb966b33fde000b25c4ae0eb822a6b5a503f4a3651a97"
+    }
+  },
+  "lifecycle_event": "CLOSED_DAY_EVIDENCED",
+  "lineage": "NL-20261015",
+  "notes": [
+    "This supplement versions the closed-session classification for a FUTURE P2-SPOT v2 qualification only. It does not rewrite P2 v1, does not convert REQ-SPT-07's v1 HOLD, and does not authorize any dispatch.",
+    "Classification, when it fires, records a distinct evidence class only: never a receipt, never COMPLETED, never wire-verified identity evidence, never construction-admissible. The credit reservation stands (spent).",
+    "NLQUAL (-02): calendar pin re-based to NL-20261015 only. P2 v1 remains UNMET; REQ-SPT-07's v1 HOLD is not rewritten; REQ-SPT-08 remains NOT ATTEMPTED and this supplement does not authorize its dispatch."
+  ],
+  "status": "OFFLINE_CANDIDATE_NOT_ADOPTED",
+  "supersedes_calendar_pin": {
+    "old_expected_library_version": "5.5.0",
+    "reason": "CP1-derived pin did not match the proven -12 lineage (4.5.1, lock f64d12f); re-pinned to the qualified NL-20261015 lineage only. Entries, base manifest binding and all other fields are byte-identical in content to the -17 candidate supplement.",
+    "supplement": "research_notes/td_lifecycle_repair_candidate/p2_spot_supplement_v2.json @ ab254c3458697dd450356146abcf4ad4f75ecef4"
+  },
+  "supplement_id": "P2-SPOT",
+  "task": "QF-TD-CLOSED-SESSION-CLASSIFIER-NLQUAL-20261015-02 r1",
+  "version": "v2"
+}

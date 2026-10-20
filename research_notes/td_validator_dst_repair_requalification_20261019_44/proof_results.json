@@ -1,0 +1,64 @@
+{
+ "task": "QF-TD-VALIDATOR-DST-REPAIR-REQUALIFICATION-20261019-44 r1",
+ "candidate_sha256": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6",
+ "hash_gates": {
+  "construct_4h.py": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+  "pilot_build.py": "257d5bb99bcbae50442491b71429abb6b37b8c5cbcd1e4bf93b6010ad9e5a508",
+  "validate_input.py": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+  "fetch_4h.py": "2a4994a26dbb98e244a14173a06697476835206c3d8d268ad21900dd43e0cbeb",
+  "td_min_collector.py": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c",
+  "candidate_validator.py": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6"
+ },
+ "family_a": {
+  "defect_line_absent": true,
+  "civil_enumeration_present": true,
+  "calendar_mechanism_unchanged": true,
+  "api_unchanged": true,
+  "only_validate_body_differs": true,
+  "probe_calls_recorded": 56,
+  "all_day_keys_local_midnight": true
+ },
+ "family_b_e2": [
+  {
+   "fixture": "F1",
+   "cleared_bars": 2,
+   "reference_bars": 2,
+   "cleared_sha256": "bd550433d4af504a05a84be551c45d6a6d35be35cef3f479a6acca2cdf5ce813",
+   "reference_sha256": "bd550433d4af504a05a84be551c45d6a6d35be35cef3f479a6acca2cdf5ce813",
+   "cleared_serialization": "2025-01-08T09:30:00-05:00|100.0|105.0|98.0|104.0|40600.0\n2025-01-08T13:30:00-05:00|104.0|108.0|102.0|107.0|31500.0",
+   "reference_serialization": "2025-01-08T09:30:00-05:00|100.0|105.0|98.0|104.0|40600.0\n2025-01-08T13:30:00-05:00|104.0|108.0|102.0|107.0|31500.0",
+   "result": "PASS"
+  },
+  {
+   "fixture": "F2",
+   "cleared_bars": 1,
+   "reference_bars": 1,
+   "cleared_sha256": "48f2d1a98b129b549fe45e8187967919d60e96e5db3ee6bac1055271377369d4",
+   "reference_sha256": "48f2d1a98b129b549fe45e8187967919d60e96e5db3ee6bac1055271377369d4",
+   "cleared_serialization": "2024-11-29T09:30:00-05:00|100.0|105.0|98.0|104.0|40600.0",
+   "reference_serialization": "2024-11-29T09:30:00-05:00|100.0|105.0|98.0|104.0|40600.0",
+   "result": "PASS"
+  }
+ ],
+ "family_c_nlqual": null,
+ "verdict": "TD_VALIDATOR_DST_REPAIR_HOLD__UNEXPECTED_ERROR",
+ "first_failure": {
+  "key": "UNEXPECTED_ERROR",
+  "detail": "AttributeError: Can only use .dt accessor with datetimelike values",
+  "traceback": "Traceback (most recent call last):\n  File \"/tmp/td44_stage/proof_driver.py\", line 481, in <module>\n    main()\n  File \"/tmp/td44_stage/proof_driver.py\", line 474, in main\n    run_family_b(ref_fn)\n  File \"/tmp/td44_stage/proof_driver.py\", line 279, in run_family_b\n    compare_pair(\"F3\", f3, \"2025-03-07\", \"2025-03-14\",\n  File \"/tmp/td44_stage/proof_driver.py\", line 245, in compare_pair\n    cleared, _ = cleared_route(df_lower, ws, we, as_of)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/td44_stage/proof_driver.py\", line 237, in cleared_route\n    bars = CONSTRUCT.construct_4h(df2, SYMBOL, as_of=as_of,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/construct_4h.py\", line 141, in construct_4h\n    if cends.dt.tz is None:\n       ^^^^^^^^\n  File \"/tmp/td44/venv/lib/python3.12/site-packages/pandas/core/generic.py\", line 6299, in __getattr__\n    return object.__getattribute__(self, name)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/td44/venv/lib/python3.12/site-packages/pandas/core/accessor.py\", line 224, in __get__\n    accessor_obj = self._accessor(obj)\n                   ^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/td44/venv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py\", line 643, in __new__\n    raise AttributeError(\"Can only use .dt accessor with datetimelike values\")\nAttributeError: Can only use .dt accessor with datetimelike values\n"
+ },
+ "candidate_binding": {
+  "method": "importlib by absolute path; registered in sys.modules['validate_input'] before construct_4h import",
+  "module_file": "/tmp/td44_stage/candidate_validator.py"
+ },
+ "environment": {
+  "python": "3.12.3",
+  "pandas": "2.2.3",
+  "pandas_market_calendars": "4.5.1"
+ },
+ "reference_isolation": {
+  "source_file": "canonical_baseline/scripts/fetch_4h.py",
+  "method": "AST source-segment extraction of AGG + resample_4h from hash-verified bytes (as -43)",
+  "executed_source_sha256": "ffc6b7efba680858958321bb5cd23458df0cedb1a58144f93598ba04e1e8751f"
+ }
+}

@@ -1,0 +1,40 @@
+--- research_notes/pilot_harness/validate_input.py	2026-10-07 18:01:56.733659451 +0000
++++ /tmp/td44_stage/candidate_validator.py	2026-10-20 04:11:23.485078645 +0000
+@@ -1,6 +1,10 @@
+ #!/usr/bin/env python3
+ """
+-validate_input.py — Fail-closed 1H input validator, v2
++validate_input.py — Fail-closed 1H input validator, v3
++(DST civil-date enumeration repair candidate,
++QF-TD-VALIDATOR-DST-REPAIR-REQUALIFICATION-20261019-44; supersedes
++v2 sha256 1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58
++for review only — NOT adopted, NOT re-pinned anywhere)
+ (ChatGPT 6037625281 blockers 2–3; repair per 6037842097).
+ 
+ v2 repairs (ChatGPT 6037842097 probes):
+@@ -223,14 +227,22 @@
+             by_day.setdefault(ts.normalize(), []).append(ts)
+ 
+     open_days, closed_days = [], []
+-    day = ws
+-    while day <= we:
++    # v3 repair (QF-TD-VALIDATOR-DST-REPAIR-REQUALIFICATION-20261019-44):
++    # enumerate CIVIL DATES in America/New_York, localizing each to local
++    # midnight. v2 stepped the tz-aware day key by an absolute 24h
++    # Timedelta, which drifts to 01:00 local after the spring-forward
++    # transition and no longer matches the midnight-normalized by_day
++    # keys (VALIDATOR_DAY_ENUMERATION_DST_DRIFT).
++    _civil_day = ws.date()
++    _civil_last = we.date()
++    while _civil_day <= _civil_last:
++        day = pd.Timestamp(_civil_day).tz_localize(NY)
+         sched = xnys_schedule(day)
+         if sched is None:
+             closed_days.append(day)
+         else:
+             open_days.append((day, sched))
+-        day += pd.Timedelta(days=1)
++        _civil_day += pd.Timedelta(days=1)
+     report["expected_open_days"] = len(open_days)
+     report["expected_closed_days"] = len(closed_days)
+ 
