@@ -1,0 +1,27 @@
+POST-HOC DIAGNOSTIC (run AFTER the stopped attempt, in the same pinned
+venv; NOT a rerun of the proof and NOT part of the attempt's evidence
+for any PASS — recorded only to characterize the first failure, per
+the -43/-44 post-hoc precedent).
+
+Command shape: import the entrypoint candidate with stub modules,
+call _decode_validated_ends on a two-entry single-offset map, and
+inspect the returned Series.
+
+Observed output:
+  index dtype: datetime64[ns, America/New_York]
+  values dtype: datetime64[ns, America/New_York]
+  s.array type: DatetimeArray | s.array tz: America/New_York
+  s.dt.tz: America/New_York
+  iterating the Series yields tz-aware Timestamps (correct).
+  BUT list(s.values) yields naive numpy.datetime64 values
+  (2025-01-08T15:30:00 / 16:30:00 — the UTC instants, tz stripped),
+  and pd.Timestamp(numpy.datetime64).tz_convert("UTC") raises
+  TypeError: Cannot convert tz-naive Timestamp — the exact error that
+  stopped Family D inside the proof driver's _instants() helper
+  (proof_driver.py:214).
+
+Conclusion: the decoder output satisfies the constructor's contract;
+the stopped check was a proof-driver inspection bug (.values
+iteration), not a candidate defect. The contract proof itself remains
+UNPROVEN (no assertion completed) and requires a re-dispatch with the
+driver helper fixed.

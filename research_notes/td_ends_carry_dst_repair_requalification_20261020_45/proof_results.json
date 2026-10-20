@@ -1,0 +1,58 @@
+{
+ "task": "QF-TD-ENDS-CARRY-DST-REPAIR-REQUALIFICATION-20261020-45 r1",
+ "candidate_validator_sha256": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6",
+ "candidate_entrypoint_sha256": "442e56cc16bbbb7ba8f3a62910d92bfcd07d85d0bb88ca2346d26b0bdcd2cba6",
+ "hash_gates": {
+  "construct_4h.py": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+  "pilot_build.py": "257d5bb99bcbae50442491b71429abb6b37b8c5cbcd1e4bf93b6010ad9e5a508",
+  "validate_input.py": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+  "fetch_4h.py": "2a4994a26dbb98e244a14173a06697476835206c3d8d268ad21900dd43e0cbeb",
+  "td_min_collector.py": "b683d277cc02a8d27dabc4541ba70a45e5988b5447a28ded5c4aa02ec4cc5d2c",
+  "candidate_validator.py": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6",
+  "construct_4h_binding.py": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+  "candidate_entrypoint.py": "442e56cc16bbbb7ba8f3a62910d92bfcd07d85d0bb88ca2346d26b0bdcd2cba6"
+ },
+ "family_a": {
+  "v5_object_rebuild_absent": true,
+  "decoder_present": true,
+  "main_args_unchanged": true,
+  "only_decoder_helper_added": true,
+  "nothing_removed": true,
+  "only_main_body_differs": true,
+  "decode_in_existing_handled_block": true,
+  "entrypoint_validate_is_candidate": true,
+  "entrypoint_validationerror_is_candidate": true,
+  "entrypoint_construct_is_pinned": true
+ },
+ "family_d_contract": null,
+ "family_b_e2": [],
+ "family_c_nlqual": null,
+ "verdict": "TD_ENDS_CARRY_DST_REPAIR_HOLD__UNEXPECTED_ERROR",
+ "first_failure": {
+  "key": "UNEXPECTED_ERROR",
+  "detail": "TypeError: Cannot convert tz-naive Timestamp, use tz_localize to localize",
+  "traceback": "Traceback (most recent call last):\n  File \"/tmp/td45_stage/proof_driver.py\", line 613, in <module>\n    main()\n  File \"/tmp/td45_stage/proof_driver.py\", line 598, in main\n    run_family_d()\n  File \"/tmp/td45_stage/proof_driver.py\", line 251, in run_family_d\n    check_map(\"single_offset_real_report\", rep1[\"interval_ends\"], True)\n  File \"/tmp/td45_stage/proof_driver.py\", line 231, in check_map\n    _instants(list(s.values))\n  File \"/tmp/td45_stage/proof_driver.py\", line 214, in _instants\n    return sorted(pd.Timestamp(t).tz_convert(\"UTC\") for t in ts_iter)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/td45_stage/proof_driver.py\", line 214, in <genexpr>\n    return sorted(pd.Timestamp(t).tz_convert(\"UTC\") for t in ts_iter)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"timestamps.pyx\", line 2350, in pandas._libs.tslibs.timestamps.Timestamp.tz_convert\nTypeError: Cannot convert tz-naive Timestamp, use tz_localize to localize\n"
+ },
+ "bindings": {
+  "validator_candidate": {
+   "method": "importlib by absolute path; registered in sys.modules['validate_input'] before dependents",
+   "module_file": "/tmp/td45_stage/candidate_validator.py",
+   "sha256": "ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f61acbeea91429cc6"
+  },
+  "constructor": {
+   "method": "pinned pilot_harness/construct_4h.py by path; registered in sys.modules['construct_4h']",
+   "module_file": "/home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/construct_4h.py",
+   "sha256": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd"
+  },
+  "entrypoint_candidate": {
+   "method": "importlib by absolute path AFTER validate_input and construct_4h bindings; its own imports resolved to the bound modules (Family A checks)",
+   "module_file": "/tmp/td45_stage/candidate_entrypoint.py",
+   "sha256": "442e56cc16bbbb7ba8f3a62910d92bfcd07d85d0bb88ca2346d26b0bdcd2cba6"
+  }
+ },
+ "environment": {
+  "python": "3.12.3",
+  "pandas": "2.2.3",
+  "pandas_market_calendars": "4.5.1"
+ }
+}
