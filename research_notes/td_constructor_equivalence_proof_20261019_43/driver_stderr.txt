@@ -1,0 +1,4 @@
+/home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/construct_4h.py:171: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  data = data[keep].copy()
+/home/hatch/workspace/quality-flow-scanner-v5/research_notes/pilot_harness/construct_4h.py:171: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  data = data[keep].copy()
