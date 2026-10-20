@@ -1,0 +1,330 @@
+--- a/proof_driver_v8.py
++++ b/proof_driver_v9.py
+@@ -1,42 +1,47 @@
+-"""QF-TD-ROUTE-TRANSACTION-COLLISION-SAFE-REMAINDER-20261020-56 r1
+-proof driver v8 (orchestrator). Derived from the EXECUTED proof
+-driver v7 (sha256 bb375b76ddd49af88ebc085ec2c09cef806e67c83a3e21f
+-0596d793d4b26d656; the bytes restored by reconciliation bb6fd8f -
+-the parallel-staged 279db80 variant a3d39347 was NEVER executed and
+-is never used) under spec comment 6300344562 with ONLY:
++"""QF-TD-ROUTE-TRANSACTION-DIGEST-P3-CLOSURE-20261020-57 r1
++proof driver v9 (orchestrator). Derived from the EXECUTED proof
++driver v8 (sha256 aad2e97c39b5ef9d59d249a0d5ca6431d27c7c257a3e5542604ce3c4f84d67ad; -56 result commit 686ac81) under spec comment
++6302105446 with ONLY:
+ (a) task/stage identity strings and single-owner lease enforcement
+-(verify_lease: the atomic owner lease acquired OUTSIDE the stage
+-before any stage mutation is verified before staging; a missing,
+-foreign or mismatched lease fails DUPLICATE_DISPATCH_REFUSED);
+-(b) the Gate-7 spot invocation fix (gate7_spot): absolute original/
+-candidate mechanism paths (each gate's own P_MECHANISM resolved
+-against the repo root) so both derive_calendar calls produce
+-facts - v7 passed the RELATIVE P_MECHANISM from a stage-root cwd
+-and the -55 execution recorded a CWD error with no facts;
+-(c) P2 stages the candidate-aware runner adapter (PKG56,
+-hash-gated) - the frozen -04 runner with ONLY I01's validator
+-source path changed from the legacy pilot_harness path to the
+-immutable candidate validator path (adjudicated deterministic
+-harness-context mismatch: the frozen runner reads the original
+-1b83cdcd mechanism while the staged candidate driver pins
+-ca3bafd8, so pin_validate_input failed even with a correct
+-candidate). The inherited proof-digest staging substitution is
+-applied to the adapter text unchanged.
+-The clock proof is CLOSED by the -55 branch-isolated execution
+-(immutable receipts 1942b41 + bb6fd8f) and is NOT rerun: v8 does
+-not invoke build_original_worktree, stage_transition_clock,
+-branch_provenance or any clock suite; those v7 functions are
+-retained byte-identical and uncalled. P1 in v8 = the pinned -52
+-receipt reuse + corrected gate567 extractor (unchanged) + the
+-Gate-7 spot. Comparator, canonical replacements, extractor, P2
+-(adjudication), P3, fixtures, expectations and first-failure stop
+-discipline are the v7 code unchanged. ONE attempt, network-denied
+-(unshare -n, enforced by the caller shell). Order: lease verify ->
+-hash gates -> P0 receipt -> git-aware staging + blob proof -> P1
+-(receipt + extractor + Gate-7 spot) -> P2 -> P3 -> post-run rehash
+--> shadow removal. Synthetic fixtures only; candidate copies
+-execute only inside the shadow stage; no live file is executed or
+-written. REQ-S2: UNIMPLEMENTED__HARD_HOLD.
++adapted to the -57 lease (qf_td57_owner_lease.json; fields
++task_id/stage_root_planned/owner_session; acquired atomically
++OUTSIDE the stage before any staging; verify_lease runs first and
++a missing/foreign/mismatched lease fails
++DUPLICATE_DISPATCH_REFUSED before any cleanup/copy/removal);
++(b) REPLACEMENT of the defective inherited P2 proof-digest
++reporting check. The v8 check substring-searched the candidate
++matrix raw text for the full 64-hex digest 6b030c62...; that check
++is SCHEMA-INVALID and retired: the matrix format contains NO
++64-hex strings at all (verified on both the -56 candidate matrix
++and the accepted -04 matrix), because the full calendar_proofs
++digest lives in the supplement JSON, not the matrix. The v9 check
++is an exact STRUCTURED check of the hash-pinned candidate
++supplement: the staged supplement bytes (staged from
++fresh_supplement_v2_candidate.json, sha256 gated to the full pin
++55ad6f40...) must parse with calendar_proofs holding EXACTLY ONE
++key equal to the frozen expected digest
++6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5
++(field path: calendar_proofs.<sole key>) and every
++entries.*.calendar_proof_digest equal to it; a NEGATIVE control
++(the original supplement digest 36bc3a89... substituted) must be
++REJECTED by the same check or the run fails. The accepted-matrix
++canonical comparison is demonstrated on committed artifacts
++(-56 executed candidate matrix vs accepted -04 run-2 matrix)
++WITHOUT rerunning the 18-trial suite.
++(c) main() executes ONLY: lease verify -> hash gates -> git-aware
++staging + SS B preflight/blob proof -> corrected P2 digest check
++-> P3 (binding identity; CLI refusal AS EXECUTED full-arg + bare;
++F1 byte identity) -> post-run rehash -> shadow removal. The
++p0_receipt/p1 functions and all closed-family machinery are
++retained byte-identical and UNCALLED: hash gates, P0, blob proof,
++the P1 gate matrix + gate567, the branch-isolated clock proof and
++the Gate-7 spot are CLOSED by the -52/-53/-55/-56 receipts and
++are NOT rerun. Comparator, canonical replacements, extractor,
++fixtures, expectations and first-failure stop discipline are the
++v8 code unchanged. ONE attempt, network-denied (unshare -n,
++enforced by the caller shell). Synthetic fixtures only; candidate
++copies execute only inside the shadow stage; no live file is
++executed or written. REQ-S2: UNIMPLEMENTED__HARD_HOLD.
+ """
+ import ast
+ from collections import Counter
+@@ -51,21 +56,21 @@
+ from pathlib import Path
+ 
+ OUT = Path(sys.argv[1])
+-REPO = Path("/home/hatch/workspace/td56_wt")
++REPO = Path("/home/hatch/workspace/td57_wt")
+ MAINREPO = Path("/home/hatch/workspace/quality-flow-scanner-v5")
+ NOTES = REPO / "research_notes"
+-STAGE = Path("/home/hatch/workspace/qf_td56_stage")
++STAGE = Path("/home/hatch/workspace/qf_td57_stage")
+ SHADOW = STAGE / "shadow_candidate"
+ SHADOW_O = STAGE / "shadow_original"
+ SNOTES_O = SHADOW_O / "research_notes"
+ SNOTES = SHADOW / "research_notes"
+-LEASE_PATH = Path("/home/hatch/workspace/qf_td56_owner_lease.json")
++LEASE_PATH = Path("/home/hatch/workspace/qf_td57_owner_lease.json")
+ WHEELHOUSE = Path("/home/hatch/workspace/td_nl_wheelhouse_20261016")
+ 
+-TASK = "QF-TD-ROUTE-TRANSACTION-COLLISION-SAFE-REMAINDER-20261020-56"
++TASK = "QF-TD-ROUTE-TRANSACTION-DIGEST-P3-CLOSURE-20261020-57"
+ results = {"task": TASK, "run": 1, "repair_minutes": 0,
+-           "adjudication_basis": "6300344562",
+-           "continuation_of": "QF-TD-ROUTE-TRANSACTION-BRANCH-ISOLATED-FINAL-CLOSURE-20261020-55 1942b41+bb6fd8f"}
++           "adjudication_basis": "6302105446",
++           "continuation_of": "QF-TD-ROUTE-TRANSACTION-COLLISION-SAFE-REMAINDER-20261020-56 16073bd+686ac81"}
+ subprocess_timeouts = []
+ 
+ 
+@@ -113,6 +118,7 @@
+ PKG54 = NOTES / "td_route_transaction_dual_path_clock_closure_20261020_54"
+ PKG55 = NOTES / "td_route_transaction_branch_isolated_final_closure_20261020_55"
+ PKG56 = NOTES / "td_route_transaction_collision_safe_remainder_20261020_56"
++PKG57 = NOTES / "td_route_transaction_digest_p3_closure_20261020_57"
+ PKG17 = NOTES / "td_status_query_placement_20261017_17"
+ PKG11 = NOTES / "td_policy_a_live_readiness_packet_20261017_11"
+ PKG19 = NOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
+@@ -153,6 +159,15 @@
+                  "26d656")
+ # -56: candidate-aware P2 runner adapter (this package) byte pin
+ PIN_ADAPTER = "e08e33c2335df756488c7c566149638792018fd3c064a48b51eec4c8bcdc0c8c"
++# -57 (spec 6302105446): frozen EXECUTED driver v8 byte-identity
++# (the v9 base; -56 result commit 686ac81)
++PIN_DRIVER_V8 = "aad2e97c39b5ef9d59d249a0d5ca6431d27c7c257a3e5542604ce3c4f84d67ad"
++# -57: full-length pin of the candidate supplement whose
++# calendar_proofs key the corrected digest check verifies
++PIN_CANDIDATE_SUPPLEMENT_FULL = ("55ad6f40509ac77f0634b8ab4208bf39017219a"
++                                 "e065e240af852ac581c1acca5")
++EXPECTED_PROOF_DIGEST = ("6b030c62fdaf3cd738001a438b6f6a562b381b93b29"
++                         "dd8b299753de6aebe4fa5")
+ # -55 SS.4: ORIGINAL branch exact pins (accepted originals)
+ PIN_ORIG_DRIVER = "5fed45242eb5ec465266c4d4c4258485f01a8c5bfdfdda2fb81295d3cf6d9c00"
+ PIN_ORIG_SUPPLEMENT = "3cbdbf63fd49b021dc74f63727098551753949f8684967981c65f66101f95a86"
+@@ -333,6 +348,21 @@
+                               "match": _ad == PIN_ADAPTER}
+     if not g["p2_runner_adapter"]["match"]:
+         fail("HASH_GATE_P2_ADAPTER", g["p2_runner_adapter"])
++    # -57 SS A: frozen executed driver v8 byte-identity (v9 base)
++    _dv8 = HF(PKG56 / "proof_driver_v8.py")
++    g["frozen_driver_v8"] = {"expected": PIN_DRIVER_V8, "actual": _dv8,
++                             "match": _dv8 == PIN_DRIVER_V8}
++    if not g["frozen_driver_v8"]["match"]:
++        fail("HASH_GATE_FROZEN_DRIVER_V8", g["frozen_driver_v8"])
++    # -57 SS A: candidate supplement FULL-length pin (the digest
++    # check's hash gate; strengthens the -48 prefix cross-check)
++    _sup = g["candidate_supplement"]
++    g["candidate_supplement_full_pin"] = {
++        "expected": PIN_CANDIDATE_SUPPLEMENT_FULL, "actual": _sup,
++        "match": _sup == PIN_CANDIDATE_SUPPLEMENT_FULL}
++    if not g["candidate_supplement_full_pin"]["match"]:
++        fail("HASH_GATE_CANDIDATE_SUPPLEMENT_FULL",
++             g["candidate_supplement_full_pin"])
+     results["hash_gates"] = g
+     results["ledger_before"] = HF(PILOT / "credit_ledger.json")
+     return m48, m2, f1["cleared_serialization"]
+@@ -663,7 +693,7 @@
+               d19 / "live_dry_run_adapter.py")
+     copy_file(PKG48 / "live_readiness_executor_r5_candidate.py",
+               d19 / "live_readiness_executor_r4.py")
+-    ps = SNOTES / "td56_pilot_stage"
++    ps = SNOTES / "td57_pilot_stage"
+     copy_file(F_CAND_ENTRY, ps / "pilot_build_v7_clibound.py")
+     copy_file(F_CAND_CONSTRUCT, ps / "construct_4h_v3_cliguard.py")
+     copy_file(F_VALIDATOR, ps / "validate_input.py")
+@@ -1401,7 +1431,7 @@
+ 
+ # ------------------------------------------------------- owner lease
+ def verify_lease():
+-    """-56 (spec 6300344562 SS.1): single-owner lease, acquired
++    """-57 (spec 6302105446 SS.1): single-owner lease, acquired
+     atomically OUTSIDE the stage before any stage mutation. The
+     driver verifies it before staging: a missing, foreign or
+     mismatched lease refuses the run (DUPLICATE_DISPATCH_REFUSED)
+@@ -1417,13 +1447,13 @@
+         ev["result"] = "UNREADABLE: %s" % e
+         results["owner_lease"] = ev
+         fail("DUPLICATE_DISPATCH_REFUSED", ev)
+-    ev["owner"] = data.get("owner")
+-    ev["task_in_lease"] = data.get("task")
++    ev["owner"] = data.get("owner_session")
++    ev["task_in_lease"] = data.get("task_id")
+     ev["acquired_utc"] = data.get("acquired_utc")
+-    ev["stage_in_lease"] = data.get("stage_root")
++    ev["stage_in_lease"] = data.get("stage_root_planned")
+     ev["result"] = ("VERIFIED_SINGLE_OWNER"
+-                    if data.get("task") == TASK
+-                    and data.get("stage_root") == str(STAGE)
++                    if data.get("task_id") == TASK
++                    and data.get("stage_root_planned") == str(STAGE)
+                     else "MISMATCH")
+     results["owner_lease"] = ev
+     if ev["result"] != "VERIFIED_SINGLE_OWNER":
+@@ -1511,29 +1541,91 @@
+ 
+ 
+ # ---------------------------------------------------------------- P2
++def proof_digest_check(obj):
++    """-57 corrected digest check (pure): exact structured check of
++    a supplement object. PASS requires: calendar_proofs holds
++    EXACTLY ONE key and it equals EXPECTED_PROOF_DIGEST (field path
++    calendar_proofs.<sole key>), AND every
++    entries.*.calendar_proof_digest equals it. Anything else FAILs.
++    """
++    ev = {"calendar_proofs_field_path": "calendar_proofs.<sole key>",
++          "entries_field_path": "entries.*.calendar_proof_digest",
++          "expected_digest": EXPECTED_PROOF_DIGEST}
++    cp = obj.get("calendar_proofs") if isinstance(obj, dict) else None
++    ev["calendar_proofs_keys"] = (sorted(cp.keys())
++                                  if isinstance(cp, dict) else None)
++    ev["sole_key_equals_expected"] = bool(
++        isinstance(cp, dict) and len(cp) == 1
++        and next(iter(cp)) == EXPECTED_PROOF_DIGEST)
++    ents = obj.get("entries") if isinstance(obj, dict) else None
++    ev["entries_digests"] = (
++        {k: v.get("calendar_proof_digest")
++         for k, v in sorted(ents.items())}
++        if isinstance(ents, dict) else None)
++    ev["entries_all_equal_expected"] = bool(
++        isinstance(ents, dict) and len(ents) > 0
++        and all(v.get("calendar_proof_digest") == EXPECTED_PROOF_DIGEST
++                for v in ents.values()))
++    ev["ok"] = bool(ev["sole_key_equals_expected"]
++                    and ev["entries_all_equal_expected"])
++    return ev
++
++
+ def p2():
+-    d04 = SNOTES / "td_fresh_live_driver_integration_evidence_20261016"
+-    troot = OUT / "driver_trials"
+-    r = run_suite([sys.executable, str(d04 / "run_integration_trials.py"),
+-                   str(troot), str(OUT / "driver_matrix.json")], cwd=d04)
+-    results["P2_suite"] = {"exit": r.returncode,
+-                           "stdout_tail": r.stdout[-400:],
+-                           "stderr_tail": r.stderr[-800:]}
+-    if r.returncode != 0 or not (OUT / "driver_matrix.json").exists():
+-        fail("P2_DRIVER_SUITE_RUN", results["P2_suite"])
+-    raw = (OUT / "driver_matrix.json").read_text()
+-    matrix = json.loads(raw)
++    """-57 (spec 6302105446 SS.2/SS.3): corrected P2 proof-digest
++    verification, then the P3 stage runs in main(). The 18-trial
++    driver suite is NOT rerun; the accepted-matrix canonical
++    comparison is DEMONSTRATED on committed artifacts (the -56
++    executed candidate matrix vs the accepted -04 run-2 matrix,
++    inherited comparator). The digest verification is exact and
++    structured against the STAGED candidate supplement bytes
++    (hash-gated to the full pin), with a negative control that
++    must be rejected. The retired v8 raw-matrix substring check
++    is schema-invalid (the matrix contains no 64-hex strings) and
++    is not performed."""
++    m56_path = PKG56 / "run_artifacts" / "driver_matrix.json"
++    m56 = json.loads(m56_path.read_bytes())
+     compare_matrix("driver_integration_matrix",
+                    PKG04 / "integration_matrix_run2.json",
+-                   matrix, "P2_DRIVER_REGRESSION")
+-    new_proof = "6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5"
+-    results["P2_proof_digest"] = {
+-        "candidate_proof_digest_present_in_candidate_matrix":
+-            new_proof in raw,
+-        "negative_controls_identical": True,  # canonical matrix equality
+-    }
+-    if new_proof not in raw:
+-        fail("P2_PROOF_DIGEST", results["P2_proof_digest"])
++                   m56, "P2_DRIVER_REGRESSION")
++    r56 = json.loads((PKG56 / "run_artifacts"
++                      / "proof_results.json").read_bytes())
++    results["P2_receipt_demonstration"] = {
++        "candidate_matrix_source": str(m56_path),
++        "candidate_matrix_sha256": HF(m56_path),
++        "comparison": results["comparisons"]["driver_integration_matrix"],
++        "negative_controls_receipt_from_56": r56["P2_proof_digest"],
++        "suite_rerun": False}
++    staged = (SNOTES
++              / "td_fresh_full_manifest_preflight_evidence_20261016"
++              / "fresh_supplement.json")
++    raw = staged.read_bytes()
++    sha = H(raw)
++    obj = json.loads(raw)
++    pos = proof_digest_check(obj)
++    neg_obj = json.loads(raw)
++    cp_val = next(iter(neg_obj["calendar_proofs"].values()))
++    neg_obj["calendar_proofs"] = {PIN_ORIG_PROOF: cp_val}
++    for v in neg_obj["entries"].values():
++        v["calendar_proof_digest"] = PIN_ORIG_PROOF
++    neg = proof_digest_check(neg_obj)
++    ev = {"staged_supplement_path": str(staged),
++          "staged_supplement_sha256": sha,
++          "supplement_pin": PIN_CANDIDATE_SUPPLEMENT_FULL,
++          "supplement_sha_matches_pin":
++              sha == PIN_CANDIDATE_SUPPLEMENT_FULL,
++          "positive": pos,
++          "negative": {"substituted_digest": PIN_ORIG_PROOF,
++                       "check": neg,
++                       "rejected": not neg["ok"]},
++          "retired_check": ("v8 raw-matrix full-hex substring search "
++                            "- schema-invalid, NOT performed: the "
++                            "matrix format contains no 64-hex strings")}
++    results["P2_proof_digest"] = ev
++    if not ev["supplement_sha_matches_pin"] or not pos["ok"]:
++        fail("P2_PROOF_DIGEST", ev)
++    if neg["ok"]:
++        fail("P2_PROOF_DIGEST_NEGATIVE", ev)
+ 
+ 
+ # ---------------------------------------------------------------- P3
+@@ -1551,7 +1643,7 @@
+ 
+ def p3(expected_f1):
+     import pandas as pd
+-    ps = SNOTES / "td56_pilot_stage"
++    ps = SNOTES / "td57_pilot_stage"
+     p = {}
+     # binding identity (in-process load of the staged entrypoint copy)
+     sys.path.insert(0, str(ps))
+@@ -1643,9 +1735,7 @@
+     try:
+         verify_lease()
+         m48, m2, expected_f1 = hash_gates()
+-        p0_receipt()
+         build_shadow_gitaware()
+-        p1()
+         p2()
+         p3(expected_f1)
+         # post-run rehash

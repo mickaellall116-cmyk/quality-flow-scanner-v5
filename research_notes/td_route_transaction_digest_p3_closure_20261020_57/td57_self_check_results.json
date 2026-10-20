@@ -1,0 +1,127 @@
+{
+ "task": "QF-TD-ROUTE-TRANSACTION-DIGEST-P3-CLOSURE-20261020-57",
+ "checks": [
+  {
+   "check": "v8_base_pin",
+   "pass": true,
+   "detail": "aad2e97c39b5ef9d59d249a0d5ca6431d27c7c257a3e5542604ce3c4f84d67ad"
+  },
+  {
+   "check": "v9_new_functions_exact",
+   "pass": true,
+   "detail": "['proof_digest_check']"
+  },
+  {
+   "check": "v9_no_functions_removed",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "check": "unsanctioned_functions_byte_identical",
+   "pass": true,
+   "detail": "32/32 identical"
+  },
+  {
+   "check": "critical_functions_identical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "p3_identity_token_only",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "build_shadow_identity_token_only",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "main_sequence_exact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "main_no_closed_family_calls",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "p2_no_suite_rerun",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "retired_substring_check_absent",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "identity_paths_td57",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "v9_constants_exact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "supplement_source_pin",
+   "pass": true,
+   "detail": "55ad6f40509ac77f0634b8ab4208bf39017219ae065e240af852ac581c1acca5"
+  },
+  {
+   "check": "digest_check_positive_on_pinned_supplement",
+   "pass": true,
+   "detail": "{'calendar_proofs_field_path': 'calendar_proofs.<sole key>', 'entries_field_path': 'entries.*.calendar_proof_digest', 'expected_digest': '6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5', 'calendar_proofs_keys': ['6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5'], 'sole_key_equals_expected': True, 'entries_digests': {'REQ-SPT-07': '6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5', 'REQ-SPT-08': '6b030c62fdaf3cd738001a438b6f6a562b381b93b29dd8b299753de6aebe4fa5'}, 'entries_all_equal_expected': True, 'ok': True}"
+  },
+  {
+   "check": "digest_check_negative_orig_digest_rejected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "digest_check_negative_missing_field_rejected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "digest_check_negative_two_keys_rejected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "digest_check_negative_entry_mismatch_rejected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "comparator_receipt_demo_identical",
+   "pass": true,
+   "detail": "cells=205"
+  },
+  {
+   "check": "comparator_negative_control_detects_mutation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "matrix_schema_no_64hex_candidate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "matrix_schema_no_64hex_accepted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "lease_present_matching",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "passed": 24,
+ "total": 24
+}
