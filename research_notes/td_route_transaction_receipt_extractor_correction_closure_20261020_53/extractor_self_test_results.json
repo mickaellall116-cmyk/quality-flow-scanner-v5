@@ -1,0 +1,125 @@
+{
+ "all_pass": true,
+ "matrix_pin_match": true,
+ "matrix_sha256": "b523b148042ee4012f5eae3fe96e0e5d06d134c37c06adfa447e99eb37df12ac",
+ "n_pass": 10,
+ "n_tests": 10,
+ "tests": [
+  {
+   "detail": {
+    "G01_green_dry_run": {
+     "all_12_checks": [
+      "all_12_pass"
+     ],
+     "decision": "PASS_DRY_RUN",
+     "failed_gates": [],
+     "gate_codes": [],
+     "gates_passed": 12,
+     "status": "PASS"
+    },
+    "H05_helper_real_sanctioned_path": {
+     "all_12_checks": [
+      "all_12_pass"
+     ],
+     "decision": "PASS_DRY_RUN",
+     "failed_gates": [],
+     "gate_codes": [],
+     "gates_passed": 12,
+     "status": "PASS"
+    },
+    "all_12_pass": true,
+    "basis": "gates_passed==12 over unique gates 1..12 with empty failed_gates/gate_codes entails every gate PASS (runner gate_summary aggregation)",
+    "gate5": "PASS",
+    "gate6": "PASS",
+    "gate7": "PASS",
+    "n_pass": 46,
+    "n_trials": 46,
+    "old_spot8_state_unchanged": true,
+    "real_pilot_ledger_unchanged": true,
+    "schema": "top{n_trials,n_pass,total_checks,old_spot8_state_unchanged,real_pilot_ledger_unchanged,trials[]} + trial{status,checks[],facts{gates_passed,failed_gates,gate_codes,decision}}",
+    "total_checks": 332
+   },
+   "pass": true,
+   "test": "POSITIVE_pinned_matrix_accepted"
+  },
+  {
+   "detail": {
+    "returned": false
+   },
+   "pass": true,
+   "test": "NEG_gates_passed_11"
+  },
+  {
+   "detail": {
+    "returned": false
+   },
+   "pass": true,
+   "test": "NEG_nonempty_failed_gates_codes"
+  },
+  {
+   "detail": {
+    "returned": false
+   },
+   "pass": true,
+   "test": "NEG_missing_all12_check"
+  },
+  {
+   "detail": {
+    "returned": false
+   },
+   "pass": true,
+   "test": "NEG_wrong_status"
+  },
+  {
+   "detail": {
+    "returned": false
+   },
+   "pass": true,
+   "test": "NEG_wrong_decision"
+  },
+  {
+   "detail": {
+    "returned": false
+   },
+   "pass": true,
+   "test": "NEG_missing_facts"
+  },
+  {
+   "detail": {
+    "returned": false
+   },
+   "pass": true,
+   "test": "NEG_top_level_npass_45"
+  },
+  {
+   "detail": {
+    "failed_gates_remainder": true,
+    "gates_passed_sum_over_PASS": true
+   },
+   "pass": true,
+   "test": "STATIC_runner_aggregation"
+  },
+  {
+   "detail": {
+    "branch_calls": 61,
+    "note": "one ctx.gate append per gate per evaluation (if/elif/else branches); uniqueness is over ids",
+    "unique_gate_ids": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   "pass": true,
+   "test": "STATIC_gates_enumerated_1_to_12_unique"
+  }
+ ]
+}

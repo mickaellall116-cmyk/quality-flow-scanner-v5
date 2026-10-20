@@ -1,0 +1,294 @@
+--- td_route_transaction_workspace_stage_continuation_20261020_52/proof_driver_v4.py	2026-10-20 16:31:40.413033538 +0000
++++ td_route_transaction_receipt_extractor_correction_closure_20261020_53/proof_driver_v5.py	2026-10-20 16:38:39.491636291 +0000
+@@ -1,30 +1,26 @@
+ #!/usr/bin/env python3
+-"""QF-TD-ROUTE-TRANSACTION-WORKSPACE-STAGE-CONTINUATION-20261020-52 r1
+-proof driver v4 (orchestrator). Derived from frozen proof driver v3
+-(sha256 651385415a46dbc72c080b6c8921ced0de8170d30b5932642fb2daa90877988d)
+-under spec comment 6292815205 with ONLY the stage placement changed
+-(workspace-filesystem stage root, run-repo worktree path, task identity
+-strings, pilot-stage dir name; NO logic, gate, comparator, fixture, or
+-expectation change). v3 was itself derived from the -50 proof driver v2
+-(sha256 68998a9060e5d3f5253023d94a00993e77f04588eb6aeed8da12278b176b832e,
+-itself the frozen corrected checker) under spec comment 6290393927.
+-The ONLY functional changes vs v2: (B) the shadow stage is built as a
+-DETACHED GIT WORKTREE of this repository instead of a plain directory,
+-so the staged candidate gate's derived REPO is a real git checkout and
+-its Gate-6 git-object read of the pinned collector blob can resolve;
+-the SS B preflight (inside-work-tree, derived-REPO equality, collector
+-blob sha256 == PIN_COLLECTOR as a standalone recorded proof BEFORE any
+-suite runs, same-gate import evidence) gates execution; (C) the P0
+-stage is receipt verification only (hash gates + the accepted -50 P0
+-receipt + v3 status read) - the semantic-delta proof is NOT repeated.
+-P1/P2/P3 logic, fixtures, canonical replacements, comparator
+-(canonicalize/first_divergence/compare_matrix), failure keys, and
+-first-failure stop discipline are the v2 code unchanged. ONE attempt,
+-network-denied (unshare -n, enforced by the caller shell). Order: hash
+-gates -> P0 receipt -> git-aware staging + blob proof -> P1 -> P2 ->
++"""QF-TD-ROUTE-TRANSACTION-RECEIPT-EXTRACTOR-CORRECTION-CLOSURE-20261020-53
++r1 proof driver v5 (orchestrator). Derived from frozen proof driver v4
++(sha256 d2605bb411e8cc0f474a035e14e8f0b477113f25bde6aac6df88f528f9f309b8)
++under spec comment 6295378552 with ONLY: (a) task identity / stage /
++worktree path strings; (b) added hash gates pinning driver v4 and the
++-52 receipt files (gate matrix b523b148...; proof results at result
++commit a2b334fbe0e0cc973cad9dd839b6ec10659e353a); (c) P1 gate stage
++REPLACED by pinned-receipt reuse - the 46-trial suite is NOT rerun:
++the pinned -52 candidate matrix is canonical-compared against the
++accepted -11 run-2 matrix and the Gate-5/6/7 evidence is read by the
++CORRECTED extractor (extract_gate567) from the matrix's actual
++per-trial-facts schema, replacing v4's walk for a nested 12-element
++`gates` list the format never contained (the -52 HOLD). P1 remainder
++(clock/adapter suite, Gate-7 spot check), P2, P3, the comparator
++(canonicalize/first_divergence/compare_matrix), fixtures, canonical
++replacements, failure keys, and first-failure stop discipline are the
++v4 code unchanged. ONE attempt, network-denied (unshare -n, enforced
++by the caller shell). Order: hash gates -> P0 receipt -> git-aware
++staging + blob proof -> P1 (receipt + extractor + remainder) -> P2 ->
+ P3 -> post-run rehash -> shadow removal. Synthetic fixtures only;
+-candidate copies execute only inside the shadow stage; no live file is
+-executed or written.
++candidate copies execute only inside the shadow stage; no live file
++is executed or written.
+ """
+ import ast
+ from collections import Counter
+@@ -39,18 +35,18 @@
+ from pathlib import Path
+ 
+ OUT = Path(sys.argv[1])
+-REPO = Path("/home/hatch/workspace/td52_wt")
++REPO = Path("/home/hatch/workspace/td53_wt")
+ MAINREPO = Path("/home/hatch/workspace/quality-flow-scanner-v5")
+ NOTES = REPO / "research_notes"
+-STAGE = Path("/home/hatch/workspace/qf_td52_stage")
++STAGE = Path("/home/hatch/workspace/qf_td53_stage")
+ SHADOW = STAGE / "shadow"
+ SNOTES = SHADOW / "research_notes"
+ WHEELHOUSE = Path("/home/hatch/workspace/td_nl_wheelhouse_20261016")
+ 
+-TASK = "QF-TD-ROUTE-TRANSACTION-WORKSPACE-STAGE-CONTINUATION-20261020-52"
++TASK = "QF-TD-ROUTE-TRANSACTION-RECEIPT-EXTRACTOR-CORRECTION-CLOSURE-20261020-53"
+ results = {"task": TASK, "run": 1, "repair_minutes": 0,
+-           "adjudication_basis": "6292815205",
+-           "continuation_of": "QF-TD-ROUTE-TRANSACTION-GIT-AWARE-STAGING-CONTINUATION-20261020-51 789726b+058d3d7"}
++           "adjudication_basis": "6295378552",
++           "continuation_of": "QF-TD-ROUTE-TRANSACTION-WORKSPACE-STAGE-CONTINUATION-20261020-52 ebf8a4c+a2b334f"}
+ subprocess_timeouts = []
+ 
+ 
+@@ -93,6 +89,7 @@
+ PKG49 = NOTES / "td_route_transaction_offline_proof_cli_closure_20261020_49"
+ PKG50 = NOTES / "td_route_transaction_proof_checker_correction_rerun_20261020_50"
+ PKG51 = NOTES / "td_route_transaction_git_aware_staging_continuation_20261020_51"
++PKG52 = NOTES / "td_route_transaction_workspace_stage_continuation_20261020_52"
+ PKG11 = NOTES / "td_policy_a_live_readiness_packet_20261017_11"
+ PKG19 = NOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
+ PKG04 = NOTES / "td_fresh_live_driver_integration_evidence_20261016"
+@@ -119,6 +116,19 @@
+ STATUS_PENDING = "IMPLEMENTED_BY_CANDIDATE__EXECUTION_PROOF_PENDING"
+ PIN_DRIVER_V2 = ("68998a9060e5d3f5253023d94a00993e77f04588eb6aeed8da"
+                  "12278b176b832e")
++PIN_DRIVER_V4 = ("d2605bb411e8cc0f474a035e14e8f0b477113f25bde6aac6df88f5"
++                 "28f9f309b8")
++PIN_RECEIPT52_COMMIT = "a2b334fbe0e0cc973cad9dd839b6ec10659e353a"
++PIN_GATE_MATRIX_52 = ("b523b148042ee4012f5eae3fe96e0e5d06d134c37c06adfa4"
++                      "47e99eb37df12ac")
++# Spec 6295378552 states the -52 proof-results pin as
++# d31e41c3b9f1128d741...; the bytes AT the spec's own cited immutable
++# result commit a2b334f hash to the value below (8-char prefix
++# d31e41c3 matches; the spec's full expansion matches no committed
++# object - the corrupted-expansion pattern disclosed in -49). The
++# commit blob is the anchor; the actual bytes are what is gated.
++PIN_PROOF_RESULTS_52 = ("d31e41c3469c9d8546feb04513372193273817d0864c35"
++                        "4fb061b85eade1df52")
+ PIN_MANIFEST_V3 = ("9573118c9b98cf920a008cec2176f0b2a52366d4f1cf57d08c"
+                    "289086c5059e14")
+ CANDIDATE_PREFIXES = {"supplement": "55ad6f40", "driver": "d11c6b58",
+@@ -235,6 +245,24 @@
+                  g[f"candidate_{label}_pin"])
+     if g["manifest_v3_sha256"] != PIN_MANIFEST_V3:
+         fail("HASH_GATE_MANIFEST_V3_PIN", g["manifest_v3_sha256"])
++    # -53 SS A: frozen driver v4 byte-identity + the pinned -52
++    # receipt files (result commit a2b334f) byte-identity
++    _dv4 = HF(PKG52 / "proof_driver_v4.py")
++    g["frozen_driver_v4"] = {"expected": PIN_DRIVER_V4, "actual": _dv4,
++                             "match": _dv4 == PIN_DRIVER_V4}
++    if not g["frozen_driver_v4"]["match"]:
++        fail("HASH_GATE_FROZEN_DRIVER_V4", g["frozen_driver_v4"])
++    for label, fn, want in [
++            ("gate_matrix", "gate_matrix.json", PIN_GATE_MATRIX_52),
++            ("proof_results", "proof_results.json",
++             PIN_PROOF_RESULTS_52)]:
++        got = HF(PKG52 / fn)
++        g[f"receipt52_{label}"] = {"expected": want, "actual": got,
++                                   "match": got == want,
++                                   "commit": PIN_RECEIPT52_COMMIT}
++        if got != want:
++            fail(f"HASH_GATE_RECEIPT52_{label.upper()}",
++                 g[f"receipt52_{label}"])
+     results["hash_gates"] = g
+     results["ledger_before"] = HF(PILOT / "credit_ledger.json")
+     return m48, m2, f1["cleared_serialization"]
+@@ -557,7 +585,7 @@
+               d19 / "live_dry_run_adapter.py")
+     copy_file(PKG48 / "live_readiness_executor_r5_candidate.py",
+               d19 / "live_readiness_executor_r4.py")
+-    ps = SNOTES / "td52_pilot_stage"
++    ps = SNOTES / "td53_pilot_stage"
+     copy_file(F_CAND_ENTRY, ps / "pilot_build_v7_clibound.py")
+     copy_file(F_CAND_CONSTRUCT, ps / "construct_4h_v3_cliguard.py")
+     copy_file(F_VALIDATOR, ps / "validate_input.py")
+@@ -773,48 +801,105 @@
+     return entry
+ 
+ 
++
++# ------------------------------------------------- gate567 extractor
++# -53 corrected extractor (spec 6295378552). The v4 extractor walked
++# the candidate matrix for a dict holding a nested 12-element `gates`
++# list; the matrix format never contained one (the -52 HOLD,
++# found_12_gate_cells = 0). ACTUAL schema, verified against the
++# pinned -52 gate_matrix.json (sha256 PIN_GATE_MATRIX_52): top level
++# {gate_revision, n_trials, n_pass, total_checks,
++# old_spot8_state_unchanged, real_pilot_ledger_unchanged, trials[]};
++# each trial {trial, status, checks[], n_checks, facts{decision,
++# gates_passed, failed_gates, gate_codes, ...}}. Static binding: the
++# runner (run_dispatch_gate_trials_r4.py, gate_summary) aggregates
++# the receipt's per-gate list - gates = res["receipt"]["gates"];
++# gates_passed = sum(1 for x in gates if x["result"] == "PASS");
++# failed_gates / gate_codes collect exactly the non-PASS remainder -
++# over evaluate_gates' unique gates 1..12 (dispatch_gate_r4.py). An
++# all-green trial with gates_passed == 12 and empty failed_gates /
++# gate_codes therefore entails gates 5, 6 and 7 each PASS.
++GREEN_TRIALS_567 = ("G01_green_dry_run",
++                    "H05_helper_real_sanctioned_path")
++
++
++def extract_gate567(matrix):
++    """Gate-5/6/7 evidence from the matrix's actual schema.
++    Returns the evidence dict, or None (fail closed)."""
++    ev = {"schema": ("top{n_trials,n_pass,total_checks,"
++                     "old_spot8_state_unchanged,"
++                     "real_pilot_ledger_unchanged,trials[]} + "
++                     "trial{status,checks[],facts{gates_passed,"
++                     "failed_gates,gate_codes,decision}}"),
++          "n_trials": matrix.get("n_trials"),
++          "n_pass": matrix.get("n_pass"),
++          "total_checks": matrix.get("total_checks"),
++          "old_spot8_state_unchanged":
++              matrix.get("old_spot8_state_unchanged"),
++          "real_pilot_ledger_unchanged":
++              matrix.get("real_pilot_ledger_unchanged")}
++    if not (ev["n_trials"] == 46 and ev["n_pass"] == 46
++            and ev["total_checks"] == 332
++            and ev["old_spot8_state_unchanged"] is True
++            and ev["real_pilot_ledger_unchanged"] is True
++            and isinstance(matrix.get("trials"), list)
++            and len(matrix["trials"]) == 46):
++        return None
++    for name in GREEN_TRIALS_567:
++        t = next((x for x in matrix["trials"]
++                  if isinstance(x, dict) and x.get("trial") == name),
++                 None)
++        if t is None:
++            return None
++        f = t.get("facts")
++        if not isinstance(f, dict):
++            return None
++        checks = t.get("checks") or []
++        all12 = [c for c in checks if c.startswith("all_12")
++                 or c == "all_gates_pass"]
++        ev[name] = {"status": t.get("status"),
++                    "all_12_checks": all12,
++                    "gates_passed": f.get("gates_passed"),
++                    "failed_gates": f.get("failed_gates"),
++                    "gate_codes": f.get("gate_codes"),
++                    "decision": f.get("decision")}
++        if not (t.get("status") == "PASS" and all12
++                and f.get("gates_passed") == 12
++                and f.get("failed_gates") == []
++                and f.get("gate_codes") == []
++                and f.get("decision") in ("PASS", "PASS_DRY_RUN")):
++            return None
++    ev["gate5"] = "PASS"
++    ev["gate6"] = "PASS"
++    ev["gate7"] = "PASS"
++    ev["all_12_pass"] = True
++    ev["basis"] = ("gates_passed==12 over unique gates 1..12 with "
++                   "empty failed_gates/gate_codes entails every "
++                   "gate PASS (runner gate_summary aggregation)")
++    return ev
++
++
+ # ---------------------------------------------------------------- P1
+ def p1():
+-    d11 = SNOTES / "td_policy_a_live_readiness_packet_20261017_11"
+-    troot = OUT / "gate_trials"
+-    r = run_suite([sys.executable,
+-                   str(d11 / "run_dispatch_gate_trials_r4.py"),
+-                   str(troot), str(OUT / "gate_matrix.json")], cwd=d11)
+-    results["P1_gate_suite"] = {"exit": r.returncode,
+-                                "stdout_tail": r.stdout[-400:],
+-                                "stderr_tail": r.stderr[-800:]}
+-    if r.returncode != 0 or not (OUT / "gate_matrix.json").exists():
+-        fail("P1_GATE_SUITE_RUN", results["P1_gate_suite"])
+-    gate_matrix = json.loads((OUT / "gate_matrix.json").read_bytes())
+-    compare_matrix("gate_dispatch_matrix", PKG11 / "dispatch_matrix_run2.json",
++    # -53 (spec 6295378552): the 46-trial gate suite is NOT rerun.
++    # The pinned -52 receipt (hash-gated above) is verified by
++    # canonical comparison against the accepted -11 run-2 matrix,
++    # and the corrected extractor reads the Gate-5/6/7 evidence
++    # from the receipt's actual schema.
++    gate_matrix = json.loads((PKG52 / "gate_matrix.json").read_bytes())
++    results["P1_gate_receipt"] = {
++        "source": "PKG52/gate_matrix.json",
++        "result_commit": PIN_RECEIPT52_COMMIT,
++        "sha256": HF(PKG52 / "gate_matrix.json"),
++        "suite_rerun": False,
++        "n_pass": gate_matrix.get("n_pass"),
++        "n_trials": gate_matrix.get("n_trials"),
++        "total_checks": gate_matrix.get("total_checks")}
++    compare_matrix("gate_dispatch_matrix",
++                   PKG11 / "dispatch_matrix_run2.json",
+                    gate_matrix, "P1_GATE_REGRESSION")
+-    # Gate 5/6/7 evidence: an all-green 12-gate cell in the candidate matrix
+-    found = []
+-
+-    def walk(o):
+-        if isinstance(o, dict):
+-            gates = o.get("gates")
+-            if isinstance(gates, list) and len(gates) == 12:
+-                found.append(gates)
+-            for v in o.values():
+-                walk(v)
+-        elif isinstance(o, list):
+-            for v in o:
+-                walk(v)
+-    walk(gate_matrix)
+-    g567 = None
+-    for gates in found:
+-        statuses = []
+-        for item in gates:
+-            if isinstance(item, dict):
+-                statuses.append(item.get("status") or item.get("result"))
+-            else:
+-                statuses.append(item)
+-        if all(s == "PASS" for s in statuses):
+-            g567 = {"gate5": statuses[4], "gate6": statuses[5],
+-                    "gate7": statuses[6], "all_12_pass": True}
+-            break
+-    results["P1_gate567"] = g567 or {"found_12_gate_cells": len(found)}
++    g567 = extract_gate567(gate_matrix)
++    results["P1_gate567"] = g567 or {"extractor": "NOT_EVIDENCED"}
+     if g567 is None:
+         fail("P1_GATE567_NOT_EVIDENCED", results["P1_gate567"])
+     # adapter + executor: -19 clock/binding regression
+@@ -895,7 +980,7 @@
+ 
+ def p3(expected_f1):
+     import pandas as pd
+-    ps = SNOTES / "td52_pilot_stage"
++    ps = SNOTES / "td53_pilot_stage"
+     p = {}
+     # binding identity (in-process load of the staged entrypoint copy)
+     sys.path.insert(0, str(ps))
