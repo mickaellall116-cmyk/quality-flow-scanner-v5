@@ -1,0 +1,351 @@
+--- /tmp/td50_stage/src/research_notes/td_route_transaction_offline_proof_cli_closure_20261020_49/proof_driver.py	2026-10-20 09:22:54.000000000 +0000
++++ /tmp/td50_stage/proof_driver.py	2026-10-20 11:04:58.939381146 +0000
+@@ -1,13 +1,23 @@
+ #!/usr/bin/env python3
+-"""QF-TD-ROUTE-TRANSACTION-OFFLINE-PROOF-AND-CLI-CLOSURE-20261020-49 r1
+-proof driver. ONE attempt, network-denied (unshare -n, enforced by the
+-caller shell). Order: hash gates -> P0 static -> P1 readiness chain ->
+-P2 driver -> P3 route binding + CLI -> post-run rehash. First material
+-failure stops; the terminal verdict is written to proof_results.json.
+-Synthetic fixtures only; candidate copies execute only inside the
+-shadow stage; no live file is executed or written.
++"""QF-TD-ROUTE-TRANSACTION-PROOF-CHECKER-CORRECTION-RERUN-20261020-50 r1
++proof driver v2. Derived from the -49 proof driver (sha256
++1478d746af7fa616e055a804f63c5a240bcb94d2493fc546f9f8b7192a004e5f) with
++the ONE authorized semantic correction (spec comment 6289252055 SS B):
++the P0 top-level comparison keys every non-callable statement by
++position-independent AST CONTENT (multiset with multiplicity), never by
++line number; plus checker self-checks and the SS C/D v3 manifest-status
++gate in P0. Stage order, fixtures, canonical replacements, failure
++keys, first-failure stop, and the P1/P2/P3 logic are unchanged from
++-49. ONE attempt, network-denied (unshare -n, enforced by the caller
++shell). Order: hash gates -> checker self-checks -> P0 static -> P1
++readiness chain -> P2 driver -> P3 route binding + CLI -> post-run
++rehash. First material failure stops; the terminal verdict is written
++to proof_results.json. Synthetic fixtures only; candidate copies
++execute only inside the shadow stage; no live file is executed or
++written.
+ """
+ import ast
++from collections import Counter
+ import hashlib
+ import importlib.util
+ import json
+@@ -19,14 +29,14 @@
+ from pathlib import Path
+ 
+ OUT = Path(sys.argv[1])
+-REPO = Path("/home/hatch/workspace/td49_wt")
++REPO = Path("/home/hatch/workspace/td50_wt")
+ NOTES = REPO / "research_notes"
+-STAGE = Path("/tmp/td49_stage")
++STAGE = Path("/tmp/td50_stage")
+ SHADOW = STAGE / "shadow"
+ SNOTES = SHADOW / "research_notes"
+ WHEELHOUSE = Path("/home/hatch/workspace/td_nl_wheelhouse_20261016")
+ 
+-TASK = "QF-TD-ROUTE-TRANSACTION-OFFLINE-PROOF-AND-CLI-CLOSURE-20261020-49"
++TASK = "QF-TD-ROUTE-TRANSACTION-PROOF-CHECKER-CORRECTION-RERUN-20261020-50"
+ results = {"task": TASK, "run": 1, "repair_minutes": 0}
+ subprocess_timeouts = []
+ 
+@@ -68,6 +78,7 @@
+ PKG46 = NOTES / "td_ends_carry_proof_harness_rerun_20261020_46"
+ PKG48 = NOTES / "td_route_adoption_transaction_prep_20261020_48"
+ PKG49 = NOTES / "td_route_transaction_offline_proof_cli_closure_20261020_49"
++PKG50 = NOTES / "td_route_transaction_proof_checker_correction_rerun_20261020_50"
+ PKG11 = NOTES / "td_policy_a_live_readiness_packet_20261017_11"
+ PKG19 = NOTES / "td_live_dryrun_clock_adapter_binding_20261017_19"
+ PKG04 = NOTES / "td_fresh_live_driver_integration_evidence_20261016"
+@@ -79,11 +90,20 @@
+ F_CAND_CONSTRUCT = PKG49 / "construct_4h_v3_cliguard.py"
+ F_CAND_ENTRY = PKG49 / "pilot_build_v7_clibound.py"
+ F_MANIFEST_V2 = PKG49 / "ROUTE_MANIFEST_CANDIDATE_V2.json"
++F_MANIFEST_V3 = PKG50 / "ROUTE_MANIFEST_CANDIDATE_V3.json"
+ F_DAG_UPDATE = PKG49 / "ROUTE_DAG_ROLLBACK_UPDATE.md"
+ 
+ PIN_LOCK = "08b38cfa1880d328ba4b13dd2a17cb0d00c925860b457ec50fb6f211d42a7068"
+ PIN_WHEELHOUSE = "210b8273a15cc7317b4a8029198f8d6e1401c1e375acdbe7f8602167c13e815b"
+ PIN_F1_SER_SHA = "bd550433d4af504a05a84be551c45d6a6d35be35cef3f479a6acca2cdf5ce813"
++PIN_VALIDATOR_CAND = ("ca3bafd87e7cb439d538ddf924aa08a029dd2c9bb32b485f"
++                      "61acbeea91429cc6")
++PIN_CONSTRUCTOR_CAND = ("3f432e7e30d3d962b36cb0c82cae9658cf269c3214beb"
++                        "918402f8645a3fe0ad1")
++PIN_ENTRYPOINT_CAND = ("84ccd2c68aea0f0c9b7e3e97e92ad870bbb3af84a125b"
++                       "75b2c1f3e57d20d7772")
++STATUS_PENDING = "IMPLEMENTED_BY_CANDIDATE__EXECUTION_PROOF_PENDING"
++STATUS_OVERCLAIM = "SATISFIED_BY_CANDIDATE__OFFLINE_PROOF_IN_THIS_PACKAGE"
+ 
+ 
+ # ---------------------------------------------------------------- gates
+@@ -136,6 +156,24 @@
+         if want != got:
+             fail(f"HASH_GATE_CAND49_{label.upper()}", g[f"cand49_{label}"])
+     g["manifest_v2_sha256"] = HF(F_MANIFEST_V2)
++    # spec -50 SS A explicit frozen-pins gate (full-length pins from the
++    # adjudication comment, not prefix expansions)
++    for label, fkey, want in [
++            ("validator_candidate", F_VALIDATOR, PIN_VALIDATOR_CAND),
++            ("constructor_candidate", F_CAND_CONSTRUCT,
++             PIN_CONSTRUCTOR_CAND),
++            ("entrypoint_candidate", F_CAND_ENTRY, PIN_ENTRYPOINT_CAND)]:
++        got = HF(fkey)
++        g[f"frozen_{label}"] = {"expected": want, "actual": got,
++                                "match": want == got}
++        if want != got:
++            fail(f"HASH_GATE_FROZEN_{label.upper()}", g[f"frozen_{label}"])
++    # v3 manifest: present, canonical bytes; status gate runs in P0
++    m3_raw = F_MANIFEST_V3.read_bytes()
++    g["manifest_v3_sha256"] = H(m3_raw)
++    g["manifest_v3_canonical_bytes"] = canon(json.loads(m3_raw)) == m3_raw
++    if not g["manifest_v3_canonical_bytes"]:
++        fail("HASH_GATE_MANIFEST_V3_CANON", g["manifest_v3_sha256"])
+     # environment pins
+     g["td_lock"] = HF(STAGE / "integration_requirements.lock")
+     if g["td_lock"] != PIN_LOCK:
+@@ -158,25 +196,76 @@
+ 
+ # ---------------------------------------------------------------- P0
+ def top_items(src):
++    """-50 SS B corrected comparison basis. Every top-level item is
++    keyed by CONTENT: callables by name -> normalized AST dump; every
++    non-callable statement enters a multiset (Counter) of normalized
++    AST dumps. ast.dump carries no source positions, so the comparison
++    is invariant to line shifts and banner/comment insertions, and the
++    Counter preserves multiplicity of duplicate statements."""
+     tree = ast.parse(src)
+-    items = {}
+-    for node in tree.body:
+-        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+-            items[f"fn:{node.name}"] = ast.dump(node)
+-        elif isinstance(node, ast.ClassDef):
+-            items[f"class:{node.name}"] = ast.dump(node)
+-        elif isinstance(node, (ast.Import, ast.ImportFrom)):
+-            items[f"import:{ast.dump(node)}"] = ast.dump(node)
+-        elif isinstance(node, ast.Assign):
+-            items[f"assign:{ast.dump(node.targets[0])}"] = ast.dump(node)
+-        elif isinstance(node, ast.If):
+-            items["if_main_guard"] = ast.dump(node)
+-        elif isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant):
+-            items["docstring"] = ast.dump(node)
++    callables = {}
++    others = Counter()
++    guards = set()
++    docstring = None
++    for i, node in enumerate(tree.body):
++        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef,
++                             ast.ClassDef)):
++            callables[node.name] = ast.dump(node)
+         else:
+-            items[f"other:{type(node).__name__}:{getattr(node, 'lineno', 0)}"] \
+-                = ast.dump(node)
+-    return items
++            d = ast.dump(node)
++            others[d] += 1
++            if isinstance(node, ast.If) and "__main__" in d:
++                guards.add(d)
++            if i == 0 and isinstance(node, ast.Expr) and isinstance(
++                    node.value, ast.Constant) and isinstance(
++                    node.value.value, str):
++                docstring = d
++    return {"callables": callables, "others": others, "guards": guards,
++            "docstring": docstring}
++
++
++def others_delta(a, b):
++    return dict(a - b), dict(b - a)
++
++
++def short(d):
++    return H(d.encode())[:16]
++
++
++def checker_self_checks():
++    """Spec -50 SS B.3 pre-run self-checks + the v6 line-shift sanity
++    properties. Any failure is the run's first failure."""
++    sc = {}
++    s_plain = "X = compute(1, 2)\n"
++    s_shift = "\n\n# banner comment\n\n\nX = compute(1, 2)\n"
++    sc["same_statement_different_lineno_equal"] = \
++        top_items(s_plain) == top_items(s_shift)
++    sc["replaced_expression_detected"] = \
++        top_items(s_plain)["others"] != top_items(
++            "X = compute(1, 3)\n")["others"]
++    sc["added_expression_detected"] = \
++        top_items(s_plain)["others"] != top_items(
++            "X = compute(1, 2)\nY = 1\n")["others"]
++    sc["removed_expression_detected"] = \
++        top_items("X = compute(1, 2)\nY = 1\n")["others"] != top_items(
++            s_plain)["others"]
++    dup = top_items("Y = 1\nY = 1\n")["others"]
++    sc["duplicate_count_preserved"] = sorted(dup.values()) == [2]
++    d = others_delta(dup, top_items("Y = 1\n")["others"])
++    sc["duplicate_delta_counts_one"] = \
++        sum(d[0].values()) == 1 and not d[1]
++    v6src = F_V6.read_text()
++    a = top_items(v6src)
++    b = top_items(v6src)
++    sc["v6_vs_v6_delta_empty"] = (a == b and others_delta(
++        a["others"], b["others"]) == ({}, {}))
++    shifted = "# checker sanity banner\n\n\n" + v6src
++    c = top_items(shifted)
++    sc["v6_line_shifted_delta_empty"] = (a == c and others_delta(
++        a["others"], c["others"]) == ({}, {}))
++    results["checker_self_checks"] = sc
++    if not all(sc.values()):
++        fail("P0_CHECKER_SELF_CHECK", sc)
+ 
+ 
+ def p0(m48, m2):
+@@ -184,39 +273,43 @@
+     # constructor candidate: library surface identical, guard only
+     o = top_items(F_CONSTRUCT.read_text())
+     c = top_items(F_CAND_CONSTRUCT.read_text())
+-    keys = sorted(set(o) | set(c))
+-    diffs = [k for k in keys if o.get(k) != c.get(k)]
++    only_o, only_c = others_delta(o["others"], c["others"])
+     p["constructor_surface"] = {
+-        "top_level_items_compared": len(keys),
+-        "differing_items": diffs,
+-        "callables_identical": all(
+-            o.get(k) == c.get(k) for k in keys
+-            if k.startswith(("fn:", "class:"))),
+-        "docstring_identical": o.get("docstring") == c.get("docstring"),
+-        "constants_identical": all(
+-            o.get(k) == c.get(k) for k in keys if k.startswith("assign:")),
++        "callables_compared": len(set(o["callables"]) |
++                                  set(c["callables"])),
++        "callables_identical": o["callables"] == c["callables"],
++        "docstring_identical": o["docstring"] == c["docstring"],
++        "others_removed_content_sha": sorted(short(d) for d in only_o),
++        "others_added_content_sha": sorted(short(d) for d in only_c),
++        "removed_items_are_original_guard_only":
++            bool(only_o) and set(only_o) <= o["guards"],
++        "added_items_are_candidate_guard_only":
++            bool(only_c) and set(only_c) <= c["guards"],
+     }
+-    if diffs != ["if_main_guard"] or not p["constructor_surface"][
+-            "callables_identical"]:
++    cs = p["constructor_surface"]
++    if not cs["callables_identical"] or not cs["docstring_identical"] \
++            or not cs["removed_items_are_original_guard_only"] \
++            or not cs["added_items_are_candidate_guard_only"]:
+         fail("P0_CONSTRUCTOR_SURFACE", p["constructor_surface"])
+     # entrypoint candidate: delta limited to constructor rebinding
+     o6 = top_items(F_V6.read_text())
+     c7 = top_items(F_CAND_ENTRY.read_text())
+-    keys7 = sorted(set(o6) | set(c7))
+-    diffs7 = [k for k in keys7 if o6.get(k) != c7.get(k)]
+-    fn_same = all(o6.get(k) == c7.get(k) for k in keys7
+-                  if k.startswith(("fn:", "class:")))
+-    added = sorted(set(c7) - set(o6))
+-    removed = sorted(set(o6) - set(c7))
++    rem7, add7 = others_delta(o6["others"], c7["others"])
++    fn_same = o6["callables"] == c7["callables"]
+     p["entrypoint_delta"] = {
+-        "items_compared": len(keys7), "differing_items": diffs7,
++        "callables_compared": len(set(o6["callables"]) |
++                                  set(c7["callables"])),
+         "all_functions_identical": fn_same,
+-        "added_items": added, "removed_items": removed,
++        "removed_content_sha": sorted(short(d) for d in rem7),
++        "added_content_sha": sorted(short(d) for d in add7),
++        "removed_previews": sorted(d[:160] for d in rem7),
++        "added_previews": sorted(d[:160] for d in add7),
+     }
+     allowed_frag = ("construct_4h", "_CONSTRUCTOR_PATH", "_c4h_spec",
+                     "_c4h_mod", "importlib")
+-    if not fn_same or any(not any(f in d for f in allowed_frag)
+-                          for d in diffs7):
++    diff_dumps = list(rem7) + list(add7)
++    if not fn_same or not diff_dumps or any(
++            not any(f in d for f in allowed_frag) for d in diff_dumps):
+         fail("P0_ENTRYPOINT_DELTA", p["entrypoint_delta"])
+     # manifest v2: readiness chain carried unchanged; route pins are the
+     # new candidates; no stale authoritative route pins in pin positions
+@@ -254,6 +347,41 @@
+                                 all(n in dag_txt for n in need)}
+     if not all(p["dag_rollback_update"].values()):
+         fail("P0_DAG_ROLLBACK", p["dag_rollback_update"])
++    # -50 SS C/D: v3 manifest status correction gate. v3 may differ
++    # from v2 ONLY in adjudication_basis and the direct_cli_refusal
++    # status; the driver rejects the old overclaiming status outright.
++    def status_acceptable(s):
++        return s == STATUS_PENDING
++
++    m3 = json.loads(F_MANIFEST_V3.read_bytes())
++
++    def masked(m):
++        m = json.loads(json.dumps(m))
++        m["adjudication_basis"] = "<MASKED>"
++        m["governance"]["direct_cli_refusal"]["status"] = "<MASKED>"
++        return m
++
++    old_status = (m2.get("governance") or {}).get(
++        "direct_cli_refusal", {}).get("status")
++    new_status = (m3.get("governance") or {}).get(
++        "direct_cli_refusal", {}).get("status")
++    v3 = {
++        "manifest_v3_sha256": HF(F_MANIFEST_V3),
++        "only_allowed_changes_vs_v2": masked(m2) == masked(m3),
++        "adjudication_basis_names_comment_6289252055":
++            "6289252055" in str(m3.get("adjudication_basis")),
++        "old_status": old_status,
++        "new_status": new_status,
++        "new_status_is_pending": new_status == STATUS_PENDING,
++        "old_overclaiming_status_rejected":
++            old_status == STATUS_OVERCLAIM
++            and not status_acceptable(old_status)
++            and status_acceptable(new_status),
++    }
++    p["manifest_v3_status"] = v3
++    if not all(v for k, v in v3.items() if k not in (
++            "old_status", "new_status", "manifest_v3_sha256")):
++        fail("P0_MANIFEST_V3_STATUS", v3)
+     results["P0"] = p
+ 
+ 
+@@ -272,7 +400,7 @@
+         "td_fresh_live_driver_integration_evidence_20261016",
+         "td_fresh_full_manifest_preflight_evidence_20261016",
+         "td_live_dryrun_clock_adapter_binding_20261017_19",
+-        "td49_pilot_stage",
++        "td50_pilot_stage",
+     }
+     for entry in sorted(os.listdir(NOTES)):
+         if entry in substituted:
+@@ -316,7 +444,7 @@
+     copy_file(PKG48 / "live_readiness_executor_r5_candidate.py",
+               d19 / "live_readiness_executor_r4.py")
+     # pilot stage for P3
+-    ps = SNOTES / "td49_pilot_stage"
++    ps = SNOTES / "td50_pilot_stage"
+     copy_file(F_CAND_ENTRY, ps / "pilot_build_v7_clibound.py")
+     copy_file(F_CAND_CONSTRUCT, ps / "construct_4h_v3_cliguard.py")
+     copy_file(F_VALIDATOR, ps / "validate_input.py")
+@@ -346,7 +474,7 @@
+         fail("STAGING_BINDING", staged)
+ 
+ 
+-def run_suite(argv, cwd, timeout=900):
++def run_suite(argv, cwd, timeout=600):
+     r = subprocess.run(argv, cwd=str(cwd), capture_output=True, text=True,
+                        timeout=timeout)
+     return r
+@@ -586,7 +714,7 @@
+ 
+ def p3(expected_f1):
+     import pandas as pd
+-    ps = SNOTES / "td49_pilot_stage"
++    ps = SNOTES / "td50_pilot_stage"
+     p = {}
+     # binding identity (in-process load of the staged entrypoint copy)
+     sys.path.insert(0, str(ps))
+@@ -677,6 +805,7 @@
+ def main():
+     try:
+         m48, m2, expected_f1 = hash_gates()
++        checker_self_checks()
+         p0(m48, m2)
+         build_shadow()
+         p1()

@@ -1,0 +1,18 @@
+--- ROUTE_MANIFEST_CANDIDATE_V2.json (pretty)
++++ ROUTE_MANIFEST_CANDIDATE_V3.json (pretty)
+@@ -1,5 +1,5 @@
+ {
+- "adjudication_basis": "Issue #1 comment 6287037204 (task -49 r1 spec); supersedes the route block of the -48 candidate manifest (sha256 ebd32244071cc5ef2cea997c38bc63b1d736a81da09ee2a6127cc6c7feb55ebf) for the offline transaction candidate set only",
++ "adjudication_basis": "Issue #1 comment 6289252055 (task -50 r1 spec; -49 adjudication: TD_ROUTE_TRANSACTION_CANDIDATES_FROZEN__PROOF_TOOL_AND_MANIFEST_STATUS_HOLD); supersedes the adjudication basis of ROUTE_MANIFEST_CANDIDATE_V2.json (sha256 3a6f86f1b19555cb9303ce4d035deef9df21f5d283b3f430703b44d875d02370) for the offline transaction candidate set only; the v2 manifest itself is not edited",
+  "chain_candidates": {
+   "adapter": {
+    "path": "research_notes/td_route_adoption_transaction_prep_20261020_48/live_dry_run_adapter_r5_candidate.py",
+@@ -47,7 +47,7 @@
+    "pinned_original_unchanged": "research_notes/pilot_harness/construct_4h.py remains sha256 d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd and still ships its CLI; adoption of the refusal is a separate designation decision",
+    "refusal": "direct standalone invocation exits 3 with a REFUSED message before argument parsing; no construction, output, or state write; import path unaffected",
+    "requirement": "REQ-CLI",
+-   "status": "SATISFIED_BY_CANDIDATE__OFFLINE_PROOF_IN_THIS_PACKAGE"
++   "status": "IMPLEMENTED_BY_CANDIDATE__EXECUTION_PROOF_PENDING"
+   },
+   "precedence": "construct_4h is authoritative for TD receipts. fetch_4h.resample_4h remains a historical-convention reference only and is never a TD producer.",
+   "split_exclusion": {
