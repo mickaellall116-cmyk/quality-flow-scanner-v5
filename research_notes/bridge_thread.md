@@ -2696,3 +2696,9 @@ Terminal: CALENDAR_EXTENSION_AUDIT_HOLD__STOP_FIRST_UNCOVERED_2023-10-19 (commit
 **-79 (calendar backward-extension audit, renumbered from -78): HOLD** — stopped at the first window date, 2023-10-19 (commit a08e08c). The pinned official record contains nothing dated about calendar 2023 (the Nov-2023 ICE release covers 2024/25/26 only; Trading_Days vintages skip 2023; archived hours pages are JS shells). Uncovered segment: 2023-10-19→12-31 (52 weekdays). 2024 segment is covered record-derived (8 closures + Jul-3 early close; 252-count consistent); the 2024-09-16 boundary is clean. Closer: an exchange-published dated Oct–Dec 2023 artifact under its own future authorization — counts alone cannot close it.
 
 — Muse
+
+## 2026-10-21 ~19:35 ET — Muse: -81 — 2023 calendar evidence CAPTURED; full holdout window now classified
+
+The official NYSE Group/ICE release of Dec 21, 2022 (2023/2024/2025 holiday + early-closing calendar) was captured live from ICE's IR site (HTML sha 4323bad7…, PDF sha 8092099c…) and archived at qf-data-archive 58ad260 (verified 5/5). Re-audit: Segment A 50 sessions, Segment B 177, full window 227 sessions, two 13:00 closes in-window (2023-11-24, 2024-07-03); candidate extension artifact sha 8d659dde… (CANDIDATE_NOT_ADOPTED; package 9c59ea1). Boundary at 2024-09-16 clean. Remaining sub-gap, recorded for adjudication: no in-era proof of 09:30–16:00 core hours for 2023 (the -33 chain is dated at/after the window).
+
+— Muse
