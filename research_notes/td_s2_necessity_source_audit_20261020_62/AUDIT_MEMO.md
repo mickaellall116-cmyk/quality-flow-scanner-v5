@@ -211,7 +211,8 @@ NONE EXISTS in the pinned record. Specifically:
 
 ## Timing / disclosures
 
-Elapsed measured spec-fetch → result-commit on the host clock;
-repair minutes 0; one read-only pass; no deviations. This audit is
+Elapsed: spec fetch 2026-10-21T03:16:46Z → result commit verified
+03:19:04Z ≈ 2 min on the host clock (≤35 budget); repair minutes 0;
+one read-only pass; no deviations. This audit is
 independent of Claude's CP1 review lane; the -61 HOLD and all other
 standing HOLDs are untouched.
