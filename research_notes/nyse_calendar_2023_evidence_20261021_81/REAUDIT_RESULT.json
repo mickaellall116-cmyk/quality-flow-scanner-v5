@@ -1,0 +1,83 @@
+{
+  "task": "QF-NYSE-CALENDAR-2023-EVIDENCE-20261021-81",
+  "step1_terminal": "OFFICIAL_2023_CALENDAR_EVIDENCE_CAPTURED__OFFICIAL_LIVE",
+  "step2_terminal": "CALENDAR_EXTENSION_REAUDIT_COMPLETE__FULL_WINDOW_COVERED__CANDIDATE_PRODUCED",
+  "capture": {
+    "source_class": "OFFICIAL_LIVE",
+    "instrument": "NYSE Group Announces 2023, 2024 and 2025 Holiday and Early Closings Calendar (NYSE Group / ICE press release, Dec 21, 2022)",
+    "html": {
+      "url": "https://ir.theice.com/press/news-details/2022/NYSE-Group-Announces-2023-2024-and-2025-Holiday-and-Early-Closings-Calendar/default.aspx",
+      "retrieved_utc": "2026-10-21T23:31:07Z..23:31:09Z",
+      "http_status": 200,
+      "bytes": 79672,
+      "sha256": "4323bad770cd1769e78bab72d45408ce3e9d5ff67247fee3b8c714f0c5c46a15"
+    },
+    "pdf": {
+      "url": "https://s2.q4cdn.com/154085107/files/doc_news/NYSE-Group-Announces-2023-2024-and-2025-Holiday-and-Early-Closings-Calendar-2022.pdf",
+      "retrieved_utc": "2026-10-21T23:31:47Z..23:31:48Z",
+      "http_status": 200,
+      "bytes": 164298,
+      "sha256": "8092099cfc8c408089257004d61da3fba4ca6b7161ed722aac1189fe83a67186"
+    },
+    "archive": {
+      "repo": "mickaellall116-cmyk/qf-data-archive",
+      "commit": "58ad260",
+      "path": "captures/nyse_calendar_2023_evidence_20261021/",
+      "refetch_verification": "SHA256SUMS 5/5 OK; payloads byte-identical to captured originals"
+    }
+  },
+  "oct_dec_2023_as_stated": {
+    "october_2023_dated_entries": [],
+    "closures": [
+      {
+        "date": "2023-11-23",
+        "name": "Thanksgiving Day"
+      },
+      {
+        "date": "2023-12-25",
+        "name": "Christmas Day"
+      }
+    ],
+    "early_closes_13_00": [
+      {
+        "date": "2023-11-24",
+        "note": "day after Thanksgiving, footnote **"
+      }
+    ],
+    "december_2023_early_close": "NONE \u2014 footnote *** enumerates December 24, 2024 and December 24, 2025 only"
+  },
+  "reaudit": {
+    "window": "2023-10-19..2024-09-15",
+    "stop_date": null,
+    "segment_a": {
+      "span": "2023-10-19..2023-12-31",
+      "weekdays": 52,
+      "closures_in_segment": [
+        "2023-11-23",
+        "2023-12-25"
+      ],
+      "early_closes": [
+        "2023-11-24"
+      ],
+      "sessions": 50
+    },
+    "segment_b": {
+      "span": "2024-01-01..2024-09-15",
+      "weekdays": 185,
+      "sessions": 177,
+      "early_closes": [
+        "2024-07-03"
+      ],
+      "enumeration": "session-by-session in this re-run from the pinned Nov-10-2023 ICE release 2024 column, corroborated identically by the -81 artifact 2024 column"
+    },
+    "total_sessions": 227,
+    "boundary_2024_09_16": "candidate last session Fri 2024-09-13 (regular); -35 artifact (sha256 3358f2d9cc233142f0927d3a16c3a353e935ed4310c563ac046352dcf75d2b88, pin MATCH) first session Mon 2024-09-16 09:30-16:00 \u2014 abuts, no overlap, no gap",
+    "candidate_artifact": {
+      "file": "XNYS_SESSION_SCHEDULE_CANDIDATE_EXTENSION_20261021_81.json",
+      "bytes": 12221,
+      "sha256": "8d659dde9ccb51b9d86d6c45759abceb6ccd90ad7fa49e7478b13c2dc153a0a2",
+      "status": "CANDIDATE_NOT_ADOPTED"
+    },
+    "core_hours_subgap": "REMAINS OPEN \u2014 the -81 artifact states no 09:30-16:00 core hours for 2023; the only core-hours proof remains the -33 chain dated at/after the window (Rule 1.1(d) Jun-2025 filing; RM-24-12 2024-09-13). Closure/early-close enumeration gap is closed; in-era 2023 core-hours proof is a distinct evidence class still absent, recorded for adjudication."
+  }
+}
