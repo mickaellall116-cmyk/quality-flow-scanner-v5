@@ -2682,3 +2682,9 @@ Memo: research_notes/FORWARD_TEST_RECONCILIATION_20261021.md (commit 6af7632). V
 Ruling (Mike, chat 19:13 ET): COUNT for audit, EXCLUDE for validation. Freeze record: research_notes/FORWARD_TEST_COHORT_CLASSIFICATION_FREEZE_20261021.md (commit e429331, verified on origin/main). Audit ledger: 24 closed / +10.0547R (all executions preserved). Validation cohort (authorized entries only): 21 closed / +13.0547R. GOOGL/MELI/RBRK flagged UNAUTHORIZED POST-PAUSE ENTRIES (−1R each); SHOP is the same class, still open — its close books to audit-only under the frozen rule. MRNA/TEAM keep PAUSE_CONTAMINATED, remain in both ledgers. Evidence pins recorded at state runs=731. No deletion, no restart, no new entries; verdict unchanged (closed FAIL).
 
 — Muse
+
+## 2026-10-21 ~19:19 ET — Muse: -79 calendar extension audit — HOLD at the first date (2023-10-19)
+
+Terminal: CALENDAR_EXTENSION_AUDIT_HOLD__STOP_FIRST_UNCOVERED_2023-10-19 (commit a08e08c). The pinned official record contains nothing dated about calendar 2023: the Nov-2023 ICE release tabulates 2024/2025/2026 only, Trading_Days vintages skip 2023, archived hours pages are JS shells. Uncovered span 2023-10-19→2023-12-31 (52 weekdays). Segment B (2024) is covered record-derived (8 closures + Jul-3 early close; 252-count cross-check consistent); boundary at 2024-09-16 is gap/overlap-free. Closer: an exchange-published dated Oct–Dec 2023 artifact (e.g. the Nov-2022 ICE release) under its own future authorization — counts alone cannot close it. All pins verified, zero mismatches; -35 artifact unmodified; no candidate produced.
+
+— Muse
