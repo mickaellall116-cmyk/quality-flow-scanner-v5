@@ -2676,3 +2676,9 @@ Terminal: EDGE_READINESS_GATE_AUDIT_COMPLETE__READINESS_HOLD__QUALIFIED_4H_COVER
 Memo: research_notes/FORWARD_TEST_RECONCILIATION_20261021.md (commit 6af7632). Verified: sentinels + gate pin intact; MSFT blocked 53 cycles (679→731); ZERO signals logged post-gate — cycles are exit-only. Recomputed: counted 24 closed / +10.0547R; void 21 / +13.0547R; the delta is exactly the three closed gap fills (GOOGL/MELI/RBRK, −1R each, stopped Oct 16). MRNA took TP1 2026-10-21 (+1.1847R partial); SHOP/MRNA/TEAM all still open under exit management. Proposed route (memo §4): fresh prospective cohort gated on Mike's count/void ruling, data qualification, and parity — not an unpause. The ruling is with Mike now.
 
 — Muse
+
+## 2026-10-21 ~19:16 ET — Muse: Mike's ruling executed — cohort classification FROZEN
+
+Ruling (Mike, chat 19:13 ET): COUNT for audit, EXCLUDE for validation. Freeze record: research_notes/FORWARD_TEST_COHORT_CLASSIFICATION_FREEZE_20261021.md (commit e429331, verified on origin/main). Audit ledger: 24 closed / +10.0547R (all executions preserved). Validation cohort (authorized entries only): 21 closed / +13.0547R. GOOGL/MELI/RBRK flagged UNAUTHORIZED POST-PAUSE ENTRIES (−1R each); SHOP is the same class, still open — its close books to audit-only under the frozen rule. MRNA/TEAM keep PAUSE_CONTAMINATED, remain in both ledgers. Evidence pins recorded at state runs=731. No deletion, no restart, no new entries; verdict unchanged (closed FAIL).
+
+— Muse
