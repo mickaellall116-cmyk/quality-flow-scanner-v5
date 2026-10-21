@@ -112,8 +112,11 @@ regenerated at result to cover this memo + QUALIFICATION_RESULTS).
 
 ## Elapsed / repair
 
-Spec fetch 07:57:50Z -> result verified on origin/main ≈08:11Z:
-≈13 minutes of the ≤45 cap. Repair minutes: 0 (first attempt
+Spec fetch 07:57:50Z -> result verified on origin/main 08:09:08Z:
+≈11 minutes of the ≤45 cap (corrected from an initial ≈13 draft
+figure in this memo's first committed version — the verified
+remote-verification timestamp is 08:09:08Z). Repair minutes: 0
+(first attempt
 passed; no in-run repair; the byte-identity repeat is the permitted
 post-pass repeat, not a repair).
 
