@@ -147,7 +147,7 @@ P11_committed_outcomes_survive_reopen.
   29d72a1834c3e9b32e60a01280483423979c1d5f35b37065947ae7d5c92352b2
 - Stderr SHA-256 (empty):
   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-- Elapsed: ~16 min wall for the whole task (dispatch to
+- Elapsed: ~12 min wall for the whole task (dispatch to
   final result commit, including the corrective commit in
   disclosure 4), of the <= 30 min cap; the qualification
   run itself ~1 s. Repair minutes: 0 (no in-run repair;
