@@ -1,0 +1,256 @@
+{
+ "all_pass": false,
+ "cases": [
+  {
+   "case": "Q01_scope_isolation",
+   "detail": "allowlist accepts packet shape; rejects SPOT leg, adjust flip, attempts=3, missing leg",
+   "pass": true
+  },
+  {
+   "case": "Q02_none_splits_mapping",
+   "detail": "twins map to adjust=none; bases to adjust=splits in URL",
+   "pass": true
+  },
+  {
+   "case": "Q03_attempt_ceiling_arithmetic",
+   "detail": "expected 12 (9 data + 3 usage); hard max 24 (18 + 6)",
+   "pass": true
+  },
+  {
+   "case": "Q04_attempt_cap_live",
+   "detail": "failing request stops at exactly 2 attempts",
+   "pass": true
+  },
+  {
+   "case": "Q05_no_pagination",
+   "detail": "5000-row ADJ response fires no pagination child",
+   "pass": true
+  },
+  {
+   "case": "Q06_usage_failure_before_data",
+   "detail": "usage 503x2 aborts before any data fetch",
+   "pass": true
+  },
+  {
+   "case": "Q07_d1_run_and_usage_once_per_day",
+   "detail": "D1 OK; bound usage receipt re-verified + reused once/day",
+   "pass": true
+  },
+  {
+   "case": "Q08_sanitized_receipts",
+   "detail": "no key material in any receipt/attempt log",
+   "pass": true
+  },
+  {
+   "case": "Q09_base_linkage",
+   "detail": "manifest rejects REV-before-base; D7 without base refuses",
+   "pass": true
+  },
+  {
+   "case": "Q10_temporal_boundaries",
+   "detail": "R7/R30 refuse at -1ms, pass at =/+1ms; future/tamper/params/malformed all refuse",
+   "pass": true
+  },
+  {
+   "case": "Q11_uniform_factor_pass",
+   "detail": "uniform window PASS; flip on effective date; vol scaled",
+   "pass": true
+  },
+  {
+   "case": "Q12_mixed_ohlc_fail",
+   "detail": "one unadjusted bar in splits series -> C1 FAIL",
+   "pass": true
+  },
+  {
+   "case": "Q13_volume_conventions",
+   "detail": "unscaled convention reported PASS; inconsistent -> FAIL",
+   "pass": true
+  },
+  {
+   "case": "Q14_missing_volume",
+   "detail": "missing volume -> C2 FAIL (MISSING_VOLUME)",
+   "pass": true
+  },
+  {
+   "case": "Q15_revision_identical_different",
+   "detail": "identical revision PASS; differing revision HOLD + diff",
+   "pass": true
+  },
+  {
+   "case": "Q16_malformed_evidence",
+   "detail": "corrupt SHA and wrong-params receipts -> HOLD pre-parse",
+   "pass": true
+  },
+  {
+   "case": "Q17_decimal_rounding_boundary",
+   "detail": "deviation at/below tolerance passes; above fails",
+   "pass": true
+  },
+  {
+   "case": "Q18_cli_refusals",
+   "detail": "CLI refuses hash/scope/day/traversal/conflict pre-run",
+   "pass": true
+  },
+  {
+   "case": "Q19_cli_end_to_end_days",
+   "detail": "CLI runs D1; D30 early refused; D7/D30 run when eligible",
+   "pass": true
+  },
+  {
+   "case": "Q20_no_global_verdict",
+   "detail": "outputs carry sampled-window verdicts only",
+   "pass": true
+  },
+  {
+   "case": "A01_mixed_volume_conventions",
+   "detail": "pre-split volume mixing factor-scaled + unscaled bars -> C2 FAIL/INCONSISTENT (the -65 false PASS is closed); prices uniform so C1 PASS isolates the defect",
+   "pass": true
+  },
+  {
+   "case": "A02_swapped_request_ids",
+   "detail": "twin splits/none ID swaps and base/revision ID swaps all -> HOLD RECEIPT_ID_MISMATCH before analysis",
+   "pass": true
+  },
+  {
+   "case": "A03_bar_set_defects",
+   "detail": "duplicate / out-of-order / out-of-window bars -> HOLD with structural tags, before any C1-C6 check",
+   "pass": true
+  },
+  {
+   "case": "A04_meta_mismatch",
+   "detail": "meta symbol and meta interval mismatches -> HOLD",
+   "pass": true
+  },
+  {
+   "case": "A05_edited_usage_pass",
+   "detail": "edited cached PASS (field != persisted payload) -> refused with USAGE_CACHE_BODY_ALTERED before any data/usage fetch",
+   "pass": true
+  },
+  {
+   "case": "A06_cross_manifest_cache",
+   "detail": "cache bound to another manifest -> refused with USAGE_CACHE_BINDING before any data/usage fetch",
+   "pass": true
+  },
+  {
+   "case": "A07_weaker_cached_headroom",
+   "detail": "cache written for headroom 2, session requires 10 -> refused with USAGE_CACHE_BINDING before any data/usage fetch",
+   "pass": true
+  },
+  {
+   "case": "A08_stale_usage_timestamp",
+   "detail": "cached receipt 25h old -> refused with USAGE_CACHE_TIMESTAMP before any data/usage fetch",
+   "pass": true
+  },
+  {
+   "case": "A09_future_usage_timestamp",
+   "detail": "cached receipt 1h in the future -> refused with USAGE_CACHE_TIMESTAMP before any data/usage fetch",
+   "pass": true
+  },
+  {
+   "case": "A10_coverage_empty",
+   "detail": "post-only window -> HOLD C2_PRE_COVERAGE_EMPTY; pre-only window -> HOLD C2_POST_COVERAGE_EMPTY",
+   "pass": true
+  },
+  {
+   "case": "B01_legacy_argument_omission",
+   "detail": "omitting any of the 6 mandatory expectations at either entrypoint raises TypeError \u2014 the legacy -66 call shape cannot execute at all",
+   "pass": true
+  },
+  {
+   "case": "B02_blank_or_ambiguous_expectations",
+   "detail": "blank/None/reversed/zero expectations and identical base==revision expected IDs -> HOLD EXPECTATION_* before any receipt read or C1-C6 check",
+   "pass": true
+  },
+  {
+   "case": "B03_identical_meta_wrong_revision",
+   "detail": "byte-identical revision pair over a TSLA-meta snapshot -> HOLD SNAPSHOT_META_MISMATCH (structure before bytes)",
+   "pass": true
+  },
+  {
+   "case": "B04_identical_out_of_window_revision",
+   "detail": "byte-identical revision pair containing a 2024-06-24 bar -> HOLD BAR_OUT_OF_WINDOW",
+   "pass": true
+  },
+  {
+   "case": "B05_identical_duplicate_revision",
+   "detail": "byte-identical revision pair with a duplicated bar -> HOLD BARS_NOT_STRICTLY_ASCENDING",
+   "pass": true
+  },
+  {
+   "case": "B06_cross_midnight_usage_cache",
+   "detail": "usage receipt written 23:xx UTC refuses reuse at 00:xx UTC next date (age 1h < 24h) with USAGE_CACHE_DATE before any usage/data transport; same-date reuse still served from cache",
+   "pass": true
+  },
+  {
+   "case": "B07_wrong_usage_endpoint_params",
+   "detail": "cached usage receipt bound to /time_series params -> refused with USAGE_CACHE_PARAMS before any data/usage fetch",
+   "pass": true
+  },
+  {
+   "case": "B08_malformed_numeric_strings",
+   "detail": "non-decimal close and non-decimal volume strings -> HOLD SNAPSHOT_MALFORMED; no exception escapes",
+   "pass": true
+  },
+  {
+   "case": "U01_minute_bucket_not_daily_budget",
+   "detail": "live -69 shape minute 1/8 + daily 1/800 PASSes and D1 runs (5 data calls); the 10-attempt day budget is charged to the daily allowance, never to plan_limit=8",
+   "pass": true
+  },
+  {
+   "case": "U02_minute_saturation_limiter",
+   "detail": "pinned limiter refuses the 9th credit inside the rolling minute and any credit past 800/day BEFORE further transport; a saturated minute bucket alone does not refuse the preflight (spacing is the limiter's job, pacing is not a budget refusal)",
+   "pass": true
+  },
+  {
+   "case": "U03_daily_headroom_hold",
+   "detail": "daily 795 + required 10 > 800 -> HOLD before data, and the REFUSE outcome receipt is persisted (the -69 refusal left no body; this one leaves both files)",
+   "pass": true
+  },
+  {
+   "case": "U04_missing_daily_fields_hold",
+   "detail": "the exact -69 live body (minute pair only) HOLDs at USAGE_DAILY_SCHEMA \u2014 daily schema unestablishable, no headroom invented \u2014 and the refusal body is persisted for audit this time",
+   "pass": true
+  },
+  {
+   "case": "U05_malformed_fields_hold",
+   "detail": "string/float/bool/negative daily fields and missing/negative/string minute fields -> USAGE_DAILY_SCHEMA / USAGE_SCHEMA refusals, each carrying its REFUSE outcome receipt",
+   "pass": true
+  },
+  {
+   "case": "U06_contradictory_daily_hold",
+   "detail": "half-present daily pairs, daily_usage > limit, and any plan_daily_limit != pinned 800 (400 or 10000) -> HOLD; no daily allowance but the pinned Basic 800/day is ever honored",
+   "pass": true
+  },
+  {
+   "case": "U07_minute_cannot_satisfy_daily",
+   "detail": "plan_limit=100000 with no daily pair still HOLDs \u2014 minute fields never satisfy the daily gate (under the -68 reading this body passed any headroom)",
+   "pass": true
+  },
+  {
+   "case": "U08_receipt_body_hash_match",
+   "detail": "REFUSE and PASS receipts both persist exact body bytes hash-matching the receipt (count + SHA-256); a recorded refusal is sticky \u2014 a later session returns it with zero re-calls",
+   "pass": true
+  },
+  {
+   "case": "U09_receipt_write_failure_hold",
+   "detail": "body-write failure (path is a directory) -> USAGE_RECEIPT_PERSIST_FAILED before any data fetch; a PASS that cannot be evidenced is not a PASS",
+   "pass": true
+  },
+  {
+   "case": "U10_retry_429_accounting",
+   "detail": "429 then 200 -> PASS at attempt 2, statuses [429, 200] accounted in the receipt; 429 x2 -> USAGE_RETRIES_EXHAUSTED with a REFUSE receipt; never a third attempt",
+   "pass": true
+  },
+  {
+   "case": "U11_stored_pass_tampering",
+   "detail": "flipped body bytes, altered params / execution date / manifest pin, edited payload, and a session bound to another store marker all refuse before any transport (USAGE_RECEIPT_BODY_MISMATCH; USAGE_CACHE_PARAMS; USAGE_CACHE_DATE; USAGE_CACHE_BINDING; USAGE_CACHE_BODY_ALTERED)",
+   "pass": true
+  },
+  {
+   "case": "U12_aggregate_ceiling_day1",
+   "detail": "AssertionError: 3",
+   "pass": false
+  }
+ ],
+ "harness": "td71_qualification_r1"
+}
