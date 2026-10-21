@@ -1,0 +1,106 @@
+{
+ "all_pass": true,
+ "cases": [
+  {
+   "case": "Q01_scope_isolation",
+   "detail": "allowlist accepts packet shape; rejects SPOT leg, adjust flip, attempts=3, missing leg",
+   "pass": true
+  },
+  {
+   "case": "Q02_none_splits_mapping",
+   "detail": "twins map to adjust=none; bases to adjust=splits in URL",
+   "pass": true
+  },
+  {
+   "case": "Q03_attempt_ceiling_arithmetic",
+   "detail": "expected 12 (9 data + 3 usage); hard max 24 (18 + 6)",
+   "pass": true
+  },
+  {
+   "case": "Q04_attempt_cap_live",
+   "detail": "failing request stops at exactly 2 attempts",
+   "pass": true
+  },
+  {
+   "case": "Q05_no_pagination",
+   "detail": "5000-row ADJ response fires no pagination child",
+   "pass": true
+  },
+  {
+   "case": "Q06_usage_failure_before_data",
+   "detail": "usage 503x2 aborts before any data fetch",
+   "pass": true
+  },
+  {
+   "case": "Q07_d1_run_and_usage_once_per_day",
+   "detail": "D1 OK; resume skips all; usage preflight exactly once/day",
+   "pass": true
+  },
+  {
+   "case": "Q08_sanitized_receipts",
+   "detail": "no key material in any receipt/attempt log",
+   "pass": true
+  },
+  {
+   "case": "Q09_base_linkage",
+   "detail": "manifest rejects REV-before-base; D7 without base refuses",
+   "pass": true
+  },
+  {
+   "case": "Q10_temporal_boundaries",
+   "detail": "R7/R30 refuse at -1ms, pass at =/+1ms; future/tamper/params/malformed all refuse",
+   "pass": true
+  },
+  {
+   "case": "Q11_uniform_factor_pass",
+   "detail": "uniform window PASS; flip on effective date; vol scaled",
+   "pass": true
+  },
+  {
+   "case": "Q12_mixed_ohlc_fail",
+   "detail": "one unadjusted bar in splits series -> C1 FAIL",
+   "pass": true
+  },
+  {
+   "case": "Q13_volume_conventions",
+   "detail": "unscaled convention reported PASS; inconsistent -> FAIL",
+   "pass": true
+  },
+  {
+   "case": "Q14_missing_volume",
+   "detail": "missing volume -> C2 FAIL (MISSING_VOLUME)",
+   "pass": true
+  },
+  {
+   "case": "Q15_revision_identical_different",
+   "detail": "identical revision PASS; differing revision HOLD + diff",
+   "pass": true
+  },
+  {
+   "case": "Q16_malformed_evidence",
+   "detail": "corrupt SHA and wrong-params receipts -> HOLD pre-parse",
+   "pass": true
+  },
+  {
+   "case": "Q17_decimal_rounding_boundary",
+   "detail": "deviation at/below tolerance passes; above fails",
+   "pass": true
+  },
+  {
+   "case": "Q18_cli_refusals",
+   "detail": "CLI refuses hash/scope/day/traversal/conflict pre-run",
+   "pass": true
+  },
+  {
+   "case": "Q19_cli_end_to_end_days",
+   "detail": "CLI runs D1; D30 early refused; D7/D30 run when eligible",
+   "pass": true
+  },
+  {
+   "case": "Q20_no_global_verdict",
+   "detail": "outputs carry sampled-window verdicts only",
+   "pass": true
+  }
+ ],
+ "harness": "td65_qualification_r1"
+}
