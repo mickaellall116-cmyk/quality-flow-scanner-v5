@@ -306,9 +306,10 @@ holdouts/tuning. One desk pass; no in-run repair.
 
 ## 8. Timing / disclosures
 
-Elapsed: spec fetch 2026-10-21T03:57Z → result-commit remote
-verification 2026-10-21T04:XX Z (stated from host clock at commit
-time; ≤35 budget). Repair minutes: 0. Disclosures: (i) the three
+Elapsed: spec fetch 2026-10-21T03:58Z → result-commit remote
+verification 2026-10-21T04:03:07Z ≈ 5 min (≤35 budget; this line was
+completed in the labeled timing follow-up commit after remote
+verification). Repair minutes: 0. Disclosures: (i) the three
 documentation pages are mutable vendor content — hashes in
 DOC_FETCH_RECEIPT.md pin what was read; (ii) the /splits entitlement
 question is recorded from the program's own preflight (§6.1:
