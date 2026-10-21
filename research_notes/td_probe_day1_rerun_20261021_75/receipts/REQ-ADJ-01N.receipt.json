@@ -1,0 +1,25 @@
+{
+  "request_id": "REQ-ADJ-01N",
+  "attempt": 1,
+  "request_ts_ms": 1792618381969,
+  "receipt_ts_ms": 1792618382428,
+  "http_status": 200,
+  "bytes": 118655,
+  "sha256": "a3b4578c4e75812b3b654bf6c09b5030fb5938e072a3ab2623395e0d76288896",
+  "headers": {
+    "date": "Wed, 21 Oct 2026 21:33:03 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "api-credits-left": "3",
+    "api-credits-used": "5"
+  },
+  "params": {
+    "symbol": "NVDA",
+    "interval": "1h",
+    "start_date": "2023-12-13T00:00:00",
+    "end_date": "2024-06-21T23:59:59",
+    "timezone": "America/New_York",
+    "outputsize": "5000",
+    "order": "ASC",
+    "adjust": "none"
+  }
+}

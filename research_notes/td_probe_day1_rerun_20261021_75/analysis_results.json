@@ -1,0 +1,90 @@
+{
+  "C5": "PENDING_R7_R30 \u2014 revision legs not authorized, not run",
+  "analyzer": "probe_analyzer.py (-74 candidate, unmodified)",
+  "now_ms": 1792618419700,
+  "task": "QF-TD-PROBE-DAY1-RERUN-20261021-75",
+  "windows": {
+    "AAPL_REQ-ADJ-03_control": {
+      "C1_C2_C3": "NOT_APPLICABLE \u2014 single-series dividend-window control, no twin",
+      "checks": {
+        "C4_OHLC_CONSISTENCY": {
+          "problems": [],
+          "status": "PASS"
+        },
+        "C6_ROWCOUNT_NO_PAGINATION": {
+          "pagination_trigger_rows": 5000,
+          "rows": 903,
+          "status": "PASS"
+        },
+        "RECEIPT": {
+          "status": "PASS"
+        }
+      },
+      "verdict": "PASS"
+    },
+    "NVDA_REQ-ADJ-01_vs_01N": {
+      "checks": {
+        "C1": {
+          "deviations": [],
+          "n_deviations": 0,
+          "status": "PASS"
+        },
+        "C2": {
+          "convention": "SCALED_BY_FACTOR",
+          "detail": "uniform per-bar volume convention",
+          "status": "PASS"
+        },
+        "C3": {
+          "flip_datetime": "2024-06-10 09:30:00",
+          "relation_to_effective_date": "ON_EFFECTIVE_DATE",
+          "status": "PASS"
+        },
+        "C4": {
+          "ohlc_inconsistent_bars": [],
+          "pre_post_ratio_step": "10.00000016547387581185620320",
+          "status": "PASS",
+          "step_matches_factor": true
+        },
+        "C6": {
+          "pagination_trigger_rows": 5000,
+          "rows_none": 917,
+          "rows_splits": 917,
+          "status": "PASS"
+        }
+      },
+      "verdict": "PASS"
+    },
+    "TSLA_REQ-ADJ-02_vs_02N": {
+      "checks": {
+        "C1": {
+          "deviations": [],
+          "n_deviations": 0,
+          "status": "PASS"
+        },
+        "C2": {
+          "convention": "INCONSISTENT",
+          "detail": "166 pre-split bar(s) fit neither convention; 0 post-split bar(s) off ratio 1",
+          "status": "FAIL"
+        },
+        "C3": {
+          "flip_datetime": "2022-08-25 09:30:00",
+          "relation_to_effective_date": "ON_EFFECTIVE_DATE",
+          "status": "PASS"
+        },
+        "C4": {
+          "ohlc_inconsistent_bars": [],
+          "pre_post_ratio_step": "3.000000010097723784904629304",
+          "status": "PASS",
+          "step_matches_factor": true
+        },
+        "C6": {
+          "pagination_trigger_rows": 5000,
+          "rows_none": 911,
+          "rows_splits": 911,
+          "status": "PASS"
+        }
+      },
+      "verdict": "DATA_UNQUALIFIED"
+    }
+  }
+}

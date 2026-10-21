@@ -1,0 +1,37 @@
+{
+  "day": "D1",
+  "gate_proofs": [],
+  "ok": true,
+  "outcomes": [
+    {
+      "attempts": 1,
+      "outcome": "OK",
+      "request_id": "REQ-ADJ-01"
+    },
+    {
+      "attempts": 1,
+      "outcome": "OK",
+      "request_id": "REQ-ADJ-02"
+    },
+    {
+      "attempts": 1,
+      "outcome": "OK",
+      "request_id": "REQ-ADJ-03"
+    },
+    {
+      "attempts": 1,
+      "outcome": "OK",
+      "request_id": "REQ-ADJ-01N"
+    },
+    {
+      "attempts": 1,
+      "outcome": "OK",
+      "request_id": "REQ-ADJ-02N"
+    }
+  ],
+  "program_ceiling": [
+    12,
+    24
+  ],
+  "usage_attempts": 1
+}

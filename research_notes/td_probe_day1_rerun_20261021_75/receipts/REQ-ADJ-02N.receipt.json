@@ -1,0 +1,25 @@
+{
+  "request_id": "REQ-ADJ-02N",
+  "attempt": 1,
+  "request_ts_ms": 1792618382432,
+  "receipt_ts_ms": 1792618382884,
+  "http_status": 200,
+  "bytes": 116870,
+  "sha256": "35026525c27a84ea74aea37db05fc5a135e7ee0edcda2f7a0c3ce426b2d0ab41",
+  "headers": {
+    "date": "Wed, 21 Oct 2026 21:33:03 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "api-credits-left": "2",
+    "api-credits-used": "6"
+  },
+  "params": {
+    "symbol": "TSLA",
+    "interval": "1h",
+    "start_date": "2022-03-07T00:00:00",
+    "end_date": "2022-09-09T23:59:59",
+    "timezone": "America/New_York",
+    "outputsize": "5000",
+    "order": "ASC",
+    "adjust": "none"
+  }
+}

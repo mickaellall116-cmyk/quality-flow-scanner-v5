@@ -1,0 +1,25 @@
+{
+  "request_id": "REQ-ADJ-03",
+  "attempt": 1,
+  "request_ts_ms": 1792618381359,
+  "receipt_ts_ms": 1792618381965,
+  "http_status": 200,
+  "bytes": 117272,
+  "sha256": "1f3169f5fc5261a7209b4bd0f389825ddb0d8ac1ab8a39239a12f5f6635d144d",
+  "headers": {
+    "date": "Wed, 21 Oct 2026 21:33:02 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "api-credits-left": "4",
+    "api-credits-used": "4"
+  },
+  "params": {
+    "symbol": "AAPL",
+    "interval": "1h",
+    "start_date": "2026-02-19T00:00:00",
+    "end_date": "2026-08-24T23:59:59",
+    "timezone": "America/New_York",
+    "outputsize": "5000",
+    "order": "ASC",
+    "adjust": "splits"
+  }
+}

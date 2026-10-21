@@ -1,0 +1,34 @@
+{
+  "request_id": "API-USAGE-PREFLIGHT",
+  "attempt": 1,
+  "attempts": 1,
+  "attempt_statuses": [
+    200
+  ],
+  "request_ts_ms": 1792618379492,
+  "receipt_ts_ms": 1792618380042,
+  "http_status": 200,
+  "bytes": 131,
+  "sha256": "6c7f4766198d5f70c2e7e3d60432df4e0cc81634a9385fa38e05174434636a36",
+  "params": {
+    "endpoint": "/api_usage"
+  },
+  "execution_date_utc": "2026-10-21",
+  "credits_headers": {
+    "api-credits-used": "1",
+    "api-credits-left": "7"
+  },
+  "current_usage": 1,
+  "plan_limit": 8,
+  "daily_usage": 2,
+  "plan_daily_limit": 800,
+  "response_payload": "{\"current_usage\":1,\"daily_usage\":2,\"plan_daily_limit\":800,\"plan_limit\":8}",
+  "response_sha256": "5d3a4c5b27a509b6f05ac132d31d7f3f18e69dac1c7c191f128223138a5a2ba7",
+  "verdict": "PASS",
+  "terminal_reason": null,
+  "day": "D1",
+  "manifest_sha256": "1bb86e17ee7907bae67db9c22b0a74cc61027c495c1f1ed74d65df17585a53e1",
+  "store_marker_sha256": "263788fd8a9e3d502354cae266d3c182c80833ae14b232502a5bd341ffaa3a6a",
+  "required_headroom": 10,
+  "commit_state": "1"
+}
