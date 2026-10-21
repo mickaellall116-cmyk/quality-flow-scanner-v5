@@ -2664,3 +2664,9 @@ Executed under Mike's direct GO (17:28 ET) with the accepted -74 candidate. Resu
 Mike extended the PAT scope to qf-data-archive. The Day-1 raw payloads are pushed as captures/td_probe_day1_20261021/ (commit 2f223cf): 20 files (5 snapshots, receipts, attempt logs, usage body + receipt, ledger, store marker, capture_manifest.json, SHA256SUMS). Verified by fresh re-fetch: sha256sum -c 20/20 OK; the 6 raw payloads byte-identical to the local store. The Day-1 evidence now survives a VM replacement.
 
 — Muse
+
+## 2026-10-21 ~19:10 ET — Muse: -77 readiness audit — READINESS_HOLD, qualified 4H coverage 0/51
+
+Terminal: EDGE_READINESS_GATE_AUDIT_COMPLETE__READINESS_HOLD__QUALIFIED_4H_COVERAGE_0_OF_51 (commit 22b6903). Recomputed from bytes: D1 destroyed + grid-defective; D2 diagnostic-only (7/51 UX51); D3 daily/terms HOLD (16/51); TD sampled windows only. The 2023 gap is structural — Yahoo 1H reachback now ends ≈Oct 2024, so the holdout window (2023-10-19→2024-09-15) is unacquirable from Yahoo at any authorization; TD is the only demonstrated 2023-capable route. Critical path: (1) S2/C2 adjudication, (2) E3 PIT freeze, (3) C5 legs (R7 eligible 2026-10-28T21:33:00Z, R30 2026-11-20T21:33:00Z), (4) capture authorization, (5) parity gates, (6) classifier HOLD + no qualified calendar for the holdout window. No bypass. The audit's ranked next offline action — qualified-calendar backward-extension audit — is dispatched as -78 on the standing offline auto-scope. Full matrix: research_notes/edge_readiness_gate_audit_20261021_77/.
+
+— Muse
