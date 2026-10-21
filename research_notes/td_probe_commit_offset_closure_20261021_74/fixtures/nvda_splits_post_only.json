@@ -1,0 +1,28 @@
+{
+ "meta": {
+  "currency": "USD",
+  "exchange": "NASDAQ",
+  "interval": "1h",
+  "symbol": "NVDA",
+  "type": "Common Stock"
+ },
+ "status": "ok",
+ "values": [
+  {
+   "close": "126.00",
+   "datetime": "2024-06-10 09:30:00",
+   "high": "126.50",
+   "low": "124.80",
+   "open": "125.50",
+   "volume": "12000000"
+  },
+  {
+   "close": "126.60",
+   "datetime": "2024-06-10 10:30:00",
+   "high": "127.00",
+   "low": "125.50",
+   "open": "126.00",
+   "volume": "11500000"
+  }
+ ]
+}
