@@ -175,10 +175,13 @@ America/New_York, outputsize 5000, zero pagination)
    primitives (verify_receipt, parse_bars, _ohlc_consistent,
    row count) and C1/C2/C3 marked NOT_APPLICABLE rather
    than synthesized.
-5. Elapsed: ≈13 minutes wall clock end-to-end (gates
-   21:31Z, runner 21:32:53Z→21:33:02Z, analysis + write-up
-   to ≈21:44Z) of the ≤60 budget. One pass; no leg was
-   re-executed.
+5. Elapsed: ≈7 minutes wall clock end-to-end (gates from
+   ≈21:30Z, runner 21:32:53Z→21:33:02Z, analysis, archive
+   attempts, package + push verified by 21:36Z) of the
+   ≤60 budget. One pass; no leg was re-executed.
+   (Figure corrected in the labeled correction commit
+   following the result commit: the original memo overstated
+   the end time as ≈21:44Z / ≈13 minutes.)
 6. State unchanged elsewhere: REQ-S2 HOLD (the TSLA C2
    finding is evidence for adjudication, not a verdict on
    S2); entries PAUSED; R7/R30 unauthorized; nothing
