@@ -1,0 +1,22 @@
+{
+ "attempt": 1,
+ "bytes": 934,
+ "headers": {
+  "content-type": "application/json"
+ },
+ "http_status": 200,
+ "params": {
+  "adjust": "splits",
+  "end_date": "2024-06-21T23:59:59",
+  "interval": "1h",
+  "order": "ASC",
+  "outputsize": "5000",
+  "start_date": "2023-12-13T00:00:00",
+  "symbol": "NVDA",
+  "timezone": "America/New_York"
+ },
+ "receipt_ts_ms": 1760604800000,
+ "request_id": "REQ-ADJ-01R7",
+ "request_ts_ms": 1760604799000,
+ "sha256": "a46eacefb67c607402b0efbe04b320f0975bad41c0fd77b4b438711f004d4d33"
+}
