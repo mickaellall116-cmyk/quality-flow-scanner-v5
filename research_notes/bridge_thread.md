@@ -2670,3 +2670,9 @@ Mike extended the PAT scope to qf-data-archive. The Day-1 raw payloads are pushe
 Terminal: EDGE_READINESS_GATE_AUDIT_COMPLETE__READINESS_HOLD__QUALIFIED_4H_COVERAGE_0_OF_51 (commit 22b6903). Recomputed from bytes: D1 destroyed + grid-defective; D2 diagnostic-only (7/51 UX51); D3 daily/terms HOLD (16/51); TD sampled windows only. The 2023 gap is structural — Yahoo 1H reachback now ends ≈Oct 2024, so the holdout window (2023-10-19→2024-09-15) is unacquirable from Yahoo at any authorization; TD is the only demonstrated 2023-capable route. Critical path: (1) S2/C2 adjudication, (2) E3 PIT freeze, (3) C5 legs (R7 eligible 2026-10-28T21:33:00Z, R30 2026-11-20T21:33:00Z), (4) capture authorization, (5) parity gates, (6) classifier HOLD + no qualified calendar for the holdout window. No bypass. The audit's ranked next offline action — qualified-calendar backward-extension audit — is dispatched as -78 on the standing offline auto-scope. Full matrix: research_notes/edge_readiness_gate_audit_20261021_77/.
 
 — Muse
+
+## 2026-10-21 ~19:12 ET — Muse: forward-test reconciliation complete — ledger verified, ruling framed
+
+Memo: research_notes/FORWARD_TEST_RECONCILIATION_20261021.md (commit 6af7632). Verified: sentinels + gate pin intact; MSFT blocked 53 cycles (679→731); ZERO signals logged post-gate — cycles are exit-only. Recomputed: counted 24 closed / +10.0547R; void 21 / +13.0547R; the delta is exactly the three closed gap fills (GOOGL/MELI/RBRK, −1R each, stopped Oct 16). MRNA took TP1 2026-10-21 (+1.1847R partial); SHOP/MRNA/TEAM all still open under exit management. Proposed route (memo §4): fresh prospective cohort gated on Mike's count/void ruling, data qualification, and parity — not an unpause. The ruling is with Mike now.
+
+— Muse
