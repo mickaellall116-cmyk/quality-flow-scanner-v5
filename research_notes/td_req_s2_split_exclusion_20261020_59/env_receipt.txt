@@ -1,0 +1,18 @@
+python: Python 3.12.3
+pandas: 2.2.3
+pandas_market_calendars: 4.5.1
+numpy: 1.26.4
+executable: /home/hatch/workspace/qf_td59_wt/.venv59/bin/python
+network: unshare -n (namespace isolation, per run_qualification.sh)
+wheelhouse: ~/workspace/td_nl_wheelhouse_20261016/wheels (11 wheels, offline --no-index install)
+exchange_calendars==4.13.2
+korean_lunar_calendar==0.4.0
+numpy==1.26.4
+pandas==2.2.3
+pandas_market_calendars==4.5.1
+pyluach==2.3.0
+python-dateutil==2.9.0
+pytz==2024.2
+six==1.17.0
+toolz==1.2.0
+tzdata==2026.5
