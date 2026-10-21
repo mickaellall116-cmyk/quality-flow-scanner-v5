@@ -1,0 +1,36 @@
+{
+ "all_pass": false,
+ "cases": [
+  {
+   "case": "Q01_scope_isolation",
+   "detail": "allowlist accepts packet shape; rejects SPOT leg, adjust flip, attempts=3, missing leg",
+   "pass": true
+  },
+  {
+   "case": "Q02_none_splits_mapping",
+   "detail": "twins map to adjust=none; bases to adjust=splits in URL",
+   "pass": true
+  },
+  {
+   "case": "Q03_attempt_ceiling_arithmetic",
+   "detail": "expected 12 (9 data + 3 usage); hard max 24 (18 + 6)",
+   "pass": true
+  },
+  {
+   "case": "Q04_attempt_cap_live",
+   "detail": "failing request stops at exactly 2 attempts",
+   "pass": true
+  },
+  {
+   "case": "Q05_no_pagination",
+   "detail": "5000-row ADJ response fires no pagination child",
+   "pass": true
+  },
+  {
+   "case": "Q06_usage_failure_before_data",
+   "detail": "AssertionError: ",
+   "pass": false
+  }
+ ],
+ "harness": "td73_qualification_r1"
+}
