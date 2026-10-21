@@ -1,0 +1,338 @@
+{
+  "suite": "shadow-observation safety checks (TASK -80)",
+  "run_at_utc": "2026-10-21T23:40:32.997657+00:00",
+  "python": "3.12.3",
+  "tracker": {
+    "file": "/home/hatch/workspace/quality-flow-scanner-v5/v54_exit_tracker.py",
+    "sha256_verified": "3ee92864f1afe98ce543803b8b844c1677a6d0e0ce1a6e61d1b7ea74b329a9e0",
+    "pin": "3ee92864f1afe98ce543803b8b844c1677a6d0e0ce1a6e61d1b7ea74b329a9e0"
+  },
+  "checks": {
+    "S1_isolation": {
+      "pass": true,
+      "details": {
+        "changed_paths": [
+          "shadow_ns/shadow_log.jsonl",
+          "shadow_ns/shadow_state.json"
+        ],
+        "writes_outside_shadow_namespace": []
+      }
+    },
+    "S2_production_hashes": {
+      "pass": true,
+      "details": {
+        "production_replica_files": {
+          "production/forward_test/PAUSE_NEW_ENTRIES": "3f4b7811a577cc989438edc568d40d739281f76bcfbb0d0f36b900b2ccaa3ea2",
+          "production/forward_test/v54_status.json": "f32eb5a4d6ef5a5c6a83db214b75ca34a85a85d248dddba829260477f22dc8cd",
+          "production/v54_forward/forward_test.jsonl": "53f5fb72b3edca56e5ec4b17d40bb490612ece16bb708f7aadfce48bec89f4a2",
+          "production/v54_forward/state.json": "663480593712b436a9fb7ebc7923d6ae1fcf1b975670e0440666a1becc3578ce"
+        },
+        "identical_after_run": true
+      }
+    },
+    "S3_static_no_production_opening": {
+      "pass": true,
+      "details": {
+        "per_file": {
+          "shadow_core": {
+            "imports": [
+              "__future__",
+              "datetime",
+              "hashlib",
+              "importlib",
+              "json",
+              "os",
+              "sys",
+              "typing"
+            ],
+            "non_stdlib_imports": [],
+            "forbidden_imports": [],
+            "unlisted_imports": [],
+            "forbidden_calls": [],
+            "forbidden_literals": []
+          },
+          "shadow_runner": {
+            "imports": [
+              "__future__",
+              "hashlib",
+              "hybrid_exit_test",
+              "os",
+              "shadow_core",
+              "sys",
+              "typing",
+              "v54_engine",
+              "v54_universe_x2"
+            ],
+            "non_stdlib_imports": [
+              "hybrid_exit_test",
+              "shadow_core",
+              "v54_engine",
+              "v54_universe_x2"
+            ],
+            "forbidden_imports": [],
+            "unlisted_imports": [],
+            "forbidden_calls": [],
+            "forbidden_literals": []
+          },
+          "v54_exit_tracker (pinned, executed by core)": {
+            "imports": [
+              "__future__",
+              "typing"
+            ],
+            "non_stdlib_imports": []
+          }
+        },
+        "problems": [],
+        "note": "open_position is reachable only as the pinned tracker's method on the shadow's own in-memory instance; the production harness module is never imported, so none of its functions are callable."
+      }
+    },
+    "S4_labeling_and_timestamps": {
+      "pass": true,
+      "details": {
+        "counts": {
+          "records_total": 14,
+          "shadow_signal": 2,
+          "shadow_close": 2,
+          "closes_by_shadow_id": {
+            "shadow:v54:FIXA:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54": 1,
+            "shadow:v54:FIXB:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54": 1
+          },
+          "crash_reconcile": "state rolled back mid-close before restart; log-wins reconcile must yield exactly one close per id",
+          "shadow_cycle": 3,
+          "dedup_after_restart_new_signals": 0
+        },
+        "problems": []
+      }
+    },
+    "S5_frozen_stack_fidelity": {
+      "pass": true,
+      "details": {
+        "FIXA": {
+          "errors": [],
+          "close": {
+            "signal_id": "shadow:v54:FIXA:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54",
+            "symbol": "FIXA",
+            "signal_time": "2026-10-02T16:00:00-04:00",
+            "grade": "B",
+            "market_gate": "CONFIRM",
+            "market_regime": "RISK-ON",
+            "rvol_exact": 1.5,
+            "daily_state": "confirmed",
+            "weekly_state": "confirmed",
+            "risk_reward": 2.0,
+            "confirmation_15m": null,
+            "premarket": {
+              "pm_last": null,
+              "pm_gap_pct": null,
+              "pm_range_pct": null,
+              "pm_volume": null,
+              "pm_vwap": null,
+              "pm_read": null
+            },
+            "entry": 100.0,
+            "entry_bar": "2026-10-05T06:30:00-04:00",
+            "tp1": 110.0,
+            "stop": 95.0,
+            "reached_plus_1r": false,
+            "tp1_taken": false,
+            "partial_r": null,
+            "runner_r": null,
+            "blended_r": -1.0,
+            "mfe_r": 0.8,
+            "mae_r": -1.1,
+            "bars_held": 2,
+            "exit_reason": "stop",
+            "exit_px": 95.0,
+            "exit_bar": "2026-10-05T10:30:00-04:00",
+            "v53_vetoed": false,
+            "v53_state": "BUY",
+            "v53_entry": "YES",
+            "v53_score": null,
+            "shadow_id": "shadow:v54:FIXA:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54",
+            "source_signal_id": "v54:FIXA:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54",
+            "detected_at_utc": "2026-10-06T00:05:00+00:00",
+            "hypothetical": true,
+            "record_kind": "shadow_close",
+            "schema": "shadow-obs-v1",
+            "cohort": "SHADOW_OBSERVATION",
+            "counts_as_trade": false,
+            "logged_at": "2026-10-06T00:05:00+00:00"
+          },
+          "events": [
+            [
+              "opened",
+              "2026-10-05T06:30:00-04:00"
+            ],
+            [
+              "closed",
+              "2026-10-05T10:30:00-04:00"
+            ]
+          ]
+        },
+        "FIXB": {
+          "errors": [],
+          "close": {
+            "signal_id": "shadow:v54:FIXB:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54",
+            "symbol": "FIXB",
+            "signal_time": "2026-10-02T16:00:00-04:00",
+            "grade": "A",
+            "market_gate": "CONFIRM",
+            "market_regime": "RISK-ON",
+            "rvol_exact": 1.5,
+            "daily_state": "confirmed",
+            "weekly_state": "confirmed",
+            "risk_reward": 2.0,
+            "confirmation_15m": null,
+            "premarket": {
+              "pm_last": null,
+              "pm_gap_pct": null,
+              "pm_range_pct": null,
+              "pm_volume": null,
+              "pm_vwap": null,
+              "pm_read": null
+            },
+            "entry": 100.0,
+            "entry_bar": "2026-10-05T06:30:00-04:00",
+            "tp1": 110.0,
+            "stop": 95.0,
+            "reached_plus_1r": true,
+            "tp1_taken": true,
+            "partial_r": 1.0,
+            "runner_r": 1.8,
+            "blended_r": 1.9,
+            "mfe_r": 2.4,
+            "mae_r": -0.2,
+            "bars_held": 4,
+            "exit_reason": "runner-exit",
+            "exit_px": 109.0,
+            "exit_bar": "2026-10-06T06:30:00-04:00",
+            "v53_vetoed": false,
+            "v53_state": "BUY",
+            "v53_entry": "YES",
+            "v53_score": null,
+            "shadow_id": "shadow:v54:FIXB:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54",
+            "source_signal_id": "v54:FIXB:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54",
+            "detected_at_utc": "2026-10-06T14:05:00+00:00",
+            "hypothetical": true,
+            "record_kind": "shadow_close",
+            "schema": "shadow-obs-v1",
+            "cohort": "SHADOW_OBSERVATION",
+            "counts_as_trade": false,
+            "logged_at": "2026-10-06T14:05:00+00:00"
+          },
+          "events": [
+            [
+              "opened",
+              "2026-10-05T06:30:00-04:00"
+            ],
+            [
+              "profit_protect_armed",
+              "2026-10-05T06:30:00-04:00"
+            ],
+            [
+              "tp1_taken",
+              "2026-10-05T10:30:00-04:00"
+            ],
+            [
+              "exit_signaled",
+              "2026-10-05T14:30:00-04:00"
+            ],
+            [
+              "closed",
+              "2026-10-06T06:30:00-04:00"
+            ]
+          ]
+        },
+        "FIXC": {
+          "errors": [],
+          "close": {
+            "signal_id": "shadow:v54:FIXC:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54",
+            "symbol": "FIXC",
+            "signal_time": "2026-10-02T16:00:00-04:00",
+            "grade": "B",
+            "market_gate": "CONFIRM",
+            "market_regime": "RISK-ON",
+            "rvol_exact": 1.5,
+            "daily_state": "confirmed",
+            "weekly_state": "confirmed",
+            "risk_reward": 6.0,
+            "confirmation_15m": null,
+            "premarket": {
+              "pm_last": null,
+              "pm_gap_pct": null,
+              "pm_range_pct": null,
+              "pm_volume": null,
+              "pm_vwap": null,
+              "pm_read": null
+            },
+            "entry": 100.0,
+            "entry_bar": "2026-10-05T06:30:00-04:00",
+            "tp1": 130.0,
+            "stop": 95.0,
+            "reached_plus_1r": false,
+            "tp1_taken": false,
+            "partial_r": null,
+            "runner_r": null,
+            "blended_r": 0.2,
+            "mfe_r": 0.4,
+            "mae_r": -0.2,
+            "bars_held": 30,
+            "exit_reason": "time",
+            "exit_px": 101.0,
+            "exit_bar": "2026-10-16T14:30:00-04:00",
+            "v53_vetoed": false,
+            "v53_state": "BUY",
+            "v53_entry": "YES",
+            "v53_score": null,
+            "shadow_id": "shadow:v54:FIXC:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54",
+            "source_signal_id": "v54:FIXC:4h:2026-10-02T16:00:00-04:00:2026-09-15-v54",
+            "detected_at_utc": "2026-10-06T00:05:00+00:00",
+            "hypothetical": true,
+            "record_kind": "shadow_close",
+            "schema": "shadow-obs-v1",
+            "cohort": "SHADOW_OBSERVATION",
+            "counts_as_trade": false,
+            "logged_at": "2026-10-06T00:05:00+00:00"
+          },
+          "events": [
+            [
+              "opened",
+              "2026-10-05T06:30:00-04:00"
+            ],
+            [
+              "closed",
+              "2026-10-16T14:30:00-04:00"
+            ]
+          ]
+        }
+      }
+    },
+    "S6_fail_closed_degraded": {
+      "pass": true,
+      "details": {
+        "degraded_cycle_status": "DEGRADED",
+        "signals_during_degraded_cycle": 0,
+        "degraded_markers": 1,
+        "signals_after_recovery": 1,
+        "recovery_cycle_status": "HEALTHY"
+      }
+    }
+  },
+  "real_production_files_informational": {
+    "note": "The production harness is LIVE and may update these files on its own hourly cycle; recorded for the record, not asserted. The binding S2 assertion is over the byte-identical sandbox replica.",
+    "before": {
+      "v54_forward/state.json": "663480593712b436a9fb7ebc7923d6ae1fcf1b975670e0440666a1becc3578ce",
+      "v54_forward/forward_test.jsonl": "53f5fb72b3edca56e5ec4b17d40bb490612ece16bb708f7aadfce48bec89f4a2",
+      "forward_test/PAUSE_NEW_ENTRIES": "3f4b7811a577cc989438edc568d40d739281f76bcfbb0d0f36b900b2ccaa3ea2",
+      "forward_test/v54_status.json": "f32eb5a4d6ef5a5c6a83db214b75ca34a85a85d248dddba829260477f22dc8cd"
+    },
+    "after": {
+      "v54_forward/state.json": "663480593712b436a9fb7ebc7923d6ae1fcf1b975670e0440666a1becc3578ce",
+      "v54_forward/forward_test.jsonl": "53f5fb72b3edca56e5ec4b17d40bb490612ece16bb708f7aadfce48bec89f4a2",
+      "forward_test/PAUSE_NEW_ENTRIES": "3f4b7811a577cc989438edc568d40d739281f76bcfbb0d0f36b900b2ccaa3ea2",
+      "forward_test/v54_status.json": "f32eb5a4d6ef5a5c6a83db214b75ca34a85a85d248dddba829260477f22dc8cd"
+    },
+    "unchanged_during_suite": true
+  },
+  "all_pass": true
+}
