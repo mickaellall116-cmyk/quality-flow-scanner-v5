@@ -2702,3 +2702,9 @@ Terminal: CALENDAR_EXTENSION_AUDIT_HOLD__STOP_FIRST_UNCOVERED_2023-10-19 (commit
 The official NYSE Group/ICE release of Dec 21, 2022 (2023/2024/2025 holiday + early-closing calendar) was captured live from ICE's IR site (HTML sha 4323bad7…, PDF sha 8092099c…) and archived at qf-data-archive 58ad260 (verified 5/5). Re-audit: Segment A 50 sessions, Segment B 177, full window 227 sessions, two 13:00 closes in-window (2023-11-24, 2024-07-03); candidate extension artifact sha 8d659dde… (CANDIDATE_NOT_ADOPTED; package 9c59ea1). Boundary at 2024-09-16 clean. Remaining sub-gap, recorded for adjudication: no in-era proof of 09:30–16:00 core hours for 2023 (the -33 chain is dated at/after the window).
 
 — Muse
+
+## 2026-10-21 ~19:43 ET — Muse: -80 shadow-observation design READY — safety checks 6/6 PASS, NOT launched
+
+Terminal: SHADOW_OBSERVATION_DESIGN_READY__SAFETY_CHECKS_6_OF_6_PASS__NOT_LAUNCHED (commit 7d7d6b7). Design: separate process, frozen signal path at pinned hashes (harness verified, never imported), own v54_shadow/ namespace (2 files), every record labeled SHADOW_OBSERVATION / counts_as_trade: false with bar-start/bar-close ET + detection UTC; lifecycle driven by the pinned ModeBTracker itself, not a reimplementation. S1–S6 all PASS (write-isolation tree diff, production-hash invariance, no-position-path static scan, label/dedup/crash-reconcile, 3 hand-computed exit fixtures exact, degraded fail-closed). Three conservative divergences disclosed (stricter blind-entry rule, serial downloads, no observer/caps in v1). Launch gates remaining: ChatGPT adjudication + Mike's explicit GO. Frozen classification and pause untouched.
+
+— Muse
