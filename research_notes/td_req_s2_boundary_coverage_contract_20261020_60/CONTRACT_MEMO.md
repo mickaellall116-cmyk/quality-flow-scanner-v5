@@ -6,8 +6,8 @@ commits 6da0783 / 2832d39).
 Method: ONE read-only/offline static pass. Source inspection only —
 no execution, no tests, no reruns, no staging, no code edits.
 Start convention: elapsed from spec fetch 2026-10-21T02:10Z.
-Status of this commit: PRE-RESULT (DAG + inspection record committed
-before the terminal designation is recorded in the result commit).
+Status: RESULT — terminal designation in §8. Pre-result commit
+aa186b9 carried §§1–6; this result commit adds §§7–8 + manifest.
 
 ## 1. Sole ownership
 
@@ -192,3 +192,85 @@ following, and none may be assumed from its 16 synthetic passes:
   files can manufacture an event ledger.
 - Folds: YES with the §4.5 ordering (materialize pre-exclusion,
   intersect downstream). N7 is untouched.
+
+## 7. Minimal preregistered synthetic boundary-integration acceptance plan (future task shape — NOT executed here)
+
+Scope: synthetic fixtures only; offline; one attempt; first-failure
+stop; separately versioned NEW files only (assembly shim + adapter +
+stub consumers). No frozen candidate is modified.
+
+Build: assembly shim candidate implementing §4 (entrypoint subprocess
+per symbol/window → adapter → N6 with entries=[] → outputs), a stub
+entry-derivation consumer (pinned-logic stand-in) that recomputes
+entries from bars_out, and a fold step that materializes from
+pre-exclusion timestamps per §4.5. A synthetic split-event fixture
+ledger + fixture receipt stands in for GATE-E1/E2/E3 evidence — it
+proves the WIRING, never real-world completeness.
+
+Preregistered cases:
+1. Mid-window split: bars co-excluded D−1..D+1 (XNYS adjacency);
+   recomputed entries reference surviving bars only; removed-session
+   ledger matches the fixture events exactly.
+2. Holiday-adjacent D (D−1 is the prior SESSION, not civil day).
+3. Two overlapping events, one symbol; union + deduped ledger.
+4. Edge event: D at the bars-span edge → assembly refusal per
+   GATE-E4 (range derived from inventory ∪ span, extended ≥1 session).
+5. Completeness negative: fixture receipt asserting partial coverage
+   → assembly refusal (GATE-E2). PIT negative: event as_of after the
+   dataset cutoff → refusal (GATE-E3).
+6. CSV round-trip: adapted OHLCV float-exact vs the entrypoint's
+   in-fixture expected serialization; any mismatch fails closed.
+7. Fold invariance: fold boundaries materialized pre-exclusion are
+   byte-identical with/without the S2 step; excluded sessions are
+   absent from fold membership, boundaries unmoved.
+8. No-imputation invariant: bars_out is an exact subset of bars_in
+   (ids), counts reconcile with the removed ledger.
+Inherited -59 refusals (NON_SESSION_EFFECTIVE, DUPLICATE_CONFLICTING,
+TZ_NAIVE, SESSION_LABEL_MISMATCH, WINDOW_EDGE inside the transform)
+are cited by receipt from -59, NOT rerun.
+
+PASS shape: all cases execute and pass twice, byte-identical
+canonical outputs; terminal mirrors the -59 pattern
+(TD_REQ_S2_BOUNDARY_INTEGRATION_SYNTHETIC_PASS__REAL_EVENT_PROVENANCE_
+STILL_GATED or HOLD__<FIRST_FAILURE>).
+Rollback: withdraw the shim candidate package (nothing integrated,
+no designation changes; route stays OFFLINE_CANDIDATE_NOT_ADOPTED).
+Failure memory: first-failure key + stage recorded in the package and
+on the bridge; no in-run repair; the failing case becomes a named
+fixture in any successor spec.
+
+Even a PASS leaves GATE-E1/E2/E3 open for REAL data: a qualified
+split-event producer with completeness + PIT evidence is a separate,
+later, separately gated task. Synthetic wiring proof ≠ provenance.
+
+## 8. Terminal designation
+
+TD_REQ_S2_BOUNDARY_COVERAGE_CONTRACT_DELIVERED__HOLD__INTEGRATION_NOT_READY
+
+Why HOLD and not ready: the DAG (§3) shows the actual consumer and
+provenance paths are absent, so claiming readiness would be false.
+- Missing pin 1 — SPLIT-EVENT PRODUCER: no file exists (G-EDGE-1);
+  GATE-E1/E2/E3 cannot be satisfied by any pinned artifact.
+- Missing pin 2 — CONSUMER WIRING: no assembly module connects the
+  entrypoint output to the fold/entry consumers (G-EDGE-2); the
+  cutpoint in §4 is a specification for a future shim, not an
+  existing callable boundary — which confirms ChatGPT's -59 finding.
+- Missing pin 3 — TRANSFORM CALENDAR PIN: N6 takes no schedule
+  artifact/pin (GATE-E5); its adjacency source is runtime PMC.
+What IS delivered: the path/line/SHA-keyed DAG of actual flows, a
+feasible deterministic cutpoint spec (bars filtered pre-indicator,
+entries recomputed downstream, folds materialized pre-exclusion),
+the fail-closed gate characterization (E1–E5), the schema-adaptation
+verdict (bars/entries/folds YES without touching frozen candidates;
+split events NO — a producer must be created), and the preregistered
+synthetic acceptance plan with rollback + failure memory (§7).
+
+Elapsed: ~23 min of ≤35 (spec fetch 2026-10-21T02:10Z → result
+commit). Repair minutes: 0. Disclosures: none — no protocol
+deviations; no execution of any kind was performed in this pass.
+Controls honored: no code edits, no staging, no tests, no vendor/
+API/model calls or spend (the pre-run read-only spec fetch was the
+only network use), no real data/SPT-08/holdout/backtest/performance,
+no adoption/designation/production/trading/Yahoo/Issue-9. Entries
+PAUSED, V5.4 frozen, REQ-S2 remains UNIMPLEMENTED in the route
+(transform candidate only, not integrated).
