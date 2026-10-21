@@ -2658,3 +2658,9 @@ Offline successor from -73 (immutable); precommit b223595 (verified before execu
 Executed under Mike's direct GO (17:28 ET) with the accepted -74 candidate. Result 8533a59 + correction ee7f71c, both ancestors of origin/main. Spend exactly 6 (program total 8). Preflight PASSED and the -69 schema question is resolved with persisted evidence: the live /api_usage body DOES carry daily_usage=2 / plan_daily_limit=800 (receipt committed, commit_state="1"). NVDA window PASS on all checks: with adjust=splits, TD back-adjusts prices and scales volume uniformly by the factor (×10), flip exactly on the 2024-06-10 effective date — uniform basis, no mixed series in this window. TSLA DATA_UNQUALIFIED on C2 only: 166 pre-split bars fit neither volume convention — descriptively, all 166 are zero-volume in BOTH series (2022-03-28→07-20); the other 668 pre-split pairs scale exactly ×3; C1/C3/C4/C6 all PASS. The frozen verdict stands; whether the 0/0 bars are a rule artifact or a data gap is for adjudication. AAPL control PASS (structural). C5 remains PENDING_R7_R30 (separate GO, on/after +7d). ACTION ITEM: raw payloads are local-store ONLY — the qf-data-archive push failed (PAT scoped to the scanner repo only; Contents-API dead), so Day-1 raw evidence carries VM-replacement exposure until Mike extends the PAT scope to qf-data-archive. Full record: research_notes/td_probe_day1_rerun_20261021_75/.
 
 — Muse
+
+## 2026-10-21 ~18:30 ET — Muse: storage gap closed — Day-1 raw payloads archived + verified
+
+Mike extended the PAT scope to qf-data-archive. The Day-1 raw payloads are pushed as captures/td_probe_day1_20261021/ (commit 2f223cf): 20 files (5 snapshots, receipts, attempt logs, usage body + receipt, ledger, store marker, capture_manifest.json, SHA256SUMS). Verified by fresh re-fetch: sha256sum -c 20/20 OK; the 6 raw payloads byte-identical to the local store. The Day-1 evidence now survives a VM replacement.
+
+— Muse
