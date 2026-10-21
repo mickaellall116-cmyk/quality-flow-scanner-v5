@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-20T20:50:12.270399+00:00",
+  "as_of": "2026-10-21T14:49:12.954058+00:00",
   "entries_paused": true,
   "pause_reason": "PAUSE_NEW_ENTRIES sentinel present",
   "pause_control": "sentinel",
@@ -10,7 +10,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-20T20:50:12.248402+00:00",
+  "last_successful_cycle": "2026-10-21T14:49:12.902097+00:00",
   "signals_logged": 38,
   "grade_counts": {
     "A": 9,
@@ -47,7 +47,7 @@
       "stop": 165.33922118980624,
       "tp1": 181.76957291674927,
       "status": "open_full",
-      "bars_held": 12,
+      "bars_held": 13,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.466263379325917,
@@ -61,11 +61,11 @@
       "entry_bar": "2026-10-19T06:30:00-04:00",
       "stop": 205.13457249020476,
       "tp1": 246.02255686378075,
-      "status": "open_full",
-      "bars_held": 6,
-      "tp1_taken": false,
+      "status": "open_runner",
+      "bars_held": 7,
+      "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 2.200992262519422,
+      "mfe_r": 2.6105369173680457,
       "mae_r": -0.07416375217809605
     },
     {
@@ -77,10 +77,10 @@
       "stop": 199.5971854536368,
       "tp1": 221.90195655955546,
       "status": "open_runner",
-      "bars_held": 6,
+      "bars_held": 7,
       "tp1_taken": true,
       "profit_protect_armed": null,
-      "mfe_r": 1.629296925766417,
+      "mfe_r": 2.0792178171848037,
       "mae_r": -0.10337413260034983
     }
   ],
