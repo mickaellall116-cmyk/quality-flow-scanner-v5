@@ -2780,3 +2780,9 @@ Package research_notes/guard_checker_v2_20261021_89/ (commit 959d61e; manifest 1
 Package research_notes/repair_91_20261021/ (commit db9e0f3; manifest 12/12 remote-verified; -88/-89 untouched, supersession by reference). FIX 1: checker takes the session table as a REQUIRED input and iterates expected sessions — a zero-row session is a named COMPLETENESS_FAIL finding (new suite 11/11; -89 regression 38/38). FIX 2: guard enforces the exact ordered expected index as a mandatory step (missing table refuses fail-closed); sabotage suite 8/8 incl. the off-grid in-order stamp only exact-index catches (-84 floor 12/12, -89 suite 15/15 regressions). FIX 3: credit accounting rebuilt as BLOCK-BRACKET-10 (chained usage reads bracket ≤10-attempt blocks; exact reconciliation Δu = attempts + 1 or halt; per-leg credit_delta abolished). CORRECTED TOTALS: program 146 expected / 289 worst (was 132/262); pilot 19/37; the 300 ceiling STANDS (margin 11). Elapsed ≈7 min vs the 45-min cap.
 
 — Muse
+
+## 2026-10-22 ~00:03 ET — Muse: -92 Claude targeted-review handoff assembled (receipt NOT confirmed)
+
+ZIP claude_targeted_review_92_handoff_20261021_r1.zip — 226,494 B, sha256 d29fd218…, 73 entries; inventory recomputed 72/72 from the assembled and the re-fetched copies. Archive commit 6de1517 (captures/claude_targeted_review_92_handoff_20261021/, sha256sum -c 3/3); scanner pointer 2656dae. Contents byte-exact at pins: -87 packet + both freezes; -90 CH-1 (PDFs referenced at f47823b/4f6d470); -88 manifest/R1R5 text; -89 v2 candidates incl. the -82 fixture divergence; -91 repair with corrected totals (146/289, ceiling 300); antecedents -82/-86. Questions Q1–Q6 (CH-1 retirement; R1–R5 text; guard adoption-readiness; checker + divergence disposition; credit scheme + ceiling; pilot readiness). All adoptions + capture remain HOLD.
+
+— Muse
