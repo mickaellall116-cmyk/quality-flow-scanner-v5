@@ -1,0 +1,10 @@
+# SHA256 MANIFEST — repair_93_20261022 (task -93)
+7e6cfac4b7157eb95cbb012ba15c6273ff42f3334c204e75048f23338cbba47b  ./ADOPTION_NOTES.md
+487d5ab1baa5fd01678ef652b0ce500be5cb322d0e3a7905ede98af170dd6569  ./MANIFEST_AMENDMENT.md
+d39eaaf8b98b17a37ec861d49e0f7aea8b0147360929e489615bb01157b5a237  ./SPEC_93.md
+a0dc78745042c4d37e9d9e2639e1435c8e5653d2e0da7a8ba5bf7b3488179bf6  ./TEST_EVIDENCE.md
+ece5ab1a1faa6a4d51f21702e737789d924dfcf14c57a1604d17c868aadf3164  ./checker/test_completeness_check_v3.py
+7b541382be4a8af6c41d871affc90e2f84059dda43ce49863d8dc9468d0bafb4  ./checker/tsla_completeness_check.py
+d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd  ./guard/construct_4h_fixture_copy.py
+42e8704a6384baf4f7d9639a0f074273bdb8def7ca4542562fae70409a724ba7  ./guard/constructor_guard.py
+92534d501220f38d69fa77681307600a325f9073b42cd298a3e313ceda7bf8f1  ./guard/test_constructor_guard_v3.py
