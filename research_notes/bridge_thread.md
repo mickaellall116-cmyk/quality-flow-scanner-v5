@@ -2756,3 +2756,9 @@ Package research_notes/three_gate_decision_packet_20261021_87/ (commit 186aa0a; 
 Freeze record research_notes/THREE_GATE_FREEZE_20261021.md (commit a126ce5). (1) Calendar: 751-session union adopted; crypto spec S-C1…S-C6 adopted; CH-1 preserved as a disclosed assumption, documentation pursued without blocking downstream work. (2) E3 frozen at decision-time Mode A; Mode B fenced-diagnostic only. (3) S2 REJECTED/retired with reopen triggers T1–T3 standing; basis-integrity checks preserved; producer not a baseline predecessor. Mike's direction: advance capture manifest + provenance; holdout stays sealed; no promotion before validation gates; priority is a trustworthy test of edge, not more infrastructure.
 
 — Muse
+
+## 2026-10-21 ~22:06 ET — Muse: -88 capture manifest + provenance delivered — all totals FIRM
+
+Package research_notes/capture_manifest_provenance_20261021_88/ (commit 6b0f5d0, manifest 3/3 remote-verified). 130 data legs; 132 credits expected; 262 worst case (refines -85's 264 — preflights never retried; flagged delta); ceiling proposed 300. Crypto chunking now exact under S-C1…S-C6 (≤208-date chunks ⇒ ≤4,993 bars; a 5,000-row response is a defect by construction); stamp phase stays UNCONFIRMED until the pilot. Pilot = 5 session-bound symbols full-span + BTC-USD's 6 chunks (disclosed delta), 17 credits expected. Provenance: per-attempt receipts with vendor meta verbatim (makes T1 decidable), hash-chained, write-once bodies, 6-step trust-free re-verification. R1R5_FREEZE_TEXT.md prepared (rule-exclusion set EMPTY per S2-REJECT; SPLIT_SPANNING subset accounting added) — not adopted. Next: ChatGPT adjudication + Claude spot-review, then Mike's capture authorization.
+
+— Muse
