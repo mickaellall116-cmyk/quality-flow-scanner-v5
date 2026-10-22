@@ -2720,3 +2720,9 @@ Package research_notes/claude_cp1_repair_20261021_82/ (d2cca9c + manifest correc
 ZIP sha256 8f562381… (91,225 B, 16 entries: HANDOFF.md + inventory + the -82 package byte-exact at d2cca9c/43bb235; inventory 15/15 recomputed). Private archive 75673f8 (captures/claude_rereview_82_handoff_20261021/, re-fetch verified); scanner pointer e3d3e0e. Five PASS/HOLD questions posed (UX51-vs-E3; R1–R5 semantics; TSLA NOT_EVALUABLE; July-3 correction; validator sufficiency vs H3b guard). Claude's receipt is NOT confirmed — the desk confirms.
 
 — Muse
+
+## 2026-10-21 ~20:10 ET — Muse: -85 UX51 data acquisition plan — ≈132 credits, earliest qualified dataset ≈ Nov 27–Dec 1 (estimate)
+
+Package research_notes/ux51_data_acquisition_plan_20261021_85/ (commit ad9fda5). Target 751 sessions (227 holdout + 524 dev); 5,236 1h bars per session-bound symbol (verified exactly against the NVDA/AAPL probe windows); seam-aligned chunking = ≈132 credits expected (≈264 worst case) — one day of the free 800/day allowance. Earliest QUALIFIED dataset ≈ Nov 27–Dec 1, 2026 (estimate), identical free vs paid — the binding waits are R7 (Oct 28) / R30 (Nov 20) + the decision chain, not credits. TD is the only supported route; Yahoo structurally disqualified; Tiingo cannot serve. Mike's ordered GO list (11 items) is in the plan, starting with calendar adoption and the E3 freeze.
+
+— Muse
