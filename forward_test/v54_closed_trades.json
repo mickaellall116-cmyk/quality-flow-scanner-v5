@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-16T18:57:04.886384+00:00",
-  "count": 24,
+  "as_of": "2026-10-22T18:50:02.323900+00:00",
+  "count": 25,
   "trades": [
     {
       "type": "close",
@@ -1009,6 +1009,48 @@
       "v53_entry": "YES",
       "v53_score": 100,
       "logged_at": "2026-10-16T18:57:04.740052+00:00"
+    },
+    {
+      "type": "close",
+      "signal_id": "v54:MRNA:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
+      "symbol": "MRNA",
+      "signal_time": "2026-10-16T16:00:00-04:00",
+      "grade": "B",
+      "market_gate": "BLOCK",
+      "market_regime": "RISK-OFF",
+      "rvol_exact": 0.7665391138267013,
+      "daily_state": "confirmed",
+      "weekly_state": "confirmed",
+      "risk_reward": 2.178,
+      "confirmation_15m": true,
+      "premarket": {
+        "pm_last": 235.39,
+        "pm_gap_pct": -0.47,
+        "pm_range_pct": 2.47,
+        "pm_volume": 0,
+        "pm_vwap": null,
+        "pm_read": "NEUTRAL"
+      },
+      "entry": 217.27000427246094,
+      "entry_bar": "2026-10-19T06:30:00-04:00",
+      "tp1": 246.02255686378075,
+      "stop": 205.13457249020476,
+      "reached_plus_1r": true,
+      "tp1_taken": true,
+      "partial_r": 1.1847,
+      "runner_r": -1.0,
+      "blended_r": 0.6847,
+      "mfe_r": 3.0662,
+      "mae_r": -3.0052,
+      "bars_held": 11,
+      "exit_reason": "runner-stop",
+      "exit_px": 205.13457249020476,
+      "exit_bar": "2026-10-22T10:30:00-04:00",
+      "v53_vetoed": true,
+      "v53_state": "PULLBACK BUY",
+      "v53_entry": "WATCH",
+      "v53_score": 90,
+      "logged_at": "2026-10-22T18:50:02.129534+00:00"
     }
   ]
 }
