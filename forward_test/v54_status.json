@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-22T18:50:02.162766+00:00",
+  "as_of": "2026-10-22T20:49:34.245617+00:00",
   "entries_paused": true,
   "pause_reason": "PAUSE_NEW_ENTRIES sentinel present",
   "pause_control": "sentinel",
@@ -10,7 +10,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-22T18:50:02.130317+00:00",
+  "last_successful_cycle": "2026-10-22T20:49:34.189126+00:00",
   "signals_logged": 38,
   "grade_counts": {
     "A": 9,
@@ -47,11 +47,11 @@
       "stop": 165.33922118980624,
       "tp1": 181.76957291674927,
       "status": "open_full",
-      "bars_held": 17,
+      "bars_held": 18,
       "tp1_taken": false,
       "profit_protect_armed": null,
       "mfe_r": 1.466263379325917,
-      "mae_r": -0.8591380550582888
+      "mae_r": -0.9835076174312432
     },
     {
       "signal_id": "v54:TEAM:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
@@ -62,7 +62,7 @@
       "stop": 199.5971854536368,
       "tp1": 221.90195655955546,
       "status": "open_runner",
-      "bars_held": 11,
+      "bars_held": 12,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 2.566719199380326,
