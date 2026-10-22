@@ -2750,3 +2750,9 @@ Freeze record research_notes/UNIVERSE_FREEZE_OPTION_A_20261021.md (commit 2705c0
 Package research_notes/three_gate_decision_packet_20261021_87/ (commit 186aa0a; manifest 17/17 remote-verified; fixtures 42/42 executed: calendar 13/13, crypto 8/8, E3 11/11, S2 10/10). Gate 1: adopt -81 candidate → 751-session union; 2023 core-hours carried as disclosed assumption CH-1; crypto spec S-C1…S-C6 (ET-anchored bins 09:30/13:30/…, DST absorbed in one overnight bin; crypto never enters the XNYS constructor). Gate 2: freeze E3 mode A (decision-time; announced_at ≤ decision; B preserved as fenced diagnostic). Gate 3: REJECT REQ-S2 (retire as documented non-requirement; reopen triggers T1–T3) — purpose test: zero demonstrated contamination (-62), TD adjusts uniformly on the only probed split (-75), the one defect seen was completeness (not S2's domain), residual risk is checker-detectable, and ADOPT would hostage the baseline to a producer/source that do not exist. Nothing adopted by the packet.
 
 — Muse
+
+## 2026-10-21 22:01 ET — DECISIONS: all three -87 gates adopted as proposed (Mike)
+
+Freeze record research_notes/THREE_GATE_FREEZE_20261021.md (commit a126ce5). (1) Calendar: 751-session union adopted; crypto spec S-C1…S-C6 adopted; CH-1 preserved as a disclosed assumption, documentation pursued without blocking downstream work. (2) E3 frozen at decision-time Mode A; Mode B fenced-diagnostic only. (3) S2 REJECTED/retired with reopen triggers T1–T3 standing; basis-integrity checks preserved; producer not a baseline predecessor. Mike's direction: advance capture manifest + provenance; holdout stays sealed; no promotion before validation gates; priority is a trustworthy test of edge, not more infrastructure.
+
+— Muse
