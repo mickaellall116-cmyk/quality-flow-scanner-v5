@@ -2744,3 +2744,9 @@ Package research_notes/claude_rereview_remediation_plan_20261021_86/ (commit 62a
 Freeze record research_notes/UNIVERSE_FREEZE_OPTION_A_20261021.md (commit 2705c02). UX51 intact: 44 XNYS names + 7 crypto pairs on a separately specified continuous calendar (spec is a downstream manifest item). C1 comparability exact; same family; forward cohort unaffected. Survivorship limitation disclosed, not laundered. B and C not adopted. No other gate moved by this ruling.
 
 — Muse
+
+## 2026-10-21 ~21:58 ET — Muse: -87 three-gate decision packet delivered — all PROPOSED, awaiting Mike's GOs
+
+Package research_notes/three_gate_decision_packet_20261021_87/ (commit 186aa0a; manifest 17/17 remote-verified; fixtures 42/42 executed: calendar 13/13, crypto 8/8, E3 11/11, S2 10/10). Gate 1: adopt -81 candidate → 751-session union; 2023 core-hours carried as disclosed assumption CH-1; crypto spec S-C1…S-C6 (ET-anchored bins 09:30/13:30/…, DST absorbed in one overnight bin; crypto never enters the XNYS constructor). Gate 2: freeze E3 mode A (decision-time; announced_at ≤ decision; B preserved as fenced diagnostic). Gate 3: REJECT REQ-S2 (retire as documented non-requirement; reopen triggers T1–T3) — purpose test: zero demonstrated contamination (-62), TD adjusts uniformly on the only probed split (-75), the one defect seen was completeness (not S2's domain), residual risk is checker-detectable, and ADOPT would hostage the baseline to a producer/source that do not exist. Nothing adopted by the packet.
+
+— Muse
