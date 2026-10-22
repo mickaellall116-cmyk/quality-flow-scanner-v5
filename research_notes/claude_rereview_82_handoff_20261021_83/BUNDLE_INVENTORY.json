@@ -1,0 +1,149 @@
+{
+  "bundle": "claude_rereview_82_handoff_20261021_r1",
+  "task": "QF-CLAUDE-REREVIEW-82-HANDOFF-20261021-83",
+  "authority": "ChatGPT QF NEXT ACTION, Slack TS 1792627306.219339 (2026-10-21 20:01:46 ET)",
+  "status": "HANDOFF_PUBLISHED__REVIEW_NOT_CONFIRMED",
+  "package": {
+    "name": "claude_cp1_repair_20261021_82",
+    "package_commit": "d2cca9c",
+    "correction_commit": "43bb235",
+    "extraction_pin": "43bb235"
+  },
+  "file_count": 15,
+  "files": [
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/01_UNIVERSE_DESIGNATION.md",
+      "bytes": 5100,
+      "sha256": "318da243f5a86f32ff1f7d7581780140323ab5f9f7ef57d49387cd10e8c08e0c",
+      "git_blob": "d135648fd141f9240e08a9f1a08c2427085d40db",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/02_SPLIT_EVENT_PROVENANCE.md",
+      "bytes": 4941,
+      "sha256": "28b84a767c7e5adaf7b4b886a4d557fc121c62c4ec6b3b4e972c4680253c765d",
+      "git_blob": "c486fd80fd7287f111034056389a1c9ad12ff2ed",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/03_SESSION_HANDLING_PREREG_DRAFT.md",
+      "bytes": 5210,
+      "sha256": "10c66b2eeca5ba833409c0ed3af7403f15636533c006a5b921a24bf1f1a30b28",
+      "git_blob": "6162579ef687edc869e9a98c05389a9314605cf0",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/04_TSLA_LABEL_CORRECTION.md",
+      "bytes": 4962,
+      "sha256": "e77983a0e5b3727cdb6a55e298b6dac6080e2aca7124dbf75b7d716c707d1901",
+      "git_blob": "9050296b22b3134c78c1d90963e6891a18c796f4",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/05_CONSTRUCTOR_HARDENING_SPEC.md",
+      "bytes": 4128,
+      "sha256": "1a400b1114b265b849673a502a3456de91529a3fe658c307b44960c9b8fcf613",
+      "git_blob": "4a81694e4a4c36ca41a048568ed99f026743a150",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/06_MEMO_LABEL_CORRECTION_56.md",
+      "bytes": 3511,
+      "sha256": "5ac6e6a82004606889fd137ae4d85c19b6dfe438c0c57404806a64e0e4a74896",
+      "git_blob": "eb150d190630286f4e53a5e2a24df976c2128149",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/07_UNREVIEWED_EVIDENCE_INVENTORY.md",
+      "bytes": 4709,
+      "sha256": "8f71ce2c507e0a934d00bd64a46081f33d6166720372c16290bb214c483dead2",
+      "git_blob": "34486f1e9221002e9694d5d534f79d3f70b8c138",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/REPAIR_PLAN.md",
+      "bytes": 7030,
+      "sha256": "c4d22f33226a33381eaaab5ac9aa7a555a105bd5983e8ce9329a38509911ea82",
+      "git_blob": "8f9960f52b7e7d41ff36a7c5863fd0326a597738",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/SHA256_MANIFEST.txt",
+      "bytes": 1273,
+      "sha256": "349b937770826644b3699c03d7d752fc1594605ad960f4e8521bfd091e4598ed",
+      "git_blob": "290871edf6bf1f93c1fa533e56f0400d914c6a31",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/TEST_EVIDENCE.md",
+      "bytes": 3066,
+      "sha256": "c4598d86e538d839bfa5fcf143a75e4f614e336115fb17badab10d19a19640e7",
+      "git_blob": "6f6a7599dd5f37e663e4e15058a4ac554fc7fd57",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/construct_4h_fixture_copy.py",
+      "bytes": 11316,
+      "sha256": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+      "git_blob": "fe76c48a22514e073e232811880fd82d963e54f1",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/test_constructor_hardening.py",
+      "bytes": 7130,
+      "sha256": "473519dac191afd69831e585d8bacb3bf406257f5ca8e54e4cf7c4284c8d956e",
+      "git_blob": "5503de2a197ec4086dcfe288fa26c1a7ea7c3654",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/test_tsla_completeness_check.py",
+      "bytes": 5665,
+      "sha256": "475789465e67ba8cf121998917650ec799b67f0c8210e3509074df40d85191c0",
+      "git_blob": "cb4ca6d53a82ae4eeaf8641966d3c05f8e56d04b",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/tsla_completeness_check.py",
+      "bytes": 5685,
+      "sha256": "0a7712be413e637e8e58b14c49415ee136fb5ff2172cff1e1d4333c19a70a82c",
+      "git_blob": "29463cafe8338b13ce19a59f6a40d0093d1bee88",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact git archive extraction at 43bb235)"
+    },
+    {
+      "bundle_path": "HANDOFF.md",
+      "bytes": 7238,
+      "sha256": "0016cbba83d179c59a0dbbb62523deecd106645d03599225c39457e40e7cdad6",
+      "git_blob": null,
+      "commit_pin": null,
+      "source": "created in task -83 (handoff document at ZIP root; not a repo file)"
+    }
+  ]
+}
