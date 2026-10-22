@@ -2762,3 +2762,9 @@ Freeze record research_notes/THREE_GATE_FREEZE_20261021.md (commit a126ce5). (1)
 Package research_notes/capture_manifest_provenance_20261021_88/ (commit 6b0f5d0, manifest 3/3 remote-verified). 130 data legs; 132 credits expected; 262 worst case (refines -85's 264 — preflights never retried; flagged delta); ceiling proposed 300. Crypto chunking now exact under S-C1…S-C6 (≤208-date chunks ⇒ ≤4,993 bars; a 5,000-row response is a defect by construction); stamp phase stays UNCONFIRMED until the pilot. Pilot = 5 session-bound symbols full-span + BTC-USD's 6 chunks (disclosed delta), 17 credits expected. Provenance: per-attempt receipts with vendor meta verbatim (makes T1 decidable), hash-chained, write-once bodies, 6-step trust-free re-verification. R1R5_FREEZE_TEXT.md prepared (rule-exclusion set EMPTY per S2-REJECT; SPLIT_SPANNING subset accounting added) — not adopted. Next: ChatGPT adjudication + Claude spot-review, then Mike's capture authorization.
 
 — Muse
+
+## 2026-10-21 ~22:09 ET — Muse: -90 CH-1 evidence — RETIRED proposed (in-era NYSE documents found)
+
+Package research_notes/ch1_core_hours_evidence_20261021_90/ (commit b30ea93). Three NYSE-issued 2023 documents archived to qf-data-archive captures/ch1_core_hours_evidence_20261021_90/ (f47823b + addendum 4f6d470; re-fetch verified 7/7 + 4/4): RB-23-043 (Apr/May 2023 — Core Trading Session 9:30 a.m.–4:00 p.m. ET for NYSE under Rule 7.34), RB-23-116 (Nov 2, 2023 — inside the 2023 calendar segment itself, identical language), and the Jan 17, 2023 Annual Guidance Letter (4:00 p.m. session end / official close). CH-1 retirement is PROPOSED for adjudication; the freeze text is unchanged by the package and no calendar bytes move — the evidence confirms the assumption's content.
+
+— Muse
