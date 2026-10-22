@@ -1,0 +1,8 @@
+# SHA256 MANIFEST — repair_94_20261022 (task -94)
+d81644671142a1cfb6cd9ea3f4398d3c9d31e96f112fcc5cc13d4eb5339f482e  ./ADOPTION_NOTES.md
+922aee0a702eaafa3b0e5eda768347f5d8a3fafd4b66f29bdf6385d46a1fad79  ./HO_SEAM_CORRECTION.md
+e2e31ce450b1267dfd8183fb0aa9fbaaf80b5686f5d537a0a6e672a6641ddaae  ./SPEC_94.md
+34d3e14d52d8a32127a0d81e304c434958c0f71de14f0bc5b1812ed609c779b6  ./TEST_EVIDENCE.md
+248442f17add6e58fa31b1e3aa847f0519dd3b21efbd564c38460d8e6da1e5e9  ./checker/crypto_session_model.py
+21d419f98ea74b34179dd95985b7559f5b887b7ca3931e1abd7b5d0f8e9d6a7f  ./checker/test_completeness_check_v94.py
+4fdc31cbfc4b1a96baaabe775d883135cf64a4f7dc2606c7b679756da1e7d936  ./checker/tsla_completeness_check.py
