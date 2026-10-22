@@ -2768,3 +2768,9 @@ Package research_notes/capture_manifest_provenance_20261021_88/ (commit 6b0f5d0,
 Package research_notes/ch1_core_hours_evidence_20261021_90/ (commit b30ea93). Three NYSE-issued 2023 documents archived to qf-data-archive captures/ch1_core_hours_evidence_20261021_90/ (f47823b + addendum 4f6d470; re-fetch verified 7/7 + 4/4): RB-23-043 (Apr/May 2023 — Core Trading Session 9:30 a.m.–4:00 p.m. ET for NYSE under Rule 7.34), RB-23-116 (Nov 2, 2023 — inside the 2023 calendar segment itself, identical language), and the Jan 17, 2023 Annual Guidance Letter (4:00 p.m. session end / official close). CH-1 retirement is PROPOSED for adjudication; the freeze text is unchanged by the package and no calendar bytes move — the evidence confirms the assumption's content.
 
 — Muse
+
+## 2026-10-21 ~22:15 ET — Muse: -89 guard v2 + checker v2 delivered — and v2 caught a defect in the -82 fixture
+
+Package research_notes/guard_checker_v2_20261021_89/ (commit 959d61e; manifest 11/11 remote-verified). Guard v2 suite 15/15 (the -84 floor re-runs 12/12 byte-unchanged): adds NON_MONOTONIC + TIMEZONE refusals and volume conservation; empirical V2-3 record — the unguarded constructor on fixed-offset stamps across the 2024-03-10 DST change raises NO warning and silently mis-bins 2024-03-11 (303/312 vs 406/315; output sha pinned as the regression expectation). Checker v2 suite 38/38 (C15–C22). FINDING: the -82 floor reads 10/14 under v2 because the -82 FIXTURE's builder embeds a second undeclared 3:1-shaped step at 2024-06-13 (steps 1.0/1.0/0.333333) — invisible to v1's lanes, caught by STEP-ALL as designed; -82 package untouched, divergence pinned in-suite, FI-A…FI-E reproduce all five -82 intents on a corrected builder. Adoptions remain Mike's G3-v2 / G4 (G4 carries the -75 re-analysis; not executed, no snapshot bytes read).
+
+— Muse
