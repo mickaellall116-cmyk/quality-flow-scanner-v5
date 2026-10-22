@@ -1,0 +1,725 @@
+{
+  "bundle": "claude_targeted_review_92_handoff_20261021_r1",
+  "task": "QF-CLAUDE-TARGETED-REVIEW-92-HANDOFF-20261021-92",
+  "authority": "ChatGPT dispatch, Slack TS 1792640832.841789 (2026-10-21 23:47 ET) \u2014 assembly only; -91 independent review PASS-on-logic (Issue #1 comment 6332189179)",
+  "status": "HANDOFF_ASSEMBLED__REVIEW_NOT_CONFIRMED",
+  "created_utc": "2026-10-22T04:00:12Z",
+  "packages": [
+    {
+      "area": "antecedent -82",
+      "package_commit": "d2cca9c",
+      "correction_commit": "43bb235",
+      "extraction_pin": "43bb235",
+      "path": "research_notes/claude_cp1_repair_20261021_82/"
+    },
+    {
+      "area": "antecedent -86",
+      "package_commit": "62aab52",
+      "extraction_pin": "62aab52",
+      "path": "research_notes/claude_rereview_remediation_plan_20261021_86/"
+    },
+    {
+      "area": "-87 three-gate packet",
+      "package_commit": "186aa0a",
+      "extraction_pin": "186aa0a",
+      "path": "research_notes/three_gate_decision_packet_20261021_87/"
+    },
+    {
+      "area": "three-gate freeze",
+      "package_commit": "a126ce5",
+      "extraction_pin": "a126ce5",
+      "path": "research_notes/THREE_GATE_FREEZE_20261021.md"
+    },
+    {
+      "area": "universe freeze",
+      "package_commit": "2705c02",
+      "extraction_pin": "2705c02",
+      "path": "research_notes/UNIVERSE_FREEZE_OPTION_A_20261021.md"
+    },
+    {
+      "area": "-90 CH-1 evidence",
+      "package_commit": "b30ea93",
+      "extraction_pin": "b30ea93",
+      "path": "research_notes/ch1_core_hours_evidence_20261021_90/",
+      "external_archive": {
+        "repo": "qf-data-archive",
+        "path": "captures/ch1_core_hours_evidence_20261021_90/",
+        "commits": [
+          "f47823b",
+          "4f6d470"
+        ]
+      }
+    },
+    {
+      "area": "-88 capture manifest + provenance + R1-R5",
+      "package_commit": "6b0f5d0",
+      "extraction_pin": "6b0f5d0",
+      "path": "research_notes/capture_manifest_provenance_20261021_88/"
+    },
+    {
+      "area": "-89 guard/checker v2",
+      "package_commit": "959d61e",
+      "extraction_pin": "959d61e",
+      "path": "research_notes/guard_checker_v2_20261021_89/"
+    },
+    {
+      "area": "-91 repair",
+      "package_commit": "db9e0f3",
+      "extraction_pin": "db9e0f3",
+      "path": "research_notes/repair_91_20261021/"
+    }
+  ],
+  "file_count": 72,
+  "zip_entry_count": 73,
+  "inventory_note": "file_count counts every ZIP entry except BUNDLE_INVENTORY.json itself (a self-referential hash cannot be listed); zip_entry_count = file_count + 1. Every listed sha256 was recomputed from the extracted bytes and every payload file was byte-compared against its git blob at its pin during assembly.",
+  "files": [
+    {
+      "bundle_path": "HANDOFF.md",
+      "bytes": 21932,
+      "sha256": "cf6729e2bc89a4569ce26807fdb5d06be18e51b51767ded8976aa437bfe246bb",
+      "git_blob": null,
+      "commit_pin": null,
+      "package_commit": null,
+      "source": "new file created by this handoff (assembly only)"
+    },
+    {
+      "bundle_path": "research_notes/THREE_GATE_FREEZE_20261021.md",
+      "bytes": 3654,
+      "sha256": "d214d90dbd1b58fd683342019331889dcba22a4c3ec68fd37254de1cc572109f",
+      "git_blob": "4d5d317d76987f8cef3375a3db691043e8c00890",
+      "commit_pin": "a126ce5",
+      "package_commit": "a126ce5",
+      "source": "three-gate freeze record as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/UNIVERSE_FREEZE_OPTION_A_20261021.md",
+      "bytes": 2274,
+      "sha256": "ae1515f1451a993efd281bc0cf30a37970ce855a1f565242dc7f4b6eb34a69a8",
+      "git_blob": "21076653bc89f66b85c18d531c831b37df1455a7",
+      "commit_pin": "2705c02",
+      "package_commit": "2705c02",
+      "source": "universe freeze record as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/capture_manifest_provenance_20261021_88/CAPTURE_MANIFEST.md",
+      "bytes": 11745,
+      "sha256": "833867479a643f623a27a003b01f1d7a1edc931db58ec3f6aa39c7d8b30c021b",
+      "git_blob": "468187a2781b643c8aef670e87727658bc38eaa0",
+      "commit_pin": "6b0f5d0",
+      "package_commit": "6b0f5d0",
+      "source": "package -88 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/capture_manifest_provenance_20261021_88/PROVENANCE.md",
+      "bytes": 6985,
+      "sha256": "e39accf87e99006ec07cda9d2695215fbf9fc50d55eb81903145bfc5b6e69d96",
+      "git_blob": "a711cc05791acb97a6a775d295049a656c7ec1a0",
+      "commit_pin": "6b0f5d0",
+      "package_commit": "6b0f5d0",
+      "source": "package -88 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/capture_manifest_provenance_20261021_88/R1R5_FREEZE_TEXT.md",
+      "bytes": 5794,
+      "sha256": "72ac1ccbcf1f409ffbc1c925d3f84e15818fe4e246fa4e64398efd45ee7a9295",
+      "git_blob": "1a4ab4d360eba1b1ad0d1bc7a24a2c1fe0ae423b",
+      "commit_pin": "6b0f5d0",
+      "package_commit": "6b0f5d0",
+      "source": "package -88 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/capture_manifest_provenance_20261021_88/SHA256_MANIFEST.txt",
+      "bytes": 252,
+      "sha256": "6fa7c48014d60833ecd17cae6e1294572f780dd19d9dde897aa0b809ab2533f2",
+      "git_blob": "2ae9fee6b9ee777906d0cc8605d53f36ca4eb2ff",
+      "commit_pin": "6b0f5d0",
+      "package_commit": "6b0f5d0",
+      "source": "package -88 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/ch1_core_hours_evidence_20261021_90/EVIDENCE.md",
+      "bytes": 9188,
+      "sha256": "39fe848226c3848e02c1193c8e1d498d65b04c8477ee10e3607d5bb7c0a6676b",
+      "git_blob": "2d7947d531e60a35ad09f9d2aaa7cf6ebd332224",
+      "commit_pin": "b30ea93",
+      "package_commit": "b30ea93",
+      "source": "package -90 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/ch1_core_hours_evidence_20261021_90/SHA256_MANIFEST.txt",
+      "bytes": 78,
+      "sha256": "5541ef2876df24c317c893f549a1ab6f42fc1b6392da32f097b5f04ba36e6f38",
+      "git_blob": "32b020926d43df48c755c1ea1d281fe165f45a27",
+      "commit_pin": "b30ea93",
+      "package_commit": "b30ea93",
+      "source": "package -90 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/01_UNIVERSE_DESIGNATION.md",
+      "bytes": 5100,
+      "sha256": "318da243f5a86f32ff1f7d7581780140323ab5f9f7ef57d49387cd10e8c08e0c",
+      "git_blob": "d135648fd141f9240e08a9f1a08c2427085d40db",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/02_SPLIT_EVENT_PROVENANCE.md",
+      "bytes": 4941,
+      "sha256": "28b84a767c7e5adaf7b4b886a4d557fc121c62c4ec6b3b4e972c4680253c765d",
+      "git_blob": "c486fd80fd7287f111034056389a1c9ad12ff2ed",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/03_SESSION_HANDLING_PREREG_DRAFT.md",
+      "bytes": 5210,
+      "sha256": "10c66b2eeca5ba833409c0ed3af7403f15636533c006a5b921a24bf1f1a30b28",
+      "git_blob": "6162579ef687edc869e9a98c05389a9314605cf0",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/04_TSLA_LABEL_CORRECTION.md",
+      "bytes": 4962,
+      "sha256": "e77983a0e5b3727cdb6a55e298b6dac6080e2aca7124dbf75b7d716c707d1901",
+      "git_blob": "9050296b22b3134c78c1d90963e6891a18c796f4",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/05_CONSTRUCTOR_HARDENING_SPEC.md",
+      "bytes": 4128,
+      "sha256": "1a400b1114b265b849673a502a3456de91529a3fe658c307b44960c9b8fcf613",
+      "git_blob": "4a81694e4a4c36ca41a048568ed99f026743a150",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/06_MEMO_LABEL_CORRECTION_56.md",
+      "bytes": 3511,
+      "sha256": "5ac6e6a82004606889fd137ae4d85c19b6dfe438c0c57404806a64e0e4a74896",
+      "git_blob": "eb150d190630286f4e53a5e2a24df976c2128149",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/07_UNREVIEWED_EVIDENCE_INVENTORY.md",
+      "bytes": 4709,
+      "sha256": "8f71ce2c507e0a934d00bd64a46081f33d6166720372c16290bb214c483dead2",
+      "git_blob": "34486f1e9221002e9694d5d534f79d3f70b8c138",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/REPAIR_PLAN.md",
+      "bytes": 7030,
+      "sha256": "c4d22f33226a33381eaaab5ac9aa7a555a105bd5983e8ce9329a38509911ea82",
+      "git_blob": "8f9960f52b7e7d41ff36a7c5863fd0326a597738",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/SHA256_MANIFEST.txt",
+      "bytes": 1273,
+      "sha256": "349b937770826644b3699c03d7d752fc1594605ad960f4e8521bfd091e4598ed",
+      "git_blob": "290871edf6bf1f93c1fa533e56f0400d914c6a31",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/TEST_EVIDENCE.md",
+      "bytes": 3066,
+      "sha256": "c4598d86e538d839bfa5fcf143a75e4f614e336115fb17badab10d19a19640e7",
+      "git_blob": "6f6a7599dd5f37e663e4e15058a4ac554fc7fd57",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/construct_4h_fixture_copy.py",
+      "bytes": 11316,
+      "sha256": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+      "git_blob": "fe76c48a22514e073e232811880fd82d963e54f1",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/test_constructor_hardening.py",
+      "bytes": 7130,
+      "sha256": "473519dac191afd69831e585d8bacb3bf406257f5ca8e54e4cf7c4284c8d956e",
+      "git_blob": "5503de2a197ec4086dcfe288fa26c1a7ea7c3654",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/test_tsla_completeness_check.py",
+      "bytes": 5665,
+      "sha256": "475789465e67ba8cf121998917650ec799b67f0c8210e3509074df40d85191c0",
+      "git_blob": "cb4ca6d53a82ae4eeaf8641966d3c05f8e56d04b",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_cp1_repair_20261021_82/fixtures/tsla_completeness_check.py",
+      "bytes": 5685,
+      "sha256": "0a7712be413e637e8e58b14c49415ee136fb5ff2172cff1e1d4333c19a70a82c",
+      "git_blob": "29463cafe8338b13ce19a59f6a40d0093d1bee88",
+      "commit_pin": "43bb235",
+      "package_commit": "d2cca9c",
+      "source": "package -82 as committed (byte-exact extraction at correction pin 43bb235)"
+    },
+    {
+      "bundle_path": "research_notes/claude_rereview_remediation_plan_20261021_86/DATA_ROUTE_DELTA_85.md",
+      "bytes": 4144,
+      "sha256": "7d36ecf04fb0896db388f2cc516e50ca01315d5db2748f68aa2e73055d0e2b6a",
+      "git_blob": "c30f7f262dbcfcd4fd53e83aebd687f6753f8862",
+      "commit_pin": "62aab52",
+      "package_commit": "62aab52",
+      "source": "package -86 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/claude_rereview_remediation_plan_20261021_86/F5_CORRECTION_NOTE_61.md",
+      "bytes": 3758,
+      "sha256": "cf9263e7652a06fdd5818ea00e3ebe5541c83b9e11ad566c93e321693659678d",
+      "git_blob": "5d709e09ea296b78c14d87f42b3ea2bb343a1648",
+      "commit_pin": "62aab52",
+      "package_commit": "62aab52",
+      "source": "package -86 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/claude_rereview_remediation_plan_20261021_86/F6_ERRATUM_E3_DEFINITION.md",
+      "bytes": 4489,
+      "sha256": "f93bf50483e96849963cf264231a20d0d0602f5297de4c34680f1a2ce8f2acae",
+      "git_blob": "5e11ca8ce821e4cc0173a7f4bb9f6a8f056ae325",
+      "commit_pin": "62aab52",
+      "package_commit": "62aab52",
+      "source": "package -86 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/claude_rereview_remediation_plan_20261021_86/REMEDIATION_PLAN.md",
+      "bytes": 21972,
+      "sha256": "961f3cc3bfee871badb66ae1d389c50a4857e1ca14ecf7087bd5ed670bdb7c51",
+      "git_blob": "98f13dfde72ef576a48d0489a5a6033e9511cef3",
+      "commit_pin": "62aab52",
+      "package_commit": "62aab52",
+      "source": "package -86 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/claude_rereview_remediation_plan_20261021_86/SHA256_MANIFEST.txt",
+      "bytes": 446,
+      "sha256": "8e6b442424ee7de479e4c75f9c7e23c392d5ef1608b0488c87f5400c541873be",
+      "git_blob": "bb1dc897b872b708a930c220972db4273353fdef",
+      "commit_pin": "62aab52",
+      "package_commit": "62aab52",
+      "source": "package -86 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/claude_rereview_remediation_plan_20261021_86/UNIVERSE_OPTIONS.md",
+      "bytes": 11032,
+      "sha256": "c3c72ffabab815bfdfd1ae6289916f7597a59ffe4b5bf239304fd191f9f55433",
+      "git_blob": "5c47fa58be4c5091f1546c4b9482a4b2abf5230a",
+      "commit_pin": "62aab52",
+      "package_commit": "62aab52",
+      "source": "package -86 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/ADOPTION_NOTES.md",
+      "bytes": 4522,
+      "sha256": "e16f2506449ee551b3dab18b5351414f485ec651a37357623516c1ba4bb3d357",
+      "git_blob": "62b261be8e4507b46a0c6448cfe3106fed372f7d",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/SHA256_MANIFEST.txt",
+      "bytes": 1039,
+      "sha256": "0f1a36ff89fe232fdaaced3ff2de2c471edc25048cbf9c668fedebfa5271464a",
+      "git_blob": "60ecb801590534d12d8fb42cdf2cbfbc6441f853",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/SPEC_CHECKER_V2.md",
+      "bytes": 3999,
+      "sha256": "aa1d4f9449fbe666cbd29e4bbb9112459aa0836e639834daa3d493af81569faf",
+      "git_blob": "bf40d0171f7c36374d1709d3955df39f6b48443d",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/SPEC_GUARD_V2.md",
+      "bytes": 4159,
+      "sha256": "9a44c086350e95e8f00cdb00a18823d232e60a98572db9b6244d398f32a3ab41",
+      "git_blob": "307d3581862ba90bdc501eabf54d0995341ff0b8",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/TEST_EVIDENCE.md",
+      "bytes": 10496,
+      "sha256": "8db1bd40b6a3c2c6f762474bdf644c33b4a59fdf5746892997b34004de274d6f",
+      "git_blob": "2b762bfa57d6f03299c35fca0315a6c50cdb7c43",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/checker/test_completeness_check_v2.py",
+      "bytes": 16481,
+      "sha256": "eefe1d6a6e26b57e1cdab7a75f0f1574aba682638ae79bcdc985f579e70bee75",
+      "git_blob": "1ed30b950a20376d358407c0d37e7408e5275d05",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/checker/test_tsla_completeness_check.py",
+      "bytes": 5665,
+      "sha256": "475789465e67ba8cf121998917650ec799b67f0c8210e3509074df40d85191c0",
+      "git_blob": "cb4ca6d53a82ae4eeaf8641966d3c05f8e56d04b",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/checker/tsla_completeness_check.py",
+      "bytes": 14076,
+      "sha256": "e8c391a155c0aaa26d5a78f752214a3b7d79e4ce36c44dbc9b1f11b9877e4c2b",
+      "git_blob": "faebac3d5bf5930016a07dd93de6ab9ff373e6d1",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/guard/construct_4h_fixture_copy.py",
+      "bytes": 11316,
+      "sha256": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+      "git_blob": "fe76c48a22514e073e232811880fd82d963e54f1",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/guard/constructor_guard.py",
+      "bytes": 16276,
+      "sha256": "199111bf59e3e2d4cbf9c406c6aa52a10e611c24bbfb8fefea6cfc1b0a0fbe4c",
+      "git_blob": "2390c97504f5f9fd27b4133f234ce9b9494b74ae",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/guard/test_constructor_guard.py",
+      "bytes": 8598,
+      "sha256": "06029fd25b20896d621d2be657a10b0226c0364a06abe64775027b11fe32f4a0",
+      "git_blob": "7c1ac034d59ee960b2c692cb063aa3479b9f3835",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/guard_checker_v2_20261021_89/guard/test_constructor_guard_v2.py",
+      "bytes": 13067,
+      "sha256": "fc9e32881ba79351dfbc3e30d09df4aca500e1e17ef3c174bbfe90a16d68d188",
+      "git_blob": "9d89b0bfefb6db3a5842a357dd87dc9328f8b202",
+      "commit_pin": "959d61e",
+      "package_commit": "959d61e",
+      "source": "package -89 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/CREDIT_ACCOUNTING.md",
+      "bytes": 4850,
+      "sha256": "4944770466474c3c5d56f4be08a441d36c9eaa904f20e72ef91ef989c3f14590",
+      "git_blob": "966bd21485b0b8ce4377213ee245ab8ab41867d5",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/REPAIR_NOTE.md",
+      "bytes": 3933,
+      "sha256": "89c8362e4c43ba3adc0560d2ccf59a7b24bf35200a1be2c935211082cb116aa2",
+      "git_blob": "11de8d1f2489e018097ef63e0b0d9199b13d7ac8",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/SHA256_MANIFEST.txt",
+      "bytes": 1248,
+      "sha256": "48558752496303d308779b32c98037ced7431206a4d82789e2ceed3461e3f62f",
+      "git_blob": "168a73fca1d999a4393b659b370b1c4e40cfcf03",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/TEST_EVIDENCE.md",
+      "bytes": 1899,
+      "sha256": "3ba31c6d5a07ddc784d927bb20dd08ecad6f546180116d0590b7602372161a87",
+      "git_blob": "9a84b2ddc178ffcc4c68bca0014196d6b30c1403",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/checker/test_completeness_check_repair91.py",
+      "bytes": 3747,
+      "sha256": "f52b6ac65ac2aad7bc8a8014957ff5babaf4be69a571615febf70c3fb9ae826a",
+      "git_blob": "e98a33cc0a72a31f96c10b147e0a7ad049430969",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/checker/test_completeness_check_v2.py",
+      "bytes": 16481,
+      "sha256": "eefe1d6a6e26b57e1cdab7a75f0f1574aba682638ae79bcdc985f579e70bee75",
+      "git_blob": "1ed30b950a20376d358407c0d37e7408e5275d05",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/checker/test_tsla_completeness_check.py",
+      "bytes": 5665,
+      "sha256": "475789465e67ba8cf121998917650ec799b67f0c8210e3509074df40d85191c0",
+      "git_blob": "cb4ca6d53a82ae4eeaf8641966d3c05f8e56d04b",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/checker/tsla_completeness_check.py",
+      "bytes": 15749,
+      "sha256": "dd7c6168dd5785b141c4603136f4ed65a4389018ce720edb987ff2814759b198",
+      "git_blob": "9c92524a274801990bea3010f13801b4770a185e",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/guard/construct_4h_fixture_copy.py",
+      "bytes": 11316,
+      "sha256": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+      "git_blob": "fe76c48a22514e073e232811880fd82d963e54f1",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/guard/constructor_guard.py",
+      "bytes": 19296,
+      "sha256": "3e25333eed5e72b31bc884721463609f700e6d4472b9318cc0a70f7643ae76b6",
+      "git_blob": "d0bb90f25988bbfb99879958fc0318aa2cac0dbe",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/guard/test_constructor_guard.py",
+      "bytes": 8598,
+      "sha256": "06029fd25b20896d621d2be657a10b0226c0364a06abe64775027b11fe32f4a0",
+      "git_blob": "7c1ac034d59ee960b2c692cb063aa3479b9f3835",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/guard/test_constructor_guard_repair91.py",
+      "bytes": 6184,
+      "sha256": "7ff54ee43daf065a2e948e665ffce976fb94c2efaa8e19288ab01a442d622aef",
+      "git_blob": "3b0590b8053ad16c7451acd8fc58fd8e4e530c3f",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/repair_91_20261021/guard/test_constructor_guard_v2.py",
+      "bytes": 13067,
+      "sha256": "fc9e32881ba79351dfbc3e30d09df4aca500e1e17ef3c174bbfe90a16d68d188",
+      "git_blob": "9d89b0bfefb6db3a5842a357dd87dc9328f8b202",
+      "commit_pin": "db9e0f3",
+      "package_commit": "db9e0f3",
+      "source": "package -91 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/GATE1_CALENDAR_ADOPTION.md",
+      "bytes": 9423,
+      "sha256": "625b440fa7a556ce8b395baf963c66351b3fd5aa9f8c0e156b2c920ef08a7351",
+      "git_blob": "f768febf98223d3d4c272c3f2128ac93c8170e70",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/GATE2_E3_SPLIT_EVENT_TIMING.md",
+      "bytes": 7090,
+      "sha256": "4e86c91727a17fc6b154df155749cc5e5259a35befc502abe2863f958e6d32f4",
+      "git_blob": "13c58f314a0dc90de823c74a30be4b213494fd64",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/GATE3_S2_DISPOSITION.md",
+      "bytes": 14255,
+      "sha256": "7cab3b7d099536f3b3bcdd2855403ef34fa47bd6c9a725612cbd8ace23e00278",
+      "git_blob": "85c354fa9e14cda02d3d52ea20109f2daa41755c",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/PACKET_SUMMARY.md",
+      "bytes": 5200,
+      "sha256": "d8d0ad12a284d2f93ef3ab172f342a06f23cc639274dfb3cde1179879770d6e0",
+      "git_blob": "da8d3872758675108e50b9f01c2be7779bec051a",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/SHA256_MANIFEST.txt",
+      "bytes": 1765,
+      "sha256": "f4ae12d16d4d8565fa9f7b69f3635a905dd6a26d7a02f35c1c2373baeb2564ae",
+      "git_blob": "6ecc3b7a7fe9baddd604fce9e9db4ca11f63f31f",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/README.md",
+      "bytes": 2019,
+      "sha256": "3b1406732003ea68537f370330bf50eb3fd2a40740b193846c15a02c39468a6f",
+      "git_blob": "149239afc6fccc7c5679eee212b56645d59c4781",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/crypto_calendar_spec.py",
+      "bytes": 5519,
+      "sha256": "52ad51770d57cbe5966a0b6e95a0170b89b382ecb990475a68e5f2bd08edb785",
+      "git_blob": "e231b5aa8062a059b26cd692cb5764123f9c7b3d",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/inputs/XNYS_SESSION_SCHEDULE_CANDIDATE_EXTENSION_20261021_81.json",
+      "bytes": 12221,
+      "sha256": "8d659dde9ccb51b9d86d6c45759abceb6ccd90ad7fa49e7478b13c2dc153a0a2",
+      "git_blob": "909fb5df5b5802b99f93edfd6c738d22a28c183d",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/inputs/XNYS_SESSION_SCHEDULE_V2.json",
+      "bytes": 28046,
+      "sha256": "3358f2d9cc233142f0927d3a16c3a353e935ed4310c563ac046352dcf75d2b88",
+      "git_blob": "c31bef3072d2462fe7ee26f0605f7d2f722591be",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/inputs/split_event_producer.py",
+      "bytes": 14722,
+      "sha256": "ffa14a8d8dd28975e8e64d7f8c8ccb5df44d14aa361d654cb351fa971f61e9c9",
+      "git_blob": "97116361a375cd5ea1c76fcfb21818306f132eb1",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/output_test_crypto_calendar_spec.txt",
+      "bytes": 730,
+      "sha256": "1a17bba75566e9132835ee831b083e45fa3bfa52cb44aa51ff1ddbd866b22c2a",
+      "git_blob": "3cc2168cfb3990aee29e6b1cf0b0dd5d34db4e93",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/output_test_e3_freeze_modes.txt",
+      "bytes": 673,
+      "sha256": "47088a30dde4daaeb6223c845990805e04f2166fc94049470b3f4bef1b40415c",
+      "git_blob": "796517ab973bda2395725c9d6a2ecfb9b2104c19",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/output_test_s2_invariance_and_seam.txt",
+      "bytes": 923,
+      "sha256": "5fe4b06550c97da8d8e9ab555d8e1ace994df299360639d7bc5fcd3271839509",
+      "git_blob": "16dd0028a475ee5b719c9a0b421b8115dd85b525",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/output_verify_calendar_candidate.txt",
+      "bytes": 729,
+      "sha256": "b720123ba3ad63638f0f92482007e6aeb34a21b7eaaf62c9a18968e21e963f4b",
+      "git_blob": "3062278ecbc18c2c396b1947dd0e954fb156485d",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/test_crypto_calendar_spec.py",
+      "bytes": 5485,
+      "sha256": "a35056fe3029e514f8c524cadb0cf8e4ffffd5e7a4ffaec3950f97a535a92c84",
+      "git_blob": "63e77692045a868ec2f23536539f69737f2e2f39",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/test_e3_freeze_modes.py",
+      "bytes": 6520,
+      "sha256": "460b6fbf648f49ab2893b50518b8c52e9a8523f8d2d3191d2ecc1000f6983e0b",
+      "git_blob": "feccd960bc2a4b2b4d7405781b3d05ea55a2fc92",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/test_s2_invariance_and_seam.py",
+      "bytes": 6676,
+      "sha256": "9dcbdef5b4f915ade1e2610db519e1e1f06d293db1d31715de44b885bbe7f72f",
+      "git_blob": "f680525cee7a41ccbcf0d3e47d9af1b225ff781e",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    },
+    {
+      "bundle_path": "research_notes/three_gate_decision_packet_20261021_87/fixtures/verify_calendar_candidate.py",
+      "bytes": 6014,
+      "sha256": "778819fb4f13c850414a6974f090293e8863ac6d0174ae12b547cb4085b6d647",
+      "git_blob": "a0c8c7b4c76c7b07b851f280272dbe2cb6a5cf0d",
+      "commit_pin": "186aa0a",
+      "package_commit": "186aa0a",
+      "source": "package -87 as committed (byte-exact extraction)"
+    }
+  ]
+}
