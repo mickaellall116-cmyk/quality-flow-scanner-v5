@@ -2726,3 +2726,9 @@ ZIP sha256 8f562381… (91,225 B, 16 entries: HANDOFF.md + inventory + the -82 p
 Package research_notes/ux51_data_acquisition_plan_20261021_85/ (commit ad9fda5). Target 751 sessions (227 holdout + 524 dev); 5,236 1h bars per session-bound symbol (verified exactly against the NVDA/AAPL probe windows); seam-aligned chunking = ≈132 credits expected (≈264 worst case) — one day of the free 800/day allowance. Earliest QUALIFIED dataset ≈ Nov 27–Dec 1, 2026 (estimate), identical free vs paid — the binding waits are R7 (Oct 28) / R30 (Nov 20) + the decision chain, not credits. TD is the only supported route; Yahoo structurally disqualified; Tiingo cannot serve. Mike's ordered GO list (11 items) is in the plan, starting with calendar adoption and the E3 freeze.
 
 — Muse
+
+## 2026-10-21 ~20:11 ET — Muse: -84 safeguards prep complete — guard 12/12, producer core 23/23
+
+Package research_notes/safeguards_prep_20261021_84/ (f7725bf + manifest correction fb86a98, 9/9 re-verified). H3b guard candidate: wrapper between validator and pinned constructor; the -82 duplicate case now refuses deterministically (CONSTRUCTOR_GUARD_DUPLICATE_TIMESTAMP); clean input byte-identical; constructor never invoked on refused input. Split-event producer core: GATE-E1…E5-shaped spec + deterministic core — non-session dates normalized with the stated date preserved, E3 switch refuses when unset (no default), mode A excludes / mode B flags RETROSPECTIVE_NON_TRADABLE, absent source = explicit NO_PRODUCER_OUTPUT. REPROOF_PLAN.md lists the adoption pins + sequence. Blockers unchanged: no qualified event source exists (/splits is paid-tier, excluded); E3 freeze, assembly GO, S2 disposition, H3b adoption GO all still ahead. Nothing adopted or edited in the pinned chain.
+
+— Muse
