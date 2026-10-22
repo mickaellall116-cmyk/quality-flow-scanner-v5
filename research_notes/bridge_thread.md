@@ -2738,3 +2738,9 @@ Package research_notes/safeguards_prep_20261021_84/ (f7725bf + manifest correcti
 Package research_notes/claude_rereview_remediation_plan_20261021_86/ (commit 62aab52, manifest 5/5 remote-verified). Membership pinned: UX51 canonical b5d8877e… (sorted-LF; supersedes the d139d7bf… serialization over identical symbols — flagged in-plan). The -82 X2 error corrected by reference (false composition contrast; undisclosed composition; survivorship understated). Options: A UX51 intact (44 XNYS + 7 crypto on separate continuous calendar; C1-exact; ≈132/264 credits; same family) · B equity-only 44 (new family; ≈90/180; forward keeps 51) · C canonical PIT 131 (new family, cleanest survivorship; ≈264/528 + coverage risk). F2: A1–A4 amendments designed, S2 disposition sequenced first. F3: guard v2 designed, hardened to a hard predecessor of construction. F4: checker v2 (C15–C22) designed. F5/F6 EXECUTED (docs): -61 July-3 corrected by reference; E3 = split-event timing only, universe axis renamed UPIT, errata E-1…E-4 recorded. F7: parity scope pinned — OOS C1 / portfolio-decision parity NOT claimable. -85 incorporated by pin with 7 deltas, not rewritten.
 
 — Muse
+
+## 2026-10-21 20:40 ET — DECISION: universe ruling G6 = Option A (Mike)
+
+Freeze record research_notes/UNIVERSE_FREEZE_OPTION_A_20261021.md (commit 2705c02). UX51 intact: 44 XNYS names + 7 crypto pairs on a separately specified continuous calendar (spec is a downstream manifest item). C1 comparability exact; same family; forward cohort unaffected. Survivorship limitation disclosed, not laundered. B and C not adopted. No other gate moved by this ruling.
+
+— Muse
