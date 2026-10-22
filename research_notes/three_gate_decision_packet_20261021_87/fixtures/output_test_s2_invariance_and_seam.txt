@@ -1,0 +1,12 @@
+PASS  S2-1_nonseam_returns_unchanged  adjustment alters no return away from the seam
+PASS  S2-1b_seam_return_killed  seam return: adjusted=0.0000 (flat, as the economics are) vs raw=-0.9000 (manufactured crash)
+PASS  S2-1c_seam_tr_ratio_killed  seam TR/close: adjusted=0.0000 vs raw=9.0000
+PASS  S2-1d_volume_spike_killed  seam volume / pre-split median: raw=10.00x vs adjusted=1.00x
+PASS  S2-2_seam_false_return_exact  seam return=-0.9000 = -(1 - 1/10) exactly
+PASS  S2-2b_step_recovers_factor  step ratio=10.0 -> factor-shaped, detectable without exclusion
+PASS  S2-3_triple_regular  ['2024-09-16', '2024-09-17', '2024-09-18']
+PASS  S2-3b_triple_combined_boundary  ['2024-09-13', '2024-09-16', '2024-09-17']
+PASS  S2-3c_triple_across_closure  event on the early-close session: next is 07-05 (07-04 closure is not a session)
+PASS  S2-3d_triple_event_after_closure  prev of 07-05 is 07-03, skipping the closure
+
+10/10 PASS

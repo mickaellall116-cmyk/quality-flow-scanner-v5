@@ -1,0 +1,15 @@
+PASS  V1_candidate_pin  8d659dde9ccb51b9
+PASS  V2_v2_pin  3358f2d9cc233142
+PASS  V2b_status_flag  status=CANDIDATE_NOT_ADOPTED
+PASS  V2c_counts  candidate=227 v2=524
+PASS  V3_regen_set_equality  regen=227 candidate=227 symdiff=[]
+PASS  V4_early_closes_exact  {'2023-11-24': '13:00', '2024-07-03': '13:00'}
+PASS  V4b_opens  all opens 09:30
+PASS  V5_sorted_unique_weekday  first=2023-10-19 last=2024-09-13
+PASS  V6_no_dec2023_early_close  12-22/12-26 regular; 12-25 closure absent
+PASS  V7_boundary_abuts  candidate last Fri 2024-09-13; v2 first Mon 2024-09-16 (09-14/15 = weekend)
+PASS  V7b_union_751_disjoint  union=751 overlap=0
+PASS  V7c_v2_shape  v2 span 2024-09-16..2026-10-16
+PASS  V8_segment_counts  A=50 B=177
+
+13/13 PASS

@@ -1,0 +1,13 @@
+PASS  E3-1_unset_refuses  raised E3_MODE_UNSET
+PASS  E3-2_invalid_mode_refuses  raised E3_MODE_INVALID
+PASS  E3-3_modeA_before_included  basis=DECISION_TIME
+PASS  E3-4_modeA_after_excluded  excluded=1
+PASS  E3-5_modeA_equality_included  announced_at == decision -> included
+PASS  E3-6_modeB_after_flagged_nontradable  basis=RETROSPECTIVE_NON_TRADABLE
+PASS  E3-7_modeB_clean_stays_decision_time  basis=DECISION_TIME
+PASS  E3-8a_missing_announced_modeA  raised MISSING_FIELD
+PASS  E3-8b_missing_announced_modeB  raised MISSING_FIELD
+PASS  E3-9a_past_cutoff_modeA  raised AS_OF_AFTER_DATASET_CUTOFF
+PASS  E3-9b_past_cutoff_modeB  raised AS_OF_AFTER_DATASET_CUTOFF
+
+11/11 PASS

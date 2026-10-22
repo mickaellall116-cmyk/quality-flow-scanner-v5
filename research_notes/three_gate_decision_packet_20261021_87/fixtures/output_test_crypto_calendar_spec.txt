@@ -1,0 +1,10 @@
+PASS  C1_normal_day_shape  hours=24 counts={0: 4, 1: 4, 2: 4, 3: 4, 4: 4, 5: 4}
+PASS  C1b_anchor_labels  bin0=('2024-06-12', '09:30') bin1=('2024-06-12', '13:30') bin4=('2024-06-13', '01:30')
+PASS  C2_spring_forward  hours=23 counts={0: 4, 1: 4, 2: 4, 3: 4, 4: 3, 5: 4}
+PASS  C3_fall_back  hours=25 counts={0: 4, 1: 4, 2: 4, 3: 4, 4: 5, 5: 4}
+PASS  C3b_phase0_totals_invariant  spring=23 {0: 4, 1: 4, 2: 4, 3: 4, 4: 3, 5: 4} fall=25 {0: 4, 1: 4, 2: 4, 3: 5, 4: 4, 5: 4}
+PASS  C4_anchor_alignment_both_dst_regimes  bin starts 09:30/13:30 ET year-round
+PASS  C5_every_date_a_session  holdout span session dates=333
+PASS  C6_isolation_from_xnys  Sat 2023-11-25 and Thanksgiving are 24-bar crypto sessions, absent from XNYS
+
+8/8 PASS
