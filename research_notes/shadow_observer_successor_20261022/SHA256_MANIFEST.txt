@@ -1,0 +1,7 @@
+# SHA256 MANIFEST — shadow_observer_successor_20261022 (-80 successor candidate)
+5b4c59158690d20c98a5bad1477415011355be61caab7e283289a0d7eb9e777d  ./DESIGN.md
+8565b76dc75bd5cf9a9818a9b8e4bc872c2ec5dfe727fabdb8efacdc613c1ce1  ./LAUNCH_READINESS.md
+07632c668725a9463085f2a5d457c624acef78c22fe937d450c829e99cfd782a  ./TEST_EVIDENCE.md
+871fb8f7e5bff5c945955b82e5ad3db040198faf07804d1071a570f4a5eca357  ./shadow_signal_core.py
+6b7584ace73259a5bd478d39b7089a058a5f34b9d602633b32f59ff10f01b83d  ./shadow_signal_runner.py
+47883273d78b3d016a9dee98ee0efc001f34b01ede73ca10b73388dd8cf7570b  ./tests/test_shadow_signal_observer.py
