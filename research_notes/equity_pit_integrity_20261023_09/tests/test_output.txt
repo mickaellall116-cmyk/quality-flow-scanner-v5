@@ -1,0 +1,29 @@
+===== FAIL-BEFORE: --impl original (td08 stage engine, pinned originals) =====
+impl=original engine=/home/hatch/workspace/qf_td08_stage/engine
+pine_backtest=/home/hatch/workspace/qf_td08_stage/engine/pine_backtest.py
+pine_stack=/home/hatch/workspace/qf_td08_stage/engine/pine_stack/pine_stack.py
+B1 — SPY daily future-close leak into RS ranking feature
+  [VIOLATED] B1 rs invariant to unfinished SPY close @ 09:30: rs normal=(-0.053199612043171474, -0.09090787161845038) vs mutated-close=(-45.32906168100869, -45.366769940583964)
+  [VIOLATED] B1 rs invariant to unfinished SPY close @ 13:30: rs normal=(-0.053776683087028765, -0.09115209836942051) vs mutated-close=(-45.329638752052546, -45.367014167334936)
+B2 — unfinished-bar close in mark-to-market (sizing + marked equity)
+  [VIOLATED] B2a C0 simulate_portfolio invariant to unfinished-bar close: (final_equity, eq@B-entry) normal=(10158.708768, 10060.08) vs mutated=(10627.20864, 478725.6)
+  [VIOLATED] B2b pine_stack simulate_stack invariant to unfinished-bar close: final_equity normal=10158.708768 vs mutated=10627.20864
+ORD — coincident-entry ordering determinism (real ledger timestamp 2025-09-05 13:30 ET, invented prices)
+  [VIOLATED] ORD taken candidate at contested coincident timestamp is input-order invariant: taken at T per input permutation (AAA,BBB)/(BBB,AAA) = [('AAA',), ('BBB',)]
+SUMMARY impl=original: 0/5 assertions hold; VIOLATED: ['B1 rs invariant to unfinished SPY close @ 09:30', 'B1 rs invariant to unfinished SPY close @ 13:30', 'B2a C0 simulate_portfolio invariant to unfinished-bar close', 'B2b pine_stack simulate_stack invariant to unfinished-bar close', 'ORD taken candidate at contested coincident timestamp is input-order invariant']
+EXIT=1
+
+===== PASS-AFTER: --impl fork (fork_engine = original tree + fork overlay) =====
+impl=fork engine=/home/hatch/workspace/qf_td09_stage/fork_engine
+pine_backtest=/home/hatch/workspace/qf_td09_stage/fork_engine/pine_backtest.py
+pine_stack=/home/hatch/workspace/qf_td09_stage/fork_engine/pine_stack/pine_stack.py
+B1 — SPY daily future-close leak into RS ranking feature
+  [HOLDS] B1 rs invariant to unfinished SPY close @ 09:30: rs normal=(-0.05583147368244523, -0.09353973325772413) vs mutated-close=(-0.05583147368244523, -0.09353973325772413)
+  [HOLDS] B1 rs invariant to unfinished SPY close @ 13:30: rs normal=(-0.05640854472630252, -0.09378396000869427) vs mutated-close=(-0.05640854472630252, -0.09378396000869427)
+B2 — unfinished-bar close in mark-to-market (sizing + marked equity)
+  [HOLDS] B2a C0 simulate_portfolio invariant to unfinished-bar close: (final_equity, eq@B-entry) normal=(10158.550384, 10020.0) vs mutated=(10158.550384, 10020.0)
+  [HOLDS] B2b pine_stack simulate_stack invariant to unfinished-bar close: final_equity normal=10158.550384 vs mutated=10158.550384
+ORD — coincident-entry ordering determinism (real ledger timestamp 2025-09-05 13:30 ET, invented prices)
+  [HOLDS] ORD taken candidate at contested coincident timestamp is input-order invariant: taken at T per input permutation (AAA,BBB)/(BBB,AAA) = [('AAA',), ('AAA',)]
+SUMMARY impl=fork: 5/5 assertions hold
+EXIT=0

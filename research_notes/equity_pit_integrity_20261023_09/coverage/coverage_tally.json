@@ -1,0 +1,33 @@
+{
+ "task": "QF-EQUITY-PIT-INTEGRITY-20261023-09",
+ "kind": "B3 terminal-open coverage tally \u2014 zero P&L, DEV only",
+ "pine_ranking_sha256": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+ "per_symbol": {
+  "NVDA": {
+   "bars_4h": 1043,
+   "closed_candidates": 22,
+   "skipped_gap": 0,
+   "terminal_open": []
+  },
+  "TSLA": {
+   "bars_4h": 1043,
+   "closed_candidates": 11,
+   "skipped_gap": 0,
+   "terminal_open": []
+  },
+  "AAPL": {
+   "bars_4h": 1043,
+   "closed_candidates": 12,
+   "skipped_gap": 0,
+   "terminal_open": []
+  },
+  "SPY": {
+   "bars_4h": 1043,
+   "closed_candidates": 16,
+   "skipped_gap": 0,
+   "terminal_open": []
+  }
+ },
+ "terminal_open_total": 0,
+ "closed_total": 61
+}

@@ -1,0 +1,32 @@
+P0 done: 22 archive files verified, receipts ok
+P1 NVDA: raw 3654 admitted 3653 excluded 1 zv 0/0 moving
+P1 TSLA: raw 3655 admitted 3653 excluded 2 zv 0/0 moving
+P1 AAPL: raw 3655 admitted 3653 excluded 2 zv 0/0 moving
+P1 SPY: raw 3655 admitted 3653 excluded 2 zv 0/0 moving
+P2 NVDA: 1043 4H bars, grid ok=True, agg bad=0
+P2 TSLA: 1043 4H bars, grid ok=True, agg bad=0
+P2 AAPL: 1043 4H bars, grid ok=True, agg bad=0
+P2 SPY: 1043 4H bars, grid ok=True, agg bad=0
+=== transformation diff (original -> counting variant) ===
+--- gen_candidates (pinned original)
++++ counting variant
+@@ -64,4 +64,11 @@
+             })
+             in_trade = False
+         i += 1
+-    return trades, skipped_gap
++    _terminal = None
++    if in_trade:
++        _terminal = {"symbol": sym, "signal_idx": pos["signal_idx"],
++                     "signal_time": str(df.index[pos["signal_idx"]]),
++                     "entry_time": str(pos["entry_time"]),
++                     "entry": pos["entry"], "stop": pos["stop"],
++                     "tp1": pos["tp1"], "tp_hit": pos["tp_hit"]}
++    return trades, skipped_gap, _terminal
+
+NVDA: bars=1043 closed=22 skipped_gap=0 terminal_open=0
+TSLA: bars=1043 closed=11 skipped_gap=0 terminal_open=0
+AAPL: bars=1043 closed=12 skipped_gap=0 terminal_open=0
+SPY: bars=1043 closed=16 skipped_gap=0 terminal_open=0
+TOTAL: closed=61 terminal_open=0
+wrote /home/hatch/workspace/qf_td09_stage/pkg/research_notes/equity_pit_integrity_20261023_09/coverage/coverage_tally.json

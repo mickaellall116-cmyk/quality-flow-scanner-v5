@@ -1,0 +1,23 @@
+--- a/pine_backtest.py
++++ b/pine_backtest.py
+@@ -232,8 +232,19 @@
+     open_time = total_time = pd.Timedelta(0)
+ 
+     def mark(sym, t):
++        # QF-EQUITY-PIT-INTEGRITY-20261023-09 RESEARCH FORK — B2 as-of fix.
++        # Original (pinned 447a9a13…): searchsorted(t, "right") - 1 on a
++        # START-stamped 4H index returns the bar that STARTS at or before t —
++        # at an event timestamped at that bar's OPEN this is the still
++        # unfinished bar, and its Close leaks into sizing / marked equity.
++        # Fork policy (integrity-only): mark at the latest bar COMPLETED at
++        # or before t (bar end = start + 4h for this 4H engine). The iloc[0]
++        # fallback is retained for total-function compatibility; it is
++        # unreachable for an open position in engine flow (a position can
++        # only exist after its entry bar, whose end precedes any later mark).
+         s = closes[sym]
+-        idx = s.index.searchsorted(t, side="right") - 1
++        ends = s.index + pd.Timedelta(hours=4)
++        idx = ends.searchsorted(t, side="right") - 1
+         return float(s.iloc[idx]) if idx >= 0 else float(s.iloc[0])
+ 
+     def marked_equity(t):
