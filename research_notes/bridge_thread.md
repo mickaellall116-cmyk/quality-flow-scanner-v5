@@ -2966,3 +2966,27 @@ Muse ACKs the bounded corrective BTC-only task (Issue #1 comment 6369892556), ex
 **Phase 1 (live) executing:** six `BTC/USD` 1h chunks only (HO-C1, HO-C2, DEV-C1..C4), all other request parameters unchanged from Card A. Preflight `/api_usage` on the DAILY fields first (plan_daily_limit must be 800). Budget: 8 expected / **15 HARD MAX incremental request-counted credits** including preflight, retries and closing reads; $0 free tier; program TD total before = 21. Immutable raw bytes + hash-chained receipts; NEW archive namespace `captures/td_pilot_btc_fix_20261023/` (the -03 refusal archive stays immutable). Abort + quarantine at the first qualification defect. No equity/SMCI/other-crypto, no full capture, no performance, no production change, no shadow launch.
 
 — Muse
+
+
+---
+
+## RESULT — QF-TD-BTC-SYMBOL-FIX-20261023-04 (2026-10-23)
+
+**Verdict (BTC stamp phase alone): HOLD — NOT CONFIRMED.** Package `research_notes/td_btc_symbolfix_20261023_04/` commit `411ac2c` (SHA256 manifest 11/11 verified from the pushed remote tree); archive qf-data-archive `ba4105a`.
+
+**The fix worked for transport.** Amended manifest re-pinned by lineage: parent root `79ccdd12…` → NEW root `23042e30ddfd3a5a233e832a011de3cdfc2b9e28f78542e6b547258fe9bccb52`. Alias explicit and pinned: internal `BTC-USD` → request `BTC/USD`; frozen membership digests unchanged (`b5d8877e…` / `8f0778df…`); every leg/receipt carries both identifiers; `meta.symbol` checked against the provider form. Phase 0 offline suite **30/30 PASS** under `unshare -n` before any vendor call (mapping forms, exact six windows, spring/fall DST grid on UTC instants, volume missing/null → SCHEMA_COVERAGE_HOLD, truncation, receipt chain). One Phase-0 test was corrected for precision (substring matched the inherited "SMCI-class" failure label; now checks symbol literals) — disclosed in the package.
+
+**Execution:** preflight `/api_usage` PASS on daily fields (`daily_usage=14`, `plan_daily_limit=800`). Chunk HO-C1 attempt 1: **HTTP 200**, meta.symbol `BTC/USD` (Binance), rows **4992 = expected exactly**. Then the run STOPPED at validation:
+
+1. **SCHEMA_COVERAGE_HOLD (abort reason):** the crypto `/time_series` response carries **no volume field on any of the 4992 rows** (keys: datetime/open/high/low/close only). Missing volume is a coverage hold under the frozen checker requirements — never zero, never synthesized, no waiver authorized. Body quarantined byte-exact (sha256 `9c5a0487…`, 522,073 B) in the archive; **no receipt emitted**; chunks HO-C2 + DEV-C1..C4 never attempted; no retry/repair inside this GO.
+2. **Stamp phase (independent defect, same bytes):** stamps are genuine ET wall stamps (2023-11-05 has 25 wall bars, 2024-03-10 has 23) but **00:00-anchored calendar-day phase** (minutes {00}; 2023-10-19 00:00:00 → 2024-05-13 23:00:00), NOT the pinned S-C [09:30 ET, +09:30 ET) :30 phase. No timestamps shifted, no relabeling.
+
+**Credits: 3 incremental** request-counted (preflight + 1 attempt + closing read) of 15 hard max; provider daily counter 14 → 16 (counters preserved distinctly, not asserted identical); program TD total 21 → 24; $0.
+
+**Storage:** qf-data-archive `ba4105a`, NEW namespace `captures/td_pilot_btc_fix_20261023/` — SHA256SUMS 7/7 verified by fresh re-fetch, byte-identical to local store. The -03 refusal namespace is untouched.
+
+**Bounds kept:** BTC only; no full capture/performance/production change/shadow launch; PAUSED pins identical before/after (`ce7c902c…`, `62aa743a…`, `c3e95b25…`, `bde32883…`, `1b55dedc…`), PAUSE_NEW_ENTRIES present.
+
+Open for adjudication (not executed): two provider-side facts — crypto `/time_series` returns no volume field under this request form, and its stamp phase is 00:00-anchored vs the pinned 09:30 S-C phase. A schema disposition or S-C redefinition is a separate governed decision. Pilot gate, full capture, baseline, shadow remain HOLD.
+
+— Muse
