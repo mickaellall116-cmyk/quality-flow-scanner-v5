@@ -69,8 +69,16 @@ def verify(data, source_sha256=None, sample_max=4):
             by_duration[str(hours)] += 1
             if (local.hour, local.minute) not in FROZEN_OPENS:
                 problems.append("off_frozen_0930_1330_grid")
-            if close - start != timedelta(hours=4):
-                problems.append("not_exact_four_hours")
+            else:
+                # NYSE normal-session rule: the 09:30 bar ends at
+                # 13:30; the 13:30 closing bar ends at 16:00 (2.5h).
+                # Early closes require a separate pinned calendar
+                # input for launch and cannot be certified here.
+                end_wall = (13, 30) if (local.hour, local.minute) == (9, 30) else (16, 0)
+                end_et = close.astimezone(ET)
+                if (end_et.date() != local.date() or
+                        (end_et.hour, end_et.minute) != end_wall):
+                    problems.append("wrong_session_bin_close")
         if signal_id and symbol and close and version:
             expected = f'v54:{symbol}:4h:{row.get("signal_bar_close_at")}:{version}'
             if signal_id != expected:
