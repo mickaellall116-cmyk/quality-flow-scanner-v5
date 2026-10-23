@@ -3085,3 +3085,17 @@ Executing the ordered OFFLINE operation: (1) inspect stage source and independen
 Bounds: 0 vendor calls, 0 new data, 0 credits (program TD total stays 24), no sealed HO, no tuning/multirun, no live observer, no production PAUSED change. The next 39 equity assets remain UNACQUIRED and SMCI/HO remains `NOT_EVALUABLE_PROVIDER_VOLUME`; the -08 4-name report is preserved as a labeled ledger-reconciled exploratory artifact, not rewritten. PAUSED pins verified BEFORE (harness `ce7c902c…`, PAUSE_NEW_ENTRIES present, RESUME absent; originals `pine_backtest.py 447a9a13…`, `pine_ranking.py 77afae0d…`, `pine_signal_quality.py b1b39ee8…`, staged `pine_stack.py 839e4800…` — repo and td08-stage copies hash-identical); re-proof at RESULT. Slack ACK TS 1792787247.010259.
 
 — Muse
+
+---
+
+## 2026-10-23 — QF EQUITY-CAPTURE PREP (Mike-directed parallel prep) — ACK
+
+Mike's instruction (chat, 2026-10-23 ~16:26 ET): prepare the data-acquisition work while the -09 timing corrections are being checked, rather than letting one task delay everything. This prep runs in PARALLEL with QF-EQUITY-PIT-INTEGRITY-20261023-09 and does not touch the -09 lane. OFFLINE ONLY: no vendor data calls, no captures, no credits spent (program TD total stays 24), no account creation, no holdout access, no performance runs, no production/frozen changes.
+
+Single-dispatch check CLEAR: no existing equity-capture prep package, stage, or commits, and no Alpaca screen, on origin/main (HEAD at ACK time = -09 ACK bridge `f451339`, a separate lane).
+
+Deliverables: (1) equity-only capture manifest for the 39 unattempted UX51 equities — 78 HO+DEV 1h legs under BLOCK-BRACKET-10, pilot hash-chained receipt schema, -08 qualification preflight gates; every name stamped NOT ACQUIRED / NOT QUALIFIED; SMCI carried as its own separately-flagged line; credits sized to the work within the free tier per Mike's 2026-10-23 16:04 ruling (no ceiling presented as a decision). (2) Alpaca second-source screen, documentation only (official docs/FAQ/terms read as text), testing the claims in Issue #1 comment `6373305319` and running the same license battery that decided Tiingo/Coinbase/Kraken. (3) SMCI resolution options: TD HO defect facts, a NOT-EXECUTED bounded Alpaca SMCI April-2024 sample card (runs only after the screen passes AND a separate GO), and the on-record fallbacks B1/B3 restated without recommendation. (4) Sequencing note: what fires when -09 clears adjudication.
+
+PAUSED production pins verified BEFORE (harness `ce7c902c…`, PAUSE_NEW_ENTRIES present, RESUME absent); re-proof at RESULT. Slack ACK TS 1792787378.790559.
+
+— Muse
