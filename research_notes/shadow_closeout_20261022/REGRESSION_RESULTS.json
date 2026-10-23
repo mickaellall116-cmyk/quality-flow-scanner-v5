@@ -1,0 +1,80 @@
+{
+ "verify_all_exit": 0,
+ "V1_probe_synthetic": {
+  "exit": 0,
+  "pass_lines": 9,
+  "tail": "8/8 checks PASS",
+  "stderr_tail": ""
+ },
+ "V3_adapter_replay": {
+  "pin_match": true,
+  "stored_rows_in": 38,
+  "qualified_out": 38,
+  "all_stored_pass_filter": true,
+  "ineligible_excluded": true
+ },
+ "V5_market_frame_spy": {
+  "market_raises": {
+   "scan_calls": 0,
+   "symbols_scanned": 0,
+   "market_ok_reported": false,
+   "candidates": 0
+  },
+  "market_returns_none": {
+   "scan_calls": 0,
+   "symbols_scanned": 0,
+   "market_ok_reported": false,
+   "candidates": 0
+  },
+  "required": "scan_calls == 0 on market-frame failure"
+ },
+ "V6_cohort": {
+  "ux51": 51,
+  "x2": 199,
+  "union": 250,
+  "unique_union": 250,
+  "overlap": 0,
+  "unique_within_ux51": 51,
+  "unique_within_x2": 199
+ },
+ "V7_t0_strictness": {
+  "close_eq_T0_refused": [
+   {
+    "signal_id": "v54:TEST:4h:2026-10-22T13:30:00-04:00:2026-09-15-v54",
+    "symbol": "TEST",
+    "reason": "PRELAUNCH_SIGNAL"
+   }
+  ],
+  "close_eq_T0_recorded": 0,
+  "valid_post_T0_recorded": 1,
+  "partial_bar_refused": [
+   {
+    "signal_id": "v54:LATE:4h:2026-10-22T16:00:00-04:00:2026-09-15-v54",
+    "symbol": "LATE",
+    "reason": "PARTIAL_BAR_NOT_CLOSED"
+   }
+  ],
+  "degraded_cycle_status": "DEGRADED",
+  "degraded_cycle_recorded": 0,
+  "t0_move_on_reopen": "ShadowError",
+  "t0_same_on_reopen": "ok"
+ },
+ "V7b_successor_suite": {
+  "exit": 0,
+  "pass_lines": 24,
+  "fail_lines": 0,
+  "tail": "24/24 checks passed",
+  "stderr_tail": ""
+ },
+ "V8_provenance": {
+  "log_records_written": 7,
+  "records_with_any_hash_chain_field": 7,
+  "record_kinds": [
+   "shadow_cycle",
+   "shadow_refusal",
+   "shadow_signal"
+  ],
+  "verify_pins_matches": true,
+  "verify_pins_count": 6
+ }
+}
