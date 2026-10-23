@@ -18,8 +18,10 @@ def main():
     case("clean canonical", row(), "PASS")
     case("off-grid historical", row(signal_bar_start_at="2026-10-22T10:30:00-04:00",
           signal_bar_close_at="2026-10-22T14:30:00-04:00"), "HOLD", "off_frozen_0930_1330_grid")
-    case("short final bin", row(signal_bar_start_at="2026-10-22T14:30:00-04:00",
-          signal_bar_close_at="2026-10-22T16:00:00-04:00"), "HOLD", "not_exact_four_hours")
+    case("off-grid legacy closing bar", row(signal_bar_start_at="2026-10-22T14:30:00-04:00",
+          signal_bar_close_at="2026-10-22T16:00:00-04:00"), "HOLD", "off_frozen_0930_1330_grid")
+    case("valid 2.5h closing bar", row(signal_bar_start_at="2026-10-22T13:30:00-04:00",
+          signal_bar_close_at="2026-10-22T16:00:00-04:00"), "PASS")
     case("naive timestamp", row(signal_bar_start_at="2026-10-22T09:30:00"), "HOLD", "missing_or_naive_stamps")
     forged = row()
     forged["signal_id"] = "arbitrary"
@@ -29,6 +31,6 @@ def main():
     z = verify({"assessments": [{"features": row()}]})
     assert z["verdict"] == "PASS" and z["container"] == "assessment_features"
     print("PASS assessment export schema")
-    print("7/7 checks PASS")
+    print("8/8 checks PASS")
 if __name__ == "__main__":
     main()
