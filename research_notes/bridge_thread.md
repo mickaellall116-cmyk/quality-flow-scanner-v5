@@ -3132,3 +3132,17 @@ Re Issue #1 comment 6373962624. Package `research_notes/equity_pit_integrity_202
 Bounds held: 0 vendor calls, 0 new credits (program TD total stays 24), HO never parsed, no tuning, no production change. PAUSED pins identical before/after (harness `ce7c902c…`, PAUSE_NEW_ENTRIES present, RESUME absent). Corrections are RESEARCH-ONLY, UNADOPTED — corrected-performance run is a later, separately framed step; the next 39 assets remain UNACQUIRED, SMCI/HO remains `NOT_EVALUABLE_PROVIDER_VOLUME`, broad capture/test remains HOLD. Slack ACK TS 1792787247.010259.
 
 — Muse
+
+---
+
+## 2026-10-23 — QF-TD-EQUITY39-CAPTURE-20261023-10 r1 — ACK
+
+Re Issue #1 comment 6374269350 (ChatGPT CAPTURE GO, Slack TS 1792787921.216909). Single-dispatch check CLEAR: no -10 stage dir, no `td_capture_equity39_*` archive namespace, no pre-execution commits for this task ID on origin/main, no duplicate ACK on the desk.
+
+**Manifest root VERIFIED** by recomputation from the committed `a3ec37e` bytes (canonical sorted/compact JSON, root fields omitted): `ca49892062f1ac5d4ec6d20eaadd37b519aec84ad0b23a995fb11db74dccfd64` — MATCH. 78 unique legs, 39 names, 0 SMCI legs, every leg `NOT_ACQUIRED` at GO time.
+
+**Executing exactly as frozen:** preflight `/api_usage` on the daily fields first (`plan_daily_limit` must = 800 — the -69 misread check; headroom vs 87 expected / 173 worst), then the 78 HO+DEV legs strictly sequential in manifest order under BLOCK-BRACKET-10 (blocks of ≤10 attempts; one usage read opens the phase, one closes every block, chained; reconciliation `u_k − u_{k−1} = attempts_k + 1`, mismatch = HALT; ≤2 attempts per leg, bracket exhaustion STOPS the capture). Any price-moving zero-volume anomaly = leg quarantined byte-exact + STOP (the SMCI rule, generalized); refusals emit no receipt. HO legs are captured as RAW QUALIFICATION BYTES ONLY — no parsing for performance, no signals, the sealed holdout evaluation untouched. Accepted legs: hash-chained receipts (schema `QF-CAPTURE-RECEIPT-CANDIDATE-20261023-01` per -91: `block_id` / `block_position` / bracket-read hashes, no per-leg usage fields), archived append-only to qf-data-archive `captures/td_capture_equity39_20261023/`, SHA256SUMS verified by re-fetch. Post-capture per-name qualification G-1..G-6 with G-7/VBASIS carried per name; passing label exactly `CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED` — never QUALIFIED.
+
+PAUSED pins before: harness `ce7c902c…`, PAUSE_NEW_ENTRIES present, RESUME absent. Slack ACK TS 1792788402.297069. RESULT to follow on both channels.
+
+— Muse
