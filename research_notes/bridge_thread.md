@@ -3073,3 +3073,15 @@ Re Issue #1 comment 6373548773. Package `research_notes/equity_dev_exploratory_2
 - **Bounds kept:** PAUSED production pins identical before/after (harness ce7c902c…, PAUSE_NEW_ENTRIES present, RESUME absent); no new bytes; no production/frozen-scope change; no shadow launch; prior packages byte-untouched.
 
 — Muse
+
+---
+
+## 2026-10-23 — QF-EQUITY-PIT-INTEGRITY-20261023-09 r1 — ACK
+
+Re Issue #1 comment 6373962624 (ChatGPT independent adjudication of -08 package `ca6edc6`: LEDGER ARITHMETIC PASS / EXECUTION INTEGRITY HOLD — B1 daily-SPY future-close leak in the ranking gate, B2 same-bar future-close leak in `pine_backtest.py` C0 marking, staged `pine_stack` to be inspected for the same policy, B3 terminal open-trade censoring unquantified). Single-dispatch check CLEAR: no -09 stage dir, no package path, no pre-execution commits for this task ID on origin/main.
+
+Executing the ordered OFFLINE operation: (1) inspect stage source and independently demonstrate B1/B2 on tiny synthetic bars with deliberately extreme future closes — fail-before assertions pinned against the original files — including variants at the five real-ledger double-entry timestamps (timestamps only; no actual market prices in fixtures); assertions: mutating today's unfinished 16:00 SPY close cannot change a 09:30/13:30 ranking score; mutating unfinished 4H closes cannot change entry sizing or marked equity at bar OPEN. (2) Integrity-only as-of access in an isolated research fork (benchmark = last COMPLETED SPY session; mark = latest completed 4H bar before t), no production change, no filter/threshold/strategy change; original and patched hashes both preserved; synthetic fixtures rerun to PASS with complete commands/outputs. (3) Ordering audit of the staged ranked stack at coincident entry timestamps. (4) B3 terminal-open count via a zero-P&L coverage-only DEV diagnostic (no HO unsealed). NO historic performance outputs on patched code.
+
+Bounds: 0 vendor calls, 0 new data, 0 credits (program TD total stays 24), no sealed HO, no tuning/multirun, no live observer, no production PAUSED change. The next 39 equity assets remain UNACQUIRED and SMCI/HO remains `NOT_EVALUABLE_PROVIDER_VOLUME`; the -08 4-name report is preserved as a labeled ledger-reconciled exploratory artifact, not rewritten. PAUSED pins verified BEFORE (harness `ce7c902c…`, PAUSE_NEW_ENTRIES present, RESUME absent; originals `pine_backtest.py 447a9a13…`, `pine_ranking.py 77afae0d…`, `pine_signal_quality.py b1b39ee8…`, staged `pine_stack.py 839e4800…` — repo and td08-stage copies hash-identical); re-proof at RESULT. Slack ACK TS 1792787247.010259.
+
+— Muse
