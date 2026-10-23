@@ -1,0 +1,119 @@
+--- a/engine_fork09/pine_backtest.py
++++ b/engine_successor/pine_backtest.py
+@@ -218,10 +218,24 @@
+     return risk_frac, gross_ret / risk_frac, net_ret / risk_frac, net_ret
+ 
+ 
+-def simulate_portfolio(trades, closes, cost, risk_pct):
++def simulate_portfolio(trades, closes, cost, risk_pct, cutoff=None):
++    # QF-EQUITY43-DEV-ORDER-CENSOR-20261023-13 SUCCESSOR DELTA (research-only,
++    # versioned experiment config; strategy logic byte-unchanged):
++    #  (a) a trade flagged "censored" (right-censored terminal-open candidate:
++    #      exit/exit_time are None) generates NO exit event; it competes at its
++    #      entry_time under the identical cap/risk gates as any candidate.
++    #  (b) if such a position is still open after the last event, a terminal
++    #      accounting step values it at the as-of mark of the last bar
++    #      completed at or before `cutoff` (default: end of the last bar in
++    #      `closes`) and includes that unrealized value in final_equity. No
++    #      exit is booked, no cash flow is fabricated, no trade R is created.
++    #  (c) a per-candidate ledger (taken/skips with reasons, exit cash flows)
++    #      is returned for trade-by-trade cross-validation. With no censored
++    #      trades present, behavior is identical to the -09 fork.
+     events = []
+     for t in trades:
+-        events.append((t["exit_time"], 0, t))
++        if not t.get("censored"):
++            events.append((t["exit_time"], 0, t))
+         events.append((t["entry_time"], 1, t))
+     events.sort(key=lambda e: (e[0], e[1]))
+     realized = START_EQUITY
+@@ -230,6 +244,7 @@
+     peak, max_dd = realized, 0.0
+     curve, prev_t = [], None
+     open_time = total_time = pd.Timedelta(0)
++    ledger = []
+ 
+     def mark(sym, t):
+         # QF-EQUITY-PIT-INTEGRITY-20261023-09 RESEARCH FORK — B2 as-of fix.
+@@ -260,19 +275,25 @@
+                 open_time += dt
+         prev_t = t
+         if kind == 1:
++            key = (tr["symbol"], tr.get("signal_idx", -1))
+             eq = marked_equity(t)
+             open_risk = sum(p["risk_dollars"] for p in open_pos) / eq if eq > 0 else 1
+             if len(open_pos) >= MAX_CONCURRENT:
+                 skipped_cap_count += 1
++                ledger.append({"key": key, "action": "skipped_cap"})
+                 continue
+             if open_risk + risk_pct > MAX_PORTFOLIO_RISK + 1e-9:
+                 skipped_cap_risk += 1
++                ledger.append({"key": key, "action": "skipped_risk"})
+                 continue
+             risk_dollars = risk_pct * eq
+             risk_frac = (tr["entry"] - tr["stop"]) / tr["entry"]
+             open_pos.append({"trade": tr, "risk_dollars": risk_dollars,
+                              "size": risk_dollars / risk_frac, "risk_frac": risk_frac})
+             by_id[id(tr)] = open_pos[-1]
++            ledger.append({"key": key, "action": "taken",
++                           "risk_dollars": risk_dollars,
++                           "size": risk_dollars / risk_frac})
+         else:
+             pos = by_id.pop(id(tr), None)
+             if pos is None:
+@@ -280,16 +301,53 @@
+             _, _, net_r, _ = _outcome(tr["entry"], tr["stop"], tr["exit"], cost)
+             realized += pos["risk_dollars"] * net_r
+             open_pos.remove(pos)
++            ledger.append({"key": (tr["symbol"], tr.get("signal_idx", -1)),
++                           "action": "exit", "net_r": net_r,
++                           "cash_flow": pos["risk_dollars"] * net_r,
++                           "risk_dollars": pos["risk_dollars"]})
+         eq = marked_equity(t)
+         curve.append((t, eq, realized, len(open_pos)))
+         peak = max(peak, eq)
+         if peak > 0:
+             max_dd = max(max_dd, (peak - eq) / peak)
++    # -13 successor terminal accounting (see header note): only positions
++    # still open here can exist — by construction they are exactly the taken
++    # censored candidates (every non-censored trade carries an exit event).
++    terminal_open = []
++    final_equity = realized
++    if open_pos:
++        assert all(p["trade"].get("censored") for p in open_pos), \
++            "non-censored position open after last event"
++        if cutoff is None:
++            cutoff = max(s.index[-1] for s in closes.values()) \
++                + pd.Timedelta(hours=4)
++        if prev_t is not None and cutoff > prev_t:
++            dt = cutoff - prev_t
++            total_time += dt
++            open_time += dt
++        for p in open_pos:
++            tr = p["trade"]
++            m = mark(tr["symbol"], cutoff)
++            unreal = ((m - tr["entry"]) / tr["entry"]) * p["size"]
++            terminal_open.append({
++                "symbol": tr["symbol"], "signal_idx": tr.get("signal_idx", -1),
++                "entry": tr["entry"], "entry_time": str(tr["entry_time"]),
++                "risk_dollars": p["risk_dollars"], "size": p["size"],
++                "mark": m, "mark_time": str(cutoff),
++                "unreal_dollars": unreal})
++        final_equity = marked_equity(cutoff)
++        curve.append((cutoff, final_equity, realized, len(open_pos)))
++        peak = max(peak, final_equity)
++        if peak > 0:
++            max_dd = max(max_dd, (peak - final_equity) / peak)
+     exposure = float(open_time / total_time) if total_time > pd.Timedelta(0) else 0.0
+-    return {"final_equity": realized, "max_drawdown": max_dd,
++    return {"final_equity": final_equity, "realized_equity": realized,
++            "max_drawdown": max_dd,
+             "skipped_cap_count": skipped_cap_count,
+             "skipped_cap_risk": skipped_cap_risk,
+-            "exposure": exposure, "curve": curve}
++            "exposure": exposure, "curve": curve,
++            "ledger": ledger, "terminal_open": terminal_open,
++            "cutoff": str(cutoff) if terminal_open else None}
+ 
+ 
+ def summarize(label, trades, port, skipped_gap, cost_name):

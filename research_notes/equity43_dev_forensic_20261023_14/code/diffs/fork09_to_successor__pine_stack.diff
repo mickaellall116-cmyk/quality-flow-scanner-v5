@@ -1,0 +1,139 @@
+--- a/engine_fork09/pine_stack/pine_stack.py
++++ b/engine_successor/pine_stack/pine_stack.py
+@@ -38,7 +38,19 @@
+ 
+ 
+ def simulate_stack(all_trades, closes, cost, use_ranking, sector_cap, dd_gate,
+-                   sector_map, diag=None):
++                   sector_map, diag=None, cutoff=None):
++    # QF-EQUITY43-DEV-ORDER-CENSOR-20261023-13 SUCCESSOR DELTA (research-only,
++    # versioned experiment config; strategy logic byte-unchanged): identical
++    # right-censored terminal-candidate treatment as the successor
++    # pine_backtest.simulate_portfolio — a "censored" trade (exit/exit_time
++    # None) registers no exit event, competes at its entry_time under the
++    # identical rank/cap/sector/risk gates, and if still open after the last
++    # event is valued at the as-of mark of the last bar completed at or
++    # before `cutoff` and included in final_equity via a terminal accounting
++    # step. No exit/cash flow/trade R is fabricated. A per-candidate
++    # disposition ledger and exit cash-flow list are returned for
++    # trade-by-trade cross-validation. With no censored trades present,
++    # behavior is identical to the -09 fork.
+     """One event-driven sim for all four cases. Mirrors pine_exposure_stacked's
+     run_stacked (bug-fixed) + the S4 risk gate from pine_sizing."""
+     def mark(sym, t):
+@@ -55,7 +67,8 @@
+     exits_by_t = defaultdict(list)
+     for idx, tr in enumerate(all_trades):
+         entries_by_t[tr["entry_time"]].append(idx)
+-        exits_by_t[tr["exit_time"]].append(idx)
++        if not tr.get("censored"):
++            exits_by_t[tr["exit_time"]].append(idx)
+     times = sorted(set(entries_by_t) | set(exits_by_t))
+     order_of = {idx: idx for idx in range(len(all_trades))}
+ 
+@@ -65,6 +78,8 @@
+     skipped_rank = skipped_cap = skipped_risk = skipped_gate = 0
+     n_half_risk = n_full_risk = 0
+     taken = []
++    disposition = {}
++    exit_cashflows = []
+     open_time = total_time = pd.Timedelta(0)
+     prev_t = None
+ 
+@@ -88,6 +103,10 @@
+             _, _, net_r, _ = pb._outcome(tr["entry"], tr["stop"], tr["exit"], cost)
+             realized += pos["risk_dollars"] * net_r
+             open_pos.remove(pos)
++            exit_cashflows.append({
++                "key": (tr["symbol"], tr.get("signal_idx", -1)),
++                "net_r": net_r, "cash_flow": pos["risk_dollars"] * net_r,
++                "risk_dollars": pos["risk_dollars"]})
+         cands = entries_by_t.get(t, [])
+         if cands:
+             n_cands_t = len(cands)
+@@ -115,9 +134,11 @@
+                 contested_now = n_cands_t > free
+                 if use_ranking and contested_now and taken_at_t >= min(2, free):
+                     skipped_rank += 1
++                    disposition[idx] = "skipped_rank"
+                     continue
+                 if free <= 0:
+                     skipped_cap += 1
++                    disposition[idx] = "skipped_cap"
+                     continue
+                 eq = marked_equity(t)
+                 if sector_cap:
+@@ -126,6 +147,7 @@
+                                 if sector_map[p["trade"]["symbol"]] == s)
+                     if n_sec >= 2:
+                         skipped_gate += 1
++                        disposition[idx] = "skipped_gate"
+                         continue
+                 # S4 drawdown gate (identical to pine_sizing: check BEFORE sizing)
+                 cur_risk = pb.RISK_PCT
+@@ -138,6 +160,7 @@
+                              if eq > 0 else 1)
+                 if open_risk + cur_risk > pb.MAX_PORTFOLIO_RISK + 1e-9:
+                     skipped_risk += 1
++                    disposition[idx] = "skipped_risk"
+                     continue
+                 risk_dollars = cur_risk * eq
+                 risk_frac = (tr["entry"] - tr["stop"]) / tr["entry"]
+@@ -147,6 +170,7 @@
+                 open_pos.append(pos)
+                 by_id[id(tr)] = pos
+                 taken.append(idx)
++                disposition[idx] = "taken"
+                 taken_at_t += 1
+                 if cur_risk < pb.RISK_PCT:
+                     n_half_risk += 1
+@@ -156,14 +180,47 @@
+         peak = max(peak, eq)
+         if peak > 0:
+             max_dd = max(max_dd, (peak - eq) / peak)
++    # -13 successor terminal accounting (see header note): identical policy
++    # to the successor pine_backtest.simulate_portfolio. Only taken censored
++    # candidates can still be open here.
++    terminal_open = []
++    final_equity = realized
++    if open_pos:
++        assert all(p["trade"].get("censored") for p in open_pos), \
++            "non-censored position open after last event"
++        if cutoff is None:
++            cutoff = max(s.index[-1] for s in closes.values()) \
++                + pd.Timedelta(hours=4)
++        if prev_t is not None and cutoff > prev_t:
++            dt = cutoff - prev_t
++            total_time += dt
++            open_time += dt
++        for p in open_pos:
++            tr = p["trade"]
++            m = mark(tr["symbol"], cutoff)
++            unreal = ((m - tr["entry"]) / tr["entry"]) * p["size"]
++            terminal_open.append({
++                "symbol": tr["symbol"], "signal_idx": tr.get("signal_idx", -1),
++                "entry": tr["entry"], "entry_time": str(tr["entry_time"]),
++                "risk_dollars": p["risk_dollars"], "size": p["size"],
++                "mark": m, "mark_time": str(cutoff),
++                "unreal_dollars": unreal})
++        final_equity = marked_equity(cutoff)
++        peak = max(peak, final_equity)
++        if peak > 0:
++            max_dd = max(max_dd, (peak - final_equity) / peak)
+     exposure = float(open_time / total_time) if total_time > pd.Timedelta(0) else 0.0
+-    return {"final_equity": realized, "max_drawdown": max_dd,
++    return {"final_equity": final_equity, "realized_equity": realized,
++            "max_drawdown": max_dd,
+             "skipped_rank": skipped_rank, "skipped_cap": skipped_cap,
+             "skipped_risk": skipped_risk, "skipped_gate": skipped_gate,
+             "n_half_risk": n_half_risk, "n_full_risk": n_full_risk,
+             "taken": taken, "exposure": exposure,
+             "skipped_cap_count": skipped_cap + skipped_rank,
+-            "skipped_cap_risk": skipped_risk}
++            "skipped_cap_risk": skipped_risk,
++            "disposition": disposition, "exit_cashflows": exit_cashflows,
++            "terminal_open": terminal_open,
++            "cutoff": str(cutoff) if terminal_open else None}
+ 
+ 
+ def load_bull():

@@ -1,0 +1,42 @@
+--- a/engine_orig/pine_stack/pine_stack.py
++++ b/engine_fork09/pine_stack/pine_stack.py
+@@ -42,8 +42,13 @@
+     """One event-driven sim for all four cases. Mirrors pine_exposure_stacked's
+     run_stacked (bug-fixed) + the S4 risk gate from pine_sizing."""
+     def mark(sym, t):
++        # QF-EQUITY-PIT-INTEGRITY-20261023-09 RESEARCH FORK — B2 as-of fix
++        # (same defect as pine_backtest C0: START-stamped index, unfinished
++        # bar's Close at its own open). Policy: latest bar COMPLETED at or
++        # before t (bar end = start + 4h). Fallback retained as in C0 fork.
+         s = closes[sym]
+-        ii = s.index.searchsorted(t, side="right") - 1
++        ends = s.index + pd.Timedelta(hours=4)
++        ii = ends.searchsorted(t, side="right") - 1
+         return float(s.iloc[ii]) if ii >= 0 else float(s.iloc[0])
+ 
+     entries_by_t = defaultdict(list)
+@@ -87,11 +92,21 @@
+         if cands:
+             n_cands_t = len(cands)
+             if use_ranking:
+-                scored = [(-rs[id(all_trades[i])], i) for i in cands]
++                # QF-...-09 RESEARCH FORK — coincident-entry ordering fix.
++                # Original broke rs ties by candidate INDEX, so the taken
++                # set at a contested timestamp depended on all_trades input
++                # order. Fork: canonical identity key (input-order
++                # independent); index retained only as a final, unreachable
++                # tiebreak (symbol+signal_idx already identify a candidate).
++                scored = [(-rs[id(all_trades[i])], all_trades[i]["symbol"],
++                           all_trades[i].get("signal_idx", -1), i)
++                          for i in cands]
+                 scored.sort()
+-                ordered = [i for _, i in scored]
++                ordered = [x[-1] for x in scored]
+             else:
+-                ordered = sorted(cands)  # deterministic candidate order
++                ordered = sorted(cands, key=lambda i: (
++                    all_trades[i]["symbol"],
++                    all_trades[i].get("signal_idx", -1), i))
+             free0 = pb.MAX_CONCURRENT - len(open_pos)
+             taken_at_t = 0
+             for idx in ordered:

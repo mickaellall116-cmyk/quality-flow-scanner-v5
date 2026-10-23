@@ -1,0 +1,994 @@
+{
+ "rows": 590,
+ "closed": 586,
+ "censored": 4,
+ "censored_symbols": [
+  "CRM",
+  "MRNA",
+  "PFE",
+  "SHOP"
+ ],
+ "views": {
+  "gross": {
+   "taken_closed": 188,
+   "wins": 88,
+   "sum_r": 28.1812,
+   "avg_r": 0.1499,
+   "pf": 1.238969,
+   "exit_reasons": {
+    "stop": 162,
+    "ema55-break": 26
+   }
+  },
+  "4bps": {
+   "taken_closed": 187,
+   "wins": 90,
+   "sum_r": 32.4873,
+   "avg_r": 0.173729,
+   "pf": 1.282956,
+   "exit_reasons": {
+    "stop": 161,
+    "ema55-break": 26
+   }
+  },
+  "25bps": {
+   "taken_closed": 185,
+   "wins": 87,
+   "sum_r": 19.8892,
+   "avg_r": 0.107509,
+   "pf": 1.16555,
+   "exit_reasons": {
+    "stop": 159,
+    "ema55-break": 26
+   }
+  }
+ },
+ "monotone_violations_closed": 0,
+ "set_overlap": {
+  "common_closed": 182,
+  "common_sum_gross_r": 28.6835,
+  "common_sum_4bps_r": 26.3843,
+  "gross_only_closed": 6,
+  "gross_only_sum_gross_r": -0.5023,
+  "bps4_only_closed": 5,
+  "bps4_only_sum_4bps_r": 6.103
+ },
+ "r_bridge_4bps_minus_gross": {
+  "friction_on_common": -2.2992,
+  "allocation_effect": 6.6053,
+  "total": 4.3061
+ },
+ "top5_4bps": [
+  {
+   "symbol": "SNOW",
+   "entry_time": "2026-05-27 09:30:00-04:00",
+   "signal_idx": 842,
+   "net_r_4bps": 8.0874
+  },
+  {
+   "symbol": "INTC",
+   "entry_time": "2025-08-18 13:30:00-04:00",
+   "signal_idx": 457,
+   "net_r_4bps": 6.4172
+  },
+  {
+   "symbol": "AMD",
+   "entry_time": "2026-04-02 13:30:00-04:00",
+   "signal_idx": 769,
+   "net_r_4bps": 5.9181
+  },
+  {
+   "symbol": "QCOM",
+   "entry_time": "2026-04-28 13:30:00-04:00",
+   "signal_idx": 803,
+   "net_r_4bps": 5.347
+  },
+  {
+   "symbol": "LRCX",
+   "entry_time": "2025-12-18 13:30:00-05:00",
+   "signal_idx": 628,
+   "net_r_4bps": 4.8903
+  }
+ ],
+ "top5_sum": 30.66,
+ "top5_share_pct": 94.38,
+ "non_top5": {
+  "n": 182,
+  "sum_r": 1.8273
+ },
+ "year_split_4bps": {
+  "2025": {
+   "n": 95,
+   "sum_r": 3.3768
+  },
+  "2026": {
+   "n": 92,
+   "sum_r": 29.1105
+  }
+ },
+ "equity_decomposition": {
+  "gross": {
+   "terminal_open_taken": 3,
+   "terminal_symbols": [
+    "MRNA",
+    "PFE",
+    "CRM"
+   ],
+   "terminal_marks_sum": 876.6512
+  },
+  "4bps": {
+   "terminal_open_taken": 4,
+   "terminal_symbols": [
+    "MRNA",
+    "SHOP",
+    "PFE",
+    "CRM"
+   ],
+   "terminal_marks_sum": 970.1233
+  },
+  "25bps": {
+   "terminal_open_taken": 4,
+   "terminal_symbols": [
+    "MRNA",
+    "SHOP",
+    "PFE",
+    "CRM"
+   ],
+   "terminal_marks_sum": 869.641
+  }
+ },
+ "first_divergence": {
+  "entry_time": "2026-09-08 13:30:00-04:00",
+  "symbol": "QCOM",
+  "signal_idx": 985
+ },
+ "gross4bps_flag_diffs_before_first": 0,
+ "divergence_events": [
+  {
+   "entry_time": "2026-09-08 13:30:00-04:00",
+   "symbol": "QCOM",
+   "signal_idx": 985,
+   "sector": "SEMIS",
+   "rs": 0.0991,
+   "censored": false,
+   "taken_gross": true,
+   "taken_4bps": false,
+   "taken_25bps": false,
+   "disposition_4bps_c1": "skipped_risk",
+   "gross_r": 1.8065,
+   "net_r_4bps": 1.7956,
+   "cohort": [
+    {
+     "symbol": "QCOM",
+     "rs": 0.0991,
+     "disposition_4bps_c1": "skipped_risk"
+    },
+    {
+     "symbol": "TSLA",
+     "rs": 0.0247,
+     "disposition_4bps_c1": "skipped_risk"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "CRM",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    },
+    {
+     "symbol": "NU",
+     "sector": "FINTECH"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "CRM",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    },
+    {
+     "symbol": "NU",
+     "sector": "FINTECH"
+    }
+   ],
+   "gross_sector_counts": {
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1,
+    "FINTECH": 1
+   },
+   "bps4_sector_counts": {
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1,
+    "FINTECH": 1
+   }
+  },
+  {
+   "entry_time": "2026-09-10 13:30:00-04:00",
+   "symbol": "META",
+   "signal_idx": 989,
+   "sector": "AI_SOFTWARE",
+   "rs": 0.1267,
+   "censored": false,
+   "taken_gross": false,
+   "taken_4bps": true,
+   "taken_25bps": true,
+   "disposition_4bps_c1": "taken",
+   "gross_r": 2.3168,
+   "net_r_4bps": 2.305,
+   "cohort": [
+    {
+     "symbol": "AAPL",
+     "rs": 0.0418,
+     "disposition_4bps_c1": "skipped_rank"
+    },
+    {
+     "symbol": "META",
+     "rs": 0.1267,
+     "disposition_4bps_c1": "taken"
+    },
+    {
+     "symbol": "NET",
+     "rs": 0.1073,
+     "disposition_4bps_c1": "skipped_rank"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    },
+    {
+     "symbol": "NU",
+     "sector": "FINTECH"
+    },
+    {
+     "symbol": "QCOM",
+     "sector": "SEMIS"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    },
+    {
+     "symbol": "NU",
+     "sector": "FINTECH"
+    }
+   ],
+   "gross_sector_counts": {
+    "HEALTHCARE": 1,
+    "CRYPTO": 1,
+    "FINTECH": 1,
+    "SEMIS": 1
+   },
+   "bps4_sector_counts": {
+    "HEALTHCARE": 1,
+    "CRYPTO": 1,
+    "FINTECH": 1
+   }
+  },
+  {
+   "entry_time": "2026-09-14 13:30:00-04:00",
+   "symbol": "INTC",
+   "signal_idx": 993,
+   "sector": "SEMIS",
+   "rs": 0.1111,
+   "censored": false,
+   "taken_gross": false,
+   "taken_4bps": true,
+   "taken_25bps": false,
+   "disposition_4bps_c1": "taken",
+   "gross_r": 2.3411,
+   "net_r_4bps": 2.3335,
+   "cohort": [
+    {
+     "symbol": "CRM",
+     "rs": 0.0062,
+     "disposition_4bps_c1": "skipped_rank"
+    },
+    {
+     "symbol": "INTC",
+     "rs": 0.1111,
+     "disposition_4bps_c1": "taken"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "HOOD",
+     "sector": "FINTECH"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    },
+    {
+     "symbol": "QCOM",
+     "sector": "SEMIS"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "HOOD",
+     "sector": "FINTECH"
+    },
+    {
+     "symbol": "META",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    }
+   ],
+   "gross_sector_counts": {
+    "FINTECH": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1,
+    "SEMIS": 1
+   },
+   "bps4_sector_counts": {
+    "FINTECH": 1,
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1
+   }
+  },
+  {
+   "entry_time": "2026-09-16 13:30:00-04:00",
+   "symbol": "CRWD",
+   "signal_idx": 997,
+   "sector": "AI_SOFTWARE",
+   "rs": 0.1405,
+   "censored": false,
+   "taken_gross": true,
+   "taken_4bps": false,
+   "taken_25bps": true,
+   "disposition_4bps_c1": "skipped_risk",
+   "gross_r": 1.699,
+   "net_r_4bps": 1.6913,
+   "cohort": [
+    {
+     "symbol": "CRWD",
+     "rs": 0.1405,
+     "disposition_4bps_c1": "skipped_risk"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    },
+    {
+     "symbol": "QCOM",
+     "sector": "SEMIS"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "INTC",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "META",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    }
+   ],
+   "gross_sector_counts": {
+    "HEALTHCARE": 1,
+    "CRYPTO": 1,
+    "SEMIS": 1
+   },
+   "bps4_sector_counts": {
+    "SEMIS": 1,
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1
+   }
+  },
+  {
+   "entry_time": "2026-09-17 13:30:00-04:00",
+   "symbol": "ARKK",
+   "signal_idx": 999,
+   "sector": "ETF",
+   "rs": 0.0597,
+   "censored": false,
+   "taken_gross": false,
+   "taken_4bps": true,
+   "taken_25bps": false,
+   "disposition_4bps_c1": "taken",
+   "gross_r": 1.0001,
+   "net_r_4bps": 0.9854,
+   "cohort": [
+    {
+     "symbol": "ARKK",
+     "rs": 0.0597,
+     "disposition_4bps_c1": "taken"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "CRWD",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    },
+    {
+     "symbol": "QCOM",
+     "sector": "SEMIS"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "INTC",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "META",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    }
+   ],
+   "gross_sector_counts": {
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1,
+    "SEMIS": 1
+   },
+   "bps4_sector_counts": {
+    "SEMIS": 1,
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1
+   }
+  },
+  {
+   "entry_time": "2026-09-21 13:30:00-04:00",
+   "symbol": "GOOGL",
+   "signal_idx": 1003,
+   "sector": "AI_SOFTWARE",
+   "rs": 0.0659,
+   "censored": false,
+   "taken_gross": true,
+   "taken_4bps": false,
+   "taken_25bps": false,
+   "disposition_4bps_c1": "skipped_rank",
+   "gross_r": -2.1155,
+   "net_r_4bps": -2.1326,
+   "cohort": [
+    {
+     "symbol": "GOOGL",
+     "rs": 0.0659,
+     "disposition_4bps_c1": "skipped_rank"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "CRWD",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    },
+    {
+     "symbol": "QCOM",
+     "sector": "SEMIS"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "ARKK",
+     "sector": "ETF"
+    },
+    {
+     "symbol": "INTC",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "META",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    }
+   ],
+   "gross_sector_counts": {
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1,
+    "SEMIS": 1
+   },
+   "bps4_sector_counts": {
+    "ETF": 1,
+    "SEMIS": 1,
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1
+   }
+  },
+  {
+   "entry_time": "2026-09-23 13:30:00-04:00",
+   "symbol": "HOOD",
+   "signal_idx": 1007,
+   "sector": "FINTECH",
+   "rs": 0.0606,
+   "censored": false,
+   "taken_gross": true,
+   "taken_4bps": false,
+   "taken_25bps": false,
+   "disposition_4bps_c1": "skipped_rank",
+   "gross_r": -1.2437,
+   "net_r_4bps": -1.2516,
+   "cohort": [
+    {
+     "symbol": "HOOD",
+     "rs": 0.0606,
+     "disposition_4bps_c1": "skipped_rank"
+    },
+    {
+     "symbol": "MSFT",
+     "rs": 0.0028,
+     "disposition_4bps_c1": "skipped_rank"
+    },
+    {
+     "symbol": "MU",
+     "rs": 0.0344,
+     "disposition_4bps_c1": "skipped_rank"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "CRWD",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    },
+    {
+     "symbol": "QCOM",
+     "sector": "SEMIS"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "ARKK",
+     "sector": "ETF"
+    },
+    {
+     "symbol": "INTC",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "META",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    }
+   ],
+   "gross_sector_counts": {
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1,
+    "SEMIS": 1
+   },
+   "bps4_sector_counts": {
+    "ETF": 1,
+    "SEMIS": 1,
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1
+   }
+  },
+  {
+   "entry_time": "2026-09-30 13:30:00-04:00",
+   "symbol": "RKLB",
+   "signal_idx": 1017,
+   "sector": "SPACE",
+   "rs": 0.1272,
+   "censored": false,
+   "taken_gross": false,
+   "taken_4bps": true,
+   "taken_25bps": false,
+   "disposition_4bps_c1": "taken",
+   "gross_r": 0.1696,
+   "net_r_4bps": 0.1623,
+   "cohort": [
+    {
+     "symbol": "AAPL",
+     "rs": -0.0015,
+     "disposition_4bps_c1": "skipped_rank"
+    },
+    {
+     "symbol": "RKLB",
+     "rs": 0.1272,
+     "disposition_4bps_c1": "taken"
+    },
+    {
+     "symbol": "SNOW",
+     "rs": 0.024,
+     "disposition_4bps_c1": "skipped_rank"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "ARM",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "CRWD",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "ARKK",
+     "sector": "ETF"
+    },
+    {
+     "symbol": "ARM",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "MSTR",
+     "sector": "CRYPTO"
+    }
+   ],
+   "gross_sector_counts": {
+    "SEMIS": 1,
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1
+   },
+   "bps4_sector_counts": {
+    "ETF": 1,
+    "SEMIS": 1,
+    "HEALTHCARE": 1,
+    "CRYPTO": 1
+   }
+  },
+  {
+   "entry_time": "2026-10-05 13:30:00-04:00",
+   "symbol": "PLTR",
+   "signal_idx": 1023,
+   "sector": "AI_SOFTWARE",
+   "rs": 0.0301,
+   "censored": false,
+   "taken_gross": true,
+   "taken_4bps": false,
+   "taken_25bps": false,
+   "disposition_4bps_c1": "skipped_rank",
+   "gross_r": 0.4168,
+   "net_r_4bps": 0.4036,
+   "cohort": [
+    {
+     "symbol": "PLTR",
+     "rs": 0.0301,
+     "disposition_4bps_c1": "skipped_rank"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "ARM",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "CRWD",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "NVDA",
+     "sector": "SEMIS"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "ARKK",
+     "sector": "ETF"
+    },
+    {
+     "symbol": "ARM",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "NVDA",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "RKLB",
+     "sector": "SPACE"
+    }
+   ],
+   "gross_sector_counts": {
+    "SEMIS": 2,
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1
+   },
+   "bps4_sector_counts": {
+    "ETF": 1,
+    "SEMIS": 2,
+    "HEALTHCARE": 1,
+    "SPACE": 1
+   }
+  },
+  {
+   "entry_time": "2026-10-07 13:30:00-04:00",
+   "symbol": "GOOGL",
+   "signal_idx": 1027,
+   "sector": "AI_SOFTWARE",
+   "rs": 0.0182,
+   "censored": false,
+   "taken_gross": false,
+   "taken_4bps": true,
+   "taken_25bps": false,
+   "disposition_4bps_c1": "taken",
+   "gross_r": 0.3343,
+   "net_r_4bps": 0.3168,
+   "cohort": [
+    {
+     "symbol": "GOOGL",
+     "rs": 0.0182,
+     "disposition_4bps_c1": "taken"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "ARM",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "CRWD",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "NVDA",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "PLTR",
+     "sector": "AI_SOFTWARE"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "ARM",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "NVDA",
+     "sector": "SEMIS"
+    },
+    {
+     "symbol": "RKLB",
+     "sector": "SPACE"
+    }
+   ],
+   "gross_sector_counts": {
+    "SEMIS": 2,
+    "AI_SOFTWARE": 2,
+    "HEALTHCARE": 1
+   },
+   "bps4_sector_counts": {
+    "SEMIS": 2,
+    "HEALTHCARE": 1,
+    "SPACE": 1
+   }
+  },
+  {
+   "entry_time": "2026-10-08 13:30:00-04:00",
+   "symbol": "SHOP",
+   "signal_idx": 1029,
+   "sector": "AI_SOFTWARE",
+   "rs": 0.1511,
+   "censored": true,
+   "taken_gross": false,
+   "taken_4bps": true,
+   "taken_25bps": true,
+   "disposition_4bps_c1": "taken",
+   "gross_r": null,
+   "net_r_4bps": null,
+   "cohort": [
+    {
+     "symbol": "SHOP",
+     "rs": 0.1511,
+     "disposition_4bps_c1": "taken"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "CRWD",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "PLTR",
+     "sector": "AI_SOFTWARE"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "GOOGL",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    }
+   ],
+   "gross_sector_counts": {
+    "AI_SOFTWARE": 2,
+    "HEALTHCARE": 1
+   },
+   "bps4_sector_counts": {
+    "AI_SOFTWARE": 1,
+    "HEALTHCARE": 1
+   }
+  },
+  {
+   "entry_time": "2026-10-09 13:30:00-04:00",
+   "symbol": "CRWD",
+   "signal_idx": 1031,
+   "sector": "AI_SOFTWARE",
+   "rs": 0.0583,
+   "censored": false,
+   "taken_gross": true,
+   "taken_4bps": false,
+   "taken_25bps": true,
+   "disposition_4bps_c1": "skipped_gate",
+   "gross_r": -1.0654,
+   "net_r_4bps": -1.0759,
+   "cohort": [
+    {
+     "symbol": "AMZN",
+     "rs": 0.0298,
+     "disposition_4bps_c1": "taken"
+    },
+    {
+     "symbol": "CRWD",
+     "rs": 0.0583,
+     "disposition_4bps_c1": "skipped_gate"
+    }
+   ],
+   "gross_open": [
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "PLTR",
+     "sector": "AI_SOFTWARE"
+    }
+   ],
+   "bps4_open": [
+    {
+     "symbol": "GOOGL",
+     "sector": "AI_SOFTWARE"
+    },
+    {
+     "symbol": "MRNA",
+     "sector": "HEALTHCARE"
+    },
+    {
+     "symbol": "SHOP",
+     "sector": "AI_SOFTWARE"
+    }
+   ],
+   "gross_sector_counts": {
+    "HEALTHCARE": 1,
+    "AI_SOFTWARE": 1
+   },
+   "bps4_sector_counts": {
+    "AI_SOFTWARE": 2,
+    "HEALTHCARE": 1
+   }
+  }
+ ]
+}
