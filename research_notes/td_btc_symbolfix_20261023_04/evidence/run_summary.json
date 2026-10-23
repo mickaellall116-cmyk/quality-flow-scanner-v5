@@ -1,0 +1,54 @@
+{
+  "calls": 3,
+  "counters": {
+    "note": "the two counters are preserved distinctly; they are not asserted identical",
+    "provider_daily_usage_after": 16,
+    "provider_daily_usage_before": 14,
+    "request_counted_credits_this_task": 3
+  },
+  "finished_utc": "2026-10-23T17:03:32.248Z",
+  "last_call_start": 1792775011.9494665,
+  "legs": [
+    {
+      "attempts": 1,
+      "leg_id": "BTC-USD/HO-C1",
+      "outcome": "QUARANTINED_SCHEMA_COVERAGE_HOLD"
+    }
+  ],
+  "post_daily_usage": 16,
+  "post_plan_daily_limit": 800,
+  "reads": [
+    {
+      "bytes": 132,
+      "calls": 1,
+      "http_status": 200,
+      "kind": "usage_read",
+      "label": "open_preflight",
+      "receipt_ts_utc": "2026-10-23T17:03:15.666Z",
+      "request_ts_utc": "2026-10-23T17:03:14.949Z",
+      "sha256": "9c9c82e1094e21d1922507748df9715c01dad4a7f21a659b9cb6b38978519a59"
+    },
+    {
+      "bytes": 132,
+      "calls": 3,
+      "http_status": 200,
+      "kind": "usage_read",
+      "label": "close_final",
+      "receipt_ts_utc": "2026-10-23T17:03:32.247Z",
+      "request_ts_utc": "2026-10-23T17:03:25.070Z",
+      "sha256": "67e8dafa7f5e97b942f469886eba307ae65295d2e2cd18052383d0b3fd785444"
+    }
+  ],
+  "refusals": [
+    {
+      "detail": "volume missing/null in row {'datetime': '2023-10-19 00:00:00', 'open': '28260', 'high': '28287.15', 'low': '28230', 'close': '28286.75'}",
+      "kind": "capture_refusal",
+      "leg_id": "BTC-USD/HO-C1",
+      "reason": "SCHEMA_COVERAGE_HOLD",
+      "ts_utc": "2026-10-23T17:03:25.069Z"
+    }
+  ],
+  "started_utc": "2026-10-23T17:03:14.937Z",
+  "stop": "SCHEMA_COVERAGE_HOLD BTC-USD/HO-C1",
+  "total_calls": 3
+}

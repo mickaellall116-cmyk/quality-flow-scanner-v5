@@ -1,0 +1,31 @@
+PASS alias: all six legs build request symbol BTC/USD
+PASS alias: BTC-USD as request form rejected
+PASS alias: BTC/USD request form accepted by guard
+PASS alias: unmapped symbol raises (no loosening for other symbols)
+PASS legs: exact six pinned windows + expected rows
+PASS params: outputsize/interval/adjust/timezone/order pinned
+PASS params: start/end suffixes T00:00:00 / T23:59:59
+PASS manifest: root digest recomputes
+PASS manifest: frozen membership digests unchanged
+PASS manifest: exactly one alias mapping BTC-USD -> BTC/USD
+PASS manifest: every leg carries BOTH identifiers
+PASS grid: spring-forward chunk validates (23h session day)
+PASS grid: spring stamps all :30, no 02:30 on 2025-03-09
+PASS grid: fall-back chunk validates (25h session day, repeated hour resolved on UTC instants)
+PASS grid: fall stamps contain 2025-11-02 01:30 exactly twice
+PASS meta: provider form BTC-USD in meta rejected
+PASS grid: dropped bar -> GAP_VIOLATION
+PASS grid: off-phase stamp -> OFF_GRID_STAMPS
+PASS grid: duplicated stamp -> DUPLICATE_INSTANT
+PASS truncation: exactly 5000 rows -> TRUNCATION_SUSPECT
+PASS volume: missing field -> SCHEMA_COVERAGE_HOLD (not zero)
+PASS volume: null -> SCHEMA_COVERAGE_HOLD
+PASS volume: zero-vol with nonzero range counted (SMCI-class detector)
+PASS volume: negative -> SCHEMA_VIOLATION
+PASS receipt: hash recomputes from canonical form
+PASS receipt: chain links prev->next
+PASS receipt: tamper breaks recompute
+PASS scope: exactly 6 legs, all internal BTC-USD
+PASS scope: driver names no other universe symbol as a symbol literal
+PASS scope: hard cap 15 / max 2 attempts per leg
+{"passed": 30, "failed": 0, "failures": []}

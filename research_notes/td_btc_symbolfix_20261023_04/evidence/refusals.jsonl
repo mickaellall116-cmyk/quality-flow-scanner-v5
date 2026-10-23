@@ -1,0 +1,1 @@
+{"detail": "volume missing/null in row {'datetime': '2023-10-19 00:00:00', 'open': '28260', 'high': '28287.15', 'low': '28230', 'close': '28286.75'}", "kind": "capture_refusal", "leg_id": "BTC-USD/HO-C1", "reason": "SCHEMA_COVERAGE_HOLD", "ts_utc": "2026-10-23T17:03:25.069Z"}
