@@ -1,0 +1,2717 @@
+{
+ "task": "QF-EQUITY43-DEV-ORDER-CENSOR-20261023-13",
+ "labels": [
+  "EQUITIES-ONLY DEV EXPLORATORY",
+  "G4 UNADOPTED",
+  "NOT VALIDATED EDGE"
+ ],
+ "experiment_id": "QF-EQUITY43-DEV-ORDER-CENSOR-20261023-13",
+ "experiment_config": {
+  "experiment_id": "QF-EQUITY43-DEV-ORDER-CENSOR-20261023-13",
+  "predecessor": "QF-EQUITY43-DEV-PREFLIGHT-20261023-12 STOP_PREFLIGHT (package 861f5e2, immutable; not re-run, not superseded silently \u2014 this is a new versioned experiment)",
+  "candidate_processing_order": "canonical (symbol, signal_idx) ascending; the candidate list is sorted by this total key before BOTH simulator paths; (symbol, signal_idx) is unique per candidate, so no secondary key is needed",
+  "censoring_treatment": "successor v1: a position still open at the last bar is emitted as a candidate with censored=true, exit/exit_time null; it enters the identical time-local rank/cap/sector/risk selection; if taken it is held to the W_DEV cutoff and valued in equity at the last-completed-bar as-of mark; if skipped it is ledgered with its gate reason; no exit, cash flow, or trade R is fabricated",
+  "cutoff_rule": "max over symbols of (last 4H bar start) + 4h (= 2026-10-16 17:30 America/New_York)",
+  "strategy_config": "frozen C1 configuration: V3.6 hybrid signal + frozen exits, R1 rs_top2 ranking + R2 sector cap, no R3; 1% risk, max 5 concurrent, 5% portfolio risk cap; strategy source files byte-identical to -12 pins",
+  "engine": "successor copies of the -09 research fork; deltas confined to simulate_portfolio / simulate_stack accounting (canonical pipeline order is a driver-level pin; censoring treatment in both simulators); pins in P0",
+  "cost_views": [
+   "gross",
+   "4bps",
+   "25bps"
+  ],
+  "universe": "43 DEV equities (UX51 equities minus SMCI: no DEV bytes exist; excluded pre-declared, never imputed)",
+  "labels": [
+   "EQUITIES-ONLY DEV EXPLORATORY",
+   "G4 UNADOPTED",
+   "NOT VALIDATED EDGE"
+  ]
+ },
+ "experiment_config_sha256": "87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706",
+ "phases": {
+  "P0_pins": {
+   "pins": {
+    "engine_successor/pine_backtest.py": "874d2a9b1d99171a4d3db709ece9ce4719b4d108a70f7e95b4a082692cc0c99d",
+    "engine_successor/pine_stack/pine_stack.py": "8d4a964fd7bb08b4a98a55eb7fae222157ae27f1a768f255e7cbc152c9d15b03",
+    "engine_fork09/pine_backtest.py": "becea0824486003daef386b49e137a83ffdf22c1e2d145136498919102fc42f2",
+    "engine_fork09/pine_stack/pine_stack.py": "30594231ffc3bac27303f96310e8f274229415c890c371f4dbdfcdb54156cda4",
+    "asof_benchmark.py": "f0f4582c4a8aee484c24d330658b0c4ae6e2a169c19f3bf2b1475c2dc2ce2017",
+    "engine_successor/scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c",
+    "engine_successor/pine_ranking/pine_ranking.py": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+    "engine_successor/pine_signal_quality/pine_signal_quality.py": "b1b39ee8d0bd4bbb1387b3ce54c7345c1f8dd622f94a5ed390c989fed1d39e69",
+    "engine_successor/pine_exposure/pine_exposure.py": "9f646161c27f6b28febe0980d03665bc9c1502fb844d37be6fd1d72ee45102be",
+    "engine_fork09/scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c",
+    "engine_fork09/pine_ranking/pine_ranking.py": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+    "engine_orig/pine_backtest.py": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+    "engine_orig/pine_stack/pine_stack.py": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+    "session_table.json": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f"
+   },
+   "archive_continue11_files": 158,
+   "archive_continue11_mismatches": [],
+   "archive_pilot_files": 22,
+   "archive_pilot_mismatches": [],
+   "paused_production_before": {
+    "harness_sha256": "ce7c902ce182683ca1723468a0109747abd80db287c39556ea4db78210a0833d",
+    "pause_new_entries_present": true,
+    "resume_new_entries_present": false
+   },
+   "experiment_config_sha256": "87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706"
+  },
+  "P1_chains": {
+   "child_root_committed": "c5628652c5bf59d870103e41fd7e22a23fe4d811c61662fda78a8790abd0444f",
+   "child_root_recomputed": "c5628652c5bf59d870103e41fd7e22a23fe4d811c61662fda78a8790abd0444f",
+   "parent_root_committed": "ca49892062f1ac5d4ec6d20eaadd37b519aec84ad0b23a995fb11db74dccfd64",
+   "parent_root_recomputed": "ca49892062f1ac5d4ec6d20eaadd37b519aec84ad0b23a995fb11db74dccfd64",
+   "child_chain_receipts_verified": 54,
+   "child_chain_head": "c129e95fc404deff12310fe39048c8c610b93f2f976dbb321754ea86340ca6cc",
+   "legs_without_receipt_quarantined": 23,
+   "pilot_receipts": {
+    "NVDA": {
+     "response_sha256": "b1ecf7bf6718cda1c1cd4fa0da4a1281bc14cc6c4fc1d357aaeabaa77d3fa0f6",
+     "rows": 3654,
+     "ok": true
+    },
+    "TSLA": {
+     "response_sha256": "f6b1e64f244b06543f536be8eaf04d731b7dd98700bf1afdbb7ff59b303479fe",
+     "rows": 3655,
+     "ok": true
+    },
+    "AAPL": {
+     "response_sha256": "97649d2f2a326b8a2e2e20a72cfaa83ebfaaed128698f1829716d37506acdd4f",
+     "rows": 3655,
+     "ok": true
+    },
+    "SPY": {
+     "response_sha256": "2c6631dc5482b5f8e20a2107b53fbcd64e1ae3732d2bf09adf17c874076fecfb",
+     "rows": 3655,
+     "ok": true
+    }
+   }
+  },
+  "P2_adjudication": {
+   "NVDA": {
+    "source_namespace": "td_pilot_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 138.25,
+      "high": 138.25,
+      "low": 138.25,
+      "close": 138.25,
+      "volume": 511735.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "TSLA": {
+    "source_namespace": "td_pilot_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 345.16,
+      "high": 345.16,
+      "low": 345.16,
+      "close": 345.16,
+      "volume": 385982.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 462.28,
+      "high": 462.28,
+      "low": 462.28,
+      "close": 462.28,
+      "volume": 840124.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "AAPL": {
+    "source_namespace": "td_pilot_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 237.33,
+      "high": 237.33,
+      "low": 237.33,
+      "close": 237.33,
+      "volume": 100855.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 258.20001,
+      "high": 258.20001,
+      "low": 258.20001,
+      "close": 258.20001,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "SPY": {
+    "source_namespace": "td_pilot_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 602.54999,
+      "high": 602.54999,
+      "low": 602.54999,
+      "close": 602.54999,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 601.29999,
+      "high": 601.29999,
+      "low": 601.29999,
+      "close": 601.29999,
+      "volume": 131302.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "PLTR": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 67.080002,
+      "high": 67.080002,
+      "low": 67.080002,
+      "close": 67.080002,
+      "volume": 180016.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 82.38,
+      "high": 82.38,
+      "low": 82.38,
+      "close": 82.38,
+      "volume": 252073.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "SOFI": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 16.41,
+      "high": 16.41,
+      "low": 16.41,
+      "close": 16.41,
+      "volume": 144808.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 16.02,
+      "high": 16.02,
+      "low": 16.02,
+      "close": 16.02,
+      "volume": 1.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "AMD": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 137.175,
+      "high": 137.175,
+      "low": 137.175,
+      "close": 137.175,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 126.29,
+      "high": 126.29,
+      "low": 126.29,
+      "close": 126.29,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "MSFT": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 423.45999,
+      "high": 423.45999,
+      "low": 423.45999,
+      "close": 423.45999,
+      "volume": 17263.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "META": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 574.32001,
+      "high": 574.32001,
+      "low": 574.32001,
+      "close": 574.32001,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "COIN": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 296.20001,
+      "high": 296.20001,
+      "low": 296.20001,
+      "close": 296.20001,
+      "volume": 211.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 279.62,
+      "high": 279.62,
+      "low": 279.62,
+      "close": 279.62,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "MSTR": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 387.47,
+      "high": 387.47,
+      "low": 387.47,
+      "close": 387.47,
+      "volume": 281124.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "AVGO": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 162.080002,
+      "high": 162.080002,
+      "low": 162.080002,
+      "close": 162.080002,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 239.67999,
+      "high": 239.67999,
+      "low": 239.67999,
+      "close": 239.67999,
+      "volume": 68386.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "GOOGL": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 168.95,
+      "high": 168.95,
+      "low": 168.95,
+      "close": 168.95,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "AMZN": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 207.89,
+      "high": 207.89,
+      "low": 207.89,
+      "close": 207.89,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 229.050003,
+      "high": 229.050003,
+      "low": 229.050003,
+      "close": 229.050003,
+      "volume": 42874.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "NFLX": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 88.681,
+      "high": 88.681,
+      "low": 88.681,
+      "close": 88.681,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "CRM": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 344.43,
+      "high": 344.5,
+      "low": 344.43,
+      "close": 344.5,
+      "volume": 3.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "MU": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 97.95,
+      "high": 97.95,
+      "low": 97.95,
+      "close": 97.95,
+      "volume": 19.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "INTC": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 24.049999,
+      "high": 24.049999,
+      "low": 24.049999,
+      "close": 24.049999,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "LRCX": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 73.88,
+      "high": 73.88,
+      "low": 73.88,
+      "close": 73.88,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "AMAT": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 174.71001,
+      "high": 174.71001,
+      "low": 174.71001,
+      "close": 174.71001,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 168.37,
+      "high": 168.37,
+      "low": 168.37,
+      "close": 168.37,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "QCOM": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 158.53,
+      "high": 158.53,
+      "low": 158.53,
+      "close": 158.53,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 159.36,
+      "high": 159.36,
+      "low": 159.36,
+      "close": 159.36,
+      "volume": 10.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "ARM": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3653,
+    "excluded": [],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "HOOD": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3653,
+    "excluded": [],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "APP": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 336.75,
+      "high": 336.75,
+      "low": 336.75,
+      "close": 336.75,
+      "volume": 2.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "NET": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 112.58,
+      "high": 112.9299,
+      "low": 112.58,
+      "close": 112.9299,
+      "volume": 10.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "SNOW": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 174.8,
+      "high": 174.8,
+      "low": 174.8,
+      "close": 174.8,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 163.06,
+      "high": 163.06,
+      "low": 162.79,
+      "close": 162.79,
+      "volume": 1.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "DDOG": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 152.75,
+      "high": 152.75,
+      "low": 152.75,
+      "close": 152.75,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "CRWD": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 86.4925,
+      "high": 86.4925,
+      "low": 86.4925,
+      "close": 86.4925,
+      "volume": 4.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "SHOP": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 115.6,
+      "high": 115.6,
+      "low": 115.6,
+      "close": 115.6,
+      "volume": 14.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 110.18,
+      "high": 110.18,
+      "low": 110.18,
+      "close": 110.18,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "RKLB": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 27.28,
+      "high": 27.28,
+      "low": 27.28,
+      "close": 27.28,
+      "volume": 132537.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 26.6,
+      "high": 26.6,
+      "low": 26.6,
+      "close": 26.6,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "ASTS": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 23.81,
+      "high": 23.81,
+      "low": 23.81,
+      "close": 23.81,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "LUNR": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 16.35,
+      "high": 16.35,
+      "low": 16.35,
+      "close": 16.35,
+      "volume": 52713.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "PYPL": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 86.77,
+      "high": 86.77,
+      "low": 86.77,
+      "close": 86.77,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 88.25,
+      "high": 88.25,
+      "low": 88.25,
+      "close": 88.25,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "NU": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 12.53,
+      "high": 12.53,
+      "low": 12.53,
+      "close": 12.53,
+      "volume": 224717.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 10.37,
+      "high": 10.37,
+      "low": 10.37,
+      "close": 10.37,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "MELI": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3653,
+    "excluded": [],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "IWM": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 241.87,
+      "high": 241.87,
+      "low": 241.87,
+      "close": 241.87,
+      "volume": 3.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 223.39,
+      "high": 223.39,
+      "low": 223.39,
+      "close": 223.39,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "SMH": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 242.13,
+      "high": 242.13,
+      "low": 242.13,
+      "close": 242.13,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 251.37,
+      "high": 251.37,
+      "low": 251.37,
+      "close": 251.37,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "ARKK": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 57.98,
+      "high": 57.98,
+      "low": 57.98,
+      "close": 57.98,
+      "volume": 9383.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 60.96,
+      "high": 60.96,
+      "low": 60.96,
+      "close": 60.96,
+      "volume": 10.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "XLF": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 51.34,
+      "high": 51.34,
+      "low": 51.34,
+      "close": 51.34,
+      "volume": 0.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 48.99,
+      "high": 48.99,
+      "low": 48.99,
+      "close": 48.99,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "NIO": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 4.48,
+      "high": 4.48,
+      "low": 4.48,
+      "close": 4.48,
+      "volume": 126.0
+     },
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 4.62,
+      "high": 4.62,
+      "low": 4.62,
+      "close": 4.62,
+      "volume": 0.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "MRNA": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-11-29 15:30:00",
+      "open": 43.060001,
+      "high": 43.060001,
+      "low": 43.060001,
+      "close": 43.060001,
+      "volume": 13821.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "PFE": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-12-24 14:30:00",
+      "open": 26.69,
+      "high": 26.71,
+      "low": 26.69,
+      "close": 26.71,
+      "volume": 208.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   },
+   "F": {
+    "source_namespace": "td_capture_equity39_continue_20261023",
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     {
+      "datetime": "2024-12-24 15:30:00",
+      "open": 10.02,
+      "high": 10.02,
+      "low": 10.02,
+      "close": 10.02,
+      "volume": 129976.0
+     }
+    ],
+    "excluded_outside_generic_early_close_class": [],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0,
+    "gates_G2_G6": {
+     "G-2_calendar_admission": true,
+     "G-3_completeness_exact": true,
+     "G-4_phantom_exclusion_generic": true,
+     "G-6_schema_instant_hygiene": true,
+     "G-5_volume_completeness": true
+    }
+   }
+  },
+  "P2_PFE_ruling": {
+   "symbol": "PFE",
+   "leg": "PFE/DEV",
+   "carried_from": "QF-EQUITY43-DEV-PREFLIGHT-20261023-12 (package 861f5e2) \u2014 re-verified on identical admitted bytes in this successor; ruling text unchanged",
+   "excluded_rows_exact": [
+    {
+     "datetime": "2024-12-24 14:30:00",
+     "open": 26.69,
+     "high": 26.71,
+     "low": 26.69,
+     "close": 26.71,
+     "volume": 208.0
+    }
+   ],
+   "pinned_session_2024-12-24": {
+    "date": "2024-12-24",
+    "open": "09:30",
+    "close": "13:00"
+   },
+   "generic_rule": "A raw 1h bar is admitted iff its bar-open stamp belongs to the pinned session table's expected stamp set for its date ([09:30, close) on the hourly grid). Exclusion is decided SOLELY by non-membership in that pinned set; the criterion is stamp-value-agnostic and is applied uniformly to all 43 legs. On 2024-12-24 the pinned close is 13:00, so the expected opens are exactly 09:30/10:30/11:30/12:30.",
+   "ruling": "PFE/DEV's single excluded row (2024-12-24 14:30) is a post-close stamp on a pinned 13:00 early-close session and is EXCLUDED under the same generic pinned-session rule that excludes the 15:30 stamps on the pilot legs; the 14:30 clock value is not the criterion and no PFE-specific whitelist exists or was applied. PFE/DEV is ADMITTED to the study at exactly 3,653 admitted rows with this variant evidence preserved verbatim.",
+   "admitted_rows": 3653
+  },
+  "P2_G4_VBASIS_disposition": "G4/VBASIS remains CONVENTION_BREAK_SUSPECT and UNADOPTED (checker candidate-2, -02 disposition stands for the program; -11 G-7 line identical). Carried from -12 unchanged: it is an explicit qualification BLOCKER, not a silent pass and not waived: every input to this study is candidate-grade (CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED), NOT fully QUALIFIED. Price-side evidence on the admitted DEV bytes: adjust=splits in force per receipts, admission/completeness exact on all 43 legs, zero price-moving zero-volume admitted bars. No threshold was set, tuned, or touched.",
+  "P3_fixture_replay": {
+   "pit09_original": {
+    "exit_code": 1,
+    "summary": [
+     "SUMMARY impl=original: 0/5 assertions hold; VIOLATED: ['B1 rs invariant to unfinished SPY close @ 09:30', 'B1 rs invariant to unfinished SPY close @ 13:30', 'B2a C0 simulate_portfolio invariant to unfinished-bar close', 'B2b pine_stack simulate_stack invariant to unfinished-bar close', 'ORD taken candidate at contested coincident timestamp is input-order invariant']"
+    ],
+    "engine": "/home/hatch/workspace/qf_td13_stage/engine_orig"
+   },
+   "pit09_fork09_pristine": {
+    "exit_code": 0,
+    "summary": [
+     "SUMMARY impl=fork: 5/5 assertions hold"
+    ],
+    "engine": "/home/hatch/workspace/qf_td13_stage/engine_fork09"
+   },
+   "pit09_fork_successor": {
+    "exit_code": 0,
+    "summary": [
+     "SUMMARY impl=fork: 5/5 assertions hold"
+    ],
+    "engine": "/home/hatch/workspace/qf_td13_stage/engine_successor"
+   },
+   "censoring_frozen": {
+    "exit_code": 1,
+    "summary": [
+     "SUMMARY impl=frozen: 4/8 assertions hold"
+    ],
+    "engine": "/home/hatch/workspace/qf_td13_stage/engine_fork09",
+    "assertions": [
+     "[VIOLATED] A/C3 taken identities agree: pb=[] stack=[('BBB', 1)]",
+     "  [HOLDS] A/C3 exit cash flows agree: pb={} stack={}",
+     "  [HOLDS] A/C3 final equity agrees: pb=10200.0 stack=10200.0",
+     "  [VIOLATED] A/C1 censored taken, in terminal inventory, marked into equity, no exit fabricated: disp=None inv=False final=10200.0 realized=None",
+     "  [VIOLATED] B/C3 taken identities agree: pb=[] stack=[('F1', 1), ('F2', 2), ('F3', 3), ('F4', 4), ('F5', 5)]",
+     "  [HOLDS] B/C3 exit cash flows agree: pb={} stack={}",
+     "  [HOLDS] B/C3 final equity agrees: pb=10000.0 stack=10000.0",
+     "  [VIOLATED] B/C2 censored rejected with documented gate reason (skipped_cap) in both paths, absent from equity: disp=None inv=False final=10000.0",
+     "SUMMARY impl=frozen: 4/8 assertions hold"
+    ]
+   },
+   "censoring_successor": {
+    "exit_code": 0,
+    "summary": [
+     "SUMMARY impl=successor: 10/10 assertions hold"
+    ],
+    "engine": "/home/hatch/workspace/qf_td13_stage/engine_successor",
+    "assertions": [
+     "[HOLDS] A/C3 taken identities agree: pb=[('AAA', 2), ('BBB', 1)] stack=[('AAA', 2), ('BBB', 1)]",
+     "  [HOLDS] A/C3 exit cash flows agree: pb={('BBB', 1): 200.0} stack={('BBB', 1): 200.0}",
+     "  [HOLDS] A/C3 final equity agrees: pb=10400.0 stack=10400.0",
+     "  [HOLDS] A/C1 censored taken, in terminal inventory, marked into equity, no exit fabricated: disp=taken inv=True final=10400.0 realized=10200.0",
+     "  [HOLDS] A/C4 permutation invariance: pb_perm=10400.0 stack_raw_shuffled=10400.0",
+     "  [HOLDS] B/C3 taken identities agree: pb=[('F1', 1), ('F2', 2), ('F3', 3), ('F4', 4), ('F5', 5)] stack=[('F1', 1), ('F2', 2), ('F3', 3), ('F4', 4), ('F5', 5)]",
+     "  [HOLDS] B/C3 exit cash flows agree: pb={('F1', 1): 0.0, ('F2', 2): 0.0, ('F3', 3): 0.0, ('F4', 4): 0.0, ('F5', 5): 0.0} stack={('F1', 1): 0.0, ('F2', 2): 0.0, ('F3', 3): 0.0, ('F4', 4): 0.0, ('F5', 5): 0.0}",
+     "  [HOLDS] B/C3 final equity agrees: pb=10000.0 stack=10000.0",
+     "  [HOLDS] B/C2 censored rejected with documented gate reason (skipped_cap) in both paths, absent from equity: disp=skipped_cap inv=False final=10000.0",
+     "  [HOLDS] B/C4 permutation invariance: pb_perm=10000.0 stack_raw_shuffled=10000.0",
+     "SUMMARY impl=successor: 10/10 assertions hold"
+    ]
+   }
+  },
+  "P4_grid_parity": {
+   "NVDA": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "TSLA": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "AAPL": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "SPY": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "PLTR": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "SOFI": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "AMD": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "MSFT": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "META": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "COIN": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "MSTR": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "AVGO": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "GOOGL": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "AMZN": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "NFLX": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "CRM": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "MU": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "INTC": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "LRCX": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "AMAT": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "QCOM": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "ARM": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "HOOD": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "APP": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "NET": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "SNOW": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "DDOG": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "CRWD": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "SHOP": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "RKLB": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "ASTS": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "LUNR": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "PYPL": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "NU": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "MELI": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "IWM": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "SMH": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "ARKK": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "XLF": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "NIO": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "MRNA": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "PFE": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   },
+   "F": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0
+   }
+  },
+  "P4_cutoff": {
+   "cutoff": "2026-10-16 17:30:00-04:00",
+   "rule": "max over symbols of (last 4H bar start) + 4h (= 2026-10-16 17:30 America/New_York)"
+  },
+  "P4_sector_coverage": {
+   "all_43_mapped": true,
+   "missing": [],
+   "sector_map": {
+    "NVDA": "SEMIS",
+    "TSLA": "CONSUMER",
+    "AAPL": "CONSUMER",
+    "SPY": "ETF",
+    "PLTR": "AI_SOFTWARE",
+    "SOFI": "FINTECH",
+    "AMD": "SEMIS",
+    "MSFT": "AI_SOFTWARE",
+    "META": "AI_SOFTWARE",
+    "COIN": "CRYPTO",
+    "MSTR": "CRYPTO",
+    "AVGO": "SEMIS",
+    "GOOGL": "AI_SOFTWARE",
+    "AMZN": "CONSUMER",
+    "NFLX": "CONSUMER",
+    "CRM": "AI_SOFTWARE",
+    "MU": "SEMIS",
+    "INTC": "SEMIS",
+    "LRCX": "SEMIS",
+    "AMAT": "SEMIS",
+    "QCOM": "SEMIS",
+    "ARM": "SEMIS",
+    "HOOD": "FINTECH",
+    "APP": "AI_SOFTWARE",
+    "NET": "AI_SOFTWARE",
+    "SNOW": "AI_SOFTWARE",
+    "DDOG": "AI_SOFTWARE",
+    "CRWD": "AI_SOFTWARE",
+    "SHOP": "AI_SOFTWARE",
+    "RKLB": "SPACE",
+    "ASTS": "SPACE",
+    "LUNR": "SPACE",
+    "PYPL": "FINTECH",
+    "NU": "FINTECH",
+    "MELI": "FINTECH",
+    "IWM": "ETF",
+    "SMH": "ETF",
+    "ARKK": "ETF",
+    "XLF": "ETF",
+    "NIO": "CONSUMER",
+    "MRNA": "HEALTHCARE",
+    "PFE": "HEALTHCARE",
+    "F": "CONSUMER"
+   }
+  },
+  "P4_censored_generation": {
+   "CRM": {
+    "matches_12_census": true,
+    "candidate": {
+     "symbol": "CRM",
+     "signal_idx": 1041,
+     "entry": 239.52499,
+     "stop": 230.4129667209627,
+     "tp1": 251.56103437204976,
+     "tp1_hit": false,
+     "entry_time": "2026-10-16 13:30:00-04:00",
+     "last_close": 240.73
+    }
+   },
+   "SHOP": {
+    "matches_12_census": true,
+    "candidate": {
+     "symbol": "SHOP",
+     "signal_idx": 1029,
+     "entry": 165.53,
+     "stop": 159.43008617972552,
+     "tp1": 173.66321842703263,
+     "tp1_hit": true,
+     "entry_time": "2026-10-08 13:30:00-04:00",
+     "last_close": 169.50999
+    }
+   },
+   "MRNA": {
+    "matches_12_census": true,
+    "candidate": {
+     "symbol": "MRNA",
+     "signal_idx": 965,
+     "entry": 138.985,
+     "stop": 118.51963075494507,
+     "tp1": 166.22282566007325,
+     "tp1_hit": true,
+     "entry_time": "2026-08-24 13:30:00-04:00",
+     "last_close": 218.0
+    }
+   },
+   "PFE": {
+    "matches_12_census": true,
+    "candidate": {
+     "symbol": "PFE",
+     "signal_idx": 1035,
+     "entry": 28.33,
+     "stop": 27.79819120311426,
+     "tp1": 29.03907839584765,
+     "tp1_hit": true,
+     "entry_time": "2026-10-13 13:30:00-04:00",
+     "last_close": 29.57
+    }
+   }
+  },
+  "P4_candidates": {
+   "closed_candidates": 586,
+   "censored_candidates": 4,
+   "total_candidates": 590,
+   "parity_bad": 0,
+   "skipped_gap_below_stop": 1,
+   "canonical_order": "list sorted by (symbol, signal_idx); keys unique",
+   "canonical_keys_sha256": "8f809010e10a1c47f597db778550755e11d19589ce5ff1d0f81bd968036b8339",
+   "rs_differs_asof_vs_midnight_closed_candidates": 586,
+   "benchmark_policy": "daily SPY bars stamped at session completion (16:00 ET) \u2014 fork asof_benchmark.build_daily_asof; frozen bench_ret selection unchanged"
+  },
+  "P4_c0_fidelity_trade_by_trade": {
+   "pass": true,
+   "diffs": [],
+   "taken_count": 193,
+   "exit_cashflows_compared": 190,
+   "skipped_cap": 323,
+   "skipped_risk": 74,
+   "pb_final_equity": 12321.387569888639,
+   "stack_final_equity": 12321.387569888639,
+   "equity_decomposition": {
+    "pb": {
+     "final_equity": 12321.387569888639,
+     "realized_plus_terminal_marks": 12321.387569888639,
+     "abs_diff": 0.0
+    },
+    "stack": {
+     "final_equity": 12321.387569888639,
+     "realized_plus_terminal_marks": 12321.387569888639,
+     "abs_diff": 0.0
+    }
+   }
+  },
+  "P4_terminal_open_guard_C0": {
+   "CRM": {
+    "symbol": "CRM",
+    "signal_idx": 1041,
+    "pb_disposition": "taken",
+    "stack_disposition": "taken",
+    "in_terminal_inventory": true,
+    "mark": 240.73,
+    "unreal_dollars": 16.245046524427266,
+    "risk_dollars": 122.841505132428
+   },
+   "SHOP": {
+    "symbol": "SHOP",
+    "signal_idx": 1029,
+    "pb_disposition": "taken",
+    "stack_disposition": "taken",
+    "in_terminal_inventory": true,
+    "mark": 169.50999,
+    "unreal_dollars": 79.59304877349136,
+    "risk_dollars": 121.98792916846585
+   },
+   "MRNA": {
+    "symbol": "MRNA",
+    "signal_idx": 965,
+    "pb_disposition": "skipped_risk",
+    "stack_disposition": "skipped_risk",
+    "in_terminal_inventory": false
+   },
+   "PFE": {
+    "symbol": "PFE",
+    "signal_idx": 1035,
+    "pb_disposition": "taken",
+    "stack_disposition": "taken",
+    "in_terminal_inventory": true,
+    "mark": 29.57,
+    "unreal_dollars": 294.17233403842573,
+    "risk_dollars": 126.16406051777764
+   }
+  },
+  "P4_permutation_invariance": {
+   "pass": true,
+   "seed": 20261023,
+   "pipeline_recanonicalized_diffs": [],
+   "stack_raw_shuffled_diffs": []
+  },
+  "P5_replay": {
+   "byte_identical_views": true
+  },
+  "P5_run": {
+   "gross": {
+    "config": "EQUITY43_DEV_C1CFG_SUCCESSOR13",
+    "cost": "gross",
+    "trades": 188,
+    "win_rate_pct": 46.8,
+    "expectancy_net_r": 0.15,
+    "profit_factor": 1.24,
+    "total_return_pct": 35.73,
+    "max_drawdown_pct": 23.97,
+    "avg_hold_bars": 16.6,
+    "market_exposure_pct": 94.8,
+    "tp1_hit_rate_pct": 49.5,
+    "skipped_gap_below_stop": 1,
+    "skipped_max_positions": 319,
+    "skipped_max_risk": 52,
+    "exit_reasons": {
+     "stop": 162,
+     "ema55-break": 26
+    },
+    "avg_winner_r": 1.66,
+    "avg_loser_r": -1.179,
+    "stop_out_pct": 86.2,
+    "candidates_available": 590,
+    "closed_trades": 188,
+    "terminal_open_taken_count": 3,
+    "terminal_open_inventory": [
+     {
+      "symbol": "MRNA",
+      "signal_idx": 965,
+      "entry": 138.985,
+      "entry_time": "2026-08-24 13:30:00-04:00",
+      "risk_dollars": 138.70615965420416,
+      "size": 941.9852321598221,
+      "mark": 218.0,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 535.5323460740967
+     },
+     {
+      "symbol": "PFE",
+      "signal_idx": 1035,
+      "entry": 28.33,
+      "entry_time": "2026-10-13 13:30:00-04:00",
+      "risk_dollars": 138.63700224868077,
+      "size": 7385.3352872404475,
+      "mark": 29.57,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 323.25505669531134
+     },
+     {
+      "symbol": "CRM",
+      "signal_idx": 1041,
+      "entry": 239.52499,
+      "entry_time": "2026-10-16 13:30:00-04:00",
+      "risk_dollars": 135.08211369802518,
+      "size": 3550.8625188802966,
+      "mark": 240.73,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 17.863793017488074
+     }
+    ],
+    "terminal_open_unreal_dollars": 876.6511957868961,
+    "realized_equity": 12696.62830673705,
+    "final_equity": 13573.279502523947,
+    "rank_skips": 319,
+    "max_position_skips": 0,
+    "risk_gate_skips": 52,
+    "sector_cap_skips": 28,
+    "max_concurrent_positions": 5,
+    "entry_year_slices_closed_trades": {
+     "2025": {
+      "trades": 95,
+      "sum_net_r": 4.631,
+      "mean_net_r": 0.049
+     },
+     "2026": {
+      "trades": 93,
+      "sum_net_r": 23.55,
+      "mean_net_r": 0.253
+     }
+    }
+   },
+   "4bps": {
+    "config": "EQUITY43_DEV_C1CFG_SUCCESSOR13",
+    "cost": "4bps",
+    "trades": 187,
+    "win_rate_pct": 48.1,
+    "expectancy_net_r": 0.174,
+    "profit_factor": 1.28,
+    "total_return_pct": 42.44,
+    "max_drawdown_pct": 24.61,
+    "avg_hold_bars": 16.7,
+    "market_exposure_pct": 94.8,
+    "tp1_hit_rate_pct": 50.8,
+    "skipped_gap_below_stop": 1,
+    "skipped_max_positions": 326,
+    "skipped_max_risk": 45,
+    "exit_reasons": {
+     "stop": 161,
+     "ema55-break": 26
+    },
+    "avg_winner_r": 1.637,
+    "avg_loser_r": -1.184,
+    "stop_out_pct": 86.1,
+    "candidates_available": 590,
+    "closed_trades": 187,
+    "terminal_open_taken_count": 4,
+    "terminal_open_inventory": [
+     {
+      "symbol": "MRNA",
+      "signal_idx": 965,
+      "entry": 138.985,
+      "entry_time": "2026-08-24 13:30:00-04:00",
+      "risk_dollars": 135.81462284348575,
+      "size": 922.348144803834,
+      "mark": 218.0,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 524.3683754482493
+     },
+     {
+      "symbol": "SHOP",
+      "signal_idx": 1029,
+      "entry": 165.53,
+      "entry_time": "2026-10-08 13:30:00-04:00",
+      "risk_dollars": 138.7717949738096,
+      "size": 3765.773730387075,
+      "mark": 169.50999,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 90.54396054614392
+     },
+     {
+      "symbol": "PFE",
+      "signal_idx": 1035,
+      "entry": 28.33,
+      "entry_time": "2026-10-13 13:30:00-04:00",
+      "risk_dollars": 144.3033435987416,
+      "size": 7687.187102004079,
+      "mark": 29.57,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 336.4670669426429
+     },
+     {
+      "symbol": "CRM",
+      "signal_idx": 1041,
+      "entry": 239.52499,
+      "entry_time": "2026-10-16 13:30:00-04:00",
+      "risk_dollars": 141.73760461257817,
+      "size": 3725.8133882904785,
+      "mark": 240.73,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 18.743941461072023
+     }
+    ],
+    "terminal_open_unreal_dollars": 970.1233443981081,
+    "realized_equity": 13273.44756374265,
+    "final_equity": 14243.570908140757,
+    "rank_skips": 326,
+    "max_position_skips": 0,
+    "risk_gate_skips": 45,
+    "sector_cap_skips": 28,
+    "max_concurrent_positions": 5,
+    "entry_year_slices_closed_trades": {
+     "2025": {
+      "trades": 95,
+      "sum_net_r": 3.377,
+      "mean_net_r": 0.036
+     },
+     "2026": {
+      "trades": 92,
+      "sum_net_r": 29.11,
+      "mean_net_r": 0.316
+     }
+    }
+   },
+   "25bps": {
+    "config": "EQUITY43_DEV_C1CFG_SUCCESSOR13",
+    "cost": "25bps",
+    "trades": 185,
+    "win_rate_pct": 47.0,
+    "expectancy_net_r": 0.108,
+    "profit_factor": 1.17,
+    "total_return_pct": 25.95,
+    "max_drawdown_pct": 25.4,
+    "avg_hold_bars": 16.7,
+    "market_exposure_pct": 94.8,
+    "tp1_hit_rate_pct": 50.3,
+    "skipped_gap_below_stop": 1,
+    "skipped_max_positions": 321,
+    "skipped_max_risk": 51,
+    "exit_reasons": {
+     "stop": 159,
+     "ema55-break": 26
+    },
+    "avg_winner_r": 1.61,
+    "avg_loser_r": -1.226,
+    "stop_out_pct": 85.9,
+    "candidates_available": 590,
+    "closed_trades": 185,
+    "terminal_open_taken_count": 4,
+    "terminal_open_inventory": [
+     {
+      "symbol": "MRNA",
+      "signal_idx": 965,
+      "entry": 138.985,
+      "entry_time": "2026-08-24 13:30:00-04:00",
+      "risk_dollars": 123.4819688609358,
+      "size": 838.5942729220025,
+      "mark": 218.0,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 476.75307748988746
+     },
+     {
+      "symbol": "SHOP",
+      "signal_idx": 1029,
+      "entry": 165.53,
+      "entry_time": "2026-10-08 13:30:00-04:00",
+      "risk_dollars": 123.91883974763745,
+      "size": 3362.7172690947014,
+      "mark": 169.50999,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 80.85290342429876
+     },
+     {
+      "symbol": "PFE",
+      "signal_idx": 1035,
+      "entry": 28.33,
+      "entry_time": "2026-10-13 13:30:00-04:00",
+      "risk_dollars": 126.71710224585478,
+      "size": 6750.349989784724,
+      "mark": 29.57,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 295.4618421225934
+     },
+     {
+      "symbol": "CRM",
+      "signal_idx": 1041,
+      "entry": 239.52499,
+      "entry_time": "2026-10-16 13:30:00-04:00",
+      "risk_dollars": 125.32242450276381,
+      "size": 3294.312531538181,
+      "mark": 240.73,
+      "mark_time": "2026-10-16 17:30:00-04:00",
+      "unreal_dollars": 16.573133114957155
+     }
+    ],
+    "terminal_open_unreal_dollars": 869.6409561517368,
+    "realized_equity": 11724.912783065454,
+    "final_equity": 12594.553739217192,
+    "rank_skips": 321,
+    "max_position_skips": 0,
+    "risk_gate_skips": 51,
+    "sector_cap_skips": 29,
+    "max_concurrent_positions": 5,
+    "entry_year_slices_closed_trades": {
+     "2025": {
+      "trades": 95,
+      "sum_net_r": -2.135,
+      "mean_net_r": -0.022
+     },
+     "2026": {
+      "trades": 90,
+      "sum_net_r": 22.024,
+      "mean_net_r": 0.245
+     }
+    }
+   }
+  },
+  "P5_per_symbol": {
+   "NVDA": {
+    "sector": "SEMIS",
+    "candidates": 22,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 4,
+    "mean_net_r_4bps": -0.097,
+    "sum_net_r_4bps": -0.39,
+    "mean_gross_r_taken": -0.083,
+    "win_rate_4bps_pct": 50.0
+   },
+   "TSLA": {
+    "sector": "CONSUMER",
+    "candidates": 11,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 4,
+    "mean_net_r_4bps": 0.759,
+    "sum_net_r_4bps": 3.035,
+    "mean_gross_r_taken": 0.769,
+    "win_rate_4bps_pct": 75.0
+   },
+   "AAPL": {
+    "sector": "CONSUMER",
+    "candidates": 12,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 5,
+    "mean_net_r_4bps": -0.576,
+    "sum_net_r_4bps": -2.881,
+    "mean_gross_r_taken": -0.558,
+    "win_rate_4bps_pct": 20.0
+   },
+   "SPY": {
+    "sector": "ETF",
+    "candidates": 16,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 3,
+    "mean_net_r_4bps": 0.343,
+    "sum_net_r_4bps": 1.03,
+    "mean_gross_r_taken": 0.384,
+    "win_rate_4bps_pct": 66.7
+   },
+   "PLTR": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 13,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 1,
+    "mean_net_r_4bps": 1.313,
+    "sum_net_r_4bps": 1.313,
+    "mean_gross_r_taken": 1.318,
+    "win_rate_4bps_pct": 100.0
+   },
+   "SOFI": {
+    "sector": "FINTECH",
+    "candidates": 14,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 4,
+    "mean_net_r_4bps": -0.663,
+    "sum_net_r_4bps": -2.65,
+    "mean_gross_r_taken": -0.656,
+    "win_rate_4bps_pct": 25.0
+   },
+   "AMD": {
+    "sector": "SEMIS",
+    "candidates": 17,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 5,
+    "mean_net_r_4bps": 1.552,
+    "sum_net_r_4bps": 7.758,
+    "mean_gross_r_taken": 1.561,
+    "win_rate_4bps_pct": 60.0
+   },
+   "MSFT": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 10,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 1,
+    "mean_net_r_4bps": 3.982,
+    "sum_net_r_4bps": 3.982,
+    "mean_gross_r_taken": 3.997,
+    "win_rate_4bps_pct": 100.0
+   },
+   "META": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 11,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 2,
+    "mean_net_r_4bps": 1.509,
+    "sum_net_r_4bps": 3.017,
+    "mean_gross_r_taken": 1.521,
+    "win_rate_4bps_pct": 100.0
+   },
+   "COIN": {
+    "sector": "CRYPTO",
+    "candidates": 11,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 1,
+    "mean_net_r_4bps": -0.635,
+    "sum_net_r_4bps": -0.635,
+    "mean_gross_r_taken": -0.626,
+    "win_rate_4bps_pct": 0.0
+   },
+   "MSTR": {
+    "sector": "CRYPTO",
+    "candidates": 8,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 6,
+    "mean_net_r_4bps": 0.797,
+    "sum_net_r_4bps": 4.782,
+    "mean_gross_r_taken": 0.804,
+    "win_rate_4bps_pct": 83.3
+   },
+   "AVGO": {
+    "sector": "SEMIS",
+    "candidates": 12,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 1,
+    "mean_net_r_4bps": 0.084,
+    "sum_net_r_4bps": 0.084,
+    "mean_gross_r_taken": 0.092,
+    "win_rate_4bps_pct": 100.0
+   },
+   "GOOGL": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 15,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 4,
+    "mean_net_r_4bps": 0.32,
+    "sum_net_r_4bps": 1.279,
+    "mean_gross_r_taken": 0.335,
+    "win_rate_4bps_pct": 75.0
+   },
+   "AMZN": {
+    "sector": "CONSUMER",
+    "candidates": 12,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 5,
+    "mean_net_r_4bps": -0.542,
+    "sum_net_r_4bps": -2.71,
+    "mean_gross_r_taken": -0.526,
+    "win_rate_4bps_pct": 20.0
+   },
+   "NFLX": {
+    "sector": "CONSUMER",
+    "candidates": 10,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 5,
+    "mean_net_r_4bps": 0.491,
+    "sum_net_r_4bps": 2.453,
+    "mean_gross_r_taken": 0.504,
+    "win_rate_4bps_pct": 60.0
+   },
+   "CRM": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 8,
+    "censored_candidates": 1,
+    "taken_4bps_closed": 4,
+    "mean_net_r_4bps": 0.1,
+    "sum_net_r_4bps": 0.4,
+    "mean_gross_r_taken": 0.113,
+    "win_rate_4bps_pct": 50.0
+   },
+   "MU": {
+    "sector": "SEMIS",
+    "candidates": 19,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 6,
+    "mean_net_r_4bps": 0.539,
+    "sum_net_r_4bps": 3.233,
+    "mean_gross_r_taken": 0.546,
+    "win_rate_4bps_pct": 66.7
+   },
+   "INTC": {
+    "sector": "SEMIS",
+    "candidates": 13,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 6,
+    "mean_net_r_4bps": 1.074,
+    "sum_net_r_4bps": 6.444,
+    "mean_gross_r_taken": 1.081,
+    "win_rate_4bps_pct": 50.0
+   },
+   "LRCX": {
+    "sector": "SEMIS",
+    "candidates": 17,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 8,
+    "mean_net_r_4bps": -0.277,
+    "sum_net_r_4bps": -2.218,
+    "mean_gross_r_taken": -0.268,
+    "win_rate_4bps_pct": 37.5
+   },
+   "AMAT": {
+    "sector": "SEMIS",
+    "candidates": 17,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 2,
+    "mean_net_r_4bps": 0.972,
+    "sum_net_r_4bps": 1.944,
+    "mean_gross_r_taken": 0.981,
+    "win_rate_4bps_pct": 100.0
+   },
+   "QCOM": {
+    "sector": "SEMIS",
+    "candidates": 10,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 4,
+    "mean_net_r_4bps": 1.386,
+    "sum_net_r_4bps": 5.545,
+    "mean_gross_r_taken": 1.403,
+    "win_rate_4bps_pct": 50.0
+   },
+   "ARM": {
+    "sector": "SEMIS",
+    "candidates": 15,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 5,
+    "mean_net_r_4bps": 0.709,
+    "sum_net_r_4bps": 3.544,
+    "mean_gross_r_taken": 0.716,
+    "win_rate_4bps_pct": 60.0
+   },
+   "HOOD": {
+    "sector": "FINTECH",
+    "candidates": 15,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 3,
+    "mean_net_r_4bps": -0.426,
+    "sum_net_r_4bps": -1.277,
+    "mean_gross_r_taken": -0.419,
+    "win_rate_4bps_pct": 33.3
+   },
+   "APP": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 11,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 2,
+    "mean_net_r_4bps": -0.848,
+    "sum_net_r_4bps": -1.697,
+    "mean_gross_r_taken": -0.843,
+    "win_rate_4bps_pct": 0.0
+   },
+   "NET": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 15,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 2,
+    "mean_net_r_4bps": -0.058,
+    "sum_net_r_4bps": -0.115,
+    "mean_gross_r_taken": -0.05,
+    "win_rate_4bps_pct": 50.0
+   },
+   "SNOW": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 10,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 2,
+    "mean_net_r_4bps": 5.779,
+    "sum_net_r_4bps": 11.558,
+    "mean_gross_r_taken": 5.789,
+    "win_rate_4bps_pct": 100.0
+   },
+   "DDOG": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 11,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 3,
+    "mean_net_r_4bps": 0.61,
+    "sum_net_r_4bps": 1.829,
+    "mean_gross_r_taken": 0.619,
+    "win_rate_4bps_pct": 66.7
+   },
+   "CRWD": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 17,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 3,
+    "mean_net_r_4bps": -0.426,
+    "sum_net_r_4bps": -1.278,
+    "mean_gross_r_taken": -0.417,
+    "win_rate_4bps_pct": 33.3
+   },
+   "SHOP": {
+    "sector": "AI_SOFTWARE",
+    "candidates": 16,
+    "censored_candidates": 1,
+    "taken_4bps_closed": 2,
+    "mean_net_r_4bps": -0.488,
+    "sum_net_r_4bps": -0.977,
+    "mean_gross_r_taken": -0.478,
+    "win_rate_4bps_pct": 50.0
+   },
+   "RKLB": {
+    "sector": "SPACE",
+    "candidates": 17,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 7,
+    "mean_net_r_4bps": 0.431,
+    "sum_net_r_4bps": 3.019,
+    "mean_gross_r_taken": 0.437,
+    "win_rate_4bps_pct": 57.1
+   },
+   "ASTS": {
+    "sector": "SPACE",
+    "candidates": 14,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 7,
+    "mean_net_r_4bps": -1.008,
+    "sum_net_r_4bps": -7.055,
+    "mean_gross_r_taken": -1.004,
+    "win_rate_4bps_pct": 14.3
+   },
+   "LUNR": {
+    "sector": "SPACE",
+    "candidates": 15,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 3,
+    "mean_net_r_4bps": 1.086,
+    "sum_net_r_4bps": 3.259,
+    "mean_gross_r_taken": 1.09,
+    "win_rate_4bps_pct": 66.7
+   },
+   "PYPL": {
+    "sector": "FINTECH",
+    "candidates": 8,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 1,
+    "mean_net_r_4bps": -2.053,
+    "sum_net_r_4bps": -2.053,
+    "mean_gross_r_taken": -2.034,
+    "win_rate_4bps_pct": 0.0
+   },
+   "NU": {
+    "sector": "FINTECH",
+    "candidates": 14,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 5,
+    "mean_net_r_4bps": 0.288,
+    "sum_net_r_4bps": 1.441,
+    "mean_gross_r_taken": 0.299,
+    "win_rate_4bps_pct": 60.0
+   },
+   "MELI": {
+    "sector": "FINTECH",
+    "candidates": 12,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 8,
+    "mean_net_r_4bps": -0.962,
+    "sum_net_r_4bps": -7.697,
+    "mean_gross_r_taken": -0.943,
+    "win_rate_4bps_pct": 12.5
+   },
+   "IWM": {
+    "sector": "ETF",
+    "candidates": 16,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 5,
+    "mean_net_r_4bps": -0.264,
+    "sum_net_r_4bps": -1.319,
+    "mean_gross_r_taken": -0.243,
+    "win_rate_4bps_pct": 40.0
+   },
+   "SMH": {
+    "sector": "ETF",
+    "candidates": 15,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 6,
+    "mean_net_r_4bps": -0.079,
+    "sum_net_r_4bps": -0.473,
+    "mean_gross_r_taken": -0.066,
+    "win_rate_4bps_pct": 50.0
+   },
+   "ARKK": {
+    "sector": "ETF",
+    "candidates": 20,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 4,
+    "mean_net_r_4bps": 0.888,
+    "sum_net_r_4bps": 3.551,
+    "mean_gross_r_taken": 0.904,
+    "win_rate_4bps_pct": 75.0
+   },
+   "XLF": {
+    "sector": "ETF",
+    "candidates": 13,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 4,
+    "mean_net_r_4bps": -1.428,
+    "sum_net_r_4bps": -5.712,
+    "mean_gross_r_taken": -1.39,
+    "win_rate_4bps_pct": 0.0
+   },
+   "NIO": {
+    "sector": "CONSUMER",
+    "candidates": 11,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 6,
+    "mean_net_r_4bps": -0.046,
+    "sum_net_r_4bps": -0.278,
+    "mean_gross_r_taken": -0.039,
+    "win_rate_4bps_pct": 50.0
+   },
+   "MRNA": {
+    "sector": "HEALTHCARE",
+    "candidates": 13,
+    "censored_candidates": 1,
+    "taken_4bps_closed": 4,
+    "mean_net_r_4bps": 0.9,
+    "sum_net_r_4bps": 3.602,
+    "mean_gross_r_taken": 0.907,
+    "win_rate_4bps_pct": 50.0
+   },
+   "PFE": {
+    "sector": "HEALTHCARE",
+    "candidates": 13,
+    "censored_candidates": 1,
+    "taken_4bps_closed": 10,
+    "mean_net_r_4bps": 0.203,
+    "sum_net_r_4bps": 2.029,
+    "mean_gross_r_taken": 0.222,
+    "win_rate_4bps_pct": 60.0
+   },
+   "F": {
+    "sector": "CONSUMER",
+    "candidates": 21,
+    "censored_candidates": 0,
+    "taken_4bps_closed": 14,
+    "mean_net_r_4bps": -0.445,
+    "sum_net_r_4bps": -6.23,
+    "mean_gross_r_taken": -0.429,
+    "win_rate_4bps_pct": 28.6
+   }
+  },
+  "P5_terminal_open_disclosure": {
+   "censored_candidates": 4,
+   "treatment": "successor v1: a position still open at the last bar is emitted as a candidate with censored=true, exit/exit_time null; it enters the identical time-local rank/cap/sector/risk selection; if taken it is held to the W_DEV cutoff and valued in equity at the last-completed-bar as-of mark; if skipped it is ledgered with its gate reason; no exit, cash flow, or trade R is fabricated",
+   "c1_outcomes_by_view": {
+    "gross": [
+     {
+      "symbol": "MRNA",
+      "mark": 218.0,
+      "unreal_dollars": 535.5323460740967,
+      "risk_dollars": 138.70615965420416
+     },
+     {
+      "symbol": "PFE",
+      "mark": 29.57,
+      "unreal_dollars": 323.25505669531134,
+      "risk_dollars": 138.63700224868077
+     },
+     {
+      "symbol": "CRM",
+      "mark": 240.73,
+      "unreal_dollars": 17.863793017488074,
+      "risk_dollars": 135.08211369802518
+     }
+    ],
+    "4bps": [
+     {
+      "symbol": "MRNA",
+      "mark": 218.0,
+      "unreal_dollars": 524.3683754482493,
+      "risk_dollars": 135.81462284348575
+     },
+     {
+      "symbol": "SHOP",
+      "mark": 169.50999,
+      "unreal_dollars": 90.54396054614392,
+      "risk_dollars": 138.7717949738096
+     },
+     {
+      "symbol": "PFE",
+      "mark": 29.57,
+      "unreal_dollars": 336.4670669426429,
+      "risk_dollars": 144.3033435987416
+     },
+     {
+      "symbol": "CRM",
+      "mark": 240.73,
+      "unreal_dollars": 18.743941461072023,
+      "risk_dollars": 141.73760461257817
+     }
+    ],
+    "25bps": [
+     {
+      "symbol": "MRNA",
+      "mark": 218.0,
+      "unreal_dollars": 476.75307748988746,
+      "risk_dollars": 123.4819688609358
+     },
+     {
+      "symbol": "SHOP",
+      "mark": 169.50999,
+      "unreal_dollars": 80.85290342429876,
+      "risk_dollars": 123.91883974763745
+     },
+     {
+      "symbol": "PFE",
+      "mark": 29.57,
+      "unreal_dollars": 295.4618421225934,
+      "risk_dollars": 126.71710224585478
+     },
+     {
+      "symbol": "CRM",
+      "mark": 240.73,
+      "unreal_dollars": 16.573133114957155,
+      "risk_dollars": 125.32242450276381
+     }
+    ]
+   },
+   "note": "Expectancy / PF / win-rate are computed over CLOSED taken trades only; final equity and total return include the terminal as-of marks of the open inventory above, per the adjudicated gate-3 accounting (terminal opens included in account equity and explicit ledger). No censored position was assigned an exit, a cash flow, or a trade R."
+  }
+ },
+ "universe_43_order": [
+  "NVDA",
+  "TSLA",
+  "AAPL",
+  "SPY",
+  "PLTR",
+  "SOFI",
+  "AMD",
+  "MSFT",
+  "META",
+  "COIN",
+  "MSTR",
+  "AVGO",
+  "GOOGL",
+  "AMZN",
+  "NFLX",
+  "CRM",
+  "MU",
+  "INTC",
+  "LRCX",
+  "AMAT",
+  "QCOM",
+  "ARM",
+  "HOOD",
+  "APP",
+  "NET",
+  "SNOW",
+  "DDOG",
+  "CRWD",
+  "SHOP",
+  "RKLB",
+  "ASTS",
+  "LUNR",
+  "PYPL",
+  "NU",
+  "MELI",
+  "IWM",
+  "SMH",
+  "ARKK",
+  "XLF",
+  "NIO",
+  "MRNA",
+  "PFE",
+  "F"
+ ],
+ "universe_excluded": {
+  "SMCI": "EXCLUDED pre-declared: no DEV bytes exist (TD SMCI/HO NOT_EVALUABLE_PROVIDER_VOLUME; DEV never captured). Never fabricated or imputed."
+ },
+ "paused_production_after": {
+  "harness_sha256": "ce7c902ce182683ca1723468a0109747abd80db287c39556ea4db78210a0833d",
+  "pause_new_entries_present": true,
+  "resume_new_entries_present": false
+ },
+ "verdict": "EXPLORATORY_RUN_COMPLETE"
+}
