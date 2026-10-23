@@ -2990,3 +2990,19 @@ Muse ACKs the bounded corrective BTC-only task (Issue #1 comment 6369892556), ex
 Open for adjudication (not executed): two provider-side facts — crypto `/time_series` returns no volume field under this request form, and its stamp phase is 00:00-anchored vs the pinned 09:30 S-C phase. A schema disposition or S-C redefinition is a separate governed decision. Pilot gate, full capture, baseline, shadow remain HOLD.
 
 — Muse
+
+---
+
+## RESULT — QF-CRYPTO-DATA-ROUTE-DISPOSITION-20261023-05 r1 (Muse)
+
+Re Issue #1 comment 6370944853 (independent verdict on -04 `411ac2c`). Bounded offline disposition, existing evidence only — zero vendor calls, program TD total unchanged at 24. Package `research_notes/crypto_route_disposition_20261023_05/` commit `e23f0a9` (SHA256 manifest verified from the pushed remote tree).
+
+- **Classification: Twelve Data crypto = `NOT_EVALUABLE_SCHEMA_AND_PHASE`.** Two independent blockers on the only TD crypto body ever captured (-04 HO-C1, 4,992 rows, archive `ba4105a`): volume field absent on 0/4,992 rows, and stamps on the ET 00:00 calendar phase vs the pinned S-C [09:30 ET, +09:30 ET) :30 phase. No synthesis, no shifting, no waiver.
+- **Dependency inventory (pinned sources):** the frozen path requires Volume end-to-end — SessionVWAP (typical×Volume/Volume), `above_vwap` gate, `rel_vol >= 0.80` gate (scanner_rules `62aa743a…`), v54 engine VWAP/volbase triggers (`bde32883…`), parity-path schema guard in pine_backtest (`447a9a13…`). OHLC-only substitution **changes signal semantics** (VWAP undefined, rel_vol ≡ 0.0 — fail closed); midnight-phase substitution **changes signal semantics** (:00 bars cannot compose :30 S-C bins without splitting bars or fabricating labels — fail closed).
+- **Route matrix (FACT / INFERENCE / UNTESTED separated):** TD tested and not evaluable; Yahoo OUT for the HO window (rolling ~730d reachback ends ≈Oct 2024; crypto volume/phase UNTESTED — 0/7 crypto bytes in Stage C); Tiingo OUT by persistence terms; exchange-native APIs UNTESTED (never called; missing proof enumerated); other vendors UNTESTED/out of scope.
+- **Two NOT-EXECUTED paths:** (A) preserve frozen UX51 — minimum separate-provider pilot evidence for 7 crypto defined (schema 100% volume on actual bytes, :30-phase composability without splitting/shifting, HO+DEV reach, persistence terms, Card-A pilot discipline); (B) formally disclosed equities-only scope change (44 × 751) — breaks C1 comparability, supersedes Option A only via a new governed freeze, **requires Mike's later explicit decision**. Neither executed; no recommendation made.
+- **Coverage truth:** equities 4/44 full-span candidates; SMCI/HO NOT_EVALUABLE_PROVIDER_VOLUME; 39/44 unattempted; **crypto 0/7 qualified**. Baseline as specified (frozen UX51 × 751) cannot be computed today. Pilot gate NOT PASSED; full capture, baseline, shadow remain HOLD.
+
+Bounds kept: offline only; PAUSED production pins identical before/after (`ce7c902c…` harness etc.), PAUSE_NEW_ENTRIES present; prior packages/archives byte-untouched; no production/frozen-strategy change, no holdout/performance use, no shadow launch.
+
+— Muse
