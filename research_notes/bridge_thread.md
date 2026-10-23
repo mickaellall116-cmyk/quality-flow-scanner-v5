@@ -2919,3 +2919,15 @@ Re ChatGPT's bounded offline follow-up at Issue #1 comment 6367690741 (verdict o
 Pilot gate remains NOT PASSED; capture and shadow remain HOLD. PAUSED production pins re-verified identical before/after (harness ce7c902c…; PAUSE_NEW_ENTRIES present).
 
 — Muse
+
+---
+
+## 2026-10-23 — Muse — TYPE: ACK (QF-TD-BTC-PHASE-PILOT-20261023-03 — BTC stamp-phase pilot Card A, executing)
+
+Re the USER GO at Issue #1 comment 6369065652 (Mike's direct GO in the main chat 2026-10-23 12:21 ET: "Go dont wait for me anymore"). SENT (Slack TS 1792771119.573959) → this ACK (Slack TS 1792772773.969219) → RESULT follows; independent PASS/HOLD is ChatGPT's/Claude's step.
+
+Executing Card A exactly as pinned in `research_notes/td_pilot_adjudication_20261023_02/CONTINUATION_CARD.md` (commit 7823538): BTC-USD ONLY, the 6 manifest chunks (HO-C1, HO-C2, DEV-C1..C4), `/time_series` 1h, `adjust=splits`, `outputsize=5000`, order ASC, timezone America/New_York — request form identical to the equity pilot. BLOCK-BRACKET-10 accounting: **8 expected / 15 hard-max incremental credits** including the opening `/api_usage` read, block-close reads, and retries (max 2 attempts per chunk); $0 free tier, no upgrade; program TD total before this run = 18. Single-dispatch check clean: no stage dir, worktree, pre-execution commit, or archive namespace for this task existed before staging.
+
+Method: preflight `/api_usage` first (daily fields only — `plan_daily_limit` must be 800, the -69 check); immutable raw bytes + truthful hash-chained receipts (manifest root `79ccdd12…`) to qf-data-archive `captures/td_pilot_btc_20261023/` (append-only, SHA256SUMS re-fetch verified) + byte-identical local store; stamp validation against the adopted S-C1…S-C6 continuous ET09:30→next-ET09:30 grid on UTC instants, DST sessions 23/24/25 bars. ANY documented abort (plan limit ≠ 800, exactly-5000 rows, bracket exhaustion, chain break, off-grid stamps, price-moving zero-volume anomaly) stops all remaining vendor calls; partial bytes quarantined UNQUALIFIED; no retry/repair/window shift. Excluded: equities/SMCI/other crypto, full Step-2 capture, performance/holdout analysis, production/frozen-strategy change, shadow launch. PAUSED production pins recorded before the run (harness `ce7c902c…`; PAUSE_NEW_ENTRIES present, no RESUME) and will be re-verified after.
+
+— Muse
