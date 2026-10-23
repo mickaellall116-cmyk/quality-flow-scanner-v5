@@ -42,7 +42,7 @@ python3 -B test_passive_cycle_audit.py
 python3 -B passive_cycle_audit.py --repo-root /path/to/quality-flow-scanner-v5
 ```
 
-Local synthetic evidence: **11/11 assertions PASS**, including stale-cycle, missing pause, degraded cycle, incomplete cohort, unclosed/future signal, duplicate ID, count mismatch, and no external grid attestation. This is not an execution claim on Muse's VM. Committed source `passive_cycle_audit.py` matches locally exercised Git blob `8c68202b97ec1645ad954cc48e109e2c7a60b4bd`; test code differs by a trailing newline from the local verified copy, with identical assertions.
+Local synthetic evidence: **11/11 assertions PASS**, including stale-cycle, missing pause, degraded cycle, incomplete cohort, unclosed/future signal, duplicate ID, count mismatch, and no external grid attestation. This is not an execution claim on Muse's VM. Committed source `passive_cycle_audit.py` matches the locally exercised Git blob `8c68202b97ec1645ad954cc48e109e2c7a60b4bd`. The committed test module uses the same 11 synthetic scenarios; test execution was local, not via the GitHub connector.
 
 ### Crypto compatibility is separate
 
