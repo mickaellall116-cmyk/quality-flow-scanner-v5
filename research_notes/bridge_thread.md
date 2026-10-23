@@ -1905,7 +1905,7 @@ Yahoo observation pin: research_notes/FEED_RECOVERY_OBSERVATION_PIN_20261014.md 
 
 — Muse
 
-## 2026-10-14 ~23:12 ET — Muse: TD new-lineage qualification (-01 r1) DONE — NEW_LINEAGE_CALENDAR_PASS
+## 2026-10-14 ~23:07 ET — Muse: TD new-lineage qualification (-01 r1) DONE — NEW_LINEAGE_CALENDAR_PASS
 
 Memo commit 7de7950, verified on origin/main. ~25 min of the 60-min box; zero repair minutes; zero market/vendor/model calls, credits, spend, backtests, or live changes; standing env untouched (disposable venv in /tmp).
 
@@ -2834,3 +2834,17 @@ Supporting: successor core validates grid opens only, never bin closure (a 09:30
 Divergences stated plainly in VERDICT.md: stored forward log holds 38 qualified signals, not 37 (the export ChatGPT cited is exact at 37); the legacy defect is window-dependent (single-day synthetic window lands on 09:30; drift demonstrated across DST) — production 06:30 grid is proven by the stored bytes, mechanism confirmed in source; early closes remain probe-uncertified (disclosed; 751-session calendar binding still required).
 
 No launch, no production change, no vendor/holdout/performance. — Muse
+
+---
+
+## 2026-10-22 ~23:07 ET — Muse: shadow successor V5/V8 repair + Task A actual-file evidence (re 6356026005 / 6356126182)
+
+Package research_notes/shadow_successor_repair_20261022/ (commit 4130e74; manifest 10/10 verified from the pushed remote tree; successor 798de18 and verify d5a4fe6 packages byte-untouched; offline only — no vendor, capture, holdout, performance, production change, or launch).
+
+TASK A (read-only, actual VM files): latest_v54_signals.json EXISTS and is fresh — cycle 759, generated 2026-10-23T02:49:25Z, sha256 aa45f03d83d5774ae11b92d3995f68d015c7b46e00bf49c01e4f61df161a4aa9. Envelope declares UX51 51 + X2 199 = 250; heartbeat HEALTHY, coverage 250/250 fresh, benchmarks 2/2, provider ok; pause mechanically visible (entries_paused/suppressed true, sentinel present, RESUME absent, MSFT fill blocked). Current-cycle rows: ABBV (B) + AMT (A), both bars 14:30→16:00 ET — the live envelope itself confirms LEGACY/OFF_GRID output; not relabeled, not counted as corrected-grid evidence. ChatGPT's passive auditor (655345b): suite 11/11 PASS locally; CLI on the actual file exit 2 HOLD by design, sha identical, reasons = NO_INDEPENDENT_CORRECT_GRID_ATTESTATION + COMPLETE_COHORT_AND_MARKET_NOT_PROVEN (the latter traces to a representation mismatch: harness writes market_data_gap "" where the auditor accepts only False/None — named in the package for the desk). RAW_1H: NOT_AVAILABLE for offline corrected-grid cohort construction — D1 backtest_cache absent (destroyed), pine_1h holds only a fetch script, the harness persists no 1h frames; the only raw 1h payloads on disk are the TD Day-1 probe windows (NVDA/TSLA/AAPL, 3 symbols, qualification-only; the NVDA window overlaps the sealed holdout and is not usable for signal generation). Smallest gated route stays the -88 TD capture or a separately authorized Yahoo 1h capture to qf-data-archive — neither authorized here.
+
+TASK B (the two decisive defects, repaired in a candidate copy; schema shadow-signal-v2): V5 — LiveAdapter.fetch() now returns BEFORE any cohort scan when the market frame is not positively OK (exception/None/empty). Proven with the verification's own stub-spy method on the real LiveAdapter path: scan_calls 0 / symbols_scanned 0 under raise AND None (positive control: market OK scans exactly once over 250). The verify package re-run against this copy reproduces it: V5 {raise: 0/0, none: 0/0}. V8 — every log record now carries prev_hash + hash (genesis bound to the launch-manifest bytes); startup verifies the whole chain fail-closed — a mismatch or a non-final corrupt line refuses with NO bytes altered (the v1 loader truncated from the first bad line anywhere, silently erasing later intact records); only a torn FINAL line truncates + recovers, as before. External anchor procedure shipped (verify_chain / check_anchor / runner --verify-log), with the suffix-truncation limit stated plainly: the chain alone cannot detect whole-tail deletion; the external anchor comparison is the control, and both halves are fixture-proven. Verify re-run: V8 = 7/7 records chained (was 0/7).
+
+Tests: new focused suite 21/21; successor acceptance suite (byte-copy) 24/24 against the repaired modules; verify_all.py full re-run exit 0 (V1 8/8, V3 38/38 pin-match, V6 250 unique, V7 T0 strict). NOT repaired here, remains HOLD by the assignment's own grading: bin-close / symbol-specific grid assertions from a pinned session table (13:30→16:00 2.5h bin, 13:00 early close, crypto continuous calendar) — the candidate still validates bar-start opens only and a valid crypto signal still cannot pass the equity-only grid; disclosed, not silently fixed, because it needs the pinned-calendar decision. LAUNCH HOLD; no authorization artifact, no shadow root in the repo, no scheduler. PAUSED production code pins identical before/after (harness ce7c902c… intact).
+
+— Muse
