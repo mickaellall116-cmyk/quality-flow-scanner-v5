@@ -1,0 +1,229 @@
+{
+ "task": "QF-EQUITY-DEV-EXPLORATORY-20261023-08",
+ "labels": [
+  "EXPLORATORY",
+  "4-NAME CONVENIENCE SAMPLE",
+  "G4 UNADOPTED",
+  "NOT VALIDATED EDGE"
+ ],
+ "phases": {
+  "P0_pins": {
+   "pine_backtest.py": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+   "scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c",
+   "pine_stack/pine_stack.py": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+   "pine_ranking/pine_ranking.py": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+   "pine_signal_quality/pine_signal_quality.py": "b1b39ee8d0bd4bbb1387b3ce54c7345c1f8dd622f94a5ed390c989fed1d39e69",
+   "pine_exposure/pine_exposure.py": "9f646161c27f6b28febe0980d03665bc9c1502fb844d37be6fd1d72ee45102be",
+   "session_table.json": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+   "archive_sha256sums_files": 22,
+   "archive_sha256sums_mismatches": [],
+   "receipts": {
+    "NVDA": {
+     "receipt_response_sha256": "b1ecf7bf6718cda1c1cd4fa0da4a1281bc14cc6c4fc1d357aaeabaa77d3fa0f6",
+     "receipt_rows": 3654,
+     "ok": true
+    },
+    "TSLA": {
+     "receipt_response_sha256": "f6b1e64f244b06543f536be8eaf04d731b7dd98700bf1afdbb7ff59b303479fe",
+     "receipt_rows": 3655,
+     "ok": true
+    },
+    "AAPL": {
+     "receipt_response_sha256": "97649d2f2a326b8a2e2e20a72cfaa83ebfaaed128698f1829716d37506acdd4f",
+     "receipt_rows": 3655,
+     "ok": true
+    },
+    "SPY": {
+     "receipt_response_sha256": "2c6631dc5482b5f8e20a2107b53fbcd64e1ae3732d2bf09adf17c874076fecfb",
+     "receipt_rows": 3655,
+     "ok": true
+    }
+   }
+  },
+  "P1_preflight": {
+   "NVDA": {
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3654,
+    "excluded": [
+     "2024-11-29 15:30:00"
+    ],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0
+   },
+   "TSLA": {
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     "2024-11-29 15:30:00",
+     "2024-12-24 15:30:00"
+    ],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0
+   },
+   "AAPL": {
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     "2024-11-29 15:30:00",
+     "2024-12-24 15:30:00"
+    ],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0
+   },
+   "SPY": {
+    "meta_exchange_timezone": "America/New_York",
+    "meta_interval": "1h",
+    "raw_rows": 3655,
+    "excluded": [
+     "2024-11-29 15:30:00",
+     "2024-12-24 15:30:00"
+    ],
+    "admitted_rows": 3653,
+    "zero_volume_admitted": 0,
+    "zero_volume_price_moving": 0
+   }
+  },
+  "P1_vbasis_disclosure": "All four legs remain CONVENTION_BREAK_SUSPECT via VBASIS per adjudication -02 (checker candidate-2, UNADOPTED): composite prints driven SOLELY by the VBASIS volume-ratio lane (SPY/HO 44 flags with no basis event; NVDA/HO ratios 0.528-1.950 continuum). Price-side convention evidence on the same bytes: STEP PASS, STEP-ALL 0 undeclared factor steps, adjust=splits in force. Data is an exploratory candidate, NOT fully qualified; this diagnostic is permissible as a labeled exploratory run and asserts no G4 PASS.",
+  "P2_grid_parity": {
+   "NVDA": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0,
+    "first_bar": "2024-09-16T09:30:00-04:00",
+    "last_bar": "2026-10-16T13:30:00-04:00"
+   },
+   "TSLA": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0,
+    "first_bar": "2024-09-16T09:30:00-04:00",
+    "last_bar": "2026-10-16T13:30:00-04:00"
+   },
+   "AAPL": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0,
+    "first_bar": "2024-09-16T09:30:00-04:00",
+    "last_bar": "2026-10-16T13:30:00-04:00"
+   },
+   "SPY": {
+    "bars_4h": 1043,
+    "grid_matches_pinned_table": true,
+    "aggregation_parity_bad_bars": 0,
+    "first_bar": "2024-09-16T09:30:00-04:00",
+    "last_bar": "2026-10-16T13:30:00-04:00"
+   }
+  },
+  "P3_candidate_parity": {
+   "candidates": 61,
+   "parity_bad": 0,
+   "skipped_gap_below_stop": 0
+  },
+  "P3_c0_fidelity": {
+   "pass": true,
+   "pb_final_equity": 9894.345967222389,
+   "stack_c0_final_equity": 9894.345967222389
+  },
+  "P3_determinism": {
+   "identical_taken_set": true,
+   "identical_final_equity": true
+  },
+  "P3_run": {
+   "4bps": {
+    "config": "EXPLORATORY_4NAME_DEV_C1CFG",
+    "cost": "4bps",
+    "trades": 61,
+    "win_rate_pct": 42.6,
+    "expectancy_net_r": -0.005,
+    "profit_factor": 0.99,
+    "total_return_pct": -1.05,
+    "max_drawdown_pct": 12.43,
+    "avg_hold_bars": 17.8,
+    "market_exposure_pct": 68.1,
+    "tp1_hit_rate_pct": 42.6,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 0,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 42,
+     "ema55-break": 19
+    },
+    "avg_winner_r": 1.359,
+    "avg_loser_r": -1.018,
+    "stop_out_pct": 68.9,
+    "sector_cap_skips": 0,
+    "rank_skips": 0,
+    "candidates_available": 61,
+    "expectancy_gross_r": 0.015
+   },
+   "25bps": {
+    "config": "EXPLORATORY_4NAME_DEV_C1CFG",
+    "cost": "25bps",
+    "trades": 61,
+    "win_rate_pct": 42.6,
+    "expectancy_net_r": -0.106,
+    "profit_factor": 0.83,
+    "total_return_pct": -7.05,
+    "max_drawdown_pct": 14.47,
+    "avg_hold_bars": 17.8,
+    "market_exposure_pct": 68.1,
+    "tp1_hit_rate_pct": 42.6,
+    "skipped_gap_below_stop": 0,
+    "skipped_max_positions": 0,
+    "skipped_max_risk": 0,
+    "exit_reasons": {
+     "stop": 42,
+     "ema55-break": 19
+    },
+    "avg_winner_r": 1.251,
+    "avg_loser_r": -1.115,
+    "stop_out_pct": 68.9,
+    "sector_cap_skips": 0,
+    "rank_skips": 0,
+    "candidates_available": 61,
+    "expectancy_gross_r": 0.015
+   }
+  },
+  "P3_per_symbol": {
+   "NVDA": {
+    "candidates": 22,
+    "taken": 22,
+    "mean_net_r_4bps": -0.132,
+    "sum_net_r_4bps": -2.903,
+    "mean_net_r_25bps": -0.199,
+    "win_rate_4bps_pct": 31.8
+   },
+   "TSLA": {
+    "candidates": 11,
+    "taken": 11,
+    "mean_net_r_4bps": -0.184,
+    "sum_net_r_4bps": -2.024,
+    "mean_net_r_25bps": -0.233,
+    "win_rate_4bps_pct": 45.5
+   },
+   "AAPL": {
+    "candidates": 12,
+    "taken": 12,
+    "mean_net_r_4bps": 0.418,
+    "sum_net_r_4bps": 5.019,
+    "mean_net_r_25bps": 0.327,
+    "win_rate_4bps_pct": 50.0
+   },
+   "SPY": {
+    "candidates": 16,
+    "taken": 16,
+    "mean_net_r_4bps": -0.024,
+    "sum_net_r_4bps": -0.377,
+    "mean_net_r_25bps": -0.217,
+    "win_rate_4bps_pct": 50.0
+   }
+  }
+ },
+ "verdict": "EXPLORATORY_RUN_COMPLETE"
+}

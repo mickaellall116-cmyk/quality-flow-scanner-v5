@@ -1,0 +1,13 @@
+P0 done: 22 archive files verified, receipts ok
+P1 NVDA: raw 3654 admitted 3653 excluded 1 zv 0/0 moving
+P1 TSLA: raw 3655 admitted 3653 excluded 2 zv 0/0 moving
+P1 AAPL: raw 3655 admitted 3653 excluded 2 zv 0/0 moving
+P1 SPY: raw 3655 admitted 3653 excluded 2 zv 0/0 moving
+P2 NVDA: 1043 4H bars, grid ok=True, agg bad=0
+P2 TSLA: 1043 4H bars, grid ok=True, agg bad=0
+P2 AAPL: 1043 4H bars, grid ok=True, agg bad=0
+P2 SPY: 1043 4H bars, grid ok=True, agg bad=0
+P3 run: candidates=61 taken4=61 taken25=61
+  [4bps] n=61 exp=-0.005R gross=0.015R PF=0.99 ret=-1.05% dd=12.43% exposure=68.1% win=42.6%
+  [25bps] n=61 exp=-0.106R gross=0.015R PF=0.83 ret=-7.05% dd=14.47% exposure=68.1% win=42.6%
+VERDICT: EXPLORATORY_RUN_COMPLETE
