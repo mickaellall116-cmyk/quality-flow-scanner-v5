@@ -1,0 +1,839 @@
+{
+ "manifest_id": "QF-CAPTURE-MANIFEST-EQUITY39-PREP-20261023",
+ "status": "PREPARED_ONLY - authorizes nothing; capture fires only on a capture GO naming this manifest's root digest after QF-EQUITY-PIT-INTEGRITY-20261023-09 clears adjudication (see SEQUENCING.md)",
+ "lineage": "-88 manifest 6b0f5d0 -> -91 BLOCK-BRACKET-10 accounting db9e0f3 -> -93 receipt-schema amendment 96cd2bb -> -01 candidate re-issue edc44d9 (root 79ccdd12) -> pilot execution 5d129fb / adjudication -02 7823538 -> this equity-only subset re-issue for the 39 unattempted names",
+ "provider": "Twelve Data",
+ "endpoint_class": "/time_series (data legs) + /api_usage (phase/block bracketing reads, never retried)",
+ "universe": {
+  "name": "UX51 equities (Option A freeze, commit 2705c02) - equity-only subset",
+  "membership_sha256_sorted_ux51": "b5d8877ee7d6ddd105904d7f4ca35901ebb611dac7afeab2f7676529c112e6a2",
+  "already_captured_full_span": [
+   "NVDA",
+   "TSLA",
+   "AAPL",
+   "SPY"
+  ],
+  "names_in_this_manifest": [
+   "PLTR",
+   "SOFI",
+   "AMD",
+   "MSFT",
+   "META",
+   "COIN",
+   "MSTR",
+   "AVGO",
+   "GOOGL",
+   "AMZN",
+   "NFLX",
+   "CRM",
+   "MU",
+   "INTC",
+   "LRCX",
+   "AMAT",
+   "QCOM",
+   "ARM",
+   "HOOD",
+   "APP",
+   "NET",
+   "SNOW",
+   "DDOG",
+   "CRWD",
+   "SHOP",
+   "RKLB",
+   "ASTS",
+   "LUNR",
+   "PYPL",
+   "NU",
+   "MELI",
+   "IWM",
+   "SMH",
+   "ARKK",
+   "XLF",
+   "NIO",
+   "MRNA",
+   "PFE",
+   "F"
+  ],
+  "smci": "EXCLUDED from the leg list; carried as a separately-flagged line (see smci_line) and resolved in SMCI_RESOLUTION.md",
+  "crypto": "OUT OF SCOPE for this manifest (7 pairs parked per Mike's equities-first sequencing, 2026-10-23)"
+ },
+ "smci_line": {
+  "symbol": "SMCI",
+  "SMCI/HO": "ATTEMPTED in pilot Step 1; classified NOT_EVALUABLE_PROVIDER_VOLUME (-02, 7823538); body quarantined in qf-data-archive, sha256 737cb24ad6dcb6185529dd629177cd34f6f1f5988b0dda86fb45131c898f43d3; a TD re-ask is a retry of a documented provider-volume failure and is NOT offered",
+  "SMCI/DEV": "UNATTEMPTED (1 leg). Held OUT of this manifest pending an SMCI/HO disposition: capturing DEV alone does not cure the HO hole and has no qualification value until a disposition exists (-02 Card B2 logic)",
+  "status": "NOT_ACQUIRED / NOT_QUALIFIED - resolution options in SMCI_RESOLUTION.md"
+ },
+ "calendar": {
+  "equity": "751-session XNYS union (adopted, three-gate freeze a126ce5): -81 extension 227 sessions 2023-10-19..2024-09-15 + XNYS_SESSION_SCHEDULE_V2 524 sessions 2024-09-16..2026-10-16",
+  "session_table_pin": "research_notes/shadow_closeout_20261022/session_table.json sha256 00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f, version XNYS-751-UNION-20261021",
+  "disclosed_assumption": "CH-1 carried per freeze (2023 core-hours documentation pursued in parallel, non-blocking); carried in every receipt header for 2023-window legs"
+ },
+ "rule_version": "2026-09-15-v54",
+ "request": {
+  "interval": "1h",
+  "adjust": "splits (uniform split-adjusted basis; E3 Mode A decision-time; S2 rejected/retired)",
+  "outputsize": 5000,
+  "bar_stamp": "bar open",
+  "timezone": "America/New_York",
+  "order": "ASC",
+  "response_at_5000_rows": "fail-closed truncation defect by construction (largest legit leg 3,655 raw rows observed class; admitted expectation HO 1,583 / DEV 3,653)"
+ },
+ "windows": {
+  "W_HO": {
+   "equity_sessions": "2023-10-19..2024-09-15",
+   "note": "capture does NOT open the sealed holdout; bytes are qualification input only; the holdout's single governed use remains -25 S50, separately gated, LAST in sequence"
+  },
+  "W_DEV": {
+   "equity_sessions": "2024-09-16..2026-10-16 (dev ends at last adopted-calendar session; extension is a separate decision)"
+  }
+ },
+ "legs": [
+  {
+   "leg_id": "PLTR/HO",
+   "symbol": "PLTR",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "PLTR/DEV",
+   "symbol": "PLTR",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "SOFI/HO",
+   "symbol": "SOFI",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "SOFI/DEV",
+   "symbol": "SOFI",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "AMD/HO",
+   "symbol": "AMD",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "AMD/DEV",
+   "symbol": "AMD",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MSFT/HO",
+   "symbol": "MSFT",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MSFT/DEV",
+   "symbol": "MSFT",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "META/HO",
+   "symbol": "META",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "META/DEV",
+   "symbol": "META",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "COIN/HO",
+   "symbol": "COIN",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "COIN/DEV",
+   "symbol": "COIN",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MSTR/HO",
+   "symbol": "MSTR",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MSTR/DEV",
+   "symbol": "MSTR",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "AVGO/HO",
+   "symbol": "AVGO",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "AVGO/DEV",
+   "symbol": "AVGO",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "GOOGL/HO",
+   "symbol": "GOOGL",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "GOOGL/DEV",
+   "symbol": "GOOGL",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "AMZN/HO",
+   "symbol": "AMZN",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "AMZN/DEV",
+   "symbol": "AMZN",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "NFLX/HO",
+   "symbol": "NFLX",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "NFLX/DEV",
+   "symbol": "NFLX",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "CRM/HO",
+   "symbol": "CRM",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "CRM/DEV",
+   "symbol": "CRM",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MU/HO",
+   "symbol": "MU",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MU/DEV",
+   "symbol": "MU",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "INTC/HO",
+   "symbol": "INTC",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "INTC/DEV",
+   "symbol": "INTC",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "LRCX/HO",
+   "symbol": "LRCX",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "LRCX/DEV",
+   "symbol": "LRCX",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "AMAT/HO",
+   "symbol": "AMAT",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "AMAT/DEV",
+   "symbol": "AMAT",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "QCOM/HO",
+   "symbol": "QCOM",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "QCOM/DEV",
+   "symbol": "QCOM",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "ARM/HO",
+   "symbol": "ARM",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "ARM/DEV",
+   "symbol": "ARM",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "HOOD/HO",
+   "symbol": "HOOD",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "HOOD/DEV",
+   "symbol": "HOOD",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "APP/HO",
+   "symbol": "APP",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "APP/DEV",
+   "symbol": "APP",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "NET/HO",
+   "symbol": "NET",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "NET/DEV",
+   "symbol": "NET",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "SNOW/HO",
+   "symbol": "SNOW",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "SNOW/DEV",
+   "symbol": "SNOW",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "DDOG/HO",
+   "symbol": "DDOG",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "DDOG/DEV",
+   "symbol": "DDOG",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "CRWD/HO",
+   "symbol": "CRWD",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "CRWD/DEV",
+   "symbol": "CRWD",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "SHOP/HO",
+   "symbol": "SHOP",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "SHOP/DEV",
+   "symbol": "SHOP",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "RKLB/HO",
+   "symbol": "RKLB",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "RKLB/DEV",
+   "symbol": "RKLB",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "ASTS/HO",
+   "symbol": "ASTS",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "ASTS/DEV",
+   "symbol": "ASTS",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "LUNR/HO",
+   "symbol": "LUNR",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "LUNR/DEV",
+   "symbol": "LUNR",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "PYPL/HO",
+   "symbol": "PYPL",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "PYPL/DEV",
+   "symbol": "PYPL",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "NU/HO",
+   "symbol": "NU",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "NU/DEV",
+   "symbol": "NU",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MELI/HO",
+   "symbol": "MELI",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MELI/DEV",
+   "symbol": "MELI",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "IWM/HO",
+   "symbol": "IWM",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "IWM/DEV",
+   "symbol": "IWM",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "SMH/HO",
+   "symbol": "SMH",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "SMH/DEV",
+   "symbol": "SMH",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "ARKK/HO",
+   "symbol": "ARKK",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "ARKK/DEV",
+   "symbol": "ARKK",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "XLF/HO",
+   "symbol": "XLF",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "XLF/DEV",
+   "symbol": "XLF",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "NIO/HO",
+   "symbol": "NIO",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "NIO/DEV",
+   "symbol": "NIO",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MRNA/HO",
+   "symbol": "MRNA",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "MRNA/DEV",
+   "symbol": "MRNA",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "PFE/HO",
+   "symbol": "PFE",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "PFE/DEV",
+   "symbol": "PFE",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "F/HO",
+   "symbol": "F",
+   "window": "W_HO",
+   "start_date": "2023-10-19",
+   "end_date": "2024-09-15",
+   "expected_rows_admitted": 1583,
+   "status": "NOT_ACQUIRED"
+  },
+  {
+   "leg_id": "F/DEV",
+   "symbol": "F",
+   "window": "W_DEV",
+   "start_date": "2024-09-16",
+   "end_date": "2026-10-16",
+   "expected_rows_admitted": 3653,
+   "status": "NOT_ACQUIRED"
+  }
+ ],
+ "legs_total": 78,
+ "accounting": {
+  "scheme": "BLOCK-BRACKET-10 (repair -91, db9e0f3): unit cost 1 credit per API call; strictly sequential attempts in manifest order grouped in blocks of <=10 attempts; one /api_usage read opens the phase and one closes every block (chained); block reconciliation u_k - u_{k-1} = attempts_k + 1, mismatch = HALT; <=2 attempts per leg, a leg exhausting its bracket STOPS the capture",
+  "expected": {
+   "attempts": 78,
+   "blocks": 8,
+   "usage_reads": 9,
+   "total_credits": 87
+  },
+  "worst": {
+   "attempts": 156,
+   "blocks": 16,
+   "usage_reads": 17,
+   "total_credits": 173
+  },
+  "free_tier": "800 credits/day, $0 - the whole manifest fits one execution day at expected AND at worst case",
+  "ceiling_note": "Per Mike's ruling (chat 2026-10-23 16:04 ET) credits are free and are NOT a decision: no ceiling is presented for approval. These figures are execution bookkeeping (abort/reconciliation arithmetic), not a gate."
+ },
+ "expected_schema": {
+  "columns": {
+   "datetime": "string, ISO bar-open stamp, America/New_York",
+   "open": "number, finite",
+   "high": "number, finite",
+   "low": "number, finite",
+   "close": "number, finite",
+   "volume": "number, finite, >= 0"
+  },
+  "refusals": "kind capture_refusal (never receipted, never archived): NETWORK_DISABLED | SCHEMA_VIOLATION | TIMEZONE_VIOLATION | DUPLICATE_INSTANT | GAP_VIOLATION | TRUNCATION_SUSPECT | NONFINITE_VALUE"
+ },
+ "policies": {
+  "missing": "row-count vs calendar expectation enumerated in receipt; zero-row session = COMPLETENESS_FAIL at qualification; no silent acceptance, no re-chunking",
+  "duplicate": "duplicate UTC instant within a leg = fail-closed refusal (instant comparison, never wall-clock - the -94 lesson)",
+  "gaps": "intra-leg continuity checked on UTC instants; a gap is a coverage finding for the checker, never papered over",
+  "pagination": "none permitted; a 5000-row response aborts the leg as a truncation defect",
+  "retries": "at most 2 attempts per leg (bracket accounting); /api_usage never retried; any leg exhausting its bracket STOPS the capture",
+  "abort_conditions": "/api_usage preflight fields read explicitly as daily_usage / plan_daily_limit (the -69 misread check; plan_daily_limit != 800 = stop); any receipt-chain break; any price-moving zero-volume anomaly class on raw bytes (the SMCI rule, generalized) = quarantine leg + adjudication, capture continues only if the wrapper's fail-closed rules permit - default STOP and report"
+ },
+ "destination": {
+  "archive": "qf-data-archive (private), captures/td_capture_equity39_<EXEC_DATE>/ - append-only, write-once, SHA256SUMS verified by re-fetch; deletion only on Mike's approval",
+  "local": "working store under ~/workspace, byte-identical to archive copies"
+ },
+ "receipt": "IDENTICAL to the pilot's schema: QF-CAPTURE-RECEIPT-CANDIDATE-20261023-01 (kind-discriminated, hash-chained to this manifest's root digest; capture_receipt emitted ONLY after a leg passes every wrapper validation; refused legs emit no receipt - absence is the failure signal). Per -91, receipts carry block_id / block_position / bracket-read hashes and do NOT carry per-leg usage_before/usage_after/credit_delta fields.",
+ "qualification_gates": "PREFLIGHT gates G-1..G-7 in CAPTURE_MANIFEST.md S4 (copied from -08/-02): receipt integrity, calendar-bound admission vs pinned 751-session table, completeness exactness, phantom-row generic exclusion, volume completeness (TSLA-C2 / SMCI failure classes), schema/instant hygiene, VBASIS disclosure. A name is QUALIFIED only per-name after all gates; every name in this manifest is NOT ACQUIRED / NOT QUALIFIED.",
+ "root_digest_sha256": "ca49892062f1ac5d4ec6d20eaadd37b519aec84ad0b23a995fb11db74dccfd64",
+ "root_digest_construction": "sha256 of the canonical JSON serialization (sorted keys, compact separators) of this manifest object with the root_digest_sha256 and root_digest_construction fields omitted"
+}
