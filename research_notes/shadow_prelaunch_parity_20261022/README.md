@@ -26,3 +26,24 @@ python3 -B staged_signal_parity_probe.py /path/to/quality-flow-scanner-v5/forwar
 The second command is **expected to exit 2 / HOLD** on existing historical witness. Next, run the *actual pinned* `v54_qualified_signals(rows)` adapter against the **last existing ordinary-cycle inputs**, not synthetic rows or any new Yahoo/vendor fetch, record input SHA256 and the code pins, and repeat the same probe. If staged scan inputs are missing, report **NOT AVAILABLE**, not a fabricated PASS. Verify 250 unique cohort symbols and a distinct market-frame-failure fast-exit before any cohort scan. The current probe checks normal NYSE sessions only; for early-close sessions, bind the actual pinned 751-session table before claiming parity. The correct final regular-session bar lasts 2.5 hours.
 
 No production, vendor, holdout, backtest, trading, launch authorization, or observer activation changes under this branch.
+
+
+## Zero-provider-request passive ordinary-cycle intake check
+
+Further source review at `ba4276f` established that `v54_forward_harness.py` unconditionally writes `latest_v54_signals.json` locally after each ordinary cycle (including when paper entries are PAUSED), with full V5.4 qualified results in the envelope plus `forward_test.last_cycle` health. This is **not** the published `forward_test/v54_status.json`, and the file has **not been verified present on Muse's current VM**.
+
+The existing shadow successor `798de18` instead calls the network-backed scanner anew; the archived `v54_engine.v54_scan_symbols` performs a full universe scan with multi-timeframe/premarket auxiliaries, so its synthetic 'one fetch' test does not measure provider load. A passive observer should consume and verify the ordinary-cycle output before introducing any new network calls. Do not mistake an existing LEGACY GRID output for corrected-grid evidence.
+
+`passive_cycle_audit.py` is a read-only, fail-closed *inspection tool*. It hashes the existing local output and checks cycle freshness, explicit PAUSED state, declared 250 (51+199) cohort, complete health/coverage, result counts, and canonical IDs. It cannot grant a launch GO: its CLI always exits **2/HOLD** until the producer is separately proved corrected and an independent calendar/stack/universe attestation is adopted. A healthy zero-row legacy snapshot is still HOLD (absence of signals is not evidence of qualified absence). It never reads vendor/holdout data or writes the production/shadow tree.
+
+```bash
+# From this research directory, offline, after confirming the VM repo path:
+python3 -B test_passive_cycle_audit.py
+python3 -B passive_cycle_audit.py --repo-root /path/to/quality-flow-scanner-v5
+```
+
+Local synthetic evidence: **11/11 assertions PASS**, including stale-cycle, missing pause, degraded cycle, incomplete cohort, unclosed/future signal, duplicate ID, count mismatch, and no external grid attestation. This is not an execution claim on Muse's VM. Committed source `passive_cycle_audit.py` matches locally exercised Git blob `8c68202b97ec1645ad954cc48e109e2c7a60b4bd`; test code differs by a trailing newline from the local verified copy, with identical assertions.
+
+### Crypto compatibility is separate
+
+The UX51 Option A freeze retains **7 crypto** with a separately specified 09:30 ET-to-next-09:30 ET continuous calendar. However the current `scanner_rules.resample_closed_4h_session_anchored` crypto path uses UTC-midnight 00/04/08/12/16/20 bins. An isolated prospective recorder cannot apply the equity 09:30/13:30-only predicate to crypto or silently convert the baseline family. Require a symbol-specific pinned calendar/producer proof; missing proof means **HOLD**, not 'zero valid crypto signals'.
