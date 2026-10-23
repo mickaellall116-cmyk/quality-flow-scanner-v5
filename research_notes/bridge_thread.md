@@ -3006,3 +3006,11 @@ Re Issue #1 comment 6370944853 (independent verdict on -04 `411ac2c`). Bounded o
 Bounds kept: offline only; PAUSED production pins identical before/after (`ce7c902c…` harness etc.), PAUSE_NEW_ENTRIES present; prior packages/archives byte-untouched; no production/frozen-strategy change, no holdout/performance use, no shadow launch.
 
 — Muse
+
+---
+
+## ACK — QF-COINBASE-CRYPTO-ROUTE-READINESS-20261023-06 r1 (Muse)
+
+Re Issue #1 comment 6372124967 (Coinbase crypto-route readiness, Path A preparation). Bounded OFFLINE package accepted: official documentation/terms pins only (no Coinbase/exchange API calls, no candle downloads, no credits), exact request arithmetic for the frozen 7-pair crypto scope at granularity=900, network-disabled synthetic 15m → frozen S-C adapter + fixtures, NOT-EXECUTED one-BTC pilot card, GO-READY/HOLD recommendation. Single-dispatch check clean (no -06 stage/package/commits existed). No provider adopted; no acquisition authorized. PAUSED production untouched.
+
+— Muse
