@@ -3194,3 +3194,30 @@ Muse — ACK: QF-EQUITY43-DEV-PREFLIGHT-20261023-12 r1 (re Issue #1 comment 6375
 Executing OFFLINE only, in the governed order: (1) full child receipt-chain verification (root c5628652…, archive qf-data-archive@bb644db) + pilot bytes (45496f8) for NVDA/TSLA/AAPL/SPY DEV; (2) per-name G1–G6 adjudication on all 43 DEV legs vs the pinned 751-session table; (3) PFE 2024-12-24 stamp adjudicated in writing under a generic frozen early-close exclusion — no whitelist, no silent treatment; (4) G4/VBASIS carried disclosed as an unadopted qualification blocker (candidate-grade inputs, not QUALIFIED); (5) independent replay of the -09 fork fixtures (aad5563) — 5/5 must reproduce; (6) real-input signal/exit parity + frozen C1 config proof. ONLY on full preflight PASS: ONE preregistered chronological 43-name W_DEV run on the corrected research-only fork (frozen originals untouched), gross/4bps/25bps, portfolio layer exercised and reported, terminal opens counted, deterministic replay byte-identical. W_HO sealed — no holdout bytes parsed. SMCI absent, stated, never imputed. 0 new credits (program TD total stays 115 desk). PAUSED pins verified before (harness ce7c902c…, PAUSE_NEW_ENTRIES present, RESUME absent). RESULT to follow on both channels.
 
 — Muse
+
+### RESULT — QF-EQUITY43-DEV-PREFLIGHT-20261023-12 (2026-10-23)
+
+Muse — RESULT: QF-EQUITY43-DEV-PREFLIGHT-20261023-12 r1 (re Issue #1 comment 6375014605). Package research_notes/equity43_dev_preflight_20261023_12/ commit 861f5e2 (SHA256 manifest verified from the pushed remote tree); bridge ACK ffc18d7.
+
+**VERDICT: STOP_PREFLIGHT — the single 43-name DEV run was NOT executed. No performance figures are reported.** One material gate failure, root-caused with evidence; every data gate passed.
+
+Labels: EQUITIES-ONLY DEV EXPLORATORY / G4 UNADOPTED / NOT VALIDATED EDGE.
+
+PASS gates:
+• P0 pins/integrity: fork byte-identical to -09 manifest (pine_backtest becea082…, pine_stack 30594231…, asof f0f4582c…); frozen originals at pins; session table 00c5555c…; fresh-clone archive bb644db SHA256SUMS 158/158 + 22/22, 0 mismatches. PAUSED pins identical before/after (harness ce7c902c…, PAUSE present, RESUME absent).
+• P1 chains: child root recomputed = c5628652… MATCH; parent = ca498920… MATCH; full child chain re-walked from GENESIS on fresh-clone bytes 54/54 (links, raw hashes, root pins); 23 receipt-less legs = exactly the quarantined HO legs; pilot DEV receipts verified (root 79ccdd12…, splits, 1h).
+• P2 G1–G6 on DEV legs: **43/43 PASS.** Admitted == pinned expected exactly (3,653/leg); 61 excluded rows total (36× 2024-11-29 15:30, 24× 2024-12-24 15:30, 1× PFE 14:30), all in the generic early-close post-close class; ZERO zero-volume admitted bars on any leg.
+• PFE RULED: the 2024-12-24 14:30 row is excluded under the same generic pinned-session rule as the 15:30 stamps (criterion = non-membership in the pinned grid on a 13:00 early-close date; stamp-value-agnostic; no whitelist). PFE/DEV ADMITTED at 3,653 with the variant evidence preserved verbatim in results.json.
+• G4/VBASIS: disclosed, NOT waived — CONVENTION_BREAK_SUSPECT stands (checker candidate-2 unadopted); inputs are candidate-grade, NOT QUALIFIED; no threshold touched.
+• P3 fixtures replayed independently: original exit 1, 0/5 hold; fork exit 0, 5/5 hold.
+• P4 parity: 4H grid == pinned table 43/43 (1,043 bars each); independent re-aggregation incl. SessionVWAP 0 bad on 44,849 bars; 586 candidates, 0 parity failures vs frozen formulas; counted generator byte-identical to frozen gen_candidates; skipped_gap_below_stop = 1; sector map covers 43/43. Terminal opens COUNTED = 4 (CRM, SHOP, MRNA +3.8609R unrealized at last close, PFE) — frozen-construction censoring disclosed, not a stop reason. As-of liveness: rs differs midnight-vs-as-of on 586/586 candidates.
+
+THE BLOCKER (P4, simulator cross-validation): the C0 fidelity invariant fails under the preregistered candidate order — pb control 11,752.03 (343 cap / 51 risk skips) vs stack C0 11,803.68 (323 / 72). Root cause PROVEN (diag_fidelity.py): pine_backtest.simulate_portfolio processes coincident entries in candidate-LIST order; stack C0 uses the canonical (symbol, signal_idx) key. Stack C0 is order-invariant (11,803.6785 under all orders); the control swings (11,752.03 study order; 10,529.48 UNIVERSE_X order; 11,803.68 alphabetical). Under a canonical (symbol, signal_idx) candidate list the invariant passes EXACTLY (Δ 0.0000, skips 323=323, 72=72). Not a fork defect, not a data defect — an order-conditional instrument meeting an order the frozen configuration never pinned (invisible until now: -08 had 61/61 taken, caps never bound).
+
+NOT blocked: the ranked C1 sim (the study configuration proper) is input-order INVARIANT on the real 586 candidates — identical taken set (sha256 match) and identical rank/cap/risk/sector skip counts under study order, a seeded shuffle, and canonical order; the portfolio layer binds hard. Diagnostic C1 equity values are withheld by design: no performance on a STOP.
+
+UNBLOCKING (one pin, adjudication's): pin the study's candidate-list order as canonical (symbol, signal_idx) in the frozen configuration (GO gate 4 freezes same-time allocation order). Under that pin, fidelity evidence already passes exactly and all other gates stand PASS/reusable; a successor task re-verifies P0–P4 and executes the single run. I did not adopt the pin mid-flight — that would alter the frozen configuration after seeing the gate fail.
+
+Bounds: OFFLINE (unshare -n), 0 credits (program stays 115 desk), W_HO sealed (hashes/chain metadata only), SMCI excluded and never imputed, frozen originals untouched, production PAUSED pin-identical. Eligible DEV datasets: 43/43. Elapsed ≈25 min incl. diagnostic.
+
+— Muse
