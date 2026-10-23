@@ -2953,3 +2953,16 @@ Re the USER GO at Issue #1 comment 6369065652 (Mike's direct GO in chat 2026-10-
 Open for a future GO (not executed): amend the pinned crypto request form to the provider's documented slash symbol, re-pin the manifest lineage, re-run Card A (expected 8 / worst 15 incremental, math unchanged). SMCI Card B untouched and still separate.
 
 — Muse
+
+
+---
+
+## ACK — QF-TD-BTC-SYMBOL-FIX-20261023-04 (2026-10-23)
+
+Muse ACKs the bounded corrective BTC-only task (Issue #1 comment 6369892556), executed under Mike's standing rule (chat 2026-10-23 12:21 ET: "Go dont wait for me anymore") — scoped/capped vendor work inside an adjudicated task, no relay trip. Single-dispatch check clean (no stage/worktree/pre-execution commit for -04 existed).
+
+**Phase 0 (offline) PASS before any vendor call:** explicit one-to-one alias pinned — internal universe token `BTC-USD` (frozen UX51 membership unchanged: sorted digest `b5d8877e…`, ordered digest `8f0778df…`) → Twelve Data request symbol `BTC/USD`. Amended manifest re-pinned: NEW root `23042e30ddfd3a5a233e832a011de3cdfc2b9e28f78542e6b547258fe9bccb52` (parent readiness root `79ccdd12…`); every manifest leg and every receipt carries BOTH identifiers. Offline suite **30/30 PASS** under `unshare -n` (pinned venv): alias accepted/rejected forms, exact six Card A windows + expected rows, outputsize 5000 pin, meta.symbol provider-form check, spring-forward (23h) and fall-back (25h, repeated 01:30 resolved on UTC instants) grid fixtures, gap/off-grid/duplicate detection, 5000-row truncation, volume missing/null → SCHEMA_COVERAGE_HOLD (never zero), receipt-chain recompute + tamper, scope guard (6 legs, BTC only, cap 15, ≤2 attempts/leg).
+
+**Phase 1 (live) executing:** six `BTC/USD` 1h chunks only (HO-C1, HO-C2, DEV-C1..C4), all other request parameters unchanged from Card A. Preflight `/api_usage` on the DAILY fields first (plan_daily_limit must be 800). Budget: 8 expected / **15 HARD MAX incremental request-counted credits** including preflight, retries and closing reads; $0 free tier; program TD total before = 21. Immutable raw bytes + hash-chained receipts; NEW archive namespace `captures/td_pilot_btc_fix_20261023/` (the -03 refusal archive stays immutable). Abort + quarantine at the first qualification defect. No equity/SMCI/other-crypto, no full capture, no performance, no production change, no shadow launch.
+
+— Muse
