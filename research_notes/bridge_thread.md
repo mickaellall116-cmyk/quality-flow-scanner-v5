@@ -2931,3 +2931,25 @@ Executing Card A exactly as pinned in `research_notes/td_pilot_adjudication_2026
 Method: preflight `/api_usage` first (daily fields only — `plan_daily_limit` must be 800, the -69 check); immutable raw bytes + truthful hash-chained receipts (manifest root `79ccdd12…`) to qf-data-archive `captures/td_pilot_btc_20261023/` (append-only, SHA256SUMS re-fetch verified) + byte-identical local store; stamp validation against the adopted S-C1…S-C6 continuous ET09:30→next-ET09:30 grid on UTC instants, DST sessions 23/24/25 bars. ANY documented abort (plan limit ≠ 800, exactly-5000 rows, bracket exhaustion, chain break, off-grid stamps, price-moving zero-volume anomaly) stops all remaining vendor calls; partial bytes quarantined UNQUALIFIED; no retry/repair/window shift. Excluded: equities/SMCI/other crypto, full Step-2 capture, performance/holdout analysis, production/frozen-strategy change, shadow launch. PAUSED production pins recorded before the run (harness `ce7c902c…`; PAUSE_NEW_ENTRIES present, no RESUME) and will be re-verified after.
 
 — Muse
+
+---
+
+## 2026-10-23 — Muse — TYPE: TEST RESULT (QF-TD-BTC-PHASE-PILOT-20261023-03 — Card A STOPPED at chunk 1: provider rejects pinned symbol form; BTC stamp phase HOLD)
+
+Re the USER GO at Issue #1 comment 6369065652 (Mike's direct GO in chat 2026-10-23 12:21 ET; SENT Slack TS 1792771119.573959 / ACK Slack TS 1792772773.969219 + bridge e091e89, kept distinct). RESULT package `research_notes/td_btc_pilot_20261023_03/` (commit 86aee48; SHA256 manifest 4/4 verified from the pushed remote tree). Executed exactly under Card A as pinned in 7823538 (manifest root 79ccdd12…): preflight `/api_usage` opening read first (daily fields: daily_usage=11, plan_daily_limit=800 — PASS; the 8 figure is the per-minute limit, not used), then chunk 1 with real response + receipt validation.
+
+**Chunk BTC-USD/HO-C1, attempt 1: HTTP 404** — provider body: `{"code":404,"message":"**symbol** or **figi** parameter is missing or invalid…","status":"error"}` (202 bytes, sha256 80cd61f4…; api-credits-request: 1). The run STOPPED at the first refusal per the card's abort discipline: chunks HO-C2 and DEV-C1..C4 were never attempted; no retry, repair, symbol substitution, or window shift inside this GO. **Zero chunks captured, zero receipts emitted** (no receipt fabricated for a refused leg; the refusal record is preserved as evidence).
+
+**Root cause (plain):** the pinned request form carries the UX51 universe name `BTC-USD`; Twelve Data's documented crypto symbol form is the slash pair (`BTC/USD`) and it rejects `BTC-USD` as invalid. The equity pilot never attempted a crypto leg, so the defect was latent until Card A. Amending the symbol form changes the pinned request form/manifest lineage and needs its own authorization — not executed here; no vendor call was spent probing alternatives.
+
+**Credits: 3 incremental** (BLOCK-BRACKET-10 model: 1 attempt + opening + closing `/api_usage` reads) of the 15 hard max. Program TD total 18 → 21. Provider daily counter 11 → 13 across the run window. $0 free tier.
+
+**Stamp phase: HOLD — UNDETERMINED.** No BTC bytes were returned, so nothing could be validated against the S-C1…S-C6 grid; pilot gate criterion (iv) remains open exactly as before this run. This is a request-form defect, not a data verdict on BTC stamps.
+
+**Storage:** qf-data-archive commit `abf2d53`, namespace `captures/td_pilot_btc_20261023/` (manifest pin, preflight record, run evidence, HOLD.md, SHA256SUMS) — 6/6 verified by fresh re-fetch, byte-identical to the local store (~/workspace/qf_td_btc_pilot_20261023/store). No raw bars exist for this task — none were returned; nothing raw in this public repo.
+
+**Bounds kept:** BTC-USD only; no equity/SMCI/other-crypto legs; no full capture; no performance/holdout use; no production change (PAUSED pins re-verified identical before/after — harness ce7c902c…, scanner_rules 62aa743a…, masterscanner_api c3e95b25…, v54_engine bde32883…, v54_rules 1b55dedc…; PAUSE_NEW_ENTRIES present, no RESUME); no shadow launch. Single-dispatch check was clean before staging.
+
+Open for a future GO (not executed): amend the pinned crypto request form to the provider's documented slash symbol, re-pin the manifest lineage, re-run Card A (expected 8 / worst 15 incremental, math unchanged). SMCI Card B untouched and still separate.
+
+— Muse
