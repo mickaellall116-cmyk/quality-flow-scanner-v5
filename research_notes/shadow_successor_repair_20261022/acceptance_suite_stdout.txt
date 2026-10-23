@@ -1,0 +1,25 @@
+PASS A1_recorded_once 
+PASS A2_record_labels 
+PASS A3_idempotent_same_process 
+PASS B1_prelaunch_refused 
+PASS C1_blind_cycle_degraded_no_signals 
+PASS C2_absent_health_fails_closed 
+PASS D1_incomplete_scan_degraded 
+PASS D2_partial_bar_refused 
+PASS D3_naive_tz_refused 
+PASS D4_offgrid_refused 
+PASS D5_valid_signal_still_recorded 
+PASS E1_restart_no_duplicate 
+PASS E2_torn_tail_recovered_recorded_once 
+PASS E3_log_fully_parseable_after_recovery 
+PASS G1_t0_mismatch_refused 
+PASS G2_same_t0_reopens 
+PASS F1_production_hashes_unchanged 
+PASS F2_writes_contained_in_shadow_root 
+PASS H1_pins_pass_on_matching_stack 
+PASS H2_pin_mismatch_refused 
+PASS J1_live_mode_requires_authorization 
+PASS J2_observe_once_one_fetch_after_pins 
+PASS I1_no_production_imports 
+PASS K1_dry_run_main_end_to_end 
+24/24 checks passed

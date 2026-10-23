@@ -1,0 +1,433 @@
+{
+ "V1_probe_synthetic_suite": {
+  "exit": 0,
+  "pass_lines": 9,
+  "tail": "8/8 checks PASS",
+  "stderr_tail": ""
+ },
+ "V2a_witness_ba4276f": {
+  "verdict": "HOLD",
+  "scope": "offline historical witness; NOT launch certification",
+  "source_sha256": "d7e6507023b7b7d2d452682ee917c53c30e392fb33b46b7926184938517c9f50",
+  "container": "assessment_features",
+  "rows": 37,
+  "opening_times_ET": {
+   "06:30": 15,
+   "10:30": 11,
+   "14:30": 11
+  },
+  "durations_hours": {
+   "1.5": 11,
+   "4.0": 26
+  },
+  "rule_versions": {
+   "2026-09-15-v54": 37
+  },
+  "failures": {
+   "off_frozen_0930_1330_grid": 37
+  },
+  "bad_examples": [
+   {
+    "row_index": 0,
+    "symbol": "CRM",
+    "bar_start": "2026-09-16T10:30:00-04:00",
+    "bar_close": "2026-09-16T14:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 1,
+    "symbol": "VEEV",
+    "bar_start": "2026-09-16T10:30:00-04:00",
+    "bar_close": "2026-09-16T14:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 2,
+    "symbol": "DE",
+    "bar_start": "2026-09-17T06:30:00-04:00",
+    "bar_close": "2026-09-17T10:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 3,
+    "symbol": "BP",
+    "bar_start": "2026-09-17T10:30:00-04:00",
+    "bar_close": "2026-09-17T14:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   }
+  ]
+ },
+ "V2b_current_observer_export": {
+  "verdict": "HOLD",
+  "scope": "offline historical witness; NOT launch certification",
+  "source_sha256": "fd3d23ad2f6ee6000d41a89446d407d2858d8fe912d98f25b91c9abde23b3357",
+  "container": "assessment_features",
+  "rows": 37,
+  "opening_times_ET": {
+   "06:30": 15,
+   "10:30": 11,
+   "14:30": 11
+  },
+  "durations_hours": {
+   "1.5": 11,
+   "4.0": 26
+  },
+  "rule_versions": {
+   "2026-09-15-v54": 37
+  },
+  "failures": {
+   "off_frozen_0930_1330_grid": 37
+  },
+  "bad_examples": [
+   {
+    "row_index": 0,
+    "symbol": "CRM",
+    "bar_start": "2026-09-16T10:30:00-04:00",
+    "bar_close": "2026-09-16T14:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 1,
+    "symbol": "VEEV",
+    "bar_start": "2026-09-16T10:30:00-04:00",
+    "bar_close": "2026-09-16T14:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 2,
+    "symbol": "DE",
+    "bar_start": "2026-09-17T06:30:00-04:00",
+    "bar_close": "2026-09-17T10:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 3,
+    "symbol": "BP",
+    "bar_start": "2026-09-17T10:30:00-04:00",
+    "bar_close": "2026-09-17T14:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   }
+  ]
+ },
+ "V2c_forward_jsonl_signal_rows": {
+  "verdict": "HOLD",
+  "scope": "offline historical witness; NOT launch certification",
+  "source_sha256": "bf48f4b7d4af4c7452c0b5216a962d47964e88f85f09445b9d4f8864598d914a",
+  "container": "array",
+  "rows": 38,
+  "opening_times_ET": {
+   "06:30": 16,
+   "10:30": 11,
+   "14:30": 11
+  },
+  "durations_hours": {
+   "1.5": 11,
+   "4.0": 27
+  },
+  "rule_versions": {
+   "2026-09-15-v54": 38
+  },
+  "failures": {
+   "off_frozen_0930_1330_grid": 38
+  },
+  "bad_examples": [
+   {
+    "row_index": 0,
+    "symbol": "INTC",
+    "bar_start": "2026-09-15T06:30:00-04:00",
+    "bar_close": "2026-09-15T10:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 1,
+    "symbol": "CRM",
+    "bar_start": "2026-09-16T10:30:00-04:00",
+    "bar_close": "2026-09-16T14:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 2,
+    "symbol": "VEEV",
+    "bar_start": "2026-09-16T10:30:00-04:00",
+    "bar_close": "2026-09-16T14:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 3,
+    "symbol": "DE",
+    "bar_start": "2026-09-17T06:30:00-04:00",
+    "bar_close": "2026-09-17T10:30:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   }
+  ]
+ },
+ "V2c_note": "38 stored type=signal rows of 574 jsonl lines",
+ "V2d_latest_cycle_output": {
+  "verdict": "HOLD",
+  "scope": "offline historical witness; NOT launch certification",
+  "source_sha256": "aa45f03d83d5774ae11b92d3995f68d015c7b46e00bf49c01e4f61df161a4aa9",
+  "container": "qualified_signals",
+  "rows": 2,
+  "opening_times_ET": {
+   "14:30": 2
+  },
+  "durations_hours": {
+   "1.5": 2
+  },
+  "rule_versions": {
+   "2026-09-15-v54": 2
+  },
+  "failures": {
+   "off_frozen_0930_1330_grid": 2
+  },
+  "bad_examples": [
+   {
+    "row_index": 0,
+    "symbol": "ABBV",
+    "bar_start": "2026-10-22T14:30:00-04:00",
+    "bar_close": "2026-10-22T16:00:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   },
+   {
+    "row_index": 1,
+    "symbol": "AMT",
+    "bar_start": "2026-10-22T14:30:00-04:00",
+    "bar_close": "2026-10-22T16:00:00-04:00",
+    "reasons": [
+     "off_frozen_0930_1330_grid"
+    ]
+   }
+  ]
+ },
+ "V2d_rows_detail": [
+  {
+   "symbol": "ABBV",
+   "start": "2026-10-22T14:30:00-04:00",
+   "close": "2026-10-22T16:00:00-04:00"
+  },
+  {
+   "symbol": "AMT",
+   "start": "2026-10-22T14:30:00-04:00",
+   "close": "2026-10-22T16:00:00-04:00"
+  }
+ ],
+ "V3_adapter_replay": {
+  "engine_sha256": "bde3288307ac7b9bfbded29af89b056ae849f49d91b51c1151dad860224eb8fb",
+  "engine_pin_expected": "bde3288307ac7b9bfbded29af89b056ae849f49d91b51c1151dad860224eb8fb",
+  "pin_match": true,
+  "stored_rows_in": 38,
+  "qualified_out": 38,
+  "all_stored_pass_filter": true,
+  "mixed_in": 41,
+  "mixed_out": 38,
+  "ineligible_excluded": true,
+  "probe_on_adapter_output": {
+   "verdict": "HOLD",
+   "scope": "offline historical witness; NOT launch certification",
+   "source_sha256": null,
+   "container": "array",
+   "rows": 38,
+   "opening_times_ET": {
+    "06:30": 16,
+    "10:30": 11,
+    "14:30": 11
+   },
+   "durations_hours": {
+    "1.5": 11,
+    "4.0": 27
+   },
+   "rule_versions": {
+    "2026-09-15-v54": 38
+   },
+   "failures": {
+    "off_frozen_0930_1330_grid": 38
+   },
+   "bad_examples": [
+    {
+     "row_index": 0,
+     "symbol": "INTC",
+     "bar_start": "2026-09-15T06:30:00-04:00",
+     "bar_close": "2026-09-15T10:30:00-04:00",
+     "reasons": [
+      "off_frozen_0930_1330_grid"
+     ]
+    },
+    {
+     "row_index": 1,
+     "symbol": "CRM",
+     "bar_start": "2026-09-16T10:30:00-04:00",
+     "bar_close": "2026-09-16T14:30:00-04:00",
+     "reasons": [
+      "off_frozen_0930_1330_grid"
+     ]
+    },
+    {
+     "row_index": 2,
+     "symbol": "VEEV",
+     "bar_start": "2026-09-16T10:30:00-04:00",
+     "bar_close": "2026-09-16T14:30:00-04:00",
+     "reasons": [
+      "off_frozen_0930_1330_grid"
+     ]
+    },
+    {
+     "row_index": 3,
+     "symbol": "DE",
+     "bar_start": "2026-09-17T06:30:00-04:00",
+     "bar_close": "2026-09-17T10:30:00-04:00",
+     "reasons": [
+      "off_frozen_0930_1330_grid"
+     ]
+    }
+   ]
+  }
+ },
+ "V4_resampler_parity": {
+  "legacy_bins_normal_day": [
+   {
+    "start_et": "09:30",
+    "close_at": "13:30"
+   },
+   {
+    "start_et": "13:30",
+    "close_at": "16:00"
+   }
+  ],
+  "anchored_bins_normal_day": [
+   {
+    "start_et": "09:30",
+    "close_at": "13:30"
+   },
+   {
+    "start_et": "13:30",
+    "close_at": "16:00"
+   }
+  ],
+  "anchored_bins_early_close_2026_11_27": [
+   {
+    "start_et": "09:30",
+    "close_at": "13:30"
+   }
+  ],
+  "probe_on_early_close_row": {
+   "verdict": "HOLD",
+   "scope": "offline historical witness; NOT launch certification",
+   "source_sha256": null,
+   "container": "array",
+   "rows": 1,
+   "opening_times_ET": {
+    "09:30": 1
+   },
+   "durations_hours": {
+    "3.5": 1
+   },
+   "rule_versions": {
+    "2026-09-15-v54": 1
+   },
+   "failures": {
+    "wrong_session_bin_close": 1
+   },
+   "bad_examples": [
+    {
+     "row_index": 0,
+     "symbol": "AAPL",
+     "bar_start": "2026-11-27T09:30:00-05:00",
+     "bar_close": "2026-11-27T13:00:00-05:00",
+     "reasons": [
+      "wrong_session_bin_close"
+     ]
+    }
+   ]
+  }
+ },
+ "V5_market_frame_spy": {
+  "market_raises": {
+   "scan_calls": 0,
+   "symbols_scanned": 0,
+   "market_ok_reported": false,
+   "candidates": 0
+  },
+  "market_returns_none": {
+   "scan_calls": 0,
+   "symbols_scanned": 0,
+   "market_ok_reported": false,
+   "candidates": 0
+  },
+  "required": "scan_calls == 0 on market-frame failure"
+ },
+ "V6_cohort": {
+  "ux51": 51,
+  "x2": 199,
+  "union": 250,
+  "unique_union": 250,
+  "overlap": 0,
+  "unique_within_ux51": 51,
+  "unique_within_x2": 199
+ },
+ "V7_t0_strictness": {
+  "close_eq_T0_refused": [
+   {
+    "signal_id": "v54:TEST:4h:2026-10-22T13:30:00-04:00:2026-09-15-v54",
+    "symbol": "TEST",
+    "reason": "PRELAUNCH_SIGNAL"
+   }
+  ],
+  "close_eq_T0_recorded": 0,
+  "valid_post_T0_recorded": 1,
+  "partial_bar_refused": [
+   {
+    "signal_id": "v54:LATE:4h:2026-10-22T16:00:00-04:00:2026-09-15-v54",
+    "symbol": "LATE",
+    "reason": "PARTIAL_BAR_NOT_CLOSED"
+   }
+  ],
+  "degraded_cycle_status": "DEGRADED",
+  "degraded_cycle_recorded": 0,
+  "t0_move_on_reopen": "ShadowError",
+  "t0_same_on_reopen": "ok"
+ },
+ "V8_provenance": {
+  "log_records_written": 7,
+  "records_with_any_hash_chain_field": 7,
+  "record_kinds": [
+   "shadow_cycle",
+   "shadow_refusal",
+   "shadow_signal"
+  ],
+  "verify_pins_matches": true,
+  "verify_pins_count": 6
+ },
+ "V7b_successor_suite": {
+  "exit": 0,
+  "pass_lines": 24,
+  "fail_lines": 0,
+  "tail": "24/24 checks passed",
+  "stderr_tail": ""
+ }
+}
