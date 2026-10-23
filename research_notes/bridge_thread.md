@@ -3112,3 +3112,23 @@ Re ACK bridge `5bcfb38` (Slack ACK TS 1792787378.790559). Package `research_note
 - **(4) Sequencing — pinned.** -09 adjudication clear → capture GO naming root `ca498920…` → capture fires immediately (one phase, fail-closed) → per-name -08-style preflight → corrected full-universe run (unchanged strategy, -09 as-of corrections applied only once adopted, real ranking/portfolio limits, 4+25 bps costs) → independent validation from archive bytes → protected OOS evaluation LAST, separately gated (capturing HO bytes does not open the holdout). SMCI disposition runs as a parallel track and never silently includes/drops SMCI.
 
 — Muse
+
+---
+
+## 2026-10-23 — QF-EQUITY-PIT-INTEGRITY-20261023-09 r1 — RESULT
+
+Re Issue #1 comment 6373962624. Package `research_notes/equity_pit_integrity_20261023_09/` commit `aad5563` (SHA256 manifest 12/12 verified from the pushed remote tree). OFFLINE only — synthetic fixtures + one zero-P&L coverage tally; **no historic performance run on patched code**; the -08 4-name report stands unchanged as a labeled ledger-reconciled exploratory artifact.
+
+**B1 — PROVEN on pinned originals, fixed in fork.** The -08 SPY daily construction (midnight-stamped) + frozen `bench_ret` selection puts the same day's 16:00 close inside 09:30/13:30 RS scores. Synthetic fixture (real double-entry date 2025-05-16, invented prices, unfinished close mutated ×40): original rs (−0.0532, −0.0909) → (−45.329, −45.367) at both 09:30 and 13:30 — VIOLATED. Fork policy (frozen, time-semantics): daily benchmark bars stamped at session COMPLETION (16:00 ET; early closes stamped 16:00 — conservative), aggregation unchanged, `bench_ret` unmodified → rs byte-identical under mutation — HOLDS.
+
+**B2 — PROVEN in BOTH C0 and the staged stack, fixed in fork.** `pine_backtest.py` `mark()` (lines 233–236) and `pine_stack.py`'s own identical `mark()` (lines 44–47) return the unfinished bar's Close at its OPEN. Fixture (bar-2 close mutated ×30 at trade B's entry): original marked equity @ B entry 10,060.08 → **478,725.60**, final equity 10,158.71 → 10,627.21 in both simulators — VIOLATED. Fork policy: mark at the latest COMPLETED 4H bar (end = start + 4h) → invariant in both — HOLDS. B2 threatens -08's return/drawdown statistics, not the verified per-trade R ledger.
+
+**Ordering audit.** Five real double-entry timestamps (13:30 ET: 2025-05-16, 2025-09-05, 2025-10-17, 2026-02-11, 2026-04-16). Exits-before-entries at a timestamp is deterministic in both simulators; the ranked entry path is NOT — original breaks RS ties by candidate index. Fixture at 2025-09-05 13:30 ET (1 free slot, equal RS, input permuted): taken set {AAA} vs {BBB} — VIOLATED. Fork: canonical key (−rs, symbol, signal_idx, index) → {AAA} under both permutations — HOLDS. Nil effect on -08 (caps never bound); live risk at 43/44-name scale, compounded by B1's contamination of rs itself.
+
+**B3 — quantified: 0.** Zero-P&L coverage-only tally on the same admitted DEV bytes/pipeline (counting variant of pinned `gen_candidates`, closed lists asserted identical to the original's): NVDA 22 closed / 0 open, TSLA 11/0, AAPL 12/0, SPY 16/0 — closed total 61 = the -08 ledger; **terminal open positions at the window end: 0**, reproduced identically in two executions. For this window/symbol set censoring removed nothing; the construction property must be re-tallied for any future window.
+
+**Pins.** Originals: `pine_backtest 447a9a13…`, `pine_ranking 77afae0d…`, `pine_signal_quality b1b39ee8…`, staged `pine_stack 839e4800…`, -08 driver `8362a6a7…`. Fork: `pine_backtest becea082…`, `pine_stack 30594231…`, `asof_benchmark.py` new (manifest). Tests: original 0/5 assertions hold (exit 1), fork 5/5 (exit 0); full commands/outputs in `tests/test_output.txt`; minimal independent rerun requirements in RESULT.md.
+
+Bounds held: 0 vendor calls, 0 new credits (program TD total stays 24), HO never parsed, no tuning, no production change. PAUSED pins identical before/after (harness `ce7c902c…`, PAUSE_NEW_ENTRIES present, RESUME absent). Corrections are RESEARCH-ONLY, UNADOPTED — corrected-performance run is a later, separately framed step; the next 39 assets remain UNACQUIRED, SMCI/HO remains `NOT_EVALUABLE_PROVIDER_VOLUME`, broad capture/test remains HOLD. Slack ACK TS 1792787247.010259.
+
+— Muse
