@@ -1,0 +1,22 @@
+--- S1 rerun with distinct symbols (AAA defective HO, CCC clean DEV, BBB clean HO) ---
+PASS S1 exit code 0 (no stop)
+PASS S1 outcomes
+PASS S1 quarantine file byte-exact
+PASS S1 NO receipt for quarantined leg
+PASS S1 NO raw body archived for quarantined leg
+PASS S1 chain genesis bound to child root
+PASS S1 chain skips refused leg
+PASS S1 receipt carries parent root
+PASS S1 block reconciled with refused leg inside
+PASS S1 block attempts counted incl. quarantined
+PASS S1 quarantine census stamps
+PASS S1 refusal recorded
+PASS S2 STOP on duplicate instant
+PASS S2 next leg NOT attempted
+PASS S2 no receipts
+PASS S3a STOP on gap
+PASS S3b STOP on schema error
+PASS S4 accepted after one retry
+PASS S4 reconciled (delta counts both attempts)
+
+SYNTHETIC GATE: PASS

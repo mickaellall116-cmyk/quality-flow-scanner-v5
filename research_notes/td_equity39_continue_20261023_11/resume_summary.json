@@ -1,0 +1,314 @@
+{
+  "blocks": [
+    {
+      "attempts": 4,
+      "block_id": 7,
+      "expected_delta": 5,
+      "note": "block interrupted by external process termination after 4 attempts (3 accepted-persisted, SMH/HO attempt 1 transport failure); closed by R7_resume_open reconciliation read; receipts finalized at resume step 3",
+      "receipts_finalized": 3,
+      "reconciled": true,
+      "u_close": 90,
+      "u_prev": 86
+    },
+    {
+      "attempts": 10,
+      "block_id": 8,
+      "close_read_sha256": "a3ce105abdc9c41f9426f72c75d868a4e312658cedba47c99c4d01d39212b79a",
+      "expected_delta": 11,
+      "open_read_sha256": "a4d679d4e4ce5900b7f155be8c1f8ed978b965592e39f8ee017fad75d55c1edf",
+      "receipts_finalized": 9,
+      "reconciled": true,
+      "u_close": 101,
+      "u_prev": 90
+    },
+    {
+      "attempts": 4,
+      "block_id": 9,
+      "close_read_sha256": "2cea2cd7476797bb1f95858fcf0e8ebb859ffd0d90002597ae044a60abeba3c1",
+      "expected_delta": 5,
+      "open_read_sha256": "a3ce105abdc9c41f9426f72c75d868a4e312658cedba47c99c4d01d39212b79a",
+      "receipts_finalized": 2,
+      "reconciled": true,
+      "u_close": 106,
+      "u_prev": 101
+    }
+  ],
+  "final_chain_head": "c129e95fc404deff12310fe39048c8c610b93f2f976dbb321754ea86340ca6cc",
+  "legs_resumed": [
+    {
+      "anomalous_dates": [],
+      "attempts": 2,
+      "block_id": 8,
+      "expected_rows": 1583,
+      "first_bar": "2023-10-19 09:30:00",
+      "last_bar": "2024-09-13 15:30:00",
+      "leg_id": "SMH/HO",
+      "outcome": "OK",
+      "receipt_hash": "5810106cf2efbe30a3603855459de9c3fcadca51b35b238751fe461d9ce8274f",
+      "row_delta": 0,
+      "rows": 1583,
+      "sha256": "ca1ae6f8120d092a33639b44354c56fc94f7d6f537147f4760118060160be97f"
+    },
+    {
+      "anomalous_dates": [
+        [
+          "2024-11-29",
+          5
+        ],
+        [
+          "2024-12-24",
+          5
+        ]
+      ],
+      "attempts": 1,
+      "block_id": 8,
+      "expected_rows": 3653,
+      "first_bar": "2024-09-16 09:30:00",
+      "last_bar": "2026-10-16 15:30:00",
+      "leg_id": "SMH/DEV",
+      "outcome": "OK",
+      "receipt_hash": "e86d9e65ee42d6b5760bb0b06f96821e9721892f867a659d6ee34f0e55e37136",
+      "row_delta": 2,
+      "rows": 3655,
+      "sha256": "1c1126c792c2f74bcf14e2c794fcb2a21032f63b649ea438fd332fcf252cd655"
+    },
+    {
+      "anomalous_dates": [],
+      "attempts": 1,
+      "block_id": 8,
+      "expected_rows": 1583,
+      "first_bar": "2023-10-19 09:30:00",
+      "last_bar": "2024-09-13 15:30:00",
+      "leg_id": "ARKK/HO",
+      "outcome": "OK",
+      "receipt_hash": "a193115edc83b8186ea0db5d0e79ed9e7441e3dc4efc8fcd8c8b6fb5984b51cc",
+      "row_delta": 0,
+      "rows": 1583,
+      "sha256": "9e54e7a48b72217cd979711ba44816e0600fcde62d7f80cf7443daaf1378d40e"
+    },
+    {
+      "anomalous_dates": [
+        [
+          "2024-11-29",
+          5
+        ],
+        [
+          "2024-12-24",
+          5
+        ]
+      ],
+      "attempts": 1,
+      "block_id": 8,
+      "expected_rows": 3653,
+      "first_bar": "2024-09-16 09:30:00",
+      "last_bar": "2026-10-16 15:30:00",
+      "leg_id": "ARKK/DEV",
+      "outcome": "OK",
+      "receipt_hash": "4d44f9dbeb977835a398ffdc0074c6b2774cd555731c16cd1182b374b862fa2a",
+      "row_delta": 2,
+      "rows": 3655,
+      "sha256": "8961aad1113ab1a69d9c11b3a7fa08c95a8848475ae88a7f154d4a22d2a380d8"
+    },
+    {
+      "anomalous_dates": [],
+      "attempts": 1,
+      "block_id": 8,
+      "expected_rows": 1583,
+      "first_bar": "2023-10-19 09:30:00",
+      "last_bar": "2024-09-13 15:30:00",
+      "leg_id": "XLF/HO",
+      "outcome": "OK",
+      "receipt_hash": "e58940e7fb02dd1f9777147cdbd83f76e173cb7cac518103cc6ab7f52e67edff",
+      "row_delta": 0,
+      "rows": 1583,
+      "sha256": "dbced7a5e514d3ad4347350a391ee7ee92ad44aefc0e7d561accb13b8f435d39"
+    },
+    {
+      "anomalous_dates": [
+        [
+          "2024-11-29",
+          5
+        ],
+        [
+          "2024-12-24",
+          5
+        ]
+      ],
+      "attempts": 1,
+      "block_id": 8,
+      "expected_rows": 3653,
+      "first_bar": "2024-09-16 09:30:00",
+      "last_bar": "2026-10-16 15:30:00",
+      "leg_id": "XLF/DEV",
+      "outcome": "OK",
+      "receipt_hash": "7cbefb6c1936b0c929906a9824a27bbd993b054eb5fce5b41b2ca777ff764cad",
+      "row_delta": 2,
+      "rows": 3655,
+      "sha256": "a88f178a707e55052a7c126c7de002063dd839e297571f81d7d0ab4f0d944aba"
+    },
+    {
+      "anomalous_dates": [],
+      "attempts": 1,
+      "block_id": 8,
+      "expected_rows": 1583,
+      "first_bar": "2023-10-19 09:30:00",
+      "last_bar": "2024-09-13 15:30:00",
+      "leg_id": "NIO/HO",
+      "outcome": "OK",
+      "receipt_hash": "531f1431f911a3c98a58015491e5eab7aafccb82a935998b25a5a26bb33b0bbe",
+      "row_delta": 0,
+      "rows": 1583,
+      "sha256": "5be1a6e2fd8c70e2fb0478bc3ee180065fe804ac311b806bf74351dab50ad84b"
+    },
+    {
+      "anomalous_dates": [
+        [
+          "2024-11-29",
+          5
+        ],
+        [
+          "2024-12-24",
+          5
+        ]
+      ],
+      "attempts": 1,
+      "block_id": 8,
+      "expected_rows": 3653,
+      "first_bar": "2024-09-16 09:30:00",
+      "last_bar": "2026-10-16 15:30:00",
+      "leg_id": "NIO/DEV",
+      "outcome": "OK",
+      "receipt_hash": "f3ec3098f73564df8623c8c15bf4c97fc68a2990fb3b55de80a8898dabe6e8ba",
+      "row_delta": 2,
+      "rows": 3655,
+      "sha256": "09316b415f0b51185bfa375e42f64a12da859d58cb5bfe712822abbfbbc4c235"
+    },
+    {
+      "attempts": 1,
+      "block_id": 8,
+      "expected_rows": 1583,
+      "leg_id": "MRNA/HO",
+      "outcome": "QUARANTINED_VOLUME",
+      "quarantine_sha256": "8980f6611ff80755c807b91ae8d405b7ed0c3444be96b6682a087cfe91a60153",
+      "rows": 1583,
+      "zero_vol_range_bars": 5,
+      "zero_vol_stamps": [
+        "2024-04-10 10:30:00",
+        "2024-04-12 10:30:00",
+        "2024-04-12 13:30:00",
+        "2024-04-15 10:30:00",
+        "2024-04-15 15:30:00"
+      ]
+    },
+    {
+      "anomalous_dates": [
+        [
+          "2024-11-29",
+          5
+        ]
+      ],
+      "attempts": 1,
+      "block_id": 8,
+      "expected_rows": 3653,
+      "first_bar": "2024-09-16 09:30:00",
+      "last_bar": "2026-10-16 15:30:00",
+      "leg_id": "MRNA/DEV",
+      "outcome": "OK",
+      "receipt_hash": "16abf4f3f0b61ab672bef5107fea91e9b23232db1de740f53403cb55771a06f1",
+      "row_delta": 1,
+      "rows": 3654,
+      "sha256": "5d3e3bd7049fbca138420a10bbd955d3bc3cdc1fc4ab701f98845a7de3284a9f"
+    },
+    {
+      "attempts": 1,
+      "block_id": 9,
+      "expected_rows": 1583,
+      "leg_id": "PFE/HO",
+      "outcome": "QUARANTINED_VOLUME",
+      "quarantine_sha256": "3ac1af700110efebb7923b267d8db81f94976912441972b865c0409e827845bd",
+      "rows": 1583,
+      "zero_vol_range_bars": 1,
+      "zero_vol_stamps": [
+        "2024-04-15 10:30:00"
+      ]
+    },
+    {
+      "anomalous_dates": [
+        [
+          "2024-12-24",
+          5
+        ]
+      ],
+      "attempts": 1,
+      "block_id": 9,
+      "expected_rows": 3653,
+      "first_bar": "2024-09-16 09:30:00",
+      "last_bar": "2026-10-16 15:30:00",
+      "leg_id": "PFE/DEV",
+      "outcome": "OK",
+      "receipt_hash": "2472b0e06d32a0571a9e11c8e1a209bbdefd87358b0db84a4ae1035a1b874f8e",
+      "row_delta": 1,
+      "rows": 3654,
+      "sha256": "76110ec37ce92187c4470d48e9d14e200e0fffa8e599333dd9137e6a55d520f7"
+    },
+    {
+      "attempts": 1,
+      "block_id": 9,
+      "expected_rows": 1583,
+      "leg_id": "F/HO",
+      "outcome": "QUARANTINED_VOLUME",
+      "quarantine_sha256": "df072271e6b28525ec8d1925671f80bd835712167f7afa4044b445eac77a782d",
+      "rows": 1583,
+      "zero_vol_range_bars": 2,
+      "zero_vol_stamps": [
+        "2024-04-09 10:30:00",
+        "2024-04-18 11:30:00"
+      ]
+    },
+    {
+      "anomalous_dates": [
+        [
+          "2024-12-24",
+          5
+        ]
+      ],
+      "attempts": 1,
+      "block_id": 9,
+      "expected_rows": 3653,
+      "first_bar": "2024-09-16 09:30:00",
+      "last_bar": "2026-10-16 15:30:00",
+      "leg_id": "F/DEV",
+      "outcome": "OK",
+      "receipt_hash": "c129e95fc404deff12310fe39048c8c610b93f2f976dbb321754ea86340ca6cc",
+      "row_delta": 1,
+      "rows": 3654,
+      "sha256": "7c4504548eea8ae78eae037b25610d2f458375441a1ad1f5ab7dce77326851e1"
+    }
+  ],
+  "reason": "original capture process terminated externally during SMH/HO retry window",
+  "resume_of": "QF-TD-EQUITY39-CONTINUE-20261023-11",
+  "steps": [
+    {
+      "step": 1,
+      "verify": "chain 40 receipts OK, head=883a5536c8060da9..., 3 pending legs revalidated"
+    },
+    {
+      "note": "first resume gate expected 91 by erroneously counting the disconnected attempt; corrected on evidence, disclosed for adjudication; the read itself is consumed exactly once",
+      "plan_daily_limit": 800,
+      "reconciliation": "90 - 19 = 71 provider-counted calls = 72 desk-logged calls - 1 RemoteDisconnected attempt (SMH/HO #1, 0 bytes, never processed, provider-uncounted)",
+      "resume_open_usage": 90,
+      "step": 2
+    },
+    {
+      "chain_head": "7c2ef7f4630fdeeaabb7e9cf071c6e59800ca84720f868f9a98064c1af854085",
+      "finalized": [
+        "MELI/DEV",
+        "IWM/HO",
+        "IWM/DEV"
+      ],
+      "step": 3
+    }
+  ],
+  "stop": null,
+  "total_calls_task": 88
+}

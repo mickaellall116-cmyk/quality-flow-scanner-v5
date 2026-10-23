@@ -1,0 +1,1489 @@
+{
+  "chain": {
+    "detail": "54 receipts chained from GENESIS(child root)",
+    "ok": true
+  },
+  "child_root": "c5628652c5bf59d870103e41fd7e22a23fe4d811c61662fda78a8790abd0444f",
+  "legs": {
+    "AMAT/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "4351aec4fa89ddec2c5ac11ac24b2c8bb21a9e5ffbc0dc5334378bb9ef036ec0",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "91ee9212b50e9d2f4efaf7a0573266ed657ce54af2b6221bfe08cbf5ea0dde1c",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "AMAT/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "c6456e89b24dd53c5872f82afb10c70a1a0215f4ef5eba4343bab4a7761fb23b",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 5,
+      "zero_vol_stamps": [
+        "2024-04-08 14:30:00",
+        "2024-04-08 15:30:00",
+        "2024-04-10 09:30:00",
+        "2024-04-12 09:30:00",
+        "2024-04-16 15:30:00"
+      ]
+    },
+    "AMD/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "699445c1574275921df756a26175da30ce5fb3806ec7d2c5c460a892a149cf1d",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "7ba526c30ed2bad81aeedebc8baceaad7142436ad0016614bf80a42b718d2964",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "AMD/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "4e44be0653195d053ba01a38c3a69816a4b944e45354751c4935c59d73d7b74d",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "36226ede2f677e5612b7e09303bd6907954befac36238266ec6a59eb68db2c27",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "AMZN/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "98da87e0289159684f443ea210de4b423bc8fb2fcaf31f5c3fe004e8a0b6c86d",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "bcc3ed58a8bf9e02d679f4f1eebbe3673dd4ee233f6d652942e013d9a43f38b4",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "AMZN/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-07-03 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "c282082c160a4891ac8d348db3f8ac77274e38292382dfadc13988a6b259e22e",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1584,
+      "sha256": "56b1cbc1c81897b3e3f6b0e0e9af58122ecc6cf0840bf432b169652992cd63c8",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "APP/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "aa41e82a0af9f6c0cc18026a226838a702de0721cae099a2fa2615d0a28938a6",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "3cc36befbf86c4ebd3bd31b9a7f7be7f06cea2f5113534e4ebf9ce65d71d89ba",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "APP/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "8845a8314f6f1567024ddaf409377cc48d1fc52d527ca40c53471cf5ffba0ade",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 22,
+      "zero_vol_stamps": [
+        "2024-04-04 10:30:00",
+        "2024-04-04 13:30:00",
+        "2024-04-05 09:30:00",
+        "2024-04-05 10:30:00",
+        "2024-04-05 11:30:00",
+        "2024-04-05 12:30:00",
+        "2024-04-05 13:30:00",
+        "2024-04-08 11:30:00",
+        "2024-04-08 12:30:00",
+        "2024-04-08 13:30:00",
+        "2024-04-08 15:30:00",
+        "2024-04-09 10:30:00",
+        "2024-04-09 11:30:00",
+        "2024-04-09 12:30:00",
+        "2024-04-09 13:30:00",
+        "2024-04-10 09:30:00",
+        "2024-04-10 10:30:00",
+        "2024-04-10 12:30:00",
+        "2024-04-10 13:30:00",
+        "2024-04-11 10:30:00",
+        "2024-04-11 12:30:00",
+        "2024-04-11 15:30:00"
+      ]
+    },
+    "ARKK/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "4d44f9dbeb977835a398ffdc0074c6b2774cd555731c16cd1182b374b862fa2a",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "8961aad1113ab1a69d9c11b3a7fa08c95a8848475ae88a7f154d4a22d2a380d8",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "ARKK/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "a193115edc83b8186ea0db5d0e79ed9e7441e3dc4efc8fcd8c8b6fb5984b51cc",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "9e54e7a48b72217cd979711ba44816e0600fcde62d7f80cf7443daaf1378d40e",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "ARM/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "2599c073e883bafd5f343f78edf6cbf0a3a310b916f07079be46a5b0d7c8e681",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3653,
+      "sha256": "4ca2778237a2aa662d42fa6bb7a94021f1d238dd856114759e5439ff7570ecb5",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "ARM/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "dbe68bc8a55ef0fe1ab1a2eb73d7df98f377a768745415b47f60efb94ec67f22",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "233cbf1a2e10a906489a9b8cbf3957da487a63870b075c5e8fc64d57d9c49848",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "ASTS/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "8fa6b7c02fcb839a7097d6f7da038599ba4fba4ee9aebb3a29e7e3f5225a282f",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "c26d1f304fe4e06af26af5f8ae409272bf8619a75f07d0df39be9c61a14a3390",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "ASTS/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "3172539459388997c4e1a6fbc1e7a170e34b2c5aa468a756fc112e8ce62ebfa0",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 38,
+      "zero_vol_stamps": [
+        "2024-04-04 09:30:00",
+        "2024-04-04 14:30:00",
+        "2024-04-05 09:30:00",
+        "2024-04-05 10:30:00",
+        "2024-04-05 11:30:00",
+        "2024-04-05 12:30:00",
+        "2024-04-05 13:30:00",
+        "2024-04-08 12:30:00",
+        "2024-04-08 13:30:00",
+        "2024-04-08 14:30:00",
+        "2024-04-08 15:30:00",
+        "2024-04-09 10:30:00",
+        "2024-04-09 11:30:00",
+        "2024-04-09 12:30:00",
+        "2024-04-09 15:30:00",
+        "2024-04-10 09:30:00",
+        "2024-04-10 10:30:00",
+        "2024-04-10 13:30:00",
+        "2024-04-10 14:30:00",
+        "2024-04-10 15:30:00",
+        "2024-04-11 10:30:00",
+        "2024-04-11 11:30:00",
+        "2024-04-12 09:30:00",
+        "2024-04-12 10:30:00",
+        "2024-04-12 11:30:00",
+        "2024-04-15 09:30:00",
+        "2024-04-15 10:30:00",
+        "2024-04-15 11:30:00",
+        "2024-04-15 15:30:00",
+        "2024-04-16 12:30:00",
+        "2024-04-16 13:30:00",
+        "2024-04-16 14:30:00",
+        "2024-04-16 15:30:00",
+        "2024-04-17 09:30:00",
+        "2024-04-17 12:30:00",
+        "2024-04-17 13:30:00",
+        "2024-04-17 14:30:00",
+        "2024-04-22 15:30:00"
+      ]
+    },
+    "AVGO/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "68b7a82ebbba44eb772d465ebb7405154733bacf9e1ff0ca1f3eeedfb7f7ec7f",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "434a03e72f4ffe4a77dfeeff521794296f9c6616ec461a072965544b7ce641df",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "AVGO/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "b44276dd4efd808c788d67b8d957f37b117bcfa8f058a80be50bee56e73db2d4",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "58b5cc43ac005447cd78ef97463d00ba6f327c89dbac92223bfd51970db5a815",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "COIN/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "02ed9994c212480e2963bfa5810a15a228a49acf114bd8dbd0cbd9e879eb9aeb",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "7f9a834a96087932419d5e160623a9c8b4697e767cdd637ae39329f4b5230604",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "COIN/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "b60e1ea25058d4dbcf51cb371a526d656ff89d82abb762afbb0d7158ab2f134b",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "5137ffce284863d7b6fa71310a082ddeecfade8d11fd7a34709f9c4223817798",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "CRM/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "9d15f874ec243e02c11926ce663ae2cbf6ff5436914a8d41cde690fb75968b0f",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "c44425746ce4bd4e541b0c20c122074d06fe0cb8eb8020a864a2faa3803402ab",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "CRM/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "99d6c0e0799bbdc697bf7eb9820448e034f3a98046074de3421c08a86d7d359b",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 3,
+      "zero_vol_stamps": [
+        "2024-04-08 14:30:00",
+        "2024-04-10 15:30:00",
+        "2024-04-15 09:30:00"
+      ]
+    },
+    "CRWD/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "100888734dfd48895101e83abf3c96cc1a07d4786b1844957b4fd1b0807515e2",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "4b4852fb167d5be3492f0c5f6ad98781e63cb5e4d5571e4610fa8603c45e42fe",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "CRWD/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "1f9726d13668d7c67d77a7208a578a8dd454ad08b48cc21b785fee3b81b54fb7",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 2,
+      "zero_vol_stamps": [
+        "2024-04-05 09:30:00",
+        "2024-04-16 15:30:00"
+      ]
+    },
+    "DDOG/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "521a82dde6f9c938f2ed21d4b92ad50297f6ed4f151d8ed5c1782d7426fa8eab",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "6fd35f61494374b3325126d1db53ac5957df1b688b8f260db0ede830ec24ed3f",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "DDOG/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "cde5a5e35b72626ef8f749875ebe6c6692456880878b71a7910ec4c8da5f1696",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 3,
+      "zero_vol_stamps": [
+        "2024-04-05 12:30:00",
+        "2024-04-15 09:30:00",
+        "2024-04-15 10:30:00"
+      ]
+    },
+    "F/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "c129e95fc404deff12310fe39048c8c610b93f2f976dbb321754ea86340ca6cc",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "7c4504548eea8ae78eae037b25610d2f458375441a1ad1f5ab7dce77326851e1",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "F/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "df072271e6b28525ec8d1925671f80bd835712167f7afa4044b445eac77a782d",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 2,
+      "zero_vol_stamps": [
+        "2024-04-09 10:30:00",
+        "2024-04-18 11:30:00"
+      ]
+    },
+    "GOOGL/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "42dc00e6886a305285bc091a6cea6058c3389f46c0c72368d2ccc3595eabc53a",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "69cfe8feafb4c54f726eecdba218f029ac45211011d67f1567e12813c6fb0aa1",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "GOOGL/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "225137150c3939059bd569582df12412053ae2c1f43b9e9d48fdedd5f93840c5",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 4,
+      "zero_vol_stamps": [
+        "2024-04-04 09:30:00",
+        "2024-04-11 12:30:00",
+        "2024-04-12 09:30:00",
+        "2024-04-16 15:30:00"
+      ]
+    },
+    "HOOD/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "adf7ae28ae33f5fa0311d8c305af46f27508f80c243588a73e55ea1e392436ee",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3653,
+      "sha256": "a4eb726085388675f2bce1625d2736c1bcd2030604ed16f51d54cdfec11c0935",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "HOOD/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "ecefe14c01495d543c29f33de96c7db33fbe386d592ace28761e3647cb8f5c3f",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 1,
+      "zero_vol_stamps": [
+        "2024-04-09 10:30:00"
+      ]
+    },
+    "INTC/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "acb97589a50caa1bca37c8c253636edd7dcb5ed6da780903da6a3789d19e96fc",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "33638194a36a33131b5d62ccb679616c7e9c1449b3c3dbf2627fcab3a74e7c05",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "INTC/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "5d1ae10615d21ae84543fbdc8479822f20f7e96c900ea91b9d9d5b16b74c509c",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 2,
+      "zero_vol_stamps": [
+        "2024-04-10 15:30:00",
+        "2024-04-12 09:30:00"
+      ]
+    },
+    "IWM/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "7c2ef7f4630fdeeaabb7e9cf071c6e59800ca84720f868f9a98064c1af854085",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "a5d666661d24956aaf2ae159fa7d8aa90005331cd9e9ae942f34ea01dedaf200",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "IWM/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "80f0adc962a2a21c68069e8cbc94ca6fa6052043643b3b1e9004f7b23237c618",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "d7b169596cc9ea1f67cce9ec0f0de4d98a0a09b4da4c8f1ef3ba45cf0f243fce",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "LRCX/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "01f03ddb85aae1e8a9c2ccabad8085d30ae7ebedebd06163de57378d20e30b43",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "958d12885a3cd729a4f80fdff1564bac157d365ad03e15b7377b7e42c20716b7",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "LRCX/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "2acbbe418c0757046a6b410f7f54157a323083251da794c1d8c153252d7cf7dc",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 1,
+      "zero_vol_stamps": [
+        "2024-04-09 09:30:00"
+      ]
+    },
+    "LUNR/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "f2c21bb4037417d3e13c4b78cf8ed3d8cb3df91f524e3fe38db719555771bf02",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "e70229e9438f980d3b5595cb6920a2369e063d06e9116e5a3bb87bcbe45cc4e7",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "LUNR/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "498786c3c233b5fafa90d620154748498336f2ab580ba47cb5fb78e4f50703a7",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "d75065eba59700e4060514864fafad408c56dfb734eb65d0cb30c1476ea71671",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "MELI/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "35e9a4e65b593f2f7245f8e203d57cfede8abb792747a75f28bb7ffa66c5fc71",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3653,
+      "sha256": "6184f1b5a945e85525bbbe2c299fc1eb3316455c32978c3210ac9ac2a605f7a8",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "MELI/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "d167f9fe3401115e483c7edd7254de3d28d65657b5e07da62ddb3a13c270e463",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 1,
+      "zero_vol_stamps": [
+        "2024-04-10 12:30:00"
+      ]
+    },
+    "META/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "4995b6cd24082ed749cd75a263e9034cc1a7a46b82a2cecd3ab8612b7d5fe136",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "368bba0364690a28af3d659e19ec11da465fcbec7960d4c0d39f98ed993f872c",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "META/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "b52a40700f6696680499721e60f3e81220f596df28f70c99123af7a0b74fe174",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "80448edcbdb25dec09bd9ea57d68ecd1cc4d39f38e2895807f01a9d3fdbbc1c3",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "MRNA/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "16abf4f3f0b61ab672bef5107fea91e9b23232db1de740f53403cb55771a06f1",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "5d3e3bd7049fbca138420a10bbd955d3bc3cdc1fc4ab701f98845a7de3284a9f",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "MRNA/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "8980f6611ff80755c807b91ae8d405b7ed0c3444be96b6682a087cfe91a60153",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 5,
+      "zero_vol_stamps": [
+        "2024-04-10 10:30:00",
+        "2024-04-12 10:30:00",
+        "2024-04-12 13:30:00",
+        "2024-04-15 10:30:00",
+        "2024-04-15 15:30:00"
+      ]
+    },
+    "MSFT/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "3d94b17a3c43f5cf7bdc7904067f129030d3cbb4139e65ab0b418485a4f60876",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "96ae2f5b835d529bc86936941c59e70108e0c5dd056ff53b0c763499eb6b102b",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "MSFT/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "a3db14075a5a4ba56c2d6932322435338ed58b4ea97c68f790ac25a3aa97ff60",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "a3ba495375b3235d8618288c65918d61f788ee017ab6cd1abcd3a39a08475c59",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "MSTR/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "244856bac5f79ce1442bef94575c8e4ffeb9200e2edf7f453e6fe0181237400e",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "71d5b8c061c7ffcde4b3e1f763cdeb9c37a7b405a07348c2900f8ac19a1064f8",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "MSTR/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "b5b38f2f0897d032f32ed9a14132cb878128cd0db49bd922b0f73e4c4f5aeffa",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 1,
+      "zero_vol_stamps": [
+        "2024-04-10 13:30:00"
+      ]
+    },
+    "MU/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "1e074e731dd645768a9196a5e21ef7ec51fead59bb0d3bc2b0409e705056bf78",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "4bda1bb73bb35ae72472bead28d127c485d21e1cba366da0dfb7621262607d6e",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "MU/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "8aeb36cb890db61ea0f2535e11a06c5ff10e2e20eae8c702950405e77f089579",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 1,
+      "zero_vol_stamps": [
+        "2024-04-05 13:30:00"
+      ]
+    },
+    "NET/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "3e1a36e379795e32e8941be217c09eb6c9875ed851c58aea3fccdd82eea40d07",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "e8d9259ca079d50dae9d54158c533e585fc8e7b7140c2040e04d17183cfc7d65",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "NET/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "4c04e3d2c57fcaae7aacc528a5950c6256ca5a7432a6f78f1e20c380776f2483",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 3,
+      "zero_vol_stamps": [
+        "2024-04-08 14:30:00",
+        "2024-04-08 15:30:00",
+        "2024-04-10 15:30:00"
+      ]
+    },
+    "NFLX/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "cdac2b78f007a423d5f3f1937cd847a0c77598f12cc1f3cdb19ea45a52de5060",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "a49644635b30cf07cd8441ae3bb2490f741747c02365f020841eca44c99df20d",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "NFLX/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "ad7738b756a869c7afc6d1b842890f84aa6e8a5e3ba2dda5e67bd45a46a9572f",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "90a5ab537fe8f7b709c1bcd7aefe0803be777cdeb9097f4ebf49ea752f5ea153",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "NIO/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "f3ec3098f73564df8623c8c15bf4c97fc68a2990fb3b55de80a8898dabe6e8ba",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "09316b415f0b51185bfa375e42f64a12da859d58cb5bfe712822abbfbbc4c235",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "NIO/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "531f1431f911a3c98a58015491e5eab7aafccb82a935998b25a5a26bb33b0bbe",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "5be1a6e2fd8c70e2fb0478bc3ee180065fe804ac311b806bf74351dab50ad84b",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "NU/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "883a5536c8060da91ad0634ef3fa5e27d8069d2834c5eac4f8f70c6a4824a1c0",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "085cfad41b4667738b985162394893bde9b2405f1bdb62534c30ff6ba675b0eb",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "NU/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "12ddc4fd0922d5212225ef72b054364f7efa85efed46b93882f2687b72ebdf38",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 1,
+      "zero_vol_stamps": [
+        "2024-04-18 09:30:00"
+      ]
+    },
+    "PFE/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-12-24 14:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": false,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "2472b0e06d32a0571a9e11c8e1a209bbdefd87358b0db84a4ae1035a1b874f8e",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3654,
+      "sha256": "76110ec37ce92187c4470d48e9d14e200e0fffa8e599333dd9137e6a55d520f7",
+      "status": "ACCEPTED_BUT_GATE_FAIL"
+    },
+    "PFE/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "3ac1af700110efebb7923b267d8db81f94976912441972b865c0409e827845bd",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 1,
+      "zero_vol_stamps": [
+        "2024-04-15 10:30:00"
+      ]
+    },
+    "PLTR/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "37ee0b222682b3f396b1f72bbf4bea91e6fdb2510819b3b7a1a05675b3a0f443",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "c78f6841aae2495ff97dabed8ee24ea6620d49f2e3bc628688b28f76c2f6ff24",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "PYPL/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "8a80729857103ab8f6209f78e647cc373b50a130ca8ca05c4d328bfa7c1ae092",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "796b430968bfff2c97284742aee052f1f291d78df385acd59f5d98f15c07c9be",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "PYPL/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "8e7b39bf851bd9d497cfce3d951892544a8679471eddfa8be4379e922f00ac34",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 3,
+      "zero_vol_stamps": [
+        "2024-04-05 13:30:00",
+        "2024-04-09 11:30:00",
+        "2024-04-16 15:30:00"
+      ]
+    },
+    "QCOM/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "81803cd965ff14ee760893598f17503de41ca91c0848c5bbe7db096bfe01e213",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "0520705a3b1fd017964945b7c935576dd4f128e67dfac044262c93444eb61410",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "QCOM/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "491d14d1c33dc33be0b1d2955e60cb729f5e6680af508de43c82ea5042a9291d",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 2,
+      "zero_vol_stamps": [
+        "2024-04-08 15:30:00",
+        "2024-04-10 14:30:00"
+      ]
+    },
+    "RKLB/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "912ab75bdff869771ec7aaefadeadad0cb232e86edb80a0af8e8abffa4d18236",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "4c2deacc7a483da6bd6445c084d474417a92ad052addb40db5ef686f5cc0d267",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "RKLB/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "383b738d26d8e7096001a7a50f31e3b21614ae5993d9d9b832bdf8620d2b6e10",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 18,
+      "zero_vol_stamps": [
+        "2024-04-04 13:30:00",
+        "2024-04-05 09:30:00",
+        "2024-04-05 10:30:00",
+        "2024-04-05 11:30:00",
+        "2024-04-05 15:30:00",
+        "2024-04-08 14:30:00",
+        "2024-04-09 09:30:00",
+        "2024-04-09 10:30:00",
+        "2024-04-09 11:30:00",
+        "2024-04-09 12:30:00",
+        "2024-04-10 09:30:00",
+        "2024-04-10 10:30:00",
+        "2024-04-10 12:30:00",
+        "2024-04-10 14:30:00",
+        "2024-04-10 15:30:00",
+        "2024-04-11 10:30:00",
+        "2024-04-11 11:30:00",
+        "2024-04-11 15:30:00"
+      ]
+    },
+    "SHOP/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "0daba3b250424249bf630057aed9040e0bb5fbff21b3dae24b6101098e2902d6",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "19c935dc75d84a94b5b4059453892fa9fe594539ac0329fa8a1dd3754d797767",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "SHOP/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "378410978f192f22ddc9f7ebfcc9eee2731be439c1767c0e6274780962a71300",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "fc47a417de9f4daba4028df0018d1f6e88e530cbdb1e417edfaaf3a2bf2cab22",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "SMH/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "e86d9e65ee42d6b5760bb0b06f96821e9721892f867a659d6ee34f0e55e37136",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "1c1126c792c2f74bcf14e2c794fcb2a21032f63b649ea438fd332fcf252cd655",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "SMH/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "5810106cf2efbe30a3603855459de9c3fcadca51b35b238751fe461d9ce8274f",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "ca1ae6f8120d092a33639b44354c56fc94f7d6f537147f4760118060160be97f",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "SNOW/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "bf2dd74bda6abaf42f3723b616417ad3d88e63d7320f8e615b3e3b5a0b94a41c",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "7e98c2cc41f7fb4a3f6ecd9615c15c36559f53f9466323d568d354f14ecf363a",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "SNOW/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "d470a5ebd8a8babfb3b84f9b68e08403956e48deb6435367be742a215b137b63",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 2,
+      "zero_vol_stamps": [
+        "2024-04-15 15:30:00",
+        "2024-04-16 14:30:00"
+      ]
+    },
+    "SOFI/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "bcce3aed44d42bc0600d25338964e3da91fb7893fd7630b76bb4ae8c41ae4439",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "0bb89ff2c56aa3e560749f63f4917c7ee4bf9253a63babd7f059d2dea9e96a1f",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "SOFI/HO": {
+      "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+      "quarantine_sha256": "d957d904e5e57e066b2ad12996226d0b0762cd80c3cd8167a2ff3b3d1b68d6d3",
+      "status": "QUARANTINED_VOLUME",
+      "zero_vol_range_bars": 2,
+      "zero_vol_stamps": [
+        "2024-04-08 14:30:00",
+        "2024-04-09 11:30:00"
+      ]
+    },
+    "XLF/DEV": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [
+        "2024-11-29 15:30:00",
+        "2024-12-24 15:30:00"
+      ],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "7cbefb6c1936b0c929906a9824a27bbd993b054eb5fce5b41b2ca777ff764cad",
+      "rows_admitted": 3653,
+      "rows_expected": 3653,
+      "rows_raw": 3655,
+      "sha256": "a88f178a707e55052a7c126c7de002063dd839e297571f81d7d0ab4f0d944aba",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    },
+    "XLF/HO": {
+      "G-7_VBASIS": "DISCLOSED_NOT_WAIVED - candidate-2 checker unadopted; CONVENTION_BREAK_SUSPECT disposition from -02 stands; no threshold touched",
+      "excluded_stamps": [],
+      "gates": {
+        "G-1_receipt_integrity": true,
+        "G-2_calendar_admission": true,
+        "G-3_completeness_exact": true,
+        "G-4_phantom_exclusion_generic": true,
+        "G-5_volume_completeness": true,
+        "G-6_schema_instant_hygiene": true
+      },
+      "missing_count": 0,
+      "missing_first": [],
+      "receipt_hash": "e58940e7fb02dd1f9777147cdbd83f76e173cb7cac518103cc6ab7f52e67edff",
+      "rows_admitted": 1583,
+      "rows_expected": 1583,
+      "rows_raw": 1583,
+      "sha256": "dbced7a5e514d3ad4347350a391ee7ee92ad44aefc0e7d561accb13b8f435d39",
+      "status": "CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED"
+    }
+  },
+  "task": "QF-TD-EQUITY39-CONTINUE-20261023-11"
+}
