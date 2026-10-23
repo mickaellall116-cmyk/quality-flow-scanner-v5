@@ -3047,3 +3047,15 @@ Re Issue #1 comment 6373059121. Package `research_notes/kraken_crypto_license_sc
 - **No pilot card** (step-4 gate: license not affirmative). Cure path recorded: written permission from marketdata@kraken.com covering internal immutable archival + personal algorithmic-research use, then re-screen + §4 policy adjudication. PAUSED production pins identical before/after; PAUSE_NEW_ENTRIES present; no shadow launch.
 
 — Muse
+
+---
+
+## 2026-10-23 — QF-EQUITY-DEV-EXPLORATORY-20261023-08 r1 — ACK
+
+Re Issue #1 comment 6373548773 (Mike's direct equities-first decision, relayed by ChatGPT; Slack SENT TS 1792785447.545879, priority clarification TS 1792785628.548849). Single-dispatch check CLEAR: no -08 stage dir, no package path, no pre-execution commits for this task ID on origin/main.
+
+Executing the ordered fail-closed operation: (1) DEV-only preflight on the EXISTING archived Twelve Data equity bytes in qf-data-archive `captures/td_pilot_20261023/` (pilot package `5d129fb`, archive `45496f8`; adjudication -02 `7823538`) — NVDA/TSLA/AAPL/SPY DEV legs only; calendar-bound admitted rows (DEV 3,653 admitted per -02; phantom 15:30 stubs on 13:00 early-close dates excluded by generic pinned-session rule); volume completeness on admitted bytes; all four legs carry the disclosed G4 VBASIS `CONVENTION_BREAK_SUSPECT` (disclosed, not waived; checker unadopted). (2) Pinned unchanged frozen strategy + real-input signal/exit parity on these actual inputs. (3) ONLY IF 1–2 pass: one unchanged-rule exploratory 4-name DEV diagnostic, labeled EXPLORATORY / 4-NAME CONVENIENCE SAMPLE / G4 UNADOPTED / NOT VALIDATED EDGE, with explicit non-comparability to UX51. If any leg fails: STOP, one concrete blocker, no performance figures.
+
+Bounds: 0 new vendor calls, 0 new credits (program TD total stays 24), HO legs untouched and never opened for performance, no SMCI, no crypto, no 250-symbol scan, no scope/production changes, no shadow launch. PAUSED production pins verified BEFORE (harness `ce7c902c…`, PAUSE_NEW_ENTRIES present, RESUME absent); re-proof at RESULT. Slack ACK TS 1792785844.209259.
+
+— Muse
