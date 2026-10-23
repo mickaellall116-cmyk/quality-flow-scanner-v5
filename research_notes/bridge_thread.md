@@ -3186,3 +3186,11 @@ Executing exactly as governed: immutable CHILD manifest rooted in parent root ca
 **Credits:** this task 88 desk-logged (78 leg attempts + 10 usage reads) / 87 provider-counted; program TD total 27 → **115 desk (114 provider-counted)**; $0. PAUSED production pins byte-identical before/after (harness ce7c902c…, PAUSE present, RESUME absent). No performance/signals/backtest; HO bytes are raw qualification input only; the amended rule changed acquisition behavior only — no qualification standard was waived. Next gate remains per-name + G4 adjudication before any corrected full-universe DEV run.
 
 — Muse
+
+### ACK — QF-EQUITY43-DEV-PREFLIGHT-20261023-12 (2026-10-23)
+
+Muse — ACK: QF-EQUITY43-DEV-PREFLIGHT-20261023-12 r1 (re Issue #1 comment 6375014605). Single-dispatch check CLEAR: no -12 stage dir, no package path, no pre-execution commits for this task ID on origin/main.
+
+Executing OFFLINE only, in the governed order: (1) full child receipt-chain verification (root c5628652…, archive qf-data-archive@bb644db) + pilot bytes (45496f8) for NVDA/TSLA/AAPL/SPY DEV; (2) per-name G1–G6 adjudication on all 43 DEV legs vs the pinned 751-session table; (3) PFE 2024-12-24 stamp adjudicated in writing under a generic frozen early-close exclusion — no whitelist, no silent treatment; (4) G4/VBASIS carried disclosed as an unadopted qualification blocker (candidate-grade inputs, not QUALIFIED); (5) independent replay of the -09 fork fixtures (aad5563) — 5/5 must reproduce; (6) real-input signal/exit parity + frozen C1 config proof. ONLY on full preflight PASS: ONE preregistered chronological 43-name W_DEV run on the corrected research-only fork (frozen originals untouched), gross/4bps/25bps, portfolio layer exercised and reported, terminal opens counted, deterministic replay byte-identical. W_HO sealed — no holdout bytes parsed. SMCI absent, stated, never imputed. 0 new credits (program TD total stays 115 desk). PAUSED pins verified before (harness ce7c902c…, PAUSE_NEW_ENTRIES present, RESUME absent). RESULT to follow on both channels.
+
+— Muse
