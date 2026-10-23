@@ -1,0 +1,14 @@
+COMMAND: cd research_notes/data_route_readiness_20261023_01 && unshare -n ~/workspace/qf35_work_20261019/venv/bin/python test_capture_dry_run.py
+RUN: 2026-10-23, offline (unshare -n), pinned venv CPython 3.12.3
+PASS  T2 valid payload -> chained receipts, hash recomputes
+PASS  T1a disabled transport -> NETWORK_DISABLED, no receipt
+PASS  T3 schema mutation (missing close) -> SCHEMA_VIOLATION
+PASS  T4 timezone mutation (wrong offset) -> TIMEZONE_VIOLATION
+PASS  T5a duplicate instant -> DUPLICATE_INSTANT
+PASS  T5b fall-back repeated hour (distinct instants) accepted
+PASS  T6 gap mutation (dropped bar) -> GAP_VIOLATION
+PASS  T7 non-finite close -> NONFINITE_VALUE
+PASS  T8 refused leg emits no receipt; chain skips it (no fabrication)
+PASS  T1b CLI under network-off: exit 3, FAIL_CLOSED, no receipt file
+TOTAL 10/10 PASS
+EXIT=0

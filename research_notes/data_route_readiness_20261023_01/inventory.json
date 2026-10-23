@@ -1,0 +1,1089 @@
+{
+ "task": "QF-DATA-ROUTE-READINESS-20261023-01",
+ "artifacts": [
+  {
+   "kind": "td_probe_response_body",
+   "path": "/home/hatch/workspace/qf_td_probe_d1_20261021/store/REQ-ADJ-01.json",
+   "symbol": "NVDA",
+   "interval": "1h",
+   "rows": 917,
+   "first_bar": "2023-12-13 09:30:00",
+   "last_bar": "2024-06-21 15:30:00",
+   "timezone": "America/New_York (vendor stamps, bar open)",
+   "sha256": "69b87f0359f63f13fbde8b9b72e1ea03026e4ff55b9bfdf061c1cfec3e36fe95",
+   "provenance": "IMMUTABLE_ARCHIVED qf-data-archive captures/td_probe_day1_20261021/ commit 2f223cf, re-fetch verified 20/20",
+   "reuse_eligible": false,
+   "reuse_note": "Probe window only (3 symbols, non-cohort windows). NVDA window overlaps sealed holdout dates: qualification-evidence use only, never cohort bytes. TSLA 2022 legs carry C2 NOT_EVALUABLE (volume completeness failure). AAPL window (2026) is outside both capture windows."
+  },
+  {
+   "kind": "td_probe_response_body",
+   "path": "/home/hatch/workspace/qf_td_probe_d1_20261021/store/REQ-ADJ-01N.json",
+   "symbol": "NVDA",
+   "interval": "1h",
+   "rows": 917,
+   "first_bar": "2023-12-13 09:30:00",
+   "last_bar": "2024-06-21 15:30:00",
+   "timezone": "America/New_York (vendor stamps, bar open)",
+   "sha256": "a3b4578c4e75812b3b654bf6c09b5030fb5938e072a3ab2623395e0d76288896",
+   "provenance": "IMMUTABLE_ARCHIVED qf-data-archive captures/td_probe_day1_20261021/ commit 2f223cf, re-fetch verified 20/20",
+   "reuse_eligible": false,
+   "reuse_note": "Probe window only (3 symbols, non-cohort windows). NVDA window overlaps sealed holdout dates: qualification-evidence use only, never cohort bytes. TSLA 2022 legs carry C2 NOT_EVALUABLE (volume completeness failure). AAPL window (2026) is outside both capture windows."
+  },
+  {
+   "kind": "td_probe_response_body",
+   "path": "/home/hatch/workspace/qf_td_probe_d1_20261021/store/REQ-ADJ-02.json",
+   "symbol": "TSLA",
+   "interval": "1h",
+   "rows": 911,
+   "first_bar": "2022-03-07 09:30:00",
+   "last_bar": "2022-09-09 15:30:00",
+   "timezone": "America/New_York (vendor stamps, bar open)",
+   "sha256": "c5f701886e7c63db8ecdf5ec9d9e42a629cf79395bcace8677199bb67a5c2e2d",
+   "provenance": "IMMUTABLE_ARCHIVED qf-data-archive captures/td_probe_day1_20261021/ commit 2f223cf, re-fetch verified 20/20",
+   "reuse_eligible": false,
+   "reuse_note": "Probe window only (3 symbols, non-cohort windows). NVDA window overlaps sealed holdout dates: qualification-evidence use only, never cohort bytes. TSLA 2022 legs carry C2 NOT_EVALUABLE (volume completeness failure). AAPL window (2026) is outside both capture windows."
+  },
+  {
+   "kind": "td_probe_response_body",
+   "path": "/home/hatch/workspace/qf_td_probe_d1_20261021/store/REQ-ADJ-02N.json",
+   "symbol": "TSLA",
+   "interval": "1h",
+   "rows": 911,
+   "first_bar": "2022-03-07 09:30:00",
+   "last_bar": "2022-09-09 15:30:00",
+   "timezone": "America/New_York (vendor stamps, bar open)",
+   "sha256": "35026525c27a84ea74aea37db05fc5a135e7ee0edcda2f7a0c3ce426b2d0ab41",
+   "provenance": "IMMUTABLE_ARCHIVED qf-data-archive captures/td_probe_day1_20261021/ commit 2f223cf, re-fetch verified 20/20",
+   "reuse_eligible": false,
+   "reuse_note": "Probe window only (3 symbols, non-cohort windows). NVDA window overlaps sealed holdout dates: qualification-evidence use only, never cohort bytes. TSLA 2022 legs carry C2 NOT_EVALUABLE (volume completeness failure). AAPL window (2026) is outside both capture windows."
+  },
+  {
+   "kind": "td_probe_response_body",
+   "path": "/home/hatch/workspace/qf_td_probe_d1_20261021/store/REQ-ADJ-03.json",
+   "symbol": "AAPL",
+   "interval": "1h",
+   "rows": 903,
+   "first_bar": "2026-02-19 09:30:00",
+   "last_bar": "2026-08-24 15:30:00",
+   "timezone": "America/New_York (vendor stamps, bar open)",
+   "sha256": "1f3169f5fc5261a7209b4bd0f389825ddb0d8ac1ab8a39239a12f5f6635d144d",
+   "provenance": "IMMUTABLE_ARCHIVED qf-data-archive captures/td_probe_day1_20261021/ commit 2f223cf, re-fetch verified 20/20",
+   "reuse_eligible": false,
+   "reuse_note": "Probe window only (3 symbols, non-cohort windows). NVDA window overlaps sealed holdout dates: qualification-evidence use only, never cohort bytes. TSLA 2022 legs carry C2 NOT_EVALUABLE (volume completeness failure). AAPL window (2026) is outside both capture windows."
+  },
+  {
+   "kind": "yahoo_raw_1h_csv_set",
+   "path": "/home/hatch/workspace/canonical-stage-a/canonical_stage_c/raw_1h",
+   "file_count": 137,
+   "schema": "t,o,h,l,c,v (ISO stamps with ET offset)",
+   "fetch": "yfinance period=730d (3 symbols period=max), auto_adjust=False, prepost=False, 2026-09-29, per fetch_4h_manifest.json + STAGE_C_REPORT.md in canonical-stage-a",
+   "span_example_AAPL": {
+    "rows": 5073,
+    "first_bar": "2023-10-31T09:30:00-04:00",
+    "last_bar": "2026-09-29T15:30:00-04:00"
+   },
+   "ux51_equity_coverage": "38/44",
+   "ux51_equity_missing": [
+    "MSTR",
+    "APP",
+    "NET",
+    "ASTS",
+    "LUNR",
+    "NU"
+   ],
+   "ux51_crypto_coverage": "0/7",
+   "ux51_crypto_missing": [
+    "BTC-USD",
+    "ETH-USD",
+    "SOL-USD",
+    "DOGE-USD",
+    "AVAX-USD",
+    "LINK-USD",
+    "XRP-USD"
+   ],
+   "per_file": {
+    "AAPL": {
+     "file": "AAPL_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "fcb7c89bdfcda690fab01ab322cdccd5cce8ab498ef24168110a494f5a5d32bd"
+    },
+    "ABBV": {
+     "file": "ABBV_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "103abed21512131e9db5be0f73e37b3c89f75b1740527607c30a9b335f9a5ce5"
+    },
+    "ABNB": {
+     "file": "ABNB_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "002457595625c7161a56d66baa8dc437feae631c4b2968e1c44c4e8bec07efb8"
+    },
+    "ADBE": {
+     "file": "ADBE_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "cf213067d423ee1c26519bbbfa14541d2f438d69298c2d4a68febedf2b742421"
+    },
+    "AI": {
+     "file": "AI_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "9ea08cd8aa631da60931c5075e418ff8a1d28e88f5d6eb755295c470b6ec7995"
+    },
+    "AMAT": {
+     "file": "AMAT_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "18712061e2c6b3c2acc9720f4c39aa05faff7655f1158d997080258ed297a7d1"
+    },
+    "AMD": {
+     "file": "AMD_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "8bffc3d6e22807f5015c60effc1c3be347c8701eaee9ecd0abaf58799133c0a3"
+    },
+    "AMGN": {
+     "file": "AMGN_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "442bef4555cebf2d5bdaca398472056b34e6c7156f3d5931757adfb144f006b0"
+    },
+    "AMZN": {
+     "file": "AMZN_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "b02433234bafec96eadfa7dc70aea69e1ccfc161f91572de56ec4a6cea8bc172"
+    },
+    "ANET": {
+     "file": "ANET_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "6a4baea6727bfd72a82ec009156f51aaa9525d1527cafd1c2545817e6368153b"
+    },
+    "ARKK": {
+     "file": "ARKK_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "3e2bea0a862418e94aa9d07e5d2ad53afb9a3aa6ea2146f88c10d1e46285f2c1"
+    },
+    "ARM": {
+     "file": "ARM_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "6d6500bb93d427118255a5c9b7f502f55e05660ce834db3cb7774de68f2e121b"
+    },
+    "ASML": {
+     "file": "ASML_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "f2d1a6a9508c7610fed30b52bd50dd79823efeb2ce04a2c90985231e9ca04866"
+    },
+    "ASTX": {
+     "file": "ASTX_p730.csv",
+     "rows": 2131,
+     "first_bar": "2025-07-11T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "488b19a716253853e9e28f58fc4e94443dff735d761f85e70e922d5a330ddb46"
+    },
+    "AVGO": {
+     "file": "AVGO_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "021d3c6742287fac2993a202a7977d2246b5f13e4e40f16047b5897df49c4a0f"
+    },
+    "BA": {
+     "file": "BA_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "81fb37aaab409610785ce2ecaaf2dff75e1cabad338f24d210836264ebe44b03"
+    },
+    "BAC": {
+     "file": "BAC_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "c5fc44a211fb0aa2a2420b15db4806e372a1864f2b3d7100ece4095dfcb8884d"
+    },
+    "BBAI": {
+     "file": "BBAI_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "8eb745267e5dff4392fbe1e71d128116850af1d7b71e0554ddbabaaf990bd72c"
+    },
+    "BKNG": {
+     "file": "BKNG_p730.csv",
+     "rows": 5071,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "977d9000b8687b3b6eea501aab943d9133a7e63cfd3bb454937451e48aa7afcb"
+    },
+    "BMNR": {
+     "file": "BMNR_p730.csv",
+     "rows": 2292,
+     "first_bar": "2025-06-05T10:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "24f83b22ed505647ff86ad27024764c6aa57a8a99122df3ff4254838326f1111"
+    },
+    "BRK-B": {
+     "file": "BRK-B_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "0fac62d1d6626c5bb8a94097a03e30211d51bdeab77dff6df0e74b2869a50d09"
+    },
+    "CAT": {
+     "file": "CAT_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "0f898908e3fe8f8a51ecf3662bb2f0f5fe37f45f9b746aa483f630f0e24e4313"
+    },
+    "CMG": {
+     "file": "CMG_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "973780e76917a15da6eb77133a72f8d318c01c3c2f111edae899f7d1676d1a02"
+    },
+    "COIN": {
+     "file": "COIN_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "dcfeeb159cb10832a1a3a6666467c5d3f08e5c06bf2a87e7b76e2c59d0cc8c1a"
+    },
+    "COP": {
+     "file": "COP_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "3e209749a42ee51d8eb13a5dd1471e895a5c50f9618b2a84805683d5e92f4e69"
+    },
+    "COST": {
+     "file": "COST_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "ec2330db708e9f479f3bea37765a083814ab6bc6f7e5082ca79bcec837520c08"
+    },
+    "CRM": {
+     "file": "CRM_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "f07575b416afac449b145d5becd4103baeeb9b322d634f0a5ae9e500e6ee7e66"
+    },
+    "CRWD": {
+     "file": "CRWD_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "ef67fade785d6d0f19f5b52b461d50a56dbbe76d5d34f9a831affda1820bd9ba"
+    },
+    "CRWV": {
+     "file": "CRWV_p730.csv",
+     "rows": 2622,
+     "first_bar": "2025-03-28T12:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "892e5b01fb29ffe86f696c9fe3c11e62e6a3e74aab6b82dafee0bd18de2cc735"
+    },
+    "CSCO": {
+     "file": "CSCO_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "df1bd47e818a6d8b4076237cfede7f71b66ede30d724ef0b889cf8951e19be56"
+    },
+    "CVX": {
+     "file": "CVX_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "bb47a680841e58a1bcec09046185569d887bfe3a70691d23becd14c8652d905b"
+    },
+    "DDOG": {
+     "file": "DDOG_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "fbb24e5b88e621665e1a89c7ceaceef81d0d2b9db32cf5622acf960bead5e050"
+    },
+    "DE": {
+     "file": "DE_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "ff76d169d7a3024de1d3e5f27ae9ad67d5e3f5f6299c6671f4e077f4ac1c38d7"
+    },
+    "DHR": {
+     "file": "DHR_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "3d64a5dbc300d72703d51798d1d396e8726142558fd0db6358f1cf133645053d"
+    },
+    "DIA": {
+     "file": "DIA_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "ee00bfaac13977da05666d75b94e969294501072fd58920bcde243e8760570c1"
+    },
+    "DIS": {
+     "file": "DIS_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "34d4640d780dc34d4870e1cae206c58624bca02f765d8c41294a9d27bf6ef10f"
+    },
+    "DRAM": {
+     "file": "DRAM_p730.csv",
+     "rows": 868,
+     "first_bar": "2026-04-02T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "5d0b971c9faebd363354779d3a339d98973d3ac44f6c499f214edc688527a3b0"
+    },
+    "DVN": {
+     "file": "DVN_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "263da9a890c0f24f33b236330bea4f04ba7357812cc5797440705485ed2009a8"
+    },
+    "ENPH": {
+     "file": "ENPH_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "818b5b86990f40f981c394326c6017b029c54df974d971d1ede4bd71f15f5921"
+    },
+    "ETN": {
+     "file": "ETN_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "569bbf7995975a568cf57573ab34f26323f22c01423342244321f4cd402dce1c"
+    },
+    "F": {
+     "file": "F_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "75bd96489341a34609ef7af0ff26fcfd6d65505d8b99a3e34f138ff9928756d1"
+    },
+    "FCX": {
+     "file": "FCX_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "7db4760c03349d74775b7671ea4f1b39c1294417d7f44aa9e54201737363dc88"
+    },
+    "FDX": {
+     "file": "FDX_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "52d74eb2ee463240da370a520cb8e05b4bd29f2c30f59985917f11d527a3cb2a"
+    },
+    "FTNT": {
+     "file": "FTNT_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "babcb7894dea88b8bac2be60aac6462bb46ab0c9b46fd21fe7a579bd0b24b032"
+    },
+    "GE": {
+     "file": "GE_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "157b3aee74b842ec6ee3aa45f7818ae0401945e31762b127c016e89a6e15b2c2"
+    },
+    "GEV": {
+     "file": "GEV_pmax.csv",
+     "rows": 3477,
+     "first_bar": "2024-09-30T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "cdfe9ffd840b6f8890814a337a0310dfcae9a0e21d13d8ee0cf0d9f156c77111"
+    },
+    "GILD": {
+     "file": "GILD_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "df67e3b4e09980c7ae784af17629b3eeec5cc065dddf6ca9120677d2900643cc"
+    },
+    "GLD": {
+     "file": "GLD_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "93989b9c8d7df8a1c2b18994a2bb2af54b197980da3c2c2ba47db697525959e0"
+    },
+    "GLXY": {
+     "file": "GLXY_p730.csv",
+     "rows": 2387,
+     "first_bar": "2025-05-16T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "9f7da1557b87dd9d8cd42925561be4e30f931a1050c3bf0688baf6227f8a4e41"
+    },
+    "GM": {
+     "file": "GM_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "265231616041dd76576fce4a12e4b86209918cac2838dbc147ca780c957ac978"
+    },
+    "GOOGL": {
+     "file": "GOOGL_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "fb9e4828fcdf032c19c9da915edfc96422bb5ee7e4c72307fb467e664c999fb6"
+    },
+    "GS": {
+     "file": "GS_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "3e5fe47a8163821c9b5bda892da151066784f4851364ee1dde42dd08fdff4ba7"
+    },
+    "HD": {
+     "file": "HD_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "7acb14ab3a6047f98b6bcbb555e8c080ccc05ad9b2eb3968a962e666394d85cb"
+    },
+    "HON": {
+     "file": "HON_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "c4e16f81f9a354fa56c8a83c2354ac52a56bb5dbfff462e77b72e649f7bbf42c"
+    },
+    "HOOD": {
+     "file": "HOOD_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "de0720efd0452a8787f1c61a507e9c592d7fd5a78041d1a0bcdc56c57150aebd"
+    },
+    "IBM": {
+     "file": "IBM_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "210e6fc2d780de010e104c2122231bef89c3c9db3532c4f4bc7909a438b52f45"
+    },
+    "INTC": {
+     "file": "INTC_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "b0d5e95d057fb125d245a57a3caab8fc14d353e570ecb8fa777807db3cfd4b3a"
+    },
+    "INTU": {
+     "file": "INTU_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "d09b1dfc7a87088e01e8b1517ae11091d4db2b8c974f4e56a33554fe9001607f"
+    },
+    "ISRG": {
+     "file": "ISRG_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "71925f811d379a4bcfbcd5ea09b28f963f5ac1a1b4689cd796a41bda943e938d"
+    },
+    "IWM": {
+     "file": "IWM_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "dec14dcc349df20852975647ef6cdae09061543163bdcfbc88f12f5c84d7c450"
+    },
+    "JNJ": {
+     "file": "JNJ_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "82559dbd6a38f8e9af08c8d8aeff36bda247e0703b9baf9c4242c49c2fe0bb62"
+    },
+    "JPM": {
+     "file": "JPM_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "4ee6fed3f09543ad169ab6bbec0cbfeac5411191c1e3223b43d59dbdd87446b5"
+    },
+    "KLAC": {
+     "file": "KLAC_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "b88576b84f1d318fa9429a8e92ba06cc361b103ca0317bd5a88651c11b512702"
+    },
+    "KO": {
+     "file": "KO_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "c9fe272daa448387bebea4394f9c2d40826351ea20070c2df23d62daa2231e7d"
+    },
+    "LIN": {
+     "file": "LIN_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "2baab5932168be6677ec86ca32a7db2fa524ceebf4b85db62a2b2054045307d7"
+    },
+    "LLY": {
+     "file": "LLY_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "f3599eebed101c1ee90b102696f683098401241156a649eac8cfb330ff417744"
+    },
+    "LMT": {
+     "file": "LMT_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "9e344702fce97110b963c61870bf3d029c16ff33e7156616e778b057d8821b79"
+    },
+    "LRCX": {
+     "file": "LRCX_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "edb422898fbfc0ff05fe050b472638f8a756cc5c14adceb017dfc29b35e186e9"
+    },
+    "MA": {
+     "file": "MA_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "02d1fc46084392e087c75312207b67daa649a8d395a3b590de1b10abe81a9093"
+    },
+    "MARA": {
+     "file": "MARA_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "bdc4c68c7129cf9cda1483576ffff2bf0a422dc06c94cc917a148e9e0edf2575"
+    },
+    "MCD": {
+     "file": "MCD_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "084f8c5ae80e6b06fffd79e4b5fa3f48daea1e27c8bd022c8768689c756dc1ec"
+    },
+    "MDB": {
+     "file": "MDB_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "6c61ea4844abe79b24e1078ef10a6653a526a6460550cd111da2a25e652a4913"
+    },
+    "MELI": {
+     "file": "MELI_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "f1b0435258358410b2b4c3ece535fe3b1533651df59938e3ac399383cebcd036"
+    },
+    "META": {
+     "file": "META_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "2aeb83af3afd7be8ec21d0e2fa353558b83f0cf1d5c9b9a87796bcc8fe92685a"
+    },
+    "MPC": {
+     "file": "MPC_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "494ec6077a1fc109c5266bcbfaac1986e8318c489f4ea7d3626c69e6e32614f0"
+    },
+    "MRNA": {
+     "file": "MRNA_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "319e5c7659f8eda96f6c14ebb59e75b3c7f31945a1b55cf415c6f0902b3d151c"
+    },
+    "MRVL": {
+     "file": "MRVL_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "4f6939f2400f0286ec4f6752b152506888e0338cb2908957e353ceeb9447c458"
+    },
+    "MS": {
+     "file": "MS_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "58619f00628037c3fc76263f5166c3f7716e316b1af271bf44d353f70c2c6227"
+    },
+    "MSFT": {
+     "file": "MSFT_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "ddf5bd8ed52fdcd44ca788eb6c3ddd1105e049dc7d0032af2cd691f891d63ea8"
+    },
+    "MU": {
+     "file": "MU_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "3471ae6be8ed7f85340c6cb30e371ec31c91a1ce6f674b158c534c6c768f7871"
+    },
+    "NBIS": {
+     "file": "NBIS_p730.csv",
+     "rows": 3373,
+     "first_bar": "2024-10-21T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "fa86cf6160c05d44da79de26d9c43733ee508aab55f298934e96729684d9cb3e"
+    },
+    "NEE": {
+     "file": "NEE_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "0db29793978d8893e20118b4189b75eb20f4643ba370f8e5497e5a0d7de99e2f"
+    },
+    "NFLX": {
+     "file": "NFLX_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "d10e55bfb5b6e0c7ece9485bffbcfa7fd5664802035d39259ab1e814ee95b27c"
+    },
+    "NIO": {
+     "file": "NIO_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "3d144cf172d673f68ba6171c5dcda15dfc72dd200cf84a1ffd5834a286aaa189"
+    },
+    "NKE": {
+     "file": "NKE_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "6a4642fe2eeb789dba280cbf9f17f572a866d8e672824711fd57e6b30839988e"
+    },
+    "NOW": {
+     "file": "NOW_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "be033e1331c9f7001b43975ba090012ec26320818db01c41b02229ea64c618e4"
+    },
+    "NVDA": {
+     "file": "NVDA_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "9801ddb5b2f2eb750441b35567d762a509993307df8943144b31c0dd97497087"
+    },
+    "NXPI": {
+     "file": "NXPI_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "9e807d7d3bb308ebd0454c01253f4fda581ddf1bf46796a0b3caef2b90b47235"
+    },
+    "ON": {
+     "file": "ON_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "35c9349c4ccd915237e74e6efcc710f4dfbc863b4161d7520b654e1e7145b535"
+    },
+    "ONDS": {
+     "file": "ONDS_p730.csv",
+     "rows": 5070,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "f3bf35627e47d3be91eeaed22b5ac436c7978255f7150edac2131a277cfc3e66"
+    },
+    "ORCL": {
+     "file": "ORCL_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "ceea3b7780e6b1ee7f2f0dcaef20bc0df461d12326e474acfd083b7c9e783ce2"
+    },
+    "OXY": {
+     "file": "OXY_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "90a2a3cce93d69ce4961ea70d33bf4198b151bbb95801ea8b309d0f841da368c"
+    },
+    "PANW": {
+     "file": "PANW_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "d8432df0c597c1f51fbe2307d504d40c03a5bf9df767ac607129e5a8a853a0b8"
+    },
+    "PEP": {
+     "file": "PEP_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "1f11d5eada2a420f371fe92395ca375b77f092f40a4d5b1ab4ebd62e8b739f70"
+    },
+    "PFE": {
+     "file": "PFE_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "f2faf88258ff4d6b8b286edcf8bf559b13d7a2c0d448f8bc155085daccd5bbd5"
+    },
+    "PG": {
+     "file": "PG_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "ae59567a40a96e8c1b4e42d58289a16d68955e452195eed5bd4f1c5e783b76bd"
+    },
+    "PLTR": {
+     "file": "PLTR_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "46b552ef3d567bf56b7e2ee60ece4bb31232f7f0b065d336bc2fb7ce91910e95"
+    },
+    "PYPL": {
+     "file": "PYPL_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "955c3d029edf46f9ca9336d9853fac92999a0d3862ef55216079395e03904ae2"
+    },
+    "QCOM": {
+     "file": "QCOM_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "04a212caff6d971dcdf59e94ff2a973795154b02c9cc2c2a63bf09f6e6de296a"
+    },
+    "QQQ": {
+     "file": "QQQ_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "f7d12cfc843900bc880cab190ac23beb1b1032b6f255eb6b12fa1995bdfeb657"
+    },
+    "RDDT": {
+     "file": "RDDT_pmax.csv",
+     "rows": 3477,
+     "first_bar": "2024-09-30T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "f424c6bbda5e3c85e23a1abd91dde9e5d6fb09fddeb1f7b4bc489740e4ff85d3"
+    },
+    "REGN": {
+     "file": "REGN_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "b23153335b45416ee31211035aca3cbed8e85639ef679070971b343cdd920d30"
+    },
+    "RKLB": {
+     "file": "RKLB_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "c6d812a250feab85ef7c8415687b478590e6d584c05d8bdecb0512ccaaa48652"
+    },
+    "RTX": {
+     "file": "RTX_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "9c3b4b49c66b3f200f8ef1fba02ff96ea8f9584944aab8b4eb8f4860a68e918a"
+    },
+    "SBUX": {
+     "file": "SBUX_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "3783f1752582ff34e54f6d7fd00345af6d4575da447216bf3f0488b13cd933bc"
+    },
+    "SCHW": {
+     "file": "SCHW_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "1f3838b07306b2795472309d98a10d7c2f7cb123acd7ace9d6ce9f1d5079c8d5"
+    },
+    "SHOP": {
+     "file": "SHOP_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "236b286fa72cc880003ecb025b29aa2c64ca2f3525ed62b13e9c2ae08979f550"
+    },
+    "SLB": {
+     "file": "SLB_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "685ac82fbad1d0fda245704ab6b7597ad02a142c5d4edd2af205e6558131d54f"
+    },
+    "SMCI": {
+     "file": "SMCI_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "e4fa0fc745cad20a10f4c0cba18b10a69ff58452b63cb0c401dfed7cc0a2db5a"
+    },
+    "SMH": {
+     "file": "SMH_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "9aac8768315a90a7e232439c26985e6ba0914a4136ee60bd03f189357070ced0"
+    },
+    "SNDK": {
+     "file": "SNDK_p730.csv",
+     "rows": 2793,
+     "first_bar": "2025-02-24T09:30:00-05:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "b2c52fa599987bfc4c6424ddd98f7bb638bb0c20e671f67564d439db397984a2"
+    },
+    "SNOW": {
+     "file": "SNOW_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "72eae32dee5d70e033538e23d51129a0a43b8028bfc3158f2a09a481f4bb3dc2"
+    },
+    "SOFI": {
+     "file": "SOFI_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "05be5c412b17c3b26faafea8782c168f39f819d7913d3932fa619a00fb70960f"
+    },
+    "SPCX": {
+     "file": "SPCX_p730.csv",
+     "rows": 523,
+     "first_bar": "2026-06-12T11:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "180360691ab9b95239701269271befccafe777c8936e7ff96edb02ce808e1e54"
+    },
+    "SPY": {
+     "file": "SPY_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "96620fd976b293e43b4fbbdf459438848df35f7763a3f3c16ec020b93b764e35"
+    },
+    "T": {
+     "file": "T_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "cc51ecc3224999ecd25875c6c1d31994e4370dfe6016d336f01f6c274cc2ac65"
+    },
+    "TEM": {
+     "file": "TEM_pmax.csv",
+     "rows": 3478,
+     "first_bar": "2024-09-30T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "4d5d04b7c7072a6444be8bc5782b9c7cc2f8f8cc5d01279e24e3d5ad80118d17"
+    },
+    "TLT": {
+     "file": "TLT_p730.csv",
+     "rows": 5074,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "faa2c249e348b3532e57ed8482498b37852a9301a6001903fb37c27201f7c4d6"
+    },
+    "TMO": {
+     "file": "TMO_p730.csv",
+     "rows": 5029,
+     "first_bar": "2023-11-08T09:30:00-05:00",
+     "last_bar": "2026-09-29T14:30:00-04:00",
+     "sha256": "1b3443fae478c71fc75d38947c0a4a41bc1894f88edd0c935890b5ee3bdf0e04"
+    },
+    "TSLA": {
+     "file": "TSLA_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "5ad9f6c04199eec95dc13f717f15e1840ec42215d4f6575bf2e0d1a35c271927"
+    },
+    "TSM": {
+     "file": "TSM_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "45f56823762f38e67f7b92ffd084b43c724f72806934717f9063e096053fcefc"
+    },
+    "TXN": {
+     "file": "TXN_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "8bbe5bade7300e5130312eb0e179e9f0000798e16f8f7fd5d545a14dfeec7ce0"
+    },
+    "UBER": {
+     "file": "UBER_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "abc5ad5cac28f680df39d3ba415fd74a13b6d55092fd7fdd4f2504e7a3d1d5f1"
+    },
+    "UNH": {
+     "file": "UNH_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "304aa203605befd4a60fc3895a3679cb71c2da92e43eab101eb252c771a15a34"
+    },
+    "UNP": {
+     "file": "UNP_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "90c6a172abb34cb62f806bd1699ea879c1f5627c730f8826962071e13c0cd50c"
+    },
+    "UPST": {
+     "file": "UPST_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "18933be4200e3cd2bb5e5f4204d48fd6295577aa2a99316ba1d59b8c6b09358a"
+    },
+    "V": {
+     "file": "V_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "f0d18764c511c5355ad261b2ecd6d6ec39dbf3496d8477ae32fea007f4e96cdd"
+    },
+    "VLO": {
+     "file": "VLO_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "e90958452e0077cc7c709adee19cfde50e557c7277beb368cb6844ef4d9b4736"
+    },
+    "VZ": {
+     "file": "VZ_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "0a4004ec898cffc7e069b8921959d5fb864fb7803a9fb5c0480b6dc74bf0c27a"
+    },
+    "WDAY": {
+     "file": "WDAY_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "8606e0baa25119e7a1c6a32fe2dad62427b091b993347161e01cc722b968eede"
+    },
+    "WFC": {
+     "file": "WFC_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "08d193ec2171208a883baa98ba338dfccfdb985f130edcb743076772fd6dcaeb"
+    },
+    "WMT": {
+     "file": "WMT_p730.csv",
+     "rows": 5073,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "28e1d163044d610f1111893f84909bc9721e3231636fa28686329c1c4b823f0e"
+    },
+    "XLE": {
+     "file": "XLE_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "012a214b95af76de228f208d438a4d4e60cf7c76340d7da621c5ee32fcd726f9"
+    },
+    "XLF": {
+     "file": "XLF_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "c3d0995af3e9a079c46bbad04305c7f3a37a8e3737b5504e3687d0ce33319112"
+    },
+    "XLK": {
+     "file": "XLK_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "7cd7267dcb4bba50516dc108091bbd44be6c11d61d5334da28b659c7c58e53bb"
+    },
+    "XOM": {
+     "file": "XOM_p730.csv",
+     "rows": 5072,
+     "first_bar": "2023-10-31T09:30:00-04:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "757452fc30a0c504ac8fe4af2e7352b1b2da4b64d964c7228d2f1bb725dbc5c4"
+    },
+    "XYZ": {
+     "file": "XYZ_p730.csv",
+     "rows": 2953,
+     "first_bar": "2025-01-21T09:30:00-05:00",
+     "last_bar": "2026-09-29T15:30:00-04:00",
+     "sha256": "c50e0f457eaef9b01c9589137775dca3e1ecfe2a96a4c48a437ac6b967596932"
+    }
+   },
+   "provenance": "LOCAL_MUTABLE_WORKTREE ONLY. No per-response receipts, no hash chain, never committed to qf-data-archive. Yahoo serves no as-of/versioning evidence; bars are silently restatable.",
+   "reuse_eligible": false,
+   "reuse_note": "Coverage fails (crypto 0/7, equities incomplete), provenance fails (no immutable receipts), window fails (oldest bar 2023-10-31 is 8 sessions after the 2023-10-19 window start; the +-5-session tolerance recorded in Stage C was for that stage's 4H cache, not for this qualification). NOT cohort bytes."
+  }
+ ],
+ "absent": [
+  {
+   "path": "~/workspace/quality-flow-scanner-v5/backtest_cache/ (D1)",
+   "state": "DOES NOT EXIST - destroyed with prior VM; 52 SHA256 pins survive, bytes do not"
+  },
+  {
+   "path": "~/workspace/quality-flow-scanner-v5/pine_1h/",
+   "state": "fetch script + __pycache__ only, zero data files"
+  },
+  {
+   "path": "~/workspace/data_archive/yahoo_1h_clean/",
+   "state": "EMPTY directory (0 files) - the parked Yahoo clean-capture lane never executed a capture"
+  },
+  {
+   "path": "v54_forward_1h/ + v54_forward/ runtime dirs",
+   "state": "status/state/jsonl logs only; the harness keeps 1h frames in memory (prefetch) and persists no raw 1h frames"
+  }
+ ],
+ "verdict": "RAW_1H_NOT_AVAILABLE for the frozen cohort: no existing local/repo artifact set is reuse-eligible as corrected-grid cohort bytes. Existing bytes serve only as route-qualification evidence (TD probe) or unqualified research cache (Stage C)."
+}
