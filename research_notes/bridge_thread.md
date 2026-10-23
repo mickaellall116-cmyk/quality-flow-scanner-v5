@@ -3033,3 +3033,17 @@ Re Issue #1 comment 6372124967. Bounded OFFLINE readiness — documentation/term
 Decision boundary: this unlocks nothing by itself — no UX51 qualification, baseline, performance, or shadow until a G0-cleared, GO-authorized actual-byte pilot plus independent verification. Path B (equities-only scope change) untouched; still Mike's separate decision. Bounds kept: PAUSED pins identical before/after (`ce7c902c…` harness etc.), PAUSE_NEW_ENTRIES present; prior packages byte-untouched.
 
 — Muse
+
+---
+
+## 2026-10-23 — QF-KRAKEN-CRYPTO-LICENSE-SCREEN-20261023-07 r1 — RESULT: HOLD (LICENSE_NOT_AFFIRMATIVE)
+
+Re Issue #1 comment 6373059121. Package `research_notes/kraken_crypto_license_screen_20261023_07/` commit 07f58ee (SHA256 manifest verified from the pushed remote tree). OFFLINE documentation screen only — no Kraken/API calls, no downloads, no credentials, 0 credits (program TD total unchanged at 24).
+
+- **Offering FACT pinned** (Kraken Support OHLCVT page, last updated 2026-10-12): full-history CSVs per pair (first trade → 2026-06-30) + quarterly incrementals; intervals 1/5/15/30/60/240/720/1440 min; rows carry volume + trades; published SHA256 sums + MANIFEST.json per archive. Granularity/volume do NOT block this route.
+- **License classification: UNPROVEN — single blocker `LICENSE_NOT_AFFIRMATIVE`.** Governing instrument: Kraken.com Global Terms of Service (upd 2026-10-19) §8 "Our Content": the only grant is a limited, revocable permission to use Our Content "only for your own benefit"; "You do not have or acquire any rights to Our Content beyond the limited, revocable permission"; any other purpose requires prior permission via marketdata@kraken.com. No clause affirmatively permits retention in an immutable research archive. Test (b): no Coinbase-§3.5-type algorithm-validation bar found in the instrument (absent, not waived — moot, test (a) already fails). §9 additionally bars scraping/data-extraction and third-party applications interacting with Our Content without prior written consent. Permission not inferred from the download page's "used in code / converted" language.
+- **Mapping:** seven frozen IDs map to native-USD Kraken pairs under the documented naming convention (docs.kraken.com AssetPairs, upd 2026-10-22; BTC XXBTZUSD doc-exemplified, quote ZUSD); remaining six are convention INFERENCE, live existence UNTESTED (endpoint calls prohibited here). No stablecoin quote used.
+- **Missing-candle semantics:** FACT — only intervals with trades are included, gaps not zero-filled (same conflict with the frozen exact-grid GAP rule as Coinbase). Admissible policies stated for later adjudication only: P1 fail-closed GAP, P2 governed pre-registered amendment, P3 scope change. Nothing filled.
+- **No pilot card** (step-4 gate: license not affirmative). Cure path recorded: written permission from marketdata@kraken.com covering internal immutable archival + personal algorithmic-research use, then re-screen + §4 policy adjudication. PAUSED production pins identical before/after; PAUSE_NEW_ENTRIES present; no shadow launch.
+
+— Muse
