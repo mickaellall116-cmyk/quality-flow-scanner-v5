@@ -1,0 +1,48 @@
+{
+  "calls": 3,
+  "finished_utc": "2026-10-23T16:28:49.233Z",
+  "last_call_start": 1792772928.733158,
+  "legs": [
+    {
+      "attempts": 1,
+      "leg_id": "BTC-USD/HO-C1",
+      "outcome": "REFUSED_HTTP"
+    }
+  ],
+  "post_daily_usage": 13,
+  "post_plan_daily_limit": 800,
+  "reads": [
+    {
+      "bytes": 132,
+      "calls": 1,
+      "http_status": 200,
+      "kind": "usage_read",
+      "label": "open_preflight",
+      "receipt_ts_utc": "2026-10-23T16:28:32.363Z",
+      "request_ts_utc": "2026-10-23T16:28:31.732Z",
+      "sha256": "8c627688af70c29ac2ad83eb581c2e715dd075d3ee70a87c2f7b2162a650cf86"
+    },
+    {
+      "bytes": 132,
+      "calls": 3,
+      "http_status": 200,
+      "kind": "usage_read",
+      "label": "close_final",
+      "receipt_ts_utc": "2026-10-23T16:28:49.233Z",
+      "request_ts_utc": "2026-10-23T16:28:40.555Z",
+      "sha256": "b47f7735b5f85cd969a865a2f09df19ebadf39d95b3ea4bcba344f46d6ee4aa8"
+    }
+  ],
+  "refusals": [
+    {
+      "detail": "HTTP 404: b'{\"code\":404,\"message\":\"**symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: https://twelvedata.com/docs#reference-data\",\"status\":\"error'",
+      "kind": "capture_refusal",
+      "leg_id": "BTC-USD/HO-C1",
+      "reason": "SCHEMA_VIOLATION",
+      "ts_utc": "2026-10-23T16:28:40.555Z"
+    }
+  ],
+  "started_utc": "2026-10-23T16:28:31.731Z",
+  "stop": "REFUSED_HTTP BTC-USD/HO-C1 http=404",
+  "total_calls": 3
+}

@@ -1,0 +1,1 @@
+{"detail": "HTTP 404: b'{\"code\":404,\"message\":\"**symbol** or **figi** parameter is missing or invalid. Please provide a valid symbol according to API documentation: https://twelvedata.com/docs#reference-data\",\"status\":\"error'", "kind": "capture_refusal", "leg_id": "BTC-USD/HO-C1", "reason": "SCHEMA_VIOLATION", "ts_utc": "2026-10-23T16:28:40.555Z"}
