@@ -1,0 +1,94 @@
+P0 done: engine pins ok; archive files verified (158 + 22); PAUSED pins ok
+P1 done: child chain 54 receipts verified from GENESIS, 23 legs quarantined w/o receipt; pilot receipts ok
+P2 NVDA: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 TSLA: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 AAPL: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SPY: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 PLTR: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SOFI: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 AMD: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MSFT: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 META: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 COIN: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MSTR: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AVGO: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 GOOGL: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AMZN: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NFLX: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 CRM: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P2 MU: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 INTC: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 LRCX: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AMAT: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 QCOM: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ARM: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 HOOD: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 APP: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 NET: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P2 SNOW: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 DDOG: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 CRWD: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 SHOP: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 RKLB: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ASTS: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 LUNR: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 PYPL: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NU: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MELI: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 IWM: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SMH: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ARKK: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 XLF: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NIO: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MRNA: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 PFE: raw 3654 admitted 3653 excluded ['2024-12-24 14:30:00'] zv 0/0 moving
+P2 F: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P3 original: exit 1 ["SUMMARY impl=original: 0/5 assertions hold; VIOLATED: ['B1 rs invariant to unfinished SPY close @ 09:30', 'B1 rs invariant to unfinished SPY close @ 13:30', 'B2a C0 simulate_portfolio invariant to unfinished-bar close', 'B2b pine_stack simulate_stack invariant to unfinished-bar close', 'ORD taken candidate at contested coincident timestamp is input-order invariant']"]
+P3 fork: exit 0 ['SUMMARY impl=fork: 5/5 assertions hold']
+P4 NVDA: 1043 4H bars grid_ok=True agg_bad=0
+P4 TSLA: 1043 4H bars grid_ok=True agg_bad=0
+P4 AAPL: 1043 4H bars grid_ok=True agg_bad=0
+P4 SPY: 1043 4H bars grid_ok=True agg_bad=0
+P4 PLTR: 1043 4H bars grid_ok=True agg_bad=0
+P4 SOFI: 1043 4H bars grid_ok=True agg_bad=0
+P4 AMD: 1043 4H bars grid_ok=True agg_bad=0
+P4 MSFT: 1043 4H bars grid_ok=True agg_bad=0
+P4 META: 1043 4H bars grid_ok=True agg_bad=0
+P4 COIN: 1043 4H bars grid_ok=True agg_bad=0
+P4 MSTR: 1043 4H bars grid_ok=True agg_bad=0
+P4 AVGO: 1043 4H bars grid_ok=True agg_bad=0
+P4 GOOGL: 1043 4H bars grid_ok=True agg_bad=0
+P4 AMZN: 1043 4H bars grid_ok=True agg_bad=0
+P4 NFLX: 1043 4H bars grid_ok=True agg_bad=0
+P4 CRM: 1043 4H bars grid_ok=True agg_bad=0
+P4 MU: 1043 4H bars grid_ok=True agg_bad=0
+P4 INTC: 1043 4H bars grid_ok=True agg_bad=0
+P4 LRCX: 1043 4H bars grid_ok=True agg_bad=0
+P4 AMAT: 1043 4H bars grid_ok=True agg_bad=0
+P4 QCOM: 1043 4H bars grid_ok=True agg_bad=0
+P4 ARM: 1043 4H bars grid_ok=True agg_bad=0
+P4 HOOD: 1043 4H bars grid_ok=True agg_bad=0
+P4 APP: 1043 4H bars grid_ok=True agg_bad=0
+P4 NET: 1043 4H bars grid_ok=True agg_bad=0
+P4 SNOW: 1043 4H bars grid_ok=True agg_bad=0
+P4 DDOG: 1043 4H bars grid_ok=True agg_bad=0
+P4 CRWD: 1043 4H bars grid_ok=True agg_bad=0
+P4 SHOP: 1043 4H bars grid_ok=True agg_bad=0
+P4 RKLB: 1043 4H bars grid_ok=True agg_bad=0
+P4 ASTS: 1043 4H bars grid_ok=True agg_bad=0
+P4 LUNR: 1043 4H bars grid_ok=True agg_bad=0
+P4 PYPL: 1043 4H bars grid_ok=True agg_bad=0
+P4 NU: 1043 4H bars grid_ok=True agg_bad=0
+P4 MELI: 1043 4H bars grid_ok=True agg_bad=0
+P4 IWM: 1043 4H bars grid_ok=True agg_bad=0
+P4 SMH: 1043 4H bars grid_ok=True agg_bad=0
+P4 ARKK: 1043 4H bars grid_ok=True agg_bad=0
+P4 XLF: 1043 4H bars grid_ok=True agg_bad=0
+P4 NIO: 1043 4H bars grid_ok=True agg_bad=0
+P4 MRNA: 1043 4H bars grid_ok=True agg_bad=0
+P4 PFE: 1043 4H bars grid_ok=True agg_bad=0
+P4 F: 1043 4H bars grid_ok=True agg_bad=0
+P4 candidates=586 parity_bad=0 terminal_open=4 rs_changed_by_asof=586
+FAIL [P4] corrected-simulator C0 fidelity invariant failed
+P4 C0 fidelity (corrected): pass=False
+STOP: preflight failed; NO performance figures produced.

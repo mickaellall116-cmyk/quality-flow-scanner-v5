@@ -1,0 +1,50 @@
+P2 NVDA: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 TSLA: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 AAPL: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SPY: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 PLTR: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SOFI: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 AMD: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MSFT: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 META: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 COIN: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MSTR: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AVGO: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 GOOGL: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AMZN: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NFLX: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 CRM: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P2 MU: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 INTC: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 LRCX: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AMAT: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 QCOM: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ARM: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 HOOD: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 APP: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 NET: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P2 SNOW: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 DDOG: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 CRWD: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 SHOP: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 RKLB: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ASTS: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 LUNR: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 PYPL: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NU: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MELI: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 IWM: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SMH: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ARKK: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 XLF: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NIO: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MRNA: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 PFE: raw 3654 admitted 3653 excluded ['2024-12-24 14:30:00'] zv 0/0 moving
+P2 F: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+FIDELITY [study_order_pilot_first_then_manifest]: pb=11752.0299 stackC0=11803.6785 delta=-51.6486 capskip pb=343 stack=323 riskskip pb=51 stack=72
+FIDELITY [universe_x_order]: pb=10529.4795 stackC0=11803.6785 delta=-1274.1991 capskip pb=339 stack=323 riskskip pb=53 stack=72
+FIDELITY [alphabetical_order]: pb=11803.6785 stackC0=11803.6785 delta=0.0000 capskip pb=323 stack=323 riskskip pb=72 stack=72
+C1 [study_order]: equity=13038.7614 taken=191 taken_sha=052ba36d8bfa1a08
+C1 [shuffled_seed20261023]: equity=13038.7614 taken=191 taken_sha=052ba36d8bfa1a08
+C1 [canonical_symbol_signalidx]: equity=13038.7614 taken=191 taken_sha=052ba36d8bfa1a08
+DIAG DONE
