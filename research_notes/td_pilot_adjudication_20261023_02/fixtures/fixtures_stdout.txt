@@ -1,0 +1,5 @@
+PASS F-PH1 flat zero-volume stub: raw COUNT extra = the 15:30 stub; admission excluded exactly 1 row; admitted PASS
+PASS F-PH2 nonflat nonzero-volume stub: raw COUNT extra = the 15:30 stub; admission excluded exactly 1 row; admitted PASS
+PASS F-ZV (raw): 19 price-moving zero-volume bars flagged, 1 flat control = NO_TRADE_FLAT, COUNT PASS, classification NOT_EVALUABLE_PROVIDER_VOLUME
+PASS F-ZV (admitted): 19 price-moving zero-volume bars flagged, 1 flat control = NO_TRADE_FLAT, COUNT PASS, classification NOT_EVALUABLE_PROVIDER_VOLUME
+ALL PILOT-ARTIFACT REGRESSION FIXTURES PASS

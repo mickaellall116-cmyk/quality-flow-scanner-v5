@@ -1,0 +1,681 @@
+{
+ "task": "QF-TD-PILOT-ADJUDICATION-20261023-02",
+ "checker_version": "checker-v3-candidate-2",
+ "checker_module_sha256": "4fdc31cbfc4b1a96baaabe775d883135cf64a4f7dc2606c7b679756da1e7d936",
+ "session_table_sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+ "session_table_version": "XNYS-751-UNION-20261021",
+ "session_table_sessions": 751,
+ "legs": [
+  {
+   "leg": "NVDA/HO",
+   "source": "raw (receipted)",
+   "source_sha256": "b96dfaccb578ddb291da4a6766bddc2518e80e454851519a9d13022e0ed84318",
+   "rows_raw": 1583,
+   "rows_admitted": 1583,
+   "rows_excluded": 0,
+   "excluded_rows": [],
+   "admitted_first_bar": "2023-10-19 09:30:00-04:00",
+   "admitted_last_bar": "2024-09-13 15:30:00-04:00",
+   "raw_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [
+     {
+      "effective": "2024-06-10",
+      "factor": 10,
+      "observed_step": 0.993671,
+      "classification": "CONTINUOUS_ADJUSTED",
+      "status": "PASS",
+      "basis_mismatch": false
+     }
+    ],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 32,
+    "untestable": []
+   },
+   "admitted_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [
+     {
+      "effective": "2024-06-10",
+      "factor": 10,
+      "observed_step": 0.993671,
+      "classification": "CONTINUOUS_ADJUSTED",
+      "status": "PASS",
+      "basis_mismatch": false
+     }
+    ],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 32,
+    "untestable": []
+   }
+  },
+  {
+   "leg": "NVDA/DEV",
+   "source": "raw (receipted)",
+   "source_sha256": "b1ecf7bf6718cda1c1cd4fa0da4a1281bc14cc6c4fc1d357aaeabaa77d3fa0f6",
+   "rows_raw": 3654,
+   "rows_admitted": 3653,
+   "rows_excluded": 1,
+   "excluded_rows": [
+    {
+     "bar_open": "2024-11-29 15:30:00-05:00",
+     "flat": true,
+     "volume": 511735.0
+    }
+   ],
+   "admitted_first_bar": "2024-09-16 09:30:00-04:00",
+   "admitted_last_bar": "2026-10-16 15:30:00-04:00",
+   "raw_check": {
+    "overall": "COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "FAIL",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "FAIL",
+     "missing_bars": 0,
+     "extra_bars": [
+      "2024-11-29 15:30:00-05:00"
+     ],
+     "missing_sessions": [],
+     "expected_sessions": 524,
+     "present_sessions": 524
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 90,
+    "untestable": []
+   },
+   "admitted_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 524,
+     "present_sessions": 524
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 90,
+    "untestable": []
+   }
+  },
+  {
+   "leg": "TSLA/HO",
+   "source": "raw (receipted)",
+   "source_sha256": "957c1c17c4ceac662d8797f83b6fd87aa72560f7cec67d8bb328ac30a7fb88c6",
+   "rows_raw": 1583,
+   "rows_admitted": 1583,
+   "rows_excluded": 0,
+   "excluded_rows": [],
+   "admitted_first_bar": "2023-10-19 09:30:00-04:00",
+   "admitted_last_bar": "2024-09-13 15:30:00-04:00",
+   "raw_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 12,
+    "untestable": []
+   },
+   "admitted_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 12,
+    "untestable": []
+   }
+  },
+  {
+   "leg": "TSLA/DEV",
+   "source": "raw (receipted)",
+   "source_sha256": "f6b1e64f244b06543f536be8eaf04d731b7dd98700bf1afdbb7ff59b303479fe",
+   "rows_raw": 3655,
+   "rows_admitted": 3653,
+   "rows_excluded": 2,
+   "excluded_rows": [
+    {
+     "bar_open": "2024-11-29 15:30:00-05:00",
+     "flat": true,
+     "volume": 385982.0
+    },
+    {
+     "bar_open": "2024-12-24 15:30:00-05:00",
+     "flat": true,
+     "volume": 840124.0
+    }
+   ],
+   "admitted_first_bar": "2024-09-16 09:30:00-04:00",
+   "admitted_last_bar": "2026-10-16 15:30:00-04:00",
+   "raw_check": {
+    "overall": "COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "FAIL",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "FAIL",
+     "missing_bars": 0,
+     "extra_bars": [
+      "2024-11-29 15:30:00-05:00",
+      "2024-12-24 15:30:00-05:00"
+     ],
+     "missing_sessions": [],
+     "expected_sessions": 524,
+     "present_sessions": 524
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 91,
+    "untestable": []
+   },
+   "admitted_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 524,
+     "present_sessions": 524
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 91,
+    "untestable": []
+   }
+  },
+  {
+   "leg": "AAPL/HO",
+   "source": "raw (receipted)",
+   "source_sha256": "b4cd48e6e1e134aa9d5ad6a7ec325b82766c8da2f1e65c98d51cab77fe466bc9",
+   "rows_raw": 1583,
+   "rows_admitted": 1583,
+   "rows_excluded": 0,
+   "excluded_rows": [],
+   "admitted_first_bar": "2023-10-19 09:30:00-04:00",
+   "admitted_last_bar": "2024-09-13 15:30:00-04:00",
+   "raw_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 32,
+    "untestable": []
+   },
+   "admitted_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 32,
+    "untestable": []
+   }
+  },
+  {
+   "leg": "AAPL/DEV",
+   "source": "raw (receipted)",
+   "source_sha256": "97649d2f2a326b8a2e2e20a72cfaa83ebfaaed128698f1829716d37506acdd4f",
+   "rows_raw": 3655,
+   "rows_admitted": 3653,
+   "rows_excluded": 2,
+   "excluded_rows": [
+    {
+     "bar_open": "2024-11-29 15:30:00-05:00",
+     "flat": true,
+     "volume": 100855.0
+    },
+    {
+     "bar_open": "2024-12-24 15:30:00-05:00",
+     "flat": true,
+     "volume": 0.0
+    }
+   ],
+   "admitted_first_bar": "2024-09-16 09:30:00-04:00",
+   "admitted_last_bar": "2026-10-16 15:30:00-04:00",
+   "raw_check": {
+    "overall": "COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "FAIL",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "FAIL",
+     "missing_bars": 0,
+     "extra_bars": [
+      "2024-11-29 15:30:00-05:00",
+      "2024-12-24 15:30:00-05:00"
+     ],
+     "missing_sessions": [],
+     "expected_sessions": 524,
+     "present_sessions": 524
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [
+      "2024-12-24 15:30:00-05:00"
+     ],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 108,
+    "untestable": []
+   },
+   "admitted_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 524,
+     "present_sessions": 524
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 108,
+    "untestable": []
+   }
+  },
+  {
+   "leg": "SPY/HO",
+   "source": "raw (receipted)",
+   "source_sha256": "795338d365cfd2de4c0d90b4d6e3023a9a6dcc013434e671fd6504e774e9188c",
+   "rows_raw": 1583,
+   "rows_admitted": 1583,
+   "rows_excluded": 0,
+   "excluded_rows": [],
+   "admitted_first_bar": "2023-10-19 09:30:00-04:00",
+   "admitted_last_bar": "2024-09-13 15:30:00-04:00",
+   "raw_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 44,
+    "untestable": []
+   },
+   "admitted_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 44,
+    "untestable": []
+   }
+  },
+  {
+   "leg": "SPY/DEV",
+   "source": "raw (receipted)",
+   "source_sha256": "2c6631dc5482b5f8e20a2107b53fbcd64e1ae3732d2bf09adf17c874076fecfb",
+   "rows_raw": 3655,
+   "rows_admitted": 3653,
+   "rows_excluded": 2,
+   "excluded_rows": [
+    {
+     "bar_open": "2024-11-29 15:30:00-05:00",
+     "flat": true,
+     "volume": 0.0
+    },
+    {
+     "bar_open": "2024-12-24 15:30:00-05:00",
+     "flat": true,
+     "volume": 131302.0
+    }
+   ],
+   "admitted_first_bar": "2024-09-16 09:30:00-04:00",
+   "admitted_last_bar": "2026-10-16 15:30:00-04:00",
+   "raw_check": {
+    "overall": "COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "FAIL",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "FAIL",
+     "missing_bars": 0,
+     "extra_bars": [
+      "2024-11-29 15:30:00-05:00",
+      "2024-12-24 15:30:00-05:00"
+     ],
+     "missing_sessions": [],
+     "expected_sessions": 524,
+     "present_sessions": 524
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [
+      "2024-11-29 15:30:00-05:00"
+     ],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 94,
+    "untestable": []
+   },
+   "admitted_check": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 524,
+     "present_sessions": 524
+    },
+    "anomaly": {
+     "verdict": "PASS",
+     "price_moving_zero_volume": [],
+     "price_moving_zero_volume_count": 0,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 94,
+    "untestable": []
+   }
+  },
+  {
+   "leg": "SMCI/HO",
+   "source": "quarantine (unreceipted)",
+   "source_sha256": "737cb24ad6dcb6185529dd629177cd34f6f1f5988b0dda86fb45131c898f43d3",
+   "rows_raw": 1584,
+   "rows_admitted": 1583,
+   "rows_excluded": 1,
+   "excluded_rows": [
+    {
+     "bar_open": "2024-07-03 15:30:00-04:00",
+     "flat": true,
+     "volume": 145460.0
+    }
+   ],
+   "admitted_first_bar": "2023-10-19 09:30:00-04:00",
+   "admitted_last_bar": "2024-09-13 15:30:00-04:00",
+   "raw_check": {
+    "overall": "COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "FAIL",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "FAIL",
+     "missing_bars": 0,
+     "extra_bars": [
+      "2024-07-03 15:30:00-04:00"
+     ],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "FAIL",
+     "price_moving_zero_volume": [
+      "2024-04-08 12:30:00-04:00",
+      "2024-04-08 13:30:00-04:00",
+      "2024-04-08 14:30:00-04:00",
+      "2024-04-08 15:30:00-04:00",
+      "2024-04-09 10:30:00-04:00",
+      "2024-04-10 10:30:00-04:00",
+      "2024-04-10 11:30:00-04:00",
+      "2024-04-10 12:30:00-04:00",
+      "2024-04-10 13:30:00-04:00",
+      "2024-04-10 14:30:00-04:00",
+      "2024-04-10 15:30:00-04:00",
+      "2024-04-12 09:30:00-04:00",
+      "2024-04-12 10:30:00-04:00",
+      "2024-04-12 11:30:00-04:00",
+      "2024-04-12 13:30:00-04:00",
+      "2024-04-15 09:30:00-04:00",
+      "2024-04-15 15:30:00-04:00",
+      "2024-04-17 11:30:00-04:00",
+      "2024-04-17 15:30:00-04:00"
+     ],
+     "price_moving_zero_volume_count": 19,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 66,
+    "untestable": []
+   },
+   "admitted_check": {
+    "overall": "COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "FAIL",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "structural": "PASS",
+    "count": {
+     "verdict": "PASS",
+     "missing_bars": 0,
+     "extra_bars": [],
+     "missing_sessions": [],
+     "expected_sessions": 227,
+     "present_sessions": 227
+    },
+    "anomaly": {
+     "verdict": "FAIL",
+     "price_moving_zero_volume": [
+      "2024-04-08 12:30:00-04:00",
+      "2024-04-08 13:30:00-04:00",
+      "2024-04-08 14:30:00-04:00",
+      "2024-04-08 15:30:00-04:00",
+      "2024-04-09 10:30:00-04:00",
+      "2024-04-10 10:30:00-04:00",
+      "2024-04-10 11:30:00-04:00",
+      "2024-04-10 12:30:00-04:00",
+      "2024-04-10 13:30:00-04:00",
+      "2024-04-10 14:30:00-04:00",
+      "2024-04-10 15:30:00-04:00",
+      "2024-04-12 09:30:00-04:00",
+      "2024-04-12 10:30:00-04:00",
+      "2024-04-12 11:30:00-04:00",
+      "2024-04-12 13:30:00-04:00",
+      "2024-04-15 09:30:00-04:00",
+      "2024-04-15 15:30:00-04:00",
+      "2024-04-17 11:30:00-04:00",
+      "2024-04-17 15:30:00-04:00"
+     ],
+     "price_moving_zero_volume_count": 19,
+     "no_trade_flat_zero_volume": [],
+     "defect_bars": []
+    },
+    "step": [],
+    "step_all_suspects": 0,
+    "vbasis_suspects": 66,
+    "untestable": []
+   },
+   "classification": "NOT_EVALUABLE_PROVIDER_VOLUME",
+   "classification_basis": "19 price-moving zero-volume bars survive the generic admission rule; no session-membership rule can cure a volume-completeness defect without imputation, which is prohibited. TSLA C2 precedent (-76)."
+  }
+ ]
+}

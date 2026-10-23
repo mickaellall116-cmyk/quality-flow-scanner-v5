@@ -1,0 +1,10 @@
+NVDA/HO: raw_rows=1583 admitted=1583 excluded=0 raw_overall=CONVENTION_BREAK_SUSPECT admitted_overall=CONVENTION_BREAK_SUSPECT admitted_anomalies=0
+NVDA/DEV: raw_rows=3654 admitted=3653 excluded=1 raw_overall=COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT admitted_overall=CONVENTION_BREAK_SUSPECT admitted_anomalies=0
+TSLA/HO: raw_rows=1583 admitted=1583 excluded=0 raw_overall=CONVENTION_BREAK_SUSPECT admitted_overall=CONVENTION_BREAK_SUSPECT admitted_anomalies=0
+TSLA/DEV: raw_rows=3655 admitted=3653 excluded=2 raw_overall=COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT admitted_overall=CONVENTION_BREAK_SUSPECT admitted_anomalies=0
+AAPL/HO: raw_rows=1583 admitted=1583 excluded=0 raw_overall=CONVENTION_BREAK_SUSPECT admitted_overall=CONVENTION_BREAK_SUSPECT admitted_anomalies=0
+AAPL/DEV: raw_rows=3655 admitted=3653 excluded=2 raw_overall=COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT admitted_overall=CONVENTION_BREAK_SUSPECT admitted_anomalies=0
+SPY/HO: raw_rows=1583 admitted=1583 excluded=0 raw_overall=CONVENTION_BREAK_SUSPECT admitted_overall=CONVENTION_BREAK_SUSPECT admitted_anomalies=0
+SPY/DEV: raw_rows=3655 admitted=3653 excluded=2 raw_overall=COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT admitted_overall=CONVENTION_BREAK_SUSPECT admitted_anomalies=0
+SMCI/HO: raw_rows=1584 admitted=1583 excluded=1 raw_overall=COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT admitted_overall=COMPLETENESS_FAIL_AND_CONVENTION_BREAK_SUSPECT admitted_anomalies=19 classification=NOT_EVALUABLE_PROVIDER_VOLUME
+report written: /home/hatch/workspace/qf_td_pilot_adj_stage/pkg/research_notes/td_pilot_adjudication_20261023_02/checker_report.json

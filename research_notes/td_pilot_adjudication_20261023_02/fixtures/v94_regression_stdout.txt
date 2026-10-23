@@ -1,0 +1,20 @@
+checker version: checker-v3-candidate-2
+PASS V94_C0_version_string 
+PASS V94_M1_model_counts_23_24_25 
+PASS V94_M2_spring_span_instants 
+PASS V94_M3_fall_span_instants 
+PASS V94_M4_checker_matches_model 
+PASS V94_M5_zoneinfo_rederive_fall_25 
+PASS V94_K1_clean_normal_sessions 
+PASS V94_K2_clean_utc_stamps_attributed 
+PASS V94_K3_clean_spring_23_no_missing_wall_hour 
+PASS V94_K4_clean_fall_25_no_false_duplicate 
+PASS V94_K5_real_missing_bar_fails 
+PASS V94_K6_real_duplicate_instant_fails 
+PASS V94_K7_off_grid_extra_bar_fails 
+PASS V94_K8_missing_dst_session_23_expected 
+PASS V94_K9_midnight_anchored_series_fails 
+PASS V94_K10_declared_split_refused 
+PASS V94_K11_naive_index_named_not_crash 
+PASS V94_K12_equity_floor_clean 
+18/18 checks passed
