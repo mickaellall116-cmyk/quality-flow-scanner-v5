@@ -1,0 +1,62 @@
+{
+  "anomalous_dates": [
+    [
+      "2024-11-29",
+      5
+    ],
+    [
+      "2024-12-24",
+      5
+    ]
+  ],
+  "chain": {
+    "prev_receipt_hash": "f7dbdc3a916b8aec2dc8bd8f8a018f2ad5b86b5ccdd622aeebaf643f89032d87",
+    "receipt_hash": "b8d46633fe2403da29e2a48d0c0369e9c4b7f3fa34539cd90636f98ed10c1cf1"
+  },
+  "credits": {
+    "api_usage_before": {
+      "current_usage": 1,
+      "daily_usage": 1,
+      "plan_daily_limit": 800,
+      "timestamp": "2026-10-23 14:28:57"
+    },
+    "leg_credits": 1
+  },
+  "kind": "capture_receipt",
+  "leg_id": "AAPL/DEV",
+  "manifest_root_digest_sha256": "79ccdd128e0b36537f56f8ae36a731b719e989b9756f65856b7dc47344327122",
+  "provider": {
+    "name": "Twelve Data",
+    "request_id": null,
+    "response_timestamp_utc": "2026-10-23T14:29:47.636Z"
+  },
+  "request": {
+    "adjust": "splits",
+    "attempt": 1,
+    "end_date": "2026-10-16T23:59:59",
+    "endpoint_class": "/time_series",
+    "interval": "1h",
+    "outputsize": 5000,
+    "start_date": "2024-09-16T00:00:00"
+  },
+  "response": {
+    "expected_rows": 3653,
+    "first_bar": "2024-09-16 09:30:00",
+    "last_bar": "2026-10-16 15:30:00",
+    "row_delta": 2,
+    "rows": 3655,
+    "sha256": "97649d2f2a326b8a2e2e20a72cfaa83ebfaaed128698f1829716d37506acdd4f"
+  },
+  "symbol": "AAPL",
+  "transport": {
+    "credits_headers": {
+      "api-credits-left": "2",
+      "api-credits-request": "1",
+      "api-credits-used": "6"
+    },
+    "http_status": 200,
+    "request_ts_utc": "2026-10-23T14:29:38.984Z",
+    "response_bytes": 473924
+  },
+  "window": "W_DEV"
+}

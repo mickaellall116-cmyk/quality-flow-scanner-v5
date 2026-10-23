@@ -1,0 +1,53 @@
+{
+  "anomalous_dates": [],
+  "chain": {
+    "prev_receipt_hash": "4d379d0ed6898f636f9a59022053a1ceda0d64f93ef8d2d4b33029a65a393e38",
+    "receipt_hash": "be98db942045a8666c6321809c129e13b7bda95723c5e1a0696153feb88925e8"
+  },
+  "credits": {
+    "api_usage_before": {
+      "current_usage": 1,
+      "daily_usage": 1,
+      "plan_daily_limit": 800,
+      "timestamp": "2026-10-23 14:28:57"
+    },
+    "leg_credits": 1
+  },
+  "kind": "capture_receipt",
+  "leg_id": "TSLA/HO",
+  "manifest_root_digest_sha256": "79ccdd128e0b36537f56f8ae36a731b719e989b9756f65856b7dc47344327122",
+  "provider": {
+    "name": "Twelve Data",
+    "request_id": null,
+    "response_timestamp_utc": "2026-10-23T14:29:21.950Z"
+  },
+  "request": {
+    "adjust": "splits",
+    "attempt": 1,
+    "end_date": "2024-09-15T23:59:59",
+    "endpoint_class": "/time_series",
+    "interval": "1h",
+    "outputsize": 5000,
+    "start_date": "2023-10-19T00:00:00"
+  },
+  "response": {
+    "expected_rows": 1583,
+    "first_bar": "2023-10-19 09:30:00",
+    "last_bar": "2024-09-13 15:30:00",
+    "row_delta": 0,
+    "rows": 1583,
+    "sha256": "957c1c17c4ceac662d8797f83b6fd87aa72560f7cec67d8bb328ac30a7fb88c6"
+  },
+  "symbol": "TSLA",
+  "transport": {
+    "credits_headers": {
+      "api-credits-left": "5",
+      "api-credits-request": "1",
+      "api-credits-used": "3"
+    },
+    "http_status": 200,
+    "request_ts_utc": "2026-10-23T14:29:13.783Z",
+    "response_bytes": 206282
+  },
+  "window": "W_HO"
+}

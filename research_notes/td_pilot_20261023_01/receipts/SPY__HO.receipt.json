@@ -1,0 +1,53 @@
+{
+  "anomalous_dates": [],
+  "chain": {
+    "prev_receipt_hash": "b8d46633fe2403da29e2a48d0c0369e9c4b7f3fa34539cd90636f98ed10c1cf1",
+    "receipt_hash": "e9bb7bd7250d980bcc22aa17d787242fffdf4f6459396fcc08770123aa3327e1"
+  },
+  "credits": {
+    "api_usage_before": {
+      "current_usage": 1,
+      "daily_usage": 1,
+      "plan_daily_limit": 800,
+      "timestamp": "2026-10-23 14:28:57"
+    },
+    "leg_credits": 1
+  },
+  "kind": "capture_receipt",
+  "leg_id": "SPY/HO",
+  "manifest_root_digest_sha256": "79ccdd128e0b36537f56f8ae36a731b719e989b9756f65856b7dc47344327122",
+  "provider": {
+    "name": "Twelve Data",
+    "request_id": null,
+    "response_timestamp_utc": "2026-10-23T14:29:55.979Z"
+  },
+  "request": {
+    "adjust": "splits",
+    "attempt": 1,
+    "end_date": "2024-09-15T23:59:59",
+    "endpoint_class": "/time_series",
+    "interval": "1h",
+    "outputsize": 5000,
+    "start_date": "2023-10-19T00:00:00"
+  },
+  "response": {
+    "expected_rows": 1583,
+    "first_bar": "2023-10-19 09:30:00",
+    "last_bar": "2024-09-13 15:30:00",
+    "row_delta": 0,
+    "rows": 1583,
+    "sha256": "795338d365cfd2de4c0d90b4d6e3023a9a6dcc013434e671fd6504e774e9188c"
+  },
+  "symbol": "SPY",
+  "transport": {
+    "credits_headers": {
+      "api-credits-left": "1",
+      "api-credits-request": "1",
+      "api-credits-used": "7"
+    },
+    "http_status": 200,
+    "request_ts_utc": "2026-10-23T14:29:47.711Z",
+    "response_bytes": 206112
+  },
+  "window": "W_HO"
+}

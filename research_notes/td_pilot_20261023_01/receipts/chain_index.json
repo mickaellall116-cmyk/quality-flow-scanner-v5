@@ -1,0 +1,97 @@
+{
+  "schema": "QF-CAPTURE-RECEIPT-CANDIDATE-20261023-01",
+  "genesis": "GENESIS:79ccdd12...",
+  "order": [
+    "NVDA/HO",
+    "NVDA/DEV",
+    "TSLA/HO",
+    "TSLA/DEV",
+    "AAPL/HO",
+    "AAPL/DEV",
+    "SPY/HO",
+    "SPY/DEV"
+  ],
+  "entries": [
+    {
+      "leg_id": "NVDA/HO",
+      "receipt_hash": "eeca45bdcbee629535dcc7cd966fb5fdee54ca955b5b2e2d34f3dfb665813d9f",
+      "checks": {
+        "prev_link": true,
+        "hash_recompute": true,
+        "raw_sha_match": true,
+        "manifest_root": true
+      }
+    },
+    {
+      "leg_id": "NVDA/DEV",
+      "receipt_hash": "4d379d0ed6898f636f9a59022053a1ceda0d64f93ef8d2d4b33029a65a393e38",
+      "checks": {
+        "prev_link": true,
+        "hash_recompute": true,
+        "raw_sha_match": true,
+        "manifest_root": true
+      }
+    },
+    {
+      "leg_id": "TSLA/HO",
+      "receipt_hash": "be98db942045a8666c6321809c129e13b7bda95723c5e1a0696153feb88925e8",
+      "checks": {
+        "prev_link": true,
+        "hash_recompute": true,
+        "raw_sha_match": true,
+        "manifest_root": true
+      }
+    },
+    {
+      "leg_id": "TSLA/DEV",
+      "receipt_hash": "fa1b323f8b8a42d3e6e56e873c117fc8e5b3c1a4648e187c69ca25330aca34fe",
+      "checks": {
+        "prev_link": true,
+        "hash_recompute": true,
+        "raw_sha_match": true,
+        "manifest_root": true
+      }
+    },
+    {
+      "leg_id": "AAPL/HO",
+      "receipt_hash": "f7dbdc3a916b8aec2dc8bd8f8a018f2ad5b86b5ccdd622aeebaf643f89032d87",
+      "checks": {
+        "prev_link": true,
+        "hash_recompute": true,
+        "raw_sha_match": true,
+        "manifest_root": true
+      }
+    },
+    {
+      "leg_id": "AAPL/DEV",
+      "receipt_hash": "b8d46633fe2403da29e2a48d0c0369e9c4b7f3fa34539cd90636f98ed10c1cf1",
+      "checks": {
+        "prev_link": true,
+        "hash_recompute": true,
+        "raw_sha_match": true,
+        "manifest_root": true
+      }
+    },
+    {
+      "leg_id": "SPY/HO",
+      "receipt_hash": "e9bb7bd7250d980bcc22aa17d787242fffdf4f6459396fcc08770123aa3327e1",
+      "checks": {
+        "prev_link": true,
+        "hash_recompute": true,
+        "raw_sha_match": true,
+        "manifest_root": true
+      }
+    },
+    {
+      "leg_id": "SPY/DEV",
+      "receipt_hash": "4aa5718c7db77aa13c9616699b9d5eeec1518ec5fe1a3c7dd447e30343e7d536",
+      "checks": {
+        "prev_link": true,
+        "hash_recompute": true,
+        "raw_sha_match": true,
+        "manifest_root": true
+      }
+    }
+  ],
+  "chain_valid": true
+}

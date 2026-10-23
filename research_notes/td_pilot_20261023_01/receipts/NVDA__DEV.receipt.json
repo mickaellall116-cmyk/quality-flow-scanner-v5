@@ -1,0 +1,58 @@
+{
+  "anomalous_dates": [
+    [
+      "2024-11-29",
+      5
+    ]
+  ],
+  "chain": {
+    "prev_receipt_hash": "eeca45bdcbee629535dcc7cd966fb5fdee54ca955b5b2e2d34f3dfb665813d9f",
+    "receipt_hash": "4d379d0ed6898f636f9a59022053a1ceda0d64f93ef8d2d4b33029a65a393e38"
+  },
+  "credits": {
+    "api_usage_before": {
+      "current_usage": 1,
+      "daily_usage": 1,
+      "plan_daily_limit": 800,
+      "timestamp": "2026-10-23 14:28:57"
+    },
+    "leg_credits": 1
+  },
+  "kind": "capture_receipt",
+  "leg_id": "NVDA/DEV",
+  "manifest_root_digest_sha256": "79ccdd128e0b36537f56f8ae36a731b719e989b9756f65856b7dc47344327122",
+  "provider": {
+    "name": "Twelve Data",
+    "request_id": null,
+    "response_timestamp_utc": "2026-10-23T14:29:13.707Z"
+  },
+  "request": {
+    "adjust": "splits",
+    "attempt": 1,
+    "end_date": "2026-10-16T23:59:59",
+    "endpoint_class": "/time_series",
+    "interval": "1h",
+    "outputsize": 5000,
+    "start_date": "2024-09-16T00:00:00"
+  },
+  "response": {
+    "expected_rows": 3653,
+    "first_bar": "2024-09-16 09:30:00",
+    "last_bar": "2026-10-16 15:30:00",
+    "row_delta": 1,
+    "rows": 3654,
+    "sha256": "b1ecf7bf6718cda1c1cd4fa0da4a1281bc14cc6c4fc1d357aaeabaa77d3fa0f6"
+  },
+  "symbol": "NVDA",
+  "transport": {
+    "credits_headers": {
+      "api-credits-left": "6",
+      "api-credits-request": "1",
+      "api-credits-used": "2"
+    },
+    "http_status": 200,
+    "request_ts_utc": "2026-10-23T14:29:04.977Z",
+    "response_bytes": 476610
+  },
+  "window": "W_DEV"
+}
