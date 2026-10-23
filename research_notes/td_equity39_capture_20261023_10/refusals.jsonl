@@ -1,0 +1,1 @@
+{"detail": "TSLA-class/SMCI-rule volume-completeness failure: 3 price-moving zero-volume bars", "kind": "capture_refusal", "leg_id": "PLTR/HO", "reason": "SCHEMA_VIOLATION", "ts_utc": "2026-10-23T20:48:15.600Z"}

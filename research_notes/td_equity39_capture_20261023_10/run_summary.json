@@ -1,0 +1,59 @@
+{
+  "blocks": [
+    {
+      "attempts": 1,
+      "block_id": 1,
+      "close_read_sha256": "5470714619bd7ac2c7865142b5e89480be8ac9206872238830202f94140e19be",
+      "expected_delta": 2,
+      "open_read_sha256": "4092c68fb1c84247b270c18c3bcbfaf9f39dc972624d11afd8930d6c2826d2f6",
+      "receipts_finalized": 0,
+      "reconciled": true,
+      "u_close": 19,
+      "u_prev": 17
+    }
+  ],
+  "calls": 3,
+  "finished_utc": "2026-10-23T20:48:23.720Z",
+  "last_call_start": 1792788503.3089464,
+  "legs": [
+    {
+      "attempts": 1,
+      "block_id": 1,
+      "leg_id": "PLTR/HO",
+      "outcome": "QUARANTINED_VOLUME_COMPLETENESS"
+    }
+  ],
+  "preflight": {
+    "body": {
+      "current_usage": 1,
+      "daily_usage": 17,
+      "plan_category": "basic",
+      "plan_daily_limit": 800,
+      "plan_limit": 8,
+      "timestamp": "2026-10-23 20:48:07"
+    },
+    "bytes": 132,
+    "credits_headers": {
+      "api-credits-left": "7",
+      "api-credits-request": "1",
+      "api-credits-used": "1"
+    },
+    "http_status": 200,
+    "receipt_ts_utc": "2026-10-23T20:48:06.917Z",
+    "request_ts_utc": "2026-10-23T20:48:06.308Z",
+    "sha256": "4092c68fb1c84247b270c18c3bcbfaf9f39dc972624d11afd8930d6c2826d2f6"
+  },
+  "program_td_total_before": 24,
+  "refusals": [
+    {
+      "detail": "TSLA-class/SMCI-rule volume-completeness failure: 3 price-moving zero-volume bars",
+      "kind": "capture_refusal",
+      "leg_id": "PLTR/HO",
+      "reason": "SCHEMA_VIOLATION",
+      "ts_utc": "2026-10-23T20:48:15.600Z"
+    }
+  ],
+  "started_utc": "2026-10-23T20:48:06.304Z",
+  "stop": "VOLUME_COMPLETENESS PLTR/HO",
+  "total_calls": 3
+}

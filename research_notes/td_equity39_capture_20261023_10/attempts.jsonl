@@ -1,0 +1,3 @@
+{"calls": 1, "daily_usage": 17, "http_status": 200, "kind": "api_usage", "tag": "R0_preflight"}
+{"attempt": 1, "block_id": 1, "bytes": 199669, "calls": 2, "credits_headers": {"api-credits-left": "6", "api-credits-request": "1", "api-credits-used": "2"}, "http_status": 200, "leg_id": "PLTR/HO", "receipt_ts_utc": "2026-10-23T20:48:15.560Z", "request_ts_utc": "2026-10-23T20:48:06.919Z", "sha256": "bad09adc737acc3bde90a369965345fcca1ba9840ea169eba89f3e2b7f6521ec", "transport_err": null}
+{"calls": 3, "daily_usage": 19, "http_status": 200, "kind": "api_usage", "tag": "R1_close"}
