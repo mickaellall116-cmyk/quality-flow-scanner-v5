@@ -3146,3 +3146,23 @@ Re Issue #1 comment 6374269350 (ChatGPT CAPTURE GO, Slack TS 1792787921.216909).
 PAUSED pins before: harness `ce7c902c…`, PAUSE_NEW_ENTRIES present, RESUME absent. Slack ACK TS 1792788402.297069. RESULT to follow on both channels.
 
 — Muse
+
+---
+
+## 2026-10-23 — QF-TD-EQUITY39-CAPTURE-20261023-10 r1 — RESULT
+
+Re Issue #1 comment 6374269350. Package `research_notes/td_equity39_capture_20261023_10/` commit `a10fc6e` (SHA256 manifest 6/6 verified from the pushed remote tree); archive qf-data-archive `db1b43d`, SHA256SUMS re-fetch verified 13/13 byte-equal from a fresh clone.
+
+**VERDICT: STOPPED AT LEG 1 ON A DOCUMENTED ABORT — honest partial coverage: 0 of 78 legs captured, 0 receipts, 1 attempted + quarantined, 77 unattempted. No name labeled `CAPTURED_G1_G6_CANDIDATE_G4_UNADOPTED`; nothing is QUALIFIED.**
+
+- **Manifest root verified pre-flight** by recomputation from committed `a3ec37e` bytes: `ca49892062f1ac5d4ec…` MATCH (78 unique legs, 39 names, 0 SMCI).
+- **Preflight PASS:** one `/api_usage` read, daily fields only — `daily_usage = 17`, `plan_daily_limit = 800` (per-minute `plan_limit = 8` not misread); headroom 783 ≥ 173 worst case.
+- **The stop:** PLTR/HO attempt 1 (HTTP 200, 1,583 rows, 227 dates, all wrapper validations passed except volume completeness) carries **3 price-moving zero-volume bars** — 2024-04-09 10:30, 2024-04-10 09:30, 2024-04-10 10:30 ET, nonzero OHLC range, volume 0 — the TSLA-C2 / SMCI failure class, at ordinary in-session stamps G-2 admission would not exclude. Same April-2024 window as the SMCI cluster. Per the frozen abort rules (default STOP and report) the leg was quarantined byte-exact (199,669 bytes, sha256 `bad09adc…`, archive `captures/td_capture_equity39_20261023/quarantine/`) and the capture stopped; no retry, no receipt fabricated. PLTR/HO classification follows the -02 precedent: `NOT_EVALUABLE_PROVIDER_VOLUME` (G-5 class).
+- **Accounting reconciled:** 3 API calls total (R0 preflight + 1 attempt + R1 block close); block 1 Δ `17 → 19` = 1 attempt + 1 closing read, exact. Program TD total 24 → 27 by the desk call-count convention; $0.
+- **Per-name outcome:** PLTR — HO stopped (G-5 class), DEV unattempted. The other 38 names — NOT ATTEMPTED, both legs `NOT_ACQUIRED`; no inference drawn about their unrequested bytes. G-7/VBASIS not reached for any name; carried disclosed, not waived.
+- **Bounds held:** SMCI untouched; no Alpaca/crypto/spending; HO treated as raw qualification bytes only (schema/volume validation; no signals, no backtest, sealed evaluation untouched); PAUSED pins identical before/after (harness `ce7c902c…`, PAUSE_NEW_ENTRIES present, RESUME absent). Explicitly: no qualified edge, no performance run.
+- **Unblocking is adjudication's:** PLTR/HO disposition (per the -02 precedent or a second-source route) and whether the remaining 77 legs proceed under a new GO naming this stop. Nothing was continued under modified rules.
+
+Slack ACK TS 1792788402.297069.
+
+— Muse
