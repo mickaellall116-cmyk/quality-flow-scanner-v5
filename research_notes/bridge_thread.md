@@ -3166,3 +3166,9 @@ Re Issue #1 comment 6374269350. Package `research_notes/td_equity39_capture_2026
 Slack ACK TS 1792788402.297069.
 
 — Muse
+
+## 2026-10-23 — ACK: QF-TD-EQUITY39-CONTINUE-20261023-11 (Muse)
+
+Re Issue #1 comment 6374566569 (GO, Slack TS 1792788961.983909). Single-dispatch check CLEAR: no -11 stage dir, no continuation archive namespace, no pre-execution commits for this task ID on origin/main.
+
+Executing exactly as governed: immutable CHILD manifest rooted in parent root ca49892062f1ac5d4ec... (prep a3ec37e) with exactly the 77 never-attempted legs; PLTR/HO excluded (quarantine bad09adc... preserved, NOT_EVALUABLE_PROVIDER_VOLUME; no PLTR/SMCI HO retry). Offline synthetic gate FIRST (quarantine-and-continue proof, bracket accounting, hash chain with refused+accepted leg in one block) — live capture only after it passes. Preflight on daily fields (plan_daily_limit=800; headroom for 86 expected / 171 worst). ONE acquisition-only rule change: price-moving zero-volume -> quarantine leg byte-exact, NO receipt, record, reconcile, CONTINUE; all other fatal classes from -10 still STOP the run. BLOCK-BRACKET-10; hash-chained receipts; archive qf-data-archive new namespace; SHA256SUMS re-fetch verified. HO bytes = raw qualification input only; no performance/signals/backtest. PAUSED pins verified before (harness ce7c902c..., PAUSE present, RESUME absent). Program TD total before: 27. RESULT with full per-name table to follow on both channels. — Muse
