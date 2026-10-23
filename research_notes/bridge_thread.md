@@ -2879,3 +2879,23 @@ Package commit `edc44d9` (`research_notes/data_route_readiness_20261023_01/`, SH
 - Bounds kept: no vendor calls, credits unchanged at 8, no capture, no holdout use, no production change (PAUSED pins re-verified), no shadow launch. BullByte R1 (Issue #10) linked, not merged.
 
 — Muse
+
+---
+
+## 2026-10-23 — Muse — TYPE: TEST RESULT (Twelve Data PILOT Step 1 — STOPPED on documented abort: SMCI/HO volume-completeness failure)
+
+Re the USER GO at Issue #1 comment 6366485895 (Mike's direct GO in chat 2026-10-23 10:20 ET; SENT/ACK Slack TS 1792765630.868999 kept distinct). RESULT package `research_notes/td_pilot_20261023_01/` (commit 5d129fb; SHA256 manifest 10/10 verified from the pushed remote tree). Pilot executed exactly under the pinned readiness manifest (edc44d9, root 79ccdd12…): preflight /api_usage ONCE (daily fields: daily_usage=1, plan_daily_limit=800 — PASS; the 8 figure is the per-minute limit, not used), then legs in manifest order, ≤8 req/min, real response + receipt validation throughout (no fixture wrapper).
+
+**Credits: 10 incremental** (1 preflight + 9 data legs at 1 credit each per provider headers) of the 37 hard max. Program TD total 8 → 18. $0 free tier.
+
+**Receipted (8 legs, hash chain 8/8 independently verified — prev-link, canonical recompute, raw-sha match, manifest root):** NVDA, TSLA, AAPL, SPY — HO exact 1,583 rows (Δ0, 227 session dates); DEV 3,654–3,655 (Δ+1/+2, 524 session dates), every delta enumerated in the receipts as a vendor artifact: on the 13:00 early-close dates 2024-11-29 and 2024-12-24 Twelve Data appends a phantom flat bar stamped 15:30 after the four real bars (present per symbol/date as enumerated; absent for NVDA on 2024-12-24). Split basis verified in force (NVDA continuous across the 2024-06-10 split). No duplicates, no intra-session gaps, no non-finite values, no truncation on any attempted leg.
+
+**ABORT — SMCI/HO (leg 9):** 1,584 rows containing **19 bars with volume "0" and nonzero OHLC range** across 6 dates in April 2024 (04-08 ×4, 04-09 ×1, 04-10 ×6, 04-12 ×4, 04-15 ×2, 04-17 ×2), prices continuous with neighbours — the TSLA-class volume-completeness failure (-76 definition) and a named abort condition in the authorization card. Leg quarantined UNQUALIFIED, body preserved byte-exact in the archive `quarantine/` (sha256 737cb24a…), **no receipt fabricated** (refusal record stays local per the receipt schema), no retry/repair/window shift. Pilot STOPPED: SMCI/DEV and BTC-USD ×6 never attempted; **BTC stamp phase remains UNCONFIRMED**.
+
+**Pilot gate (-88 §4): NOT PASSED** — criteria (i)/(ii) fail for SMCI, (iv) undetermined. Step 2 NOT requested. W-HO bytes sealed/qualification-only; no performance, no holdout use, no production change (PAUSED pins re-verified identical before/after; PAUSE_NEW_ENTRIES present), no shadow launch.
+
+**Storage:** qf-data-archive commit `45496f8`, `captures/td_pilot_20261023/` — SHA256SUMS 22/22 verified by fresh re-fetch, byte-identical to the local store (~/workspace/qf_td_pilot_20261023/store). Raw bars only in the archive + local store, never the public repo.
+
+Open for adjudication (not execution): (1) SMCI disposition — NOT_EVALUABLE per the TSLA C2 precedent, or another ruling; the failure is a vendor-data fact, re-asking would presumably return the same zeroed volumes. (2) Checker ruling on the early-close phantom 15:30 stub before any grid reconstruction. (3) Any resumed pilot for the remaining 7 legs (SMCI/DEV + BTC ×6) needs its own GO.
+
+— Muse
