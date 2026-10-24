@@ -1,0 +1,98 @@
+P0 done: successor/fork/original pins ok; config pin 87b8285a522ba0e3…; archive verified (158 + 22); PAUSED pins ok
+P1 done: child chain 54 receipts verified from GENESIS, 23 legs quarantined w/o receipt; pilot receipts ok
+[inventory] {'pins': 'PASS (ref P0: successor/fork/original engine pins, archive SHA256SUMS, PAUSED pins)', 'chains': 'PASS (ref P1: child chain 54/54 from GENESIS, roots recomputed; pilot receipts field-verified)'}
+P2 NVDA: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 TSLA: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 AAPL: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SPY: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 PLTR: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SOFI: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 AMD: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MSFT: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 META: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 COIN: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MSTR: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AVGO: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 GOOGL: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AMZN: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NFLX: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 CRM: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P2 MU: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 INTC: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 LRCX: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AMAT: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 QCOM: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ARM: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 HOOD: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 APP: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 NET: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P2 SNOW: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 DDOG: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 CRWD: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 SHOP: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 RKLB: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ASTS: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 LUNR: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 PYPL: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NU: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MELI: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 IWM: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SMH: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ARKK: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 XLF: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NIO: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MRNA: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 PFE: raw 3654 admitted 3653 excluded ['2024-12-24 14:30:00'] zv 0/0 moving
+P2 F: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P4 NVDA: 1043 4H bars grid_ok=True agg_bad=0
+P4 TSLA: 1043 4H bars grid_ok=True agg_bad=0
+P4 AAPL: 1043 4H bars grid_ok=True agg_bad=0
+P4 SPY: 1043 4H bars grid_ok=True agg_bad=0
+P4 PLTR: 1043 4H bars grid_ok=True agg_bad=0
+P4 SOFI: 1043 4H bars grid_ok=True agg_bad=0
+P4 AMD: 1043 4H bars grid_ok=True agg_bad=0
+P4 MSFT: 1043 4H bars grid_ok=True agg_bad=0
+P4 META: 1043 4H bars grid_ok=True agg_bad=0
+P4 COIN: 1043 4H bars grid_ok=True agg_bad=0
+P4 MSTR: 1043 4H bars grid_ok=True agg_bad=0
+P4 AVGO: 1043 4H bars grid_ok=True agg_bad=0
+P4 GOOGL: 1043 4H bars grid_ok=True agg_bad=0
+P4 AMZN: 1043 4H bars grid_ok=True agg_bad=0
+P4 NFLX: 1043 4H bars grid_ok=True agg_bad=0
+P4 CRM: 1043 4H bars grid_ok=True agg_bad=0
+P4 MU: 1043 4H bars grid_ok=True agg_bad=0
+P4 INTC: 1043 4H bars grid_ok=True agg_bad=0
+P4 LRCX: 1043 4H bars grid_ok=True agg_bad=0
+P4 AMAT: 1043 4H bars grid_ok=True agg_bad=0
+P4 QCOM: 1043 4H bars grid_ok=True agg_bad=0
+P4 ARM: 1043 4H bars grid_ok=True agg_bad=0
+P4 HOOD: 1043 4H bars grid_ok=True agg_bad=0
+P4 APP: 1043 4H bars grid_ok=True agg_bad=0
+P4 NET: 1043 4H bars grid_ok=True agg_bad=0
+P4 SNOW: 1043 4H bars grid_ok=True agg_bad=0
+P4 DDOG: 1043 4H bars grid_ok=True agg_bad=0
+P4 CRWD: 1043 4H bars grid_ok=True agg_bad=0
+P4 SHOP: 1043 4H bars grid_ok=True agg_bad=0
+P4 RKLB: 1043 4H bars grid_ok=True agg_bad=0
+P4 ASTS: 1043 4H bars grid_ok=True agg_bad=0
+P4 LUNR: 1043 4H bars grid_ok=True agg_bad=0
+P4 PYPL: 1043 4H bars grid_ok=True agg_bad=0
+P4 NU: 1043 4H bars grid_ok=True agg_bad=0
+P4 MELI: 1043 4H bars grid_ok=True agg_bad=0
+P4 IWM: 1043 4H bars grid_ok=True agg_bad=0
+P4 SMH: 1043 4H bars grid_ok=True agg_bad=0
+P4 ARKK: 1043 4H bars grid_ok=True agg_bad=0
+P4 XLF: 1043 4H bars grid_ok=True agg_bad=0
+P4 NIO: 1043 4H bars grid_ok=True agg_bad=0
+P4 MRNA: 1043 4H bars grid_ok=True agg_bad=0
+P4 PFE: 1043 4H bars grid_ok=True agg_bad=0
+P4 F: 1043 4H bars grid_ok=True agg_bad=0
+P4 candidates: closed=586 censored=4 parity_bad=0 rs_changed_by_asof(closed)=586
+[reference] {'closed_candidates': 586, 'censored_candidates': 4, 'total_candidates': 590, 'skipped_gap_below_stop': 1, 'cutoff': '2026-10-16 17:30:00-04:00'}
+[observer_stream] {'raw_rows': 157140, 'rejected': 0, 'excluded_postclose': 61, 'decision_events': 1460, 'journal_records': 68903, 'journal_verify': True, 'journal_info': {'records': 68903, 'head': 'cd7ec5d43bee480367c757de067ba771fea3fddb56465e4b554884e090984231'}, 'anchor_head': 'cd7ec5d43bee4803'}
+[bars_parity] {'bars_compared': 44849, 'symbols_bad': 0, 'sessionvwap_max_abs_diff': 4.547473508864641e-13}
+[benchmark_parity] {'equal': True, 'sessions': 524}
+[candidate_parity] {'compared': 590, 'mismatches': 0, 'first': [], 'max_term_abs_diff': 0.0, 'skipped_gap_below_stop_observer': 1, 'skipped_gap_below_stop_reference': 1}
+[decision_parity] {'rs_mismatches': 0, 'decision_mismatches': 201, 'first': ["('AAPL', 715): taken_25bps differs", "('AMD', 533): taken_25bps differs", "('AMD', 833): disposition_4bps skipped_rank vs skipped_risk", "('AMD', 1001): taken_25bps differs", "('AMZN', 455): disposition_4bps skipped_rank vs skipped_risk"], 'terminal_symbol_mismatch_views': ['gross', '4bps', '25bps'], 'terminal_observer': {'gross': ['CRM', 'PFE'], '4bps': ['CRM', 'PFE'], '25bps': ['CRM', 'PFE']}, 'terminal_reference': {'gross': ['CRM', 'MRNA', 'PFE'], '4bps': ['CRM', 'MRNA', 'PFE', 'SHOP'], '25bps': ['CRM', 'MRNA', 'PFE', 'SHOP']}, 'c0_counts_observer': {'taken_count': 192, 'skipped_cap': 328, 'skipped_risk': 70}, 'c0_counts_reference': {'taken_count': 193, 'skipped_cap': 323, 'skipped_risk': 74}}
+VERDICT: STOP_DECISION_PARITY_FAILURE
+PROBLEMS: ['portfolio decision parity failure']

@@ -1,0 +1,155 @@
+{
+ "task": "QF-EQUITY43-CORRECTED-FORWARD-PARITY-BUILD-20261023-15",
+ "comparison": "observer (streaming) vs -13 study (batch), decision-level only",
+ "sections": {
+  "inventory": {
+   "pins": "PASS (ref P0: successor/fork/original engine pins, archive SHA256SUMS, PAUSED pins)",
+   "chains": "PASS (ref P1: child chain 54/54 from GENESIS, roots recomputed; pilot receipts field-verified)"
+  },
+  "reference": {
+   "closed_candidates": 586,
+   "censored_candidates": 4,
+   "total_candidates": 590,
+   "skipped_gap_below_stop": 1,
+   "cutoff": "2026-10-16 17:30:00-04:00"
+  },
+  "observer_stream": {
+   "raw_rows": 157140,
+   "rejected": 0,
+   "excluded_postclose": 61,
+   "decision_events": 1460,
+   "journal_records": 68903,
+   "journal_verify": true,
+   "journal_info": {
+    "records": 68903,
+    "head": "cd7ec5d43bee480367c757de067ba771fea3fddb56465e4b554884e090984231"
+   },
+   "anchor_head": "cd7ec5d43bee4803"
+  },
+  "bars_parity": {
+   "bars_compared": 44849,
+   "symbols_bad": 0,
+   "sessionvwap_max_abs_diff": 4.547473508864641e-13
+  },
+  "benchmark_parity": {
+   "equal": true,
+   "sessions": 524
+  },
+  "candidate_parity": {
+   "compared": 590,
+   "mismatches": 0,
+   "first": [],
+   "max_term_abs_diff": 0.0,
+   "skipped_gap_below_stop_observer": 1,
+   "skipped_gap_below_stop_reference": 1
+  },
+  "decision_parity": {
+   "rs_mismatches": 0,
+   "decision_mismatches": 201,
+   "first": [
+    "('AAPL', 715): taken_25bps differs",
+    "('AMD', 533): taken_25bps differs",
+    "('AMD', 833): disposition_4bps skipped_rank vs skipped_risk",
+    "('AMD', 1001): taken_25bps differs",
+    "('AMZN', 455): disposition_4bps skipped_rank vs skipped_risk"
+   ],
+   "terminal_symbol_mismatch_views": [
+    "gross",
+    "4bps",
+    "25bps"
+   ],
+   "terminal_observer": {
+    "gross": [
+     "CRM",
+     "PFE"
+    ],
+    "4bps": [
+     "CRM",
+     "PFE"
+    ],
+    "25bps": [
+     "CRM",
+     "PFE"
+    ]
+   },
+   "terminal_reference": {
+    "gross": [
+     "CRM",
+     "MRNA",
+     "PFE"
+    ],
+    "4bps": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ],
+    "25bps": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ]
+   },
+   "c0_counts_observer": {
+    "taken_count": 192,
+    "skipped_cap": 328,
+    "skipped_risk": 70
+   },
+   "c0_counts_reference": {
+    "taken_count": 193,
+    "skipped_cap": 323,
+    "skipped_risk": 74
+   }
+  }
+ },
+ "universe": [
+  "NVDA",
+  "TSLA",
+  "AAPL",
+  "SPY",
+  "PLTR",
+  "SOFI",
+  "AMD",
+  "MSFT",
+  "META",
+  "COIN",
+  "MSTR",
+  "AVGO",
+  "GOOGL",
+  "AMZN",
+  "NFLX",
+  "CRM",
+  "MU",
+  "INTC",
+  "LRCX",
+  "AMAT",
+  "QCOM",
+  "ARM",
+  "HOOD",
+  "APP",
+  "NET",
+  "SNOW",
+  "DDOG",
+  "CRWD",
+  "SHOP",
+  "RKLB",
+  "ASTS",
+  "LUNR",
+  "PYPL",
+  "NU",
+  "MELI",
+  "IWM",
+  "SMH",
+  "ARKK",
+  "XLF",
+  "NIO",
+  "MRNA",
+  "PFE",
+  "F"
+ ],
+ "problems": [
+  "portfolio decision parity failure"
+ ],
+ "verdict": "STOP_DECISION_PARITY_FAILURE"
+}
