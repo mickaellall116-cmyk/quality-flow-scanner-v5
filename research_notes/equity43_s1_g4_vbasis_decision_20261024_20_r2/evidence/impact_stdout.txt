@@ -1,0 +1,7 @@
+FALSE-table AVGO/DEV reproduces r1 committed record: True {"rows_admitted": true, "completeness": true, "step": true, "volume_notes": true, "step_all_count": true, "RA_vbasis_flags": true, "RB_notes": true, "RB_breaks": true, "RC_breaks": true}
+FALSE-table census reproduces r1 census totals: True
+AVGO false: {"leg": "AVGO/DEV", "rows_admitted": 3653, "completeness": "PASS", "step": [{"effective": "2024-10-11", "factor": 10, "observed_step": 0.975287, "classification": "CONTINUOUS_ADJUSTED", "status": "PASS", "basis_mismatch": false}], "volume_notes": [{"effective": "2024-10-11", "note": "UNSCALED", "observed_pre_post_ratio": 0.667136}], "step_all_count": 0, "RA_vbasis_flags": 138, "RB_notes": 138, "RC
+AVGO fixed: {"leg": "AVGO/DEV", "rows_admitted": 3653, "completeness": "PASS", "step": [], "volume_notes": [], "step_all_count": 0, "RA_vbasis_flags": 138, "RB_notes": 138, "RC_untestable_boundaries": 44, "RB_breaks": 0, "RC_breaks": [{"boundary": "2024-12-04", "observed_ratio": 1.512948}, {"boundary": "2024-12-06", "observed_ratio": 1.693423}, {"boundary": "2024-12-09", "observed_ratio": 2.038966}, {"boundar
+CENSUS false: {"legs": 43, "RA_flag_total": 5751, "RA_legs_flagged": 43, "RB_break_total": 6, "RB_legs_with_break": 5, "RC_break_total": 1783, "RC_legs_with_break": 43, "step_all_legs": 5, "step_all_total": 6}
+CENSUS fixed: {"legs": 43, "RA_flag_total": 5751, "RA_legs_flagged": 43, "RB_break_total": 6, "RB_legs_with_break": 5, "RC_break_total": 1783, "RC_legs_with_break": 43, "step_all_legs": 5, "step_all_total": 6}
+LEGS CHANGED: ["AVGO/DEV"]

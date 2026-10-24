@@ -1,0 +1,10 @@
+NEG NVDA/DEV: RA=90 RB_breaks=0 RC=29 step_all=0
+NEG TSLA/HO: RA=12 RB_breaks=0 RC=8 step_all=0
+NEG TSLA/DEV: RA=91 RB_breaks=0 RC=34 step_all=0
+NEG AAPL/HO: RA=32 RB_breaks=0 RC=16 step_all=0
+NEG AAPL/DEV: RA=108 RB_breaks=0 RC=25 step_all=0
+NEG SPY/HO: RA=44 RB_breaks=0 RC=19 step_all=0
+NEG SPY/DEV: RA=94 RB_breaks=0 RC=36 step_all=0
+POS NVDA/HO: step=[{"effective": "2024-06-10", "factor": 10, "observed_step": 0.993671, "classification": "CONTINUOUS_ADJUSTED", "status": "PASS", "basis_mismatch": false}] notes=[{"effective": "2024-06-10", "note": "UNSCALED", "observed_pre_post_ratio": 1.307109}] RA=32 RC=19
+POS NFLX/DEV: step=[{"effective": "2025-11-17", "factor": 10, "observed_step": 0.995681, "classification": "CONTINUOUS_ADJUSTED", "status": "PASS", "basis_mismatch": true}] notes=[{"effective": "2025-11-17", "note": "OTHER_VOLUME_STEP", "observed_pre_post_ratio": 0.405241}] RA=159 RC=40
+CENSUS: {"legs": 43, "RA_flag_total": 5751, "RA_legs_flagged": 43, "RB_break_total": 6, "RB_legs_with_break": 5, "RC_break_total": 1783, "RC_legs_with_break": 43, "step_all_legs": 5, "step_all_total": 6}

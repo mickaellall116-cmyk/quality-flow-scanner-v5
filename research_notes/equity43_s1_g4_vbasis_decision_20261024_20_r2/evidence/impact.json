@@ -1,0 +1,412 @@
+{
+ "apples_to_apples": {
+  "avgo_record_reproduced": true,
+  "avgo_fields": {
+   "rows_admitted": true,
+   "completeness": true,
+   "step": true,
+   "volume_notes": true,
+   "step_all_count": true,
+   "RA_vbasis_flags": true,
+   "RB_notes": true,
+   "RB_breaks": true,
+   "RC_breaks": true
+  },
+  "census_totals_reproduced": true
+ },
+ "avgo_dev_false_table": {
+  "leg": "AVGO/DEV",
+  "rows_admitted": 3653,
+  "completeness": "PASS",
+  "step": [
+   {
+    "effective": "2024-10-11",
+    "factor": 10,
+    "observed_step": 0.975287,
+    "classification": "CONTINUOUS_ADJUSTED",
+    "status": "PASS",
+    "basis_mismatch": false
+   }
+  ],
+  "volume_notes": [
+   {
+    "effective": "2024-10-11",
+    "note": "UNSCALED",
+    "observed_pre_post_ratio": 0.667136
+   }
+  ],
+  "step_all_count": 0,
+  "RA_vbasis_flags": 138,
+  "RB_notes": 138,
+  "RC_untestable_boundaries": 43,
+  "RB_breaks": 0,
+  "RC_breaks": [
+   {
+    "boundary": "2024-12-04",
+    "observed_ratio": 1.512948
+   },
+   {
+    "boundary": "2024-12-06",
+    "observed_ratio": 1.693423
+   },
+   {
+    "boundary": "2024-12-09",
+    "observed_ratio": 2.038966
+   },
+   {
+    "boundary": "2024-12-10",
+    "observed_ratio": 1.945034
+   },
+   {
+    "boundary": "2025-01-29",
+    "observed_ratio": 1.583296
+   },
+   {
+    "boundary": "2025-02-03",
+    "observed_ratio": 0.64374
+   },
+   {
+    "boundary": "2025-02-26",
+    "observed_ratio": 1.523546
+   },
+   {
+    "boundary": "2025-02-27",
+    "observed_ratio": 1.523546
+   },
+   {
+    "boundary": "2025-04-16",
+    "observed_ratio": 0.642984
+   },
+   {
+    "boundary": "2025-04-17",
+    "observed_ratio": 0.642984
+   },
+   {
+    "boundary": "2025-05-30",
+    "observed_ratio": 1.833564
+   },
+   {
+    "boundary": "2025-09-03",
+    "observed_ratio": 1.565091
+   },
+   {
+    "boundary": "2025-09-23",
+    "observed_ratio": 0.577529
+   },
+   {
+    "boundary": "2025-09-24",
+    "observed_ratio": 0.577529
+   },
+   {
+    "boundary": "2025-09-26",
+    "observed_ratio": 0.665968
+   },
+   {
+    "boundary": "2025-11-19",
+    "observed_ratio": 1.850896
+   },
+   {
+    "boundary": "2025-11-20",
+    "observed_ratio": 1.634227
+   },
+   {
+    "boundary": "2025-11-21",
+    "observed_ratio": 1.634227
+   },
+   {
+    "boundary": "2025-11-24",
+    "observed_ratio": 1.59288
+   },
+   {
+    "boundary": "2025-12-05",
+    "observed_ratio": 1.724312
+   },
+   {
+    "boundary": "2025-12-26",
+    "observed_ratio": 0.500584
+   },
+   {
+    "boundary": "2025-12-29",
+    "observed_ratio": 0.538375
+   },
+   {
+    "boundary": "2026-04-13",
+    "observed_ratio": 0.614927
+   },
+   {
+    "boundary": "2026-04-14",
+    "observed_ratio": 0.560575
+   },
+   {
+    "boundary": "2026-04-29",
+    "observed_ratio": 0.663886
+   },
+   {
+    "boundary": "2026-05-27",
+    "observed_ratio": 1.819197
+   },
+   {
+    "boundary": "2026-05-28",
+    "observed_ratio": 2.046703
+   },
+   {
+    "boundary": "2026-05-29",
+    "observed_ratio": 2.257133
+   },
+   {
+    "boundary": "2026-08-12",
+    "observed_ratio": 1.555585
+   },
+   {
+    "boundary": "2026-08-13",
+    "observed_ratio": 1.708797
+   },
+   {
+    "boundary": "2026-08-14",
+    "observed_ratio": 2.603056
+   },
+   {
+    "boundary": "2026-08-17",
+    "observed_ratio": 1.686575
+   },
+   {
+    "boundary": "2026-08-18",
+    "observed_ratio": 2.498176
+   },
+   {
+    "boundary": "2026-09-02",
+    "observed_ratio": 1.552
+   },
+   {
+    "boundary": "2026-09-03",
+    "observed_ratio": 1.552
+   }
+  ],
+  "vbasis_at_2024-10-11": false
+ },
+ "avgo_dev_fixed_table": {
+  "leg": "AVGO/DEV",
+  "rows_admitted": 3653,
+  "completeness": "PASS",
+  "step": [],
+  "volume_notes": [],
+  "step_all_count": 0,
+  "RA_vbasis_flags": 138,
+  "RB_notes": 138,
+  "RC_untestable_boundaries": 44,
+  "RB_breaks": 0,
+  "RC_breaks": [
+   {
+    "boundary": "2024-12-04",
+    "observed_ratio": 1.512948
+   },
+   {
+    "boundary": "2024-12-06",
+    "observed_ratio": 1.693423
+   },
+   {
+    "boundary": "2024-12-09",
+    "observed_ratio": 2.038966
+   },
+   {
+    "boundary": "2024-12-10",
+    "observed_ratio": 1.945034
+   },
+   {
+    "boundary": "2025-01-29",
+    "observed_ratio": 1.583296
+   },
+   {
+    "boundary": "2025-02-03",
+    "observed_ratio": 0.64374
+   },
+   {
+    "boundary": "2025-02-26",
+    "observed_ratio": 1.523546
+   },
+   {
+    "boundary": "2025-02-27",
+    "observed_ratio": 1.523546
+   },
+   {
+    "boundary": "2025-04-16",
+    "observed_ratio": 0.642984
+   },
+   {
+    "boundary": "2025-04-17",
+    "observed_ratio": 0.642984
+   },
+   {
+    "boundary": "2025-05-30",
+    "observed_ratio": 1.833564
+   },
+   {
+    "boundary": "2025-09-03",
+    "observed_ratio": 1.565091
+   },
+   {
+    "boundary": "2025-09-23",
+    "observed_ratio": 0.577529
+   },
+   {
+    "boundary": "2025-09-24",
+    "observed_ratio": 0.577529
+   },
+   {
+    "boundary": "2025-09-26",
+    "observed_ratio": 0.665968
+   },
+   {
+    "boundary": "2025-11-19",
+    "observed_ratio": 1.850896
+   },
+   {
+    "boundary": "2025-11-20",
+    "observed_ratio": 1.634227
+   },
+   {
+    "boundary": "2025-11-21",
+    "observed_ratio": 1.634227
+   },
+   {
+    "boundary": "2025-11-24",
+    "observed_ratio": 1.59288
+   },
+   {
+    "boundary": "2025-12-05",
+    "observed_ratio": 1.724312
+   },
+   {
+    "boundary": "2025-12-26",
+    "observed_ratio": 0.500584
+   },
+   {
+    "boundary": "2025-12-29",
+    "observed_ratio": 0.538375
+   },
+   {
+    "boundary": "2026-04-13",
+    "observed_ratio": 0.614927
+   },
+   {
+    "boundary": "2026-04-14",
+    "observed_ratio": 0.560575
+   },
+   {
+    "boundary": "2026-04-29",
+    "observed_ratio": 0.663886
+   },
+   {
+    "boundary": "2026-05-27",
+    "observed_ratio": 1.819197
+   },
+   {
+    "boundary": "2026-05-28",
+    "observed_ratio": 2.046703
+   },
+   {
+    "boundary": "2026-05-29",
+    "observed_ratio": 2.257133
+   },
+   {
+    "boundary": "2026-08-12",
+    "observed_ratio": 1.555585
+   },
+   {
+    "boundary": "2026-08-13",
+    "observed_ratio": 1.708797
+   },
+   {
+    "boundary": "2026-08-14",
+    "observed_ratio": 2.603056
+   },
+   {
+    "boundary": "2026-08-17",
+    "observed_ratio": 1.686575
+   },
+   {
+    "boundary": "2026-08-18",
+    "observed_ratio": 2.498176
+   },
+   {
+    "boundary": "2026-09-02",
+    "observed_ratio": 1.552
+   },
+   {
+    "boundary": "2026-09-03",
+    "observed_ratio": 1.552
+   }
+  ],
+  "vbasis_at_2024-10-11": false
+ },
+ "census_false_table": {
+  "legs": 43,
+  "RA_flag_total": 5751,
+  "RA_legs_flagged": 43,
+  "RB_break_total": 6,
+  "RB_legs_with_break": 5,
+  "RC_break_total": 1783,
+  "RC_legs_with_break": 43,
+  "step_all_legs": 5,
+  "step_all_total": 6
+ },
+ "census_fixed_table": {
+  "legs": 43,
+  "RA_flag_total": 5751,
+  "RA_legs_flagged": 43,
+  "RB_break_total": 6,
+  "RB_legs_with_break": 5,
+  "RC_break_total": 1783,
+  "RC_legs_with_break": 43,
+  "step_all_legs": 5,
+  "step_all_total": 6
+ },
+ "census_legs_changed": [
+  {
+   "leg": "AVGO/DEV",
+   "diff": {
+    "step": {
+     "false": [
+      {
+       "effective": "2024-10-11",
+       "factor": 10,
+       "observed_step": 0.975287,
+       "classification": "CONTINUOUS_ADJUSTED",
+       "status": "PASS",
+       "basis_mismatch": false
+      }
+     ],
+     "fixed": []
+    },
+    "volume_notes": {
+     "false": [
+      {
+       "effective": "2024-10-11",
+       "note": "UNSCALED",
+       "observed_pre_post_ratio": 0.667136
+      }
+     ],
+     "fixed": []
+    },
+    "RC_untestable_boundaries": {
+     "false": 43,
+     "fixed": 44
+    }
+   }
+  }
+ ],
+ "positive_controls": {
+  "r1_denominator": 3,
+  "r1_set": [
+   "NVDA/HO",
+   "AVGO/DEV",
+   "NFLX/DEV"
+  ],
+  "r2_denominator": 2,
+  "r2_set": [
+   "NVDA/HO",
+   "NFLX/DEV"
+  ],
+  "avgo_excluded_reason": "attested first split-adjusted trading date 2024-07-15 precedes the DEV window (starts 2024-09-16)"
+ }
+}

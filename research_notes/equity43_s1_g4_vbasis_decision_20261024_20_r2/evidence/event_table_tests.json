@@ -1,0 +1,35 @@
+{
+ "checks": {
+  "ET1_false_row_manufactures_control": true,
+  "ET2_corrected_table_no_declared_record": true,
+  "ET3_positive_denominator_3_to_2": true,
+  "ET4_false_row_rejected": true,
+  "ET5_out_of_window_attested_rejected": true,
+  "ET6_unattested_rejected": true,
+  "ET7_corrected_controls_validate": true
+ },
+ "all_checks_pass": true,
+ "avgo_false_step": [
+  {
+   "effective": "2024-10-11",
+   "factor": 10,
+   "observed_step": 0.975287,
+   "classification": "CONTINUOUS_ADJUSTED",
+   "status": "PASS",
+   "basis_mismatch": false
+  }
+ ],
+ "avgo_false_notes": [
+  {
+   "effective": "2024-10-11",
+   "note": "UNSCALED",
+   "observed_pre_post_ratio": 0.667136
+  }
+ ],
+ "avgo_fixed_step": [],
+ "avgo_fixed_notes": [],
+ "avgo_RA_false": 138,
+ "avgo_RA_fixed": 138,
+ "avgo_RC_false": 35,
+ "avgo_RC_fixed": 35
+}
