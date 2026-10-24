@@ -3367,3 +3367,21 @@ Exact residual blockers: (1) S1 activation — Mike's separate GO, not given; (2
 — Muse
 
 Correction (2026-10-24 00:39 ET): the RESULT entry above is timestamped ~00:39 ET (not ~01:00 ET), and the package RESULT.md elapsed is corrected to ~42 minutes in the follow-up commit. No findings change.
+
+## 2026-10-24 ~01:56 ET — Muse: ACK (-17 r2) — QF-EQUITY43-S1-CAUSALITY-GUARDS-20261023-17 r2 executing offline; single-dispatch CLEAR
+
+Governing text: Issue #1 comment 6380534722 (ChatGPT independent source adjudication of -17 r1, package 4b60d58: causal/replay mechanics PASS; reporter hardening HOLD on one pin-attestation gap). Single-dispatch check CLEAR before any file operation: no -17 r2 stage dir, no r2 package path, no pre-execution commits for this revision on origin/main (head edb9ff5 at check time). The -17 r1 stage (~/workspace/qf_td17_stage) belongs to the completed r1 lane and stays frozen as evidence; r2 stages separately. Slack ACK TS 1792821524.950179.
+
+THE GAP (entire r2 scope): report17.py accepts any free-form `inventory.pins` string beginning with "PASS"; the r1 artifact contains only `"pins": "PASS (ref P0/P1 as -15)"`. Actual source/data/receipt/session-table/PAUSED pin evidence can therefore be missing or changed while the reporter still passes.
+
+Executing:
+- (1) STRUCTURED PIN INVENTORY: the r2 comparison artifact replaces the free-form label with a structured exact inventory — every pin a named field with its exact value: fork observer module SHA, the 14 frozen P0 source pins (successor engine, pristine -09 fork, frozen originals, asof_benchmark, session_table/calendar pin), experiment config pin 87b8285a…, sector map pin, child/parent/pilot manifest root digests, receipt-chain receipts-verified count + chain head + quarantined count, pilot receipt response SHAs, archive SHA256SUMS file counts with empty mismatch lists, PAUSED harness SHA + sentinel booleans. Values are RECOMPUTED from the committed stage sources by re-running the P0/P1 verification (phase0/phase1 of the pinned reference driver) against the same bytes the r1 run used — never transcribed from the r1 text. All other artifact sections are carried byte-identical from the committed r1 artifact; no decision content is regenerated (disclosed in the package).
+- (2) SUCCESSOR REPORTER (report17r2): requires the exact key set and exact value for every inventory entry, cross-checks inventory↔config_pins agreement, and keeps every r1 report17 check unchanged. Missing, renamed, wrong-valued, or free-form-string substitutions FAIL closed.
+- (3) NEGATIVE BATTERY (all must STOP, CLI exit codes verified): forged "PASS" string, the r1 free-form string itself, missing pin key, renamed pin key, wrong observer SHA, wrong receipt/data root, wrong session-table/calendar pin, wrong PAUSED harness SHA, PAUSED sentinel flipped, wrong source pin, wrong chain head/count. Positive controls: genuine r2 artifact → PASS (exit 0); -16 patched artifact under its own reporter (report16) stays PASS; -16 orig15 and -15 artifacts stay STOP.
+- (4) PRESERVED SUITES rerun and reported: r1 reporter battery 27/27, -16 regression 10/10, -15 adversarial suite 18/18 — no regressions.
+
+Labeling held: live row availability/latency stays UNMEASURED — synthetic emitted_at proves logic after ingestion, not provider delivery timing; no live-timing claim anywhere in the package.
+
+Bounds held: offline only; no vendor calls/credits; holdout sealed, not accessed; no performance figures; no tuning; no production/resume changes; no S1/S2 activation, no paper trades, no T0; strategy sources byte-identical; -15/-16/-17-r1 packages untouched. PAUSED pins verified at ACK (harness ce7c902c…, PAUSE_NEW_ENTRIES present, RESUME_NEW_ENTRIES absent) and re-proved at RESULT.
+
+— Muse
