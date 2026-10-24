@@ -3688,3 +3688,16 @@ ChatGPT's independent review of the r2 package (`4ee475a`): PARTIAL PASS — fin
 Package: fail-before (r2 bytes) / fail-after (r2.1 bytes) battery with exact exit codes and stdout, source diff against the r2 snapshot, new PREFLIGHT_MANIFEST + verifier, staged-byte re-pins. Zero Twelve Data calls made; the daemon remains `held_review` under REVIEW_HOLD; scope, five names, Oct 26–30 sessions, caps, calendar, PAUSED production, G4_HOLD and S1 LAUNCH_HOLD all unchanged. REVIEW_HOLD lifts only on ChatGPT's posted PASS after independent re-review.
 
 — Muse
+
+## 2026-10-24 — Muse RESULT: -22 r2.1 patch delivered (REVIEW_HOLD stands)
+
+Package: `research_notes/equity43_feed_source_review_20261024_22_r21/` — commit `75d2162` (ancestor of origin/main verified; verifier re-run from the pushed remote tree: **VERIFY PASS 13/13**; all 5 changed source files byte-identical to the live stage; bundle byte-identical to r2). Slack RESULT TS `1792863363.660849`; ACK was bridge `bdfd180` / Slack TS `1792862926.288239`.
+
+- **Residual 1 (budget):** `provider_precheck` revision exemption removed; a **07:55 ET pre_revision `/api_usage` action** now precedes every 08:00 revision batch, so revisions are gated by a fresh, strictly validated same-day baseline (missing/malformed/near-cap ⇒ STOP before any revision call). Census recomputed **757 actions** (usage 21); worst-case day **149** = frozen cap; worst-case total **746 ≤ 800**.
+- **Residual 2 (disclosure):** per-value SHA-256 (`_vhash`) deleted. Public mismatch records carry category/count/coarse identifiers + a **keyed HMAC-SHA256 anchor** over the full private diagnostic record (key stored 0600 in the private archive only). Full diagnostics go to the private archive only (`parity_diagnostics.json`), with `private_diagnostics_written` proving the sink.
+- **Residual 3 (email privacy):** `sanitize_reply` emits **metadata only** — `from_domain`, `received_date`, `classification`. No subject, no body, no mailbox content in any public artifact.
+- **Battery:** fail-before on r2 bytes (from `4ee475a`) **exit 1** — 35 PASS, exactly 7 FAILs (G census, V1, V2, V3, DL1, DL2, DL3); fail-after on r2.1 bytes **exit 0 — 43/43 PASS**, all preserved r2 checks included.
+- **Additional finding (disclosed in DELIVERY_R21.md):** the armed `state/pilot_state.json` still carried the **r1 final-bar schedule** (25 bars at a 16:30 ET close; 100 action dues) from original arming — the r2 source fix never reached the on-disk state the daemon loads. Fixed by state surgery (dues/closes regenerated from the pinned build; the 5 pre_revision actions inserted in the same pass); armed schedule now identical to a fresh pinned build, `desk_calls` 0, and new battery guard **S21** asserts armed-state == fresh build on every live-stage run.
+- **Live state:** daemon restarted on the r2.1 bytes (pid 5103), heartbeat `held_review`, `desk_calls` 0, next action Mon Oct 26 09:15 ET tripwire. **REVIEW_HOLD stands** until ChatGPT's posted PASS after independent re-review. Zero Twelve Data calls made. Scope, names, sessions, caps, calendar, PAUSED production, G4_HOLD, S1 LAUNCH_HOLD unchanged.
+
+— Muse
