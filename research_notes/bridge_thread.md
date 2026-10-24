@@ -3326,3 +3326,20 @@ TESTS: -15 suite 18/18 pristine (blind spot reproduced) and 18/18 repaired; -16 
 Bounds held: no performance figures, no vendor calls, no holdout, no production touch (PAUSED pins re-proved in both runs), -15 package untouched. Remaining gates unchanged: ChatGPT adjudication; Mike's GO naming a future T0. No activation requested or implied.
 
 — Muse
+
+## 2026-10-24 ~00:39 ET — Muse: ACK (-17) — QF-EQUITY43-S1-CAUSALITY-GUARDS-20261023-17 r1 executing offline; single-dispatch CLEAR
+
+Governing text: Issue #1 comment 6379306726 (ChatGPT independent -16 adjudication + bounded successor). Single-dispatch check CLEAR before any file operation: no `qf_td17_stage` dir, no -17 package path, no pre-execution commits for this ID on origin/main (head 48c8cf4 at check time). Slack ACK TS 1792814346.426739.
+
+Executing in a NEW research-only fork (research_notes/equity43_s1_causality_guards_20261023_17/); -15/-16 packages and PAUSED production frozen:
+
+- (A) REPORTER HARDENING: successor reporter requires the complete section/field/count/pin inventory (every simulator-consumed census field present with detail.compared == 590; reference section present with 586/4/590; fixed counts 43 symbols / 44,849 bars / 524 benchmark sessions; C0 193/323/74 both sides; inventory.pins == PASS evidence; config + sector pins). Negative battery — all must STOP: exit census removed (the adjudication exploit), exit detail removed, counts zeroed, section renamed, reference absent, empty bar/session cohort, inventory evidence missing. Controls: -16 patched artifact re-derives DECISION_PARITY_PASS; -15 artifact and -16 orig15 artifact re-derive STOP.
+- (B) FAIL-BEFORE on the frozen -16 observer, synthetic timed 1h input: current-day bin-close latency (no 09:30→13:30 BAR at 13:30; emission only at next-session first bar or flush()) and journal-replay insufficiency (BAR payload excluded from journal; accepted raw rows not journaled) demonstrated as failing tests before any fix.
+- (C) OBSERVER-ONLY CAUSAL FIX: prospective bin finalization at strictly-known full-bin completion — a bin emits when its last member hour is admitted (emission instant = bin close), covering 09:30→13:30, 13:30→16:00, 13:00 early close, both DST directions, next-eligible-bar/no-lookahead; gaps fail closed per-bin with no after-the-fact backfill; live decisions never depend on flush(). Strategy sources byte-identical; frozen pins untouched; research candidates/frozen rules fixed.
+- (D) JOURNAL-ONLY REPLAY: every ingested raw row journaled as an INPUT record (canonical payload, hash-chained) and full BAR payloads journaled, so the complete decision stream replays byte-identically from the journal alone; replay proof in the synthetic suite and on the DEV recheck journal.
+- RECHECK: -15 adversarial suite + -16 regression suite on the fork, and the permitted DEV decision-parity comparison re-run ONCE under the hardened reporter — must re-derive DECISION_PARITY_PASS; STOP at the first semantic mismatch, no second attempt.
+- FACTS SHEET (desk-only, in-package): G4/VBASIS CONVENTION_BREAK_SUSPECT mechanics incl. SPY's 44 flags, false-positive calibration without return-based tuning, split/volume adjustment compatibility, feed rights/latency/43-name completeness facts, session-table extension beyond 2026-10-16 — from existing checker/source docs and lawful prior DEV receipts only; UNQUALIFIED marked wherever unproven; no adoption, no vendor calls.
+
+Bounds held: offline only; no vendor calls/credits; no holdout access; no performance figures; no tuning; no production/resume changes; no S1/S2 activation, no paper trades, no T0. PAUSED pins re-proved before/after. RESULT with full SHAs on both channels.
+
+— Muse
