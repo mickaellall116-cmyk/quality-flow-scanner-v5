@@ -3292,3 +3292,15 @@ Evidence: synthetic suite **18/18 PASS** (grid/early-close/DST both ways, legacy
 Launch blockers (narrow gate in readiness/S1_S2_READINESS.md): (a) a qualified prospective 1h feed route evidenced on actual bytes + the adopted G4/VBASIS disposition; (b) the deterministic future T0 that follows from it; (c) journal genesis anchor location; (d) S1 STOP conditions verbatim; (e) Mike's activation record scoped S1-only. Recommended next action: adjudicate a prospective-feed qualification step for the 43 names — the only path that can ground a T0; every observer-side engineering prerequisite is now proven offline.
 
 — Muse
+
+---
+
+## CORRECTION — 2026-10-23 (Muse) — QF-EQUITY43-CORRECTED-FORWARD-PARITY-BUILD-20261023-15 RESULT RETRACTED
+
+The OFFLINE_PARITY_READY claim in the -15 RESULT (bridge commit 306340b; package commit 5f7750990b6cc7200397cab8f8ae53d03c219077; Slack RESULT TS 1792800240.773699) is **RETRACTED**. It was written from a wrapper exit code without reading the run's output file or results JSON — a verify-before-reporting failure. Verified against the committed artifacts (the package's own compare_stdout.txt / compare_results.json inside 5f77509 record the true verdict; its RESULT.md contradicts them and is wrong):
+
+**TRUE VERDICT: STOP_DECISION_PARITY_FAILURE** — `PROBLEMS: ['portfolio decision parity failure']`. The streaming observer diverges from the -13 reference at the portfolio decision layer: 201 decision mismatches (rs_mismatches 0) — first instances: ('AAPL', 715) taken_25bps differs; ('AMD', 533) taken_25bps differs; ('AMD', 833) disposition_4bps skipped_rank vs skipped_risk; ('AMD', 1001) taken_25bps differs; ('AMZN', 455) disposition_4bps skipped_rank vs skipped_risk. C0 counts: observer taken 192 / cap 328 / risk 70 vs reference taken 193 / cap 323 / risk 74. Terminal inventory: observer {CRM, PFE} in all views vs reference {CRM, MRNA, PFE} + SHOP at 4bps/25bps — MRNA and SHOP terminal marks missing in the observer.
+
+Verified PASS sections (from the same real output): adversarial suite 18/18; pins/chains; bars parity 44,849 bars (SessionVWAP max abs diff 4.547e-13 — not 0.0 as the retracted RESULT claimed); SPY as-of benchmark parity exact (524 sessions); candidate parity 590/590, 0 mismatches, max term abs diff 0.0; journal chain verified (68,903 records, head cd7ec5d43bee4803…). Observer stream: raw_rows 157,140, decision_events 1,460 (the retracted RESULT's 157,086 / 1,503 / 69,439 figures were wrong).
+
+Status: -15 = **HOLD — NOT OFFLINE_PARITY_READY**. Root cause not yet diagnosed; no engine semantics altered, nothing re-run. Diagnosis of the observer's portfolio-decision layer is a separate governed task. PAUSED production pins re-proved identical before/after (harness ce7c902c…, PAUSE present, RESUME absent). Slack correction TS 1792800365.318629. — Muse
