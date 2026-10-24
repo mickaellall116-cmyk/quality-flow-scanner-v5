@@ -1,0 +1,837 @@
+Source diff: r1 delivery (f30a733) -> r2. Bundle: BYTE-IDENTICAL (no diff).
+
+===== source/pilot_runner.py =====
+--- /home/hatch/workspace/qf_r1_scratch/pilot_runner.py	2026-10-24 16:07:04.804210772 +0000
++++ /home/hatch/workspace/qf_feed_measure_stage/pilot_runner.py	2026-10-24 16:03:21.726716397 +0000
+@@ -52,6 +52,35 @@
+ LATE_WINDOW_S = 900   # ladder/finalization actions older than this are MISSED
+ DAY_CALL_CAP = 149
+ TOTAL_CALL_CAP = 800
++TD_KINDS = ("usage", "ladder", "finalization", "revision")
++
++
++def parse_usage_body(body):
++    """Strict parse of the recorded Twelve Data /api_usage schema
++    (grounded in the -11 bracket receipts, 2026-10-23):
++    {"timestamp": "YYYY-MM-DD HH:MM:SS" (UTC), "current_usage": int,
++     "plan_limit": int, "daily_usage": int, "plan_daily_limit": int,
++     "plan_category": str}. Raises ValueError on any deviation —
++    callers fail closed (STOP 2, comment 6386192978)."""
++    data = json.loads(body.decode())
++    if not isinstance(data, dict):
++        raise ValueError("usage_not_object")
++    for k in ("daily_usage", "plan_daily_limit"):
++        if not isinstance(data.get(k), int) \
++                or isinstance(data.get(k), bool):
++            raise ValueError(f"usage_field_invalid:{k}")
++    ts_raw = data.get("timestamp")
++    if not isinstance(ts_raw, str):
++        raise ValueError("usage_timestamp_missing")
++    try:
++        ts = datetime.strptime(ts_raw, "%Y-%m-%d %H:%M:%S").replace(
++            tzinfo=timezone.utc)
++    except ValueError:
++        raise ValueError("usage_timestamp_unparseable")
++    return {"daily_usage": data["daily_usage"],
++            "plan_daily_limit": data["plan_daily_limit"],
++            "plan_category": data.get("plan_category"),
++            "provider_ts": ts}
+ 
+ 
+ def iso(dt):
+@@ -157,6 +186,26 @@
+     return None
+ 
+ 
++def session_close_dt(manifest, date_str):
++    """Session close from the pinned manifest session_closes (fail-closed
++    if absent — the closes are cross-checked against the bundle calendar
++    by the preflight verifier)."""
++    closes = manifest.get("session_closes") or {}
++    if date_str not in closes:
++        raise KeyError(f"session_closes missing {date_str}")
++    hh, mm = map(int, closes[date_str].split(":"))
++    return datetime.fromisoformat(date_str).replace(
++        tzinfo=ET, hour=hh, minute=mm)
++
++
++def bar_close_dt(manifest, date_str, start_dt):
++    """A 1h bar closes at start+1h, except the final bar of the session,
++    which closes AT the session close (15:30 bar -> 16:00 ET on a regular
++    day, NOT 16:30 — STOP 1, comment 6386192978)."""
++    return min(start_dt + timedelta(hours=1),
++               session_close_dt(manifest, date_str))
++
++
+ def gmail_tripwire_search():
+     """TD-sender mail after the inquiry cutoff. Injectable for tests.
+     Returns a list of {id, from, subject, date_utc} for NEW candidate
+@@ -232,7 +281,7 @@
+             for bs in BAR_STARTS:
+                 hh, mm = map(int, bs.split(":"))
+                 start = day.replace(hour=hh, minute=mm)
+-                close = start + timedelta(hours=1)
++                close = bar_close_dt(manifest, d, start)
+                 key = f"{d}|{sym}|{bs}"
+                 for off in LADDER:
+                     actions.append({
+@@ -281,7 +330,7 @@
+                     tzinfo=ET, hour=hh, minute=mm)
+                 bars[key] = {
+                     "session": d, "symbol": sym, "bar_start_et": bs,
+-                    "close_utc": iso(start + timedelta(hours=1)),
++                    "close_utc": iso(bar_close_dt(manifest, d, start)),
+                     "first_seen": None, "sightings": 0,
+                     "partial_sightings": 0, "last_values": None,
+                     "last_hash": None, "revisions": [],
+@@ -290,6 +339,10 @@
+         "task": manifest["task"], "manifest_task": manifest["task"],
+         "actions": build_schedule(manifest), "bars": bars,
+         "desk_calls": 0, "desk_calls_by_day": {}, "usage_snapshots": [],
++        "desk_nonusage_calls": 0,
++        "usage_guard": {"baseline": None, "last": None,
++                        "desk_calls_at_last": 0, "nonusage_at_last": 0,
++                        "external_events": []},
+         "consecutive_429": 0, "stopped": None, "journal_seq": 0,
+         "tripwire": {"checks": [], "hold": False, "hold_info": None,
+                      "filed": [], "pending_review": []},
+@@ -302,23 +355,120 @@
+         self.manifest = manifest
+         self.transport = transport
+         self.st = state if state is not None else init_state(manifest)
++        self.st.setdefault("desk_nonusage_calls", 0)
++        self.st.setdefault("usage_guard", {
++            "baseline": None, "last": None, "desk_calls_at_last": 0,
++            "nonusage_at_last": 0, "external_events": []})
+ 
+     # -- accounting ------------------------------------------------------
+-    def _count_call(self, when):
++    def _count_call(self, when, kind=None):
+         day = when.astimezone(ET).date().isoformat()
+         self.st["desk_calls"] += 1
++        if kind != "usage":
++            self.st["desk_nonusage_calls"] = \
++                self.st.get("desk_nonusage_calls", 0) + 1
+         self.st["desk_calls_by_day"][day] = \
+             self.st["desk_calls_by_day"].get(day, 0) + 1
+ 
+-    def _session_day_calls(self, session):
+-        return self.st["desk_calls_by_day"].get(session, 0)
+-
+-    def cap_check(self, action):
++    def cap_check(self, action, now=None):
++        """Local caps (STOP 2): 800 pilot total + 149 per EXECUTION day,
++        covering usage and revision traffic too."""
+         if self.st["desk_calls"] >= TOTAL_CALL_CAP:
+             return "total_call_cap_800_reached"
+-        if action["kind"] in ("ladder", "finalization", "revision") and \
+-                self._session_day_calls(action["session"]) >= DAY_CALL_CAP:
+-            return f"day_call_cap_149_reached:{action['session']}"
++        if action["kind"] in TD_KINDS:
++            now = now or now_utc()
++            day = now.astimezone(ET).date().isoformat()
++            if self.st["desk_calls_by_day"].get(day, 0) >= DAY_CALL_CAP:
++                return f"day_call_cap_149_reached:{day}"
++        return None
++
++    # -- provider usage guard (STOP 2) ------------------------------------
++    def _remaining_td_today(self, now):
++        today = now.astimezone(ET).date().isoformat()
++        n = 0
++        for a in self.st["actions"]:
++            if a["status"] == "pending" and a["kind"] in TD_KINDS:
++                due_day = datetime.fromisoformat(a["due"]).astimezone(
++                    ET).date().isoformat()
++                if due_day == today:
++                    n += 1
++        return n
++
++    def usage_guard_on_reading(self, action, status, body, receipt_dt):
++        """Evaluate one /api_usage response. Returns a STOP reason or
++        None. Fail-closed on non-200, malformed, stale, plan-mismatched
++        or ambiguous provider data, and on exhausted headroom."""
++        g = self.st["usage_guard"]
++        if status != 200:
++            return f"usage_http_{status}"
++        try:
++            u = parse_usage_body(body)
++        except Exception as e:  # noqa: BLE001
++            return f"usage_data_malformed:{e}"
++        if u["plan_daily_limit"] != 800:
++            return f"usage_plan_daily_limit_mismatch:{u['plan_daily_limit']}"
++        skew = abs((receipt_dt - u["provider_ts"]).total_seconds())
++        if skew > 600:
++            return f"usage_data_stale_timestamp:skew_{int(skew)}s"
++        reading = {"daily_usage": u["daily_usage"],
++                   "plan_daily_limit": u["plan_daily_limit"],
++                   "plan_category": u["plan_category"],
++                   "provider_ts": iso(u["provider_ts"]),
++                   "receipt_utc": iso(receipt_dt),
++                   "et_date": receipt_dt.astimezone(ET).date().isoformat(),
++                   "tag": action.get("tag")}
++        prev = g["last"]
++        if prev is not None:
++            desk_delta = self.st["desk_calls"] - g["desk_calls_at_last"]
++            nonusage_delta = self.st["desk_nonusage_calls"] \
++                - g["nonusage_at_last"]
++            prov_delta = u["daily_usage"] - prev["daily_usage"]
++            if prev["et_date"] == reading["et_date"]:
++                if prov_delta == 0 and nonusage_delta >= 3:
++                    return "usage_data_stale_counter"
++                excess = prov_delta - desk_delta
++                if excess < -2:
++                    return f"usage_reconciliation_ambiguous:undercount_" \
++                           f"{excess}"
++                if excess > 2:
++                    g["external_events"].append({
++                        "at_utc": iso(receipt_dt),
++                        "provider_delta": prov_delta,
++                        "desk_delta": desk_delta, "excess": excess})
++        remaining = self._remaining_td_today(receipt_dt)
++        headroom = u["plan_daily_limit"] - u["daily_usage"]
++        if headroom < remaining:
++            return f"provider_headroom_exhausted:headroom_{headroom}" \
++                   f"_remaining_{remaining}"
++        if g["baseline"] is None:
++            g["baseline"] = reading
++        g["last"] = reading
++        g["desk_calls_at_last"] = self.st["desk_calls"]
++        g["nonusage_at_last"] = self.st["desk_nonusage_calls"]
++        return None
++
++    def provider_precheck(self, action, now):
++        """Provider-observed headroom BEFORE each non-usage call, with
++        worst-case allowance for the rest of the execution day. The
++        day's revision batch may precede the day's first reading (it is
++        due 08:00, the first snapshot 09:25); everything else requires
++        today's baseline."""
++        if action["kind"] == "usage":
++            return None
++        g = self.st.get("usage_guard") or {}
++        last = g.get("last")
++        today = now.astimezone(ET).date().isoformat()
++        if last is None or last.get("et_date") != today:
++            if action["kind"] == "revision":
++                return None
++            return "usage_baseline_missing_today"
++        effective = last["daily_usage"] + (
++            self.st["desk_calls"] - g["desk_calls_at_last"])
++        headroom = last["plan_daily_limit"] - effective
++        remaining = self._remaining_td_today(now)
++        if headroom < remaining:
++            return f"provider_headroom_exhausted_precheck:headroom_" \
++                   f"{headroom}_remaining_{remaining}"
+         return None
+ 
+     # -- payload processing ----------------------------------------------
+@@ -382,7 +532,7 @@
+             status, body = self.transport("series", params)
+         rec_dt = now_utc()
+         rec_mono = time.monotonic()
+-        self._count_call(rec_dt)
++        self._count_call(rec_dt, kind)
+         self.st["journal_seq"] += 1
+         seq = self.st["journal_seq"]
+         payload_rel = None
+@@ -423,6 +573,12 @@
+             self.st["usage_snapshots"].append({
+                 "tag": action.get("tag"), "receipt_utc": iso(rec_dt),
+                 "provider": parsed})
++        if kind == "usage":
++            reason = self.usage_guard_on_reading(action, status, body,
++                                                  rec_dt)
++            if reason:
++                self.st["stopped"] = {"reason": reason,
++                                      "at": iso(rec_dt)}
+         rec = {
+             "seq": seq, "action_id": action["id"], "kind": kind,
+             "session": action.get("session"), "symbol": action.get("symbol"),
+@@ -658,16 +814,24 @@
+                     if bar["first_seen"] is None:
+                         bar["missing_at_finalization"] = True
+                 continue
+-            cap = self.cap_check(action)
++            cap = self.cap_check(action, now)
+             if cap:
+                 self.st["stopped"] = {"reason": cap, "at": iso(now)}
+                 action["status"] = "refused_cap"
+                 save_state(self.st)
+                 return "stopped"
++            pre = self.provider_precheck(action, now)
++            if pre:
++                self.st["stopped"] = {"reason": pre, "at": iso(now)}
++                action["status"] = "refused_provider_precheck"
++                save_state(self.st)
++                return "stopped"
+             self._call(action)
+             action["status"] = "done"
+             action["executed_utc"] = iso(now)
+             save_state(self.st)
++            if self.st["stopped"]:
++                return "stopped"
+             if self.st["consecutive_429"] >= 2:
+                 self.st["stopped"] = {
+                     "reason": "two_consecutive_429 (protocol S10)",
+
+===== source/finalize_pilot.py =====
+--- /home/hatch/workspace/qf_r1_scratch/finalize_pilot.py	2026-10-24 16:07:04.814145104 +0000
++++ /home/hatch/workspace/qf_feed_measure_stage/finalize_pilot.py	2026-10-24 16:04:20.477715944 +0000
+@@ -56,6 +56,56 @@
+             "min": s[0] if s else None}
+ 
+ 
++def latency_label_for(sess, stopped):
++    """Frozen -21 protocol §7: LATENCY_MEASURED only when EVERY session
++    captured completely and the pilot was not stopped. Any missing or
++    incomplete session — including a review-gate slip — forces
++    LATENCY_UNMEASURED overall (per-session partials are still shown,
++    labeled as partial). (STOP 3, comment 6386192978: the earlier
++    >=3-session/>=100-bar threshold was a unilateral weakening and is
++    withdrawn.)"""
++    if stopped or not sess:
++        return "LATENCY_UNMEASURED"
++    if all(s["complete"] for s in sess.values()):
++        return "LATENCY_MEASURED"
++    return "LATENCY_UNMEASURED"
++
++
++def _vhash(v):
++    """SHA-256 of a value's canonical repr — published in place of raw
++    market values (STOP 4: derived-only public outputs)."""
++    return hashlib.sha256(repr(v).encode()).hexdigest()
++
++
++def sanitize_reply(raw):
++    """Sanitized record of a filed TD support reply for the PUBLIC
++    package (STOP 4: sanitize separately). Keeps sender domain, subject,
++    date and a token-redacted body; drops headers, ids and any long
++    token-like strings. If the body cannot be extracted, only metadata
++    is filed (fail-closed — the raw +read output never publishes)."""
++    import re
++    if not isinstance(raw, dict):
++        return {"note": "reply record unparseable; metadata only",
++                "raw_sha256": _vhash(raw)}
++    def pick(*keys):
++        for k in keys:
++            if isinstance(raw.get(k), str) and raw[k]:
++                return raw[k]
++        return None
++    sender = pick("from", "sender", "From") or ""
++    domain = sender.split("@")[-1].strip("> ").lower() if "@" in sender \
++        else None
++    body = pick("body_text", "body", "text", "snippet")
++    if body:
++        body = re.sub(r"[A-Za-z0-9_\-]{24,}", "[REDACTED]", body)
++        body = body[:8000]
++    return {"from_domain": domain, "subject": pick("subject", "Subject"),
++            "date": pick("date", "Date", "message_sent_at"),
++            "body_text_redacted": body,
++            "redaction": "token-like runs >=24 chars replaced; headers "
++                         "and message ids never published"}
++
++
+ def load_json(p):
+     with open(p) as f:
+         return json.load(f)
+@@ -150,6 +200,9 @@
+ def run_observer(rows_by_symbol_order, workdir, tag):
+     """Feed rows [(symbol, rowdict)] through the pinned observer."""
+     bundle = os.path.join(BASE, "bundle")
++    if not os.path.isdir(bundle) and os.path.isdir(
++            os.path.join(BASE, "..", "bundle")):
++        bundle = os.path.normpath(os.path.join(BASE, "..", "bundle"))
+     for p in (bundle, os.path.join(bundle, "engine"),
+               os.path.join(bundle, "engine", "pine_stack"),
+               os.path.join(bundle, "engine", "pine_ranking"),
+@@ -229,15 +282,19 @@
+         if not (float(row_b["Open"]) == o and float(row_b["High"]) == h
+                 and float(row_b["Low"]) == lo
+                 and float(row_b["Close"]) == c):
++            # STOP 4: hashes only — no raw OHLC in any public output.
+             return {"kind": "aggregation_value", "symbol": sym,
+                     "bar": str(stamp),
+-                    "agg": [o, h, lo, c],
+-                    "batch": [float(row_b["Open"]), float(row_b["High"]),
+-                              float(row_b["Low"]), float(row_b["Close"])]}
++                    "agg_sha256": _vhash([o, h, lo, c]),
++                    "batch_sha256": _vhash([float(row_b["Open"]),
++                                            float(row_b["High"]),
++                                            float(row_b["Low"]),
++                                            float(row_b["Close"])])}
+         if abs(float(row_b["Volume"]) - v) > 1e-6:
+             return {"kind": "aggregation_volume", "symbol": sym,
+-                    "bar": str(stamp), "agg_volume": v,
+-                    "batch_volume": float(row_b["Volume"])}
++                    "bar": str(stamp),
++                    "agg_volume_sha256": _vhash(v),
++                    "batch_volume_sha256": _vhash(float(row_b["Volume"]))}
+     return None
+ 
+ 
+@@ -284,10 +341,13 @@
+             if not (sf[col].to_numpy() == bf[col].to_numpy()).all():
+                 bad = (sf[col] != bf[col])
+                 idx = sf.index[bad][0]
++                # STOP 4: publish category/count/hashes ONLY — the raw
++                # values stay in the private archive diagnostics.
+                 mismatches.append({
+                     "symbol": sym, "kind": "value", "column": col,
+-                    "bar": str(idx), "stream": float(sf[col].loc[idx]),
+-                    "batch": float(bf[col].loc[idx])})
++                    "bar": str(idx),
++                    "stream_sha256": _vhash(float(sf[col].loc[idx])),
++                    "batch_sha256": _vhash(float(bf[col].loc[idx]))})
+                 break
+     cand_s = sorted((c["symbol"], c["signal_idx"])
+                     for c in s_run["candidates"])
+@@ -386,13 +446,7 @@
+     sess = sessions_report(st)
+     complete_sessions = [d for d, s in sess.items() if s["complete"]]
+     slipped = (st.get("review_gate") or {}).get("slipped_sessions", [])
+-    # Label rule (set before any capture exists; disclosed in the source
+-    # delivery): MEASURED iff >=3 of 5 sessions captured completely and
+-    # >=100 bars were first-seen and the pilot was not stopped; slipped /
+-    # failed sessions are named in the RESULT either way.
+-    latency_label = "LATENCY_MEASURED" if (
+-        len(complete_sessions) >= 3 and latency["pooled"]["n"] >= 100
+-        and not st["stopped"]) else "LATENCY_UNMEASURED"
++    latency_label = latency_label_for(sess, st["stopped"])
+     parity = adapter_parity(st)
+     reproof = paused_reproof()
+     result = {
+@@ -530,8 +584,12 @@
+     for rec in tw_filed:
+         rp = rec.get("reply_file")
+         if rp and os.path.exists(rp):
+-            with open(rp) as f:
+-                files["TD_SUPPORT_REPLY.json"] = f.read()
++            try:
++                raw_reply = load_json(rp)
++            except Exception:
++                raw_reply = None
++            files["TD_SUPPORT_REPLY.json"] = json.dumps(
++                sanitize_reply(raw_reply), indent=1, sort_keys=True)
+             break
+     for name, content in files.items():
+         with open(os.path.join(pkg, name), "w") as f:
+
+===== source/run_manifest.json =====
+--- /home/hatch/workspace/qf_r1_scratch/run_manifest.json	2026-10-24 16:07:04.818714678 +0000
++++ /home/hatch/workspace/qf_feed_measure_stage/run_manifest.json	2026-10-24 16:03:29.872711937 +0000
+@@ -104,5 +104,24 @@
+   "lift": "The file is removed only after ChatGPT's source review of the delivery (research_notes/equity43_feed_source_review_20261024_22/) is on the record \u2014 by the watchdog on an explicit clearance, or on Mike/parent direction.",
+   "slip_semantics": "At lift, any session whose finalization window fully passed while held is marked slipped_review_wait: its remaining capture actions become skipped_review_wait (never executed, never backfilled), recorded in state and in the RESULT. A first-session slip is a documented review-wait, not a protocol breach, and is reported same-day on Slack + bridge.",
+   "armed": "2026-10-24, before any Twelve Data call (first scheduled TD call would be Mon 2026-10-26 09:25 ET usage snapshot)."
++ },
++ "session_closes": {
++  "2026-10-26": "16:00",
++  "2026-10-27": "16:00",
++  "2026-10-28": "16:00",
++  "2026-10-29": "16:00",
++  "2026-10-30": "16:00"
++ },
++ "budget_enforcement": {
++  "provider_schema": "Recorded /api_usage shape (grounded in -11 bracket receipts 2026-10-23): {timestamp 'YYYY-MM-DD HH:MM:SS' UTC, current_usage int, plan_limit int, daily_usage int, plan_daily_limit int, plan_category str}. Strict parse (parse_usage_body); the day counter is daily_usage against plan_daily_limit.",
++  "rules": [
++   "Start-of-day baseline: the day's first /api_usage snapshot (09:25 ET; Nov 2 closing snapshot 08:05) is parsed and recorded as the day baseline before any time_series call that day (the 08:00 revision batch may precede it; it is reconciled at the 09:25 reading).",
++   "Fail-closed STOP on: non-200 usage response; malformed/unparseable usage body; plan_daily_limit != 800; provider timestamp skew > 600s; provider counter unmoving across >=3 intervening non-usage calls (stale); provider undercount vs desk beyond tolerance 2 (ambiguous).",
++   "Provider headroom before each call: effective usage = last reading + desk calls since; STOP before the call if plan_daily_limit - effective < pending worst-case TD actions for the execution day.",
++   "External consumption: provider delta exceeding desk delta by > 2 is recorded as an external-usage event (state + journal); the headroom rule then decides stop/continue.",
++   "Local caps (unchanged values, widened scope): 800 pilot total + 149 per EXECUTION day, covering usage + revision traffic, keyed by the ET date the call executes.",
++   "Zero paid credits: Basic free tier only; no tier change, no spend."
++  ],
++  "governing": "STOP 2, Issue #1 comment 6386192978 (the -21 protocol requires caps counted from /api_usage reads, not local logs)."
+  }
+ }
+\ No newline at end of file
+
+===== source/verify_preflight.py =====
+--- /home/hatch/workspace/qf_r1_scratch/verify_preflight.py	2026-10-24 16:07:04.823714678 +0000
++++ /home/hatch/workspace/qf_feed_measure_stage/verify_preflight.py	2026-10-24 16:08:43.696713916 +0000
+@@ -81,5 +81,25 @@
+ check("sessions pinned", cfg["sessions"] == manifest["sessions"],
+       f"{cfg['sessions']}")
+ 
++# STOP 1 cross-checks: manifest session_closes must equal the delivered
++# bundle calendar, and the built schedule must derive the final bar's
++# polls from the 16:00 close (fin 16:30 ET, first ladder 16:01 ET).
++cal = json.load(open(os.path.join(
++    ROOT, "bundle", "calendar",
++    "session_table_extended_candidate.json")))
++cal_closes = {s["date"]: s["close"] for s in cal["sessions"]}
++check("session_closes match bundle calendar",
++      all(cal_closes.get(d) == c
++          for d, c in manifest["session_closes"].items()),
++      f"{manifest['session_closes']}")
++_by_id = {a["id"]: a for a in runner.build_schedule(cfg)}
++spot = _by_id.get("fin|2026-10-28|SPY|15:30", {}).get("due") == \
++    "2026-10-28T20:30:00+00:00" and \
++    _by_id.get("ladder|2026-10-28|SPY|15:30|60", {}).get("due") == \
++    "2026-10-28T20:01:00+00:00" and \
++    _by_id.get("fin|2026-10-28|SPY|09:30", {}).get("due") == \
++    "2026-10-28T15:00:00+00:00"
++check("schedule derives 15:30 bar from 16:00 close (STOP 1)", spot)
++
+ print("VERIFY", "PASS" if not fails else f"FAIL {fails}")
+ sys.exit(1 if fails else 0)
+
+===== source/selftest.py =====
+--- /tmp_r1_selftest.py	2026-10-24 16:09:10.279713711 +0000
++++ /home/hatch/workspace/qf_feed_measure_stage/work/selftest.py	2026-10-24 16:07:45.272714366 +0000
+@@ -1,8 +1,9 @@
+ #!/usr/bin/env python3
+-"""Offline self-test for pilot_runner.py — stub transport, fake clock.
+-Exercises: schedule build, ladder stop-at-first-sighting, first-seen lag,
+-revision capture, MISSING at finalization, usage snapshots, 429 stop,
+-cap refusal. No network, no credential access."""
++"""Offline battery for the -22 pilot (r2) — stub transport, stub Gmail,
++fake clock. Zero network, zero credential access. The SAME battery runs
++against the r1 snapshot (fail-before) and the r2 source (fail-after);
++the runner/finalize under test resolve from QF_STAGE_DIR, else from
++this file's directory or its parent."""
+ import json
+ import os
+ import sys
+@@ -10,8 +11,22 @@
+ from datetime import datetime, timedelta, timezone
+ from zoneinfo import ZoneInfo
+ 
+-sys.path.insert(0, os.path.expanduser("~/workspace/qf_feed_measure_stage"))
++_HERE = os.path.dirname(os.path.abspath(__file__))
++if os.environ.get("QF_STAGE_DIR"):
++    BASE_DIR = os.environ["QF_STAGE_DIR"]
++elif os.path.exists(os.path.join(_HERE, "pilot_runner.py")):
++    BASE_DIR = _HERE
++elif os.path.exists(os.path.join(os.path.dirname(_HERE),
++                                 "pilot_runner.py")):
++    BASE_DIR = os.path.dirname(_HERE)
++else:
++    BASE_DIR = os.path.expanduser("~/workspace/qf_feed_measure_stage")
++sys.path.insert(0, BASE_DIR)
+ import pilot_runner as pr  # noqa: E402
++try:
++    import finalize_pilot as fin  # noqa: E402
++except Exception:  # noqa: BLE001
++    fin = None
+ 
+ ET = ZoneInfo("America/New_York")
+ TMP = tempfile.mkdtemp(prefix="pilot_selftest_")
+@@ -31,8 +46,7 @@
+ CLOCK = {"now": datetime(2026, 10, 26, 9, 20, tzinfo=ET)}
+ pr.now_utc = lambda: CLOCK["now"].astimezone(timezone.utc)  # noqa: E731
+ 
+-MANIFEST = json.load(open(os.path.expanduser(
+-    "~/workspace/qf_feed_measure_stage/run_manifest.json")))
++MANIFEST = json.load(open(os.path.join(BASE_DIR, "run_manifest.json")))
+ 
+ 
+ def row(sym, day, start, close="10.0", vol="1000"):
+@@ -42,23 +56,41 @@
+ 
+ class StubA:
+     """NVDA 09:30 bar appears at +180 rung with close 10.0, revised to
+-    10.5 by finalization; MELI 09:30 bar never appears; others at +60."""
++    10.5 by finalization; MELI 09:30 bar never appears; others at +60.
++    Usage responses use the REAL recorded /api_usage schema; the
++    usage_script hook (callable(calls) -> (status, bytes)) overrides
++    them for the adversarial budget tests."""
++
++    usage_script = None
+ 
+     def __init__(self):
+         self.calls = 0
++        self.series_calls = 0
+ 
+     def __call__(self, kind, params):
+         self.calls += 1
+         if kind == "usage":
++            if self.usage_script is not None:
++                return self.usage_script(self.calls)
++            ts = CLOCK["now"].astimezone(timezone.utc).strftime(
++                "%Y-%m-%d %H:%M:%S")
+             return 200, json.dumps(
+-                {"current_usage": self.calls, "plan_limit": 800}).encode()
++                {"timestamp": ts, "current_usage": 1, "plan_limit": 8,
++                 "daily_usage": self.calls, "plan_daily_limit": 800,
++                 "plan_category": "basic"}).encode()
++        self.series_calls += 1
+         sym, day = params["symbol"], params["start_date"][:10]
+         now = CLOCK["now"]
+         vals = []
+         for bs in pr.BAR_STARTS:
+             hh, mm = map(int, bs.split(":"))
+-            close_dt = datetime.fromisoformat(day).replace(
+-                tzinfo=ET, hour=hh, minute=mm) + timedelta(hours=1)
++            start_dt = datetime.fromisoformat(day).replace(
++                tzinfo=ET, hour=hh, minute=mm)
++            # the feed's bars complete at the true bar close: the final
++            # 15:30 bar completes at the 16:00 session close
++            close_dt = min(start_dt + timedelta(hours=1),
++                           datetime.fromisoformat(day).replace(
++                               tzinfo=ET, hour=16, minute=0))
+             if sym == "MELI" and bs == "09:30":
+                 continue  # never appears
+             appear = close_dt + timedelta(seconds=60)
+@@ -352,5 +384,262 @@
+       "proven functionally in A8 under a redirected path)",
+       audit_ok and raw_ok, f"BASE={_fresh.BASE}")
+ 
++# ---- Scenario A2: session boundary regression (STOP 1)
++_acts = pr.build_schedule(MANIFEST)
++_by_id = {a["id"]: a for a in _acts}
++_st0 = pr.init_state(MANIFEST)
++_a2_ok = True
++for d in MANIFEST["sessions"]:
++    _a2_ok &= _by_id[f"fin|{d}|NVDA|09:30"]["due"] == f"{d}T15:00:00+00:00"
++    _a2_ok &= _by_id[f"fin|{d}|NVDA|12:30"]["due"] == f"{d}T18:00:00+00:00"
++    _a2_ok &= _by_id[f"fin|{d}|NVDA|15:30"]["due"] == f"{d}T20:30:00+00:00"
++    _a2_ok &= _by_id[f"ladder|{d}|NVDA|15:30|60"]["due"] == \
++        f"{d}T20:01:00+00:00"
++    _a2_ok &= _st0["bars"][f"{d}|NVDA|09:30"]["close_utc"] == \
++        f"{d}T14:30:00+00:00"
++    _a2_ok &= _st0["bars"][f"{d}|NVDA|12:30"]["close_utc"] == \
++        f"{d}T17:30:00+00:00"
++    _a2_ok &= _st0["bars"][f"{d}|NVDA|13:30"]["close_utc"] == \
++        f"{d}T18:30:00+00:00"
++    _a2_ok &= _st0["bars"][f"{d}|NVDA|15:30"]["close_utc"] == \
++        f"{d}T20:00:00+00:00"
++check("A2 session boundary: 09:30->10:30, 12:30->13:30, 13:30->14:30, "
++      "15:30->16:00 closes every session day (final-bar fin due 16:30 ET, "
++      "first ladder poll 16:01 ET — never 16:30 close / 17:00 fin)",
++      _a2_ok)
++
++# ---- Scenario U: provider budget enforcement (STOP 2)
++def usage_body(daily, limit=800, ts=None):
++    ts = ts or CLOCK["now"].astimezone(timezone.utc).strftime(
++        "%Y-%m-%d %H:%M:%S")
++    return json.dumps({"timestamp": ts, "current_usage": 1,
++                       "plan_limit": 8, "daily_usage": daily,
++                       "plan_daily_limit": limit,
++                       "plan_category": "basic"}).encode()
++
++
++def u_pilot(script):
++    stub = StubA()
++    stub.usage_script = script
++    return pr.Pilot(MANIFEST, stub, pr.init_state(MANIFEST)), stub
++
++
++pilot_u1, stub_u1 = u_pilot(lambda n: (200, usage_body(790)))
++CLOCK["now"] = datetime(2026, 10, 26, 9, 26, tzinfo=ET)
++res = pilot_u1.run_due()
++CLOCK["now"] = datetime(2026, 10, 26, 10, 31, tzinfo=ET)
++pilot_u1.run_due()
++check("U1 provider usage already near 800 -> STOP at baseline, refusal "
++      "BEFORE any series call, no request after STOP",
++      res == "stopped" and pilot_u1.st["stopped"] is not None
++      and pilot_u1.st["stopped"]["reason"].startswith(
++          "provider_headroom_exhausted")
++      and stub_u1.series_calls == 0,
++      f"stopped={pilot_u1.st['stopped']} series={stub_u1.series_calls}")
++pilot_u2, stub_u2 = u_pilot(lambda n: (200, b"not-json"))
++CLOCK["now"] = datetime(2026, 10, 26, 9, 26, tzinfo=ET)
++pilot_u2.run_due()
++check("U2 malformed usage body -> STOP usage_data_malformed, no calls",
++      pilot_u2.st["stopped"] is not None
++      and pilot_u2.st["stopped"]["reason"].startswith(
++          "usage_data_malformed") and stub_u2.series_calls == 0,
++      f"stopped={pilot_u2.st['stopped']}")
++pilot_u3, stub_u3 = u_pilot(lambda n: (500, b"{}"))
++CLOCK["now"] = datetime(2026, 10, 26, 9, 26, tzinfo=ET)
++pilot_u3.run_due()
++check("U3 non-200 usage -> STOP usage_http_500, no series calls",
++      pilot_u3.st["stopped"] is not None
++      and pilot_u3.st["stopped"]["reason"] == "usage_http_500"
++      and stub_u3.series_calls == 0,
++      f"stopped={pilot_u3.st['stopped']}")
++pilot_u7, stub_u7 = u_pilot(lambda n: (200, usage_body(0, limit=400)))
++CLOCK["now"] = datetime(2026, 10, 26, 9, 26, tzinfo=ET)
++pilot_u7.run_due()
++check("U7 plan_daily_limit != 800 -> STOP plan mismatch",
++      pilot_u7.st["stopped"] is not None
++      and pilot_u7.st["stopped"]["reason"].startswith(
++          "usage_plan_daily_limit_mismatch"),
++      f"stopped={pilot_u7.st['stopped']}")
++_u4_calls = {"n": 0}
++
++
++def u4_script(n):
++    _u4_calls["n"] += 1
++    return 200, usage_body(100)  # counter never moves
++
++
++pilot_u4, stub_u4 = u_pilot(u4_script)
++CLOCK["now"] = datetime(2026, 10, 26, 9, 26, tzinfo=ET)
++pilot_u4.run_due()
++drive(pilot_u4, datetime(2026, 10, 26, 13, 1, tzinfo=ET))
++calls_at_stop = stub_u4.calls
++CLOCK["now"] = datetime(2026, 10, 26, 13, 5, tzinfo=ET)
++pilot_u4.run_due()
++check("U4 provider counter unmoving across >=3 series calls -> STOP "
++      "usage_data_stale_counter; no calls after STOP",
++      pilot_u4.st["stopped"] is not None
++      and pilot_u4.st["stopped"]["reason"] == "usage_data_stale_counter"
++      and stub_u4.calls == calls_at_stop,
++      f"stopped={pilot_u4.st['stopped']}")
++_u5 = {"n": 0}
++
++
++def u5_script(n):
++    _u5["n"] += 1
++    if _u5["n"] == 1:
++        return 200, usage_body(100)
++    return 200, usage_body(100 + n + 10)  # +10 external burn vs desk
++
++
++pilot_u5, stub_u5 = u_pilot(u5_script)
++CLOCK["now"] = datetime(2026, 10, 26, 9, 26, tzinfo=ET)
++pilot_u5.run_due()
++drive(pilot_u5, datetime(2026, 10, 26, 13, 1, tzinfo=ET))
++_u5_events = (pilot_u5.st.get("usage_guard") or {}).get(
++    "external_events", [])
++check("U5 unrelated-account usage increase (+10 over desk) -> external "
++      "event recorded, headroom intact, pilot CONTINUES",
++      pilot_u5.st["stopped"] is None and len(_u5_events) >= 1
++      and _u5_events[0]["excess"] > 2,
++      f"events={_u5_events}")
++pilot_u6 = pr.Pilot(MANIFEST, StubA(), pr.init_state(MANIFEST))
++if "usage_guard" not in pilot_u6.st or not hasattr(
++        pilot_u6, "provider_precheck"):
++    check("U6 local<cap but provider headroom < worst-case remaining -> "
++          "pre-call refusal; ample headroom -> allowed", False,
++          "provider_precheck/usage_guard missing (r1)")
++    pilot_u6 = None
++if pilot_u6 is not None:
++    pilot_u6.st["usage_guard"]["last"] = {
++        "daily_usage": 700, "plan_daily_limit": 800,
++        "et_date": "2026-10-26", "receipt_utc": "2026-10-26T13:25:00+00:00"}
++    pilot_u6.st["usage_guard"]["desk_calls_at_last"] = \
++        pilot_u6.st["desk_calls"]
++    lad_u6 = next(a for a in pilot_u6.st["actions"]
++                  if a["kind"] == "ladder")
++    pre_full = pilot_u6.provider_precheck(
++        lad_u6, datetime(2026, 10, 26, 9, 26, tzinfo=ET))
++    pilot_u6.st["usage_guard"]["last"]["daily_usage"] = 100
++    pre_ok = pilot_u6.provider_precheck(
++        lad_u6, datetime(2026, 10, 26, 9, 26, tzinfo=ET))
++    check("U6 local<cap but provider headroom < worst-case remaining -> "
++          "pre-call refusal; ample headroom -> allowed",
++          pre_full is not None and "provider_headroom_exhausted" in
++          pre_full and pre_ok is None,
++          f"pre_full={pre_full} pre_ok={pre_ok}")
++
++# ---- Scenario CL: latency label rule (STOP 3)
++if fin is None or not hasattr(fin, "latency_label_for"):
++    check("CL finalize exposes the restored §7 label rule", False,
++          "latency_label_for missing")
++else:
++    _full = {d: {"complete": True} for d in MANIFEST["sessions"]}
++    _3of5 = {d: {"complete": i < 3}
++             for i, d in enumerate(MANIFEST["sessions"])}
++    _4of5 = {d: {"complete": i < 4}
++             for i, d in enumerate(MANIFEST["sessions"])}
++    check("CL1 5/5 complete, not stopped -> LATENCY_MEASURED",
++          fin.latency_label_for(_full, None) == "LATENCY_MEASURED")
++    check("CL2 3/5 complete (+100 bars fixture) -> LATENCY_UNMEASURED",
++          fin.latency_label_for(_3of5, None) == "LATENCY_UNMEASURED")
++    check("CL3 4/5 complete -> LATENCY_UNMEASURED; stopped -> UNMEASURED",
++          fin.latency_label_for(_4of5, None) == "LATENCY_UNMEASURED"
++          and fin.latency_label_for(_full, {"reason": "x"})
++          == "LATENCY_UNMEASURED")
++
++# ---- Scenario DL: raw-data leak closure (STOP 4)
++if fin is None:
++    check("DL finalize importable for leak fixtures", False)
++else:
++    import hashlib as _hl
++    rec = None
++    if hasattr(fin, "_vhash"):
++        rec = {"stream_sha256": fin._vhash(777.77),
++               "batch_sha256": fin._vhash(999.99)}
++    check("DL1 mismatch records carry hashes, never raw values",
++          rec is not None and len(rec["stream_sha256"]) == 64
++          and "777.77" not in json.dumps(rec)
++          and "999.99" not in json.dumps(rec))
++    # end-to-end forced mismatch through the real adapter parity path
++    NS = os.path.join(TMP, "leak_ns")
++    os.makedirs(os.path.join(NS, "payloads"), exist_ok=True)
++    fin.ARCHIVE_NS = NS
++    fin.JOURNAL_PATH = os.path.join(NS, "journal.jsonl")
++    DAYS = ["2026-10-26", "2026-10-27"]
++    SYMS = ["AAA", "BBB", "SPY"]
++
++    def prow(day, bs, close="10.5", vol="1000"):
++        return {"datetime": f"{day} {bs}:00", "open": "10.0",
++                "high": "11.0", "low": "9.0", "close": close,
++                "volume": vol}
++
++    journal = []
++    bars = {}
++
++    def payload_for(sym, day, tweak=None):
++        rows = []
++        for bs in pr.BAR_STARTS:
++            c, v = "10.5", "1000"
++            if tweak and (bs, "close") in tweak:
++                c = tweak[(bs, "close")]
++            if tweak and (bs, "volume") in tweak:
++                v = tweak[(bs, "volume")]
++            rows.append(prow(day, bs, close=c, vol=v))
++        return rows
++
++    seq = 0
++    for sym in SYMS:
++        for day in DAYS:
++            tweak = None
++            if sym == "AAA" and day == "2026-10-26":
++                tweak = {("12:30", "close"): "777.77"}
++            if sym == "BBB" and day == "2026-10-26":
++                tweak = {("10:30", "volume"): "555555"}
++            rows = payload_for(sym, day, tweak)
++            seq += 1
++            rel = f"payloads/{seq:05d}_{sym}_{day}.json"
++            with open(os.path.join(NS, rel), "w") as f:
++                json.dump({"values": rows}, f)
++            journal.append({"kind": "ladder", "http_status": 200,
++                            "payload_file": rel, "symbol": sym})
++            for r in rows:
++                bs = r["datetime"][11:16]
++                lv = {"open": r["open"], "high": r["high"],
++                      "low": r["low"], "close": r["close"],
++                      "volume": r["volume"]}
++                if sym == "AAA" and day == "2026-10-26" and bs == "12:30":
++                    lv["close"] = "999.99"   # batch disagrees on price
++                if sym == "BBB" and day == "2026-10-26" and bs == "10:30":
++                    lv["volume"] = "444444"  # batch disagrees on volume
++                bars[f"{day}|{sym}|{bs}"] = {
++                    "session": day, "symbol": sym, "bar_start_et": bs,
++                    "first_seen": {"lag_s": 61.0, "via": "ladder"},
++                    "last_values": lv, "revisions": [],
++                    "missing_at_finalization": False}
++    with open(fin.JOURNAL_PATH, "w") as f:
++        for rec_j in journal:
++            f.write(json.dumps(rec_j) + "\n")
++    parity = fin.adapter_parity({"bars": bars})
++    blob = json.dumps(parity)
++    check("DL2 forced price+volume mismatch -> ADAPTER_PARITY_FAIL with "
++          "ZERO raw OHLCV in the public parity record",
++          parity["verdict"] == "ADAPTER_PARITY_FAIL"
++          and parity["mismatch_count"] >= 2
++          and "777.77" not in blob and "999.99" not in blob
++          and "555555" not in blob and "444444" not in blob
++          and "sha256" in blob,
++          f"first_mismatch={parity['first_mismatch']}")
++    rep = fin.sanitize_reply(
++        {"from": "Support <support@twelvedata.com>",
++         "subject": "Re: API", "date": "Mon, 26 Oct 2026",
++         "body_text": "ok ABCDEFGHIJKLMNOPQRSTUVWX123456 tail"}) \
++        if hasattr(fin, "sanitize_reply") else {}
++    check("DL3 TD reply sanitized before publication (domain + redacted "
++          "body only, no token-like strings)",
++          rep.get("from_domain") == "twelvedata.com"
++          and "ABCDEFGHIJKLMNOPQRSTUVWX123456" not in
++          json.dumps(rep) and "support@" not in json.dumps(rep),
++          f"rep={rep}")
++
+ print("SELFTEST", "PASS" if not fails else f"FAIL {fails}")
+ sys.exit(1 if fails else 0)
