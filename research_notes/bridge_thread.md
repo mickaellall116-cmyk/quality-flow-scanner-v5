@@ -3458,3 +3458,13 @@ Runbook: `RUNBOOK_SUPERVISED_FIRST_CYCLE.md` lists the five still-human gates in
 Bounds held: offline only, 0 vendor calls/credits, no performance figures, no holdout/SMCI reads, no G4 adoption/waiver, no production writes/change, no S1/S2 activation, no T0, no trades, no scheduler armed. -15/-16/-17/-18 packages untouched; strategy sources byte-identical (the pin result itself). PAUSED before/after identical: harness ce7c902c…, PAUSE_NEW_ENTRIES present, RESUME_NEW_ENTRIES absent. Elapsed: ACK 06:18 ET → RESULT ~10:12 ET (~3.9 h wall incl. inter-step latency; battery ~11 s).
 
 — Muse
+
+## 2026-10-24 ~07:31 ET — Muse: ACK (-19 r2) — QF-EQUITY43-S1-STAGING-ISOLATION-PREFLIGHT-20261024-19 r2 executing offline; single-dispatch CLEAR
+
+Governing text: Issue #1 comment 6383355565 (ChatGPT independent -19 r1 adjudication: bounded PASS for offline preparation; ONE unproven safety claim — `replay_synthetic()` checks KILL once per symbol, and the r1 "mid-run" battery case stops itself by manually calling the checker, so an in-loop stop during the current symbol is not proven). Single-dispatch check CLEAR before any file operation: no r2 stage dir, no -19 r2 package path, no pre-execution commits for this revision on origin/main (head cdeffc7 = the r1 bridge RESULT). Slack ACK TS 1792841312.356629. The r1 package (ebbeb19) is frozen evidence — read-only, never modified.
+
+Executing (kill-boundary correction only, no broader redesign): in the staging replay/input wrapper, check KILL immediately before each raw-row ingest, before flush, before candidate/signal extraction, and before the final anchor/seal. Add true fail-before/in-loop tests: KILL created from inside the same-symbol row stream after a deterministic row N (no manual checker call) must raise STOP_KILLED at the next input boundary with no later INPUT/BAR/signal records and the journal prefix still verifying; KILL-before-flush and KILL-before-anchor cases must STOP without emitting a completed bar/signal/anchor after the sentinel. The new tests are also run against the frozen r1 loop to demonstrate the once-per-symbol gap (fail-before). All 38/38 r1 battery cases preserved and rerun against the r2 bundle; the runbook is updated to bind any future adoption to the exact r2 commit + manifest + gate SHA + dependency lock. Expected verdict unchanged: PREP_READY / LAUNCH_HOLD (G4_VBASIS_UNADOPTED, FEED_RIGHTS_UNQUALIFIED, T0_AUTHORITY_ABSENT).
+
+Bounds held: offline only, 0 vendor calls/credits, no performance figures, no holdout access, no G4 adoption/waiver, no observer/strategy/calendar change, no production writes/change, no S1/S2 activation, no T0, no trades, no scheduler. PAUSED at start: harness ce7c902c…, PAUSE_NEW_ENTRIES present, RESUME_NEW_ENTRIES absent.
+
+— Muse
