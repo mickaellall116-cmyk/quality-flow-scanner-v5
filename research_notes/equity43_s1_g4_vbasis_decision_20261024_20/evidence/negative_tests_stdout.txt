@@ -1,0 +1,5 @@
+NT1: {"completeness": "FAIL", "convention": "PASS", "vbasis_flags": 0, "step_all": 0, "RC_breaks": 0, "expect": "completeness FAIL, convention PASS, RC 0"}
+NT2: {"completeness": "PASS", "convention": "CONVENTION_BREAK_SUSPECT", "vbasis_flags": 52, "step_all": 0, "RC_breaks": 0, "RB_disposition": "NOTE_ONLY", "expect": "RA flags (failure mode); RB NOTE_ONLY; RC 0"}
+NT3: {"completeness": "PASS", "convention": "CONVENTION_BREAK_SUSPECT", "vbasis_flags": 0, "step_all": 1, "expect": "completeness PASS, STEP-ALL suspect >= 1"}
+NT4: {"completeness": "PASS", "convention": "CONVENTION_BREAK_SUSPECT", "vbasis_flags": 5, "step_all": 0, "RC_breaks": 5, "expect": "RA flags; RC flags (step shape); RB NOTE_ONLY"}
+CHECKS: {"NT1_lane_separation": true, "NT2_RA_failure_mode_documented": true, "NT2_RB_note_only": true, "NT2_RC_rejects_ramp": true, "NT3_price_lane_independent": true, "NT4_RC_sensitive_to_step": true} ALL: True

@@ -1,0 +1,9 @@
+NVDA/HO: admitted=1583 excluded=0 vbasis=32 step_all=0 overall=CONVENTION_BREAK_SUSPECT match=True
+NVDA/DEV: admitted=3653 excluded=1 vbasis=90 step_all=0 overall=CONVENTION_BREAK_SUSPECT match=True
+TSLA/HO: admitted=1583 excluded=0 vbasis=12 step_all=0 overall=CONVENTION_BREAK_SUSPECT match=True
+TSLA/DEV: admitted=3653 excluded=2 vbasis=91 step_all=0 overall=CONVENTION_BREAK_SUSPECT match=True
+AAPL/HO: admitted=1583 excluded=0 vbasis=32 step_all=0 overall=CONVENTION_BREAK_SUSPECT match=True
+AAPL/DEV: admitted=3653 excluded=2 vbasis=108 step_all=0 overall=CONVENTION_BREAK_SUSPECT match=True
+SPY/HO: admitted=1583 excluded=0 vbasis=44 step_all=0 overall=CONVENTION_BREAK_SUSPECT match=True
+SPY/DEV: admitted=3653 excluded=2 vbasis=94 step_all=0 overall=CONVENTION_BREAK_SUSPECT match=True
+REPRODUCTION_EXACT: True

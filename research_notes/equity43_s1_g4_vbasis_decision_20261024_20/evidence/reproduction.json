@@ -1,0 +1,2763 @@
+{
+ "checker_sha256": "4fdc31cbfc4b1a96baaabe775d883135cf64a4f7dc2606c7b679756da1e7d936",
+ "checker_version": "checker-v3-candidate-2",
+ "session_table_sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+ "calendar_version": "XNYS-751-UNION-20261021",
+ "legs": [
+  {
+   "leg": "NVDA/HO",
+   "source_sha256": "b96dfaccb578ddb291da4a6766bddc2518e80e454851519a9d13022e0ed84318",
+   "rows_raw": 1583,
+   "rows_admitted": 1583,
+   "rows_excluded": 0,
+   "lanes": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "count_verdict": "PASS",
+    "anomaly_count": 0,
+    "step": [
+     {
+      "effective": "2024-06-10",
+      "factor": 10,
+      "observed_step": 0.993671,
+      "classification": "CONTINUOUS_ADJUSTED",
+      "status": "PASS",
+      "basis_mismatch": false
+     }
+    ],
+    "volume_notes": [
+     {
+      "effective": "2024-06-10",
+      "note": "UNSCALED",
+      "observed_pre_post_ratio": 1.307109
+     }
+    ],
+    "step_all_suspects": [],
+    "vbasis_suspects": [
+     {
+      "boundary": "2023-12-20",
+      "observed_ratio": 0.596346,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-21",
+      "observed_ratio": 0.60239,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-22",
+      "observed_ratio": 0.60239,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-26",
+      "observed_ratio": 0.642087,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-29",
+      "observed_ratio": 1.577684,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-02",
+      "observed_ratio": 1.653657,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-03",
+      "observed_ratio": 1.66204,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-04",
+      "observed_ratio": 1.719508,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-05",
+      "observed_ratio": 1.950014,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-08",
+      "observed_ratio": 1.565134,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-02-26",
+      "observed_ratio": 0.57043,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-02-27",
+      "observed_ratio": 0.57043,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-04",
+      "observed_ratio": 1.613506,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-05",
+      "observed_ratio": 1.613506,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-22",
+      "observed_ratio": 1.710238,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-23",
+      "observed_ratio": 1.710238,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-24",
+      "observed_ratio": 1.530412,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-06",
+      "observed_ratio": 0.662614,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-07",
+      "observed_ratio": 0.602058,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-17",
+      "observed_ratio": 1.502943,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-18",
+      "observed_ratio": 1.638963,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-20",
+      "observed_ratio": 1.58521,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-25",
+      "observed_ratio": 0.622429,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-26",
+      "observed_ratio": 0.613042,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-27",
+      "observed_ratio": 0.527532,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-28",
+      "observed_ratio": 0.559983,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-01",
+      "observed_ratio": 0.642247,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-25",
+      "observed_ratio": 1.796197,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-26",
+      "observed_ratio": 1.796197,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-29",
+      "observed_ratio": 1.602669,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-30",
+      "observed_ratio": 1.646164,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-31",
+      "observed_ratio": 1.550012,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     }
+    ],
+    "vbasis_count": 32
+   },
+   "matches_committed_02_report": {
+    "rows_admitted": true,
+    "vbasis_count": true,
+    "step_all_count": true,
+    "overall": true,
+    "completeness": true,
+    "source_sha256": true
+   }
+  },
+  {
+   "leg": "NVDA/DEV",
+   "source_sha256": "b1ecf7bf6718cda1c1cd4fa0da4a1281bc14cc6c4fc1d357aaeabaa77d3fa0f6",
+   "rows_raw": 3654,
+   "rows_admitted": 3653,
+   "rows_excluded": 1,
+   "lanes": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "count_verdict": "PASS",
+    "anomaly_count": 0,
+    "step": [],
+    "volume_notes": [],
+    "step_all_suspects": [],
+    "vbasis_suspects": [
+     {
+      "boundary": "2024-10-23",
+      "observed_ratio": 0.662166,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-24",
+      "observed_ratio": 0.653915,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-26",
+      "observed_ratio": 0.610782,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-27",
+      "observed_ratio": 0.610782,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-24",
+      "observed_ratio": 0.649166,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-24",
+      "observed_ratio": 1.97689,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-27",
+      "observed_ratio": 1.97689,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-28",
+      "observed_ratio": 1.63323,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-29",
+      "observed_ratio": 1.63323,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-30",
+      "observed_ratio": 1.589149,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-03",
+      "observed_ratio": 0.648722,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-04",
+      "observed_ratio": 0.637436,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-05",
+      "observed_ratio": 0.618343,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-06",
+      "observed_ratio": 0.571742,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-24",
+      "observed_ratio": 1.5124,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-25",
+      "observed_ratio": 1.766808,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-26",
+      "observed_ratio": 1.856684,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-27",
+      "observed_ratio": 1.745853,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-02",
+      "observed_ratio": 2.114288,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-03",
+      "observed_ratio": 2.367736,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-04",
+      "observed_ratio": 2.326411,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-07",
+      "observed_ratio": 1.722291,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-09",
+      "observed_ratio": 0.640617,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-10",
+      "observed_ratio": 0.582205,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-11",
+      "observed_ratio": 0.562634,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-14",
+      "observed_ratio": 0.555644,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-15",
+      "observed_ratio": 0.604583,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-05-12",
+      "observed_ratio": 1.527412,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-07-02",
+      "observed_ratio": 0.652981,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-09-03",
+      "observed_ratio": 0.664626,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-09-08",
+      "observed_ratio": 0.655412,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-10-01",
+      "observed_ratio": 0.562236,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-10-02",
+      "observed_ratio": 0.545218,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-10-03",
+      "observed_ratio": 0.656313,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-10-17",
+      "observed_ratio": 0.621112,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-14",
+      "observed_ratio": 1.559897,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-17",
+      "observed_ratio": 1.669762,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-19",
+      "observed_ratio": 1.552265,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-25",
+      "observed_ratio": 0.608748,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-26",
+      "observed_ratio": 0.574886,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-28",
+      "observed_ratio": 0.51124,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-01",
+      "observed_ratio": 0.588181,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-17",
+      "observed_ratio": 1.558694,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-19",
+      "observed_ratio": 0.639684,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-22",
+      "observed_ratio": 0.651402,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-23",
+      "observed_ratio": 0.651402,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-24",
+      "observed_ratio": 0.583404,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-14",
+      "observed_ratio": 1.523572,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-15",
+      "observed_ratio": 1.544189,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-20",
+      "observed_ratio": 1.523116,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-21",
+      "observed_ratio": 1.523116,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-18",
+      "observed_ratio": 2.054164,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-19",
+      "observed_ratio": 5.888167,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-20",
+      "observed_ratio": 7.725067,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-23",
+      "observed_ratio": 11.72643,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-24",
+      "observed_ratio": 11.72643,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-25",
+      "observed_ratio": 5.708614,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-27",
+      "observed_ratio": 0.161742,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-02",
+      "observed_ratio": 0.095902,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-03",
+      "observed_ratio": 0.09443,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-04",
+      "observed_ratio": 0.09331,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-05",
+      "observed_ratio": 0.114129,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-12",
+      "observed_ratio": 7.28659,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-13",
+      "observed_ratio": 7.486952,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-16",
+      "observed_ratio": 7.790946,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-17",
+      "observed_ratio": 7.693241,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-19",
+      "observed_ratio": 0.158049,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-20",
+      "observed_ratio": 0.158049,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-23",
+      "observed_ratio": 0.147831,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-24",
+      "observed_ratio": 0.149708,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-04-02",
+      "observed_ratio": 0.665497,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-04-22",
+      "observed_ratio": 1.509435,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-04-23",
+      "observed_ratio": 1.509435,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-04-24",
+      "observed_ratio": 1.722921,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-04-27",
+      "observed_ratio": 1.653403,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-17",
+      "observed_ratio": 5.914461,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-18",
+      "observed_ratio": 6.14999,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-19",
+      "observed_ratio": 6.930432,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-20",
+      "observed_ratio": 7.822513,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-21",
+      "observed_ratio": 7.822513,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-26",
+      "observed_ratio": 0.462791,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-27",
+      "observed_ratio": 0.222763,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-28",
+      "observed_ratio": 0.189605,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-31",
+      "observed_ratio": 0.160696,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-01",
+      "observed_ratio": 0.201623,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-02",
+      "observed_ratio": 0.435668,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-09",
+      "observed_ratio": 0.631778,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-08",
+      "observed_ratio": 5.293087,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-09",
+      "observed_ratio": 4.506078,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-12",
+      "observed_ratio": 5.068062,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     }
+    ],
+    "vbasis_count": 90
+   },
+   "matches_committed_02_report": {
+    "rows_admitted": true,
+    "vbasis_count": true,
+    "step_all_count": true,
+    "overall": true,
+    "completeness": true,
+    "source_sha256": true
+   }
+  },
+  {
+   "leg": "TSLA/HO",
+   "source_sha256": "957c1c17c4ceac662d8797f83b6fd87aa72560f7cec67d8bb328ac30a7fb88c6",
+   "rows_raw": 1583,
+   "rows_admitted": 1583,
+   "rows_excluded": 0,
+   "lanes": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "count_verdict": "PASS",
+    "anomaly_count": 0,
+    "step": [],
+    "volume_notes": [],
+    "step_all_suspects": [],
+    "vbasis_suspects": [
+     {
+      "boundary": "2023-10-20",
+      "observed_ratio": 0.657301,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-01",
+      "observed_ratio": 1.529564,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-01",
+      "observed_ratio": 0.666562,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-02",
+      "observed_ratio": 0.635721,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-11",
+      "observed_ratio": 1.578543,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-12",
+      "observed_ratio": 1.578543,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-26",
+      "observed_ratio": 1.552674,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-27",
+      "observed_ratio": 2.242954,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-28",
+      "observed_ratio": 2.56001,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-01",
+      "observed_ratio": 2.217866,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-02",
+      "observed_ratio": 1.790942,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-03",
+      "observed_ratio": 1.688833,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     }
+    ],
+    "vbasis_count": 12
+   },
+   "matches_committed_02_report": {
+    "rows_admitted": true,
+    "vbasis_count": true,
+    "step_all_count": true,
+    "overall": true,
+    "completeness": true,
+    "source_sha256": true
+   }
+  },
+  {
+   "leg": "TSLA/DEV",
+   "source_sha256": "f6b1e64f244b06543f536be8eaf04d731b7dd98700bf1afdbb7ff59b303479fe",
+   "rows_raw": 3655,
+   "rows_admitted": 3653,
+   "rows_excluded": 2,
+   "lanes": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "count_verdict": "PASS",
+    "anomaly_count": 0,
+    "step": [],
+    "volume_notes": [],
+    "step_all_suspects": [],
+    "vbasis_suspects": [
+     {
+      "boundary": "2024-09-17",
+      "observed_ratio": 1.521969,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-15",
+      "observed_ratio": 0.589842,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-16",
+      "observed_ratio": 0.588187,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-17",
+      "observed_ratio": 0.588187,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-22",
+      "observed_ratio": 2.090941,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-23",
+      "observed_ratio": 2.096825,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-24",
+      "observed_ratio": 2.096825,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-25",
+      "observed_ratio": 1.612467,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-29",
+      "observed_ratio": 0.599052,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-30",
+      "observed_ratio": 0.599052,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-31",
+      "observed_ratio": 0.62892,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-04",
+      "observed_ratio": 1.860091,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-05",
+      "observed_ratio": 2.615864,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-06",
+      "observed_ratio": 2.615864,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-07",
+      "observed_ratio": 2.345325,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-08",
+      "observed_ratio": 2.256109,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-15",
+      "observed_ratio": 0.584392,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-20",
+      "observed_ratio": 0.543575,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-21",
+      "observed_ratio": 0.525808,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-05",
+      "observed_ratio": 1.713693,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-06",
+      "observed_ratio": 1.713693,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-20",
+      "observed_ratio": 0.647494,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-23",
+      "observed_ratio": 0.578954,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-24",
+      "observed_ratio": 0.612934,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-22",
+      "observed_ratio": 0.647424,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-23",
+      "observed_ratio": 0.645269,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-29",
+      "observed_ratio": 1.518352,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-30",
+      "observed_ratio": 1.664294,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-25",
+      "observed_ratio": 1.636845,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-26",
+      "observed_ratio": 1.545507,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-10",
+      "observed_ratio": 0.60506,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-11",
+      "observed_ratio": 0.559706,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-14",
+      "observed_ratio": 0.495332,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-15",
+      "observed_ratio": 0.523414,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-06-03",
+      "observed_ratio": 1.537608,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-06-04",
+      "observed_ratio": 1.713116,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-06-05",
+      "observed_ratio": 1.513797,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-06-12",
+      "observed_ratio": 0.645005,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-07-08",
+      "observed_ratio": 0.664049,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-07-09",
+      "observed_ratio": 0.653847,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-10-08",
+      "observed_ratio": 0.658544,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-24",
+      "observed_ratio": 0.593185,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-25",
+      "observed_ratio": 0.593185,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-26",
+      "observed_ratio": 0.593185,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-28",
+      "observed_ratio": 0.593185,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-12",
+      "observed_ratio": 1.855051,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-19",
+      "observed_ratio": 0.540123,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-22",
+      "observed_ratio": 0.437174,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-23",
+      "observed_ratio": 0.471363,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-24",
+      "observed_ratio": 0.471363,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-22",
+      "observed_ratio": 0.651996,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-23",
+      "observed_ratio": 0.651996,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-26",
+      "observed_ratio": 0.651996,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-30",
+      "observed_ratio": 1.517543,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-19",
+      "observed_ratio": 5.447843,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-20",
+      "observed_ratio": 7.008953,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-23",
+      "observed_ratio": 7.234415,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-24",
+      "observed_ratio": 6.451759,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-25",
+      "observed_ratio": 5.546605,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-27",
+      "observed_ratio": 0.167144,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-02",
+      "observed_ratio": 0.158833,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-03",
+      "observed_ratio": 0.178101,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-04",
+      "observed_ratio": 0.178101,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-05",
+      "observed_ratio": 0.183514,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-12",
+      "observed_ratio": 3.576963,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-13",
+      "observed_ratio": 5.013097,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-16",
+      "observed_ratio": 5.072737,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-17",
+      "observed_ratio": 3.576963,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-19",
+      "observed_ratio": 0.327135,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-20",
+      "observed_ratio": 0.188935,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-23",
+      "observed_ratio": 0.188935,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-24",
+      "observed_ratio": 0.249397,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-07-07",
+      "observed_ratio": 0.65016,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-12",
+      "observed_ratio": 1.86154,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-17",
+      "observed_ratio": 3.943162,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-18",
+      "observed_ratio": 4.344409,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-19",
+      "observed_ratio": 2.814501,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-20",
+      "observed_ratio": 3.664065,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-21",
+      "observed_ratio": 2.614463,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-25",
+      "observed_ratio": 0.387402,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-26",
+      "observed_ratio": 0.259462,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-27",
+      "observed_ratio": 0.255549,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-28",
+      "observed_ratio": 0.279314,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-31",
+      "observed_ratio": 0.480907,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-08",
+      "observed_ratio": 0.562603,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-09",
+      "observed_ratio": 0.601484,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-10",
+      "observed_ratio": 0.601484,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-11",
+      "observed_ratio": 0.629521,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-08",
+      "observed_ratio": 2.252755,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-09",
+      "observed_ratio": 3.215313,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-12",
+      "observed_ratio": 3.70236,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     }
+    ],
+    "vbasis_count": 91
+   },
+   "matches_committed_02_report": {
+    "rows_admitted": true,
+    "vbasis_count": true,
+    "step_all_count": true,
+    "overall": true,
+    "completeness": true,
+    "source_sha256": true
+   }
+  },
+  {
+   "leg": "AAPL/HO",
+   "source_sha256": "b4cd48e6e1e134aa9d5ad6a7ec325b82766c8da2f1e65c98d51cab77fe466bc9",
+   "rows_raw": 1583,
+   "rows_admitted": 1583,
+   "rows_excluded": 0,
+   "lanes": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "count_verdict": "PASS",
+    "anomaly_count": 0,
+    "step": [],
+    "volume_notes": [],
+    "step_all_suspects": [],
+    "vbasis_suspects": [
+     {
+      "boundary": "2023-12-11",
+      "observed_ratio": 1.532575,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-18",
+      "observed_ratio": 0.661141,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-19",
+      "observed_ratio": 0.548678,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-20",
+      "observed_ratio": 0.661141,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-29",
+      "observed_ratio": 1.675771,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-02",
+      "observed_ratio": 1.675771,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-02-27",
+      "observed_ratio": 1.650026,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-02-28",
+      "observed_ratio": 1.796936,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-02-29",
+      "observed_ratio": 1.572283,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-01",
+      "observed_ratio": 1.572283,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-09",
+      "observed_ratio": 1.623554,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-10",
+      "observed_ratio": 1.766208,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-11",
+      "observed_ratio": 1.766208,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-12",
+      "observed_ratio": 1.652723,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-17",
+      "observed_ratio": 0.604558,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-18",
+      "observed_ratio": 0.604127,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-19",
+      "observed_ratio": 0.64607,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-30",
+      "observed_ratio": 1.543827,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-01",
+      "observed_ratio": 1.519018,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-02",
+      "observed_ratio": 1.516263,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-08",
+      "observed_ratio": 0.637784,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-06",
+      "observed_ratio": 2.018563,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-07",
+      "observed_ratio": 2.018563,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-10",
+      "observed_ratio": 2.018563,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-11",
+      "observed_ratio": 1.9112,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-06-12",
+      "observed_ratio": 1.728382,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-31",
+      "observed_ratio": 1.734426,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-01",
+      "observed_ratio": 1.734426,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-02",
+      "observed_ratio": 1.734426,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-07",
+      "observed_ratio": 0.565984,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-08",
+      "observed_ratio": 0.554152,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-09",
+      "observed_ratio": 0.554152,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     }
+    ],
+    "vbasis_count": 32
+   },
+   "matches_committed_02_report": {
+    "rows_admitted": true,
+    "vbasis_count": true,
+    "step_all_count": true,
+    "overall": true,
+    "completeness": true,
+    "source_sha256": true
+   }
+  },
+  {
+   "leg": "AAPL/DEV",
+   "source_sha256": "97649d2f2a326b8a2e2e20a72cfaa83ebfaaed128698f1829716d37506acdd4f",
+   "rows_raw": 3655,
+   "rows_admitted": 3653,
+   "rows_excluded": 2,
+   "lanes": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "count_verdict": "PASS",
+    "anomaly_count": 0,
+    "step": [],
+    "volume_notes": [],
+    "step_all_suspects": [],
+    "vbasis_suspects": [
+     {
+      "boundary": "2024-09-20",
+      "observed_ratio": 0.581639,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-09-23",
+      "observed_ratio": 0.526447,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-09-24",
+      "observed_ratio": 0.535794,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-09-25",
+      "observed_ratio": 0.586803,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-31",
+      "observed_ratio": 1.529753,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-23",
+      "observed_ratio": 0.629855,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-24",
+      "observed_ratio": 0.629855,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-14",
+      "observed_ratio": 1.872337,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-15",
+      "observed_ratio": 2.099414,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-16",
+      "observed_ratio": 2.099414,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-17",
+      "observed_ratio": 1.555065,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-21",
+      "observed_ratio": 1.716509,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-24",
+      "observed_ratio": 0.657889,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-27",
+      "observed_ratio": 0.657889,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-28",
+      "observed_ratio": 0.596012,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-03-06",
+      "observed_ratio": 1.522354,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-03-07",
+      "observed_ratio": 1.518234,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-03-10",
+      "observed_ratio": 1.500481,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-03-18",
+      "observed_ratio": 0.665184,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-03-31",
+      "observed_ratio": 1.558322,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-01",
+      "observed_ratio": 3.165644,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-02",
+      "observed_ratio": 3.687108,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-03",
+      "observed_ratio": 3.912154,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-04",
+      "observed_ratio": 3.579308,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-07",
+      "observed_ratio": 2.366076,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-11",
+      "observed_ratio": 0.444864,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-14",
+      "observed_ratio": 0.403199,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-15",
+      "observed_ratio": 0.411144,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-16",
+      "observed_ratio": 0.468897,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-17",
+      "observed_ratio": 0.566746,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-05-01",
+      "observed_ratio": 1.666852,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-05-02",
+      "observed_ratio": 1.666852,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-07-03",
+      "observed_ratio": 0.607948,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-07-07",
+      "observed_ratio": 0.607948,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-07-08",
+      "observed_ratio": 0.545746,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-07-31",
+      "observed_ratio": 1.699919,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-08-01",
+      "observed_ratio": 2.40865,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-08-04",
+      "observed_ratio": 2.131114,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-08-05",
+      "observed_ratio": 1.713192,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-08-06",
+      "observed_ratio": 1.713192,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-08-11",
+      "observed_ratio": 0.548612,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-08-12",
+      "observed_ratio": 0.53145,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-08-13",
+      "observed_ratio": 0.525379,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-08-14",
+      "observed_ratio": 0.54069,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-08-15",
+      "observed_ratio": 0.555302,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-09-03",
+      "observed_ratio": 1.527608,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-09-04",
+      "observed_ratio": 1.50302,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-09-19",
+      "observed_ratio": 2.018896,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-09-23",
+      "observed_ratio": 0.656764,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-09-24",
+      "observed_ratio": 0.50091,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-09-25",
+      "observed_ratio": 0.50091,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-09-26",
+      "observed_ratio": 0.327254,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-22",
+      "observed_ratio": 0.563462,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-23",
+      "observed_ratio": 0.533457,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-24",
+      "observed_ratio": 0.533457,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-31",
+      "observed_ratio": 2.106339,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-02",
+      "observed_ratio": 2.129922,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-19",
+      "observed_ratio": 5.442596,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-20",
+      "observed_ratio": 7.404566,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-23",
+      "observed_ratio": 7.667751,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-24",
+      "observed_ratio": 7.404566,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-25",
+      "observed_ratio": 4.506444,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-27",
+      "observed_ratio": 0.154088,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-02",
+      "observed_ratio": 0.111426,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-03",
+      "observed_ratio": 0.115387,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-04",
+      "observed_ratio": 0.156982,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-05",
+      "observed_ratio": 0.156766,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-12",
+      "observed_ratio": 5.445613,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-13",
+      "observed_ratio": 6.20373,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-16",
+      "observed_ratio": 6.106011,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-17",
+      "observed_ratio": 5.270603,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-18",
+      "observed_ratio": 1.808218,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-19",
+      "observed_ratio": 0.198299,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-20",
+      "observed_ratio": 0.174066,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-23",
+      "observed_ratio": 0.174066,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-24",
+      "observed_ratio": 0.174705,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-03-25",
+      "observed_ratio": 0.610794,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-04-16",
+      "observed_ratio": 1.559603,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-03",
+      "observed_ratio": 1.541827,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-04",
+      "observed_ratio": 1.541827,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-05",
+      "observed_ratio": 1.541827,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-10",
+      "observed_ratio": 0.620016,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-11",
+      "observed_ratio": 0.597292,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-12",
+      "observed_ratio": 0.597292,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-23",
+      "observed_ratio": 1.578885,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-24",
+      "observed_ratio": 1.578885,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-07-15",
+      "observed_ratio": 1.528671,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-07-20",
+      "observed_ratio": 0.632252,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-07-21",
+      "observed_ratio": 0.632252,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-06",
+      "observed_ratio": 0.661493,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-07",
+      "observed_ratio": 0.62772,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-19",
+      "observed_ratio": 2.610252,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-20",
+      "observed_ratio": 2.657929,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-21",
+      "observed_ratio": 3.133808,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-24",
+      "observed_ratio": 3.392245,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-25",
+      "observed_ratio": 3.065258,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-27",
+      "observed_ratio": 0.54224,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-28",
+      "observed_ratio": 0.241164,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-31",
+      "observed_ratio": 0.222791,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-01",
+      "observed_ratio": 0.241164,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-02",
+      "observed_ratio": 0.241164,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-14",
+      "observed_ratio": 0.620013,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-15",
+      "observed_ratio": 0.613207,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-16",
+      "observed_ratio": 0.620013,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-07",
+      "observed_ratio": 1.835229,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-08",
+      "observed_ratio": 2.945717,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-09",
+      "observed_ratio": 3.745588,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-12",
+      "observed_ratio": 3.679386,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     }
+    ],
+    "vbasis_count": 108
+   },
+   "matches_committed_02_report": {
+    "rows_admitted": true,
+    "vbasis_count": true,
+    "step_all_count": true,
+    "overall": true,
+    "completeness": true,
+    "source_sha256": true
+   }
+  },
+  {
+   "leg": "SPY/HO",
+   "source_sha256": "795338d365cfd2de4c0d90b4d6e3023a9a6dcc013434e671fd6504e774e9188c",
+   "rows_raw": 1583,
+   "rows_admitted": 1583,
+   "rows_excluded": 0,
+   "lanes": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "count_verdict": "PASS",
+    "anomaly_count": 0,
+    "step": [],
+    "volume_notes": [],
+    "step_all_suspects": [],
+    "vbasis_suspects": [
+     {
+      "boundary": "2023-10-23",
+      "observed_ratio": 0.661665,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-11-02",
+      "observed_ratio": 0.632663,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-11-03",
+      "observed_ratio": 0.632663,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-11-06",
+      "observed_ratio": 0.465073,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-11-07",
+      "observed_ratio": 0.642702,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-11-20",
+      "observed_ratio": 0.656747,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-11-21",
+      "observed_ratio": 0.656747,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-06",
+      "observed_ratio": 1.585487,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-07",
+      "observed_ratio": 1.585487,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-12",
+      "observed_ratio": 1.525207,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-28",
+      "observed_ratio": 2.115137,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2023-12-29",
+      "observed_ratio": 2.297997,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-02",
+      "observed_ratio": 1.676326,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-03",
+      "observed_ratio": 1.53326,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-05",
+      "observed_ratio": 0.628288,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-01-08",
+      "observed_ratio": 0.495495,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-02-05",
+      "observed_ratio": 0.631004,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-02-06",
+      "observed_ratio": 0.631004,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-02-13",
+      "observed_ratio": 1.607126,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-02-21",
+      "observed_ratio": 0.576417,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-01",
+      "observed_ratio": 1.534102,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-04",
+      "observed_ratio": 1.542118,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-05",
+      "observed_ratio": 1.542118,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-18",
+      "observed_ratio": 0.664727,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-19",
+      "observed_ratio": 0.572882,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-20",
+      "observed_ratio": 0.559064,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-21",
+      "observed_ratio": 0.559064,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-22",
+      "observed_ratio": 0.559064,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-03-28",
+      "observed_ratio": 1.736188,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-04-01",
+      "observed_ratio": 1.736188,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-01",
+      "observed_ratio": 0.656872,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-02",
+      "observed_ratio": 0.607424,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-03",
+      "observed_ratio": 0.658543,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-05-07",
+      "observed_ratio": 0.607482,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-26",
+      "observed_ratio": 1.586275,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-29",
+      "observed_ratio": 1.619859,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-30",
+      "observed_ratio": 1.698893,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-07-31",
+      "observed_ratio": 1.698893,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-01",
+      "observed_ratio": 1.652421,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-06",
+      "observed_ratio": 0.602911,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-07",
+      "observed_ratio": 0.439343,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-08",
+      "observed_ratio": 0.439343,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-09",
+      "observed_ratio": 0.398318,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-08-12",
+      "observed_ratio": 0.630646,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     }
+    ],
+    "vbasis_count": 44
+   },
+   "matches_committed_02_report": {
+    "rows_admitted": true,
+    "vbasis_count": true,
+    "step_all_count": true,
+    "overall": true,
+    "completeness": true,
+    "source_sha256": true
+   }
+  },
+  {
+   "leg": "SPY/DEV",
+   "source_sha256": "2c6631dc5482b5f8e20a2107b53fbcd64e1ae3732d2bf09adf17c874076fecfb",
+   "rows_raw": 3655,
+   "rows_admitted": 3653,
+   "rows_excluded": 2,
+   "lanes": {
+    "overall": "CONVENTION_BREAK_SUSPECT",
+    "completeness_verdict": "PASS",
+    "convention_verdict": "CONVENTION_BREAK_SUSPECT",
+    "count_verdict": "PASS",
+    "anomaly_count": 0,
+    "step": [],
+    "volume_notes": [],
+    "step_all_suspects": [],
+    "vbasis_suspects": [
+     {
+      "boundary": "2024-09-17",
+      "observed_ratio": 1.822902,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-09-20",
+      "observed_ratio": 0.63865,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-09-23",
+      "observed_ratio": 0.615777,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-09-24",
+      "observed_ratio": 0.641137,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-09",
+      "observed_ratio": 1.517091,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-11",
+      "observed_ratio": 1.874783,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-14",
+      "observed_ratio": 1.927065,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-16",
+      "observed_ratio": 0.538687,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-18",
+      "observed_ratio": 0.458198,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-10-21",
+      "observed_ratio": 0.533978,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-11-18",
+      "observed_ratio": 0.618123,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-13",
+      "observed_ratio": 1.565205,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-16",
+      "observed_ratio": 2.342958,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-17",
+      "observed_ratio": 2.342958,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-18",
+      "observed_ratio": 2.18721,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-19",
+      "observed_ratio": 1.867879,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2024-12-27",
+      "observed_ratio": 0.634297,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-17",
+      "observed_ratio": 0.615741,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-22",
+      "observed_ratio": 0.525143,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-23",
+      "observed_ratio": 0.524404,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-24",
+      "observed_ratio": 0.572514,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-27",
+      "observed_ratio": 1.501004,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-28",
+      "observed_ratio": 1.501004,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-29",
+      "observed_ratio": 1.76097,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-30",
+      "observed_ratio": 1.925439,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-01-31",
+      "observed_ratio": 1.795744,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-10",
+      "observed_ratio": 0.481567,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-19",
+      "observed_ratio": 1.890192,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-20",
+      "observed_ratio": 1.890192,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-21",
+      "observed_ratio": 2.487714,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-24",
+      "observed_ratio": 2.487714,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-02-25",
+      "observed_ratio": 2.169228,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-03-14",
+      "observed_ratio": 0.662419,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-03-17",
+      "observed_ratio": 0.662419,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-03-28",
+      "observed_ratio": 1.765406,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-03-31",
+      "observed_ratio": 2.464753,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-01",
+      "observed_ratio": 2.464753,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-02",
+      "observed_ratio": 2.633881,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-03",
+      "observed_ratio": 3.217404,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-04",
+      "observed_ratio": 2.418053,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-09",
+      "observed_ratio": 0.571435,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-10",
+      "observed_ratio": 0.374394,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-11",
+      "observed_ratio": 0.372926,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-14",
+      "observed_ratio": 0.417175,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-15",
+      "observed_ratio": 0.461792,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-28",
+      "observed_ratio": 0.637934,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-04-29",
+      "observed_ratio": 0.649461,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-06-05",
+      "observed_ratio": 1.79112,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-06-06",
+      "observed_ratio": 2.083003,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-06-09",
+      "observed_ratio": 1.79112,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-06-10",
+      "observed_ratio": 1.79112,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-06-18",
+      "observed_ratio": 0.647934,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-10-10",
+      "observed_ratio": 1.565507,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-17",
+      "observed_ratio": 1.615156,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-24",
+      "observed_ratio": 0.599589,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-25",
+      "observed_ratio": 0.515775,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-11-26",
+      "observed_ratio": 0.656043,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-10",
+      "observed_ratio": 1.601314,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-11",
+      "observed_ratio": 1.627709,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-12",
+      "observed_ratio": 1.646222,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-18",
+      "observed_ratio": 0.618948,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-19",
+      "observed_ratio": 0.608169,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-22",
+      "observed_ratio": 0.589306,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-23",
+      "observed_ratio": 0.44825,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-24",
+      "observed_ratio": 0.473814,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2025-12-31",
+      "observed_ratio": 1.591846,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-02",
+      "observed_ratio": 1.591846,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-22",
+      "observed_ratio": 0.643314,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-28",
+      "observed_ratio": 1.507639,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-29",
+      "observed_ratio": 1.643243,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-01-30",
+      "observed_ratio": 1.776035,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-02-02",
+      "observed_ratio": 1.776035,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-04-02",
+      "observed_ratio": 0.641181,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-04-06",
+      "observed_ratio": 0.561137,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-04-07",
+      "observed_ratio": 0.578064,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-05",
+      "observed_ratio": 1.722005,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-06-12",
+      "observed_ratio": 0.635867,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-05",
+      "observed_ratio": 0.61131,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-06",
+      "observed_ratio": 0.636057,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-18",
+      "observed_ratio": 3.551826,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-19",
+      "observed_ratio": 2.945537,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-20",
+      "observed_ratio": 2.945537,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-21",
+      "observed_ratio": 2.534871,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-24",
+      "observed_ratio": 1.899477,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-26",
+      "observed_ratio": 0.640985,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-27",
+      "observed_ratio": 0.320098,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-28",
+      "observed_ratio": 0.371956,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-08-31",
+      "observed_ratio": 0.339325,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-01",
+      "observed_ratio": 0.416179,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-09-02",
+      "observed_ratio": 0.421382,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-07",
+      "observed_ratio": 1.894089,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-08",
+      "observed_ratio": 2.487976,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-09",
+      "observed_ratio": 2.487976,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     },
+     {
+      "boundary": "2026-10-12",
+      "observed_ratio": 2.879393,
+      "status": "CONVENTION_BREAK_SUSPECT"
+     }
+    ],
+    "vbasis_count": 94
+   },
+   "matches_committed_02_report": {
+    "rows_admitted": true,
+    "vbasis_count": true,
+    "step_all_count": true,
+    "overall": true,
+    "completeness": true,
+    "source_sha256": true
+   }
+  }
+ ],
+ "reproduction_exact_vs_02_committed": true
+}
