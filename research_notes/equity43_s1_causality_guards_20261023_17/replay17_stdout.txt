@@ -1,0 +1,9 @@
+REPLAY_OK: True
+{
+ "inputs_replayed": 157140,
+ "records_original": 226043,
+ "records_replay": 226043,
+ "byte_identical": true,
+ "journal_sha256_original": "578eb1bb645e893072e1685dd64e42fd6d947d3268403960eda949a177e5922c",
+ "journal_sha256_replay": "578eb1bb645e893072e1685dd64e42fd6d947d3268403960eda949a177e5922c"
+}

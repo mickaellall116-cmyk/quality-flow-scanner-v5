@@ -1,0 +1,375 @@
+--- ../ref16/fwd_observer.py	2026-10-24 03:56:37.784062850 +0000
++++ fwd_observer17.py	2026-10-24 04:11:23.981559762 +0000
+@@ -38,6 +38,43 @@
+ against an anchor the journal writer does not own. Journal records carry
+ market time and sequence numbers only (no wall clock), so two executions
+ over the same feed produce byte-identical journals.
++
++QF-EQUITY43-S1-CAUSALITY-GUARDS-20261023-17 — research-only FORK of the
++-16 observer (which carries the -16 TP1-blended exit repair verbatim).
++Strategy sources, candidate semantics and frozen pins are UNCHANGED.
++Two observer-layer defects found by the -16 adjudication are fixed here:
++
++  * CAUSAL BIN-CLOSE EMISSION. The -15/-16 feed finalized a session only
++    when the NEXT session's first admitted bar arrived (or at flush()),
++    so a 09:30->13:30 bar was not available at 13:30. Here a bin is
++    finalized at strictly-known full-bin completion: the moment its last
++    member hour is admitted, the BAR event is emitted with
++    emitted_at == bin close == decision_instant, using only data whose
++    stamps precede the bin close. Gap semantics are per-bin fail-closed:
++    a bin with a missing member fails the session at the moment its
++    close provably passes (a stamp at or beyond the bin end is admitted
++    — the missing member could now only arrive out-of-order and be
++    rejected), at a post-close seal, or at the backstop
++    (SESSION_INCOMPLETE, no bars for the uncompleted bins, no
++    after-the-fact backfill). A bin completed
++    BEFORE a later same-session gap is discovered stands — its
++    completeness was strictly known at its close; this is the honest
++    prospective semantic and differs from the batch session-atomic rule
++    only for sessions that gap mid-session (unknowable earlier). A
++    session truncated by an outage is sealed incomplete by the next
++    session's first bar (the pre-existing backstop) — never by waiting
++    for flush(); flush() remains only the offline end-of-stream
++    backstop + terminal censoring, exactly as in -15/-16.
++  * JOURNAL-ONLY REPLAY. The -15/-16 journal excluded the BAR payload
++    and never journaled accepted raw rows, so no decision could be
++    reconstructed from the journal alone. Here EVERY ingested raw row
++    is journaled first as an INPUT record (canonical payload, hash-
++    chained) and every BAR event journals its full bar payload, so the
++    complete run — inputs interleaved with the terminal flush() points
++    (SEALED records) — replays byte-identically from the journal alone
++    (see replay_journal). This preserves data licensing: the journal is
++    the observer's own record of what it consumed, held under the same
++    terms as the source receipts; no new acquisition is implied.
+ """
+ import hashlib
+ import json
+@@ -206,6 +243,7 @@
+         self.table = table
+         self.accepted = {}        # date -> {hhmm: row dict}
+         self.finalized = {}       # date -> True (complete) / False (gap)
++        self.emitted_bins = {}    # date -> set of emitted bin indexes
+         self.poison = None        # (class, detail)
+         self.last_stamp = None    # (date, hhmm) of last processed bar
+         self.seen_stamps = set()  # (date, hhmm) ever processed
+@@ -246,16 +284,39 @@
+             events.append(self._reject(REJ_UNKNOWN_SESSION, stamp,
+                                        "date not in pinned session table"))
+             return events
+-        if date in self.finalized:
+-            events.append(self._reject(REJ_LATE_BAR, stamp,
+-                                       "session already finalized — "
+-                                       "no backfill"))
+-            return events
++        # -17 CLASS PRECEDENCE (changed from -15/-16, deliberately):
++        # causal bin finalization means a session is usually finalized
++        # before late/duplicate/phantom stamps for it arrive, so the
++        # stamp's own class must be judged before the finalized check —
++        # a re-fed admitted stamp is a DUPLICATE (not LATE_BAR), and a
++        # post-close stamp is the EXCLUDED phantom class (not LATE_BAR),
++        # exactly as both were classified in -15/-16 before their
++        # sessions finalized a day late. LATE_BAR still governs
++        # never-processed on-grid stamps for a finalized date.
+         key = (date, hhmm)
+         if key in self.seen_stamps:
+             events.append(self._reject(REJ_DUPLICATE, stamp,
+                                        "stamp already processed"))
+             return events
++        if hhmm >= self.table.close(date):
++            # post-close phantom class (e.g. 15:30 on a 13:00 close):
++            # excluded by admission, exactly as the capture gates do.
++            self.seen_stamps.add(key)
++            if self.last_stamp is None or key > self.last_stamp:
++                self.last_stamp = key
++            events.append({"type": "EXCLUDED_POSTCLOSE",
++                           "symbol": self.symbol, "stamp": stamp})
++            # a post-close stamp seals the date: last_stamp has
++            # advanced past the close, so no further admitted bar
++            # can ever arrive for it — finalize causally now.
++            self._emit_ready_bins(date, events, sealed=True)
++            self._maybe_finalize_earlier(date, events)
++            return events
++        if date in self.finalized:
++            events.append(self._reject(REJ_LATE_BAR, stamp,
++                                       "session already finalized — "
++                                       "no backfill"))
++            return events
+         if self.last_stamp is not None and key <= self.last_stamp:
+             events.append(self._reject(REJ_OUT_OF_ORDER, stamp,
+                                        "stamp not after last processed "
+@@ -263,15 +324,6 @@
+             return events
+         expected = self.table.expected_starts(date)
+         if hhmm not in expected:
+-            if hhmm >= self.table.close(date):
+-                # post-close phantom class (e.g. 15:30 on a 13:00 close):
+-                # excluded by admission, exactly as the capture gates do.
+-                self.seen_stamps.add(key)
+-                self.last_stamp = key
+-                events.append({"type": "EXCLUDED_POSTCLOSE",
+-                               "symbol": self.symbol, "stamp": stamp})
+-                self._maybe_finalize_earlier(date, events)
+-                return events
+             events.append(self._reject(
+                 REJ_OFF_GRID, stamp,
+                 "stamp outside the pinned session grid (pre-open or "
+@@ -291,48 +343,114 @@
+         self.last_stamp = key
+         self.accepted.setdefault(date, {})[hhmm] = {
+             "Open": o, "High": h, "Low": l, "Close": c, "Volume": v}
++        # CAUSAL EMISSION (-17): finalize any bin whose full membership
++        # is now strictly known, at this admission — not at the next
++        # session's first bar.
++        self._emit_ready_bins(date, events)
+         self._maybe_finalize_earlier(date, events)
+         return events
+ 
++    def _build_bar(self, date, bstart, bend, members):
++        """Construct one corrected 4H bar from admitted rows only.
++        SessionVWAP is cumulative over the session up to this bin's
++        last member — identical arithmetic to the -15/-16 batch build."""
++        rows = self.accepted.get(date, {})
++        expected = self.table.expected_starts(date)
++        ordered = [(s, rows[s]) for s in expected if s in rows]
++        bin_rows = [r for s, r in ordered if s in members]
++        upto = [r for s, r in ordered if s <= members[-1]]
++        pv = sum(((r["High"] + r["Low"] + r["Close"]) / 3.0)
++                 * r["Volume"] for r in upto)
++        vv = sum(r["Volume"] for r in upto)
++        return {"symbol": self.symbol,
++                "ts": pd.Timestamp(f"{date} {bstart}").tz_localize(ET),
++                "decision_instant":
++                    pd.Timestamp(f"{date} {bend}").tz_localize(ET),
++                "Open": bin_rows[0]["Open"],
++                "High": max(r["High"] for r in bin_rows),
++                "Low": min(r["Low"] for r in bin_rows),
++                "Close": bin_rows[-1]["Close"],
++                "Volume": sum(r["Volume"] for r in bin_rows),
++                "SessionVWAP": pv / vv if vv > 0 else float("nan")}
++
++    def _emit_ready_bins(self, date, events, sealed=False):
++        """Emit every bin of `date` whose membership is strictly known
++        complete, in bin order, at the moment of knowledge. A bin with
++        a missing member fails the session closed iff the bin's close
++        has provably passed: a stamp at or beyond the bin end has been
++        admitted (the missing member could now only arrive out-of-
++        order and be rejected), or the date is sealed (a post-close
++        stamp advanced last_stamp past the close), or the backstop
++        finalizes the date. A missing member inside a still-open bin
++        does NOT kill the session early — the late member is refused
++        OUT_OF_ORDER if offered, exactly as in -15/-16; the bin simply
++        never emits, and the failure is declared when the bin close
++        passes or the backstop runs."""
++        if date in self.finalized:
++            return
++        rows = self.accepted.get(date, {})
++        bins = self.table.bins(date)
++        emitted = self.emitted_bins.setdefault(date, set())
++        for idx, (bstart, bend, members) in enumerate(bins):
++            if idx in emitted:
++                continue
++            if all(m in rows for m in members):
++                bar = self._build_bar(date, bstart, bend, members)
++                events.append({"type": "BAR", "symbol": self.symbol,
++                               "bar": bar,
++                               "emitted_at": f"{date} {bend}",
++                               "emission": "BIN_CLOSE_CAUSAL"})
++                emitted.add(idx)
++                continue
++            if sealed or any(s >= bend for s in rows):
++                expected = self.table.expected_starts(date)
++                # `missing` = the PROVABLY absent hours at this moment:
++                # every expected start the feed has already passed
++                # (a later stamp is admitted, or the date is sealed).
++                # Hours not yet due are not yet missing — the session
++                # is dead, so they will be refused as LATE_BAR if ever
++                # offered, but they are not counted here.
++                if sealed:
++                    missing = [s for s in expected if s not in rows]
++                else:
++                    horizon = max(rows)
++                    missing = [s for s in expected
++                               if s not in rows and s < horizon]
++                self.finalized[date] = False
++                events.append({"type": "SESSION_INCOMPLETE",
++                               "symbol": self.symbol, "date": date,
++                               "missing": missing,
++                               "present": sorted(rows),
++                               "emitted_bins": sorted(emitted)})
++                return
++            return  # earliest incomplete bin still fillable; wait
++        if len(emitted) == len(bins):
++            self.finalized[date] = True
++            events.append({"type": "SESSION_COMPLETE",
++                           "symbol": self.symbol, "date": date})
++
+     def _maybe_finalize_earlier(self, current_date, events):
+         for d in sorted(self.accepted):
+             if d < current_date and d not in self.finalized:
+                 events.extend(self._finalize_date(d))
+ 
+     def _finalize_date(self, date):
+-        """Emit the session's 4H bars iff the admitted set is exactly the
+-        pinned expected set; otherwise the session is a GAP (no bars)."""
++        """Backstop for a date that can no longer complete (a later
++        session has started, or flush()): any bin not already emitted
++        causally is a GAP — the session is incomplete, no backfill.
++        (Under causal emission a complete session has already emitted
++        all bins and set finalized[date]=True before this can run.)"""
++        if date in self.finalized:
++            return []
+         rows = self.accepted.get(date, {})
+         expected = self.table.expected_starts(date)
+-        if sorted(rows) != expected:
+-            self.finalized[date] = False
+-            return [{"type": "SESSION_INCOMPLETE", "symbol": self.symbol,
+-                     "date": date,
+-                     "missing": [s for s in expected if s not in rows],
+-                     "present": sorted(rows)}]
+-        self.finalized[date] = True
+-        events = [{"type": "SESSION_COMPLETE", "symbol": self.symbol,
+-                   "date": date}]
+-        ordered = [(s, rows[s]) for s in expected]
+-        for bstart, bend, members in self.table.bins(date):
+-            bin_rows = [r for s, r in ordered if s in members]
+-            upto = [r for s, r in ordered if s <= members[-1]]
+-            pv = sum(((r["High"] + r["Low"] + r["Close"]) / 3.0)
+-                     * r["Volume"] for r in upto)
+-            vv = sum(r["Volume"] for r in upto)
+-            bar = {"symbol": self.symbol,
+-                   "ts": pd.Timestamp(f"{date} {bstart}").tz_localize(ET),
+-                   "decision_instant":
+-                       pd.Timestamp(f"{date} {bend}").tz_localize(ET),
+-                   "Open": bin_rows[0]["Open"],
+-                   "High": max(r["High"] for r in bin_rows),
+-                   "Low": min(r["Low"] for r in bin_rows),
+-                   "Close": bin_rows[-1]["Close"],
+-                   "Volume": sum(r["Volume"] for r in bin_rows),
+-                   "SessionVWAP": pv / vv if vv > 0 else float("nan")}
+-            events.append({"type": "BAR", "symbol": self.symbol,
+-                           "bar": bar})
+-        return events
++        self.finalized[date] = False
++        return [{"type": "SESSION_INCOMPLETE", "symbol": self.symbol,
++                 "date": date,
++                 "missing": [s for s in expected if s not in rows],
++                 "present": sorted(rows),
++                 "emitted_bins": sorted(self.emitted_bins.get(date,
++                                                              set()))}]
+ 
+     def flush(self):
+         events = []
+@@ -544,12 +662,33 @@
+             return False
+         return True
+ 
++    def _journal_event(self, ev, market_time):
++        """Journal one feed event. -17: BAR events carry their FULL bar
++        payload (the -15/-16 journal excluded it, which made journal-
++        only replay impossible)."""
++        payload = {k: v for k, v in ev.items()
++                   if k not in ("type", "bar")}
++        if ev["type"] == "BAR":
++            bar = ev["bar"]
++            payload["bar"] = {
++                "symbol": bar["symbol"], "ts": str(bar["ts"]),
++                "decision_instant": str(bar["decision_instant"]),
++                "Open": bar["Open"], "High": bar["High"],
++                "Low": bar["Low"], "Close": bar["Close"],
++                "Volume": bar["Volume"],
++                "SessionVWAP": bar["SessionVWAP"]}
++        self.journal.append(ev["type"], market_time, payload)
++
+     def ingest(self, symbol, row):
+         out = []
++        # -17 INPUT RECEIPT: every raw row is journaled BEFORE
++        # processing, in arrival order, so the journal alone is a
++        # complete, hash-chained record of everything the observer
++        # consumed (accepted, excluded and rejected rows alike).
++        self.journal.append("INPUT", row.get("datetime", ""),
++                            {"symbol": symbol, "row": dict(row)})
+         for ev in self.feeds[symbol].ingest(row):
+-            self.journal.append(ev["type"], row.get("datetime", ""),
+-                                {k: v for k, v in ev.items()
+-                                 if k not in ("type", "bar")})
++            self._journal_event(ev, row.get("datetime", ""))
+             out.append(ev)
+             if ev["type"] == "BAR":
+                 bar = ev["bar"]
+@@ -574,9 +713,7 @@
+         out = []
+         for sym in sorted(self.feeds):
+             for ev in self.feeds[sym].flush():
+-                self.journal.append(ev["type"], ev.get("date", ""),
+-                                    {k: v for k, v in ev.items()
+-                                     if k not in ("type", "bar")})
++                self._journal_event(ev, ev.get("date", ""))
+                 out.append(ev)
+                 if ev["type"] == "BAR":
+                     bar = ev["bar"]
+@@ -628,6 +765,8 @@
+                          for b in bars] for s, bars in self.bars.items()},
+             "feeds": {s: {"accepted": f.accepted,
+                           "finalized": f.finalized,
++                          "emitted_bins": {d: sorted(v) for d, v in
++                                           f.emitted_bins.items()},
+                           "poison": f.poison,
+                           "last_stamp": f.last_stamp,
+                           "seen_stamps": sorted(f.seen_stamps)}
+@@ -684,6 +823,8 @@
+             f.accepted = {d: dict(rows) for d, rows in
+                           fs["accepted"].items()}
+             f.finalized = dict(fs["finalized"])
++            f.emitted_bins = {d: set(v) for d, v in
++                              fs.get("emitted_bins", {}).items()}
+             f.poison = tuple(fs["poison"]) if fs["poison"] else None
+             f.last_stamp = tuple(fs["last_stamp"]) if fs["last_stamp"] \
+                 else None
+@@ -705,3 +846,47 @@
+                                   else _ts(r["exit_time"]))}
+         obs.decision_events = state["decision_events"]
+         return obs
++
++
++# ------------------------------------------------------------- replay (-17)
++def replay_journal(journal_path, anchor_path, table, pb, symbols,
++                   out_journal_path, out_anchor_path,
++                   sentinel_path=None, armed=False):
++    """Rebuild a complete run from its journal ALONE (-17 provenance
++    proof). The journal's INPUT records are the immutable input
++    receipts; SEALED records mark the points where the original run
++    called flush(). Replaying the INPUT payloads in journal order
++    (with flush() at each SEALED) through a fresh observer must
++    reproduce the original journal BYTE-IDENTICALLY — every BAR
++    payload, rejection, decision and chain hash included. Returns
++    (ok, info); ok is True only on byte identity after the source
++    journal itself verifies against its external anchor."""
++    ok, info = Journal.verify(journal_path, anchor_path)
++    if not ok:
++        return False, {"source_journal_verify": info}
++    with open(journal_path) as f:
++        recs = [json.loads(ln) for ln in f.read().splitlines()]
++    j2 = Journal(out_journal_path, out_anchor_path)
++    obs = ForwardObserver(table, j2, pb, symbols,
++                          sentinel_path=sentinel_path, armed=armed)
++    n_inputs = 0
++    for rec in recs:
++        if rec["type"] == "INPUT":
++            obs.ingest(rec["payload"]["symbol"], rec["payload"]["row"])
++            n_inputs += 1
++        elif rec["type"] == "SEALED":
++            obs.flush()
++    j2.close()
++    with open(journal_path, "rb") as f:
++        orig_bytes = f.read()
++    with open(out_journal_path, "rb") as f:
++        replay_bytes = f.read()
++    same = orig_bytes == replay_bytes
++    return same, {"inputs_replayed": n_inputs,
++                  "records_original": len(recs),
++                  "records_replay": len(j2.records),
++                  "byte_identical": same,
++                  "journal_sha256_original":
++                      hashlib.sha256(orig_bytes).hexdigest(),
++                  "journal_sha256_replay":
++                      hashlib.sha256(replay_bytes).hexdigest()}

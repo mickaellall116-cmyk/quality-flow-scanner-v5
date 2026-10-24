@@ -1,0 +1,11 @@
+VERDICT (re-derived by report17 from the artifact): STOP_DECISION_PARITY_FAILURE
+REASONS:
+- missing section: config_pins
+- missing section: closes_identity
+- missing section: field_census
+- missing section: reference_selfcheck
+- decision_mismatches=201
+- terminal mismatch views=['gross', '4bps', '25bps']
+- terminal inventories differ
+- C0 observer counts={'taken_count': 192, 'skipped_cap': 328, 'skipped_risk': 70} != 193/323/74
+- recorded problems: ['portfolio decision parity failure']

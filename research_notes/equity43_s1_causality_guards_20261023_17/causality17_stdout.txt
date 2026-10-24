@@ -1,0 +1,13 @@
+PASS FB1_old_observer_bin_close_latency bars after all 2024-03-07 rows=0 (defect: bin1 unavailable at 13:30), bars after next session's first row=2
+PASS FB2_old_journal_replay_insufficient INPUT records=0, BAR records=2, BAR payloads present=False (defect: journal-only replay impossible)
+PASS PA1_bin_emitted_at_close_no_flush bin1 emitted during ingest of 2024-03-07 12:30:00: True; bars=2 session_complete=1 before any flush/next-day row
+PASS PA2_flush_adds_no_bars bars without flush=4, bars added by flush=0
+PASS PA3_early_close_1300_bin bars=1 decision_instant=2024-11-29 13:00:00-05:00 excluded=1
+PASS PA4_dst_both_directions 2024-03-08: bars=2 off_ok=True; 2024-03-11: bars=2 off_ok=True; 2024-11-01: bars=2 off_ok=True; 2024-11-04: bars=2 off_ok=True
+PASS PA5_gap_bin1_fails_closed incomplete known by 13:30 admission=True, total incomplete=1, bars=2 (03-08 only), late bar rejected=1
+PASS PA6_gap_bin2_completed_bin1_stands bars=1 (bin1 only, emitted at its close), incomplete=1 missing=['14:30']
+PASS PA7_outage_sealed_no_backfill sealed at next session's first bar, missing=['11:30', '12:30', '13:30', '14:30', '15:30'], backfill rejected=1
+PASS PA8_journal_only_replay_byte_identical INPUT=1047/1047 rows, BAR payloads complete=True, decision_events=8, replay={'inputs_replayed': 1047, 'records_original': 1505, 'records_replay': 1505, 'byte_identical': True, 'journal_sha256_original': '8a7dea451a65548fa8e501999c41c056cd435c1041c297da8e488f643da89103', 'journal_sha256_replay': '8a7dea451a65548fa8e501999c41c056cd435c1041c297da8e488f643da89103'}
+PASS PA9_replay_refuses_tampered_journal replay ok=False (must be False), info={'source_journal_verify': {'first_bad_seq': 3, 'reason': 'chain break / record tampered'}}
+PASS PA10_journal_bar_payloads_are_the_bars journal BAR payloads=299, observer bars=299, identical=True
+SUMMARY 12/12 checks passed
