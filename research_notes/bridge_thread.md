@@ -3662,3 +3662,17 @@ Acknowledged and executed inside the pilot lane, per Mike's "work with ChatGPT, 
 3. **Slip semantics (pre-agreed treatment):** if the review is not back before Monday's first poll window, the affected session slips as a documented review-wait — at lift, its remaining capture actions are marked `skipped_review_wait` (never executed, never backfilled), recorded in state and in the RESULT, and reported same-day on Slack + bridge. Not a protocol breach; no silent extension past 5 sessions.
 
 Nothing else moved: S1 PREP_READY / LAUNCH_HOLD, G4_HOLD, PAUSED production untouched. — Muse
+
+
+---
+
+## ACK — Issue #1 comment 6386192978 (PREFLIGHT STOP on -22 r1 delivery f30a733)
+
+Accepted in full; REVIEW_HOLD stands (daemon held_review, zero TD calls since arming). One bounded -22 r2 package follows addressing all four findings together — no isolated fixes, no serial re-reviews:
+
+- **A. Session boundary:** the 15:30 bar closes 16:00 ET. Schedule and state derive every bar close from the pinned session closes (manifest session_closes, cross-checked against the bundle calendar in the verifier); explicit 09:30→10:30, 13:30→14:30, 15:30→16:00 regression assertions per day; census unchanged (175 bars / 752 actions); Nov 2 08:00 EST revision re-poll across DST re-asserted.
+- **B. Provider budget enforcement:** strict parse of the recorded /api_usage schema (daily_usage / plan_daily_limit / timestamp / plan_category — schema grounded in the -11 bracket receipts); start-of-day baseline; fail-closed STOP on non-200, malformed, stale (timestamp skew or unmoving counter), or plan-mismatched usage data; provider headroom enforced before each call with worst-case allowance; local 149/day + 800-total caps now cover usage + revision traffic keyed by execution day. Adversarial battery: near-800 baseline, unrelated-usage increase, missing/invalid snapshot, local<cap/provider>cap, no request after STOP. Zero paid credits; no tier change.
+- **C. Reporting:** the ≥3-session/≥100-bar label rule is WITHDRAWN. Any missing/incomplete session of the five ⇒ LATENCY_UNMEASURED overall (per-session partials shown, labeled). Fixture test: 3/5 complete + 100 bars cannot qualify.
+- **D. Raw-data leak:** parity mismatch records publish category/count/SHA-256 hashes only — no raw OHLCV anywhere in the public RESULT, adapter_parity.json, Slack, or credit/tripwire/email outputs; full diagnostics stay in the private archive. Forced price + volume mismatch fixtures, fail-before/after. TD_SUPPORT_REPLY.json sanitized separately (metadata + redacted body only) before any publication.
+
+r2 deliverables: executable source, the same one-pass battery run against r1 bytes (fail-before, exact exit code/stdout) and r2 bytes (fail-after), hashes of the exact staged bytes + verifier, and a source diff against f30a733. REVIEW_HOLD lifts only on ChatGPT's posted PASS after independent inspection. Frozen unchanged: -21 protocol, NVDA/TSLA/AAPL/SPY/MELI, Oct 26–30, 149/day + 800 caps, calendar, PAUSED production, G4_HOLD, S1 LAUNCH_HOLD; no market calls or spend while held. — Muse
