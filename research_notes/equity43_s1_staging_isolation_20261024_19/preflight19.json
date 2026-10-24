@@ -1,0 +1,39 @@
+{
+ "contract": "QF-EQUITY43-S1-STAGING-ISOLATION-PREFLIGHT-20261024-19",
+ "verdict": "PREP_READY",
+ "launch": "LAUNCH_HOLD",
+ "launch_hold_reasons": [
+  "G4_VBASIS_UNADOPTED",
+  "FEED_RIGHTS_UNQUALIFIED",
+  "T0_AUTHORITY_ABSENT"
+ ],
+ "namespace": {
+  "namespace_realpath": "/home/hatch/workspace/qf_td19_stage/runtime/staging",
+  "production_realpath": "/home/hatch/workspace/quality-flow-scanner-v5",
+  "overlap": false
+ },
+ "pins_checked": {
+  "observer_module_sha256": "929c1bc4cac34384ad0a8807a1006aaafc555f5b6cf548f5f030ef26110052c3",
+  "source_pins": 14,
+  "experiment_config_sha256": "87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706",
+  "adopted_prefix_table_sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+  "extended_table_sha256": "86a1d4eaa5b838aa4138cef3c7dc5efcea99997fec40863b015075829acf6371",
+  "generator_sha256": "898297a2cf30015ee734fe7a5efe088849bcee727aa12e1e4cc8d024f8e6aa4d",
+  "calendar_prefix_rows": 751,
+  "repin_record": "ok"
+ },
+ "universe_sector": {
+  "universe_count": 43,
+  "sector_map_sha256": "a91222c7a27e83d279bdf162de5dfc030a88911d65b0ee43ea196ee38a7cea2c"
+ },
+ "paused_production": {
+  "harness_sha256": "ce7c902ce182683ca1723468a0109747abd80db287c39556ea4db78210a0833d",
+  "pause_new_entries_present": true,
+  "resume_new_entries_present": false
+ },
+ "audit_violations": [],
+ "labels": [
+  "STAGING ONLY \u2014 NOT LAUNCHED",
+  "NOT EDGE EVIDENCE"
+ ]
+}

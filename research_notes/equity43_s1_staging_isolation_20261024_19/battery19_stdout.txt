@@ -1,0 +1,39 @@
+PASS clean_boot_prep_ready 
+PASS clean_boot_hold_reasons ['G4_VBASIS_UNADOPTED', 'FEED_RIGHTS_UNQUALIFIED', 'T0_AUTHORITY_ABSENT']
+PASS clean_boot_pins 
+PASS staging_processing_unreachable [STOP_LAUNCH_HOLD] processing is unreachable in a staging namespace (LAUNCH_HOLD)
+PASS repeated_boot_identical 
+PASS replay_idempotent_journal_bytes 1065893 bytes, 2790 records
+PASS replay_idempotent_signals 2 signal records
+PASS signal_record_keys_exact 
+PASS journal_chain_verifies {'records': 2790, 'head': 'f344d1228b5aa5ef04d8ed31ea2cba05c89f4d065a9bc5b22350a871334e29e6'}
+PASS concurrent_lock_refusal [STOP_LOCK_HELD] lock already held: /home/hatch/workspace/qf_td19_stage/runtime/battery/lock/.sta
+PASS lock_released_reboot_ok 
+PASS restart_journal_byte_identical 1065893 vs 1065893 bytes
+PASS crash_truncated_tail_fails_closed 
+PASS crash_resume_refused 
+PASS journal_tamper_detected {'first_bad_seq': 10, 'reason': 'chain break / record tampered'}
+PASS traversal_into_production [STOP_NAMESPACE_OVERLAP] namespace /home/hatch/workspace/quality-flow-scanner-v5/forward_test overlaps pr
+PASS symlink_escape_refused [STOP_NAMESPACE_ESCAPE] symlink inside namespace escapes: /home/hatch/workspace/qf_td19_stage/runtime/ba
+PASS namespace_inside_production [STOP_NAMESPACE_OVERLAP] namespace /home/hatch/workspace/quality-flow-scanner-v5/v54_forward/staging_x ov
+PASS shadow_prod_paused_ok 
+PASS production_pin_mutation_stops [STOP_PAUSED_PIN_DRIFT] harness 230035503536b86a2601a17acd9da6674f156b70c8baf69029a7c40580a95d58 != ce7c
+PASS missing_pause_sentinel_stops [STOP_PAUSED_PIN_DRIFT] PAUSE_NEW_ENTRIES presence differs from pin
+PASS calendar_sha_mismatch_stops [STOP_PIN_DRIFT] calendar extended_table_sha256: af04c26741788ef99ea1fc6a9b97b3428379629a77f48860
+PASS wrong_universe_stops [STOP_UNIVERSE] universe count/distinct = 44/44
+PASS planted_vendor_adapter_flagged ["engine/vendor_adapter.py: network imports ['requests']"]
+PASS planted_vendor_adapter_stops_preflight [STOP_AUDIT_SURFACE] engine/vendor_adapter.py: network imports ['requests']
+PASS accidental_network_attempt_none attempts=0
+PASS kill_switch_boot [STOP_KILLED] namespace KILL switch present
+PASS kill_switch_midrun [STOP_KILLED] namespace KILL switch present
+PASS kill_midrun_journal_still_verifies {'records': 85, 'head': '72458a71e1724c50466a1daa1e3cf57c610e120abc9ddcde5c799f5472483d35'}
+PASS t0_malformed_holds 
+PASS t0_forged_still_holds ['G4_VBASIS_UNADOPTED', 'FEED_RIGHTS_UNQUALIFIED']
+PASS t0_forged_processing_unreachable [STOP_LAUNCH_HOLD] processing is unreachable in a staging namespace (LAUNCH_HOLD)
+PASS journal_prepopulated_refused [STOP_JOURNAL_PREPOPULATED] journal/ is pre-populated: ['observer_journal.jsonl']
+PASS unknown_session_dates_rejected {'UNKNOWN_SESSION'}
+PASS unknown_date_not_session 
+PASS trace_no_simulator_execution simulators hit: set()
+PASS trace_signal_primitives_ran 
+PASS observer_has_no_order_surface []
+SUMMARY 38/38 PASS

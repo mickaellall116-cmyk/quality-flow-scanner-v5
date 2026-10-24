@@ -1,0 +1,148 @@
+{
+ "artifact": "INVENTORY19 \u2014 byte-identity inventory of the staging bundle",
+ "task": "QF-EQUITY43-S1-STAGING-ISOLATION-PREFLIGHT-20261024-19 r1",
+ "bundle_root_in_package": "bundle/",
+ "designated_staging_namespace": "/home/hatch/workspace/qf_td19_stage/runtime/staging",
+ "files": [
+  {
+   "path": "DEPENDENCY_LOCK.json",
+   "sha256": "bf92a604aec651911297da309cc708a0b2e3a4a520100d5c7c52a80d1d32b3ec",
+   "bytes": 735,
+   "provenance": "authored this task (environment of record for the offline battery)"
+  },
+  {
+   "path": "staging_gate19.py",
+   "sha256": "a12ab95c615e7bf277b2fd1daf94041c8770e623590fd45f1a77a1f1868b7748",
+   "bytes": 22638,
+   "provenance": "authored this task (the bundle's only entry point)"
+  },
+  {
+   "path": "observer/fwd_observer17.py",
+   "sha256": "929c1bc4cac34384ad0a8807a1006aaafc555f5b6cf548f5f030ef26110052c3",
+   "bytes": 42560,
+   "provenance": "-18 package 19cd5ae fork copy (byte-identical to -17 package file)"
+  },
+  {
+   "path": "engine/asof_benchmark.py",
+   "sha256": "f0f4582c4a8aee484c24d330658b0c4ae6e2a169c19f3bf2b1475c2dc2ce2017",
+   "bytes": 2930,
+   "provenance": "-17 stage harness root"
+  },
+  {
+   "path": "engine/pine_backtest.py",
+   "sha256": "874d2a9b1d99171a4d3db709ece9ce4719b4d108a70f7e95b4a082692cc0c99d",
+   "bytes": 21111,
+   "provenance": "-17 stage harness engine_successor (pinned -13 successor engine)"
+  },
+  {
+   "path": "engine/scanner_rules.py",
+   "sha256": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c",
+   "bytes": 23625,
+   "provenance": "-17 stage harness engine_successor"
+  },
+  {
+   "path": "engine/pine_stack/pine_stack.py",
+   "sha256": "8d4a964fd7bb08b4a98a55eb7fae222157ae27f1a768f255e7cbc152c9d15b03",
+   "bytes": 23177,
+   "provenance": "-17 stage harness engine_successor"
+  },
+  {
+   "path": "engine/pine_ranking/pine_ranking.py",
+   "sha256": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+   "bytes": 15745,
+   "provenance": "-17 stage harness engine_successor"
+  },
+  {
+   "path": "engine/pine_signal_quality/pine_signal_quality.py",
+   "sha256": "b1b39ee8d0bd4bbb1387b3ce54c7345c1f8dd622f94a5ed390c989fed1d39e69",
+   "bytes": 9945,
+   "provenance": "-17 stage harness engine_successor"
+  },
+  {
+   "path": "engine/pine_exposure/pine_exposure.py",
+   "sha256": "9f646161c27f6b28febe0980d03665bc9c1502fb844d37be6fd1d72ee45102be",
+   "bytes": 16483,
+   "provenance": "-17 stage harness engine_successor"
+  },
+  {
+   "path": "lineage/engine_fork09/pine_backtest.py",
+   "sha256": "becea0824486003daef386b49e137a83ffdf22c1e2d145136498919102fc42f2",
+   "bytes": 17795,
+   "provenance": "-17 stage harness engine_fork09 (NOT imported by the bundle run path)"
+  },
+  {
+   "path": "lineage/engine_fork09/scanner_rules.py",
+   "sha256": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c",
+   "bytes": 23625,
+   "provenance": "-17 stage harness engine_fork09 (lineage only)"
+  },
+  {
+   "path": "lineage/engine_fork09/pine_stack/pine_stack.py",
+   "sha256": "30594231ffc3bac27303f96310e8f274229415c890c371f4dbdfcdb54156cda4",
+   "bytes": 20161,
+   "provenance": "-17 stage harness engine_fork09 (lineage only)"
+  },
+  {
+   "path": "lineage/engine_fork09/pine_ranking/pine_ranking.py",
+   "sha256": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+   "bytes": 15745,
+   "provenance": "-17 stage harness engine_fork09 (lineage only)"
+  },
+  {
+   "path": "lineage/engine_orig/pine_backtest.py",
+   "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+   "bytes": 16996,
+   "provenance": "-17 stage harness engine_orig (lineage only)"
+  },
+  {
+   "path": "lineage/engine_orig/pine_stack/pine_stack.py",
+   "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+   "bytes": 19161,
+   "provenance": "-17 stage harness engine_orig (lineage only)"
+  },
+  {
+   "path": "calendar/calendar_gen18.py",
+   "sha256": "898297a2cf30015ee734fe7a5efe088849bcee727aa12e1e4cc8d024f8e6aa4d",
+   "bytes": 6858,
+   "provenance": "-18 package 19cd5ae generator (provenance; not executed by the gate)"
+  },
+  {
+   "path": "calendar/observer_repin18.json",
+   "sha256": "f24a5f75ee459e65f3e51751055d709d26fb5fe9c8e79dedd402c400a0c466af",
+   "bytes": 886,
+   "provenance": "-18 package 19cd5ae repin record"
+  },
+  {
+   "path": "calendar/session_table_751_qualified.json",
+   "sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+   "bytes": 40118,
+   "provenance": "-17 stage harness session_table.json (adopted 751-session table of record, byte copy)"
+  },
+  {
+   "path": "calendar/session_table_extended_candidate.json",
+   "sha256": "86a1d4eaa5b838aa4138cef3c7dc5efcea99997fec40863b015075829acf6371",
+   "bytes": 56468,
+   "provenance": "-18 package 19cd5ae candidate table (CANDIDATE, not adopted)"
+  },
+  {
+   "path": "config/experiment_config.json",
+   "sha256": "911750faf7468b74d6ba47338226dc2d6ae90e249b24d6062055f2915515b6cb",
+   "bytes": 1691,
+   "provenance": "extracted verbatim from the -13 reference driver's EXPERIMENT_CONFIG (canonical hash = the -17 r2 config pin)"
+  },
+  {
+   "path": "config/universe43.json",
+   "sha256": "cc3f2f8a4daaad7e3445180aaa9958ab1bd36955e434650b3b186a6723c29711",
+   "bytes": 666,
+   "provenance": "-17 r2 inventory artifact universe list (43 symbols)"
+  },
+  {
+   "path": "pins/PINS19.json",
+   "sha256": "8809a752d4bd02977486f261422e65ee7dd5958501446caad329e779dde25538",
+   "bytes": 8781,
+   "provenance": "authored this task; values carried verbatim from the committed -17 r2 inventory + -18 package"
+  }
+ ],
+ "file_count": 23,
+ "note": "bytecode caches (__pycache__) are runtime byproducts and are excluded; the manifest binds source bytes only"
+}

@@ -1,0 +1,468 @@
+{
+ "modules": {
+  "staging_gate19.py": {
+   "imports": [
+    "ast",
+    "fwd_observer17",
+    "hashlib",
+    "json",
+    "os",
+    "pine_backtest",
+    "pine_exposure",
+    "sys"
+   ],
+   "functions": [
+    "__init__",
+    "_bundle_path",
+    "acquire_lock",
+    "build_observer",
+    "canon_hash",
+    "check_journal_fresh",
+    "check_kill",
+    "check_namespace",
+    "check_paused",
+    "check_pins",
+    "check_universe_and_sector",
+    "launch_hold_reasons",
+    "ns",
+    "preflight",
+    "release_lock",
+    "replay_synthetic",
+    "sha256_file",
+    "signal_record",
+    "static_audit"
+   ],
+   "sha256": "a12ab95c615e7bf277b2fd1daf94041c8770e623590fd45f1a77a1f1868b7748"
+  },
+  "observer/fwd_observer17.py": {
+   "imports": [
+    "hashlib",
+    "json",
+    "math",
+    "os",
+    "pandas"
+   ],
+   "functions": [
+    "__init__",
+    "_advance",
+    "_build_bar",
+    "_canon",
+    "_emit_decision",
+    "_emit_ready_bins",
+    "_finalize_date",
+    "_frame",
+    "_journal_event",
+    "_maybe_finalize_earlier",
+    "_mins",
+    "_reject",
+    "_sha",
+    "_ts",
+    "anchor",
+    "append",
+    "bars_frame",
+    "benchmark_asof",
+    "bins",
+    "candidates",
+    "close",
+    "daily_asof_rows",
+    "expected_starts",
+    "flush",
+    "gate_open",
+    "ingest",
+    "is_session",
+    "on_bar",
+    "replay_journal",
+    "restore",
+    "resume",
+    "snapshot",
+    "verify"
+   ],
+   "sha256": "929c1bc4cac34384ad0a8807a1006aaafc555f5b6cf548f5f030ef26110052c3"
+  },
+  "engine/asof_benchmark.py": {
+   "imports": [
+    "pandas"
+   ],
+   "functions": [
+    "_aggregate",
+    "build_daily_asof",
+    "build_daily_midnight"
+   ],
+   "sha256": "f0f4582c4a8aee484c24d330658b0c4ae6e2a169c19f3bf2b1475c2dc2ce2017"
+  },
+  "engine/pine_backtest.py": {
+   "imports": [
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "sys"
+   ],
+   "functions": [
+    "_outcome",
+    "add_pine_indicators",
+    "adx",
+    "atr",
+    "ema",
+    "gen_pine_trades",
+    "main",
+    "mark",
+    "marked_equity",
+    "pine_buy_signal",
+    "run_universe",
+    "simulate_portfolio",
+    "summarize"
+   ],
+   "sha256": "874d2a9b1d99171a4d3db709ece9ce4719b4d108a70f7e95b4a082692cc0c99d"
+  },
+  "engine/scanner_rules.py": {
+   "imports": [
+    "__future__",
+    "collections.abc",
+    "pandas",
+    "pandas_market_calendars",
+    "typing"
+   ],
+   "functions": [
+    "_close_at",
+    "_inside_buy_zone",
+    "_now_for_index",
+    "_nyse_calendar",
+    "_premarket_na",
+    "annotate_validation",
+    "bar_close_at",
+    "closed_higher_timeframe",
+    "completed_15m_confirmation",
+    "filter_buy_now",
+    "is_buy_now_result",
+    "is_structural_candidate",
+    "premarket_snapshot",
+    "previous_regular_close",
+    "resample_closed_4h",
+    "resample_closed_4h_session_anchored",
+    "risk_reward",
+    "session_close_et",
+    "timeframe_trend_confirmed",
+    "trade_levels",
+    "validation_reasons"
+   ],
+   "sha256": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c"
+  },
+  "engine/pine_stack/pine_stack.py": {
+   "imports": [
+    "collections",
+    "glob",
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "pine_backtest",
+    "pine_exposure",
+    "pine_ranking",
+    "pine_signal_quality",
+    "sys",
+    "traceback"
+   ],
+   "functions": [
+    "load_2022",
+    "load_bull",
+    "main",
+    "mark",
+    "marked_equity",
+    "run_case",
+    "simulate_stack"
+   ],
+   "sha256": "8d4a964fd7bb08b4a98a55eb7fae222157ae27f1a768f255e7cbc152c9d15b03"
+  },
+  "engine/pine_ranking/pine_ranking.py": {
+   "imports": [
+    "collections",
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "pine_backtest",
+    "pine_signal_quality",
+    "sys",
+    "traceback"
+   ],
+   "functions": [
+    "base_score",
+    "compute_features",
+    "gen_candidates",
+    "load_4h_cache",
+    "main",
+    "mark",
+    "marked_equity",
+    "pct_ranks",
+    "simulate_portfolio_ranked"
+   ],
+   "sha256": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6"
+  },
+  "engine/pine_signal_quality/pine_signal_quality.py": {
+   "imports": [
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "pine_backtest",
+    "sys",
+    "traceback"
+   ],
+   "functions": [
+    "bench_ret",
+    "extend_row",
+    "gen_trades",
+    "h1",
+    "h2",
+    "h3",
+    "load_4h_cache",
+    "load_benchmarks",
+    "main",
+    "make_filters",
+    "run_variant"
+   ],
+   "sha256": "b1b39ee8d0bd4bbb1387b3ce54c7345c1f8dd622f94a5ed390c989fed1d39e69"
+  },
+  "engine/pine_exposure/pine_exposure.py": {
+   "imports": [
+    "collections",
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "pine_backtest",
+    "sys",
+    "traceback"
+   ],
+   "functions": [
+    "__init__",
+    "_to_utc",
+    "dense_attribution",
+    "diagnose",
+    "g_corr70",
+    "g_mega3",
+    "g_sector2",
+    "gen_candidates",
+    "main",
+    "make_gates",
+    "mark",
+    "marked_equity",
+    "run",
+    "summarize",
+    "trailing_corr"
+   ],
+   "sha256": "9f646161c27f6b28febe0980d03665bc9c1502fb844d37be6fd1d72ee45102be"
+  },
+  "lineage/engine_fork09/pine_backtest.py": {
+   "imports": [
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "sys"
+   ],
+   "functions": [
+    "_outcome",
+    "add_pine_indicators",
+    "adx",
+    "atr",
+    "ema",
+    "gen_pine_trades",
+    "main",
+    "mark",
+    "marked_equity",
+    "pine_buy_signal",
+    "run_universe",
+    "simulate_portfolio",
+    "summarize"
+   ],
+   "sha256": "becea0824486003daef386b49e137a83ffdf22c1e2d145136498919102fc42f2"
+  },
+  "lineage/engine_fork09/scanner_rules.py": {
+   "imports": [
+    "__future__",
+    "collections.abc",
+    "pandas",
+    "pandas_market_calendars",
+    "typing"
+   ],
+   "functions": [
+    "_close_at",
+    "_inside_buy_zone",
+    "_now_for_index",
+    "_nyse_calendar",
+    "_premarket_na",
+    "annotate_validation",
+    "bar_close_at",
+    "closed_higher_timeframe",
+    "completed_15m_confirmation",
+    "filter_buy_now",
+    "is_buy_now_result",
+    "is_structural_candidate",
+    "premarket_snapshot",
+    "previous_regular_close",
+    "resample_closed_4h",
+    "resample_closed_4h_session_anchored",
+    "risk_reward",
+    "session_close_et",
+    "timeframe_trend_confirmed",
+    "trade_levels",
+    "validation_reasons"
+   ],
+   "sha256": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c"
+  },
+  "lineage/engine_fork09/pine_stack/pine_stack.py": {
+   "imports": [
+    "collections",
+    "glob",
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "pine_backtest",
+    "pine_exposure",
+    "pine_ranking",
+    "pine_signal_quality",
+    "sys",
+    "traceback"
+   ],
+   "functions": [
+    "load_2022",
+    "load_bull",
+    "main",
+    "mark",
+    "marked_equity",
+    "run_case",
+    "simulate_stack"
+   ],
+   "sha256": "30594231ffc3bac27303f96310e8f274229415c890c371f4dbdfcdb54156cda4"
+  },
+  "lineage/engine_fork09/pine_ranking/pine_ranking.py": {
+   "imports": [
+    "collections",
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "pine_backtest",
+    "pine_signal_quality",
+    "sys",
+    "traceback"
+   ],
+   "functions": [
+    "base_score",
+    "compute_features",
+    "gen_candidates",
+    "load_4h_cache",
+    "main",
+    "mark",
+    "marked_equity",
+    "pct_ranks",
+    "simulate_portfolio_ranked"
+   ],
+   "sha256": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6"
+  },
+  "lineage/engine_orig/pine_backtest.py": {
+   "imports": [
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "sys"
+   ],
+   "functions": [
+    "_outcome",
+    "add_pine_indicators",
+    "adx",
+    "atr",
+    "ema",
+    "gen_pine_trades",
+    "main",
+    "mark",
+    "marked_equity",
+    "pine_buy_signal",
+    "run_universe",
+    "simulate_portfolio",
+    "summarize"
+   ],
+   "sha256": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5"
+  },
+  "lineage/engine_orig/pine_stack/pine_stack.py": {
+   "imports": [
+    "collections",
+    "glob",
+    "json",
+    "numpy",
+    "os",
+    "pandas",
+    "pine_backtest",
+    "pine_exposure",
+    "pine_ranking",
+    "pine_signal_quality",
+    "sys",
+    "traceback"
+   ],
+   "functions": [
+    "load_2022",
+    "load_bull",
+    "main",
+    "mark",
+    "marked_equity",
+    "run_case",
+    "simulate_stack"
+   ],
+   "sha256": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa"
+  },
+  "calendar/calendar_gen18.py": {
+   "imports": [
+    "argparse",
+    "datetime",
+    "json"
+   ],
+   "functions": [
+    "_easter",
+    "_last_weekday",
+    "_new_years_observed",
+    "_nth_weekday",
+    "_observed",
+    "early_closes",
+    "generate",
+    "holidays",
+    "main"
+   ],
+   "sha256": "898297a2cf30015ee734fe7a5efe088849bcee727aa12e1e4cc8d024f8e6aa4d"
+  }
+ },
+ "violations": [],
+ "gate_imports": [
+  "ast",
+  "fwd_observer17",
+  "hashlib",
+  "json",
+  "os",
+  "pine_backtest",
+  "pine_exposure",
+  "sys"
+ ],
+ "observer_imports": [
+  "hashlib",
+  "json",
+  "math",
+  "os",
+  "pandas"
+ ],
+ "simulator_functions_present_in_pinned_sources": [
+  "_outcome",
+  "gen_pine_trades",
+  "load_2022",
+  "load_bull",
+  "main",
+  "run_case",
+  "run_universe",
+  "simulate_portfolio",
+  "simulate_stack",
+  "summarize"
+ ],
+ "note": "simulator functions exist inside the pinned engine sources (byte-identical, uneditable under the pins) but no bundle entry point imports pine_stack or calls them; the battery's execution trace proves they never run in the staging call graph."
+}
