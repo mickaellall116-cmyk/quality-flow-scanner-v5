@@ -1,0 +1,14 @@
+PASS file hashes (28 files) — all match
+PASS bundle pin observer — 929c1bc4cac34384ad0a8807a1006aaafc555f5b6cf548f5f030ef26110052c3
+PASS bundle pin staging_gate — aacc48517edd3abb29480dda6caa26036a865cc5d5f80219c952ae9371041865
+PASS bundle pin calendar — 86a1d4eaa5b838aa4138cef3c7dc5efcea99997fec40863b015075829acf6371
+PASS schedule census by kind — {'tripwire': 5, 'usage': 21, 'ladder': 525, 'finalization': 175, 'archive_push': 6, 'revision': 25}
+PASS schedule census total — total=757
+PASS expected bars — bars=175
+PASS cap constants — day=149 total=800
+PASS symbols pinned — ['NVDA', 'TSLA', 'AAPL', 'SPY', 'MELI']
+PASS sessions pinned — ['2026-10-26', '2026-10-27', '2026-10-28', '2026-10-29', '2026-10-30']
+PASS session_closes match bundle calendar — {'2026-10-26': '16:00', '2026-10-27': '16:00', '2026-10-28': '16:00', '2026-10-29': '16:00', '2026-10-30': '16:00'}
+PASS schedule derives 15:30 bar from 16:00 close (STOP 1)
+PASS pre_revision baseline precedes every revision batch (r2.1)
+VERIFY PASS

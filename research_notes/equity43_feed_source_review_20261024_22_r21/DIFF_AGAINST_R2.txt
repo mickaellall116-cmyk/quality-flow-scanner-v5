@@ -1,0 +1,504 @@
+diff -ruN --label a/source --label b/source a/source b/source
+--- a/source
++++ b/source
+@@ -16,6 +16,7 @@
+   posts        — Slack RESULT + bridge RESULT commit.
+ Idempotent: state/result_posted.json blocks re-posting."""
+ import hashlib
++import hmac
+ import importlib.util
+ import json
+ import os
+@@ -71,22 +72,65 @@
+     return "LATENCY_UNMEASURED"
+ 
+ 
+-def _vhash(v):
+-    """SHA-256 of a value's canonical repr — published in place of raw
+-    market values (STOP 4: derived-only public outputs)."""
+-    return hashlib.sha256(repr(v).encode()).hexdigest()
++_DIAG_KEY = None
++
++
++def _diag_key():
++    """Private HMAC key for diagnostic anchors. Lives ONLY in the
++    private archive namespace (or QF_DIAG_KEY_PATH in tests); never in
++    any public artifact. Generated once, stored 0600."""
++    global _DIAG_KEY
++    if _DIAG_KEY is None:
++        path = os.environ.get("QF_DIAG_KEY_PATH") or os.path.join(
++            ARCHIVE_NS, "diagnostic_key.hex")
++        try:
++            with open(path) as f:
++                _DIAG_KEY = bytes.fromhex(f.read().strip())
++        except Exception:
++            _DIAG_KEY = os.urandom(32)
++            try:
++                fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC,
++                             0o600)
++                with os.fdopen(fd, "w") as f:
++                    f.write(_DIAG_KEY.hex())
++            except Exception:
++                pass  # in-memory key still anchors this run's records
++    return _DIAG_KEY
++
++
++def _anchor(diag):
++    """Keyed HMAC-SHA256 over the FULL private diagnostic record
++    (r2.1, ruling 6387146941 residual 2). Unlike the r2 per-value
++    SHA-256 digests, a keyed anchor over the whole record is not
++    dictionary-reversible: prices/volumes are low-entropy, so any
++    unkeyed deterministic function of an individual raw field would
++    disclose it. The key never leaves private storage."""
++    msg = json.dumps(diag, sort_keys=True, default=str).encode()
++    return hmac.new(_diag_key(), msg, hashlib.sha256).hexdigest()
++
++
++def _public_mismatch(diag, sink):
++    """Split a full diagnostic record into (a) the private record,
++    appended to `sink` for private storage, and (b) the PUBLIC record:
++    category/count/coarse identifiers + the keyed anchor only — no raw
++    values, no per-value hashes."""
++    sink.append(diag)
++    pub = {k: diag[k] for k in ("symbol", "kind", "column", "bar",
++                                "stream_bars", "batch_bars")
++           if k in diag}
++    pub["diagnostic_anchor"] = _anchor(diag)
++    return pub
+ 
+ 
+ def sanitize_reply(raw):
+-    """Sanitized record of a filed TD support reply for the PUBLIC
+-    package (STOP 4: sanitize separately). Keeps sender domain, subject,
+-    date and a token-redacted body; drops headers, ids and any long
+-    token-like strings. If the body cannot be extracted, only metadata
+-    is filed (fail-closed — the raw +read output never publishes)."""
+-    import re
++    """Public record of a filed TD support reply: METADATA ONLY
++    (r2.1, ruling 6387146941 residual 3). Sender domain, receipt date
++    and the adjudication classification — never subject, never body
++    text, never any mailbox content. The full reply stays in private
++    storage; the watchdog's adjudication supplies the classification."""
+     if not isinstance(raw, dict):
+-        return {"note": "reply record unparseable; metadata only",
+-                "raw_sha256": _vhash(raw)}
++        return {"from_domain": None, "received_date": None,
++                "classification": "unparseable_metadata_only"}
+     def pick(*keys):
+         for k in keys:
+             if isinstance(raw.get(k), str) and raw[k]:
+@@ -95,15 +139,9 @@
+     sender = pick("from", "sender", "From") or ""
+     domain = sender.split("@")[-1].strip("> ").lower() if "@" in sender \
+         else None
+-    body = pick("body_text", "body", "text", "snippet")
+-    if body:
+-        body = re.sub(r"[A-Za-z0-9_\-]{24,}", "[REDACTED]", body)
+-        body = body[:8000]
+-    return {"from_domain": domain, "subject": pick("subject", "Subject"),
+-            "date": pick("date", "Date", "message_sent_at"),
+-            "body_text_redacted": body,
+-            "redaction": "token-like runs >=24 chars replaced; headers "
+-                         "and message ids never published"}
++    return {"from_domain": domain,
++            "received_date": pick("date", "Date", "message_sent_at"),
++            "classification": "filed_private_pending_adjudication"}
+ 
+ 
+ def load_json(p):
+@@ -282,19 +320,21 @@
+         if not (float(row_b["Open"]) == o and float(row_b["High"]) == h
+                 and float(row_b["Low"]) == lo
+                 and float(row_b["Close"]) == c):
+-            # STOP 4: hashes only — no raw OHLC in any public output.
++            # r2.1: full private diagnostic (raw values included) —
++            # the caller converts it to a public record (category +
++            # keyed anchor) and sinks this record privately.
+             return {"kind": "aggregation_value", "symbol": sym,
+                     "bar": str(stamp),
+-                    "agg_sha256": _vhash([o, h, lo, c]),
+-                    "batch_sha256": _vhash([float(row_b["Open"]),
+-                                            float(row_b["High"]),
+-                                            float(row_b["Low"]),
+-                                            float(row_b["Close"])])}
++                    "agg_values": [o, h, lo, c],
++                    "batch_values": [float(row_b["Open"]),
++                                     float(row_b["High"]),
++                                     float(row_b["Low"]),
++                                     float(row_b["Close"])]}
+         if abs(float(row_b["Volume"]) - v) > 1e-6:
+             return {"kind": "aggregation_volume", "symbol": sym,
+                     "bar": str(stamp),
+-                    "agg_volume_sha256": _vhash(v),
+-                    "batch_volume_sha256": _vhash(float(row_b["Volume"]))}
++                    "agg_volume": v,
++                    "batch_volume": float(row_b["Volume"])}
+     return None
+ 
+ 
+@@ -329,6 +369,7 @@
+     s_run = run_observer(stream_rows, workdir, "stream")
+     b_run = run_observer(final_rows, workdir, "batch")
+     mismatches = []
++    private_diags = []
+     for sym in sorted(set(s_run["frames"]) | set(b_run["frames"])):
+         sf, bf = s_run["frames"].get(sym), b_run["frames"].get(sym)
+         if sf is None or bf is None or len(sf) != len(bf) \
+@@ -341,13 +382,13 @@
+             if not (sf[col].to_numpy() == bf[col].to_numpy()).all():
+                 bad = (sf[col] != bf[col])
+                 idx = sf.index[bad][0]
+-                # STOP 4: publish category/count/hashes ONLY — the raw
+-                # values stay in the private archive diagnostics.
+-                mismatches.append({
++                # r2.1: the public record carries category + the keyed
++                # anchor only; the raw values go to the private sink.
++                mismatches.append(_public_mismatch({
+                     "symbol": sym, "kind": "value", "column": col,
+                     "bar": str(idx),
+-                    "stream_sha256": _vhash(float(sf[col].loc[idx])),
+-                    "batch_sha256": _vhash(float(bf[col].loc[idx]))})
++                    "stream_value": float(sf[col].loc[idx]),
++                    "batch_value": float(bf[col].loc[idx])}, private_diags))
+                 break
+     cand_s = sorted((c["symbol"], c["signal_idx"])
+                     for c in s_run["candidates"])
+@@ -361,7 +402,17 @@
+     # 13:30 bin = starts 13:30..15:30), plain pandas.
+     agg_mismatch = independent_aggregation(final_rows, b_run["frames"])
+     if agg_mismatch:
+-        mismatches.append(agg_mismatch)
++        mismatches.append(_public_mismatch(agg_mismatch, private_diags))
++    diag_written = False
++    if private_diags:
++        try:
++            with open(os.path.join(ARCHIVE_NS,
++                                   "parity_diagnostics.json"), "w") as f:
++                json.dump(private_diags, f, indent=1, sort_keys=True,
++                          default=str)
++            diag_written = True
++        except Exception:
++            diag_written = False
+     revised = sum(1 for b in st["bars"].values() if b["revisions"])
+     late = sum(1 for b in st["bars"].values()
+                if b["first_seen"] and b["missing_at_finalization"])
+@@ -373,6 +424,7 @@
+             "stream_rows_fed": len(stream_rows),
+             "batch_rows_fed": len(final_rows),
+             "stream_journal_verified": s_run["journal_ok"],
++            "private_diagnostics_written": diag_written,
+             "batch_journal_verified": b_run["journal_ok"],
+             "stream_candidates": len(cand_s), "batch_candidates": len(cand_b),
+             "revision_behavior_subcase": subcase,
+diff -ruN --label a/source --label b/source a/source b/source
+--- a/source
++++ b/source
+@@ -296,6 +296,15 @@
+                     "offset_s": FINALIZATION, "status": "pending"})
+         nxt = table_sessions[i + 1]
+         nday = datetime.fromisoformat(nxt).replace(tzinfo=ET)
++        # r2.1 (ruling 6387146941, residual 1): a same-day /api_usage
++        # baseline must exist BEFORE the 08:00 revision batch — the
++        # pre_revision usage action at 07:55 ET supplies it, and
++        # provider_precheck no longer exempts revision traffic.
++        actions.append({
++            "id": f"usage|{nxt}|pre_revision", "kind": "usage",
++            "session": nxt,
++            "due": iso(nday.replace(hour=7, minute=55)),
++            "tag": "pre_revision", "status": "pending"})
+         for sym in symbols:
+             actions.append({
+                 "id": f"rev|{d}|{sym}", "kind": "revision", "session": d,
+@@ -449,18 +458,17 @@
+ 
+     def provider_precheck(self, action, now):
+         """Provider-observed headroom BEFORE each non-usage call, with
+-        worst-case allowance for the rest of the execution day. The
+-        day's revision batch may precede the day's first reading (it is
+-        due 08:00, the first snapshot 09:25); everything else requires
+-        today's baseline."""
++        worst-case allowance for the rest of the execution day. EVERY
++        non-usage kind — revision traffic included — requires a fresh
++        same-day baseline: on revision days the 07:55 pre_revision
++        usage action supplies it before the 08:00 batch (r2.1, ruling
++        6387146941 residual 1; the r2 revision exemption is removed)."""
+         if action["kind"] == "usage":
+             return None
+         g = self.st.get("usage_guard") or {}
+         last = g.get("last")
+         today = now.astimezone(ET).date().isoformat()
+         if last is None or last.get("et_date") != today:
+-            if action["kind"] == "revision":
+-                return None
+             return "usage_baseline_missing_today"
+         effective = last["daily_usage"] + (
+             self.st["desk_calls"] - g["desk_calls_at_last"])
+diff -ruN --label a/source --label b/source a/source b/source
+--- a/source
++++ b/source
+@@ -115,13 +115,24 @@
+  "budget_enforcement": {
+   "provider_schema": "Recorded /api_usage shape (grounded in -11 bracket receipts 2026-10-23): {timestamp 'YYYY-MM-DD HH:MM:SS' UTC, current_usage int, plan_limit int, daily_usage int, plan_daily_limit int, plan_category str}. Strict parse (parse_usage_body); the day counter is daily_usage against plan_daily_limit.",
+   "rules": [
+-   "Start-of-day baseline: the day's first /api_usage snapshot (09:25 ET; Nov 2 closing snapshot 08:05) is parsed and recorded as the day baseline before any time_series call that day (the 08:00 revision batch may precede it; it is reconciled at the 09:25 reading).",
++   "Start-of-day baseline: the day's first /api_usage snapshot is parsed and recorded as the day baseline BEFORE any time_series call that day. Session days: 09:25 ET start snapshot (then 13:00 / 16:35). Revision days: a dedicated pre_revision snapshot at 07:55 ET precedes the 08:00 revision batch (Nov 2: 07:55 pre_revision + 08:05 pilot_close). r2.1 (ruling 6387146941 residual 1): NO kind is exempt \u2014 revision traffic requires the same fresh same-day baseline as session traffic; the r2 exemption (revision batch precedes the baseline, reconciled at 09:25) is REMOVED.",
++   "Revision gating (r2.1): provider_precheck refuses any revision call when the last validated usage reading is not from the same ET date (usage_baseline_missing_today, fail closed, pilot STOPs before the call). A malformed/non-200/near-cap 07:55 reading STOPs the pilot at that reading \u2014 zero revision calls follow.",
+    "Fail-closed STOP on: non-200 usage response; malformed/unparseable usage body; plan_daily_limit != 800; provider timestamp skew > 600s; provider counter unmoving across >=3 intervening non-usage calls (stale); provider undercount vs desk beyond tolerance 2 (ambiguous).",
+    "Provider headroom before each call: effective usage = last reading + desk calls since; STOP before the call if plan_daily_limit - effective < pending worst-case TD actions for the execution day.",
+    "External consumption: provider delta exceeding desk delta by > 2 is recorded as an external-usage event (state + journal); the headroom rule then decides stop/continue.",
+    "Local caps (unchanged values, widened scope): 800 pilot total + 149 per EXECUTION day, covering usage + revision traffic, keyed by the ET date the call executes.",
+    "Zero paid credits: Basic free tier only; no tier change, no spend."
+   ],
+-  "governing": "STOP 2, Issue #1 comment 6386192978 (the -21 protocol requires caps counted from /api_usage reads, not local logs)."
++  "governing": "STOP 2, Issue #1 comment 6386192978; r2.1 residual 1, Issue #1 comment 6387146941 (revision calls gated by the same provider-baseline enforcement; no exemptions)."
++ },
++ "r21_patch": {
++  "governing": "Issue #1 comment 6387146941 (ChatGPT r2 review: PARTIAL PASS, A+C confirmed; three residuals).",
++  "changes": [
++   "runner: pre_revision /api_usage action at 07:55 ET on each revision day (census 752 -> 757 actions; usage 16 -> 21; worst-case execution day 149 = frozen cap; worst-case total 746 <= 800); provider_precheck revision exemption removed.",
++   "finalize: per-value SHA-256 (_vhash) removed; public mismatch records carry category/count/coarse ids + keyed HMAC-SHA256 anchor over the full private diagnostic record (key private, archive-only); full diagnostics written to the private archive only.",
++   "finalize: sanitize_reply emits metadata only (from_domain, received_date, classification) \u2014 no subject, no body.",
++   "armed state: the 5 pre_revision actions inserted into state/pilot_state.json (desk_calls 0, all pending); daemon restarted on the r2.1 bytes."
++  ],
++  "hold": "REVIEW_HOLD unchanged \u2014 lifts only on ChatGPT's posted PASS after independent re-review of the r2.1 package."
+  }
+ }
+\ No newline at end of file
+diff -ruN --label a/source --label b/source a/source b/source
+--- a/source
++++ b/source
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Offline battery for the -22 pilot (r2) — stub transport, stub Gmail,
++"""Offline battery for the -22 pilot (r2.1) — stub transport, stub Gmail,
+ fake clock. Zero network, zero credential access. The SAME battery runs
+ against the r1 snapshot (fail-before) and the r2 source (fail-after);
+ the runner/finalize under test resolve from QF_STAGE_DIR, else from
+@@ -349,9 +349,10 @@
+ census = Counter(a["kind"] for a in pr.build_schedule(MANIFEST))
+ rev_final = [a for a in pr.build_schedule(MANIFEST)
+              if a["kind"] == "revision" and a["session"] == "2026-10-30"]
+-check("G schedule census: 752 actions; final-session revision re-poll "
++check("G schedule census: 757 actions (r2.1 recomputed: +5 pre_revision "
++      "usage); final-session revision re-poll "
+       "lands Mon 2026-11-02 08:00 EST; pilot_close + final push present",
+-      dict(census) == {"tripwire": 5, "usage": 16, "ladder": 525,
++      dict(census) == {"tripwire": 5, "usage": 21, "ladder": 525,
+                        "finalization": 175, "revision": 25,
+                        "archive_push": 6}
+       and len(rev_final) == 5
+@@ -547,19 +548,114 @@
+           and fin.latency_label_for(_full, {"reason": "x"})
+           == "LATENCY_UNMEASURED")
+ 
+-# ---- Scenario DL: raw-data leak closure (STOP 4)
++# ---- Scenario V: r2.1 residual 1 — revision traffic baseline gating
++if os.path.exists(pr.REVIEW_HOLD_PATH):
++    os.remove(pr.REVIEW_HOLD_PATH)
++if os.path.exists(pr.STOP_PATH):
++    os.remove(pr.STOP_PATH)
++pilot_v1 = pr.Pilot(MANIFEST, StubA(), pr.init_state(MANIFEST))
++rev_action = next(a for a in pilot_v1.st["actions"]
++                  if a["kind"] == "revision")
++pilot_v1.st["usage_guard"]["last"] = {
++    "et_date": "2026-10-26", "daily_usage": 100, "plan_daily_limit": 800}
++pilot_v1.st["usage_guard"]["desk_calls_at_last"] = \
++    pilot_v1.st["desk_calls"]
++now_v = datetime(2026, 10, 27, 8, 0, tzinfo=ET)
++pre_v1 = pilot_v1.provider_precheck(rev_action, now_v)
++check("V1 revision call with only a PRIOR-day baseline -> refused "
++      "usage_baseline_missing_today (no exemption)",
++      pre_v1 == "usage_baseline_missing_today", f"pre={pre_v1}")
++sched_v = pr.build_schedule(MANIFEST)
++from collections import Counter as _Counter
++cnt_v = _Counter(a["kind"] for a in sched_v)
++
++
++def _et_date(a):
++    return datetime.fromisoformat(a["due"]).astimezone(ET).date() \
++        .isoformat()
++
++
++rev_days_v = sorted({_et_date(a) for a in sched_v
++                     if a["kind"] == "revision"})
++order_ok = True
++for d in rev_days_v:
++    pres = [a for a in sched_v if a["kind"] == "usage"
++            and a.get("tag") == "pre_revision" and _et_date(a) == d]
++    revs = [a for a in sched_v if a["kind"] == "revision"
++            and _et_date(a) == d]
++    if len(pres) != 1 or not revs or not all(
++            pres[0]["due"] < r["due"] for r in revs):
++        order_ok = False
++check("V2 census 757 actions / 21 usage, and a 07:55 pre_revision "
++      "baseline precedes every 08:00 revision batch",
++      len(sched_v) == 757 and cnt_v["usage"] == 21 and order_ok,
++      f"n={len(sched_v)} usage={cnt_v['usage']} order_ok={order_ok}")
++pilot_v1.st["usage_guard"]["last"] = {
++    "et_date": "2026-10-27", "daily_usage": 5, "plan_daily_limit": 800}
++pre_v2 = pilot_v1.provider_precheck(rev_action, now_v)
++check("V2b fresh same-day baseline -> revision precheck passes",
++      pre_v2 is None, f"pre={pre_v2}")
++
++
++class StubC(StubA):
++    """Tue+ /api_usage reports 700 already consumed (near cap)."""
++
++    def __init__(self):
++        super().__init__()
++        self.series_days = []
++
++    def __call__(self, kind, params):
++        now = CLOCK["now"]
++        if kind == "usage" and now.astimezone(ET).date().isoformat() \
++                >= "2026-10-27":
++            ts = now.astimezone(timezone.utc).strftime(
++                "%Y-%m-%d %H:%M:%S")
++            return 200, json.dumps(
++                {"timestamp": ts, "current_usage": 700, "plan_limit": 8,
++                 "daily_usage": 700, "plan_daily_limit": 800,
++                 "plan_category": "basic"}).encode()
++        if kind != "usage":
++            self.series_days.append(
++                now.astimezone(ET).date().isoformat())
++        return super().__call__(kind, params)
++
++
++stub_c = StubC()
++pilot_v3 = pr.Pilot(MANIFEST, stub_c, pr.init_state(MANIFEST))
++CLOCK["now"] = datetime(2026, 10, 26, 9, 20, tzinfo=ET)
++res_v3 = drive(pilot_v3, datetime(2026, 10, 27, 8, 30, tzinfo=ET))
++check("V3 near-cap 07:55 baseline reading -> pilot STOPs at the "
++      "reading, ZERO revision (or any) series calls that day",
++      res_v3 == "stopped" and "2026-10-27" not in stub_c.series_days
++      and pilot_v3.st["stopped"] is not None
++      and "headroom" in pilot_v3.st["stopped"]["reason"],
++      f"res={res_v3} stopped={pilot_v3.st['stopped']} "
++      f"tue_series={stub_c.series_days.count('2026-10-27')}")
++
++# ---- Scenario DL: raw-data leak closure (STOP 4, tightened by r2.1)
+ if fin is None:
+     check("DL finalize importable for leak fixtures", False)
+ else:
+     import hashlib as _hl
+-    rec = None
+-    if hasattr(fin, "_vhash"):
+-        rec = {"stream_sha256": fin._vhash(777.77),
+-               "batch_sha256": fin._vhash(999.99)}
+-    check("DL1 mismatch records carry hashes, never raw values",
+-          rec is not None and len(rec["stream_sha256"]) == 64
+-          and "777.77" not in json.dumps(rec)
+-          and "999.99" not in json.dumps(rec))
++    diag_dl = {"symbol": "AAA", "kind": "value", "column": "Close",
++               "bar": "2026-10-26 12:30:00-04:00",
++               "stream_value": 777.77, "batch_value": 999.99}
++    sink_dl = []
++    pub_dl = fin._public_mismatch(diag_dl, sink_dl) \
++        if hasattr(fin, "_public_mismatch") else None
++    pub_blob = json.dumps(pub_dl) if pub_dl else ""
++    unkeyed_dl = {
++        _hl.sha256(repr(v).encode()).hexdigest()
++        for v in (777.77, 999.99)}
++    unkeyed_dl.add(_hl.sha256(json.dumps(
++        diag_dl, sort_keys=True, default=str).encode()).hexdigest())
++    check("DL1 mismatch records carry a KEYED opaque anchor, never raw "
++          "values, never unkeyed per-value or whole-record hashes",
++          pub_dl is not None and sink_dl == [diag_dl]
++          and len(pub_dl.get("diagnostic_anchor", "")) == 64
++          and "777.77" not in pub_blob and "999.99" not in pub_blob
++          and all(h not in pub_blob for h in unkeyed_dl),
++          f"pub={pub_dl}")
+     # end-to-end forced mismatch through the real adapter parity path
+     NS = os.path.join(TMP, "leak_ns")
+     os.makedirs(os.path.join(NS, "payloads"), exist_ok=True)
+@@ -621,25 +717,57 @@
+             f.write(json.dumps(rec_j) + "\n")
+     parity = fin.adapter_parity({"bars": bars})
+     blob = json.dumps(parity)
++    dict_hashes = set()
++    for v in (777.77, 999.99, 555555.0, 444444.0,
++              "777.77", "999.99", "555555", "444444"):
++        dict_hashes.add(_hl.sha256(repr(v).encode()).hexdigest())
++        dict_hashes.add(_hl.sha256(str(v).encode()).hexdigest())
+     check("DL2 forced price+volume mismatch -> ADAPTER_PARITY_FAIL with "
+-          "ZERO raw OHLCV in the public parity record",
++          "ZERO raw OHLCV and NO unkeyed per-value hash in the public "
++          "parity record (keyed anchor only)",
+           parity["verdict"] == "ADAPTER_PARITY_FAIL"
+           and parity["mismatch_count"] >= 2
+           and "777.77" not in blob and "999.99" not in blob
+           and "555555" not in blob and "444444" not in blob
+-          and "sha256" in blob,
++          and "diagnostic_anchor" in blob
++          and all(h not in blob for h in dict_hashes),
+           f"first_mismatch={parity['first_mismatch']}")
+     rep = fin.sanitize_reply(
+-        {"from": "Support <support@twelvedata.com>",
+-         "subject": "Re: API", "date": "Mon, 26 Oct 2026",
+-         "body_text": "ok ABCDEFGHIJKLMNOPQRSTUVWX123456 tail"}) \
++        {"from": "Jane Helper <jane@twelvedata.com>",
++         "subject": "Account 4451 reset code 8471",
++         "date": "Mon, 26 Oct 2026 09:02:00 -0400",
++         "body_text": "Hi Mike, call 561-555-0134. Code 8471. "
++                      "PLTR close printed 777.77."}) \
+         if hasattr(fin, "sanitize_reply") else {}
+-    check("DL3 TD reply sanitized before publication (domain + redacted "
+-          "body only, no token-like strings)",
++    rep_blob = json.dumps(rep)
++    check("DL3 TD reply public record is METADATA ONLY (sender domain + "
++          "receipt date + classification; no subject, no body, no "
++          "mailbox content)",
+           rep.get("from_domain") == "twelvedata.com"
+-          and "ABCDEFGHIJKLMNOPQRSTUVWX123456" not in
+-          json.dumps(rep) and "support@" not in json.dumps(rep),
++          and "classification" in rep
++          and set(rep) <= {"from_domain", "received_date",
++                           "classification"}
++          and all(s not in rep_blob for s in
++                  ("8471", "4451", "561-555-0134", "777.77", "Jane",
++                   "reset code")),
+           f"rep={rep}")
+ 
++# ---- S21: armed-state schedule consistency (live stage layout only)
++_state_path = os.path.join(BASE_DIR, "state", "pilot_state.json")
++if os.path.exists(_state_path):
++    _armed = json.load(open(_state_path))
++    _fresh = pr.init_state(MANIFEST)
++    _fa = sorted((a["id"], a["due"]) for a in _fresh["actions"])
++    _aa = sorted((a["id"], a["due"]) for a in _armed["actions"])
++    _closes_ok = all(
++        _armed["bars"][k]["close_utc"] == _fresh["bars"][k]["close_utc"]
++        for k in _fresh["bars"])
++    check("S21 armed state schedule == fresh pinned build (757 "
++          "actions; ids, dues, bar closes identical)",
++          _fa == _aa and _closes_ok and len(_aa) == 757,
++          f"armed={len(_aa)} closes_ok={_closes_ok}")
++else:
++    print("SKIP S21 armed-state check (no live state in this layout)")
++
+ print("SELFTEST", "PASS" if not fails else f"FAIL {fails}")
+ sys.exit(1 if fails else 0)
+diff -ruN --label a/source --label b/source a/source b/source
+--- a/source
++++ b/source
+@@ -101,5 +101,20 @@
+     "2026-10-28T15:00:00+00:00"
+ check("schedule derives 15:30 bar from 16:00 close (STOP 1)", spot)
+ 
++# r2.1 residual 1 cross-check: every revision batch is preceded, the
++# same UTC date, by a 07:55 ET pre_revision usage action (the same-day
++# baseline source for the provider gate).
++_sched21 = runner.build_schedule(cfg)
++_pre21 = [a for a in _sched21 if a.get("tag") == "pre_revision"]
++spot21 = len(_pre21) == 5 and \
++    _by_id.get("usage|2026-10-27|pre_revision", {}).get("due") == \
++    "2026-10-27T11:55:00+00:00" and \
++    _by_id.get("usage|2026-11-02|pre_revision", {}).get("due") == \
++    "2026-11-02T12:55:00+00:00" and \
++    all(p["due"] < r["due"] for p in _pre21 for r in _sched21
++        if r["kind"] == "revision" and r["due"][:10] == p["due"][:10])
++check("pre_revision baseline precedes every revision batch (r2.1)",
++      spot21)
++
+ print("VERIFY", "PASS" if not fails else f"FAIL {fails}")
+ sys.exit(1 if fails else 0)

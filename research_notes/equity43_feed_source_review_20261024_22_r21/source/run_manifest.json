@@ -1,0 +1,138 @@
+{
+ "authority": "Mike explicit GO in main chat, 2026-10-24 10:36 ET (\"Go\") \u2014 separate approved measurement scope under the frozen -21 protocol, given after the Twelve Data rights answers (AI-assistant provenance, filed in adjudication memo bridge 9dbf4fb) and flags were surfaced.",
+ "bundle_pins": {
+  "bundle_source_commit": "675aa91 (scanner repo, -19 r2 head)",
+  "observer_sha256": "929c1bc4cac34384ad0a8807a1006aaafc555f5b6cf548f5f030ef26110052c3",
+  "pin_verification": "all three rehashed in qf_feed_measure_stage/bundle at arm time 2026-10-24 and matching the -21 protocol S2/S3 pins",
+  "session_table_extended_candidate_sha256": "86a1d4eaa5b838aa4138cef3c7dc5efcea99997fec40863b015075829acf6371",
+  "staging_gate_sha256": "aacc48517edd3abb29480dda6caa26036a865cc5d5f80219c952ae9371041865"
+ },
+ "caps": {
+  "arithmetic": "5 symbols x 7 bars x 4 polls = 140 + revision 5 + /api_usage 4 = 149/day; 5 sessions worst case 745 <= 800",
+  "counted_from": "/api_usage provider reads (snapshots at session start, midday, end); desk call journal reconciled against provider deltas",
+  "credits_per_day_worst_case": 149,
+  "credits_pilot_total_hard_cap": 800
+ },
+ "finalization_offset_s": 1800,
+ "not_authorized": "No S1 activation, no T0, no positions/orders, no performance computation on captured bytes beyond protocol parity/coverage checks, no holdout reads, no production change. S1 PREP_READY / LAUNCH_HOLD and G4_HOLD unchanged regardless of outcome.",
+ "paused_reproof_at_arm": {
+  "checked": "2026-10-24 ~10:40 ET",
+  "pause_new_entries_present": true,
+  "pause_new_entries_sha256_prefix": "3f4b7811a577",
+  "resume_new_entries_present": false
+ },
+ "phase": "Gate B Phase B1 (pilot) + B2 (adapter parity) of QF-EQUITY43-FEED-QUALIFICATION-FRAME-20261024-21",
+ "poll_ladder_offsets_s": [
+  60,
+  180,
+  420
+ ],
+ "protocol_pin": {
+  "document": "research_notes/equity43_feed_qualification_frame_20261024_21/MEASUREMENT_PROTOCOL.md",
+  "package_commit": "c2b58d73dbb46a5f1da8e82b673af97635db9573"
+ },
+ "revision_repoll": "next session 08:00 ET per session (final: Mon 2026-11-02 08:00 ET for the 2026-10-30 session)",
+ "session_grid": "all 5 sessions regular 09:30-16:00 ET per -18 candidate table; 7 bars/symbol/session; closes 10:30,11:30,12:30,13:30,14:30,15:30,16:00 ET",
+ "sessions": [
+  "2026-10-26",
+  "2026-10-27",
+  "2026-10-28",
+  "2026-10-29",
+  "2026-10-30"
+ ],
+ "stop_conditions": [
+  "MEASUREMENT_PROTOCOL.md S10 verbatim: rights objection or vendor notice; observed usage trending past a cap; two consecutive 429 responses; first material semantic mismatch (S6, B2); any production-tree write attempt by the staging guard; any discovery that the tier in use does not cover a measured name",
+  "Mike-direction addition: if the outstanding Twelve Data email reply contradicts the AI-assistant answers on Q1-Q3, STOP at the next poll boundary and report immediately (watchdog-enforced)",
+  "hard credit caps: 149/day worst case, 800 pilot total, counted from /api_usage"
+ ],
+ "storage": {
+  "derived_evidence": "scanner repo evidence package (bar-free: censuses, quantiles, hashes)",
+  "raw_payloads": "PRIVATE qf-data-archive only: captures/td_feed_measure_pilot_20261026/ (journal.jsonl + payloads/); never public GitHub",
+  "staging_namespace": "/home/hatch/workspace/qf_feed_measure_stage (new, realpath-disjoint from production and all prior stages)"
+ },
+ "symbol_5_derivation": {
+  "full_table": "work/dev_median_volumes.json (stage)",
+  "median_daily_volume": 328352,
+  "method": "per-symbol daily total volume aggregated from pinned DEV 1h bytes (pilot bytes for NVDA/TSLA/AAPL/SPY from td_pilot_20261023; other 39 from td_capture_equity39_continue_20261023, archive bb644db), median over 524 DEV sessions each",
+  "rule": "MEASUREMENT_PROTOCOL.md S4: the one name from the 43-name scope with the lowest median DEV-window daily volume, computed from the pinned DEV bytes at GO time",
+  "runner_up": {
+   "median_daily_volume": 2531830,
+   "symbol": "NET"
+  },
+  "symbol": "MELI"
+ },
+ "symbols": [
+  "NVDA",
+  "TSLA",
+  "AAPL",
+  "SPY",
+  "MELI"
+ ],
+ "task": "QF-EQUITY43-FEED-MEASUREMENT-PILOT-20261024-22",
+ "tier": "Twelve Data Basic (free), 800 credits/day plan limit; internal non-display research use only; no commercial use of captured bytes; no redistribution",
+ "email_tripwire": {
+  "purpose": "TD support email reply may supersede/contradict the AI-assistant rights answers on record; capture proceeds each day only on a clean check.",
+  "check": "Daemon action kind=tripwire at 09:15 ET on each session day (before the 09:25 usage snapshot and all polls), plus the watchdog's independent Gmail checks. Search: hatch_gws_cli gmail +triage, query 'from:twelvedata.com after:2026/10/24', any twelvedata.com sender, message instant after the inquiry cutoff 2026-10-24T14:32:00Z (pre-cutoff messages excluded by timestamp filter; unknown-date messages treated as candidates, fail-closed).",
+  "clean": "No candidate message not already filed -> day's captures proceed.",
+  "reply_found": "Daemon fetches the full message (+read) into stage work/tripwire/reply_<id>.json and sets the HOLD: no TD calls execute while held. The watchdog adjudicates against the Q1-Q3 tests and writes state/tripwire_clear.json with per-message verdicts. Confirmed -> hold lifts, reply filed in the RESULT package as the governing source superseding the AI answer; polls that aged past the 900s lateness window during the hold are marked missed_late with cause tripwire_hold (honest gap, never backfilled). Contradiction -> TRIPWIRE FIRED stop; restart only after ChatGPT adjudication.",
+  "search_failure": "Fail-closed: a failed or unparseable search sets the hold with the error recorded; the watchdog surfaces it the same day.",
+  "contradiction_tests": {
+   "Q1": "Basic does NOT permit internal non-display processing/storage for evaluation/development.",
+   "Q2": "Private individual research / paper observation on Basic IS commercial/business use, or is not permitted.",
+   "Q3": "Retention/deletion duty stricter than delete-within-30-days after subscription end (audit trail excepted), or a bar on the existing private-archive storage during the term."
+  },
+  "stop_condition": "Staff reply received and adjudicated, or the 5th session ends Fri 2026-10-30. A silent mailbox settles nothing; the Q6 third-party-hosted-AI nuance remains open regardless.",
+  "wiring_proof": "2026-10-24 ~10:55 ET: the runner's own gmail_tripwire_search() executed live against Mike's mailbox returned [] (clean); offline selftest D1-D5 PASS (clean day, hold on reply, no calls while held, confirmed-clear with stale-marking, contradiction stop)."
+ },
+ "rights_addendum_q6": {
+  "provenance": "Mike screenshot (main chat, 2026-10-24 ~11:03 ET) of his follow-up with Twelve Data's 'Dooz' AI assistant on twelvedata.com",
+  "settles": "Q6 nuance left open by the earlier AI-assistant answers (whether transmitting Data to a third-party-hosted AI agent is disclosure)",
+  "points": [
+   "Private automated research on 1h data permitted \u2014 collect/process via /time_series for internal research/testing; Basic allows internal, non-display use for evaluation and development.",
+   "Storing raw data permitted internally while the subscription is active (testing, replay, development workflows).",
+   "AI processing (ChatGPT, Muse named explicitly): raw market data must remain in the private environment; sharing data with third parties \u2014 including external AI services \u2014 counts as REDISTRIBUTION and is not allowed on Basic. Safe approach: share only derived results that cannot be reverse-engineered back to the original data. Assistant confirmed the proposed model: raw data -> private infrastructure; AI agents -> only processed/derived results."
+  ],
+  "filing_note": "Confirms the operating model already in force under the governing GO (local deterministic capture/processing; raw bars/journals never to hosted AI contexts, public GitHub, or Slack; reviewers see non-reconstructible summaries/hashes only). Pilot complies as built; no change to scope, ladder, or caps.",
+  "standing_consequence": "Beyond the pilot: on Basic, no workflow may feed raw Twelve Data bars to any hosted AI agent \u2014 derived aggregates/hashes only.",
+  "q1_q3": "Remain as previously answered.",
+  "governing_document": "The staff email reply is still the governing document if it lands and differs.",
+  "filed": "Slack #qualityflowscaner + GitHub bridge record addition; carried in the pilot RESULT's rights section (RESULT.md + rights_record.json in the evidence package)."
+ },
+ "review_gate": {
+  "governing": "GitHub Issue #1 comment 6385813954 (ChatGPT bounded pre-flight review, 2026-10-24): measurement authorization acknowledged, safety implementation HOLD until the -22 source delivery exists and is source-reviewed; no first vendor call on bridge prose alone.",
+  "mechanism": "File state/REVIEW_HOLD in the pilot stage. While present, the daemon executes NO Twelve Data call (usage/ladder/finalization/revision all gated). Gmail tripwire checks and archive pushes still run. The frozen schedule, symbols and caps are untouched \u2014 the gate holds calls, not the schedule.",
+  "lift": "The file is removed only after ChatGPT's source review of the delivery (research_notes/equity43_feed_source_review_20261024_22/) is on the record \u2014 by the watchdog on an explicit clearance, or on Mike/parent direction.",
+  "slip_semantics": "At lift, any session whose finalization window fully passed while held is marked slipped_review_wait: its remaining capture actions become skipped_review_wait (never executed, never backfilled), recorded in state and in the RESULT. A first-session slip is a documented review-wait, not a protocol breach, and is reported same-day on Slack + bridge.",
+  "armed": "2026-10-24, before any Twelve Data call (first scheduled TD call would be Mon 2026-10-26 09:25 ET usage snapshot)."
+ },
+ "session_closes": {
+  "2026-10-26": "16:00",
+  "2026-10-27": "16:00",
+  "2026-10-28": "16:00",
+  "2026-10-29": "16:00",
+  "2026-10-30": "16:00"
+ },
+ "budget_enforcement": {
+  "provider_schema": "Recorded /api_usage shape (grounded in -11 bracket receipts 2026-10-23): {timestamp 'YYYY-MM-DD HH:MM:SS' UTC, current_usage int, plan_limit int, daily_usage int, plan_daily_limit int, plan_category str}. Strict parse (parse_usage_body); the day counter is daily_usage against plan_daily_limit.",
+  "rules": [
+   "Start-of-day baseline: the day's first /api_usage snapshot is parsed and recorded as the day baseline BEFORE any time_series call that day. Session days: 09:25 ET start snapshot (then 13:00 / 16:35). Revision days: a dedicated pre_revision snapshot at 07:55 ET precedes the 08:00 revision batch (Nov 2: 07:55 pre_revision + 08:05 pilot_close). r2.1 (ruling 6387146941 residual 1): NO kind is exempt \u2014 revision traffic requires the same fresh same-day baseline as session traffic; the r2 exemption (revision batch precedes the baseline, reconciled at 09:25) is REMOVED.",
+   "Revision gating (r2.1): provider_precheck refuses any revision call when the last validated usage reading is not from the same ET date (usage_baseline_missing_today, fail closed, pilot STOPs before the call). A malformed/non-200/near-cap 07:55 reading STOPs the pilot at that reading \u2014 zero revision calls follow.",
+   "Fail-closed STOP on: non-200 usage response; malformed/unparseable usage body; plan_daily_limit != 800; provider timestamp skew > 600s; provider counter unmoving across >=3 intervening non-usage calls (stale); provider undercount vs desk beyond tolerance 2 (ambiguous).",
+   "Provider headroom before each call: effective usage = last reading + desk calls since; STOP before the call if plan_daily_limit - effective < pending worst-case TD actions for the execution day.",
+   "External consumption: provider delta exceeding desk delta by > 2 is recorded as an external-usage event (state + journal); the headroom rule then decides stop/continue.",
+   "Local caps (unchanged values, widened scope): 800 pilot total + 149 per EXECUTION day, covering usage + revision traffic, keyed by the ET date the call executes.",
+   "Zero paid credits: Basic free tier only; no tier change, no spend."
+  ],
+  "governing": "STOP 2, Issue #1 comment 6386192978; r2.1 residual 1, Issue #1 comment 6387146941 (revision calls gated by the same provider-baseline enforcement; no exemptions)."
+ },
+ "r21_patch": {
+  "governing": "Issue #1 comment 6387146941 (ChatGPT r2 review: PARTIAL PASS, A+C confirmed; three residuals).",
+  "changes": [
+   "runner: pre_revision /api_usage action at 07:55 ET on each revision day (census 752 -> 757 actions; usage 16 -> 21; worst-case execution day 149 = frozen cap; worst-case total 746 <= 800); provider_precheck revision exemption removed.",
+   "finalize: per-value SHA-256 (_vhash) removed; public mismatch records carry category/count/coarse ids + keyed HMAC-SHA256 anchor over the full private diagnostic record (key private, archive-only); full diagnostics written to the private archive only.",
+   "finalize: sanitize_reply emits metadata only (from_domain, received_date, classification) \u2014 no subject, no body.",
+   "armed state: the 5 pre_revision actions inserted into state/pilot_state.json (desk_calls 0, all pending); daemon restarted on the r2.1 bytes."
+  ],
+  "hold": "REVIEW_HOLD unchanged \u2014 lifts only on ChatGPT's posted PASS after independent re-review of the r2.1 package."
+ }
+}

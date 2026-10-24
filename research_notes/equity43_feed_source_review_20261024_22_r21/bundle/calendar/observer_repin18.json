@@ -1,0 +1,16 @@
+{
+  "appended_sessions": 303,
+  "artifact": "XNYS_SESSION_TABLE_751_UNION_PLUS_S1_EXTENSION_CANDIDATE_20261024_18",
+  "calendar_version": "XNYS-751-UNION+S1EXT-CANDIDATE-20261024-18",
+  "contract": "QF-EQUITY43-S1-CALENDAR-EXTENSION-20261024-18",
+  "generator": "calendar_gen18.py",
+  "generator_sha256": "898297a2cf30015ee734fe7a5efe088849bcee727aa12e1e4cc8d024f8e6aa4d",
+  "observer_fork": "fwd_observer17.py (byte-identical copy of the -17 package file)",
+  "observer_fork_sha256": "929c1bc4cac34384ad0a8807a1006aaafc555f5b6cf548f5f030ef26110052c3",
+  "prefix_sessions": 751,
+  "session_count": 1054,
+  "status": "CANDIDATE \u2014 NOT ADOPTED; fork-local pin only",
+  "supersedes_table_sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+  "table_sha256": "86a1d4eaa5b838aa4138cef3c7dc5efcea99997fec40863b015075829acf6371",
+  "timezone": "America/New_York"
+}

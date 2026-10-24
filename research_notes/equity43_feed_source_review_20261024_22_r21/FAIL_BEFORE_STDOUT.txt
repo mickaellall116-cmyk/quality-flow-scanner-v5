@@ -1,0 +1,44 @@
+PASS A1 NVDA bar first seen at +180 rung — lag=181.0
+PASS A2 NVDA revision recorded at finalization — revisions=[{'receipt_utc': '2026-10-26T15:00:01+00:00', 'phase': 'finalization', 'action_id': 'fin|2026-10-26|NVDA|09:30', 'field_diffs': {'close': ['10.0', '10.5']}, 'from_hash': 'b811e0f95a7c14f541f2735e6583f0bbd06ae6f75988db22f58849d6be37cd58', 'to_hash': '227bc5e8d4015f0c3dc4e7c33ce248f6086a88389c1302ccdd0255c190875a27'}]
+PASS A3 MELI bar missing at finalization
+PASS A4 SPY last bar first seen, lag in [60,180) — lag=61.0
+PASS A5 usage snapshots start/midday/end recorded — ['start', 'midday', 'end']
+PASS A6 ladder stops at first sighting (skips exist) — skips=67
+PASS A7 desk calls within day cap — calls=76
+PASS A8 journal lines == desk calls — journal=76 calls=76
+PASS A9 revision re-poll executed for all 5 symbols — done=5
+PASS B1 two consecutive 429 -> stopped — stopped={'reason': 'usage_http_429', 'at': '2026-10-26T13:26:00+00:00'}
+PASS C1 total cap refusal
+PASS D1 clean mailbox -> tripwire clean, no hold — checks=[{'session': '2026-10-26', 'at_utc': '2026-10-26T13:16:00+00:00', 'candidates': [], 'outcome': 'clean'}]
+PASS D2 reply found -> hold set, run_due held — res=held hold=True
+PASS D3 while held, no TD calls execute — calls 8 -> 8
+PASS D4 confirmed clear -> hold lifted, reply filed, stale polls marked missed_late(tripwire_hold) — filed=[{'id': 'mX', 'filed_utc': '2026-10-27T16:00:00+00:00', 'reply_file': '/tmp/pilot_selftest_kmezuwfj/tripwire/reply_mX.json', 'from': 'Twelve Data <support@twelvedata.com>', 'subject': 'Re: API'}] stale=35
+PASS D5 contradiction verdict -> TRIPWIRE FIRED stop — stopped={'reason': 'TRIPWIRE FIRED — TD email reply contradicts the AI-assistant answers on Q1-Q3 (message mY); restart only after ChatGPT adjudication', 'at': '2026-10-26T13:16:00+00:00', 'tripwire_message_id': 'mY', 'tripwire_reply_file': '/tmp/pilot_selftest_kmezuwfj/tripwire/reply_mY.json'}
+PASS C2 day cap 149 hard refusal — cap_check=day_call_cap_149_reached:2026-10-26
+PASS D6 tripwire search error -> fail-closed hold, zero TD calls — res=held checks=[{'session': '2026-10-26', 'at_utc': '2026-10-26T13:16:00+00:00', 'outcome': 'search_failed', 'error': 'gmail cli unavailable (stub)'}]
+PASS E1 review HOLD: tripwire runs, zero TD calls, status held_review — res=held_review/held_review calls=0
+PASS E2 review clears before windows -> no slip, day proceeds — calls=1
+PASS E3 held through Mon -> session slips as review-wait at lift (148 actions skipped, archive push still ran, no Mon backfill, Tue proceeds) — skipped=148 push=done mon_seen=0 calls=1
+PASS F overdue polls marked missed_late and NEVER polled later; the bar surfaces only as spillover inside a later on-time payload, stamped with its true lag (no silent backfill) — statuses=['missed_late', 'missed_late', 'missed_late', 'missed_late'] first_seen={'receipt_utc': '2026-10-26T16:00:00+00:00', 'lag_s': 5400.0, 'via': 'finalization', 'action_id': 'fin|2026-10-26|NVDA|10:30', 'values': {'open': '9.9', 'high': '10.1', 'low': '9.8', 'close': '10.5', 'volume': '1000'}, 'hash': '227bc5e8d4015f0c3dc4e7c33ce248f6086a88389c1302ccdd0255c190875a27'}
+FAIL G schedule census: 757 actions (r2.1 recomputed: +5 pre_revision usage); final-session revision re-poll lands Mon 2026-11-02 08:00 EST; pilot_close + final push present — census={'tripwire': 5, 'usage': 16, 'ladder': 525, 'finalization': 175, 'archive_push': 6, 'revision': 25}
+PASS H production-path write rejection + raw-output destinations: every runner write path sits inside the stage; journal/payloads only inside the PRIVATE archive clone; none under the production scanner tree (journal writes follow the JOURNAL_PATH constant — proven functionally in A8 under a redirected path) — BASE=/home/hatch/workspace/qf_feed_measure_stage
+PASS A2 session boundary: 09:30->10:30, 12:30->13:30, 13:30->14:30, 15:30->16:00 closes every session day (final-bar fin due 16:30 ET, first ladder poll 16:01 ET — never 16:30 close / 17:00 fin)
+PASS U1 provider usage already near 800 -> STOP at baseline, refusal BEFORE any series call, no request after STOP — stopped={'reason': 'provider_headroom_exhausted:headroom_10_remaining_143', 'at': '2026-10-26T13:26:00+00:00'} series=0
+PASS U2 malformed usage body -> STOP usage_data_malformed, no calls — stopped={'reason': 'usage_data_malformed:Expecting value: line 1 column 1 (char 0)', 'at': '2026-10-26T13:26:00+00:00'}
+PASS U3 non-200 usage -> STOP usage_http_500, no series calls — stopped={'reason': 'usage_http_500', 'at': '2026-10-26T13:26:00+00:00'}
+PASS U7 plan_daily_limit != 800 -> STOP plan mismatch — stopped={'reason': 'usage_plan_daily_limit_mismatch:400', 'at': '2026-10-26T13:26:00+00:00'}
+PASS U4 provider counter unmoving across >=3 series calls -> STOP usage_data_stale_counter; no calls after STOP — stopped={'reason': 'usage_data_stale_counter', 'at': '2026-10-26T17:00:01+00:00'}
+PASS U5 unrelated-account usage increase (+10 over desk) -> external event recorded, headroom intact, pilot CONTINUES — events=[{'at_utc': '2026-10-26T17:00:01+00:00', 'provider_delta': 40, 'desk_delta': 29, 'excess': 11}]
+PASS U6 local<cap but provider headroom < worst-case remaining -> pre-call refusal; ample headroom -> allowed — pre_full=provider_headroom_exhausted_precheck:headroom_100_remaining_143 pre_ok=None
+PASS CL1 5/5 complete, not stopped -> LATENCY_MEASURED
+PASS CL2 3/5 complete (+100 bars fixture) -> LATENCY_UNMEASURED
+PASS CL3 4/5 complete -> LATENCY_UNMEASURED; stopped -> UNMEASURED
+FAIL V1 revision call with only a PRIOR-day baseline -> refused usage_baseline_missing_today (no exemption) — pre=None
+FAIL V2 census 757 actions / 21 usage, and a 07:55 pre_revision baseline precedes every 08:00 revision batch — n=752 usage=16 order_ok=False
+PASS V2b fresh same-day baseline -> revision precheck passes — pre=None
+FAIL V3 near-cap 07:55 baseline reading -> pilot STOPs at the reading, ZERO revision (or any) series calls that day — res=running stopped=None tue_series=5
+FAIL DL1 mismatch records carry a KEYED opaque anchor, never raw values, never unkeyed per-value or whole-record hashes — pub=None
+FAIL DL2 forced price+volume mismatch -> ADAPTER_PARITY_FAIL with ZERO raw OHLCV and NO unkeyed per-value hash in the public parity record (keyed anchor only) — first_mismatch={'symbol': 'AAA', 'kind': 'value', 'column': 'Close', 'bar': '2026-10-26 09:30:00-04:00', 'stream_sha256': 'bc899d417a8235b8f7772b4a902c0a465d059581ce1acc1b5e7e5a303e64775e', 'batch_sha256': '7f1c586b58ce671224e629be722e8b74abecf2f621d200fd9cdad69f97dc8bce'}
+FAIL DL3 TD reply public record is METADATA ONLY (sender domain + receipt date + classification; no subject, no body, no mailbox content) — rep={'from_domain': 'twelvedata.com', 'subject': 'Account 4451 reset code 8471', 'date': 'Mon, 26 Oct 2026 09:02:00 -0400', 'body_text_redacted': 'Hi Mike, call 561-555-0134. Code 8471. PLTR close printed 777.77.', 'redaction': 'token-like runs >=24 chars replaced; headers and message ids never published'}
+SKIP S21 armed-state check (no live state in this layout)
+SELFTEST FAIL ['G schedule census: 757 actions (r2.1 recomputed: +5 pre_revision usage); final-session revision re-poll lands Mon 2026-11-02 08:00 EST; pilot_close + final push present', 'V1 revision call with only a PRIOR-day baseline -> refused usage_baseline_missing_today (no exemption)', 'V2 census 757 actions / 21 usage, and a 07:55 pre_revision baseline precedes every 08:00 revision batch', 'V3 near-cap 07:55 baseline reading -> pilot STOPs at the reading, ZERO revision (or any) series calls that day', 'DL1 mismatch records carry a KEYED opaque anchor, never raw values, never unkeyed per-value or whole-record hashes', 'DL2 forced price+volume mismatch -> ADAPTER_PARITY_FAIL with ZERO raw OHLCV and NO unkeyed per-value hash in the public parity record (keyed anchor only)', 'DL3 TD reply public record is METADATA ONLY (sender domain + receipt date + classification; no subject, no body, no mailbox content)']
