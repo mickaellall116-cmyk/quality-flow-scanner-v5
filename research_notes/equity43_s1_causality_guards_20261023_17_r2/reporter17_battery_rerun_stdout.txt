@@ -1,0 +1,28 @@
+PASS C1_patched_passes_report17 verdict=DECISION_PARITY_PASS reasons=[]
+PASS C2_orig15_stops_report17 
+PASS C3_artifact15_stops_report17 
+PASS C4_patched_passes_report16_too 
+PASS H0_report16_hole_reproduced report16 re-derives PASS with the exit census deleted
+PASS H1_report17_closes_hole reasons=["field_census per_field key set != the 12 simulator-consumed fields: ['censored', 'entry', 'entry_time', 'exit_time', 'hold_bars', 'reason', 'risk_frac', 'signal_time', 'stop', 'tp1', 'tp1_hit']", 'field_census detail key set != the 12 simulator-consumed fields']
+PASS N01_exit_detail_removed first_reason=['field_census detail key set != the 12 simulator-consumed fields']
+PASS N02_exit_perfield_removed first_reason=["field_census per_field key set != the 12 simulator-consumed fields: ['censored', 'entry', 'entry_time', 'exit_time', 'hold_bars', 'reason', 'risk_frac', 'signal_time', 'stop', 'tp1', 'tp1_hit']"]
+PASS N03_compared_counts_zeroed first_reason=['detail.entry.compared=0 != 590']
+PASS N04_section_renamed first_reason=['missing section: field_census']
+PASS N05_reference_absent first_reason=['missing section: reference']
+PASS N06_bars_cohort_emptied first_reason=['bars_compared=0 != 44849']
+PASS N07_benchmark_sessions_zeroed first_reason=['benchmark sessions=0 != 524']
+PASS N08_inventory_evidence_missing first_reason=['empty section: inventory']
+PASS N09_field_renamed first_reason=["field_census per_field key set != the 12 simulator-consumed fields: ['censored', 'entry', 'entry_time', 'exit_price', 'exit_time', 'hold_bars', 'reason', 'risk_frac', 'signal_time', 'stop', 'tp1', 'tp1_hit']"]
+PASS N10_terminal_inventory_emptied first_reason=['terminal inventories differ']
+PASS N11_config_sha_zeroed first_reason=['config sha != pinned 87b8285a...']
+PASS N12_journal_info_removed first_reason=['observer journal_info missing/headless']
+PASS N13_detail_emptied first_reason=['field_census detail key set != the 12 simulator-consumed fields']
+PASS N14_census_section_emptied first_reason=['empty section: field_census']
+PASS N15_verdict_flipped_on_stop_doc 
+PASS N16_reference_counts_zeroed first_reason=['reference total_candidates=0 != 590']
+PASS N17_c0_counts_altered first_reason=["C0 observer counts={'taken_count': 192, 'skipped_cap': 323, 'skipped_risk': 74} != 193/323/74"]
+PASS N18_raw_rows_altered first_reason=['observer raw_rows=157086 != 157140']
+PASS N19_recorded_verdict_disagrees 
+PASS CLI_patched_exit0 
+PASS CLI_hole_exit2 
+SUMMARY 27/27 checks passed

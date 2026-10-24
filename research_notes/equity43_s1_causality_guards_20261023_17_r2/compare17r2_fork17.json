@@ -1,0 +1,351 @@
+{
+ "task": "QF-EQUITY43-S1-CAUSALITY-GUARDS-20261023-17",
+ "comparison": "observer (streaming) vs -13 study (batch), decision-level only; full field census",
+ "observer_module": "fwd_observer17.py",
+ "tag": "fork17",
+ "sections": {
+  "inventory": {
+   "pin_inventory_version": "structured-v1",
+   "pins": {
+    "observer_module": "fwd_observer17.py",
+    "observer_module_sha256": "929c1bc4cac34384ad0a8807a1006aaafc555f5b6cf548f5f030ef26110052c3",
+    "source_pins": {
+     "engine_successor/pine_backtest.py": "874d2a9b1d99171a4d3db709ece9ce4719b4d108a70f7e95b4a082692cc0c99d",
+     "engine_successor/pine_stack/pine_stack.py": "8d4a964fd7bb08b4a98a55eb7fae222157ae27f1a768f255e7cbc152c9d15b03",
+     "engine_fork09/pine_backtest.py": "becea0824486003daef386b49e137a83ffdf22c1e2d145136498919102fc42f2",
+     "engine_fork09/pine_stack/pine_stack.py": "30594231ffc3bac27303f96310e8f274229415c890c371f4dbdfcdb54156cda4",
+     "asof_benchmark.py": "f0f4582c4a8aee484c24d330658b0c4ae6e2a169c19f3bf2b1475c2dc2ce2017",
+     "engine_successor/scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c",
+     "engine_successor/pine_ranking/pine_ranking.py": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+     "engine_successor/pine_signal_quality/pine_signal_quality.py": "b1b39ee8d0bd4bbb1387b3ce54c7345c1f8dd622f94a5ed390c989fed1d39e69",
+     "engine_successor/pine_exposure/pine_exposure.py": "9f646161c27f6b28febe0980d03665bc9c1502fb844d37be6fd1d72ee45102be",
+     "engine_fork09/scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c",
+     "engine_fork09/pine_ranking/pine_ranking.py": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+     "engine_orig/pine_backtest.py": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+     "engine_orig/pine_stack/pine_stack.py": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+     "session_table.json": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f"
+    },
+    "experiment_config_sha256": "87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706",
+    "sector_map_sha256": "a91222c7a27e83d279bdf162de5dfc030a88911d65b0ee43ea196ee38a7cea2c",
+    "child_manifest_root_sha256": "c5628652c5bf59d870103e41fd7e22a23fe4d811c61662fda78a8790abd0444f",
+    "parent_manifest_root_sha256": "ca49892062f1ac5d4ec6d20eaadd37b519aec84ad0b23a995fb11db74dccfd64",
+    "pilot_manifest_root_sha256": "79ccdd128e0b36537f56f8ae36a731b719e989b9756f65856b7dc47344327122",
+    "child_chain_receipts_verified": 54,
+    "child_chain_head": "c129e95fc404deff12310fe39048c8c610b93f2f976dbb321754ea86340ca6cc",
+    "legs_without_receipt_quarantined": 23,
+    "pilot_receipts": {
+     "NVDA": {
+      "response_sha256": "b1ecf7bf6718cda1c1cd4fa0da4a1281bc14cc6c4fc1d357aaeabaa77d3fa0f6",
+      "rows": 3654
+     },
+     "TSLA": {
+      "response_sha256": "f6b1e64f244b06543f536be8eaf04d731b7dd98700bf1afdbb7ff59b303479fe",
+      "rows": 3655
+     },
+     "AAPL": {
+      "response_sha256": "97649d2f2a326b8a2e2e20a72cfaa83ebfaaed128698f1829716d37506acdd4f",
+      "rows": 3655
+     },
+     "SPY": {
+      "response_sha256": "2c6631dc5482b5f8e20a2107b53fbcd64e1ae3732d2bf09adf17c874076fecfb",
+      "rows": 3655
+     }
+    },
+    "archive_continue11_files": 158,
+    "archive_continue11_mismatches": [],
+    "archive_pilot_files": 22,
+    "archive_pilot_mismatches": [],
+    "paused_harness_sha256": "ce7c902ce182683ca1723468a0109747abd80db287c39556ea4db78210a0833d",
+    "pause_new_entries_present": true,
+    "resume_new_entries_present": false
+   }
+  },
+  "config_pins": {
+   "experiment_config_sha256": "87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706",
+   "experiment_config_sha_match": true,
+   "start_equity": 10000.0,
+   "risk_pct": 0.01,
+   "max_concurrent": 5,
+   "max_portfolio_risk": 0.05,
+   "costs": {
+    "4bps": 0.0004,
+    "25bps": 0.0025
+   },
+   "sl_atr": 1.5,
+   "tp_atr": 2.0,
+   "trail_atr": 2.5,
+   "warmup": 215,
+   "sector_map_sha256": "a91222c7a27e83d279bdf162de5dfc030a88911d65b0ee43ea196ee38a7cea2c"
+  },
+  "reference": {
+   "closed_candidates": 586,
+   "censored_candidates": 4,
+   "total_candidates": 590,
+   "skipped_gap_below_stop": 1,
+   "cutoff": "2026-10-16 17:30:00-04:00"
+  },
+  "observer_stream": {
+   "raw_rows": 157140,
+   "rejected": 0,
+   "excluded_postclose": 61,
+   "decision_events": 1460,
+   "journal_records": 226043,
+   "journal_verify": true,
+   "journal_info": {
+    "records": 226043,
+    "head": "01a05d953431e2d038960ae77d03381ffba32a08fc6b24e3941c9d3448bf50b9"
+   },
+   "anchor_head": "01a05d953431e2d0"
+  },
+  "bars_parity": {
+   "bars_compared": 44849,
+   "symbols_bad": 0,
+   "sessionvwap_max_abs_diff": 4.547473508864641e-13
+  },
+  "benchmark_parity": {
+   "equal": true,
+   "sessions": 524
+  },
+  "closes_identity": {
+   "symbols_compared": 43,
+   "symbols_bad": 0,
+   "max_abs_diff": 0.0,
+   "first": []
+  },
+  "field_census": {
+   "total_mismatches": 586,
+   "per_field": {
+    "entry": 0,
+    "stop": 0,
+    "tp1": 0,
+    "exit": 0,
+    "entry_time": 0,
+    "exit_time": 0,
+    "signal_time": 0,
+    "reason": 0,
+    "hold_bars": 0,
+    "tp1_hit": 0,
+    "censored": 586,
+    "risk_frac": 0
+   },
+   "keyset_problems": [],
+   "extra_key_asymmetry": [
+    "censored"
+   ],
+   "detail": {
+    "entry": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "stop": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "tp1": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "exit": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "entry_time": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "exit_time": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "signal_time": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "reason": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "hold_bars": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "tp1_hit": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "censored": {
+     "compared": 590,
+     "mismatches": 586,
+     "max_abs_diff": 0.0,
+     "first": [
+      [
+       "('AAPL', 215)",
+       "None",
+       "False"
+      ],
+      [
+       "('AAPL', 403)",
+       "None",
+       "False"
+      ],
+      [
+       "('AAPL', 442)",
+       "None",
+       "False"
+      ],
+      [
+       "('AAPL', 493)",
+       "None",
+       "False"
+      ],
+      [
+       "('AAPL', 543)",
+       "None",
+       "False"
+      ]
+     ]
+    },
+    "risk_frac": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    }
+   }
+  },
+  "decision_parity": {
+   "rs_mismatches": 0,
+   "decision_mismatches": 0,
+   "first": [],
+   "terminal_symbol_mismatch_views": [],
+   "terminal_observer": {
+    "gross": [
+     "CRM",
+     "MRNA",
+     "PFE"
+    ],
+    "4bps": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ],
+    "25bps": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ]
+   },
+   "terminal_reference": {
+    "gross": [
+     "CRM",
+     "MRNA",
+     "PFE"
+    ],
+    "4bps": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ],
+    "25bps": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ]
+   },
+   "c0_counts_observer": {
+    "taken_count": 193,
+    "skipped_cap": 323,
+    "skipped_risk": 74
+   },
+   "c0_counts_reference": {
+    "taken_count": 193,
+    "skipped_cap": 323,
+    "skipped_risk": 74
+   }
+  },
+  "reference_selfcheck": {
+   "rs_mismatches": 0,
+   "decision_mismatches": 0,
+   "terminal_mismatch_views": [],
+   "c0_counts": {
+    "taken_count": 193,
+    "skipped_cap": 323,
+    "skipped_risk": 74
+   },
+   "c0_match": true
+  }
+ },
+ "universe": [
+  "NVDA",
+  "TSLA",
+  "AAPL",
+  "SPY",
+  "PLTR",
+  "SOFI",
+  "AMD",
+  "MSFT",
+  "META",
+  "COIN",
+  "MSTR",
+  "AVGO",
+  "GOOGL",
+  "AMZN",
+  "NFLX",
+  "CRM",
+  "MU",
+  "INTC",
+  "LRCX",
+  "AMAT",
+  "QCOM",
+  "ARM",
+  "HOOD",
+  "APP",
+  "NET",
+  "SNOW",
+  "DDOG",
+  "CRWD",
+  "SHOP",
+  "RKLB",
+  "ASTS",
+  "LUNR",
+  "PYPL",
+  "NU",
+  "MELI",
+  "IWM",
+  "SMH",
+  "ARKK",
+  "XLF",
+  "NIO",
+  "MRNA",
+  "PFE",
+  "F"
+ ],
+ "problems": [],
+ "verdict": "DECISION_PARITY_PASS",
+ "revision": "r2",
+ "artifact_note": "r2 successor artifact (Issue #1 comment 6380534722): identical to the committed -17 r1 artifact except (a) sections.inventory replaced by the structured exact pin inventory below, recomputed by emit_inventory17r2.py re-running the pinned P0/P1 verification against the same committed stage sources (no decision content regenerated, no comparison re-run), and (b) this note and the revision tag added at top level."
+}

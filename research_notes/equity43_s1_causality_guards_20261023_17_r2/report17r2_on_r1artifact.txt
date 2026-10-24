@@ -1,0 +1,6 @@
+VERDICT (re-derived by report17r2 from the artifact): STOP_DECISION_PARITY_FAILURE
+REASONS:
+- inventory key set != {pin_inventory_version, pins}: ['pins']
+- pin_inventory_version=None != 'structured-v1'
+- inventory.pins is not a structured object — free-form pin labels are refused: 'PASS (ref P0/P1 as -15)'
+- recorded verdict 'DECISION_PARITY_PASS' != re-derived 'STOP_DECISION_PARITY_FAILURE'

@@ -1,0 +1,2 @@
+VERDICT (re-derived by report17r2 from the artifact): DECISION_PARITY_PASS
+Complete required inventory present, including the structured exact pin inventory; every recorded value re-derives to zero mismatches; recorded verdict agrees.

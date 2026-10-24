@@ -1,0 +1,34 @@
+PASS K1_genuine_r2_passes_report17r2 verdict=DECISION_PARITY_PASS reasons=[]
+PASS K2_patched16_passes_its_own_report16 
+PASS K3_orig15_stops_report17r2 
+PASS K4_artifact15_stops_report17r2 
+PASS K5_r1_freeform_artifact_stops_report17r2 first_reason=["inventory key set != {pin_inventory_version, pins}: ['pins']"]
+PASS K6_patched16_stops_report17r2_no_structured_inventory 
+PASS K7_r2_carries_r1_decision_content_unchanged 
+PASS M01_forged_pass_string first_reason=["inventory.pins is not a structured object — free-form pin labels are refused: 'PASS forged'"]
+PASS M02_r1_freeform_string first_reason=["inventory.pins is not a structured object — free-form pin labels are refused: 'PASS (ref P0/P1 as -15)'"]
+PASS M03_missing_pin_key first_reason=["pin key set differs: missing=['child_manifest_root_sha256'] extra=[]"]
+PASS M04_renamed_pin_key first_reason=["pin key set differs: missing=['sector_map_sha256'] extra=['sector_sha']"]
+PASS M05_wrong_observer_pin first_reason=['pin observer_module_sha256 != its exact expected value']
+PASS M06_wrong_receipt_root first_reason=['pin pilot_manifest_root_sha256 != its exact expected value']
+PASS M07_wrong_data_root first_reason=['pin child_manifest_root_sha256 != its exact expected value']
+PASS M08_wrong_calendar_pin first_reason=['pin source_pins != its exact expected value']
+PASS M09_wrong_paused_harness_pin first_reason=['pin paused_harness_sha256 != its exact expected value']
+PASS M10_pause_sentinel_flipped first_reason=['pin pause_new_entries_present != its exact expected value']
+PASS M11_resume_sentinel_flipped first_reason=['pin resume_new_entries_present != its exact expected value']
+PASS M12_wrong_source_pin first_reason=['pin source_pins != its exact expected value']
+PASS M13_wrong_chain_head first_reason=['pin child_chain_head != its exact expected value']
+PASS M14_wrong_receipts_count first_reason=['pin child_chain_receipts_verified != its exact expected value']
+PASS M15_archive_mismatch_hidden first_reason=['pin archive_continue11_mismatches != its exact expected value']
+PASS M16_wrong_pilot_receipt_sha first_reason=['pin pilot_receipts != its exact expected value']
+PASS M17_inventory_section_deleted first_reason=['missing section: inventory']
+PASS M18_extra_pin_key first_reason=["pin key set differs: missing=[] extra=['attested']"]
+PASS M19_wrong_inventory_version first_reason=["pin_inventory_version='structured-v2' != 'structured-v1'"]
+PASS M20_recorded_verdict_disagrees first_reason=["recorded verdict 'STOP_DECISION_PARITY_FAILURE' != re-derived 'DECISION_PARITY_PASS'"]
+PASS M21_nested_source_pin_missing first_reason=['pin source_pins != its exact expected value']
+PASS CLI_genuine_exit0 rc=0
+PASS CLI_forged_exit2 rc=2
+PASS CLI_missing_key_exit2 rc=2
+PASS CLI_wrong_observer_exit2 rc=2
+PASS CLI_wrong_calendar_exit2 rc=2
+SUMMARY 33/33 checks passed
