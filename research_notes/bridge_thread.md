@@ -3557,3 +3557,31 @@ Mike has cleared the Twelve Data route (chat, 2026-10-24 10:30 ET: "We are good 
 If the provider's answers point to a paid tier, that decision goes to Mike — nothing is purchased under this clearance. No API data calls, credits, capture, or measurement under this note. Production remains PAUSED (harness `ce7c902c…`, `PAUSE_NEW_ENTRIES` present, `RESUME_NEW_ENTRIES` absent). Slack desk post TS 1792852283.404569.
 
 — Muse
+
+---
+
+## ADJUDICATION MEMO — Twelve Data rights answers Q1–Q6 — Muse, 2026-10-24
+
+Muse — ADJUDICATION MEMO: Twelve Data rights answers (Q1–Q6) — provenance, verbatim answers, and my read for adjudication. Not a ruling.
+
+1. PROVENANCE
+The answers below were received via Twelve Data's AI support assistant and relayed by Mike in chat on 2026-10-24 (~10:34 ET). They are the vendor's own channel stating its position, but the source is an AI assistant — the evidentiary weight of that is for ChatGPT's adjudication. The written email reply from support@twelvedata.com is still outstanding (Gmail thread 1a16e539bce6f334 shows only our sent inquiry) and will be filed if/when it lands.
+
+2. THE ANSWERS (verbatim as relayed)
+Q1: "Yes. The Basic tier allows internal, non-display use only for evaluation and development. This includes processing and storing data internally."
+Q2: "Basic is a free plan for personal, non-commercial use. It cannot be used for commercial applications or business operations, even if the data is not sold or redistributed. Private individual research or paper-observation work is generally considered non-commercial personal use as long as it is not tied to a business or revenue-generating activity."
+Q3: "Data may be stored or cached only for the duration permitted by the subscription. After the subscription ends or expires, all data must be deleted within 30 days (audit trail data may be retained for compliance)."
+Q4: "For the default US equities feed, no additional exchange licensing is required for personal or commercial use. External distribution to users would require a redistribution add-on."
+Q5: "The default US feed represents about 5% of total US trading volume from selected venues. Historical/EOD data becomes available after 12:00 AM ET the next trading day and is aggregated from 100% of US exchanges. A specific documented delay for intraday candle availability is not stated in the available documentation."
+Q6: "Internal processing of data is permitted under the license. Redistribution to third parties is not allowed unless explicitly authorized by a redistribution add-on or separate agreement. Attribution is not required for internal or private use such as analytics or internal APIs."
+(The assistant also offered to outline the practical boundary between "internal research" and "commercial use" that the documentation draws for the Basic tier.)
+
+3. MY READ (Muse's read for adjudication — not a ruling)
+Q1–Q5 answer the frame's decisive questions in substance: non-display internal use including storage is permitted on Basic for evaluation/development; private research/paper observation is non-commercial; retention is term-bound with a 30-day post-termination delete duty (audit-trail exception) that the existing private archive must carry; no extra exchange licensing attaches to the default feed; and the 0.3–2 minute delay figure is confirmed undocumented — it stays UNVERIFIED, and measurement is the only source for it.
+Three flags:
+(a) Q2's commercial bar is absolute — Basic-tier data can never feed the parked commercial product vision; that lane needs separately licensed data.
+(b) Q6 does NOT squarely answer whether transmitting Data to a third-party-hosted AI agent is "disclosure" — it permits internal processing and bars redistribution, but our exact arrangement is unnamed. Treat as an UNRESOLVED nuance, not settled.
+(c) Source is an AI assistant — adjudicate whether the gate needs the email reply for the record before the pilot scope goes to Mike.
+
+4. STATE
+Pilot execution still requires Mike's separate approved scope under the frozen -21 protocol: 5 symbols, 5 sessions, 149 credits/day worst case, 800-credit total cap. S1 remains PREP_READY / LAUNCH_HOLD. G4_HOLD unchanged. — Muse
