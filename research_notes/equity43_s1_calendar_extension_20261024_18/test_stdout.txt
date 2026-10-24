@@ -1,0 +1,32 @@
+PASS A1 pinned table SHA
+PASS A2 prefix rows equal (751)
+PASS A3 sessions-segment byte prefix
+PASS A4 first appended = 2026-10-19 Mon
+PASS A5 counts 751+303=1054, last 2027-12-31
+PASS B DST 2026 spring (Mar 6->9)
+PASS B DST 2026 fall (Oct 30->Nov 2)
+PASS B DST 2027 spring (Mar 12->15)
+PASS B DST 2027 fall (Nov 5->8)
+PASS B Thanksgiving early closes 2026+2027
+PASS B July-3/4 rules incl. 2027 Sunday case
+PASS B Christmas/New Year adjacency incl. 2027-12-31
+PASS B weekend/holiday exclusion + special closure
+PASS C/D verifier accepts clean table
+PASS C/D duplicate_row STOPs
+PASS C/D missing_row STOPs
+PASS C/D out_of_order STOPs
+PASS C/D tamper_date STOPs
+PASS C/D tamper_open STOPs
+PASS C/D tamper_close STOPs
+PASS D tamper_timezone STOPs
+PASS D tamper_source_pin STOPs
+PASS D tamper_table_sha STOPs
+PASS D tamper_generator_pin STOPs
+PASS E1 fork file byte-identical to -17 pin
+PASS E2 fork bins regular + early-close under new pin
+PASS E3 fork causal BAR emission, regular appended day
+PASS E4 fork causal BAR emission, early-close appended day
+PASS E5 fork fail-closed beyond table + on closure date
+PASS E6 repin record consistent; original table untouched
+
+30 checks: 30 PASS, 0 FAIL

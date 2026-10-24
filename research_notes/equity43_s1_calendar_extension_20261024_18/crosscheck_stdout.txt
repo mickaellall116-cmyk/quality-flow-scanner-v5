@@ -1,0 +1,2 @@
+path=A window=2023-10-19..2027-12-31 sessions=1054
+path=C(wide) window=2023-10-19..2027-12-31 sessions=1054

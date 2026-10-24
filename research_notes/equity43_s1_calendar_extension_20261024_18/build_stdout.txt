@@ -1,0 +1,32 @@
+pinned table sha OK (00c5555c26d3…), 751 rows, last 2026-10-16
+rule generator reproduces all 751 qualified rows exactly
+rules == path A/pmc-NYSE: 1054 sessions, exact
+rules == path C/ec-XNYS: 1054 sessions, exact
+three-way agreement: rules == A == C over 2023-10-19..2027-12-31 (1054 sessions)
+appended sessions: 303 (2026-10-19..2027-12-31); total 1054
+sessions-segment byte prefix (751 rows): True
+extended table written: 56468 bytes sha256=86a1d4eaa5b838aa4138cef3c7dc5efcea99997fec40863b015075829acf6371
+{
+  "appended_early_closes": [
+    "2026-11-27",
+    "2026-12-24",
+    "2027-11-26"
+  ],
+  "appended_sessions": 303,
+  "extended_table_bytes": 56468,
+  "extended_table_sha256": "86a1d4eaa5b838aa4138cef3c7dc5efcea99997fec40863b015075829acf6371",
+  "first_appended": {
+    "close": "16:00",
+    "date": "2026-10-19",
+    "open": "09:30"
+  },
+  "last_appended": {
+    "close": "16:00",
+    "date": "2027-12-31",
+    "open": "09:30"
+  },
+  "pinned_table_sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+  "prefix_sessions": 751,
+  "sessions_segment_byte_prefix": true,
+  "total_sessions": 1054
+}
