@@ -1,0 +1,28 @@
+{
+ "action_census": {
+  "archive_push": 6,
+  "finalization": 175,
+  "ladder": 525,
+  "revision": 25,
+  "tripwire": 5,
+  "usage": 21
+ },
+ "at_utc": "2026-10-24T17:59:05.358325+00:00",
+ "bar_close_sha256": "a07bc0b49077bf313f645549e60cbb70fee6e80ab98d3736c7fe96f4f73008bd",
+ "bars": 175,
+ "daemon_pid_at_attestation": 9792,
+ "desk_calls": 0,
+ "next_action": {
+  "due": "2026-10-26T13:15:00+00:00",
+  "id": "tripwire|2026-10-26"
+ },
+ "note": "Derived-only attestation of the ACTUAL staged state, written by startup_state() at the first boot under the r2.2 invariant (2026-10-24). source=validated: the persisted schedule matched the fresh pinned build exactly (schedule hash before == after); no migration was needed because the r2.1 state surgery had already repaired the inventory \u2014 the invariant now proves this at every boot and would STOP (or migrate under the gated conditions) on any recurrence. No raw market values.",
+ "schedule_sha256": "8324f5ecf8918a0f784c18405cd24664aff4c80714495c44e470e647c1adfd61",
+ "schedule_sha256_before": "8324f5ecf8918a0f784c18405cd24664aff4c80714495c44e470e647c1adfd61",
+ "source": "validated",
+ "status_census": {
+  "pending": 757
+ },
+ "task": "QF-EQUITY43-FEED-MEASUREMENT-PILOT-20261024-22",
+ "total_actions": 757
+}

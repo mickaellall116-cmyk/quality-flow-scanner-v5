@@ -1,0 +1,20 @@
+{
+ "candidate_processing_order": "canonical (symbol, signal_idx) ascending; the candidate list is sorted by this total key before BOTH simulator paths; (symbol, signal_idx) is unique per candidate, so no secondary key is needed",
+ "censoring_treatment": "successor v1: a position still open at the last bar is emitted as a candidate with censored=true, exit/exit_time null; it enters the identical time-local rank/cap/sector/risk selection; if taken it is held to the W_DEV cutoff and valued in equity at the last-completed-bar as-of mark; if skipped it is ledgered with its gate reason; no exit, cash flow, or trade R is fabricated",
+ "cost_views": [
+  "gross",
+  "4bps",
+  "25bps"
+ ],
+ "cutoff_rule": "max over symbols of (last 4H bar start) + 4h (= 2026-10-16 17:30 America/New_York)",
+ "engine": "successor copies of the -09 research fork; deltas confined to simulate_portfolio / simulate_stack accounting (canonical pipeline order is a driver-level pin; censoring treatment in both simulators); pins in P0",
+ "experiment_id": "QF-EQUITY43-DEV-ORDER-CENSOR-20261023-13",
+ "labels": [
+  "EQUITIES-ONLY DEV EXPLORATORY",
+  "G4 UNADOPTED",
+  "NOT VALIDATED EDGE"
+ ],
+ "predecessor": "QF-EQUITY43-DEV-PREFLIGHT-20261023-12 STOP_PREFLIGHT (package 861f5e2, immutable; not re-run, not superseded silently \u2014 this is a new versioned experiment)",
+ "strategy_config": "frozen C1 configuration: V3.6 hybrid signal + frozen exits, R1 rs_top2 ranking + R2 sector cap, no R3; 1% risk, max 5 concurrent, 5% portfolio risk cap; strategy source files byte-identical to -12 pins",
+ "universe": "43 DEV equities (UX51 equities minus SMCI: no DEV bytes exist; excluded pre-declared, never imputed)"
+}

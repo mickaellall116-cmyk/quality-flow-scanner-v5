@@ -1,0 +1,338 @@
+Binary files a/source and b/source differ
+diff -ruN --label a/source --label b/source a/source b/source
+--- a/source
++++ b/source
+@@ -358,6 +358,147 @@
+         "sessions_status": {d: "pending" for d in manifest["sessions"]}}
+ 
+ 
++# ------------------------------------------------------- startup invariant
++# Ruling 6387473294: persisted state is what the daemon executes, so it
++# is validated against a fresh pinned build at startup — before the
++# Pilot exists and before any transport (vendor or email) can fire.
++def schedule_hash(actions):
++    """Derived-only fingerprint of an action inventory (ids/dues/kinds)."""
++    canon = sorted((a["id"], a["due"], a["kind"]) for a in actions)
++    return sha256_bytes(canonical(canon))
++
++
++def bar_close_hash(bars):
++    """Derived-only fingerprint of bar keys + close_utc values."""
++    canon = sorted((k, b["close_utc"]) for k, b in bars.items())
++    return sha256_bytes(canonical(canon))
++
++
++def validate_state_against_build(st, manifest):
++    """Exact-match validation of persisted state vs a fresh pinned
++    build. Returns a list of mismatch strings ([] == exact)."""
++    mism = []
++    if st.get("task") != manifest["task"] or \
++            st.get("manifest_task") != manifest["task"]:
++        mism.append("task_id_mismatch")
++    fresh = init_state(manifest)
++    fa, aa = fresh["actions"], st.get("actions") or []
++    ids = [a["id"] for a in aa]
++    if len(ids) != len(set(ids)):
++        mism.append("duplicate_action_ids")
++    fmap = {a["id"]: a for a in fa}
++    amap = {a["id"]: a for a in aa}
++    for aid in sorted(set(fmap) - set(amap)):
++        mism.append(f"missing_action:{aid}")
++    for aid in sorted(set(amap) - set(fmap)):
++        mism.append(f"extra_action:{aid}")
++    for aid in sorted(set(fmap) & set(amap)):
++        if amap[aid].get("due") != fmap[aid].get("due"):
++            mism.append(f"due_mismatch:{aid}")
++        if amap[aid].get("kind") != fmap[aid].get("kind"):
++            mism.append(f"kind_mismatch:{aid}")
++    fb, ab = fresh["bars"], st.get("bars") or {}
++    for k in sorted(set(fb) - set(ab)):
++        mism.append(f"missing_bar:{k}")
++    for k in sorted(set(ab) - set(fb)):
++        mism.append(f"extra_bar:{k}")
++    for k in sorted(set(fb) & set(ab)):
++        if ab[k].get("close_utc") != fb[k].get("close_utc"):
++            mism.append(f"close_utc_mismatch:{k}")
++    return mism
++
++
++class StartupStop(Exception):
++    """Persisted state failed the startup invariant and migration is
++    not permitted. Carries the derived-only STOP report."""
++
++    def __init__(self, report):
++        super().__init__(report.get("reason"))
++        self.report = report
++
++
++def _attestation(st, manifest, source, before_hash):
++    from collections import Counter
++    acts = st["actions"]
++    nxt = next((a for a in acts if a["status"] == "pending"), None)
++    return {"at_utc": iso(now_utc()), "source": source,
++            "task": manifest["task"],
++            "schedule_sha256": schedule_hash(acts),
++            "schedule_sha256_before": before_hash,
++            "bar_close_sha256": bar_close_hash(st["bars"]),
++            "action_census": dict(Counter(a["kind"] for a in acts)),
++            "status_census": dict(Counter(a["status"] for a in acts)),
++            "total_actions": len(acts), "bars": len(st["bars"]),
++            "desk_calls": st["desk_calls"],
++            "next_action": {"id": nxt["id"], "due": nxt["due"]}
++            if nxt else None}
++
++
++def startup_state(manifest):
++    """Load + validate persisted state BEFORE any transport exists.
++
++    Returns (state, attestation). On mismatch: atomic migration ONLY
++    when desk_calls == 0, every action is still pending, no bar has
++    been seen, and REVIEW_HOLD is in force (old/new schedule hashes
++    recorded, migrated state re-validated); otherwise raises
++    StartupStop — zero vendor/email calls have occurred by
++    construction, because no Pilot or transport exists yet."""
++    if not os.path.exists(STATE_PATH):
++        st = init_state(manifest)
++        att = _attestation(st, manifest, "fresh_init", None)
++        st["startup_attestation"] = att
++        save_state(st)
++        return st, att
++    st = load_state()
++    before = schedule_hash(st.get("actions") or [])
++    mism = validate_state_against_build(st, manifest)
++    if not mism:
++        att = _attestation(st, manifest, "validated", before)
++        st["startup_attestation"] = att
++        save_state(st)
++        return st, att
++    migratable = (
++        st.get("desk_calls") == 0
++        and all(a.get("status") == "pending"
++                for a in st.get("actions") or [])
++        and all(b.get("first_seen") is None
++                for b in (st.get("bars") or {}).values())
++        and os.path.exists(REVIEW_HOLD_PATH))
++    if not migratable:
++        from collections import Counter
++        raise StartupStop({
++            "reason": "startup_state_mismatch",
++            "at_utc": iso(now_utc()), "task": manifest["task"],
++            "mismatch_count": len(mism),
++            "mismatch_classes": dict(Counter(
++                m.split(":")[0] for m in mism)),
++            "mismatch_sample": mism[:10],
++            "schedule_sha256_found": before,
++            "desk_calls": st.get("desk_calls"),
++            "review_hold_present": os.path.exists(REVIEW_HOLD_PATH),
++            "transport_calls": 0})
++    fresh = init_state(manifest)
++    st["actions"] = fresh["actions"]
++    for k, fb in fresh["bars"].items():
++        if k in st["bars"]:
++            st["bars"][k]["close_utc"] = fb["close_utc"]
++    att = _attestation(st, manifest, "migrated", before)
++    st.setdefault("startup_migrations", []).append({
++        "at_utc": att["at_utc"], "mismatch_count": len(mism),
++        "schedule_sha256_before": before,
++        "schedule_sha256_after": att["schedule_sha256"]})
++    st["startup_attestation"] = att
++    save_state(st)  # atomic: tmp file + os.replace (save_state)
++    rem = validate_state_against_build(st, manifest)
++    if rem:
++        raise StartupStop({
++            "reason": "startup_migration_failed_revalidation",
++            "at_utc": iso(now_utc()), "task": manifest["task"],
++            "mismatch_count": len(rem), "mismatch_sample": rem[:10],
++            "transport_calls": 0})
++    return st, att
++
++
+ # ---------------------------------------------------------------- engine
+ class Pilot:
+     def __init__(self, manifest, transport, state=None):
+@@ -899,11 +1040,14 @@
+     manifest = json.load(open(os.path.join(BASE, "run_manifest.json")))
+     os.makedirs(STATE_DIR, exist_ok=True)
+     os.makedirs(os.path.join(ARCHIVE_NS, "payloads"), exist_ok=True)
+-    if os.path.exists(STATE_PATH):
+-        st = load_state()
+-    else:
+-        st = init_state(manifest)
+-        save_state(st)
++    try:
++        st, _att = startup_state(manifest)
++    except StartupStop as e:
++        with open(os.path.join(STATE_DIR, "STARTUP_STOP.json"), "w") as f:
++            json.dump(e.report, f, indent=1, sort_keys=True)
++        print(json.dumps({"pilot": "startup_stop",
++                          "report": e.report}))
++        return 4
+     pilot = Pilot(manifest, live_transport, st)
+     while True:
+         status = pilot.run_due()
+diff -ruN --label a/source --label b/source a/source b/source
+--- a/source
++++ b/source
+@@ -134,5 +134,14 @@
+    "armed state: the 5 pre_revision actions inserted into state/pilot_state.json (desk_calls 0, all pending); daemon restarted on the r2.1 bytes."
+   ],
+   "hold": "REVIEW_HOLD unchanged \u2014 lifts only on ChatGPT's posted PASS after independent re-review of the r2.1 package."
++ },
++ "r22_patch": {
++  "governing": "Issue #1 comment 6387473294 (ChatGPT r2.1 review: three residuals PASS; persisted-state startup invariant HOLD).",
++  "changes": [
++   "runner: startup_state() validates persisted state against a fresh pinned build (task ID, 757 unique action ids/dues/kinds, bar keys + close_utc, no missing/extra/duplicate) BEFORE Pilot construction or any transport; mismatch -> StartupStop, STARTUP_STOP.json, exit 4, zero vendor/email calls.",
++   "runner: atomic migration only when desk_calls==0, all actions pending, no bar seen, REVIEW_HOLD present; before/after schedule hashes recorded in state (startup_migrations); migrated state re-validated.",
++   "runner: every successful startup writes a derived-only startup_attestation into state (schedule hash, bar-close hash, census, desk_calls, next action)."
++  ],
++  "hold": "REVIEW_HOLD unchanged \u2014 lifts only on ChatGPT's posted PASS after independent re-review of the r2.2 package."
+  }
+ }
+\ No newline at end of file
+diff -ruN --label a/source --label b/source a/source b/source
+--- a/source
++++ b/source
+@@ -769,5 +769,122 @@
+ else:
+     print("SKIP S21 armed-state check (no live state in this layout)")
+ 
++# ---- Scenario T: startup invariant (ruling 6387473294)
++import copy as _copy
++from datetime import timedelta as _td2
++
++
++class _CountingTransport:
++    def __init__(self):
++        self.calls = 0
++
++    def __call__(self, kind, params):
++        self.calls += 1
++        return 200, b"{}"
++
++
++def _boot(st_obj, name, hold=False):
++    """The exact startup path main() runs, mocked transport standing
++    by: a Pilot is constructed ONLY if startup_state returns."""
++    if not (hasattr(pr, "startup_state") and hasattr(pr, "StartupStop")):
++        return ("missing", None, None, -1)
++    path = os.path.join(TMP, name)
++    with open(path, "w") as f:
++        json.dump(st_obj, f)
++    old_path, old_hold = pr.STATE_PATH, pr.REVIEW_HOLD_PATH
++    hp = os.path.join(TMP, "REVIEW_HOLD_T")
++    pr.STATE_PATH, pr.REVIEW_HOLD_PATH = path, hp
++    if hold:
++        with open(hp, "w") as f:
++            f.write("hold\n")
++    elif os.path.exists(hp):
++        os.remove(hp)
++    ct = _CountingTransport()
++    try:
++        st2, att = pr.startup_state(MANIFEST)
++        _pilot = pr.Pilot(MANIFEST, ct, st2)  # construction only
++        return ("ok", att, st2, ct.calls)
++    except pr.StartupStop as e:
++        return ("stopped", e.report, None, ct.calls)
++    finally:
++        pr.STATE_PATH, pr.REVIEW_HOLD_PATH = old_path, old_hold
++        if os.path.exists(hp):
++            os.remove(hp)
++
++
++_fresh_t = pr.init_state(MANIFEST)
++_r, _att, _s2, _c = _boot(_fresh_t, "t_fresh.json")
++check("T1 valid persisted state -> startup proceeds (validated), "
++      "757 actions, zero transport",
++      _r == "ok" and _att["source"] == "validated"
++      and _att["total_actions"] == 757 and _c == 0,
++      f"outcome={_r} calls={_c}")
++_m = _copy.deepcopy(_fresh_t)
++_d = datetime.fromisoformat(_m["actions"][10]["due"]) + _td2(seconds=60)
++_m["actions"][10]["due"] = _d.isoformat()
++_r, _rep, _s2, _c = _boot(_m, "t_due.json")
++check("T2 one mutated due -> STOP before transport",
++      _r == "stopped" and _c == 0
++      and "due_mismatch" in _rep["mismatch_classes"],
++      f"outcome={_r} calls={_c} rep={_rep and _rep['mismatch_classes']}")
++_m = _copy.deepcopy(_fresh_t)
++_k = sorted(_m["bars"])[0]
++_d = datetime.fromisoformat(_m["bars"][_k]["close_utc"]) + _td2(minutes=30)
++_m["bars"][_k]["close_utc"] = _d.isoformat()
++_r, _rep, _s2, _c = _boot(_m, "t_close.json")
++check("T3 one mutated bar close_utc -> STOP before transport",
++      _r == "stopped" and _c == 0
++      and "close_utc_mismatch" in _rep["mismatch_classes"],
++      f"outcome={_r} calls={_c}")
++_m = _copy.deepcopy(_fresh_t)
++_m["actions"] = _m["actions"][:-1]
++_r, _rep, _s2, _c = _boot(_m, "t_deleted.json")
++check("T4 one deleted action -> STOP before transport",
++      _r == "stopped" and _c == 0
++      and "missing_action" in _rep["mismatch_classes"],
++      f"outcome={_r} calls={_c}")
++_m = _copy.deepcopy(_fresh_t)
++_m["actions"].append(_copy.deepcopy(_m["actions"][0]))
++_r, _rep, _s2, _c = _boot(_m, "t_dup.json")
++check("T5 one duplicated action -> STOP before transport",
++      _r == "stopped" and _c == 0
++      and "duplicate_action_ids" in _rep["mismatch_classes"],
++      f"outcome={_r} calls={_c}")
++_orig_bcd = pr.bar_close_dt
++pr.bar_close_dt = lambda m_, d_, s_: s_ + _td2(hours=1)  # r1 rule
++try:
++    _stale = pr.init_state(MANIFEST)
++finally:
++    pr.bar_close_dt = _orig_bcd
++_r, _rep, _s2, _c = _boot(_stale, "t_stale.json")
++check("T6a actual stale-r1 inventory (16:30 final-bar closes), no "
++      "hold -> STOP before transport",
++      _r == "stopped" and _c == 0
++      and "close_utc_mismatch" in _rep["mismatch_classes"]
++      and "due_mismatch" in _rep["mismatch_classes"],
++      f"outcome={_r} calls={_c} "
++      f"classes={_rep and _rep['mismatch_classes']}")
++_r, _att, _s2, _c = _boot(_copy.deepcopy(_stale), "t_stale_hold.json",
++                          hold=True)
++check("T6b stale-r1 inventory + REVIEW_HOLD + desk_calls 0 + all "
++      "pending -> atomic migration, hashes recorded, re-validated, "
++      "zero transport",
++      _r == "ok" and _att["source"] == "migrated" and _c == 0
++      and _att["schedule_sha256_before"] != _att["schedule_sha256"]
++      and _att["schedule_sha256"] == pr.schedule_hash(
++          pr.init_state(MANIFEST)["actions"])
++      and pr.validate_state_against_build(_s2, MANIFEST) == [],
++      f"outcome={_r} calls={_c}")
++_m = _copy.deepcopy(_stale)
++_m["desk_calls"] = 1
++_r, _rep, _s2, _c = _boot(_m, "t_desklock.json", hold=True)
++check("T7 migration refused when desk_calls = 1 (hold present) -> STOP",
++      _r == "stopped" and _c == 0, f"outcome={_r} calls={_c}")
++_m = _copy.deepcopy(_stale)
++_m["actions"][0]["status"] = "done"
++_r, _rep, _s2, _c = _boot(_m, "t_nonpending.json", hold=True)
++check("T8 migration refused when an action is non-pending -> STOP",
++      _r == "stopped" and _c == 0, f"outcome={_r} calls={_c}")
++
+ print("SELFTEST", "PASS" if not fails else f"FAIL {fails}")
+ sys.exit(1 if fails else 0)
+diff -ruN --label a/source --label b/source a/source b/source
+--- a/source
++++ b/source
+@@ -116,5 +116,17 @@
+ check("pre_revision baseline precedes every revision batch (r2.1)",
+       spot21)
+ 
++# r2.2 (ruling 6387473294): the startup invariant exists in the
++# delivered runner, a fresh build validates clean against itself, and
++# a single mutated due is caught by the validator.
++_inv_ok = hasattr(runner, "startup_state") and \
++    hasattr(runner, "validate_state_against_build")
++_fresh_v = runner.init_state(cfg)
++_mut_v = runner.init_state(cfg)
++_mut_v["actions"][3]["due"] = "2026-10-26T00:00:00+00:00"
++check("startup invariant validates state vs fresh build (r2.2)",
++      _inv_ok and runner.validate_state_against_build(_fresh_v, cfg)
++      == [] and runner.validate_state_against_build(_mut_v, cfg) != [])
++
+ print("VERIFY", "PASS" if not fails else f"FAIL {fails}")
+ sys.exit(1 if fails else 0)
