@@ -1,0 +1,13 @@
+PASS kill_inloop_stops stopped=STOP_KILLED
+PASS kill_inloop_no_later_inputs inputs={'NVDA': 60} of 974 NVDA rows
+PASS kill_inloop_last_input_at_boundary last=2026-10-29 12:30:00
+PASS kill_inloop_prefix_verifies verify=(True, {'records': 85, 'head': '72458a71e1724c50466a1daa1e3cf57c610e120abc9ddcde5c799f5472483d35'})
+PASS kill_inloop_anchor_is_kill_seal anchor_note='STOP_KILLED - prefix seal'
+PASS kill_before_flush_stops stopped=STOP_KILLED
+PASS kill_before_flush_no_sealed_record records=1394 inputs={'NVDA': 974}
+PASS kill_before_flush_prefix_verifies verify=(True, {'records': 1394, 'head': 'f614301a605a53b4c44990ce7fd8cac7a1963db14452d47b0e6a2288bb85e1f4'}) anchor_note='STOP_KILLED - prefix seal'
+PASS kill_before_anchor_stops stopped=STOP_KILLED
+PASS kill_before_anchor_extraction_ran_flush_sealed candidates_called=True
+PASS kill_before_anchor_no_completion_anchor anchor_note='STOP_KILLED - prefix seal'
+PASS kill_before_anchor_prefix_verifies verify=(True, {'records': 1395, 'head': '6b1b91c47fa39e0c53532e51d20b5a899c20996047c12c1b1f1f466166329fb3'})
+SUMMARY 12/12 PASS

@@ -1,0 +1,4 @@
+GAP-CONFIRMED inloop: stopped=STOP_KILLED inputs={'NVDA': 974} of 974 rows (KILL raised after row 60; r1 ingested all 914 remaining rows and stopped only at the next symbol boundary)
+GAP-CONFIRMED before_flush: stopped=STOP_KILLED sealed=True records=1395 (flush ran and journaled SEALED despite the sentinel; any stop came a symbol too late)
+GAP-CONFIRMED before_anchor: stopped=None anchor_note='synthetic replay complete' (completion anchor written despite the sentinel)
+SUMMARY fail-before 3/3 r1 gaps confirmed
