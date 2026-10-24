@@ -3610,3 +3610,29 @@ Rights discipline: Basic tier, internal non-display research only; storage durin
 PAUSED at arm (2026-10-24 ~10:40 ET): PAUSE_NEW_ENTRIES present (sha256 3f4b7811a577…), RESUME absent, harness pin ce7c902c…. Re-proved at pilot end.
 
 RESULT expected Mon Nov 2 after the final 08:00 ET revision re-poll (or same-day on STOP): latency quantiles per symbol/session (LATENCY_MEASURED or UNMEASURED), COVERAGE, REVISION_CENSUS, adapter parity on the exact captured bytes (ADAPTER_PARITY_PASS/FAIL/UNMEASURED), exact credit counts desk vs provider, sessions completed vs failed with causes, PAUSED re-proof. Measurement only — no S1 activation, no T0, no positions/orders, no performance computation. S1 PREP_READY / LAUNCH_HOLD; G4_HOLD. — Muse
+
+
+---
+
+## ACK ADDITION — QF-EQUITY43-FEED-MEASUREMENT-PILOT-20261024-22 email tripwire (wired into the daemon)
+
+Per Mike's added brief (2026-10-24): the Twelve Data email tripwire is an explicit scheduled check inside the pilot's own lane — the same mechanism that fires the day's polls runs the check first, and the day's captures proceed only if the check is clean. No other job is assumed to catch it.
+
+MECHANISM + SCHEDULE
+- A `tripwire` action is part of the daemon's frozen action schedule at **09:15 ET on each pilot day** (Mon 2026-10-26 → Fri 2026-10-30) — before that day's 09:25 ET /api_usage snapshot and before every poll (first polls 10:31 ET). Monday's check runs before the pilot's first poll, as required.
+- The check searches Mike's Gmail via `hatch_gws_cli gmail +triage` for any message from **any twelvedata.com sender** received after the inquiry send instant **2026-10-24T14:32:00Z** (query `from:twelvedata.com after:2026/10/24`, post-cutoff enforced by timestamp filter; unknown-date messages are treated as candidates — fail-closed).
+- CLEAN (no unfiled candidate): the day's captures proceed. Check outcome recorded per session in the pilot state and in the RESULT package (tripwire_log.json).
+- REPLY FOUND: the daemon fetches the full message (`+read`), saves it in the stage (work/tripwire/reply_<id>.json), and sets a HOLD — **no TD calls execute while held**. Polls that age past the 900 s lateness window during a hold are marked missed_late with cause `tripwire_hold` when the hold lifts — an honest, recorded gap, never backfilled, never silently extended.
+- SEARCH FAILURE: fail-closed — a failed or unparseable search sets the hold with the error recorded; the watchdog re-checks independently and surfaces it the same day.
+- ADJUDICATION: the watchdog cron td-feed-measure-pilot-watchdog (body updated for this protocol) reads held replies and writes state/tripwire_clear.json verdicts. Confirmed → hold lifts; the reply is filed in the RESULT package as **TD_SUPPORT_REPLY.json, the governing source superseding the AI-assistant answer**, and reported in the RESULT. Contradiction → TRIPWIRE FIRED (below). A reply the watchdog cannot confidently judge is NOT cleared — it is surfaced to Mike the same day. The watchdog also runs an independent once-daily Gmail backstop search in case the daemon's parse ever misses a reply shape.
+
+CONTRADICTION TESTS (against the AI-assistant answers on record)
+- Q1: Basic does NOT permit internal non-display processing/storage for evaluation/development.
+- Q2: private individual research / paper observation on Basic IS commercial/business use, or is not permitted.
+- Q3: retention/deletion duty stricter than delete-within-30-days after subscription end (audit trail excepted), or a bar on the existing private-archive storage during the term.
+
+TRIPWIRE FIRES → the pilot stops at the next poll boundary, all captured state is preserved, the reply text is reported the same day (Slack + bridge + Mike), and the pilot restarts only after ChatGPT adjudication.
+
+STOP CONDITION for the check: a staff reply is received and adjudicated, or the 5th session ends Fri 2026-10-30. A silent mailbox settles nothing — the Q6 third-party-hosted-AI nuance remains open regardless.
+
+WIRING PROOF: (1) the runner's own gmail_tripwire_search() executed live against Mike's mailbox on 2026-10-24 ~10:55 ET and returned clean (`[]` — no TD reply yet; note the CLI prints "No messages found" to stderr, handled); (2) offline self-test extended to 17/17 PASS, incl. D1 clean day, D2 hold on reply, D3 zero TD calls while held, D4 confirmed-clear with stale-poll marking, D5 contradiction → TRIPWIRE FIRED stop; (3) daemon re-armed on the extended frozen schedule — 752 actions, first action tripwire|2026-10-26 due Mon 09:15 ET, heartbeat carries tripwire_hold/tripwire_last_check. The run manifest carries the full tripwire block (email_tripwire). — Muse
