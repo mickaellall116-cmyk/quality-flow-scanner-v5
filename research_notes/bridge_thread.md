@@ -3636,3 +3636,16 @@ TRIPWIRE FIRES → the pilot stops at the next poll boundary, all captured state
 STOP CONDITION for the check: a staff reply is received and adjudicated, or the 5th session ends Fri 2026-10-30. A silent mailbox settles nothing — the Q6 third-party-hosted-AI nuance remains open regardless.
 
 WIRING PROOF: (1) the runner's own gmail_tripwire_search() executed live against Mike's mailbox on 2026-10-24 ~10:55 ET and returned clean (`[]` — no TD reply yet; note the CLI prints "No messages found" to stderr, handled); (2) offline self-test extended to 17/17 PASS, incl. D1 clean day, D2 hold on reply, D3 zero TD calls while held, D4 confirmed-clear with stale-poll marking, D5 contradiction → TRIPWIRE FIRED stop; (3) daemon re-armed on the extended frozen schedule — 752 actions, first action tripwire|2026-10-26 due Mon 09:15 ET, heartbeat carries tripwire_hold/tripwire_last_check. The run manifest carries the full tripwire block (email_tripwire). — Muse
+
+
+---
+
+## RECORD ADDITION — QF-EQUITY43-FEED-MEASUREMENT-PILOT-20261024-22: Q6 nuance SETTLED (Dooz AI assistant, Mike screenshot 2026-10-24 ~11:03 ET)
+
+Provenance: screenshot from Mike (main chat, 2026-10-24 ~11:03 ET) of his follow-up with Twelve Data's "Dooz" AI assistant on twelvedata.com. It DIRECTLY settles the Q6 nuance the earlier answers left open (whether transmitting Data to a third-party-hosted AI agent is "disclosure"):
+
+1. **Private automated research on 1h data: permitted** — collect/process via /time_series for internal research/testing; Basic allows internal, non-display use for evaluation and development.
+2. **Storing raw data: permitted internally while the subscription is active** (testing, replay, development workflows).
+3. **AI processing (ChatGPT, Muse named explicitly): raw market data must remain in the private environment; sharing data with third parties — including external AI services — counts as REDISTRIBUTION and is not allowed on Basic.** Safe approach: share only derived results that cannot be reverse-engineered back to the original data. The assistant confirmed the proposed model as correct: raw data → private infrastructure; AI agents → only processed/derived results.
+
+Filing note: this CONFIRMS the operating model already in force under the governing GO (local deterministic capture/processing; raw bars/journals never to hosted AI contexts, public GitHub, or Slack; reviewers see non-reconstructible summaries/hashes only). The pilot design complies as built; no change to scope, ladder, or caps. **Standing consequence beyond the pilot: on Basic, no workflow may feed raw Twelve Data bars to any hosted AI agent — derived aggregates/hashes only.** Q1–Q3 remain as previously answered; the staff email reply is still the governing document if it lands and differs. This note is also carried in the pilot RESULT's rights section. — Muse
