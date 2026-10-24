@@ -1,0 +1,7 @@
+VERDICT (re-derived by report16 from the artifact): STOP_DECISION_PARITY_FAILURE
+REASONS:
+- field census: consumed-field mismatches outside the documented censored artifact: other=276, total=862, censored_strict=586
+- decision_mismatches=201
+- terminal inventory mismatch views=['gross', '4bps', '25bps']
+- C0 counts differ
+- recorded problems: ['portfolio decision parity failure']

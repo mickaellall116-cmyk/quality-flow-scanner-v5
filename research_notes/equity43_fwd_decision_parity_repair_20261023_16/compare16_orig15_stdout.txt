@@ -1,0 +1,102 @@
+P0 done: successor/fork/original pins ok; config pin 87b8285a522ba0e3…; archive verified (158 + 22); PAUSED pins ok
+P1 done: child chain 54 receipts verified from GENESIS, 23 legs quarantined w/o receipt; pilot receipts ok
+[inventory] {'pins': 'PASS (ref P0/P1 as -15)'}
+[config_pins] {'experiment_config_sha256': '87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706', 'experiment_config_sha_match': True, 'start_equity': 10000.0, 'risk_pct': 0.01, 'max_concurrent': 5, 'max_portfolio_risk': 0.05, 'costs': {'4bps': 0.0004, '25bps': 0.0025}, 'sl_atr': 1.5, 'tp_atr': 2.0, 'trail_atr': 2.5, 'warmup': 215, 'sector_map_sha256': 'a91222c7a27e83d279bdf162de5dfc030a88911d65b0ee43ea196ee38a7cea2c'}
+P2 NVDA: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 TSLA: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 AAPL: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SPY: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 PLTR: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SOFI: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 AMD: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MSFT: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 META: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 COIN: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MSTR: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AVGO: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 GOOGL: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AMZN: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NFLX: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 CRM: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P2 MU: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 INTC: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 LRCX: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 AMAT: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 QCOM: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ARM: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 HOOD: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 APP: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 NET: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P2 SNOW: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 DDOG: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 CRWD: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 SHOP: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 RKLB: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ASTS: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 LUNR: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 PYPL: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NU: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MELI: raw 3653 admitted 3653 excluded [] zv 0/0 moving
+P2 IWM: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 SMH: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 ARKK: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 XLF: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 NIO: raw 3655 admitted 3653 excluded ['2024-11-29 15:30:00', '2024-12-24 15:30:00'] zv 0/0 moving
+P2 MRNA: raw 3654 admitted 3653 excluded ['2024-11-29 15:30:00'] zv 0/0 moving
+P2 PFE: raw 3654 admitted 3653 excluded ['2024-12-24 14:30:00'] zv 0/0 moving
+P2 F: raw 3654 admitted 3653 excluded ['2024-12-24 15:30:00'] zv 0/0 moving
+P4 NVDA: 1043 4H bars grid_ok=True agg_bad=0
+P4 TSLA: 1043 4H bars grid_ok=True agg_bad=0
+P4 AAPL: 1043 4H bars grid_ok=True agg_bad=0
+P4 SPY: 1043 4H bars grid_ok=True agg_bad=0
+P4 PLTR: 1043 4H bars grid_ok=True agg_bad=0
+P4 SOFI: 1043 4H bars grid_ok=True agg_bad=0
+P4 AMD: 1043 4H bars grid_ok=True agg_bad=0
+P4 MSFT: 1043 4H bars grid_ok=True agg_bad=0
+P4 META: 1043 4H bars grid_ok=True agg_bad=0
+P4 COIN: 1043 4H bars grid_ok=True agg_bad=0
+P4 MSTR: 1043 4H bars grid_ok=True agg_bad=0
+P4 AVGO: 1043 4H bars grid_ok=True agg_bad=0
+P4 GOOGL: 1043 4H bars grid_ok=True agg_bad=0
+P4 AMZN: 1043 4H bars grid_ok=True agg_bad=0
+P4 NFLX: 1043 4H bars grid_ok=True agg_bad=0
+P4 CRM: 1043 4H bars grid_ok=True agg_bad=0
+P4 MU: 1043 4H bars grid_ok=True agg_bad=0
+P4 INTC: 1043 4H bars grid_ok=True agg_bad=0
+P4 LRCX: 1043 4H bars grid_ok=True agg_bad=0
+P4 AMAT: 1043 4H bars grid_ok=True agg_bad=0
+P4 QCOM: 1043 4H bars grid_ok=True agg_bad=0
+P4 ARM: 1043 4H bars grid_ok=True agg_bad=0
+P4 HOOD: 1043 4H bars grid_ok=True agg_bad=0
+P4 APP: 1043 4H bars grid_ok=True agg_bad=0
+P4 NET: 1043 4H bars grid_ok=True agg_bad=0
+P4 SNOW: 1043 4H bars grid_ok=True agg_bad=0
+P4 DDOG: 1043 4H bars grid_ok=True agg_bad=0
+P4 CRWD: 1043 4H bars grid_ok=True agg_bad=0
+P4 SHOP: 1043 4H bars grid_ok=True agg_bad=0
+P4 RKLB: 1043 4H bars grid_ok=True agg_bad=0
+P4 ASTS: 1043 4H bars grid_ok=True agg_bad=0
+P4 LUNR: 1043 4H bars grid_ok=True agg_bad=0
+P4 PYPL: 1043 4H bars grid_ok=True agg_bad=0
+P4 NU: 1043 4H bars grid_ok=True agg_bad=0
+P4 MELI: 1043 4H bars grid_ok=True agg_bad=0
+P4 IWM: 1043 4H bars grid_ok=True agg_bad=0
+P4 SMH: 1043 4H bars grid_ok=True agg_bad=0
+P4 ARKK: 1043 4H bars grid_ok=True agg_bad=0
+P4 XLF: 1043 4H bars grid_ok=True agg_bad=0
+P4 NIO: 1043 4H bars grid_ok=True agg_bad=0
+P4 MRNA: 1043 4H bars grid_ok=True agg_bad=0
+P4 PFE: 1043 4H bars grid_ok=True agg_bad=0
+P4 F: 1043 4H bars grid_ok=True agg_bad=0
+P4 candidates: closed=586 censored=4 parity_bad=0 rs_changed_by_asof(closed)=586
+[reference] {'closed_candidates': 586, 'censored_candidates': 4, 'total_candidates': 590, 'skipped_gap_below_stop': 1, 'cutoff': '2026-10-16 17:30:00-04:00'}
+[observer_stream] {'raw_rows': 157140, 'rejected': 0, 'excluded_postclose': 61, 'decision_events': 1460, 'journal_records': 68903, 'journal_verify': True, 'journal_info': {'records': 68903, 'head': 'cd7ec5d43bee480367c757de067ba771fea3fddb56465e4b554884e090984231'}, 'anchor_head': 'cd7ec5d43bee4803'}
+[bars_parity] {'bars_compared': 44849, 'symbols_bad': 0, 'sessionvwap_max_abs_diff': 4.547473508864641e-13}
+[benchmark_parity] {'equal': True, 'sessions': 524}
+[closes_identity] {'symbols_compared': 43, 'symbols_bad': 0, 'max_abs_diff': 0.0, 'first': []}
+[field_census] {'total_mismatches': 862, 'per_field': {'entry': 0, 'stop': 0, 'tp1': 0, 'exit': 276, 'entry_time': 0, 'exit_time': 0, 'signal_time': 0, 'reason': 0, 'hold_bars': 0, 'tp1_hit': 0, 'censored': 586, 'risk_frac': 0}, 'keyset_problems': [], 'extra_key_asymmetry': ['censored'], 'detail': {'entry': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}, 'stop': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}, 'tp1': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}, 'exit': {'compared': 590, 'mismatches': 276, 'max_abs_diff': 109.14669271528328, 'first': [["('AAPL', 442)", 226.3478059834977, 226.8], ["('AAPL', 493)", 243.722235522638, 247.77], ["('AAPL', 543)", 261.51799876772736, 265.88], ["('AAPL', 593)", 278.1246483393234, 276.94949], ["('AAPL', 787)", 285.8259480172186, 300.27499]]}, 'entry_time': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}, 'exit_time': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}, 'signal_time': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}, 'reason': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}, 'hold_bars': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}, 'tp1_hit': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}, 'censored': {'compared': 590, 'mismatches': 586, 'max_abs_diff': 0.0, 'first': [["('AAPL', 215)", 'None', 'False'], ["('AAPL', 403)", 'None', 'False'], ["('AAPL', 442)", 'None', 'False'], ["('AAPL', 493)", 'None', 'False'], ["('AAPL', 543)", 'None', 'False']]}, 'risk_frac': {'compared': 590, 'mismatches': 0, 'max_abs_diff': 0.0, 'first': []}}}
+[decision_parity] {'rs_mismatches': 0, 'decision_mismatches': 201, 'first': ["('AAPL', 715): taken_25bps differs", "('AMD', 533): taken_25bps differs", "('AMD', 833): disposition_4bps skipped_rank vs skipped_risk", "('AMD', 1001): taken_25bps differs", "('AMZN', 455): disposition_4bps skipped_rank vs skipped_risk"], 'terminal_symbol_mismatch_views': ['gross', '4bps', '25bps'], 'terminal_observer': {'gross': ['CRM', 'PFE'], '4bps': ['CRM', 'PFE'], '25bps': ['CRM', 'PFE']}, 'terminal_reference': {'gross': ['CRM', 'MRNA', 'PFE'], '4bps': ['CRM', 'MRNA', 'PFE', 'SHOP'], '25bps': ['CRM', 'MRNA', 'PFE', 'SHOP']}, 'c0_counts_observer': {'taken_count': 192, 'skipped_cap': 328, 'skipped_risk': 70}, 'c0_counts_reference': {'taken_count': 193, 'skipped_cap': 323, 'skipped_risk': 74}}
+[reference_selfcheck] {'rs_mismatches': 0, 'decision_mismatches': 0, 'terminal_mismatch_views': [], 'c0_counts': {'taken_count': 193, 'skipped_cap': 323, 'skipped_risk': 74}, 'c0_match': True}
+[diagnostics] {'exit_field_mismatch_count': 281, 'exit_field_all_tp1_hit': False, 'exit_field_none_tp1_hit': False, 'first_exit_field_divergence': '...', 'first_cashflow_divergence': '...', 'disposition_diff_count_vs_ref_sim': 63, 'first_disposition_divergence': '...', 'classification': '...', 'substitution_exit_only': '...'}
+VERDICT: STOP_DECISION_PARITY_FAILURE -> /home/hatch/workspace/qf_td16_stage/work/compare16_orig15.json
+PROBLEMS: ['portfolio decision parity failure']

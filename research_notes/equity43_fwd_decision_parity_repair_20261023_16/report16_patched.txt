@@ -1,0 +1,2 @@
+VERDICT (re-derived by report16 from the artifact): DECISION_PARITY_PASS
+All recorded section values re-derive to zero mismatches; recorded verdict agrees.

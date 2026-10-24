@@ -1,0 +1,19 @@
+PASS T01_grid_full_session bars=2 starts=['09:30', '13:30']
+PASS T02_grid_early_close bars=1
+PASS T03_holiday_refused rejected=7 bars=0
+PASS T04_dst_spring_forward offsets=[-5.0, -5.0, -4.0, -4.0] first-bin decision UTC=['18:30', '17:30']
+PASS T05_dst_fall_back offsets=[-4.0, -4.0, -5.0, -5.0] first-bin decision UTC=['17:30', '18:30']
+PASS T06_legacy_grid_rejected rejected=[('06:30', 'OFF_GRID')] bars=0
+PASS T07_phantom_postclose_excluded excluded=1 bars=1
+PASS T08_poison_volume_isolation poison=1 AAA bars=0 BBB bars=2
+PASS T09_missing_hour_gap incomplete=1 bars=2
+PASS T10_late_bar_no_backfill late class=['LATE_BAR'] bars=0
+PASS T11_duplicate_out_of_order classes=['DUPLICATE', 'OUT_OF_ORDER']
+PASS T12_streaming_vs_batch_candidates bars_ok=True candidates obs=3 ref=3 closed=2 censored=1 identical=True
+PASS T13_asof_spy_no_same_day_leak asof 0.19673403740449968 -> 0.19673403740449968 under mutation; midnight 0.1913728595365849 -> 46.65491438146339
+PASS T14_portfolio_cross_impl_gates candidates identical=True dispositions identical=True order-invariant=True 4bps skips rank/gate/cap/risk=(5, 1, 0, 0)
+PASS T15_restart_idempotency journal sha equal=True candidates equal=True duplicate refused after restore=1
+PASS T16_journal_tamper_detected intact=True tampered=False truncated=False
+PASS T17_paused_sentinel_gate withheld=8 decisions while paused=0, after resume=8
+PASS T18_terminal_censoring_mark censored=1 terminal mark=338.28516416826574 last completed close=338.28516416826574 fabricated exit events=0
+SUMMARY 18/18 tests passed

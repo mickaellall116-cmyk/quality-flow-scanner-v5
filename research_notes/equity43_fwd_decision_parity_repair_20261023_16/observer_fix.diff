@@ -1,0 +1,32 @@
+--- observer16/fwd_observer_orig15.py	2026-10-24 00:53:40.287031238 +0000
++++ observer16/fwd_observer.py	2026-10-24 01:19:52.180858327 +0000
+@@ -470,8 +470,28 @@
+             if reason is not None:
+                 exit_px = float(df["Open"].iloc[i + 1])
+                 exit_idx, exit_time = i + 1, df.index[i + 1]
++                # QF-EQUITY43-FWD-DECISION-PARITY-REPAIR-20261023-16 —
++                # MINIMAL REPAIR (observer layer only). The candidate
++                # `exit` the simulators consume is NOT the raw exit-bar
++                # open: the reference generator (gen_candidates_censored,
++                # field-verified against frozen gen_candidates) records
++                # the TP1-blended synthetic exit — 50% realized at TP1
++                # when hit, the runner at the raw exit price — via the
++                # identical float arithmetic below. The -15 observer
++                # stored the raw open, so every tp1_hit candidate's
++                # exit differed (276 of 586 on DEV bytes), cascading
++                # through _outcome cash flows into 201 decision
++                # mismatches. Arithmetic mirrored expression-for-
++                # expression; bit-exact against the reference on all
++                # 586 closed candidates (proven in the -16 package).
++                risk_frac = (pos["entry"] - pos["stop"]) / pos["entry"]
++                r1 = (pos["tp1"] - pos["entry"]) / pos["entry"] \
++                    / risk_frac if pos["tp_hit"] else None
++                r2 = (exit_px - pos["entry"]) / pos["entry"] / risk_frac
++                r_blend = (0.5 * r1 + 0.5 * r2) if r1 is not None else r2
++                exit_synth = pos["entry"] * (1 + r_blend * risk_frac)
+                 rec = self.records[(self.symbol, pos["signal_idx"])]
+-                rec.update({"exit": exit_px, "exit_time": exit_time,
++                rec.update({"exit": exit_synth, "exit_time": exit_time,
+                             "reason": reason,
+                             "hold_bars": exit_idx - pos["entry_idx"],
+                             "tp1_hit": pos["tp_hit"]})

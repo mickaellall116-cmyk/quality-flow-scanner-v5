@@ -1,0 +1,408 @@
+{
+ "task": "QF-EQUITY43-FWD-DECISION-PARITY-REPAIR-20261023-16",
+ "comparison": "observer (streaming) vs -13 study (batch), decision-level only; full field census",
+ "observer_module": "fwd_observer_orig15.py",
+ "tag": "orig15",
+ "sections": {
+  "inventory": {
+   "pins": "PASS (ref P0/P1 as -15)"
+  },
+  "config_pins": {
+   "experiment_config_sha256": "87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706",
+   "experiment_config_sha_match": true,
+   "start_equity": 10000.0,
+   "risk_pct": 0.01,
+   "max_concurrent": 5,
+   "max_portfolio_risk": 0.05,
+   "costs": {
+    "4bps": 0.0004,
+    "25bps": 0.0025
+   },
+   "sl_atr": 1.5,
+   "tp_atr": 2.0,
+   "trail_atr": 2.5,
+   "warmup": 215,
+   "sector_map_sha256": "a91222c7a27e83d279bdf162de5dfc030a88911d65b0ee43ea196ee38a7cea2c"
+  },
+  "reference": {
+   "closed_candidates": 586,
+   "censored_candidates": 4,
+   "total_candidates": 590,
+   "skipped_gap_below_stop": 1,
+   "cutoff": "2026-10-16 17:30:00-04:00"
+  },
+  "observer_stream": {
+   "raw_rows": 157140,
+   "rejected": 0,
+   "excluded_postclose": 61,
+   "decision_events": 1460,
+   "journal_records": 68903,
+   "journal_verify": true,
+   "journal_info": {
+    "records": 68903,
+    "head": "cd7ec5d43bee480367c757de067ba771fea3fddb56465e4b554884e090984231"
+   },
+   "anchor_head": "cd7ec5d43bee4803"
+  },
+  "bars_parity": {
+   "bars_compared": 44849,
+   "symbols_bad": 0,
+   "sessionvwap_max_abs_diff": 4.547473508864641e-13
+  },
+  "benchmark_parity": {
+   "equal": true,
+   "sessions": 524
+  },
+  "closes_identity": {
+   "symbols_compared": 43,
+   "symbols_bad": 0,
+   "max_abs_diff": 0.0,
+   "first": []
+  },
+  "field_census": {
+   "total_mismatches": 862,
+   "per_field": {
+    "entry": 0,
+    "stop": 0,
+    "tp1": 0,
+    "exit": 276,
+    "entry_time": 0,
+    "exit_time": 0,
+    "signal_time": 0,
+    "reason": 0,
+    "hold_bars": 0,
+    "tp1_hit": 0,
+    "censored": 586,
+    "risk_frac": 0
+   },
+   "keyset_problems": [],
+   "extra_key_asymmetry": [
+    "censored"
+   ],
+   "detail": {
+    "entry": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "stop": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "tp1": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "exit": {
+     "compared": 590,
+     "mismatches": 276,
+     "max_abs_diff": 109.14669271528328,
+     "first": [
+      [
+       "('AAPL', 442)",
+       226.3478059834977,
+       226.8
+      ],
+      [
+       "('AAPL', 493)",
+       243.722235522638,
+       247.77
+      ],
+      [
+       "('AAPL', 543)",
+       261.51799876772736,
+       265.88
+      ],
+      [
+       "('AAPL', 593)",
+       278.1246483393234,
+       276.94949
+      ],
+      [
+       "('AAPL', 787)",
+       285.8259480172186,
+       300.27499
+      ]
+     ]
+    },
+    "entry_time": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "exit_time": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "signal_time": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "reason": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "hold_bars": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "tp1_hit": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    },
+    "censored": {
+     "compared": 590,
+     "mismatches": 586,
+     "max_abs_diff": 0.0,
+     "first": [
+      [
+       "('AAPL', 215)",
+       "None",
+       "False"
+      ],
+      [
+       "('AAPL', 403)",
+       "None",
+       "False"
+      ],
+      [
+       "('AAPL', 442)",
+       "None",
+       "False"
+      ],
+      [
+       "('AAPL', 493)",
+       "None",
+       "False"
+      ],
+      [
+       "('AAPL', 543)",
+       "None",
+       "False"
+      ]
+     ]
+    },
+    "risk_frac": {
+     "compared": 590,
+     "mismatches": 0,
+     "max_abs_diff": 0.0,
+     "first": []
+    }
+   }
+  },
+  "decision_parity": {
+   "rs_mismatches": 0,
+   "decision_mismatches": 201,
+   "first": [
+    "('AAPL', 715): taken_25bps differs",
+    "('AMD', 533): taken_25bps differs",
+    "('AMD', 833): disposition_4bps skipped_rank vs skipped_risk",
+    "('AMD', 1001): taken_25bps differs",
+    "('AMZN', 455): disposition_4bps skipped_rank vs skipped_risk"
+   ],
+   "terminal_symbol_mismatch_views": [
+    "gross",
+    "4bps",
+    "25bps"
+   ],
+   "terminal_observer": {
+    "gross": [
+     "CRM",
+     "PFE"
+    ],
+    "4bps": [
+     "CRM",
+     "PFE"
+    ],
+    "25bps": [
+     "CRM",
+     "PFE"
+    ]
+   },
+   "terminal_reference": {
+    "gross": [
+     "CRM",
+     "MRNA",
+     "PFE"
+    ],
+    "4bps": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ],
+    "25bps": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ]
+   },
+   "c0_counts_observer": {
+    "taken_count": 192,
+    "skipped_cap": 328,
+    "skipped_risk": 70
+   },
+   "c0_counts_reference": {
+    "taken_count": 193,
+    "skipped_cap": 323,
+    "skipped_risk": 74
+   }
+  },
+  "reference_selfcheck": {
+   "rs_mismatches": 0,
+   "decision_mismatches": 0,
+   "terminal_mismatch_views": [],
+   "c0_counts": {
+    "taken_count": 193,
+    "skipped_cap": 323,
+    "skipped_risk": 74
+   },
+   "c0_match": true
+  },
+  "diagnostics": {
+   "exit_field_mismatch_count": 281,
+   "exit_field_all_tp1_hit": false,
+   "exit_field_none_tp1_hit": false,
+   "first_exit_field_divergence": "...",
+   "first_cashflow_divergence": "...",
+   "disposition_diff_count_vs_ref_sim": 63,
+   "first_disposition_divergence": "...",
+   "classification": "...",
+   "substitution_exit_only": "..."
+  },
+  "diagnostics_detail": {
+   "exit_field_mismatch_count": 281,
+   "exit_field_all_tp1_hit": false,
+   "exit_field_none_tp1_hit": false,
+   "first_exit_field_divergence": {
+    "key": "('XLF', 224)",
+    "exit_time": "2025-03-04 13:30:00-05:00",
+    "ref_exit": 51.234642196082504,
+    "obs_exit": 50.12,
+    "tp1_hit": true,
+    "reason": "stop"
+   },
+   "first_cashflow_divergence": {
+    "key": "('XLF', 224)",
+    "exit_time": "2025-03-04 13:30:00-05:00",
+    "in_ref": true,
+    "in_obs": true,
+    "ref_cash_flow": -14.991339515144759,
+    "obs_cash_flow": -156.13388645674507
+   },
+   "disposition_diff_count_vs_ref_sim": 63,
+   "first_disposition_divergence": {
+    "key": "('ARM', 411)",
+    "entry_time": "2025-07-16 13:30:00-04:00",
+    "obs": "skipped_risk",
+    "ref": "skipped_rank"
+   },
+   "classification": {
+    "first_field_divergence_time": "2025-03-04 13:30:00-05:00",
+    "cascade_consistent": 201,
+    "independent": 0,
+    "independent_first": [],
+    "terminal_views_mismatch_are_endstate": [
+     "gross",
+     "4bps",
+     "25bps"
+    ]
+   },
+   "substitution_exit_only": {
+    "decision_mismatches": 0,
+    "terminal_observer": {
+     "gross": [
+      "CRM",
+      "MRNA",
+      "PFE"
+     ],
+     "4bps": [
+      "CRM",
+      "MRNA",
+      "PFE",
+      "SHOP"
+     ],
+     "25bps": [
+      "CRM",
+      "MRNA",
+      "PFE",
+      "SHOP"
+     ]
+    },
+    "terminal_mismatch_views": [],
+    "c0_counts": {
+     "taken_count": 193,
+     "skipped_cap": 323,
+     "skipped_risk": 74
+    },
+    "c0_match": true
+   }
+  }
+ },
+ "universe": [
+  "NVDA",
+  "TSLA",
+  "AAPL",
+  "SPY",
+  "PLTR",
+  "SOFI",
+  "AMD",
+  "MSFT",
+  "META",
+  "COIN",
+  "MSTR",
+  "AVGO",
+  "GOOGL",
+  "AMZN",
+  "NFLX",
+  "CRM",
+  "MU",
+  "INTC",
+  "LRCX",
+  "AMAT",
+  "QCOM",
+  "ARM",
+  "HOOD",
+  "APP",
+  "NET",
+  "SNOW",
+  "DDOG",
+  "CRWD",
+  "SHOP",
+  "RKLB",
+  "ASTS",
+  "LUNR",
+  "PYPL",
+  "NU",
+  "MELI",
+  "IWM",
+  "SMH",
+  "ARKK",
+  "XLF",
+  "NIO",
+  "MRNA",
+  "PFE",
+  "F"
+ ],
+ "problems": [
+  "portfolio decision parity failure"
+ ],
+ "verdict": "STOP_DECISION_PARITY_FAILURE"
+}

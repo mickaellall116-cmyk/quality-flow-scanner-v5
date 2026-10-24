@@ -1,0 +1,4 @@
+closed: 586 censored: 4
+patch-formula bit-exact vs ref exit: 586 / 586
+categories |ref_exit - raw_open|: {'tp1_material': 276, 'notp1_epsilon': 310}
+notable examples: []

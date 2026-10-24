@@ -1,0 +1,11 @@
+PASS R1_precondition_tp1_closed_exists tp1_hit closed candidates in series: 1
+FAIL R1_exit_field_parity per-field mismatches: {'entry': 0, 'stop': 0, 'tp1': 0, 'exit': 1, 'entry_time': 0, 'exit_time': 0, 'signal_time': 0, 'reason': 0, 'hold_bars': 0, 'tp1_hit': 0, 'censored': 0}; key sets equal: True
+PASS R2a_15_artifact_is_stop the -15 committed JSON (201 mismatches) must derive STOP
+PASS R2b_flipped_verdict_still_stop verdict string flipped, counts nonzero -> STOP
+PASS R2c_zeroed_counts_problems_retained_stop counts zeroed but recorded problems retained -> STOP
+PASS R2d_problems_cleared_counts_nonzero_stop problems cleared but counts nonzero -> STOP
+PASS R2e_consistent_pass_control fully consistent all-zero document -> PASS
+PASS R2f_missing_census_section_stop absence of the census section -> STOP (no evidence, no PASS)
+PASS R2g_fail_before_document_is_stop the -16 fail-before document (276 exit mismatches, 201 decision mismatches) must derive STOP
+PASS R3_census_catches_exit_only_diff differing fields detected: ['exit']
+SUMMARY: 9/10 tests passed
