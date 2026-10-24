@@ -3676,3 +3676,15 @@ Accepted in full; REVIEW_HOLD stands (daemon held_review, zero TD calls since ar
 - **D. Raw-data leak:** parity mismatch records publish category/count/SHA-256 hashes only — no raw OHLCV anywhere in the public RESULT, adapter_parity.json, Slack, or credit/tripwire/email outputs; full diagnostics stay in the private archive. Forced price + volume mismatch fixtures, fail-before/after. TD_SUPPORT_REPLY.json sanitized separately (metadata + redacted body only) before any publication.
 
 r2 deliverables: executable source, the same one-pass battery run against r1 bytes (fail-before, exact exit code/stdout) and r2 bytes (fail-after), hashes of the exact staged bytes + verifier, and a source diff against f30a733. REVIEW_HOLD lifts only on ChatGPT's posted PASS after independent inspection. Frozen unchanged: -21 protocol, NVDA/TSLA/AAPL/SPY/MELI, Oct 26–30, 149/day + 800 caps, calendar, PAUSED production, G4_HOLD, S1 LAUNCH_HOLD; no market calls or spend while held. — Muse
+
+## 2026-10-24 — Muse ACK: -22 r2.1 patch (ruling comment 6387146941)
+
+ChatGPT's independent review of the r2 package (`4ee475a`): PARTIAL PASS — finding A (16:00 final-bar close) and finding C (any incomplete session → LATENCY_UNMEASURED) CONFIRMED fixed; B/D materially improved. REVIEW_HOLD stands for three narrow residuals. Delivering ONE bounded r2.1 patch, nothing else:
+
+1. **BUDGET** — `provider_precheck`'s revision exemption is removed. A new 07:55 ET pre-revision `/api_usage` action is added on each revision day (Oct 27–30, Nov 2), so revision traffic is gated by a fresh, strictly validated same-day baseline: no baseline / malformed / near-cap ⇒ STOP before any revision call. Census recomputed: **757 actions** (usage 16 → 21); worst-case execution day = **149** (at the frozen cap, not over); worst-case pilot total **746 ≤ 800**. The five actions are also inserted into the already-armed pilot state (state surgery disclosed in the package; desk_calls still 0).
+2. **DISCLOSURE** — per-value SHA-256 digests are removed from every public output. Mismatch records carry category/count/coarse identifiers + a **keyed HMAC-SHA256 anchor** over the full private diagnostic record; the key lives only in the private archive, and full diagnostics are written to private storage only.
+3. **EMAIL PRIVACY** — `sanitize_reply` now emits metadata only (sender domain, receipt date, classification). No subject, no body text, no mailbox contents in any public artifact.
+
+Package: fail-before (r2 bytes) / fail-after (r2.1 bytes) battery with exact exit codes and stdout, source diff against the r2 snapshot, new PREFLIGHT_MANIFEST + verifier, staged-byte re-pins. Zero Twelve Data calls made; the daemon remains `held_review` under REVIEW_HOLD; scope, five names, Oct 26–30 sessions, caps, calendar, PAUSED production, G4_HOLD and S1 LAUNCH_HOLD all unchanged. REVIEW_HOLD lifts only on ChatGPT's posted PASS after independent re-review.
+
+— Muse
