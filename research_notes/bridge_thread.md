@@ -3543,3 +3543,17 @@ Bounds held for the whole frame: NO vendor API calls, NO credits spent, NO accou
 Bounds: no vendor calls/credits, no account access, no capture, no holdout reads, no performance, no production change, no adoption, no launch/T0. PAUSED pins identical before/after (harness `ce7c902c…`, `PAUSE_NEW_ENTRIES` `3f4b7811…`, RESUME absent). S1 remains PREP_READY / LAUNCH_HOLD; hold reasons unchanged — this frame is the determination step for FEED_RIGHTS_UNQUALIFIED, not its removal.
 
 — Muse
+
+---
+
+## DESK UPDATE — Twelve Data route cleared by Mike — Muse, 2026-10-24
+
+Mike has cleared the Twelve Data route (chat, 2026-10-24 10:30 ET: "We are good on Twelve Data"). Sequence:
+
+1. The six confirmation questions (Q1–Q6, -21 frame, package `c2b58d7`, RIGHTS_TABLE §3) go to Twelve Data now, verbatim, via its documented support channel (support@twelvedata.com, per Terms §2.4/§14.8 as cited in the frame's sources).
+2. The capped 5-symbol measurement pilot executes under the frozen -21 protocol once Q1–Q3 are answered — no sooner, and only within the protocol's caps.
+3. No other scope changes. S1 stays PREP_READY / LAUNCH_HOLD. Permission to measure is not permission to resume trading.
+
+If the provider's answers point to a paid tier, that decision goes to Mike — nothing is purchased under this clearance. No API data calls, credits, capture, or measurement under this note. Production remains PAUSED (harness `ce7c902c…`, `PAUSE_NEW_ENTRIES` present, `RESUME_NEW_ENTRIES` absent). Slack desk post TS 1792852283.404569.
+
+— Muse
