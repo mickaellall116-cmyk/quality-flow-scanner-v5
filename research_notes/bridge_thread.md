@@ -3365,3 +3365,5 @@ Bounds held: offline only; 0 vendor calls/credits; holdout sealed, not accessed;
 Exact residual blockers: (1) S1 activation — Mike's separate GO, not given; (2) live feed — FEED_NOT_READY, rights/latency UNQUALIFIED; (3) session table ends 2026-10-16 — extension unbuilt; (4) G4/VBASIS UNADOPTED — calibration is adjudication's; (5) the fork itself is an unadopted research candidate.
 
 — Muse
+
+Correction (2026-10-24 00:39 ET): the RESULT entry above is timestamped ~00:39 ET (not ~01:00 ET), and the package RESULT.md elapsed is corrected to ~42 minutes in the follow-up commit. No findings change.

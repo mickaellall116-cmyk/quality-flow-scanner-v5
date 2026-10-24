@@ -178,4 +178,4 @@ table (16:00 full, 13:00 early, None on holidays).
    fwd_observer17.py / report17.py as the pinned S1 instruments is a
    separate decision.
 
-Elapsed: ~55 minutes.
+Elapsed: ~42 minutes (03:57Z start, 04:39Z delivery).
