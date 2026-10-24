@@ -3304,3 +3304,25 @@ The OFFLINE_PARITY_READY claim in the -15 RESULT (bridge commit 306340b; package
 Verified PASS sections (from the same real output): adversarial suite 18/18; pins/chains; bars parity 44,849 bars (SessionVWAP max abs diff 4.547e-13 — not 0.0 as the retracted RESULT claimed); SPY as-of benchmark parity exact (524 sessions); candidate parity 590/590, 0 mismatches, max term abs diff 0.0; journal chain verified (68,903 records, head cd7ec5d43bee4803…). Observer stream: raw_rows 157,140, decision_events 1,460 (the retracted RESULT's 157,086 / 1,503 / 69,439 figures were wrong).
 
 Status: -15 = **HOLD — NOT OFFLINE_PARITY_READY**. Root cause not yet diagnosed; no engine semantics altered, nothing re-run. Diagnosis of the observer's portfolio-decision layer is a separate governed task. PAUSED production pins re-proved identical before/after (harness ce7c902c…, PAUSE present, RESUME absent). Slack correction TS 1792800365.318629. — Muse
+
+## 2026-10-23 ~21:35 ET — Muse: RESULT (-16) — DECISION_PARITY_PASS; root cause = observer stored raw exit-bar open instead of the TP1-blended synthetic exit; one-hunk observer repair; single re-comparison zero mismatches everywhere
+
+Package: research_notes/equity43_fwd_decision_parity_repair_20261023_16/ (RESULT.md + harness + reporter + repaired observer + fix diff + both governed comparison JSONs + test stdouts + SHA256 manifest).
+
+FAIL-BEFORE (pristine -15 observer): the -15 failure reproduced deterministically and exactly — 201 decision mismatches (same set head: AAPL 715, AMD 533, AMD 833 skipped_rank-vs-skipped_risk, AMD 1001, AMZN 455), C0 192/328/70 vs 193/323/74, terminal {CRM,PFE} vs {CRM,MRNA,PFE}/{+SHOP}; bars 44,849 (VWAP 4.547e-13), benchmark 524 exact, journal 68,903 verified; reference self-check clean (harness faithful, divergence observer-side only).
+
+CENSUS (590 candidates, every simulator-consumed field): exit is the ONLY differing consumed field — 276 mismatches (max $109.15), exactly the tp1_hit closed candidates; all other fields 0. Formula audit: reference exit recomputed from (entry, stop, tp1, tp1_hit, raw open) is bit-exact 586/586; |ref − raw| = material for all 276 tp1-hit, epsilon-only for all 310 non-tp1.
+
+ROOT CAUSE PROVEN 4 WAYS: (1) source — observer CandidateMachine stored the raw next-bar open; the reference (frozen-verified) records the TP1-blended synthetic exit the simulators price via _outcome; the -15 loop and suite both omitted exit from comparison. (2) Chronological walk — first field divergence = first cash-flow divergence: XLF 224, exit 2025-03-04 13:30 ET, ref exit 51.2346 vs obs 50.12, cash flow −$14.99 vs −$156.13 @4bps; first disposition flip ARM 411 (2025-07-16) skipped_risk vs skipped_rank. (3) Classification: 201/201 cascade, 0 independent. (4) Substitution: observer candidates with ONLY exit replaced by reference values → full parity (0 mismatches, C0 exact, terminal identical).
+
+REPAIR: one hunk, observer layer only (CandidateMachine._advance computes the blended exit with the reference's identical float arithmetic); strategy sources byte-identical, pins untouched; observer sha 48466a16… → 0f5a6638….
+
+SINGLE RE-COMPARISON vs PASS BAR: census 0 consumed-field mismatches; decisions 0; RS 0; terminal identical all views; C0 193/323/74 both sides; bars/benchmark/closes/journal all exact; self-check clean. Disclosed semantic note: strict `censored` count 586 in both runs is the key-presence artifact (reference omits the key → None; observer writes False; simulator consumes tr.get("censored") truthiness, pine_stack.py:70 — consumed values identical for all 590; the 4 genuinely censored match strictly).
+
+FAIL-CLOSED REPORTING: report16.py re-derives the verdict from the artifact (never a wrapper signal); negative battery green — -15 artifact → STOP even with verdict string flipped / counts zeroed / problems cleared / census section removed; fail-before doc → STOP; pass doc → PASS exit 0.
+
+TESTS: -15 suite 18/18 pristine (blind spot reproduced) and 18/18 repaired; -16 regression suite 9/10 pristine (sole failure = R1 exit parity, fail-before by design) and 10/10 repaired.
+
+Bounds held: no performance figures, no vendor calls, no holdout, no production touch (PAUSED pins re-proved in both runs), -15 package untouched. Remaining gates unchanged: ChatGPT adjudication; Mike's GO naming a future T0. No activation requested or implied.
+
+— Muse
