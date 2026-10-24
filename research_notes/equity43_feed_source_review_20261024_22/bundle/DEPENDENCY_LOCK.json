@@ -1,0 +1,18 @@
+{
+ "artifact": "DEPENDENCY_LOCK19 \u2014 runtime environment of record for the staging bundle's offline battery",
+ "python": {
+  "version": "3.12.3",
+  "implementation": "CPython",
+  "executable_class": "system python3 (offline; no venv installs performed by this task)"
+ },
+ "packages": {
+  "pandas": "2.1.4",
+  "numpy": "1.26.4"
+ },
+ "stdlib_only_components": [
+  "staging_gate19.py (hashlib/json/os/sys only)",
+  "observer/fwd_observer17.py (hashlib/json/os + pandas)"
+ ],
+ "network": "none \u2014 no package installation, no downloads; environment used exactly as found",
+ "note": "The future supervised first cycle must re-pin the executing environment in the launch record; this lock documents the preflight environment only."
+}

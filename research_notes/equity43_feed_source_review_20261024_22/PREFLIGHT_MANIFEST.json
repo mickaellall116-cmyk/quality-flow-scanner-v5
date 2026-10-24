@@ -1,0 +1,77 @@
+{
+ "archive": {
+  "clone_remote": "https://github.com/mickaellall116-cmyk/qf-data-archive.git",
+  "namespace": "captures/td_feed_measure_pilot_20261026",
+  "note": "raw payloads + journal live ONLY in this private repo clone inside the stage"
+ },
+ "bundle_pins": {
+  "calendar": "86a1d4eaa5b838aa4138cef3c7dc5efcea99997fec40863b015075829acf6371",
+  "observer": "929c1bc4cac34384ad0a8807a1006aaafc555f5b6cf548f5f030ef26110052c3",
+  "staging_gate": "aacc48517edd3abb29480dda6caa26036a865cc5d5f80219c952ae9371041865"
+ },
+ "caps": {
+  "arithmetic": "5 symbols x 7 bars x 4 polls = 140 + revision 5 + /api_usage 4 = 149/day; 5 sessions worst case 745 <= 800",
+  "day_call_cap": 149,
+  "total_call_cap": 800
+ },
+ "expected_bars": 175,
+ "files": {
+  "bundle/DEPENDENCY_LOCK.json": "bf92a604aec651911297da309cc708a0b2e3a4a520100d5c7c52a80d1d32b3ec",
+  "bundle/calendar/calendar_gen18.py": "898297a2cf30015ee734fe7a5efe088849bcee727aa12e1e4cc8d024f8e6aa4d",
+  "bundle/calendar/observer_repin18.json": "f24a5f75ee459e65f3e51751055d709d26fb5fe9c8e79dedd402c400a0c466af",
+  "bundle/calendar/session_table_751_qualified.json": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+  "bundle/calendar/session_table_extended_candidate.json": "86a1d4eaa5b838aa4138cef3c7dc5efcea99997fec40863b015075829acf6371",
+  "bundle/config/experiment_config.json": "911750faf7468b74d6ba47338226dc2d6ae90e249b24d6062055f2915515b6cb",
+  "bundle/config/universe43.json": "cc3f2f8a4daaad7e3445180aaa9958ab1bd36955e434650b3b186a6723c29711",
+  "bundle/engine/asof_benchmark.py": "f0f4582c4a8aee484c24d330658b0c4ae6e2a169c19f3bf2b1475c2dc2ce2017",
+  "bundle/engine/pine_backtest.py": "874d2a9b1d99171a4d3db709ece9ce4719b4d108a70f7e95b4a082692cc0c99d",
+  "bundle/engine/pine_exposure/pine_exposure.py": "9f646161c27f6b28febe0980d03665bc9c1502fb844d37be6fd1d72ee45102be",
+  "bundle/engine/pine_ranking/pine_ranking.py": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+  "bundle/engine/pine_signal_quality/pine_signal_quality.py": "b1b39ee8d0bd4bbb1387b3ce54c7345c1f8dd622f94a5ed390c989fed1d39e69",
+  "bundle/engine/pine_stack/pine_stack.py": "8d4a964fd7bb08b4a98a55eb7fae222157ae27f1a768f255e7cbc152c9d15b03",
+  "bundle/engine/scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c",
+  "bundle/lineage/engine_fork09/pine_backtest.py": "becea0824486003daef386b49e137a83ffdf22c1e2d145136498919102fc42f2",
+  "bundle/lineage/engine_fork09/pine_ranking/pine_ranking.py": "77afae0df120e3a2ad77a6d2d43247c8aea0ad296f08c273bff7d1cc833aaae6",
+  "bundle/lineage/engine_fork09/pine_stack/pine_stack.py": "30594231ffc3bac27303f96310e8f274229415c890c371f4dbdfcdb54156cda4",
+  "bundle/lineage/engine_fork09/scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c",
+  "bundle/lineage/engine_orig/pine_backtest.py": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+  "bundle/lineage/engine_orig/pine_stack/pine_stack.py": "839e4800624de253514095b5c007e8088afc0ab6c6ef45c86fb29a5956dfcefa",
+  "bundle/observer/fwd_observer17.py": "929c1bc4cac34384ad0a8807a1006aaafc555f5b6cf548f5f030ef26110052c3",
+  "bundle/pins/PINS19.json": "8809a752d4bd02977486f261422e65ee7dd5958501446caad329e779dde25538",
+  "bundle/staging_gate19.py": "aacc48517edd3abb29480dda6caa26036a865cc5d5f80219c952ae9371041865",
+  "source/finalize_pilot.py": "053be3e2e60dc3ffa10d6aa1865ec9463d322e736ecac2c0dcc8e3ac62c520c0",
+  "source/pilot_runner.py": "a1466bbfa00576fa59851f5560e391cf58057c1a11c79df0d845290a2a297a40",
+  "source/run_manifest.json": "d7034374aa054ca7dbba882f208df9e61b4c68a43df213dc4bff56063e70944d",
+  "source/selftest.py": "a4caaeddc40b4d8f7f89843b111f5d42a17e66a125099855c014e6a3c90de1d6",
+  "source/verify_preflight.py": "46d7415ce269f11027775762ab7e64273313566a2cc60fa55eaff0fc33157279"
+ },
+ "purpose": "Preflight manifest for ChatGPT source review (Issue #1 comment 6385813954): exact staged-byte hashes + schedule census, recomputed by source/verify_preflight.py.",
+ "review_gate": {
+  "governing_comment": 6385813954,
+  "hold_file": "state/REVIEW_HOLD (pilot stage)"
+ },
+ "schedule_census": {
+  "archive_push": 6,
+  "finalization": 175,
+  "ladder": 525,
+  "revision": 25,
+  "total_actions": 752,
+  "tripwire": 5,
+  "usage": 16
+ },
+ "sessions": [
+  "2026-10-26",
+  "2026-10-27",
+  "2026-10-28",
+  "2026-10-29",
+  "2026-10-30"
+ ],
+ "symbols": [
+  "NVDA",
+  "TSLA",
+  "AAPL",
+  "SPY",
+  "MELI"
+ ],
+ "task": "QF-EQUITY43-FEED-MEASUREMENT-PILOT-20261024-22"
+}
