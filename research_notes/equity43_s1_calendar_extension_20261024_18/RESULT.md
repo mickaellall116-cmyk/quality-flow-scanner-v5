@@ -96,7 +96,7 @@ modified — this extension is a candidate artifact for the isolated
 fork; adoption remains a separate governance step. PAUSED production
 re-proved at start and at package time (harness `ce7c902c…`,
 PAUSE_NEW_ENTRIES present, RESUME_NEW_ENTRIES absent). -15/-16/-17
-packages untouched. Elapsed ~35 min, single lane.
+packages untouched. Elapsed ~49 min, single lane.
 
 ## What this does not do
 
