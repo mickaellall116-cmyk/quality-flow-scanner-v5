@@ -3585,3 +3585,28 @@ Three flags:
 
 4. STATE
 Pilot execution still requires Mike's separate approved scope under the frozen -21 protocol: 5 symbols, 5 sessions, 149 credits/day worst case, 800-credit total cap. S1 remains PREP_READY / LAUNCH_HOLD. G4_HOLD unchanged. — Muse
+
+
+---
+
+## ACK — QF-EQUITY43-FEED-MEASUREMENT-PILOT-20261024-22 (Twelve Data feed measurement pilot ARMED)
+
+Authority: Mike GO, main chat 2026-10-24 10:36 ET — his separate approved scope for the pilot under the frozen -21 protocol (package c2b58d7). Slack ACK TS 1792853282.622549.
+
+§9 GO pins (all satisfied and recorded in the stage run_manifest.json):
+- Symbols: NVDA, TSLA, AAPL, SPY + **MELI** — lowest-median-DEV-volume 43-scope name: median daily volume **328,352** over 524 DEV sessions, aggregated from the pinned DEV 1h bytes (td_pilot raws for NVDA/TSLA/AAPL/SPY; td_capture_equity39 raws for the other 39). Runner-up NET 2,531,830 (~7.7x higher). Full derivation table in the pilot stage (work/dev_median_volumes.json), carried into the RESULT package manifest.
+- Sessions: Mon 2026-10-26 → Fri 2026-10-30, all regular 09:30–16:00 ET per the candidate calendar (7 bars/symbol/day, closes 10:30…16:00 ET). DST fall-back is Sun Nov 1; all pilot sessions are EDT; final revision re-poll Mon Nov 2 08:00 EST.
+- Ladder (frozen): per bar, polls at close +60s/+180s/+420s stop-at-first-sighting; finalization +1800s; next-session 08:00 ET revision re-poll per symbol. A sighting counts only at/after nominal close (earlier = partial).
+- Caps (hard, protocol bounds — stop at cap, no overage, no silent ladder changes): 149 credits/day worst case; 800 total; counted from /api_usage snapshots at 09:25/13:00/16:35 ET each session + closing snapshot Nov 2 08:05 ET.
+- Bundle pins rehashed in the isolated staging namespace — exact match to protocol §2/§3: observer fwd_observer17.py 929c1bc4…, staging_gate19.py aacc4851…, calendar candidate 86a1d4ea….
+- Runner offline self-test 12/12 PASS before arming (stub transport, fake clock: ladder stop-at-first-sighting, first-seen lag, revision capture with field diffs, missing-at-finalization, usage snapshots, consecutive-429 stop, cap refusal; journal lines == desk calls). No network, no credential access in test.
+
+Mechanism: supervised daemon (pilot_runner.py, heartbeat live, stage ~/workspace/qf_feed_measure_stage/) executes the frozen action schedule (747 actions); every call journaled hash-chained with receipt timestamps + payload SHA-256; raw payloads + journal archived daily (16:40 ET push) to the PRIVATE qf-data-archive only, namespace captures/td_feed_measure_pilot_20261026/. Watchdog: goal-owned cron td-feed-measure-pilot-watchdog (30m from Mon 08:55 ET) — daemon liveness/restart, archive-push verification, TD-email contradiction stop (Gmail thread 1a16e539bce6f334; a reply contradicting the AI answers on Q1–Q3 writes the STOP file and posts a same-day STOP to both channels), finalize + RESULT delivery, self-retires after verified RESULT.
+
+Stop conditions armed: protocol §6/§10 verbatim (rights objection/vendor notice, cap-trending usage, two consecutive 429s, first material semantic mismatch in the B2 adapter-parity run, any production-tree write attempt, tier not covering a measured name) + the email-contradiction stop. Failed sessions are recorded with cause — never extended past 5 sessions, never backfilled.
+
+Rights discipline: Basic tier, internal non-display research only; storage during subscription; nothing from this pilot may be marked for commercial use; no redistribution; raw payloads private-archive only.
+
+PAUSED at arm (2026-10-24 ~10:40 ET): PAUSE_NEW_ENTRIES present (sha256 3f4b7811a577…), RESUME absent, harness pin ce7c902c…. Re-proved at pilot end.
+
+RESULT expected Mon Nov 2 after the final 08:00 ET revision re-poll (or same-day on STOP): latency quantiles per symbol/session (LATENCY_MEASURED or UNMEASURED), COVERAGE, REVISION_CENSUS, adapter parity on the exact captured bytes (ADAPTER_PARITY_PASS/FAIL/UNMEASURED), exact credit counts desk vs provider, sessions completed vs failed with causes, PAUSED re-proof. Measurement only — no S1 activation, no T0, no positions/orders, no performance computation. S1 PREP_READY / LAUNCH_HOLD; G4_HOLD. — Muse
