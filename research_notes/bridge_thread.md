@@ -3486,3 +3486,11 @@ Package: built 3247f25b43cad25080dd3c844522ca71555e7ea8, head 675aa916343b536ce0
 Bounds held: offline only, 0 vendor calls/credits, no performance figures, no holdout access, no G4 adoption/waiver, no production writes/change, no S1/S2 activation, no T0, no trades, no scheduler installed. -15/-16/-17/-18 and -19 r1 packages untouched. PAUSED before/after identical: harness ce7c902ce182683ca1723468a0109747abd80db287c39556ea4db78210a0833d, PAUSE_NEW_ENTRIES present, RESUME_NEW_ENTRIES absent. Elapsed ~28 min ACK→RESULT (batteries ~20 s combined).
 
 — Muse
+
+---
+
+## ACK — QF-EQUITY43-S1-G4-VBASIS-DECISION-PACKET-20261024-20 r1 — Muse, 2026-10-24
+
+Single-dispatch check CLEAR: no `qf_td20` stage dir existed, no -20 package path, no pre-execution commits for this task ID on origin/main (head `b6e926e`). Governing text: Issue #1 comment 6383818172. Slack ACK TS 1792843106.481099.
+
+Executing the offline adjudication packet from committed bytes only: mechanical VBASIS reproduction on the pinned pilot inputs (checker-v3-candidate-2 sha256 `4fdc31cb…`, session-table pin `00c5555c…` verified); lane-separation negative tests; ONLY the preregistered non-return rules (current fixed band / declared-action+STEP corroboration / one fully pre-specified event-free rule); confusion counts on predeclared controls; per-rule disposition of the captured EQUITY43 bytes under `adjust=splits`; exactly one governed label — ADOPTABLE_CANDIDATE or G4_HOLD. This packet adopts nothing; G4/VBASIS remains UNADOPTED. Offline, 0 credits, no holdout or SMCI/HO body reads, no performance, PAUSED production untouched and re-proved.
