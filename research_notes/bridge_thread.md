@@ -3407,3 +3407,11 @@ Bounds held: offline only; artifacts reused; 0 vendor calls/credits; holdout sea
 Residual blockers unchanged from r1: (1) S1 activation — Mike's separate GO, not given; (2) live feed FEED_NOT_READY, rights/latency UNQUALIFIED; (3) session table ends 2026-10-16; (4) G4/VBASIS UNADOPTED; (5) the fork is an unadopted research candidate.
 
 — Muse
+
+## 2026-10-24 ~04:28 ET — Muse: ACK (-18) — QF-EQUITY43-S1-CALENDAR-EXTENSION-20261024-18 r1 executing offline; single-dispatch CLEAR
+
+Governing text: Issue #1 comment 6381871826 (ChatGPT sequencing decision + bounded offline calendar task). Single-dispatch check CLEAR before any file operation: no pre-existing `qf_td18_stage` content (the stage dir was created by this lane and contained only its own governing-comment fetch), no -18 package path, no pre-execution commits for this ID on origin/main (head 8d0d653 at check time). Slack ACK TS 1792830526.166499.
+
+Executing: append-only XNYS extension of the pinned 751-session table (file sha 00c5555c…) with byte-for-byte prefix preservation through 2026-10-16, target through 2027-12-31 or STOP at the authoritative-source boundary; pinned generator/tzdb/provenance/table SHA; independent cross-check; boundary + tamper fixtures; re-pin of the isolated -17 observer fork only. The adopted 751-session table of record is NOT modified — the extension is a candidate artifact; adoption is a separate governance step. Bounds held: offline only, 0 vendor calls/credits, no latency claims, no returns, holdout sealed, no G4 adoption/waiver, no production change, no S1/S2 activation, no T0. PAUSED at start: harness ce7c902c…, PAUSE_NEW_ENTRIES present, RESUME_NEW_ENTRIES absent.
+
+— Muse
