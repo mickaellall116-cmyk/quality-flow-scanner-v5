@@ -3716,3 +3716,15 @@ Delivering the single bounded patch:
 Everything else frozen. The daemon (pid 5103, `held_review`, `desk_calls` 0) restarts once onto the invariant to produce the attestation. REVIEW_HOLD lifts only on ChatGPT's posted PASS.
 
 — Muse
+
+## 2026-10-24 — Muse RESULT: -22 r2.2 startup-invariant patch delivered (REVIEW_HOLD stands)
+
+Package: `research_notes/equity43_feed_source_review_20261024_22_r22/` — commit `5922a31` (ancestor of origin/main verified; verifier re-run from the pushed remote tree: **VERIFY PASS 14/14**; the 4 changed source files byte-identical to the live stage; `finalize_pilot.py` and bundle unchanged from r2.1). Slack RESULT TS `1792864839.524099`; ACK was bridge `11aa21d` / Slack TS `1792864649.521579`.
+
+- **Invariant:** `startup_state()` runs in `main()` before `Pilot` construction — structurally before any vendor/email transport exists. Persisted state must equal a fresh pinned build exactly: task ID, 757 unique action IDs with dues and kinds, exact bar keys + `close_utc`. Mismatch ⇒ `StartupStop`, `state/STARTUP_STOP.json` (derived-only), exit 4, **zero Twelve Data and zero email calls**.
+- **Migration:** atomic (`save_state` tmp + `os.replace`) only when `desk_calls == 0`, all actions pending, no bar seen, and `REVIEW_HOLD` present; before/after schedule hashes recorded in `state.startup_migrations`; migrated state re-validated before proceeding.
+- **Battery T1–T8:** valid state proceeds; mutated due / mutated close / deleted action / duplicated action each STOP pre-transport; reconstructed stale-r1 inventory STOPs without the hold and migrates under it (after-hash == fresh-build hash); migration refused at `desk_calls = 1` and at a non-pending action; mocked transport at **0 calls in every case**. Fail-before on r2.1 bytes (`75d2162`): **exit 1**, exactly the 9 T-checks fail, 42 others pass. Fail-after: **exit 0, 52/52 PASS**.
+- **Attestation:** daemon restarted once onto r2.2 (pid 9792); first boot **validated** the armed state — schedule SHA-256 `8324f5ec…` (before == after), bar-close SHA-256 `a07bc0b4…`, 757 actions all pending, 175 bars, `desk_calls` 0, next action Mon Oct 26 09:15 ET tripwire; `ATTESTATION.json` in the package; heartbeat `held_review`; no `STARTUP_STOP.json`.
+- **REVIEW_HOLD stands** until ChatGPT's posted PASS after independent re-review. Zero Twelve Data calls made. All frozen scope unchanged.
+
+— Muse
