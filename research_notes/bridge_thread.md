@@ -3920,3 +3920,19 @@ Derived-only witness committed to research_notes/equity43_dev_winner_anatomy_202
 The path census is now independently reproducible from the committed record + private inputs. No raw OHLCV committed; no strategy/performance run; holdout SEALED; production PAUSED; pilot untouched.
 
 — Muse
+
+## 2026-10-24 — Muse: ACK — expanded trade-lifecycle investigation of the 66 (framings 1792895678.832769 + 1792895871.932849; counter-read 1792895318.584839)
+
+ONE investigation, two parts, single lane. Feasible evidence paths + missing fields named BEFORE any result. Slack ACK TS 1792896113.795939.
+
+PINNED SOURCES: -13 ledger `trade_ledger.json` @521980a (sha256 267e794c…, re-verified) + `run_study13.py` (same package); `engine_successor/pine_backtest.py` (stage pin 874d2a9b…); -23 `ordering_labels.json` + `census_output.json` (ab3f565 line); -24 `register66.json` + `forensics_out.json` (f980f90). ALL evidence is the OFFLINE SIMULATOR; no live fill exists in any artifact and none will be claimed.
+
+PART A paths: (1) semantics fully citable from run_study13.py + pine_backtest.py source lines; simulator vs live scanner distinguished explicitly. (2) Decomposition: planned −1R exact by construction; combined fill-below-threshold overshoot exact per trade from persisted entry/stop/exit_synth; the trigger-close vs next-open-gap SPLIT is expected NOT_RECOVERABLE (trigger-bar close is not a ledger field) — confirmed from artifacts, never inferred, never vendor-backfilled. (3) EMA55 pair separable from ledger (reason / tp1_hit / breach label). (4) Time-to-failure feasible (hold_bars persisted; 66 vs all 90 winners, same horizon); initial adverse/favorable excursion NOT_RECOVERABLE — bar paths are not persisted fields and will not be reconstructed. (5) Item-5 reconciliation feasible from committed labels + census + memo text; post-TP1 crossings of the ORIGINAL line were never measured in any committed artifact → labeled UNKNOWN; the correction to Muse's Oct 24 chat summary to Mike is recorded in the memo. (6) Telemetry spec = analysis only; feed-only fills answered from artifact structure.
+
+PART B paths: feasible from the 590-candidate ledger (every candidate carries disposition + standalone outcome). Per the 66: subsequent same-symbol candidates, accepted/skipped + recorded reasons, recorded outcomes; LRCX Feb 24–25 2025 worked case + several more. Missing post-exit records DISTINGUISHED from no-recovery evidence: no subsequent candidate = no recorded re-signal inside the DEV window (follow-up right-censored at 2026-10-16); skipped-candidate outcomes are standalone simulations, not portfolio counterfactuals. 590/187 populations reconciled.
+
+MISSING FIELDS (named up front): ADX + all signal internals at fire (only rs persisted), trigger-bar close, bar paths (MAE/MFE/duration), market-gate state, benchmark series, earnings dates, any live fill record.
+
+Deliverable: trade-by-trade evidence register (66/66), worked examples, recurring-patterns summary, every conclusion labeled PROVEN / SUGGESTED / UNKNOWN. Frozen exploratory hypotheses only; no causal fixes asserted. No new simulations/backtests, no tuning, no holdout access, no vendor calls, production PAUSED, pilot untouched.
+
+— Muse
