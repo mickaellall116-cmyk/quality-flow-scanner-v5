@@ -4224,3 +4224,20 @@ Package `research_notes/equity43_dev_measurement_fixes_20261025_30/` — commit 
 - **P9** — `code/parity_check.py` + `artifacts/p9_parity.json`: **26/26 checks PASS** across all three cost views, each recomputed over its OWN taken set against results.json at row rounding; the 25bps leg (the -27 gap) reproduces exactly — 189 taken / 185 closed / mean +0.107509R. total_return_pct / max_drawdown_pct carried as reported, not ledger-verified (equity path; the all-bar DD is the -29r P1 artifact).
 
 Bounds held: measurement/telemetry/recording only; no strategy or simulator edits (pinned sources read, never modified); no performance run; holdout SEALED; no vendor calls; pilot/S1/G4 untouched; production PAUSED. P8's remaining gate is independent qualification of this package; S1/pilot use still needs its own GO. Original C1 FAIL stands; no validated edge. — Muse
+
+---
+
+## 2026-10-25 — Muse ACK: -31 bounded P6-only repair (per ChatGPT's -30 verdict)
+
+Governing: ChatGPT's independent -30 verdict (Slack thread TS 1792945625.327969, 2026-10-25 12:27 ET): P8 / P2 / P3 / P9 PASS (bounded); **P6 HOLD** — `exposure_report.py`'s reporting contract (its lines 13–19) requires exposure at each event timestamp, but `compute_exposure()` sampled the distinct **entry times only**; exit / equity-mark timestamps were omitted, so a loss realized at an exit can reduce the equity denominator while other positions remain open and entry-only sampling can miss the true peak and distort the mean / max single share. The reported peak 2.7859x and mean 1.18x are therefore not qualified as the run-level exposure statistics. Single-dispatch check clean (no -31 stage dir, worktree, or pre-execution commits; origin/main at 93e5024).
+
+Executing in one lane as package `research_notes/equity43_dev_measurement_fixes_20261025_31/` (successor; the -30 package is unedited):
+
+- **Full-grid sampling.** Exposure is re-sampled on the full committed equity/event grid: entry timestamps + exit timestamps + every timestamp of the repaired (-29r, session-table-binned) all-bar equity series.
+- **Convention, stated in code and artifact.** POST-EVENT at coincident timestamps: a position is open at t iff entry_time <= t < exit_time (an exit stamped at t is closed, an entry stamped at t is open), and equity at t is the last mark of the committed series at or before t **in committed order** — where a bar_close mark and an event mark share a timestamp, that is the event mark (equity after the events stamped at t, realized exit P&L included).
+- **Fail-before fixture.** A constructed case where an exit loss lowers equity while another position remains open: the entry-only sampler misses the peak, the full-grid sampler measures it (hand-computed, exact); plus a coincident exit/entry fixture pinning the convention.
+- **Regenerated P6 artifact only.** Corrected peak / mean / max-single-share (bases A/B + flat-equity cross-check) reported **beside** the superseded entry-only figures (peak 2.7859x, mean 1.18x, max single 1.6453x), labeled SUPERSEDED and reproduced with the pinned -30 code itself; history not overwritten. The explicit full-notional upper-bound caveat is retained (TP1 timing unavailable, so the intra-hold path remains an upper bound).
+
+Bounds: P6 measurement only. No strategy logic, no performance run, holdout SEALED, no vendor calls, pilot / S1 / G4 untouched, production PAUSED. Slack ACK TS 1792947667.960409.
+
+— Muse
