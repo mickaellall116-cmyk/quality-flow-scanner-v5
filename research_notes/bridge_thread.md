@@ -4135,3 +4135,23 @@ Implementation order: **P1** all-bar marked equity/drawdown — measurement fork
 Reconciliation headline, already verified from the pinned artifacts: the 25bps taken set IS recorded in the committed ledger — the per-candidate `taken_25bps` flags extract to 189 taken / **185 closed** / mean `net_r_25bps` **+0.10751R**, exactly results.json's 25bps row (185 @ 0.108). The -27 §3 figure (187 @ +0.10753R) summed the 25bps column over the 4bps taken set — the wrong subset. Full per-view ledger artifacts + provenance land under the reconciliation item; produced from recorded data, no strategy re-run.
 
 Blockers: none. Hard bounds held: no BUY/EXIT logic changes, no performance tests/backtests, holdout SEALED, no vendor calls, no spending, no trading, no production/pilot/S1/G4 changes. — Muse
+
+---
+
+## RESULT — measurement + recording fixes (-29): P1/P4/P7/P8 delivered, 25 bps reconciliation RESOLVED, ledger parity byte-identical
+
+Muse — RESULT for the USER AUTHORIZED GO 2026-10-25 (Slack TS 1792932745.183489; Issue #1 comment 6397875042; ACK bridge 83194a6). Package: `research_notes/equity43_dev_measurement_fixes_20261025_29/` — commits c103540 (P1), d06dfe3 (P4), 539e0a9 (P7), fa2f474 (P8), 2cf06fc (reconciliation + parity + MEMO + manifest), all ancestor-verified on origin/main. Independent check: `python3 code/verify_package.py` — PASS (30 checks + 4 batteries).
+
+**P1 — all-bar marked drawdown.** Measurement fork of the successor stack accounting (frozen valuation; all-bar union-calendar marking grid; decisions at event times only; dd_gate=True refused fail-closed). DEV: gross 23.97% event → **25.5756%** all-bar; 4 bps 24.61% → **26.1840%**; 25 bps 25.40% → **26.7035%** (trough 2026-03-27 13:30 ET, all views). Event-sampled figures retained as the historical record, unmodified. Synthetic fixture: fail-before 0.0 → pass-after 5.0% exact. Interval reconstruction cross-verifies to <1e-9 with 0 mark mismatches.
+
+**P4 — docstring erratum.** Applied verbatim (-27 §2.4) to the executed successor pine_backtest.py: the "intrabar stop" clause replaced with the close-evaluated truth; "TP1 = entry fill + ATR*2.0". All changes inside the module docstring; 18/18 code objects identical — zero behavior change. File sha 874d2a9b… → 262ec034… (future pins must re-pin; the blind packet stays at 555ebb1 as history). The repo-root production copy and the -22 bundle snapshot were NOT edited (production prohibition / frozen artifact); the erratum text is the correction of record for all copies.
+
+**P7 — all-fire journal.** DEV census: **2,892** frozen BUY fires = 590 MATCHED_CANDIDATE + 2,301 SUPPRESSED_OVERLAP + 1 GAP_INELIGIBLE_ENTRY + 0 UNCLASSIFIED. Mirrored generation field-identical to the frozen generator on 43/43 symbols; matched set == the ledger's 590 keys exactly. The candidate ledger is untouched; the U2 all-fire universe is now populated for DEV. No outcomes computed for suppressed fires.
+
+**P8 — telemetry code.** `qf_telemetry.py`: T1–T6 record types per -25 §A6 + the full-state journal direction (9087bf0); append-only hash-chained JSONL; fail-closed as-of guards (finalized bars only, decision == bar completion, no retro-stamps, no backfill, strict schemas, tamper localized to the line); EXECUTION refused in signal-only mode. Battery 14/14. Prospective only — S1 adoption still separately gated.
+
+**Reconciliation — 185 vs 187 RESOLVED.** The committed ledger records per-view taken flags (each cost view ran its own portfolio path; taken sets diverge both ways — 12 taken only at 25 bps, 14 only at 4 bps). Extracting by `taken_25bps`: 189 taken / **185 closed / +0.10751R**, PF 1.166, win 47.0% — results.json's 25 bps row exactly. The -27 §3 figure (187 @ +0.10753R) summed the 25 bps column over the 4 bps taken set. Per-view ledger artifacts committed; original convention documented (single flat per-trade charge on entry notional, _outcome:214-218; identity verified on 1,172 record-checks, 0 violations). No cost model changed, nothing recalculated as a new result. The R19 gap is closed — an erratum pointer should ride the v0.3 redline record.
+
+**Parity — byte-identical.** The pinned -13 pipeline reproduces the committed ledger byte-identically (sha 267e794c…) and the P5_run views exactly; with the all-bar fork swapped in, the ledger is again byte-identical and the views differ ONLY in max_drawdown_pct. Committed record files unmodified (sole pre-existing file edited: the P4 docstring).
+
+Bounds held: no decision-logic changes, no performance tests, holdout SEALED, production PAUSED, pilot untouched. Original C1 FAIL; no validated edge. — Muse
