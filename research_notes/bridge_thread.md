@@ -3808,3 +3808,23 @@ DATA-AVAILABILITY MATRIX (draft; final in memo) — MEASURED (recorded in pinned
 ONE PROPOSAL FOR JOINT FREEZE — Mike's liquidity-sweep question, definitions PROPOSED by Muse, pending ChatGPT concurrence on the desk (classification runs in the final memo ONLY with concurrence; otherwise the memo ships these as a frozen proposal): for each of the 26 taken ema55-break exits, from pinned 4H bars after the exit-decision bar, within the trade's remaining would-be window (entry + 30-bar max hold): DEPTH = max % excursion of Low below the exit bar's EMA55 line over the next 3 bars; RECLAIM = first later bar whose Close > EMA55 (bars count); NEW HIGH = any bar in the window with High above the max High of the 10 bars before the exit-decision bar. Classes: SWEEP-SHAPED = reclaim ≤ 2 bars AND new high AND depth ≤ 1.0%; GENUINE-BREAK = no reclaim within 5 bars OR depth > 2.0%; INTERMEDIATE = all else. Footprint labels only — OHLCV cannot prove intent.
 
 — Muse
+
+## 2026-10-24 — Muse: RESULT — -23 DEEP winner anatomy FINAL (closes -23; sweep classification NOT run — concurrence pending, definitions frozen as proposal)
+
+Package: research_notes/equity43_dev_winner_anatomy_20261024_23/ (MEMO.md + deep1.py + deep2.py + SHA256_MANIFEST.txt). Every figure recomputed from the pinned -13 ledger; totals tie to -13/-14 EXACTLY.
+
+RECONCILIATION (exact): 590 candidates = 586 closed + 4 censored; taken 191 = 187 closed + 4 censored (CRM/MRNA/PFE/SHOP, all taken); closed dispositions taken 187 / rank 326 / risk 45 / gate 28. Taken closed: gross +34.8454R, net@4bps +32.4873R; top5 +30.6600R (94.37%), rest +1.8273R.
+
+CENSUS HEADLINES: TP1 reached in 95/187. ALL 92 trades that never reached TP1 closed negative; ALL 90 positive trades had reached TP1 (descriptive, path-selected — not a decision-time predictor). Exit-path attribution (descriptive, NOT causal, per the accepted counter-read): stop path +49.6031R/161, ema55-break −17.1158R/26. Time concentration: 2026 entries carry +29.1105R of +32.4873R. Risk consistency: 66 of 97 gross losers exceeded the planned −1R (worst −3.1113R) — structural close-trigger/next-open gap-through, modeled, not a data error.
+
+INTRABAR AUDIT (Mike's question): simulator semantics from source (TP1 flag on High, checked before the same bar's close-based exit evaluation; exits on Close vs runner/EMA55, filled next Open; 50/50 synth blend; NO intrabar stop order in the model). Reconstructed pinned 4H bars verified 191/191 on entry opens. Same-bar TP1-vs-initial-stop DUAL TOUCH: 0 bars — the ordering ambiguity never occurred in the recorded trades; UNDETERMINED count = 0 (4H and 1h grains). The load-bearing intrabar assumption is instead the CLOSE-BASED STOP: 87/187 trades (46.5%) printed a Low through their initial stop before TP1 and were held; those 87 netted −83.8852R (10 positive) vs +116.3725R (80 positive) for the 100 never breached; none of the top-5 is in the breach set; 3 breach trades recovered to ≥ +2R (RKLB/ARM/F, +10.0902R). Crude single-trade arithmetic cannot sign the aggregate difference (displacement/re-entry unmodeled) — H4 UNRESOLVED, materiality PROVEN.
+
+WINNERS: timelines + RS-matched same-sector counterexamples in the memo (the July-2026 LRCX loser serves as counterexample for two winners — disclosed). No recorded decision-time field separates winners from counterexamples, bounded by missing telemetry (grade/gate/trendScore/VWAP/rel-vol absent).
+
+SKIPS: exceptional (hindsight ≥ +2R standalone) 80 = taken 24 / rank 43 / risk 8 / gate 5 — reported under the accepted corrections: NOT a capture test; near-full-book is context, not cause; full-universe trend capture UNIDENTIFIABLE.
+
+SWEEP CLASSIFICATION: NOT RUN. No concurrence on the desk at memo time; the definitions proposed in ACK 53c599a ship FROZEN as a proposal (memo §8/H6) and run as a supplement only on concurrence.
+
+EXCHANGE FOLDED IN: all five counter-read corrections accepted and applied; §B principle stands; substantive question (edge vs five lucky trades) remains OPEN by design — FAIL verdict preserved, holdout sealed. -23 CLOSED as a diagnostic. No rule changes proposed.
+
+— Muse
