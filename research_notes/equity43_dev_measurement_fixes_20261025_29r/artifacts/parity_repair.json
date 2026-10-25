@@ -1,0 +1,155 @@
+{
+ "checks": [
+  {
+   "name": "A gross: fork decisions/outputs identical to frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "A gross: fork event track == frozen max_drawdown",
+   "pass": true,
+   "detail": "0.2396691858152126 vs 0.2396691858152126"
+  },
+  {
+   "name": "A gross: event track == committed results.json",
+   "pass": true,
+   "detail": "23.97 vs 23.97"
+  },
+  {
+   "name": "A gross: interval reconstruction DD == fork all-bar DD",
+   "pass": true,
+   "detail": "0.25575569761296524 vs 0.2557556976129655"
+  },
+  {
+   "name": "A gross: interval series == fork bar_close marks",
+   "pass": true,
+   "detail": "mismatches=0"
+  },
+  {
+   "name": "A gross: every bar_close stamp is a pinned table bin_end",
+   "pass": true,
+   "detail": "illegitimate=[] n=0"
+  },
+  {
+   "name": "A gross: regenerated DD vs -29 held DD",
+   "pass": true,
+   "detail": "new 25.575570% vs held 25.575570% (delta +0.000000pp)"
+  },
+  {
+   "name": "A gross: mark values identical to -29 series except the one separated final-bin bar_close",
+   "pass": true,
+   "detail": "points held 1303 vs new 1304; insertion at [1302]"
+  },
+  {
+   "name": "A 4bps: fork decisions/outputs identical to frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "A 4bps: fork event track == frozen max_drawdown",
+   "pass": true,
+   "detail": "0.24609302435589467 vs 0.24609302435589467"
+  },
+  {
+   "name": "A 4bps: event track == committed results.json",
+   "pass": true,
+   "detail": "24.61 vs 24.61"
+  },
+  {
+   "name": "A 4bps: interval reconstruction DD == fork all-bar DD",
+   "pass": true,
+   "detail": "0.26183968936354324 vs 0.2618396893635428"
+  },
+  {
+   "name": "A 4bps: interval series == fork bar_close marks",
+   "pass": true,
+   "detail": "mismatches=0"
+  },
+  {
+   "name": "A 4bps: every bar_close stamp is a pinned table bin_end",
+   "pass": true,
+   "detail": "illegitimate=[] n=0"
+  },
+  {
+   "name": "A 4bps: regenerated DD vs -29 held DD",
+   "pass": true,
+   "detail": "new 26.183969% vs held 26.183969% (delta +0.000000pp)"
+  },
+  {
+   "name": "A 4bps: mark values identical to -29 series except the one separated final-bin bar_close",
+   "pass": true,
+   "detail": "points held 1303 vs new 1304; insertion at [1302]"
+  },
+  {
+   "name": "A 25bps: fork decisions/outputs identical to frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "A 25bps: fork event track == frozen max_drawdown",
+   "pass": true,
+   "detail": "0.25403915830964535 vs 0.25403915830964535"
+  },
+  {
+   "name": "A 25bps: event track == committed results.json",
+   "pass": true,
+   "detail": "25.4 vs 25.4"
+  },
+  {
+   "name": "A 25bps: interval reconstruction DD == fork all-bar DD",
+   "pass": true,
+   "detail": "0.26703466074593596 vs 0.2670346607459353"
+  },
+  {
+   "name": "A 25bps: interval series == fork bar_close marks",
+   "pass": true,
+   "detail": "mismatches=0"
+  },
+  {
+   "name": "A 25bps: every bar_close stamp is a pinned table bin_end",
+   "pass": true,
+   "detail": "illegitimate=[] n=0"
+  },
+  {
+   "name": "A 25bps: regenerated DD vs -29 held DD",
+   "pass": true,
+   "detail": "new 26.703466% vs held 26.703466% (delta +0.000000pp)"
+  },
+  {
+   "name": "A 25bps: mark values identical to -29 series except the one separated final-bin bar_close",
+   "pass": true,
+   "detail": "points held 1303 vs new 1304; insertion at [1302]"
+  },
+  {
+   "name": "B ledger byte-identical under repaired fork",
+   "pass": true,
+   "detail": "267e794c284a409d7d9b6d8e1056c452976b59746062e9e6e18c5664b74c003b"
+  },
+  {
+   "name": "B views differ ONLY in max_drawdown_pct",
+   "pass": true,
+   "detail": "diffs=[('gross', 'max_drawdown_pct'), ('4bps', 'max_drawdown_pct'), ('25bps', 'max_drawdown_pct')]"
+  },
+  {
+   "name": "B gross: phase5 all-bar DD == part A regenerated DD",
+   "pass": true,
+   "detail": "25.58 vs 25.5756"
+  },
+  {
+   "name": "B 4bps: phase5 all-bar DD == part A regenerated DD",
+   "pass": true,
+   "detail": "26.18 vs 26.184"
+  },
+  {
+   "name": "B 25bps: phase5 all-bar DD == part A regenerated DD",
+   "pass": true,
+   "detail": "26.7 vs 26.7035"
+  }
+ ],
+ "ledger_sha256_under_repaired_fork": "267e794c284a409d7d9b6d8e1056c452976b59746062e9e6e18c5664b74c003b",
+ "held_29_dd_pct": {
+  "gross": 25.575569761296553,
+  "4bps": 26.18396893635428,
+  "25bps": 26.70346607459353
+ }
+}

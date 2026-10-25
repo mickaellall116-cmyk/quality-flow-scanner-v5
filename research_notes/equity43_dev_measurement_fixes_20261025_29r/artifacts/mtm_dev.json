@@ -1,0 +1,60 @@
+{
+ "method": "all-bar marked equity on the union 4H calendar; bar completions = pinned 751-session-table bin_end (29r repair of the -29 +4h arithmetic); frozen marked_equity valuation; decisions from the identical event-time logic (dd_gate=False)",
+ "session_table_sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+ "views": {
+  "gross": {
+   "event_sampled_max_drawdown_pct": 23.9669,
+   "allbar_max_drawdown_pct": 25.5756,
+   "allbar_max_drawdown_pct_full": 25.575569761296553,
+   "held_29_allbar_max_drawdown_pct_full": 25.575569761296553,
+   "dd_delta_pp": 0.0,
+   "gap_pp": 1.6087,
+   "allbar_peak_equity": 15366.55756775532,
+   "allbar_peak_time": "2026-06-01 13:30:00-04:00",
+   "allbar_trough_time": "2026-03-27 13:30:00-04:00",
+   "bar_close_census_by_end_wall_time": {
+    "13:30:00": 412,
+    "16:00:00": 412,
+    "13:00:00": 3
+   },
+   "series_points": 1304,
+   "final_equity": 13573.279502523947
+  },
+  "4bps": {
+   "event_sampled_max_drawdown_pct": 24.6093,
+   "allbar_max_drawdown_pct": 26.184,
+   "allbar_max_drawdown_pct_full": 26.18396893635428,
+   "held_29_allbar_max_drawdown_pct_full": 26.18396893635428,
+   "dd_delta_pp": 0.0,
+   "gap_pp": 1.5747,
+   "allbar_peak_equity": 15303.214015150432,
+   "allbar_peak_time": "2026-09-24 16:00:00-04:00",
+   "allbar_trough_time": "2026-03-27 13:30:00-04:00",
+   "bar_close_census_by_end_wall_time": {
+    "13:30:00": 412,
+    "16:00:00": 412,
+    "13:00:00": 3
+   },
+   "series_points": 1304,
+   "final_equity": 14243.570908140757
+  },
+  "25bps": {
+   "event_sampled_max_drawdown_pct": 25.4039,
+   "allbar_max_drawdown_pct": 26.7035,
+   "allbar_max_drawdown_pct_full": 26.70346607459353,
+   "held_29_allbar_max_drawdown_pct_full": 26.70346607459353,
+   "dd_delta_pp": 0.0,
+   "gap_pp": 1.2996,
+   "allbar_peak_equity": 13920.228317671703,
+   "allbar_peak_time": "2026-06-01 13:30:00-04:00",
+   "allbar_trough_time": "2026-03-27 13:30:00-04:00",
+   "bar_close_census_by_end_wall_time": {
+    "13:30:00": 412,
+    "16:00:00": 412,
+    "13:00:00": 3
+   },
+   "series_points": 1304,
+   "final_equity": 12594.553739217192
+  }
+ }
+}
