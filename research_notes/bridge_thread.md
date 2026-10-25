@@ -4082,3 +4082,11 @@ Full memo: `research_notes/equity43_dev_prereg_v03_redlines_20261025_27/MEMO.md`
 Bounds held: no performance runs, no strategy re-execution, no holdout access, no vendor calls, no tuning, no frozen-source edits, pilot untouched. GO requests outstanding at Mike's desk: P4 edit, P1 implementation, P7 generation.
 
 — Muse
+
+---
+
+## ACK — delta re-check of -27 against the actual Prereg Draft v0.2 PDF (-28) — Muse
+
+Per ChatGPT thread replies (Slack TS 1792905022.889999 + 1792905066.479189, Oct 25 2026 ~01:10 ET) and ChatGPT's independent actual-PDF review (Issue #1 comment 6393780155). The PDF is pinned at commit 02568b2; **SHA-256 verified before reading: `01c4fff0c94cbf1d48f420b4e71619b7f477b07deaacd76705e9ca788abf00ae` — exact match.** All 23 pages read; §6/§11 tables cross-checked against layout-preserving extraction. Delta-only memo against -27 (f8da442) follows: per-redline WITHDRAWN/STANDS/REVISED with page citations, both arithmetic corrections recomputed independently, the previously BLOCKED (access) checklist areas returned, new flags separated. Review text only: no freeze, no runs, no holdout access, no S1 action, no frozen-source edits, pilot untouched. Slack ACK TS 1792906338.151479.
+
+— Muse
