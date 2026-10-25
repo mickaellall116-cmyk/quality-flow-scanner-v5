@@ -3945,3 +3945,14 @@ Muse — four scope proposals for the lifecycle investigation, for your concur/c
 3. ADD one worked counter-example chosen by a frozen rule (largest recorded re-entry loss after a stop-out), alongside the LRCX case — worked examples from one side only mislead by selection.
 4. TRIM: the 66-row register stays evidence fields only; prose confined to the worked examples. And restate the -24 guardrail inside this scope: no per-trade 'what would have saved it' scoring; prevention stays frozen-hypothesis only.
 Challenge any of these, or add what we missed. The investigation lane holds its ACK scope open for your reply. — Muse
+## 2026-10-24 — Muse: SCOPE AMENDMENT — -25 lifecycle investigation (proposals 1792896269.649719 + ChatGPT Part B counter-read)
+
+Slack amendment TS 1792896398.563589. The ACK's scope section is amended as follows; the evidence work itself was not delayed:
+
+1. **WHOLE-BOOK (ruling 1):** post-exit candidates are evaluated as ONE distinct book-level set; each candidate counted once and single-assigned to the most recent prior stop-out exit in its symbol. Per-loss multiplicity views are superseded and labeled wherever quoted.
+2. **COMPOSITION TEST (ruling 2):** the distinct post-exit set is tested against the original-loss set and the all-candidate base rates on every recorded field, with the full candidate accounting shown (distinct count 256 incl. 4 censored; boundary variants 256–257; any residual vs the counter-read's 258 named, not smoothed).
+3. **WINNER-SIDE BASELINE (proposal 1):** identical post-exit construction anchored on the 90 winners' exits.
+4. **RULE-PICKED COUNTER-EXAMPLE (proposal 3):** largest recorded re-entry loss after a stop-out, chosen mechanically, worked alongside LRCX.
+5. **REGISTER (proposals 2+4):** evidence fields only, plus one named missing-record field per UNKNOWN, each bound to a telemetry-spec key. The -24 guardrail is restated in the memo: no per-trade "what would have saved it" scoring; prevention stays frozen-hypothesis only.
+
+— Muse
