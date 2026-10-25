@@ -4261,3 +4261,23 @@ Package `research_notes/equity43_dev_measurement_fixes_20261025_31/` — commit 
 Decomposition of the basis-A mean delta: tie-break +0.0015x (bridge: entry-only grid under committed-order equity = 1.1838x), grid completion −0.0635x. On this record the peak and max single share sit at an entry timestamp (2025-09-08 09:30 ET, 5 open) and no exit/bar-mark sample exceeds them — the entry-only peak landed on the same value but was unqualified, since the estimator never measured the grid its contract specifies; the mean was materially overstated. The explicit **full-notional upper-bound caveat is retained** (TP1 timing unavailable; the intra-hold path remains an upper bound, exact path UNVERIFIABLE).
 
 Bounds held: P6 measurement only; no strategy/simulator edits; no performance run; holdout SEALED; no vendor calls; pilot/S1/G4 untouched; production PAUSED. Slack ACK TS 1792947667.960409. — Muse
+
+---
+
+## 2026-10-25 — Muse ACK: preregistration v0.3 draft + outcome-blind feasibility (governing comment 6401075123)
+
+Governing: ChatGPT desk message Slack TS 1792950736.364589 (2026-10-25 13:52 ET) + Issue #1 comment 6401075123. Base artifacts: Claude preregistration draft v0.2 pinned at 02568b2 (PDF sha 01c4fff0…), -28 delta dispositions as corrected by the N2 erratum at f625921, measurement layer closed under comment 6400814802 (-31 verdict, P6 PASS).
+
+**Single-dispatch check clean:** no v0.3 draft stage dir, worktree, or pre-execution commit exists. The -32/-33 numbers on the record belong to the NYSE calendar lanes, so this task carries no -NN number and cites the governing comment instead.
+
+**Deliverable — one package `research_notes/equity43_dev_prereg_v03_20261025/`:**
+1. `PREREG_V03_DRAFT.md` — full tracked/editable v0.3 preregistration draft revising v0.2, resolving governing redlines (1)–(8) explicitly (all-fire 2,892 vs 590 machine-checkable schema; P9 two-stage cost identity vs per-fill restatement; censored/open-position treatment for H-SYS-1 / H-EXIT-4; Stage A branch matrix; corrected statistical/power text; H-BUY outcome-blind pool audit + fixed relaxation ladder with 10/5/20 preserved; EXIT 7A/7B/7C with E2 retained as R-EXIT-2 only; freeze path P10/P11 + one PASS/FAIL/INCONCLUSIVE contract).
+2. Delta/changelog with an evidence-linked change register: -28 dispositions as errata'd (withdrawn items stay as v0.2 wrote them; revised items take the revised wording), N1 (feasibility arithmetic corrected: true-2δ strict confirmation ≈8,013 H-SYS / ≈4,179 H-BUY at the 80% convention; the v0.2 p.8 "about the same" sentence replaced), N2-as-errata'd (7A scope sentence, corrected never-valid-entry wording), N3 (register rename H-EXIT-2 → R-EXIT-2), N4 (P7 completion evidence made countable), R19 recorded CLOSED-BY-DELIVERY on the -29 evidence.
+3. Finite freeze-blocker checklist — §9 eligibility-audit outcome and §11 PASS semantics carried as explicitly OPEN items in Mike's name, not resolved by the draft.
+4. Short outcome-blind feasibility/readiness result from committed metadata/census only (accrual rates, required-n under the corrected arithmetic, measurement readiness, calendar coverage; planning constants cited as frozen from v0.2, not re-estimated; no forward returns computed).
+
+**Blocker to drafting: none.**
+
+Bounds: documentation/readiness only — no new performance studies, no holdout access or content, no vendor calls, no strategy changes, no pilot/S1 contact, no future T0. Preserved labels: original C1 FAIL, DEV EXPLORATORY, G4 UNADOPTED, S1 LAUNCH_HOLD, production PAUSED, holdout SEALED. Document acceptance is not authority to run. Slack ACK TS 1792951128.470129.
+
+— Muse
