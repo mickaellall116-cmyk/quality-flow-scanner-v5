@@ -3734,3 +3734,27 @@ Package: `research_notes/equity43_feed_source_review_20261024_22_r22/` — commi
 REVIEW_HOLD LIFTED under Mike's recorded GO (2026-10-24 10:36 ET) applied to the -22 r2.2 source PASS (5922a31; ChatGPT comment 6387993691). Pilot QF-EQUITY43-FEED-MEASUREMENT-PILOT-20261024-22 proceeds Mon Oct 26 – Fri Oct 30 as armed: NVDA/TSLA/AAPL/SPY/MELI, frozen -21 ladder, 149 credits/day + 800 total caps enforced on local AND provider counts, TD-email tripwire armed, raw-private/derived-only model in force. S1 LAUNCH_HOLD, G4_HOLD, production PAUSED — unchanged. First action Mon 09:25 ET /api_usage snapshot; RESULT Mon Nov 2 or same-day on any STOP. Slack desk post TS 1792868276.546479.
 
 — Muse
+
+## 2026-10-24 — Muse: ACK — QF-EQUITY43-DEV-WINNER-ANATOMY-20261024-23 (bounded offline diagnostic; governing Issue #1 comment 6391746367)
+
+ACK of the frozen DEV winner-anatomy diagnostic + payoff-interpretation preregistration. Offline only; existing pinned artifacts only; no new run, no tuning, no vendor call, no holdout access. Strategy frozen; C1 FAIL stands; holdout SEALED; G4/S1 HOLD; production PAUSED.
+
+**Pinned source artifacts (paths on origin/main; hashes = package SHA256_MANIFEST values, trade_ledger.json re-verified byte-identical on extraction):**
+- `research_notes/equity43_dev_order_censor_20261023_13/trade_ledger.json` — sha256 `267e794c284a409d7d9b6d8e1056c452976b59746062e9e6e18c5664b74c003b` (590 candidate records: 586 closed + 4 censored)
+- `research_notes/equity43_dev_order_censor_20261023_13/results.json` — sha256 `42b05ce32ce545e95b919692ad3736316f8f42d9f603b1db42005342be413956`
+- `research_notes/equity43_dev_forensic_20261023_14/attribution_state.json` — sha256 `c6e71da21d53da6f7f4f59013f330d445a2fae463b9a5962e0400354a40353e4`
+- -13 experiment config pin `87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706`; -13 package commit `521980a` (per -14 forensic).
+
+**Field inventory (what the ledger actually records per candidate):** symbol, sector (8 recorded theme buckets), signal_time, signal_idx, entry_time, entry, stop, tp1, tp1_hit, rs (decision-time relative-strength feature consumed by rs_top2 ranking; as-of computation verified -13 P4), censored flag, taken flags per cost view, disposition_4bps_c1 (taken 191 / skipped_rank 326 / skipped_risk 45 / skipped_gate=sector-cap 28), and a standalone simulated outcome for EVERY candidate incl. skipped (exit_time, exit_synth, reason, hold_bars, gross_r, net_r_4bps, net_r_25bps).
+
+**Missing telemetry — stated before analysis:**
+1. NO signal grade (A/B/C / AI-Observer) recorded per candidate.
+2. NO market-gate state (CONFIRM/CAUTION/BLOCK) recorded per candidate.
+3. NO trendScore, SessionVWAP distance, or relative-volume readings — `rs` is the only decision-time feature value recorded.
+4. NO rank margin: disposition is a single `skipped_rank` bucket; the ledger does not record the candidate's rank position, the rs gap to the taken set, or whether a slot was free at that instant (open-position count is derivable from recorded taken entry/exit times and will be labeled DERIVED where used).
+5. NO record of trends that never generated a candidate: the 590 records are the complete candidate universe AFTER frozen signal generation. Any universe-level "strong trend" census is therefore bounded to recorded candidates; per the governing text the census will be marked INCOMPLETE for unrecorded trends rather than reconstructed.
+6. Skipped candidates' outcomes are STANDALONE single-position simulations (no portfolio interaction) — usable as recorded counterfactuals, never as "missed portfolio profit."
+
+An INTERIM OPENING POSITION with the descriptive findings follows on both channels for ChatGPT's counter-read; the final memo is held until one desk exchange round completes (Mike's direction, chat 2026-10-24 21:12 ET).
+
+— Muse
