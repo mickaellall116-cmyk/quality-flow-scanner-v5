@@ -4090,3 +4090,26 @@ Bounds held: no performance runs, no strategy re-execution, no holdout access, n
 Per ChatGPT thread replies (Slack TS 1792905022.889999 + 1792905066.479189, Oct 25 2026 ~01:10 ET) and ChatGPT's independent actual-PDF review (Issue #1 comment 6393780155). The PDF is pinned at commit 02568b2; **SHA-256 verified before reading: `01c4fff0c94cbf1d48f420b4e71619b7f477b07deaacd76705e9ca788abf00ae` — exact match.** All 23 pages read; §6/§11 tables cross-checked against layout-preserving extraction. Delta-only memo against -27 (f8da442) follows: per-redline WITHDRAWN/STANDS/REVISED with page citations, both arithmetic corrections recomputed independently, the previously BLOCKED (access) checklist areas returned, new flags separated. Review text only: no freeze, no runs, no holdout access, no S1 action, no frozen-source edits, pilot untouched. Slack ACK TS 1792906338.151479.
 
 — Muse
+
+---
+
+## RESULT — delta re-check of -27 against the actual Prereg Draft v0.2 PDF (-28) — Muse
+
+Full memo: `research_notes/equity43_dev_prereg_v03_delta_20261025_28/MEMO.md`. Baseline -27 (f8da442) was relay-based; this is deltas only. **PDF pin 02568b2, SHA-256 verified exact (`01c4fff0…f00ae`), all 23 pages read.**
+
+**Dispositions: WITHDRAWN 9 · REVISED 10 · STANDS 1 (of 20).**
+- WITHDRAWN: R1 (strict L ≥ δ + "POSITIVE, NOT CONFIRMED AT δ" already in §§6/11/15, pp. 7–8, 16, 22), R3 (§7 fidelity pin + 7B caution, p. 9), R4 (E0−E3 predeclared, pp. 4, 11, 22), R5 (R-EXIT-2 robustness, outside Holm, pp. 5, 8, 11), R7 (UNDERPOWERED FOR PASS; FAIL still reachable, p. 8), R14 (all-fire §5 universe + P7, pp. 3, 5), R15 (DEV-exposure disclosure + fixed sequence + freeze fork, pp. 6–8, 21), R17 (P8 prospective; nothing claims retro-DEV telemetry), R20 (no wrong text — converted to answers: P2 = live-count semantics, free0 is dead code; P6 = no notional cap exists, Claude's ~2.8× reproduces as 2.83×).
+- STANDS: R19 only (no per-cost-view ledgers committed anywhere in the draft; the 25 bps 185-vs-187 divergence is unaddressed).
+- REVISED (residues quoted per page in the memo): R2 (power — below), R6 (P9 byte-identity must be field-scoped + staged against P5's convention change), R8 (feasibility report adds dropped-count + composition, outcome-blind; as-of sub-point withdrawn), R9 (resolved portion withdrawn; eligibility remains the joint user+Muse fork, p. 13), R10 (Stage A already audit-conditioned, p. 16 — the Partly-contaminated branch composition + "Stage A not to FAIL" reading are undefined), R11 (estimand declared, p. 5 — open-at-boundary treatment unstated), R12 (my one-frozen-list demand withdrawn — 7C's differing lists are by design with the joint calendar-block bootstrap, p. 10, which I endorse; one addition: portfolio return beside mean R), R13 (arithmetic withdrawn — contract conformance only: draft's 20-bar moving blocks vs the frozen contract's 20-session circular blocks, p. 7), R16 (one sentence: historical DEV drawdown labelled a lower bound until P1 lands), R18 (rationales present, pp. 7–8; residue: the two 0.05 ATR constants labelled declared assumptions).
+
+**Arithmetic — both of ChatGPT's corrections verified by independent recomputation; conceded exactly:**
+- Blocks: two 4H bins/session (09:30/13:30, pp. 5–6) → 20 bars ≈ **10 sessions** (draft's own figure, p. 7). My ≈3.3 sessions was wrong; withdrawn.
+- Strict L ≥ δ power (μ = 0.17R, δ = 0.05R, σ = 1.8R, one-sided α = .05, 80%): ((1.6449 + 0.8416) × 1.8 / 0.12)² = **≈1,391 → 1,392** — ChatGPT confirmed. The draft p. 1 "roughly 700" recomputes to ≈693 and is the **vs-zero** figure; it must be relabelled. My memo's 870 was a two-sided-α artefact and my 1,340 matches no clean recomputation (Holm worst case: 1,174 vs-zero / 2,356 strict) — both superseded. The draft's own §6 half-width figures verify (≈1,829 vs "about 1,800"; ≈3,506 vs "roughly 3,500"). Holdout-scale strict power at n = 85 ≈ 15%.
+
+**Previously BLOCKED areas, now read:** H-BUY, H-EXIT, H-SYS texts, tiers/firewall, 7A, 7B, §9, GO/NO-GO — **CONFIRMED-ADEQUATE** (citations in memo §3). 7C **CONFIRMED-ADEQUATE as written** (different trade lists permitted; frozen system-level estimand = H-EXIT-4). Power section converts to R2-revised + N1.
+
+**New flags (in neither -27 nor ChatGPT's review):** N1 — p. 8 "Reaching L ≥ δ for a true effect of 2δ needs about the same" holds only at ~50% power; at 80% the requirement is ≈8,013 (H-SYS) / ≈4,179 (H-BUY) independent units, ≈2.3× the printed figures — correct or delete before the §15 feasibility decision relies on it. N2 — 7A excludes gap-below-stop events from all arms (p. 9), the subpopulation where E0/E1 diverge most; 7A's scope sentence must say its verdict generalises only to non-gapping entries. N3 — §13 register still names the E2 leg "H-EXIT-2" (p. 18); rename to R-EXIT-2. N4 (minor) — P7's completion evidence (p. 3) is not countable as written; restate as separate class counts.
+
+Bounds held: review text only — no freeze, no runs, no holdout, no vendor calls, no frozen-source edits, pilot untouched.
+
+— Muse
