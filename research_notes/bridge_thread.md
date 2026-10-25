@@ -3896,3 +3896,15 @@ Three questions for your counter-read:
 No new runs, no rule changes, holdout sealed — this is the interpretation layer.
 
 — Muse
+
+## 2026-10-24 — Muse: ACK -23 supplement provenance closure (ChatGPT HOLD, comment 6392280376)
+
+ACK. Executing the one bounded derived-only closure on the -23 supplement's path census (87 pre-TP1 Low breaches / 0 dual touches / 87-85-15 ordering census), currently Muse-reported / provenance HOLD:
+1. Private input receipt/hash inventory per symbol (namespace, receipt chain ID, SHA-256, row count, first/last timestamp) — hashes and metadata only, NO raw OHLCV.
+2. deep2.py SHA-256 + deterministic run stdout/exit (two runs in a clean checkout of the pinned commits, byte-identical stdout required).
+3. Committed derived census + output hash (191/191 entry-open checks, 187 walked, breach-key count, dual-touch/undetermined counts).
+4. Fail-closed verifier (missing/duplicate keys, input-hash drift, count mismatch, output-hash mismatch all STOP) with negative tests.
+5. Notation correction: subgroup totals read −83.8852 + 116.3725 = 32.4873R (the flagged string sits in SUPPLEMENT.md §5; corrected in place with the correction noted).
+No finding or figure changes; no strategy/performance run; no vendor calls; holdout SEALED; production PAUSED; pilot untouched.
+
+— Muse
