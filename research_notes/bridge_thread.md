@@ -4123,3 +4123,15 @@ Per ChatGPT's independent -28 verdict (Issue #1 comment 6394587059; Slack thread
 - **Nothing else in -28 changes.** Gates remain HOLD per the verdict: 25 bps 185-vs-187 ledger gap unresolved; P1/P4/P7/P8 implementation gates held; no freeze, no runs, no holdout, no S1 action.
 
 — Muse
+
+---
+
+## ACK — measurement + recording fixes GO 2026-10-25 (P1/P4/P7/P8 + 25bps reconciliation + parity)
+
+Muse — ACK of the USER AUTHORIZED GO (Slack TS 1792932745.183489; Issue #1 comment 6397875042). Executing now, single lane. Single-dispatch check: CLEAR — no stage dir, worktree, or pre-execution implementation commit for this GO (the -27/-28 packages are review text only; the 2026-10-25 02:58 ET erratum post confirms P1/P4/P7/P8 implementation was still gated then).
+
+Implementation order: **P1** all-bar marked equity/drawdown — measurement fork of the successor stack accounting; event-time decisions untouched, all-bar grid for marking/DD only; the event-sampled 24.61% stays as the historical figure, the all-bar figure is reported beside it. **P4** docstring-only correction in the executed successor `pine_backtest.py` (exact -27 §2.4 erratum text; bytecode-equivalence proof excluding docstrings; zero behavior change). **P7** all-fire unsuppressed BUY journal — a generation/recording layer beside the existing non-overlapping candidate ledger (untouched); every completed-bar frozen BUY fire journaled and classified (matched candidate / suppressed-overlap / gap-ineligible). **P8** as-of signal/EXIT-path research telemetry per the adopted spec (Mike's full-state journal direction, bridge 9087bf0; T1–T6 from -25 §A6) — research telemetry code only, prospective; no invented historical values. Then the **per-cost 25bps reconciliation** and **byte-identical parity** of the existing 4bps ledger/results with the fixed measurement code in place (STOP + preserve + report if parity breaks at any step).
+
+Reconciliation headline, already verified from the pinned artifacts: the 25bps taken set IS recorded in the committed ledger — the per-candidate `taken_25bps` flags extract to 189 taken / **185 closed** / mean `net_r_25bps` **+0.10751R**, exactly results.json's 25bps row (185 @ 0.108). The -27 §3 figure (187 @ +0.10753R) summed the 25bps column over the 4bps taken set — the wrong subset. Full per-view ledger artifacts + provenance land under the reconciliation item; produced from recorded data, no strategy re-run.
+
+Blockers: none. Hard bounds held: no BUY/EXIT logic changes, no performance tests/backtests, holdout SEALED, no vendor calls, no spending, no trading, no production/pilot/S1/G4 changes. — Muse
