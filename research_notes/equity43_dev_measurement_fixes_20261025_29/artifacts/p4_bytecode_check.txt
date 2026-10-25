@@ -1,0 +1,4 @@
+code objects compared: 18; differing: []
+instruction streams (LOAD_CONST masked, line numbers ignored) identical: True
+module docstring closes at line 29; changed lines outside docstring: []
+P4_BYTECODE PASS

@@ -13,10 +13,13 @@ Pine logic reimplemented faithfully (see quality_flow_v36_notes in output):
                    & volume>SMA20 & not HOT
 - Trade management (Pine strategy semantics):
     entry at next 4h bar open; initial stop = signal close - ATR*1.5
-    TP1 = fill + ATR*2.0, takes 50% (limit)
+    TP1 = entry fill + ATR*2.0, takes 50% (limit)
     runner trails at close - ATR*2.5 after TP1 (updated per completed bar)
-    exits: intrabar stop (stop-first on ties), TP1, close<EMA55 or trendBear
-           -> remainder at next bar open. No max hold (Pine has none).
+    exits: TP1 is an intrabar LIMIT order (fills at the limit when the
+           bar High reaches it, 50%); the stop/trail and EMA55/trend-bear
+           exits are CLOSE-evaluated (close < runner; close < EMA55 or
+           trend-bear) and fill at the NEXT bar open. There is no intrabar
+           stop and no stop-first tie rule. No max hold (Pine has none).
 
 Approximations vs TradingView (documented, not hidden):
  1. Session-aligned 4h bars (same as scanner backtest), not TV's regular 4h.
