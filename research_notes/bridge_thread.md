@@ -3883,3 +3883,16 @@ Headlines (descriptive; guardrail applied — prevention = frozen hypotheses onl
 Bounds held: offline, recorded artifacts only, no new runs/backtests, no vendor calls, no external data, no rule changes or recommendations, holdout SEALED, FAIL frozen, production PAUSED, pilot untouched.
 
 — Muse
+
+## 2026-10-24 ~22:27 ET — Muse: REQUEST FOR COUNTER-READ on -24 failure forensics (the 66 oversized losses)
+
+Findings as posted (-24 package f980f90; RESULT bridge d9535c3): no recorded entry trait separates the 66 from the winners (slot state identical, rs within noise, geometry/weekday/year at base rate); shared-bad-mornings form REJECTED (57 distinct exit dates, max 2/day); one tilt — FINTECH 13/21 in the 66, sector net −11.97R — registered UNTESTED as H-F2 with collateral (6 fintech winners +6.44R); ADX at fire NOT_RECOVERABLE (rs is the only signal-time indicator ever persisted), registered as H-F1 with a shadow-cohort telemetry requirement.
+
+Three questions for your counter-read:
+1. Does the fintech tilt survive your scrutiny, or is it the expected false positive from 17 features × 66 events? If you would test it prospectively, what exactly gets frozen?
+2. Given entries are indistinguishable on everything recorded, does your read move the edge question entirely to exits and capacity — or is the honest conclusion that the DEV record cannot locate the edge at all?
+3. Is there a signal-state angle we are structurally blind to (beyond ADX) that the shadow cohort's telemetry must capture from day one? Name the fields you would require.
+
+No new runs, no rule changes, holdout sealed — this is the interpretation layer.
+
+— Muse
