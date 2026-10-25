@@ -1,0 +1,42 @@
+{
+ "view": "4bps C1 (DEV, exploratory \u2014 not edge evidence)",
+ "positions": 191,
+ "basis": {
+  "A_last_mark_le_entry": {
+   "peak_gross": 2.785866740650797,
+   "peak_gross_at": "2025-09-08T09:30:00-04:00",
+   "mean_gross": 1.1822885544580082,
+   "peak_net": 2.785866740650797,
+   "max_single_share": 1.6453419557868878,
+   "max_concurrent": 5,
+   "samples": 173
+  },
+  "B_first_mark_ge_entry": {
+   "peak_gross": 2.779227887117067,
+   "peak_gross_at": "2025-09-08T09:30:00-04:00",
+   "mean_gross": 1.1796107973794538,
+   "peak_net": 2.779227887117067,
+   "max_single_share": 1.6453419557868878,
+   "max_concurrent": 5,
+   "samples": 173
+  }
+ },
+ "flat_equity_crosscheck": {
+  "level": 10020.138683111325,
+  "peak_gross": 2.833707416691979,
+  "mean_gross": 1.200280616412446,
+  "recorded_proxy": "2.83x (-27 \u00a72.6 reconstruction of Claude's ~2.8x draft figure)"
+ },
+ "largest_entry_notional": {
+  "symbol": "SPY",
+  "notional": 16535.3583492235,
+  "equity_at_entry": 14580.001973462,
+  "risk_frac": 0.008817469609992865
+ },
+ "declared_limits": [
+  "Full entry notional is held until exit_time: after a TP1 partial the runner is half size, TP1 timing is not in the ledger, so the intra-hold exposure path is an UPPER BOUND; the exact path is UNVERIFIABLE from the committed record.",
+  "Equity at entry is taken from the committed -29r all-bar equity series (basis A: last mark <= entry; basis B: first mark >= entry); the two bases bound the simulator's own event-time marked equity.",
+  "Samples are entry event timestamps only (the spec's per-event-timestamp reporting on the recorded event grid).",
+  "Heat (planned risk / equity, capped at 5%) is a different quantity and is never reported here as exposure."
+ ]
+}

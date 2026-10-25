@@ -1,0 +1,231 @@
+{
+ "ledger_rows": 590,
+ "views": {
+  "gross": {
+   "recomputed": {
+    "taken": 191,
+    "closed": 188,
+    "censored_symbols": [
+     "CRM",
+     "MRNA",
+     "PFE"
+    ],
+    "sum_r": 28.1812,
+    "mean_r": 0.1499,
+    "profit_factor": 1.2389693380966877,
+    "win_rate_pct": 46.808510638297875,
+    "avg_hold_bars": 16.56382978723404
+   },
+   "results_row": {
+    "trades": 188,
+    "closed_trades": 188,
+    "expectancy_net_r": 0.15,
+    "profit_factor": 1.24,
+    "win_rate_pct": 46.8,
+    "avg_hold_bars": 16.6,
+    "terminal_open_taken_count": 3
+   }
+  },
+  "4bps": {
+   "recomputed": {
+    "taken": 191,
+    "closed": 187,
+    "censored_symbols": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ],
+    "sum_r": 32.487300000000005,
+    "mean_r": 0.17372887700534762,
+    "profit_factor": 1.2829556648530103,
+    "win_rate_pct": 48.1283422459893,
+    "avg_hold_bars": 16.684491978609625
+   },
+   "results_row": {
+    "trades": 187,
+    "closed_trades": 187,
+    "expectancy_net_r": 0.174,
+    "profit_factor": 1.28,
+    "win_rate_pct": 48.1,
+    "avg_hold_bars": 16.7,
+    "terminal_open_taken_count": 4
+   }
+  },
+  "25bps": {
+   "recomputed": {
+    "taken": 189,
+    "closed": 185,
+    "censored_symbols": [
+     "CRM",
+     "MRNA",
+     "PFE",
+     "SHOP"
+    ],
+    "sum_r": 19.889200000000002,
+    "mean_r": 0.1075091891891892,
+    "profit_factor": 1.1655504670392327,
+    "win_rate_pct": 47.027027027027025,
+    "avg_hold_bars": 16.691891891891892
+   },
+   "results_row": {
+    "trades": 185,
+    "closed_trades": 185,
+    "expectancy_net_r": 0.108,
+    "profit_factor": 1.17,
+    "win_rate_pct": 47.0,
+    "avg_hold_bars": 16.7,
+    "terminal_open_taken_count": 4
+   }
+  }
+ },
+ "checks": [
+  {
+   "name": "gross: candidates_available == ledger rows",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "gross: closed trades exact",
+   "pass": true,
+   "detail": "188 vs 188"
+  },
+  {
+   "name": "gross: censored count exact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "gross: expectancy matches at row rounding",
+   "pass": true,
+   "detail": "0.149900 vs 0.15"
+  },
+  {
+   "name": "gross: profit factor matches at row rounding",
+   "pass": true,
+   "detail": "1.2390 vs 1.24"
+  },
+  {
+   "name": "gross: win rate matches at row rounding",
+   "pass": true,
+   "detail": "46.81 vs 46.8"
+  },
+  {
+   "name": "gross: avg hold matches at row rounding",
+   "pass": true,
+   "detail": "16.564 vs 16.6"
+  },
+  {
+   "name": "4bps: candidates_available == ledger rows",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "4bps: closed trades exact",
+   "pass": true,
+   "detail": "187 vs 187"
+  },
+  {
+   "name": "4bps: censored count exact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "4bps: expectancy matches at row rounding",
+   "pass": true,
+   "detail": "0.173729 vs 0.174"
+  },
+  {
+   "name": "4bps: profit factor matches at row rounding",
+   "pass": true,
+   "detail": "1.2830 vs 1.28"
+  },
+  {
+   "name": "4bps: win rate matches at row rounding",
+   "pass": true,
+   "detail": "48.13 vs 48.1"
+  },
+  {
+   "name": "4bps: avg hold matches at row rounding",
+   "pass": true,
+   "detail": "16.684 vs 16.7"
+  },
+  {
+   "name": "25bps: candidates_available == ledger rows",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "25bps: closed trades exact",
+   "pass": true,
+   "detail": "185 vs 185"
+  },
+  {
+   "name": "25bps: censored count exact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "25bps: expectancy matches at row rounding",
+   "pass": true,
+   "detail": "0.107509 vs 0.108"
+  },
+  {
+   "name": "25bps: profit factor matches at row rounding",
+   "pass": true,
+   "detail": "1.1656 vs 1.17"
+  },
+  {
+   "name": "25bps: win rate matches at row rounding",
+   "pass": true,
+   "detail": "47.03 vs 47.0"
+  },
+  {
+   "name": "25bps: avg hold matches at row rounding",
+   "pass": true,
+   "detail": "16.692 vs 16.7"
+  },
+  {
+   "name": "4bps: disposition census sums to the ledger",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "4bps: taken == results terminal accounting",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "4bps: skipped_rank == results skipped_max_positions (naming map, -27 \u00a73)",
+   "pass": true,
+   "detail": "326 vs 326"
+  },
+  {
+   "name": "4bps: skipped_risk == results skipped_max_risk",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "4bps: top-5 share reproduces the -27 \u00a73 figure",
+   "pass": true,
+   "detail": "94.3753%"
+  }
+ ],
+ "dispositions_4bps_c1": {
+  "taken": 191,
+  "skipped_rank": 326,
+  "skipped_risk": 45,
+  "skipped_gate": 28
+ },
+ "top5_share_4bps": {
+  "top5_r": 30.66,
+  "total_r": 32.487300000000005,
+  "share_pct": 94.3753405176792,
+  "recorded": "94.3753% (-27 \u00a73)"
+ },
+ "carried_not_verified": [
+  "total_return_pct and max_drawdown_pct are not ledger-recomputable (equity path required); carried as reported in results.json. The all-bar DD is the -29/-29r P1 artifact (4bps 26.183969%).",
+  "Parity is scoped to the frozen DEV cost convention (flat per-trade charge on entry notional)."
+ ],
+ "verdict": "PASS"
+}
