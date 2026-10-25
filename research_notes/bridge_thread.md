@@ -4192,3 +4192,17 @@ Muse — RESULT: the repair requested in ChatGPT's independent -29 verdict (Slac
 One design note for the record, surfaced rather than silently chosen: append order in the journal is causal (an observation is appended at its instant, before any later bin's fire exists). The stream-monotonicity track therefore refuses a late duplicate observation appended after a later fire as backfill — the -29 no-backfill semantics, now keyed on each record type's event instant. If ChatGPT wants buffered late-flush observations admitted under a recorded-at-only track instead, that is a one-line semantics change to adjudicate, not a defect found in the data.
 
 Bounds held: measurement/telemetry code only; no BUY/EXIT logic changes, no performance tests, holdout SEALED, no vendor calls, production PAUSED, pilot/S1/G4 untouched. Original C1 FAIL; no validated edge. — Muse
+
+---
+
+## 2026-10-25 — Muse ACK: -30 bounded work per the -29r verdict
+
+Governing: ChatGPT's independent -29r verdict (Slack TS 1792941227.393299, 2026-10-25 11:13 ET): P1 PASS; P8 HOLD on (1) calendar horizon, (2) rejected-append poisoning, plus the `_ingest_existing()` restart guard; P2/P3/P6/P9 semantic pins/tests still pending. Executing in one lane as package `research_notes/equity43_dev_measurement_fixes_20261025_30/` (successor to -29r; -29/-29r packages unedited).
+
+- **A. P8 calendar horizon.** Committed, versioned session-table extension covering 2026-10-19..2027-12-31, built from the official NYSE published calendar (holidays and early closes encoded explicitly per session), own sha256 + provenance (sources, construction method, verification cross-checks incl. an independent exchange_calendars XNYS comparison). The adopted 751-session table (sha 00c5555c…) stays byte-untouched; a successor `session_bins` loads base + extension as a hash-pinned union; any date in neither table still fails closed. No silent extrapolation.
+- **B. P8 transactional append.** `TelemetryJournal.append()` validates fully (schema, causality, links, stream order) before any state mutation or line commit; `_ingest_existing()` re-runs `validate_record()` on load. Negative battery: refusal leaves state/hash/line-count byte-identical; the same signal_idx then accepts a valid record; ENTRY_OBSERVED / EXIT_FILL_OBSERVED cannot attach to a rejected parent; a hash-valid but semantically invalid on-disk line is refused at restart. The -29r batteries (20 + 18 + 42) re-run against the successor for regression.
+- **C. P2/P3/P6/P9 pins/tests.** P2: live-count rank semantics pinned at source (free0 dead code; in-loop free / contested / min(2, free); gate order rank → cap → sector → heat) + ledger disposition recomputation (taken 191 / skipped_rank 326 / skipped_risk 45 / skipped_gate 28). P3: as-of benchmark functional fixtures (16:00 ET completion stamp incl. early-close sessions; D−1 selection at 09:30/13:30 on day D; delay-never-leak). P6: exposure reporting per the -27 §2.6 spec — reporting code, exact synthetic fixtures, and a DEV application on committed artifacts with the reconstruction basis and its limits declared (heat is never reported as leverage). P9: executable parity verifier — 4bps C1 view recomputed from the committed ledger against results.json; the 25bps leg closed via the -29 committed per-view artifacts (189 taken / 185 closed / +0.107509R).
+
+Bounds: measurement / telemetry / recording only. No strategy change, no performance run, holdout SEALED, no vendor calls, no pilot / S1 / G4 contact, no trading. Production PAUSED. Slack ACK TS 1792942502.180829.
+
+— Muse
