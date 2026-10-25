@@ -4241,3 +4241,23 @@ Executing in one lane as package `research_notes/equity43_dev_measurement_fixes_
 Bounds: P6 measurement only. No strategy logic, no performance run, holdout SEALED, no vendor calls, pilot / S1 / G4 untouched, production PAUSED. Slack ACK TS 1792947667.960409.
 
 — Muse
+
+---
+
+## 2026-10-25 — Muse RESULT: -31 P6 full-grid repair delivered
+
+Package `research_notes/equity43_dev_measurement_fixes_20261025_31/` — commit `848f75d`, ancestor-verified on origin/main; `verify_package.py` PASS (manifest 5/5; battery 16/16, exit 0). Governing: ChatGPT -30 verdict, Slack TS 1792945625.327969 (P6 HOLD). The -30 package is byte-untouched (verifier pin-checks its code f219f342… and artifact d2da4b45…). Sampling only changed — position reconstruction and sizing bases A/B are the -30 ones verbatim.
+
+**The repair.** Exposure is now sampled on the **full committed equity/event grid**: entry timestamps + exit timestamps + every timestamp of the repaired (-29r, session-table-binned) all-bar equity series = **964 samples** (173 entry, 148 exit, 63 coincident entry+exit; every entry/exit timestamp is also a series timestamp). **Convention, stated in code and artifact: POST-EVENT at coincident timestamps** — open at t iff entry_time <= t < exit_time (exit stamped at t is closed, entry stamped at t is open); equity at t is the last committed-series mark at or before t **in committed order** (at the 340 timestamps carrying both a bar_close and an event mark, that is the event mark — post-event equity, realized exit P&L included). Disclosed: the -30 sampling equity resolved coincident marks to the larger value (tuple-sort artifact); the artifact's bridge block isolates that tie-break.
+
+**Fail-before fixture** (hand-computed, exact): A (notional 600) exits realizing a loss that drops equity 1000 → 400 while B (notional 900) remains open. The pinned -30 sampler, executed in-lane, reports peak **1.5** — it never samples the exit timestamp; the full-grid sampler measures **2.25** at the exit timestamp. A second fixture pins the coincident convention (bar_close 1000 / event 800 at one timestamp: sample = 300/800 = 0.375).
+
+**Corrected figures beside the superseded entry-only figures** (superseded block embedded in the regenerated artifact, reproduced by executing the pinned -30 module itself; history not overwritten):
+
+- Basis A — peak **2.7859x → 2.7859x (Δ 0)**; mean **1.1823x → 1.1203x (Δ −0.0620x, −5.24%)**; max single share **1.6453x → 1.6453x (Δ 0)**.
+- Basis B — peak 2.7792x (Δ 0); mean 1.1796x → **1.1180x**; max single unchanged.
+- Flat-equity cross-check — peak 2.8337x (Δ 0, vs the recorded 2.83x proxy); mean 1.2003x → **1.1541x**.
+
+Decomposition of the basis-A mean delta: tie-break +0.0015x (bridge: entry-only grid under committed-order equity = 1.1838x), grid completion −0.0635x. On this record the peak and max single share sit at an entry timestamp (2025-09-08 09:30 ET, 5 open) and no exit/bar-mark sample exceeds them — the entry-only peak landed on the same value but was unqualified, since the estimator never measured the grid its contract specifies; the mean was materially overstated. The explicit **full-notional upper-bound caveat is retained** (TP1 timing unavailable; the intra-hold path remains an upper bound, exact path UNVERIFIABLE).
+
+Bounds held: P6 measurement only; no strategy/simulator edits; no performance run; holdout SEALED; no vendor calls; pilot/S1/G4 untouched; production PAUSED. Slack ACK TS 1792947667.960409. — Muse
