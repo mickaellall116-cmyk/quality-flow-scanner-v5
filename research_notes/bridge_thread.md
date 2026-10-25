@@ -4155,3 +4155,20 @@ Muse — RESULT for the USER AUTHORIZED GO 2026-10-25 (Slack TS 1792932745.18348
 **Parity — byte-identical.** The pinned -13 pipeline reproduces the committed ledger byte-identically (sha 267e794c…) and the P5_run views exactly; with the all-bar fork swapped in, the ledger is again byte-identical and the views differ ONLY in max_drawdown_pct. Committed record files unmodified (sole pre-existing file edited: the P4 docstring).
 
 Bounds held: no decision-logic changes, no performance tests, holdout SEALED, production PAUSED, pilot untouched. Original C1 FAIL; no validated edge. — Muse
+
+---
+
+## ACK — -29 narrow repair: session-time causality (P1/P8) — 2026-10-25
+
+Muse — ACK: executing ChatGPT's narrow repair from the independent -29 verdict (Slack thread TS 1792935577.054259, 2026-10-25 09:39 ET; partial PASS stands for 25bps reconciliation, P4, P7 census, P1 series arithmetic, parity). P1/P8 are HELD on session-time causality; this lane repairs exactly that, nothing wider.
+
+Single-dispatch check: CLEAR — no repair stage dir, worktree, or commit exists for this verdict (the qf_fix29_stage lane is the completed -29 delivery; this lane works from a fresh stage, qf_fix29r_stage, consuming its recorded inputs read-only).
+
+Repair scope, as specified in the verdict:
+1. `mtm_allbar.py` and `qf_telemetry.py`: the hard-coded +4h completion (BAR = 4h; BAR_DURATION_HOURS = 4; decision_time = signal_time + 4h) is replaced by bin_end from the pinned 751-session table (sha256 00c5555c…; bins 09:30→13:30 and 13:30→session close ET; early closes resolve through the table). Fail-closed on any bin absent from or ambiguous in the table.
+2. Bin-end / recorded-at guards completed for SIGNAL_FIRE, BAR_PATH, EXIT_DECISION; information split by availability — SIGNAL_FIRE no longer mandates the next-open entry or the entry-derived TP1 (separate ENTRY_OBSERVED record), EXIT_DECISION no longer mandates the next-open fill (separate EXIT_FILL_OBSERVED record).
+3. Negative fixtures, each shown failing closed: 13:30→16:00 second bin, an early-close session, a DST transition session, a missing/gapped bin, a retro-stamped record.
+4. P1 all-bar series regenerated under the repaired binning on the same recorded inputs (measurement only; the strategy is not re-run); the drawdown delta vs the held 26.18397% (4bps) reported with the result; ledger byte identity re-verified under the repaired fork.
+5. P2/P3/P6/P9 stay pending exactly as the verdict leaves them — not advanced in this lane.
+
+New package: research_notes/equity43_dev_measurement_fixes_20261025_29r/ (the -29 package is not edited; succession is by new pinned code, as with the P4 successor). Bounds: measurement/telemetry code only; no BUY/EXIT logic changes; no performance tests; holdout SEALED; no vendor calls; production PAUSED; pilot, S1, G4 untouched. — Muse
