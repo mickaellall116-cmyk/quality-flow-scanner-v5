@@ -1,0 +1,132 @@
+{
+ "counts_variants": {
+  "gross_view_66set_n": 69,
+  "gross_view_post_exit_distinct": 256,
+  "net_view_set_n": 67,
+  "net_view_post_exit_distinct": 256,
+  "nonstrict_post_exit_distinct": 257,
+  "any_taken_anchor_post_exit_distinct": 441
+ },
+ "summaries": {
+  "post_exit_after_66": {
+   "set": "post-exit after the 66 (distinct, assigned)",
+   "n_candidates": 256,
+   "n_taken_closed": 104,
+   "n_skipped": 148,
+   "n_censored": 4,
+   "taken_gross_sum": 11.7679,
+   "taken_winners": 51,
+   "taken_tp1_rate": 0.519,
+   "skipped_standalone_gross_sum": 27.788,
+   "skipped_tp1_rate_sa": 0.473,
+   "dispositions": {
+    "skipped_rank": 119,
+    "skipped_risk": 19,
+    "taken": 108,
+    "skipped_gate": 10
+   },
+   "sectors": {
+    "CONSUMER": 51,
+    "SEMIS": 66,
+    "ETF": 35,
+    "SPACE": 21,
+    "AI_SOFTWARE": 30,
+    "FINTECH": 31,
+    "HEALTHCARE": 17,
+    "CRYPTO": 5
+   },
+   "rs_median": 0.0509,
+   "reasons_taken": {
+    "stop": 87,
+    "ema55-break": 17
+   }
+  },
+  "post_exit_after_winners": {
+   "set": "post-exit after winners (distinct, assigned)",
+   "n_candidates": 346,
+   "n_taken_closed": 106,
+   "n_skipped": 236,
+   "n_censored": 4,
+   "taken_gross_sum": 23.0728,
+   "taken_winners": 51,
+   "taken_tp1_rate": 0.509,
+   "skipped_standalone_gross_sum": 12.8351,
+   "skipped_tp1_rate_sa": 0.441,
+   "dispositions": {
+    "taken": 110,
+    "skipped_rank": 188,
+    "skipped_gate": 20,
+    "skipped_risk": 28
+   },
+   "sectors": {
+    "CONSUMER": 53,
+    "SEMIS": 94,
+    "ETF": 46,
+    "SPACE": 22,
+    "AI_SOFTWARE": 86,
+    "FINTECH": 22,
+    "HEALTHCARE": 16,
+    "CRYPTO": 7
+   },
+   "rs_median": 0.0405,
+   "reasons_taken": {
+    "stop": 89,
+    "ema55-break": 17
+   }
+  },
+  "original_loss_set_66": {
+   "set": "the 66 (taken closed)",
+   "n_candidates": 66,
+   "dispositions": {
+    "taken": 66
+   },
+   "sectors": {
+    "CONSUMER": 14,
+    "SEMIS": 13,
+    "ETF": 8,
+    "SPACE": 7,
+    "AI_SOFTWARE": 7,
+    "FINTECH": 13,
+    "HEALTHCARE": 3,
+    "CRYPTO": 1
+   },
+   "rs_median": 0.0489,
+   "tp1_rate": 0.0,
+   "gross_sum": -92.0847,
+   "reasons": {
+    "stop": 64,
+    "ema55-break": 2
+   },
+   "hold_median": 4.5
+  },
+  "all_candidates_590": {
+   "set": "all candidates",
+   "n_candidates": 590,
+   "dispositions": {
+    "taken": 191,
+    "skipped_rank": 326,
+    "skipped_risk": 45,
+    "skipped_gate": 28
+   },
+   "sectors": {
+    "CONSUMER": 77,
+    "SEMIS": 142,
+    "AI_SOFTWARE": 137,
+    "ETF": 80,
+    "SPACE": 46,
+    "CRYPTO": 19,
+    "FINTECH": 63,
+    "HEALTHCARE": 26
+   },
+   "rs_median": 0.0402,
+   "tp1_rate_sa": 0.471
+  }
+ },
+ "counter_example": {
+  "symbol": "CRM",
+  "signal_time": "2026-01-06T09:30:00-05:00",
+  "gross_r": -3.1113,
+  "anchor_exit": "2025-05-23 13:30:00-04:00",
+  "anchor_gross": -1.1761
+ }
+}

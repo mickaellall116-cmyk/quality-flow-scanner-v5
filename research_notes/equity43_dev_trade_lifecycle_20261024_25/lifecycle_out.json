@@ -1,0 +1,232 @@
+{
+ "population": {
+  "candidates": 590,
+  "skipped": {
+   "skipped_rank": 326,
+   "skipped_risk": 45,
+   "skipped_gate": 28
+  },
+  "taken": 191,
+  "taken_closed": 187,
+  "censored": 4,
+  "censored_symbols": [
+   "CRM",
+   "MRNA",
+   "PFE",
+   "SHOP"
+  ],
+  "censored_all_taken": true,
+  "winners": 90,
+  "losers": 97,
+  "s66": 66,
+  "ordinary_losers": 31,
+  "reg66_crosscheck_max_gross_dev": 0.0,
+  "s66_gross_sum": -92.0847
+ },
+ "decomp64": {
+  "n": 64,
+  "planned_R_each": -1.0,
+  "planned_sum": -64.0,
+  "gross_sum": -89.985,
+  "overshoot_sum": 25.985,
+  "overshoot_median": 0.2951,
+  "overshoot_max": 2.1113,
+  "fill_below_stop_identity_max_err": 4.999e-05,
+  "all_tp1_hit_false": true,
+  "labels": {
+   "CONFIRMED_STOP_FIRST": 64
+  }
+ },
+ "ema2": [
+  {
+   "symbol": "ASTS",
+   "entry_time": "2025-02-26 13:30:00-05:00",
+   "exit_time": "2025-02-28 09:30:00-05:00",
+   "reason": "ema55-break",
+   "gross_r": -1.0837,
+   "hold_bars": 3,
+   "tp1_hit": false,
+   "label": "SIMULATOR_ASSUMED",
+   "rs": -0.0052,
+   "sector": "SPACE",
+   "fill_vs_stop_R": -0.0837
+  },
+  {
+   "symbol": "SOFI",
+   "entry_time": "2025-10-15 13:30:00-04:00",
+   "exit_time": "2025-10-17 09:30:00-04:00",
+   "reason": "ema55-break",
+   "gross_r": -1.016,
+   "hold_bars": 3,
+   "tp1_hit": false,
+   "label": "SIMULATOR_ASSUMED",
+   "rs": 0.0709,
+   "sector": "FINTECH",
+   "fill_vs_stop_R": -0.016
+  }
+ ],
+ "time_to_failure": {
+  "s66": {
+   "n": 66,
+   "median": 4.5,
+   "min": 1,
+   "max": 24,
+   "le2": 15,
+   "le4": 33,
+   "le10": 57
+  },
+  "ordinary": {
+   "n": 31,
+   "median": 6,
+   "min": 1,
+   "max": 34,
+   "le2": 7,
+   "le4": 13,
+   "le10": 24
+  },
+  "winners": {
+   "n": 90,
+   "median": 22.0,
+   "min": 5,
+   "max": 139,
+   "le2": 0,
+   "le4": 0,
+   "le10": 10
+  },
+  "ended_by_s66": {
+   "by_2": 0.227,
+   "by_4": 0.5,
+   "by_10": 0.864,
+   "by_20": 0.985,
+   "by_30": 1.0
+  },
+  "ended_by_ordinary": {
+   "by_2": 0.226,
+   "by_4": 0.419,
+   "by_10": 0.774,
+   "by_20": 0.903,
+   "by_30": 0.968
+  },
+  "ended_by_winners": {
+   "by_2": 0.0,
+   "by_4": 0.0,
+   "by_10": 0.111,
+   "by_20": 0.433,
+   "by_30": 0.733
+  }
+ },
+ "threshold_excursions": {
+  "s66": {
+   "n": 66,
+   "tp1_reached": 0,
+   "stop_first_label": 64,
+   "tp1_first_label": 0,
+   "sim_assumed_label": 2,
+   "breach_then_tp1": 0
+  },
+  "ordinary": {
+   "n": 31,
+   "tp1_reached": 5,
+   "stop_first_label": 13,
+   "tp1_first_label": 5,
+   "sim_assumed_label": 13,
+   "breach_then_tp1": 0
+  },
+  "winners": {
+   "n": 90,
+   "tp1_reached": 90,
+   "stop_first_label": 10,
+   "tp1_first_label": 80,
+   "sim_assumed_label": 0,
+   "breach_then_tp1": 10
+  }
+ },
+ "top5": [
+  {
+   "symbol": "SNOW",
+   "gross_r": 8.1014,
+   "net_r_4bps": 8.0874,
+   "entry_time": "2026-05-27 09:30:00-04:00",
+   "label": "CONFIRMED_TP1_FIRST",
+   "tp1_hit": true,
+   "reason": "stop",
+   "hold_bars": 11
+  },
+  {
+   "symbol": "INTC",
+   "gross_r": 6.4252,
+   "net_r_4bps": 6.4172,
+   "entry_time": "2025-08-18 13:30:00-04:00",
+   "label": "CONFIRMED_TP1_FIRST",
+   "tp1_hit": true,
+   "reason": "stop",
+   "hold_bars": 110
+  },
+  {
+   "symbol": "AMD",
+   "gross_r": 5.9265,
+   "net_r_4bps": 5.9181,
+   "entry_time": "2026-04-02 13:30:00-04:00",
+   "label": "CONFIRMED_TP1_FIRST",
+   "tp1_hit": true,
+   "reason": "stop",
+   "hold_bars": 34
+  },
+  {
+   "symbol": "QCOM",
+   "gross_r": 5.3573,
+   "net_r_4bps": 5.347,
+   "entry_time": "2026-04-28 13:30:00-04:00",
+   "label": "CONFIRMED_TP1_FIRST",
+   "tp1_hit": true,
+   "reason": "stop",
+   "hold_bars": 20
+  },
+  {
+   "symbol": "LRCX",
+   "gross_r": 4.8989,
+   "net_r_4bps": 4.8903,
+   "entry_time": "2025-12-18 13:30:00-05:00",
+   "label": "CONFIRMED_TP1_FIRST",
+   "tp1_hit": true,
+   "reason": "stop",
+   "hold_bars": 60
+  }
+ ],
+ "breach_set_recovery": {
+  "n_positive_of_87": 10,
+  "ge_2R": [
+   {
+    "symbol": "ARM",
+    "gross_r": 3.1476,
+    "net_r_4bps": 3.1416,
+    "entry_time": "2026-03-31 13:30:00-04:00"
+   },
+   {
+    "symbol": "F",
+    "gross_r": 2.544,
+    "net_r_4bps": 2.536,
+    "entry_time": "2026-05-15 13:30:00-04:00"
+   },
+   {
+    "symbol": "RKLB",
+    "gross_r": 4.4183,
+    "net_r_4bps": 4.4126,
+    "entry_time": "2026-04-30 13:30:00-04:00"
+   }
+  ]
+ },
+ "dev_last_signal": "2026-10-16 09:30:00-04:00",
+ "partB_agg": {
+  "with_any_subsequent": 61,
+  "with_subsequent_taken": 51,
+  "no_subsequent": 5,
+  "no_subsequent_follow_ge_180d": 0,
+  "no_subsequent_follow_lt_180d": 5,
+  "subsequent_taken_trades": 194,
+  "subsequent_taken_gross_sum": 1.8584,
+  "subsequent_taken_winners": 86,
+  "subsequent_skipped_candidates": 259,
+  "subsequent_skipped_standalone_gross_sum": 64.645
+ }
+}
