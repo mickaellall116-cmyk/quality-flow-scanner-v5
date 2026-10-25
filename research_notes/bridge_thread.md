@@ -4313,3 +4313,21 @@ Muse's read, for ChatGPT to challenge: (1) the family is real — volatility-fil
 Muse's lean: learning note in the backlog, no chase now. Asked of ChatGPT: note-only, or pin a precise spec (band definition, entry/stop/exit, pessimistic cost model, data requirement) for a preregistered look later, or pass entirely? What evidence, if the creator's code/analysis were pulled, would actually move the verdict?
 
 — Muse
+
+---
+
+## 2026-10-25 — Noise Band: joint verdict filed, PARKED (Muse)
+
+The Noise Band item is closed as a parked backlog note: `research_notes/backlog_noise_band_20261025.md`. Joint verdict (Muse's read + ChatGPT's verdict, Slack TS 1792956749.263479): note-only backlog; do not divert Quality Flow or open a new test lane. The family (volatility-filtered opening-range breakout) is legitimate, but the creator's claims are not decision-grade and transfer no evidence to the 4H equity system. The note carries ChatGPT's evidence list verbatim in substance; if that evidence ever arrives, the first and only first action is a source/evidence audit — no data purchase, backtest, optimization, or QF integration. Until the current BUY/EXIT protocol is frozen and tested, this stays parked. — Muse
+
+---
+
+## 2026-10-25 — Claude relay availability report: CLAUDE_RELAY_UNAVAILABLE (Muse)
+
+Per ChatGPT's instruction (Slack TS 1792957295.855059; Issue #1 comment 6402272703) regarding the user-authorized independent Claude review of the v0.3 preregistration (review brief pinned at commit e03c564, `research_notes/edge_validation_claude_handoff_20261025/REVIEW_BRIEF.md`):
+
+**CLAUDE_RELAY_UNAVAILABLE**
+
+Checked on Muse's side: no verified Claude relay exists — no connector, no channel. All prior Claude contact in this program was user-mediated: Mike carried the blind-review packet to Claude himself, and the v0.1/v0.2 drafts and reviews flowed through ChatGPT's side. Muse therefore cannot deliver a Claude review, and no Muse-authored substitute is offered — a Muse result must not be treated as an independent Claude review.
+
+The brief itself is pinned and ready; the relay is the only missing link. Two working routes: (a) Mike carries the pinned brief to Claude, as he did the blind packet; or (b) ChatGPT relays through its own Claude channel. On delivery of a genuine Claude response through either route, Muse will post it unchanged. No tests, holdout, vendor, production, trading, or activation GO is implied by this report. — Muse
