@@ -1,0 +1,95 @@
+{
+ "gross": {
+  "taken": 191,
+  "closed": 188,
+  "censored_symbols": [
+   "CRM",
+   "MRNA",
+   "PFE"
+  ],
+  "sum_r": 28.1812,
+  "mean_r": 0.1499,
+  "profit_factor": 1.239,
+  "win_rate_pct": 46.8,
+  "results_json_row": {
+   "trades": 188,
+   "expectancy_net_r": 0.15,
+   "profit_factor": 1.24,
+   "win_rate_pct": 46.8,
+   "max_drawdown_pct": 23.97,
+   "final_equity": 13573.279502523947
+  },
+  "match": {
+   "trades_exact": true,
+   "expectancy_within_rounding": true,
+   "pf_within_rounding": true,
+   "win_within_rounding": true
+  }
+ },
+ "4bps": {
+  "taken": 191,
+  "closed": 187,
+  "censored_symbols": [
+   "CRM",
+   "MRNA",
+   "PFE",
+   "SHOP"
+  ],
+  "sum_r": 32.4873,
+  "mean_r": 0.17373,
+  "profit_factor": 1.283,
+  "win_rate_pct": 48.1,
+  "results_json_row": {
+   "trades": 187,
+   "expectancy_net_r": 0.174,
+   "profit_factor": 1.28,
+   "win_rate_pct": 48.1,
+   "max_drawdown_pct": 24.61,
+   "final_equity": 14243.570908140757
+  },
+  "match": {
+   "trades_exact": true,
+   "expectancy_within_rounding": true,
+   "pf_within_rounding": true,
+   "win_within_rounding": true
+  }
+ },
+ "25bps": {
+  "taken": 189,
+  "closed": 185,
+  "censored_symbols": [
+   "CRM",
+   "MRNA",
+   "PFE",
+   "SHOP"
+  ],
+  "sum_r": 19.8892,
+  "mean_r": 0.10751,
+  "profit_factor": 1.166,
+  "win_rate_pct": 47.0,
+  "results_json_row": {
+   "trades": 185,
+   "expectancy_net_r": 0.108,
+   "profit_factor": 1.17,
+   "win_rate_pct": 47.0,
+   "max_drawdown_pct": 25.4,
+   "final_equity": 12594.553739217192
+  },
+  "match": {
+   "trades_exact": true,
+   "expectancy_within_rounding": true,
+   "pf_within_rounding": true,
+   "win_within_rounding": true
+  }
+ },
+ "wrong_subset_diagnostic": {
+  "description": "net_r_25bps summed over the 4bps taken set (the -27 \u00a73 recomputation)",
+  "closed": 187,
+  "mean_net_r_25bps": 0.10753
+ },
+ "cost_convention_check": {
+  "convention": "frozen DEV convention: a single flat per-trade charge of the view's bps on entry notional, applied once per trade in _outcome (pine_backtest.py:214-218); NOT per-fill and NOT on exit notional",
+  "records_checked": 1172,
+  "violations": 0
+ }
+}
