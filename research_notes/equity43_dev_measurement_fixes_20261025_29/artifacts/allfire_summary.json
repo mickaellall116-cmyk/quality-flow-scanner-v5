@@ -1,0 +1,10 @@
+{
+ "total_fires": 2892,
+ "by_class": {
+  "MATCHED_CANDIDATE": 590,
+  "SUPPRESSED_OVERLAP": 2301,
+  "GAP_INELIGIBLE_ENTRY": 1
+ },
+ "skipped_gap_total": 1,
+ "domain": "per symbol, bars i in [WARMUP=215, n-2] of the pinned 4H series; fires evaluated on completed bars only"
+}
