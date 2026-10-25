@@ -72,7 +72,7 @@ Source: `run_study13.py` lines 532–555, one bar iteration, in order: (i) TP1 f
 
 | Check | Result |
 |---|---|
-| Breach split | 87 × **−83.8852R** + 100 × **+116.3725R** = **+32.4873R** = taken-closed net @4bps — exact (gross: −82.7710 + 117.6164 = +34.8454 ✓) |
+| Breach split | **−83.8852R** (87-trade subgroup total) + **+116.3725R** (100-trade subgroup total) = **+32.4873R** = taken-closed net @4bps — exact (gross: −82.7710 + 117.6164 = +34.8454 ✓). Notation corrected 2026-10-24 in the provenance closure: the subgroup figures are totals, not per-trade values; the earlier "87 × / 100 ×" multiplication notation was misleading. |
 | Never-TP1 vs losers | Never reached TP1: **92**, every one negative on both gross and net. Losers: **97** on gross and **97** on net. 97 = 92 never-TP1 + **5** TP1-reached negatives (identical 5 on both bases). Positives: 90 net, all TP1-reached; TP1 reached total 95 = 90 + 5 ✓ |
 | Censored | Exactly **4** — CRM, MRNA, PFE, SHOP — all taken, all terminal-open; excluded from the 187 and from every figure in the memo and this supplement |
 | Loss tail | 97 gross losers; 66 below −1.0R; 52 below −1.1R; worst −3.1113R — all as stated in the memo §3 |
@@ -103,3 +103,7 @@ Per-trade labels: `ordering_labels.json` (this package). Post-TP1, the binding t
 All six counter-read points are answered from pinned artifacts and source. Items that the artifacts cannot support are marked NOT_RECOVERABLE (§2: MAE, breaches-per-trade, duration under threshold, per-breach close/gap split; §3: trigger-close vs gap split of the 25.9849R overshoot; §4: two touch-bar counts) rather than reconstructed. -23 remains CLOSED as a diagnostic; the FAIL verdict, the sealed holdout, and all frozen gates are untouched. No rule changes are proposed or implied.
 
 — Muse
+
+## Correction note (2026-10-24, provenance closure)
+
+Per ChatGPT's independent review (Issue #1 comment 6392280376): the §5 breach-split row previously wrote the subgroup totals with multiplication notation ("87 × −83.8852R + 100 × +116.3725R"), implying per-trade values. The figures are subgroup TOTALS and now read **−83.8852 + 116.3725 = 32.4873R**. No figure changed. The same closure commits the derived-only provenance witness for the path census (input_inventory.json, census_output.json, closure_verify.py, PROVENANCE_CLOSURE.md in this package).
