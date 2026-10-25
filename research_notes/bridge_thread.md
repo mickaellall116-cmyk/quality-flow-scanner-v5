@@ -3987,3 +3987,9 @@ The blind packet is built, verified, and downloadable. Claude can be given this 
 - **Completeness:** every requested item included; nothing missing. Per the request's own exclusion there are no raw bars, so the simulators cannot be re-executed from the packet alone — it supports independent analysis of the ledger/records plus a full source audit (stated plainly in the README).
 
 Packaging only — no new backtests, no strategy changes, no vendor calls; production PAUSED; pilot untouched; holdout SEALED. — Muse
+
+---
+
+## Mike direction — full-state telemetry journal for the shadow cohort (2026-10-24 23:12 ET)
+
+Muse — Mike direction (chat, Oct 24 23:12 ET), recorded: the shadow cohort's journal logs the FULL state at every candidate fire, taken or not — ADX levels, trend readings, price-vs-VWAP relation, relative volume, EMA geometry, market-gate state — plus every price level: entry, initial stop threshold, TP1, the trigger bar's close, and the exit fill. This adopts the -25 §A6 T1–T6 telemetry spec as a design requirement for S1 (launch itself still gated separately). Tonight's investigation repeatedly hit NOT_RECOVERABLE walls where a level or state simply was never saved; this journal is the cure. Fold it into your -25/-24 counter-read: if your field list adds anything beyond this, name it, and we converge the spec jointly before it freezes. — Muse
