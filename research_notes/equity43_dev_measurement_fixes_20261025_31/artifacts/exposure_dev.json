@@ -1,0 +1,116 @@
+{
+ "artifact": "P6 exposure report \u2014 REGENERATED (-31) under the -30 verdict's bounded P6 repair",
+ "view": "4bps C1 (DEV, exploratory \u2014 not edge evidence)",
+ "positions": 191,
+ "sampling": {
+  "grid": "full committed equity/event grid: union of entry timestamps, exit timestamps, and every timestamp of the committed -29r all-bar equity series (repaired, session-table-binned)",
+  "grid_timestamps": 964,
+  "entry_timestamps": 173,
+  "exit_timestamps": 148,
+  "series_timestamps": 964,
+  "coincident_entry_exit_timestamps": 63,
+  "convention": "POST-EVENT at coincident timestamps: open at t iff entry_time <= t < exit_time (exit stamped at t is closed, entry stamped at t is open); equity at t is the last committed-series mark at or before t in committed order (the event mark where a bar_close and an event mark share the timestamp)."
+ },
+ "corrected_full_grid": {
+  "basis": {
+   "A_last_mark_le_entry": {
+    "peak_gross": 2.785866740650797,
+    "peak_gross_at": "2025-09-08T09:30:00-04:00",
+    "peak_gross_at_classes": [
+     "entry",
+     "series"
+    ],
+    "peak_open": 5,
+    "mean_gross": 1.1202922016126184,
+    "peak_net": 2.785866740650797,
+    "max_single_share": 1.6453419557868878,
+    "max_single_share_at": "2025-09-08T09:30:00-04:00",
+    "max_single_share_at_classes": [
+     "entry",
+     "series"
+    ],
+    "max_concurrent": 5,
+    "samples": 964
+   },
+   "B_first_mark_ge_entry": {
+    "peak_gross": 2.779227887117067,
+    "peak_gross_at": "2025-09-08T09:30:00-04:00",
+    "peak_gross_at_classes": [
+     "entry",
+     "series"
+    ],
+    "peak_open": 5,
+    "mean_gross": 1.1179686987168116,
+    "peak_net": 2.779227887117067,
+    "max_single_share": 1.6453419557868878,
+    "max_single_share_at": "2025-09-08T09:30:00-04:00",
+    "max_single_share_at_classes": [
+     "entry",
+     "series"
+    ],
+    "max_concurrent": 5,
+    "samples": 964
+   }
+  },
+  "flat_equity_crosscheck": {
+   "level": 10020.138683111325,
+   "peak_gross": 2.833707416691979,
+   "peak_gross_at": "2025-09-08T09:30:00-04:00",
+   "mean_gross": 1.1541143407516874,
+   "max_single_share": 1.645341955786888,
+   "samples": 964,
+   "recorded_proxy": "2.83x (-27 \u00a72.6 reconstruction of Claude's ~2.8x draft figure)"
+  }
+ },
+ "convention_bridge": {
+  "grid": "entry timestamps only",
+  "equity": "committed-order (this successor)",
+  "basis": "A_last_mark_le_entry",
+  "peak_gross": 2.785866740650797,
+  "mean_gross": 1.1838047460685641,
+  "max_single_share": 1.6453419557868878,
+  "samples": 173
+ },
+ "superseded_entry_only": {
+  "status": "SUPERSEDED by the -30 verdict (P6 HOLD): entry-only sampling; not qualified as the run-level exposure statistics",
+  "source": "-30 artifacts/exposure_dev.json (commit d077532), reproduced in this run by executing the pinned -30 exposure_report.py (sha256 f219f34248112048c4d4c5af4908fc4a6a33f2c8f9bcee44f7ce87fb262cf248)",
+  "basis": {
+   "A_last_mark_le_entry": {
+    "peak_gross": 2.785866740650797,
+    "peak_gross_at": "2025-09-08T09:30:00-04:00",
+    "mean_gross": 1.1822885544580082,
+    "peak_net": 2.785866740650797,
+    "max_single_share": 1.6453419557868878,
+    "max_concurrent": 5,
+    "samples": 173
+   },
+   "B_first_mark_ge_entry": {
+    "peak_gross": 2.779227887117067,
+    "peak_gross_at": "2025-09-08T09:30:00-04:00",
+    "mean_gross": 1.1796107973794538,
+    "peak_net": 2.779227887117067,
+    "max_single_share": 1.6453419557868878,
+    "max_concurrent": 5,
+    "samples": 173
+   }
+  },
+  "flat_equity_crosscheck": {
+   "level": 10020.138683111325,
+   "peak_gross": 2.833707416691979,
+   "mean_gross": 1.200280616412446,
+   "recorded_proxy": "2.83x (-27 \u00a72.6 reconstruction of Claude's ~2.8x draft figure)"
+  }
+ },
+ "largest_entry_notional": {
+  "symbol": "SPY",
+  "notional": 16535.3583492235,
+  "equity_at_entry": 14580.001973462,
+  "risk_frac": 0.008817469609992865
+ },
+ "declared_limits": [
+  "Full entry notional is held until exit_time: after a TP1 partial the runner is half size, TP1 timing is not in the ledger, so the intra-hold exposure path is an UPPER BOUND; the exact path is UNVERIFIABLE from the committed record.",
+  "Equity at entry (sizing) is taken from the committed -29r all-bar equity series (basis A: last mark <= entry; basis B: first mark >= entry); the two bases bound the simulator's own event-time marked equity. Sampling equity follows the stated committed-order post-event convention.",
+  "Samples are the full committed grid (entry + exit + every equity-series timestamp), replacing the -30 artifact's entry-event-timestamps-only sampling, which the -30 verdict held unqualified.",
+  "Heat (planned risk / equity, capped at 5%) is a different quantity and is never reported here as exposure."
+ ]
+}
