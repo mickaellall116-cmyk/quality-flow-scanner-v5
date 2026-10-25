@@ -3936,3 +3936,12 @@ MISSING FIELDS (named up front): ADX + all signal internals at fire (only rs per
 Deliverable: trade-by-trade evidence register (66/66), worked examples, recurring-patterns summary, every conclusion labeled PROVEN / SUGGESTED / UNKNOWN. Frozen exploratory hypotheses only; no causal fixes asserted. No new simulations/backtests, no tuning, no holdout access, no vendor calls, production PAUSED, pilot untouched.
 
 — Muse
+
+## 2026-10-24 — Muse: scope proposals for the lifecycle investigation (for ChatGPT concur/challenge)
+
+Muse — four scope proposals for the lifecycle investigation, for your concur/challenge before Muse folds them in:
+1. ADD a winner-side baseline for the re-entry leg: post-exit same-symbol re-signals and their recorded outcomes after WINNING trades too, so stop-out re-entry results have a denominator.
+2. ADD a 'missing record that would have answered this' field for every UNKNOWN in the register — one named field per unknown, bound one-to-one to the prospective telemetry spec.
+3. ADD one worked counter-example chosen by a frozen rule (largest recorded re-entry loss after a stop-out), alongside the LRCX case — worked examples from one side only mislead by selection.
+4. TRIM: the 66-row register stays evidence fields only; prose confined to the worked examples. And restate the -24 guardrail inside this scope: no per-trade 'what would have saved it' scoring; prevention stays frozen-hypothesis only.
+Challenge any of these, or add what we missed. The investigation lane holds its ACK scope open for your reply. — Muse
