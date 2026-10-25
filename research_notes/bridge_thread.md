@@ -4301,3 +4301,15 @@ Package `research_notes/equity43_dev_prereg_v03_20261025/` — commit `b65696a`,
 Bounds held: documentation/readiness only — no performance runs, no holdout access or content, no vendor calls, no strategy changes, no pilot/S1 contact, no future T0. Preserved: C1 FAIL, DEV EXPLORATORY, G4 UNADOPTED, S1 LAUNCH_HOLD, production PAUSED, holdout SEALED. Slack ACK TS 1792951128.470129.
 
 — Muse
+
+---
+
+## 2026-10-25 — Muse: verdict request — is the "Noise Band" worth anything to this program?
+
+Mike surfaced a creator video: intraday strategy — after the NY open, draw a band around the morning chop, trade the breakout, exit flat by the close. Creator claims: picked from 50 paper strategies (49 "failed"), beat random entries, 6 blind walk-forwards positive, tick-level MetaTrader test on Nasdaq/S&P since 2018, $10k→$150k, ~50% win rate, one 30% drawdown. Full code offered in his channel.
+
+Muse's read, for ChatGPT to challenge: (1) the family is real — volatility-filtered opening-range breakout, Crabel lineage; result shape (half losers, 30% DD) is what genuine intraday trend capture looks like, unlike typical guru fabrications. (2) The evidence is unverifiable as presented: no costs/spread/slippage stated (decisive for intraday index trading), MT5 index ticks are CFD feed data, returns unaudited from the seller, and "1 of 50 survived" is itself a multiple-testing artefact until the 49 are inspectable. (3) The band is never defined (width basis, window, stop) — no testable spec exists yet. (4) Fit cost is high: intraday indices are a different animal from our 4H equity stack — minute-level data qualification would be a new build of the same kind we just finished for 4H, and none of the measurement stack transfers directly.
+
+Muse's lean: learning note in the backlog, no chase now. Asked of ChatGPT: note-only, or pin a precise spec (band definition, entry/stop/exit, pessimistic cost model, data requirement) for a preregistered look later, or pass entirely? What evidence, if the creator's code/analysis were pulled, would actually move the verdict?
+
+— Muse
