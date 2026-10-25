@@ -1,0 +1,1353 @@
+{
+ "reconciliation": {
+  "n_taken_closed": 187,
+  "n_66": 66,
+  "sum_gross_66": -92.0847,
+  "supplement_figure": -92.0847,
+  "reasons_66": {
+   "stop": 64,
+   "ema55-break": 2
+  },
+  "tp1_hit_66": 0,
+  "n_winners_gross": 90,
+  "n_losers_all": 97,
+  "top5_symbols": [
+   "SNOW",
+   "INTC",
+   "AMD",
+   "QCOM",
+   "LRCX"
+  ],
+  "top5_sum_gross": 30.7093,
+  "breach_label_vs_intrabar_mismatches": 0,
+  "boundary_trade_net_only": [
+   {
+    "symbol": "AMZN",
+    "entry": "2026-07-20",
+    "gross": -0.9948,
+    "net4": -1.0082
+   }
+  ]
+ },
+ "exit_clustering": {
+  "distinct_exit_dates_66": 57,
+  "exits_per_date_hist": {
+   "1": 48,
+   "2": 9
+  },
+  "max_cooccurring": 2,
+  "n_in_multi_exit_dates": 18,
+  "cluster_dates": [
+   {
+    "date": "2025-02-28",
+    "weekday": "Fri",
+    "n_66": 2,
+    "sum_gross_66": -2.4729,
+    "symbols": [
+     "ASTS",
+     "MELI"
+    ],
+    "all_taken_exits_that_date": 2,
+    "all_taken_exit_gross_that_date": -2.4729
+   },
+   {
+    "date": "2025-03-11",
+    "weekday": "Tue",
+    "n_66": 2,
+    "sum_gross_66": -2.9384,
+    "symbols": [
+     "ASTS",
+     "PFE"
+    ],
+    "all_taken_exits_that_date": 2,
+    "all_taken_exit_gross_that_date": -2.9384
+   },
+   {
+    "date": "2025-05-30",
+    "weekday": "Fri",
+    "n_66": 2,
+    "sum_gross_66": -2.9126,
+    "symbols": [
+     "AMD",
+     "LRCX"
+    ],
+    "all_taken_exits_that_date": 2,
+    "all_taken_exit_gross_that_date": -2.9126
+   },
+   {
+    "date": "2025-10-17",
+    "weekday": "Fri",
+    "n_66": 2,
+    "sum_gross_66": -2.222,
+    "symbols": [
+     "IWM",
+     "SOFI"
+    ],
+    "all_taken_exits_that_date": 3,
+    "all_taken_exit_gross_that_date": -0.1865
+   },
+   {
+    "date": "2025-11-06",
+    "weekday": "Thu",
+    "n_66": 2,
+    "sum_gross_66": -2.9052,
+    "symbols": [
+     "MELI",
+     "SMH"
+    ],
+    "all_taken_exits_that_date": 2,
+    "all_taken_exit_gross_that_date": -2.9052
+   },
+   {
+    "date": "2025-11-13",
+    "weekday": "Thu",
+    "n_66": 2,
+    "sum_gross_66": -2.4022,
+    "symbols": [
+     "SMH",
+     "SOFI"
+    ],
+    "all_taken_exits_that_date": 2,
+    "all_taken_exit_gross_that_date": -2.4022
+   },
+   {
+    "date": "2026-03-27",
+    "weekday": "Fri",
+    "n_66": 2,
+    "sum_gross_66": -2.2916,
+    "symbols": [
+     "LUNR",
+     "NIO"
+    ],
+    "all_taken_exits_that_date": 4,
+    "all_taken_exit_gross_that_date": -0.8083
+   },
+   {
+    "date": "2026-06-05",
+    "weekday": "Fri",
+    "n_66": 2,
+    "sum_gross_66": -2.9753,
+    "symbols": [
+     "ASTS",
+     "HOOD"
+    ],
+    "all_taken_exits_that_date": 3,
+    "all_taken_exit_gross_that_date": -2.0722
+   },
+   {
+    "date": "2026-07-02",
+    "weekday": "Thu",
+    "n_66": 2,
+    "sum_gross_66": -3.1707,
+    "symbols": [
+     "LRCX",
+     "SMH"
+    ],
+    "all_taken_exits_that_date": 3,
+    "all_taken_exit_gross_that_date": -2.1671
+   }
+  ]
+ },
+ "timing": {
+  "entry_weekday_66": {
+   "Mon": 17,
+   "Thu": 14,
+   "Tue": 16,
+   "Fri": 7,
+   "Wed": 12
+  },
+  "exit_weekday_66": {
+   "Wed": 11,
+   "Thu": 13,
+   "Fri": 22,
+   "Tue": 14,
+   "Mon": 6
+  },
+  "exit_weekday_win": {
+   "Mon": 16,
+   "Fri": 24,
+   "Tue": 22,
+   "Wed": 17,
+   "Thu": 11
+  },
+  "hold_bars_66": {
+   "median": 4.5,
+   "min": 1,
+   "max": 24,
+   "le2": 15,
+   "le4": 33,
+   "le10": 57
+  },
+  "hold_bars_win_median": 22.0,
+  "entry_year_66": {
+   "2025": 37,
+   "2026": 29
+  },
+  "entry_year_win": {
+   "2025": 44,
+   "2026": 46
+  },
+  "entry_month_66": {
+   "2025-02": 4,
+   "2025-03": 5,
+   "2025-04": 1,
+   "2025-05": 4,
+   "2025-06": 4,
+   "2025-07": 3,
+   "2025-08": 2,
+   "2025-09": 1,
+   "2025-10": 5,
+   "2025-11": 5,
+   "2025-12": 3,
+   "2026-01": 4,
+   "2026-02": 2,
+   "2026-03": 5,
+   "2026-04": 1,
+   "2026-05": 1,
+   "2026-06": 5,
+   "2026-07": 3,
+   "2026-08": 4,
+   "2026-09": 3,
+   "2026-10": 1
+  }
+ },
+ "concentration": {
+  "sectors_66": {
+   "CONSUMER": 14,
+   "SEMIS": 13,
+   "ETF": 8,
+   "SPACE": 7,
+   "AI_SOFTWARE": 7,
+   "FINTECH": 13,
+   "HEALTHCARE": 3,
+   "CRYPTO": 1
+  },
+  "sectors_win": {
+   "CONSUMER": 15,
+   "SEMIS": 23,
+   "ETF": 10,
+   "SPACE": 7,
+   "AI_SOFTWARE": 16,
+   "FINTECH": 6,
+   "HEALTHCARE": 8,
+   "CRYPTO": 5
+  },
+  "sectors_all": {
+   "CONSUMER": 39,
+   "SEMIS": 41,
+   "AI_SOFTWARE": 26,
+   "ETF": 22,
+   "SPACE": 17,
+   "CRYPTO": 7,
+   "FINTECH": 21,
+   "HEALTHCARE": 14
+  },
+  "repeat_symbols_66": {
+   "ASTS": 5,
+   "LRCX": 5,
+   "MELI": 5,
+   "F": 4,
+   "AMZN": 3,
+   "SMH": 3,
+   "SOFI": 3,
+   "XLF": 3,
+   "AAPL": 2,
+   "AMD": 2,
+   "ARM": 2,
+   "CRM": 2,
+   "CRWD": 2,
+   "HOOD": 2,
+   "MU": 2,
+   "NFLX": 2,
+   "NIO": 2,
+   "NU": 2,
+   "PFE": 2
+  },
+  "distinct_symbols_66": 32,
+  "sum_gross_by_symbol_66": {
+   "ASTS": -6.4901,
+   "LRCX": -8.2427,
+   "MELI": -7.2874,
+   "F": -6.3261,
+   "AMZN": -3.3689,
+   "SMH": -4.0869,
+   "SOFI": -3.3434,
+   "XLF": -5.4292,
+   "AAPL": -2.8679,
+   "AMD": -2.6771,
+   "ARM": -2.3651,
+   "CRM": -4.2874,
+   "CRWD": -2.3225,
+   "HOOD": -2.357,
+   "MU": -3.2864,
+   "NFLX": -2.6862,
+   "NIO": -2.2871,
+   "NU": -2.2418,
+   "PFE": -2.9824
+  }
+ },
+ "path": {
+  "breached_66": 64,
+  "breached_win": 10,
+  "open_before_66": {
+   "0": 4,
+   "2": 13,
+   "4": 23,
+   "3": 16,
+   "1": 10
+  },
+  "open_before_win": {
+   "1": 9,
+   "4": 31,
+   "3": 28,
+   "2": 17,
+   "0": 5
+  },
+  "rs_66": {
+   "median": 0.0489,
+   "min": -0.0745,
+   "max": 0.4442
+  },
+  "rs_win_median": 0.0677,
+  "rs_all_median": 0.0573
+ },
+ "collateral": {
+  "breach_member (stop threshold touched intrabar pre-exit)": {
+   "n_66": 64,
+   "share_66": 0.97,
+   "gross_66": -89.985,
+   "winners_with_trait": 10,
+   "winner_gross_with_trait": 18.1495,
+   "top5_with_trait": 0,
+   "top5_symbols_with_trait": []
+  },
+  "entered_as_5th_position (open_before==4, DERIVED)": {
+   "n_66": 23,
+   "share_66": 0.348,
+   "gross_66": -32.7434,
+   "winners_with_trait": 31,
+   "winner_gross_with_trait": 52.323,
+   "top5_with_trait": 1,
+   "top5_symbols_with_trait": [
+    "SNOW"
+   ]
+  },
+  "entered_with_3plus_open (open_before>=3, DERIVED)": {
+   "n_66": 39,
+   "share_66": 0.591,
+   "gross_66": -55.0181,
+   "winners_with_trait": 59,
+   "winner_gross_with_trait": 102.4466,
+   "top5_with_trait": 4,
+   "top5_symbols_with_trait": [
+    "SNOW",
+    "INTC",
+    "AMD",
+    "LRCX"
+   ]
+  },
+  "rs_below_187_median": {
+   "n_66": 34,
+   "share_66": 0.515,
+   "gross_66": -47.1785,
+   "winners_with_trait": 38,
+   "winner_gross_with_trait": 50.9967,
+   "top5_with_trait": 0,
+   "top5_symbols_with_trait": []
+  },
+  "rs_above_187_median": {
+   "n_66": 32,
+   "share_66": 0.485,
+   "gross_66": -44.9062,
+   "winners_with_trait": 52,
+   "winner_gross_with_trait": 97.3522,
+   "top5_with_trait": 5,
+   "top5_symbols_with_trait": [
+    "SNOW",
+    "INTC",
+    "AMD",
+    "QCOM",
+    "LRCX"
+   ]
+  },
+  "sector_SEMIS": {
+   "n_66": 13,
+   "share_66": 0.197,
+   "gross_66": -19.3626,
+   "winners_with_trait": 23,
+   "winner_gross_with_trait": 49.4953,
+   "top5_with_trait": 4,
+   "top5_symbols_with_trait": [
+    "INTC",
+    "AMD",
+    "QCOM",
+    "LRCX"
+   ]
+  },
+  "entry_year_2025": {
+   "n_66": 37,
+   "share_66": 0.561,
+   "gross_66": -52.8507,
+   "winners_with_trait": 44,
+   "winner_gross_with_trait": 66.5744,
+   "top5_with_trait": 2,
+   "top5_symbols_with_trait": [
+    "INTC",
+    "LRCX"
+   ]
+  },
+  "entry_year_2026": {
+   "n_66": 29,
+   "share_66": 0.439,
+   "gross_66": -39.234,
+   "winners_with_trait": 46,
+   "winner_gross_with_trait": 81.7745,
+   "top5_with_trait": 3,
+   "top5_symbols_with_trait": [
+    "SNOW",
+    "AMD",
+    "QCOM"
+   ]
+  },
+  "exit_on_multi_exit_date (cluster member)": {
+   "n_66": 18,
+   "share_66": 0.273,
+   "gross_66": -24.2909,
+   "winners_with_trait": 5,
+   "winner_gross_with_trait": 5.4255,
+   "top5_with_trait": 0,
+   "top5_symbols_with_trait": []
+  },
+  "failed_fast (hold_bars<=4)": {
+   "n_66": 33,
+   "share_66": 0.5,
+   "gross_66": -43.7347,
+   "winners_with_trait": 0,
+   "winner_gross_with_trait": 0,
+   "top5_with_trait": 0,
+   "top5_symbols_with_trait": []
+  },
+  "narrow_planned_stop (risk_frac below 187 median)": {
+   "n_66": 34,
+   "share_66": 0.515,
+   "gross_66": -50.6432,
+   "winners_with_trait": 39,
+   "winner_gross_with_trait": 56.2094,
+   "top5_with_trait": 1,
+   "top5_symbols_with_trait": [
+    "SNOW"
+   ]
+  },
+  "far_tp1 (tp1 R-multiple above 187 median)": {
+   "n_66": 36,
+   "share_66": 0.545,
+   "gross_66": -49.7274,
+   "winners_with_trait": 39,
+   "winner_gross_with_trait": 73.0992,
+   "top5_with_trait": 4,
+   "top5_symbols_with_trait": [
+    "SNOW",
+    "INTC",
+    "AMD",
+    "QCOM"
+   ]
+  },
+  "repeat_offender_symbol (>=2 appearances in the 66)": {
+   "n_66": 53,
+   "share_66": 0.803,
+   "gross_66": -74.9356,
+   "winners_with_trait": 44,
+   "winner_gross_with_trait": 67.3122,
+   "top5_with_trait": 2,
+   "top5_symbols_with_trait": [
+    "AMD",
+    "LRCX"
+   ]
+  },
+  "entered_Friday": {
+   "n_66": 7,
+   "share_66": 0.106,
+   "gross_66": -9.4369,
+   "winners_with_trait": 17,
+   "winner_gross_with_trait": 23.5334,
+   "top5_with_trait": 0,
+   "top5_symbols_with_trait": []
+  },
+  "exited_Monday": {
+   "n_66": 6,
+   "share_66": 0.091,
+   "gross_66": -7.6375,
+   "winners_with_trait": 16,
+   "winner_gross_with_trait": 33.3967,
+   "top5_with_trait": 0,
+   "top5_symbols_with_trait": []
+  }
+ },
+ "medians_187": {
+  "rs": 0.0573,
+  "risk_frac": 0.03865,
+  "tp1_r_multiple": 1.333
+ },
+ "rs_bands": {
+  "q1_cut": 0.0205,
+  "median": 0.0573,
+  "q3_cut": 0.1111,
+  "66": {
+   "Q2_Q3_mid": 29,
+   "Q1_lowest": 19,
+   "Q4_highest": 18
+  },
+  "win": {
+   "Q2_Q3_mid": 48,
+   "Q4_highest": 25,
+   "Q1_lowest": 17
+  },
+  "all": {
+   "Q2_Q3_mid": 94,
+   "Q1_lowest": 46,
+   "Q4_highest": 47
+  },
+  "top5_bands": [
+   "Q4_highest",
+   "Q4_highest",
+   "Q2_Q3_mid",
+   "Q2_Q3_mid",
+   "Q2_Q3_mid"
+  ],
+  "gross_by_band_66": {
+   "Q1_lowest": -28.4422,
+   "Q2_Q3_mid": -38.9243,
+   "Q4_highest": -24.7182
+  },
+  "gross_by_band_win": {
+   "Q1_lowest": 27.6516,
+   "Q2_Q3_mid": 74.8058,
+   "Q4_highest": 45.8915
+  }
+ },
+ "features_compared": [
+  "exit_date_clustering",
+  "entry_weekday",
+  "exit_weekday",
+  "hold_bars",
+  "entry_year",
+  "entry_month",
+  "sector",
+  "symbol_repetition",
+  "breach_membership",
+  "slot_state_at_entry_DERIVED",
+  "rs_median_split",
+  "rs_quartile_bands",
+  "planned_stop_width",
+  "tp1_r_multiple",
+  "entry_weekday_friday",
+  "exit_weekday_monday",
+  "exit_route"
+ ],
+ "not_recoverable": [
+  "ADX at signal (not persisted in any pinned -13/-14/-23 artifact)",
+  "trend readings / trendScore at signal (not persisted)",
+  "VWAP relation at signal (not persisted)",
+  "relative volume at signal (not persisted)",
+  "EMA geometry at signal (not persisted)",
+  "market-gate state at entry (not recorded)",
+  "per-date SPY / market state series (not a recorded field)",
+  "earnings dates (not recorded; external fetch forbidden by framing)",
+  "closest approach to TP1 / MAE / duration under threshold (bar paths not persisted)",
+  "trigger-close vs next-open gap split of the overshoot (per -23 supplement)"
+ ],
+ "register66": [
+  {
+   "symbol": "LRCX",
+   "sector": "SEMIS",
+   "entry": "2025-02-24",
+   "exit": "2025-02-25",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.3534,
+   "rs": 0.0389,
+   "breached": true,
+   "open_before": 1
+  },
+  {
+   "symbol": "AAPL",
+   "sector": "CONSUMER",
+   "entry": "2025-02-24",
+   "exit": "2025-02-26",
+   "hold_bars": 5,
+   "reason": "stop",
+   "gross": -1.1506,
+   "rs": 0.0427,
+   "breached": true,
+   "open_before": 0
+  },
+  {
+   "symbol": "ASTS",
+   "sector": "SPACE",
+   "entry": "2025-02-26",
+   "exit": "2025-02-28",
+   "hold_bars": 3,
+   "reason": "ema55-break",
+   "gross": -1.0837,
+   "rs": -0.0052,
+   "breached": false,
+   "open_before": 1
+  },
+  {
+   "symbol": "MELI",
+   "sector": "FINTECH",
+   "entry": "2025-02-24",
+   "exit": "2025-02-28",
+   "hold_bars": 7,
+   "reason": "stop",
+   "gross": -1.3892,
+   "rs": 0.1219,
+   "breached": true,
+   "open_before": 1
+  },
+  {
+   "symbol": "INTC",
+   "sector": "SEMIS",
+   "entry": "2025-03-03",
+   "exit": "2025-03-04",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.5873,
+   "rs": 0.0394,
+   "breached": true,
+   "open_before": 1
+  },
+  {
+   "symbol": "ASTS",
+   "sector": "SPACE",
+   "entry": "2025-03-06",
+   "exit": "2025-03-11",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.2753,
+   "rs": 0.1017,
+   "breached": true,
+   "open_before": 0
+  },
+  {
+   "symbol": "PFE",
+   "sector": "HEALTHCARE",
+   "entry": "2025-03-10",
+   "exit": "2025-03-11",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.6631,
+   "rs": 0.0595,
+   "breached": true,
+   "open_before": 1
+  },
+  {
+   "symbol": "MU",
+   "sector": "SEMIS",
+   "entry": "2025-03-20",
+   "exit": "2025-03-21",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.734,
+   "rs": 0.1658,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "F",
+   "sector": "CONSUMER",
+   "entry": "2025-03-20",
+   "exit": "2025-03-28",
+   "hold_bars": 13,
+   "reason": "stop",
+   "gross": -2.0785,
+   "rs": 0.0813,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "F",
+   "sector": "CONSUMER",
+   "entry": "2025-04-02",
+   "exit": "2025-04-03",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.4874,
+   "rs": 0.0114,
+   "breached": true,
+   "open_before": 0
+  },
+  {
+   "symbol": "CRM",
+   "sector": "AI_SOFTWARE",
+   "entry": "2025-05-14",
+   "exit": "2025-05-23",
+   "hold_bars": 15,
+   "reason": "stop",
+   "gross": -1.1761,
+   "rs": 0.0224,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "F",
+   "sector": "CONSUMER",
+   "entry": "2025-05-12",
+   "exit": "2025-05-27",
+   "hold_bars": 20,
+   "reason": "stop",
+   "gross": -1.1062,
+   "rs": 0.0314,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "AMD",
+   "sector": "SEMIS",
+   "entry": "2025-05-27",
+   "exit": "2025-05-30",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.332,
+   "rs": 0.0264,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "LRCX",
+   "sector": "SEMIS",
+   "entry": "2025-05-27",
+   "exit": "2025-05-30",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.5806,
+   "rs": -0.0079,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "PYPL",
+   "sector": "FINTECH",
+   "entry": "2025-06-10",
+   "exit": "2025-06-13",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -2.0336,
+   "rs": 0.0069,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "PFE",
+   "sector": "HEALTHCARE",
+   "entry": "2025-06-13",
+   "exit": "2025-06-17",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.3193,
+   "rs": 0.0307,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "ASTS",
+   "sector": "SPACE",
+   "entry": "2025-06-25",
+   "exit": "2025-07-01",
+   "hold_bars": 7,
+   "reason": "stop",
+   "gross": -1.1285,
+   "rs": 0.4068,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "MELI",
+   "sector": "FINTECH",
+   "entry": "2025-06-26",
+   "exit": "2025-07-02",
+   "hold_bars": 8,
+   "reason": "stop",
+   "gross": -1.9616,
+   "rs": 0.0573,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "XLF",
+   "sector": "ETF",
+   "entry": "2025-07-08",
+   "exit": "2025-07-15",
+   "hold_bars": 11,
+   "reason": "stop",
+   "gross": -1.4641,
+   "rs": 0.0002,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "MSTR",
+   "sector": "CRYPTO",
+   "entry": "2025-07-21",
+   "exit": "2025-07-23",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.208,
+   "rs": 0.0688,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "XLF",
+   "sector": "ETF",
+   "entry": "2025-07-30",
+   "exit": "2025-08-01",
+   "hold_bars": 3,
+   "reason": "stop",
+   "gross": -2.3874,
+   "rs": -0.0007,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "LRCX",
+   "sector": "SEMIS",
+   "entry": "2025-08-14",
+   "exit": "2025-08-15",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -2.4831,
+   "rs": 0.1188,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "NIO",
+   "sector": "CONSUMER",
+   "entry": "2025-08-27",
+   "exit": "2025-09-05",
+   "hold_bars": 12,
+   "reason": "stop",
+   "gross": -1.0989,
+   "rs": 0.4057,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "MELI",
+   "sector": "FINTECH",
+   "entry": "2025-09-08",
+   "exit": "2025-09-08",
+   "hold_bars": 1,
+   "reason": "stop",
+   "gross": -1.0256,
+   "rs": 0.0178,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "TSLA",
+   "sector": "CONSUMER",
+   "entry": "2025-10-06",
+   "exit": "2025-10-10",
+   "hold_bars": 8,
+   "reason": "stop",
+   "gross": -1.463,
+   "rs": 0.028,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "SOFI",
+   "sector": "FINTECH",
+   "entry": "2025-10-15",
+   "exit": "2025-10-17",
+   "hold_bars": 3,
+   "reason": "ema55-break",
+   "gross": -1.016,
+   "rs": 0.0709,
+   "breached": false,
+   "open_before": 4
+  },
+  {
+   "symbol": "IWM",
+   "sector": "ETF",
+   "entry": "2025-10-14",
+   "exit": "2025-10-17",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.206,
+   "rs": 0.0353,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "SOFI",
+   "sector": "FINTECH",
+   "entry": "2025-10-20",
+   "exit": "2025-10-22",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.2809,
+   "rs": 0.0733,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "MELI",
+   "sector": "FINTECH",
+   "entry": "2025-10-31",
+   "exit": "2025-11-06",
+   "hold_bars": 8,
+   "reason": "stop",
+   "gross": -1.8693,
+   "rs": 0.1068,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "SMH",
+   "sector": "ETF",
+   "entry": "2025-11-05",
+   "exit": "2025-11-06",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.0359,
+   "rs": 0.0746,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "SMH",
+   "sector": "ETF",
+   "entry": "2025-11-10",
+   "exit": "2025-11-13",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.3557,
+   "rs": 0.0047,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "SOFI",
+   "sector": "FINTECH",
+   "entry": "2025-11-11",
+   "exit": "2025-11-13",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.0465,
+   "rs": 0.0065,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "CRWD",
+   "sector": "AI_SOFTWARE",
+   "entry": "2025-11-14",
+   "exit": "2025-11-18",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.0673,
+   "rs": 0.0124,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "F",
+   "sector": "CONSUMER",
+   "entry": "2025-11-07",
+   "exit": "2025-11-20",
+   "hold_bars": 18,
+   "reason": "stop",
+   "gross": -1.654,
+   "rs": -0.0437,
+   "breached": true,
+   "open_before": 1
+  },
+  {
+   "symbol": "RKLB",
+   "sector": "SPACE",
+   "entry": "2025-12-15",
+   "exit": "2025-12-15",
+   "hold_bars": 1,
+   "reason": "stop",
+   "gross": -1.2359,
+   "rs": 0.4442,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "LRCX",
+   "sector": "SEMIS",
+   "entry": "2025-12-15",
+   "exit": "2025-12-17",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.3502,
+   "rs": 0.0623,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "ASTS",
+   "sector": "SPACE",
+   "entry": "2025-12-24",
+   "exit": "2025-12-26",
+   "hold_bars": 1,
+   "reason": "stop",
+   "gross": -1.1625,
+   "rs": 0.1735,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "XLF",
+   "sector": "ETF",
+   "entry": "2026-01-06",
+   "exit": "2026-01-12",
+   "hold_bars": 9,
+   "reason": "stop",
+   "gross": -1.5777,
+   "rs": 0.0084,
+   "breached": true,
+   "open_before": 1
+  },
+  {
+   "symbol": "CRM",
+   "sector": "AI_SOFTWARE",
+   "entry": "2026-01-06",
+   "exit": "2026-01-13",
+   "hold_bars": 10,
+   "reason": "stop",
+   "gross": -3.1113,
+   "rs": -0.0088,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "SHOP",
+   "sector": "AI_SOFTWARE",
+   "entry": "2026-01-12",
+   "exit": "2026-01-14",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.5197,
+   "rs": -0.0317,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "AMZN",
+   "sector": "CONSUMER",
+   "entry": "2026-01-27",
+   "exit": "2026-02-03",
+   "hold_bars": 10,
+   "reason": "stop",
+   "gross": -1.1352,
+   "rs": -0.0183,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "MRNA",
+   "sector": "HEALTHCARE",
+   "entry": "2026-02-10",
+   "exit": "2026-02-11",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.0334,
+   "rs": -0.0745,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "AAPL",
+   "sector": "CONSUMER",
+   "entry": "2026-02-05",
+   "exit": "2026-02-12",
+   "hold_bars": 10,
+   "reason": "stop",
+   "gross": -1.7173,
+   "rs": 0.0932,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "NFLX",
+   "sector": "CONSUMER",
+   "entry": "2026-03-17",
+   "exit": "2026-03-19",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.6333,
+   "rs": 0.005,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "CRWD",
+   "sector": "AI_SOFTWARE",
+   "entry": "2026-03-17",
+   "exit": "2026-03-20",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.2552,
+   "rs": 0.1306,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "MU",
+   "sector": "SEMIS",
+   "entry": "2026-03-19",
+   "exit": "2026-03-23",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.5524,
+   "rs": 0.1934,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "LUNR",
+   "sector": "SPACE",
+   "entry": "2026-03-25",
+   "exit": "2026-03-27",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.1034,
+   "rs": 0.1426,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "NIO",
+   "sector": "CONSUMER",
+   "entry": "2026-03-23",
+   "exit": "2026-03-27",
+   "hold_bars": 8,
+   "reason": "stop",
+   "gross": -1.1882,
+   "rs": 0.2141,
+   "breached": true,
+   "open_before": 1
+  },
+  {
+   "symbol": "NU",
+   "sector": "FINTECH",
+   "entry": "2026-04-17",
+   "exit": "2026-04-21",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.1581,
+   "rs": 0.0211,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "GOOGL",
+   "sector": "AI_SOFTWARE",
+   "entry": "2026-05-13",
+   "exit": "2026-05-20",
+   "hold_bars": 9,
+   "reason": "stop",
+   "gross": -1.3093,
+   "rs": 0.1129,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "ASTS",
+   "sector": "SPACE",
+   "entry": "2026-06-02",
+   "exit": "2026-06-05",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.8401,
+   "rs": 0.3639,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "HOOD",
+   "sector": "FINTECH",
+   "entry": "2026-06-04",
+   "exit": "2026-06-05",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.1352,
+   "rs": 0.1173,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "DDOG",
+   "sector": "AI_SOFTWARE",
+   "entry": "2026-06-04",
+   "exit": "2026-06-08",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.0419,
+   "rs": 0.1318,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "ARM",
+   "sector": "SEMIS",
+   "entry": "2026-06-08",
+   "exit": "2026-06-09",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.0281,
+   "rs": 0.1536,
+   "breached": true,
+   "open_before": 0
+  },
+  {
+   "symbol": "LRCX",
+   "sector": "SEMIS",
+   "entry": "2026-07-02",
+   "exit": "2026-07-02",
+   "hold_bars": 1,
+   "reason": "stop",
+   "gross": -1.4754,
+   "rs": 0.0711,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "SMH",
+   "sector": "ETF",
+   "entry": "2026-06-25",
+   "exit": "2026-07-02",
+   "hold_bars": 10,
+   "reason": "stop",
+   "gross": -1.6953,
+   "rs": 0.118,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "AMD",
+   "sector": "SEMIS",
+   "entry": "2026-07-06",
+   "exit": "2026-07-08",
+   "hold_bars": 3,
+   "reason": "stop",
+   "gross": -1.3451,
+   "rs": 0.0372,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "AMZN",
+   "sector": "CONSUMER",
+   "entry": "2026-07-16",
+   "exit": "2026-07-17",
+   "hold_bars": 2,
+   "reason": "stop",
+   "gross": -1.0866,
+   "rs": 0.0386,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "MELI",
+   "sector": "FINTECH",
+   "entry": "2026-08-11",
+   "exit": "2026-08-13",
+   "hold_bars": 3,
+   "reason": "stop",
+   "gross": -1.0417,
+   "rs": -0.0258,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "ARKK",
+   "sector": "ETF",
+   "entry": "2026-08-13",
+   "exit": "2026-08-18",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.2036,
+   "rs": 0.0709,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "NVDA",
+   "sector": "SEMIS",
+   "entry": "2026-08-06",
+   "exit": "2026-08-24",
+   "hold_bars": 24,
+   "reason": "stop",
+   "gross": -1.204,
+   "rs": 0.012,
+   "breached": true,
+   "open_before": 4
+  },
+  {
+   "symbol": "NFLX",
+   "sector": "CONSUMER",
+   "entry": "2026-08-25",
+   "exit": "2026-08-27",
+   "hold_bars": 4,
+   "reason": "stop",
+   "gross": -1.0529,
+   "rs": 0.1111,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "NU",
+   "sector": "FINTECH",
+   "entry": "2026-09-02",
+   "exit": "2026-09-11",
+   "hold_bars": 12,
+   "reason": "stop",
+   "gross": -1.0837,
+   "rs": 0.0552,
+   "breached": true,
+   "open_before": 3
+  },
+  {
+   "symbol": "HOOD",
+   "sector": "FINTECH",
+   "entry": "2026-09-11",
+   "exit": "2026-09-16",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.2218,
+   "rs": 0.035,
+   "breached": true,
+   "open_before": 1
+  },
+  {
+   "symbol": "ARM",
+   "sector": "SEMIS",
+   "entry": "2026-09-29",
+   "exit": "2026-10-08",
+   "hold_bars": 14,
+   "reason": "stop",
+   "gross": -1.337,
+   "rs": 0.2257,
+   "breached": true,
+   "open_before": 2
+  },
+  {
+   "symbol": "AMZN",
+   "sector": "CONSUMER",
+   "entry": "2026-10-09",
+   "exit": "2026-10-14",
+   "hold_bars": 6,
+   "reason": "stop",
+   "gross": -1.1471,
+   "rs": 0.0298,
+   "breached": true,
+   "open_before": 1
+  }
+ ]
+}
