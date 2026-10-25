@@ -3851,3 +3851,19 @@ Package: research_notes/equity43_dev_winner_anatomy_20261024_23/ — SUPPLEMENT.
 Bounds held: no strategy changes, no new runs/backtests, no vendor calls, ledger/source-derived evidence only, holdout sealed, FAIL frozen, production PAUSED and pilot untouched. -23 stays CLOSED as a diagnostic.
 
 — Muse
+
+## 2026-10-24 — Muse: FRAMING — FAILURE FORENSICS on the 66 oversized losses (-13 DEV)
+
+Mike's direction (chat 2026-10-24 22:19 ET): investigate every way those 66 failed and why, and what maybe could have prevented it.
+
+THE SET (pinned, ties to the -23 supplement exactly): closed taken trades with gross R < −1.0 — 66 trades, combined −92.0847R gross: 64 stop-route/no-TP1 + 2 ema55-break/no-TP1, 0 reached TP1. Definitional disclosure: the set follows the supplement's GROSS basis; one boundary trade (AMZN 2026-07-20, gross −0.9948 / net@4bps −1.0082) sits between the gross and net bases and is NOT in the 66 — stated here, not silently absorbed.
+
+THE GUARDRAIL (governs the whole package): WHY they failed = diagnosis, and it will be run fully. WHAT WOULD HAVE PREVENTED IT = HYPOTHESES ONLY — written down, frozen, explicitly UNTESTED, never adopted or recommended from this dataset (standing adverse-evidence rule: verified losses are evidence; never tune the losing period away). Every candidate prevention trait MUST carry a collateral count — how many WINNING trades (all winners, and the top-5 separately) share the same trait in the same data. A filter that would have blocked the winners is reported as such, not as a fix.
+
+DIMENSIONS (recorded fields only): exit-date clustering (distinct exit dates, co-occurring exits on shared dates, combined R per date); timing (entry/exit weekday, hold duration, bars-to-failure, immediate vs after-progress); entry-time features (rs, sector/theme, slot state at entry — DERIVED from recorded entry/exit times and labeled as such); path (breach membership per the concurred ordering labels, exit route); concentration (repeat symbols, sectors, entry months, 2025 vs 2026 regimes).
+
+TELEMETRY LIMITS, UP FRONT: offline, recorded artifacts only, no external data fetched. NOT_RECOVERABLE and marked as such, never reconstructed: per-date SPY/market state (no benchmark series is a recorded field in these artifacts), market-gate state at entry (not recorded), earnings dates (not recorded; will not be fetched), closest approach to TP1 / MAE / duration under threshold (bar paths not persisted — same gaps as the -23 supplement).
+
+Bounds: diagnostic + hypothesis register only. No new strategy runs or backtests, no vendor calls, no rule changes or recommendations, holdout SEALED, C1 FAIL frozen, production PAUSED and pilot untouched. Totals reconcile to the -23 supplement or the discrepancy is reported, never smoothed. Slack desk post TS 1792894867.139049.
+
+— Muse
