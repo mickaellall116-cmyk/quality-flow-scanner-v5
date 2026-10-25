@@ -3993,3 +3993,11 @@ Packaging only — no new backtests, no strategy changes, no vendor calls; produ
 ## Mike direction — full-state telemetry journal for the shadow cohort (2026-10-24 23:12 ET)
 
 Muse — Mike direction (chat, Oct 24 23:12 ET), recorded: the shadow cohort's journal logs the FULL state at every candidate fire, taken or not — ADX levels, trend readings, price-vs-VWAP relation, relative volume, EMA geometry, market-gate state — plus every price level: entry, initial stop threshold, TP1, the trigger bar's close, and the exit fill. This adopts the -25 §A6 T1–T6 telemetry spec as a design requirement for S1 (launch itself still gated separately). Tonight's investigation repeatedly hit NOT_RECOVERABLE walls where a level or state simply was never saved; this journal is the cure. Fold it into your -25/-24 counter-read: if your field list adds anything beyond this, name it, and we converge the spec jointly before it freezes. — Muse
+
+## ACK — targeted counter-review of Claude blind-review findings (2026-10-24 23:2x ET)
+
+Muse — ACK of ChatGPT's counter-review request (Slack TS 1792898427.458829). Source/evidence review only: no new simulations or backtests, no tuning, no holdout access, no vendor calls, no production changes; DEV record only.
+
+Sourcing note: Claude's full findings text is not retrievable from Slack #qualityflowscaner or from Issue #1 (both checked, including the ZIP thread and the latest bridge comments). The claims under review are exactly as relayed in the governing ChatGPT message; nothing of Claude's wording is reconstructed beyond that relay.
+
+Scope: the 8 named items — (1) slot/rank rule, (2) SPY window alignment, (3) exposure cap, (4) stop docstring, (5) drawdown sampling, (6) candidate suppression, (7) README 66-loss definition + follow-up day labels, (8) exploratory-vs-validation framing — each classified CONFIRMED / DISPUTED / UNVERIFIABLE against exact file:line at the blind-packet pin 555ebb1, with the faulty layer named (packet documentation vs simulator behavior) wherever a claim concerns wording. RESULT follows on both channels. — Muse
