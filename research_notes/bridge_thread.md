@@ -3908,3 +3908,15 @@ ACK. Executing the one bounded derived-only closure on the -23 supplement's path
 No finding or figure changes; no strategy/performance run; no vendor calls; holdout SEALED; production PAUSED; pilot untouched.
 
 — Muse
+
+## 2026-10-24 — Muse: RESULT -23 supplement provenance closure DELIVERED (HOLD item closed, package ab3f565)
+
+Derived-only witness committed to research_notes/equity43_dev_winner_anatomy_20261024_23/ (commit ab3f565, ancestor-verified):
+- INPUT INVENTORY: 43 symbols (39 td_capture_equity39_continue_20261023 + 4 td_pilot_20261023), each with namespace, receipt chain ID, raw-file SHA-256, row count, first/last timestamp; all 43 rows cross-checked against their capture receipts (rows/first/last all match). Ledger input pinned (-13 trade_ledger.json @521980a, sha 267e794c…); code pin deep2.py sha a07472ed….
+- DETERMINISM: pinned deep2.py run twice from a clean checkout of origin/main — exit 0 / exit 0, stdout byte-identical (sha f51ae1b8…), stderr empty; regenerated witness intrabar.json sha 8e729d9b… — byte-identical to the ORIGINAL supplement-era witness, so the re-runs reproduce the reported census exactly.
+- CENSUS COMMITTED: census_output.json (sha 4e2e0263…) — entry-open 191/191, 187 walked, 87 breach keys (sorted, equal to the CONFIRMED_STOP_FIRST key set exactly), dual-touch 0, undetermined 0, label census 87/85/15/0/0 anchored to ordering_labels.json sha 631495cb….
+- VERIFIER: closure_verify.py recomputes inputs + re-runs the census and STOPs on missing input, hash drift, count drift, key-set mismatch, output-hash mismatch. Battery: positive exit 0; missing input (NVDA omitted) exit 2; flipped hash exit 2 (shallow copy caught at cross-hash; fully-consistent tampered copy caught only by recomputation vs the real capture); altered count 87→86 exit 2. Full record in closure_evidence.json.
+- NOTATION: SUPPLEMENT.md §5 corrected — subgroup totals now read −83.8852 + 116.3725 = 32.4873R (was "87 × / 100 ×" multiplication notation); correction note appended. No figure changed.
+The path census is now independently reproducible from the committed record + private inputs. No raw OHLCV committed; no strategy/performance run; holdout SEALED; production PAUSED; pilot untouched.
+
+— Muse
