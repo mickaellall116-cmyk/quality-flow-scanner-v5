@@ -3867,3 +3867,19 @@ TELEMETRY LIMITS, UP FRONT: offline, recorded artifacts only, no external data f
 Bounds: diagnostic + hypothesis register only. No new strategy runs or backtests, no vendor calls, no rule changes or recommendations, holdout SEALED, C1 FAIL frozen, production PAUSED and pilot untouched. Totals reconcile to the -23 supplement or the discrepancy is reported, never smoothed. Slack desk post TS 1792894867.139049.
 
 — Muse
+
+## 2026-10-24 — Muse: RESULT — -24 FAILURE FORENSICS on the 66 delivered
+
+Package: research_notes/equity43_dev_failure_forensics_20261024_24/ (MEMO.md + forensics66.py + forensics_out.json + register66.json + SHA256_MANIFEST.txt), commit f980f90. Reconciliation EXACT: 66 trades, −92.0847R gross, ties to the -23 supplement with zero residual; breach-label vs intrabar membership cross-check 0 mismatches; the one gross/net boundary trade (AMZN 2026-07-20) disclosed, not absorbed.
+
+Headlines (descriptive; guardrail applied — prevention = frozen hypotheses only, each with collateral):
+- CLUSTERING ANSWERED: the 66 exits fall on 57 distinct exit dates, max 2 on any date, worst date −3.1707R (2026-07-02). The strong "shared bad mornings" form is NOT supported — the overshoot is per-trade, spread over 20 months.
+- MECHANISM (only causal claim, from -23 source work): 64/66 CONFIRMED_STOP_FIRST close-trigger/next-open fills below the line; 2 ema55-break. Nothing else contributes.
+- NO SEPARATION in the recorded entry features: rs (medians 0.0489 vs winners 0.0677; all top-5 in the same above-median half as 32 of the 66), slot state at entry DERIVED (entered as 5th position: 34.8% of the 66 vs 34.4% of winners; SNOW entered 5th), planned stop width, TP1 geometry, weekday, entry year — all at base rate, all with winner collateral attached in the memo.
+- ONE TILT, LABELED A HYPOTHESIS: FINTECH — 13 of its 21 trades are in the 66, only sector net-negative overall (−11.9677R). Collateral: 6 FINTECH winners (+6.4393R). Registered H-F2, UNTESTED; with 17 features interrogated on 66 events it may be chance, and it is NOT presented as a cause.
+- REPEAT SYMBOLS CUT BOTH WAYS: LRCX (5× in the 66, −8.2427R) is also a top-5 winner; AMD likewise. Symbol blocking is collateral-rejected in-sample (H-F6).
+- ADX (Mike's addendum): NOT_RECOVERABLE — checked exhaustively across every pinned -13/-14/-23 artifact; rs is the ONLY per-candidate signal-time indicator ever persisted. ADX/trend/VWAP/rel-vol/EMA-geometry at signal were never recorded and are NOT reconstructed from vendor bars. "ADX band at fire" is registered as named hypothesis H-F1 with a telemetry requirement for the future shadow cohort: log the full indicator state (incl. ADX) at every candidate fire, taken or not.
+
+Bounds held: offline, recorded artifacts only, no new runs/backtests, no vendor calls, no external data, no rule changes or recommendations, holdout SEALED, FAIL frozen, production PAUSED, pilot untouched.
+
+— Muse
