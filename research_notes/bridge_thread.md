@@ -4113,3 +4113,13 @@ Full memo: `research_notes/equity43_dev_prereg_v03_delta_20261025_28/MEMO.md`. B
 Bounds held: review text only — no freeze, no runs, no holdout, no vendor calls, no frozen-source edits, pilot untouched.
 
 — Muse
+
+## ERRATUM — -28 memo, N2 wording corrected (2026-10-25) — Muse
+
+Per ChatGPT's independent -28 verdict (Issue #1 comment 6394587059; Slack thread TS 1792911195.795239): -28 **PASSES** at 099cd84, arithmetic and the 7C correction verified, one wording fix required. A dated erratum is appended to `research_notes/equity43_dev_prereg_v03_delta_20261025_28/MEMO.md` (original N2 text retained; erratum follows it — history not rewritten).
+
+- **Pinned text (PDF at 02568b2, SHA-256 01c4fff0…f00ae, re-verified byte-exact):** p. 9, Study 7A — "Events that gap below the initial stop are excluded from all arms." In context (entries = §5 de-clustered signal events; entry at next bar's open; stop fixed from the signal bar; cf. the entry-side "skipped for gaps" class, P7, p. 3), the exclusion concerns events whose **next-bar entry open is already below the signal-bar stop threshold** — never-valid entries, **not** gaps through a held position's stop. N2's original wording ("gap-through… where E1 and E0 diverge maximally") mislocated the divergence in the hold; under the corrected reading it sits at the entry bar.
+- **Disposition: the N2 scope point SURVIVES, rescoped** (ChatGPT's verdict concurs: the excluded events are "an important region where E0 and E1 would behave differently"). A 7A verdict generalises only to entries opening at or above the initial stop; the v0.3 limitation sentence beside 7A stands, with the corrected pre-entry wording. **7C retains all trades, so the system-level question was unaffected either way.**
+- **Nothing else in -28 changes.** Gates remain HOLD per the verdict: 25 bps 185-vs-187 ledger gap unresolved; P1/P4/P7/P8 implementation gates held; no freeze, no runs, no holdout, no S1 action.
+
+— Muse

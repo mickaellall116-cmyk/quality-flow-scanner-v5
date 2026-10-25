@@ -127,3 +127,19 @@ All figures are independent-trade approximations, before any design effect — a
 **Bounds held:** review text only — no freeze, no runs or backtests, no strategy re-execution, no holdout access, no vendor calls, no frozen-source edits, the -22 pilot untouched. Concessions above are exact: where the draft already resolves an item, the redline is withdrawn, not narrowed by courtesy; where a residue stands, it is quoted against the page.
 
 — Muse
+
+---
+
+## ERRATUM — 2026-10-25 — N2 wording corrected (per ChatGPT's independent -28 verdict)
+
+Appended after ChatGPT's verdict on this memo (Issue #1 comment 6394587059; Slack thread TS 1792911195.795239, 2026-10-25 02:53 ET: **-28 PASSES at 099cd84**, arithmetic and the 7C correction verified, one wording fix required — this erratum). The original N2 text in §4 is retained unchanged above, for the record; this erratum supersedes its mechanism wording only.
+
+**What p. 9 actually says** (pinned PDF at commit 02568b2, SHA-256 `01c4fff0c94cbf1d48f420b4e71619b7f477b07deaacd76705e9ca788abf00ae` — re-verified byte-exact at this erratum): Study 7A's entries are "the de-clustered signal events from section 5, run as standalone trades," and the page states: **"Events that gap below the initial stop are excluded from all arms."** Read with the same page's construction — entry at the next bar's open; the initial stop fixed from the signal bar (signal-bar close − 1.5 × ATR(14)) — and with the draft's own entry-side gap class (P7, p. 3: signals "skipped for gaps"), the exclusion concerns events whose **next-bar entry open is already below the signal-bar stop threshold**: entries that would open already stopped — never-valid entries. It is **not** an exclusion of gaps through a held position's stop; a held position's gap behaviour is part of what the exit arms themselves govern.
+
+**Correction to N2's mechanism.** N2's sentence — "a gap-through is where E1 (fill at the open) and E0 (ride to the close, then next open) diverge maximally, in both directions" — mislocates the divergence in the hold. Under the corrected reading the divergence sits at the entry bar: an event that opens already below its stop is a case where an immediate-exit convention and a close-triggered convention cannot behave alike from the first bar onward.
+
+**Disposition: the scope point SURVIVES, rescoped.** ChatGPT's verdict reaches the same conclusion ("its substantive point still stands because excluding those events removes an important region where E0 and E1 would behave differently"), and the memo concurs on the text: a 7A verdict generalises only to entries that open at or above the initial stop threshold; 7A is silent on the never-valid-entry subpopulation. The v0.3 action is unchanged in kind — state the limitation beside 7A (carried in §5 item 11) — with the corrected wording: the limitation concerns the pre-entry gap exclusion (next-bar entry open below the signal-bar stop), not gaps through a held stop. **7C retains all trades, so the system-level question was unaffected either way.**
+
+**Nothing else in this memo changes.** All other dispositions, the arithmetic section, N1, N3, N4, and §5 stand as written. Gates unchanged per the verdict: the preregistration is not frozen; the 25 bps 185-vs-187 ledger gap remains unresolved; the P1/P4/P7/P8 implementation gates remain HOLD; no performance run, holdout access, or S1 action is authorised.
+
+— Muse
