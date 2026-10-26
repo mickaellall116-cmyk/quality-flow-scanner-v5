@@ -12,6 +12,7 @@ Finite checklist for the v0.3 → frozen v1.0 path. An item is either **CLOSED**
 | A4 | Corrected power arithmetic on record (693 / 1,392 / 3,506 / 1,829 / 8,013 / 4,179) | -28 §1.2 (commit `f625921` state); comment `6394587059` |
 | A5 | -28 dispositions fully accounted (WITHDRAWN 9 · REVISED 10 · STANDS 1; N1–N4) | `CHANGELOG_V03.md` register (C01–C25, W01–W09) |
 | A6 | Session calendar qualified + extended through 2027 (union 1,054 sessions) | -30 commit `d077532` (extension sha `d2fa788d…`); base table sha `00c5555c…` |
+| A7 | §6 pool-check evidence gap closed: P7b every-observed-bar inventory delivered and reconciled to the 2,892-fire census; §6 runnability claim corrected (amendment A1 / C26); pool-count check executed outcome-blind under pinned EXP-14 | Companion package `research_notes/equity43_dev_buy_prep_m1m2_20261025/`; comments `6401471382` (HOLD 1), `6405097569` (Claude M1/M2). Evidence only — the freeze remains HOLD on sections B and C |
 
 ## B. Open — the user's (Mike's) decisions
 

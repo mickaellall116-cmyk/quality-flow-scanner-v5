@@ -74,7 +74,7 @@ Coverage is sufficient for the DEV window, the holdout window (metadata purposes
 
 ## 6. Matched-control (H-BUY) pool-size check — runnability
 
-**Verdict: RUNNABLE from committed metadata, without computing forward returns and without changing rules.** The check v0.2 §5 specifies (pool sizes only, per event, under B-A rules 1–5) needs, per event: symbol, time-of-day (session bin), ATR%, signal-bar exclusion windows, and the session calendar. All are present in committed artifacts:
+**Verdict as delivered (2026-10-25): RUNNABLE from committed metadata, without computing forward returns and without changing rules.** The check v0.2 §5 specifies (pool sizes only, per event, under B-A rules 1–5) needs, per event: symbol, time-of-day (session bin), ATR%, signal-bar exclusion windows, and the session calendar. All are present in committed artifacts:
 
 | Input | Committed field / artifact |
 |---|---|
@@ -86,6 +86,8 @@ Coverage is sufficient for the DEV window, the holdout window (metadata purposes
 
 The check was **not executed** in this deliverable (documentation-only bounds); it runs as part of the freeze procedure (draft §5/§15), where its outcome-blind outputs — pool sizes, dropped-event count, and the event-mix composition summary at the frozen relaxation step — are recorded. No blocker to runnability was found. The relaxation ladder, if reached, is the fixed predeclared one in §5 (a)–(c); reaching a step is recorded and frozen for every tier.
 
+> **AMENDMENT A1 `[C26]` — §6 verdict CORRECTED (2026-10-25, after delivery).** The verdict above is **withdrawn as stated**. The cited committed metadata cannot run the B-A pool-size check: `allfire_journal.json` carries rows **only where the BUY signal fired** (with ATR at those rows); it cannot enumerate non-signal same-symbol bars or supply their ATR%, and it carries no per-bar Close/EMA21/EMA55/EMA200 for the B-T diagnostic. The claim "All are present in committed artifacts" is wrong for every non-fire bar. Corrected verdict: **the pool-size check was BLOCKED/UNPROVEN on the committed metadata as cited** (ChatGPT independent review, Issue #1 comment `6401471382`, HOLD 1; Claude Final-Gate Review, relayed in comment `6405097569`, item M1). **Closure:** the missing prerequisite — an outcome-blind every-observed-bar inventory (P7b: every DEV bar with Close, ATR, ATR%, EMA21/EMA55/EMA200 and the frozen signal flag, reconciled to the 2,892-fire census) — has been built from the existing committed DEV capture bytes and hash-pinned, and the pool-count check has been executed outcome-blind against it under the pinned EXP-14 script, in the companion preparatory package `research_notes/equity43_dev_buy_prep_m1m2_20261025/`. The correction changes no rule, threshold, or design element; it corrects the evidence basis for runnability and records that the check is now executed, not merely runnable.
+
 ## 7. Missing prerequisites (complete list)
 
 1. §9 contamination audit — not run (outcome is a joint user+Muse decision; checklist B1).
@@ -96,3 +98,5 @@ The check was **not executed** in this deliverable (documentation-only bounds); 
 6. Independent review of this v0.3 package (checklist C1).
 
 **Bottom line.** Measurement is ready; the calendar is ready; the pool-size feasibility check is runnable from committed metadata. Confirmatory power at the frozen planning constants is **not** reachable on any near-term forward accrual — that is an arithmetic fact about counts and rates, stated outcome-blind, and the decision it forces (expand the sample or accept UNDERPOWERED FOR PASS) belongs to the user at freeze.
+
+> **Amendment A1 `[C26]` applies to the sentence above as well:** "runnable from committed metadata" is corrected per §6 A1 — the check required the P7b inventory first; it has since been executed outcome-blind under EXP-14 (companion package `research_notes/equity43_dev_buy_prep_m1m2_20261025/`). No other sentence in this bottom line changes.
