@@ -1,0 +1,312 @@
+{
+  "artifact": "P11 immutable version pins \u2014 Quality Flow preregistration v1.0 freeze record (updated at v1.0 assembly, 2026-10-26: pine_backtest pin RESOLVED, v1.0 seed FIXED, \u00a79/Tier 3/P10/power/stage-package pins added)",
+  "calendar": [
+    {
+      "artifact": "XNYS_SESSION_TABLE_751_UNION",
+      "calendar_version": "XNYS-751-UNION-20261021",
+      "composition": "XNYS_SESSION_SCHEDULE_V2 (524 sessions, 2024-09-16..2026-10-16) + XNYS_SESSION_SCHEDULE_CANDIDATE_EXTENSION_20261021_81 (227 sessions, 2023-10-19..2024-09-15); adopted 2026-10-21",
+      "file": "bundle/calendar/session_table_751_qualified.json (equity43_feed_source_review_20261024_22 bundle)",
+      "name": "Adopted session table of record (751 sessions, 2023-10-19..2026-10-16)",
+      "sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "artifact": "XNYS_SESSION_TABLE_EXTENSION_2027",
+      "calendar_version": "XNYS-EXT-2027-20261025",
+      "disclosure": "exchange_calendars cross-check coverage ends 2027-10-25; the 2027-10-26..12-31 tail rests on the NYSE lists + X1/X3 checks (see P10 audit \u00a72.3)",
+      "file": "research_notes/equity43_dev_measurement_fixes_20261025_30/artifacts/session_table_extension_2027.json",
+      "name": "Versioned session-table extension (303 sessions, 2026-10-19..2027-12-31)",
+      "package_commit": "d0775321bad12bb8739023d8cdd4e82e8bb96405",
+      "sha256": "d2fa788d70f2c8677ca49b9e0201940586c051b9227f815b8d2da55b1e5d3a2f",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Union session table (loader view)",
+      "note": "The union is a loader composition of the two pinned artifacts above (duplicate dates refused; dates past 2027-12-31 fail closed); it has no separate file hash by design.",
+      "range": "2023-10-19..2027-12-31",
+      "sessions": 1054,
+      "status": "VERIFIED_AS_RECORDED"
+    }
+  ],
+  "decisions_incorporated": {
+    "B1": "REDUCED (Mike + ChatGPT, 2026-10-26): 19 clean holdout symbols + mechanically selected, outcome-blind Tier 3 additions, subject to a Clean \u00a79 contamination audit and the >=20-symbol validity floor",
+    "B2": "ECONOMICS-FIRST (Mike + ChatGPT, 2026-10-26): PASS = all validity/economic gates + point estimate >= delta + CI excludes zero; CONFIRMED AT delta (lower bound >= delta) retained as the stronger grade; existing statistical controls, costs and minimum effects preserved",
+    "S9_OUTCOME": "PARTLY CONTAMINATED (audit 2026-10-26, commit f7b37cc, audit doc sha256 ebaca6a0441c0983d6e16deaea92167a9cfeb855586e7f5612cc6dd5223dfd24; sole failing limb F-A2-1). \u00a711 Partly branch applies: Tier 2 (19-name set) supplementary with no PASS/FAIL standing; Stage A verdict legs Tier 3 only. B1 REDUCED stands as amended. OPEN sub-item: Mike's A5 written attestation (audit gap G1).",
+    "PILOT_SCOPE": "Mike, 2026-10-26: the -22 five-stock pilot on Twelve Data Basic is strictly feed evaluation; a successful pilot does NOT authorize ongoing collection on Basic; ongoing collection needs its own rights basis (P10 audit \u00a71.1 conclusions; \u00a710 F2 in v1.0)."
+  },
+  "documents": [
+    {
+      "name": "Preregistration v1.0 (this freeze candidate)",
+      "path": "research_notes/prereg_v10_20261026/PREREG_V10.md",
+      "sha256": "29a0477a13e52ff4467193f69df7ef107048a8801f64c61f43de28d40d2850c6",
+      "status": "VERIFIED_DIRECT",
+      "note": "Assembled 2026-10-26 from PREREG_V03_DRAFT.md (sha 1ffaa3fa...) applying only the 2026-10-26 decisions and completed freeze work; see CHANGELOG_V10.md."
+    },
+    {
+      "name": "\u00a79 contamination audit (PARTLY CONTAMINATED, F-A2-1)",
+      "path": "research_notes/s9_contamination_audit_20261026/S9_CONTAMINATION_AUDIT.md",
+      "package_commit": "f7b37ccd676f6b99a48e4d814231278af54fa1ff",
+      "sha256": "ebaca6a0441c0983d6e16deaea92167a9cfeb855586e7f5612cc6dd5223dfd24",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Tier 3 frozen rule",
+      "path": "research_notes/prereg_v10_20261026/TIER3_RULE_FROZEN.md",
+      "sha256": "b4b993e8e23a221c050a6ceab0274ed59e5c25a4973704b4e545646863297ce3",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Tier 3 list (frozen output, run 4)",
+      "path": "research_notes/prereg_v10_20261026/tier3_list.json",
+      "sha256": "9e7ae05261b02cd6fde20909f86332a7b6cfda82bc330094136f56aba71f5d4e",
+      "status": "VERIFIED_DIRECT",
+      "note": "12 names: GOOG, BE, ACN, IREN, CRDO, TWLO, AAOI, MPWR, SPOT, BABA, COF, BLK. Runs 1/3/4 byte-identical (REPRODUCIBILITY_RECORD.md)."
+    },
+    {
+      "name": "Tier 3 generation script v1.1",
+      "path": "research_notes/prereg_v10_20261026/generate_tier3_list.py",
+      "sha256": "0b39e1d4d447ef6a04fec18d064c439b65e5b7831c682ebb2f6427ce29a8921b",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Tier 3 reproducibility record",
+      "path": "research_notes/prereg_v10_20261026/REPRODUCIBILITY_RECORD.md",
+      "sha256": "b9bef2fef499f5b01a5cb7ee34bbb631db811e50256b9c42ea4d1d023340db9c",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "P10 audit (production half of C2)",
+      "path": "research_notes/prereg_v10_20261026/P10_AUDIT.md",
+      "sha256": "045281e247455e89a6d10a9ad200d9c2a3017293d84b4f93793d22c299752ce0",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "\u00a76 power report (production half of C4)",
+      "path": "research_notes/prereg_v10_20261026/POWER_REPORT.md",
+      "sha256": "af8aef6421c0bab0677454e5d035da31aa7cd55ceb7ad7d1f8c688a993c2e6d8",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Stage A execution package (by reference)",
+      "path": "research_notes/prereg_v10_20261026/stage_packages/stage_a_package.md",
+      "sha256": "831fb73896d70acdd12c089b852f0350ec7cb68cb54687197ad1236ed1d65d49",
+      "status": "VERIFIED_DIRECT",
+      "note": "Under the \u00a79 Partly outcome, the package's Partly branch governs: verdict legs Tier-3-only; Tier 2 supplementary."
+    },
+    {
+      "name": "Stage B execution package (by reference)",
+      "path": "research_notes/prereg_v10_20261026/stage_packages/stage_b_package.md",
+      "sha256": "5acb62fab3be77bca8ae662c170d7151843997a7df62fb712929e4cffe806c04",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Stage packages shared preconditions checklist (by reference)",
+      "path": "research_notes/prereg_v10_20261026/stage_packages/preconditions_checklist.md",
+      "sha256": "c692694e45815ac7b0992b542a9393788872cb4e290dff84ada0b1f1661df351",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Preregistration draft v0.3 (the text v1.0 freezes, as amended by the B1/B2 decisions above)",
+      "package_commit": "b65696a28f97437863353814fade1d387c49aea3",
+      "path": "research_notes/equity43_dev_prereg_v03_20261025/PREREG_V03_DRAFT.md",
+      "sha256": "1ffaa3fa2a683201f8f92b5e2106dc2da5072d80eef2b5a412b013f46976ea76",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "v0.3 change register",
+      "path": "research_notes/equity43_dev_prereg_v03_20261025/CHANGELOG_V03.md",
+      "sha256": "effcf64003a10c7e2457c6abac948930f1596e160a12499088771ffc0164b40a",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Freeze-blocker checklist",
+      "path": "research_notes/equity43_dev_prereg_v03_20261025/FREEZE_BLOCKER_CHECKLIST.md",
+      "sha256": "c59df89ae9ec12705e62f7afbf0c4886e9c448fafcb264de2bc66300782f0fa6",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Outcome-blind feasibility result",
+      "path": "research_notes/equity43_dev_prereg_v03_20261025/OUTCOME_BLIND_FEASIBILITY.md",
+      "sha256": "fbe150f2611eb8b80b147e771403c8a14a5e503490f9b0d8d5a39341e61f7257",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "v0.3 package verifier",
+      "path": "research_notes/equity43_dev_prereg_v03_20261025/verify_package.py",
+      "sha256": "0fcb4e1c9eaca7ad0d99f9aab1482aa0a649ec83d524f3ef02687ae34d08df13",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Preregistration draft v0.2 (PDF, base document)",
+      "note": "Recomputed from the committed blob at 02568b2 during this audit; matches the -28 memo's pre-read verification.",
+      "package_commit": "02568b2",
+      "path": "research_notes/edge_validation_prereg_20261025/Quality_Flow_Edge_Validation_PreRegistration_Draft_v0.2.pdf",
+      "sha256": "01c4fff0c94cbf1d48f420b4e71619b7f477b07deaacd76705e9ca788abf00ae",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Frozen inference contract (validation preregistration finalization -25): circular block bootstrap, 20-session blocks, 10,000 deterministic reps, seed = first 8 bytes big-endian of the frozen preregistration's SHA-256",
+      "note": "Commit resolves in the repo and is the contract \u00a76 [C10] adopts. The v1.0 numeric seed under this contract is derived from the v1.0 document's own SHA-256 and becomes fixed at the v1.0 freeze commit (see seeds.v10_protocol_seed).",
+      "package_commit": "fc1704128c7961dd6dc1523186afb3c5880e21e2",
+      "status": "VERIFIED_AS_RECORDED"
+    }
+  ],
+  "exp14_study_pins": [
+    {
+      "file": "research_notes/equity43_dev_buy_decisionb_corr2_20261025/code/exp14_buy.py",
+      "name": "EXP-14 execution code, corr2 pin (RETURNS_ENABLED False in the standing pin)",
+      "note": "Recomputed from the extracted file and matched against the corr2 package manifest (itself verified end-to-end).",
+      "package_commit": "7a0e4871e0317c3d9100f8c8f0a49967893bfbb8",
+      "sha256": "77bd53e82963d65ab743a57f1eff0d23b54467a0e17aaf1831b42e6e96b6f3d8",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "EXP-14 pinned input files (hash constants compiled into the corr2 execution path)",
+      "note": "Constants read from the verified corr2 code pin above. The cohort and draws files sit inside the verified corr2/succ1 packages; the inventory and execution-price files live only in the private qf-data-archive and were not re-fetched for this audit (no private-archive access needed to pin the constants).",
+      "sha256": {
+        "execution_prices_private_archive": "4adb8320bd10e8e1e8c650d847290c5a66344b9a21704fba40fc53992af205b8",
+        "frozen_cohort": "35690b806e51eefe388fadf35b04baf5ed4c52f8e30ac193a38cf88246332824",
+        "frozen_draws": "fe54808e282515807703692fb08cf3928ee9a4435d04b6939f2b9f47157e4a8a",
+        "p7b_inventory_private_archive": "a6bbd19a702120cafd48cd01ee4c8ff59b838a8bd6439822415d6c18278ef02f"
+      },
+      "status": "VERIFIED_AS_RECORDED"
+    },
+    {
+      "file": "research_notes/equity43_dev_buy_exp14b_run_20261025/exp14b_analysis.json",
+      "name": "EXP-14B single-run output (run record)",
+      "package_commit": "3c92dc8ec0c6a13b966aa80cca32bfe7bb18b513",
+      "sha256": "d9f4864e88db97d24a94734c4d847105b9fe0a6f7513e1ab9ba003e147b76467",
+      "status": "VERIFIED_AS_RECORDED"
+    }
+  ],
+  "measurement_code": [
+    {
+      "file": "research_notes/equity43_dev_measurement_fixes_20261025_30/code/qf_telemetry.py",
+      "name": "Telemetry journal successor (-30: transactional append + restart revalidation)",
+      "package_commit": "d0775321bad12bb8739023d8cdd4e82e8bb96405",
+      "sha256": "10c0e738c952e516bccf8e72d041d3baf2801556a79f7a8dd5e786763e3c20d8",
+      "status": "VERIFIED_MANIFEST"
+    },
+    {
+      "file": "research_notes/equity43_dev_measurement_fixes_20261025_30/code/session_bins.py",
+      "name": "Session-bin resolution successor (-30: base + extension + union loaders)",
+      "package_commit": "d0775321bad12bb8739023d8cdd4e82e8bb96405",
+      "sha256": "96bdaf5e62705253fc237f542fea63af8fb614ace2bec411d8055fc352b93577",
+      "status": "VERIFIED_MANIFEST"
+    },
+    {
+      "file": "research_notes/equity43_dev_measurement_fixes_20261025_31/code/exposure_report.py",
+      "name": "Full-grid exposure report successor (-31, P6 repair)",
+      "package_commit": "848f75d62c0556547300c12d818850c85669a5cf",
+      "sha256": "d6671a72a1ec4fd856b90295b3cd9ff6c16ab7ece05c34c7f54d91998d892ed5",
+      "status": "VERIFIED_MANIFEST"
+    },
+    {
+      "commits": {
+        "-29": "2cf06fcab1e033f984cc7cb75df1cee4cf95f210",
+        "-29r": "70ef367971bb6895456f875dc0f81fad9e3efbe4",
+        "-30": "d0775321bad12bb8739023d8cdd4e82e8bb96405",
+        "-31": "848f75d62c0556547300c12d818850c85669a5cf"
+      },
+      "name": "Measurement package commits (manifests verified end-to-end in this audit)",
+      "status": "VERIFIED_MANIFEST"
+    }
+  ],
+  "open_at_freeze": [
+    "H-EXIT / 7A paired SDs (power report \u00a74) \u2014 variance-only estimate required before any tier opens; named freeze-procedure step in FREEZE_CHECKLIST_V10.md.",
+    "P5 per-fill config hash \u2014 the per-fill cost convention is confirmed (\u00a78); the new config hash is produced as a freeze-procedure step before any tier opens.",
+    "Per-tier \u00a75 pool counts at staging \u2014 the matching ladder is frozen at step (c) from the DEV outcome-blind check (drop 71/311 = 22.83%, disclosed); pool counts are computed when a tier is staged.",
+    "Mike's A5 written attestation (\u00a79 audit gap G1) \u2014 OUTSTANDING, owner Mike.",
+    "G5 signed freeze (Mike) after ChatGPT's independent review (C1) of the v1.0 package."
+  ],
+  "package_commits_index": {
+    "delta28_and_erratum": "f62592179795e17bac52822fb0ffc14bdb1e7aeb",
+    "exp14_amendment": "f69c470f8fb2283a191e945cd1743145f445fe73",
+    "exp14_corr1": "6fc983b8f0fd0f59dd7082c6d78793fb1863f155",
+    "exp14_corr2": "7a0e4871e0317c3d9100f8c8f0a49967893bfbb8",
+    "exp14_successor": "32dfdb39082b1e6cac54edd257ca20ffca3c4cdf",
+    "exp14b_run_record": "3c92dc8ec0c6a13b966aa80cca32bfe7bb18b513",
+    "feed_qualification_frame_21": "c2b58d7",
+    "m1m2_prep": "5e025032e2ae7d2a8f8f2d19e28b88b2d7b7bc00",
+    "measurement_29": "2cf06fcab1e033f984cc7cb75df1cee4cf95f210",
+    "measurement_29r": "70ef367971bb6895456f875dc0f81fad9e3efbe4",
+    "measurement_30": "d0775321bad12bb8739023d8cdd4e82e8bb96405",
+    "measurement_31": "848f75d62c0556547300c12d818850c85669a5cf",
+    "prereg_v03_package": "b65696a28f97437863353814fade1d387c49aea3"
+  },
+  "produced": "2026-10-26",
+  "produced_by": "Muse (production lane)",
+  "seeds": {
+    "bootstrap_contract": {
+      "block_sessions": 20,
+      "method": "circular block bootstrap over calendar time",
+      "replications": 10000,
+      "robustness": "symbol-cluster bootstrap; verdict uses the wider of the two intervals",
+      "status": "VERIFIED_AS_RECORDED"
+    },
+    "exp14_bootstrap_seed": {
+      "evidence": "Present as a literal constant in the verified corr2 code pin (PINNED_BOOTSTRAP_SEED), in artifacts/exp14_feasibility_counts.json and the pinned output schema, and enforced by the corr2 verify_package.py; identical in succ1. Derivation: first 8 bytes, big-endian, of SHA-256(\"7715012043445510037:bootstrap\"). Recorded deviation (succ1 MEMO): EXP-14 deliberately does not use the \u00a76 [C10] preregistration-hash seed, because v0.3 was an unfrozen draft whose hash would move; the deviation was chosen and recorded before outcomes.",
+      "status": "VERIFIED_DIRECT",
+      "value": 6050949521315240661
+    },
+    "exp14_master_seed_draws": {
+      "evidence": "Present as a literal constant in the verified corr2 code pin (PINNED_MASTER_SEED, code/exp14_buy.py), in artifacts/exp14_feasibility_counts.json and artifacts/exp14_frozen_draws.json, and enforced by the corr2 verify_package.py; identical in the succ1 package. Derivation (succ1 MEMO, recorded before any outcome): first 8 bytes, big-endian, of SHA-256(\"EXP-14-BUY-DEV-EXPLORATORY\").",
+      "status": "VERIFIED_DIRECT",
+      "value": 7715012043445510037
+    },
+    "v10_protocol_seed": {
+      "rule": "Per the frozen inference contract (commit fc17041, adopted in \u00a76 [C10]): seed = first 8 bytes, big-endian, of the frozen preregistration's SHA-256.",
+      "document": "PREREG_V10.md (research_notes/prereg_v10_20261026/PREREG_V10.md)",
+      "document_sha256": "29a0477a13e52ff4467193f69df7ef107048a8801f64c61f43de28d40d2850c6",
+      "value": 2999475941474119668,
+      "status": "FIXED_AT_V10_ASSEMBLY",
+      "note": "Computed 2026-10-26 from the final assembled v1.0 document bytes. If any byte of PREREG_V10.md changes, this seed must be recomputed and the change logged as an amendment; the freeze (G5) locks the document and this value together."
+    }
+  },
+  "strategy_and_config": [
+    {
+      "name": "Frozen C1 experiment configuration pin (-13 DEV run: V3.6 hybrid signal + frozen exits/ranking/caps)",
+      "note": "The pin is the canonical hash of the driver's embedded EXPERIMENT_CONFIG, frozen in source before any run. The config bytes are not a standalone file in the record, so the hash is anchored by the verified -13 package manifest plus the P9 parity chain (-30, 26/26 checks over the committed ledger), not by an independent re-hash.",
+      "recorded_in": "research_notes/equity43_dev_order_censor_20261023_13/results.json (experiment_config_sha256) and RESULT.md; package manifest verified end-to-end in this audit",
+      "sha256": "87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706",
+      "status": "VERIFIED_AS_RECORDED"
+    },
+    {
+      "name": "-13 DEV trade ledger (590 candidates; the Tier 1 evidence base)",
+      "path": "research_notes/equity43_dev_order_censor_20261023_13/trade_ledger.json",
+      "sha256": "267e794c284a409d7d9b6d8e1056c452976b59746062e9e6e18c5664b74c003b",
+      "status": "VERIFIED_DIRECT"
+    },
+    {
+      "name": "Engine successor pine_backtest.py, pre-erratum bytes (P0 pin)",
+      "recorded_in": "-13 results.json phases/P0_pins/pins/engine_successor/pine_backtest.py",
+      "sha256": "874d2a9b1d99171a4d3db709ece9ce4719b4d108a70f7e95b4a082692cc0c99d",
+      "status": "VERIFIED_AS_RECORDED"
+    },
+    {
+      "name": "Engine successor pine_backtest.py, post-erratum bytes (P4 docstring erratum, -29; 18/18 code objects identical, zero behavior change)",
+      "file": "research_notes/equity43_dev_forensic_20261023_14/code/engine_successor/pine_backtest.py",
+      "erratum_commit": "d06dfe3af18a4b9a043475b491f266bac68b2795",
+      "sha256": "262ec0340161e72893ca9c5edd9d1fe2cb046fd30004d727b3893d52bd4d3f2a",
+      "status": "VERIFIED_DIRECT",
+      "resolution": "RESOLVED at v1.0 assembly (2026-10-26). The production audit could not re-hash the successor because the -29 package does not carry the file and the -29 memo records only the prefix 262ec034... Located unambiguously in the repo: at erratum commit d06dfe3 (the -29 P4 erratum commit itself) the file research_notes/equity43_dev_forensic_20261023_14/code/engine_successor/pine_backtest.py hashes to 262ec0340161e72893ca9c5edd9d1fe2cb046fd30004d727b3893d52bd4d3f2a, matching the recorded prefix; at the parent commit the same path hashes to 874d2a9b1d99171a4d3db709ece9ce4719b4d108a70f7e95b4a082692cc0c99d, exactly the recorded pre-erratum P0 pin. Parent/child pair + the erratum commit's own message (sha 874d2a9b -> 262ec034) make the identification unambiguous."
+    }
+  ],
+  "verification_status_key": {
+    "UNVERIFIED": "value could not be verified from accessible sources; marked, never copied blindly \u2014 resolution named",
+    "VERIFIED_AS_RECORDED": "value confirmed present and consistent across the committed record (results/memo/code/artifacts) but the underlying bytes are not separately re-hashable from the record",
+    "VERIFIED_DIRECT": "sha256 recomputed from the actual file/bytes during this audit and matched",
+    "VERIFIED_MANIFEST": "the containing package's SHA256_MANIFEST.txt was checked end-to-end (sha256sum -c, 100% OK) during this audit"
+  },
+  "v10_assembly": {
+    "date": "2026-10-26",
+    "base_file": "power_p10_p11/p11_pins.json (production lane, 2026-10-26)",
+    "changes": [
+      "pine_backtest post-erratum pin UNVERIFIED -> VERIFIED_DIRECT with full sha256 and provenance (erratum commit d06dfe3, forensic -14 package path; parent-commit hash matches the pre-erratum P0 pin)",
+      "seeds.v10_protocol_seed value entered from the final v1.0 document hash",
+      "decisions_incorporated: S9_OUTCOME and PILOT_SCOPE added",
+      "documents: v1.0 package files pinned",
+      "open_at_freeze rewritten for the v1.0 state"
+    ]
+  }
+}
