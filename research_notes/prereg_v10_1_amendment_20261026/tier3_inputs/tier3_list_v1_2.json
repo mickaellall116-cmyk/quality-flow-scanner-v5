@@ -1,0 +1,118 @@
+{
+  "rule_version": "TIER3_RULE_FROZEN v1.0 (2026-10-26) + v1.0.1 amendment (step 6b issuer-level exclusion; step 8 frozen S4 table)",
+  "generator_version": "generate_tier3_list.py v1.2 (v1.0.1 amendment, 2026-10-26)",
+  "source_date": "2026-10-26",
+  "input_hashes": {
+    "sources/nasdaqlisted.txt": "8e72f822228a2536b0e712e5ee91c14e30db07408cc8863a6d64cb1bac1c2c19",
+    "sources/otherlisted.txt": "67c1e321790341bf89172e2dc30119e1a39180d3dd4b2d7cb4e420ba02305ca6",
+    "sources/nasdaq_screener_raw.json": "464e82847212024e3c2b871c487c4ac6a3af854763f82dbd124ed4987b39b912",
+    "exclusion_universes.json": "c7112909009aa605a380b198d07b3ebd421fa44ce5a4751e830c8496ca535e04",
+    "ISSUER_MAP.json": "3bccdbf27bbfd0c89810ee16169bdd149b7351a5370995bcd26d7d0d1ad1ed85",
+    "S4_FROZEN_AGGREGATES.csv": "d345fbabeec144f50f117f4d2a6ae7b947e8acb0a4604af64fa869ed25bbd595"
+  },
+  "parameters": {
+    "adv20_cutoff_usd": 25000000.0,
+    "min_last_close_usd": 5.0,
+    "list_size": 12,
+    "adv_window_bars": 20,
+    "liquidity_window": "completed sessions 2026-09-01..2026-10-25 (last 20 valid bars) \u2014 frozen S4 aggregates, no live fetch",
+    "ipo_year_max": 2023
+  },
+  "stage_counts": {
+    "s1_nasdaq_real_securities": 4328,
+    "s2_otherlisted_added": 3118,
+    "after_steps_1_3": 7446,
+    "after_step_4_common_stock": 5905,
+    "after_step_5_plain_ticker": 5862,
+    "after_step_6_prior_study_exclusion": 5655,
+    "step_6b_issuer_excluded_symbols": [
+      "GOOG"
+    ],
+    "after_step_6b_issuer_exclusion": 5654,
+    "after_step_7_ipo_year": 2560,
+    "s8_frozen_table_rows": 12,
+    "s8_candidates_without_frozen_aggregate_fail_closed": 2549,
+    "after_step_8_liquidity": 11
+  },
+  "tier3_list": [
+    {
+      "rank": 1,
+      "symbol": "BE",
+      "adv20_usd": 3816275880.09,
+      "last_close_usd": 193.3,
+      "bars_used": 20
+    },
+    {
+      "rank": 2,
+      "symbol": "ACN",
+      "adv20_usd": 1783792453.13,
+      "last_close_usd": 249.37,
+      "bars_used": 20
+    },
+    {
+      "rank": 3,
+      "symbol": "IREN",
+      "adv20_usd": 1675424544.16,
+      "last_close_usd": 24.905,
+      "bars_used": 20
+    },
+    {
+      "rank": 4,
+      "symbol": "CRDO",
+      "adv20_usd": 1650609398.22,
+      "last_close_usd": 147.29,
+      "bars_used": 20
+    },
+    {
+      "rank": 5,
+      "symbol": "TWLO",
+      "adv20_usd": 1226616365.35,
+      "last_close_usd": 261.79,
+      "bars_used": 20
+    },
+    {
+      "rank": 6,
+      "symbol": "AAOI",
+      "adv20_usd": 1106681698.2,
+      "last_close_usd": 67.51,
+      "bars_used": 20
+    },
+    {
+      "rank": 7,
+      "symbol": "MPWR",
+      "adv20_usd": 928716016.86,
+      "last_close_usd": 1140.12,
+      "bars_used": 20
+    },
+    {
+      "rank": 8,
+      "symbol": "SPOT",
+      "adv20_usd": 906854434.55,
+      "last_close_usd": 584.22,
+      "bars_used": 20
+    },
+    {
+      "rank": 9,
+      "symbol": "BABA",
+      "adv20_usd": 890485652.7,
+      "last_close_usd": 99.64,
+      "bars_used": 20
+    },
+    {
+      "rank": 10,
+      "symbol": "COF",
+      "adv20_usd": 785673699.65,
+      "last_close_usd": 201.34,
+      "bars_used": 20
+    },
+    {
+      "rank": 11,
+      "symbol": "BLK",
+      "adv20_usd": 733841546.77,
+      "last_close_usd": 1118.25,
+      "bars_used": 20
+    }
+  ],
+  "selected_count": 11,
+  "shortfall_vs_list_size": 1
+}
