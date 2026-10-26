@@ -1,0 +1,180 @@
+{
+ "source": "td_capture_equity39_continue_20261023/quarantines.jsonl (timestamps and counts only; no prices recorded in source records)",
+ "quarantined_ho_legs": 23,
+ "total_defective_bars": 123,
+ "legs": [
+  {
+   "leg": "SOFI/HO",
+   "defective_bars": 2,
+   "first_stamp": "2024-04-08 14:30:00",
+   "last_stamp": "2024-04-09 11:30:00",
+   "sha256": "d957d904e5e57e066b2ad12996226d0b0762cd80c3cd8167a2ff3b3d1b68d6d3"
+  },
+  {
+   "leg": "MSTR/HO",
+   "defective_bars": 1,
+   "first_stamp": "2024-04-10 13:30:00",
+   "last_stamp": "2024-04-10 13:30:00",
+   "sha256": "b5b38f2f0897d032f32ed9a14132cb878128cd0db49bd922b0f73e4c4f5aeffa"
+  },
+  {
+   "leg": "GOOGL/HO",
+   "defective_bars": 4,
+   "first_stamp": "2024-04-04 09:30:00",
+   "last_stamp": "2024-04-16 15:30:00",
+   "sha256": "225137150c3939059bd569582df12412053ae2c1f43b9e9d48fdedd5f93840c5"
+  },
+  {
+   "leg": "CRM/HO",
+   "defective_bars": 3,
+   "first_stamp": "2024-04-08 14:30:00",
+   "last_stamp": "2024-04-15 09:30:00",
+   "sha256": "99d6c0e0799bbdc697bf7eb9820448e034f3a98046074de3421c08a86d7d359b"
+  },
+  {
+   "leg": "MU/HO",
+   "defective_bars": 1,
+   "first_stamp": "2024-04-05 13:30:00",
+   "last_stamp": "2024-04-05 13:30:00",
+   "sha256": "8aeb36cb890db61ea0f2535e11a06c5ff10e2e20eae8c702950405e77f089579"
+  },
+  {
+   "leg": "INTC/HO",
+   "defective_bars": 2,
+   "first_stamp": "2024-04-10 15:30:00",
+   "last_stamp": "2024-04-12 09:30:00",
+   "sha256": "5d1ae10615d21ae84543fbdc8479822f20f7e96c900ea91b9d9d5b16b74c509c"
+  },
+  {
+   "leg": "LRCX/HO",
+   "defective_bars": 1,
+   "first_stamp": "2024-04-09 09:30:00",
+   "last_stamp": "2024-04-09 09:30:00",
+   "sha256": "2acbbe418c0757046a6b410f7f54157a323083251da794c1d8c153252d7cf7dc"
+  },
+  {
+   "leg": "AMAT/HO",
+   "defective_bars": 5,
+   "first_stamp": "2024-04-08 14:30:00",
+   "last_stamp": "2024-04-16 15:30:00",
+   "sha256": "c6456e89b24dd53c5872f82afb10c70a1a0215f4ef5eba4343bab4a7761fb23b"
+  },
+  {
+   "leg": "QCOM/HO",
+   "defective_bars": 2,
+   "first_stamp": "2024-04-08 15:30:00",
+   "last_stamp": "2024-04-10 14:30:00",
+   "sha256": "491d14d1c33dc33be0b1d2955e60cb729f5e6680af508de43c82ea5042a9291d"
+  },
+  {
+   "leg": "HOOD/HO",
+   "defective_bars": 1,
+   "first_stamp": "2024-04-09 10:30:00",
+   "last_stamp": "2024-04-09 10:30:00",
+   "sha256": "ecefe14c01495d543c29f33de96c7db33fbe386d592ace28761e3647cb8f5c3f"
+  },
+  {
+   "leg": "APP/HO",
+   "defective_bars": 22,
+   "first_stamp": "2024-04-04 10:30:00",
+   "last_stamp": "2024-04-11 15:30:00",
+   "sha256": "8845a8314f6f1567024ddaf409377cc48d1fc52d527ca40c53471cf5ffba0ade"
+  },
+  {
+   "leg": "NET/HO",
+   "defective_bars": 3,
+   "first_stamp": "2024-04-08 14:30:00",
+   "last_stamp": "2024-04-10 15:30:00",
+   "sha256": "4c04e3d2c57fcaae7aacc528a5950c6256ca5a7432a6f78f1e20c380776f2483"
+  },
+  {
+   "leg": "SNOW/HO",
+   "defective_bars": 2,
+   "first_stamp": "2024-04-15 15:30:00",
+   "last_stamp": "2024-04-16 14:30:00",
+   "sha256": "d470a5ebd8a8babfb3b84f9b68e08403956e48deb6435367be742a215b137b63"
+  },
+  {
+   "leg": "DDOG/HO",
+   "defective_bars": 3,
+   "first_stamp": "2024-04-05 12:30:00",
+   "last_stamp": "2024-04-15 10:30:00",
+   "sha256": "cde5a5e35b72626ef8f749875ebe6c6692456880878b71a7910ec4c8da5f1696"
+  },
+  {
+   "leg": "CRWD/HO",
+   "defective_bars": 2,
+   "first_stamp": "2024-04-05 09:30:00",
+   "last_stamp": "2024-04-16 15:30:00",
+   "sha256": "1f9726d13668d7c67d77a7208a578a8dd454ad08b48cc21b785fee3b81b54fb7"
+  },
+  {
+   "leg": "RKLB/HO",
+   "defective_bars": 18,
+   "first_stamp": "2024-04-04 13:30:00",
+   "last_stamp": "2024-04-11 15:30:00",
+   "sha256": "383b738d26d8e7096001a7a50f31e3b21614ae5993d9d9b832bdf8620d2b6e10"
+  },
+  {
+   "leg": "ASTS/HO",
+   "defective_bars": 38,
+   "first_stamp": "2024-04-04 09:30:00",
+   "last_stamp": "2024-04-22 15:30:00",
+   "sha256": "3172539459388997c4e1a6fbc1e7a170e34b2c5aa468a756fc112e8ce62ebfa0"
+  },
+  {
+   "leg": "PYPL/HO",
+   "defective_bars": 3,
+   "first_stamp": "2024-04-05 13:30:00",
+   "last_stamp": "2024-04-16 15:30:00",
+   "sha256": "8e7b39bf851bd9d497cfce3d951892544a8679471eddfa8be4379e922f00ac34"
+  },
+  {
+   "leg": "NU/HO",
+   "defective_bars": 1,
+   "first_stamp": "2024-04-18 09:30:00",
+   "last_stamp": "2024-04-18 09:30:00",
+   "sha256": "12ddc4fd0922d5212225ef72b054364f7efa85efed46b93882f2687b72ebdf38"
+  },
+  {
+   "leg": "MELI/HO",
+   "defective_bars": 1,
+   "first_stamp": "2024-04-10 12:30:00",
+   "last_stamp": "2024-04-10 12:30:00",
+   "sha256": "d167f9fe3401115e483c7edd7254de3d28d65657b5e07da62ddb3a13c270e463"
+  },
+  {
+   "leg": "MRNA/HO",
+   "defective_bars": 5,
+   "first_stamp": "2024-04-10 10:30:00",
+   "last_stamp": "2024-04-15 15:30:00",
+   "sha256": "8980f6611ff80755c807b91ae8d405b7ed0c3444be96b6682a087cfe91a60153"
+  },
+  {
+   "leg": "PFE/HO",
+   "defective_bars": 1,
+   "first_stamp": "2024-04-15 10:30:00",
+   "last_stamp": "2024-04-15 10:30:00",
+   "sha256": "3ac1af700110efebb7923b267d8db81f94976912441972b865c0409e827845bd"
+  },
+  {
+   "leg": "F/HO",
+   "defective_bars": 2,
+   "first_stamp": "2024-04-09 10:30:00",
+   "last_stamp": "2024-04-18 11:30:00",
+   "sha256": "df072271e6b28525ec8d1925671f80bd835712167f7afa4044b445eac77a782d"
+  }
+ ],
+ "plus_first_capture": {
+  "leg": "PLTR/HO",
+  "defective_bars": 3,
+  "dates": "2024-04-09..04-10",
+  "source": "td_capture_equity39_20261023 commit db1b43d"
+ },
+ "plus_pilot_step1": {
+  "leg": "SMCI/HO",
+  "defective_bars": 19,
+  "dates": "2024-04-08,04-09,04-10,04-12,04-15,04-17",
+  "source": "SMCI_RESOLUTION.md (-02 adjudication 7823538)"
+ }
+}

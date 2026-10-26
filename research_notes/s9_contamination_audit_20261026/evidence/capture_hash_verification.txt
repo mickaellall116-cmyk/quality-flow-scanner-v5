@@ -1,0 +1,16 @@
+# A3 hash verification — run 2026-10-26 by S9 audit (hash recomputation only; no payload parsing)
+== td_capture_equity39_continue_20261023 (qf-data-archive clone)
+./run_summary.json: OK
+./synthetic_gate_output.txt: OK
+./test_synthetic_gate.py: OK
+158
+== td_capture_equity39_20261023
+13
+== CP1 bundle (claude_cp1_targeted_package_20261021_78)
+BUNDLE_INVENTORY.json: OK
+capture_manifest.json: OK
+claude_cp1_targeted_package_20261021_78_r1.zip: OK
+== Receipt-chain spot check (hash equality only)
+AMD/HO raw sha256 == qualification.json sha256: 36226ede2f677e5612b7e09303bd6907954befac36238266ec6a59eb68db2c27 (MATCH)
+AMAT/DEV raw sha256 == qualification.json sha256: 91ee9212b50e9d2f4efaf7a0573266ed657ce54af2b6221bfe08cbf5ea0dde1c (MATCH)
+qualification.json chain: 54 receipts chained from GENESIS child root c5628652c5bf59d870103e41fd7e22a23fe4d811c61662fda78a8790abd0444f, ok=true
