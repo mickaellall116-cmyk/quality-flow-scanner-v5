@@ -1,0 +1,2259 @@
+{
+  "issuers": {
+    "AAPL": {
+      "directory_name": "Apple Inc. - Common Stock",
+      "directory_symbol": "AAPL",
+      "equivalent_directory_symbols": [
+        "AAPL"
+      ],
+      "issuer_key": "apple",
+      "name_source": "directory"
+    },
+    "AAVE-USD": {
+      "directory_name": null,
+      "directory_symbol": "AAVE.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "ABBV": {
+      "directory_name": "AbbVie Inc. Common Stock",
+      "directory_symbol": "ABBV",
+      "equivalent_directory_symbols": [
+        "ABBV"
+      ],
+      "issuer_key": "abbvie",
+      "name_source": "directory"
+    },
+    "ABNB": {
+      "directory_name": "Airbnb, Inc. - Class A Common Stock",
+      "directory_symbol": "ABNB",
+      "equivalent_directory_symbols": [
+        "ABNB"
+      ],
+      "issuer_key": "airbnb",
+      "name_source": "directory"
+    },
+    "ADA-USD": {
+      "directory_name": null,
+      "directory_symbol": "ADA.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "ADBE": {
+      "directory_name": "Adobe Inc. - Common Stock",
+      "directory_symbol": "ADBE",
+      "equivalent_directory_symbols": [
+        "ADBE"
+      ],
+      "issuer_key": "adobe",
+      "name_source": "directory"
+    },
+    "AFRM": {
+      "directory_name": "Affirm Holdings, Inc. - Class A Common Stock",
+      "directory_symbol": "AFRM",
+      "equivalent_directory_symbols": [
+        "AFRM"
+      ],
+      "issuer_key": "affirm holdings",
+      "name_source": "directory"
+    },
+    "AI": {
+      "directory_name": "C3.ai, Inc. Class A Common Stock",
+      "directory_symbol": "AI",
+      "equivalent_directory_symbols": [
+        "AI"
+      ],
+      "issuer_key": "c3 ai",
+      "name_source": "directory"
+    },
+    "ALB": {
+      "directory_name": "Albemarle Corporation Common Stock",
+      "directory_symbol": "ALB",
+      "equivalent_directory_symbols": [
+        "ALB"
+      ],
+      "issuer_key": "albemarle",
+      "name_source": "directory"
+    },
+    "AMAT": {
+      "directory_name": "Applied Materials, Inc. - Common Stock",
+      "directory_symbol": "AMAT",
+      "equivalent_directory_symbols": [
+        "AMAT"
+      ],
+      "issuer_key": "applied materials",
+      "name_source": "directory"
+    },
+    "AMC": {
+      "directory_name": "AMC Entertainment Holdings, Inc. Class A Common Stock",
+      "directory_symbol": "AMC",
+      "equivalent_directory_symbols": [
+        "AMC"
+      ],
+      "issuer_key": "amc entertainment holdings",
+      "name_source": "directory"
+    },
+    "AMD": {
+      "directory_name": "Advanced Micro Devices, Inc. - Common Stock",
+      "directory_symbol": "AMD",
+      "equivalent_directory_symbols": [
+        "AMD"
+      ],
+      "issuer_key": "advanced micro devices",
+      "name_source": "directory"
+    },
+    "AMGN": {
+      "directory_name": "Amgen Inc. - Common Stock",
+      "directory_symbol": "AMGN",
+      "equivalent_directory_symbols": [
+        "AMGN"
+      ],
+      "issuer_key": "amgen",
+      "name_source": "directory"
+    },
+    "AMT": {
+      "directory_name": "American Tower Corporation (REIT) Common Stock",
+      "directory_symbol": "AMT",
+      "equivalent_directory_symbols": [
+        "AMT"
+      ],
+      "issuer_key": "american tower corporation reit",
+      "name_source": "directory"
+    },
+    "AMZN": {
+      "directory_name": "Amazon.com, Inc. - Common Stock",
+      "directory_symbol": "AMZN",
+      "equivalent_directory_symbols": [
+        "AMZN"
+      ],
+      "issuer_key": "amazon com",
+      "name_source": "directory"
+    },
+    "ANET": {
+      "directory_name": "Arista Networks, Inc. Common Stock",
+      "directory_symbol": "ANET",
+      "equivalent_directory_symbols": [
+        "ANET"
+      ],
+      "issuer_key": "arista networks",
+      "name_source": "directory"
+    },
+    "APLD": {
+      "directory_name": "Applied Digital Corporation - Common Stock",
+      "directory_symbol": "APLD",
+      "equivalent_directory_symbols": [
+        "APLD"
+      ],
+      "issuer_key": "applied digital",
+      "name_source": "directory"
+    },
+    "APP": {
+      "directory_name": "Applovin Corporation - Class A Common Stock",
+      "directory_symbol": "APP",
+      "equivalent_directory_symbols": [
+        "APP"
+      ],
+      "issuer_key": "applovin",
+      "name_source": "directory"
+    },
+    "ARB-USD": {
+      "directory_name": null,
+      "directory_symbol": "ARB.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "ARKK": {
+      "directory_name": "ARK Innovation ETF",
+      "directory_symbol": "ARKK",
+      "equivalent_directory_symbols": [
+        "ARKK"
+      ],
+      "issuer_key": "ark innovation etf",
+      "name_source": "directory"
+    },
+    "ARM": {
+      "directory_name": "Arm Holdings plc - American Depositary Shares",
+      "directory_symbol": "ARM",
+      "equivalent_directory_symbols": [
+        "ARM"
+      ],
+      "issuer_key": "arm holdings",
+      "name_source": "directory"
+    },
+    "ASML": {
+      "directory_name": "ASML Holding N.V. - New York Registry Shares",
+      "directory_symbol": "ASML",
+      "equivalent_directory_symbols": [
+        "ASML"
+      ],
+      "issuer_key": "asml holding n v york registry",
+      "name_source": "directory"
+    },
+    "ASTS": {
+      "directory_name": "AST SpaceMobile, Inc. - Class A Common Stock",
+      "directory_symbol": "ASTS",
+      "equivalent_directory_symbols": [
+        "ASTS"
+      ],
+      "issuer_key": "ast spacemobile",
+      "name_source": "directory"
+    },
+    "ATOM-USD": {
+      "directory_name": null,
+      "directory_symbol": "ATOM.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "AVAX-USD": {
+      "directory_name": null,
+      "directory_symbol": "AVAX.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "AVGO": {
+      "directory_name": "Broadcom Inc. - Common Stock",
+      "directory_symbol": "AVGO",
+      "equivalent_directory_symbols": [
+        "AVGO"
+      ],
+      "issuer_key": "broadcom",
+      "name_source": "directory"
+    },
+    "BA": {
+      "directory_name": "Boeing Company (The) Common Stock",
+      "directory_symbol": "BA",
+      "equivalent_directory_symbols": [
+        "BA"
+      ],
+      "issuer_key": "boeing company the",
+      "name_source": "directory"
+    },
+    "BAC": {
+      "directory_name": "Bank of America Corporation Common Stock",
+      "directory_symbol": "BAC",
+      "equivalent_directory_symbols": [
+        "BAC"
+      ],
+      "issuer_key": "bank of america",
+      "name_source": "directory"
+    },
+    "BBAI": {
+      "directory_name": "BigBear.ai, Inc. Common Stock",
+      "directory_symbol": "BBAI",
+      "equivalent_directory_symbols": [
+        "BBAI"
+      ],
+      "issuer_key": "bigbear ai",
+      "name_source": "directory"
+    },
+    "BIIB": {
+      "directory_name": "Biogen Inc. - Common Stock",
+      "directory_symbol": "BIIB",
+      "equivalent_directory_symbols": [
+        "BIIB"
+      ],
+      "issuer_key": "biogen",
+      "name_source": "directory"
+    },
+    "BKNG": {
+      "directory_name": "Booking Holdings Inc. - Common Stock",
+      "directory_symbol": "BKNG",
+      "equivalent_directory_symbols": [
+        "BKNG"
+      ],
+      "issuer_key": "booking holdings",
+      "name_source": "directory"
+    },
+    "BKR": {
+      "directory_name": "Baker Hughes Company - Common Stock",
+      "directory_symbol": "BKR",
+      "equivalent_directory_symbols": [
+        "BKR"
+      ],
+      "issuer_key": "baker hughes",
+      "name_source": "directory"
+    },
+    "BMNR": {
+      "directory_name": "BitMine Immersion Technologies, Inc. Common Stock",
+      "directory_symbol": "BMNR",
+      "equivalent_directory_symbols": [
+        "BMNR"
+      ],
+      "issuer_key": "bitmine immersion technologies",
+      "name_source": "directory"
+    },
+    "BNB-USD": {
+      "directory_name": null,
+      "directory_symbol": "BNB.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "BONK-USD": {
+      "directory_name": null,
+      "directory_symbol": "BONK.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "BP": {
+      "directory_name": "BP p.l.c. Common Stock",
+      "directory_symbol": "BP",
+      "equivalent_directory_symbols": [
+        "BP"
+      ],
+      "issuer_key": "bp p l c",
+      "name_source": "directory"
+    },
+    "BRK-B": {
+      "directory_name": "Berkshire Hathaway Inc. New Common Stock",
+      "directory_symbol": "BRK.B",
+      "equivalent_directory_symbols": [
+        "BRK.A",
+        "BRK.B"
+      ],
+      "issuer_key": "berkshire hathaway",
+      "name_source": "directory"
+    },
+    "BTC-USD": {
+      "directory_name": null,
+      "directory_symbol": "BTC.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "CAT": {
+      "directory_name": "Caterpillar, Inc. Common Stock",
+      "directory_symbol": "CAT",
+      "equivalent_directory_symbols": [
+        "CAT"
+      ],
+      "issuer_key": "caterpillar",
+      "name_source": "directory"
+    },
+    "CCJ": {
+      "directory_name": "Cameco Corporation Common Stock",
+      "directory_symbol": "CCJ",
+      "equivalent_directory_symbols": [
+        "CCJ"
+      ],
+      "issuer_key": "cameco",
+      "name_source": "directory"
+    },
+    "CDNS": {
+      "directory_name": "Cadence Design Systems, Inc. - Common Stock",
+      "directory_symbol": "CDNS",
+      "equivalent_directory_symbols": [
+        "CDNS"
+      ],
+      "issuer_key": "cadence design systems",
+      "name_source": "directory"
+    },
+    "CEG": {
+      "directory_name": "Constellation Energy Corporation - Common Stock When-Issued",
+      "directory_symbol": "CEG",
+      "equivalent_directory_symbols": [
+        "CEG"
+      ],
+      "issuer_key": "constellation energy corporation when issued",
+      "name_source": "directory"
+    },
+    "CIEN": {
+      "directory_name": "Ciena Corporation Common Stock",
+      "directory_symbol": "CIEN",
+      "equivalent_directory_symbols": [
+        "CIEN"
+      ],
+      "issuer_key": "ciena",
+      "name_source": "directory"
+    },
+    "CIFR": {
+      "directory_name": "Cipher Digital Inc. - Common Stock",
+      "directory_symbol": "CIFR",
+      "equivalent_directory_symbols": [
+        "CIFR"
+      ],
+      "issuer_key": "cipher digital",
+      "name_source": "directory"
+    },
+    "CLS": {
+      "directory_name": "Celestica, Inc. Common Stock",
+      "directory_symbol": "CLS",
+      "equivalent_directory_symbols": [
+        "CLS"
+      ],
+      "issuer_key": "celestica",
+      "name_source": "directory"
+    },
+    "CLSK": {
+      "directory_name": "CleanSpark, Inc. - Common Stock",
+      "directory_symbol": "CLSK",
+      "equivalent_directory_symbols": [
+        "CLSK"
+      ],
+      "issuer_key": "cleanspark",
+      "name_source": "directory"
+    },
+    "CMG": {
+      "directory_name": "Chipotle Mexican Grill, Inc. Common Stock",
+      "directory_symbol": "CMG",
+      "equivalent_directory_symbols": [
+        "CMG"
+      ],
+      "issuer_key": "chipotle mexican grill",
+      "name_source": "directory"
+    },
+    "COHR": {
+      "directory_name": "Coherent Corp. Common Stock",
+      "directory_symbol": "COHR",
+      "equivalent_directory_symbols": [
+        "COHR"
+      ],
+      "issuer_key": "coherent",
+      "name_source": "directory"
+    },
+    "COIN": {
+      "directory_name": "Coinbase Global, Inc. - Class A Common Stock",
+      "directory_symbol": "COIN",
+      "equivalent_directory_symbols": [
+        "COIN"
+      ],
+      "issuer_key": "coinbase global",
+      "name_source": "directory"
+    },
+    "COP": {
+      "directory_name": "ConocoPhillips Common Stock",
+      "directory_symbol": "COP",
+      "equivalent_directory_symbols": [
+        "COP"
+      ],
+      "issuer_key": "conocophillips",
+      "name_source": "directory"
+    },
+    "CORZ": {
+      "directory_name": "Core Scientific, Inc. - Common Stock",
+      "directory_symbol": "CORZ",
+      "equivalent_directory_symbols": [
+        "CORZ"
+      ],
+      "issuer_key": "core scientific",
+      "name_source": "directory"
+    },
+    "COST": {
+      "directory_name": "Costco Wholesale Corporation - Common Stock",
+      "directory_symbol": "COST",
+      "equivalent_directory_symbols": [
+        "COST"
+      ],
+      "issuer_key": "costco wholesale",
+      "name_source": "directory"
+    },
+    "CPER": {
+      "directory_name": "United States Copper Index Fund ETV",
+      "directory_symbol": "CPER",
+      "equivalent_directory_symbols": [
+        "CPER"
+      ],
+      "issuer_key": "united states copper index fund etv",
+      "name_source": "directory"
+    },
+    "CRM": {
+      "directory_name": "Salesforce, Inc. Common Stock",
+      "directory_symbol": "CRM",
+      "equivalent_directory_symbols": [
+        "CRM"
+      ],
+      "issuer_key": "salesforce",
+      "name_source": "directory"
+    },
+    "CRSP": {
+      "directory_name": "CRISPR Therapeutics AG - Common Shares",
+      "directory_symbol": "CRSP",
+      "equivalent_directory_symbols": [
+        "CRSP"
+      ],
+      "issuer_key": "crispr therapeutics ag common",
+      "name_source": "directory"
+    },
+    "CRWD": {
+      "directory_name": "CrowdStrike Holdings, Inc. - Class A Common Stock",
+      "directory_symbol": "CRWD",
+      "equivalent_directory_symbols": [
+        "CRWD"
+      ],
+      "issuer_key": "crowdstrike holdings",
+      "name_source": "directory"
+    },
+    "CRWV": {
+      "directory_name": "CoreWeave, Inc. - Class A Common Stock",
+      "directory_symbol": "CRWV",
+      "equivalent_directory_symbols": [
+        "CRWV"
+      ],
+      "issuer_key": "coreweave",
+      "name_source": "directory"
+    },
+    "CSCO": {
+      "directory_name": "Cisco Systems, Inc. - Common Stock",
+      "directory_symbol": "CSCO",
+      "equivalent_directory_symbols": [
+        "CSCO"
+      ],
+      "issuer_key": "cisco systems",
+      "name_source": "directory"
+    },
+    "CVX": {
+      "directory_name": "Chevron Corporation Common Stock",
+      "directory_symbol": "CVX",
+      "equivalent_directory_symbols": [
+        "CVX"
+      ],
+      "issuer_key": "chevron",
+      "name_source": "directory"
+    },
+    "DAL": {
+      "directory_name": "Delta Air Lines, Inc. Common Stock",
+      "directory_symbol": "DAL",
+      "equivalent_directory_symbols": [
+        "DAL"
+      ],
+      "issuer_key": "delta air lines",
+      "name_source": "directory"
+    },
+    "DASH": {
+      "directory_name": "DoorDash, Inc. - Common Stock",
+      "directory_symbol": "DASH",
+      "equivalent_directory_symbols": [
+        "DASH"
+      ],
+      "issuer_key": "doordash",
+      "name_source": "directory"
+    },
+    "DDOG": {
+      "directory_name": "Datadog, Inc. - Class A Common Stock",
+      "directory_symbol": "DDOG",
+      "equivalent_directory_symbols": [
+        "DDOG"
+      ],
+      "issuer_key": "datadog",
+      "name_source": "directory"
+    },
+    "DE": {
+      "directory_name": "Deere & Company Common Stock",
+      "directory_symbol": "DE",
+      "equivalent_directory_symbols": [
+        "DE"
+      ],
+      "issuer_key": "deere and",
+      "name_source": "directory"
+    },
+    "DELL": {
+      "directory_name": "Dell Technologies Inc. Class C Common Stock ",
+      "directory_symbol": "DELL",
+      "equivalent_directory_symbols": [
+        "DELL"
+      ],
+      "issuer_key": "dell technologies",
+      "name_source": "directory"
+    },
+    "DHR": {
+      "directory_name": "Danaher Corporation Common Stock",
+      "directory_symbol": "DHR",
+      "equivalent_directory_symbols": [
+        "DHR"
+      ],
+      "issuer_key": "danaher",
+      "name_source": "directory"
+    },
+    "DIA": {
+      "directory_name": "State Street SPDR Dow Jones Industrial Average ETF Trust",
+      "directory_symbol": "DIA",
+      "equivalent_directory_symbols": [
+        "DIA"
+      ],
+      "issuer_key": "state street spdr dow jones industrial average etf trust",
+      "name_source": "directory"
+    },
+    "DIS": {
+      "directory_name": "Walt Disney Company (The) Common Stock",
+      "directory_symbol": "DIS",
+      "equivalent_directory_symbols": [
+        "DIS"
+      ],
+      "issuer_key": "walt disney company the",
+      "name_source": "directory"
+    },
+    "DJT": {
+      "directory_name": "Trump Media & Technology Group Corp. - Common Stock",
+      "directory_symbol": "DJT",
+      "equivalent_directory_symbols": [
+        "DJT"
+      ],
+      "issuer_key": "trump media and technology group",
+      "name_source": "directory"
+    },
+    "DKNG": {
+      "directory_name": "DraftKings Inc. - Class A Common Stock",
+      "directory_symbol": "DKNG",
+      "equivalent_directory_symbols": [
+        "DKNG"
+      ],
+      "issuer_key": "draftkings",
+      "name_source": "directory"
+    },
+    "DLR": {
+      "directory_name": "Digital Realty Trust, Inc. Common Stock",
+      "directory_symbol": "DLR",
+      "equivalent_directory_symbols": [
+        "DLR"
+      ],
+      "issuer_key": "digital realty trust",
+      "name_source": "directory"
+    },
+    "DOCU": {
+      "directory_name": "DocuSign, Inc. - Common Stock",
+      "directory_symbol": "DOCU",
+      "equivalent_directory_symbols": [
+        "DOCU"
+      ],
+      "issuer_key": "docusign",
+      "name_source": "directory"
+    },
+    "DOGE-USD": {
+      "directory_name": null,
+      "directory_symbol": "DOGE.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "DOT-USD": {
+      "directory_name": null,
+      "directory_symbol": "DOT.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "DVN": {
+      "directory_name": "Devon Energy Corporation Common Stock",
+      "directory_symbol": "DVN",
+      "equivalent_directory_symbols": [
+        "DVN"
+      ],
+      "issuer_key": "devon energy",
+      "name_source": "directory"
+    },
+    "EBAY": {
+      "directory_name": "eBay Inc. - Common Stock",
+      "directory_symbol": "EBAY",
+      "equivalent_directory_symbols": [
+        "EBAY"
+      ],
+      "issuer_key": "ebay",
+      "name_source": "directory"
+    },
+    "ENPH": {
+      "directory_name": "Enphase Energy, Inc. - Common Stock",
+      "directory_symbol": "ENPH",
+      "equivalent_directory_symbols": [
+        "ENPH"
+      ],
+      "issuer_key": "enphase energy",
+      "name_source": "directory"
+    },
+    "EOG": {
+      "directory_name": "EOG Resources, Inc. Common Stock",
+      "directory_symbol": "EOG",
+      "equivalent_directory_symbols": [
+        "EOG"
+      ],
+      "issuer_key": "eog resources",
+      "name_source": "directory"
+    },
+    "EPD": {
+      "directory_name": "Enterprise Products Partners L.P. Common Stock",
+      "directory_symbol": "EPD",
+      "equivalent_directory_symbols": [
+        "EPD"
+      ],
+      "issuer_key": "enterprise products partners l p",
+      "name_source": "directory"
+    },
+    "EQIX": {
+      "directory_name": "Equinix, Inc. - Common Stock",
+      "directory_symbol": "EQIX",
+      "equivalent_directory_symbols": [
+        "EQIX"
+      ],
+      "issuer_key": "equinix",
+      "name_source": "directory"
+    },
+    "EQT": {
+      "directory_name": "EQT Corporation Common Stock",
+      "directory_symbol": "EQT",
+      "equivalent_directory_symbols": [
+        "EQT"
+      ],
+      "issuer_key": "eqt",
+      "name_source": "directory"
+    },
+    "ET": {
+      "directory_name": "Energy Transfer LP Common Units",
+      "directory_symbol": "ET",
+      "equivalent_directory_symbols": [
+        "ET"
+      ],
+      "issuer_key": "energy transfer lp common units",
+      "name_source": "directory"
+    },
+    "ETH-USD": {
+      "directory_name": null,
+      "directory_symbol": "ETH.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "EXPE": {
+      "directory_name": "Expedia Group, Inc. - Common Stock",
+      "directory_symbol": "EXPE",
+      "equivalent_directory_symbols": [
+        "EXPE"
+      ],
+      "issuer_key": "expedia group",
+      "name_source": "directory"
+    },
+    "F": {
+      "directory_name": "Ford Motor Company Common Stock",
+      "directory_symbol": "F",
+      "equivalent_directory_symbols": [
+        "F"
+      ],
+      "issuer_key": "ford motor",
+      "name_source": "directory"
+    },
+    "FANG": {
+      "directory_name": "Diamondback Energy, Inc. - Common Stock",
+      "directory_symbol": "FANG",
+      "equivalent_directory_symbols": [
+        "FANG"
+      ],
+      "issuer_key": "diamondback energy",
+      "name_source": "directory"
+    },
+    "FCX": {
+      "directory_name": "Freeport-McMoRan, Inc. Common Stock",
+      "directory_symbol": "FCX",
+      "equivalent_directory_symbols": [
+        "FCX"
+      ],
+      "issuer_key": "freeport mcmoran",
+      "name_source": "directory"
+    },
+    "FDX": {
+      "directory_name": "FedEx Corporation Common Stock",
+      "directory_symbol": "FDX",
+      "equivalent_directory_symbols": [
+        "FDX"
+      ],
+      "issuer_key": "fedex",
+      "name_source": "directory"
+    },
+    "FET-USD": {
+      "directory_name": null,
+      "directory_symbol": "FET.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "FIL-USD": {
+      "directory_name": null,
+      "directory_symbol": "FIL.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "FIS": {
+      "directory_name": "Fidelity National Information Services, Inc. Common Stock",
+      "directory_symbol": "FIS",
+      "equivalent_directory_symbols": [
+        "FIS"
+      ],
+      "issuer_key": "fidelity national information services",
+      "name_source": "directory"
+    },
+    "FSLR": {
+      "directory_name": "First Solar, Inc. - Common Stock",
+      "directory_symbol": "FSLR",
+      "equivalent_directory_symbols": [
+        "FSLR"
+      ],
+      "issuer_key": "first solar",
+      "name_source": "directory"
+    },
+    "FTNT": {
+      "directory_name": "Fortinet, Inc. - Common Stock",
+      "directory_symbol": "FTNT",
+      "equivalent_directory_symbols": [
+        "FTNT"
+      ],
+      "issuer_key": "fortinet",
+      "name_source": "directory"
+    },
+    "GD": {
+      "directory_name": "General Dynamics Corporation Common Stock",
+      "directory_symbol": "GD",
+      "equivalent_directory_symbols": [
+        "GD"
+      ],
+      "issuer_key": "general dynamics",
+      "name_source": "directory"
+    },
+    "GE": {
+      "directory_name": "GE Aerospace Common Stock",
+      "directory_symbol": "GE",
+      "equivalent_directory_symbols": [
+        "GE"
+      ],
+      "issuer_key": "ge aerospace",
+      "name_source": "directory"
+    },
+    "GEV": {
+      "directory_name": "GE Vernova Inc. Common Stock",
+      "directory_symbol": "GEV",
+      "equivalent_directory_symbols": [
+        "GEV"
+      ],
+      "issuer_key": "ge vernova",
+      "name_source": "directory"
+    },
+    "GILD": {
+      "directory_name": "Gilead Sciences, Inc. - Common Stock",
+      "directory_symbol": "GILD",
+      "equivalent_directory_symbols": [
+        "GILD"
+      ],
+      "issuer_key": "gilead sciences",
+      "name_source": "directory"
+    },
+    "GLD": {
+      "directory_name": "SPDR Gold Shares",
+      "directory_symbol": "GLD",
+      "equivalent_directory_symbols": [
+        "GLD"
+      ],
+      "issuer_key": "spdr gold",
+      "name_source": "directory"
+    },
+    "GLXY": {
+      "directory_name": "Galaxy Digital Inc. - Class A common stock",
+      "directory_symbol": "GLXY",
+      "equivalent_directory_symbols": [
+        "GLXY"
+      ],
+      "issuer_key": "galaxy digital",
+      "name_source": "directory"
+    },
+    "GM": {
+      "directory_name": "General Motors Company Common Stock",
+      "directory_symbol": "GM",
+      "equivalent_directory_symbols": [
+        "GM"
+      ],
+      "issuer_key": "general motors",
+      "name_source": "directory"
+    },
+    "GME": {
+      "directory_name": "GameStop Corporation Common Stock",
+      "directory_symbol": "GME",
+      "equivalent_directory_symbols": [
+        "GME"
+      ],
+      "issuer_key": "gamestop",
+      "name_source": "directory"
+    },
+    "GOOGL": {
+      "directory_name": "Alphabet Inc. - Class A Common Stock",
+      "directory_symbol": "GOOGL",
+      "equivalent_directory_symbols": [
+        "GOOG",
+        "GOOGL"
+      ],
+      "issuer_key": "alphabet",
+      "name_source": "directory"
+    },
+    "GPN": {
+      "directory_name": "Global Payments Inc. Common Stock",
+      "directory_symbol": "GPN",
+      "equivalent_directory_symbols": [
+        "GPN"
+      ],
+      "issuer_key": "global payments",
+      "name_source": "directory"
+    },
+    "GS": {
+      "directory_name": "Goldman Sachs Group, Inc. (The) Common Stock",
+      "directory_symbol": "GS",
+      "equivalent_directory_symbols": [
+        "GS"
+      ],
+      "issuer_key": "goldman sachs group inc the",
+      "name_source": "directory"
+    },
+    "HAL": {
+      "directory_name": "Halliburton Company Common Stock",
+      "directory_symbol": "HAL",
+      "equivalent_directory_symbols": [
+        "HAL"
+      ],
+      "issuer_key": "halliburton",
+      "name_source": "directory"
+    },
+    "HBAR-USD": {
+      "directory_name": null,
+      "directory_symbol": "HBAR.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "HD": {
+      "directory_name": "Home Depot, Inc. (The) Common Stock",
+      "directory_symbol": "HD",
+      "equivalent_directory_symbols": [
+        "HD"
+      ],
+      "issuer_key": "home depot inc the",
+      "name_source": "directory"
+    },
+    "HON": {
+      "directory_name": "Honeywell International Inc. - Common Stock",
+      "directory_symbol": "HON",
+      "equivalent_directory_symbols": [
+        "HON"
+      ],
+      "issuer_key": "honeywell international",
+      "name_source": "directory"
+    },
+    "HOOD": {
+      "directory_name": "Robinhood Markets, Inc. - Class A Common Stock",
+      "directory_symbol": "HOOD",
+      "equivalent_directory_symbols": [
+        "HOOD"
+      ],
+      "issuer_key": "robinhood markets",
+      "name_source": "directory"
+    },
+    "HPE": {
+      "directory_name": "Hewlett Packard Enterprise Company Common Stock",
+      "directory_symbol": "HPE",
+      "equivalent_directory_symbols": [
+        "HPE"
+      ],
+      "issuer_key": "hewlett packard enterprise",
+      "name_source": "directory"
+    },
+    "HUBS": {
+      "directory_name": "HubSpot, Inc. Common Stock",
+      "directory_symbol": "HUBS",
+      "equivalent_directory_symbols": [
+        "HUBS"
+      ],
+      "issuer_key": "hubspot",
+      "name_source": "directory"
+    },
+    "HUT": {
+      "directory_name": "Hut 8 Corp. - Common Stock",
+      "directory_symbol": "HUT",
+      "equivalent_directory_symbols": [
+        "HUT"
+      ],
+      "issuer_key": "hut 8",
+      "name_source": "directory"
+    },
+    "IBM": {
+      "directory_name": "International Business Machines Corporation Common Stock",
+      "directory_symbol": "IBM",
+      "equivalent_directory_symbols": [
+        "IBM"
+      ],
+      "issuer_key": "international business machines",
+      "name_source": "directory"
+    },
+    "ICP-USD": {
+      "directory_name": null,
+      "directory_symbol": "ICP.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "ILMN": {
+      "directory_name": "Illumina, Inc. - Common Stock",
+      "directory_symbol": "ILMN",
+      "equivalent_directory_symbols": [
+        "ILMN"
+      ],
+      "issuer_key": "illumina",
+      "name_source": "directory"
+    },
+    "INJ-USD": {
+      "directory_name": null,
+      "directory_symbol": "INJ.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "INTC": {
+      "directory_name": "Intel Corporation - Common Stock",
+      "directory_symbol": "INTC",
+      "equivalent_directory_symbols": [
+        "INTC"
+      ],
+      "issuer_key": "intel",
+      "name_source": "directory"
+    },
+    "INTU": {
+      "directory_name": "Intuit Inc. - Common Stock",
+      "directory_symbol": "INTU",
+      "equivalent_directory_symbols": [
+        "INTU"
+      ],
+      "issuer_key": "intuit",
+      "name_source": "directory"
+    },
+    "IONQ": {
+      "directory_name": "IonQ, Inc. Common Stock",
+      "directory_symbol": "IONQ",
+      "equivalent_directory_symbols": [
+        "IONQ"
+      ],
+      "issuer_key": "ionq",
+      "name_source": "directory"
+    },
+    "ISRG": {
+      "directory_name": "Intuitive Surgical, Inc. - Common Stock",
+      "directory_symbol": "ISRG",
+      "equivalent_directory_symbols": [
+        "ISRG"
+      ],
+      "issuer_key": "intuitive surgical",
+      "name_source": "directory"
+    },
+    "IWM": {
+      "directory_name": "iShares Russell 2000 Index Fund",
+      "directory_symbol": "IWM",
+      "equivalent_directory_symbols": [
+        "IWM"
+      ],
+      "issuer_key": "ishares russell 2000 index fund",
+      "name_source": "directory"
+    },
+    "JBL": {
+      "directory_name": "Jabil Inc. Common Stock",
+      "directory_symbol": "JBL",
+      "equivalent_directory_symbols": [
+        "JBL"
+      ],
+      "issuer_key": "jabil",
+      "name_source": "directory"
+    },
+    "JNJ": {
+      "directory_name": "Johnson & Johnson Common Stock",
+      "directory_symbol": "JNJ",
+      "equivalent_directory_symbols": [
+        "JNJ"
+      ],
+      "issuer_key": "johnson and johnson",
+      "name_source": "directory"
+    },
+    "JPM": {
+      "directory_name": "JP Morgan Chase & Co. Common Stock",
+      "directory_symbol": "JPM",
+      "equivalent_directory_symbols": [
+        "JPM"
+      ],
+      "issuer_key": "jp morgan chase and",
+      "name_source": "directory"
+    },
+    "KLAC": {
+      "directory_name": "KLA Corporation  - Common Stock",
+      "directory_symbol": "KLAC",
+      "equivalent_directory_symbols": [
+        "KLAC"
+      ],
+      "issuer_key": "kla",
+      "name_source": "directory"
+    },
+    "KMI": {
+      "directory_name": "Kinder Morgan, Inc. Common Stock",
+      "directory_symbol": "KMI",
+      "equivalent_directory_symbols": [
+        "KMI"
+      ],
+      "issuer_key": "kinder morgan",
+      "name_source": "directory"
+    },
+    "KO": {
+      "directory_name": "Coca-Cola Company (The) Common Stock",
+      "directory_symbol": "KO",
+      "equivalent_directory_symbols": [
+        "KO"
+      ],
+      "issuer_key": "coca cola company the",
+      "name_source": "directory"
+    },
+    "LCID": {
+      "directory_name": "Lucid Group, Inc. - Common Stock",
+      "directory_symbol": "LCID",
+      "equivalent_directory_symbols": [
+        "LCID"
+      ],
+      "issuer_key": "lucid group",
+      "name_source": "directory"
+    },
+    "LIN": {
+      "directory_name": "Linde plc - Ordinary Shares",
+      "directory_symbol": "LIN",
+      "equivalent_directory_symbols": [
+        "LIN"
+      ],
+      "issuer_key": "linde",
+      "name_source": "directory"
+    },
+    "LINK-USD": {
+      "directory_name": null,
+      "directory_symbol": "LINK.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "LITE": {
+      "directory_name": "Lumentum Holdings Inc. - Common Stock",
+      "directory_symbol": "LITE",
+      "equivalent_directory_symbols": [
+        "LITE"
+      ],
+      "issuer_key": "lumentum holdings",
+      "name_source": "directory"
+    },
+    "LLY": {
+      "directory_name": "Eli Lilly and Company Common Stock",
+      "directory_symbol": "LLY",
+      "equivalent_directory_symbols": [
+        "LLY"
+      ],
+      "issuer_key": "eli lilly and",
+      "name_source": "directory"
+    },
+    "LMT": {
+      "directory_name": "Lockheed Martin Corporation Common Stock",
+      "directory_symbol": "LMT",
+      "equivalent_directory_symbols": [
+        "LMT"
+      ],
+      "issuer_key": "lockheed martin",
+      "name_source": "directory"
+    },
+    "LRCX": {
+      "directory_name": "Lam Research Corporation - Common Stock",
+      "directory_symbol": "LRCX",
+      "equivalent_directory_symbols": [
+        "LRCX"
+      ],
+      "issuer_key": "lam research",
+      "name_source": "directory"
+    },
+    "LUNR": {
+      "directory_name": "Intuitive Machines, Inc. - Class A Common Stock",
+      "directory_symbol": "LUNR",
+      "equivalent_directory_symbols": [
+        "LUNR"
+      ],
+      "issuer_key": "intuitive machines",
+      "name_source": "directory"
+    },
+    "LYFT": {
+      "directory_name": "Lyft, Inc. - Class A Common Stock",
+      "directory_symbol": "LYFT",
+      "equivalent_directory_symbols": [
+        "LYFT"
+      ],
+      "issuer_key": "lyft",
+      "name_source": "directory"
+    },
+    "MA": {
+      "directory_name": "Mastercard Incorporated Common Stock",
+      "directory_symbol": "MA",
+      "equivalent_directory_symbols": [
+        "MA"
+      ],
+      "issuer_key": "mastercard incorporated",
+      "name_source": "directory"
+    },
+    "MARA": {
+      "directory_name": "MARA Holdings, Inc. - Common Stock",
+      "directory_symbol": "MARA",
+      "equivalent_directory_symbols": [
+        "MARA"
+      ],
+      "issuer_key": "mara holdings",
+      "name_source": "directory"
+    },
+    "MCD": {
+      "directory_name": "McDonald's Corporation Common Stock",
+      "directory_symbol": "MCD",
+      "equivalent_directory_symbols": [
+        "MCD"
+      ],
+      "issuer_key": "mcdonald s",
+      "name_source": "directory"
+    },
+    "MDB": {
+      "directory_name": "MongoDB, Inc. - Class A Common Stock",
+      "directory_symbol": "MDB",
+      "equivalent_directory_symbols": [
+        "MDB"
+      ],
+      "issuer_key": "mongodb",
+      "name_source": "directory"
+    },
+    "MELI": {
+      "directory_name": "MercadoLibre, Inc. - Common Stock",
+      "directory_symbol": "MELI",
+      "equivalent_directory_symbols": [
+        "MELI"
+      ],
+      "issuer_key": "mercadolibre",
+      "name_source": "directory"
+    },
+    "META": {
+      "directory_name": "Meta Platforms, Inc. - Class A Common Stock",
+      "directory_symbol": "META",
+      "equivalent_directory_symbols": [
+        "META"
+      ],
+      "issuer_key": "meta platforms",
+      "name_source": "directory"
+    },
+    "MPC": {
+      "directory_name": "Marathon Petroleum Corporation Common Stock",
+      "directory_symbol": "MPC",
+      "equivalent_directory_symbols": [
+        "MPC"
+      ],
+      "issuer_key": "marathon petroleum",
+      "name_source": "directory"
+    },
+    "MRNA": {
+      "directory_name": "Moderna, Inc. - Common Stock",
+      "directory_symbol": "MRNA",
+      "equivalent_directory_symbols": [
+        "MRNA"
+      ],
+      "issuer_key": "moderna",
+      "name_source": "directory"
+    },
+    "MRVL": {
+      "directory_name": "Marvell Technology, Inc. - Common Stock",
+      "directory_symbol": "MRVL",
+      "equivalent_directory_symbols": [
+        "MRVL"
+      ],
+      "issuer_key": "marvell technology",
+      "name_source": "directory"
+    },
+    "MS": {
+      "directory_name": "Morgan Stanley Common Stock",
+      "directory_symbol": "MS",
+      "equivalent_directory_symbols": [
+        "MS"
+      ],
+      "issuer_key": "morgan stanley",
+      "name_source": "directory"
+    },
+    "MSFT": {
+      "directory_name": "Microsoft Corporation - Common Stock",
+      "directory_symbol": "MSFT",
+      "equivalent_directory_symbols": [
+        "MSFT"
+      ],
+      "issuer_key": "microsoft",
+      "name_source": "directory"
+    },
+    "MSTR": {
+      "directory_name": "Strategy Inc - Class A Common Stock",
+      "directory_symbol": "MSTR",
+      "equivalent_directory_symbols": [
+        "MSTR"
+      ],
+      "issuer_key": "strategy",
+      "name_source": "directory"
+    },
+    "MU": {
+      "directory_name": "Micron Technology, Inc. - Common Stock",
+      "directory_symbol": "MU",
+      "equivalent_directory_symbols": [
+        "MU"
+      ],
+      "issuer_key": "micron technology",
+      "name_source": "directory"
+    },
+    "NBIS": {
+      "directory_name": "Nebius Group N.V. - Class A Ordinary Shares",
+      "directory_symbol": "NBIS",
+      "equivalent_directory_symbols": [
+        "NBIS"
+      ],
+      "issuer_key": "nebius group n v",
+      "name_source": "directory"
+    },
+    "NEAR-USD": {
+      "directory_name": null,
+      "directory_symbol": "NEAR.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "NEE": {
+      "directory_name": "NextEra Energy, Inc. Common Stock",
+      "directory_symbol": "NEE",
+      "equivalent_directory_symbols": [
+        "NEE"
+      ],
+      "issuer_key": "nextera energy",
+      "name_source": "directory"
+    },
+    "NEM": {
+      "directory_name": "Newmont Corporation",
+      "directory_symbol": "NEM",
+      "equivalent_directory_symbols": [
+        "NEM"
+      ],
+      "issuer_key": "newmont",
+      "name_source": "directory"
+    },
+    "NET": {
+      "directory_name": "Cloudflare, Inc. Class A Common Stock",
+      "directory_symbol": "NET",
+      "equivalent_directory_symbols": [
+        "NET"
+      ],
+      "issuer_key": "cloudflare",
+      "name_source": "directory"
+    },
+    "NFLX": {
+      "directory_name": "Netflix, Inc. - Common Stock",
+      "directory_symbol": "NFLX",
+      "equivalent_directory_symbols": [
+        "NFLX"
+      ],
+      "issuer_key": "netflix",
+      "name_source": "directory"
+    },
+    "NIO": {
+      "directory_name": "NIO Inc. American depositary shares, each  representing one Class A ordinary share",
+      "directory_symbol": "NIO",
+      "equivalent_directory_symbols": [
+        "NIO"
+      ],
+      "issuer_key": "nio inc each representing one",
+      "name_source": "directory"
+    },
+    "NKE": {
+      "directory_name": "Nike, Inc. Common Stock",
+      "directory_symbol": "NKE",
+      "equivalent_directory_symbols": [
+        "NKE"
+      ],
+      "issuer_key": "nike",
+      "name_source": "directory"
+    },
+    "NOC": {
+      "directory_name": "Northrop Grumman Corporation Common Stock",
+      "directory_symbol": "NOC",
+      "equivalent_directory_symbols": [
+        "NOC"
+      ],
+      "issuer_key": "northrop grumman",
+      "name_source": "directory"
+    },
+    "NOW": {
+      "directory_name": "ServiceNow, Inc. Common Stock",
+      "directory_symbol": "NOW",
+      "equivalent_directory_symbols": [
+        "NOW"
+      ],
+      "issuer_key": "servicenow",
+      "name_source": "directory"
+    },
+    "NU": {
+      "directory_name": "Nu Holdings Ltd. Class A Ordinary Shares",
+      "directory_symbol": "NU",
+      "equivalent_directory_symbols": [
+        "NU"
+      ],
+      "issuer_key": "nu holdings",
+      "name_source": "directory"
+    },
+    "NVDA": {
+      "directory_name": "NVIDIA Corporation - Common Stock",
+      "directory_symbol": "NVDA",
+      "equivalent_directory_symbols": [
+        "NVDA"
+      ],
+      "issuer_key": "nvidia",
+      "name_source": "directory"
+    },
+    "NXPI": {
+      "directory_name": "NXP Semiconductors N.V. - Common Stock",
+      "directory_symbol": "NXPI",
+      "equivalent_directory_symbols": [
+        "NXPI"
+      ],
+      "issuer_key": "nxp semiconductors n v",
+      "name_source": "directory"
+    },
+    "OKE": {
+      "directory_name": "ONEOK, Inc. Common Stock",
+      "directory_symbol": "OKE",
+      "equivalent_directory_symbols": [
+        "OKE"
+      ],
+      "issuer_key": "oneok",
+      "name_source": "directory"
+    },
+    "OKLO": {
+      "directory_name": "Oklo Inc. Class A common stock",
+      "directory_symbol": "OKLO",
+      "equivalent_directory_symbols": [
+        "OKLO"
+      ],
+      "issuer_key": "oklo",
+      "name_source": "directory"
+    },
+    "OKTA": {
+      "directory_name": "Okta, Inc. - Class A Common Stock",
+      "directory_symbol": "OKTA",
+      "equivalent_directory_symbols": [
+        "OKTA"
+      ],
+      "issuer_key": "okta",
+      "name_source": "directory"
+    },
+    "ON": {
+      "directory_name": "ON Semiconductor Corporation - Common Stock",
+      "directory_symbol": "ON",
+      "equivalent_directory_symbols": [
+        "ON"
+      ],
+      "issuer_key": "on semiconductor",
+      "name_source": "directory"
+    },
+    "ONDO-USD": {
+      "directory_name": null,
+      "directory_symbol": "ONDO.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "OPEN": {
+      "directory_name": "Opendoor Technologies Inc  - Common Stock",
+      "directory_symbol": "OPEN",
+      "equivalent_directory_symbols": [
+        "OPEN"
+      ],
+      "issuer_key": "opendoor technologies",
+      "name_source": "directory"
+    },
+    "ORCL": {
+      "directory_name": "Oracle Corporation Common Stock",
+      "directory_symbol": "ORCL",
+      "equivalent_directory_symbols": [
+        "ORCL"
+      ],
+      "issuer_key": "oracle",
+      "name_source": "directory"
+    },
+    "OXY": {
+      "directory_name": "Occidental Petroleum Corporation Common Stock",
+      "directory_symbol": "OXY",
+      "equivalent_directory_symbols": [
+        "OXY"
+      ],
+      "issuer_key": "occidental petroleum",
+      "name_source": "directory"
+    },
+    "PANW": {
+      "directory_name": "Palo Alto Networks, Inc. - Common Stock",
+      "directory_symbol": "PANW",
+      "equivalent_directory_symbols": [
+        "PANW"
+      ],
+      "issuer_key": "palo alto networks",
+      "name_source": "directory"
+    },
+    "PATH": {
+      "directory_name": "UiPath, Inc. Class A Common Stock",
+      "directory_symbol": "PATH",
+      "equivalent_directory_symbols": [
+        "PATH"
+      ],
+      "issuer_key": "uipath",
+      "name_source": "directory"
+    },
+    "PEP": {
+      "directory_name": "PepsiCo, Inc. - Common Stock",
+      "directory_symbol": "PEP",
+      "equivalent_directory_symbols": [
+        "PEP"
+      ],
+      "issuer_key": "pepsico",
+      "name_source": "directory"
+    },
+    "PFE": {
+      "directory_name": "Pfizer, Inc. Common Stock",
+      "directory_symbol": "PFE",
+      "equivalent_directory_symbols": [
+        "PFE"
+      ],
+      "issuer_key": "pfizer",
+      "name_source": "directory"
+    },
+    "PG": {
+      "directory_name": "Procter & Gamble Company (The) Common Stock",
+      "directory_symbol": "PG",
+      "equivalent_directory_symbols": [
+        "PG"
+      ],
+      "issuer_key": "procter and gamble company the",
+      "name_source": "directory"
+    },
+    "PLTR": {
+      "directory_name": "Palantir Technologies Inc. - Class A Common Stock",
+      "directory_symbol": "PLTR",
+      "equivalent_directory_symbols": [
+        "PLTR"
+      ],
+      "issuer_key": "palantir technologies",
+      "name_source": "directory"
+    },
+    "PPLT": {
+      "directory_name": "abrdn Physical Platinum Shares ETF",
+      "directory_symbol": "PPLT",
+      "equivalent_directory_symbols": [
+        "PPLT"
+      ],
+      "issuer_key": "abrdn physical platinum etf",
+      "name_source": "directory"
+    },
+    "PSX": {
+      "directory_name": "Phillips 66 Common Stock",
+      "directory_symbol": "PSX",
+      "equivalent_directory_symbols": [
+        "PSX"
+      ],
+      "issuer_key": "phillips 66",
+      "name_source": "directory"
+    },
+    "PYPL": {
+      "directory_name": "PayPal Holdings, Inc. - Common Stock",
+      "directory_symbol": "PYPL",
+      "equivalent_directory_symbols": [
+        "PYPL"
+      ],
+      "issuer_key": "paypal holdings",
+      "name_source": "directory"
+    },
+    "QBTS": {
+      "directory_name": "D-Wave Quantum Inc. - Common Stock",
+      "directory_symbol": "QBTS",
+      "equivalent_directory_symbols": [
+        "QBTS"
+      ],
+      "issuer_key": "d wave quantum",
+      "name_source": "directory"
+    },
+    "QCOM": {
+      "directory_name": "QUALCOMM Incorporated - Common Stock",
+      "directory_symbol": "QCOM",
+      "equivalent_directory_symbols": [
+        "QCOM"
+      ],
+      "issuer_key": "qualcomm incorporated",
+      "name_source": "directory"
+    },
+    "QQQ": {
+      "directory_name": "Invesco QQQ Trust, Series 1",
+      "directory_symbol": "QQQ",
+      "equivalent_directory_symbols": [
+        "QQQ"
+      ],
+      "issuer_key": "invesco qqq trust",
+      "name_source": "directory"
+    },
+    "RBLX": {
+      "directory_name": "Roblox Corporation Class A Common Stock",
+      "directory_symbol": "RBLX",
+      "equivalent_directory_symbols": [
+        "RBLX"
+      ],
+      "issuer_key": "roblox",
+      "name_source": "directory"
+    },
+    "RBRK": {
+      "directory_name": "Rubrik, Inc. Class A Common Stock",
+      "directory_symbol": "RBRK",
+      "equivalent_directory_symbols": [
+        "RBRK"
+      ],
+      "issuer_key": "rubrik",
+      "name_source": "directory"
+    },
+    "RDDT": {
+      "directory_name": "Reddit, Inc. Class A Common Stock",
+      "directory_symbol": "RDDT",
+      "equivalent_directory_symbols": [
+        "RDDT"
+      ],
+      "issuer_key": "reddit",
+      "name_source": "directory"
+    },
+    "REGN": {
+      "directory_name": "Regeneron Pharmaceuticals, Inc. - Common Stock",
+      "directory_symbol": "REGN",
+      "equivalent_directory_symbols": [
+        "REGN"
+      ],
+      "issuer_key": "regeneron pharmaceuticals",
+      "name_source": "directory"
+    },
+    "RENDER-USD": {
+      "directory_name": null,
+      "directory_symbol": "RENDER.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "RGTI": {
+      "directory_name": "Rigetti Computing, Inc.  - Common stock",
+      "directory_symbol": "RGTI",
+      "equivalent_directory_symbols": [
+        "RGTI"
+      ],
+      "issuer_key": "rigetti computing",
+      "name_source": "directory"
+    },
+    "RIOT": {
+      "directory_name": "Riot Platforms, Inc. - Common Stock",
+      "directory_symbol": "RIOT",
+      "equivalent_directory_symbols": [
+        "RIOT"
+      ],
+      "issuer_key": "riot platforms",
+      "name_source": "directory"
+    },
+    "RKLB": {
+      "directory_name": "Rocket Lab Corporation - Common Stock",
+      "directory_symbol": "RKLB",
+      "equivalent_directory_symbols": [
+        "RKLB"
+      ],
+      "issuer_key": "rocket lab",
+      "name_source": "directory"
+    },
+    "RTX": {
+      "directory_name": "RTX Corporation Common Stock",
+      "directory_symbol": "RTX",
+      "equivalent_directory_symbols": [
+        "RTX"
+      ],
+      "issuer_key": "rtx",
+      "name_source": "directory"
+    },
+    "S": {
+      "directory_name": "SentinelOne, Inc. Class A Common Stock",
+      "directory_symbol": "S",
+      "equivalent_directory_symbols": [
+        "S"
+      ],
+      "issuer_key": "sentinelone",
+      "name_source": "directory"
+    },
+    "SBET": {
+      "directory_name": "Sharplink, Inc. - Common Stock",
+      "directory_symbol": "SBET",
+      "equivalent_directory_symbols": [
+        "SBET"
+      ],
+      "issuer_key": "sharplink",
+      "name_source": "directory"
+    },
+    "SBUX": {
+      "directory_name": "Starbucks Corporation - Common Stock",
+      "directory_symbol": "SBUX",
+      "equivalent_directory_symbols": [
+        "SBUX"
+      ],
+      "issuer_key": "starbucks",
+      "name_source": "directory"
+    },
+    "SCHW": {
+      "directory_name": "Charles Schwab Corporation (The) Common Stock",
+      "directory_symbol": "SCHW",
+      "equivalent_directory_symbols": [
+        "SCHW"
+      ],
+      "issuer_key": "charles schwab corporation the",
+      "name_source": "directory"
+    },
+    "SHEL": {
+      "directory_name": "Shell PLC American Depositary Shares (each representing two (2) Ordinary Shares) ",
+      "directory_symbol": "SHEL",
+      "equivalent_directory_symbols": [
+        "SHEL"
+      ],
+      "issuer_key": "shell plc each representing two 2",
+      "name_source": "directory"
+    },
+    "SHIB-USD": {
+      "directory_name": null,
+      "directory_symbol": "SHIB.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "SHOP": {
+      "directory_name": "Shopify Inc. - Class A Subordinate Voting Shares",
+      "directory_symbol": "SHOP",
+      "equivalent_directory_symbols": [
+        "SHOP"
+      ],
+      "issuer_key": "shopify inc subordinate voting",
+      "name_source": "directory"
+    },
+    "SLB": {
+      "directory_name": "SLB Limited Common Shares",
+      "directory_symbol": "SLB",
+      "equivalent_directory_symbols": [
+        "SLB"
+      ],
+      "issuer_key": "slb limited common",
+      "name_source": "directory"
+    },
+    "SLV": {
+      "directory_name": "iShares Silver Trust",
+      "directory_symbol": "SLV",
+      "equivalent_directory_symbols": [
+        "SLV"
+      ],
+      "issuer_key": "ishares silver trust",
+      "name_source": "directory"
+    },
+    "SMCI": {
+      "directory_name": "Super Micro Computer, Inc. - Common Stock",
+      "directory_symbol": "SMCI",
+      "equivalent_directory_symbols": [
+        "SMCI"
+      ],
+      "issuer_key": "super micro computer",
+      "name_source": "directory"
+    },
+    "SMH": {
+      "directory_name": "VanEck Semiconductor ETF",
+      "directory_symbol": "SMH",
+      "equivalent_directory_symbols": [
+        "SMH"
+      ],
+      "issuer_key": "vaneck semiconductor etf",
+      "name_source": "directory"
+    },
+    "SMR": {
+      "directory_name": "NuScale Power Corporation Class A Common Stock",
+      "directory_symbol": "SMR",
+      "equivalent_directory_symbols": [
+        "SMR"
+      ],
+      "issuer_key": "nuscale power",
+      "name_source": "directory"
+    },
+    "SNAP": {
+      "directory_name": "Snap Inc. Class A Common Stock",
+      "directory_symbol": "SNAP",
+      "equivalent_directory_symbols": [
+        "SNAP"
+      ],
+      "issuer_key": "snap",
+      "name_source": "directory"
+    },
+    "SNOW": {
+      "directory_name": "Snowflake Inc. Common Stock",
+      "directory_symbol": "SNOW",
+      "equivalent_directory_symbols": [
+        "SNOW"
+      ],
+      "issuer_key": "snowflake",
+      "name_source": "directory"
+    },
+    "SNPS": {
+      "directory_name": "Synopsys, Inc. - Common Stock",
+      "directory_symbol": "SNPS",
+      "equivalent_directory_symbols": [
+        "SNPS"
+      ],
+      "issuer_key": "synopsys",
+      "name_source": "directory"
+    },
+    "SOFI": {
+      "directory_name": "SoFi Technologies, Inc.  - Common Stock",
+      "directory_symbol": "SOFI",
+      "equivalent_directory_symbols": [
+        "SOFI"
+      ],
+      "issuer_key": "sofi technologies",
+      "name_source": "directory"
+    },
+    "SOL-USD": {
+      "directory_name": null,
+      "directory_symbol": "SOL.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "SOUN": {
+      "directory_name": "SoundHound AI, Inc. - Class A Common Stock",
+      "directory_symbol": "SOUN",
+      "equivalent_directory_symbols": [
+        "SOUN"
+      ],
+      "issuer_key": "soundhound ai",
+      "name_source": "directory"
+    },
+    "SPY": {
+      "directory_name": "State Street SPDR S&P 500 ETF Trust",
+      "directory_symbol": "SPY",
+      "equivalent_directory_symbols": [
+        "SPY"
+      ],
+      "issuer_key": "state street spdr s and p 500 etf trust",
+      "name_source": "directory"
+    },
+    "STX": {
+      "directory_name": "Seagate Technology Holdings PLC - Ordinary Shares (Ireland)",
+      "directory_symbol": "STX",
+      "equivalent_directory_symbols": [
+        "STX"
+      ],
+      "issuer_key": "seagate technology holdings plc ireland",
+      "name_source": "directory"
+    },
+    "T": {
+      "directory_name": "AT&T Inc.",
+      "directory_symbol": "T",
+      "equivalent_directory_symbols": [
+        "T"
+      ],
+      "issuer_key": "at and t",
+      "name_source": "directory"
+    },
+    "TEAM": {
+      "directory_name": "Atlassian Corporation  - Class A Common Stock",
+      "directory_symbol": "TEAM",
+      "equivalent_directory_symbols": [
+        "TEAM"
+      ],
+      "issuer_key": "atlassian",
+      "name_source": "directory"
+    },
+    "TEM": {
+      "directory_name": "Tempus AI, Inc. - Class A Common Stock",
+      "directory_symbol": "TEM",
+      "equivalent_directory_symbols": [
+        "TEM"
+      ],
+      "issuer_key": "tempus ai",
+      "name_source": "directory"
+    },
+    "TLT": {
+      "directory_name": "iShares 20+ Year Treasury Bond ETF",
+      "directory_symbol": "TLT",
+      "equivalent_directory_symbols": [
+        "TLT"
+      ],
+      "issuer_key": "ishares 20 year treasury bond etf",
+      "name_source": "directory"
+    },
+    "TMO": {
+      "directory_name": "Thermo Fisher Scientific Inc Common Stock",
+      "directory_symbol": "TMO",
+      "equivalent_directory_symbols": [
+        "TMO"
+      ],
+      "issuer_key": "thermo fisher scientific",
+      "name_source": "directory"
+    },
+    "TRX-USD": {
+      "directory_name": null,
+      "directory_symbol": "TRX.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "TSLA": {
+      "directory_name": "Tesla, Inc.  - Common Stock",
+      "directory_symbol": "TSLA",
+      "equivalent_directory_symbols": [
+        "TSLA"
+      ],
+      "issuer_key": "tesla",
+      "name_source": "directory"
+    },
+    "TSM": {
+      "directory_name": "Taiwan Semiconductor Manufacturing Company Ltd.",
+      "directory_symbol": "TSM",
+      "equivalent_directory_symbols": [
+        "TSM"
+      ],
+      "issuer_key": "taiwan semiconductor manufacturing",
+      "name_source": "directory"
+    },
+    "TTE": {
+      "directory_name": "TotalEnergies SE Ordinary Shares",
+      "directory_symbol": "TTE",
+      "equivalent_directory_symbols": [
+        "TTE"
+      ],
+      "issuer_key": "totalenergies",
+      "name_source": "directory"
+    },
+    "TXN": {
+      "directory_name": "Texas Instruments Incorporated - Common Stock",
+      "directory_symbol": "TXN",
+      "equivalent_directory_symbols": [
+        "TXN"
+      ],
+      "issuer_key": "texas instruments incorporated",
+      "name_source": "directory"
+    },
+    "UAL": {
+      "directory_name": "United Airlines Holdings, Inc. - Common Stock",
+      "directory_symbol": "UAL",
+      "equivalent_directory_symbols": [
+        "UAL"
+      ],
+      "issuer_key": "united airlines holdings",
+      "name_source": "directory"
+    },
+    "UBER": {
+      "directory_name": "Uber Technologies, Inc. Common Stock",
+      "directory_symbol": "UBER",
+      "equivalent_directory_symbols": [
+        "UBER"
+      ],
+      "issuer_key": "uber technologies",
+      "name_source": "directory"
+    },
+    "UNG": {
+      "directory_name": "United States Natural Gas Fund LP",
+      "directory_symbol": "UNG",
+      "equivalent_directory_symbols": [
+        "UNG"
+      ],
+      "issuer_key": "united states natural gas fund",
+      "name_source": "directory"
+    },
+    "UNH": {
+      "directory_name": "UnitedHealth Group Incorporated Common Stock (DE)",
+      "directory_symbol": "UNH",
+      "equivalent_directory_symbols": [
+        "UNH"
+      ],
+      "issuer_key": "unitedhealth group incorporated de",
+      "name_source": "directory"
+    },
+    "UNP": {
+      "directory_name": "Union Pacific Corporation Common Stock",
+      "directory_symbol": "UNP",
+      "equivalent_directory_symbols": [
+        "UNP"
+      ],
+      "issuer_key": "union pacific",
+      "name_source": "directory"
+    },
+    "UPST": {
+      "directory_name": "Upstart Holdings, Inc. - Common stock",
+      "directory_symbol": "UPST",
+      "equivalent_directory_symbols": [
+        "UPST"
+      ],
+      "issuer_key": "upstart holdings",
+      "name_source": "directory"
+    },
+    "USO": {
+      "directory_name": "United States Oil Fund",
+      "directory_symbol": "USO",
+      "equivalent_directory_symbols": [
+        "USO"
+      ],
+      "issuer_key": "united states oil fund",
+      "name_source": "directory"
+    },
+    "UUUU": {
+      "directory_name": "Energy Fuels Inc Ordinary Shares (Canada)",
+      "directory_symbol": "UUUU",
+      "equivalent_directory_symbols": [
+        "UUUU"
+      ],
+      "issuer_key": "energy fuels inc canada",
+      "name_source": "directory"
+    },
+    "V": {
+      "directory_name": "Visa Inc.",
+      "directory_symbol": "V",
+      "equivalent_directory_symbols": [
+        "V"
+      ],
+      "issuer_key": "visa",
+      "name_source": "directory"
+    },
+    "VEEV": {
+      "directory_name": "Veeva Systems Inc. Class A Common Stock",
+      "directory_symbol": "VEEV",
+      "equivalent_directory_symbols": [
+        "VEEV"
+      ],
+      "issuer_key": "veeva systems",
+      "name_source": "directory"
+    },
+    "VLO": {
+      "directory_name": "Valero Energy Corporation Common Stock",
+      "directory_symbol": "VLO",
+      "equivalent_directory_symbols": [
+        "VLO"
+      ],
+      "issuer_key": "valero energy",
+      "name_source": "directory"
+    },
+    "VRT": {
+      "directory_name": "Vertiv Holdings, LLC Class A Common Stock",
+      "directory_symbol": "VRT",
+      "equivalent_directory_symbols": [
+        "VRT"
+      ],
+      "issuer_key": "vertiv holdings",
+      "name_source": "directory"
+    },
+    "VRTX": {
+      "directory_name": "Vertex Pharmaceuticals Incorporated - Common Stock",
+      "directory_symbol": "VRTX",
+      "equivalent_directory_symbols": [
+        "VRTX"
+      ],
+      "issuer_key": "vertex pharmaceuticals incorporated",
+      "name_source": "directory"
+    },
+    "VST": {
+      "directory_name": "Vistra Corp. Common Stock",
+      "directory_symbol": "VST",
+      "equivalent_directory_symbols": [
+        "VST"
+      ],
+      "issuer_key": "vistra",
+      "name_source": "directory"
+    },
+    "VZ": {
+      "directory_name": "Verizon Communications Inc. Common Stock",
+      "directory_symbol": "VZ",
+      "equivalent_directory_symbols": [
+        "VZ"
+      ],
+      "issuer_key": "verizon communications",
+      "name_source": "directory"
+    },
+    "WDAY": {
+      "directory_name": "Workday, Inc. - Class A Common Stock",
+      "directory_symbol": "WDAY",
+      "equivalent_directory_symbols": [
+        "WDAY"
+      ],
+      "issuer_key": "workday",
+      "name_source": "directory"
+    },
+    "WDC": {
+      "directory_name": "Western Digital Corporation - Common Stock",
+      "directory_symbol": "WDC",
+      "equivalent_directory_symbols": [
+        "WDC"
+      ],
+      "issuer_key": "western digital",
+      "name_source": "directory"
+    },
+    "WFC": {
+      "directory_name": "Wells Fargo & Company Common Stock",
+      "directory_symbol": "WFC",
+      "equivalent_directory_symbols": [
+        "WFC"
+      ],
+      "issuer_key": "wells fargo and",
+      "name_source": "directory"
+    },
+    "WIF-USD": {
+      "directory_name": null,
+      "directory_symbol": "WIF.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "WMB": {
+      "directory_name": "Williams Companies, Inc. (The) Common Stock",
+      "directory_symbol": "WMB",
+      "equivalent_directory_symbols": [
+        "WMB"
+      ],
+      "issuer_key": "williams companies inc the",
+      "name_source": "directory"
+    },
+    "WMT": {
+      "directory_name": "Walmart Inc. - Common Stock",
+      "directory_symbol": "WMT",
+      "equivalent_directory_symbols": [
+        "WMT"
+      ],
+      "issuer_key": "walmart",
+      "name_source": "directory"
+    },
+    "WULF": {
+      "directory_name": "TeraWulf Inc. - Common Stock",
+      "directory_symbol": "WULF",
+      "equivalent_directory_symbols": [
+        "WULF"
+      ],
+      "issuer_key": "terawulf",
+      "name_source": "directory"
+    },
+    "XLE": {
+      "directory_name": "State Street Energy Select Sector SPDR ETF",
+      "directory_symbol": "XLE",
+      "equivalent_directory_symbols": [
+        "XLE"
+      ],
+      "issuer_key": "state street energy select sector spdr etf",
+      "name_source": "directory"
+    },
+    "XLF": {
+      "directory_name": "State Street Financial Select Sector SPDR ETF",
+      "directory_symbol": "XLF",
+      "equivalent_directory_symbols": [
+        "XLF"
+      ],
+      "issuer_key": "state street financial select sector spdr etf",
+      "name_source": "directory"
+    },
+    "XLK": {
+      "directory_name": "State Street Technology Select Sector SPDR ETF",
+      "directory_symbol": "XLK",
+      "equivalent_directory_symbols": [
+        "XLK"
+      ],
+      "issuer_key": "state street technology select sector spdr etf",
+      "name_source": "directory"
+    },
+    "XOM": {
+      "directory_name": "ExxonMobil Holdings Corporation Common Stock",
+      "directory_symbol": "XOM",
+      "equivalent_directory_symbols": [
+        "XOM"
+      ],
+      "issuer_key": "exxonmobil holdings",
+      "name_source": "directory"
+    },
+    "XRP-USD": {
+      "directory_name": null,
+      "directory_symbol": "XRP.USD",
+      "equivalent_directory_symbols": [],
+      "issuer_key": null,
+      "name_source": null
+    },
+    "XYZ": {
+      "directory_name": "Block, Inc. Class A Common Stock,",
+      "directory_symbol": "XYZ",
+      "equivalent_directory_symbols": [
+        "XYZ"
+      ],
+      "issuer_key": "block",
+      "name_source": "directory"
+    },
+    "ZM": {
+      "directory_name": "Zoom Communications, Inc. - Class A Common Stock",
+      "directory_symbol": "ZM",
+      "equivalent_directory_symbols": [
+        "ZM"
+      ],
+      "issuer_key": "zoom communications",
+      "name_source": "directory"
+    },
+    "ZS": {
+      "directory_name": "Zscaler, Inc. - Common Stock",
+      "directory_symbol": "ZS",
+      "equivalent_directory_symbols": [
+        "ZS"
+      ],
+      "issuer_key": "zscaler",
+      "name_source": "directory"
+    }
+  },
+  "multi_class_issuers": [
+    {
+      "equivalent_directory_symbols": [
+        "BRK.A",
+        "BRK.B"
+      ],
+      "issuer_key": "berkshire hathaway",
+      "prior_symbol": "BRK-B"
+    },
+    {
+      "equivalent_directory_symbols": [
+        "GOOG",
+        "GOOGL"
+      ],
+      "issuer_key": "alphabet",
+      "prior_symbol": "GOOGL"
+    }
+  ],
+  "prior_symbol_count": 250,
+  "prior_symbols_not_in_directories_or_screener": [
+    "AAVE-USD",
+    "ADA-USD",
+    "ARB-USD",
+    "ATOM-USD",
+    "AVAX-USD",
+    "BNB-USD",
+    "BONK-USD",
+    "BTC-USD",
+    "DOGE-USD",
+    "DOT-USD",
+    "ETH-USD",
+    "FET-USD",
+    "FIL-USD",
+    "HBAR-USD",
+    "ICP-USD",
+    "INJ-USD",
+    "LINK-USD",
+    "NEAR-USD",
+    "ONDO-USD",
+    "RENDER-USD",
+    "SHIB-USD",
+    "SOL-USD",
+    "TRX-USD",
+    "WIF-USD",
+    "XRP-USD"
+  ],
+  "purpose": "Frozen issuer map for Tier 3 step 6b (v1.0.1 amendment, C1 finding 2): share classes / issuer equivalents of every UX51/X2 prior-study issuer, derived mechanically from the archived 2026-10-26 NASDAQ Trader directories by the name-matching rule in build_issuer_map.py.",
+  "source_hashes": {
+    "exclusion_universes.json": "c7112909009aa605a380b198d07b3ebd421fa44ce5a4751e830c8496ca535e04",
+    "nasdaq_screener_raw.json": "464e82847212024e3c2b871c487c4ac6a3af854763f82dbd124ed4987b39b912",
+    "nasdaqlisted.txt": "8e72f822228a2536b0e712e5ee91c14e30db07408cc8863a6d64cb1bac1c2c19",
+    "otherlisted.txt": "67c1e321790341bf89172e2dc30119e1a39180d3dd4b2d7cb4e420ba02305ca6"
+  }
+}
