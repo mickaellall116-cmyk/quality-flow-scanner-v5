@@ -1,0 +1,11 @@
+EXP-14B pre-run input hash verification — 2026-10-26T03:32:12Z UTC / 2026-10-25 23:32:12 ET
+Pinned expectations (compiled into corr2 script PINNED_INPUT_SHA256; CORRECTION2.md table):
+  inventory   a6bbd19a702120cafd48cd01ee4c8ff59b838a8bd6439822415d6c18278ef02f
+  exec_prices 4adb8320bd10e8e1e8c650d847290c5a66344b9a21704fba40fc53992af205b8
+  cohort      35690b806e51eefe388fadf35b04baf5ed4c52f8e30ac193a38cf88246332824
+  draws       fe54808e282515807703692fb08cf3928ee9a4435d04b6939f2b9f47157e4a8a
+Observed file hashes:
+a6bbd19a702120cafd48cd01ee4c8ff59b838a8bd6439822415d6c18278ef02f  /home/hatch/workspace/qf_decisionb_stage/archive_clone/research_inventory/p7b_20261025/p7b_inventory.jsonl
+4adb8320bd10e8e1e8c650d847290c5a66344b9a21704fba40fc53992af205b8  /home/hatch/workspace/qf_decisionb_stage/archive_clone/research_inventory/exp14_exec_prices_20261025/exp14_exec_prices.jsonl
+35690b806e51eefe388fadf35b04baf5ed4c52f8e30ac193a38cf88246332824  /home/hatch/workspace/qf_exp14b_run_stage/research_notes/equity43_dev_buy_decisionb_corr2_20261025/artifacts/exp14_frozen_cohort.json
+fe54808e282515807703692fb08cf3928ee9a4435d04b6939f2b9f47157e4a8a  /home/hatch/workspace/qf_exp14b_run_stage/research_notes/equity43_dev_buy_decisionb_corr2_20261025/artifacts/exp14_frozen_draws.json

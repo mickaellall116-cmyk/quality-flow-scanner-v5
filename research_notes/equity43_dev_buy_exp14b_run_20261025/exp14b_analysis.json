@@ -1,0 +1,83 @@
+{
+ "block_sessions": 20,
+ "bootstrap_reps": 10000,
+ "bootstrap_seed": 6050949521315240661,
+ "bt_diagnostic": {
+  "gating": false,
+  "mean_paired_excess_atr": 0.6497392636994823,
+  "mean_paired_excess_pct": 0.011311057725417762,
+  "n": 43
+ },
+ "claim": "NONE",
+ "cost_sensitivity": {
+  "declared_basis": "preregistration v0.3 section 5 (H-BUY): costs cancel in the paired difference; this descriptive line is reported so a reader can see whether the effect clears a cost \u2014 it is never a verdict input",
+  "primary_paired_excess_pct": 0.008388794352771678,
+  "primary_paired_excess_pct_minus_round_trip": 0.0058887943527716775,
+  "round_trip_bps": 25
+ },
+ "disclosure": {
+  "decision_basis": "Decision B (Mike, 2026-10-25) \u2014 prospective DEV-only matched-subpopulation amendment; the original EXP-14 protocol remains STOP; this is a design amendment only and execution requires Mike's separate authorization",
+  "eligible_events": 311,
+  "excluded_events_unmatched": 71,
+  "exclusion_rate": 0.2282958199356913,
+  "exclusion_rate_pct": 22.829581993569132,
+  "matched_subpopulation_only": true,
+  "retained_events_matched": 240,
+  "scope_statement": "MATCHED SUBPOPULATION ONLY \u2014 these results describe only the events meeting the frozen step-(c) matching criteria (the retained events). They do NOT describe all Quality Flow BUY signals, and they establish no validated trading edge."
+ },
+ "horizons": {
+  "10": {
+   "mean_event_return_atr": -0.04266983433838185,
+   "mean_event_return_pct": 0.0031314846328136343,
+   "mean_paired_excess_atr": 0.18158046332385522,
+   "mean_paired_excess_pct": 0.008388794352771678,
+   "n_events": 240
+  },
+  "20": {
+   "mean_event_return_atr": 0.2990990091680148,
+   "mean_event_return_pct": 0.014382985996880966,
+   "mean_paired_excess_atr": -0.24320975586565927,
+   "mean_paired_excess_pct": -0.0012466046454382965,
+   "n_events": 240
+  },
+  "5": {
+   "mean_event_return_atr": -0.028082645421531584,
+   "mean_event_return_pct": 0.0012421517288280803,
+   "mean_paired_excess_atr": 0.17354365638005215,
+   "mean_paired_excess_pct": 0.006230021474747595,
+   "n_events": 240
+  }
+ },
+ "label": "DEV EXPLORATORY",
+ "master_seed": 7715012043445510037,
+ "primary_horizon": 10,
+ "primary_paired_excess": {
+  "block_bootstrap": {
+   "lower_95": -0.12421164689529339,
+   "mean_blocks_per_rep": 19.4012,
+   "reps": 10000,
+   "resample_mean": 0.19642370348220775,
+   "resample_var": 0.035767724758818877,
+   "upper_95": 0.49412452864793804
+  },
+  "cluster_bootstrap": {
+   "clusters": 43,
+   "lower_95": -0.14233499203156924,
+   "reps": 10000,
+   "resample_mean": 0.18524424856216862,
+   "resample_var": 0.040468845064011244,
+   "upper_95": 0.5183824331686139
+  },
+  "design_effect": 0.8802850324842751,
+  "interval_lower_95": -0.14233499203156924,
+  "interval_upper_95": 0.5183824331686139,
+  "interval_used": "cluster",
+  "mean_atr": 0.18158046332385522,
+  "mean_pct": 0.008388794352771678,
+  "n": 240,
+  "n_eff": 272.638964816532
+ },
+ "study": "EXP-14-BUY-DEV-EXPLORATORY",
+ "study_basis": "AMENDED under Decision B (Mike, 2026-10-25): DEV-only matched-subpopulation descriptive study. The original EXP-14 protocol remains STOP (step-(c) drop 22.83% > 15%); this amendment does not revive it, relaxes no rule, and selects nothing on returns.",
+ "verdict": "DESCRIPTIVE ONLY \u2014 no promotional or validated-edge conclusion"
+}
