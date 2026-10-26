@@ -4365,3 +4365,30 @@ Governing: Issue #1 comment `6405786931` (independent review of the M1/M2 packag
 **UPDATED EXACT GO REQUEST (not taken, not implied):** Mike's explicit decision, after ChatGPT adjudication of this successor — **Step 1 (choose one):** (A) preserve the STOP: EXP-14 does not run on DEV and closes as STOP under the preregistered rule; or (B) prospectively amend the DEV-EXPLORATORY-only contract to permit a labelled **matched-subpopulation descriptive study** (original step-(c) rule and flag retained and printed, 71 exclusions disclosed, no relaxation, no broad population/general edge inference). **Step 2 (only if (B)):** the execution GO proper — first the `open`-field inventory amendment from the same committed bytes (no new data); then a new pinned returns-enabled version (sole change: the gate flip; re-hashed; suite re-run); ONE run on the successor cohort (311 / 240 retained) and frozen draws; reporting per §5/§6 and the pinned schema with BOOTSTRAP_SEED 6050949521315240661, the wider-of-two rule, the step-(c) flag on the output, and UNDERPOWERED FOR PASS labelling where §6 applies; DEV window only, holdout sealed, no vendor calls, no EXIT arms, no replay, no production/pilot/S1 contact. Until that decision and GO, returns stay disabled. STOP at this request.
 
 Bounds kept: C1 FAIL, DEV EXPLORATORY, G4 UNADOPTED, S1 LAUNCH_HOLD, production PAUSED, holdout SEALED. — Muse
+
+---
+
+### 2026-10-25 — Muse — DECISION B RECORDED (Mike): EXP-14 amended to a DEV-only matched-subpopulation study; original protocol STOP preserved; execution NOT authorized
+
+Decision delivered by Mike in chat, 2026-10-25 21:19 ET. Mike's attempts to post this decision directly to Slack and GitHub were unsuccessful, so the chat delivery is the delivery of record; Muse posts it here and on the desk on his behalf, attributed to him.
+
+**DECISION B — ADOPTED by Mike.** A prospective amendment for a DEV-only matched-subpopulation study. The original EXP-14 protocol remains **STOP**: 71 of 311 events (22.8%) cannot be matched under its final rules, and passing the 200-event sample floor does NOT override that restriction. We will not pretend otherwise.
+
+The amended study covers the **240 events** that meet the frozen matching criteria, under these conditions:
+
+1. No further relaxation of the matching rules, and no selection based on returns.
+2. All 71 excluded events and the 22.8% exclusion rate are prominently disclosed (carried into the amended design as mandatory, fail-closed output-header fields).
+3. Results apply ONLY to the matched subpopulation — NOT to all Quality Flow BUY signals.
+4. The study cannot establish a validated trading edge and cannot authorize any change to the live strategy.
+
+Mike has checked the successor's published cohort and draw records: they reconcile to 311 eligible events, 240 retained, and no remaining 20-bar window violations in the frozen draws.
+
+**This approves the research-design amendment ONLY. It is NOT permission to execute the performance test.**
+
+**Three implementation items to close together before any run** (from Mike's source review):
+
+- (a) Next-bar opening price — Claude prohibited open fields in the outcome-blind P7b inventory; the amended design uses a SEPARATE, private, execution-only price input derived from the same historical data. The P7b inventory is not amended.
+- (b) Execution wiring — the current CLI returns mode does not pass the required arguments to the analysis function; fix it and prove it with a synthetic end-to-end test before activation.
+- (c) Reporting — the output must include the declared percentage-return view and the declared cost-sensitivity view (preregistration v0.3 §5, H-BUY: the descriptive signal-excess-minus-25-bps line), with no misleading PASS/FAIL labels.
+
+**Milestone sequence:** Muse pins the amended, execution-ready design → Mike verifies it → Mike's explicit separate authorization → the single DEV exploratory run. Production remains paused; the holdout stays sealed. — recorded by Muse for Mike
