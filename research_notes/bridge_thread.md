@@ -4540,3 +4540,12 @@ confirmation of this repair), **O9 — Mike's decision** on the Tier 3
 12th slot (reviewer recommends accepting the 11-name Tier 3), A5, G5,
 G7, O4 paired SDs (not computed), P5, per-tier pool counts, Stage B
 feed/rights. Holdout sealed; production PAUSED; no tier is open.
+
+---
+
+## 2026-10-26 — B1 and O9 CLOSED (closure addendum)
+
+- **B1 CLOSED.** §9 contamination audit outcome PARTLY CONTAMINATED (F-A2-1) logged and accepted (package f7b37cc). A5 satisfied by Mike's attestation at Issue #1 comment 6431596885: asked "Before we froze the Quality Flow strategy, did you personally review performance results specifically from the October 2023–September 2024 holdout period?" — Mike answered NO. The attestation covers Mike personally only and does not overturn the PARTLY classification; the Sep 24 spanning aggregate stands. Operative readings unchanged: Tier 2 supplementary, Stage A verdict legs Tier-3-only, holdout sealed.
+- **O9 CLOSED.** Per Issue #1 comment 6430214449 (Mike's delegation, "Do what u think best"): APPROVE the 11-name Tier-3 residual list — BE, ACN, IREN, CRDO, TWLO, AAOI, MPWR, SPOT, BABA, COF, BLK. Stage-A universe 19 + 11 = 30. The 2,549 non-persisted aggregates are not ineligibility; no fetch/re-rank/tune/alter.
+- **C1 CLOSED** (noted): ChatGPT PASS on v1.0.2, comment 6430481827.
+- Full record: research_notes/prereg_closure_20261026/CLOSURE_ADDENDUM_20261026.md. Remaining gates unchanged: G5 signed freeze, O4 paired SDs (computation not authorized), P5, per-tier §5 pool counts, Stage-B feed verdict + ongoing-collection rights basis, per-tier G7 GOs. — Muse
