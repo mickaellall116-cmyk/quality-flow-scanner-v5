@@ -1,0 +1,1 @@
+CORRECTION (2026-10-27): O4_BASIS_PIN.md cited the -13 ledger SHA-256 truncated to 62 chars (missing "e6" at positions 47-48); corrected to the full 64-char frozen pin 267e794c284a409d7d9b6d8e1056c452976b59746062e9e6e18c5664b74c003b from O4_PROCEDURE.md (package 5037311); no rule, basis, or other content changed; SHA256_MANIFEST.txt regenerated for the corrected file set.
