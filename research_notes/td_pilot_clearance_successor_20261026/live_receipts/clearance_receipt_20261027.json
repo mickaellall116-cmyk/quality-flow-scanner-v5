@@ -1,0 +1,76 @@
+{
+ "receipt": "td_pilot_tripwire_clearance",
+ "date_et": "2026-10-27",
+ "authority": "ChatGPT corr1 PASS, GitHub Issue #1 comment 6433891782; Mike determination + ChatGPT concurrence comments 6431629522/6433891782 for verdict confirmed on 1a174da9074a6edf",
+ "clearance_written_utc": "2026-10-27T13:17:58Z",
+ "clearance_written_et": "2026-10-27 09:17:58 EDT (before 09:25 ET deadline)",
+ "clear_file": "state/tripwire_clear.json",
+ "clear_file_content": {
+  "verdicts": {
+   "1a174da9074a6edf": "confirmed"
+  }
+ },
+ "pre_clear_checks": {
+  "check1_runner_sha256": "b587c483e5453ffa5968447f87efbaf540f5424aaaf37ef870dd36ea9f4275b9",
+  "check1_runner_sha256_expected": "b587c483e5453ffa5968447f87efbaf540f5424aaaf37ef870dd36ea9f4275b9",
+  "check1_daemon": "alive, pid 4205 (pgrep -af 'pilot_runner.py --daemon')",
+  "check1_heartbeat": "fresh and advancing (e.g. 13:17:14Z -> 13:17:32Z; 13:20:20Z at final verify)",
+  "check2_oct27_tripwire": {
+   "id": "tripwire|2026-10-27",
+   "status": "done",
+   "executed_utc": "2026-10-27T13:15:01.569092+00:00",
+   "outcome": "clean",
+   "candidates": [
+    "1a174da9074a6edf"
+   ],
+   "new_pending_added_today": false
+  },
+  "check3_pending_review_before_clear": [
+   "1a174da9074a6edf"
+  ],
+  "check3_note": "Only the known Intercom rating-footer message; no Q1-Q3 content; no other id pending",
+  "check4_desk_calls_before_clear": 0,
+  "check4_desk_calls_by_day_before_clear": {},
+  "check4_journal_total_before_clear": 757
+ },
+ "post_clear_verification": {
+  "verified_at_utc": [
+   "2026-10-27T13:18:01Z",
+   "2026-10-27T13:20:20Z"
+  ],
+  "tripwire_hold": false,
+  "tripwire_pending_review_after": [],
+  "tripwire_filed": [
+   "1a174da9074a6edf"
+  ],
+  "oct26_actions": {
+   "total": 150,
+   "done": 1,
+   "missed_late": 149,
+   "missed_cause": "tripwire_hold"
+  },
+  "desk_calls_by_day_after": {
+   "2026-10-27": 1
+  },
+  "desk_calls_2026_10_26": 0,
+  "desk_calls_2026_10_26_key_present": false,
+  "desk_calls_total_after": 1,
+  "journal_total_after": 757,
+  "census_after": {
+   "done": 3,
+   "pending": 605,
+   "missed_late": 149
+  },
+  "oct27_done": [
+   "tripwire|2026-10-27",
+   "usage|2026-10-27|pre_revision"
+  ],
+  "oct27_next_action_at_final_verify": {
+   "id": "usage|2026-10-27|start",
+   "due": "2026-10-27T13:25:00+00:00"
+  },
+  "heartbeat_status_after": "running",
+  "note_ladder": "Oct-27 ladder polls are scheduled/pending for their due times (first 09:30-bar ladder due 14:31Z); they had not yet come due at verification time. Usage/tripwire proceeding is verified; no Oct-26 backfill occurred."
+ },
+ "result": "CLEARED_AND_VERIFIED"
+}

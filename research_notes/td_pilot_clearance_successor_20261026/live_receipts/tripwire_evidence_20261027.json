@@ -1,0 +1,46 @@
+{
+ "evidence": "td_pilot_tripwire_oct27_derived_summary",
+ "date_et": "2026-10-27",
+ "note": "Derived-only summary. No raw payloads, no message body included.",
+ "tripwire_checks": [
+  {
+   "session": "2026-10-26",
+   "at_utc": "2026-10-26T13:15:00.000123+00:00",
+   "candidates": [
+    "1a174da9074a6edf"
+   ],
+   "new": [
+    "1a174da9074a6edf"
+   ],
+   "outcome": "reply_pending_review"
+  },
+  {
+   "session": "2026-10-27",
+   "at_utc": "2026-10-27T13:15:01.569092+00:00",
+   "candidates": [
+    "1a174da9074a6edf"
+   ],
+   "outcome": "clean"
+  }
+ ],
+ "pending_review_before_clear": [
+  {
+   "id": "1a174da9074a6edf",
+   "session": "2026-10-26",
+   "date_utc": "2026-10-25T20:57:22+00:00",
+   "from": "Dooz from Twelve Data <api@twelvedata.com>",
+   "subject": "Re: Basic tier rights questions - non-display use, retention, 1h data (Terms 2.2, 2.3, 5.6, 12.5)"
+  }
+ ],
+ "verdict_applied": {
+  "1a174da9074a6edf": "confirmed"
+ },
+ "filed_after_clear": [
+  {
+   "id": "1a174da9074a6edf",
+   "filed_utc": "2026-10-27T13:17:58.780475+00:00"
+  }
+ ],
+ "hold_after_clear": false,
+ "pending_review_after_clear": []
+}
