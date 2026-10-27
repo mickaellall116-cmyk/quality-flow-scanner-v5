@@ -90,6 +90,34 @@ Clearance on **Tue Oct 27** proceeds in this order:
    149 `missed_late`, cause `tripwire_hold`); `desk_calls_by_day` has
    **no** `2026-10-26` key; Tuesday polls live and proceeding.
 
+## Continuity + headroom (addendum evidence)
+
+- **Next-day continuity fixture** (`test_continuity_fixture.py`,
+  `continuity_output.txt`): after the simulated clearance tick, the
+  fake clock is stepped through the whole Oct-27 day — all **146**
+  Oct-27 actions due within the day execute **in scheduled order**
+  (tripwire 1, usage 4, ladder 105, finalization 35, archive_push 1),
+  the pilot never stops, later sessions stay untouched, and the
+  journal reconciles at 757. **All checks pass.**
+- **Headroom** (`HEADROOM.md`, `headroom_census.json`): worst-case
+  remaining TD calls = **598** of the 800 total cap (0 used; headroom
+  **202**); per-day worst cases 144 / 149 / 149 / 149 / 7 against the
+  149/day cap — within caps on every day.
+
+## Next scheduled window + GO / NO-GO
+
+**Next scheduled window: Tuesday Oct 27, 2026 — clearance after the
+09:15 ET tripwire action, before 09:25 ET** (deployment + daemon
+restart before 09:15; the Oct-27 session then runs 09:25–17:00 ET,
+with finalization/revision wrap on Mon Nov 2).
+
+- **GO** — condition: **ChatGPT independent PASS on this successor
+  before that window.** On PASS, execute the deployment + clearance
+  procedure above.
+- **NO-GO / STOP otherwise** — no PASS, no clearance: the hold stays,
+  Tuesday's session is missed like Monday's, and **nothing is ever
+  backfilled**. The same rule applies to any later window.
+
 ## Review gate
 
 This successor is committed for **ChatGPT's independent inspection
@@ -97,3 +125,7 @@ before any clearance**. If that review cannot complete before the next
 permitted clearance window, the pilot **skips / STOPs — it never
 backfills**. Missed sessions stay missed; the Nov 2 finalization and
 revision re-poll proceed only for sessions actually captured.
+
+Task ownership: **Muse owns this P0** (successor build, evidence, and
+tomorrow's deployment/clearance execution on PASS). Next evidence
+checkpoint: **ChatGPT's inspection verdict** on this package.

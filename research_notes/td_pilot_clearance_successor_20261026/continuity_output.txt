@@ -1,0 +1,22 @@
+[PASS] D: clearance tick done, not stopped 
+Oct-27 session actions: 151 total, 146 due within Oct-27 ET (kinds: {'usage': 4, 'tripwire': 1, 'ladder': 105, 'finalization': 35, 'archive_push': 1})
+continuity ticks: 31; executed in window: 144
+  first: usage|2026-10-27|start due 2026-10-27T13:25:00+00:00
+  first: ladder|2026-10-27|NVDA|09:30|60 due 2026-10-27T14:31:00+00:00
+  first: ladder|2026-10-27|TSLA|09:30|60 due 2026-10-27T14:31:00+00:00
+  first: ladder|2026-10-27|AAPL|09:30|60 due 2026-10-27T14:31:00+00:00
+  first: ladder|2026-10-27|SPY|09:30|60 due 2026-10-27T14:31:00+00:00
+  first: ladder|2026-10-27|MELI|09:30|60 due 2026-10-27T14:31:00+00:00
+  last:  fin|2026-10-27|MELI|15:30 due 2026-10-27T20:30:00+00:00
+  last:  usage|2026-10-27|end due 2026-10-27T20:35:00+00:00
+  last:  push|2026-10-27 due 2026-10-27T20:40:00+00:00
+[PASS] D: every Oct-27 action due within Oct-27 ET is done (tripwire, usage, ladder, finalization, archive_push) census={'done': 146}
+[PASS] D: executions are in scheduled (due-time) order n=144
+[PASS] D: kind census executed: tripwire 1, usage 4, ladder 105, finalization 35, archive_push 1 {'usage': 4, 'tripwire': 1, 'ladder': 105, 'finalization': 35, 'archive_push': 1}
+[PASS] D: Oct-27 TD calls = 144, within the 149/day cap by_day={'2026-10-27': 144}
+[PASS] D: no Oct-26 TD calls (zero-call fact still preserved) 
+[PASS] D: later sessions untouched (all still pending) n=458
+[PASS] D: pilot never stopped during the continuity day 
+[PASS] D: journal still reconciles at 757 census={'done': 147, 'missed_late': 149, 'pending': 461}
+
+==== CONTINUITY FIXTURE PASS ====
