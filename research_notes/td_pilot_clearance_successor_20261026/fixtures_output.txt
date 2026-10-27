@@ -1,0 +1,35 @@
+journal: total=757 census={'done': 1, 'pending': 756} monday_pending=149 monday_usage=['usage|2026-10-26|start', 'usage|2026-10-26|midday', 'usage|2026-10-26|end']
+
+=== Scenario A: clearance-path isolation (FIXED) ===
+[PASS] A: clearance returns None (no tripwire fire) 
+[PASS] A: hold lifted 
+[PASS] A: pending_review drained 
+[PASS] A: reply filed exactly once 
+[PASS] A: changed set == Monday pending set (149) changed=149 monday_pending=149
+[PASS] A: all changed are missed_late/tripwire_hold 
+[PASS] A: the 3 usage|2026-10-26 actions are terminal missed_late ['usage|2026-10-26|start', 'usage|2026-10-26|midday', 'usage|2026-10-26|end']
+[PASS] A: no current-session (>=2026-10-27) action changed 
+[PASS] A: clearance made zero transport calls 
+[PASS] A: desk_calls still 0 
+[PASS] A: repeat-clear is a strict no-op 
+[PASS] A: restart reload keeps all 149 missed_late (no resurrection) 
+[PASS] A: post-restart repeat-clear still a no-op 
+
+=== Scenario B: full daemon ticks (FIXED) ===
+[PASS] B: pre-clearance tick returns held status=held
+[PASS] B: pre-clearance tick changed nothing 
+[PASS] B: clearance tick executed ONLY current-session actions executed=['usage|2026-10-27|pre_revision', 'tripwire|2026-10-27']
+[PASS] B: executed set is Tue pre_revision usage + Tue tripwire executed=['usage|2026-10-27|pre_revision', 'tripwire|2026-10-27']
+[PASS] B: exactly one TD transport call (Tue pre_revision usage) calls=[{'kind': 'usage', 'params': {}}]
+[PASS] B: Oct-26 zero-call fact preserved (no 2026-10-26 day key) by_day={'2026-10-27': 1}
+[PASS] B: Monday census terminal: 1 done + 149 missed_late Counter({'missed_late': 149, 'done': 1})
+[PASS] B: Tuesday polls stay live (all ladder pending) n=105
+[PASS] B: journal reconciles: total 757 census={'done': 3, 'missed_late': 149, 'pending': 605}
+[PASS] B: restart after clearance resurrects/re-executes nothing 
+
+=== Scenario C: CONTROL (PRE-FIX runner, defect must show) ===
+[PASS] C: CONTROL defect reproduced — Monday actions executed monday_executed=['usage|2026-10-26|start', 'usage|2026-10-26|midday', 'usage|2026-10-26|end', 'push|2026-10-26', 'rev|2026-10-26|NVDA', 'rev|2026-10-26|TSLA', 'rev|2026-10-26|AAPL', 'rev|2026-10-26|SPY', 'rev|2026-10-26|MELI']
+[PASS] C: CONTROL — the 3 usage|2026-10-26 actions executed (done) 
+[PASS] C: CONTROL — TD transport calls > 0 calls=9
+
+==== ALL FIXTURES PASS ====

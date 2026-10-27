@@ -1,0 +1,55 @@
+--- a/pilot_runner.py (live, pre-fix)
++++ b/pilot_runner.py (Option B successor)
+@@ -756,16 +756,35 @@
+     # -- action driver -----------------------------------------------------
+     # ------------------------------------------------------------ tripwire
+     def mark_stale(self, now, cause):
+-        """Mark overdue ladder/finalization actions missed_late (used when
+-        a tripwire hold lifts after their lateness window has passed)."""
++        """Mark past-session overdue actions missed_late (used when a
++        tripwire hold lifts). Option B successor (2026-10-26, Issue #1
++        comment 6432130873): the pre-fix version covered ONLY ladder /
++        finalization, so on clearance the run_due loop would execute a
++        past session's leftover usage/revision/archive actions seconds
++        after the lift — journaling real TD calls against a session the
++        record states was missed with zero calls. The fix is scoped
++        strictly by SESSION DATE: every pending action of ANY kind whose
++        session date is strictly before the current ET date and whose
++        due time has passed becomes terminal missed_late BEFORE the
++        hold lifts. Current-session actions are never stale-marked (in
++        particular the current session's 09:15 tripwire action and that
++        session's polls stay live), whenever clearance lands."""
++        today = now.astimezone(ET).date()
+         for action in self.st["actions"]:
+             if action["status"] != "pending":
+                 continue
+-            if action["kind"] not in ("ladder", "finalization"):
++            sess = action.get("session")
++            if sess is None:
++                continue
++            try:
++                sess_date = datetime.strptime(sess, "%Y-%m-%d").date()
++            except (TypeError, ValueError):
++                continue
++            if sess_date >= today:
+                 continue
+             due = datetime.fromisoformat(action["due"])
+             late = (now - due).total_seconds()
+-            if late > LATE_WINDOW_S:
++            if late > 0:
+                 action["status"] = "missed_late"
+                 action["lateness_s"] = late
+                 action["missed_cause"] = cause
+@@ -791,6 +810,12 @@
+         for mid, verdict in (clear.get("verdicts") or {}).items():
+             rec = next((r for r in tw["pending_review"]
+                         if r["id"] == mid), None)
++            if rec is None:
++                # Already filed (or unknown id): a repeated clearance
++                # file is a strict no-op for this id — no duplicate
++                # filed entry, no re-fire (Option B successor,
++                # 2026-10-26: repeat-clear idempotence).
++                continue
+             if verdict == "contradiction":
+                 fired = {"id": mid,
+                          "reply_file": rec and rec.get("reply_file")}
