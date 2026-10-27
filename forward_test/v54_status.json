@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-26T20:49:57.522411+00:00",
+  "as_of": "2026-10-27T14:49:33.383309+00:00",
   "entries_paused": true,
   "pause_reason": "PAUSE_NEW_ENTRIES sentinel present",
   "pause_control": "sentinel",
@@ -10,7 +10,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-26T20:49:57.493702+00:00",
+  "last_successful_cycle": "2026-10-27T14:49:33.339900+00:00",
   "signals_logged": 38,
   "grade_counts": {
     "A": 9,
@@ -39,21 +39,6 @@
   ],
   "open_positions": [
     {
-      "signal_id": "v54:SHOP:4h:2026-10-15T10:30:00-04:00:2026-09-15-v54",
-      "symbol": "SHOP",
-      "grade": "B",
-      "entry": 171.4499969482422,
-      "entry_bar": "2026-10-15T10:30:00-04:00",
-      "stop": 165.33922118980624,
-      "tp1": 181.76957291674927,
-      "status": "open_full",
-      "bars_held": 24,
-      "tp1_taken": false,
-      "profit_protect_armed": null,
-      "mfe_r": 1.466263379325917,
-      "mae_r": -0.9835076174312432
-    },
-    {
       "signal_id": "v54:TEAM:4h:2026-10-16T16:00:00-04:00:2026-09-15-v54",
       "symbol": "TEAM",
       "grade": "B",
@@ -62,18 +47,18 @@
       "stop": 199.5971854536368,
       "tp1": 221.90195655955546,
       "status": "open_runner",
-      "bars_held": 18,
+      "bars_held": 19,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 2.566719199380326,
       "mae_r": -0.10337413260034983
     }
   ],
-  "closed_trades": 25,
-  "cumulative_r": 10.7394,
+  "closed_trades": 26,
+  "cumulative_r": 9.7394,
   "cumulative_r_note": "Sum of per-trade blended R at 1R risk each; not compounded.",
-  "avg_r_per_trade": 0.4296,
-  "win_rate": 0.44,
+  "avg_r_per_trade": 0.3746,
+  "win_rate": 0.4231,
   "closed_v53_would_have_vetoed": 4,
   "closed_vetoed_winners": 2
 }
