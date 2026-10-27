@@ -1,0 +1,48 @@
+{
+ "receipt": "td_pilot_corr1_deployment",
+ "date_et": "2026-10-27",
+ "authority": "ChatGPT corr1 PASS, GitHub Issue #1 comment 6433891782; successor package commit 93db881",
+ "scope": "DEPLOY + VERIFY ONLY. tripwire_clear.json NOT written; hold NOT lifted; clearance is a separate step tomorrow after the live 09:15 ET tripwire, before 09:25 ET.",
+ "pre_checks_utc": "2026-10-27T04:57:13Z",
+ "old_runner_sha256": "63e2ccbfe836b5f81e1d8285dff7626e28f6f8936fa5ce32cbf712268dd1e8f2",
+ "installed_runner_sha256": "b587c483e5453ffa5968447f87efbaf540f5424aaaf37ef870dd36ea9f4275b9",
+ "corr1_source": "git show 93db881:research_notes/td_pilot_clearance_successor_20261026/pilot_runner_corr1.py (hash matched committed package exactly)",
+ "old_daemon_pid": 4235,
+ "old_daemon_stop": "SIGTERM, exited ~2s, flock released",
+ "new_daemon_pid": 4368,
+ "new_daemon_first_heartbeat_utc": "2026-10-27T04:58:04Z",
+ "heartbeat_confirmed_advancing_utc": "2026-10-27T04:59:36Z",
+ "state_before": {
+  "tripwire_hold": true,
+  "desk_calls": 0,
+  "desk_calls_by_day": {},
+  "journal_total": 757,
+  "census": {
+   "done": 1,
+   "pending": 756
+  },
+  "stopped": null,
+  "tripwire_clear_json_present": false
+ },
+ "state_after": {
+  "tripwire_hold": true,
+  "desk_calls": 0,
+  "desk_calls_by_day": {},
+  "journal_total": 757,
+  "census": {
+   "done": 1,
+   "pending": 756
+  },
+  "stopped": null,
+  "tripwire_clear_json_present": false,
+  "heartbeat_status": "held"
+ },
+ "td_calls_made": 0,
+ "backups_untouched": [
+  "work/pilot_runner.py.bak_20261026_prefix",
+  "work/pilot_runner.py.bak_20261026_optionB_prefix",
+  "work/pilot_runner.py.bak_20261026_corr1_pre"
+ ],
+ "anomalies": "One transient: state/heartbeat.json absent for a few seconds during daemon startup (atomic rewrite gap); present and advancing on re-check. No other anomaly.",
+ "next_step": "Tue 2026-10-27: live 09:15 ET tripwire must complete clean under the inherited hold; then apply tripwire_clear.json {\"verdicts\": {\"1a174da9074a6edf\": \"confirmed\"}} before 09:25 ET. Abort/skip on any hash, heartbeat, journal, mailbox, headroom, or timing failure; never backfill."
+}
