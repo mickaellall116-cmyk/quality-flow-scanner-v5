@@ -1,0 +1,179 @@
+{
+ "failures": [],
+ "results": [
+  {
+   "check": "ORDER: held tick returns 'held'",
+   "pass": true,
+   "detail": "status=held"
+  },
+  {
+   "check": "ORDER: current-session tripwire executed under the hold",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "ORDER: tripwire check recorded clean for 2026-10-27",
+   "pass": true,
+   "detail": "last={'session': '2026-10-27', 'at_utc': '2026-10-27T13:16:00+00:00', 'candidates': [], 'outcome': 'clean'}"
+  },
+  {
+   "check": "ORDER: clean check alone does NOT lift the inherited hold",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "ORDER: ZERO TD calls before the tripwire",
+   "pass": true,
+   "detail": "events=[('clearance_none', True), ('tripwire_check', 'tripwire|2026-10-27', 'clean')]"
+  },
+  {
+   "check": "ORDER: pre_revision usage did NOT execute before the tripwire",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "ORDER: nothing stale-marked before clearance (Monday still 1 done + 149 pending)",
+   "pass": true,
+   "detail": "Counter({'pending': 149, 'done': 1})"
+  },
+  {
+   "check": "ORDER: clearance tick proceeds (not held/stopped)",
+   "pass": true,
+   "detail": "status=running"
+  },
+  {
+   "check": "ORDER: hold lifted by clearance after the clean check",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "ORDER: event sequence tripwire -> clearance -> first TD call",
+   "pass": true,
+   "detail": "events=[('clearance_none', True), ('tripwire_check', 'tripwire|2026-10-27', 'clean'), ('clearance_file_consumed', False), ('td_call', 'usage|2026-10-27|pre_revision')]"
+  },
+  {
+   "check": "ORDER: first TD call is Tue pre_revision usage, after tripwire",
+   "pass": true,
+   "detail": "calls=[{'kind': 'usage', 'params': {}}]"
+  },
+  {
+   "check": "ORDER: Oct-26 zero-call fact preserved (no 2026-10-26 day key)",
+   "pass": true,
+   "detail": "by_day={'2026-10-27': 1}"
+  },
+  {
+   "check": "ORDER: Monday census terminal: 1 done + 149 missed_late",
+   "pass": true,
+   "detail": "Counter({'missed_late': 149, 'done': 1})"
+  },
+  {
+   "check": "ORDER: usage|2026-10-27|start (due 09:25) still pending",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "ORDER: journal reconciles: total 757",
+   "pass": true,
+   "detail": "census={'done': 3, 'missed_late': 149, 'pending': 605}"
+  },
+  {
+   "check": "ORDER: repeat-clear is a strict no-op",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "ORDER: restart + repeat-clear resurrects/re-executes nothing",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "DIRTY: held tick returns 'held'",
+   "pass": true,
+   "detail": "status=held"
+  },
+  {
+   "check": "DIRTY: current check outcome is reply_pending_review",
+   "pass": true,
+   "detail": "last={'session': '2026-10-27', 'at_utc': '2026-10-27T13:16:00+00:00', 'candidates': ['f17e57c0ffee1234'], 'outcome': 'reply_pending_review', 'new': ['f17e57c0ffee1234']}"
+  },
+  {
+   "check": "DIRTY: new reply joined pending_review alongside the prior item",
+   "pass": true,
+   "detail": "pending=['1a174da9074a6edf', 'f17e57c0ffee1234']"
+  },
+  {
+   "check": "DIRTY: zero TD calls",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "DIRTY: prior-item clearance alone does NOT lift the hold",
+   "pass": true,
+   "detail": "status=held"
+  },
+  {
+   "check": "DIRTY: prior item filed, new item still pending",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "DIRTY: no stale-marking ran (zero missed_late)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "DIRTY: still zero TD calls; pre_revision still pending",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "FAIL: held tick returns 'held'",
+   "pass": true,
+   "detail": "status=held"
+  },
+  {
+   "check": "FAIL: current check outcome is search_failed",
+   "pass": true,
+   "detail": "last={'session': '2026-10-27', 'at_utc': '2026-10-27T13:16:00+00:00', 'outcome': 'search_failed', 'error': 'gmail search unavailable (stub)'}"
+  },
+  {
+   "check": "FAIL: hold set with reason 'tripwire search failed'",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "FAIL: zero TD calls",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "FAIL: prior-item clearance does NOT lift after a failed check",
+   "pass": true,
+   "detail": "status=held"
+  },
+  {
+   "check": "FAIL: prior item filed exactly once, pending drained",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "FAIL: clearance file RETAINED for a later tick (corr1 gate)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "FAIL: no stale-marking ran; zero TD calls; pre_revision pending",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "FAIL: retained file re-processing files nothing twice",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "live_journal_census_before": {
+  "done": 1,
+  "pending": 756
+ }
+}

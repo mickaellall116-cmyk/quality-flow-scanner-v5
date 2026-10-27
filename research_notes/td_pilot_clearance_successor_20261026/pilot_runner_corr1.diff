@@ -1,0 +1,112 @@
+--- a/pilot_runner_optionB.py
++++ b/pilot_runner_corr1.py
+@@ -755,6 +755,39 @@
+ 
+     # -- action driver -----------------------------------------------------
+     # ------------------------------------------------------------ tripwire
++    def tripwire_pending(self, now, tripwire_only_hold=False):
++        """True while the CURRENT session's tripwire gate is not
++        satisfied. Corr1 (2026-10-26, Issue #1 comment 6433085265,
++        independent review of the Option B successor): the frozen
++        protocol requires the session's 09:15 ET Gmail tripwire check
++        to run BEFORE that session's first Twelve Data call. The
++        Option B successor left an ordering hole — run_due returned
++        immediately while an inherited hold was active, so the current
++        session's tripwire could not run before clearance; and once
++        clearance lifted the hold, the sorted due loop executed the
++        session's overdue 07:55 pre_revision usage action BEFORE its
++        09:15 tripwire (committed Scenario B output:
++        ['usage|2026-10-27|pre_revision', 'tripwire|2026-10-27']).
++        The gate is satisfied only when the current session's
++        tripwire action is done AND the latest recorded check for the
++        current session is clean. With tripwire_only_hold=True the
++        current session's own tripwire action is not yet actionable
++        (it is served by the hold phase in run_due), so only the
++        recorded-clean limb applies there."""
++        today_s = now.astimezone(ET).date().isoformat()
++        tw = self.st["tripwire"]
++        last = tw["checks"][-1] if tw["checks"] else None
++        recorded_clean = bool(last) \
++            and last.get("session") == today_s \
++            and last.get("outcome") == "clean"
++        if not tripwire_only_hold:
++            cur = next((a for a in self.st["actions"]
++                        if a["kind"] == "tripwire"
++                        and a.get("session") == today_s), None)
++            if cur is not None and cur["status"] == "pending":
++                return True
++        return not recorded_clean
++
+     def mark_stale(self, now, cause):
+         """Mark past-session overdue actions missed_late (used when a
+         tripwire hold lifts). Option B successor (2026-10-26, Issue #1
+@@ -827,7 +860,6 @@
+                     "subject": rec and rec.get("subject")})
+                 tw["pending_review"] = [r for r in tw["pending_review"]
+                                          if r["id"] != mid]
+-        os.remove(CLEAR_PATH)
+         if fired:
+             self.st["stopped"] = {
+                 "reason": "TRIPWIRE FIRED — TD email reply contradicts the "
+@@ -838,12 +870,28 @@
+                 "tripwire_reply_file": fired["reply_file"]}
+             tw["hold"] = False
+             save_state(self.st)
++            os.remove(CLEAR_PATH)
+             return "stopped"
++        consumed = bool(clear.get("verdicts"))
+         if tw["hold"] and not tw["pending_review"]:
++            if self.tripwire_pending(now, tripwire_only_hold=True):
++                # Corr1 gate (comment 6433085265, requirement 3): the
++                # prior hold lifts only AFTER the current session's
++                # tripwire check is recorded clean. Verdicts above are
++                # already filed; the clearance file is RETAINED (not
++                # removed) so a later tick — once that check exists —
++                # completes the lift. The idempotence guard above makes
++                # re-processing the retained file a no-op for the
++                # already-filed ids.
++                save_state(self.st)
++                return None
+             tw["hold"] = False
+             tw["hold_info"] = None
+             self.mark_stale(now, "tripwire_hold")
+             save_state(self.st)
++            consumed = True
++        if consumed:
++            os.remove(CLEAR_PATH)
+         return None
+ 
+     def execute_tripwire(self, action, now):
+@@ -949,6 +997,32 @@
+         if self.process_tripwire_clear(now) == "stopped":
+             return "stopped"
+         if self.st["tripwire"]["hold"]:
++            review_held = self.review_gate_sync(now)
++            if self.tripwire_pending(now):
++                # Corr1 (comment 6433085265, requirements 1-2): while
++                # an inherited tripwire hold is active and the current
++                # session's tripwire gate is unsatisfied, the ONLY
++                # action that may execute is the due current-session
++                # tripwire check — no Twelve Data call, no archive
++                # push. A clean check does NOT lift the inherited hold
++                # (it lifts only through adjudicated clearance, and
++                # only once this check is recorded clean); a dirty or
++                # failed check keeps the pilot fail-closed.
++                today_s = now.astimezone(ET).date().isoformat()
++                for action in self.st["actions"]:
++                    if action["status"] != "pending":
++                        continue
++                    due = datetime.fromisoformat(action["due"])
++                    if due > now:
++                        break
++                    if action["kind"] != "tripwire" \
++                            or action.get("session") != today_s:
++                        continue
++                    self.execute_tripwire(action, now)
++                    action["status"] = "done"
++                    action["executed_utc"] = iso(now)
++                    save_state(self.st)
++                    break
+             return "held"
+         review_held = self.review_gate_sync(now)
+         for action in self.st["actions"]:

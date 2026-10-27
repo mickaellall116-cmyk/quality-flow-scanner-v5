@@ -1,0 +1,160 @@
+{
+ "failures": [],
+ "results": [
+  {
+   "check": "A: corr1 held tick returns held",
+   "pass": true,
+   "detail": "status=held"
+  },
+  {
+   "check": "A: corr1 held tick executed ONLY the current-session tripwire",
+   "pass": true,
+   "detail": "changed={'tripwire|2026-10-27'}"
+  },
+  {
+   "check": "A: corr1 held tick made zero transport calls",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: clearance returns None (no tripwire fire)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: hold lifted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: pending_review drained",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: reply filed exactly once",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: changed set == Monday pending set (149)",
+   "pass": true,
+   "detail": "changed=149 monday_pending=149"
+  },
+  {
+   "check": "A: all changed are missed_late/tripwire_hold",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: the 3 usage|2026-10-26 actions are terminal missed_late",
+   "pass": true,
+   "detail": "['usage|2026-10-26|start', 'usage|2026-10-26|midday', 'usage|2026-10-26|end']"
+  },
+  {
+   "check": "A: no current-session (>=2026-10-27) action changed",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: clearance made zero transport calls",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: desk_calls still 0",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: repeat-clear is a strict no-op",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: restart reload keeps all 149 missed_late (no resurrection)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A: post-restart repeat-clear still a no-op",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "B: pre-clearance tick returns held",
+   "pass": true,
+   "detail": "status=held"
+  },
+  {
+   "check": "B: corr1 pre-clearance tick executed ONLY the current-session tripwire (zero TD calls, Monday untouched)",
+   "pass": true,
+   "detail": "held_executed={'tripwire|2026-10-27'}"
+  },
+  {
+   "check": "B: clearance tick executed ONLY current-session actions",
+   "pass": true,
+   "detail": "executed=['usage|2026-10-27|pre_revision']"
+  },
+  {
+   "check": "B: clearance tick executed only Tue pre_revision usage (tripwire already ran first, in the held tick)",
+   "pass": true,
+   "detail": "executed=['usage|2026-10-27|pre_revision']"
+  },
+  {
+   "check": "B: across both ticks the executed set is Tue tripwire + Tue pre_revision usage, tripwire first",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "B: exactly one TD transport call (Tue pre_revision usage)",
+   "pass": true,
+   "detail": "calls=[{'kind': 'usage', 'params': {}}]"
+  },
+  {
+   "check": "B: Oct-26 zero-call fact preserved (no 2026-10-26 day key)",
+   "pass": true,
+   "detail": "by_day={'2026-10-27': 1}"
+  },
+  {
+   "check": "B: Monday census terminal: 1 done + 149 missed_late",
+   "pass": true,
+   "detail": "Counter({'missed_late': 149, 'done': 1})"
+  },
+  {
+   "check": "B: Tuesday polls stay live (all ladder pending)",
+   "pass": true,
+   "detail": "n=105"
+  },
+  {
+   "check": "B: journal reconciles: total 757",
+   "pass": true,
+   "detail": "census={'done': 3, 'missed_late': 149, 'pending': 605}"
+  },
+  {
+   "check": "B: restart after clearance resurrects/re-executes nothing",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "C: CONTROL defect reproduced \u2014 Monday actions executed",
+   "pass": true,
+   "detail": "monday_executed=['usage|2026-10-26|start', 'usage|2026-10-26|midday', 'usage|2026-10-26|end', 'push|2026-10-26', 'rev|2026-10-26|NVDA', 'rev|2026-10-26|TSLA', 'rev|2026-10-26|AAPL', 'rev|2026-10-26|SPY', 'rev|2026-10-26|MELI']"
+  },
+  {
+   "check": "C: CONTROL \u2014 the 3 usage|2026-10-26 actions executed (done)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "C: CONTROL \u2014 TD transport calls > 0",
+   "pass": true,
+   "detail": "calls=9"
+  }
+ ],
+ "live_journal_census_before": {
+  "done": 1,
+  "pending": 756
+ },
+ "monday_pending": 149
+}
