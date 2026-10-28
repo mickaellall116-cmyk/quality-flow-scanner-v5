@@ -1,0 +1,129 @@
+{
+  "artifact": "QF-PREREG-V10-P5-PER-FILL-CONFIG",
+  "parameters": {
+    "adjustment_precedence": [
+      "determine_raw_fill_price",
+      "apply_arm_price_adjustments",
+      "compute_per_fill_cost_on_executed_price",
+      "aggregate_net_pnl_and_r"
+    ],
+    "cost_currency": "USD",
+    "e1_stop_slippage_atr": 0.05,
+    "e2_tp1_exceed_margin_atr": 0.05,
+    "fill_cost_formula": "cost_dollars = (per_fill_bps / 10000) * shares_filled * fill_price",
+    "fill_price_basis": "stated_bar_open_or_close",
+    "hbuy_descriptive_cost_bps": 25,
+    "min_cost_per_fill_applies": false,
+    "net_pnl_formula": "net_pnl_dollars = sum(exit_fill_notionals) - entry_fill_notional - sum(fill_costs)",
+    "net_r_formula": "net_r = net_pnl_dollars / (shares * (entry_price - initial_stop_price))",
+    "not_modeled": [
+      "financing",
+      "borrow",
+      "dividends",
+      "taxes"
+    ],
+    "partial_fills": false,
+    "rounding_mode": "none_full_precision",
+    "sensitivity_per_fill_bps": [
+      2.0,
+      5.0
+    ],
+    "sensitivity_round_trip_bps": [
+      4,
+      10
+    ],
+    "tp1_fill_rule": "bar_high_touches_limit",
+    "verdict_per_fill_bps": 12.5,
+    "verdict_round_trip_bps": 25
+  },
+  "predecessor": {
+    "claims_carry_across_stages": false,
+    "stage1_config_pin": "87b8285a522ba0e3e5a80f0097b9668afc1ddf11da4fc5559c0ca31f55218706",
+    "stage1_cost_views_flat": [
+      "gross",
+      "4bps",
+      "25bps"
+    ]
+  },
+  "protocol": "prereg_v10_20261026",
+  "provenance": {
+    "adjustment_precedence": {
+      "derivation": "composition order is not stated in the frozen text; proposal applies arm price adjustments (S7) to the fill price before the S8 per-fill cost is computed on that executed price",
+      "requires_review": true,
+      "status": "PROPOSED"
+    },
+    "cost_currency": {
+      "citation": "PREREG_V10.md S8 per-fill model: charged in dollars",
+      "status": "PINNED"
+    },
+    "e1_stop_slippage_atr": {
+      "citation": "PREREG_V10.md S7 arms table (E1) + S8 Fills; declared modelling assumption [C15]",
+      "status": "PINNED"
+    },
+    "e2_tp1_exceed_margin_atr": {
+      "citation": "PREREG_V10.md S7 arms table (E2); declared modelling assumption [C15]",
+      "status": "PINNED"
+    },
+    "fill_cost_formula": {
+      "citation": "PREREG_V10.md S8 per-fill model",
+      "status": "PINNED"
+    },
+    "fill_price_basis": {
+      "citation": "PREREG_V10.md S8 Fills: stated bar open or close",
+      "status": "PINNED"
+    },
+    "hbuy_descriptive_cost_bps": {
+      "citation": "PREREG_V10.md S8 H-BUY: descriptive line, excess - 25 bps",
+      "status": "PINNED"
+    },
+    "min_cost_per_fill_applies": {
+      "derivation": "no minimum charge appears in the frozen text; proposal records that absence explicitly",
+      "requires_review": true,
+      "status": "PROPOSED"
+    },
+    "net_pnl_formula": {
+      "citation": "PREREG_V10.md S8 per-fill model",
+      "status": "PINNED"
+    },
+    "net_r_formula": {
+      "citation": "PREREG_V10.md S8 per-fill model",
+      "status": "PINNED"
+    },
+    "not_modeled": {
+      "citation": "PREREG_V10.md S8 Not modeled",
+      "status": "PINNED"
+    },
+    "partial_fills": {
+      "citation": "PREREG_V10.md S8 Fills: no partial-fill assumption",
+      "status": "PINNED"
+    },
+    "rounding_mode": {
+      "derivation": "rounding is not addressed in the frozen text; proposal carries dollar costs at full precision",
+      "requires_review": true,
+      "status": "PROPOSED"
+    },
+    "sensitivity_per_fill_bps": {
+      "derivation": "round_trip_bps / 2, extending the pinned 25 -> 12.5 halving of S8 to the sensitivity views; the frozen text states no per-fill rate for 4/10 bps",
+      "requires_review": true,
+      "status": "PROPOSED"
+    },
+    "sensitivity_round_trip_bps": {
+      "citation": "PREREG_V10.md S8 para 1: 4 and 10 bps, sensitivities only",
+      "status": "PINNED"
+    },
+    "tp1_fill_rule": {
+      "citation": "PREREG_V10.md S7 base rule / S8 TP1 assumptions: fills when the bar's high touches the limit",
+      "status": "PINNED"
+    },
+    "verdict_per_fill_bps": {
+      "citation": "PREREG_V10.md S8 per-fill model: 12.5 bps x shares x price",
+      "status": "PINNED"
+    },
+    "verdict_round_trip_bps": {
+      "citation": "PREREG_V10.md S8 para 1: 25 bps round-trip, verdicts",
+      "status": "PINNED"
+    }
+  },
+  "schema_version": 1,
+  "stage": 2
+}
