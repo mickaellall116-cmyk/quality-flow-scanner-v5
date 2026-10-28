@@ -4590,3 +4590,29 @@ feed/rights. Holdout sealed; production PAUSED; no tier is open.
 - **Four protocol ambiguities FLAGGED, not resolved:** AMB-1 — no frozen text names the instrument authorizing the pre-G7 pool-count staging access (a separate narrow staging authorization, drafted as Text 0, vs step 0 inside the G7 session, which contradicts the checklists' ordering); AMB-2 — §7 calls study 7C "its own future GO" while the Stage A package builds 7C into the single run under the single GO (Text 1 includes 7C expressly so adoption settles the reading); AMB-3 — Tier 2 is not an independently executable opening (single session/run consumes the window); Text 2 is framed as an include/exclude decision within the session; AMB-4 — §6/freeze checklist/Stage A package require O4 closed before any tier opens / before the session, against the G5 checklist note that verdicts alone are held until closure.
 - **Decision texts:** four separable, signable texts (Text 0 staging access; Text 1 Stage A; Text 2 Tier 2 inclusion; Text 3 Stage B with mode declaration), each stating its own preconditions. **Recommended sequencing:** (1) the pre-G7 completions now — Mike's O4 GO, the Text 0 staging ruling, P5 production; (2) Stage A G7 once O4 + P5 + pool counts are in the freeze record; (3) Stage B G7 after the Nov 2 pilot verdict + rights-basis decision + F3 parity evidence — it does not wait for Stage A, and its ~13–14-month accrual to the H-SYS floor makes start delay cost a month-for-month verdict delay.
 - **Nothing is authorized by this package.** G7 remains NOT GIVEN for every tier; the holdout remains SEALED; no computation, access, or vendor call was made in preparing it. — Muse
+
+## 2026-10-27 — Muse: COLLAB REQUEST — day-trader-skills repo intake (disposition A vs B)
+
+TYPE: PROPOSAL / COLLAB REQUEST — outside-claims intake adjudication only; no execution requested. Mike: "Maybe collab with chat" (2026-10-27). Also posted to Slack #qualityflowscaner, TS 1793150412.934519.
+
+Source: Instagram reel by @roadto100kportfolio ("Claude can now test your stock trades for you") promoting an open-source kit of 11 Claude skills. Repo: https://github.com/Jakeschincariol/day-trader-skill (MIT, 1 week old, single author, 2,332 stars). I read the code (read-only clone).
+
+What it actually is: Time Machine (trader-timemachine) is a same-time-of-day intraday bootstrap over ~60 days of Yahoo 5-min bars (free unofficial API, no key) — 10,000 replays, fixed seed 19, stop checked before target within a bar, plus a "history" re-run of the plan's opening-range rule on the same sessions. It refuses <20 full sessions, excludes today and the live bar, is paper-by-default, and orders are triple-gated (risk PASS + typed yes + permission card) via Alpaca MCP. Real test suite (~4,700 lines) — but it proves software correctness on fixtures, not that the odds are right. Its own framing is unusually honest: the worked example verdict is "close to a coin flip", loss disclaimers built in.
+
+Decisive gaps vs our standards:
+1. ZERO costs — no spread/slippage/commissions anywhere; a gap through the stop still books exactly -1R. In day trading the costs are the size of the claimed edge.
+2. "History" is IN-SAMPLE — same 60 days the sim pool draws from, rule shaped by today's plan, ~33 fires in the example. Noise presented as a record.
+3. Independent single-bar draws destroy intraday dependence — no momentum, no vol clustering; trend/cascade days are underrepresented by construction. No conditioning on today's path, gap, or news.
+4. False precision — odds quoted to 0.1% from ~40 bars per slot, no confidence intervals; the 5pp/15pp verdict bands are conventions, not statistics.
+5. The reel's "+18.4% backtest" figure exists NOWHERE in the repo. Pure marketing.
+
+My position: nothing adoptable as evidence or tooling for the frozen program. The one transferable idea — Monte Carlo path simulation for exit/hold evaluation — is already in our parked research sequence in disciplined form (MFE/MAE diagnostic first at the ~50-signal checkpoint, then Monte Carlo, on forward-test data with real costs and frozen gates).
+
+Disposition options (Mike's two-path pattern):
+A. Learning note parked in the backlog (research_notes/), no test.
+B. Note + a small preregistered study sketch adapting the path-simulation idea to our 4H data at the proper sequence point, pass/fail frozen before any run.
+
+My recommendation: A now — the note cross-references the parked Monte Carlo step so the idea is captured without jumping the queue. B adds nothing the sequence doesn't already own, and designing a test around a day-trading toy risks lane drift while G7/O4/Text 0 items are live.
+
+Ask: your independent read (inspect the repo yourself if useful), agreement or pushback on the gaps list, and a converged disposition — A, B, or another. — Muse
+
