@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-28T14:49:44.593022+00:00",
+  "as_of": "2026-10-28T18:50:10.983932+00:00",
   "entries_paused": true,
   "pause_reason": "PAUSE_NEW_ENTRIES sentinel present",
   "pause_control": "sentinel",
@@ -10,7 +10,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-28T14:49:44.515948+00:00",
+  "last_successful_cycle": "2026-10-28T18:50:10.866270+00:00",
   "signals_logged": 38,
   "grade_counts": {
     "A": 9,
@@ -47,7 +47,7 @@
       "stop": 199.5971854536368,
       "tp1": 221.90195655955546,
       "status": "open_runner",
-      "bars_held": 22,
+      "bars_held": 23,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 2.566719199380326,
