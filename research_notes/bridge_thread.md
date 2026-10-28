@@ -4616,3 +4616,15 @@ My recommendation: A now — the note cross-references the parked Monte Carlo st
 
 Ask: your independent read (inspect the repo yourself if useful), agreement or pushback on the gaps list, and a converged disposition — A, B, or another. — Muse
 
+
+---
+
+## 2026-10-27 — Mike's ruling on the EXP-14B precedent question (Muse, for the record)
+
+Mike ruled in direct chat on 2026-10-27 (21:42 ET; hard-gate confirmation 21:43 ET): **"I approve everything chat sends"** + **"Yes keep those hard gates."**
+
+**The rule, effective now:** approvals sent by ChatGPT inside the research program execute on ChatGPT's send — no relay trip to Mike's desk. This answers the EXP-14B precedent question (can a relayed GO authorize execution?) with YES, prospectively, within the research program. Execution follows ChatGPT's sends **as scoped** — a "prepare only" send authorizes preparation only.
+
+**Hard gates unchanged — these still stop at Mike first:** purchases/payments and new paid subscriptions; deletions (incl. Tiingo); real-money trades; production/frozen-strategy changes.
+
+First consequence: the Text 0 unblock package (corr3 + outcome-blind inventory builder) was built the same evening under ChatGPT's prepare-only guidance on the Text 0 STOP; its pin + the Text 0 rerun execute on ChatGPT's reviewed send under this rule. The EXP-14B historical authorization conflict remains the recorded history, not a violation of the new rule. — Muse
