@@ -1,0 +1,270 @@
+--- corr2_src/exp14_buy_corr2.py	2026-10-28 01:44:58.505316986 +0000
++++ exp14_buy_corr3.py	2026-10-28 01:53:43.969333479 +0000
+@@ -112,6 +112,22 @@
+ inventory ts at the same (symbol, idx), or a missing / invalid /
+ non-finite open at any required bar; disclosure absent or not
+ recomputing from the cohort artifact.
++
++CORR3 SUCCESSOR (Text 0 unblock package, 2026-10-27): this version
++exists because the corr2 domain binding described above (the DEV P7
++census EXPECTED_FIRES = 2892 and the DEV window
++2024-09-16..2026-10-16) makes the pinned code fail closed on any
++non-DEV inventory - the recorded Text 0 STOP
++(research_notes/text0_pool_counts_20261027). CORR3 changes ONLY the
++domain binding: the census/window binding is replaced by a pinned
++holdout-inventory binding (a hash-bound manifest carrying the
++inventory SHA-256, the inventory's own fire census, the Tier 2 /
++Tier 3 membership, and the sealed window 2023-10-19..2024-09-15).
++Matching logic, ladder, draws, seeds and the (still gated) analysis
++path are unchanged from corr2; RETURNS_ENABLED remains False and
++the returns path remains unauthorized. script_version is bumped
++3 -> 4 as the successor's version marker. See PACKAGE.md of the
++Text 0 unblock package for the enumerated diff.
+ """
+ import argparse
+ import hashlib
+@@ -134,9 +150,23 @@
+ DECLUSTER_BARS = 20
+ EXCLUSION_BARS = 20
+ DRAW_N = 20
+-EXPECTED_FIRES = 2892
+-DEV_START = "2024-09-16"
+-DEV_END = "2026-10-16"
++# CORR3 binding (replaces corr2's EXPECTED_FIRES = 2892 and
++# DEV_START/DEV_END): the pool-count domain is the SEALED HOLDOUT
++# window, bound by a manifest whose bytes are pinned below - the
++# same discipline as PINNED_INPUT_SHA256 (a caller-supplied hash is
++# never the expectation; the `pinned` override in load_binding
++# exists only so the synthetic suite can exercise the mechanism on
++# fixture bytes). The manifest carries the inventory SHA-256, the
++# inventory's own fire census, the Tier 2 / Tier 3 membership and
++# the window. The copy shipped with this package is the STAGING
++# TEMPLATE: window and tier membership are final; the inventory
++# hash and census are null until the pinned inventory builder
++# produces the holdout inventory at staging, when the manifest is
++# completed, re-hashed, and PINNED_MANIFEST_SHA256 re-pinned in
++# the freeze record.
++PINNED_MANIFEST_SHA256 = "f991965fcc4e26976be60a11c65308ec6357e689c65a6e07bb767112e2999705"
++WINDOW_START = "2023-10-19"
++WINDOW_END = "2024-09-15"
+ BOOTSTRAP_REPS = 10000
+ BLOCK_SESSIONS = 20
+ COST_RT_BPS = 25  # prereg v0.3 section 5 (H-BUY) descriptive line
+@@ -245,6 +275,82 @@
+     return True
+ 
+ 
++MANIFEST_KEYS = {"binding_id", "status", "window_start", "window_end",
++                 "tiers", "inventory_sha256", "expected_fires"}
++
++
++def load_binding(manifest_path, pinned=None):
++    """CORR3 hard binding: the binding manifest's bytes must hash
++    to the compiled-in PINNED_MANIFEST_SHA256 (the `pinned` override
++    exists only for the synthetic fixture suite, exactly as in
++    verify_pinned_file). The manifest is then shape-checked
++    strictly: exact key set; window equal to the compiled-in
++    WINDOW_START / WINDOW_END; tiers an object with exactly the
++    tier2 / tier3 lists - non-empty, disjoint, duplicate-free. The
++    inventory hash / census may be null ONLY in the shipped staging
++    template; require_completed_binding bars any run under it."""
++    want = PINNED_MANIFEST_SHA256 if pinned is None else pinned
++    got = sha256_file(manifest_path)
++    if got != want:
++        raise FailClosedError(
++            f"binding manifest sha256 {got} != pinned {want} - "
++            "refusing (caller-supplied hashes are never trusted)")
++    with open(manifest_path) as f:
++        binding = json.load(f)
++    if set(binding) != MANIFEST_KEYS:
++        raise FailClosedError(
++            f"binding manifest key set drift: {sorted(binding)}")
++    if binding["window_start"] != WINDOW_START \
++            or binding["window_end"] != WINDOW_END:
++        raise FailClosedError(
++            "binding manifest window != compiled-in window "
++            f"[{WINDOW_START}, {WINDOW_END}]")
++    tiers = binding["tiers"]
++    if not isinstance(tiers, dict) or set(tiers) != {"tier2", "tier3"}:
++        raise FailClosedError("binding manifest tiers shape drift")
++    t2, t3 = tiers["tier2"], tiers["tier3"]
++    if not t2 or not t3 or set(t2) & set(t3) \
++            or len(t2) != len(set(t2)) or len(t3) != len(set(t3)):
++        raise FailClosedError(
++            "binding manifest tiers empty, duplicated, or overlapping")
++    return binding
++
++
++def require_completed_binding(binding):
++    """A staging-template manifest (null inventory hash / census)
++    can never authorize a run: fail closed until the manifest is
++    completed at staging and re-pinned."""
++    if binding["inventory_sha256"] is None \
++            or binding["expected_fires"] is None:
++        raise FailClosedError(
++            "binding manifest is the STAGING TEMPLATE (inventory "
++            "hash / census not yet recorded) - no run is possible "
++            "under a template binding")
++    return True
++
++
++def verify_holdout_binding(by_symbol, binding):
++    """The loaded inventory's symbol set must equal the manifest's
++    Tier 2 + Tier 3 membership exactly, and every row's session_date
++    must lie inside the sealed window. Returns the manifest's
++    pinned fire census for run_pool_counts."""
++    want = set(binding["tiers"]["tier2"]) | set(binding["tiers"]["tier3"])
++    if set(by_symbol) != want:
++        raise FailClosedError(
++            "inventory symbol set != binding tiers: "
++            f"missing {sorted(want - set(by_symbol))}, "
++            f"extra {sorted(set(by_symbol) - want)}")
++    for sym, rows in by_symbol.items():
++        for r in rows:
++            d = str(r.get("session_date", ""))[:10]
++            if not (binding["window_start"] <= d
++                    <= binding["window_end"]):
++                raise FailClosedError(
++                    "inventory row outside the sealed window: "
++                    f"{sym}:{r.get('idx')} session_date {d}")
++    return binding["expected_fires"]
++
++
+ def load_inventory(path, expected_sha):
+     got = sha256_file(path)
+     if got != expected_sha:
+@@ -403,13 +509,16 @@
+     return sorted(int(x) for x in chosen)
+ 
+ 
+-def run_pool_counts(by_symbol):
++def run_pool_counts(by_symbol, expected_fires):
+     # ---- census reconciliation (fail-closed) --------------------------
++    # CORR3: the expectation is the pinned holdout inventory's own
++    # census, carried by the hash-bound manifest - not corr2's DEV
++    # P7 census (2892), which belongs to a different domain.
+     total_fires = sum(len(fires_of(rows)) for rows in by_symbol.values())
+-    if total_fires != EXPECTED_FIRES:
++    if total_fires != expected_fires:
+         raise SystemExit(
+             f"FAIL-CLOSED: inventory domain fires {total_fires} "
+-            f"!= P7 census {EXPECTED_FIRES}")
++            f"!= pinned holdout census {expected_fires}")
+ 
+     events = {}          # (symbol, idx) -> event row (de-clustered)
+     dropped_window = {}  # horizon -> de-clustered events dropped at h
+@@ -485,7 +594,7 @@
+         mix_bin[b] = mix_bin.get(b, 0) + 1
+ 
+     report = {
+-        "study": STUDY_ID, "script_version": 3,
++        "study": STUDY_ID, "script_version": 4,
+         "master_seed": MASTER_SEED, "bootstrap_seed": BOOTSTRAP_SEED,
+         "window_rule": "single complete-window rule (review item 1): "
+         "an event or control bar is eligible only if idx + 20 <= n - 1 "
+@@ -520,7 +629,7 @@
+         "No forward return or group difference computed.",
+     }
+     cohort_out = {
+-        "study": STUDY_ID, "script_version": 3,
++        "study": STUDY_ID, "script_version": 4,
+         "window_rule": report["window_rule"],
+         "cohort": [{"symbol": sym, "signal_idx": i,
+                     "ts": cohort[(sym, i)]["ts"],
+@@ -528,7 +637,7 @@
+                    for (sym, i) in sorted(cohort)],
+         "retained": sorted(f"{sym}:{i}" for (sym, i) in retained),
+     }
+-    draws_out = {"study": STUDY_ID, "script_version": 3,
++    draws_out = {"study": STUDY_ID, "script_version": 4,
+                  "master_seed": MASTER_SEED,
+                  "frozen_step": frozen["step"], "draws": draws}
+     return report, cohort_out, draws_out
+@@ -547,13 +656,16 @@
+                      "in_generator_domain")
+ 
+ 
+-def _check_dev_ts(row, what):
++def _check_window_ts(row, what):
++    # CORR3: corr2's _check_dev_ts, bound to the sealed holdout
++    # window constants instead of the DEV window. The analysis path
++    # that calls this remains gated (RETURNS_ENABLED is False).
+     d = str(row.get("session_date", ""))[:10]
+-    if not (DEV_START <= d <= DEV_END):
++    if not (WINDOW_START <= d <= WINDOW_END):
+         raise FailClosedError(
+-            f"non-DEV timestamp on {what}: {row.get('symbol')}:"
++            f"out-of-window timestamp on {what}: {row.get('symbol')}:"
+             f"{row.get('idx')} session_date {d} outside "
+-            f"[{DEV_START}, {DEV_END}]")
++            f"[{WINDOW_START}, {WINDOW_END}]")
+ 
+ 
+ def validate_inventory(by_symbol):
+@@ -760,7 +872,7 @@
+         if row is None:
+             raise FailClosedError(f"cohort event {sym}:{i} not in "
+                                   "inventory")
+-        _check_dev_ts(row, "cohort event")
++        _check_window_ts(row, "cohort event")
+         if not row["signal"] or not row["in_generator_domain"]:
+             raise FailClosedError(f"cohort event {sym}:{i} is not a "
+                                   "generator-domain fire")
+@@ -788,7 +900,7 @@
+                 if row is None:
+                     raise FailClosedError(f"{arm} draw {sym}:{j} not "
+                                           "in inventory")
+-                _check_dev_ts(row, f"{arm} control")
++                _check_window_ts(row, f"{arm} control")
+                 if not window_complete(int(j), len(by_symbol[sym])):
+                     raise FailClosedError(
+                         f"{arm} control {sym}:{j} lacks a complete "
+@@ -934,6 +1046,8 @@
+     ap = argparse.ArgumentParser()
+     ap.add_argument("--inventory", required=True)
+     ap.add_argument("--inventory-sha", required=True)
++    ap.add_argument("--manifest",
++                    help="CORR3: binding manifest (pool-counts mode)")
+     ap.add_argument("--mode", default="pool-counts",
+                     choices=("pool-counts", "returns"))
+     ap.add_argument("--out-report")
+@@ -1014,8 +1128,37 @@
+                           "claim": result["claim"]}))
+         return 0
+ 
+-    by_symbol = load_inventory(args.inventory, args.inventory_sha)
+-    report, cohort, draws = run_pool_counts(by_symbol)
++    # CORR3 pool-count binding: the manifest is verified against
++    # the compiled-in pin BEFORE anything is loaded; the inventory
++    # is then loaded against the MANIFEST's recorded hash (a
++    # supplied --inventory-sha that disagrees with the manifest is
++    # a wiring error, exactly as in the returns branch above), and
++    # the loaded inventory's membership and window are verified
++    # before any pool is counted.
++    if not args.manifest:
++        print("FAIL-CLOSED: --mode pool-counts requires --manifest "
++              "(CORR3 binding)", file=sys.stderr)
++        return 2
++    try:
++        binding = load_binding(args.manifest)
++        require_completed_binding(binding)
++    except FailClosedError as e:
++        print(f"FAIL-CLOSED: {e}", file=sys.stderr)
++        return 2
++    if args.inventory_sha != binding["inventory_sha256"]:
++        print("FAIL-CLOSED: supplied --inventory-sha "
++              f"{args.inventory_sha} != binding manifest inventory "
++              f"{binding['inventory_sha256']} (caller-supplied "
++              "hashes are not trusted)", file=sys.stderr)
++        return 2
++    by_symbol = load_inventory(args.inventory,
++                               binding["inventory_sha256"])
++    try:
++        expected_fires = verify_holdout_binding(by_symbol, binding)
++    except FailClosedError as e:
++        print(f"FAIL-CLOSED: {e}", file=sys.stderr)
++        return 2
++    report, cohort, draws = run_pool_counts(by_symbol, expected_fires)
+     for path, obj in ((args.out_report, report), (args.out_cohort, cohort),
+                       (args.out_draws, draws)):
+         if path:

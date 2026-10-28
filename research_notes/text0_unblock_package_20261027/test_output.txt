@@ -1,0 +1,32 @@
+PASS: A1 corr3 positive run under completed fixture binding (rc=0)
+PASS: A1b census reconciled to planted fires (6 vs 6)
+PASS: A1c cohort = planted window-complete events (2+1+2) (5)
+PASS: A1d report is outcome-blind (no return fields) 
+PASS: A2 tampered inventory refused by manifest hash binding (rc=2)
+PASS: A3 tampered manifest refused by compiled-in pin (rc=2)
+PASS: A4 extra symbol refused by tier-membership binding (rc=2)
+PASS: A5 out-of-window row refused by window binding (rc=2)
+PASS: A6 census mismatch fail-closed vs pinned holdout census (rc=1)
+PASS: A7 shipped STAGING TEMPLATE binding refuses to run (rc=2)
+PASS: A8 corr2 (pinned) refuses synthetic holdout inventory with the DEV census - the STOP blocker (rc=1)
+PASS: B1 corr3-only functions are exactly the binding trio (['load_binding', 'require_completed_binding', 'verify_holdout_binding'])
+PASS: B2 corr2-only function is exactly _check_dev_ts (renamed) ([])
+PASS: B3 all non-binding shared functions AST-identical ([])
+PASS: B3b _analysis_impl identical modulo the renamed window check at its two call sites 
+PASS: B3c _check_window_ts identical to _check_dev_ts modulo the window binding tokens 
+PASS: B4 module constants: removed = DEV binding only (['DEV_END', 'DEV_START', 'EXPECTED_FIRES'])
+PASS: B5 module constants: added = CORR3 binding only (['MANIFEST_KEYS', 'PINNED_MANIFEST_SHA256', 'WINDOW_END', 'WINDOW_START'])
+PASS: B6 no other module constant changed (ladder/seeds/pins) ([])
+PASS: C0 pinned P7b reference inventory present + hash-verified 
+PASS: C1 builder dev-validate: byte-exact vs pinned P7b inventory (NVDA/AMD/PLTR) (rows 3129)
+PASS: C2 builder synthetic holdout-parameterized build runs (rc=0, tail=fires_domain 0 missing_dom {'atr': 0, 'atr_pct': 0, 'ema21': 0, 'ema55': 0, 'ema200': 0}
+INVENTORY sha256: a64f1470a36c9e9202c09952d21ffdd0520926e197745bd49019d146a9ecc53f | bars 158 | census fires 0
+)
+PASS: C2b emitted rows carry exactly the corr3 row schema 
+PASS: C2c bar count per symbol = 2*sessions - early closes (expected 79)
+PASS: C2d bins and ordinals are session-consistent 
+PASS: C2e summary records inventory hash + census for the manifest completion step 
+PASS: C3 builder volume gate: poisoned capture STOPs, no inventory written (rc=2)
+PASS: C4 holdout mode latched without session authorization (rc=2)
+
+28/28 checks passed
