@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-28T20:49:30.270521+00:00",
+  "as_of": "2026-10-29T14:49:30.538376+00:00",
   "entries_paused": true,
   "pause_reason": "PAUSE_NEW_ENTRIES sentinel present",
   "pause_control": "sentinel",
@@ -10,7 +10,7 @@
     "X2": 199
   },
   "live_control": "V5.3 (unchanged)",
-  "last_successful_cycle": "2026-10-28T20:49:30.200310+00:00",
+  "last_successful_cycle": "2026-10-29T14:49:30.463015+00:00",
   "signals_logged": 38,
   "grade_counts": {
     "A": 9,
@@ -47,11 +47,11 @@
       "stop": 199.5971854536368,
       "tp1": 221.90195655955546,
       "status": "open_runner",
-      "bars_held": 24,
+      "bars_held": 25,
       "tp1_taken": true,
       "profit_protect_armed": null,
       "mfe_r": 2.566719199380326,
-      "mae_r": -0.10337413260034983
+      "mae_r": -0.9409336816761243
     }
   ],
   "closed_trades": 26,
