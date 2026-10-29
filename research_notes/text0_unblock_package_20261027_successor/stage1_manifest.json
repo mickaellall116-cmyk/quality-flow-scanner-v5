@@ -1,0 +1,55 @@
+{
+ "binding_id": "TEXT0-UNBLOCK-CORR4-STAGE1-20261029",
+ "builder": {
+  "file": "build_holdout_inventory_corr4.py",
+  "sha256": "110b73f92d2e7303c23f1fb37fabb228b486e603f1cbd9aa286b241c41f58757"
+ },
+ "corr2_source_sha256": "77bd53e82963d65ab743a57f1eff0d23b54467a0e17aaf1831b42e6e96b6f3d8",
+ "engine": {
+  "pine_backtest.py": "874d2a9b1d99171a4d3db709ece9ce4719b4d108a70f7e95b4a082692cc0c99d",
+  "run_study13.py": "4962e30d8b42124ebc317aab647351521d107b600c01a42905fce4c41ce4b22b",
+  "scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c"
+ },
+ "session_table_sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+ "stage": 1,
+ "stage2_addendum_file": "stage2_addendum.json",
+ "status": "STAGE1-PINS-COMMITTED",
+ "tiers": {
+  "tier2": [
+   "AAPL",
+   "AMD",
+   "AMZN",
+   "ARKK",
+   "ARM",
+   "AVGO",
+   "COIN",
+   "IWM",
+   "LUNR",
+   "META",
+   "MSFT",
+   "NFLX",
+   "NIO",
+   "NVDA",
+   "SHOP",
+   "SMH",
+   "SPY",
+   "TSLA",
+   "XLF"
+  ],
+  "tier3": [
+   "AAOI",
+   "ACN",
+   "BABA",
+   "BE",
+   "BLK",
+   "COF",
+   "CRDO",
+   "IREN",
+   "MPWR",
+   "SPOT",
+   "TWLO"
+  ]
+ },
+ "window_end": "2024-09-15",
+ "window_start": "2023-10-19"
+}

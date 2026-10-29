@@ -1,0 +1,28 @@
+{
+ "binding_id": "FIXTURE-BINDING",
+ "builder": {
+  "file": "fixture-builder",
+  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+ },
+ "corr2_source_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "engine": {
+  "pine_backtest.py": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "run_study13.py": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "scanner_rules.py": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+ },
+ "session_table_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "stage": 1,
+ "stage2_addendum_file": "stage2_addendum.json",
+ "status": "STAGE1-PINS-COMMITTED",
+ "tiers": {
+  "tier2": [
+   "FAA",
+   "FBB"
+  ],
+  "tier3": [
+   "FCC"
+  ]
+ },
+ "window_end": "2024-09-15",
+ "window_start": "2023-10-19"
+}

@@ -1,0 +1,56 @@
+PASS: A1 corr4 positive run under fixture staged binding (rc=0)
+PASS: A1b census reconciled to planted fires (6) (6)
+PASS: A1c cohort = planted window-complete events (5) (5)
+PASS: A1d report is outcome-blind (no return fields) 
+PASS: A2 tampered inventory refused (addendum hash binding) (rc=2)
+PASS: A3 tampered manifest refused by compiled-in content pin (rc=2)
+PASS: A3b shipped corr4 pin refuses a drifted manifest copy (rc=2)
+PASS: A4 extra symbol refused by tier-membership binding (rc=2)
+PASS: A5 missing Tier 3 -> named TIER3_INVENTORY_MISSING (rc=2)
+PASS: A6 missing Tier 2 -> named TIER2_INVENTORY_MISSING (rc=2)
+PASS: A7 out-of-window row refused by window binding (rc=2)
+PASS: A8 census mismatch fail-closed vs addendum census (rc=1)
+PASS: A9 addendum w/ wrong content ref refused (rc=2)
+PASS: A10 override attempt --symbols rejected by interface (rc=2)
+PASS: A10 override attempt --window rejected by interface (rc=2)
+PASS: A10 override attempt --manifest rejected by interface (rc=2)
+PASS: A11a package ships without a Stage-2 addendum 
+PASS: A11b shipped corr4 refuses: STAGE2_ADDENDUM_MISSING (rc=2)
+PASS: A12 corr2 (pinned) refuses fixture holdout inventory with the DEV census - the STOP blocker (rc=1)
+PASS: B1 corr4-only functions are exactly the binding quartet (['_package_path', 'load_stage1_manifest', 'load_stage2_addendum', 'verify_holdout_binding'])
+PASS: B2 corr2-only function is exactly _check_dev_ts (renamed) ([])
+PASS: B3 all non-binding shared functions AST-identical ([])
+PASS: B3b _analysis_impl identical modulo the renamed window check at its two call sites 
+PASS: B3c _check_window_ts identical to _check_dev_ts modulo the window binding tokens 
+PASS: B3d classes unchanged (['ExecutionGoRequired', 'FailClosedError'])
+PASS: B4 module constants: removed = DEV binding only (['DEV_END', 'DEV_START', 'EXPECTED_FIRES'])
+PASS: B5 module constants: added = CORR4 binding only (['ADDENDUM_KEYS', 'CORR2_SOURCE_SHA256', 'MANIFEST_CONTENT_KEYS', 'MANIFEST_FILE_KEYS', 'PINNED_BINDING_CONTENT_SHA256', 'SESSION_TABLE_SHA256', 'STAGE1_MANIFEST_NAME', 'STAGE2_ADDENDUM_NAME', 'TIER2', 'TIER3', 'WINDOW_END', 'WINDOW_START'])
+PASS: B6 no other module constant changed (ladder/seeds/pins) ([])
+PASS: B7 corr2_src copy hashes to the P11 pin 
+PASS: C0 pinned window subset = 227 sessions (227)
+PASS: C1 builder interface rejects --symbols (rc=2)
+PASS: C1 builder interface rejects --manifest (rc=2)
+PASS: C1 builder interface rejects --session-table (rc=2)
+PASS: C1 builder interface rejects --mode (rc=2)
+PASS: C2 build refuses without a session authorization (rc=2)
+PASS: C3 build refuses auth naming wrong binding content (rc=2)
+PASS: C4 build refuses a single-operator authorization (rc=2)
+PASS: C5 missing Tier 3 capture -> named TIER3_CAPTURE_MISSING (rc=3)
+PASS: C6 poisoned capture STOPs the build, no inventory (rc=2)
+PASS: C7 full fabricated build (30 symbols x 227 sessions) (rc=0, tail=omain 119 missing_dom {'atr': 0, 'atr_pct': 0, 'ema21': 0, 'ema55': 0, 'ema200': 0}
+INVENTORY sha256: cca5e23a6995343e819a91e1e6adbe586ab3f7dd88e764422bafa5c1f0b6b354 | bars 13560 | census fires 3570
+)
+PASS: C7b rows carry exactly the corr4 row schema 
+PASS: C7c 452 bars per symbol (2*227 - 2 early closes) 
+PASS: C7d every symbol covers all 227 session ordinals 
+PASS: C7e summary hash + census reconcile with inventory 
+PASS: C7f summary binding block pins builder + manifest 
+PASS: C8 copied-tree build reproduces the identical inventory (rc=0)
+PASS: D1 SHA256_MANIFEST verifies for every package file ([])
+PASS: D2 manifest content hash == literals in corr4 + builder (d7ed4a2decd0...)
+PASS: D3 tier membership re-derives (19 Tier 2 + 11 Tier 3) 
+PASS: D4 DECISION CARD names both named errors + the absence 
+PASS: D5 PACKAGE.md states the non-circular staged design 
+PASS: D6 committed fixtures regenerate byte-identically 
+
+52/52 checks passed

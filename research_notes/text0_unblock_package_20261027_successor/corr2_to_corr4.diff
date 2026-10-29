@@ -1,0 +1,486 @@
+--- exp14_buy_corr2.py (P11 pin 77bd53e8)
++++ exp14_buy_corr4.py
+@@ -1,122 +1,52 @@
+-"""EXP-14-BUY-DEV-EXPLORATORY — pinned exploratory BUY study script, v3.
+-
+-SUCCESSOR to the v2 pin in research_notes/
+-equity43_dev_buy_prep_m1m2_succ1_20261025/ (commit 32dfdb3), built
+-under DECISION B (Mike, 2026-10-25, chat delivery of record; bridge
+-commit 243df1a): a prospective amendment for a DEV-only
+-matched-subpopulation study. The original EXP-14 protocol remains
+-STOP (step-(c) drop 71/311 = 22.83% > 15%); this version does not
+-revive it and does not relax any rule. This version changes ONLY the
+-three implementation items Decision B names:
+-
+-  ITEM (a) — execution-only price input. Claude prohibited open
+-      fields in the outcome-blind P7b inventory, and that inventory
+-      is NOT amended. The section-5 endpoint's entry price (open of
+-      bar i+1) is now read from a SEPARATE, private, execution-only
+-      price input derived from the same committed DEV bytes (builder:
+-      code/build_exec_prices.py; placement: private qf-data-archive
+-      research_inventory/exp14_exec_prices_20261025/, hash-pinned).
+-      The analysis reads NO price from the inventory: entry = exec
+-      input open[i+1]; exit = inventory close[i+h] (a field the
+-      outcome-blind inventory has always carried); scale = inventory
+-      ATR[i]. Any missing execution price fails closed.
+-  ITEM (b) — CLI wiring fixed. The v2 command line called
+-      compute_forward_returns() with NO arguments, so returns mode
+-      could never have run. The v3 CLI wires --cohort / --draws /
+-      --exec-prices (each with its expected SHA-256) and the
+-      inventory through to the analysis function, and writes
+-      --out-analysis. Proven by a synthetic CLI end-to-end test
+-      (fixture inventory + fixture price input -> full pipeline ->
+-      pinned-schema output) plus a plain-CLI gate test: with
+-      RETURNS_ENABLED False (this pin), a real CLI returns-mode
+-      invocation assembles its inputs and is refused by the GO gate
+-      with NO output written.
+-  ITEM (c) — reporting completed. The output now carries the
+-      declared percentage-return views alongside the ATR-unit views
+-      (per horizon: mean event return and mean paired excess, in
+-      percent), the declared cost-sensitivity view (preregistration
+-      v0.3 section 5, H-BUY: costs cancel in the paired difference;
+-      the descriptive line is primary paired excess in percent minus
+-      a 25 bps round trip — descriptive only, never a verdict
+-      input), and a MANDATORY disclosure header (Decision B): the
+-      eligible / retained / excluded counts and the exclusion rate,
+-      recomputed from the cohort artifact and fail-closed if the
+-      supplied disclosure is absent or does not recompute, plus the
+-      matched-subpopulation-only scope statement. Labels remain DEV
+-      EXPLORATORY with claim NONE; the verdict field is a
+-      descriptive-only statement (see CORRECTION 1 below).
+-
+-CORRECTIONS (corr1 pin, independent review Issue #1 comment
+-6406403886 — the ONLY changes vs the f69c470 v3 pin; cohort, draws,
+-feasibility, seeds and the original STOP are byte-unchanged):
+-  CORRECTION 1 — the verdict value in _analysis_impl carried the
+-      prohibited token pair in its wording ("issues no ..."). It is
+-      replaced by the neutral const "DESCRIPTIVE ONLY — no
+-      promotional or validated-edge conclusion", and the synthetic
+-      suite asserts the prohibited tokens appear in NO field of the
+-      emitted output.
+-  CORRECTION 2 — the execution-price path discarded each row's ts
+-      at load, so a price row bearing a wrong timestamp passed
+-      validation if its separately supplied file hash matched. The
+-      loader now RETAINS ts in the price map ({symbol: {idx:
+-      {"ts", "open"}}}), and validate_exec_prices — called by the
+-      analysis before any return is computed — asserts EXACT
+-      timestamp equality against the pinned inventory for every
+-      (symbol, idx), and fails closed on non-finite (NaN/inf) opens
+-      as well as None / non-positive ones.
+-
+-CORRECTION corr2 (independent readiness review — ChatGPT desk reply
+-2026-10-25 22:48 ET, Slack TS 1792982883.654249: corr1 PASSED 101/0
+-as a package, execution held for this separate readiness finding;
+-the ONLY changes vs the corr1 pin):
+-  ITEM 1 — hard byte-hash binding. The four approved execution
+-      inputs are bound IN THE SCRIPT ITSELF (PINNED_INPUT_SHA256:
+-      P7b inventory a6bbd19a..., execution-price input 4adb8320...,
+-      frozen cohort 35690b80..., frozen draws fe54808e...). The CLI
+-      returns-mode path verifies every input FILE's bytes against
+-      these compiled-in constants before anything is loaded
+-      (verify_pinned_inputs), and the loaders are called with the
+-      pinned constants — never with a caller-supplied expectation.
+-      A caller-supplied --*-sha that disagrees with its pinned
+-      constant is itself refused. This closes both attack cases
+-      named in the finding: an altered but well-formed file, and a
+-      caller supplying a file together with that file's own
+-      (self-consistent) hash.
+-  ITEM 2 — interval semantics clarified (wording only; no number
+-      and no computation changed). The bootstrap bounds lower_95 /
+-      upper_95 are the 5th / 95th percentiles of the resample
+-      means: each is a SEPARATE ONE-SIDED 95% bound, and jointly
+-      [lower_95, upper_95] is a CENTRAL 90% interval — NOT a
+-      two-sided 95% interval. The pinned output schema and the
+-      bootstrap docstrings now say exactly this.
+-
+-Study design, pools, ladder, frozen draws, seeds, the complete-window
+-rule, the endpoint formula, and the inferential basis (ATR-unit
+-paired excess; wider-of-two bootstrap interval) are UNCHANGED from
+-v2. The frozen cohort/draws artifacts are carried byte-identical
+-from the v2 successor package (file SHA-256s pinned in the package
+-manifest and re-verified by its verifier): cohort 311 events, 240
+-retained at frozen step (c), 71 excluded (22.83%).
+-
+-SEEDS (unchanged, pinned before any outcome): MASTER_SEED (draws) =
+-7715012043445510037; BOOTSTRAP_SEED = 6050949521315240661.
+-
+-FAIL-CLOSED (analysis): any of the four execution input files'
+-bytes differing from the SHA-256 constants pinned in this script
+-(corr2; caller-supplied expected hashes are never trusted);
+-cohort/draws hash mismatch; invalid
+-inventory keys; non-DEV timestamps; window-incomplete events or
+-controls; missing forward data; execution-price input hash mismatch,
+-coverage mismatch (symbols / indices must equal the inventory's
+-exactly), an execution-price timestamp differing from the pinned
+-inventory ts at the same (symbol, idx), or a missing / invalid /
+-non-finite open at any required bar; disclosure absent or not
+-recomputing from the cohort artifact.
++"""EXP-14 / Text 0 - sealed-window pool-count matcher, CORR4.
++
++SUCCESSOR of the CORR3 unblock draft (package commit e3f5e8e),
++which ChatGPT's independent review put on HOLD with four blockers
++(reproducibility, caller-override surface, circular manifest
++completion, missing Tier 3 bytes). CORR4 is rebuilt from the
++pinned CORR2 source (P11 pin 77bd53e8..., reproduced in corr2_src/)
++and changes ONLY the binding, exactly as itemized in
++corr2_to_corr4.diff and PACKAGE.md:
++
++  - the domain is the SEALED holdout window
++    [2023-10-19, 2024-09-15] and the frozen tier membership
++    (19 Tier 2 + 11 Tier 3 names), compiled in below AND pinned by
++    canonical-content hash in stage1_manifest.json, committed
++    beside this file BEFORE any access (Stage 1);
++  - the Stage-2 addendum (stage2_addendum.json) does not exist in
++    this package and is created ONLY by the future reviewed
++    Stage-2 session, after the inventory is built; it carries the
++    inventory hash + census and must reference the Stage-1 content
++    pin and the Stage-1 builder / session-table pins. The counting
++    step creates no pins (non-circular staging);
++  - there is no --manifest / --window / --symbols argument and no
++    environment-variable latch: manifest, window, and membership
++    exist only in the pinned package files;
++  - a missing Tier 3 symbol fails closed with the NAMED error
++    TIER3_INVENTORY_MISSING; the tier is never silently shrunk
++    (Tier 3 holdout-window bytes do not exist yet - see
++    DECISION_CARD_TIER3_BYTES.md).
++
++Everything else - ladder, seeds, declustering, pool construction,
++draw discipline, the returns machinery and its gates - is
++BYTE-IDENTICAL to CORR2 (machine-verified by the package suite's
++AST audit; the sole non-binding change is `import os`, which the
++fixed-path binding needs and CORR2 did not import).
++script_version is bumped to 5 inside run_pool_counts
++so artifacts of this binding are distinguishable from CORR2 (3)
++and the unadopted CORR3 draft (4).
++
++This script computes pool SIZES only on the Text 0 path
++(outcome-free by construction: no price is read for any return).
++The returns path remains unauthorized and gated exactly as in
++CORR2 (RETURNS_ENABLED is False; ExecutionGoRequired stands).
+ """
++
+ import argparse
+ import hashlib
+ import json
+ import math
++import os
+ import sys
+ 
+ import numpy as np
+@@ -134,9 +64,43 @@
+ DECLUSTER_BARS = 20
+ EXCLUSION_BARS = 20
+ DRAW_N = 20
+-EXPECTED_FIRES = 2892
+-DEV_START = "2024-09-16"
+-DEV_END = "2026-10-16"
++# CORR4 BINDING (Text 0 successor package, 2026-10-29): corr2's
++# DEV-domain constants (its frozen census and DEV window bounds)
++# are replaced by the sealed-window binding below. The window and the
++# tier membership are compiled in AND pinned by canonical-content
++# hash in the Stage-1 manifest committed beside this file
++# (stage1_manifest.json); load_stage1_manifest verifies the
++# manifest's binding content against PINNED_BINDING_CONTENT_SHA256
++# before any inventory byte is read, and the Stage-2 addendum -
++# created only by the future reviewed session - must reference
++# the same content hash. No CLI argument names a manifest, a
++# window, a tier, or a symbol set.
++WINDOW_START = "2023-10-19"
++WINDOW_END = "2024-09-15"
++TIER2 = ["AAPL", "AMD", "AMZN", "ARKK", "ARM", "AVGO", "COIN",
++         "IWM", "LUNR", "META", "MSFT", "NFLX", "NIO", "NVDA",
++         "SHOP", "SMH", "SPY", "TSLA", "XLF"]
++TIER3 = ["AAOI", "ACN", "BABA", "BE", "BLK", "COF", "CRDO",
++         "IREN", "MPWR", "SPOT", "TWLO"]
++PINNED_BINDING_CONTENT_SHA256 = "d7ed4a2decd0b2150f4e478c50c41d7195287e1dc556912883b855a4371f7249"
++SESSION_TABLE_SHA256 = \
++    "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f"
++CORR2_SOURCE_SHA256 = \
++    "77bd53e82963d65ab743a57f1eff0d23b54467a0e17aaf1831b42e6e96b6f3d8"
++STAGE1_MANIFEST_NAME = "stage1_manifest.json"
++STAGE2_ADDENDUM_NAME = "stage2_addendum.json"
++MANIFEST_FILE_KEYS = {"binding_id", "stage", "status",
++                      "window_start", "window_end", "tiers",
++                      "session_table_sha256", "corr2_source_sha256",
++                      "engine", "builder", "stage2_addendum_file"}
++MANIFEST_CONTENT_KEYS = ("binding_id", "stage", "window_start",
++                         "window_end", "tiers",
++                         "session_table_sha256",
++                         "corr2_source_sha256", "engine")
++ADDENDUM_KEYS = {"binding_id", "stage", "binding_content_sha256",
++                 "inventory_sha256", "expected_fires",
++                 "builder_sha256", "session_table_sha256",
++                 "session"}
+ BOOTSTRAP_REPS = 10000
+ BLOCK_SESSIONS = 20
+ COST_RT_BPS = 25  # prereg v0.3 section 5 (H-BUY) descriptive line
+@@ -242,6 +206,141 @@
+     verify_pinned_file(exec_prices_path, "exec_prices", pinned)
+     verify_pinned_file(cohort_path, "cohort", pinned)
+     verify_pinned_file(draws_path, "draws", pinned)
++    return True
++
++
++def _package_path(name):
++    return os.path.join(os.path.dirname(os.path.abspath(__file__)),
++                        name)
++
++
++def load_stage1_manifest():
++    """CORR4 Stage-1 binding: load stage1_manifest.json from beside
++    this file (no caller-chosen path exists) and verify it BEFORE
++    any inventory byte is read. The manifest's binding content -
++    binding id, stage, window, tier membership, session-table pin,
++    corr2 pin, engine pins - must hash (canonical_sha) to the
++    compiled-in PINNED_BINDING_CONTENT_SHA256; window, tiers, and
++    pins are then cross-checked against the compiled-in values.
++    Any drift is FailClosedError."""
++    path = _package_path(STAGE1_MANIFEST_NAME)
++    if not os.path.exists(path):
++        raise FailClosedError(
++            "STAGE1_MANIFEST_MISSING: " + STAGE1_MANIFEST_NAME +
++            " not found beside the matcher - the Stage-1 pins are "
++            "a precondition of any counting session")
++    try:
++        with open(path) as f:
++            m = json.load(f)
++    except Exception as e:
++        raise FailClosedError(f"stage1 manifest unparseable: {e}")
++    if set(m) != MANIFEST_FILE_KEYS:
++        raise FailClosedError(
++            f"stage1 manifest key set drift: {sorted(m)}")
++    content = {k: m[k] for k in MANIFEST_CONTENT_KEYS}
++    if canonical_sha(content) != PINNED_BINDING_CONTENT_SHA256:
++        raise FailClosedError(
++            "stage1 manifest binding content != compiled-in pin "
++            f"{PINNED_BINDING_CONTENT_SHA256} - refusing "
++            "(manifest bytes are never trusted beyond the pinned "
++            "content)")
++    if m["stage"] != 1 or m["status"] != "STAGE1-PINS-COMMITTED":
++        raise FailClosedError("stage1 manifest stage/status drift")
++    if m["window_start"] != WINDOW_START \
++            or m["window_end"] != WINDOW_END:
++        raise FailClosedError(
++            "stage1 manifest window != compiled-in window "
++            f"[{WINDOW_START}, {WINDOW_END}]")
++    if m["tiers"] != {"tier2": TIER2, "tier3": TIER3}:
++        raise FailClosedError(
++            "stage1 manifest tiers != compiled-in tier membership")
++    if m["session_table_sha256"] != SESSION_TABLE_SHA256:
++        raise FailClosedError(
++            "stage1 manifest session-table pin != compiled-in pin")
++    if m["corr2_source_sha256"] != CORR2_SOURCE_SHA256:
++        raise FailClosedError(
++            "stage1 manifest corr2 pin != compiled-in pin")
++    return m
++
++
++def load_stage2_addendum(stage1):
++    """CORR4 Stage-2 binding: the addendum is created ONLY by the
++    future reviewed Stage-2 session, after the holdout inventory
++    exists; its hash is entered in the freeze record before any
++    counting run (PACKAGE.md states the staging - it is
++    non-circular: the counting step completes and repins nothing).
++    The addendum must reference the Stage-1 binding-content hash
++    and the Stage-1 builder / session-table pins, and it carries
++    the inventory hash + census the counting step verifies
++    against. Its absence is the shipped state of this package and
++    fails closed with a named error."""
++    path = _package_path(STAGE2_ADDENDUM_NAME)
++    if not os.path.exists(path):
++        raise FailClosedError(
++            "STAGE2_ADDENDUM_MISSING: " + STAGE2_ADDENDUM_NAME +
++            " does not exist - Stage 2 has not run; no counting "
++            "session is possible under this package until the "
++            "reviewed Stage-2 session creates it")
++    try:
++        with open(path) as f:
++            a = json.load(f)
++    except Exception as e:
++        raise FailClosedError(f"stage2 addendum unparseable: {e}")
++    if set(a) != ADDENDUM_KEYS:
++        raise FailClosedError(
++            f"stage2 addendum key set drift: {sorted(a)}")
++    if a["binding_id"] != stage1["binding_id"] or a["stage"] != 2:
++        raise FailClosedError("stage2 addendum binding/stage drift")
++    if a["binding_content_sha256"] != PINNED_BINDING_CONTENT_SHA256:
++        raise FailClosedError(
++            "stage2 addendum does not reference the pinned "
++            "Stage-1 binding content")
++    if a["builder_sha256"] != stage1["builder"]["sha256"]:
++        raise FailClosedError(
++            "stage2 addendum builder pin != Stage-1 builder pin")
++    if a["session_table_sha256"] != stage1["session_table_sha256"]:
++        raise FailClosedError(
++            "stage2 addendum session-table pin != Stage-1 pin")
++    if not isinstance(a["expected_fires"], int) \
++            or isinstance(a["expected_fires"], bool) \
++            or a["expected_fires"] <= 0:
++        raise FailClosedError(
++            "stage2 addendum census not a positive integer")
++    return a
++
++
++def verify_holdout_binding(by_symbol):
++    """The loaded inventory's symbol set must equal the compiled-in
++    Tier 2 + Tier 3 membership exactly, and every row's
++    session_date must lie inside the sealed window. A missing
++    Tier 3 symbol fails with the NAMED error
++    TIER3_INVENTORY_MISSING - the tier is never silently shrunk
++    (Tier 3 holdout-window bytes do not exist yet; see
++    DECISION_CARD_TIER3_BYTES.md)."""
++    have = set(by_symbol)
++    missing3 = sorted(set(TIER3) - have)
++    if missing3:
++        raise FailClosedError(
++            "TIER3_INVENTORY_MISSING: inventory carries no rows "
++            f"for Tier 3 symbol(s) {missing3} - failing closed; "
++            "the tier is never silently shrunk")
++    missing2 = sorted(set(TIER2) - have)
++    if missing2:
++        raise FailClosedError(
++            "TIER2_INVENTORY_MISSING: inventory carries no rows "
++            f"for Tier 2 symbol(s) {missing2}")
++    extra = sorted(have - set(TIER2) - set(TIER3))
++    if extra:
++        raise FailClosedError(
++            "inventory symbol set != pinned tier membership: "
++            f"unexpected symbol(s) {extra}")
++    for sym, rows in by_symbol.items():
++        for r in rows:
++            d = str(r.get("session_date", ""))[:10]
++            if not (WINDOW_START <= d <= WINDOW_END):
++                raise FailClosedError(
++                    "inventory row outside the sealed window: "
++                    f"{sym}:{r.get('idx')} session_date {d}")
+     return True
+ 
+ 
+@@ -403,13 +502,17 @@
+     return sorted(int(x) for x in chosen)
+ 
+ 
+-def run_pool_counts(by_symbol):
++def run_pool_counts(by_symbol, expected_fires):
+     # ---- census reconciliation (fail-closed) --------------------------
++    # CORR4: the expectation is the sealed-window inventory's own
++    # census, carried by the Stage-2 addendum under the Stage-1
++    # content pin - not corr2's DEV P7 census (2892), which belongs
++    # to a different domain (the recorded Text 0 STOP blocker).
+     total_fires = sum(len(fires_of(rows)) for rows in by_symbol.values())
+-    if total_fires != EXPECTED_FIRES:
++    if total_fires != expected_fires:
+         raise SystemExit(
+             f"FAIL-CLOSED: inventory domain fires {total_fires} "
+-            f"!= P7 census {EXPECTED_FIRES}")
++            f"!= pinned holdout census {expected_fires}")
+ 
+     events = {}          # (symbol, idx) -> event row (de-clustered)
+     dropped_window = {}  # horizon -> de-clustered events dropped at h
+@@ -485,7 +588,7 @@
+         mix_bin[b] = mix_bin.get(b, 0) + 1
+ 
+     report = {
+-        "study": STUDY_ID, "script_version": 3,
++        "study": STUDY_ID, "script_version": 5,
+         "master_seed": MASTER_SEED, "bootstrap_seed": BOOTSTRAP_SEED,
+         "window_rule": "single complete-window rule (review item 1): "
+         "an event or control bar is eligible only if idx + 20 <= n - 1 "
+@@ -520,7 +623,7 @@
+         "No forward return or group difference computed.",
+     }
+     cohort_out = {
+-        "study": STUDY_ID, "script_version": 3,
++        "study": STUDY_ID, "script_version": 5,
+         "window_rule": report["window_rule"],
+         "cohort": [{"symbol": sym, "signal_idx": i,
+                     "ts": cohort[(sym, i)]["ts"],
+@@ -528,7 +631,7 @@
+                    for (sym, i) in sorted(cohort)],
+         "retained": sorted(f"{sym}:{i}" for (sym, i) in retained),
+     }
+-    draws_out = {"study": STUDY_ID, "script_version": 3,
++    draws_out = {"study": STUDY_ID, "script_version": 5,
+                  "master_seed": MASTER_SEED,
+                  "frozen_step": frozen["step"], "draws": draws}
+     return report, cohort_out, draws_out
+@@ -547,13 +650,16 @@
+                      "in_generator_domain")
+ 
+ 
+-def _check_dev_ts(row, what):
++def _check_window_ts(row, what):
++    # CORR4: corr2's DEV timestamp check, bound to the sealed
++    # holdout window constants instead of the DEV window. The analysis path
++    # that calls this remains gated (RETURNS_ENABLED is False).
+     d = str(row.get("session_date", ""))[:10]
+-    if not (DEV_START <= d <= DEV_END):
+-        raise FailClosedError(
+-            f"non-DEV timestamp on {what}: {row.get('symbol')}:"
++    if not (WINDOW_START <= d <= WINDOW_END):
++        raise FailClosedError(
++            f"out-of-window timestamp on {what}: {row.get('symbol')}:"
+             f"{row.get('idx')} session_date {d} outside "
+-            f"[{DEV_START}, {DEV_END}]")
++            f"[{WINDOW_START}, {WINDOW_END}]")
+ 
+ 
+ def validate_inventory(by_symbol):
+@@ -760,7 +866,7 @@
+         if row is None:
+             raise FailClosedError(f"cohort event {sym}:{i} not in "
+                                   "inventory")
+-        _check_dev_ts(row, "cohort event")
++        _check_window_ts(row, "cohort event")
+         if not row["signal"] or not row["in_generator_domain"]:
+             raise FailClosedError(f"cohort event {sym}:{i} is not a "
+                                   "generator-domain fire")
+@@ -788,7 +894,7 @@
+                 if row is None:
+                     raise FailClosedError(f"{arm} draw {sym}:{j} not "
+                                           "in inventory")
+-                _check_dev_ts(row, f"{arm} control")
++                _check_window_ts(row, f"{arm} control")
+                 if not window_complete(int(j), len(by_symbol[sym])):
+                     raise FailClosedError(
+                         f"{arm} control {sym}:{j} lacks a complete "
+@@ -1014,8 +1120,37 @@
+                           "claim": result["claim"]}))
+         return 0
+ 
+-    by_symbol = load_inventory(args.inventory, args.inventory_sha)
+-    report, cohort, draws = run_pool_counts(by_symbol)
++    # CORR4 staged binding (pool-counts): the Stage-1 manifest is
++    # verified against the compiled-in binding-content pin BEFORE
++    # anything is loaded; the Stage-2 addendum must reference the
++    # same content pin and the Stage-1 builder / session-table
++    # pins; the inventory is loaded against the ADDENDUM's recorded
++    # hash (a supplied --inventory-sha that disagrees is a wiring
++    # error, exactly as in the returns branch above); tier
++    # membership and window are verified before any pool is
++    # counted. No argument names a manifest, window, tier, or
++    # symbol set - those exist only in the pinned package files.
++    try:
++        stage1 = load_stage1_manifest()
++        addendum = load_stage2_addendum(stage1)
++    except FailClosedError as e:
++        print(f"FAIL-CLOSED: {e}", file=sys.stderr)
++        return 2
++    if args.inventory_sha != addendum["inventory_sha256"]:
++        print("FAIL-CLOSED: supplied --inventory-sha "
++              f"{args.inventory_sha} != stage2 addendum inventory "
++              f"{addendum['inventory_sha256']} (caller-supplied "
++              "hashes are not trusted)", file=sys.stderr)
++        return 2
++    by_symbol = load_inventory(args.inventory,
++                               addendum["inventory_sha256"])
++    try:
++        verify_holdout_binding(by_symbol)
++    except FailClosedError as e:
++        print(f"FAIL-CLOSED: {e}", file=sys.stderr)
++        return 2
++    report, cohort, draws = run_pool_counts(
++        by_symbol, addendum["expected_fires"])
+     for path, obj in ((args.out_report, report), (args.out_cohort, cohort),
+                       (args.out_draws, draws)):
+         if path:
