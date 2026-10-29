@@ -47,9 +47,41 @@ ChatGPT's reviewed PASS on this package.
    env var: a JSON record naming the pinned content hash, the
    builder's hash, window, tiers, mode, session id, and exactly
    two operators, verified before the raw directory is touched.
-3. NON-CIRCULAR BINDING — staged, explicit (next section). No step
-   completes or repins a manifest after a sealed read; the
-   counting step creates no pins of any kind.
+   RAW-CAPTURE BINDING (added on ChatGPT's corr4 review — the one
+   remaining pre-read pin defect): the Stage-1 binding content
+   also pins the raw-capture schema — the session layout (the
+   raw directory is the `raw/` subdirectory beside the
+   session-authorization artifact; it is derived by the builder,
+   never a caller argument — `--raw-dir` does not exist), the
+   receipt-manifest file name (`receipt_manifest.json`, inside
+   the raw directory), the `{sym}.json` file template, the
+   receipt-root algorithm, and the 30-symbol count. The session
+   authorization additionally names the receipt manifest's file
+   sha256 and its receipt root (the canonical sha256 of the
+   per-symbol capture-hash map the receipt carries), so the
+   actual capture bytes are pinned by an artifact issued BEFORE
+   the build. The builder then, before parsing any capture:
+   hashes the receipt file against the authorization pin,
+   verifies the receipt's root and exact symbol set, rejects
+   extra / missing / unlisted / symlinked bytes, and hashes
+   EVERY capture file against the receipt — any mismatch fails
+   closed with a named error (RAW_RECEIPT_MANIFEST_HASH_MISMATCH,
+   RAW_RECEIPT_ROOT_MISMATCH, RAW_CAPTURE_UNLISTED_FILE,
+   RAW_CAPTURE_PATH_SUBSTITUTED, RAW_CAPTURE_HASH_MISMATCH;
+   missing captures keep the tier-aware exit-3 names). Input
+   hashes are therefore verified pre-parse, never generated
+   after capture parsing (the previous draft hashed captures
+   only after admission — that ordering is gone; the summary's
+   `input_file_sha256` now records the pre-parse verified pins).
+3. NON-CIRCULAR BINDING — staged, explicit (next section), with
+   ONE disclosed exception, corrected on the same review: the
+   builder emits the inventory hash after touching sealed data,
+   and that hash is carried into the Stage-2 addendum the
+   matcher trusts. The earlier absolute claim (no step that
+   touches sealed data creates a later pin) was wrong and is
+   withdrawn — see the staged design below for the exact,
+   corrected statement. The counting step itself creates no
+   pins of any kind.
 4. TIER 3 BYTES — DECISION_CARD_TIER3_BYTES.md documents the
    absence (Tier 3 holdout-window captures do not exist), what a
    capture would require, and that obtaining it is a separate
@@ -63,7 +95,8 @@ ChatGPT's reviewed PASS on this package.
 - Stage 1 — THIS package, committed and independently reviewable
   now: stage1_manifest.json pins the binding content (binding id,
   window, tier membership, session-table pin, corr2 pin, engine
-  pins) by canonical-content hash, compiled into both programs.
+  pins, and the raw-capture binding schema of §2) by
+  canonical-content hash, compiled into both programs.
   The manifest deliberately does NOT pin the matcher (that would
   be circular: the matcher pins the manifest); the matcher's own
   sha256 is pinned here in SHA256_MANIFEST.txt and enters the
@@ -71,11 +104,15 @@ ChatGPT's reviewed PASS on this package.
 - Stage 2 — the future reviewed session, which only verifies the
   pins it was given and counts:
   1. a session-authorization artifact is issued for the builder
-     (two operators, naming the Stage-1 content hash);
+     (two operators, naming the Stage-1 content hash AND the
+     raw-capture receipt manifest's file hash + receipt root —
+     the capture bytes are pinned before the build starts);
   2. the builder verifies all Stage-1 pins + the authorization,
-     builds the sealed-window inventory from the session's raw
-     captures, and emits a provenance summary (inventory hash +
-     census as addendum inputs — evidence, not a pin);
+     verifies the receipt manifest and every raw capture hash
+     BEFORE parsing any capture (see §2), builds the
+     sealed-window inventory from the session's raw captures,
+     and emits a provenance summary (inventory hash + census as
+     addendum inputs — evidence, not a pin);
   3. the Stage-2 addendum (stage2_addendum.json: binding id,
      content-hash reference, builder/table pins copied from
      Stage 1, inventory hash, census, session record) is created
@@ -86,10 +123,19 @@ ChatGPT's reviewed PASS on this package.
      window, reconciles the census, and counts. It writes only
      the outcome-free pool-count report (plus cohort/draws files
      if the session passes those paths, per the frozen protocol).
-  At no point does a step that has touched sealed data create or
-  alter a pin that a later step trusts: pins flow Stage 1 →
-  addendum → counting, each created before the access it governs,
-  each hash entered in the record before use.
+  Corrected pin-flow statement (this replaces an earlier,
+  incorrect absolute claim in this document): every pin that
+  governs an INPUT to a step is created before that step runs —
+  Stage-1 pins before any access, the receipt pins in the
+  session authorization before the build, the addendum's hash in
+  the freeze record before counting. The single exception is
+  disclosed, not hidden: the builder emits the inventory hash
+  only AFTER reading the sealed captures — an output hash cannot
+  exist before the build — and that hash becomes a pin a later
+  step trusts only when the reviewed addendum carries it and the
+  addendum's own hash is entered in the freeze record before any
+  counting run. No pin is ever created or altered after the
+  counting it governs, and the counting step creates none.
 
 ## Contents
 
@@ -102,8 +148,11 @@ SHA256_MANIFEST.txt pins every file. In brief:
   AST-identical to corr2).
 - corr2_src/exp14_buy_corr2.py — the pinned predecessor, verbatim.
 - build_holdout_inventory_corr4.py — the Stage-2 inventory
-  builder (vendored engine, authorization artifact, named
-  missing-capture errors).
+  builder (vendored engine, authorization artifact naming the
+  raw-capture receipt pins, raw directory derived from the
+  session layout — no --raw-dir — receipt + per-capture hash
+  verification before any parsing, named missing-capture
+  errors).
 - engine/ — the frozen -13 pipeline modules, verbatim, pinned.
 - session_table_751.json — the adopted qualified calendar, pinned.
 - stage1_manifest.json — the Stage-1 pins.

@@ -32,11 +32,18 @@ PASS: C1 builder interface rejects --symbols (rc=2)
 PASS: C1 builder interface rejects --manifest (rc=2)
 PASS: C1 builder interface rejects --session-table (rc=2)
 PASS: C1 builder interface rejects --mode (rc=2)
+PASS: C1 builder interface rejects --raw-dir (rc=2)
 PASS: C2 build refuses without a session authorization (rc=2)
 PASS: C3 build refuses auth naming wrong binding content (rc=2)
 PASS: C4 build refuses a single-operator authorization (rc=2)
 PASS: C5 missing Tier 3 capture -> named TIER3_CAPTURE_MISSING (rc=3)
 PASS: C6 poisoned capture STOPs the build, no inventory (rc=2)
+PASS: C9a clean-parsing capture failing its pin rejected before parse (RAW_CAPTURE_HASH_MISMATCH) (rc=2)
+PASS: C9b unparseable capture failing its pin rejected before parse (RAW_CAPTURE_HASH_MISMATCH) (rc=2)
+PASS: C10 extra unlisted raw file rejected (RAW_CAPTURE_UNLISTED_FILE) (rc=2)
+PASS: C11 tampered receipt rejected (RAW_RECEIPT_MANIFEST_HASH_MISMATCH) (rc=2)
+PASS: C12 auth naming wrong receipt hash rejected (RAW_RECEIPT_MANIFEST_HASH_MISMATCH) (rc=2)
+PASS: C13 symlinked capture rejected (RAW_CAPTURE_PATH_SUBSTITUTED) (rc=2)
 PASS: C7 full fabricated build (30 symbols x 227 sessions) (rc=0, tail=omain 119 missing_dom {'atr': 0, 'atr_pct': 0, 'ema21': 0, 'ema55': 0, 'ema200': 0}
 INVENTORY sha256: cca5e23a6995343e819a91e1e6adbe586ab3f7dd88e764422bafa5c1f0b6b354 | bars 13560 | census fires 3570
 )
@@ -45,12 +52,4 @@ PASS: C7c 452 bars per symbol (2*227 - 2 early closes)
 PASS: C7d every symbol covers all 227 session ordinals 
 PASS: C7e summary hash + census reconcile with inventory 
 PASS: C7f summary binding block pins builder + manifest 
-PASS: C8 copied-tree build reproduces the identical inventory (rc=0)
-PASS: D1 SHA256_MANIFEST verifies for every package file ([])
-PASS: D2 manifest content hash == literals in corr4 + builder (d7ed4a2decd0...)
-PASS: D3 tier membership re-derives (19 Tier 2 + 11 Tier 3) 
-PASS: D4 DECISION CARD names both named errors + the absence 
-PASS: D5 PACKAGE.md states the non-circular staged design 
-PASS: D6 committed fixtures regenerate byte-identically 
-
-52/52 checks passed
+PASS: C7g summary input hashes are the pre-parse verified receipt pins (+ receipt pins in binding block) 

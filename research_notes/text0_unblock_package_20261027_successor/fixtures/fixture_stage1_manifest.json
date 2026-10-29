@@ -10,6 +10,13 @@
   "run_study13.py": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
   "scanner_rules.py": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
  },
+ "raw_capture": {
+  "file_template": "{sym}.json",
+  "raw_dir": "session_auth_dir/raw",
+  "receipt_file": "receipt_manifest.json",
+  "receipt_root_algorithm": "canonical_sha256(per_symbol_sha256_map)",
+  "symbol_count": 3
+ },
  "session_table_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
  "stage": 1,
  "stage2_addendum_file": "stage2_addendum.json",

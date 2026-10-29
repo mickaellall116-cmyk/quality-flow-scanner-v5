@@ -88,6 +88,14 @@ def fixture_content():
         "session_table_sha256": DUMMY_TABLE_SHA,
         "corr2_source_sha256": DUMMY_CORR2_SHA,
         "engine": DUMMY_ENGINE,
+        "raw_capture": {
+            "raw_dir": "session_auth_dir/raw",
+            "receipt_file": "receipt_manifest.json",
+            "file_template": "{sym}.json",
+            "receipt_root_algorithm":
+                "canonical_sha256(per_symbol_sha256_map)",
+            "symbol_count": 3,
+        },
     }
 
 

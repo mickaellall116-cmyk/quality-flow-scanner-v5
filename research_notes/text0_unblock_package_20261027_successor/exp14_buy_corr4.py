@@ -25,7 +25,15 @@ corr2_to_corr4.diff and PACKAGE.md:
   - a missing Tier 3 symbol fails closed with the NAMED error
     TIER3_INVENTORY_MISSING; the tier is never silently shrunk
     (Tier 3 holdout-window bytes do not exist yet - see
-    DECISION_CARD_TIER3_BYTES.md).
+    DECISION_CARD_TIER3_BYTES.md);
+  - the Stage-1 binding content also pins the raw-capture
+    binding schema (session layout, receipt-manifest file name,
+    receipt-root algorithm, symbol count): the future session's
+    authorization artifact names the receipt manifest's hash and
+    root, and the inventory builder verifies the receipt and
+    every raw capture hash BEFORE parsing any capture. The
+    matcher reads no raw captures; this pin binds the manifest
+    content it verifies so the schema cannot drift silently.
 
 Everything else - ladder, seeds, declustering, pool construction,
 draw discipline, the returns machinery and its gates - is
@@ -82,7 +90,7 @@ TIER2 = ["AAPL", "AMD", "AMZN", "ARKK", "ARM", "AVGO", "COIN",
          "SHOP", "SMH", "SPY", "TSLA", "XLF"]
 TIER3 = ["AAOI", "ACN", "BABA", "BE", "BLK", "COF", "CRDO",
          "IREN", "MPWR", "SPOT", "TWLO"]
-PINNED_BINDING_CONTENT_SHA256 = "d7ed4a2decd0b2150f4e478c50c41d7195287e1dc556912883b855a4371f7249"
+PINNED_BINDING_CONTENT_SHA256 = "a6af811edd60692503abcf115c41a1b11263d69a02eb4e798337fd6708742fc6"
 SESSION_TABLE_SHA256 = \
     "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f"
 CORR2_SOURCE_SHA256 = \
@@ -92,11 +100,13 @@ STAGE2_ADDENDUM_NAME = "stage2_addendum.json"
 MANIFEST_FILE_KEYS = {"binding_id", "stage", "status",
                       "window_start", "window_end", "tiers",
                       "session_table_sha256", "corr2_source_sha256",
-                      "engine", "builder", "stage2_addendum_file"}
+                      "engine", "builder", "stage2_addendum_file",
+                      "raw_capture"}
 MANIFEST_CONTENT_KEYS = ("binding_id", "stage", "window_start",
                          "window_end", "tiers",
                          "session_table_sha256",
-                         "corr2_source_sha256", "engine")
+                         "corr2_source_sha256", "engine",
+                         "raw_capture")
 ADDENDUM_KEYS = {"binding_id", "stage", "binding_content_sha256",
                  "inventory_sha256", "expected_fires",
                  "builder_sha256", "session_table_sha256",
@@ -260,6 +270,16 @@ def load_stage1_manifest():
     if m["corr2_source_sha256"] != CORR2_SOURCE_SHA256:
         raise FailClosedError(
             "stage1 manifest corr2 pin != compiled-in pin")
+    rc = m["raw_capture"]
+    if not isinstance(rc, dict) \
+            or rc.get("raw_dir") != "session_auth_dir/raw" \
+            or rc.get("receipt_file") != "receipt_manifest.json" \
+            or rc.get("file_template") != "{sym}.json" \
+            or rc.get("symbol_count") != len(TIER2) + len(TIER3):
+        raise FailClosedError(
+            "stage1 manifest raw_capture binding drift: the "
+            "raw-capture layout / receipt schema pinned in the "
+            "binding content is not the compiled-in schema")
     return m
 
 

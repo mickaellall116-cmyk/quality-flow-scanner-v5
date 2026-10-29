@@ -9,24 +9,47 @@ rebuilt against ChatGPT's HOLD blockers 1-2:
     (engine/, session_table_751.json) and hash-verified against
     stage1_manifest.json before anything is imported or read.
     Nothing is read from a stage home, an archive clone, or any
-    path outside this package plus the session's --raw-dir.
-  - NO OVERRIDES: the CLI is exactly --raw-dir, --session-auth,
-    --out, --summary. There is no --symbols, --manifest,
+    path outside this package plus the session layout below.
+  - NO OVERRIDES: the CLI is exactly --session-auth, --out,
+    --summary. There is no --raw-dir, --symbols, --manifest,
     --session-table, or --mode argument, and no environment
-    variable authorizes anything.
+    variable authorizes anything. The raw-capture directory is
+    NOT a caller input: it is derived deterministically from the
+    session layout - the "raw" subdirectory of the directory
+    holding the session-authorization artifact (the Stage-1
+    manifest pins this layout in its raw_capture binding).
   - SESSION AUTHORIZATION replaces the env latch: the build runs
     only under a session-authorization artifact (JSON) that names
     the pinned binding-content hash, this builder's own sha256,
     the pinned window and tier membership, the mode string
     TEXT0_STAGE2_INVENTORY_BUILD, a session id, and exactly two
-    operators. The artifact is a governance record, not a secret:
-    its force is pin verification plus the logged two-person
-    session and the freeze-record entry of the Stage-2 addendum
-    hash (see PACKAGE.md).
+    operators. It ALSO names the raw-capture receipt manifest's
+    file sha256 and receipt root (below), so the capture bytes
+    are pinned by an artifact issued before the build, not by
+    anything the build itself computes first. The artifact is a
+    governance record, not a secret: its force is pin
+    verification plus the logged two-person session and the
+    freeze-record entry of the Stage-2 addendum hash (see
+    PACKAGE.md).
+  - RAW CAPTURES ARE HASH-BOUND BEFORE PARSING: the raw
+    directory must contain a receipt manifest
+    (receipt_manifest.json, a fixed name inside the raw
+    directory) listing the exact pinned 30 symbols and each
+    capture file's sha256, with a receipt root = the canonical
+    sha256 of that per-symbol hash map. The builder hashes the
+    receipt file and compares it to the session authorization
+    BEFORE parsing anything, verifies the receipt's root and
+    symbol set against the authorization and the Stage-1 tiers,
+    then hashes EVERY capture file and compares it to the
+    receipt BEFORE any capture is parsed. Extra, missing,
+    unlisted, symlinked (path-substituted), or hash-mismatched
+    bytes fail closed with named errors. Only after every hash
+    matches does the frozen phase2 parsing begin.
   - MISSING BYTES FAIL NAMED: before any symbol is built, every
-    pinned symbol must have a capture file in --raw-dir. A missing
-    Tier 3 capture exits 3 with TIER3_CAPTURE_MISSING:<symbol>;
-    Tier 2 likewise. The tier is never silently shrunk.
+    pinned symbol must have a capture file in the raw directory.
+    A missing Tier 3 capture exits 3 with
+    TIER3_CAPTURE_MISSING:<symbol>; Tier 2 likewise. The tier is
+    never silently shrunk.
 
 The admission gates and the resample are the frozen -13 phase2 /
 phase4 code paths (vendored run_study13.phase4; admission gates
@@ -47,19 +70,27 @@ MANIFEST_PATH = os.path.join(HERE, "stage1_manifest.json")
 TABLE_PATH = os.path.join(HERE, "session_table_751.json")
 RAW_NAME = "{sym}.json"
 AUTH_MODE = "TEXT0_STAGE2_INVENTORY_BUILD"
+RECEIPT_FILE = "receipt_manifest.json"
+RAW_LAYOUT = "session_auth_dir/raw"
+RECEIPT_KEYS = {"receipt_id", "binding_content_sha256", "symbols",
+                "per_symbol_sha256", "receipt_root_sha256"}
 
-PINNED_BINDING_CONTENT_SHA256 = "d7ed4a2decd0b2150f4e478c50c41d7195287e1dc556912883b855a4371f7249"
+PINNED_BINDING_CONTENT_SHA256 = "a6af811edd60692503abcf115c41a1b11263d69a02eb4e798337fd6708742fc6"
 MANIFEST_FILE_KEYS = {"binding_id", "stage", "status",
                       "window_start", "window_end", "tiers",
                       "session_table_sha256", "corr2_source_sha256",
-                      "engine", "builder", "stage2_addendum_file"}
+                      "engine", "builder", "stage2_addendum_file",
+                      "raw_capture"}
 MANIFEST_CONTENT_KEYS = ("binding_id", "stage", "window_start",
                          "window_end", "tiers",
                          "session_table_sha256",
-                         "corr2_source_sha256", "engine")
+                         "corr2_source_sha256", "engine",
+                         "raw_capture")
 AUTH_KEYS = {"auth_id", "binding_content_sha256", "builder_sha256",
              "window_start", "window_end", "tiers", "mode",
-             "session_id", "operators", "date"}
+             "session_id", "operators", "date",
+             "raw_receipt_manifest_sha256",
+             "raw_receipt_root_sha256"}
 
 
 def sha256_file(path):
@@ -114,6 +145,16 @@ def load_and_verify_manifest():
     if not os.path.exists(TABLE_PATH) \
             or sha256_file(TABLE_PATH) != m["session_table_sha256"]:
         binding_fail("vendored session table pin drift")
+    rc = m["raw_capture"]
+    n_sym = len(m["tiers"]["tier2"]) + len(m["tiers"]["tier3"])
+    if not isinstance(rc, dict) \
+            or rc.get("raw_dir") != RAW_LAYOUT \
+            or rc.get("receipt_file") != RECEIPT_FILE \
+            or rc.get("file_template") != RAW_NAME \
+            or rc.get("symbol_count") != n_sym:
+        binding_fail("stage1 raw_capture binding drift: the "
+                     "manifest's raw-capture layout / receipt "
+                     "binding != the compiled-in session layout")
     return m
 
 
@@ -153,7 +194,130 @@ def verify_session_auth(path, manifest):
                      "operators")
     if not a["auth_id"] or not a["session_id"] or not a["date"]:
         binding_fail("session auth id/session/date empty")
+    for k in ("raw_receipt_manifest_sha256",
+              "raw_receipt_root_sha256"):
+        v = a[k]
+        if not isinstance(v, str) or len(v) != 64 \
+                or any(c not in "0123456789abcdef" for c in v):
+            binding_fail(f"session auth {k} is not a sha256 hex "
+                         "digest - the raw captures must be "
+                         "pinned by the authorization before the "
+                         "build touches them")
     return a
+
+
+def derive_raw_dir(auth_path):
+    """The raw-capture directory is derived, never supplied: the
+    "raw" subdirectory of the directory holding the
+    session-authorization artifact (the Stage-1 raw_capture
+    binding pins this layout). No CLI argument can name it."""
+    return os.path.join(
+        os.path.dirname(os.path.abspath(auth_path)), "raw")
+
+
+def verify_raw_captures_before_parse(manifest, auth, raw_dir):
+    """Hash-bind the raw captures BEFORE any parsing, in order:
+
+    1. the receipt manifest file's sha256 must equal the pin in
+       the session authorization (hashed as bytes, before it is
+       parsed);
+    2. the parsed receipt must name this binding, the exact
+       pinned symbol set in pinned order, and a receipt root
+       (canonical sha256 of the per-symbol hash map) equal to
+       the authorization's root pin and to its own contents;
+    3. the raw directory must contain exactly the receipt plus
+       one file per pinned symbol - extra or unlisted bytes are
+       rejected, a missing capture fails with the named
+       tier-aware error (exit 3), and a symlinked capture is a
+       path substitution;
+    4. EVERY capture file is hashed and compared to the receipt
+       BEFORE any capture is parsed; a mismatch fails closed
+       with RAW_CAPTURE_HASH_MISMATCH.
+
+    Returns the verified per-symbol sha256 map. No capture byte
+    is parsed before this function returns."""
+    symbols = list(manifest["tiers"]["tier2"]) \
+        + list(manifest["tiers"]["tier3"])
+    if not os.path.isdir(raw_dir):
+        binding_fail(f"RAW_CAPTURE_DIR_MISSING: derived raw "
+                     f"directory {raw_dir} does not exist")
+    receipt_path = os.path.join(raw_dir, RECEIPT_FILE)
+    if os.path.islink(receipt_path):
+        binding_fail("RAW_CAPTURE_PATH_SUBSTITUTED: "
+                     f"{RECEIPT_FILE} is a symlink")
+    if not os.path.exists(receipt_path):
+        binding_fail(f"RAW_RECEIPT_MANIFEST_MISSING: "
+                     f"{RECEIPT_FILE} not found in the derived "
+                     "raw directory - captures are not pinned")
+    if sha256_file(receipt_path) \
+            != auth["raw_receipt_manifest_sha256"]:
+        binding_fail("RAW_RECEIPT_MANIFEST_HASH_MISMATCH: "
+                     "receipt manifest bytes != the session "
+                     "authorization pin")
+    try:
+        with open(receipt_path) as f:
+            receipt = json.load(f)
+    except Exception as e:
+        binding_fail(f"raw receipt manifest unparseable: {e}")
+    if set(receipt) != RECEIPT_KEYS:
+        binding_fail(f"raw receipt manifest key set drift: "
+                     f"{sorted(receipt)}")
+    if receipt["binding_content_sha256"] \
+            != PINNED_BINDING_CONTENT_SHA256:
+        binding_fail("RAW_RECEIPT_BINDING_MISMATCH: receipt does "
+                     "not name the pinned binding content")
+    if receipt["symbols"] != symbols:
+        binding_fail("RAW_RECEIPT_SYMBOL_SET_MISMATCH: receipt "
+                     "symbol list != pinned tier membership in "
+                     "pinned order")
+    per_symbol = receipt["per_symbol_sha256"]
+    if not isinstance(per_symbol, dict) \
+            or set(per_symbol) != set(symbols):
+        binding_fail("RAW_RECEIPT_SYMBOL_SET_MISMATCH: receipt "
+                     "per-symbol hash map != pinned symbol set")
+    if canonical_sha(per_symbol) != receipt["receipt_root_sha256"]:
+        binding_fail("RAW_RECEIPT_ROOT_MISMATCH: receipt root != "
+                     "canonical hash of its per-symbol hash map")
+    if receipt["receipt_root_sha256"] \
+            != auth["raw_receipt_root_sha256"]:
+        binding_fail("RAW_RECEIPT_ROOT_MISMATCH: receipt root != "
+                     "the session authorization root pin")
+    entries = set(os.listdir(raw_dir))
+    expected_entries = {RECEIPT_FILE} | {
+        RAW_NAME.format(sym=s) for s in symbols}
+    # Missing captures first (named, tier-aware, exit 3) so a
+    # shrunken tier is reported as such, never silently.
+    for tier_name in ("tier3", "tier2"):
+        for sym in manifest["tiers"][tier_name]:
+            if RAW_NAME.format(sym=sym) not in entries:
+                named = ("TIER3_CAPTURE_MISSING" if tier_name
+                         == "tier3" else "TIER2_CAPTURE_MISSING")
+                print(f"{named}: {sym} - no capture file in the "
+                      "derived raw directory; failing closed, "
+                      "tier not shrunk")
+                sys.exit(3)
+    extra = sorted(entries - expected_entries)
+    if extra:
+        binding_fail(f"RAW_CAPTURE_UNLISTED_FILE: raw directory "
+                     f"carries byte(s) the receipt does not "
+                     f"list: {extra}")
+    for sym in symbols:
+        p = os.path.join(raw_dir, RAW_NAME.format(sym=sym))
+        if os.path.islink(p):
+            binding_fail(f"RAW_CAPTURE_PATH_SUBSTITUTED: {sym} "
+                         "capture is a symlink, not the pinned "
+                         "file")
+    # Hash-compare EVERY capture before parsing ANY capture.
+    verified = {}
+    for sym in symbols:
+        p = os.path.join(raw_dir, RAW_NAME.format(sym=sym))
+        actual = sha256_file(p)
+        if actual != per_symbol[sym]:
+            binding_fail(f"RAW_CAPTURE_HASH_MISMATCH: {sym} "
+                         "capture bytes != receipt pin - "
+                         "rejected before parsing")
+        verified[sym] = actual
+    return verified
 
 
 # =====================================================================
@@ -302,18 +466,13 @@ def build(manifest, auth, raw_dir, out_path, summary_path):
     symbols = list(tiers["tier2"]) + list(tiers["tier3"])
     ws, we = manifest["window_start"], manifest["window_end"]
 
-    # Capture completeness FIRST: every pinned symbol must be
-    # present before any symbol is built. Named, tier-aware,
-    # fail-closed (exit 3); the tier is never silently shrunk.
-    for tier_name in ("tier3", "tier2"):
-        for sym in tiers[tier_name]:
-            p = os.path.join(raw_dir, RAW_NAME.format(sym=sym))
-            if not os.path.exists(p):
-                named = ("TIER3_CAPTURE_MISSING" if tier_name
-                         == "tier3" else "TIER2_CAPTURE_MISSING")
-                print(f"{named}: {sym} - no capture file at {p}; "
-                      "failing closed, tier not shrunk")
-                sys.exit(3)
+    # Capture binding FIRST: the receipt manifest and every
+    # capture file are hash-verified against the session
+    # authorization's pre-issued pins before ANY capture byte is
+    # parsed (and before the session table is read). Named,
+    # tier-aware, fail-closed; the tier is never silently shrunk.
+    hashes = verify_raw_captures_before_parse(manifest, auth,
+                                              raw_dir)
 
     with open(TABLE_PATH) as f:
         table = json.load(f)
@@ -330,7 +489,7 @@ def build(manifest, auth, raw_dir, out_path, summary_path):
         expected.extend(expected_for_date(s["date"]))
     expected = pd.DatetimeIndex(expected)
 
-    admitted, hashes = {}, {}
+    admitted = {}
     for sym in symbols:
         path = os.path.join(raw_dir, RAW_NAME.format(sym=sym))
         df, _info = is_qualifying_file(path, expected)
@@ -344,7 +503,6 @@ def build(manifest, auth, raw_dir, out_path, summary_path):
                   f"{fails}")
             sys.exit(2)
         admitted[sym] = df
-        hashes[sym] = sha256_file(path)
 
     sys.path.insert(0, ENGINE_DIR)
     import run_study13 as drv
@@ -440,6 +598,11 @@ def build(manifest, auth, raw_dir, out_path, summary_path):
                 manifest["session_table_sha256"],
             "session_auth_id": auth["auth_id"],
             "session_id": auth["session_id"],
+            "raw_receipt_manifest_sha256":
+                auth["raw_receipt_manifest_sha256"],
+            "raw_receipt_root_sha256":
+                auth["raw_receipt_root_sha256"],
+            "raw_dir_layout": RAW_LAYOUT,
         },
         "window": {"start": ws, "end": we,
                    "sessions": len(window_sessions),
@@ -468,15 +631,14 @@ def build(manifest, auth, raw_dir, out_path, summary_path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raw-dir", required=True)
     ap.add_argument("--session-auth", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--summary", required=True)
     args = ap.parse_args()
     manifest = load_and_verify_manifest()
     auth = verify_session_auth(args.session_auth, manifest)
-    return build(manifest, auth, args.raw_dir, args.out,
-                 args.summary)
+    return build(manifest, auth, derive_raw_dir(args.session_auth),
+                 args.out, args.summary)
 
 
 if __name__ == "__main__":

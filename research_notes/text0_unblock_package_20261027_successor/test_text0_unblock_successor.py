@@ -24,16 +24,29 @@ Covers:
      except the enumerated binding set; the only new functions are
      the binding quartet; module constants differ only in the
      enumerated binding set; classes unchanged.
-  C. Builder: interface rejects the removed override flags;
-     refuses without a session authorization, with a wrong-content
-     authorization, with a single-operator authorization; a missing
-     Tier 3 capture exits 3 with the NAMED TIER3_CAPTURE_MISSING
-     error and writes nothing; a poisoned capture STOPs the build;
-     a full fabricated build over the REAL pinned window (227
-     sessions x 30 pinned symbols) produces the exact row schema,
-     452 bars per symbol, a summary whose hash/census reconcile;
-     the same build in a COPIED package tree reproduces the
-     identical inventory hash (self-containment proof).
+  C. Builder: interface rejects the removed override flags
+     (including --raw-dir: the raw directory is derived from the
+     session layout, never a caller input); refuses without a
+     session authorization, with a wrong-content authorization,
+     with a single-operator authorization; a missing Tier 3
+     capture exits 3 with the NAMED TIER3_CAPTURE_MISSING error
+     and writes nothing; a poisoned capture whose bytes ARE the
+     receipt-pinned bytes STOPs the build at the admission gates;
+     raw captures are hash-bound BEFORE parsing - a capture that
+     parses cleanly but fails its receipt pin is rejected with
+     RAW_CAPTURE_HASH_MISMATCH (and an unparseable capture fails
+     with the same hash error, proving no parse happened first),
+     a tampered receipt fails RAW_RECEIPT_MANIFEST_HASH_MISMATCH,
+     an authorization naming the wrong receipt hash fails the
+     same way, an extra unlisted file fails
+     RAW_CAPTURE_UNLISTED_FILE, and a symlinked capture fails
+     RAW_CAPTURE_PATH_SUBSTITUTED; a full fabricated build over
+     the REAL pinned window (227 sessions x 30 pinned symbols)
+     produces the exact row schema, 452 bars per symbol, a
+     summary whose hash/census reconcile and whose input hashes
+     are the pre-parse verified receipt pins; the same build in a
+     COPIED package tree reproduces the identical inventory hash
+     (self-containment proof).
   D. Package integrity: SHA256_MANIFEST verifies; the Stage-1
      manifest's binding content hashes to the literal compiled
      into BOTH corr4 and the builder; tier membership re-derives
@@ -112,7 +125,7 @@ def fixture_content_hash():
                                     "fixture_stage1_manifest.json")))
     keys = ("binding_id", "stage", "window_start", "window_end",
             "tiers", "session_table_sha256", "corr2_source_sha256",
-            "engine")
+            "engine", "raw_capture")
     return canonical_sha({k: m[k] for k in keys})
 
 
@@ -455,15 +468,53 @@ def window_sessions():
             if m["window_start"] <= s["date"] <= m["window_end"]]
 
 
-def make_auth(path, **over):
-    m = json.load(open(MANIFEST))
+def content_sha_of(manifest):
     keys = ("binding_id", "stage", "window_start", "window_end",
             "tiers", "session_table_sha256", "corr2_source_sha256",
-            "engine")
+            "engine", "raw_capture")
+    return canonical_sha({k: manifest[k] for k in keys})
+
+
+def write_receipt(raw_dir):
+    """Fabricated raw-capture receipt manifest for the raw files
+    currently in raw_dir: exact pinned symbol set in pinned
+    order, per-symbol sha256, receipt root = canonical sha256 of
+    the per-symbol map. Mirrors the format the builder verifies
+    (fixtures may carry fabricated pins; the ORDER of
+    verification is what the suite proves)."""
+    m = json.load(open(MANIFEST))
+    symbols = m["tiers"]["tier2"] + m["tiers"]["tier3"]
+    per_symbol = {s: sha256_file(os.path.join(raw_dir, f"{s}.json"))
+                  for s in symbols}
+    receipt = {
+        "receipt_id": "SUITE-RECEIPT",
+        "binding_content_sha256": content_sha_of(m),
+        "symbols": symbols,
+        "per_symbol_sha256": per_symbol,
+        "receipt_root_sha256": canonical_sha(per_symbol),
+    }
+    with open(os.path.join(raw_dir, "receipt_manifest.json"),
+              "w") as f:
+        json.dump(receipt, f, indent=1, sort_keys=True)
+        f.write("\n")
+    return receipt
+
+
+def receipt_pins(raw_dir):
+    rp = os.path.join(raw_dir, "receipt_manifest.json")
+    receipt = json.load(open(rp))
+    return sha256_file(rp), receipt["receipt_root_sha256"]
+
+
+def make_auth(path, raw_dir=None, **over):
+    m = json.load(open(MANIFEST))
+    if raw_dir is not None:
+        file_sha, root = receipt_pins(raw_dir)
+    else:
+        file_sha, root = "00" * 32, "11" * 32
     a = {
         "auth_id": "SUITE-AUTH",
-        "binding_content_sha256": canonical_sha(
-            {k: m[k] for k in keys}),
+        "binding_content_sha256": content_sha_of(m),
         "builder_sha256": sha256_file(BUILDER),
         "window_start": m["window_start"],
         "window_end": m["window_end"],
@@ -472,6 +523,8 @@ def make_auth(path, **over):
         "session_id": "SUITE-SESSION",
         "operators": ["suite-op-a", "suite-op-b"],
         "date": "2026-10-29",
+        "raw_receipt_manifest_sha256": file_sha,
+        "raw_receipt_root_sha256": root,
     }
     a.update(over)
     with open(path, "w") as f:
@@ -480,8 +533,28 @@ def make_auth(path, **over):
     return path
 
 
-def builder_cli(builder, raw_dir, auth, out, summ, timeout=1500):
-    return run([sys.executable, builder, "--raw-dir", raw_dir,
+def make_session(base, name, raw_source, tamper=None):
+    """A session layout for a builder variant: <base>/<name>/
+    holds session_auth.json beside raw/ (the derived layout).
+    The receipt is written over the UNTAMPERED copy and the auth
+    names its pins; `tamper(raw_dir)` then mutates the raw bytes
+    so the negative fixtures exercise the pre-parse binding."""
+    sess = os.path.join(base, name)
+    os.makedirs(sess)
+    raw_dir = os.path.join(sess, "raw")
+    shutil.copytree(raw_source, raw_dir)
+    write_receipt(raw_dir)
+    auth = make_auth(os.path.join(sess, "session_auth.json"),
+                     raw_dir=raw_dir)
+    if tamper is not None:
+        tamper(raw_dir)
+    return sess, raw_dir, auth
+
+
+def builder_cli(builder, auth, out, summ, timeout=1500):
+    # No --raw-dir exists: the builder derives the raw directory
+    # from the authorization's location (session layout).
+    return run([sys.executable, builder,
                 "--session-auth", auth, "--out", out,
                 "--summary", summ], timeout=timeout)
 
@@ -500,21 +573,24 @@ def part_c():
     for sym in symbols:
         synth_raw_capture(os.path.join(rawdir, f"{sym}.json"),
                           sessions)
-    auth = make_auth(os.path.join(w, "auth.json"))
+    write_receipt(rawdir)
+    auth = make_auth(os.path.join(w, "auth.json"), raw_dir=rawdir)
     out = os.path.join(w, "inventory.jsonl")
     summ = os.path.join(w, "summary.json")
 
-    # override attempts: removed flags are rejected by argparse
+    # override attempts: removed flags are rejected by argparse.
+    # --raw-dir is among them: the raw directory is derived from
+    # the session layout, never a caller input.
     for flag in ("--symbols", "--manifest", "--session-table",
-                 "--mode"):
-        r = run([sys.executable, BUILDER, "--raw-dir", rawdir,
+                 "--mode", "--raw-dir"):
+        r = run([sys.executable, BUILDER,
                  "--session-auth", auth, "--out", out,
                  "--summary", summ, flag, "x"])
         check(f"C1 builder interface rejects {flag}",
               r.returncode == 2, f"(rc={r.returncode})")
 
     # missing / broken authorizations refuse before any build
-    r = builder_cli(BUILDER, rawdir, os.path.join(w, "nope.json"),
+    r = builder_cli(BUILDER, os.path.join(w, "nope.json"),
                     out, summ, timeout=60)
     check("C2 build refuses without a session authorization",
           r.returncode == 2 and "SESSION_AUTH_MISSING"
@@ -522,23 +598,24 @@ def part_c():
           f"(rc={r.returncode})")
     bad_auth = make_auth(os.path.join(w, "auth_bad.json"),
                          binding_content_sha256="00" * 32)
-    r = builder_cli(BUILDER, rawdir, bad_auth, out, summ, timeout=60)
+    r = builder_cli(BUILDER, bad_auth, out, summ, timeout=60)
     check("C3 build refuses auth naming wrong binding content",
           r.returncode == 2 and not os.path.exists(out),
           f"(rc={r.returncode})")
     one_op = make_auth(os.path.join(w, "auth_oneop.json"),
                        operators=["solo"])
-    r = builder_cli(BUILDER, rawdir, one_op, out, summ, timeout=60)
+    r = builder_cli(BUILDER, one_op, out, summ, timeout=60)
     check("C4 build refuses a single-operator authorization",
           r.returncode == 2 and not os.path.exists(out),
           f"(rc={r.returncode})")
 
-    # missing Tier 3 capture -> NAMED exit-3 error
-    raw_missing = os.path.join(w, "raw_missing")
-    shutil.copytree(rawdir, raw_missing)
-    os.remove(os.path.join(raw_missing, "TWLO.json"))
+    # missing Tier 3 capture -> NAMED exit-3 error (the receipt
+    # pins the full set; the file itself is then removed)
+    _, _, auth_m = make_session(
+        w, "sess_missing", rawdir,
+        tamper=lambda rd: os.remove(os.path.join(rd, "TWLO.json")))
     out_m = os.path.join(w, "inventory_missing.jsonl")
-    r = builder_cli(BUILDER, raw_missing, auth, out_m,
+    r = builder_cli(BUILDER, auth_m, out_m,
                     os.path.join(w, "summary_missing.json"),
                     timeout=60)
     check("C5 missing Tier 3 capture -> named TIER3_CAPTURE_MISSING",
@@ -546,20 +623,142 @@ def part_c():
           in r.stdout and not os.path.exists(out_m),
           f"(rc={r.returncode})")
 
-    # poisoned capture -> volume gate STOP, nothing written
-    raw_poison = os.path.join(w, "raw_poison")
-    shutil.copytree(rawdir, raw_poison)
+    # poisoned capture whose bytes ARE receipt-pinned -> the hash
+    # binding passes and the volume gate STOPs the build
+    sess_p, _, _ = make_session(w, "sess_poison", rawdir)
+    raw_poison = os.path.join(sess_p, "raw")
     synth_raw_capture(os.path.join(raw_poison, "AAPL.json"),
                       sessions, poison=True)
+    write_receipt(raw_poison)
+    auth_p = make_auth(os.path.join(sess_p, "session_auth.json"),
+                       raw_dir=raw_poison)
     out_p = os.path.join(w, "inventory_poison.jsonl")
-    r = builder_cli(BUILDER, raw_poison, auth, out_p,
+    r = builder_cli(BUILDER, auth_p, out_p,
                     os.path.join(w, "summary_poison.json"))
     check("C6 poisoned capture STOPs the build, no inventory",
-          r.returncode == 2 and not os.path.exists(out_p),
+          r.returncode == 2 and "STOP AAPL" in r.stdout
+          and not os.path.exists(out_p),
+          f"(rc={r.returncode})")
+
+    # --- pre-parse hash binding negatives -----------------------
+    # C9a: a capture that parses cleanly (shifted prices - it
+    # would change the inventory if it were ever parsed) but
+    # whose bytes fail the receipt pin is rejected BEFORE parse.
+    def tamper_clean(rd):
+        p = os.path.join(rd, "AAPL.json")
+        raw = json.load(open(p))
+        for v in raw["values"]:
+            for k in ("open", "high", "low", "close"):
+                v[k] = v[k] + 7.0
+        with open(p, "w") as f:
+            json.dump(raw, f)
+
+    _, _, auth_9a = make_session(w, "sess_badhash_clean", rawdir,
+                                 tamper=tamper_clean)
+    out_9a = os.path.join(w, "inventory_badhash_clean.jsonl")
+    r = builder_cli(BUILDER, auth_9a, out_9a,
+                    os.path.join(w, "summary_badhash_clean.json"),
+                    timeout=60)
+    check("C9a clean-parsing capture failing its pin rejected "
+          "before parse (RAW_CAPTURE_HASH_MISMATCH)",
+          r.returncode == 2 and "RAW_CAPTURE_HASH_MISMATCH: AAPL"
+          in r.stdout and not os.path.exists(out_9a),
+          f"(rc={r.returncode})")
+
+    # C9b: an UNPARSEABLE capture failing its pin fails with the
+    # hash error, not a parse/gate error - proof the hash check
+    # runs before any parsing of capture contents.
+    def tamper_garbage(rd):
+        with open(os.path.join(rd, "AAPL.json"), "w") as f:
+            f.write("{this is not json")
+
+    _, _, auth_9b = make_session(w, "sess_badhash_garbage", rawdir,
+                                 tamper=tamper_garbage)
+    out_9b = os.path.join(w, "inventory_badhash_garbage.jsonl")
+    r = builder_cli(BUILDER, auth_9b, out_9b,
+                    os.path.join(w, "summary_badhash_garbage.json"),
+                    timeout=60)
+    check("C9b unparseable capture failing its pin rejected "
+          "before parse (RAW_CAPTURE_HASH_MISMATCH)",
+          r.returncode == 2 and "RAW_CAPTURE_HASH_MISMATCH: AAPL"
+          in r.stdout and "STOP AAPL" not in r.stdout
+          and not os.path.exists(out_9b),
+          f"(rc={r.returncode})")
+
+    # C10: an extra, unlisted file in the raw directory
+    def tamper_extra(rd):
+        shutil.copy(os.path.join(rd, "AAPL.json"),
+                    os.path.join(rd, "UNLISTED.json"))
+
+    _, _, auth_10 = make_session(w, "sess_extra", rawdir,
+                                 tamper=tamper_extra)
+    out_10 = os.path.join(w, "inventory_extra.jsonl")
+    r = builder_cli(BUILDER, auth_10, out_10,
+                    os.path.join(w, "summary_extra.json"),
+                    timeout=60)
+    check("C10 extra unlisted raw file rejected "
+          "(RAW_CAPTURE_UNLISTED_FILE)",
+          r.returncode == 2 and "RAW_CAPTURE_UNLISTED_FILE"
+          in r.stdout and not os.path.exists(out_10),
+          f"(rc={r.returncode})")
+
+    # C11: receipt manifest tampered after the auth pinned it
+    def tamper_receipt(rd):
+        rp = os.path.join(rd, "receipt_manifest.json")
+        receipt = json.load(open(rp))
+        receipt["per_symbol_sha256"]["AAPL"] = "00" * 32
+        with open(rp, "w") as f:
+            json.dump(receipt, f, indent=1, sort_keys=True)
+
+    _, _, auth_11 = make_session(w, "sess_receipt_tamper", rawdir,
+                                 tamper=tamper_receipt)
+    out_11 = os.path.join(w, "inventory_receipt_tamper.jsonl")
+    r = builder_cli(BUILDER, auth_11, out_11,
+                    os.path.join(w, "summary_receipt_tamper.json"),
+                    timeout=60)
+    check("C11 tampered receipt rejected "
+          "(RAW_RECEIPT_MANIFEST_HASH_MISMATCH)",
+          r.returncode == 2
+          and "RAW_RECEIPT_MANIFEST_HASH_MISMATCH" in r.stdout
+          and not os.path.exists(out_11),
+          f"(rc={r.returncode})")
+
+    # C12: the authorization names the wrong receipt hash
+    sess_12, raw_12, _ = make_session(w, "sess_auth_receipt", rawdir)
+    auth_12 = make_auth(os.path.join(sess_12, "session_auth.json"),
+                        raw_dir=raw_12,
+                        raw_receipt_manifest_sha256="00" * 32)
+    out_12 = os.path.join(w, "inventory_auth_receipt.jsonl")
+    r = builder_cli(BUILDER, auth_12, out_12,
+                    os.path.join(w, "summary_auth_receipt.json"),
+                    timeout=60)
+    check("C12 auth naming wrong receipt hash rejected "
+          "(RAW_RECEIPT_MANIFEST_HASH_MISMATCH)",
+          r.returncode == 2
+          and "RAW_RECEIPT_MANIFEST_HASH_MISMATCH" in r.stdout
+          and not os.path.exists(out_12),
+          f"(rc={r.returncode})")
+
+    # C13: a capture replaced by a symlink (path substitution)
+    def tamper_symlink(rd):
+        p = os.path.join(rd, "NVDA.json")
+        os.remove(p)
+        os.symlink(os.path.join(rd, "AAPL.json"), p)
+
+    _, _, auth_13 = make_session(w, "sess_symlink", rawdir,
+                                 tamper=tamper_symlink)
+    out_13 = os.path.join(w, "inventory_symlink.jsonl")
+    r = builder_cli(BUILDER, auth_13, out_13,
+                    os.path.join(w, "summary_symlink.json"),
+                    timeout=60)
+    check("C13 symlinked capture rejected "
+          "(RAW_CAPTURE_PATH_SUBSTITUTED)",
+          r.returncode == 2 and "RAW_CAPTURE_PATH_SUBSTITUTED: NVDA"
+          in r.stdout and not os.path.exists(out_13),
           f"(rc={r.returncode})")
 
     # full fabricated build over the real pinned window
-    r = builder_cli(BUILDER, rawdir, auth, out, summ)
+    r = builder_cli(BUILDER, auth, out, summ)
     ok = r.returncode == 0 and os.path.exists(out)
     check("C7 full fabricated build (30 symbols x 227 sessions)",
           ok, f"(rc={r.returncode}, "
@@ -592,6 +791,17 @@ def part_c():
               s7["binding"]["builder_sha256"] == sha256_file(BUILDER)
               and s7["binding"]["stage1_manifest_file_sha256"]
               == sha256_file(MANIFEST))
+        receipt = json.load(open(os.path.join(
+            rawdir, "receipt_manifest.json")))
+        check("C7g summary input hashes are the pre-parse verified "
+              "receipt pins (+ receipt pins in binding block)",
+              s7["input_file_sha256"]
+              == receipt["per_symbol_sha256"]
+              and s7["binding"]["raw_receipt_root_sha256"]
+              == receipt["receipt_root_sha256"]
+              and s7["binding"]["raw_receipt_manifest_sha256"]
+              == sha256_file(os.path.join(
+                  rawdir, "receipt_manifest.json")))
 
     # self-containment: the same build in a copied package tree
     copy_root = os.path.join(w, "pkgcopy")
@@ -600,7 +810,7 @@ def part_c():
     out_c = os.path.join(w, "inventory_copy.jsonl")
     r = builder_cli(os.path.join(copy_root,
                                  "build_holdout_inventory_corr4.py"),
-                    rawdir, auth, out_c,
+                    auth, out_c,
                     os.path.join(w, "summary_copy.json"))
     check("C8 copied-tree build reproduces the identical inventory",
           r.returncode == 0 and inv_sha is not None
@@ -627,7 +837,7 @@ def part_d():
     m = json.load(open(MANIFEST))
     keys = ("binding_id", "stage", "window_start", "window_end",
             "tiers", "session_table_sha256", "corr2_source_sha256",
-            "engine")
+            "engine", "raw_capture")
     content_sha = canonical_sha({k: m[k] for k in keys})
     lit4 = re.search(r'PINNED_BINDING_CONTENT_SHA256 = '
                      r'"([0-9a-f]{64})"', open(CORR4).read()).group(1)
@@ -659,9 +869,15 @@ def part_d():
           and "do not exist" in card)
 
     pkg = open(os.path.join(HERE, "PACKAGE.md")).read()
-    check("D5 PACKAGE.md states the non-circular staged design",
+    check("D5 PACKAGE.md states the staged design AND the "
+          "corrected inventory-hash disclosure (no absolute "
+          "no-post-access-pin claim)",
           "Stage 1" in pkg and "Stage 2" in pkg
-          and "non-circular" in pkg)
+          and "builder emits the inventory hash" in pkg
+          and "At no point does a step that has touched sealed "
+              "data create or alter a pin" not in pkg
+          and "RAW_CAPTURE_HASH_MISMATCH" in pkg
+          and "receipt" in pkg)
 
     # fixture determinism: regenerate and compare bytes
     tmp = os.path.join(WORK, "fixture_regen")

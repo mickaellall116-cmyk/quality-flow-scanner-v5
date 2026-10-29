@@ -1,5 +1,5 @@
 {
- "binding_content_sha256": "fdf81010aa5b2e3e4dd43330472b23abc713ac768c9a1d31373f7a7b0a5d1184",
+ "binding_content_sha256": "8bc20be219d42ea2b3060217b699d7d8825627d723c743fa7c4698c4898dcbce",
  "binding_id": "FIXTURE-BINDING",
  "builder_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
  "expected_fires": 6,
