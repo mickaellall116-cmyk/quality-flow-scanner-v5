@@ -1,6 +1,6 @@
 {
   "protocol": "KAMA_SHADOW_PROTOCOL.md",
-  "updated_at": "2026-10-29T15:25:44+00:00",
+  "updated_at": "2026-10-29T18:50:38+00:00",
   "start_at": "2026-09-28T13:46:00+00:00",
   "review_target_signals": 100,
   "data_quality_checkpoint": 50,
@@ -357,7 +357,14 @@
         "gap_pct_of_kama40": 4.489220658610482
       },
       "outcome": {
-        "resolved": false
+        "resolved": true,
+        "blended_r": 0.539,
+        "exit_reason": "runner-exit",
+        "exit_bar": "2026-10-29T10:30:00-04:00",
+        "bars_held": 26,
+        "tp1_taken": true,
+        "mfe_r": 2.5667,
+        "mae_r": -0.9468
       },
       "signal_record_sha256": "b8125c06424b7372ee49084f280f70d73d1bcf6858eededc16e4392775adb5f6"
     },
