@@ -44,3 +44,27 @@ captures; or (b) capture waits until the ongoing-research rights basis
 is settled. Unsigned = no capture.
 
 STATUS: awaiting Mike's signature. Unsigned = no capture.
+
+## ADDENDUM — query-parameter correction (Muse, 2026-10-30)
+
+ChatGPT preflight flag (Slack TS 1793366866.816419; Issue #1 review):
+outputsize=5000 without bounded dates returns the most recent bars and
+cannot be trusted to reach October 2023. Accepted; the scope above is
+corrected:
+
+- The capture query is bound to the EXACT frozen -23 manifest
+  parameters, including its explicit start_date / end_date bounding
+  for the sealed window. The outputsize figure is not a standalone
+  parameter and authorizes nothing by itself.
+- Coverage proof joins the receipt plan: for every symbol, the receipt
+  must show the first returned bar at or before the window start and
+  the last at or after the window end, with bar counts reconciled
+  against the 227-session calendar. Any symbol failing coverage fails
+  the whole run closed, same as a missing or defective symbol.
+- The pre-run manifest pin (review-gated: ChatGPT reviews the manifest
+  before any call) must list the literal parameter values taken from
+  the -23 manifest, so the pinning is verified, not asserted.
+
+No change to the rights position: public Twelve Data docs do not
+settle the research-use limitation, no rights are inferred, and zero
+calls occur until a verified rights route exists and Mike signs.
