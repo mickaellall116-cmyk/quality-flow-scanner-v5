@@ -64,9 +64,15 @@
     "expected_sessions": 227,
     "first_session": "2023-10-19",
     "last_session": "2024-09-13",
+    "early_close_sessions": {
+      "2023-11-24": "13:00",
+      "2024-07-03": "13:00"
+    },
+    "expected_30min_rows_per_symbol": 2939,
+    "expected_derived_rows_per_symbol": 1583,
     "timezone": "America/New_York",
-    "input_grid": "09:30 through 15:30 inclusive at 30-minute spacing",
-    "aggregation": "pair adjacent buckets into 09:30-anchored hours; retain 15:30 terminal half-hour as a separately flagged derived row",
+    "input_grid": "09:30 inclusive through session close exclusive at 30-minute spacing, using the immutable session-table close for each date",
+    "aggregation": "pair adjacent buckets into 09:30-anchored hours; retain the final unpaired half-hour as a separately flagged derived row",
     "native_clock_hour_bars_forbidden": true,
     "complete_grid_required": true
   },
