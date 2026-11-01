@@ -75,7 +75,7 @@ def validate_payload(
     payload: Mapping[str, Any],
     *,
     symbol: str,
-    expected_sessions: list[str],
+    expected_sessions: Mapping[str, str],
     request_feed: str = "sip",
     request_timeframe: str = "30Min",
 ) -> dict[str, Any]:
@@ -96,9 +96,16 @@ def validate_payload(
 
     market_tz = ZoneInfo("America/New_York")
     expected_times: set[dt.datetime] = set()
-    for day in expected_sessions:
+    derived_row_count = 0
+    for day, close_time in expected_sessions.items():
         session_day = dt.date.fromisoformat(day)
-        for minutes in range(9 * 60 + 30, 16 * 60, 30):
+        close_hour, close_minute = (int(part) for part in close_time.split(":"))
+        close_minutes = close_hour * 60 + close_minute
+        if close_minutes <= 9 * 60 + 30 or (close_minutes - (9 * 60 + 30)) % 30:
+            raise GuardStop("INVALID_SESSION_SCHEDULE")
+        session_bucket_count = (close_minutes - (9 * 60 + 30)) // 30
+        derived_row_count += (session_bucket_count + 1) // 2
+        for minutes in range(9 * 60 + 30, close_minutes, 30):
             hour, minute = divmod(minutes, 60)
             local_stamp = dt.datetime.combine(
                 session_day, dt.time(hour, minute), tzinfo=market_tz
@@ -135,7 +142,7 @@ def validate_payload(
     return {
         "symbol": symbol,
         "raw_row_count": len(bars),
-        "derived_row_count": 7 * len(expected_sessions),
+        "derived_row_count": derived_row_count,
         "session_count": len(expected_sessions),
         "duplicate_count": 0,
         "off_grid_count": 0,
