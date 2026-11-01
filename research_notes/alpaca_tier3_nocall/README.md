@@ -14,6 +14,9 @@ The pinned smoke request is one IREN SIP request over 2024-04-04 through
 regular sessions, so the exact 30-minute grid is 182 input rows and 98 derived
 rows (six paired 09:30-anchored hours plus one separately flagged 15:30 terminal
 half-hour per session). Native clock-hour aggregation is forbidden.
+The validator normalizes RFC3339 timestamps to UTC using the standard-library
+`zoneinfo` rules for America/New_York; it does not assume a fixed UTC offset and
+includes a fall-DST boundary fixture.
 
 Run the offline proof:
 
