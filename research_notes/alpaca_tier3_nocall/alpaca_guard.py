@@ -16,6 +16,7 @@ import math
 import os
 from pathlib import Path
 from typing import Any, Callable, Mapping
+from zoneinfo import ZoneInfo
 
 
 class GuardStop(RuntimeError):
@@ -91,13 +92,18 @@ def validate_payload(
     if not isinstance(bars, list):
         raise GuardStop("HTTP_OR_NON_JSON_ERROR")
 
-    expected_times: set[str] = set()
+    market_tz = ZoneInfo("America/New_York")
+    expected_times: set[dt.datetime] = set()
     for day in expected_sessions:
+        session_day = dt.date.fromisoformat(day)
         for minutes in range(9 * 60 + 30, 16 * 60, 30):
             hour, minute = divmod(minutes, 60)
-            expected_times.add(f"{day}T{hour:02d}:{minute:02d}:00-04:00")
+            local_stamp = dt.datetime.combine(
+                session_day, dt.time(hour, minute), tzinfo=market_tz
+            )
+            expected_times.add(local_stamp.astimezone(dt.timezone.utc))
 
-    seen: set[str] = set()
+    seen: set[dt.datetime] = set()
     nonfinite_count = 0
     for bar in bars:
         if not isinstance(bar, Mapping):
@@ -105,11 +111,14 @@ def validate_payload(
         stamp = bar.get("t")
         if not isinstance(stamp, str):
             raise GuardStop("TIMESTAMP_MISSING")
-        _parse_timestamp(stamp)
-        if stamp in seen:
+        parsed_stamp = _parse_timestamp(stamp)
+        if parsed_stamp.second or parsed_stamp.microsecond:
+            raise GuardStop("OFF_GRID_BAR")
+        utc_stamp = parsed_stamp.astimezone(dt.timezone.utc)
+        if utc_stamp in seen:
             raise GuardStop("DUPLICATE_BAR")
-        seen.add(stamp)
-        if stamp not in expected_times:
+        seen.add(utc_stamp)
+        if utc_stamp not in expected_times:
             raise GuardStop("OFF_GRID_BAR")
         for field in ("o", "h", "l", "c", "v"):
             value = bar.get(field)
