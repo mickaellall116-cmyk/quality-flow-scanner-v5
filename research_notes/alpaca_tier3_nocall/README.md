@@ -20,6 +20,10 @@ includes a fall-DST boundary fixture.
 The response validator follows Alpaca's documented single-symbol schema
 (`bars`, `symbol`, `next_page_token`). Feed and timeframe are validated from the
 pinned request metadata because the response does not echo those fields.
+The full-window grid is session-close-aware: the two adopted 13:00 closes
+(2023-11-24 and 2024-07-03) contribute seven half-hour inputs and four derived
+rows each. Total expected coverage is 2,939 half-hour inputs and 1,583 derived
+rows per symbol, not a regular-session count multiplied blindly by 13 or 7.
 
 Run the offline proof:
 
