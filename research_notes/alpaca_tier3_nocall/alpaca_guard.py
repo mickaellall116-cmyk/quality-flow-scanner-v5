@@ -76,15 +76,17 @@ def validate_payload(
     *,
     symbol: str,
     expected_sessions: list[str],
-    feed: str = "sip",
-    timeframe: str = "30Min",
+    request_feed: str = "sip",
+    request_timeframe: str = "30Min",
 ) -> dict[str, Any]:
     """Validate a decoded response without emitting prices or raw bars."""
     if not isinstance(payload, Mapping):
         raise GuardStop("HTTP_OR_NON_JSON_ERROR")
     if payload.get("symbol") != symbol:
         raise GuardStop("SYMBOL_MISMATCH")
-    if payload.get("feed") != feed or payload.get("timeframe") != timeframe:
+    # Alpaca's response schema does not echo feed/timeframe; validate the pinned
+    # request metadata supplied by the capture wrapper instead of inventing fields.
+    if request_feed != "sip" or request_timeframe != "30Min":
         raise GuardStop("FEED_OR_TIMEFRAME_MISMATCH")
     if payload.get("next_page_token") is not None:
         raise GuardStop("UNEXPECTED_PAGE_TOKEN")
