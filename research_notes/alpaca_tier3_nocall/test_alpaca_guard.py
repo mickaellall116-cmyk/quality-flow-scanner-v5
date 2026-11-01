@@ -17,12 +17,14 @@ SESSIONS = [
     "2024-04-16", "2024-04-17", "2024-04-18", "2024-04-19",
     "2024-04-22", "2024-04-23",
 ]
+SESSION_SCHEDULE = {day: "16:00" for day in SESSIONS}
 
 
-def payload(sessions=SESSIONS):
+def payload(session_schedule=SESSION_SCHEDULE):
     bars = []
-    for day in sessions:
-        for minutes in range(9 * 60 + 30, 16 * 60, 30):
+    for day, close_time in session_schedule.items():
+        close_hour, close_minute = (int(part) for part in close_time.split(":"))
+        for minutes in range(9 * 60 + 30, close_hour * 60 + close_minute, 30):
             hour, minute = divmod(minutes, 60)
             local_stamp = dt.datetime.combine(
                 dt.date.fromisoformat(day),
@@ -69,7 +71,7 @@ class GateTests(unittest.TestCase):
 
 class PayloadTests(unittest.TestCase):
     def test_valid_grid_counts_only(self):
-        receipt = validate_payload(payload(), symbol="IREN", expected_sessions=SESSIONS)
+        receipt = validate_payload(payload(), symbol="IREN", expected_sessions=SESSION_SCHEDULE)
         self.assertEqual(receipt["raw_row_count"], 182)
         self.assertEqual(receipt["derived_row_count"], 98)
         self.assertEqual(receipt["session_count"], 14)
@@ -77,7 +79,7 @@ class PayloadTests(unittest.TestCase):
 
     def test_dst_boundary_accepts_utc_bars(self):
         # Friday before and Monday after the 2023 fall-back transition.
-        sessions = ["2023-11-03", "2023-11-06"]
+        sessions = {"2023-11-03": "16:00", "2023-11-06": "16:00"}
         value = payload(sessions)
         receipt = validate_payload(value, symbol="IREN", expected_sessions=sessions)
         self.assertEqual(receipt["raw_row_count"], 26)
@@ -87,51 +89,59 @@ class PayloadTests(unittest.TestCase):
     def test_equivalent_offset_is_not_duplicate_or_off_grid(self):
         value = payload()
         value["bars"][0]["t"] = "2024-04-04T09:30:00-04:00"
-        receipt = validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
+        receipt = validate_payload(value, symbol="IREN", expected_sessions=SESSION_SCHEDULE)
         self.assertEqual(receipt["raw_row_count"], 182)
+
+    def test_early_close_schedule(self):
+        sessions = {"2023-11-24": "13:00", "2024-07-03": "13:00"}
+        value = payload(sessions)
+        receipt = validate_payload(value, symbol="IREN", expected_sessions=sessions)
+        self.assertEqual(receipt["raw_row_count"], 14)
+        self.assertEqual(receipt["derived_row_count"], 8)
+        self.assertEqual(receipt["session_count"], 2)
 
     def test_non_mapping_is_non_json_error(self):
         with self.assertRaisesRegex(GuardStop, "HTTP_OR_NON_JSON_ERROR"):
-            validate_payload([], symbol="IREN", expected_sessions=SESSIONS)
+            validate_payload([], symbol="IREN", expected_sessions=SESSION_SCHEDULE)
 
     def test_unexpected_page_token(self):
         value = payload(); value["next_page_token"] = "unexpected"
         with self.assertRaisesRegex(GuardStop, "UNEXPECTED_PAGE_TOKEN"):
-            validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
+            validate_payload(value, symbol="IREN", expected_sessions=SESSION_SCHEDULE)
 
     def test_wrong_feed(self):
         with self.assertRaisesRegex(GuardStop, "FEED_OR_TIMEFRAME_MISMATCH"):
             validate_payload(
-                payload(), symbol="IREN", expected_sessions=SESSIONS,
+                payload(), symbol="IREN", expected_sessions=SESSION_SCHEDULE,
                 request_feed="iex",
             )
 
     def test_wrong_timeframe(self):
         with self.assertRaisesRegex(GuardStop, "FEED_OR_TIMEFRAME_MISMATCH"):
             validate_payload(
-                payload(), symbol="IREN", expected_sessions=SESSIONS,
+                payload(), symbol="IREN", expected_sessions=SESSION_SCHEDULE,
                 request_timeframe="1Hour",
             )
 
     def test_duplicate(self):
         value = payload(); value["bars"].append(copy.deepcopy(value["bars"][0]))
         with self.assertRaisesRegex(GuardStop, "DUPLICATE_BAR"):
-            validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
+            validate_payload(value, symbol="IREN", expected_sessions=SESSION_SCHEDULE)
 
     def test_off_grid(self):
         value = payload(); value["bars"][0]["t"] = "2024-04-04T13:45:00Z"
         with self.assertRaisesRegex(GuardStop, "OFF_GRID_BAR"):
-            validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
+            validate_payload(value, symbol="IREN", expected_sessions=SESSION_SCHEDULE)
 
     def test_missing_bucket(self):
         value = payload(); value["bars"].pop()
         with self.assertRaisesRegex(GuardStop, "MISSING_BUCKET"):
-            validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
+            validate_payload(value, symbol="IREN", expected_sessions=SESSION_SCHEDULE)
 
     def test_nonfinite(self):
         value = payload(); value["bars"][0]["o"] = math.inf
         with self.assertRaisesRegex(GuardStop, "NONFINITE_VALUE"):
-            validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
+            validate_payload(value, symbol="IREN", expected_sessions=SESSION_SCHEDULE)
 
     def test_receipt_rejects_raw_or_secret_fields(self):
         for key in ("open", "bars", "api_secret", "raw_body", "unexpected"):
