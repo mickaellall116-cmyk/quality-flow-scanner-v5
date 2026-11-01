@@ -35,8 +35,7 @@ def payload(sessions=SESSIONS):
                 "o": 1.0, "h": 2.0, "l": 0.5, "c": 1.5, "v": 100,
             })
     return {
-        "symbol": "IREN", "feed": "sip", "timeframe": "30Min",
-        "next_page_token": None, "bars": bars,
+        "symbol": "IREN", "next_page_token": None, "bars": bars,
     }
 
 
@@ -101,14 +100,18 @@ class PayloadTests(unittest.TestCase):
             validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
 
     def test_wrong_feed(self):
-        value = payload(); value["feed"] = "iex"
         with self.assertRaisesRegex(GuardStop, "FEED_OR_TIMEFRAME_MISMATCH"):
-            validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
+            validate_payload(
+                payload(), symbol="IREN", expected_sessions=SESSIONS,
+                request_feed="iex",
+            )
 
     def test_wrong_timeframe(self):
-        value = payload(); value["timeframe"] = "1Hour"
         with self.assertRaisesRegex(GuardStop, "FEED_OR_TIMEFRAME_MISMATCH"):
-            validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
+            validate_payload(
+                payload(), symbol="IREN", expected_sessions=SESSIONS,
+                request_timeframe="1Hour",
+            )
 
     def test_duplicate(self):
         value = payload(); value["bars"].append(copy.deepcopy(value["bars"][0]))
