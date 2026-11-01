@@ -2,7 +2,9 @@ import copy
 import json
 import math
 import unittest
+import datetime as dt
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from alpaca_guard import GuardStop, preflight, validate_payload, validate_receipt
 
@@ -17,13 +19,19 @@ SESSIONS = [
 ]
 
 
-def payload():
+def payload(sessions=SESSIONS):
     bars = []
-    for day in SESSIONS:
+    for day in sessions:
         for minutes in range(9 * 60 + 30, 16 * 60, 30):
             hour, minute = divmod(minutes, 60)
+            local_stamp = dt.datetime.combine(
+                dt.date.fromisoformat(day),
+                dt.time(hour, minute),
+                tzinfo=ZoneInfo("America/New_York"),
+            )
+            utc_stamp = local_stamp.astimezone(dt.timezone.utc).isoformat().replace("+00:00", "Z")
             bars.append({
-                "t": f"{day}T{hour:02d}:{minute:02d}:00-04:00",
+                "t": utc_stamp,
                 "o": 1.0, "h": 2.0, "l": 0.5, "c": 1.5, "v": 100,
             })
     return {
@@ -68,6 +76,21 @@ class PayloadTests(unittest.TestCase):
         self.assertEqual(receipt["session_count"], 14)
         validate_receipt(receipt, MANIFEST)
 
+    def test_dst_boundary_accepts_utc_bars(self):
+        # Friday before and Monday after the 2023 fall-back transition.
+        sessions = ["2023-11-03", "2023-11-06"]
+        value = payload(sessions)
+        receipt = validate_payload(value, symbol="IREN", expected_sessions=sessions)
+        self.assertEqual(receipt["raw_row_count"], 26)
+        self.assertTrue(value["bars"][0]["t"].endswith("13:30:00Z"))
+        self.assertTrue(value["bars"][13]["t"].endswith("14:30:00Z"))
+
+    def test_equivalent_offset_is_not_duplicate_or_off_grid(self):
+        value = payload()
+        value["bars"][0]["t"] = "2024-04-04T09:30:00-04:00"
+        receipt = validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
+        self.assertEqual(receipt["raw_row_count"], 182)
+
     def test_non_mapping_is_non_json_error(self):
         with self.assertRaisesRegex(GuardStop, "HTTP_OR_NON_JSON_ERROR"):
             validate_payload([], symbol="IREN", expected_sessions=SESSIONS)
@@ -93,7 +116,7 @@ class PayloadTests(unittest.TestCase):
             validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
 
     def test_off_grid(self):
-        value = payload(); value["bars"][0]["t"] = "2024-04-04T09:45:00-04:00"
+        value = payload(); value["bars"][0]["t"] = "2024-04-04T13:45:00Z"
         with self.assertRaisesRegex(GuardStop, "OFF_GRID_BAR"):
             validate_payload(value, symbol="IREN", expected_sessions=SESSIONS)
 
