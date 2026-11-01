@@ -17,6 +17,9 @@ half-hour per session). Native clock-hour aggregation is forbidden.
 The validator normalizes RFC3339 timestamps to UTC using the standard-library
 `zoneinfo` rules for America/New_York; it does not assume a fixed UTC offset and
 includes a fall-DST boundary fixture.
+The response validator follows Alpaca's documented single-symbol schema
+(`bars`, `symbol`, `next_page_token`). Feed and timeframe are validated from the
+pinned request metadata because the response does not echo those fields.
 
 Run the offline proof:
 
