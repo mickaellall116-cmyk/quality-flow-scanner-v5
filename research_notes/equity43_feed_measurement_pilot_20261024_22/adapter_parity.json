@@ -1,0 +1,40 @@
+{
+ "batch_candidates": 0,
+ "batch_journal_verified": true,
+ "batch_rows_fed": 140,
+ "first_mismatch": {
+  "bar": "2026-10-27 09:30:00-04:00",
+  "column": "Open",
+  "diagnostic_anchor": "4dbd2043aeefbf4f6348e0a1a87d5f35fde4cb20c0ed9acfc108580bcad81066",
+  "kind": "value",
+  "symbol": "AAPL"
+ },
+ "frame_fingerprints": {
+  "batch": {
+   "AAPL": "a6a24be00e5a0204b82375cc418efdc6d4ce0b787d20687477eeb1d2c2ebc2a2",
+   "MELI": "f060eb17989bef9dc1c86b3b930c054682be2a9453c218af3f2c164a41af8091",
+   "NVDA": "ad991703fe64127426ed5658f7b3032b15830dbe7199b54f005da9c667e86283",
+   "SPY": "0c9fb7baaf92d11f4926cd01c0b077ecf13ea9ff215bb7ea8609c01bed98cb0b",
+   "TSLA": "3e4c74dfcc6e99f49e5ff8d75fb1e9b508670853584d166a8eb436b8a27f5e19"
+  },
+  "stream": {
+   "AAPL": "343e90c92e7ee3be42653b59690ba917a1d2db5357b2fbf53c2d4d62a33c5bdc",
+   "MELI": "eb523ff89a4904edc6222b73f5fdf71fdd5b7dc3600e1a4406e1763ded1133b9",
+   "NVDA": "c84c193d818cc3077066e9d001dbe8ee44bc6ba5b3f536dc74d17afc91d3f351",
+   "SPY": "13db24185ee7be217f5a5d7db69e227e1ac6493c87eef861542753a4f124f51c",
+   "TSLA": "01db7ccb842eb0260fe786e19bfa32cd8c74ff915f13822397184f2e794d6f2a"
+  }
+ },
+ "mismatch_count": 5,
+ "private_diagnostics_written": true,
+ "revision_behavior_subcase": "MEASURED",
+ "revision_cases": {
+  "late": 0,
+  "missing": 35,
+  "revised": 140
+ },
+ "stream_candidates": 0,
+ "stream_journal_verified": true,
+ "stream_rows_fed": 1210,
+ "verdict": "ADAPTER_PARITY_FAIL"
+}

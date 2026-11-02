@@ -1,0 +1,260 @@
+{
+ "caps": {
+  "per_day_worst_case": 149,
+  "pilot_total": 800
+ },
+ "desk_calls_by_day": {
+  "2026-10-27": 64,
+  "2026-10-28": 74,
+  "2026-10-29": 69,
+  "2026-10-30": 74,
+  "2026-11-02": 7
+ },
+ "desk_calls_total": 288,
+ "provider_snapshots": {
+  "2026-10-27": [
+   {
+    "daily_usage": 1,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 1,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-27 13:18:00"
+    },
+    "receipt_utc": "2026-10-27T13:17:59.754061+00:00",
+    "tag": "pre_revision"
+   },
+   {
+    "daily_usage": 2,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 2,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-27 13:25:01"
+    },
+    "receipt_utc": "2026-10-27T13:25:01.173769+00:00",
+    "tag": "start"
+   },
+   {
+    "daily_usage": 23,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 23,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-27 17:01:06"
+    },
+    "receipt_utc": "2026-10-27T17:01:05.876004+00:00",
+    "tag": "midday"
+   },
+   {
+    "daily_usage": 64,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 64,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-27 20:35:01"
+    },
+    "receipt_utc": "2026-10-27T20:35:00.563266+00:00",
+    "tag": "end"
+   }
+  ],
+  "2026-10-28": [
+   {
+    "daily_usage": 1,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 1,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-28 11:55:01"
+    },
+    "receipt_utc": "2026-10-28T11:55:00.533295+00:00",
+    "tag": "pre_revision"
+   },
+   {
+    "daily_usage": 7,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 7,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-28 13:25:59"
+    },
+    "receipt_utc": "2026-10-28T13:25:59.061275+00:00",
+    "tag": "start"
+   },
+   {
+    "daily_usage": 33,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 33,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-28 17:00:01"
+    },
+    "receipt_utc": "2026-10-28T17:00:00.886437+00:00",
+    "tag": "midday"
+   },
+   {
+    "daily_usage": 74,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 74,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-28 20:35:01"
+    },
+    "receipt_utc": "2026-10-28T20:35:00.567607+00:00",
+    "tag": "end"
+   }
+  ],
+  "2026-10-29": [
+   {
+    "daily_usage": 1,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 1,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-29 11:55:31"
+    },
+    "receipt_utc": "2026-10-29T11:55:30.974732+00:00",
+    "tag": "pre_revision"
+   },
+   {
+    "daily_usage": 7,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 7,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-29 13:25:01"
+    },
+    "receipt_utc": "2026-10-29T13:25:00.495851+00:00",
+    "tag": "start"
+   },
+   {
+    "daily_usage": 33,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 33,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-29 17:00:01"
+    },
+    "receipt_utc": "2026-10-29T17:00:00.711070+00:00",
+    "tag": "midday"
+   },
+   {
+    "daily_usage": 69,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 69,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-29 20:35:01"
+    },
+    "receipt_utc": "2026-10-29T20:35:00.529037+00:00",
+    "tag": "end"
+   }
+  ],
+  "2026-10-30": [
+   {
+    "daily_usage": 1,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 1,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-30 11:55:02"
+    },
+    "receipt_utc": "2026-10-30T11:55:01.760856+00:00",
+    "tag": "pre_revision"
+   },
+   {
+    "daily_usage": 7,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 7,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-30 13:25:01"
+    },
+    "receipt_utc": "2026-10-30T13:25:00.575941+00:00",
+    "tag": "start"
+   },
+   {
+    "daily_usage": 33,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 33,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-30 17:00:02"
+    },
+    "receipt_utc": "2026-10-30T17:00:01.131226+00:00",
+    "tag": "midday"
+   },
+   {
+    "daily_usage": 74,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 74,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-10-30 20:35:01"
+    },
+    "receipt_utc": "2026-10-30T20:35:00.411332+00:00",
+    "tag": "end"
+   }
+  ],
+  "2026-11-02": [
+   {
+    "daily_usage": 4,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 4,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-11-02 12:55:34"
+    },
+    "receipt_utc": "2026-11-02T12:55:33.167344+00:00",
+    "tag": "pre_revision"
+   },
+   {
+    "daily_usage": 10,
+    "raw": {
+     "current_usage": 1,
+     "daily_usage": 10,
+     "plan_category": "basic",
+     "plan_daily_limit": 800,
+     "plan_limit": 8,
+     "timestamp": "2026-11-02 13:05:01"
+    },
+    "receipt_utc": "2026-11-02T13:05:00.724929+00:00",
+    "tag": "pilot_close"
+   }
+  ]
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "governing_document": "the staff email reply supersedes the AI-assistant answers where it differs (see tripwire_log.json)",
+ "q1_q3_source": "Twelve Data AI assistant answers 2026-10-24 (bridge adjudication memo)",
+ "q6_settlement": {
+  "ai_processing": "raw market data must remain in the private environment; sharing with third parties incl. external AI services (ChatGPT, Muse named) counts as REDISTRIBUTION on Basic; AI agents receive only derived results not reverse-engineerable to the original data",
+  "pilot_compliance": "complies as built \u2014 local deterministic capture/processing; raw bars/journals never to hosted AI contexts, public GitHub, or Slack",
+  "private_automated_research_1h": "permitted \u2014 internal non-display use, evaluation and development",
+  "raw_storage": "permitted internally while the subscription is active (testing, replay, development)",
+  "source": "Twelve Data 'Dooz' AI assistant follow-up, Mike screenshot relayed 2026-10-24 ~11:03 ET",
+  "standing_consequence": "On Basic, no workflow may feed raw Twelve Data bars to any hosted AI agent \u2014 derived aggregates/hashes only."
+ }
+}

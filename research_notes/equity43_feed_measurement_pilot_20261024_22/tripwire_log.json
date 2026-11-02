@@ -1,0 +1,59 @@
+{
+ "checks": [
+  {
+   "at_utc": "2026-10-26T13:15:00.000123+00:00",
+   "candidates": [
+    "1a174da9074a6edf"
+   ],
+   "new": [
+    "1a174da9074a6edf"
+   ],
+   "outcome": "reply_pending_review",
+   "session": "2026-10-26"
+  },
+  {
+   "at_utc": "2026-10-27T13:15:01.569092+00:00",
+   "candidates": [
+    "1a174da9074a6edf"
+   ],
+   "outcome": "clean",
+   "session": "2026-10-27"
+  },
+  {
+   "at_utc": "2026-10-28T13:25:55.996094+00:00",
+   "candidates": [
+    "1a174da9074a6edf"
+   ],
+   "outcome": "clean",
+   "session": "2026-10-28"
+  },
+  {
+   "at_utc": "2026-10-29T13:15:00.000119+00:00",
+   "candidates": [
+    "1a174da9074a6edf"
+   ],
+   "outcome": "clean",
+   "session": "2026-10-29"
+  },
+  {
+   "at_utc": "2026-10-30T13:15:00.000148+00:00",
+   "candidates": [
+    "1a174da9074a6edf"
+   ],
+   "outcome": "clean",
+   "session": "2026-10-30"
+  }
+ ],
+ "filed": [
+  {
+   "filed_utc": "2026-10-27T13:17:58.780475+00:00",
+   "from": "Dooz from Twelve Data <api@twelvedata.com>",
+   "id": "1a174da9074a6edf",
+   "reply_file": "/home/hatch/workspace/qf_feed_measure_stage/work/tripwire/reply_1a174da9074a6edf.json",
+   "subject": "Re: Basic tier rights questions - non-display use, retention, 1h data (Terms 2.2, 2.3, 5.6, 12.5)"
+  }
+ ],
+ "hold": false,
+ "hold_info": null,
+ "pending_review": []
+}
