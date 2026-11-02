@@ -1,0 +1,18 @@
+{
+  "REQ-ADJ-01R7": {
+    "C5": {
+      "status": "PASS",
+      "identical": true,
+      "bytes": 116908
+    },
+    "verdict": "PASS"
+  },
+  "REQ-ADJ-02R7": {
+    "C5": {
+      "status": "PASS",
+      "identical": true,
+      "bytes": 117690
+    },
+    "verdict": "PASS"
+  }
+}

@@ -4655,3 +4655,25 @@ Verified from primary sources (public GitHub API + raw bytes at the pinned head,
 - Manifest state is as claimed: `network_enabled=false`, rights gate `HOLD`, `rights_record_status=LICENSE_NOT_AFFIRMATIVE`, affirmative clauses present = none, `purchase_authorized` / `collection_authorized` / `g7_authorized` all false.
 
 This acceptance is REVIEW-ONLY: no merge, no dispatch, no vendor call was made or is authorized by it. Alpaca remains HOLD / LICENSE_NOT_AFFIRMATIVE; the Grow-55 fallback and its gates are unchanged. The same acceptance was posted to Slack #qualityflowscaner (TS 1793551733.851569). — Muse
+
+---
+
+## TD PROBE REV7 (R7) — WORK RESULT (Muse, 2026-11-01)
+
+TYPE: TEST RESULT
+Task: QF-TD-PROBE-REV7-20261101-R7 — S2 split probe, R7 revision leg only.
+Authorization: Mike's fresh GO in direct chat 2026-11-01. Expected 3 credits, hard ceiling 6. R30 not authorized (not eligible until 2026-11-20T21:33:00Z; separate GO).
+
+TERMINAL: TD_PROBE_R7_EXECUTED__C5_PASS_BOTH_LEGS__BYTES_IDENTICAL
+
+- Eleven days after Day-1 (-75, 2026-10-21 21:33Z), Twelve Data returned byte-identical responses for both frozen REV7 re-pulls. Full byte diffs against the retained Day-1 raw payloads (not hash-only; hashes also match):
+  - REQ-ADJ-01R7 NVDA splits 2023-12-13→2024-06-21: 116,908 B, sha256 69b87f0359f63f13fbde8b9b72e1ea03026e4ff55b9bfdf061c1cfec3e36fe95, 917 rows — IDENTICAL to REQ-ADJ-01.
+  - REQ-ADJ-02R7 TSLA splits 2022-03-07→2022-09-09: 117,690 B, sha256 c5f701886e7c63db8ecdf5ec9d9e42a629cf79395bcace8677199bb67a5c2e2d, 911 rows — IDENTICAL to REQ-ADJ-02.
+- C5 (accepted -74 analyzer, unmodified): PASS on both legs. Sampled-window verdicts only; no KEEP/REPLACE S2 verdict issued.
+- Gates: G-PIN PASS (manifest 1bb86e17…; frozen pilot pins verified by the runner); G-CLK PASS (≈−1.7s); TEMPORAL GATE PASS (base receipts 2026-10-21T21:33:00/01Z, eligible 2026-10-28T21:33Z, run 2026-11-02T01:57Z, base evidence integrity re-verified by the gate); G-CRED PASS (sanctioned helper only, key never in-process); G-USE PASS (preflight 1 attempt, daily_usage=1 + headroom 4 ≤ 800, header reconciliation PASS, committed state "1").
+- Credits: exactly 3 this run (1 /api_usage + 2 /time_series, 1 attempt each, 0 retries); vendor api-credits-used headers 1→2→3 in call order. Program live Twelve Data total now 11 credits.
+- Disclosures: transport binding differs from -75 only as this task's terms force (ceiling 6; single-attempt hard stop on any retryable outcome — none occurred; D7-receipt backstop). AAPL control has no REV leg in the frozen manifest and was not re-pulled, by design. TSLA's Day-1 C2 DATA_UNQUALIFIED verdict is untouched: R7 proves the bytes are stable, not that they are complete.
+- Evidence: scanner package research_notes/td_probe_rev7_20261101_r7/ (this commit); raw R7 payloads + D7 usage bytes archived to qf-data-archive commit f7db178 under captures/td_probe_rev7_20261101/ (remote-verified); local store ~/workspace/qf_td_probe_d1_20261021/store retains everything alongside Day-1.
+- Remaining: C5 closes only after R30 (own GO, on/after 2026-11-20T21:33:00Z). REQ-S2 HOLD; entries PAUSED; no performance, no holdout access, no production change.
+
+— Muse

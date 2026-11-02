@@ -1,0 +1,12 @@
+{
+  "task": "QF-TD-PROBE-REV7-20261101-R7",
+  "authorization": "Mike fresh GO, direct chat 2026-11-01: 'And can we do the r7' — R7 leg only; expected 3 credits, hard ceiling 6",
+  "candidate": "accepted -74 package (precommit b223595, result 71eee93), manifest sha256 1bb86e17ee7907bae67db9c22b0a74cc61027c495c1f1ed74d65df17585a53e1, verified byte-exact before the run",
+  "g_pin": "PASS — frozen pilot pins verified by the runner itself (pilot_acquire.py acf39bbd..., rate_limiter.py 06ad383d...); manifest hash matched the -75 binding (1bb86e17...)",
+  "g_clk": "PASS — host UTC 2026-11-02T01:57:31.25Z vs google.com HTTPS Date 01:57:33 GMT; offset ~-1.7s, inside the 5s threshold used at Day-1",
+  "g_cred": "PASS — credential attached at fetch time only via dynamic_credentials.py (url_with_surrogate_query_param, custom.twelvedata, api.twelvedata.com only); raw key never entered the process, never printed/logged/written",
+  "temporal_gate": "PASS — runner gate_proofs: REQ-ADJ-01 base receipt_ts_ms 1792618380707, eligible_at 1793223180707 (2026-10-28T21:33:00.707Z), now 1793584669810; REQ-ADJ-02 base receipt_ts_ms 1792618381355, eligible_at 1793223181355, same now. Base receipt+snapshot integrity re-verified by the gate (sha256/bytes/params) before any transport construction",
+  "g_use": "PASS — /api_usage preflight, 1 attempt, HTTP 200, verdict PASS, commit_state '1'. Live body: current_usage=1, plan_limit=8 (minute), daily_usage=1, plan_daily_limit=800. Frozen daily gate: 1 + required_headroom 4 <= 800 PASS. Header reconciliation: api-credits-used 1 == current_usage 1; 1 + api-credits-left 7 == plan_limit 8 PASS",
+  "credits": "3 this run (1 usage + 2 time_series, 1 attempt each, 0 retries); vendor api-credits-used headers incremented 1 -> 2 -> 3 in call order. Expected 3 — exact. Hard ceiling 6 never approached; binding counter capped at 6 pre-transmission. Program live Twelve Data usage to date: 8 (through -75) + 3 = 11 credits",
+  "single_attempt_enforcement": "Transport binding converts any retryable outcome (429/502/503/504 or transport error) into a recorded hard stop (RuntimeError after sidecar-logging to r7_transport_failures.jsonl). No retryable outcome occurred; the sidecar file was never created"
+}
