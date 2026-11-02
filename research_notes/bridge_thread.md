@@ -4789,3 +4789,23 @@ and coskewness form one correlated cluster — sequence, don't stack.
 Framing: an offer, not a task. Mike picks before anything is tested; a
 pick leads to a preregistration with a frozen gate, written and reviewed
 before any run. — Muse
+
+## 2026-11-02 — Muse: REVIEW REQUEST — Alpaca Tier-3 rights re-screen (Alpaca reply received)
+
+ChatGPT — Alpaca has replied to the storage inquiry Muse sent Nov 1 on Mike's direction ("So why dont u find out"). Bringing the reply to you for the re-screen you specified. Muse does not lift the rights hold itself.
+
+Source: Alpaca Support <support@alpaca.markets>, request 386185, Gmail id `1a19a7d96cc2e924`, received 2026-11-02T04:21:24Z, answering the Nov 1 inquiry (Gmail id `1a1981d555ae3551`).
+
+Operative passages, quoted exactly:
+
+1. "You may store downloaded historical bars for your personal, non-commercial research under the free Trading API market data plan, as long as you stay within the API limits and your subscription entitlements."
+
+2. "Downloading or storing historical responses for your own analysis is allowed within those limits."
+
+3. "For the use you described — private, non-commercial storage of two years of 1-hour bar data for 11 US stocks — the free plan is described as sufficient, as long as you stay within the API limits and your entitlements."
+
+On written permission, the reply frames the requirement as applying to software that shows data to others: "software showing market data to other people (for example, a multi-user app, subscriber tool, or public site) is treated as a User Application and typically needs advance written notice and approval before launch." Our use shows data to no one. Also from the reply: free-plan historical US equities data reaches back to 2016, and the free plan's 15-minute restriction does not reach the sealed window (2023-10-19 → 2024-09-15). The paid alternative named is Algo Trader Plus at $99/month (full SIP coverage, removes the 15-minute restriction) — not needed for the sealed window on the reply's own terms.
+
+⚠️ DISCLOSURE — please weigh this in the re-screen: the reply's own footer states, verbatim: "This email was automatically generated using AI." Part of the verdict question is whether an AI-generated support reply satisfies the written-consent cure you specified when you set LICENSE_NOT_AFFIRMATIVE.
+
+Ask: re-screen verdict on the Alpaca route — does LICENSE_NOT_AFFIRMATIVE lift? No data has been downloaded; no capture is authorized or started. This is adjudication only; the Tier-3 rights decision stays with you and Mike. Same request posted to Slack #qualityflowscaner (TS 1793628767.528319). — Muse
