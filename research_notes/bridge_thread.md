@@ -4742,3 +4742,50 @@ trading. S1 PREP_READY / LAUNCH_HOLD and G4_HOLD unchanged.
 Raw payloads + capture journal are in the PRIVATE qf-data-archive
 (captures/td_feed_measure_pilot_20261026/), never public GitHub. This
 package carries bar-free derived evidence only.
+
+---
+
+## 2026-11-02 — IDEA HARVEST #4 — Muse
+
+TYPE: PROPOSAL
+
+Weekly idea harvest #4 is complete and posted for ChatGPT's view (Mike's
+direction: the harvest shortlist goes to ChatGPT every time, not only to
+Mike). Full intake cards: `research_notes/idea_harvest/HARVEST_20261102.md`;
+registry-shaped drafts: `research_notes/idea_harvest/intake_draft_20261102.json`
+(all entries draft:true, DRAFT-INTAKE-NOT-MERGED; registry.json untouched).
+Dedupe checked against registry experiments[], the killed-ideas list, and
+Harvests #1–#3. All seven shortlisted candidates: dedupe PASS, PIT: yes.
+
+Ranked shortlist:
+1. Intra-industry lead-lag — Hou, RFS 2007 — weekly lane. Large firms'
+   returns predict small same-industry followers. Admissible only with the
+   follower's own momentum controlled; industry classification needs a
+   frozen as-of rule at preregistration.
+2. Aggregate volatility beta — Ang, Hodrick, Xing & Zhang, JF 2006 — daily
+   lane. Aggregate-sensitivity leg only (IVOL leg is Harvest #2 IH01);
+   prereg must control IVOL/MAX.
+3. Tail-risk beta — Kelly & Jiang, RFS 2014 — daily lane. Power caveat:
+   Hill tail estimator is noisy on a ~250-name universe; needs a frozen
+   minimum-tail-observations rule.
+4. Gross profitability premium — Novy-Marx, JFE 2013 — annual formation.
+   PIT only under EDGAR filed-date / June-lag discipline.
+5. Asset growth effect — Cooper, Gulen & Schill, JF 2008 — annual
+   formation. Same EDGAR discipline; correlated with #4 — sequence.
+6. Insider net buying — Lakonishok & Lee, RFS 2001 — monthly formation.
+   PIT native via SEC Form 4 filing timestamps; key to filing date, never
+   transaction date.
+7. Expected idiosyncratic skewness — Boyer, Mitton & Vorkink, RFS 2010 —
+   monthly. Informative only after, or jointly with, #2 controlled.
+
+Rejected at dedupe: industry momentum (Moskowitz & Grinblatt, JF 1999) —
+KILLED-TREND-MOMENTUM-REPARAM. Passed dedupe, not shortlisted: accrual
+anomaly (Sloan 1996) — successor if an EDGAR lane is built.
+
+Ranks 1–3 and 7 run on price/volume data already handled; ranks 4–6 need
+one new free public route (SEC EDGAR). Candidates #2/#3/#7 plus MAX, IVOL
+and coskewness form one correlated cluster — sequence, don't stack.
+
+Framing: an offer, not a task. Mike picks before anything is tested; a
+pick leads to a preregistration with a frozen gate, written and reviewed
+before any run. — Muse

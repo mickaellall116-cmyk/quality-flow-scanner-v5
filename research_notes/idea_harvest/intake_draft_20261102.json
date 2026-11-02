@@ -1,0 +1,417 @@
+{
+  "draft": true,
+  "status": "DRAFT — NOT MERGED INTO registry.json",
+  "generated": "2026-11-02",
+  "generator": "Idea harvest run #4 per IDEA_HARVEST_SPEC_v1.md",
+  "source_report": "research_notes/idea_harvest/HARVEST_20261102.md",
+  "merge_instruction": "Do NOT merge automatically. A draft becomes a registry experiment only after Mike selects it and a preregistration is approved; merge then via python json (indent=2, ensure_ascii=False) in a separate approved bookkeeping step.",
+  "experiments": [
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261102-IH01-INDUSTRY-LEAD-LAG",
+      "title": "Intra-industry lead-lag — big firms lead small firms in the same industry",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-02",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Within an industry, returns of the largest firms predict following weeks' returns of the smallest firms in the same industry (reverse does not hold), driven by slow diffusion of industry information and sluggish adjustment to negative news.",
+      "primary_sources": [
+        "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=463005&rec=1&srcabs=2258944&pos=9"
+      ],
+      "literature_intake": {
+        "source": "Hou, Review of Financial Studies 20 (2007) 1113-1138",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Within an industry, returns of the largest firms predict following weeks' returns of the smallest firms in the same industry (reverse does not hold), driven by slow diffusion of industry information and sluggish adjustment to negative news."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261102.md",
+      "dependencies": [
+        "Daily/weekly price and market-cap data for the frozen 250-symbol universe (already handled), plus a point-in-time industry classification."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Admissible ONLY as within-industry leader-to-follower cross-predictability with follower own past return controlled; if a preregistration cannot separate it from industry momentum / own momentum, it collapses into KILLED-TREND-MOMENTUM-REPARAM and must be dropped.",
+        "Industry classification must be as-of (time-varying SIC history or a frozen classification vintage); applying today's classification retroactively is lookahead and disallowed.",
+        "Adjacent to Harvest #3 price delay (different estimator: another stock's return vs own lagged market response).",
+        "Dedupe PASS with adjacency flags: no registry experiment trades cross-autocorrelations between stocks."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #4, 2026-11-02; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Weekly returns; leader return in week t predicts follower returns over following weeks",
+      "failure_data_source": "See HARVEST_20261102.md PIT field for this candidate",
+      "failure_strategy_family": "industry_lead_lag_diffusion",
+      "task_revision": "intake-draft-20261102",
+      "evidence_pin": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=463005&rec=1&srcabs=2258944&pos=9",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261102-IH02-AGGREGATE-VOLATILITY-BETA",
+      "title": "Aggregate volatility beta — sensitivity to market-volatility innovations",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-02",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks with high past sensitivities to innovations in aggregate volatility have low average returns; the price of aggregate volatility risk is approximately -1% per annum.",
+      "primary_sources": [
+        "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=681343&rec=1&srcabs=1787049&pos=2"
+      ],
+      "literature_intake": {
+        "source": "Ang, Hodrick, Xing & Zhang, Journal of Finance 61 (2006) 259-299",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks with high past sensitivities to innovations in aggregate volatility have low average returns; the price of aggregate volatility risk is approximately -1% per annum."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261102.md",
+      "dependencies": [
+        "Daily price data for the frozen 250-symbol universe plus daily VIX closes (public, as-published)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Scope is ONLY the aggregate-sensitivity leg of the paper; its idiosyncratic-volatility finding is already Harvest #2 IH01 and is not re-offered.",
+        "Preregistration must double-sort or control for IVOL and MAX, or a pass re-measures earlier menu items.",
+        "Part of a correlated priced-disaster-sensitivity cluster with DRAFT-20261102-IH03 and IH07 (and earlier MAX/IVOL/coskewness offers); sequence, do not stack.",
+        "Dedupe PASS with overlap flag vs Harvest #2 IH01: no registry experiment estimates volatility-innovation betas."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #4, 2026-11-02; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Daily returns; volatility-innovation beta estimated over a trailing window, monthly formation/hold",
+      "failure_data_source": "See HARVEST_20261102.md PIT field for this candidate",
+      "failure_strategy_family": "aggregate_volatility_beta",
+      "task_revision": "intake-draft-20261102",
+      "evidence_pin": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=681343&rec=1&srcabs=1787049&pos=2",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261102-IH03-TAIL-RISK-BETA",
+      "title": "Tail-risk beta — loadings on the common tail-risk factor (Kelly-Jiang)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-02",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "A monthly tail-risk measure estimated from the cross-section of firm-level crashes (pooled tail exponent) is time-varying; stocks with high loadings on past tail risk earn an annual three-factor alpha 5.4% higher than stocks with low loadings.",
+      "primary_sources": [
+        "https://papers.ssrn.com/abstract=2321243"
+      ],
+      "literature_intake": {
+        "source": "Kelly & Jiang, Review of Financial Studies 27 (2014) 2841-2871",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "A monthly tail-risk measure estimated from the cross-section of firm-level crashes (pooled tail exponent) is time-varying; stocks with high loadings on past tail risk earn an annual three-factor alpha 5.4% higher than stocks with low loadings."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261102.md",
+      "dependencies": [
+        "Daily price data for the frozen 250-symbol universe (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Tail factor must be constructed strictly from past data at each formation date (it is built from the same universe's completed returns).",
+        "Power caveat: the published estimator pools the full CRSP cross-section monthly; a ~250-name universe gives thinner tail samples and noisier Hill estimates — preregistration needs a frozen minimum tail-observations rule; 'estimator too noisy on this universe' is an acceptable verdict.",
+        "Overlap with aggregate-volatility beta and coskewness (priced disaster sensitivity axis) must be reported at preregistration.",
+        "Dedupe PASS: no registry experiment estimates tail exponents or tail loadings."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #4, 2026-11-02; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Daily returns pooled monthly for the tail exponent; loadings over a trailing window, monthly formation/hold",
+      "failure_data_source": "See HARVEST_20261102.md PIT field for this candidate",
+      "failure_strategy_family": "tail_risk_beta",
+      "task_revision": "intake-draft-20261102",
+      "evidence_pin": "https://papers.ssrn.com/abstract=2321243",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261102-IH04-GROSS-PROFITABILITY",
+      "title": "Gross profitability premium (Novy-Marx)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-02",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Profitability measured by gross profits-to-assets has roughly the same power as book-to-market predicting the cross-section of average returns; profitable firms generate significantly higher returns than unprofitable firms despite higher valuation ratios.",
+      "primary_sources": [
+        "https://oldschoolvalue-files.s3.amazonaws.com/pdf/Novy-Marx_Gross-Profitability-Anomaly_JFE_2013.pdf"
+      ],
+      "literature_intake": {
+        "source": "Novy-Marx, Journal of Financial Economics 108 (2013) 1-28",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Profitability measured by gross profits-to-assets has roughly the same power as book-to-market predicting the cross-section of average returns; profitable firms generate significantly higher returns than unprofitable firms despite higher valuation ratios."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261102.md",
+      "dependencies": [
+        "SEC EDGAR 10-K filings (revenue, cost of goods sold, total assets) with filed dates, plus daily price data for the frozen universe."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "PIT discipline must be frozen at preregistration: 10-K inputs (revenue, COGS, total assets) used only after their EDGAR filed dates, or under the paper's June-lag convention; as-restated-today pulls fail PIT and are disallowed.",
+        "Requires a new public EDGAR XBRL extraction route (free, no vendor) — new plumbing for this program.",
+        "Adjacency flagged vs registry VCP records (fundamental-momentum-selection, HOLD): standalone single-ratio sort, not a VCP pattern/screen selection claim; flagged for human confirmation at preregistration.",
+        "Dedupe PASS with adjacency flag."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #4, 2026-11-02; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Annual accounting data; fiscal-year data employed starting end of June of the following calendar year, hold thereafter",
+      "failure_data_source": "See HARVEST_20261102.md PIT field for this candidate",
+      "failure_strategy_family": "gross_profitability",
+      "task_revision": "intake-draft-20261102",
+      "evidence_pin": "https://oldschoolvalue-files.s3.amazonaws.com/pdf/Novy-Marx_Gross-Profitability-Anomaly_JFE_2013.pdf",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261102-IH05-ASSET-GROWTH",
+      "title": "Asset growth effect (Cooper-Gulen-Schill)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-02",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "A firm's annual asset growth rate (year-on-year percentage change in total assets) is a strong negative predictor of subsequent abnormal stock returns, robust among large-capitalization stocks and versus size, book-to-market, lagged returns and accruals controls.",
+      "primary_sources": [
+        "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=760967"
+      ],
+      "literature_intake": {
+        "source": "Cooper, Gulen & Schill, Journal of Finance 63 (2008) 1609-1651",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "A firm's annual asset growth rate (year-on-year percentage change in total assets) is a strong negative predictor of subsequent abnormal stock returns, robust among large-capitalization stocks and versus size, book-to-market, lagged returns and accruals controls."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261102.md",
+      "dependencies": [
+        "SEC EDGAR 10-K filings (total assets, consecutive fiscal years) with filed dates, plus daily price data for the frozen universe."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Same PIT discipline as IH04: total assets from 10-K filings used only after EDGAR filed dates or under a frozen June-lag convention; as-restated pulls disallowed.",
+        "Correlated by construction with gross profitability (IH04) — the two are one correlated bet (later Fama-French RMW/CMA pair); sequence them.",
+        "Shares the EDGAR extraction route with IH04; marginal cost is small if that route is built for either.",
+        "Dedupe PASS: no registry experiment sorts on balance-sheet growth; not a VCP claim."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #4, 2026-11-02; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Annual balance-sheet data (year-on-year total-asset change); returns from the January following the measurement year, premium persists up to five years",
+      "failure_data_source": "See HARVEST_20261102.md PIT field for this candidate",
+      "failure_strategy_family": "asset_growth",
+      "task_revision": "intake-draft-20261102",
+      "evidence_pin": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=760967",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261102-IH06-INSIDER-NET-BUYING",
+      "title": "Insider net buying — open-market purchases by officers and directors",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-02",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Firms with extensive insider open-market purchases outperform firms with extensive insider sales over the following 12 months (7.8% raw, 4.8% after size and book-to-market controls); predictive content is in purchases, not sales.",
+      "primary_sources": [
+        "https://www.insidermonkey.com/blog/insider-trading-returns-calculated-by-josef-lakonishok-and-inmoo-lee-546/"
+      ],
+      "literature_intake": {
+        "source": "Lakonishok & Lee, Review of Financial Studies 14 (2001) 79-111",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Firms with extensive insider open-market purchases outperform firms with extensive insider sales over the following 12 months (7.8% raw, 4.8% after size and book-to-market controls); predictive content is in purchases, not sales."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261102.md",
+      "dependencies": [
+        "SEC EDGAR Form 4 filings (open-market purchase/sale transactions with filing timestamps) plus daily price data for the frozen universe."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Signal must be keyed to the Form 4 FILING date, never the transaction date; transaction-date measurement credits outsiders with information not yet public.",
+        "Paper: effect is more informative in smaller firms and purchases tilt to small/high book-to-market names — a 250-name large-cap-tilted universe may dilute it; preregistration should state the expected cross-sectional spread in insider activity on this universe first.",
+        "Long-only form (overweight intensive net buyers) is the honest version; the paper gives the sales/short side little support and a fabricated short leg would collide with the killed short-side daily family.",
+        "Requires a new public SEC EDGAR Form 4 route (free, no vendor).",
+        "Dedupe PASS: no registry experiment uses regulatory filings as a signal."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #4, 2026-11-02; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Form 4 filings accumulated over a trailing window; 12-month forward returns, monthly formation",
+      "failure_data_source": "See HARVEST_20261102.md PIT field for this candidate",
+      "failure_strategy_family": "insider_net_buying",
+      "task_revision": "intake-draft-20261102",
+      "evidence_pin": "https://www.insidermonkey.com/blog/insider-trading-returns-calculated-by-josef-lakonishok-and-inmoo-lee-546/",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261102-IH07-EXPECTED-IDIOSYNCR-SKEWNESS",
+      "title": "Expected idiosyncratic skewness (Boyer-Mitton-Vorkink)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-02",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Expected idiosyncratic skewness and returns are negatively correlated: the Fama-French alpha of a low-expected-skewness quintile exceeds that of a high-expected-skewness quintile by 1.00% per month, where expected skewness is forecast by a cross-sectional model rather than taken as raw lagged skewness.",
+      "primary_sources": [
+        "https://www.quantconnect.com/research/15260/expected-idiosyncratic-skewness/p1"
+      ],
+      "literature_intake": {
+        "source": "Boyer, Mitton & Vorkink, Review of Financial Studies 23 (2010) 169-202",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Expected idiosyncratic skewness and returns are negatively correlated: the Fama-French alpha of a low-expected-skewness quintile exceeds that of a high-expected-skewness quintile by 1.00% per month, where expected skewness is forecast by a cross-sectional model rather than taken as raw lagged skewness."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261102.md",
+      "dependencies": [
+        "Daily price and volume data for the frozen 250-symbol universe (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Lottery axis is crowded (Harvest #1 MAX, #2 IVOL, #3 coskewness); Barinov (fetched this run) shows an aggregate-volatility factor explains 70-100% of this effect in quintile sorts — this candidate is informative only if tested after or jointly with IH02 with that factor controlled.",
+        "Factor returns used to form residuals must be as available at formation, or residuals must come from a market model on completed own data (fully PIT by construction).",
+        "The claim concerns model-forecast skewness; raw lagged skewness alone is a different, weaker claim the paper itself rejects.",
+        "Dedupe PASS with heavy adjacency flags."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #4, 2026-11-02; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Daily returns within each month (residuals, realized skewness); expected-skewness model forecast, monthly formation, one-month hold",
+      "failure_data_source": "See HARVEST_20261102.md PIT field for this candidate",
+      "failure_strategy_family": "expected_idiosyncratic_skewness",
+      "task_revision": "intake-draft-20261102",
+      "evidence_pin": "https://www.quantconnect.com/research/15260/expected-idiosyncratic-skewness/p1",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    }
+  ]
+}
