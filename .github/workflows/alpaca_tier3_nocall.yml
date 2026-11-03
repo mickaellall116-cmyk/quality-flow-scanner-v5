@@ -1,0 +1,31 @@
+name: Alpaca Tier3 no-call preflight
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Offline fixtures
+        working-directory: research_notes/alpaca_tier3_nocall
+        run: python -m unittest -v test_alpaca_guard.py
+      - name: Prove rights HOLD uses zero calls
+        working-directory: research_notes/alpaca_tier3_nocall
+        shell: bash
+        run: |
+          set +x
+          manifest_sha=$(python -c 'import hashlib,json; x=json.load(open("manifest.json")); print(hashlib.sha256(json.dumps(x,sort_keys=True,separators=(",",":"),ensure_ascii=False).encode()).hexdigest())')
+          set +e
+          output=$(python alpaca_guard.py --manifest manifest.json --expected-manifest-sha256 "$manifest_sha")
+          status=$?
+          set -e
+          test "$status" -eq 3
+          python -c 'import json,sys; x=json.load(sys.stdin); assert x["reason"]=="RIGHTS_GATE_NOT_GO"; assert x["receipt"]["calls_used"]==0' <<<"$output"

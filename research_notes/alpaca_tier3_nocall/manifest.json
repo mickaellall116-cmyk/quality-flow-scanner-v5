@@ -1,0 +1,150 @@
+{
+  "manifest_id": "QF-TIER3-ALPACA-NOCALL-DRAFT-V1",
+  "status": "PREPARATION_ONLY_RIGHTS_HOLD_NETWORK_DISABLED",
+  "network_enabled": false,
+  "purchase_authorized": false,
+  "collection_authorized": false,
+  "g7_authorized": false,
+  "route": {
+    "provider": "Alpaca Market Data API",
+    "plan_or_feed": "SIP",
+    "price_usd": null,
+    "price_status": "NOT_QUOTED_OR_AUTHORIZED",
+    "rights_gate": "HOLD",
+    "rights_record_status": "LICENSE_NOT_AFFIRMATIVE",
+    "rights_gate_rule": "GO requires an immutable adjudication record affirmatively covering private raw persistence, deterministic replay, and research use for the exact account/feed/period; silence or ambiguity is HOLD",
+    "required_affirmative_clauses": [
+      "PRIVATE_RAW_STORAGE_ALLOWED",
+      "DETERMINISTIC_REPLAY_ALLOWED",
+      "INTERNAL_RESEARCH_USE_ALLOWED",
+      "RETENTION_OR_DELETION_WINDOW_PINNED"
+    ],
+    "affirmative_clauses_present": [],
+    "adjudication_record_sha256": null
+  },
+  "symbols": [
+    "AAOI",
+    "ACN",
+    "BABA",
+    "BE",
+    "BLK",
+    "COF",
+    "CRDO",
+    "IREN",
+    "MPWR",
+    "SPOT",
+    "TWLO"
+  ],
+  "full_capture": {
+    "endpoint": "https://data.alpaca.markets/v2/stocks/{symbol}/bars",
+    "method": "GET",
+    "feed": "sip",
+    "timeframe": "30Min",
+    "start": "2023-10-19T00:00:00Z",
+    "end": "2024-09-16T00:00:00Z",
+    "adjustment": "raw",
+    "asof": "-",
+    "limit": 10000,
+    "page_token": null,
+    "attempts_per_symbol": 1,
+    "retries": 0,
+    "sequential": true
+  },
+  "smoke_request": {
+    "symbol": "IREN",
+    "url": "https://data.alpaca.markets/v2/stocks/IREN/bars?feed=sip&timeframe=30Min&start=2024-04-04T00:00:00Z&end=2024-04-24T00:00:00Z&adjustment=raw&asof=-&limit=10000",
+    "expected_regular_sessions": 14,
+    "expected_30min_rows": 182,
+    "expected_derived_rows": 98,
+    "expected_next_page_token": null
+  },
+  "calendar_acceptance": {
+    "session_table_path": "research_notes/equity43_feed_source_review_20261024_22/bundle/calendar/session_table_751_qualified.json",
+    "session_table_sha256": "00c5555c26d391444509e54de322841fa3269b64f3161a50aa507bf1d2bd416f",
+    "expected_sessions": 227,
+    "first_session": "2023-10-19",
+    "last_session": "2024-09-13",
+    "early_close_sessions": {
+      "2023-11-24": "13:00",
+      "2024-07-03": "13:00"
+    },
+    "expected_30min_rows_per_symbol": 2939,
+    "expected_derived_rows_per_symbol": 1583,
+    "timezone": "America/New_York",
+    "input_grid": "09:30 inclusive through session close exclusive at 30-minute spacing, using the immutable session-table close for each date",
+    "aggregation": "pair adjacent buckets into 09:30-anchored hours; retain the final unpaired half-hour as a separately flagged derived row",
+    "native_clock_hour_bars_forbidden": true,
+    "complete_grid_required": true
+  },
+  "quota": {
+    "smoke_http_call_ceiling": 1,
+    "full_capture_http_call_ceiling": 11,
+    "retries": 0,
+    "pagination_forbidden_under_pinned_limit": true,
+    "stop_on_any_next_page_token": true
+  },
+  "credentials": {
+    "key_id_env": "APCA_API_KEY_ID",
+    "secret_key_env": "APCA_API_SECRET_KEY",
+    "read_only_after_rights_go": true,
+    "must_not_appear_in_receipts_or_logs": true
+  },
+  "receipt": {
+    "raw_visibility": "PRIVATE_QF_DATA_ARCHIVE_ONLY",
+    "public_fields": [
+      "manifest_sha256",
+      "capture_code_sha256",
+      "rights_record_sha256",
+      "symbol",
+      "http_status",
+      "raw_sha256",
+      "byte_count",
+      "first_timestamp",
+      "last_timestamp",
+      "raw_row_count",
+      "derived_row_count",
+      "session_count",
+      "duplicate_count",
+      "off_grid_count",
+      "missing_bucket_count",
+      "nonfinite_count",
+      "next_page_token_present",
+      "calls_used"
+    ],
+    "forbidden_public_fields": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "trade_count",
+      "vwap",
+      "api_key",
+      "api_secret",
+      "authorization",
+      "raw_body",
+      "bars"
+    ]
+  },
+  "retention": {
+    "private_archive_required": true,
+    "deterministic_replay_required": true,
+    "deletion_window_days": null,
+    "deletion_inventory_required_before_go": true
+  },
+  "fail_closed": [
+    "RIGHTS_GATE_NOT_GO",
+    "NETWORK_NOT_EXPLICITLY_ENABLED",
+    "MANIFEST_HASH_MISMATCH",
+    "RIGHTS_RECORD_HASH_MISSING",
+    "CREDENTIAL_MISSING",
+    "HTTP_OR_NON_JSON_ERROR",
+    "SYMBOL_FEED_TIMEFRAME_OR_DATE_MISMATCH",
+    "UNEXPECTED_PAGE_TOKEN",
+    "MISSING_DUPLICATE_OR_OFF_GRID_BAR",
+    "NONFINITE_VALUE",
+    "RECEIPT_CONTAINS_FORBIDDEN_FIELD",
+    "ANY_SYMBOL_FAILURE_STOPS_WHOLE_CAPTURE"
+  ],
+  "outcome_scope": "RAW_QUALIFICATION_INPUT_ONLY_NO_TEXT0_NO_COUNTS_NO_RETURNS_NO_G7"
+}
