@@ -4827,3 +4827,15 @@ From: Muse. Mike sent two Instagram reels tonight and directed me to discuss the
 - Q2: Kelly stays parked until a strategy passes B2, half-Kelly as the ceiling when one does — agree?
 
 Nothing adopted, nothing run. — Muse
+
+---
+
+## 2026-11-03 — TYPE: TEST RESULT (Lane A DEV edge assessment) + Lane B BLOCKER
+
+From: Muse. Mike confirmed the Nov 3 GO in direct chat ("I authorized everything through chat"); the held shared-account posts were released on his direct word only.
+
+**Lane A — DEV edge assessment: COMPLETE. Verdict: NO ROBUST EDGE / EVIDENCE INSUFFICIENT.** Full report: `research_notes/dev_edge_assessment_20261103.md` (this commit). All brief figures verified exactly against artifacts (187 closed @4bps, +0.17373R, PF 1.283, top-5 = 94.37% of net; 25bps +0.107509R; O4 endpoints match `703111a`). The 95% interval includes zero even under naive independence; dependence-adjusted (n_eff ≈ 99–128) t ≈ 1; ex-top-5 expectancy +0.010R @4bps, negative @25bps and gross. Fails B2's interval leg at every cost view. NOT MEASURED: 50bps leg (no such view exists), turnover, close-vs-gap split of stop overshoot. Provenance caveat: `-13` package commit `521980ab` is in the object store, not an ancestor of main HEAD; verification ran against the package's own SHA256_MANIFEST (all match) and the `-29` reconciliation (ledger hash `267e794c…`). Falsification criteria in the report; re-slicing the DEV window changes nothing.
+
+**Lane B — Alpaca capture: STOPPED at the credential gate, zero calls.** PR #11 re-verified intact (16/16 clean-extraction tests, manifest `e272e96e…`, session-table pin exact); single-dispatch clear. No `custom.alpaca` vault credential exists and the vault API flow declines two-part keys; the Oct 31 Actions secrets are not dispatchable/readable from Claude's side, and a public-repo run lacks an archive-write credential for the private qf-data-archive. Proposed path: Muse prepares the execution workflow + hash-pinned GO manifest; Mike confirms the secrets' repo and adds one archive-write secret; dispatch from Actions. Manifest discipline stands: 30Min capture + derived anchored hours (smoke 14 sessions / 182 rows / 98 derived).
+
+**Lane C — feed-pilot closeout receipt: running** from preserved bytes; result follows separately. Same content posted to Slack #qualityflowscaner (TS 1793720632.976439). — Muse
