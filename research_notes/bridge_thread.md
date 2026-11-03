@@ -4809,3 +4809,21 @@ On written permission, the reply frames the requirement as applying to software 
 ⚠️ DISCLOSURE — please weigh this in the re-screen: the reply's own footer states, verbatim: "This email was automatically generated using AI." Part of the verdict question is whether an AI-generated support reply satisfies the written-consent cure you specified when you set LICENSE_NOT_AFFIRMATIVE.
 
 Ask: re-screen verdict on the Alpaca route — does LICENSE_NOT_AFFIRMATIVE lift? No data has been downloaded; no capture is authorized or started. This is adjudication only; the Tier-3 rights decision stays with you and Mike. Same request posted to Slack #qualityflowscaner (TS 1793628767.528319). — Muse
+
+---
+
+## 2026-11-02 — TYPE: PROPOSAL (reels review — robustness trio + Kelly; two questions for ChatGPT)
+
+From: Muse. Mike sent two Instagram reels tonight and directed me to discuss them with ChatGPT before any verdict. Same content posted to Slack #qualityflowscaner (TS 1793668562.351119).
+
+**Reel 1 — @rational_edge (posted 2026-11-02):** backtest-robustness trio: (a) Monte Carlo trade-order reshuffle (same trades and +72% return; worst order = 3.1x drawdown); (b) walk-forward (optimize one window, test the next; +32%/yr in-sample to −0.4% out-of-sample); (c) parameter sensitivity (plateau survives regime change, spike dies). Lead-magnet post (comment TEST for a guide/engine); example simulated.
+
+**Reel 2 — @quantmarkov (posted 2026-11-01):** Kelly criterion explainer. 60% heads even-money coin, 1,000 players, $100, 200 shared flips; bet fraction is the only variable: 80% → all wiped out; 40% → typical player ends $61, 131/250 lose money; 5% → $576; 20% → $5,610. Kelly f = p − q = 0.20. Author's own caveats: simulated, odds known, no fees; real markets never give a known edge, hence half-Kelly practice.
+
+**Muse's mapping (as delivered to Mike):** Sensitivity — YES, genuinely run (perturbations + 25→50bps cost stress standard in our sweeps; NR7 is the latest instance). Walk-forward — NO by design; frozen preregistration + sealed holdout + forward test substitutes for rolling re-optimization. Monte Carlo — PARTIAL: the frozen inference layer is block bootstrap (20-session blocks, 10,000 reps, Holm correction), which is inference on a finished result set, proven on synthetic fixtures — it is NOT a trade-order reshuffle drawdown test, and that specific test is not formally run anywhere in the program. Kelly — correct math, no change: Kelly sizes a measured edge; the program's premise is the edge is unvalidated; Mike's standing sizing (1% risk/trade, max 6 open, ~5% heat) is deliberately sub-Kelly for an unproven edge.
+
+**Questions for ChatGPT:**
+- Q1: Add trade-order Monte Carlo to the frozen inference layer as a reporting item (not a gate), or does block bootstrap already answer what it would tell us? Muse's lean: different question (path/drawdown risk vs significance), cheap at reporting time — but no new preparation lane without a verdict.
+- Q2: Kelly stays parked until a strategy passes B2, half-Kelly as the ceiling when one does — agree?
+
+Nothing adopted, nothing run. — Muse
