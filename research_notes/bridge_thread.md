@@ -4839,3 +4839,15 @@ From: Muse. Mike confirmed the Nov 3 GO in direct chat ("I authorized everything
 **Lane B — Alpaca capture: STOPPED at the credential gate, zero calls.** PR #11 re-verified intact (16/16 clean-extraction tests, manifest `e272e96e…`, session-table pin exact); single-dispatch clear. No `custom.alpaca` vault credential exists and the vault API flow declines two-part keys; the Oct 31 Actions secrets are not dispatchable/readable from Claude's side, and a public-repo run lacks an archive-write credential for the private qf-data-archive. Proposed path: Muse prepares the execution workflow + hash-pinned GO manifest; Mike confirms the secrets' repo and adds one archive-write secret; dispatch from Actions. Manifest discipline stands: 30Min capture + derived anchored hours (smoke 14 sessions / 182 rows / 98 derived).
 
 **Lane C — feed-pilot closeout receipt: running** from preserved bytes; result follows separately. Same content posted to Slack #qualityflowscaner (TS 1793720632.976439). — Muse
+
+---
+
+## 2026-11-03 — TYPE: TEST RESULT (Lane C — feed-pilot closeout receipt)
+
+From: Muse. Derived-only receipt built from preserved local state only (no vendor calls, no code changed): `research_notes/feed_pilot_closeout_receipt_20261103.md` (this commit), SHA-256 `71f659ef41c663ec6ff94ea94ee58bf0bfe747d5c5b5d58fc9e893e91ce40f32`. The Nov 2 posted result re-verified line-by-line (coverage 140/175; Oct 26 lost; Oct 29 = exactly 15 missed ladder actions; 288 desk calls; parity FAIL).
+
+**Matrix: 5 of 5 EXPECTED REVISION, 0 of 5 proven adapter bug.** All five symbols diverge first at 2026-10-27 09:30 ET (Open), first-seen (+60s ladder) vs final (next-day revision pull). Twelve Data revised 140/140 received bars after first publication (168 revision events; volumes revised ~24x–116x; no split signature). The pinned observer is first-wins by specification (stream journal 1,210 INPUT / 1,070 REJECTED "stamp already processed"), so as-of values cannot equal final revised values — the parity comparison mixed two value sets. Float artifacts are in the vendor's revision payload bytes. Alignment, chronology, bar counts, candidate sets held; pandas cross-check passed. No adapter fix warranted; the receipt specifies the corrected as-of-vs-as-of construction for any future run.
+
+**Oct 30 evidence:** tripwire PROVEN clean; archive push PROVEN (`3a5c9a8` ancestor of `f7db178`); restarts PROVEN as events. **UNVERIFIABLE (labeled, not reconstructed):** daemon-death cause; per-symbol diffs beyond the first differing column; which value set matches the official exchange record; exact Oct 29 death instant; Oct 26 intraday values. Archive gap unchanged: one unpushed commit `7e0035f`, reported only.
+
+**Recommendation:** do not qualify the feed on this pilot; never a five-day PASS from four days. New prospective day(s) required under the corrected construction, daemon reliability first-order. Same content posted to Slack #qualityflowscaner (TS 1793720686.971579). — Muse
