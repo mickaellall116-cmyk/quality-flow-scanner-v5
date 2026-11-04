@@ -100,6 +100,14 @@ are all reported (no silent stage).
 reported in two separate counts — (i) names that delisted inside the window
 (by instrument_id), (ii) all other causes (window-edge truncation). The
 verdict text (§7) states the bias this construction creates.
+SPLIT EXPOSURE (Claude's confirmation note, 2026-11-03 — outputs only, no
+verdict change): under the §2 raw-bar policy, a split inside an event's
+forward window produces a spurious gap and can create a false fire or a
+distorted forward return. Count, per the whole cohort: events whose forward
+window (i+1 … i+20) contains a split date for that instrument — split dates
+from the Databento point-in-time instrument definitions captured with the
+pull. The count is reported in Output 1 beside the delisting counts so the
+reader can see how many events the raw-bar policy touches.
 B-A pool per event: same symbol, same session bin (09:30/13:30), |session
 ordinal − event ordinal| ≤ 45, no signal bar within ±20 bars, |atr_pct − event
 atr_pct| ≤ 0.40 × event atr_pct. Event dropped (counted) if pool < 6; draw =
@@ -134,6 +142,8 @@ so the size of the excluded tail is visible with the number it affects.
 ## 8. Outputs (exactly four)
 1. Event census: raw fires / de-clustered / complete-window / matched-retained,
    with drop counts (split per §6 [R3]) and the matching drop rate; the
+   split-exposure count (§6: events whose forward window contains a split
+   date for the instrument) printed beside the delisting counts; the
    DEV/Tier-3-overlap stratum (§4 [R5]) reported beside the rest.
 2. Paired excess at h=10 with the verdict interval (plus h=5/h=20 per §1),
    n, design effect, n_eff — overall and for the overlap stratum.
