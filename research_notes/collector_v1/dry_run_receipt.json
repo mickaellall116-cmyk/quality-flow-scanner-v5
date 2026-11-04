@@ -1,0 +1,2374 @@
+{
+  "collector": "qf_collector/collector.py (Track 1, Deliverable A)",
+  "mode": "dry-run",
+  "started_utc": "2026-11-04T02:00:35.768543959+00:00",
+  "finished_utc": "2026-11-04T02:02:09.776939+00:00",
+  "runtime_s": 94.0,
+  "engine_pins_verified": {
+    "pine_backtest.py": "262ec0340161e72893ca9c5edd9d1fe2cb046fd30004d727b3893d52bd4d3f2a",
+    "scanner_rules.py": "62aa743ac28f05de9b6ec0ab962ee28bb7e5152bbef00bff5afa611a480f473c"
+  },
+  "signal": "frozen pine_buy_signal (pinned pine_backtest.py) on session-anchored 4H (pinned scanner_rules.py)",
+  "matching": "prereg v1.0 S5 B-A, copied from Stage A stage_run.py (decluster 20, exclusion 20, draw 20, step-c atr_band 0.40 / session_window 45 / min_pool 6, protocol seed 2999475941474119668)",
+  "primary_source_requested": "auto",
+  "primary_source_used": "yahoo",
+  "alpaca_status": "FAIL CLOSED \u2014 APCA_API_KEY_ID / APCA_API_SECRET_KEY absent from env; primary (Alpaca) leg not attempted",
+  "data_asof_utc": "2026-11-04T02:00:37.010483+00:00",
+  "target_session": "2026-11-03",
+  "target_session_determination": "latest date in SPY derived 4H bars with 09:30 bar present and 16:00 ET close <= as-of time",
+  "spy_present": true,
+  "spy_target_session_bars": [
+    {
+      "ts": "2026-11-03T09:30:00-05:00",
+      "Open": 752.72998046875,
+      "High": 756.8400268554688,
+      "Low": 752.3900146484375,
+      "Close": 756.37451171875,
+      "Volume": 24612820.0
+    },
+    {
+      "ts": "2026-11-03T13:30:00-05:00",
+      "Open": 756.3499755859375,
+      "High": 757.0700073242188,
+      "Low": 753.510009765625,
+      "Close": 754.4099731445312,
+      "Volume": 87964964.0
+    }
+  ],
+  "universe": {
+    "file": "universe.json (see build_universe.py for the mechanical construction rule + provenance)",
+    "count": 225,
+    "provenance_counts": {
+      "x2_total": 199,
+      "x2_equities": 181,
+      "ux51_total": 51,
+      "ux51_equities": 44,
+      "union_equities": 225,
+      "crypto_excluded": [
+        "AAVE-USD",
+        "ADA-USD",
+        "ARB-USD",
+        "ATOM-USD",
+        "AVAX-USD",
+        "BNB-USD",
+        "BONK-USD",
+        "BTC-USD",
+        "DOGE-USD",
+        "DOT-USD",
+        "ETH-USD",
+        "FET-USD",
+        "FIL-USD",
+        "HBAR-USD",
+        "ICP-USD",
+        "INJ-USD",
+        "LINK-USD",
+        "NEAR-USD",
+        "ONDO-USD",
+        "RENDER-USD",
+        "SHIB-USD",
+        "SOL-USD",
+        "TRX-USD",
+        "WIF-USD",
+        "XRP-USD"
+      ],
+      "sector_unknown": 48
+    },
+    "sector_unknown_count": 48
+  },
+  "names_attempted": 225,
+  "names_ok": 225,
+  "names_failed": 0,
+  "failed_names": {},
+  "fires_total_all_bars": 4817,
+  "events_declustered_total": 619,
+  "events_on_target_session": 4,
+  "events_on_target_session_detail": [
+    {
+      "symbol": "DE",
+      "bin": "09:30",
+      "signal_ts": "2026-11-03T09:30:00-05:00"
+    },
+    {
+      "symbol": "FIS",
+      "bin": "09:30",
+      "signal_ts": "2026-11-03T09:30:00-05:00"
+    },
+    {
+      "symbol": "GM",
+      "bin": "09:30",
+      "signal_ts": "2026-11-03T09:30:00-05:00"
+    },
+    {
+      "symbol": "MCD",
+      "bin": "09:30",
+      "signal_ts": "2026-11-03T09:30:00-05:00"
+    }
+  ],
+  "matching_counts": {
+    "pool_below_min_step_c": 130,
+    "matched": 422,
+    "awaiting_window": 67
+  },
+  "telemetry_complete_counts": {
+    "5": 606,
+    "10": 589,
+    "20": 573
+  },
+  "per_symbol": [
+    {
+      "symbol": "AAPL",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 50,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "f60bc6fe8bd4ee72c98c5617336669992666bb0c22cf75e1fda433e5f265335b"
+    },
+    {
+      "symbol": "ABBV",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 44,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "098ae929b56d3d074f601eb2381ac1649f9c42e5b38ccc530dd246e22a50a64f"
+    },
+    {
+      "symbol": "ABNB",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 27,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "4bd3feca8fb72a648ee528e663de400511fd3500236bffd0bf3b4a6ebfa4f00c"
+    },
+    {
+      "symbol": "ADBE",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 8,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "a7c2c8d40efbfdb40fcae53ce1c5fa81290c7caec6783d5c44c131c28c2c1253"
+    },
+    {
+      "symbol": "AFRM",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 33,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e17f642870ab15aab94f1e7eebf3372a9a93ba5975155acea2d3ca533dabed9f"
+    },
+    {
+      "symbol": "AI",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 32,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "3ca793d1441a2b94046a3da145c2366aff5d8b0ac10985ae7871a2194678c5a7"
+    },
+    {
+      "symbol": "ALB",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 8,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e704b473e6d95e2a440c178c73d449d5acd8fd0df622b752cc869b261b89dc4f"
+    },
+    {
+      "symbol": "AMAT",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 26,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "af0b1323904d0a5dc97953ea74b078636e3d5ee5009f09e2ae3844cba7f9e194"
+    },
+    {
+      "symbol": "AMC",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 40,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "66fd8e4b93dfa7902a91d26d228907e2ec78ea484e2292c2d8dfd41faa39900c"
+    },
+    {
+      "symbol": "AMD",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 35,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "8c2132025525a1c0403d50573579164be943fc610e81dbbaa97dc8c68d95966a"
+    },
+    {
+      "symbol": "AMGN",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 44,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "678f5d8653f19d1fc5009c4010dea4513746909010ba28b35b297ec192cded01"
+    },
+    {
+      "symbol": "AMT",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 14,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "101b77eefe528f52aa45fb4e7503e6b25d29bfddf53503eacf5a1c1534ec5a0e"
+    },
+    {
+      "symbol": "AMZN",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 20,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "6d94aa02aaa1ecc2f477a9b8de37d14be0e823a4e3e2b6855622dbab7fc43c33"
+    },
+    {
+      "symbol": "ANET",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 32,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0fd664649710684dad7f929763dc7d0992a804f5f84453c92d19706d3ff032dc"
+    },
+    {
+      "symbol": "APLD",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 22,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "7a9e5b6591874dfe5d37398f317147e59fcb8b05c26d51f11b4158d8668683ec"
+    },
+    {
+      "symbol": "APP",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 11,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e51feea1f6283f3cc2822334af775cd1e8dbfc52d0668fc461485417e3f411e1"
+    },
+    {
+      "symbol": "ARKK",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 27,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "bab352cba9295a8f0d0c539f694a6ce1f96238337adbcca559e8a732fe65bbd1"
+    },
+    {
+      "symbol": "ARM",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5bec61e24ea4e307c0652f798c5a0b2521a82beef01d0d0052a9866f11295ac4"
+    },
+    {
+      "symbol": "ASML",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 32,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "4d5d8a56de7f4cf58e0c194209a39d45b0424a1fe2b7471dadfc7064c46b8e60"
+    },
+    {
+      "symbol": "ASTS",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 5,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "9823e448e9c65e15dd85c6465b348affeadc5046dc7c8fee0565bc20a15e0d18"
+    },
+    {
+      "symbol": "AVGO",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 14,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1bd6062ab09c0eff9e7af0a36b34fde0363067c513449defc3b89870a8c9ca5f"
+    },
+    {
+      "symbol": "BA",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 17,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "32f5de071e54a390c5493a61926e951804621ccb6dfe465a422e33b7046e376b"
+    },
+    {
+      "symbol": "BAC",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 45,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "f6cbdac70244d18e2bfdadbe36d7e3aa1db7c069c3684fbd2cb169124b0200bf"
+    },
+    {
+      "symbol": "BBAI",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 3,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "a7c5f683cb7e421ebab5fb8e3c8ab8ff78e634c6411fb30619f44c780bc8cd09"
+    },
+    {
+      "symbol": "BIIB",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 41,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d0094f1bc77d973c115256fa9ca043e6b240632b01c1fe096aa4737686496a94"
+    },
+    {
+      "symbol": "BKNG",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 16,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c575d137e343ac077ffef96ecb6472dfe5ff217a1b0b515511554bd11d76f295"
+    },
+    {
+      "symbol": "BKR",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 9,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "ea7cde885ab0c9ce303b46c0cc1c979ee13b105d9d5237f23f6d2607bcef3e6f"
+    },
+    {
+      "symbol": "BMNR",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 12,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "b29b54558823270d82b4739aa128670e682660317bce256d506f8e37e8364c2d"
+    },
+    {
+      "symbol": "BP",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "58423b6139d18ad4078da9d0fff330ad458d21363eca6371695ca84acf8b2427"
+    },
+    {
+      "symbol": "BRK-B",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 22,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "202dde44d1bdb8517b918f2fc1c4ce0269cd6a5d974efadfac173894444d39fa"
+    },
+    {
+      "symbol": "CAT",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 25,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "51e15ec37691bf52984b1d8ee547a68f074ad6d8f0cb566577c02415912802c5"
+    },
+    {
+      "symbol": "CCJ",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 7,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "6e4e6b141eaadfa983483b63cf1d7baf00b72e0e85a85c932aa06af2e0d0e0f1"
+    },
+    {
+      "symbol": "CDNS",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 23,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "af48216ff62c8dd7875a3fb7b75435455a32d4bfb8a6440ecec57440fc5b1992"
+    },
+    {
+      "symbol": "CEG",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 7,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1ee738b39d9724d4e618ff75da67cf781a01bbcbc229ba7cab301cd05d7fabb4"
+    },
+    {
+      "symbol": "CIEN",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 22,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "66ed90b1c2b8c67405825705063e0e10181d9894c6432b94e6bd43cb761879b6"
+    },
+    {
+      "symbol": "CIFR",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 30,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "32e697bca6f14c21808177af4f12826d4889e74ebebe2d7cda72785ff6a2b103"
+    },
+    {
+      "symbol": "CLS",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 20,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "7385faf7971fe86e540dc922605e3b7573e6071f881033eb333bb4fa66ba073c"
+    },
+    {
+      "symbol": "CLSK",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 30,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "6286a106a91391103ce87d36917f480b5a072d9e8fdc6b2304f8c0471569ca17"
+    },
+    {
+      "symbol": "CMG",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 15,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "8b5c6fd4dd2fca09ed76adf39fdd1914d6853004789e136805c815a8a41e32ff"
+    },
+    {
+      "symbol": "COHR",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 27,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d7396ecbd977b5c23f9c8acfb4329157923e3419822602d913f166d4f04e261e"
+    },
+    {
+      "symbol": "COIN",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 8,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "df789b4ad7d5e005d6b5fa321ea4321a9e10333c726aa4a9c204de0690db250b"
+    },
+    {
+      "symbol": "COP",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 21,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "8296bb1c5a80361297b453b1a7f323409f78701fdda279687ba881b109b0b61c"
+    },
+    {
+      "symbol": "CORZ",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "2df19b53c944195bb553920109a81571c44af59d57c25de4494e17c6214fec37"
+    },
+    {
+      "symbol": "COST",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 17,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0407f3bc9490d56cc0965122a3caa8305fca1487c0a9bffebb5959c6cc4dc74c"
+    },
+    {
+      "symbol": "CPER",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 21,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "abfeae4d89bb314b30e9a2fbd55129aad366e250e1bbe26a59ab3f336e71ca8d"
+    },
+    {
+      "symbol": "CRM",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 17,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "af294ba3da869835d6edacc18f35fcd51011aedb97f60ff6f61280cfacaaf194"
+    },
+    {
+      "symbol": "CRSP",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 28,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "8c93f11ed03dc4764f9f9e7ec23e2150cb6b79611f1ed4843f564b38dec63149"
+    },
+    {
+      "symbol": "CRWD",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 36,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "b64454baee6862412516ca6bb44cb149d365c708156b9f72191160bcdd1868d2"
+    },
+    {
+      "symbol": "CRWV",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 13,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "399167cb514dd4868ff090623020ff90d7c880cabe9d10662b0581de0731e149"
+    },
+    {
+      "symbol": "CSCO",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 23,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c48fa69fa60ec62627caa69281e8495cdb69ec570cd73ce0fbf612119aac190d"
+    },
+    {
+      "symbol": "CVX",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 27,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "8e23d4fe846230836ee60d0bb4d93730156df941c5c478aeb16776613be254a2"
+    },
+    {
+      "symbol": "DAL",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "b040ee26d4f3c47013d1cffe24c13eface71e76cd72990a704f2fb3e607e070e"
+    },
+    {
+      "symbol": "DASH",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 27,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c995596d2d3f56780cd2054820d8a60237f4b1efbb382f09502868503dcd0b68"
+    },
+    {
+      "symbol": "DDOG",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 29,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "64569325c3ed1dcf03f4e196883600ac86cfe7218a0c14d3a649cf69662f865d"
+    },
+    {
+      "symbol": "DE",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c576cdc7864e1b5fbe325ab972d2e646fa52c500ec60d814266e3f06c57d0a52"
+    },
+    {
+      "symbol": "DELL",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 34,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "05bb30f808062b94068d0949fb4ac81c27df6e5906bdff379de39b7cf39070f7"
+    },
+    {
+      "symbol": "DHR",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 37,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "8b3d6e27f37eddebd60259ff1c121d46af43cd1368eafc59584c19f0f97c9897"
+    },
+    {
+      "symbol": "DIA",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 32,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "6232f311e22d96f20fd2ca0cbb5e608baf082ddb90b97d678e94bcb1b0793038"
+    },
+    {
+      "symbol": "DIS",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 7,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "8e8ffa7cd6f466756817124df1268d965dfe65420bc59cb31bf5c4d08c399911"
+    },
+    {
+      "symbol": "DJT",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 14,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0b1514fb2bdeaecb28972b538ab72d4f0a3f6db22ae110311972da1403e799e1"
+    },
+    {
+      "symbol": "DKNG",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 4,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "255c49a6fb46589a24efe46d42c78bb8d717c39468720adf8f63e1cf97ca30be"
+    },
+    {
+      "symbol": "DLR",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 13,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5d3b5a51cb7005fd023b4e325b82bb67096e84f7cf11c4b5b96eff22c364bdfd"
+    },
+    {
+      "symbol": "DOCU",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 25,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "71febd9ef47a8611040802d99b8b63aad822bee13f8e7f8382ffc284078d7522"
+    },
+    {
+      "symbol": "DVN",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 10,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "9aba297f798892e6d1cc65ab37cd19d9bbdbab816b0cc6ae243048e70c677bf4"
+    },
+    {
+      "symbol": "EBAY",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 29,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1a3738b6ca42c20c3ad06d6994ab42ae40e0cddf6de3a1ac5dd638bad54c4125"
+    },
+    {
+      "symbol": "ENPH",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 3,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e5832a70c5c7911ca16dde763a9198bfa2edaf1e6954a18e0324b872686dceba"
+    },
+    {
+      "symbol": "EOG",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 11,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0e5aca5f40d2848555b002f3963625c47bb7746d95e2756ceefd1f5aa8a21aa6"
+    },
+    {
+      "symbol": "EPD",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 17,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "af32b4f345cded0004d7fb7b64bab5979c49dc7974c17cd638b90c6207d20c3b"
+    },
+    {
+      "symbol": "EQIX",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 28,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "b57f6bccf929b607507b13b10156845a89f13c7e51df1cd2134f291dacadbd96"
+    },
+    {
+      "symbol": "EQT",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 16,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5fa4f0693d4adc3d6f19a1313a01e9a7422db93315dde5b71a146a62cacf8ae7"
+    },
+    {
+      "symbol": "ET",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 41,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "830452e07c971b70e36511513f72a904ac4cb9b427b7675e064f861b8639bc8e"
+    },
+    {
+      "symbol": "EXPE",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 21,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5658f52e34fcba3f735fe39854f75ddf3bb2d98fbe6a1858c5fcfe8cdf37f312"
+    },
+    {
+      "symbol": "F",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 7,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "551f16aa5277c7f389510bf3edb247a01dd6e792ed632e013f93facf5397c9c5"
+    },
+    {
+      "symbol": "FANG",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 13,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "ebe1eadc1f71c5d1b64376462f23dd979e01da246e6f829b70068c2ed5eb0fad"
+    },
+    {
+      "symbol": "FCX",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 20,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "7e230a2e5db3dcdbeaf48edaf6644644fb7a698c601d0d211ca0d1a672bb7e00"
+    },
+    {
+      "symbol": "FDX",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 22,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e295fd8ef7a98c57922a60ffe8ed09a4009d676040db90261ea6e9f65ee44b24"
+    },
+    {
+      "symbol": "FIS",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 5,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "54c73def3e9f2c2237fc87f0c27460cad7e2f900855bbfdfb74e1bcde2f11157"
+    },
+    {
+      "symbol": "FSLR",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 10,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d0b7ef36194456aea573e366d4641815ce225e733c5ebeef636d20ec11efa5b0"
+    },
+    {
+      "symbol": "FTNT",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 37,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0235e5e64c9f9afe6707823aed67879b4ddb633619be886ff982aede7c41d24b"
+    },
+    {
+      "symbol": "GD",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 18,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e4235f15c3b9fbf96ce7de510fc5778082b8bf9f36d3c70f9feb210ca10388ee"
+    },
+    {
+      "symbol": "GE",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 16,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c70b90d3a3f55daf90975faa8154f253695e6b769b7178035c6ec7ab509a1b42"
+    },
+    {
+      "symbol": "GEV",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 22,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "31644eb42198794c1d17a6990ef17761697ac0e8f1ffa8b5c8eec78fc5f4f6d3"
+    },
+    {
+      "symbol": "GILD",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 32,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "50182a0fbc4514ad94c454efdc298582d385eaf056649d18f7537d1d58eb4979"
+    },
+    {
+      "symbol": "GLD",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 9,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "cbdaae3471931f0e785a49ec7d4448e37f3ecc2b8bb77223f65b033d8a0550ed"
+    },
+    {
+      "symbol": "GLXY",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 26,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "17f7839a3e9107a0de1bebf1f61dde15f0ebd1ba9fa4bb0da27fd0f694dac23e"
+    },
+    {
+      "symbol": "GM",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 15,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "7e207c146350d4d0cc01516c4d70bddfc8b563939125a544b94852f2252620f3"
+    },
+    {
+      "symbol": "GME",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 17,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "59e1584104d325649387e67f63e5f88ca48f74298029b2601c28f076f31ee5a8"
+    },
+    {
+      "symbol": "GOOGL",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 26,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c02288aef681e4f39ead5abbad1a932ffa0002876fb27a01bcf12d13df334241"
+    },
+    {
+      "symbol": "GPN",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 26,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "426f0df5ca609e380fec758b517eedac8d2b8897d2cd94a23cd4d7520c9bc1dd"
+    },
+    {
+      "symbol": "GS",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 20,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "56a1b3f1edd17eaee05d9a73f8189064ef6b7fa8978699943a38813e212efd9d"
+    },
+    {
+      "symbol": "HAL",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 494,
+      "fires_all_bars": 13,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d09502091cd65f069bc9682d8d20406723de13821743fe12c8a5ebf0e4073327"
+    },
+    {
+      "symbol": "HD",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 494,
+      "fires_all_bars": 15,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "bf038ae8a2b7f9afc498d8d7250bf531a6a9847b17b8c677b8f17fb5658e4c72"
+    },
+    {
+      "symbol": "HON",
+      "status": "ok",
+      "bars_1h": 1728,
+      "bars_4h": 494,
+      "fires_all_bars": 15,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "4544e980f44b198b9a683afa9fc62ba0cd629efd4f6b1653bb22bac01866b25a"
+    },
+    {
+      "symbol": "HOOD",
+      "status": "ok",
+      "bars_1h": 1728,
+      "bars_4h": 494,
+      "fires_all_bars": 24,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "20825880fbf713af2f657c8d1a02586e4dae32d5a4ed82a619649470b02c4653"
+    },
+    {
+      "symbol": "HPE",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 494,
+      "fires_all_bars": 29,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "efea08ec459593b246d00706dd5ebace46ddea47095f2528b5b49e9d10bb293e"
+    },
+    {
+      "symbol": "HUBS",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 494,
+      "fires_all_bars": 5,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e2c60647a9767ab5a8fde285a0ca49912ac1f9605321c178828143ec9592b4b4"
+    },
+    {
+      "symbol": "HUT",
+      "status": "ok",
+      "bars_1h": 1728,
+      "bars_4h": 494,
+      "fires_all_bars": 24,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d8ea96631770102ccabe5cc8f9a279338886f7b88c265f0f2ae1c9df9bd63321"
+    },
+    {
+      "symbol": "IBM",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 6,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "6e2df11259577a620ebef6dbf59307617bb04640260073320b4a2f052de333f1"
+    },
+    {
+      "symbol": "ILMN",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 493,
+      "fires_all_bars": 62,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "69c75f4ed86aa2f224e77d68a252d17803a5b6e04d281f5fca20d3e4497fb51d"
+    },
+    {
+      "symbol": "INTC",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 493,
+      "fires_all_bars": 35,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "cae7c57f1dc2ff89ecf537df7d76d5bd796e156d53c22294f2060944d553a1b0"
+    },
+    {
+      "symbol": "INTU",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 493,
+      "fires_all_bars": 10,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "b3cc8558501d7c2db1d51ffc96431260ac51b2c2b85f9cdfb9b8363c124d4f1b"
+    },
+    {
+      "symbol": "IONQ",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0446fcf09415150305d0ffcc9fdeab4217696bfa5f89b12fad2b0293cb566482"
+    },
+    {
+      "symbol": "ISRG",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 493,
+      "fires_all_bars": 12,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c0442068e5fd9d2384b5fe388891e9e848b97ff7c81bf250ed5bdf660d98de68"
+    },
+    {
+      "symbol": "IWM",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 29,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "b3ba0800fa99672ea40b3afb95837f99290695e7eea43b847c1fdd2204445203"
+    },
+    {
+      "symbol": "JBL",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 495,
+      "fires_all_bars": 27,
+      "events_declustered": 3,
+      "off_calendar_bars": 1,
+      "barset_sha256": "dabe1f1fc880bb4aee65c550cc76a07558cdd134d25588dd5104e0972ad21cf5"
+    },
+    {
+      "symbol": "JNJ",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 495,
+      "fires_all_bars": 22,
+      "events_declustered": 4,
+      "off_calendar_bars": 1,
+      "barset_sha256": "2617418cf916bf46915bba97bb60c92a3560776427a013c5030e3363d384f25f"
+    },
+    {
+      "symbol": "JPM",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 495,
+      "fires_all_bars": 28,
+      "events_declustered": 1,
+      "off_calendar_bars": 1,
+      "barset_sha256": "9a5775f0c182affa1c8d396fdc497005ee882f349dc243ddd2629c7d153dd0d7"
+    },
+    {
+      "symbol": "KLAC",
+      "status": "ok",
+      "bars_1h": 1734,
+      "bars_4h": 497,
+      "fires_all_bars": 34,
+      "events_declustered": 2,
+      "off_calendar_bars": 3,
+      "barset_sha256": "70d2dc6b06bd7bdb44046ff0e662346be4b62e4718f9bbf48015cf15f727dfe7"
+    },
+    {
+      "symbol": "KMI",
+      "status": "ok",
+      "bars_1h": 1734,
+      "bars_4h": 497,
+      "fires_all_bars": 16,
+      "events_declustered": 3,
+      "off_calendar_bars": 3,
+      "barset_sha256": "739a06199f7162374c5499a02d8bdb608858289c39a832774024b17d0c5ada12"
+    },
+    {
+      "symbol": "KO",
+      "status": "ok",
+      "bars_1h": 1734,
+      "bars_4h": 497,
+      "fires_all_bars": 39,
+      "events_declustered": 3,
+      "off_calendar_bars": 3,
+      "barset_sha256": "8b8df683f8b165fe7360e24432e4feed28cd03edf4a903ff7d70a4d1f536216e"
+    },
+    {
+      "symbol": "LCID",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 494,
+      "fires_all_bars": 0,
+      "events_declustered": 0,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c58d864fff76441141040ffc605e50bb9bc78110d6eecf612654b9a3d37df8a3"
+    },
+    {
+      "symbol": "LIN",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 494,
+      "fires_all_bars": 33,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1de30db6fe7f6e9c68d88e35b252446897e8051055814102174aaa99abfc1f3a"
+    },
+    {
+      "symbol": "LITE",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 494,
+      "fires_all_bars": 18,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "11a943afa160a39228e33391f10a0ab6194995963bc329d1fdc61a0ad848f415"
+    },
+    {
+      "symbol": "LLY",
+      "status": "ok",
+      "bars_1h": 1728,
+      "bars_4h": 494,
+      "fires_all_bars": 30,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0620a4b9a1a2602b73122b5eaa92a1ee7c4051813a42dc13aa574036fd5ffd68"
+    },
+    {
+      "symbol": "LMT",
+      "status": "ok",
+      "bars_1h": 1728,
+      "bars_4h": 494,
+      "fires_all_bars": 12,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "869c1db860f003b7080b34f7fc3c4dc3bfb32dae617f39b0add5b3b68eda68ac"
+    },
+    {
+      "symbol": "LRCX",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 494,
+      "fires_all_bars": 29,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0575e8fe2ae5c25f71138efaf3f0bd87e61c3ac81f6ae50736be2cc12d0813b7"
+    },
+    {
+      "symbol": "LUNR",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 494,
+      "fires_all_bars": 22,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1c16208a0cd827640a19739769620ab425fb2d1d34b288547c6082279e3a41a4"
+    },
+    {
+      "symbol": "LYFT",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 494,
+      "fires_all_bars": 18,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d12675b73e6f52fededd7b0f3ae288f221bb13cbf5d03d896891e336002e3858"
+    },
+    {
+      "symbol": "MA",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 22,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "ce7e3ee9936b844e4e0bf6cb5fc79ac62be0440b5241213a63cd099844daa789"
+    },
+    {
+      "symbol": "MARA",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 36,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "2344188944f621cc73a472f77a7a59eb46a8f4cab4c23e645532992d182e2ad5"
+    },
+    {
+      "symbol": "MCD",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 1,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c01db7548509f637a5a8d5c3320ff9704984f1ed7ecad0672521fdb6007a1347"
+    },
+    {
+      "symbol": "MDB",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 18,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "bf4413a11cae36ffc059329918fc6e45a3a06d4b7433ef37aa61526f720f20fe"
+    },
+    {
+      "symbol": "MELI",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 20,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "7bd8a554f22acd741871ff5f599788c5e5b564a3e65cc02052ad76f5f8b732ec"
+    },
+    {
+      "symbol": "META",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 22,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "56f038f9d9494ffad20344d6a86d632c7ad977c5f3bb685323a25653c6045845"
+    },
+    {
+      "symbol": "MPC",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 59,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "38dba34a94d9184182459f1f8c42dab5bd9aaf3ac2a7e0c149c6726e96414108"
+    },
+    {
+      "symbol": "MRNA",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 30,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "2a5adb09bc2073dd74cb51b400f746d42fc5c2dcae39e6eb750f6b12c8896954"
+    },
+    {
+      "symbol": "MRVL",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 33,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1feda0a96411eb49dacf95dfe89ec8aa2197c2dbbd509ad916e11d3045f8be0f"
+    },
+    {
+      "symbol": "MS",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 40,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "fc075d06a98c976f75db593279263afa4525c24104a2d1811d91cbe277532d60"
+    },
+    {
+      "symbol": "MSFT",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 30,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "331098b7f014ddf1e9b659c97fc149126019e4bce058f3ab86c5d9ef26c954e2"
+    },
+    {
+      "symbol": "MSTR",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 25,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e492cbf8c8588d897c2d0520864d0b6de424fd8cb9e868a29cfb1d69a2a98b65"
+    },
+    {
+      "symbol": "MU",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 32,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "3f0816b94375f07243d5c67378ad79efa5ee006592b2cf4e3a8566b3fe30327b"
+    },
+    {
+      "symbol": "NBIS",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 29,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "534c728114af21f2c81cfc80ceee4f3fc04c88b1a6b4dc49e8cef1f1dd02c662"
+    },
+    {
+      "symbol": "NEE",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 12,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1c148bdce3f237748d2bf1f54866fdea76621e4c97f2d2d1d735a465ba0f9b1e"
+    },
+    {
+      "symbol": "NEM",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 12,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "9f057b1ec73ea3a530f2785db85d9530c18d2ef9e4a5497998376186475d061f"
+    },
+    {
+      "symbol": "NET",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 34,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5d1bec0c57c8bca3a7e9c0d267f7d11924e179f48b69731a2f84d362a624a3ff"
+    },
+    {
+      "symbol": "NFLX",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 4,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "dcdaba57ba22f64d37533678f51106d58b0bb8a9926412087f54e6ac0865db19"
+    },
+    {
+      "symbol": "NIO",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 4,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "fab4d234c8d2bbde56fc038547f84312bf8a542afe7ff40db9650f0b1417ff92"
+    },
+    {
+      "symbol": "NKE",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 1,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1bd456193f4ad8adf2c75393d29f0dff032161ad1bc81be0f16348168ff58d12"
+    },
+    {
+      "symbol": "NOC",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 4,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e2998407c6731e5b10164eb06332502199f033ef02d8f93ff2aecd7bbcd13015"
+    },
+    {
+      "symbol": "NOW",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 23,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "2fa799321ac0df70c37b136206d5d97065489f0bf0ceee0cc67aa3bb832a6436"
+    },
+    {
+      "symbol": "NU",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 23,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "ad7dfa468965ba3c6c784d6b5c24d5f14529adc1ffadf102c533314059dc80e1"
+    },
+    {
+      "symbol": "NVDA",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 38,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "6dd85a0e4ee0f8a9728520c36976a1565af1124f6c2dc8dc9f4c8c1774ceaa1b"
+    },
+    {
+      "symbol": "NXPI",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 25,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1ff0b8855b8df4e1e688bff9064afdf4290d9999894d1754e8bd0709284a0dd9"
+    },
+    {
+      "symbol": "OKE",
+      "status": "ok",
+      "bars_1h": 1732,
+      "bars_4h": 497,
+      "fires_all_bars": 16,
+      "events_declustered": 4,
+      "off_calendar_bars": 3,
+      "barset_sha256": "a4b66785022297a7f60e584a85a5eaa3af079ee0c3cce48cd14c38c472b3ef75"
+    },
+    {
+      "symbol": "OKLO",
+      "status": "ok",
+      "bars_1h": 1734,
+      "bars_4h": 497,
+      "fires_all_bars": 5,
+      "events_declustered": 2,
+      "off_calendar_bars": 3,
+      "barset_sha256": "9645f520add2f1ce612ccaadb16a7ea0b8a20c8f5ea346c84ac377b858b00f5d"
+    },
+    {
+      "symbol": "OKTA",
+      "status": "ok",
+      "bars_1h": 1734,
+      "bars_4h": 497,
+      "fires_all_bars": 37,
+      "events_declustered": 3,
+      "off_calendar_bars": 3,
+      "barset_sha256": "9d7bc8ec6e13ffc7e13b2b50c2c76e134d6be26ad04726271d9c68be7e1c11b3"
+    },
+    {
+      "symbol": "ON",
+      "status": "ok",
+      "bars_1h": 1734,
+      "bars_4h": 497,
+      "fires_all_bars": 13,
+      "events_declustered": 2,
+      "off_calendar_bars": 3,
+      "barset_sha256": "88f86f215d23b39e4bb3bdbf818610dd95d39b10313dc4d2d2a21fe50b7a9006"
+    },
+    {
+      "symbol": "OPEN",
+      "status": "ok",
+      "bars_1h": 1734,
+      "bars_4h": 497,
+      "fires_all_bars": 8,
+      "events_declustered": 2,
+      "off_calendar_bars": 3,
+      "barset_sha256": "fbc51cce1b87cb590133011c70ff2657461bd27a14b75b35e543f690c8818370"
+    },
+    {
+      "symbol": "ORCL",
+      "status": "ok",
+      "bars_1h": 1732,
+      "bars_4h": 497,
+      "fires_all_bars": 10,
+      "events_declustered": 3,
+      "off_calendar_bars": 3,
+      "barset_sha256": "79fd1e13caa5ff88bc22a919b3a7f9dab494f52ab868390664ef9dd4ddb8c119"
+    },
+    {
+      "symbol": "OXY",
+      "status": "ok",
+      "bars_1h": 1732,
+      "bars_4h": 497,
+      "fires_all_bars": 19,
+      "events_declustered": 3,
+      "off_calendar_bars": 3,
+      "barset_sha256": "2ba1c5e6942cb2a7bb313450026c298cdf16c67cd32f3700d4c31e286a0355d2"
+    },
+    {
+      "symbol": "PANW",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 26,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5409c55cd67939200ac8f645d0c72a1cf6df6dccdccf22d215e552861117971a"
+    },
+    {
+      "symbol": "PATH",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 25,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "b2c7beda3c7f9a8d78743161ff9186d0c992e940a91b700592ed8d04bc194881"
+    },
+    {
+      "symbol": "PEP",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 2,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "bdd2b5ce4c57adec59ac5a383c35d85622a1d3c6136b2788cd5c8ed730fd114d"
+    },
+    {
+      "symbol": "PFE",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 22,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d65a928000dcd007c03fba9992c1024d75eccd5582835fad5bba3c55b1fcc439"
+    },
+    {
+      "symbol": "PG",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 25,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "30a2b016d968ad8b8b2ed0e2f4027a6e2e10440425f51aa5effb8b941de28639"
+    },
+    {
+      "symbol": "PLTR",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 18,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "3a98c7242d06aaa2d735a0ef436d6695455f384b13f8761c5ffea1199bb79803"
+    },
+    {
+      "symbol": "PPLT",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 6,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d8abe46cbeaa1f3976c25d0e6715b1ddb029d2eb8e6a5d305968e56b71c9cb74"
+    },
+    {
+      "symbol": "PSX",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 42,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "40f25a302305a91a1ff14915ea09fe419f20c3476c4857d09a89c88ae24645b4"
+    },
+    {
+      "symbol": "PYPL",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 493,
+      "fires_all_bars": 16,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "fc21a0b30f486c59281deae982366a181c293332b1167d4561547b4dcf37d3d0"
+    },
+    {
+      "symbol": "QBTS",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 14,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "a0b95db243dec3e75a8dacd225bfbbcffdb707db3a587dc953b8cf021338ddf5"
+    },
+    {
+      "symbol": "QCOM",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 20,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "b8f7207e928ddc86e5b4795ffa660b091fd30c57fc24d6a106e43d1eb4f7826d"
+    },
+    {
+      "symbol": "QQQ",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 35,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c1d7247a485cc1e4eba1da6478a68d6449e4172d672321607067434a7097ee01"
+    },
+    {
+      "symbol": "RBLX",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 11,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "38db3792718693c92ca3d5693be6812a14e08e17bfd16e53f0c523f35923d3fa"
+    },
+    {
+      "symbol": "RBRK",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 29,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "041300dc0741bbf4b31ebe8bbd9c5a8104150ce88745480f86ac580485690409"
+    },
+    {
+      "symbol": "RDDT",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 14,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e6cff94e80d55cf819f5d5a127feeeca617cbb1bfae049a87ba993d3cfe36084"
+    },
+    {
+      "symbol": "REGN",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 22,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "4e01c4627a584df9cc0a79664dc3d634cf19764714f142f657e64358b84d2959"
+    },
+    {
+      "symbol": "RGTI",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 9,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1fc69df223e5d3ca499d69e56db3c70f6b49e6811212a111d3e443a51b34e739"
+    },
+    {
+      "symbol": "RIOT",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 32,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5c01f48eb17d33446f2413bc1f216e1a379897f29c0653e5ce99abef2bc9bb7d"
+    },
+    {
+      "symbol": "RKLB",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 19,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e9042851f43fc059e8761d34dc9c365c5904f8aa8e20b4bf83790fd1b311e921"
+    },
+    {
+      "symbol": "RTX",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "967cd6ae281f6ff36e634a6552d3005ab3e9ce9d93dc06f5ffe44c5a7541ca5d"
+    },
+    {
+      "symbol": "S",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 39,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "64ab7fe3a58bd2d642e1f61975acc363cac6045f1ef59832583e6b8e82f7a673"
+    },
+    {
+      "symbol": "SBET",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 10,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c2b5ac866450bf0b5f2b5dc277715cc6a731178b89ae060419f0e8802e397837"
+    },
+    {
+      "symbol": "SBUX",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 31,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "801590c1ecb1fa5c6594c05161263a742649a0f9c460f15c94a3dd38ce1289be"
+    },
+    {
+      "symbol": "SCHW",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 20,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "22529b54dc959d59954fddb69593f8eb88f9ac6c34515826d447e24360a66070"
+    },
+    {
+      "symbol": "SHEL",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 31,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "df8ca1a98599ecc31c93a4143315c9fca9a2c8d7d550221c38a312d6664202d3"
+    },
+    {
+      "symbol": "SHOP",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 19,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0e3043a06841e0d138a4dfe0ce19267df73762dbe50b7bef19e2e165c78488a1"
+    },
+    {
+      "symbol": "SLB",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 33,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "41b701dde454bfc81751130f805cbb39da2235da050821c8d71cdda202d691c7"
+    },
+    {
+      "symbol": "SLV",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 8,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "70b971d5f7e444ad805a39287045a840752957ce284eceec275aa2f1ca0f314f"
+    },
+    {
+      "symbol": "SMCI",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 15,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "ef8e7a3e38cd7cd0c1b77b0d49d671580af991f509f5253ecabf221a7d25d2ce"
+    },
+    {
+      "symbol": "SMH",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 22,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "e01d73b2b546af896852e8beeb0fcc83ed127c1f84ea8d68cfe883ac4fee200a"
+    },
+    {
+      "symbol": "SMR",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 2,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "465bee3cd0d946b63893c8e0e329820a43d0921797345345a733480044074cd1"
+    },
+    {
+      "symbol": "SNAP",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 29,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "4df9c9e61411862c598bf2a8b2bc7239601c7b6c92f2a9c265a3f21663d2bd02"
+    },
+    {
+      "symbol": "SNOW",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 19,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "266ea519d6a564898657b48ef4f3257bc2fd3a9a087582ff0e854a30c65e9a3a"
+    },
+    {
+      "symbol": "SNPS",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 18,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "cc2fbf0fa7f1e3df9e34086632b87bb18b6faa312017e6afe62f8eee57bf86b8"
+    },
+    {
+      "symbol": "SOFI",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 6,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d95784fa2780cedb305eda793e17d722db1c664b3d929e5eca6b364d17906d3a"
+    },
+    {
+      "symbol": "SOUN",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 4,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "fed3100ae72266a0eba8e3233454a6dfc4f3b456809f4c20b0c531f8484867d5"
+    },
+    {
+      "symbol": "SPY",
+      "status": "ok",
+      "role": "benchmark",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": null,
+      "events_declustered": null,
+      "off_calendar_bars": 0,
+      "barset_sha256": "6d898901abdd5c400aba045fee2d9fe33b8aeeba33a8c3f32ea49e0994551e64"
+    },
+    {
+      "symbol": "STX",
+      "status": "ok",
+      "bars_1h": 1721,
+      "bars_4h": 493,
+      "fires_all_bars": 19,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d1cf5843b2704cbe10a4ff5f345fd987fb3ad0e06396c8b0a8157acf7eeb11bf"
+    },
+    {
+      "symbol": "T",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 13,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "679127dd8c22b59829b5d52d90f54784d6e21e1e6ffcaedda69f15fc4e7e47f4"
+    },
+    {
+      "symbol": "TEAM",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c1747ad83bba91171e240bf95f46bf1e13c8daa7b97983896fe723a247a5fa34"
+    },
+    {
+      "symbol": "TEM",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 19,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "48ace193238db9ca50011d24add7697f54bbe3eebe83d4c5c41a64fc8cd00859"
+    },
+    {
+      "symbol": "TLT",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 1,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "36c91871fe3a82311eb74ced5b66af344c69796312c387d4b2333816b7719bba"
+    },
+    {
+      "symbol": "TMO",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 38,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "a2f265fbbc0dc92ec8d61feea40e60c73ab8cc2a4800f62d3e5310c6b7ab8e26"
+    },
+    {
+      "symbol": "TSLA",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 16,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "292c560a36bdc4768a278078ec265a41616965348619023711eb8eba6ef4f4b1"
+    },
+    {
+      "symbol": "TSM",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 26,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "a57531c5767c1335b69e9cf0947d68acf9e6dea25672db1822e2aec1780577e7"
+    },
+    {
+      "symbol": "TTE",
+      "status": "ok",
+      "bars_1h": 1722,
+      "bars_4h": 493,
+      "fires_all_bars": 15,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "a9cb44d636720a451d77215c0a1c71f7199a480e802766cfc89d106e36061eee"
+    },
+    {
+      "symbol": "TXN",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 33,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "9f7a8fade66d9fabdfd983caab5c43749eaa26db3437cfd48272ebb64200dd44"
+    },
+    {
+      "symbol": "UAL",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 7,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c68751e326d74a5ec68c4c455225d7737752dd29bfed6b2342762b62e06b6689"
+    },
+    {
+      "symbol": "UBER",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 8,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "43b7c50c7dcbfe0c555d0a00ca3976b8a7ef92de6f4d292618a57c636c4f5b74"
+    },
+    {
+      "symbol": "UNG",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 14,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "c998b2f94d3f92b1594fd539f3bee0c7ad19a6c05ccb5e04e9e6df5e2f769dc1"
+    },
+    {
+      "symbol": "UNH",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 25,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "34391efa103a1cfa2c27bd63a2a48f119f5c49ef438db7a4ce141fcc049b1863"
+    },
+    {
+      "symbol": "UNP",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 28,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "d31cca9c9dabb264c8bdb49a628f43bd0f2488e328947f1debe44896eb58e5c7"
+    },
+    {
+      "symbol": "UPST",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 10,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "edbb6ca180d27b9be496c5dc51716f8bcebd278381260f821d690600ec57042c"
+    },
+    {
+      "symbol": "USO",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 11,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "9a6e6cbd2b186ae447272b3842988cd5f95301e011d923c728dc5c71d83f9f07"
+    },
+    {
+      "symbol": "UUUU",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 15,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "6d9818b139fabc0731980b1fb0d5bd2cc0782f1140215d1298c8ab4c8255f13c"
+    },
+    {
+      "symbol": "V",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 35,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "7de03665d166499c9b18a6a35462a0c42528570682ef90e6c60a18fb3b477e33"
+    },
+    {
+      "symbol": "VEEV",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 21,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "de57dae21d578cba5e975e26c98d7e13414827ef25a1ac2ac8681f4889319ce0"
+    },
+    {
+      "symbol": "VLO",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 47,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5712254fb22651f003f372c8eed045b6f19e8c898d80b88c49f8425faa04cc7b"
+    },
+    {
+      "symbol": "VRT",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 16,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "f714f9a52585f4d163567df48bf171bd965990234850ba35aa38cd0948c82563"
+    },
+    {
+      "symbol": "VRTX",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5424b6edea67abb160f37b2caf6dac54905ce042b6fce6f6482338eebb366044"
+    },
+    {
+      "symbol": "VST",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 6,
+      "events_declustered": 5,
+      "off_calendar_bars": 0,
+      "barset_sha256": "9b3a2b8db815d8281938092cac450709c60d3723f039e8f3eab71fd6baba1f44"
+    },
+    {
+      "symbol": "VZ",
+      "status": "ok",
+      "bars_1h": 1723,
+      "bars_4h": 493,
+      "fires_all_bars": 12,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "44317ea8a5fcafda24832d1d5be6ba74067d8b4ed7be711f827e0ad77e43fcf7"
+    },
+    {
+      "symbol": "WDAY",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 17,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "5f9ab6efbd1140252013b75cb0d82616b8890e3de415bb522e679045edc78093"
+    },
+    {
+      "symbol": "WDC",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 26,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1f2fb0ee106528dfa156873ab7da9ae55d8ac757a0bd5a63015be373507dbccc"
+    },
+    {
+      "symbol": "WFC",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 25,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "469874ff97817482b51532cffbd5f70379019b92704cda8718a37d0737882639"
+    },
+    {
+      "symbol": "WMB",
+      "status": "ok",
+      "bars_1h": 1724,
+      "bars_4h": 493,
+      "fires_all_bars": 24,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "caf50a06369e0abbe5e984cbbf33031e8a9bf3f3c61e448625c21d420a9c79a3"
+    },
+    {
+      "symbol": "WMT",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 13,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "7bdca8a7a22b739b5f9137b80b013accf99b63a63be391ab8b3bf3160caca141"
+    },
+    {
+      "symbol": "WULF",
+      "status": "ok",
+      "bars_1h": 1725,
+      "bars_4h": 493,
+      "fires_all_bars": 33,
+      "events_declustered": 1,
+      "off_calendar_bars": 0,
+      "barset_sha256": "311265fb7bef5ebde7b26e93196a71bd962b87150a215799f761d3e63c16e031"
+    },
+    {
+      "symbol": "XLE",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 494,
+      "fires_all_bars": 36,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "1c9b36dbad7a00c404678daae9d166beb4fd9b099dc391e0f7caff1e6660fa47"
+    },
+    {
+      "symbol": "XLF",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 494,
+      "fires_all_bars": 42,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "fd458a2090587efc158abffc7047b1cfd24ba1823c0ace9a7b54825e07511c78"
+    },
+    {
+      "symbol": "XLK",
+      "status": "ok",
+      "bars_1h": 1727,
+      "bars_4h": 494,
+      "fires_all_bars": 24,
+      "events_declustered": 2,
+      "off_calendar_bars": 0,
+      "barset_sha256": "98c161523cf63ac3e43a55bc90de71ae61da1a9250a3bd1b094033ffa239e179"
+    },
+    {
+      "symbol": "XOM",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 494,
+      "fires_all_bars": 24,
+      "events_declustered": 3,
+      "off_calendar_bars": 0,
+      "barset_sha256": "0badad67be7c979fe1362d1cea75d9395b8dd5b35f3e5d3f44cdf98e2b12ad51"
+    },
+    {
+      "symbol": "XYZ",
+      "status": "ok",
+      "bars_1h": 1726,
+      "bars_4h": 494,
+      "fires_all_bars": 28,
+      "events_declustered": 4,
+      "off_calendar_bars": 0,
+      "barset_sha256": "9d8609b47f086f0a71c40de3b0665611bdd5a075ac8dc934f589f106c26a00ef"
+    },
+    {
+      "symbol": "ZM",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 495,
+      "fires_all_bars": 23,
+      "events_declustered": 3,
+      "off_calendar_bars": 1,
+      "barset_sha256": "6e9a3a5d2c37bbc553fa25d639ccf0144b17fab29728d60166a94bbdbde1df1a"
+    },
+    {
+      "symbol": "ZS",
+      "status": "ok",
+      "bars_1h": 1729,
+      "bars_4h": 495,
+      "fires_all_bars": 21,
+      "events_declustered": 5,
+      "off_calendar_bars": 1,
+      "barset_sha256": "f17cfbb128dae267621437a1f6e20c02a75ff27f08dff9e80b59a4286a766a8f"
+    }
+  ],
+  "notes": [
+    "Primary route (Alpaca) failed closed: keys absent. This dry run therefore ran on the keyless second source (Yahoo) as primary; the Alpaca leg awaits keys. The derived-bar parity check (--parity) cross-checks this source against the Nasdaq API daily bars."
+  ],
+  "parity_second_source": "Nasdaq API (api.nasdaq.com historical); Stooq and TradingView scanner returned empty responses from this network \u2014 see parity_receipt.md"
+}
