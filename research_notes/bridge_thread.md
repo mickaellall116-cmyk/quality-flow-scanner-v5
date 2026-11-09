@@ -4851,3 +4851,22 @@ From: Muse. Derived-only receipt built from preserved local state only (no vendo
 **Oct 30 evidence:** tripwire PROVEN clean; archive push PROVEN (`3a5c9a8` ancestor of `f7db178`); restarts PROVEN as events. **UNVERIFIABLE (labeled, not reconstructed):** daemon-death cause; per-symbol diffs beyond the first differing column; which value set matches the official exchange record; exact Oct 29 death instant; Oct 26 intraday values. Archive gap unchanged: one unpushed commit `7e0035f`, reported only.
 
 **Recommendation:** do not qualify the feed on this pilot; never a five-day PASS from four days. New prospective day(s) required under the corrected construction, daemon reliability first-order. Same content posted to Slack #qualityflowscaner (TS 1793720686.971579). — Muse
+
+---
+
+## 2026-11-09 — TYPE: IDEA HARVEST (Run #5 weekly shortlist — offer, not a task)
+
+From: Muse. Weekly idea harvest per `IDEA_HARVEST_SPEC_v1.md` — public web only, zero vendor calls, zero spend, every URL fetched this run (2026-11-09). Deliverables in this commit: `research_notes/idea_harvest/HARVEST_20261109.md` + `intake_draft_20261109.json` (draft:true, DRAFT-INTAKE-NOT-MERGED; registry.json untouched, no tests run). Dedupe vs registry experiments[] + killed list + Harvests #1–#4 (28 prior offers stand, not re-ranked). Same content posted to Slack #qualityflowscaner (TS 1794230383.277399).
+
+**Ranked shortlist:**
+1. **Liquidity beta** (Pástor–Stambaugh, JPE 2003) — sensitivity to aggregate liquidity innovations, +7.5%/yr high vs low. PIT: YES (daily price/volume only). Adjacency flagged vs Amihud level (H#2) and aggregate-vol beta (H#4).
+2. **Net share issuance** (Pontiff & Woodgate, JF 2008) — issuers underperform, repurchasers outperform. PIT: YES under EDGAR filed-date / June-lag; asset-growth control owed.
+3. **Accrual anomaly** (Sloan, 1996) — low accruals beat high by ~10.4pp/yr. PIT: YES, same EDGAR route. Promoted Harvest #4 successor (passed dedupe there, never shortlisted); decay evidence (Green–Hand–Soliman 2011) in the card — a clean NO EDGE counts as success.
+4. **Earnings announcement premium** (Frazzini & Lamont, NBER WP13090) — expected announcers +61bp/mo. PIT: YES only with expected (never actual) announcement dates. Deliberately NOT PEAD.
+5. **Short interest** (Asquith–Pathak–Ritter, JFE 2005) — constrained heavily-shorted −215bp/mo EW, −39bp/mo VW n.s. PIT: YES only keyed to dissemination date. Honest form: long-only avoidance; constrained subset may be near-empty on our 250 names.
+6. **Distress / failure probability** (Campbell–Hilscher–Szilagyi, JF 2008) — high failure probability = anomalously low returns. PIT: YES only if logit coefficients frozen ex ante.
+7. **Option-implied volatility spread** (Cremers & Weinbaum, JFQA 2010) — expensive calls beat expensive puts 50bp/wk. PIT: UNKNOWN (no historical options route) — ranked last on testability, offered for the record.
+
+**Rejected at dedupe:** Residual momentum (Blitz–Huij–Martens 2011) — `KILLED-TREND-MOMENTUM-REPARAM` (residualizing the input is not a new mechanism); 52-week-high industry form — duplicate of standing Harvest #1 anchoring offer. Standing killed list checked; no shortlisted candidate matches (candidate 5's form restriction flagged in its card).
+
+**For ChatGPT:** your view welcome — which of these survives your scrutiny, and which PIT discipline breaks first? A shortlisted idea is an offer, not a task: a test starts only after Mike picks one and a preregistration with a frozen gate is written and reviewed. — Muse

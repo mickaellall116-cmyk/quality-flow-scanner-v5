@@ -1,0 +1,417 @@
+{
+  "draft": true,
+  "status": "DRAFT — NOT MERGED INTO registry.json",
+  "generated": "2026-11-09",
+  "generator": "Idea harvest run #5 per IDEA_HARVEST_SPEC_v1.md",
+  "source_report": "research_notes/idea_harvest/HARVEST_20261109.md",
+  "merge_instruction": "Do NOT merge automatically. A draft becomes a registry experiment only after Mike selects it and a preregistration is approved; merge then via python json (indent=2, ensure_ascii=False) in a separate approved bookkeeping step.",
+  "experiments": [
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261109-IH01-LIQUIDITY-BETA",
+      "title": "Liquidity beta — sensitivity to aggregate liquidity innovations (Pastor-Stambaugh)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-09",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks whose returns are more sensitive to fluctuations in aggregate market liquidity earn higher average returns; high-sensitivity stocks beat low-sensitivity stocks by 7.5% per year (1966-1999) adjusted for market, size, value and momentum.",
+      "primary_sources": [
+        "https://ideas.repec.Org/a/ucp/jpolec/v111y2003i3p642-685.html"
+      ],
+      "literature_intake": {
+        "source": "Pastor & Stambaugh, Journal of Political Economy 111 (2003) 642-685",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks whose returns are more sensitive to fluctuations in aggregate market liquidity earn higher average returns; high-sensitivity stocks beat low-sensitivity stocks by 7.5% per year (1966-1999) adjusted for market, size, value and momentum."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261109.md",
+      "dependencies": [
+        "Daily price and volume data for the frozen 250-symbol universe (already handled); aggregate liquidity factor constructed from the same universe's completed data."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Adjacency flag vs Harvest #2 IH02 (Amihud illiquidity LEVEL): this is a beta to aggregate liquidity innovations, a different estimator and mechanism.",
+        "Preregistration should report correlation with Harvest #4 IH02 aggregate-volatility beta sorts; a pass that merely re-measures the Amihud level or volatility beta is not a new finding.",
+        "Aggregate factor must be constructed strictly from data completed in each month (no full-sample factor vintage).",
+        "Dedupe PASS with adjacency flags: no registry experiment estimates liquidity-innovation betas."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #5, 2026-11-09; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Daily data within each month for the liquidity measure; aggregate liquidity monthly; betas over a trailing window, annual formation",
+      "failure_data_source": "See HARVEST_20261109.md PIT field for this candidate",
+      "failure_strategy_family": "liquidity_beta",
+      "task_revision": "intake-draft-20261109",
+      "evidence_pin": "https://ideas.repec.Org/a/ucp/jpolec/v111y2003i3p642-685.html",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261109-IH02-NET-SHARE-ISSUANCE",
+      "title": "Net share issuance — issuers underperform, repurchasers outperform (Pontiff-Woodgate)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-09",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Post-1970, share issuance strongly predicts cross-sectional returns: firms that grow their split-adjusted share count underperform and firms that shrink it outperform.",
+      "primary_sources": [
+        "https://www.fidetolabs.com/products/notes/net-share-issuance-holdout"
+      ],
+      "literature_intake": {
+        "source": "Pontiff & Woodgate, Journal of Finance 63 (2008) 921-945",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Post-1970, share issuance strongly predicts cross-sectional returns: firms that grow their split-adjusted share count underperform and firms that shrink it outperform."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261109.md",
+      "dependencies": [
+        "SEC EDGAR filings (split-adjusted shares outstanding with filed dates) plus daily price data for the frozen universe."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "PIT discipline must be frozen: shares outstanding used only after EDGAR filed dates, or under the standard June-lag convention; split adjustments only from splits effective before formation; as-restated pulls disallowed.",
+        "Adjacency vs Harvest #4 IH05 asset growth: issuers are usually asset-growers and the five-factor CMA investment factor may absorb part of the effect; preregistration must double-sort or control for asset growth.",
+        "Fetched source is a published-research summary of the primary paper (publisher full text refuses automated fetch); only the abstract claims are attributed to the paper.",
+        "Dedupe PASS with adjacency flags; standalone single-measure sort, not a VCP claim."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #5, 2026-11-09; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Annual formation (June, on change in log split-adjusted shares from fiscal year-end t-2 to t-1); multi-month to multi-year holds",
+      "failure_data_source": "See HARVEST_20261109.md PIT field for this candidate",
+      "failure_strategy_family": "net_share_issuance",
+      "task_revision": "intake-draft-20261109",
+      "evidence_pin": "https://www.fidetolabs.com/products/notes/net-share-issuance-holdout",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261109-IH03-ACCRUAL-ANOMALY",
+      "title": "Accrual anomaly (Sloan) — cash-backed earnings beat accrual-heavy earnings",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-09",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "The lowest-accrual decile outperformed the highest-accrual decile by ~10.4 pp per year (~9.4 pp size-adjusted, 1962-1991): prices fixate on earnings and underweight the lower persistence of the accrual component relative to cash flow.",
+      "primary_sources": [
+        "https://multibaggershares.com/sloan-accrual-anomaly-cash-backed-earnings-test-forensic-filter/"
+      ],
+      "literature_intake": {
+        "source": "Sloan, The Accounting Review 71 (1996) 289-315",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "The lowest-accrual decile outperformed the highest-accrual decile by ~10.4 pp per year (~9.4 pp size-adjusted, 1962-1991): prices fixate on earnings and underweight the lower persistence of the accrual component relative to cash flow."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261109.md",
+      "dependencies": [
+        "SEC EDGAR 10-K filings (net income, cash flow from operations, total assets, balance-sheet accrual components) with filed dates, plus daily price data."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Promoted successor: passed dedupe in Harvest #4 (2026-11-02) but was not shortlisted there; never shortlisted or tested before this run.",
+        "Decay evidence is part of the claim: Green, Hand & Soliman (2011) document hedge returns decayed toward zero with arbitrage capital; a clean NO EDGE is a successful outcome.",
+        "Preregistration must freeze ONE accrual construction (original balance-sheet form or cash-flow form (NI-CFO)/avg assets); the balance-sheet form is the most error-prone.",
+        "PIT: 10-K inputs used only after EDGAR filed dates or under a frozen June-lag convention; as-restated pulls disallowed.",
+        "Dedupe PASS: no registry experiment sorts on accruals."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #5, 2026-11-09; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Annual accounting data (one fiscal year, accruals scaled by average total assets); one-year hold",
+      "failure_data_source": "See HARVEST_20261109.md PIT field for this candidate",
+      "failure_strategy_family": "accrual_anomaly",
+      "task_revision": "intake-draft-20261109",
+      "evidence_pin": "https://multibaggershares.com/sloan-accrual-anomaly-cash-backed-earnings-test-forensic-filter/",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261109-IH04-EARNINGS-ANNOUNCEMENT-PREMIUM",
+      "title": "Earnings announcement premium — prices rise around scheduled announcement dates (Frazzini-Lamont)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-09",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks expected to announce earnings in a month earn a premium over stocks not expected to announce (~61 bp/month, ~7%/yr, t>5; premium lasts ~20 days), regardless of the news content.",
+      "primary_sources": [
+        "https://www.nber.org/system/files/working_papers/w13090/w13090.pdf"
+      ],
+      "literature_intake": {
+        "source": "Frazzini & Lamont, NBER Working Paper 13090 (2007)",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks expected to announce earnings in a month earn a premium over stocks not expected to announce (~61 bp/month, ~7%/yr, t>5; premium lasts ~20 days), regardless of the news content."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261109.md",
+      "dependencies": [
+        "Announcement-date history from public EDGAR filing timestamps (8-K/10-Q) plus daily price data for the frozen universe."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Load-bearing PIT rule from the paper: actual announcement dates may NOT be used; only expected dates forecast from prior-year announcement patterns are admissible.",
+        "Distinct from PEAD: this is a timing claim needing only WHEN a firm is expected to report, never the surprise; PEAD is a separate Track 2 candidate under Nov 11 review.",
+        "EDGAR announcement-history coverage completeness on the 250-name universe must be stated before any return gate; failure to build clean expected dates kills the candidate at preregistration.",
+        "Dedupe PASS: no registry experiment trades announcement timing."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #5, 2026-11-09; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Monthly formation on expected announcement month; premium window ~20 days around the announcement",
+      "failure_data_source": "See HARVEST_20261109.md PIT field for this candidate",
+      "failure_strategy_family": "earnings_announcement_premium",
+      "task_revision": "intake-draft-20261109",
+      "evidence_pin": "https://www.nber.org/system/files/working_papers/w13090/w13090.pdf",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261109-IH05-SHORT-INTEREST",
+      "title": "Short interest — heavily shorted stocks underperform (Asquith-Pathak-Ritter)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-09",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "High short interest portfolios generally underperform; short-sale-constrained stocks (highest short interest percentile and lowest institutional-ownership third) underperformed by 215 bp/month equal-weighted (1988-2002) but only an insignificant 39 bp/month value-weighted.",
+      "primary_sources": [
+        "https://economics.mit.edu/sites/default/files/publications/Short%20Interest%2C%20Institutional%20Ownership.pdf"
+      ],
+      "literature_intake": {
+        "source": "Asquith, Pathak & Ritter, Journal of Financial Economics 78 (2005) 243-276",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "High short interest portfolios generally underperform; short-sale-constrained stocks (highest short interest percentile and lowest institutional-ownership third) underperformed by 215 bp/month equal-weighted (1988-2002) but only an insignificant 39 bp/month value-weighted."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261109.md",
+      "dependencies": [
+        "FINRA/exchange published short interest (dissemination dates) and SEC EDGAR 13F institutional ownership (filed dates), plus daily price data."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Non-negotiable PIT rule: signal keyed to the short interest DISSEMINATION date, never the settlement date; 13F ownership keyed to filed dates.",
+        "Paper's own caveats: headline effect is equal-weighted and concentrated in a tiny constrained subset (~21 stocks/month in full CRSP); on a ~250-name large-cap universe that subset may be nearly empty and a value-weighted null is a live possibility.",
+        "Honest form is long-only avoidance/underweight of heavily shorted names; a short leg belongs only inside a long-short research design with borrow costs stated, and a daily short-side system would collide with KILLED-SHORT-SIDE-DAILY.",
+        "Dedupe PASS with form restriction flagged: no registry experiment uses positioning data."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #5, 2026-11-09; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Monthly short interest observations; forward returns over following month(s), persistence reported up to 12 months",
+      "failure_data_source": "See HARVEST_20261109.md PIT field for this candidate",
+      "failure_strategy_family": "short_interest",
+      "task_revision": "intake-draft-20261109",
+      "evidence_pin": "https://economics.mit.edu/sites/default/files/publications/Short%20Interest%2C%20Institutional%20Ownership.pdf",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261109-IH06-DISTRESS-FAILURE-PROBABILITY",
+      "title": "Distress / failure probability — high-failure-probability stocks earn anomalously low returns (Campbell-Hilscher-Szilagyi)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-09",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks with high failure probability estimated by a dynamic logit on accounting and market variables have delivered anomalously low returns since 1981, despite higher volatility, betas and value/small-cap loadings.",
+      "primary_sources": [
+        "https://hilscher.ucdavis.edu/CampbellHilscherSzilagyi_JF2008.pdf"
+      ],
+      "literature_intake": {
+        "source": "Campbell, Hilscher & Szilagyi, Journal of Finance 63 (2008) 2899-2947",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks with high failure probability estimated by a dynamic logit on accounting and market variables have delivered anomalously low returns since 1981, despite higher volatility, betas and value/small-cap loadings."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261109.md",
+      "dependencies": [
+        "SEC EDGAR filings (net income, leverage, cash holdings, filed dates) plus completed market data (returns, volatility, market cap, price) for the frozen universe."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Honesty freeze: logit coefficients frozen ex ante (published coefficients as-is, or expanding-window estimation using only failures realised before each formation date); full-sample re-estimation applied in-sample is lookahead and disallowed.",
+        "Most model-heavy candidate on the menu; inputs overlap profitability and volatility families already offered — preregistration owes overlap reporting against those sorts.",
+        "PIT: accounting inputs under EDGAR filed-date / June-lag discipline.",
+        "Dedupe PASS with overlap flags; not a VCP claim (opposite sign to a quality tilt)."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #5, 2026-11-09; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Monthly failure-probability estimation from lagged variables; monthly formation and hold",
+      "failure_data_source": "See HARVEST_20261109.md PIT field for this candidate",
+      "failure_strategy_family": "distress_failure_probability",
+      "task_revision": "intake-draft-20261109",
+      "evidence_pin": "https://hilscher.ucdavis.edu/CampbellHilscherSzilagyi_JF2008.pdf",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261109-IH07-OPTION-VOLATILITY-SPREAD",
+      "title": "Option-implied volatility spread — put-call parity deviations predict stock returns (Cremers-Weinbaum)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-09",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks with relatively expensive calls outperform stocks with relatively expensive puts by 50 bp per week, where expensiveness is the call-minus-put implied-volatility spread on matched strike/expiry option pairs.",
+      "primary_sources": [
+        "http://ideas.repec.org/a/cup/jfinqa/v45y2010i02p335-367_00.html"
+      ],
+      "literature_intake": {
+        "source": "Cremers & Weinbaum, Journal of Financial and Quantitative Analysis 45 (2010) 335-367",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks with relatively expensive calls outperform stocks with relatively expensive puts by 50 bp per week, where expensiveness is the call-minus-put implied-volatility spread on matched strike/expiry option pairs."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261109.md",
+      "dependencies": [
+        "Historical end-of-day option chains (matched call/put quotes with implied volatilities) — NO route currently exists in this program; PIT status unknown."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "PIT data UNKNOWN: no verified free public source of point-in-time historical option chains at needed depth; fails the top-tier testability bar and is ranked last for that reason.",
+        "Paper itself notes predictability decreased over its sample period.",
+        "Becomes testable only if a PIT-clean historical options source is ever qualified.",
+        "Dedupe PASS: no registry experiment uses options data."
+      ],
+      "verdict": "NOT TESTED — intake draft only",
+      "decision_refs": [
+        "Idea harvest run #5, 2026-11-09; IDEA_HARVEST_SPEC_v1 (Mike GO 2026-10-13 15:03 EDT; ChatGPT conditional pass, Issue #1 comment 6152443038)"
+      ],
+      "failure_reason": null,
+      "failure_market": null,
+      "failure_timeframe": "Weekly formation and hold",
+      "failure_data_source": "See HARVEST_20261109.md PIT field for this candidate",
+      "failure_strategy_family": "option_volatility_spread",
+      "task_revision": "intake-draft-20261109",
+      "evidence_pin": "http://ideas.repec.org/a/cup/jfinqa/v45y2010i02p335-367_00.html",
+      "authorization": "Intake authorized under the approved reduced v1 idea pipeline. NO test execution authorized."
+    }
+  ]
+}
