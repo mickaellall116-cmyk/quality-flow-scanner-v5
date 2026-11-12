@@ -46,7 +46,10 @@ jobs:
       - name: Test shared scanner rules
         run: |
           python -m compileall -q masterscanner_api.py scanner_rules.py scanner_streamlit_v5_mode_aware.py scanner_streamlit_v5_1_morning_action.py
-          python -m unittest discover -s tests -p "test_*.py"
+          # Run only API/row-completion tests in this refresh job. Broader
+          # research tests need independent dependencies and fixtures.
+          python -m unittest discover -s tests -p "test_scanner_rules.py"
+          python -m unittest discover -s tests -p "test_api_contract.py"
 
       - name: Generate and validate MasterScanner results
         run: |
