@@ -3,6 +3,8 @@ name: Refresh MasterScanner Results
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - "masterscanner_api.py"
       - "scanner_rules.py"
