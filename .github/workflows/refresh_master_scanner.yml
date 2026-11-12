@@ -107,10 +107,47 @@ jobs:
 
       - name: Commit latest results
         run: |
+          set -euo pipefail
           git config user.name "MasterScanner Bot"
           git config user.email "actions@github.com"
-          git add latest_buy_now.json
-          git diff --cached --quiet && exit 0
-          git commit -m "Update MasterScanner results"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          cp latest_buy_now.json "$RUNNER_TEMP/masterscanner-result.json"
+          # Two runners can start from the same checkout and both generate a result.
+          # Rebase causes a JSON conflict. Instead, start every publish attempt
+          # from the newest remote main and never overwrite a newer generation.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            if ! python - "$RUNNER_TEMP/masterscanner-result.json" latest_buy_now.json <<'PY'
+          import json
+          import sys
+          from datetime import datetime, timezone
+          def timestamp(path):
+              try:
+                  with open(path, encoding="utf-8") as fh:
+                      value = json.load(fh).get("generated_at")
+                  if not value:
+                      return datetime.min.replace(tzinfo=timezone.utc)
+                  return datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(timezone.utc)
+              except (FileNotFoundError, json.JSONDecodeError, ValueError, TypeError):
+                  return datetime.min.replace(tzinfo=timezone.utc)
+          candidate, published = sys.argv[1:]
+          if timestamp(published) >= timestamp(candidate):
+              print("No publish: remote result is at least as fresh.")
+              sys.exit(1)
+          PY
+            then
+              exit 0
+            fi
+            cp "$RUNNER_TEMP/masterscanner-result.json" latest_buy_now.json
+            git add latest_buy_now.json
+            if git diff --cached --quiet; then
+              exit 0
+            fi
+            git commit -m "Update MasterScanner results"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Publish race on attempt $attempt; retrying against current main."
+          done
+          echo "Could not publish after five attempts." >&2
+          exit 1
