@@ -1,0 +1,363 @@
+{
+  "draft": true,
+  "status": "DRAFT — NOT MERGED INTO registry.json",
+  "generated": "2026-11-16",
+  "generator": "Idea harvest run #6 per IDEA_HARVEST_SPEC_v1.md",
+  "source_report": "research_notes/idea_harvest/HARVEST_20261116.md",
+  "merge_instruction": "Do NOT merge automatically. A draft becomes a registry experiment only after Mike selects it and a preregistration is approved; merge then via python json (indent=2, ensure_ascii=False) in a separate approved bookkeeping step.",
+  "experiments": [
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261116-IH01-DOWNSIDE-BETA",
+      "title": "Downside beta — premium for covarying with the market on down days",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-16",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks that covary strongly with the market when the market declines earn higher subsequent returns (~6%/yr); downside beta estimated on down-market days over a trailing window, monthly formation/hold, long-only high-downside-beta tilt, controlling for ordinary beta, IVOL and coskewness.",
+      "primary_sources": [
+        "https://ideas.repec.org/p/nbr/nberwo/11824.html"
+      ],
+      "literature_intake": {
+        "source": "Ang, Chen & Xing, Review of Financial Studies 19 (2006) 1191-1239 (NBER WP 11824)",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks that covary strongly with the market when the market declines earn higher subsequent returns (~6%/yr); downside beta estimated on down-market days over a trailing window, monthly formation/hold, long-only high-downside-beta tilt, controlling for ordinary beta, IVOL and coskewness."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261116.md",
+      "dependencies": [
+        "Daily closes for the frozen universe and a market index (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Atilgan et al. (2020) find the premium does not survive value-weighting / fuller controls — carried in the intake as the live disagreement a frozen gate would settle.",
+        "Distinct from Harvest #4 aggregate-volatility beta and tail-risk beta; prereg must report overlap with those sorts and with Harvest #2 IVOL."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261116-IH02-PEAD-SUE",
+      "title": "Post-earnings-announcement drift — SUE-sorted drift after earnings announcements",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-16",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "After a quarterly earnings announcement, prices drift in the direction of the seasonal-random-walk earnings surprise (SUE) for ~60 trading days; long-only top-SUE form, bottom-SUE as avoid only.",
+      "primary_sources": [
+        "https://www.researchgate.net/publication/228431046_The_Post_Earnings_Announcement_Drift_Market_Reactions_to_SEC_Filings_and_the_Information_Environment"
+      ],
+      "literature_intake": {
+        "source": "Bernard & Thomas, Journal of Accounting Research 27 Suppl. (1989) 1-36; JAE 13 (1990) 305-340",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "After a quarterly earnings announcement, prices drift in the direction of the seasonal-random-walk earnings surprise (SUE) for ~60 trading days; long-only top-SUE form, bottom-SUE as avoid only."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261116.md",
+      "dependencies": [
+        "Announcement dates and EPS as announced (EDGAR / announcement records); daily bars (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Adjacency flag vs Harvest #5 IH04 earnings announcement premium: that holds around scheduled dates regardless of surprise; this sorts on the surprise and holds after.",
+        "PIT requires as-announced EPS, never restatements; analyst-consensus SUE is NOT claimed PIT.",
+        "Follow-up literature: prolonged drift weakened outside microcaps after the 1990s and is cost-sensitive; gate must charge real costs and report the liquid subset separately."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261116-IH03-INDEX-INCLUSION",
+      "title": "S&P 500 index inclusion — announcement-to-effective price pressure and its modern reversal",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-16",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Announced S&P 500 additions move on index-fund demand between announcement (~5 trading days before effective) and inclusion, partly reversing within two weeks (classic form); modern 2016-2020 evidence finds the sign flipped — both forms must be frozen as separate pre-committed legs or the test does not run.",
+      "primary_sources": [
+        "https://www.thefreelibrary.com/What+drives+the+S%26P+500+inclusion+effect%3F+An+analytical+survey-a0156202951"
+      ],
+      "literature_intake": {
+        "source": "Harris & Gurel, Journal of Finance 41 (1986); Shleifer (1986); inclusion-effect survey fetched 2026-11-16",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Announced S&P 500 additions move on index-fund demand between announcement (~5 trading days before effective) and inclusion, partly reversing within two weeks (classic form); modern 2016-2020 evidence finds the sign flipped — both forms must be frozen as separate pre-committed legs or the test does not run."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261116.md",
+      "dependencies": [
+        "Public S&P index-change announcements (announcement and effective dates); daily bars (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Few events per year touch the frozen universe — verdict is slow.",
+        "Deletions are avoid-only; no short book (short-side daily is a killed family)."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261116-IH04-DIVIDEND-INITIATION-DRIFT",
+      "title": "Dividend initiation drift — long-only post-initiation drift (omissions as avoid)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-16",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Firms initiating a cash dividend drift up ~+7.5% market-adjusted over the following 12 months (event month excluded); omissions drift down ~-11.0% and are used as an avoid/exit signal only, never a short.",
+      "primary_sources": [
+        "http://ideas.repec.org/a/bla/jfinan/v50y1995i2p573-608.html"
+      ],
+      "literature_intake": {
+        "source": "Michaely, Thaler & Womack, Journal of Finance 50 (1995) 573-608",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Firms initiating a cash dividend drift up ~+7.5% market-adjusted over the following 12 months (event month excluded); omissions drift down ~-11.0% and are used as an avoid/exit signal only, never a short."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261116.md",
+      "dependencies": [
+        "Dividend announcements and payment history as announced; daily bars (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Initiations inside a large-cap-tilted 250-name universe are infrequent; 12-month hold makes any verdict slow."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261116-IH05-REPURCHASE-ANNOUNCEMENT-DRIFT",
+      "title": "Open-market repurchase announcement drift — value-stock form",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-16",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Firms announcing open-market repurchases earn ~12.1% abnormal buy-and-hold return over the following four years; ~45.3% for high book-to-market announcers and ~zero for glamour announcers; a prereg freezing a 12-month window must state that as a deviation from the paper.",
+      "primary_sources": [
+        "http://ideas.repec.org/a/eee/jfinec/v39y1995i2-3p181-208.html"
+      ],
+      "literature_intake": {
+        "source": "Ikenberry, Lakonishok & Vermaelen, Journal of Financial Economics 39 (1995) 181-208",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Firms announcing open-market repurchases earn ~12.1% abnormal buy-and-hold return over the following four years; ~45.3% for high book-to-market announcers and ~zero for glamour announcers; a prereg freezing a 12-month window must state that as a deviation from the paper."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261116.md",
+      "dependencies": [
+        "Repurchase announcements as announced (filings/releases); book equity as already filed; daily bars (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Adjacency flags: Harvest #5 IH02 net share issuance (actual share-count change) and Harvest #4 IH06 insider net buying (officers personally) — different signals/actors.",
+        "Completion trap: many announced programs are never completed; substituting completed-buyback data would be look-ahead and is forbidden at prereg."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261116-IH06-BOOK-TO-MARKET-VALUE",
+      "title": "Book-to-market value premium — long-only high-B/M tilt",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-16",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "High book-to-market stocks earn higher average returns than low book-to-market stocks (HML); B/M formed annually with a conservative filing lag (fiscal years filed >=6 months before formation), held 12 months, long-only tilt judged at portfolio level.",
+      "primary_sources": [
+        "https://www.convexpi.ai/papers/72412e20-d407-442a-b090-d9a334d68cab"
+      ],
+      "literature_intake": {
+        "source": "Fama & French, Journal of Financial Economics 33 (1993) 3-56; Journal of Finance 47 (1992)",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "High book-to-market stocks earn higher average returns than low book-to-market stocks (HML); B/M formed annually with a conservative filing lag (fiscal years filed >=6 months before formation), held 12 months, long-only tilt judged at portfolio level."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261116.md",
+      "dependencies": [
+        "Filed book equity (EDGAR) with the frozen lag rule; daily/monthly prices (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "PIT is partial: book equity is PIT only under the filing-lag discipline; our fundamentals route is the historically hard one (VCP Phase 1A EDGAR work).",
+        "B/M is the conditioning variable in IH05's value form and a control in earlier intakes — a standalone test must not double-count those."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261116-IH07-CUSTOMER-MOMENTUM",
+      "title": "Customer momentum — suppliers follow their principal customers (economic links)",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-16",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "A supplier's next-month return is predicted by its principal customer's prior-month return (>150 bps/month long-short alpha in the paper); long-only form = overweight suppliers whose customers just rose.",
+      "primary_sources": [
+        "https://pages.stern.nyu.edu/~afrazzin/pdf/Economic%20Links%20and%20Predictable%20Returns%20-%20Cohen%20and%20Frazzini.pdf"
+      ],
+      "literature_intake": {
+        "source": "Cohen & Frazzini, Journal of Finance 63 (2008) 1977-2011",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "A supplier's next-month return is predicted by its principal customer's prior-month return (>150 bps/month long-short alpha in the paper); long-only form = overweight suppliers whose customers just rose."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261116.md",
+      "dependencies": [
+        "Customer-supplier link map from segment disclosures (SFAS 131, customers >10% of sales) as first disclosed; monthly returns (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "PIT unknown/partial: historical link maps as first disclosed are not held; vendor segment history is rebuilt/restated.",
+        "Adjacency flag vs Harvest #4 IH01 industry lead-lag: named firm-to-firm links cross industries; different link definition.",
+        "Link map must be frozen as a dated snapshot at prereg; no discretion in link construction."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261116-IH08-SEARCH-ATTENTION-ASVI",
+      "title": "Search attention — abnormal Google search volume (ASVI) price pressure",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-16",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "A spike in Google search volume for a ticker (ASVI vs trailing median) predicts price pressure over the next 1-2 weeks with reversal over the following year; weekly formation.",
+      "primary_sources": [
+        "https://phys.org/news/2011-02-stock-google.html"
+      ],
+      "literature_intake": {
+        "source": "Da, Engelberg & Gao, Journal of Finance 66 (2011) 1461-1499",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "A spike in Google search volume for a ticker (ASVI vs trailing median) predicts price pressure over the next 1-2 weeks with reversal over the following year; weekly formation."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261116.md",
+      "dependencies": [
+        "Google Trends search-volume series; weekly bars (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "PIT: no/unknown — Trends SVI is renormalized and resampled on re-pull, so today's download is not the decision-date series; no as-published archive is accessible. Honest route is prospective first-seen capture only.",
+        "Any backtest on re-pulled Trends data would test revised numbers and is not verdict-grade."
+      ]
+    }
+  ]
+}
