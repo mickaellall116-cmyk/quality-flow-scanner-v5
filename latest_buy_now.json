@@ -2,7 +2,7 @@
   "scanner": "Quality Flow Scanner V5.3",
   "scanner_version": "5.3",
   "rule_version": "2026-09-14-v3",
-  "generated_at": "2026-11-18T01:24:46.655790+00:00",
+  "generated_at": "2026-11-18T08:41:33.919219+00:00",
   "interval": "4h",
   "period": "180d",
   "signal_bar_close_at": "2026-11-17T16:00:00-05:00",
@@ -12,8 +12,8 @@
     "risk_on": false,
     "score": 0,
     "gate": "BLOCK",
-    "qqq_session_return_pct": -0.73,
-    "spy_session_return_pct": -1.035,
+    "qqq_session_return_pct": -0.728,
+    "spy_session_return_pct": -1.034,
     "signal_bar_close_at": "2026-11-17T16:00:00-05:00"
   },
   "count": 0,
@@ -22,5 +22,5 @@
   "candidates": [],
   "source": "github-actions",
   "uses_closed_4h_candles": true,
-  "primary_candidates_frozen": false
+  "primary_candidates_frozen": true
 }
