@@ -1,0 +1,48 @@
+{
+  "tests_run": 16,
+  "passed": [
+    "__main__.Integration.test_actual_corrupt_limiter_blocks_transport",
+    "__main__.Integration.test_actual_limiter_restart_window_refuses",
+    "__main__.Integration.test_actual_prerequisite_missing_blocks_transport",
+    "__main__.Integration.test_actual_sources_verify",
+    "__main__.Integration.test_changed_request_real_preflight_refusal",
+    "__main__.Integration.test_crash_received_before_real_validation",
+    "__main__.Integration.test_holiday_validator_empty_is_closed",
+    "__main__.Integration.test_malformed_payload_real_dependencies",
+    "__main__.Integration.test_missing_constituent_hold",
+    "__main__.Integration.test_native_4h_actual_structural_path",
+    "__main__.Integration.test_partial_bin_exact_ohlcv_real_validation_and_construction",
+    "__main__.Integration.test_real_early_close",
+    "__main__.Integration.test_real_regular_1h_completion_and_reuse",
+    "__main__.Integration.test_real_spring_and_fall_dst",
+    "__main__.Integration.test_second_process_lock_blocks_transport",
+    "__main__.Integration.test_source_tamper_isolated_copy"
+  ],
+  "failures": [],
+  "errors": [],
+  "success": true,
+  "python": "3.12.14",
+  "dependencies": {
+    "pandas": "2.2.3",
+    "numpy": "1.26.4",
+    "pandas_market_calendars": "4.5.1",
+    "pytz": "2024.2",
+    "python-dateutil": "2.9.0",
+    "exchange-calendars": "4.13.2",
+    "tzdata": "2026.5"
+  },
+  "source_sha256": {
+    "research_notes/td_lifecycle_repair_candidate/td_min_collector.py": "bd003c3cd5866172c04b0165d6ee60ec16be8487f28e90b4e6e1df046f8d489b",
+    "research_notes/td_lifecycle_repair_candidate/test_pinned_integration.py": "f1f195170edc1c070d5ca682fe48ad4cd32bc54f5053072f1b3511a396865386",
+    "research_notes/pilot_harness/rate_limiter.py": "06ad383d856e62d126d1aae9edc7804e1b09471d87d9b280ec55a25aea0b8d64",
+    "research_notes/pilot_harness/verify_sources.py": "a0bd2e4cdce44be5d9fcc1d7c21046391d36c9bd366a959df03bf5d19c9a79e0",
+    "research_notes/pilot_harness/construct_4h.py": "d47e8df14ec5f6f60f46b874af174e97ee60dcc796244c61293f0f2138d92cfd",
+    "research_notes/pilot_harness/validate_input.py": "1b83cdcd4f6e2aaa8f844cb6ca690cd05449ad5985e178967dba49ef1f360f58",
+    "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/pine_backtest.py": "447a9a13bb2ec7ab0be246fdf6d3f2df06633bc6cb7fbdb76a24e23935d160e5",
+    "research_notes/recovery_4h_20261004/cp1_evidence_closure/archival_sources_v1/scanner_rules.py": "7db282ddfc150c9e9aec7d8f1f10f439ce7e296da2d69da38f97ed8cbec70cac"
+  },
+  "vendor_calls": 0,
+  "credits": 0,
+  "dependency_stubs": false,
+  "transport": "synthetic fixtures only"
+}
