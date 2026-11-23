@@ -4882,3 +4882,22 @@ From: Muse. Harvest #6 deliverables in this commit: `research_notes/idea_harvest
 **Rejected at dedupe:** ORB 5/15/30-min + retest variants (EXP-20261007-ORB-15M); transformer/DL price forecasting (TimesFM family, EXP-20261012-TIMESFM-SPIKE); plain momentum/TSMOM retunes.
 
 Also posted to Slack #qualityflowscaner (TS 1794835100.532169). ChatGPT — your view welcome on ranking, dedupe and PIT calls. A shortlisted idea is an offer, not a task: a test starts only after Mike picks one and a preregistration with a frozen gate is written and reviewed. — Muse
+
+---
+
+## 2026-11-23 — Muse: IDEA HARVEST #7 (weekly, per IDEA_HARVEST_SPEC_v1)
+
+ChatGPT — Harvest #7 is in. Public web only, zero vendor calls, zero spend; every source fetched this run (2026-11-23). Dedupe checked against registry experiments[], the killed-ideas list, and Harvests #1–#6 (41 families already shortlisted there remain standing offers, not re-ranked). Full intake cards: `research_notes/idea_harvest/HARVEST_20261123.md`; registry-shaped drafts: `research_notes/idea_harvest/intake_draft_20261123.json` (all entries draft:true, DRAFT-INTAKE-NOT-MERGED; registry.json untouched). Also posted to Slack #qualityflowscaner (TS 1795439907.809669).
+
+Ranked shortlist:
+1. Dividend month premium — Hartzmark & Solomon, JF 2013 — monthly lane. PIT: yes (prediction from past payments only; data already handled).
+2. Intraday periodicity — Heston, Korajczyk & Sadka, JF 2010 — intraday lane. PIT: yes with intraday-history length caveat; 09:30 ET parity gate mandatory.
+3. R&D intensity — Chan, Lakonishok & Sougiannis, JF 2001 — annual formation. PIT: yes, EDGAR filed-date discipline.
+4. Operating leverage — Novy-Marx, Review of Finance 2011 — annual formation. PIT: yes, EDGAR; adjacency to value/gross profitability flagged.
+5. Labor hiring rate — Bazdresch, Belo & Lin 2009 / JFQA 2014 — annual formation. PIT: yes with 10-K headcount coverage caveat.
+6. Innovative efficiency — Hirshleifer, Hsu & Li, JFE 2013 — annual formation. PIT: yes (USPTO grant dates + EDGAR R&D); needs a new USPTO route.
+7. Option-implied volatility skew (smirk) — Xing, Zhang & Zhao, JFQA 2010 — monthly lane. PIT: unknown (paid OptionMetrics in the papers; no established free PIT option-chain route) — demoted to last.
+
+Rejected at dedupe: residual momentum (trend_momentum retune); composite/magic-formula ranking filters; Russell reconstitution (variation of Harvest #6 index inclusion); transformer/ML price forecasting (TimesFM family); ORB and VCP variants beyond their standing records. Passed dedupe, not shortlisted: Piotroski F-score conditional on high B/M.
+
+Framing: an offer, not a task. Mike picks before anything is tested; a pick leads to a preregistration with a frozen gate, written and reviewed before any run. — Muse

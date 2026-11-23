@@ -1,0 +1,316 @@
+{
+  "draft": true,
+  "status": "DRAFT — NOT MERGED INTO registry.json",
+  "generated": "2026-11-23",
+  "generator": "Idea harvest run #7 per IDEA_HARVEST_SPEC_v1.md",
+  "source_report": "research_notes/idea_harvest/HARVEST_20261123.md",
+  "merge_instruction": "Do NOT merge automatically. A draft becomes a registry experiment only after Mike selects it and a preregistration is approved; merge then via python json (indent=2, ensure_ascii=False) in a separate approved bookkeeping step.",
+  "experiments": [
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261123-IH01-DIVIDEND-MONTH",
+      "title": "Dividend month premium — returns are high in the month a dividend is predicted",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-23",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks earn positive abnormal returns in months when a dividend is predicted from their own past payment schedule (~53 bps/month vs all other stocks); monthly formation from payments 3/6/9/12 months earlier, long-only predicted payers, post-ex-day reversal measured separately.",
+      "primary_sources": [
+        "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1930620"
+      ],
+      "literature_intake": {
+        "source": "Hartzmark & Solomon, Journal of Finance 68 (2013)",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks earn positive abnormal returns in months when a dividend is predicted from their own past payment schedule (~53 bps/month vs all other stocks); monthly formation from payments 3/6/9/12 months earlier, long-only predicted payers, post-ex-day reversal measured separately."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261123.md",
+      "dependencies": [
+        "Historical dividend calendar + daily OHLCV for the frozen universe (already handled)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Distinct from Harvest #6 dividend initiation drift (recurring schedule vs first announcement) — flagged adjacency in the harvest report."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261123-IH02-INTRADAY-PERIODICITY",
+      "title": "Intraday periodicity — same half-hour returns repeat at daily lags",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-23",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "A stock's return in a given half-hour interval positively predicts its return in the same half-hour interval on subsequent days, persisting at least 40 trading days; 13 half-hour intervals, 09:30 ET anchor, completed bars only.",
+      "primary_sources": [
+        "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1509466&rec=1&srcabs=1461185&pos=1"
+      ],
+      "literature_intake": {
+        "source": "Heston, Korajczyk & Sadka, Journal of Finance 65 (2010) 1369-1407",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "A stock's return in a given half-hour interval positively predicts its return in the same half-hour interval on subsequent days, persisting at least 40 trading days; 13 half-hour intervals, 09:30 ET anchor, completed bars only."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261123.md",
+      "dependencies": [
+        "Intraday 30-min bars for the frozen universe; length of clean intraday history is an open data question."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "PIT yes by construction but intraday history length partial — demoted on the rubric's partial-data rule.",
+        "Family-adjacent to Harvest #1 intraday_momentum and the ORB HOLD record; candle-parity gate (09:30 ET anchor) is mandatory before any run."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261123-IH03-RND-INTENSITY",
+      "title": "R&D intensity — high R&D relative to market value is underpriced",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-23",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Among R&D-doing firms, high R&D intensity (R&D scaled by market value of equity) predicts higher subsequent returns, strongest in growth stocks; annual formation from as-filed R&D under EDGAR filed-date discipline.",
+      "primary_sources": [
+        "https://www.nber.org/papers/w7223"
+      ],
+      "literature_intake": {
+        "source": "Chan, Lakonishok & Sougiannis, Journal of Finance 56 (2001) 2431-2456 (NBER WP 7223)",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Among R&D-doing firms, high R&D intensity (R&D scaled by market value of equity) predicts higher subsequent returns, strongest in growth stocks; annual formation from as-filed R&D under EDGAR filed-date discipline."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261123.md",
+      "dependencies": [
+        "SEC EDGAR annual R&D as filed + market value at formation."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Claim is conditional (growth stocks / high R&D-to-market-value with poor past returns); prereg must report the conditional and unconditional sorts separately."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261123-IH04-OPERATING-LEVERAGE",
+      "title": "Operating leverage — high operating costs relative to assets earn higher returns",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-23",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Firms with high operating leverage (annual operating costs scaled by assets) earn significantly higher average returns; annual formation, intra-industry form ranked within industry, controlling for book-to-market and gross profitability.",
+      "primary_sources": [
+        "https://tevgeniou.github.io/EquityRiskFactors/bibliography/OperatingLeverageFactor.pdf"
+      ],
+      "literature_intake": {
+        "source": "Novy-Marx, Review of Finance 15 (2011) 103-134",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Firms with high operating leverage (annual operating costs scaled by assets) earn significantly higher average returns; annual formation, intra-industry form ranked within industry, controlling for book-to-market and gross profitability."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261123.md",
+      "dependencies": [
+        "SEC EDGAR annual COGS + SG&A and total assets as filed; frozen as-of industry classification."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Family-adjacent to Harvest #6 book-to-market and Harvest #4 gross profitability — controls mandatory or a pass is re-labelled value/profitability.",
+        "Secondary discussion fetched in this run argues the unconditional premium may have inverted; carried as the live disagreement."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261123-IH05-LABOR-HIRING",
+      "title": "Labor hiring rate — firms hiring slowly earn higher future returns",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-23",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Firms with lower labor hiring rates earn higher future stock returns (~7.05%/yr value-weighted low-minus-high hiring+investment spread in the paper); annual formation on employment change, hiring-only sort reported with the investment/asset-growth rate controlled.",
+      "primary_sources": [
+        "https://haas.berkeley.edu/wp-content/uploads/Belo_LaborSep2009.pdf"
+      ],
+      "literature_intake": {
+        "source": "Bazdresch, Belo & Lin, working paper Sep 2009 (published JFQA 49 (2014) as Belo, Lin & Bazdresch)",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Firms with lower labor hiring rates earn higher future stock returns (~7.05%/yr value-weighted low-minus-high hiring+investment spread in the paper); annual formation on employment change, hiring-only sort reported with the investment/asset-growth rate controlled."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261123.md",
+      "dependencies": [
+        "SEC EDGAR 10-K employee counts as filed + asset-growth control."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Employee-count disclosure is sparser/less standardized than financial line items; prereg must measure coverage on the universe and freeze a minimum-coverage rule.",
+        "Investment leg overlaps Harvest #4 asset growth — hiring leg is the novel mechanism and must be isolated."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261123-IH06-INNOVATION-EFFICIENCY",
+      "title": "Innovative efficiency — patents per R&D dollar predict returns",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-23",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Innovative efficiency (patents granted, or citations, scaled by R&D expenditures with a two-year application-grant lag) is a strong positive predictor of future returns (~38 bps/month value-weighted high-minus-low); annual formation, 12-month hold, R&D-doing firms only, R&D intensity controlled.",
+      "primary_sources": [
+        "https://ideas.repec.org/a/eee/jfinec/v107y2013i3p632-654.html"
+      ],
+      "literature_intake": {
+        "source": "Hirshleifer, Hsu & Li, Journal of Financial Economics 107 (2013) 632-654",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Innovative efficiency (patents granted, or citations, scaled by R&D expenditures with a two-year application-grant lag) is a strong positive predictor of future returns (~38 bps/month value-weighted high-minus-low); annual formation, 12-month hold, R&D-doing firms only, R&D intensity controlled."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261123.md",
+      "dependencies": [
+        "USPTO patent grants/citations with a frozen assignee-matching rule + SEC EDGAR R&D as filed."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "Needs a new USPTO data route; assignee matching is the judgment risk and must be frozen at preregistration.",
+        "Correlated with IH03 (R&D input vs innovation output per input dollar) — sequence, do not stack."
+      ]
+    },
+    {
+      "draft": true,
+      "experiment_id": "DRAFT-20261123-IH07-IMPLIED-SKEW",
+      "title": "Option-implied volatility skew (smirk) — steep smirks predict low returns",
+      "owner": "Muse (idea harvest intake)",
+      "created_at": "2026-11-23",
+      "state": "DRAFT-INTAKE-NOT-MERGED",
+      "hypothesis": "Stocks with a steep volatility smirk (IV of out-of-the-money puts minus at-the-money calls, monthly formation, 30-91 days to maturity) earn lower subsequent returns over 1-week to 3-month holds.",
+      "primary_sources": [
+        "https://livrepository.liverpool.ac.uk/3002404/1/FuArisoyShackletonUmutlu2016.pdf"
+      ],
+      "literature_intake": {
+        "source": "Xing, Zhang & Zhao, JFQA 45 (2010); comparison: Fu, Arisoy, Shackleton & Umutlu, Liverpool repository paper",
+        "finding": "Harvest intake only; claim as published, not tested by us.",
+        "hypothesis_derived": "Stocks with a steep volatility smirk (IV of out-of-the-money puts minus at-the-money calls, monthly formation, 30-91 days to maturity) earn lower subsequent returns over 1-week to 3-month holds."
+      },
+      "rule_spec_version": "IDEA_HARVEST_SPEC_v1 intake; no rule spec yet",
+      "code_pin": "NONE — no code written",
+      "dataset_pin": "NONE — no data pulled",
+      "output_pin": "research_notes/idea_harvest/HARVEST_20261123.md",
+      "dependencies": [
+        "Point-in-time historical firm-level option chains — NO established accessible route (papers use paid OptionMetrics)."
+      ],
+      "next_action": "Awaiting Mike selection; if picked, next step is a preregistration with a frozen gate (separate approval).",
+      "attempted_variations": [],
+      "trial_budget": {
+        "allocated": "NONE",
+        "used": "0",
+        "unit": "no test authorized"
+      },
+      "repair_budget": {
+        "allocated_rounds": 0,
+        "used_rounds": 0
+      },
+      "baseline_design": "TBD at preregistration",
+      "costs": "TBD at preregistration (standing bar: 25 bps)",
+      "validation_split": "TBD at preregistration",
+      "acceptance_criteria": "TBD — frozen gate to be written before any run",
+      "robustness_diagnostics": [],
+      "limitations": [
+        "PIT data: unknown — fails the rubric's top-tier PIT test; shortlisted to put the data question on the record, demoted to last.",
+        "Shares its data-route blocker with Harvest #5 option_volatility_spread (different statistic: moneyness slope vs parity deviation)."
+      ]
+    }
+  ]
+}
