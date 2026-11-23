@@ -2,7 +2,7 @@
   "scanner": "Quality Flow Scanner V5.3",
   "scanner_version": "5.3",
   "rule_version": "2026-09-14-v3",
-  "generated_at": "2026-11-22T21:16:16.966763+00:00",
+  "generated_at": "2026-11-23T01:43:37.665824+00:00",
   "interval": "4h",
   "period": "180d",
   "signal_bar_close_at": "2026-11-20T16:00:00-05:00",
